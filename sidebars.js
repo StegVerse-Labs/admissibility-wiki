@@ -10,6 +10,14 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Governance',
+      items: [
+        'governance/editorial-policy',
+        'governance/page-template',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Glossary',
       items: [
         'glossary/admissibility',
