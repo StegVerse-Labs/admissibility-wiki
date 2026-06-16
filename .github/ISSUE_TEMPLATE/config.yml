@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Admissibility Wiki activation runbook
+    url: https://github.com/StegVerse-Labs/admissibility-wiki/blob/main/docs/activation/github-pages-cloudflare.md
+    about: Check the activation runbook before opening deployment or DNS issues.
