@@ -3,7 +3,9 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "serve": "docusaurus serve",
-    "clear": "docusaurus clear"
+    "clear": "docusaurus clear",
+    "validate:ontology": "node scripts/validate-ontology.mjs",
+    "validate": "npm run validate:ontology && npm run build"
   },
   "dependencies": {
     "@docusaurus/core": "^3.10.1",
