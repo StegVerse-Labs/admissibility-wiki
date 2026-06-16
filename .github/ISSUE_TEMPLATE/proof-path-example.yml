@@ -1,0 +1,54 @@
+name: Proof path example
+description: Propose a transition cell, receipt, replay, refusal, or validation example.
+title: "Proof path: "
+labels: ["proof-path", "editorial-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for examples that help explain admissibility through concrete artifacts.
+  - type: dropdown
+    id: artifact_type
+    attributes:
+      label: Artifact type
+      options:
+        - transition cell
+        - receipt
+        - replay command
+        - refusal case
+        - validation case
+        - comparison example
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Proposed example
+      description: Provide the smallest useful example.
+    validations:
+      required: true
+  - type: textarea
+    id: admissibility_mapping
+    attributes:
+      label: Admissibility mapping
+      description: Explain authority class, policy reference, evidence posture, decision result, and commit-time validity.
+    validations:
+      required: true
+  - type: textarea
+    id: limits
+    attributes:
+      label: Limits
+      description: State what this example does not prove or claim.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Contribution checklist
+      options:
+        - label: The example is small enough for a public proof path.
+          required: true
+        - label: The example avoids unsupported implementation claims.
+          required: true
+        - label: The example can be understood without private context.
+          required: true
