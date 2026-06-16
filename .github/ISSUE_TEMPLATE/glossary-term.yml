@@ -1,0 +1,61 @@
+name: Glossary term
+description: Propose a new term or a change to an existing term.
+title: "Glossary: "
+labels: ["glossary", "editorial-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for vocabulary additions or definition changes.
+  - type: input
+    id: term
+    attributes:
+      label: Term
+      description: The exact term to add or revise.
+      placeholder: Commit-Time Authority
+    validations:
+      required: true
+  - type: dropdown
+    id: term_posture
+    attributes:
+      label: Maturity posture
+      options:
+        - conceptual
+        - implemented
+        - experimental
+        - proposed
+        - external
+    validations:
+      required: true
+  - type: textarea
+    id: definition
+    attributes:
+      label: Proposed definition
+      description: Provide the shortest useful neutral definition.
+    validations:
+      required: true
+  - type: textarea
+    id: distinction
+    attributes:
+      label: What this term is not
+      description: Name nearby concepts that should not be confused with this term.
+    validations:
+      required: true
+  - type: textarea
+    id: related_terms
+    attributes:
+      label: Related terms
+      description: List related wiki terms or pages.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Contribution checklist
+      options:
+        - label: This term improves the public vocabulary layer.
+          required: true
+        - label: This proposal separates concept from implementation.
+          required: true
+        - label: This proposal will require an ontology update if accepted.
+          required: true
