@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.1",
+  "artifact_id": "admissibility-vocabulary.v0.1",
+  "title": "Admissibility Wiki Vocabulary",
+  "publisher": "StegVerse-Labs",
+  "generated_for": "admissibility-wiki",
+  "terms": [
+    {
+      "id": "admissibility",
+      "label": "Admissibility",
+      "category": "core_concept",
+      "definition": "The property of a proposed transition being allowed to proceed under the authority, policy, evidence, and context state present at commit time.",
+      "page": "/glossary/admissibility",
+      "posture": "conceptual",
+      "related_terms": ["transition", "commit_time_authority", "receipt_bound_execution", "reconstructability"]
+    },
+    {
+      "id": "transition",
+      "label": "Transition",
+      "category": "core_concept",
+      "definition": "A movement from one governed state to another that may carry consequence.",
+      "page": "/glossary/transition",
+      "posture": "conceptual",
+      "related_terms": ["admissibility", "governance_boundary", "receipt_bound_execution"]
+    },
+    {
+      "id": "commit_time_authority",
+      "label": "Commit-Time Authority",
+      "category": "authority",
+      "definition": "The authority basis that exists at the moment a transition result binds.",
+      "page": "/glossary/commit-time-authority",
+      "posture": "conceptual",
+      "related_terms": ["admissibility", "governance_boundary", "reconstructability"]
+    },
+    {
+      "id": "receipt_bound_execution",
+      "label": "Receipt-Bound Execution",
+      "category": "evidence",
+      "definition": "Execution connected to a durable record of the authority, policy, evidence, context, and decision posture present at commit time.",
+      "page": "/glossary/receipt-bound-execution",
+      "posture": "conceptual",
+      "related_terms": ["admissibility", "transition", "reconstructability"]
+    },
+    {
+      "id": "governance_boundary",
+      "label": "Governance Boundary",
+      "category": "boundary",
+      "definition": "The declared limit of what a system claims to govern, observe, authorize, enforce, or prove.",
+      "page": "/glossary/governance-boundary",
+      "posture": "conceptual",
+      "related_terms": ["commit_time_authority", "admissibility", "reconstructability"]
+    },
+    {
+      "id": "reconstructability",
+      "label": "Reconstructability",
+      "category": "evidence",
+      "definition": "The ability to recover enough information after an event to understand what happened and why a decision appeared to have standing.",
+      "page": "/glossary/reconstructability",
+      "posture": "conceptual",
+      "related_terms": ["admissibility", "receipt_bound_execution", "auditability"]
+    },
+    {
+      "id": "transition_table",
+      "label": "Transition Table",
+      "category": "formalism_surface",
+      "definition": "A StegVerse formalism surface for classifying proposed state changes and their governance posture.",
+      "page": "/stegverse/transition-table",
+      "posture": "experimental",
+      "related_terms": ["transition", "admissibility", "commit_time_authority"]
+    }
+  ]
+}
