@@ -3,7 +3,7 @@
 const config = {
   title: 'Admissibility Wiki',
   tagline: 'Transition governance, commit-time authority, and receipt-bound execution.',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   url: 'https://admissibility.stegverse.org',
   baseUrl: '/',
@@ -58,7 +58,7 @@ const config = {
           items: [
             {label: 'Admissibility', to: '/glossary/admissibility'},
             {label: 'Transition Table', to: '/stegverse/transition-table'},
-            {label: 'Minimal Proof Path', to: '/proof-path/minimal-public-proof-path'},
+            {label: 'Minimal Public Proof Path', to: '/proof-path/minimal-public-proof-path'},
           ],
         },
       ],
