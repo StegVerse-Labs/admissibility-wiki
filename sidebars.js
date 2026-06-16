@@ -3,6 +3,13 @@ const sidebars = {
     'index',
     {
       type: 'category',
+      label: 'Activation',
+      items: [
+        'activation/github-pages-cloudflare',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Glossary',
       items: [
         'glossary/admissibility',
@@ -41,6 +48,13 @@ const sidebars = {
         'proof-path/transition-cell-example',
         'proof-path/receipt-example',
         'proof-path/replay-example',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Ontology',
+      items: [
+        'ontology/machine-readable-vocabulary',
       ],
     },
     {
