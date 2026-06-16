@@ -1,0 +1,57 @@
+name: Activation or deployment issue
+description: Report a GitHub Pages, DNS, custom-domain, or Docusaurus build issue.
+title: "Activation: "
+labels: ["activation", "deployment"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check docs/activation/github-pages-cloudflare.md before filing.
+  - type: dropdown
+    id: issue_area
+    attributes:
+      label: Issue area
+      options:
+        - GitHub Pages source setting
+        - GitHub Actions workflow
+        - Docusaurus build
+        - Cloudflare DNS
+        - custom domain validation
+        - HTTPS provisioning
+        - other
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+      description: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should have happened?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Paste relevant workflow logs, DNS values, validation status, or screenshots.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Activation checklist
+      options:
+        - label: GitHub Pages source is set to GitHub Actions.
+          required: false
+        - label: Cloudflare has CNAME admissibility to stegverse-labs.github.io.
+          required: false
+        - label: Cloudflare proxy is DNS only during validation.
+          required: false
+        - label: The deploy workflow has been run after the latest commit.
+          required: false
