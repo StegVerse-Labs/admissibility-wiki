@@ -63,6 +63,10 @@ const sidebars = {
         'proof-path/transition-cell-example',
         'proof-path/receipt-example',
         'proof-path/replay-example',
+        'proof-path/deny-example',
+        'proof-path/escalate-example',
+        'proof-path/refuse-example',
+        'proof-path/drift-denial-example',
       ],
     },
     {
