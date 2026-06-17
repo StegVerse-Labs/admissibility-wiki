@@ -121,6 +121,87 @@
       "page": "/stegverse/transition-table",
       "posture": "experimental",
       "related_terms": ["transition", "admissibility", "commit_time_authority", "authority_class", "policy_reference", "evidence_posture", "review_posture"]
+    },
+    {
+      "id": "allow_decision",
+      "label": "ALLOW Decision",
+      "category": "decision_outcome",
+      "definition": "A transition result indicating that the proposed transition has standing to bind under the declared authority, policy, evidence, review, and commit-time context.",
+      "page": "/proof-path/transition-cell-example",
+      "posture": "conceptual",
+      "related_terms": ["admissibility", "commit_time_validity", "receipt_bound_execution"]
+    },
+    {
+      "id": "deny_decision",
+      "label": "DENY Decision",
+      "category": "decision_outcome",
+      "definition": "A transition result indicating that the proposed transition does not have standing to bind consequence under the declared commit-time conditions.",
+      "page": "/proof-path/deny-example",
+      "posture": "conceptual",
+      "related_terms": ["admissibility", "authority_class", "policy_reference", "commit_time_validity"]
+    },
+    {
+      "id": "escalate_decision",
+      "label": "ESCALATE Decision",
+      "category": "decision_outcome",
+      "definition": "A transition result indicating that the current evaluator cannot allow or deny the transition without higher, different, or additional review.",
+      "page": "/proof-path/escalate-example",
+      "posture": "conceptual",
+      "related_terms": ["review_posture", "governance_boundary", "commit_time_authority"]
+    },
+    {
+      "id": "refuse_decision",
+      "label": "REFUSE Decision",
+      "category": "decision_outcome",
+      "definition": "A transition result indicating that the evaluator declines to process the request as framed because it is outside declared scope, violates a boundary, or lacks a valid transition basis.",
+      "page": "/proof-path/refuse-example",
+      "posture": "conceptual",
+      "related_terms": ["governance_boundary", "authority_class", "policy_reference"]
+    },
+    {
+      "id": "drift_denial",
+      "label": "Drift Denial",
+      "category": "decision_outcome",
+      "definition": "A denial caused by relevant state change between prior review and commit time, such that the transition no longer has standing to bind.",
+      "page": "/proof-path/drift-denial-example",
+      "posture": "conceptual",
+      "related_terms": ["drift", "deny_decision", "commit_time_validity", "reconstructability"]
+    },
+    {
+      "id": "proposal_lifecycle",
+      "label": "Proposal Lifecycle",
+      "category": "governance_process",
+      "definition": "The path by which a proposed wiki or governance change is submitted, reviewed, decided, recorded, and made reconstructable.",
+      "page": "/governance/page-template",
+      "posture": "proposed",
+      "related_terms": ["review_posture", "receipt_bound_execution", "reconstructability", "governance_boundary"]
+    },
+    {
+      "id": "page_decision_record",
+      "label": "Page Decision Record",
+      "category": "governance_process",
+      "definition": "A record that explains why a wiki page or page change was accepted, denied, escalated, refused, superseded, or deprecated.",
+      "page": "/governance/page-template",
+      "posture": "proposed",
+      "related_terms": ["proposal_lifecycle", "receipt_bound_execution", "reconstructability"]
+    },
+    {
+      "id": "replay_link",
+      "label": "Replay Link",
+      "category": "evidence",
+      "definition": "A pointer from a page, proposal, receipt, or decision record to the replayable artifact or command that can re-check the declared result.",
+      "page": "/proof-path/replay-example",
+      "posture": "proposed",
+      "related_terms": ["receipt_bound_execution", "reconstructability", "commit_time_validity"]
+    },
+    {
+      "id": "reconstruction_link",
+      "label": "Reconstruction Link",
+      "category": "evidence",
+      "definition": "A pointer from a page, proposal, receipt, or decision record to the evidence needed to reconstruct why a decision appeared to have standing.",
+      "page": "/glossary/reconstructability",
+      "posture": "proposed",
+      "related_terms": ["reconstructability", "evidence_posture", "receipt_bound_execution"]
     }
   ]
 }
