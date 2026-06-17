@@ -16,6 +16,7 @@ const sidebars = {
         'governance/page-template',
         'governance/admissibility-wiki-ai-entity',
         'governance/validation',
+        'governance/current-task-sync',
       ],
     },
     {
