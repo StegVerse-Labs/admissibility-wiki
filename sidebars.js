@@ -23,7 +23,13 @@ const sidebars = {
       items: [
         'glossary/admissibility',
         'glossary/transition',
+        'glossary/authority-class',
+        'glossary/policy-reference',
+        'glossary/evidence-posture',
+        'glossary/review-posture',
+        'glossary/drift',
         'glossary/commit-time-authority',
+        'glossary/commit-time-validity',
         'glossary/receipt-bound-execution',
         'glossary/governance-boundary',
         'glossary/reconstructability',
