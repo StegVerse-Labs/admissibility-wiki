@@ -43,7 +43,8 @@ The repository currently includes:
 - core glossary pages;
 - glossary expansion wave 2;
 - machine-readable vocabulary artifact;
-- proof-path examples.
+- proof-path examples;
+- Admissibility-Wiki AI Entity governance page.
 
 ## Confirmed Overlap
 
@@ -52,18 +53,25 @@ The following proof-path expansion files were found in the repo and should not b
 ```text
 docs/proof-path/deny-example.md
 docs/proof-path/escalate-example.md
+docs/proof-path/refuse-example.md
+docs/proof-path/drift-denial-example.md
+```
+
+The following governance file was also found and should not be recreated under a competing name:
+
+```text
+docs/governance/admissibility-wiki-ai-entity.md
 ```
 
 ## Checked And Not Found
 
-The following expected or discussed paths were checked and were not present at the time of this sync page:
+The following expected or discussed path was checked and was not present at the time of this sync page:
 
 ```text
-docs/governance/ai-entity-review-posture.md
 docs/governance/proposal-lifecycle.md
 ```
 
-These may still exist under different filenames, may have been planned but not installed, or may be pending in another session.
+A proposal lifecycle page may still exist under a different filename, may have been planned but not installed, or may be pending in another session.
 
 ## Do Not Duplicate
 
@@ -71,6 +79,9 @@ Do not create duplicate versions of these already-installed concepts without fir
 
 - DENY proof path;
 - ESCALATE proof path;
+- REFUSE proof path;
+- drift-denial proof path;
+- Admissibility-Wiki AI Entity;
 - authority class;
 - policy reference;
 - evidence posture;
@@ -87,10 +98,9 @@ The safest next build targets are:
 
 1. Proposal lifecycle vocabulary and page set.
 2. Decision record vocabulary and page set.
-3. AI entity review posture page, if still not found.
-4. REFUSE proof-path example, if not already present.
-5. Drift-denial proof-path example, if not already present.
-6. StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
+3. Proposal and decision JSON examples.
+4. StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
+5. Public status JSON mirror for activation and admissibility posture, if not already installed elsewhere.
 
 ## Build Rule
 
