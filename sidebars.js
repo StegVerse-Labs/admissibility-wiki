@@ -14,6 +14,7 @@ const sidebars = {
       items: [
         'governance/editorial-policy',
         'governance/page-template',
+        'governance/admissibility-wiki-ai-entity',
         'governance/validation',
       ],
     },
