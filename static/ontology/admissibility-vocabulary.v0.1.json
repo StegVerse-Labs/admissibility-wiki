@@ -12,7 +12,7 @@
       "definition": "The property of a proposed transition being allowed to proceed under the authority, policy, evidence, and context state present at commit time.",
       "page": "/glossary/admissibility",
       "posture": "conceptual",
-      "related_terms": ["transition", "commit_time_authority", "receipt_bound_execution", "reconstructability"]
+      "related_terms": ["transition", "commit_time_authority", "receipt_bound_execution", "reconstructability", "commit_time_validity"]
     },
     {
       "id": "transition",
@@ -21,7 +21,52 @@
       "definition": "A movement from one governed state to another that may carry consequence.",
       "page": "/glossary/transition",
       "posture": "conceptual",
-      "related_terms": ["admissibility", "governance_boundary", "receipt_bound_execution"]
+      "related_terms": ["admissibility", "governance_boundary", "receipt_bound_execution", "authority_class"]
+    },
+    {
+      "id": "authority_class",
+      "label": "Authority Class",
+      "category": "authority",
+      "definition": "A declared category of permission or standing that an actor, agent, service, repository, or governed component may hold for a proposed transition.",
+      "page": "/glossary/authority-class",
+      "posture": "conceptual",
+      "related_terms": ["admissibility", "commit_time_authority", "policy_reference"]
+    },
+    {
+      "id": "policy_reference",
+      "label": "Policy Reference",
+      "category": "policy",
+      "definition": "The specific rule, policy, standard, or governance artifact used to evaluate a proposed transition.",
+      "page": "/glossary/policy-reference",
+      "posture": "conceptual",
+      "related_terms": ["admissibility", "authority_class", "receipt_bound_execution"]
+    },
+    {
+      "id": "evidence_posture",
+      "label": "Evidence Posture",
+      "category": "evidence",
+      "definition": "The state of the evidence used to evaluate a proposed transition, such as present, missing, stale, incomplete, conflicting, sufficient, or insufficient.",
+      "page": "/glossary/evidence-posture",
+      "posture": "conceptual",
+      "related_terms": ["admissibility", "receipt_bound_execution", "reconstructability"]
+    },
+    {
+      "id": "review_posture",
+      "label": "Review Posture",
+      "category": "review",
+      "definition": "The state of human, automated, delegated, or quorum-based review for a proposed transition.",
+      "page": "/glossary/review-posture",
+      "posture": "conceptual",
+      "related_terms": ["admissibility", "commit_time_authority", "governance_boundary"]
+    },
+    {
+      "id": "drift",
+      "label": "Drift",
+      "category": "state_change",
+      "definition": "A relevant change in identity, authority, policy, evidence, review, context, or system state that may affect whether a proposed transition remains admissible.",
+      "page": "/glossary/drift",
+      "posture": "conceptual",
+      "related_terms": ["admissibility", "commit_time_authority", "evidence_posture", "commit_time_validity"]
     },
     {
       "id": "commit_time_authority",
@@ -30,7 +75,16 @@
       "definition": "The authority basis that exists at the moment a transition result binds.",
       "page": "/glossary/commit-time-authority",
       "posture": "conceptual",
-      "related_terms": ["admissibility", "governance_boundary", "reconstructability"]
+      "related_terms": ["admissibility", "governance_boundary", "reconstructability", "authority_class"]
+    },
+    {
+      "id": "commit_time_validity",
+      "label": "Commit-Time Validity",
+      "category": "validity",
+      "definition": "The condition that a transition remains valid at the moment its result is allowed to bind.",
+      "page": "/glossary/commit-time-validity",
+      "posture": "conceptual",
+      "related_terms": ["admissibility", "commit_time_authority", "drift"]
     },
     {
       "id": "receipt_bound_execution",
@@ -39,7 +93,7 @@
       "definition": "Execution connected to a durable record of the authority, policy, evidence, context, and decision posture present at commit time.",
       "page": "/glossary/receipt-bound-execution",
       "posture": "conceptual",
-      "related_terms": ["admissibility", "transition", "reconstructability"]
+      "related_terms": ["admissibility", "transition", "reconstructability", "policy_reference"]
     },
     {
       "id": "governance_boundary",
@@ -48,7 +102,7 @@
       "definition": "The declared limit of what a system claims to govern, observe, authorize, enforce, or prove.",
       "page": "/glossary/governance-boundary",
       "posture": "conceptual",
-      "related_terms": ["commit_time_authority", "admissibility", "reconstructability"]
+      "related_terms": ["commit_time_authority", "admissibility", "reconstructability", "review_posture"]
     },
     {
       "id": "reconstructability",
@@ -57,7 +111,7 @@
       "definition": "The ability to recover enough information after an event to understand what happened and why a decision appeared to have standing.",
       "page": "/glossary/reconstructability",
       "posture": "conceptual",
-      "related_terms": ["admissibility", "receipt_bound_execution", "auditability"]
+      "related_terms": ["admissibility", "receipt_bound_execution", "auditability", "evidence_posture"]
     },
     {
       "id": "transition_table",
@@ -66,7 +120,7 @@
       "definition": "A StegVerse formalism surface for classifying proposed state changes and their governance posture.",
       "page": "/stegverse/transition-table",
       "posture": "experimental",
-      "related_terms": ["transition", "admissibility", "commit_time_authority"]
+      "related_terms": ["transition", "admissibility", "commit_time_authority", "authority_class", "policy_reference", "evidence_posture", "review_posture"]
     }
   ]
 }
