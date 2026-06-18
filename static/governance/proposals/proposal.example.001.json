@@ -1,0 +1,27 @@
+{
+  "schema": "admissibility_wiki_governance_proposal.v1",
+  "proposal_id": "proposal.example.001",
+  "created_at": "2026-06-17T00:00:00Z",
+  "target_page": "docs/governance/page-template.md",
+  "proposal_type": "update",
+  "title": "Require governance links in mature wiki pages",
+  "summary": "Update the page template so mature Admissibility Wiki pages include proposal, decision, replay, and reconstruction links.",
+  "proposer_class": "wiki_maintainer",
+  "claimed_page_posture": "governance policy",
+  "claimed_maturity_posture": "implemented",
+  "authority_class": "wiki_maintainer",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "present",
+  "review_requested": "admissibility_wiki_ai_entity",
+  "requested_outcome": "ALLOW",
+  "links": {
+    "decision_link": "../decisions/decision.example.001.json",
+    "replay_link": "../replay/decision.example.001.txt",
+    "reconstruction_link": "../evidence/decision.example.001/README.md"
+  },
+  "non_claims": [
+    "This proposal does not generate receipt authority.",
+    "This proposal does not replace formalism-tests.",
+    "This proposal does not authorize external execution."
+  ]
+}
