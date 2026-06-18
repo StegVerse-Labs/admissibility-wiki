@@ -1,0 +1,31 @@
+Admissibility Wiki Governance Replay
+====================================
+
+Replay ID: replay.decision.example.001
+Decision ID: decision.example.001
+Proposal ID: proposal.example.001
+Target page: docs/governance/page-template.md
+Policy reference: policy.wiki.page-review.v1
+Authority class: wiki_maintainer
+Review posture: entity_reviewed
+Evidence posture: sufficient
+Commit-time validity: true
+Decision: ALLOW
+
+Replay question
+---------------
+Can the page-template update bind as an accepted Admissibility Wiki governance-page change under the declared wiki-maintainer authority, page-review policy, sufficient evidence posture, and explicit boundary that the wiki does not become proof authority?
+
+Inputs
+------
+- Proposal: ../proposals/proposal.example.001.json
+- Decision: ../decisions/decision.example.001.json
+- Evidence: ../evidence/decision.example.001/README.md
+
+Expected result
+---------------
+ALLOW: the proposal updates the wiki page template to require proposal, decision, replay, and reconstruction links while preserving the boundary that the wiki documents governance posture and does not generate proof authority.
+
+Boundary
+--------
+Replay checks this page-governance decision only. It does not replay executable formalism-tests receipts and does not authorize external execution.
