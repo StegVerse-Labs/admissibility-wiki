@@ -12,6 +12,7 @@ const sidebars = {
       type: 'category',
       label: 'Governance',
       items: [
+        'ADMISSIBILITY_WIKI_MIRROR_HANDOFF',
         'governance/editorial-policy',
         'governance/page-template',
         'governance/admissibility-wiki-ai-entity',
