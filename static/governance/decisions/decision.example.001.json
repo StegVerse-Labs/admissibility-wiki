@@ -1,0 +1,28 @@
+{
+  "schema": "admissibility_wiki_page_decision.v1",
+  "decision_id": "decision.example.001",
+  "proposal_id": "proposal.example.001",
+  "issued_at": "2026-06-17T00:00:00Z",
+  "target_page": "docs/governance/page-template.md",
+  "decision": "ALLOW",
+  "authority_class": "wiki_maintainer",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "sufficient",
+  "review_posture": "entity_reviewed",
+  "commit_time_validity": true,
+  "decision_basis": [
+    "The proposed change preserves the boundary between wiki documentation and proof authority.",
+    "The proposed change makes proposal, decision, replay, and reconstruction links explicit.",
+    "The proposed change does not claim that the wiki generates receipts or replaces formalism-tests."
+  ],
+  "links": {
+    "proposal_link": "../proposals/proposal.example.001.json",
+    "replay_link": "../replay/decision.example.001.txt",
+    "reconstruction_link": "../evidence/decision.example.001/README.md"
+  },
+  "non_claims": [
+    "ALLOW applies only to the wiki page-template change described by proposal.example.001.",
+    "ALLOW does not authorize executable transition proof.",
+    "ALLOW does not grant production accreditation."
+  ]
+}
