@@ -30,6 +30,7 @@
     "proposal_lifecycle": "docs/governance/proposal-lifecycle.md",
     "decision_record": "docs/governance/decision-record.md",
     "site_bridge_status": "docs/governance/site-bridge-status.md",
+    "terminology_overlap_research_notes": "docs/research/terminology-overlap-research-notes.md",
     "page_template": "docs/governance/page-template.md",
     "current_task_sync": "docs/governance/current-task-sync.md",
     "mirror_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
@@ -46,21 +47,26 @@
     "static/governance/proposals/proposal.example.003.json",
     "static/governance/decisions/decision.example.003.json",
     "static/governance/replay/decision.example.003.txt",
-    "static/governance/evidence/decision.example.003/README.md"
+    "static/governance/evidence/decision.example.003/README.md",
+    "static/governance/proposals/proposal.example.004.json",
+    "static/governance/decisions/decision.example.004.json",
+    "static/governance/replay/decision.example.004.txt",
+    "static/governance/evidence/decision.example.004/README.md"
   ],
   "terminology_convergence_posture": {
     "equivalent_terms_policy": "Accepted equivalent terms should be listed directly under the StegVerse term.",
     "overlapping_terms_policy": "Partially shared terms should be listed under Overlapping Terms.",
     "adjacent_terms_policy": "Nearby but non-identical terms should be listed under Adjacent Terms.",
-    "specificity_policy": "Do not label a term StegVerse-specific until reasonable overlap search has been performed."
+    "specificity_policy": "Do not label a term StegVerse-specific until reasonable overlap search has been performed.",
+    "research_posture": "source-aware preliminary notes installed; no new equivalence accepted by research note alone"
   },
   "known_handoff_files": {
     "repo_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
     "task_sync": "docs/governance/current-task-sync.md"
   },
   "next_safe_build_targets": [
-    "Add external-reference dispute examples if needed.",
-    "Add research-backed equivalence proposals after broad cross-domain terminology review.",
-    "Update activation posture only after public deployment or DNS status changes."
+    "Create targeted proposal records for individual researched mappings.",
+    "Update activation posture only after public deployment or DNS status changes.",
+    "Add additional source families only when they materially improve terminology classification."
   ]
 }
