@@ -18,6 +18,39 @@ Preference is a processing posture only.
 
 Preference does not mean acceptance.
 
+## Dual-Mode Intake Interface
+
+The proposal intake interface should provide two input options that write to the same manifest/receipt preview window.
+
+### Option 1: Guided Builder
+
+The user enters each required manifest and receipt field through fillable fields.
+
+As fields are completed, the page generates the manifest and receipt structure in a preview window below the fields.
+
+This mode is for users who understand the proposal but do not yet know the manifest schema.
+
+### Option 2: Direct Manifest/Receipt Paste
+
+The user pastes an existing manifest/receipt structure into the same preview window.
+
+This mode is for users already familiar with the StegVerse-compatible structure.
+
+The pasted structure should be parsed, validated, and reflected back into the guided fields when possible.
+
+## Shared Preview Rule
+
+Both modes use the same output window.
+
+```text
+fillable fields -> manifest/receipt preview
+pasted structure -> manifest/receipt preview
+```
+
+The preview window is the candidate governed data object.
+
+The preview does not submit, approve, validate, or accept the proposal by itself.
+
 ## Why This Exists
 
 The wiki accepts broad input, but broad input should not collapse into untraceable editorial discretion.
