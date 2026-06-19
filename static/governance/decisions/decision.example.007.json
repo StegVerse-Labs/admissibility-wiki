@@ -4,33 +4,33 @@
   "proposal_id": "proposal.example.007",
   "issued_at": "2026-06-19T00:00:00Z",
   "target_page": "docs/glossary/governance-boundary.md",
-  "decision": "DEFER_PENDING_REVIEW",
+  "decision": "ALLOW_AS_OVERLAP",
   "authority_class": "wiki_maintainer",
   "policy_ref": "policy.wiki.terminology-convergence.v1",
   "evidence_posture": "external_primary_reference",
-  "review_posture": "maintainer_reviewed",
+  "review_posture": "entity_reviewed",
   "commit_time_validity": true,
   "relationship_disposition": [
     {
-      "external_term": "AI risk management governance language",
+      "external_term": "NIST AI RMF governance and AI risk-management language",
       "relationship": "overlapping",
-      "disposition": "deferred",
-      "notes": "The proposal includes primary-source references and a plausible overlap claim, but glossary mutation is deferred until a fuller review decides whether and how to phrase the overlap."
+      "disposition": "accepted",
+      "notes": "Accepted only as an overlapping term for Governance Boundary. Equivalent status is not accepted."
     },
     {
       "external_term": "Trustworthiness considerations",
       "relationship": "adjacent",
-      "disposition": "deferred",
-      "notes": "The adjacent relationship appears plausible but is not accepted into glossary text by this decision."
+      "disposition": "accepted",
+      "notes": "Accepted only as an adjacent term. Trustworthiness considerations may inform governance design but do not define StegVerse receipt-bound standing or commit-time admissibility."
     }
   ],
-  "accepted_text": null,
+  "accepted_text": "NIST AI RMF governance and AI risk-management language, where it addresses structured governance of AI systems and responsible management of AI-related risk. This overlaps with Governance Boundary but is not equivalent because Governance Boundary specifically separates publication, vocabulary, continuity, proof, and commit-time admissibility authority within the StegVerse transition-governance model.",
   "rejected_text": "NIST AI RMF governance language is equivalent to Governance Boundary.",
   "decision_basis": [
     "NIST AI RMF is a primary government reference for AI risk management and trustworthiness considerations.",
     "The proposal identifies overlap with structured AI governance and risk-management responsibilities.",
     "The proposal also identifies mismatches: NIST AI RMF does not encode Site/Wiki/Continuity/StegCore role separation, does not mint a StegVerse decision receipt, and does not by itself determine commit-time admissibility.",
-    "The safe disposition is to defer glossary mutation while preserving the proposal as a researched relationship candidate."
+    "The accepted disposition is overlap only. Equivalent status is rejected."
   ],
   "links": {
     "proposal_link": "../proposals/proposal.example.007.json",
@@ -38,9 +38,9 @@
     "reconstruction_link": "../evidence/decision.example.007/README.md"
   },
   "non_claims": [
-    "DEFER_PENDING_REVIEW does not accept NIST AI RMF as equivalent to Governance Boundary.",
-    "DEFER_PENDING_REVIEW does not claim NIST endorsement of StegVerse terminology.",
-    "DEFER_PENDING_REVIEW does not update glossary text.",
-    "DEFER_PENDING_REVIEW does not create admissibility standing."
+    "ALLOW_AS_OVERLAP does not accept NIST AI RMF as equivalent to Governance Boundary.",
+    "ALLOW_AS_OVERLAP does not claim NIST endorsement of StegVerse terminology.",
+    "ALLOW_AS_OVERLAP does not make NIST AI RMF a StegVerse execution-authority boundary.",
+    "ALLOW_AS_OVERLAP does not create admissibility standing."
   ]
 }
