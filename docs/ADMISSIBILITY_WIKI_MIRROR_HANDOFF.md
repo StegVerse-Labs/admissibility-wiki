@@ -55,8 +55,10 @@ The repo currently includes:
 - proposal lifecycle governance page;
 - decision record governance page;
 - terminology convergence proposal, decision, replay, and evidence examples;
+- user-submitted terminology proposal, decision, replay, and evidence examples;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
 - first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
+- initial wave-2 convergence update for admissibility;
 - current task sync page;
 - ontology validation script;
 - issue templates;
@@ -97,6 +99,10 @@ static/governance/proposals/proposal.example.002.json
 static/governance/decisions/decision.example.002.json
 static/governance/replay/decision.example.002.txt
 static/governance/evidence/decision.example.002/README.md
+static/governance/proposals/proposal.example.003.json
+static/governance/decisions/decision.example.003.json
+static/governance/replay/decision.example.003.txt
+static/governance/evidence/decision.example.003/README.md
 ```
 
 ## Known Glossary Convergence Pages
@@ -104,6 +110,7 @@ static/governance/evidence/decision.example.002/README.md
 Do not rework these pages without a specific improvement target:
 
 ```text
+docs/glossary/admissibility.md
 docs/glossary/commit-time-authority.md
 docs/glossary/commit-time-validity.md
 docs/glossary/receipt-bound-execution.md
@@ -151,8 +158,8 @@ Initial glossary convergence should be conservative: if external equivalence has
 
 Priority order:
 
-1. Continue glossary convergence wave 2 for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary.
-2. Add additional proposal and decision examples for user-submitted terms and external-reference disagreements.
+1. Continue glossary convergence wave 2 for transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary.
+2. Add external-reference disagreement examples if needed.
 3. Update validation expectations if new artifact directories are added.
 4. Coordinate with `StegVerse-Labs/Site` only after checking `Site/docs/SITE_MIRROR_HANDOFF.md`.
 
@@ -190,4 +197,4 @@ A chat thread is archive-ready when this handoff and `docs/governance/current-ta
 
 ## Current Next Action
 
-Continue glossary convergence wave 2 for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary.
+Continue glossary convergence wave 2 for transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary.
