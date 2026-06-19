@@ -74,48 +74,11 @@
     "static/governance/evidence/decision.example.009/README.md"
   ],
   "accepted_relationship_updates": [
-    {
-      "proposal_id": "proposal.example.005",
-      "decision_id": "decision.example.005",
-      "target_page": "docs/glossary/reconstructability.md",
-      "external_term": "Provenance",
-      "placement": "Overlapping Terms",
-      "equivalent_status": "not_accepted"
-    },
-    {
-      "proposal_id": "proposal.example.006",
-      "decision_id": "decision.example.006",
-      "target_page": "docs/glossary/policy-reference.md",
-      "external_term": "policy-as-code",
-      "placement": "Overlapping Terms",
-      "equivalent_status": "not_accepted"
-    },
-    {
-      "proposal_id": "proposal.example.008",
-      "decision_id": "decision.example.008",
-      "target_page": "docs/glossary/commit-time-authority.md",
-      "external_term": "policy decision",
-      "placement": "Overlapping Terms",
-      "equivalent_status": "not_accepted"
-    },
-    {
-      "proposal_id": "proposal.example.009",
-      "decision_id": "decision.example.009",
-      "target_page": "docs/glossary/reconstructability.md",
-      "external_term": "Audit and Accountability",
-      "placement": "Overlapping Terms",
-      "equivalent_status": "not_accepted"
-    }
-  ],
-  "deferred_relationship_updates": [
-    {
-      "proposal_id": "proposal.example.007",
-      "decision_id": "decision.example.007",
-      "target_page": "docs/glossary/governance-boundary.md",
-      "external_term": "AI risk-management governance language",
-      "placement": "none_yet",
-      "equivalent_status": "not_accepted"
-    }
+    {"proposal_id":"proposal.example.005","decision_id":"decision.example.005","target_page":"docs/glossary/reconstructability.md","external_term":"Provenance","placement":"Overlapping Terms","equivalent_status":"not_accepted"},
+    {"proposal_id":"proposal.example.006","decision_id":"decision.example.006","target_page":"docs/glossary/policy-reference.md","external_term":"policy-as-code","placement":"Overlapping Terms","equivalent_status":"not_accepted"},
+    {"proposal_id":"proposal.example.007","decision_id":"decision.example.007","target_page":"docs/glossary/governance-boundary.md","external_term":"AI risk-management governance language","placement":"Overlapping Terms","equivalent_status":"not_accepted"},
+    {"proposal_id":"proposal.example.008","decision_id":"decision.example.008","target_page":"docs/glossary/commit-time-authority.md","external_term":"policy decision","placement":"Overlapping Terms","equivalent_status":"not_accepted"},
+    {"proposal_id":"proposal.example.009","decision_id":"decision.example.009","target_page":"docs/glossary/reconstructability.md","external_term":"Audit and Accountability","placement":"Overlapping Terms","equivalent_status":"not_accepted"}
   ],
   "terminology_convergence_posture": {
     "equivalent_terms_policy": "Accepted equivalent terms should be listed directly under the StegVerse term.",
@@ -130,7 +93,7 @@
   },
   "next_safe_build_targets": [
     "Create another targeted source-backed relationship proposal only if it materially expands the source family or relationship coverage.",
-    "Review deferred proposal.example.007 if exact Governance Boundary overlap wording is needed.",
-    "Update activation posture only after public deployment or DNS status changes."
+    "Update activation posture only after public deployment or DNS status changes.",
+    "Add additional source families only when they materially improve terminology classification."
   ]
 }
