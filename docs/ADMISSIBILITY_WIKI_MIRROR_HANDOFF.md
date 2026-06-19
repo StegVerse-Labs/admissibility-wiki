@@ -54,9 +54,11 @@ The repo currently includes:
 - terminology convergence governance page;
 - proposal lifecycle governance page;
 - decision record governance page;
+- reconciled Site bridge status page;
 - terminology convergence proposal, decision, replay, and evidence examples;
 - user-submitted terminology proposal, decision, replay, and evidence examples;
-- canonical public status JSON mirror;
+- external-reference dispute proposal, decision, replay, and evidence examples;
+- canonical public status JSON mirror with Site bridge posture;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
 - first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
 - wave-2 glossary convergence for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary;
@@ -84,6 +86,7 @@ docs/governance/proposal-lifecycle.md
 docs/governance/decision-record.md
 docs/governance/validation.md
 docs/governance/current-task-sync.md
+docs/governance/site-bridge-status.md
 docs/governance/admissibility-wiki-ai-entity.md
 ```
 
@@ -104,6 +107,10 @@ static/governance/proposals/proposal.example.003.json
 static/governance/decisions/decision.example.003.json
 static/governance/replay/decision.example.003.txt
 static/governance/evidence/decision.example.003/README.md
+static/governance/proposals/proposal.example.004.json
+static/governance/decisions/decision.example.004.json
+static/governance/replay/decision.example.004.txt
+static/governance/evidence/decision.example.004/README.md
 ```
 
 ## Known Glossary Convergence Pages
@@ -174,9 +181,9 @@ Initial glossary convergence should be conservative: if external equivalence has
 
 Priority order:
 
-1. Add StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
-2. Add external-reference disagreement examples if needed.
-3. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
+1. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
+2. Update activation posture only after public deployment or DNS status changes.
+3. Add additional dispute examples only when they cover a materially new dispute posture.
 4. Expand canonical status mirror only when activation or governance posture changes materially.
 
 ## Mirror Coordination Rule
@@ -213,4 +220,4 @@ A chat thread is archive-ready when this handoff and `docs/governance/current-ta
 
 ## Current Next Action
 
-Add StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
+Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
