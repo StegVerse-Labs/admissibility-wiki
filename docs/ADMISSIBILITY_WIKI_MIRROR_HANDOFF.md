@@ -56,6 +56,7 @@ The repo currently includes:
 - decision record governance page;
 - terminology convergence proposal, decision, replay, and evidence examples;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
+- first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
 - current task sync page;
 - ontology validation script;
 - issue templates;
@@ -98,6 +99,17 @@ static/governance/replay/decision.example.002.txt
 static/governance/evidence/decision.example.002/README.md
 ```
 
+## Known Glossary Convergence Pages
+
+Do not rework these pages without a specific improvement target:
+
+```text
+docs/glossary/commit-time-authority.md
+docs/glossary/commit-time-validity.md
+docs/glossary/receipt-bound-execution.md
+docs/glossary/reconstructability.md
+```
+
 ## Known Core Artifacts
 
 ```text
@@ -133,11 +145,13 @@ If an external term is nearby but not the same concept, place it under `Adjacent
 
 Do not label a term StegVerse-specific until reasonable overlap search has been performed across relevant domains.
 
+Initial glossary convergence should be conservative: if external equivalence has not been researched and accepted, record `No accepted equivalent terms are recorded yet` and place likely candidates under overlapping or adjacent terms.
+
 ## Next Safe Build Targets
 
 Priority order:
 
-1. Update selected glossary pages to include equivalent, overlapping, and adjacent terminology sections.
+1. Continue glossary convergence wave 2 for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary.
 2. Add additional proposal and decision examples for user-submitted terms and external-reference disagreements.
 3. Update validation expectations if new artifact directories are added.
 4. Coordinate with `StegVerse-Labs/Site` only after checking `Site/docs/SITE_MIRROR_HANDOFF.md`.
@@ -176,4 +190,4 @@ A chat thread is archive-ready when this handoff and `docs/governance/current-ta
 
 ## Current Next Action
 
-Update selected glossary pages with terminology relationship sections, starting with commit-time authority, commit-time validity, receipt-bound execution, and reconstructability.
+Continue glossary convergence wave 2 for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary.
