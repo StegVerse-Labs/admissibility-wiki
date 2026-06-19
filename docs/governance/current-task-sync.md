@@ -48,7 +48,7 @@ The repository currently includes:
 - user-submitted terminology proposal, decision, replay, and evidence examples;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
 - first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
-- initial wave-2 convergence update for admissibility;
+- wave-2 glossary convergence for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary;
 - validation runbook;
 - validation workflow;
 - ontology validation script;
@@ -107,9 +107,16 @@ The following glossary pages already include terminology relationship sections a
 
 ```text
 docs/glossary/admissibility.md
+docs/glossary/transition.md
+docs/glossary/authority-class.md
+docs/glossary/policy-reference.md
+docs/glossary/evidence-posture.md
+docs/glossary/review-posture.md
+docs/glossary/drift.md
 docs/glossary/commit-time-authority.md
 docs/glossary/commit-time-validity.md
 docs/glossary/receipt-bound-execution.md
+docs/glossary/governance-boundary.md
 docs/glossary/reconstructability.md
 ```
 
@@ -129,7 +136,7 @@ Do not create duplicate versions of these already-installed concepts without fir
 - proposal lifecycle;
 - decision record;
 - terminology relationship classes;
-- first glossary convergence wave;
+- glossary convergence sections on the known glossary convergence pages;
 - terminology-convergence governance record example `example.002`;
 - user-submitted terminology governance record example `example.003`;
 - DENY proof path;
@@ -161,10 +168,10 @@ Initial glossary convergence should be conservative: if external equivalence has
 
 The safest next build targets are:
 
-1. Continue glossary convergence wave 2 for transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary.
-2. Add external-reference disagreement examples if needed.
-3. StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
-4. Public status JSON mirror for activation and admissibility posture, if not already installed elsewhere.
+1. Add external-reference disagreement examples if needed.
+2. Add public status JSON mirror for activation and admissibility posture.
+3. Add StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
+4. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
 
 ## Build Rule
 
