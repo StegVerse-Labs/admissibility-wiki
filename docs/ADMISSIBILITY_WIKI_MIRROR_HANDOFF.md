@@ -56,6 +56,7 @@ The repo currently includes:
 - decision record governance page;
 - terminology convergence proposal, decision, replay, and evidence examples;
 - user-submitted terminology proposal, decision, replay, and evidence examples;
+- canonical public status JSON mirror;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
 - first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
 - wave-2 glossary convergence for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary;
@@ -124,6 +125,14 @@ docs/glossary/governance-boundary.md
 docs/glossary/reconstructability.md
 ```
 
+## Known Status Artifacts
+
+```text
+static/status/admissibility-wiki-status.json
+```
+
+Do not recreate versioned status mirrors unless the status schema is intentionally versioned and the canonical file points to the active version.
+
 ## Known Core Artifacts
 
 ```text
@@ -165,10 +174,10 @@ Initial glossary convergence should be conservative: if external equivalence has
 
 Priority order:
 
-1. Add external-reference disagreement examples if needed.
-2. Add public status JSON mirror for activation and admissibility posture.
-3. Add StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
-4. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
+1. Add StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
+2. Add external-reference disagreement examples if needed.
+3. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
+4. Expand canonical status mirror only when activation or governance posture changes materially.
 
 ## Mirror Coordination Rule
 
@@ -204,4 +213,4 @@ A chat thread is archive-ready when this handoff and `docs/governance/current-ta
 
 ## Current Next Action
 
-Add public status JSON mirror for activation and admissibility posture, unless an external-reference disagreement example is needed first.
+Add StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
