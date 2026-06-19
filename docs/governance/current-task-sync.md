@@ -35,6 +35,9 @@ The repository currently includes:
 - contribution guide;
 - editorial policy;
 - page template;
+- terminology convergence governance page;
+- proposal lifecycle governance page;
+- decision record governance page;
 - validation runbook;
 - validation workflow;
 - ontology validation script;
@@ -63,20 +66,29 @@ The following governance file was also found and should not be recreated under a
 docs/governance/admissibility-wiki-ai-entity.md
 ```
 
-## Checked And Not Found
+The following governance files are now installed and should not be recreated under alternate names:
 
-The following expected or discussed path was checked and was not present at the time of this sync page:
+```text
+docs/governance/terminology-convergence.md
+docs/governance/proposal-lifecycle.md
+docs/governance/decision-record.md
+```
+
+## Checked And Found
+
+The previously missing path is now installed:
 
 ```text
 docs/governance/proposal-lifecycle.md
 ```
 
-A proposal lifecycle page may still exist under a different filename, may have been planned but not installed, or may be pending in another session.
-
 ## Do Not Duplicate
 
 Do not create duplicate versions of these already-installed concepts without first checking exact paths:
 
+- terminology convergence;
+- proposal lifecycle;
+- decision record;
 - DENY proof path;
 - ESCALATE proof path;
 - REFUSE proof path;
@@ -92,15 +104,24 @@ Do not create duplicate versions of these already-installed concepts without fir
 - ontology validation;
 - contributor and PR templates.
 
+## Current Editorial Rule
+
+The wiki now treats terminology work as a convergence-layer task.
+
+When a StegVerse term has materially identical terms in other domains, those terms should be placed directly under the StegVerse term in an `Equivalent Terms` section.
+
+Overlapping and adjacent terms should be listed separately, so the page can distinguish shared vocabulary from StegVerse-specific extensions.
+
 ## Next Safe Build Targets
 
 The safest next build targets are:
 
-1. Proposal lifecycle vocabulary and page set.
-2. Decision record vocabulary and page set.
-3. Proposal and decision JSON examples.
-4. StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
-5. Public status JSON mirror for activation and admissibility posture, if not already installed elsewhere.
+1. Proposal and decision JSON examples.
+2. Replay and reconstruction skeletons for wiki decision records.
+3. Ontology entries for proposal lifecycle, decision record, and terminology relationship classes.
+4. Update selected glossary pages to use `Equivalent Terms`, `Overlapping Terms`, and `Adjacent Terms` sections.
+5. StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
+6. Public status JSON mirror for activation and admissibility posture, if not already installed elsewhere.
 
 ## Build Rule
 
