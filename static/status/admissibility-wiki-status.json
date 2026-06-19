@@ -1,0 +1,55 @@
+{
+  "schema": "admissibility_wiki_status.v1",
+  "generated_at": "2026-06-19T00:00:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "site": "admissibility.stegverse.org",
+  "status": "build_in_progress",
+  "assessment_goal": "Continue build work until completion or ecosystem-managed continuation is supported by handoff, governance, validation, and next-task structure.",
+  "activation_target": "Publish and validate admissibility.stegverse.org as a Docusaurus-powered public vocabulary, terminology convergence, proposal-review, and proof-path site.",
+  "activation_checks": {
+    "github_pages_actions_source": "pending_external_verification",
+    "cloudflare_dns": "pending_external_verification",
+    "github_custom_domain_validation": "pending_external_verification",
+    "https_enforced": "pending_external_verification",
+    "public_site_loads": "pending_external_verification",
+    "ontology_json_reachable": "pending_external_verification",
+    "proposal_decision_examples_reachable": "pending_external_verification"
+  },
+  "installed_public_pages": {
+    "terminology_convergence": "docs/governance/terminology-convergence.md",
+    "proposal_lifecycle": "docs/governance/proposal-lifecycle.md",
+    "decision_record": "docs/governance/decision-record.md",
+    "page_template": "docs/governance/page-template.md",
+    "current_task_sync": "docs/governance/current-task-sync.md",
+    "mirror_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
+  },
+  "installed_governance_records": [
+    "static/governance/proposals/proposal.example.001.json",
+    "static/governance/decisions/decision.example.001.json",
+    "static/governance/replay/decision.example.001.txt",
+    "static/governance/evidence/decision.example.001/README.md",
+    "static/governance/proposals/proposal.example.002.json",
+    "static/governance/decisions/decision.example.002.json",
+    "static/governance/replay/decision.example.002.txt",
+    "static/governance/evidence/decision.example.002/README.md",
+    "static/governance/proposals/proposal.example.003.json",
+    "static/governance/decisions/decision.example.003.json",
+    "static/governance/replay/decision.example.003.txt",
+    "static/governance/evidence/decision.example.003/README.md"
+  ],
+  "terminology_convergence_posture": {
+    "equivalent_terms_policy": "Accepted equivalent terms should be listed directly under the StegVerse term.",
+    "overlapping_terms_policy": "Partially shared terms should be listed under Overlapping Terms.",
+    "adjacent_terms_policy": "Nearby but non-identical terms should be listed under Adjacent Terms.",
+    "specificity_policy": "Do not label a term StegVerse-specific until reasonable overlap search has been performed."
+  },
+  "known_handoff_files": {
+    "repo_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+    "task_sync": "docs/governance/current-task-sync.md"
+  },
+  "next_safe_build_targets": [
+    "Add external-reference dispute examples if needed.",
+    "Add StegVerse-Labs/Site bridge status page if not already installed elsewhere.",
+    "Add research-backed equivalence proposals after broad cross-domain terminology review."
+  ]
+}
