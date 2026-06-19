@@ -1,0 +1,29 @@
+Replay: decision.example.008
+
+Input proposal:
+  static/governance/proposals/proposal.example.008.json
+
+Target page:
+  docs/glossary/commit-time-authority.md
+
+External reference family:
+  Open Policy Agent documentation
+
+Claim reviewed:
+  Policy decision overlaps with Commit-Time Authority.
+
+Decision path:
+  1. Confirm proposal identifies target page and external source family.
+  2. Confirm proposal classifies relationship as overlap, not equivalence.
+  3. Confirm source URLs identify policy-evaluation documentation.
+  4. Confirm mismatch section preserves StegVerse authority, evidence, review, continuity, and consequence-standing distinctions.
+  5. Confirm risk section prevents treating policy-engine output as full admissibility authority.
+  6. Accept glossary placement as Overlapping Terms only.
+
+Outcome:
+  ALLOW_AS_OVERLAP
+
+Effect:
+  Policy decision may be listed as overlapping with Commit-Time Authority.
+  Equivalent status is not accepted.
+  Glossary text may be updated with the accepted overlap wording.
