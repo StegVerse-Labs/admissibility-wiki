@@ -1,0 +1,77 @@
+{
+  "schema": "admissibility_wiki_governance_proposal.v1",
+  "proposal_id": "proposal.example.004",
+  "created_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/glossary/reconstructability.md",
+  "proposal_type": "update",
+  "proposal_class": "dispute",
+  "title": "External-reference dispute for reconstructability mapping",
+  "summary": "Example dispute claiming that an external reference should not be treated as equivalent to the StegVerse term Reconstructability without further review.",
+  "proposer_class": "external",
+  "claimed_page_posture": "concept",
+  "claimed_maturity_posture": "conceptual",
+  "authority_class": "contributor_suggest",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "partial",
+  "submission_timing": {
+    "received_at": "2026-06-19T00:00:00Z",
+    "receipt_issued_at": "2026-06-19T00:00:10Z",
+    "timing_basis": "example_recorded_system_time",
+    "tasks": [
+      {
+        "task": "capture_submission",
+        "started_at": "2026-06-19T00:00:00Z",
+        "completed_at": "2026-06-19T00:00:02Z",
+        "status": "completed",
+        "timing_posture": "recorded"
+      },
+      {
+        "task": "classify_dispute",
+        "started_at": "2026-06-19T00:00:02Z",
+        "completed_at": "2026-06-19T00:00:05Z",
+        "status": "completed",
+        "timing_posture": "recorded"
+      },
+      {
+        "task": "assign_review_route",
+        "started_at": "2026-06-19T00:00:05Z",
+        "completed_at": "2026-06-19T00:00:07Z",
+        "status": "completed",
+        "timing_posture": "recorded"
+      },
+      {
+        "task": "issue_submission_receipt",
+        "started_at": "2026-06-19T00:00:07Z",
+        "completed_at": "2026-06-19T00:00:10Z",
+        "status": "completed",
+        "timing_posture": "recorded"
+      }
+    ]
+  },
+  "claimed_relationships": [
+    {
+      "relationship": "contradicts",
+      "external_term": "Auditability",
+      "external_domain": "audit and assurance",
+      "notes": "The dispute claims that auditability should not be listed as equivalent to reconstructability because auditability may inspect records without reconstructing why consequence had standing."
+    },
+    {
+      "relationship": "overlapping",
+      "external_term": "Auditability",
+      "external_domain": "audit and assurance",
+      "notes": "The dispute accepts overlap only if the external usage includes enough evidence to understand what happened and why the decision appeared to have standing."
+    }
+  ],
+  "review_requested": "admissibility_wiki_ai_entity",
+  "requested_outcome": "DEFER",
+  "links": {
+    "decision_link": "../decisions/decision.example.004.json",
+    "replay_link": "../replay/decision.example.004.txt",
+    "reconstruction_link": "../evidence/decision.example.004/README.md"
+  },
+  "non_claims": [
+    "This proposal does not prove that the external reference is incorrect.",
+    "This proposal does not remove any term from the target page by itself.",
+    "This proposal does not accept or reject the dispute without a decision record."
+  ]
+}
