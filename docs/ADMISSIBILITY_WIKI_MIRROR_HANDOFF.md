@@ -75,6 +75,9 @@ The repo currently includes:
 - terminology convergence proposal, decision, replay, and evidence examples;
 - user-submitted terminology proposal, decision, replay, and evidence examples;
 - external-reference dispute proposal, decision, replay, and evidence examples;
+- relationship status summary and validator;
+- public activation verification checklist;
+- public activation receipt example and validator;
 - canonical public status JSON mirror with Site bridge posture;
 - wiki status validator;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
@@ -104,17 +107,24 @@ docs/governance/current-task-sync.md
 docs/governance/site-bridge-status.md
 docs/governance/admissibility-wiki-ai-entity.md
 docs/governance/equivalence-proposal-template.md
+docs/governance/relationship-status-summary.md
+docs/governance/relationship-validator-status.md
+docs/governance/public-activation-verification.md
 ```
 
 ## Known Governance Records
 
 Do not recreate existing governance record IDs under `static/governance/`.
 
+Relationship records 005 through 008 are already recorded in `docs/governance/relationship-status-summary.md`.
+
 ## Known Status Artifacts
 
 ```text
 static/status/admissibility-wiki-status.json
+static/status/public-activation-receipt.example.json
 scripts/check-wiki-status.mjs
+scripts/check-public-activation-receipt.mjs
 ```
 
 Do not recreate versioned status mirrors unless the status schema is intentionally versioned and the canonical file points to the active version.
@@ -130,6 +140,8 @@ sidebars.js
 scripts/validate-ontology.mjs
 scripts/check-wiki-status.mjs
 scripts/check-equivalence-proposal-template.mjs
+scripts/check-relationship-status-summary.mjs
+scripts/check-public-activation-receipt.mjs
 static/img/favicon.svg
 static/ontology/admissibility-vocabulary.v0.1.json
 github/workflows/deploy.yml
@@ -176,11 +188,16 @@ Do not add an external term to `Equivalent Terms` without a completed proposal, 
 ## Validation Commands
 
 ```text
+npm run validate
 npm run build
 node scripts/validate-ontology.mjs
 node scripts/check-wiki-status.mjs
 node scripts/check-equivalence-proposal-template.mjs
+node scripts/check-relationship-status-summary.mjs
+node scripts/check-public-activation-receipt.mjs
 ```
+
+`npm run validate` is the preferred aggregate command because it runs the installed validators and the Docusaurus build.
 
 ## Next Safe Build Targets
 
@@ -190,3 +207,51 @@ Priority order:
 2. Update activation posture only after public GitHub.io deployment status changes.
 3. Add research-backed equivalence proposals only when they materially improve terminology classification.
 4. Add additional dispute examples only when they cover a materially new dispute posture.
+
+## Mirror Coordination Rule
+
+For Admissibility Wiki work:
+
+1. First check this file.
+2. Then check `docs/governance/current-task-sync.md`.
+3. Then check exact repo paths before creating new pages.
+4. Update this file whenever goal, activation target, installed structure, validation surface, or cross-session overlap changes.
+
+## Current Redundancy Posture
+
+This repository is actively touched by more than one session.
+
+Do not assume a previously proposed next step is still missing.
+
+Verify file presence first, then continue from the missing or explicitly open item.
+
+## Ecosystem-Managed Handoff Readiness
+
+This repo can be considered ready for ecosystem-managed continuation when:
+
+- this handoff and `docs/governance/current-task-sync.md` agree on the next safe build target;
+- new governance changes have proposal, decision, replay, and reconstruction records when mature;
+- sidebar navigation includes newly installed public pages;
+- ontology changes are completed or explicitly listed as next work;
+- validation expectations are explicit;
+- duplicate-risk paths are listed.
+
+Current status: ready for ecosystem-managed continuation, except public activation still requires GitHub.io deployment/reachability verification.
+
+## Archival Readiness Rule
+
+A chat thread is archive-ready when this handoff and `docs/governance/current-task-sync.md` contain all remaining tasks needed to continue without reading the full chat transcript.
+
+## Current Next Action
+
+Verify GitHub Pages deployment at `https://stegverse-labs.github.io/admissibility-wiki/` after Actions completes, then record real public activation evidence only if deployment, HTTPS, ontology, status, governance records, and navigation are reachable.
+
+## Progress Snapshot
+
+```text
+StegVerse-Labs - 74% complete
+admissibility-wiki - 94% complete
+admissibility-wiki - 99% complete TO GOAL ACTIVATION
+Fully developed files vs scaffolding and stubs: 92% complete
+Delta: unified validation, relationship-state validation, and public activation receipt validation are documented in the canonical handoff. Remaining blocker is actual GitHub.io deployment/reachability evidence.
+```
