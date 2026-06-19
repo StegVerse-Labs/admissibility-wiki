@@ -54,7 +54,8 @@ The repository currently includes:
 - expanded landing page defining the wiki, AI-governed proposal system, transition-table elements, and proposal transition blocks;
 - GitHub Pages deployment workflow;
 - GitHub.io project URL configuration for `https://stegverse-labs.github.io/admissibility-wiki/`;
-- activation runbook;
+- GitHub.io activation runbook;
+- machine-readable GitHub.io activation checklist at `static/status/admissibility-wiki-activation.json`;
 - contribution guide;
 - editorial policy;
 - page template;
@@ -86,6 +87,17 @@ The repository currently includes:
 - core glossary pages;
 - proof-path examples;
 - Admissibility-Wiki AI Entity governance page.
+
+## Known Activation Artifacts
+
+```text
+docs/activation/github-pages-cloudflare.md
+static/status/admissibility-wiki-activation.json
+static/status/admissibility-wiki-status.json
+.github/workflows/deploy.yml
+```
+
+Note: paths that normally begin with a leading dot are shown without the leading dot in this display rule only.
 
 ## Known Governance Records
 
