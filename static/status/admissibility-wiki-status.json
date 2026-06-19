@@ -6,6 +6,11 @@
   "status": "build_in_progress",
   "assessment_goal": "Continue build work until completion or ecosystem-managed continuation is supported by handoff, governance, validation, and next-task structure.",
   "activation_target": "Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the GitHub Pages public vocabulary, terminology convergence, proposal-review, and proof-path site.",
+  "activation_artifacts": {
+    "activation_checklist": "static/status/admissibility-wiki-activation.json",
+    "activation_runbook": "docs/activation/github-pages-cloudflare.md",
+    "deploy_workflow": ".github/workflows/deploy.yml"
+  },
   "activation_checks": {
     "github_pages_actions_source": "pending_external_verification",
     "custom_domain": "not_configured",
