@@ -44,6 +44,13 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Formalisms',
+      items: [
+        'formalisms/index',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Research',
       items: [
         'research/terminology-overlap-research-notes',
