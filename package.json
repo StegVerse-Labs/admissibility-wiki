@@ -10,7 +10,8 @@
     "validate:equivalence-template": "node scripts/check-equivalence-proposal-template.mjs",
     "validate:relationship-status": "node scripts/check-relationship-status-summary.mjs",
     "validate:public-activation-receipt": "node scripts/check-public-activation-receipt.mjs",
-    "validate": "npm run validate:ontology && npm run validate:wiki-status && npm run validate:activation-checklist && npm run validate:equivalence-template && npm run validate:relationship-status && npm run validate:public-activation-receipt && npm run build"
+    "validate:formalism-registry": "node scripts/check-formalism-registry.mjs",
+    "validate": "npm run validate:ontology && npm run validate:wiki-status && npm run validate:activation-checklist && npm run validate:equivalence-template && npm run validate:relationship-status && npm run validate:public-activation-receipt && npm run validate:formalism-registry && npm run build"
   },
   "dependencies": {
     "@docusaurus/core": "^3.10.1",
