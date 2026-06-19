@@ -103,22 +103,22 @@
     "NIST AI RMF does not by itself determine commit-time admissibility or consequence standing."
   ],
   "risk_of_overclaiming": [
-    "Calling NIST AI RMF governance language equivalent to Governance Boundary could imply NIST endorsement of StegVerse terminology.",
+    "Calling NIST AI RMF governance language equivalent to Governance Boundary could imply outside endorsement of StegVerse terminology.",
     "Calling the terms equivalent could imply that voluntary AI risk-management guidance is itself a StegVerse execution-authority boundary.",
     "Calling the terms equivalent could erase the distinction between broad AI risk management and commit-time transition standing."
   ],
   "proposed_glossary_placement": "Overlapping Terms",
   "proposed_text": "NIST AI RMF governance and AI risk-management language overlaps with Governance Boundary where both address structured governance of AI systems and responsible management of AI-related risk. It is not recorded as equivalent because Governance Boundary specifically separates publication, vocabulary, continuity, proof, and commit-time admissibility authority within the StegVerse transition-governance model.",
   "review_requested": "admissibility_wiki_ai_entity",
-  "requested_outcome": "DEFER_PENDING_DECISION_RECORD",
+  "requested_outcome": "ALLOW_AS_OVERLAP",
   "links": {
-    "decision_link": null,
-    "replay_link": null,
-    "reconstruction_link": null
+    "decision_link": "../decisions/decision.example.007.json",
+    "replay_link": "../replay/decision.example.007.txt",
+    "reconstruction_link": "../evidence/decision.example.007/README.md"
   },
   "non_claims": [
     "This proposal does not assert that NIST AI RMF is equivalent to Governance Boundary.",
-    "This proposal does not claim NIST endorsement of StegVerse terminology.",
+    "This proposal does not claim outside endorsement of StegVerse terminology.",
     "This proposal does not update the glossary by itself.",
     "This proposal does not create admissibility standing.",
     "This proposal requires a decision record before acceptance."
