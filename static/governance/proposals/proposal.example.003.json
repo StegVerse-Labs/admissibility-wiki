@@ -13,6 +13,46 @@
   "authority_class": "contributor_suggest",
   "policy_ref": "policy.wiki.page-review.v1",
   "evidence_posture": "partial",
+  "submission_timing": {
+    "received_at": "2026-06-19T00:00:00Z",
+    "receipt_issued_at": "2026-06-19T00:00:08Z",
+    "timing_basis": "example_recorded_system_time",
+    "tasks": [
+      {
+        "task": "capture_submission",
+        "started_at": "2026-06-19T00:00:00Z",
+        "completed_at": "2026-06-19T00:00:01Z",
+        "status": "completed",
+        "timing_posture": "recorded"
+      },
+      {
+        "task": "normalize_fields",
+        "started_at": "2026-06-19T00:00:01Z",
+        "completed_at": "2026-06-19T00:00:03Z",
+        "status": "completed",
+        "timing_posture": "recorded"
+      },
+      {
+        "task": "classify_relationship_claims",
+        "started_at": "2026-06-19T00:00:03Z",
+        "completed_at": "2026-06-19T00:00:05Z",
+        "status": "completed",
+        "timing_posture": "recorded"
+      },
+      {
+        "task": "issue_submission_receipt",
+        "started_at": "2026-06-19T00:00:05Z",
+        "completed_at": "2026-06-19T00:00:08Z",
+        "status": "completed",
+        "timing_posture": "recorded"
+      }
+    ],
+    "non_claims": [
+      "Submission timing records intake timing only.",
+      "Submission timing does not accept the proposal.",
+      "Submission timing does not prove the relationship claim is correct."
+    ]
+  },
   "claimed_relationships": [
     {
       "relationship": "overlapping",
@@ -36,7 +76,7 @@
   },
   "non_claims": [
     "This proposal does not assert that the external terms are accepted equivalents.",
-    "This proposal does not authorize changing the target page without review.",
+    "This proposal does not approve changing the target page without review.",
     "This proposal does not prove that the proposed mapping is complete."
   ]
 }
