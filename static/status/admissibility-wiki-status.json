@@ -27,6 +27,20 @@
     "custom_domain": "not_configured",
     "cname_file": "removed"
   },
+  "proposal_intake": {
+    "governance_page": "docs/governance/proposal-intake-interface.md",
+    "manifest_receipt_policy": "docs/governance/manifest-receipt-submission.md",
+    "static_scaffold": "static/intake/manifest-receipt-intake.html",
+    "validator": "scripts/check-proposal-intake-interface.mjs",
+    "guided_builder": "installed_static_preview",
+    "direct_paste": "installed_static_preview",
+    "shared_preview_window": "installed",
+    "backend_submission": "not_installed",
+    "durable_receipt_issuance": "not_installed",
+    "queue_write": "not_installed",
+    "automatic_ai_review": "not_installed",
+    "preference_rule": "valid_manifest_receipt_may_receive_preferred_triage_only"
+  },
   "site_bridge": {
     "status": "site_bridge_page_updated",
     "site_repository": "StegVerse-Labs/Site",
@@ -39,6 +53,8 @@
   "installed_public_pages": {
     "landing_page": "docs/index.md",
     "activation_runbook": "docs/activation/github-pages-cloudflare.md",
+    "proposal_intake_interface": "docs/governance/proposal-intake-interface.md",
+    "manifest_receipt_submission": "docs/governance/manifest-receipt-submission.md",
     "terminology_convergence": "docs/governance/terminology-convergence.md",
     "proposal_lifecycle": "docs/governance/proposal-lifecycle.md",
     "decision_record": "docs/governance/decision-record.md",
@@ -105,8 +121,8 @@
     "task_sync": "docs/governance/current-task-sync.md"
   },
   "next_safe_build_targets": [
+    "Define backend submission contract for manifest/receipt intake without claiming active submission.",
     "Verify GitHub Pages deployment at https://stegverse-labs.github.io/admissibility-wiki/ after Actions completes.",
-    "Update activation posture only after public GitHub.io deployment status changes.",
-    "Add additional source families only when they materially improve terminology classification."
+    "Update activation posture only after public GitHub.io deployment status changes."
   ]
 }
