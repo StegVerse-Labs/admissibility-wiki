@@ -1,0 +1,78 @@
+{
+  "schema": "admissibility_wiki_activation.v1",
+  "generated_at": "2026-06-19T00:00:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "target_url": "https://stegverse-labs.github.io/admissibility-wiki/",
+  "hosting_mode": "github_pages_project_site",
+  "custom_domain": {
+    "configured": false,
+    "cname_file_expected": false,
+    "cname_file_path": "static/CNAME",
+    "notes": "Custom domains are intentionally not used for the current activation target."
+  },
+  "required_repository_configuration": {
+    "docusaurus_url": "https://stegverse-labs.github.io",
+    "docusaurus_baseUrl": "/admissibility-wiki/",
+    "github_pages_source": "GitHub Actions",
+    "deploy_workflow": ".github/workflows/deploy.yml",
+    "build_output": "build"
+  },
+  "activation_checks": [
+    {
+      "check_id": "pages_source_github_actions",
+      "description": "Repository Settings > Pages source is set to GitHub Actions.",
+      "status": "external_manual_check_required",
+      "blocking": true
+    },
+    {
+      "check_id": "deploy_workflow_success",
+      "description": "The GitHub Pages deploy workflow completed successfully after the GitHub.io configuration commit.",
+      "status": "pending_external_verification",
+      "blocking": true
+    },
+    {
+      "check_id": "root_url_loads",
+      "description": "The root project page loads without 404.",
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/",
+      "status": "pending_external_verification",
+      "blocking": true
+    },
+    {
+      "check_id": "glossary_route_loads",
+      "description": "A representative Docusaurus route loads under the project base URL.",
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/glossary/admissibility",
+      "status": "pending_external_verification",
+      "blocking": true
+    },
+    {
+      "check_id": "status_json_loads",
+      "description": "The public status JSON is reachable as a static asset.",
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/status/admissibility-wiki-status.json",
+      "status": "pending_external_verification",
+      "blocking": true
+    },
+    {
+      "check_id": "ontology_json_loads",
+      "description": "The ontology JSON is reachable as a static asset.",
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/ontology/admissibility-vocabulary.v0.1.json",
+      "status": "pending_external_verification",
+      "blocking": true
+    },
+    {
+      "check_id": "example_proposal_loads",
+      "description": "A representative governance proposal JSON is reachable as a static asset.",
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/governance/proposals/proposal.example.009.json",
+      "status": "pending_external_verification",
+      "blocking": false
+    }
+  ],
+  "known_404_causes": [
+    "Repository Pages source is not set to GitHub Actions.",
+    "Deploy workflow has not run since docusaurus.config.js was changed.",
+    "Deploy workflow failed during install or build.",
+    "Repository visibility or Pages plan does not allow public Pages for this repository.",
+    "Browser is checking the old custom-domain or wrong GitHub.io path.",
+    "Docusaurus baseUrl does not match the project path."
+  ],
+  "current_next_action": "Verify Settings > Pages > Source is GitHub Actions, then run or wait for the deploy workflow and re-check the target URL."
+}
