@@ -20,6 +20,7 @@ const sidebars = {
         'governance/transition-origin-governance',
         'governance/manifest-receipt-submission',
         'governance/proposal-intake-interface',
+        'governance/proposal-intake-backend-contract',
         'governance/proposal-lifecycle',
         'governance/decision-record',
         'governance/relationship-status-summary',
