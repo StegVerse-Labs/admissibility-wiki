@@ -48,6 +48,7 @@ The repository currently includes:
 - source-backed policy-as-code overlap proposal, decision, replay, and evidence examples;
 - source-backed NIST AI RMF governance-boundary proposal, deferred decision, replay, and evidence note;
 - source-backed policy decision overlap proposal, decision, replay, and evidence examples;
+- source-backed Audit and Accountability overlap proposal, decision, replay, and evidence examples;
 - public status JSON mirror at `static/status/admissibility-wiki-status.json`;
 - wiki status validator;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
@@ -99,6 +100,10 @@ static/governance/proposals/proposal.example.008.json
 static/governance/decisions/decision.example.008.json
 static/governance/replay/decision.example.008.txt
 static/governance/evidence/decision.example.008/README.md
+static/governance/proposals/proposal.example.009.json
+static/governance/decisions/decision.example.009.json
+static/governance/replay/decision.example.009.txt
+static/governance/evidence/decision.example.009/README.md
 ```
 
 ## Known Public Governance Pages
@@ -198,6 +203,12 @@ proposal.example.008 / decision.example.008:
   external_term: policy decision
   disposition: accepted as Overlapping Terms only
   equivalent_status: not accepted
+
+proposal.example.009 / decision.example.009:
+  target_page: docs/glossary/reconstructability.md
+  external_term: Audit and Accountability
+  disposition: accepted as Overlapping Terms only
+  equivalent_status: not accepted
 ```
 
 ## Deferred Relationship Updates
@@ -229,7 +240,7 @@ Submission timing records intake posture only. It does not accept the proposal, 
 
 The safest next build targets are:
 
-1. Add another source-backed relationship proposal only if it covers a materially new source family and does not duplicate proposals 005, 006, 007, or 008.
+1. Add another source-backed relationship proposal only if it covers a materially new source family and does not duplicate proposals 005, 006, 007, 008, or 009.
 2. Review proposal.example.007 for possible future ALLOW_AS_OVERLAP wording on `docs/glossary/governance-boundary.md`.
 3. Update activation posture only after public deployment or DNS status changes.
 4. Add additional dispute examples only when they cover a materially new dispute posture.
