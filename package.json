@@ -6,10 +6,11 @@
     "clear": "docusaurus clear",
     "validate:ontology": "node scripts/validate-ontology.mjs",
     "validate:wiki-status": "node scripts/check-wiki-status.mjs",
+    "validate:activation-checklist": "node scripts/check-activation-checklist.mjs",
     "validate:equivalence-template": "node scripts/check-equivalence-proposal-template.mjs",
     "validate:relationship-status": "node scripts/check-relationship-status-summary.mjs",
     "validate:public-activation-receipt": "node scripts/check-public-activation-receipt.mjs",
-    "validate": "npm run validate:ontology && npm run validate:wiki-status && npm run validate:equivalence-template && npm run validate:relationship-status && npm run validate:public-activation-receipt && npm run build"
+    "validate": "npm run validate:ontology && npm run validate:wiki-status && npm run validate:activation-checklist && npm run validate:equivalence-template && npm run validate:relationship-status && npm run validate:public-activation-receipt && npm run build"
   },
   "dependencies": {
     "@docusaurus/core": "^3.10.1",
