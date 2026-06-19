@@ -1,0 +1,39 @@
+{
+  "schema": "admissibility_wiki_page_decision.v1",
+  "decision_id": "decision.example.009",
+  "proposal_id": "proposal.example.009",
+  "issued_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/glossary/reconstructability.md",
+  "decision": "ALLOW_AS_OVERLAP",
+  "authority_class": "wiki_maintainer",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "present",
+  "review_posture": "entity_reviewed",
+  "commit_time_validity": true,
+  "relationship_disposition": [
+    {
+      "external_term": "Audit and Accountability",
+      "relationship": "overlapping",
+      "disposition": "accepted",
+      "notes": "Accepted only as an overlapping term for Reconstructability. Equivalent status is not accepted."
+    }
+  ],
+  "accepted_text": "Audit and Accountability, when used in the NIST SP 800-53 sense of audit-related controls supporting accountability. This overlaps with Reconstructability because audit records can support reconstruction, but it is not equivalent unless the records also show why consequence had standing at the relevant decision boundary.",
+  "rejected_text": "Audit and Accountability is equivalent to Reconstructability.",
+  "decision_basis": [
+    "NIST SP 800-53 Rev. 5 includes Audit and Accountability as a control family.",
+    "Audit and Accountability overlaps with Reconstructability because audit records can support post-event reconstruction.",
+    "The source family does not by itself require reconstruction of why a governed transition had standing at commit time.",
+    "The correct glossary placement is Overlapping Terms, not Equivalent Terms."
+  ],
+  "links": {
+    "proposal_link": "../proposals/proposal.example.009.json",
+    "replay_link": "../replay/decision.example.009.txt",
+    "reconstruction_link": "../evidence/decision.example.009/README.md"
+  },
+  "non_claims": [
+    "ALLOW_AS_OVERLAP does not make Audit and Accountability equivalent to Reconstructability.",
+    "ALLOW_AS_OVERLAP does not claim NIST endorsement.",
+    "ALLOW_AS_OVERLAP does not claim audit evidence alone proves admissibility."
+  ]
+}
