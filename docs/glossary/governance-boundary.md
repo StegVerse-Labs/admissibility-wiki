@@ -18,7 +18,8 @@ The following terms may overlap with governance boundary, but are not treated as
 - trust boundary;
 - control boundary;
 - policy boundary;
-- assurance boundary.
+- assurance boundary;
+- NIST AI RMF governance and AI risk-management language, where it addresses structured governance of AI systems and responsible management of AI-related risk. This overlaps with Governance Boundary but is not equivalent because Governance Boundary specifically separates publication, vocabulary, continuity, proof, and commit-time admissibility authority within the StegVerse transition-governance model.
 
 ## Adjacent Terms
 
@@ -28,7 +29,8 @@ The following terms are adjacent because they may describe scope or perimeter wi
 - threat boundary;
 - responsibility boundary;
 - interface boundary;
-- compliance boundary.
+- compliance boundary;
+- trustworthiness considerations, where they inform responsible AI design and use but do not by themselves define receipt-bound standing or commit-time admissibility.
 
 ## Definition
 
@@ -56,10 +58,10 @@ A governance boundary should answer:
 
 ```yaml
 governance:
-  proposal_link: "not_applicable"
-  decision_link: "not_applicable"
-  replay_link: "not_applicable"
-  reconstruction_link: "not_applicable"
+  proposal_link: "../../static/governance/proposals/proposal.example.007.json"
+  decision_link: "../../static/governance/decisions/decision.example.007.json"
+  replay_link: "../../static/governance/replay/decision.example.007.txt"
+  reconstruction_link: "../../static/governance/evidence/decision.example.007/README.md"
 ```
 
 ## Related Terms
