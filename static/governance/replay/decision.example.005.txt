@@ -1,0 +1,38 @@
+Admissibility Wiki Governance Replay
+====================================
+
+Replay ID: replay.decision.example.005
+Decision ID: decision.example.005
+Proposal ID: proposal.example.005
+Target page: docs/glossary/reconstructability.md
+Policy reference: policy.wiki.page-review.v1
+Authority class: wiki_maintainer
+Review posture: entity_reviewed
+Evidence posture: present
+Commit-time validity: true
+Decision: ALLOW_AS_OVERLAP
+
+Replay question
+---------------
+Should W3C PROV provenance be placed under Equivalent Terms or Overlapping Terms for the StegVerse term Reconstructability?
+
+Inputs
+------
+- Proposal: ../proposals/proposal.example.005.json
+- Decision: ../decisions/decision.example.005.json
+- Evidence: ../evidence/decision.example.005/README.md
+- Research note: ../../../docs/research/terminology-overlap-research-notes.md
+
+Expected result
+---------------
+ALLOW_AS_OVERLAP: provenance can support reconstruction by describing entities, activities, and agents involved in producing data or artifacts, but it is not accepted as equivalent to reconstructability because it does not by itself require reconstruction of why consequence had standing.
+
+Relationship result
+-------------------
+- Equivalent: not accepted.
+- Overlapping: accepted.
+- Glossary placement: Overlapping Terms.
+
+Boundary
+--------
+Replay checks this wiki terminology decision only. It does not certify W3C endorsement, does not replace executable proof authority, and does not prove that all uses of provenance are admissibility-reconstructable.
