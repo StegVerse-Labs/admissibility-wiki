@@ -5,7 +5,7 @@
 ```text
 decision_id: decision.example.007
 proposal_id: proposal.example.007
-outcome: DEFER_PENDING_REVIEW
+outcome: ALLOW_AS_OVERLAP
 target_page: docs/glossary/governance-boundary.md
 ```
 
@@ -26,7 +26,7 @@ https://www.nist.gov/publications/artificial-intelligence-risk-management-framew
 
 ## Reconstruction
 
-The proposal was not accepted directly into glossary text because the external source family supports a broad AI risk-management and trustworthiness-governance overlap, but it does not establish equivalence to the Admissibility Wiki term Governance Boundary.
+The proposal is accepted only as an overlapping relationship because the external source family supports a broad AI risk-management and trustworthiness-governance overlap, but it does not establish equivalence to the Admissibility Wiki term Governance Boundary.
 
 The key difference preserved by the decision is:
 
@@ -38,15 +38,22 @@ StegVerse Governance Boundary
 receipt-bound standing, proof authority, Site/Wiki/Continuity/StegCore role separation, or commit-time admissibility.
 ```
 
+## Glossary Effect
+
+```text
+The target page may list NIST AI RMF governance and AI risk-management language under Overlapping Terms only.
+Equivalent Terms remain unchanged.
+```
+
 ## Non-Claims
 
 ```text
 This decision does not claim NIST endorsement.
 This decision does not accept equivalence.
-This decision does not mutate glossary text.
+This decision does not make NIST AI RMF a StegVerse execution-authority boundary.
 This decision does not create admissibility standing.
 ```
 
 ## Next Review Step
 
-A later review may convert this from DEFER_PENDING_REVIEW to ALLOW_AS_OVERLAP only after exact glossary text is approved and the target glossary page is updated with a clear non-equivalence boundary.
+A later review may refine the wording, but any refinement must preserve the non-equivalence boundary and must not imply NIST endorsement or StegVerse execution authority.
