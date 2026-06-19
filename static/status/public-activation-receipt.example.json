@@ -1,0 +1,45 @@
+{
+  "schema": "admissibility_wiki_public_activation_receipt.v1",
+  "receipt_id": "public-activation.example.pending",
+  "created_at": "2026-06-19T00:00:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "activation_target": "admissibility.stegverse.org",
+  "activation_state": "pending_external_verification",
+  "checks": {
+    "public_site_loads": {
+      "status": "pending",
+      "evidence": null
+    },
+    "dns_resolves": {
+      "status": "pending",
+      "evidence": null
+    },
+    "https_valid": {
+      "status": "pending",
+      "evidence": null
+    },
+    "ontology_json_reachable": {
+      "status": "pending",
+      "evidence": null
+    },
+    "status_json_reachable": {
+      "status": "pending",
+      "evidence": null
+    },
+    "governance_records_reachable": {
+      "status": "pending",
+      "evidence": null
+    },
+    "public_navigation_works": {
+      "status": "pending",
+      "evidence": null
+    }
+  },
+  "non_claims": [
+    "This receipt does not activate the site.",
+    "This receipt does not prove admissibility.",
+    "This receipt does not grant publication authority.",
+    "This receipt is an example template until real evidence replaces pending values."
+  ],
+  "next_action": "Record actual deployment, DNS, HTTPS, ontology, status, governance-record, and navigation evidence."
+}
