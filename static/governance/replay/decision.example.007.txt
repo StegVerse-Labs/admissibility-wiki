@@ -18,12 +18,14 @@ Decision path:
   3. Confirm source URLs point to primary NIST AI RMF references.
   4. Confirm mismatch section preserves StegVerse role-boundary distinctions.
   5. Confirm risk-of-overclaiming section prevents implied NIST endorsement or equivalence.
-  6. Defer glossary mutation until fuller review accepts exact wording.
+  6. Accept only the overlap wording for the target glossary page.
+  7. Reject equivalent status.
 
 Outcome:
-  DEFER_PENDING_REVIEW
+  ALLOW_AS_OVERLAP
 
 Effect:
-  Proposal is preserved as a research-backed relationship candidate.
-  Glossary text is not changed by this decision.
+  Proposal is accepted only as an overlapping relationship.
+  Governance Boundary glossary text may include NIST AI RMF governance and AI risk-management language under Overlapping Terms.
   Equivalent status is not accepted.
+  This decision does not create admissibility standing or execution authority.
