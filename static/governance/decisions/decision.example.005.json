@@ -1,0 +1,39 @@
+{
+  "schema": "admissibility_wiki_page_decision.v1",
+  "decision_id": "decision.example.005",
+  "proposal_id": "proposal.example.005",
+  "issued_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/glossary/reconstructability.md",
+  "decision": "ALLOW_AS_OVERLAP",
+  "authority_class": "wiki_maintainer",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "present",
+  "review_posture": "entity_reviewed",
+  "commit_time_validity": true,
+  "relationship_disposition": [
+    {
+      "external_term": "Provenance",
+      "relationship": "overlapping",
+      "disposition": "accepted",
+      "notes": "Accepted only as an overlapping term for reconstructability. Equivalent status is not accepted."
+    }
+  ],
+  "accepted_text": "Provenance, when used to describe information about entities, activities, and agents involved in producing data or artifacts. This overlaps with reconstructability but is not treated as equivalent unless the provenance record also supports reconstruction of why consequence had standing.",
+  "rejected_text": "Provenance is equivalent to reconstructability.",
+  "decision_basis": [
+    "W3C PROV supports provenance information about entities, activities, and agents involved in producing data or things.",
+    "That scope overlaps with reconstructability because provenance can support reconstruction of origins and process history.",
+    "The source material does not by itself require reconstruction of why a governed transition had standing at commit time.",
+    "The correct glossary placement is Overlapping Terms, not Equivalent Terms."
+  ],
+  "links": {
+    "proposal_link": "../proposals/proposal.example.005.json",
+    "replay_link": "../replay/decision.example.005.txt",
+    "reconstruction_link": "../evidence/decision.example.005/README.md"
+  },
+  "non_claims": [
+    "ALLOW_AS_OVERLAP does not make provenance equivalent to reconstructability.",
+    "ALLOW_AS_OVERLAP does not claim W3C endorsement.",
+    "ALLOW_AS_OVERLAP does not replace executable proof authority."
+  ]
+}
