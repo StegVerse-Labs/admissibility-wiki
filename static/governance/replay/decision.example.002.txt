@@ -1,0 +1,31 @@
+Admissibility Wiki Governance Replay
+====================================
+
+Replay ID: replay.decision.example.002
+Decision ID: decision.example.002
+Proposal ID: proposal.example.002
+Target page: docs/governance/terminology-convergence.md
+Policy reference: policy.wiki.page-review.v1
+Authority class: wiki_maintainer
+Review posture: entity_reviewed
+Evidence posture: sufficient
+Commit-time validity: true
+Decision: ALLOW
+
+Replay question
+---------------
+Can the terminology-convergence page bind as an accepted Admissibility Wiki governance-page change under the declared wiki-maintainer authority, page-review policy, sufficient evidence posture, and explicit boundary that equivalence claims remain reviewable rather than self-authorizing?
+
+Inputs
+------
+- Proposal: ../proposals/proposal.example.002.json
+- Decision: ../decisions/decision.example.002.json
+- Evidence: ../evidence/decision.example.002/README.md
+
+Expected result
+---------------
+ALLOW: the proposal creates a wiki governance page requiring identical external terms to be listed under the relevant StegVerse term while preserving the boundary that individual equivalence claims require review.
+
+Boundary
+--------
+Replay checks this page-governance decision only. It does not certify any specific external terminology mapping and does not authorize external execution.
