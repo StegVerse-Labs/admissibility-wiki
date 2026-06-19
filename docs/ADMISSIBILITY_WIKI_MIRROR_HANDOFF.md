@@ -34,10 +34,25 @@ A task is ready for ecosystem-managed continuation when this repository records 
 ## Current Activation Goal
 
 ```text
-Publish and validate admissibility.stegverse.org as a Docusaurus-powered public vocabulary, terminology convergence, proposal-review, and proof-path site.
+Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the GitHub Pages public vocabulary, terminology convergence, proposal-review, and proof-path site.
 ```
 
-Activation is not complete until the public site loads, GitHub Pages and HTTPS are working, the ontology JSON is reachable, and proposal and decision examples are reachable.
+Activation is not complete until the GitHub.io project page loads, GitHub Pages and HTTPS are working, the ontology JSON is reachable, and proposal and decision examples are reachable.
+
+## GitHub Pages URL Configuration
+
+The wiki is currently configured for GitHub Pages project hosting, not a custom domain.
+
+```text
+docusaurus.config.js:
+  url: https://stegverse-labs.github.io
+  baseUrl: /admissibility-wiki/
+
+static/CNAME:
+  removed
+```
+
+Do not re-add `static/CNAME` unless custom-domain activation is explicitly requested.
 
 ## Installed Structure
 
@@ -46,7 +61,7 @@ The repo currently includes:
 - Docusaurus scaffold;
 - GitHub Pages deployment workflow;
 - validation workflow;
-- custom-domain support file;
+- GitHub.io project URL configuration;
 - activation runbook;
 - contribution guide;
 - editorial policy;
@@ -63,14 +78,11 @@ The repo currently includes:
 - canonical public status JSON mirror with Site bridge posture;
 - wiki status validator;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
-- first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
-- wave-2 glossary convergence for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary;
+- glossary convergence pages;
 - current task sync page;
 - ontology validation script;
 - issue templates;
 - pull request template;
-- glossary wave 1;
-- glossary wave 2;
 - StegVerse mapping pages;
 - comparison pages;
 - proof-path examples;
@@ -96,45 +108,7 @@ docs/governance/equivalence-proposal-template.md
 
 ## Known Governance Records
 
-Do not recreate these IDs:
-
-```text
-static/governance/proposals/proposal.example.001.json
-static/governance/decisions/decision.example.001.json
-static/governance/replay/decision.example.001.txt
-static/governance/evidence/decision.example.001/README.md
-static/governance/proposals/proposal.example.002.json
-static/governance/decisions/decision.example.002.json
-static/governance/replay/decision.example.002.txt
-static/governance/evidence/decision.example.002/README.md
-static/governance/proposals/proposal.example.003.json
-static/governance/decisions/decision.example.003.json
-static/governance/replay/decision.example.003.txt
-static/governance/evidence/decision.example.003/README.md
-static/governance/proposals/proposal.example.004.json
-static/governance/decisions/decision.example.004.json
-static/governance/replay/decision.example.004.txt
-static/governance/evidence/decision.example.004/README.md
-```
-
-## Known Glossary Convergence Pages
-
-Do not rework these pages without a specific improvement target:
-
-```text
-docs/glossary/admissibility.md
-docs/glossary/transition.md
-docs/glossary/authority-class.md
-docs/glossary/policy-reference.md
-docs/glossary/evidence-posture.md
-docs/glossary/review-posture.md
-docs/glossary/drift.md
-docs/glossary/commit-time-authority.md
-docs/glossary/commit-time-validity.md
-docs/glossary/receipt-bound-execution.md
-docs/glossary/governance-boundary.md
-docs/glossary/reconstructability.md
-```
+Do not recreate existing governance record IDs under `static/governance/`.
 
 ## Known Status Artifacts
 
@@ -156,7 +130,6 @@ sidebars.js
 scripts/validate-ontology.mjs
 scripts/check-wiki-status.mjs
 scripts/check-equivalence-proposal-template.mjs
-static/CNAME
 static/img/favicon.svg
 static/ontology/admissibility-vocabulary.v0.1.json
 github/workflows/deploy.yml
@@ -213,55 +186,7 @@ node scripts/check-equivalence-proposal-template.mjs
 
 Priority order:
 
-1. Add research-backed equivalence proposals for selected glossary pages using the installed equivalence proposal template.
-2. Update activation posture only after public deployment or DNS status changes.
-3. Add additional dispute examples only when they cover a materially new dispute posture.
-4. Expand canonical status mirror only when activation or governance posture changes materially.
-
-## Mirror Coordination Rule
-
-For Admissibility Wiki work:
-
-1. First check this file.
-2. Then check `docs/governance/current-task-sync.md`.
-3. Then check exact repo paths before creating new pages.
-4. Update this file whenever goal, activation target, installed structure, or cross-session overlap changes.
-
-## Current Redundancy Posture
-
-This repository is actively touched by more than one session.
-
-Do not assume a previously proposed next step is still missing.
-
-Verify file presence first, then continue from the missing or explicitly open item.
-
-## Ecosystem-Managed Handoff Readiness
-
-This repo can be considered ready for ecosystem-managed continuation when:
-
-- this handoff and `docs/governance/current-task-sync.md` agree on the next safe build target;
-- new governance changes have proposal, decision, replay, and reconstruction records when mature;
-- sidebar navigation includes newly installed public pages;
-- ontology changes are completed or explicitly listed as next work;
-- validation expectations are explicit;
-- duplicate-risk paths are listed.
-
-Current status: ready for ecosystem-managed continuation, except public activation still requires external deployment/DNS/public reachability verification.
-
-## Archival Readiness Rule
-
-A chat thread is archive-ready when this handoff and `docs/governance/current-task-sync.md` contain all remaining tasks needed to continue without reading the full chat transcript.
-
-## Current Next Action
-
-Add research-backed equivalence proposals for selected glossary pages using the installed equivalence proposal template.
-
-## Progress Snapshot
-
-```text
-StegVerse-Labs - 66% complete
-admissibility-wiki - 78% complete
-admissibility-wiki - 91% complete TO GOAL ACTIVATION
-Fully developed files vs scaffolding and stubs: 75% complete
-Delta: canonical handoff, status artifact, task sync, governance pages, examples, ontology validation, status validation, and equivalence proposal scaffold are installed. Remaining activation blockers are public deployment/DNS/reachability verification and actual research-backed terminology equivalence proposals.
-```
+1. Verify GitHub Pages deployment at `https://stegverse-labs.github.io/admissibility-wiki/` after Actions completes.
+2. Update activation posture only after public GitHub.io deployment status changes.
+3. Add research-backed equivalence proposals only when they materially improve terminology classification.
+4. Add additional dispute examples only when they cover a materially new dispute posture.
