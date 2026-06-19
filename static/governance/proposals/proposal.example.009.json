@@ -1,0 +1,67 @@
+{
+  "schema": "admissibility_wiki_governance_proposal.v1",
+  "proposal_id": "proposal.example.009",
+  "created_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/glossary/reconstructability.md",
+  "proposal_type": "update",
+  "proposal_class": "overlap_claim",
+  "title": "Source-backed overlap claim for Audit and Accountability and reconstructability",
+  "summary": "Proposes that NIST SP 800-53 Audit and Accountability should be classified as overlapping with the StegVerse term Reconstructability, not equivalent to it.",
+  "proposer_class": "maintainer",
+  "claimed_page_posture": "concept",
+  "claimed_maturity_posture": "conceptual",
+  "authority_class": "wiki_maintainer",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "present",
+  "source_family": {
+    "external_term": "Audit and Accountability",
+    "source_type": "government primary source",
+    "source_name": "NIST SP 800-53 Rev. 5",
+    "source_urls": [
+      "https://csrc.nist.gov/Pubs/sp/800/53/r5/upd1/Final"
+    ]
+  },
+  "claim_comparison": [
+    {
+      "claim_dimension": "scope",
+      "stegverse_term": "Reconstructability recovers enough information to understand what happened and why a decision appeared to have standing.",
+      "external_term": "Audit and Accountability is a security and privacy control family that supports audit-related accountability for systems and organizations.",
+      "match_posture": "overlapping"
+    },
+    {
+      "claim_dimension": "evidence_requirement",
+      "stegverse_term": "Reconstructability requires enough authority, evidence, policy, review, decision, and commit-time context to reconstruct standing.",
+      "external_term": "Audit and Accountability can support records and accountability, but does not by itself require reconstruction of commit-time consequence standing.",
+      "match_posture": "overlapping"
+    },
+    {
+      "claim_dimension": "authority_boundary",
+      "stegverse_term": "Reconstructability focuses on whether standing can be reconstructed after an event.",
+      "external_term": "Audit and Accountability may support post-event review, but is not itself the StegVerse authority boundary or proof authority.",
+      "match_posture": "adjacent"
+    }
+  ],
+  "mismatches": [
+    "Audit and Accountability may support records and review, but does not by itself reconstruct why a transition had standing.",
+    "Audit and Accountability does not classify ALLOW, DENY, ESCALATE, REFUSE, DEFER, or SUPERSEDE outcomes.",
+    "Audit and Accountability does not by itself require StegVerse receipt-bound commit-time validity."
+  ],
+  "risk_of_overclaiming": [
+    "Calling Audit and Accountability equivalent to Reconstructability could imply that audit records always reconstruct admissibility standing.",
+    "Calling Audit and Accountability equivalent could erase the distinction between audit evidence and consequence-standing reconstruction."
+  ],
+  "proposed_glossary_placement": "Overlapping Terms",
+  "proposed_text": "Audit and Accountability, when used in the NIST SP 800-53 sense of audit-related controls supporting accountability. This overlaps with Reconstructability because audit records can support reconstruction, but it is not equivalent unless the records also show why consequence had standing at the relevant decision boundary.",
+  "review_requested": "admissibility_wiki_ai_entity",
+  "requested_outcome": "ALLOW_AS_OVERLAP",
+  "links": {
+    "decision_link": "../decisions/decision.example.009.json",
+    "replay_link": "../replay/decision.example.009.txt",
+    "reconstruction_link": "../evidence/decision.example.009/README.md"
+  },
+  "non_claims": [
+    "This proposal does not accept Audit and Accountability as equivalent to Reconstructability.",
+    "This proposal does not claim NIST endorsement of StegVerse terminology.",
+    "This proposal does not claim audit evidence alone proves admissibility."
+  ]
+}
