@@ -1,0 +1,42 @@
+{
+  "schema": "admissibility_wiki_page_decision.v1",
+  "decision_id": "decision.example.004",
+  "proposal_id": "proposal.example.004",
+  "issued_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/glossary/reconstructability.md",
+  "decision": "DEFER",
+  "authority_class": "wiki_maintainer",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "partial",
+  "review_posture": "entity_reviewed",
+  "commit_time_validity": true,
+  "relationship_disposition": [
+    {
+      "external_term": "Auditability",
+      "relationship": "contradicts",
+      "disposition": "deferred",
+      "notes": "The contradiction claim is plausible but requires source-backed review before the wiki changes relationship placement."
+    },
+    {
+      "external_term": "Auditability",
+      "relationship": "overlapping",
+      "disposition": "accepted_external_view",
+      "notes": "The overlap claim is preserved as an external view while the equivalence boundary remains unresolved."
+    }
+  ],
+  "decision_basis": [
+    "The proposal raises a meaningful terminology relationship dispute.",
+    "The evidence posture is partial and does not support a final equivalence or contradiction decision.",
+    "The target page may continue to list auditability as overlapping while avoiding accepted-equivalent status."
+  ],
+  "links": {
+    "proposal_link": "../proposals/proposal.example.004.json",
+    "replay_link": "../replay/decision.example.004.txt",
+    "reconstruction_link": "../evidence/decision.example.004/README.md"
+  },
+  "non_claims": [
+    "DEFER does not reject the external-reference dispute.",
+    "DEFER does not accept auditability as equivalent to reconstructability.",
+    "DEFER does not certify any external source."
+  ]
+}
