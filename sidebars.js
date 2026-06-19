@@ -12,6 +12,7 @@ const sidebars = {
       type: 'category',
       label: 'Governance',
       items: [
+        'governance/current-visible-updates',
         'ADMISSIBILITY_WIKI_MIRROR_HANDOFF',
         'governance/editorial-policy',
         'governance/page-template',
