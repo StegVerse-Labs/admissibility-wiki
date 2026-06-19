@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 
 const RECEIPT_PATH = 'static/status/public-activation-receipt.example.json';
+const EXPECTED_TARGET = 'https://stegverse-labs.github.io/admissibility-wiki/';
 
 const requiredTopLevel = [
   'schema',
@@ -17,10 +18,11 @@ const requiredTopLevel = [
 
 const requiredChecks = [
   'public_site_loads',
-  'dns_resolves',
+  'github_pages_source_is_actions',
   'https_valid',
   'ontology_json_reachable',
   'status_json_reachable',
+  'activation_checklist_reachable',
   'governance_records_reachable',
   'public_navigation_works'
 ];
@@ -57,8 +59,8 @@ if (receipt.repository !== 'StegVerse-Labs/admissibility-wiki') {
   fail('repository must be StegVerse-Labs/admissibility-wiki');
 }
 
-if (receipt.activation_target !== 'admissibility.stegverse.org') {
-  fail('activation_target must be admissibility.stegverse.org');
+if (receipt.activation_target !== EXPECTED_TARGET) {
+  fail(`activation_target must be ${EXPECTED_TARGET}`);
 }
 
 if (receipt.activation_state !== 'pending_external_verification') {
