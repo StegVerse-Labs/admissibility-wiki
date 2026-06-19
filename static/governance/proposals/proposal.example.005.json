@@ -1,0 +1,74 @@
+{
+  "schema": "admissibility_wiki_governance_proposal.v1",
+  "proposal_id": "proposal.example.005",
+  "created_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/glossary/reconstructability.md",
+  "proposal_type": "update",
+  "proposal_class": "overlap_claim",
+  "title": "Source-backed overlap claim for provenance and reconstructability",
+  "summary": "Proposes that W3C PROV provenance should remain classified as overlapping with, not equivalent to, the StegVerse term Reconstructability.",
+  "proposer_class": "maintainer",
+  "claimed_page_posture": "concept",
+  "claimed_maturity_posture": "conceptual",
+  "authority_class": "wiki_maintainer",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "present",
+  "source_family": {
+    "external_term": "Provenance",
+    "source_type": "standards-based primary source",
+    "source_name": "W3C PROV",
+    "source_urls": [
+      "https://www.w3.org/TR/prov-overview/",
+      "https://www.w3.org/TR/prov-primer/"
+    ]
+  },
+  "claim_comparison": [
+    {
+      "claim_dimension": "scope",
+      "stegverse_term": "Reconstructability recovers enough information to understand what happened and why a decision appeared to have standing.",
+      "external_term": "Provenance records information about entities, activities, and agents involved in producing data or things.",
+      "match_posture": "overlapping"
+    },
+    {
+      "claim_dimension": "timing",
+      "stegverse_term": "Reconstructability may depend on commit-time authority, evidence, policy, and review posture.",
+      "external_term": "PROV can describe activities and generation/usage relationships but does not by itself require commit-time consequence standing.",
+      "match_posture": "adjacent"
+    },
+    {
+      "claim_dimension": "authority_boundary",
+      "stegverse_term": "Reconstructability asks whether the basis for standing can be recovered.",
+      "external_term": "Provenance can identify agents and attribution but does not decide whether authority remained admissible.",
+      "match_posture": "overlapping"
+    },
+    {
+      "claim_dimension": "replay_or_reconstruction",
+      "stegverse_term": "Reconstructability is admissibility-relevant reconstruction of standing.",
+      "external_term": "Provenance can support reconstruction of origins and process history.",
+      "match_posture": "overlapping"
+    }
+  ],
+  "mismatches": [
+    "PROV can support reconstruction but does not require a decision-standing or consequence-standing test.",
+    "PROV does not by itself classify ALLOW, DENY, ESCALATE, REFUSE, DEFER, or SUPERSEDE outcomes.",
+    "PROV does not require a StegVerse commit-time validity posture."
+  ],
+  "risk_of_overclaiming": [
+    "Calling provenance equivalent to reconstructability could imply that a provenance record always reconstructs why consequence had standing.",
+    "Calling provenance equivalent could erase the StegVerse distinction between event history and admissibility-relevant standing."
+  ],
+  "proposed_glossary_placement": "Overlapping Terms",
+  "proposed_text": "Provenance, when used to describe information about entities, activities, and agents involved in producing data or artifacts. This overlaps with reconstructability but is not treated as equivalent unless the provenance record also supports reconstruction of why consequence had standing.",
+  "review_requested": "admissibility_wiki_ai_entity",
+  "requested_outcome": "ALLOW_AS_OVERLAP",
+  "links": {
+    "decision_link": "../decisions/decision.example.005.json",
+    "replay_link": "../replay/decision.example.005.txt",
+    "reconstruction_link": "../evidence/decision.example.005/README.md"
+  },
+  "non_claims": [
+    "This proposal does not accept provenance as equivalent to reconstructability.",
+    "This proposal does not claim W3C PROV endorses StegVerse terminology.",
+    "This proposal does not replace executable formalism tests."
+  ]
+}
