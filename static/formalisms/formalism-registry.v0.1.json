@@ -1,7 +1,8 @@
 {
   "schema": "admissibility_wiki_formalism_registry.v0.1",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "authority_boundary": "This registry mirrors and classifies formalism records. It does not create source authority, proof authority, execution authority, continuity standing, or admissibility standing.",
+  "registry_scope": "Admissible-Existence subject repositories mirrored as formalism records.",
+  "authority_boundary": "This registry mirrors and classifies formalism records from Admissible-Existence subject repositories. It does not create source authority, proof authority, execution authority, continuity standing, or admissibility standing.",
   "states": [
     "intake",
     "mirrored",
@@ -23,95 +24,197 @@
   ],
   "records": [
     {
-      "formalism_id": "formalism.transition-admissibility",
-      "name": "Transition Admissibility",
+      "formalism_id": "ae.STCM",
+      "name": "STCM",
       "state": "intake",
-      "source_authority": "StegVerse ecosystem formalism and transition-table artifacts",
-      "wiki_path": null,
-      "purpose": "Determine whether a proposed transition may bind consequence under declared authority, policy, evidence, and review posture.",
-      "transition_relationship": "core admissibility formalism",
-      "evidence_posture": "source_artifact_required",
-      "validation_posture": "pending_wiki_crosswalk",
+      "source_authority": "Admissible-Existence/STCM",
+      "source_visibility": "public",
+      "wiki_path": "docs/formalisms/admissible-existence-stcm.md",
+      "purpose": "Mirror the STCM subject formalism for public comparison, crosswalk, and convergence review.",
+      "transition_relationship": "subject formalism pending source crosswalk",
+      "evidence_posture": "source_repository_required",
+      "validation_posture": "pending_detail_page_and_crosswalk",
       "non_claims": [
-        "Registry intake does not prove admissibility.",
-        "Registry intake does not replace source formalism tests."
+        "Wiki mirroring does not make STCM a StegVerse source authority.",
+        "Wiki mirroring does not prove or validate STCM claims."
       ]
     },
     {
-      "formalism_id": "formalism.commit-time-validity",
-      "name": "Commit-Time Validity",
+      "formalism_id": "ae.RTG",
+      "name": "RTG",
       "state": "intake",
-      "source_authority": "StegVerse commit-time governance artifacts",
-      "wiki_path": "docs/glossary/commit-time-validity.md",
-      "purpose": "Preserve the distinction between prior review and valid standing at the moment consequence is committed.",
-      "transition_relationship": "standing-at-commit boundary",
-      "evidence_posture": "glossary_mirrored_source_required",
-      "validation_posture": "pending_formalism_page",
+      "source_authority": "Admissible-Existence/RTG",
+      "source_visibility": "private",
+      "wiki_path": "docs/formalisms/admissible-existence-rtg.md",
+      "purpose": "Mirror public-safe metadata for the RTG subject formalism once source boundary and publishable scope are confirmed.",
+      "transition_relationship": "subject formalism pending source crosswalk",
+      "evidence_posture": "source_repository_required_private_scope",
+      "validation_posture": "pending_detail_page_and_crosswalk",
       "non_claims": [
-        "Glossary presence does not prove commit-time validity.",
-        "Commit-time validity requires current standing evidence."
+        "Wiki mirroring must not expose private RTG source content.",
+        "Wiki mirroring does not prove or validate RTG claims."
       ]
     },
     {
-      "formalism_id": "formalism.receipt-bound-execution",
-      "name": "Receipt-Bound Execution",
+      "formalism_id": "ae.BC",
+      "name": "BC",
       "state": "intake",
-      "source_authority": "StegVerse receipt and continuity artifacts",
-      "wiki_path": "docs/glossary/receipt-bound-execution.md",
-      "purpose": "Tie execution or consequence claims to durable receipt evidence and reconstructable standing.",
-      "transition_relationship": "execution evidence boundary",
-      "evidence_posture": "receipt_required",
-      "validation_posture": "pending_formalism_page",
+      "source_authority": "Admissible-Existence/BC",
+      "source_visibility": "private",
+      "wiki_path": "docs/formalisms/admissible-existence-bc.md",
+      "purpose": "Mirror public-safe metadata for the BC subject formalism once source boundary and publishable scope are confirmed.",
+      "transition_relationship": "subject formalism pending source crosswalk",
+      "evidence_posture": "source_repository_required_private_scope",
+      "validation_posture": "pending_detail_page_and_crosswalk",
       "non_claims": [
-        "A receipt alone does not grant execution authority.",
-        "Execution standing depends on the accepted authority and policy context."
+        "Wiki mirroring must not expose private BC source content.",
+        "Wiki mirroring does not prove or validate BC claims."
       ]
     },
     {
-      "formalism_id": "formalism.reconstructability",
-      "name": "Reconstructability",
+      "formalism_id": "ae.TT",
+      "name": "TT",
       "state": "intake",
-      "source_authority": "Continuity and replay-path artifacts",
-      "wiki_path": "docs/glossary/reconstructability.md",
-      "purpose": "Allow a later reviewer to reconstruct why a transition, decision, or handoff had standing without relying on chat memory.",
-      "transition_relationship": "replay and review support boundary",
-      "evidence_posture": "receipt_and_replay_required",
-      "validation_posture": "pending_formalism_page",
+      "source_authority": "Admissible-Existence/TT",
+      "source_visibility": "private",
+      "wiki_path": "docs/formalisms/admissible-existence-tt.md",
+      "purpose": "Mirror public-safe metadata for the TT subject formalism and connect it to the public transition-table vocabulary.",
+      "transition_relationship": "transition table subject formalism pending source crosswalk",
+      "evidence_posture": "source_repository_required_private_scope",
+      "validation_posture": "pending_detail_page_and_crosswalk",
       "non_claims": [
-        "Reconstructability does not by itself authorize the original action.",
-        "Reconstructability supports review and continuity evidence."
+        "Wiki mirroring must not expose private TT source content.",
+        "Wiki mirroring does not prove or validate TT claims."
       ]
     },
     {
-      "formalism_id": "formalism.drift-denial",
-      "name": "Drift Denial",
+      "formalism_id": "ae.Triad",
+      "name": "Triad",
       "state": "intake",
-      "source_authority": "StegVerse drift and transition-governance artifacts",
-      "wiki_path": null,
-      "purpose": "Deny or pause consequence when relevant authority, policy, evidence, identity, or state changes before commit time.",
-      "transition_relationship": "state-change denial boundary",
-      "evidence_posture": "pre_commit_state_evidence_required",
-      "validation_posture": "pending_wiki_crosswalk",
+      "source_authority": "Admissible-Existence/Triad",
+      "source_visibility": "private",
+      "wiki_path": "docs/formalisms/admissible-existence-triad.md",
+      "purpose": "Mirror public-safe metadata for the Triad subject formalism once source boundary and publishable scope are confirmed.",
+      "transition_relationship": "subject formalism pending source crosswalk",
+      "evidence_posture": "source_repository_required_private_scope",
+      "validation_posture": "pending_detail_page_and_crosswalk",
       "non_claims": [
-        "Drift denial is not a general refusal to review.",
-        "Drift denial depends on relevant changed state."
+        "Wiki mirroring must not expose private Triad source content.",
+        "Wiki mirroring does not prove or validate Triad claims."
       ]
     },
     {
-      "formalism_id": "formalism.cross-repository-continuation-receipt",
-      "name": "Cross-Repository Continuation Receipt",
+      "formalism_id": "ae.CHF",
+      "name": "CHF",
       "state": "intake",
-      "source_authority": "StegVerse-Labs/Continuity",
-      "wiki_path": null,
-      "purpose": "Record why a task may continue across repositories without relying on chat-session memory.",
-      "transition_relationship": "handoff standing and reconstruction boundary",
-      "evidence_posture": "continuation_receipt_required",
-      "validation_posture": "pending_wiki_crosswalk",
+      "source_authority": "Admissible-Existence/CHF",
+      "source_visibility": "private",
+      "wiki_path": "docs/formalisms/admissible-existence-chf.md",
+      "purpose": "Mirror public-safe metadata for the CHF subject formalism once source boundary and publishable scope are confirmed.",
+      "transition_relationship": "subject formalism pending source crosswalk",
+      "evidence_posture": "source_repository_required_private_scope",
+      "validation_posture": "pending_detail_page_and_crosswalk",
       "non_claims": [
-        "A continuation receipt does not create production authority.",
-        "A continuation receipt must be interpreted against current repository state."
+        "Wiki mirroring must not expose private CHF source content.",
+        "Wiki mirroring does not prove or validate CHF claims."
+      ]
+    },
+    {
+      "formalism_id": "ae.DaCo",
+      "name": "DaCo",
+      "state": "intake",
+      "source_authority": "Admissible-Existence/DaCo",
+      "source_visibility": "private",
+      "wiki_path": "docs/formalisms/admissible-existence-daco.md",
+      "purpose": "Mirror public-safe metadata for the DaCo subject formalism once source boundary and publishable scope are confirmed.",
+      "transition_relationship": "subject formalism pending source crosswalk",
+      "evidence_posture": "source_repository_required_private_scope",
+      "validation_posture": "pending_detail_page_and_crosswalk",
+      "non_claims": [
+        "Wiki mirroring must not expose private DaCo source content.",
+        "Wiki mirroring does not prove or validate DaCo claims."
+      ]
+    },
+    {
+      "formalism_id": "ae.DC",
+      "name": "DC",
+      "state": "intake",
+      "source_authority": "Admissible-Existence/DC",
+      "source_visibility": "private",
+      "wiki_path": "docs/formalisms/admissible-existence-dc.md",
+      "purpose": "Mirror public-safe metadata for the DC subject formalism once source boundary and publishable scope are confirmed.",
+      "transition_relationship": "subject formalism pending source crosswalk",
+      "evidence_posture": "source_repository_required_private_scope",
+      "validation_posture": "pending_detail_page_and_crosswalk",
+      "non_claims": [
+        "Wiki mirroring must not expose private DC source content.",
+        "Wiki mirroring does not prove or validate DC claims."
+      ]
+    },
+    {
+      "formalism_id": "ae.GCAT-BCAT",
+      "name": "GCAT-BCAT",
+      "state": "intake",
+      "source_authority": "Admissible-Existence/GCAT-BCAT",
+      "source_visibility": "private",
+      "wiki_path": "docs/formalisms/admissible-existence-gcat-bcat.md",
+      "purpose": "Mirror public-safe metadata for the GCAT-BCAT subject formalism once source boundary and publishable scope are confirmed.",
+      "transition_relationship": "subject formalism pending source crosswalk",
+      "evidence_posture": "source_repository_required_private_scope",
+      "validation_posture": "pending_detail_page_and_crosswalk",
+      "non_claims": [
+        "Wiki mirroring must not expose private GCAT-BCAT source content.",
+        "Wiki mirroring does not prove or validate GCAT-BCAT claims."
+      ]
+    },
+    {
+      "formalism_id": "ae.core-lite",
+      "name": "core-lite",
+      "state": "intake",
+      "source_authority": "Admissible-Existence/core-lite",
+      "source_visibility": "private",
+      "wiki_path": "docs/formalisms/admissible-existence-core-lite.md",
+      "purpose": "Mirror public-safe metadata for the core-lite subject formalism once source boundary and publishable scope are confirmed.",
+      "transition_relationship": "subject formalism pending source crosswalk",
+      "evidence_posture": "source_repository_required_private_scope",
+      "validation_posture": "pending_detail_page_and_crosswalk",
+      "non_claims": [
+        "Wiki mirroring must not expose private core-lite source content.",
+        "Wiki mirroring does not prove or validate core-lite claims."
+      ]
+    },
+    {
+      "formalism_id": "ae.learning-transition-governance",
+      "name": "learning-transition-governance",
+      "state": "intake",
+      "source_authority": "Admissible-Existence/learning-transition-governance",
+      "source_visibility": "public",
+      "wiki_path": "docs/formalisms/admissible-existence-learning-transition-governance.md",
+      "purpose": "Mirror the learning-transition-governance subject formalism for public comparison, crosswalk, and convergence review.",
+      "transition_relationship": "learning and transition-governance subject formalism pending source crosswalk",
+      "evidence_posture": "source_repository_required",
+      "validation_posture": "pending_detail_page_and_crosswalk",
+      "non_claims": [
+        "Wiki mirroring does not make learning-transition-governance a StegVerse source authority.",
+        "Wiki mirroring does not prove or validate learning-transition-governance claims."
+      ]
+    },
+    {
+      "formalism_id": "ae.ae-validation-factory",
+      "name": "ae-validation-factory",
+      "state": "intake",
+      "source_authority": "Admissible-Existence/ae-validation-factory",
+      "source_visibility": "private",
+      "wiki_path": "docs/formalisms/admissible-existence-ae-validation-factory.md",
+      "purpose": "Mirror public-safe metadata for the AE validation factory once source boundary and publishable scope are confirmed.",
+      "transition_relationship": "validation infrastructure subject formalism pending source crosswalk",
+      "evidence_posture": "source_repository_required_private_scope",
+      "validation_posture": "pending_detail_page_and_crosswalk",
+      "non_claims": [
+        "Wiki mirroring must not expose private ae-validation-factory source content.",
+        "Wiki mirroring does not prove or validate ae-validation-factory claims."
       ]
     }
   ],
-  "next_action": "Create formalism detail pages and crosswalk records for each intake record."
+  "next_action": "Create public-safe formalism detail pages and source crosswalk records for each Admissible-Existence subject repository."
 }
