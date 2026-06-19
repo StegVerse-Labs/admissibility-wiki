@@ -15,10 +15,21 @@
     "ontology_json_reachable": "pending_external_verification",
     "proposal_decision_examples_reachable": "pending_external_verification"
   },
+  "site_bridge": {
+    "status": "site_bridge_page_updated",
+    "site_repository": "StegVerse-Labs/Site",
+    "site_bridge_path": "https://stegverse-labs.github.io/Site/admissibility-wiki.html",
+    "site_public_path_semantics": "StegVerse-Labs/Site/docs/SITE_PUBLIC_PATHS.md",
+    "site_display_authority": "bridge_display_only",
+    "wiki_source_authority": "admissibility-wiki-governance",
+    "proof_authority": "formalism-tests where executable proof is required"
+  },
   "installed_public_pages": {
+    "landing_page": "docs/index.md",
     "terminology_convergence": "docs/governance/terminology-convergence.md",
     "proposal_lifecycle": "docs/governance/proposal-lifecycle.md",
     "decision_record": "docs/governance/decision-record.md",
+    "site_bridge_status": "docs/governance/site-bridge-status.md",
     "page_template": "docs/governance/page-template.md",
     "current_task_sync": "docs/governance/current-task-sync.md",
     "mirror_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
@@ -49,7 +60,7 @@
   },
   "next_safe_build_targets": [
     "Add external-reference dispute examples if needed.",
-    "Add StegVerse-Labs/Site bridge status page if not already installed elsewhere.",
-    "Add research-backed equivalence proposals after broad cross-domain terminology review."
+    "Add research-backed equivalence proposals after broad cross-domain terminology review.",
+    "Update activation posture only after public deployment or DNS status changes."
   ]
 }
