@@ -44,6 +44,13 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Research',
+      items: [
+        'research/terminology-overlap-research-notes',
+      ],
+    },
+    {
+      type: 'category',
       label: 'StegVerse',
       items: [
         'stegverse/stegcore',
