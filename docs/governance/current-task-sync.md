@@ -36,6 +36,7 @@ The repository currently includes:
 - terminology convergence governance page;
 - proposal lifecycle governance page;
 - decision record governance page;
+- Site bridge status page;
 - terminology convergence proposal, decision, replay, and evidence examples;
 - user-submitted terminology proposal, decision, replay, and evidence examples;
 - public status JSON mirror at `static/status/admissibility-wiki-status.json`;
@@ -68,6 +69,20 @@ static/governance/proposals/proposal.example.003.json
 static/governance/decisions/decision.example.003.json
 static/governance/replay/decision.example.003.txt
 static/governance/evidence/decision.example.003/README.md
+```
+
+## Known Public Governance Pages
+
+Do not recreate these pages under alternate names:
+
+```text
+docs/governance/terminology-convergence.md
+docs/governance/proposal-lifecycle.md
+docs/governance/decision-record.md
+docs/governance/site-bridge-status.md
+docs/governance/admissibility-wiki-ai-entity.md
+docs/governance/current-task-sync.md
+docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 ```
 
 ## Known Glossary Convergence Pages
@@ -103,9 +118,9 @@ Initial glossary convergence should be conservative: if external equivalence has
 
 The safest next build targets are:
 
-1. Add StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
-2. Add external-reference dispute examples if needed.
-3. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
+1. Add external-reference dispute examples if needed.
+2. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
+3. Update activation posture only after public deployment or DNS status changes.
 
 ## Build Rule
 
