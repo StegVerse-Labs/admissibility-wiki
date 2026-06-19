@@ -15,6 +15,13 @@
     "ontology_json_reachable": "pending_external_verification",
     "proposal_decision_examples_reachable": "pending_external_verification"
   },
+  "github_io_configuration": {
+    "url": "https://stegverse-labs.github.io",
+    "baseUrl": "/admissibility-wiki/",
+    "pages_source_required": "GitHub Actions",
+    "custom_domain": "not_configured",
+    "cname_file": "removed"
+  },
   "site_bridge": {
     "status": "site_bridge_page_updated",
     "site_repository": "StegVerse-Labs/Site",
@@ -26,6 +33,7 @@
   },
   "installed_public_pages": {
     "landing_page": "docs/index.md",
+    "activation_runbook": "docs/activation/github-pages-cloudflare.md",
     "terminology_convergence": "docs/governance/terminology-convergence.md",
     "proposal_lifecycle": "docs/governance/proposal-lifecycle.md",
     "decision_record": "docs/governance/decision-record.md",
