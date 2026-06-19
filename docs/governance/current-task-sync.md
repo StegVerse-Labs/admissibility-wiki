@@ -38,10 +38,13 @@ The repository currently includes:
 - proposal lifecycle governance page with submission timing receipt requirements;
 - decision record governance page;
 - reconciled Site bridge status page;
+- equivalence proposal template;
+- equivalence proposal template validator;
 - terminology convergence proposal, decision, replay, and evidence examples;
 - user-submitted terminology proposal, decision, replay, and evidence examples with submission timing;
 - external-reference dispute proposal, decision, replay, and evidence examples;
 - public status JSON mirror at `static/status/admissibility-wiki-status.json`;
+- wiki status validator;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
 - first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
 - wave-2 glossary convergence for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary;
@@ -87,9 +90,18 @@ docs/governance/proposal-lifecycle.md
 docs/governance/decision-record.md
 docs/governance/site-bridge-status.md
 docs/governance/admissibility-wiki-ai-entity.md
+docs/governance/equivalence-proposal-template.md
 docs/governance/current-task-sync.md
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 docs/index.md
+```
+
+## Known Validators
+
+```text
+scripts/validate-ontology.mjs
+scripts/check-wiki-status.mjs
+scripts/check-equivalence-proposal-template.mjs
 ```
 
 ## Known Glossary Convergence Pages
@@ -121,6 +133,22 @@ Overlapping and adjacent terms should be listed separately, so the page can dist
 
 Initial glossary convergence should be conservative: if external equivalence has not been researched and accepted, record `No accepted equivalent terms are recorded yet` and place likely candidates under overlapping or adjacent terms.
 
+## Equivalence Proposal Rule
+
+Do not add an external term to `Equivalent Terms` without a completed proposal using:
+
+```text
+docs/governance/equivalence-proposal-template.md
+```
+
+Validate the template with:
+
+```text
+node scripts/check-equivalence-proposal-template.mjs
+```
+
+A proposal may classify a term as equivalent, overlapping, adjacent, broader, narrower, contradictory, or unresolved. Acceptance requires a decision record before glossary text changes.
+
 ## Landing Page Rule
 
 The landing page should explicitly explain why the wiki exists, define the AI-governed proposal system, and show the current transition-table elements and proposal transition blocks that define the wiki as it stands.
@@ -137,7 +165,7 @@ Submission timing records intake posture only. It does not accept the proposal, 
 
 The safest next build targets are:
 
-1. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
+1. Add research-backed equivalence proposals for selected glossary pages using the installed equivalence proposal template.
 2. Update activation posture only after public deployment or DNS status changes.
 3. Add additional dispute examples only when they cover a materially new dispute posture.
 
