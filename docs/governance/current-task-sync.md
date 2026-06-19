@@ -16,6 +16,12 @@ This sync page is useful when it clearly states:
 - what should not be duplicated;
 - what the next safe build target is.
 
+## Current Assessment Goal
+
+Continue build work until either the repo reaches completion or the repo contains enough handoff, governance, validation, and next-task structure for ecosystem-managed continuation.
+
+A task is ready for ecosystem-managed continuation when the repo records enough current state, installed structure, duplicate-risk, validation, and next-action context for another session or ecosystem process to proceed without the originating chat.
+
 ## Current Redundancy Posture
 
 There is confirmed overlap with at least one other chat session working on this same repository.
@@ -39,6 +45,7 @@ The repository currently includes:
 - proposal lifecycle governance page;
 - decision record governance page;
 - terminology convergence proposal, decision, replay, and evidence examples;
+- ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
 - validation runbook;
 - validation workflow;
 - ontology validation script;
@@ -99,6 +106,7 @@ Do not create duplicate versions of these already-installed concepts without fir
 - terminology convergence;
 - proposal lifecycle;
 - decision record;
+- terminology relationship classes;
 - terminology-convergence governance record example `example.002`;
 - DENY proof path;
 - ESCALATE proof path;
@@ -127,11 +135,10 @@ Overlapping and adjacent terms should be listed separately, so the page can dist
 
 The safest next build targets are:
 
-1. Ontology entries for proposal lifecycle, decision record, and terminology relationship classes.
-2. Update selected glossary pages to use `Equivalent Terms`, `Overlapping Terms`, and `Adjacent Terms` sections.
-3. Add additional proposal and decision examples for user-submitted terms and external-reference disputes.
-4. StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
-5. Public status JSON mirror for activation and admissibility posture, if not already installed elsewhere.
+1. Update selected glossary pages to use `Equivalent Terms`, `Overlapping Terms`, and `Adjacent Terms` sections.
+2. Add additional proposal and decision examples for user-submitted terms and external-reference disputes.
+3. StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
+4. Public status JSON mirror for activation and admissibility posture, if not already installed elsewhere.
 
 ## Build Rule
 
