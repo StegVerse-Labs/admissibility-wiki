@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manifest Receipt Intake — Admissibility Wiki</title>
+  <style>
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; background: #0b1020; color: #f7f7fb; }
+    main { max-width: 1120px; margin: 0 auto; padding: 32px 18px 64px; }
+    h1, h2 { margin-bottom: 8px; }
+    p { color: #c9d1e7; line-height: 1.55; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .card { background: #121a33; border: 1px solid #2d3a66; border-radius: 14px; padding: 18px; }
+    label { display: block; margin-top: 12px; font-weight: 650; }
+    input, select, textarea { box-sizing: border-box; width: 100%; margin-top: 6px; border: 1px solid #40507f; border-radius: 10px; background: #080d1d; color: #f7f7fb; padding: 10px; font: inherit; }
+    textarea { min-height: 280px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 13px; }
+    button { margin-top: 14px; border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 750; cursor: pointer; }
+    .primary { background: #80b7ff; color: #061024; }
+    .secondary { background: #25345f; color: #f7f7fb; }
+    .notice { border-left: 4px solid #80b7ff; padding: 10px 14px; background: #101932; border-radius: 8px; }
+    .status { margin-top: 10px; color: #b9ffd0; font-size: 13px; }
+    @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Manifest Receipt Intake</h1>
+  <p>This static scaffold demonstrates the intended dual-mode intake surface. It creates or accepts a candidate manifest/receipt object for preferred triage. It does not submit, approve, validate, or accept the proposal.</p>
+
+  <div class="notice">
+    <strong>Governance boundary:</strong> valid manifest/receipt structure may receive preferred triage. Preferred triage is not acceptance, proof, standing, or commit-time authority.
+  </div>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Option 1 — Guided Builder</h2>
+      <p>Enter fields. The manifest/receipt preview is generated below.</p>
+
+      <label>Submitter Class
+        <select id="submitterClass">
+          <option>user</option>
+          <option>researcher</option>
+          <option>maintainer</option>
+          <option>browser_originated</option>
+          <option>llm_assisted</option>
+          <option>ecosystem_agent</option>
+        </select>
+      </label>
+
+      <label>Target Type
+        <select id="targetType">
+          <option>glossary_page</option>
+          <option>governance_page</option>
+          <option>ontology_entry</option>
+          <option>proof_path</option>
+          <option>external_reference</option>
+          <option>dispute</option>
+        </select>
+      </label>
+
+      <label>Target Path
+        <input id="targetPath" value="docs/glossary/reconstructability.md">
+      </label>
+
+      <label>Proposal Class
+        <select id="proposalClass">
+          <option>term_proposal</option>
+          <option>term_revision</option>
+          <option>equivalence_claim</option>
+          <option selected>overlap_claim</option>
+          <option>adjacency_claim</option>
+          <option>implementation_mapping</option>
+          <option>external_reference</option>
+          <option>counterexample</option>
+          <option>dispute</option>
+          <option>proof_path_example</option>
+        </select>
+      </label>
+
+      <label>Summary
+        <textarea id="summary">Claim that an external term overlaps with a StegVerse term but should not be treated as equivalent without further evidence.</textarea>
+      </label>
+
+      <label>Requested Outcome
+        <select id="requestedOutcome">
+          <option>ALLOW</option>
+          <option selected>ALLOW_AS_OVERLAP</option>
+          <option>DENY</option>
+          <option>ESCALATE</option>
+          <option>REFUSE</option>
+          <option>DEFER</option>
+          <option>SUPERSEDE</option>
+        </select>
+      </label>
+
+      <label>Derived From
+        <select id="derivedFrom">
+          <option>Transition Table</option>
+          <option>Transition Blocks</option>
+          <option>Both</option>
+          <option selected>External Mapping</option>
+          <option>Unknown</option>
+        </select>
+      </label>
+
+      <label>Standing
+        <select id="standing">
+          <option>Native StegVerse Concept</option>
+          <option>Derived StegVerse Concept</option>
+          <option>External Equivalent</option>
+          <option selected>External Overlap</option>
+          <option>External Adjacent</option>
+          <option>Unclassified</option>
+        </select>
+      </label>
+
+      <button class="primary" onclick="buildPreview()">Generate Manifest/Receipt Preview</button>
+    </section>
+
+    <section class="card">
+      <h2>Option 2 — Direct Paste</h2>
+      <p>Paste an existing manifest/receipt object here. The same preview window is used.</p>
+      <textarea id="pasteBox" placeholder="Paste manifest/receipt JSON here..."></textarea>
+      <button class="secondary" onclick="usePastedStructure()">Use Pasted Structure</button>
+      <div id="pasteStatus" class="status"></div>
+    </section>
+  </div>
+
+  <section class="card" style="margin-top:18px;">
+    <h2>Shared Manifest/Receipt Preview Window</h2>
+    <textarea id="preview"></textarea>
+    <div class="status" id="previewStatus">Candidate governed data object. Not submitted.</div>
+  </section>
+</main>
+
+<script>
+function nowIso() {
+  return new Date().toISOString();
+}
+
+function buildPreview() {
+  const receivedAt = nowIso();
+  const manifest = {
+    schema: 'admissibility_wiki_submission_manifest.v1',
+    proposal_id: 'pending',
+    submitted_at: receivedAt,
+    submitter_class: document.getElementById('submitterClass').value,
+    target: {
+      type: document.getElementById('targetType').value,
+      path: document.getElementById('targetPath').value
+    },
+    proposal: {
+      class: document.getElementById('proposalClass').value,
+      summary: document.getElementById('summary').value,
+      requested_outcome: document.getElementById('requestedOutcome').value
+    },
+    transition_origin_claim: {
+      derived_from: document.getElementById('derivedFrom').value,
+      transition_table_elements: [],
+      transition_blocks: [],
+      standing: document.getElementById('standing').value
+    },
+    relationship_claims: [],
+    evidence_refs: [],
+    non_claims: [
+      'This manifest does not accept the proposal.',
+      'This manifest does not prove equivalence.',
+      'This manifest does not create commit-time standing.'
+    ],
+    receipt_request: {
+      include_submission_timing: true,
+      include_hashes: true,
+      include_replay_expectation: true
+    }
+  };
+
+  const receipt = {
+    schema: 'admissibility_wiki_submission_receipt.v1',
+    receipt_id: 'receipt.pending.preview',
+    proposal_id: 'proposal.pending.preview',
+    received_at: receivedAt,
+    receipt_issued_at: nowIso(),
+    submission_lane: 'lane_1_manifest_receipt',
+    preference_posture: 'preferred_triage',
+    validation_posture: 'preview_not_validated',
+    tasks: [
+      {
+        task: 'build_preview',
+        started_at: receivedAt,
+        completed_at: nowIso(),
+        status: 'completed',
+        timing_posture: 'browser_generated_preview'
+      }
+    ],
+    non_claims: [
+      'Receipt preview does not submit the proposal.',
+      'Receipt preview does not accept the proposal.',
+      'Preferred triage is not acceptance authority.'
+    ]
+  };
+
+  document.getElementById('preview').value = JSON.stringify({ manifest, receipt }, null, 2);
+  document.getElementById('previewStatus').textContent = 'Generated candidate manifest/receipt preview. Not submitted.';
+}
+
+function usePastedStructure() {
+  const value = document.getElementById('pasteBox').value.trim();
+  if (!value) {
+    document.getElementById('pasteStatus').textContent = 'Paste box is empty.';
+    return;
+  }
+  try {
+    const parsed = JSON.parse(value);
+    document.getElementById('preview').value = JSON.stringify(parsed, null, 2);
+    document.getElementById('pasteStatus').textContent = 'Pasted structure parsed into shared preview window.';
+    document.getElementById('previewStatus').textContent = 'Pasted candidate manifest/receipt preview. Not submitted.';
+  } catch (error) {
+    document.getElementById('pasteStatus').textContent = 'Invalid JSON: ' + error.message;
+  }
+}
+
+buildPreview();
+</script>
+</body>
+</html>
