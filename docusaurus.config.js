@@ -5,8 +5,8 @@ const config = {
   tagline: 'Transition governance, commit-time authority, and receipt-bound execution.',
   favicon: 'img/favicon.svg',
 
-  url: 'https://admissibility.stegverse.org',
-  baseUrl: '/',
+  url: 'https://stegverse-labs.github.io',
+  baseUrl: '/admissibility-wiki/',
 
   organizationName: 'StegVerse-Labs',
   projectName: 'admissibility-wiki',
