@@ -2,14 +2,14 @@
   "schema": "admissibility_wiki_status.v1",
   "generated_at": "2026-06-19T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "site": "admissibility.stegverse.org",
+  "site": "https://stegverse-labs.github.io/admissibility-wiki/",
   "status": "build_in_progress",
   "assessment_goal": "Continue build work until completion or ecosystem-managed continuation is supported by handoff, governance, validation, and next-task structure.",
-  "activation_target": "Publish and validate admissibility.stegverse.org as a Docusaurus-powered public vocabulary, terminology convergence, proposal-review, and proof-path site.",
+  "activation_target": "Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the GitHub Pages public vocabulary, terminology convergence, proposal-review, and proof-path site.",
   "activation_checks": {
     "github_pages_actions_source": "pending_external_verification",
-    "cloudflare_dns": "pending_external_verification",
-    "github_custom_domain_validation": "pending_external_verification",
+    "custom_domain": "not_configured",
+    "cname_file": "removed_for_github_io_project_url",
     "https_enforced": "pending_external_verification",
     "public_site_loads": "pending_external_verification",
     "ontology_json_reachable": "pending_external_verification",
@@ -92,8 +92,8 @@
     "task_sync": "docs/governance/current-task-sync.md"
   },
   "next_safe_build_targets": [
-    "Create another targeted source-backed relationship proposal only if it materially expands the source family or relationship coverage.",
-    "Update activation posture only after public deployment or DNS status changes.",
+    "Verify GitHub Pages deployment at https://stegverse-labs.github.io/admissibility-wiki/ after Actions completes.",
+    "Update activation posture only after public GitHub.io deployment status changes.",
     "Add additional source families only when they materially improve terminology classification."
   ]
 }
