@@ -18,7 +18,7 @@ The following terms may overlap with reconstructability, but are not treated as 
 - traceability;
 - explainability;
 - observability;
-- provenance.
+- provenance, when used to describe information about entities, activities, and agents involved in producing data or artifacts. This overlaps with reconstructability but is not treated as equivalent unless the provenance record also supports reconstruction of why consequence had standing.
 
 ## Adjacent Terms
 
@@ -63,10 +63,10 @@ The StegVerse term is retained because overlapping terms may preserve evidence, 
 
 ```yaml
 governance:
-  proposal_link: "not_applicable"
-  decision_link: "not_applicable"
-  replay_link: "not_applicable"
-  reconstruction_link: "not_applicable"
+  proposal_link: "../../static/governance/proposals/proposal.example.005.json"
+  decision_link: "../../static/governance/decisions/decision.example.005.json"
+  replay_link: "../../static/governance/replay/decision.example.005.txt"
+  reconstruction_link: "../../static/governance/evidence/decision.example.005/README.md"
 ```
 
 ## Related Terms
@@ -75,3 +75,4 @@ governance:
 - [Receipt-Bound Execution](./receipt-bound-execution.md)
 - [Auditability vs Admissibility](../comparisons/auditability-vs-admissibility.md)
 - [Terminology Convergence](../governance/terminology-convergence.md)
+- [Terminology Overlap Research Notes](../research/terminology-overlap-research-notes.md)
