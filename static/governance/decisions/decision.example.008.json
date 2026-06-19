@@ -1,0 +1,39 @@
+{
+  "schema": "admissibility_wiki_page_decision.v1",
+  "decision_id": "decision.example.008",
+  "proposal_id": "proposal.example.008",
+  "issued_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/glossary/commit-time-authority.md",
+  "decision": "ALLOW_AS_OVERLAP",
+  "authority_class": "wiki_maintainer",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "present",
+  "review_posture": "entity_reviewed",
+  "commit_time_validity": true,
+  "relationship_disposition": [
+    {
+      "external_term": "Policy decision",
+      "relationship": "overlapping",
+      "disposition": "accepted",
+      "notes": "Accepted only as an overlapping term for Commit-Time Authority. Equivalent status is not accepted."
+    }
+  ],
+  "accepted_text": "policy decision, when used to describe a policy-engine result produced from supplied input, policies, and data. This overlaps with Commit-Time Authority when the decision contributes to authorization at the binding moment, but it is not equivalent unless the decision also preserves the authority class, evidence posture, review posture, continuity posture, and consequence boundary required for admissibility.",
+  "rejected_text": "Policy decision is equivalent to Commit-Time Authority.",
+  "decision_basis": [
+    "Open Policy Agent documentation supports policy evaluation against supplied input, policies, and data.",
+    "A policy decision overlaps with Commit-Time Authority when it contributes to authorization at or near the binding moment.",
+    "A policy decision does not by itself establish the full StegVerse authority class, evidence posture, review posture, continuity posture, and consequence boundary.",
+    "The correct glossary placement is Overlapping Terms, not Equivalent Terms."
+  ],
+  "links": {
+    "proposal_link": "../proposals/proposal.example.008.json",
+    "replay_link": "../replay/decision.example.008.txt",
+    "reconstruction_link": "../evidence/decision.example.008/README.md"
+  },
+  "non_claims": [
+    "ALLOW_AS_OVERLAP does not make policy decision equivalent to Commit-Time Authority.",
+    "ALLOW_AS_OVERLAP does not claim Open Policy Agent endorsement.",
+    "ALLOW_AS_OVERLAP does not claim a policy decision alone proves admissibility."
+  ]
+}
