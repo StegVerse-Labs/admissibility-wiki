@@ -1,0 +1,61 @@
+{
+  "schema": "admissibility_wiki_term_candidate_queue.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "purpose": "Track candidate synonymous, equivalent, overlapping, adjacent, broader, narrower, contradictory, and unresolved relationships discovered from formalized origins.",
+  "origin_boundary": "Origins must be formalized artifacts such as formalism repositories, standards documents, academic papers, technical reports, public specifications, schemas, reference implementations, policy frameworks, regulatory guidance, public ontologies, or stable whitepapers. Social-media comments may be leads but are not acceptable origins.",
+  "allowed_relationships": [
+    "synonymous_candidate",
+    "equivalent_candidate",
+    "strongly_correlated_candidate",
+    "overlapping_candidate",
+    "adjacent_candidate",
+    "broader_candidate",
+    "narrower_candidate",
+    "contradictory_candidate",
+    "unresolved_candidate"
+  ],
+  "allowed_origin_types": [
+    "formalism_repository",
+    "standards_document",
+    "academic_paper",
+    "technical_report",
+    "public_specification",
+    "machine_readable_schema",
+    "reference_implementation",
+    "policy_framework",
+    "regulatory_guidance",
+    "public_ontology",
+    "stable_whitepaper"
+  ],
+  "disallowed_origin_types": [
+    "linkedin_comment",
+    "social_media_post",
+    "conference_comment",
+    "podcast_statement",
+    "news_summary",
+    "private_message",
+    "chat_transcript"
+  ],
+  "required_candidate_fields": [
+    "candidate_id",
+    "created_at",
+    "search_cycle_id",
+    "wiki_term_or_formalism",
+    "candidate_term",
+    "candidate_relationship",
+    "origin_type",
+    "origin_title",
+    "origin_url",
+    "origin_repository",
+    "origin_publisher",
+    "origin_stability",
+    "claim_summary",
+    "match_dimensions",
+    "mismatch_dimensions",
+    "overclaiming_risk",
+    "review_status",
+    "non_claims"
+  ],
+  "candidates": [],
+  "next_action": "Populate candidates from periodic searches only when a formalized origin is identified."
+}
