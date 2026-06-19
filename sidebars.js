@@ -17,6 +17,7 @@ const sidebars = {
         'governance/editorial-policy',
         'governance/page-template',
         'governance/terminology-convergence',
+        'governance/transition-origin-governance',
         'governance/proposal-lifecycle',
         'governance/decision-record',
         'governance/relationship-status-summary',
