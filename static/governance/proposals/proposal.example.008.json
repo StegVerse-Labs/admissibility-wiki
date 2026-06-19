@@ -1,0 +1,67 @@
+{
+  "schema": "admissibility_wiki_governance_proposal.v1",
+  "proposal_id": "proposal.example.008",
+  "created_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/glossary/commit-time-authority.md",
+  "proposal_type": "update",
+  "proposal_class": "overlap_claim",
+  "title": "Source-backed overlap claim for policy decision and commit-time authority",
+  "summary": "Proposes that policy decision, as represented by Open Policy Agent documentation, should be classified as overlapping with the StegVerse term Commit-Time Authority, not equivalent to it.",
+  "proposer_class": "maintainer",
+  "claimed_page_posture": "concept",
+  "claimed_maturity_posture": "conceptual",
+  "authority_class": "wiki_maintainer",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "present",
+  "source_family": {
+    "external_term": "Policy decision",
+    "source_type": "vendor-authored primary project documentation",
+    "source_name": "Open Policy Agent documentation",
+    "source_urls": [
+      "https://www.openpolicyagent.org/docs"
+    ]
+  },
+  "claim_comparison": [
+    {
+      "claim_dimension": "scope",
+      "stegverse_term": "Commit-Time Authority is the authority basis that exists at the moment a transition binds.",
+      "external_term": "A policy decision evaluates supplied input against policies and data to produce a result used by an application or system.",
+      "match_posture": "overlapping"
+    },
+    {
+      "claim_dimension": "timing",
+      "stegverse_term": "Commit-Time Authority is evaluated at the binding moment of consequence.",
+      "external_term": "A policy decision may occur at runtime or request time, but does not by itself require StegVerse binding-moment consequence standing.",
+      "match_posture": "overlapping"
+    },
+    {
+      "claim_dimension": "authority_boundary",
+      "stegverse_term": "Commit-Time Authority requires that the authority basis remains valid when the transition result binds.",
+      "external_term": "A policy decision can contribute to authorization or enforcement, but does not by itself establish the full authority class, evidence posture, review posture, and consequence boundary.",
+      "match_posture": "adjacent"
+    }
+  ],
+  "mismatches": [
+    "A policy decision may be an input to commit-time authority but is not the authority basis itself.",
+    "A policy decision may return an allow or deny style result without proving the actor, evidence, review, and continuity standing required by StegVerse admissibility.",
+    "A policy decision does not by itself preserve a receipt proving the decision basis at the binding moment."
+  ],
+  "risk_of_overclaiming": [
+    "Calling policy decision equivalent to Commit-Time Authority could imply that any policy-engine allow result has StegVerse standing.",
+    "Calling policy decision equivalent could collapse local policy evaluation into full transition-governance authority."
+  ],
+  "proposed_glossary_placement": "Overlapping Terms",
+  "proposed_text": "policy decision, when used to describe a policy-engine result produced from supplied input, policies, and data. This overlaps with Commit-Time Authority when the decision contributes to authorization at the binding moment, but it is not equivalent unless the decision also preserves the authority class, evidence posture, review posture, continuity posture, and consequence boundary required for admissibility.",
+  "review_requested": "admissibility_wiki_ai_entity",
+  "requested_outcome": "ALLOW_AS_OVERLAP",
+  "links": {
+    "decision_link": "../decisions/decision.example.008.json",
+    "replay_link": "../replay/decision.example.008.txt",
+    "reconstruction_link": "../evidence/decision.example.008/README.md"
+  },
+  "non_claims": [
+    "This proposal does not accept policy decision as equivalent to Commit-Time Authority.",
+    "This proposal does not claim Open Policy Agent endorses StegVerse terminology.",
+    "This proposal does not claim a policy decision alone proves admissibility."
+  ]
+}
