@@ -1,0 +1,76 @@
+{
+  "schema": "admissibility_wiki_formalism_source_sync.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "purpose": "Track canonical formalism sources so wiki convergence pages update when formalism content changes or becomes available.",
+  "authority_boundary": "Admissible-Existence defines formalisms. Publisher publishes papers and public exposition. The Admissibility Wiki mirrors, relates, crosswalks, and discovers relationships. This manifest does not create source authority, proof authority, validation authority, execution authority, continuity standing, or admissibility standing.",
+  "sync_states": [
+    "watching",
+    "source_available",
+    "source_changed",
+    "wiki_update_required",
+    "wiki_update_proposed",
+    "wiki_update_applied",
+    "blocked_private_source",
+    "blocked_missing_source",
+    "superseded"
+  ],
+  "required_source_fields": [
+    "source_id",
+    "formalism_term",
+    "canonical_source_repository",
+    "canonical_source_visibility",
+    "publisher_artifact_path",
+    "wiki_target_path",
+    "sync_state",
+    "last_known_source_ref",
+    "last_known_publisher_ref",
+    "change_detection_rule",
+    "wiki_update_rule",
+    "non_claims"
+  ],
+  "sources": [
+    {
+      "source_id": "formalism.state-transition-continuity",
+      "formalism_term": "State Transition Continuity Model",
+      "canonical_source_repository": "Admissible-Existence/STCM",
+      "canonical_source_visibility": "public",
+      "publisher_artifact_path": null,
+      "wiki_target_path": "docs/formalisms/state-transition-continuity-model.md",
+      "sync_state": "watching",
+      "last_known_source_ref": null,
+      "last_known_publisher_ref": null,
+      "change_detection_rule": "Detect changes to public canonical definition, proof candidates, validation candidates, or related published artifacts.",
+      "wiki_update_rule": "Open or apply a wiki update only when public-safe canonical content changes or becomes available.",
+      "non_claims": ["The wiki does not define this formalism.", "The wiki does not validate this formalism by mirroring it."]
+    },
+    {
+      "source_id": "formalism.gcat-bcat",
+      "formalism_term": "Governance-Centered and Boundary-Centered Admissibility Testing",
+      "canonical_source_repository": "Admissible-Existence/GCAT-BCAT",
+      "canonical_source_visibility": "private",
+      "publisher_artifact_path": "GCAT-BCAT-Engine/Publisher/papers/GCAT-BCAT",
+      "wiki_target_path": "docs/formalisms/governance-centered-boundary-centered-admissibility-testing.md",
+      "sync_state": "source_available",
+      "last_known_source_ref": null,
+      "last_known_publisher_ref": null,
+      "change_detection_rule": "Detect public Publisher paper changes and any public-safe canonical formalism definition changes.",
+      "wiki_update_rule": "Mirror public paper availability, definitions, proof candidates, and validation candidates without copying private source content.",
+      "non_claims": ["Publisher papers are publication artifacts, not the canonical source authority.", "The wiki does not treat private source content as public until approved."]
+    },
+    {
+      "source_id": "formalism.transition-table",
+      "formalism_term": "Transition Table",
+      "canonical_source_repository": "Admissible-Existence/TT",
+      "canonical_source_visibility": "private",
+      "publisher_artifact_path": null,
+      "wiki_target_path": "docs/stegverse/transition-table.md",
+      "sync_state": "watching",
+      "last_known_source_ref": null,
+      "last_known_publisher_ref": "https://stegverse-labs.github.io/Site/transition-table-visual.html",
+      "change_detection_rule": "Detect changes to the public visual reference and any approved public-safe canonical definition.",
+      "wiki_update_rule": "Update wiki relationship and reference links when the public visual or canonical definition changes.",
+      "non_claims": ["The visual reference is not proof authority.", "The wiki does not define the transition table formalism."]
+    }
+  ],
+  "next_action": "Populate remaining formalism sources after canonical Admissible-Existence definitions or public-safe Publisher artifacts are available."
+}
