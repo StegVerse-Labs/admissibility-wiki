@@ -3,14 +3,14 @@
   "receipt_id": "public-activation.example.pending",
   "created_at": "2026-06-19T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "activation_target": "admissibility.stegverse.org",
+  "activation_target": "https://stegverse-labs.github.io/admissibility-wiki/",
   "activation_state": "pending_external_verification",
   "checks": {
     "public_site_loads": {
       "status": "pending",
       "evidence": null
     },
-    "dns_resolves": {
+    "github_pages_source_is_actions": {
       "status": "pending",
       "evidence": null
     },
@@ -23,6 +23,10 @@
       "evidence": null
     },
     "status_json_reachable": {
+      "status": "pending",
+      "evidence": null
+    },
+    "activation_checklist_reachable": {
       "status": "pending",
       "evidence": null
     },
@@ -41,5 +45,5 @@
     "This receipt does not grant publication authority.",
     "This receipt is an example template until real evidence replaces pending values."
   ],
-  "next_action": "Record actual deployment, DNS, HTTPS, ontology, status, governance-record, and navigation evidence."
+  "next_action": "Record actual GitHub Pages Actions source, HTTPS, ontology, status, activation-checklist, governance-record, and navigation evidence after public deployment."
 }
