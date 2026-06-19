@@ -58,7 +58,7 @@ The repo currently includes:
 - user-submitted terminology proposal, decision, replay, and evidence examples;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
 - first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
-- initial wave-2 convergence update for admissibility;
+- wave-2 glossary convergence for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary;
 - current task sync page;
 - ontology validation script;
 - issue templates;
@@ -111,9 +111,16 @@ Do not rework these pages without a specific improvement target:
 
 ```text
 docs/glossary/admissibility.md
+docs/glossary/transition.md
+docs/glossary/authority-class.md
+docs/glossary/policy-reference.md
+docs/glossary/evidence-posture.md
+docs/glossary/review-posture.md
+docs/glossary/drift.md
 docs/glossary/commit-time-authority.md
 docs/glossary/commit-time-validity.md
 docs/glossary/receipt-bound-execution.md
+docs/glossary/governance-boundary.md
 docs/glossary/reconstructability.md
 ```
 
@@ -158,10 +165,10 @@ Initial glossary convergence should be conservative: if external equivalence has
 
 Priority order:
 
-1. Continue glossary convergence wave 2 for transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary.
-2. Add external-reference disagreement examples if needed.
-3. Update validation expectations if new artifact directories are added.
-4. Coordinate with `StegVerse-Labs/Site` only after checking `Site/docs/SITE_MIRROR_HANDOFF.md`.
+1. Add external-reference disagreement examples if needed.
+2. Add public status JSON mirror for activation and admissibility posture.
+3. Add StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
+4. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
 
 ## Mirror Coordination Rule
 
@@ -197,4 +204,4 @@ A chat thread is archive-ready when this handoff and `docs/governance/current-ta
 
 ## Current Next Action
 
-Continue glossary convergence wave 2 for transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary.
+Add public status JSON mirror for activation and admissibility posture, unless an external-reference disagreement example is needed first.
