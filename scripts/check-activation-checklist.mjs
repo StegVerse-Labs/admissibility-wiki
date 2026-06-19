@@ -22,11 +22,13 @@ const requiredRepoConfig = [
   'docusaurus_baseUrl',
   'github_pages_source',
   'deploy_workflow',
-  'build_output'
+  'build_output',
+  'deploy_gate'
 ];
 
 const requiredCheckIds = [
   'pages_source_github_actions',
+  'aggregate_validation_success',
   'deploy_workflow_success',
   'root_url_loads',
   'glossary_route_loads',
@@ -104,6 +106,12 @@ if (checklist.required_repository_configuration.docusaurus_baseUrl !== '/admissi
 if (checklist.required_repository_configuration.github_pages_source !== 'GitHub Actions') {
   fail('github_pages_source must be GitHub Actions');
 }
+if (checklist.required_repository_configuration.deploy_workflow !== '.github/workflows/deploy.yml') {
+  fail('deploy_workflow must be .github/workflows/deploy.yml');
+}
+if (checklist.required_repository_configuration.deploy_gate !== 'npm run validate') {
+  fail('deploy_gate must be npm run validate');
+}
 
 requireArray(checklist.activation_checks, 'activation_checks');
 const ids = new Set(checklist.activation_checks.map((check) => check.check_id));
@@ -133,6 +141,12 @@ if (checklist.known_404_causes.length === 0) {
   fail('known_404_causes must not be empty');
 }
 
+const causes = checklist.known_404_causes.join('\n');
+if (!causes.includes('aggregate validation')) {
+  fail('known_404_causes must mention aggregate validation failures');
+}
+
 console.log(`OK: ${CHECKLIST_PATH}`);
 console.log(`checks=${checklist.activation_checks.length}`);
 console.log(`target_url=${checklist.target_url}`);
+console.log(`deploy_gate=${checklist.required_repository_configuration.deploy_gate}`);
