@@ -18,7 +18,8 @@ The following terms may overlap with policy reference, but are not treated as id
 - rule reference;
 - control reference;
 - standard reference;
-- requirement reference.
+- requirement reference;
+- policy-as-code, when used to represent or evaluate policy logic as code or structured policy language. This overlaps with Policy Reference when the policy artifact supplies the rule basis for a transition, but it is not equivalent unless the specific policy artifact and version are cited as the commit-time rule basis.
 
 ## Adjacent Terms
 
@@ -65,10 +66,10 @@ It requires the ability to identify the governing basis for that result.
 
 ```yaml
 governance:
-  proposal_link: "not_applicable"
-  decision_link: "not_applicable"
-  replay_link: "not_applicable"
-  reconstruction_link: "not_applicable"
+  proposal_link: "../../static/governance/proposals/proposal.example.006.json"
+  decision_link: "../../static/governance/decisions/decision.example.006.json"
+  replay_link: "../../static/governance/replay/decision.example.006.txt"
+  reconstruction_link: "../../static/governance/evidence/decision.example.006/README.md"
 ```
 
 ## Related Terms
@@ -77,3 +78,4 @@ governance:
 - [Authority Class](./authority-class.md)
 - [Receipt-Bound Execution](./receipt-bound-execution.md)
 - [Terminology Convergence](../governance/terminology-convergence.md)
+- [Terminology Overlap Research Notes](../research/terminology-overlap-research-notes.md)
