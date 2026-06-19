@@ -1,0 +1,48 @@
+name: Formalism source sync check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 9 * * 1'
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  sync-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate formalism source sync manifest
+        run: node scripts/check-formalism-source-sync.mjs
+
+      - name: Write sync check summary
+        run: |
+          mkdir -p .sync-output
+          cat > .sync-output/formalism-source-sync-summary.md <<'SUMMARY'
+          # Formalism Source Sync Check
+
+          This scheduled check validates the formalism source sync manifest.
+
+          It preserves the authority boundary:
+
+          - Admissible-Existence defines formalisms.
+          - Publisher publishes papers and public exposition.
+          - Admissibility Wiki mirrors, relates, crosswalks, and discovers relationships.
+
+          If source refs change or become available, a future sync implementation should open a wiki update proposal or issue rather than silently mutating canonical formalism claims.
+          SUMMARY
+
+      - name: Upload sync check artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: formalism-source-sync-summary
+          path: .sync-output/formalism-source-sync-summary.md
