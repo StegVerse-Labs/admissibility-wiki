@@ -71,6 +71,7 @@ ai_entity_suggested
 
 ```text
 submitted
+receipt_issued
 triaged
 under_review
 needs_evidence
@@ -100,11 +101,62 @@ withdrawn
       "notes": "Why the relationship is claimed."
     }
   ],
+  "submission_timing": {
+    "received_at": "2026-06-19T00:00:00Z",
+    "receipt_issued_at": "2026-06-19T00:00:05Z",
+    "tasks": [
+      {
+        "task": "capture_submission",
+        "started_at": "2026-06-19T00:00:00Z",
+        "completed_at": "2026-06-19T00:00:01Z",
+        "status": "completed"
+      },
+      {
+        "task": "normalize_fields",
+        "started_at": "2026-06-19T00:00:01Z",
+        "completed_at": "2026-06-19T00:00:03Z",
+        "status": "completed"
+      },
+      {
+        "task": "issue_submission_receipt",
+        "started_at": "2026-06-19T00:00:03Z",
+        "completed_at": "2026-06-19T00:00:05Z",
+        "status": "completed"
+      }
+    ]
+  },
   "evidence_posture": "none | partial | present | sufficient",
   "policy_ref": "policy.wiki.page-review.v1",
   "status": "submitted"
 }
 ```
+
+## Submission Timing Receipt
+
+A user proposal receipt should include relevant task timing for the submission itself.
+
+At minimum, the receipt should record:
+
+- when the submission was received;
+- when the receipt was issued;
+- which submission-stage tasks ran;
+- when each task started;
+- when each task completed or failed;
+- the task status;
+- whether the task timing is authoritative, estimated, unavailable, or pending.
+
+Submission-stage tasks may include:
+
+- capture submission;
+- normalize fields;
+- classify proposal type;
+- check required fields;
+- check duplicate or related proposals;
+- attach evidence references;
+- assign review route;
+- issue submission receipt.
+
+Timing data helps reconstruct how the proposal entered the wiki process. It does not authorize acceptance, prove correctness, or replace the later decision record.
 
 ## Submission Rule
 
@@ -147,6 +199,8 @@ governance:
 This page does not determine whether any individual term is correct.
 
 It defines the lifecycle by which proposed wiki information is reviewed.
+
+Submission timing records proposal intake timing only. They do not create acceptance authority.
 
 ## Related Pages
 
