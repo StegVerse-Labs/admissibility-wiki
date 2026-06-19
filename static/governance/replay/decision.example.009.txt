@@ -1,0 +1,29 @@
+Replay: decision.example.009
+
+Input proposal:
+  static/governance/proposals/proposal.example.009.json
+
+Target page:
+  docs/glossary/reconstructability.md
+
+External reference family:
+  NIST SP 800-53 Rev. 5
+
+Claim reviewed:
+  Audit and Accountability overlaps with Reconstructability.
+
+Decision path:
+  1. Confirm proposal identifies target page and external source family.
+  2. Confirm proposal classifies relationship as overlap, not equivalence.
+  3. Confirm source URL identifies the current SP 800-53 Rev. 5 source family.
+  4. Confirm mismatch section preserves the difference between audit records and reconstruction of standing.
+  5. Confirm risk section prevents treating audit evidence as full admissibility proof.
+  6. Accept glossary placement as Overlapping Terms only.
+
+Outcome:
+  ALLOW_AS_OVERLAP
+
+Effect:
+  Audit and Accountability may be listed as overlapping with Reconstructability.
+  Equivalent status is not accepted.
+  Glossary text may be updated with the accepted overlap wording.
