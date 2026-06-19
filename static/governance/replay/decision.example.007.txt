@@ -1,0 +1,29 @@
+Replay: decision.example.007
+
+Input proposal:
+  static/governance/proposals/proposal.example.007.json
+
+Target page:
+  docs/glossary/governance-boundary.md
+
+External reference family:
+  NIST AI Risk Management Framework
+
+Claim reviewed:
+  NIST AI RMF governance and AI risk-management language overlaps with Governance Boundary.
+
+Decision path:
+  1. Confirm proposal identifies target page and external source family.
+  2. Confirm proposal classifies relationship as overlap/adjacency, not equivalence.
+  3. Confirm source URLs point to primary NIST AI RMF references.
+  4. Confirm mismatch section preserves StegVerse role-boundary distinctions.
+  5. Confirm risk-of-overclaiming section prevents implied NIST endorsement or equivalence.
+  6. Defer glossary mutation until fuller review accepts exact wording.
+
+Outcome:
+  DEFER_PENDING_REVIEW
+
+Effect:
+  Proposal is preserved as a research-backed relationship candidate.
+  Glossary text is not changed by this decision.
+  Equivalent status is not accepted.
