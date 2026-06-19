@@ -1,0 +1,42 @@
+{
+  "schema": "admissibility_wiki_page_decision.v1",
+  "decision_id": "decision.example.003",
+  "proposal_id": "proposal.example.003",
+  "issued_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/glossary/admissibility.md",
+  "decision": "ESCALATE",
+  "authority_class": "wiki_maintainer",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "partial",
+  "review_posture": "entity_reviewed",
+  "commit_time_validity": true,
+  "relationship_disposition": [
+    {
+      "external_term": "Policy compliance",
+      "relationship": "overlapping",
+      "disposition": "accepted_as_candidate",
+      "notes": "The term overlaps with admissibility, but evidence is not sufficient to mark it equivalent."
+    },
+    {
+      "external_term": "Auditability",
+      "relationship": "adjacent",
+      "disposition": "accepted_as_candidate",
+      "notes": "The term is adjacent because it supports inspection or reconstruction without deciding transition standing."
+    }
+  ],
+  "decision_basis": [
+    "The proposal is useful but does not provide enough evidence to accept equivalence.",
+    "The claimed terms can remain visible as candidate overlapping or adjacent terminology.",
+    "Escalation preserves reviewability while preventing unsupported equivalence claims from binding the glossary page."
+  ],
+  "links": {
+    "proposal_link": "../proposals/proposal.example.003.json",
+    "replay_link": "../replay/decision.example.003.txt",
+    "reconstruction_link": "../evidence/decision.example.003/README.md"
+  },
+  "non_claims": [
+    "ESCALATE does not reject the submitted terms.",
+    "ESCALATE does not accept the submitted terms as equivalents.",
+    "ESCALATE does not authorize executable transition proof."
+  ]
+}
