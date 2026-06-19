@@ -8,7 +8,7 @@ title: Formalisms
 
 The Admissibility Wiki is the public convergence surface for formal systems that define, test, compare, or govern admissible AI-related action.
 
-This page now lists the initial formalism set from the `Admissible-Existence` organization.
+This page lists formalism terms from the `Admissible-Existence` organization using readable definitions first. Source-repository abbreviations are shown only as secondary identifiers.
 
 The wiki mirrors and classifies these formalisms for public review and convergence. It does not replace the originating repositories, formal proof artifacts, executable tests, decision records, or source authority.
 
@@ -21,22 +21,128 @@ Registry artifact: static/formalisms/formalism-registry.v0.1.json
 Registry state: intake
 ```
 
-## Admissible-Existence Formalisms
+## Formalism Terms
 
-| Formalism | Source Repository | Visibility | Wiki Detail Page | Current State |
-|---|---|---:|---|---|
-| STCM | `Admissible-Existence/STCM` | public | `docs/formalisms/admissible-existence-stcm.md` | intake |
-| RTG | `Admissible-Existence/RTG` | private | `docs/formalisms/admissible-existence-rtg.md` | intake |
-| BC | `Admissible-Existence/BC` | private | `docs/formalisms/admissible-existence-bc.md` | intake |
-| TT | `Admissible-Existence/TT` | private | `docs/formalisms/admissible-existence-tt.md` | intake |
-| Triad | `Admissible-Existence/Triad` | private | `docs/formalisms/admissible-existence-triad.md` | intake |
-| CHF | `Admissible-Existence/CHF` | private | `docs/formalisms/admissible-existence-chf.md` | intake |
-| DaCo | `Admissible-Existence/DaCo` | private | `docs/formalisms/admissible-existence-daco.md` | intake |
-| DC | `Admissible-Existence/DC` | private | `docs/formalisms/admissible-existence-dc.md` | intake |
-| GCAT-BCAT | `Admissible-Existence/GCAT-BCAT` | private | `docs/formalisms/admissible-existence-gcat-bcat.md` | intake |
-| core-lite | `Admissible-Existence/core-lite` | private | `docs/formalisms/admissible-existence-core-lite.md` | intake |
-| learning-transition-governance | `Admissible-Existence/learning-transition-governance` | public | `docs/formalisms/admissible-existence-learning-transition-governance.md` | intake |
-| ae-validation-factory | `Admissible-Existence/ae-validation-factory` | private | `docs/formalisms/admissible-existence-ae-validation-factory.md` | intake |
+### State Transition Continuity Model
+
+**Definition:** A formalism for examining whether a proposed or observed state transition preserves enough continuity, standing, and reconstruction context to be treated as admissibly related to the prior state.
+
+**Source reference:** `Admissible-Existence/STCM`  
+**Source visibility:** public  
+**Mathematical proof candidate:** [Source repository](https://github.com/Admissible-Existence/STCM)  
+**Current wiki state:** intake  
+**Non-claim:** The wiki does not prove this formalism merely by listing it.
+
+### Runtime Transition Governance
+
+**Definition:** A formalism for determining how runtime actions, executions, denials, escalations, or pauses should be governed while state, authority, policy, or evidence may still be changing.
+
+**Source reference:** `Admissible-Existence/RTG`  
+**Source visibility:** private  
+**Mathematical proof candidate:** pending public-safe source identification  
+**Current wiki state:** intake  
+**Non-claim:** Private source material must not be exposed through the public wiki without an approved public mirror boundary.
+
+### Boundary Conditions
+
+**Definition:** A formalism for identifying the conditions that must hold before a transition, decision, or claim can be treated as inside a governed admissibility boundary.
+
+**Source reference:** `Admissible-Existence/BC`  
+**Source visibility:** private  
+**Mathematical proof candidate:** pending public-safe source identification  
+**Current wiki state:** intake  
+**Non-claim:** Boundary-condition listing does not establish that a boundary was satisfied in any specific case.
+
+### Transition Table
+
+**Definition:** A formalism for classifying proposed state changes by transition type, actor, authority class, policy reference, evidence posture, review posture, drift posture, decision result, commit-time validity, and receipt/reconstruction status.
+
+**Source reference:** `Admissible-Existence/TT`  
+**Source visibility:** private  
+**Visual reference:** [Transition Table Visual](https://stegverse-labs.github.io/Site/transition-table-visual.html)  
+**Mathematical proof candidate:** pending public-safe source identification  
+**Current wiki state:** intake  
+**Non-claim:** A visual table is not itself proof of admissibility.
+
+### Triad Governance Model
+
+**Definition:** A formalism for modeling governance across three interacting roles, dimensions, or authorities where admissibility depends on the relationship among all three rather than a single actor or single approval path.
+
+**Source reference:** `Admissible-Existence/Triad`  
+**Source visibility:** private  
+**Mathematical proof candidate:** pending public-safe source identification  
+**Current wiki state:** intake  
+**Non-claim:** The wiki does not infer which triad configuration applies without source-confirmed definition.
+
+### Continuity Handoff Formalism
+
+**Definition:** A formalism for preserving reconstructable task, authority, evidence, and state continuity when work moves across sessions, repositories, entities, reviewers, or execution surfaces.
+
+**Source reference:** `Admissible-Existence/CHF`  
+**Source visibility:** private  
+**Mathematical proof candidate:** pending public-safe source identification  
+**Current wiki state:** intake  
+**Non-claim:** A handoff record does not create authority by itself.
+
+### Data Continuity
+
+**Definition:** A formalism for preserving the identity, integrity, traceability, and reconstructability of data across transitions, transformations, mirrors, receipts, and derived artifacts.
+
+**Source reference:** `Admissible-Existence/DaCo`  
+**Source visibility:** private  
+**Mathematical proof candidate:** pending public-safe source identification  
+**Current wiki state:** intake  
+**Non-claim:** Data continuity does not prove decision legitimacy unless linked to the relevant authority, policy, and evidence context.
+
+### Decision Continuity
+
+**Definition:** A formalism for preserving the standing, review basis, policy reference, receipt path, and reconstructability of decisions across time and downstream consequence.
+
+**Source reference:** `Admissible-Existence/DC`  
+**Source visibility:** private  
+**Mathematical proof candidate:** pending public-safe source identification  
+**Current wiki state:** intake  
+**Non-claim:** A recorded decision does not remain valid if commit-time standing is lost.
+
+### Governance-Centered / Boundary-Centered Admissibility Testing
+
+**Definition:** A formalism family for testing whether governance conditions and boundary conditions are satisfied before a transition, execution, publication, or consequence is treated as admissible.
+
+**Source reference:** `Admissible-Existence/GCAT-BCAT`  
+**Source visibility:** private  
+**Mathematical proof candidate:** pending public-safe source identification  
+**Current wiki state:** intake  
+**Non-claim:** Test-family identification does not prove any specific test result.
+
+### Core-Lite Admissibility Engine
+
+**Definition:** A compact implementation-oriented formalism for evaluating admissibility claims through the smallest viable core of policy, authority, evidence, review, and receipt checks.
+
+**Source reference:** `Admissible-Existence/core-lite`  
+**Source visibility:** private  
+**Mathematical proof candidate:** pending public-safe source identification  
+**Current wiki state:** intake  
+**Non-claim:** Implementation presence does not equal production authority.
+
+### Learning Transition Governance
+
+**Definition:** A formalism for applying transition-governance concepts to learning environments, including human learning, AI-assisted learning, instructional review, evaluation, and consequence-bearing educational decisions.
+
+**Source reference:** `Admissible-Existence/learning-transition-governance`  
+**Source visibility:** public  
+**Mathematical proof candidate:** [Source repository](https://github.com/Admissible-Existence/learning-transition-governance)  
+**Current wiki state:** intake  
+**Non-claim:** The wiki does not prove educational validity merely by listing the formalism.
+
+### Admissible-Existence Validation Factory
+
+**Definition:** A formalism and tooling surface for producing, organizing, or checking validation artifacts used by Admissible-Existence formal systems.
+
+**Source reference:** `Admissible-Existence/ae-validation-factory`  
+**Source visibility:** private  
+**Mathematical proof candidate:** pending public-safe source identification  
+**Current wiki state:** intake  
+**Non-claim:** Validation-factory existence does not mean a given formalism has passed validation.
 
 ## Formalism Record States
 
@@ -103,4 +209,4 @@ npm run validate
 
 ## Next Safe Build Target
 
-Create public-safe detail pages and crosswalk records for each Admissible-Existence subject repository.
+Create source-confirmed detail pages and crosswalk records for each formalism term, then replace any pending proof-candidate placeholder with public-safe proof artifacts when available.
