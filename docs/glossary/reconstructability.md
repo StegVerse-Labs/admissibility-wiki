@@ -18,7 +18,8 @@ The following terms may overlap with reconstructability, but are not treated as 
 - traceability;
 - explainability;
 - observability;
-- provenance, when used to describe information about entities, activities, and agents involved in producing data or artifacts. This overlaps with reconstructability but is not treated as equivalent unless the provenance record also supports reconstruction of why consequence had standing.
+- provenance, when used to describe information about entities, activities, and agents involved in producing data or artifacts. This overlaps with reconstructability but is not treated as equivalent unless the provenance record also supports reconstruction of why consequence had standing;
+- Audit and Accountability, when used in the NIST SP 800-53 sense of audit-related controls supporting accountability. This overlaps with Reconstructability because audit records can support reconstruction, but it is not equivalent unless the records also show why consequence had standing at the relevant decision boundary.
 
 ## Adjacent Terms
 
@@ -63,10 +64,11 @@ The StegVerse term is retained because overlapping terms may preserve evidence, 
 
 ```yaml
 governance:
-  proposal_link: "../../static/governance/proposals/proposal.example.005.json"
-  decision_link: "../../static/governance/decisions/decision.example.005.json"
-  replay_link: "../../static/governance/replay/decision.example.005.txt"
-  reconstruction_link: "../../static/governance/evidence/decision.example.005/README.md"
+  proposal_link: "../../static/governance/proposals/proposal.example.009.json"
+  decision_link: "../../static/governance/decisions/decision.example.009.json"
+  replay_link: "../../static/governance/replay/decision.example.009.txt"
+  reconstruction_link: "../../static/governance/evidence/decision.example.009/README.md"
+  prior_relationship_link: "../../static/governance/decisions/decision.example.005.json"
 ```
 
 ## Related Terms
