@@ -34,11 +34,11 @@ The repository currently includes:
 - editorial policy;
 - page template;
 - terminology convergence governance page;
-- proposal lifecycle governance page;
+- proposal lifecycle governance page with submission timing receipt requirements;
 - decision record governance page;
 - Site bridge status page;
 - terminology convergence proposal, decision, replay, and evidence examples;
-- user-submitted terminology proposal, decision, replay, and evidence examples;
+- user-submitted terminology proposal, decision, replay, and evidence examples with submission timing;
 - public status JSON mirror at `static/status/admissibility-wiki-status.json`;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
 - first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
@@ -113,6 +113,14 @@ When a StegVerse term has materially identical terms in other domains, those ter
 Overlapping and adjacent terms should be listed separately, so the page can distinguish shared vocabulary from StegVerse-specific extensions.
 
 Initial glossary convergence should be conservative: if external equivalence has not been researched and accepted, record `No accepted equivalent terms are recorded yet` and place likely candidates under overlapping or adjacent terms.
+
+## Submission Receipt Timing Rule
+
+User-submitted proposals should include a `submission_timing` block in the submission receipt.
+
+The timing block should record when the proposal was received, when the receipt was issued, and the start/completion/status/timing posture for relevant submission-stage tasks.
+
+Submission timing records intake posture only. It does not accept the proposal, prove the submitted claim, or replace the decision record.
 
 ## Next Safe Build Targets
 
