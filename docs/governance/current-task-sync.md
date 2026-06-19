@@ -46,6 +46,7 @@ The repository currently includes:
 - external-reference dispute proposal, decision, replay, and evidence examples;
 - source-backed provenance overlap proposal, decision, replay, and evidence examples;
 - source-backed policy-as-code overlap proposal, decision, replay, and evidence examples;
+- source-backed NIST AI RMF governance-boundary proposal, deferred decision, replay, and evidence note;
 - public status JSON mirror at `static/status/admissibility-wiki-status.json`;
 - wiki status validator;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
@@ -89,6 +90,10 @@ static/governance/proposals/proposal.example.006.json
 static/governance/decisions/decision.example.006.json
 static/governance/replay/decision.example.006.txt
 static/governance/evidence/decision.example.006/README.md
+static/governance/proposals/proposal.example.007.json
+static/governance/decisions/decision.example.007.json
+static/governance/replay/decision.example.007.txt
+static/governance/evidence/decision.example.007/README.md
 ```
 
 ## Known Public Governance Pages
@@ -184,6 +189,19 @@ proposal.example.006 / decision.example.006:
   equivalent_status: not accepted
 ```
 
+## Deferred Relationship Updates
+
+The following relationship decisions preserve research-backed proposals without changing glossary text:
+
+```text
+proposal.example.007 / decision.example.007:
+  target_page: docs/glossary/governance-boundary.md
+  external_term: NIST AI RMF governance / AI risk-management language
+  disposition: DEFER_PENDING_REVIEW
+  equivalent_status: not accepted
+  glossary_mutation: none
+```
+
 ## Landing Page Rule
 
 The landing page should explicitly explain why the wiki exists, define the AI-governed proposal system, and show the current transition-table elements and proposal transition blocks that define the wiki as it stands.
@@ -200,9 +218,10 @@ Submission timing records intake posture only. It does not accept the proposal, 
 
 The safest next build targets are:
 
-1. Add another source-backed relationship proposal using the installed equivalence proposal template, preferably OPA policy decision versus Commit-Time Authority or NIST Audit and Accountability versus Reconstructability.
-2. Update activation posture only after public deployment or DNS status changes.
-3. Add additional dispute examples only when they cover a materially new dispute posture.
+1. Add another source-backed relationship proposal only if it covers a materially new source family and does not duplicate proposals 005, 006, or 007.
+2. Review proposal.example.007 for possible future ALLOW_AS_OVERLAP wording on `docs/glossary/governance-boundary.md`.
+3. Update activation posture only after public deployment or DNS status changes.
+4. Add additional dispute examples only when they cover a materially new dispute posture.
 
 ## Build Rule
 
