@@ -22,14 +22,6 @@ Continue build work until either the repo reaches completion or the repo contain
 
 A task is ready for ecosystem-managed continuation when the repo records enough current state, installed structure, duplicate-risk, validation, and next-action context for another session or ecosystem process to proceed without the originating chat.
 
-## Current Redundancy Posture
-
-There is confirmed overlap with at least one other chat session working on this same repository.
-
-This does not mean the work is invalid.
-
-It means future tasks should check installed files before rebuilding pages, templates, workflows, or ontology entries.
-
 ## Installed In This Repo
 
 The repository currently includes:
@@ -46,6 +38,7 @@ The repository currently includes:
 - decision record governance page;
 - terminology convergence proposal, decision, replay, and evidence examples;
 - user-submitted terminology proposal, decision, replay, and evidence examples;
+- public status JSON mirror at `static/status/admissibility-wiki-status.json`;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
 - first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
 - wave-2 glossary convergence for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary;
@@ -55,53 +48,29 @@ The repository currently includes:
 - issue templates;
 - pull request template;
 - core glossary pages;
-- glossary expansion wave 2;
-- machine-readable vocabulary artifact;
 - proof-path examples;
 - Admissibility-Wiki AI Entity governance page.
 
-## Confirmed Overlap
+## Known Governance Records
 
-The following proof-path expansion files were found in the repo and should not be recreated under alternate names:
-
-```text
-docs/proof-path/deny-example.md
-docs/proof-path/escalate-example.md
-docs/proof-path/refuse-example.md
-docs/proof-path/drift-denial-example.md
-```
-
-The following governance file was also found and should not be recreated under a competing name:
+Do not recreate these IDs:
 
 ```text
-docs/governance/admissibility-wiki-ai-entity.md
-```
-
-The following governance files are now installed and should not be recreated under alternate names:
-
-```text
-docs/governance/terminology-convergence.md
-docs/governance/proposal-lifecycle.md
-docs/governance/decision-record.md
-```
-
-The following terminology-convergence governance records are now installed and should not be recreated under the same IDs:
-
-```text
+static/governance/proposals/proposal.example.001.json
+static/governance/decisions/decision.example.001.json
+static/governance/replay/decision.example.001.txt
+static/governance/evidence/decision.example.001/README.md
 static/governance/proposals/proposal.example.002.json
 static/governance/decisions/decision.example.002.json
 static/governance/replay/decision.example.002.txt
 static/governance/evidence/decision.example.002/README.md
-```
-
-The following user-submitted terminology governance records are now installed and should not be recreated under the same IDs:
-
-```text
 static/governance/proposals/proposal.example.003.json
 static/governance/decisions/decision.example.003.json
 static/governance/replay/decision.example.003.txt
 static/governance/evidence/decision.example.003/README.md
 ```
+
+## Known Glossary Convergence Pages
 
 The following glossary pages already include terminology relationship sections and should not be reworked without a specific improvement target:
 
@@ -120,40 +89,6 @@ docs/glossary/governance-boundary.md
 docs/glossary/reconstructability.md
 ```
 
-## Checked And Found
-
-The previously missing path is now installed:
-
-```text
-docs/governance/proposal-lifecycle.md
-```
-
-## Do Not Duplicate
-
-Do not create duplicate versions of these already-installed concepts without first checking exact paths:
-
-- terminology convergence;
-- proposal lifecycle;
-- decision record;
-- terminology relationship classes;
-- glossary convergence sections on the known glossary convergence pages;
-- terminology-convergence governance record example `example.002`;
-- user-submitted terminology governance record example `example.003`;
-- DENY proof path;
-- ESCALATE proof path;
-- REFUSE proof path;
-- drift-denial proof path;
-- Admissibility-Wiki AI Entity;
-- authority class;
-- policy reference;
-- evidence posture;
-- review posture;
-- drift;
-- commit-time validity;
-- activation runbook;
-- ontology validation;
-- contributor and PR templates.
-
 ## Current Editorial Rule
 
 The wiki now treats terminology work as a convergence-layer task.
@@ -168,10 +103,9 @@ Initial glossary convergence should be conservative: if external equivalence has
 
 The safest next build targets are:
 
-1. Add external-reference disagreement examples if needed.
-2. Add public status JSON mirror for activation and admissibility posture.
-3. Add StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
-4. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
+1. Add StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
+2. Add external-reference dispute examples if needed.
+3. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
 
 ## Build Rule
 
