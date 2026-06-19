@@ -59,6 +59,7 @@ The repo currently includes:
 - user-submitted terminology proposal, decision, replay, and evidence examples;
 - external-reference dispute proposal, decision, replay, and evidence examples;
 - canonical public status JSON mirror with Site bridge posture;
+- wiki status validator;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
 - first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
 - wave-2 glossary convergence for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary;
@@ -136,6 +137,7 @@ docs/glossary/reconstructability.md
 
 ```text
 static/status/admissibility-wiki-status.json
+scripts/check-wiki-status.mjs
 ```
 
 Do not recreate versioned status mirrors unless the status schema is intentionally versioned and the canonical file points to the active version.
@@ -149,6 +151,7 @@ package.json
 docusaurus.config.js
 sidebars.js
 scripts/validate-ontology.mjs
+scripts/check-wiki-status.mjs
 static/CNAME
 static/img/favicon.svg
 static/ontology/admissibility-vocabulary.v0.1.json
@@ -176,6 +179,14 @@ If an external term is nearby but not the same concept, place it under `Adjacent
 Do not label a term StegVerse-specific until reasonable overlap search has been performed across relevant domains.
 
 Initial glossary convergence should be conservative: if external equivalence has not been researched and accepted, record `No accepted equivalent terms are recorded yet` and place likely candidates under overlapping or adjacent terms.
+
+## Validation Commands
+
+```text
+npm run build
+node scripts/validate-ontology.mjs
+node scripts/check-wiki-status.mjs
+```
 
 ## Next Safe Build Targets
 
@@ -214,6 +225,8 @@ This repo can be considered ready for ecosystem-managed continuation when:
 - validation expectations are explicit;
 - duplicate-risk paths are listed.
 
+Current status: ready for ecosystem-managed continuation, except public activation still requires external deployment/DNS/public reachability verification.
+
 ## Archival Readiness Rule
 
 A chat thread is archive-ready when this handoff and `docs/governance/current-task-sync.md` contain all remaining tasks needed to continue without reading the full chat transcript.
@@ -221,3 +234,13 @@ A chat thread is archive-ready when this handoff and `docs/governance/current-ta
 ## Current Next Action
 
 Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
+
+## Progress Snapshot
+
+```text
+StegVerse-Labs - 65% complete
+admissibility-wiki - 74% complete
+admissibility-wiki - 88% complete TO GOAL ACTIVATION
+Fully developed files vs scaffolding and stubs: 71% complete
+Delta: canonical handoff, status artifact, task sync, governance pages, examples, ontology validation, and status validation are installed. Remaining activation blockers are public deployment/DNS/reachability verification and research-backed terminology equivalence proposals.
+```
