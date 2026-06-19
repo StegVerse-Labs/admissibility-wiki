@@ -18,7 +18,8 @@ The following terms may overlap with commit-time authority, but are not treated 
 - just-in-time authorization;
 - commit-time policy evaluation;
 - execution-time authorization;
-- policy enforcement.
+- policy enforcement;
+- policy decision, when used to describe a policy-engine result produced from supplied input, policies, and data. This overlaps with Commit-Time Authority when the decision contributes to authorization at the binding moment, but it is not equivalent unless the decision also preserves the authority class, evidence posture, review posture, continuity posture, and consequence boundary required for admissibility.
 
 ## Adjacent Terms
 
@@ -63,10 +64,10 @@ A transition may lose commit-time authority when:
 
 ```yaml
 governance:
-  proposal_link: "not_applicable"
-  decision_link: "not_applicable"
-  replay_link: "not_applicable"
-  reconstruction_link: "not_applicable"
+  proposal_link: "../../static/governance/proposals/proposal.example.008.json"
+  decision_link: "../../static/governance/decisions/decision.example.008.json"
+  replay_link: "../../static/governance/replay/decision.example.008.txt"
+  reconstruction_link: "../../static/governance/evidence/decision.example.008/README.md"
 ```
 
 ## Related Terms
@@ -75,3 +76,4 @@ governance:
 - [Governance Boundary](./governance-boundary.md)
 - [Reconstructability](./reconstructability.md)
 - [Terminology Convergence](../governance/terminology-convergence.md)
+- [Terminology Overlap Research Notes](../research/terminology-overlap-research-notes.md)
