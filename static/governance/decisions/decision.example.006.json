@@ -1,0 +1,39 @@
+{
+  "schema": "admissibility_wiki_page_decision.v1",
+  "decision_id": "decision.example.006",
+  "proposal_id": "proposal.example.006",
+  "issued_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/glossary/policy-reference.md",
+  "decision": "ALLOW_AS_OVERLAP",
+  "authority_class": "wiki_maintainer",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "present",
+  "review_posture": "entity_reviewed",
+  "commit_time_validity": true,
+  "relationship_disposition": [
+    {
+      "external_term": "Policy-as-code",
+      "relationship": "overlapping",
+      "disposition": "accepted",
+      "notes": "Accepted only as an overlapping term for Policy Reference. Equivalent status is not accepted."
+    }
+  ],
+  "accepted_text": "policy-as-code, when used to represent or evaluate policy logic as code or structured policy language. This overlaps with Policy Reference when the policy artifact supplies the rule basis for a transition, but it is not equivalent unless the specific policy artifact and version are cited as the commit-time rule basis.",
+  "rejected_text": "Policy-as-code is equivalent to Policy Reference.",
+  "decision_basis": [
+    "Open Policy Agent documentation supports policy-as-code style policy evaluation against structured inputs, policies, and data.",
+    "Policy-as-code overlaps with Policy Reference because a policy artifact may supply the rule basis for a transition.",
+    "Policy Reference is narrower in the wiki context because it identifies the specific cited rule basis used for a transition decision at commit time.",
+    "The correct glossary placement is Overlapping Terms, not Equivalent Terms."
+  ],
+  "links": {
+    "proposal_link": "../proposals/proposal.example.006.json",
+    "replay_link": "../replay/decision.example.006.txt",
+    "reconstruction_link": "../evidence/decision.example.006/README.md"
+  },
+  "non_claims": [
+    "ALLOW_AS_OVERLAP does not make policy-as-code equivalent to Policy Reference.",
+    "ALLOW_AS_OVERLAP does not claim Open Policy Agent endorsement.",
+    "ALLOW_AS_OVERLAP does not claim policy evaluation alone satisfies admissibility."
+  ]
+}
