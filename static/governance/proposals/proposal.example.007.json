@@ -1,0 +1,126 @@
+{
+  "schema": "admissibility_wiki_governance_proposal.v1",
+  "proposal_id": "proposal.example.007",
+  "created_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/glossary/governance-boundary.md",
+  "proposal_type": "update",
+  "proposal_class": "overlap_claim",
+  "title": "Source-backed overlap claim for NIST AI RMF and governance boundary",
+  "summary": "Proposes that NIST AI RMF governance and AI risk-management language should be recorded as overlapping with, not equivalent to, the Admissibility Wiki term Governance Boundary.",
+  "proposer_class": "maintainer_assisted",
+  "claimed_page_posture": "concept",
+  "claimed_maturity_posture": "research_backed_proposal",
+  "authority_class": "contributor_suggest",
+  "policy_ref": "policy.wiki.terminology-convergence.v1",
+  "evidence_posture": "external_primary_reference",
+  "source_family": {
+    "external_term": "AI risk management governance language",
+    "source_type": "government primary source",
+    "source_name": "NIST AI Risk Management Framework",
+    "source_urls": [
+      "https://www.nist.gov/itl/ai-risk-management-framework",
+      "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10"
+    ]
+  },
+  "submission_timing": {
+    "received_at": "2026-06-19T00:00:00Z",
+    "receipt_issued_at": "2026-06-19T00:00:10Z",
+    "timing_basis": "example_recorded_system_time",
+    "tasks": [
+      {
+        "task": "capture_submission",
+        "started_at": "2026-06-19T00:00:00Z",
+        "completed_at": "2026-06-19T00:00:02Z",
+        "status": "completed",
+        "timing_posture": "recorded"
+      },
+      {
+        "task": "classify_relationship_claim",
+        "started_at": "2026-06-19T00:00:02Z",
+        "completed_at": "2026-06-19T00:00:05Z",
+        "status": "completed",
+        "timing_posture": "recorded"
+      },
+      {
+        "task": "attach_external_reference",
+        "started_at": "2026-06-19T00:00:05Z",
+        "completed_at": "2026-06-19T00:00:08Z",
+        "status": "completed",
+        "timing_posture": "recorded"
+      },
+      {
+        "task": "issue_submission_receipt",
+        "started_at": "2026-06-19T00:00:08Z",
+        "completed_at": "2026-06-19T00:00:10Z",
+        "status": "completed",
+        "timing_posture": "recorded"
+      }
+    ]
+  },
+  "claim_comparison": [
+    {
+      "claim_dimension": "scope",
+      "stegverse_term": "Governance Boundary distinguishes which layer may authorize, publish, explain, evaluate, or prove a transition claim.",
+      "external_term": "NIST AI RMF addresses AI risk management for organizations designing, developing, deploying, or using AI systems.",
+      "match_posture": "overlapping"
+    },
+    {
+      "claim_dimension": "timing",
+      "stegverse_term": "Governance Boundary is concerned with standing at proposal, review, publication, and commit time.",
+      "external_term": "NIST AI RMF is lifecycle-oriented risk-management guidance, but it does not define StegVerse commit-time standing.",
+      "match_posture": "adjacent"
+    },
+    {
+      "claim_dimension": "authority_boundary",
+      "stegverse_term": "Governance Boundary prevents public pages, proposals, and receipts from overclaiming execution or proof authority.",
+      "external_term": "NIST AI RMF frames voluntary risk management and trustworthiness considerations rather than StegVerse-specific execution authority.",
+      "match_posture": "overlapping"
+    },
+    {
+      "claim_dimension": "evidence_requirement",
+      "stegverse_term": "Governance Boundary requires source-of-truth and authority-role clarity before standing is claimed.",
+      "external_term": "NIST AI RMF provides risk management guidance but does not serve as a decision receipt for a specific StegVerse transition.",
+      "match_posture": "adjacent"
+    }
+  ],
+  "claimed_relationships": [
+    {
+      "relationship": "overlapping",
+      "external_term": "AI risk management governance language",
+      "external_domain": "NIST AI Risk Management Framework",
+      "notes": "Both terms address structured governance of AI systems and responsible risk management. The relationship is not equivalent because Governance Boundary specifically separates publication, vocabulary, continuity, proof, and commit-time admissibility authority."
+    },
+    {
+      "relationship": "adjacent",
+      "external_term": "Trustworthiness considerations",
+      "external_domain": "NIST AI Risk Management Framework",
+      "notes": "Trustworthiness considerations are adjacent because they inform responsible AI design and use, but do not by themselves define receipt-bound standing or commit-time admissibility."
+    }
+  ],
+  "mismatches": [
+    "NIST AI RMF does not encode Site/Wiki/Continuity/StegCore role separation.",
+    "NIST AI RMF does not mint a StegVerse decision receipt for a specific transition.",
+    "NIST AI RMF does not by itself determine commit-time admissibility or consequence standing."
+  ],
+  "risk_of_overclaiming": [
+    "Calling NIST AI RMF governance language equivalent to Governance Boundary could imply NIST endorsement of StegVerse terminology.",
+    "Calling the terms equivalent could imply that voluntary AI risk-management guidance is itself a StegVerse execution-authority boundary.",
+    "Calling the terms equivalent could erase the distinction between broad AI risk management and commit-time transition standing."
+  ],
+  "proposed_glossary_placement": "Overlapping Terms",
+  "proposed_text": "NIST AI RMF governance and AI risk-management language overlaps with Governance Boundary where both address structured governance of AI systems and responsible management of AI-related risk. It is not recorded as equivalent because Governance Boundary specifically separates publication, vocabulary, continuity, proof, and commit-time admissibility authority within the StegVerse transition-governance model.",
+  "review_requested": "admissibility_wiki_ai_entity",
+  "requested_outcome": "DEFER_PENDING_DECISION_RECORD",
+  "links": {
+    "decision_link": null,
+    "replay_link": null,
+    "reconstruction_link": null
+  },
+  "non_claims": [
+    "This proposal does not assert that NIST AI RMF is equivalent to Governance Boundary.",
+    "This proposal does not claim NIST endorsement of StegVerse terminology.",
+    "This proposal does not update the glossary by itself.",
+    "This proposal does not create admissibility standing.",
+    "This proposal requires a decision record before acceptance."
+  ]
+}
