@@ -10,7 +10,7 @@ This page records the coordination boundary between `StegVerse-Labs/admissibilit
 
 The Admissibility Wiki is the governed vocabulary, terminology convergence, proposal-review, ontology, and proof-path surface.
 
-The Site repository may later link, summarize, or display selected wiki material, but Site work must not silently redefine wiki governance posture.
+The Site repository may link, summarize, or display selected wiki material, but Site work must not silently redefine wiki governance posture.
 
 ## Page Status
 
@@ -57,15 +57,29 @@ static/status/admissibility-wiki-status.json
 ## Current Site Bridge Posture
 
 ```text
-bridge_status: pending_site_handoff_reconciliation
-site_display_authority: not_granted_by_this_page
+bridge_status: site_bridge_page_updated
+site_bridge_path: https://stegverse-labs.github.io/Site/admissibility-wiki.html
+site_display_authority: bridge_display_only
 wiki_source_authority: admissibility-wiki-governance
 activation_dependency: admissibility.stegverse.org public validation
+last_known_site_update: 2026-06-19
 ```
+
+## Site Bridge Scope
+
+The Site bridge page may explain:
+
+- why the Admissibility Wiki exists;
+- the AI-governed proposal system;
+- submission receipt timing;
+- transition-table elements that describe the wiki system;
+- transition blocks for wiki proposals;
+- installed proof-path outcomes;
+- links to the wiki repository and wiki status JSON.
 
 ## What May Be Linked Or Displayed
 
-After Site handoff reconciliation, the Site repo may link or display:
+The Site repo may link or display:
 
 - the public wiki landing page;
 - glossary pages;
@@ -76,7 +90,7 @@ After Site handoff reconciliation, the Site repo may link or display:
 - ontology JSON;
 - public status JSON.
 
-## What Must Not Be Presented As Authority
+## What Site Must Not Present As Authority
 
 The Site repo must not present any of the following as executable proof authority unless the relevant proof artifact is linked:
 
@@ -87,7 +101,20 @@ The Site repo must not present any of the following as executable proof authorit
 - replay examples;
 - status JSON.
 
+Site must also not present itself as:
+
+- the source of wiki proposal records;
+- the issuer of wiki proposal receipts;
+- the decision authority for wiki terminology;
+- the proof authority for executable formalism tests.
+
 These artifacts explain governance posture. They do not replace formalism-tests or executable receipts.
+
+## Current Reconciliation Result
+
+The Site bridge page has been updated to describe the Admissibility Wiki as a public vocabulary, terminology convergence, AI-governed proposal-review, and proof-path explanation layer.
+
+The Site public-path semantics have also been updated so `admissibility-wiki.html` is marked as a public bridge path only, not a wiki proposal intake or proof-authority surface.
 
 ## Governance Links
 
