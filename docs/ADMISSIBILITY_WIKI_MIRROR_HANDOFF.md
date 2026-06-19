@@ -55,6 +55,8 @@ The repo currently includes:
 - proposal lifecycle governance page;
 - decision record governance page;
 - reconciled Site bridge status page;
+- equivalence proposal template;
+- equivalence proposal template validator;
 - terminology convergence proposal, decision, replay, and evidence examples;
 - user-submitted terminology proposal, decision, replay, and evidence examples;
 - external-reference dispute proposal, decision, replay, and evidence examples;
@@ -89,6 +91,7 @@ docs/governance/validation.md
 docs/governance/current-task-sync.md
 docs/governance/site-bridge-status.md
 docs/governance/admissibility-wiki-ai-entity.md
+docs/governance/equivalence-proposal-template.md
 ```
 
 ## Known Governance Records
@@ -152,6 +155,7 @@ docusaurus.config.js
 sidebars.js
 scripts/validate-ontology.mjs
 scripts/check-wiki-status.mjs
+scripts/check-equivalence-proposal-template.mjs
 static/CNAME
 static/img/favicon.svg
 static/ontology/admissibility-vocabulary.v0.1.json
@@ -180,19 +184,36 @@ Do not label a term StegVerse-specific until reasonable overlap search has been 
 
 Initial glossary convergence should be conservative: if external equivalence has not been researched and accepted, record `No accepted equivalent terms are recorded yet` and place likely candidates under overlapping or adjacent terms.
 
+## Equivalence Proposal Rule
+
+Use this template before accepting an external term relationship claim:
+
+```text
+docs/governance/equivalence-proposal-template.md
+```
+
+Validate the template with:
+
+```text
+node scripts/check-equivalence-proposal-template.mjs
+```
+
+Do not add an external term to `Equivalent Terms` without a completed proposal, source evidence, mismatch analysis, overclaiming-risk analysis, and decision record.
+
 ## Validation Commands
 
 ```text
 npm run build
 node scripts/validate-ontology.mjs
 node scripts/check-wiki-status.mjs
+node scripts/check-equivalence-proposal-template.mjs
 ```
 
 ## Next Safe Build Targets
 
 Priority order:
 
-1. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
+1. Add research-backed equivalence proposals for selected glossary pages using the installed equivalence proposal template.
 2. Update activation posture only after public deployment or DNS status changes.
 3. Add additional dispute examples only when they cover a materially new dispute posture.
 4. Expand canonical status mirror only when activation or governance posture changes materially.
@@ -233,14 +254,14 @@ A chat thread is archive-ready when this handoff and `docs/governance/current-ta
 
 ## Current Next Action
 
-Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
+Add research-backed equivalence proposals for selected glossary pages using the installed equivalence proposal template.
 
 ## Progress Snapshot
 
 ```text
-StegVerse-Labs - 65% complete
-admissibility-wiki - 74% complete
-admissibility-wiki - 88% complete TO GOAL ACTIVATION
-Fully developed files vs scaffolding and stubs: 71% complete
-Delta: canonical handoff, status artifact, task sync, governance pages, examples, ontology validation, and status validation are installed. Remaining activation blockers are public deployment/DNS/reachability verification and research-backed terminology equivalence proposals.
+StegVerse-Labs - 66% complete
+admissibility-wiki - 78% complete
+admissibility-wiki - 91% complete TO GOAL ACTIVATION
+Fully developed files vs scaffolding and stubs: 75% complete
+Delta: canonical handoff, status artifact, task sync, governance pages, examples, ontology validation, status validation, and equivalence proposal scaffold are installed. Remaining activation blockers are public deployment/DNS/reachability verification and actual research-backed terminology equivalence proposals.
 ```
