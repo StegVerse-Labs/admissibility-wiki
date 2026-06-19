@@ -37,9 +37,10 @@ The repository currently includes:
 - terminology convergence governance page;
 - proposal lifecycle governance page with submission timing receipt requirements;
 - decision record governance page;
-- Site bridge status page;
+- reconciled Site bridge status page;
 - terminology convergence proposal, decision, replay, and evidence examples;
 - user-submitted terminology proposal, decision, replay, and evidence examples with submission timing;
+- external-reference dispute proposal, decision, replay, and evidence examples;
 - public status JSON mirror at `static/status/admissibility-wiki-status.json`;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
 - first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
@@ -70,6 +71,10 @@ static/governance/proposals/proposal.example.003.json
 static/governance/decisions/decision.example.003.json
 static/governance/replay/decision.example.003.txt
 static/governance/evidence/decision.example.003/README.md
+static/governance/proposals/proposal.example.004.json
+static/governance/decisions/decision.example.004.json
+static/governance/replay/decision.example.004.txt
+static/governance/evidence/decision.example.004/README.md
 ```
 
 ## Known Public Governance Pages
@@ -132,9 +137,9 @@ Submission timing records intake posture only. It does not accept the proposal, 
 
 The safest next build targets are:
 
-1. Add external-reference dispute examples if needed.
-2. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
-3. Update activation posture only after public deployment or DNS status changes.
+1. Add research-backed equivalence proposals for selected glossary pages after broad cross-domain terminology review.
+2. Update activation posture only after public deployment or DNS status changes.
+3. Add additional dispute examples only when they cover a materially new dispute posture.
 
 ## Build Rule
 
