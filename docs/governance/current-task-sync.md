@@ -22,6 +22,30 @@ Continue build work until either the repo reaches completion or the repo contain
 
 A task is ready for ecosystem-managed continuation when the repo records enough current state, installed structure, duplicate-risk, validation, and next-action context for another session or ecosystem process to proceed without the originating chat.
 
+## Current GitHub Pages Target
+
+The wiki is configured for GitHub Pages project hosting only:
+
+```text
+https://stegverse-labs.github.io/admissibility-wiki/
+```
+
+Current Docusaurus settings:
+
+```text
+url: https://stegverse-labs.github.io
+baseUrl: /admissibility-wiki/
+```
+
+Custom domain status:
+
+```text
+custom_domain: not_configured
+static/CNAME: removed
+```
+
+Do not re-add `static/CNAME` unless a custom-domain activation goal is explicitly restored.
+
 ## Installed In This Repo
 
 The repository currently includes:
@@ -29,7 +53,7 @@ The repository currently includes:
 - Docusaurus site scaffold;
 - expanded landing page defining the wiki, AI-governed proposal system, transition-table elements, and proposal transition blocks;
 - GitHub Pages deployment workflow;
-- custom-domain file for `admissibility.stegverse.org`;
+- GitHub.io project URL configuration for `https://stegverse-labs.github.io/admissibility-wiki/`;
 - activation runbook;
 - contribution guide;
 - editorial policy;
@@ -233,9 +257,10 @@ Submission timing records intake posture only. It does not accept the proposal, 
 
 The safest next build targets are:
 
-1. Add another source-backed relationship proposal only if it covers a materially new source family and does not duplicate proposals 005, 006, 007, 008, or 009.
-2. Update activation posture only after public deployment or DNS status changes.
-3. Add additional dispute examples only when they cover a materially new dispute posture.
+1. Verify GitHub Pages deployment at `https://stegverse-labs.github.io/admissibility-wiki/` after Actions completes.
+2. Update activation posture only after public GitHub.io deployment status changes.
+3. Add another source-backed relationship proposal only if it covers a materially new source family and does not duplicate proposals 005, 006, 007, 008, or 009.
+4. Add additional dispute examples only when they cover a materially new dispute posture.
 
 ## Build Rule
 
