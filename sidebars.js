@@ -18,6 +18,7 @@ const sidebars = {
         'governance/page-template',
         'governance/terminology-convergence',
         'governance/transition-origin-governance',
+        'governance/manifest-receipt-submission',
         'governance/proposal-lifecycle',
         'governance/decision-record',
         'governance/relationship-status-summary',
