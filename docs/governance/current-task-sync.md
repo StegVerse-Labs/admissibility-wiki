@@ -40,9 +40,11 @@ The repository currently includes:
 - reconciled Site bridge status page;
 - equivalence proposal template;
 - equivalence proposal template validator;
+- terminology overlap research notes;
 - terminology convergence proposal, decision, replay, and evidence examples;
 - user-submitted terminology proposal, decision, replay, and evidence examples with submission timing;
 - external-reference dispute proposal, decision, replay, and evidence examples;
+- source-backed provenance overlap proposal, decision, replay, and evidence examples;
 - public status JSON mirror at `static/status/admissibility-wiki-status.json`;
 - wiki status validator;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
@@ -78,6 +80,10 @@ static/governance/proposals/proposal.example.004.json
 static/governance/decisions/decision.example.004.json
 static/governance/replay/decision.example.004.txt
 static/governance/evidence/decision.example.004/README.md
+static/governance/proposals/proposal.example.005.json
+static/governance/decisions/decision.example.005.json
+static/governance/replay/decision.example.005.txt
+static/governance/evidence/decision.example.005/README.md
 ```
 
 ## Known Public Governance Pages
@@ -94,6 +100,12 @@ docs/governance/equivalence-proposal-template.md
 docs/governance/current-task-sync.md
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 docs/index.md
+```
+
+## Known Research Pages
+
+```text
+docs/research/terminology-overlap-research-notes.md
 ```
 
 ## Known Validators
@@ -149,6 +161,18 @@ node scripts/check-equivalence-proposal-template.mjs
 
 A proposal may classify a term as equivalent, overlapping, adjacent, broader, narrower, contradictory, or unresolved. Acceptance requires a decision record before glossary text changes.
 
+## Accepted Relationship Updates
+
+The following relationship decisions have changed target-page text:
+
+```text
+proposal.example.005 / decision.example.005:
+  target_page: docs/glossary/reconstructability.md
+  external_term: Provenance
+  disposition: accepted as Overlapping Terms only
+  equivalent_status: not accepted
+```
+
 ## Landing Page Rule
 
 The landing page should explicitly explain why the wiki exists, define the AI-governed proposal system, and show the current transition-table elements and proposal transition blocks that define the wiki as it stands.
@@ -165,7 +189,7 @@ Submission timing records intake posture only. It does not accept the proposal, 
 
 The safest next build targets are:
 
-1. Add research-backed equivalence proposals for selected glossary pages using the installed equivalence proposal template.
+1. Add another source-backed relationship proposal using the installed equivalence proposal template, preferably for OPA/policy-as-code versus Policy Reference or Commit-Time Authority.
 2. Update activation posture only after public deployment or DNS status changes.
 3. Add additional dispute examples only when they cover a materially new dispute posture.
 
