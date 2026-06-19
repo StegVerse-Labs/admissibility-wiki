@@ -45,6 +45,7 @@ The repository currently includes:
 - user-submitted terminology proposal, decision, replay, and evidence examples with submission timing;
 - external-reference dispute proposal, decision, replay, and evidence examples;
 - source-backed provenance overlap proposal, decision, replay, and evidence examples;
+- source-backed policy-as-code overlap proposal, decision, replay, and evidence examples;
 - public status JSON mirror at `static/status/admissibility-wiki-status.json`;
 - wiki status validator;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
@@ -84,6 +85,10 @@ static/governance/proposals/proposal.example.005.json
 static/governance/decisions/decision.example.005.json
 static/governance/replay/decision.example.005.txt
 static/governance/evidence/decision.example.005/README.md
+static/governance/proposals/proposal.example.006.json
+static/governance/decisions/decision.example.006.json
+static/governance/replay/decision.example.006.txt
+static/governance/evidence/decision.example.006/README.md
 ```
 
 ## Known Public Governance Pages
@@ -171,6 +176,12 @@ proposal.example.005 / decision.example.005:
   external_term: Provenance
   disposition: accepted as Overlapping Terms only
   equivalent_status: not accepted
+
+proposal.example.006 / decision.example.006:
+  target_page: docs/glossary/policy-reference.md
+  external_term: policy-as-code
+  disposition: accepted as Overlapping Terms only
+  equivalent_status: not accepted
 ```
 
 ## Landing Page Rule
@@ -189,7 +200,7 @@ Submission timing records intake posture only. It does not accept the proposal, 
 
 The safest next build targets are:
 
-1. Add another source-backed relationship proposal using the installed equivalence proposal template, preferably for OPA/policy-as-code versus Policy Reference or Commit-Time Authority.
+1. Add another source-backed relationship proposal using the installed equivalence proposal template, preferably OPA policy decision versus Commit-Time Authority or NIST Audit and Accountability versus Reconstructability.
 2. Update activation posture only after public deployment or DNS status changes.
 3. Add additional dispute examples only when they cover a materially new dispute posture.
 
