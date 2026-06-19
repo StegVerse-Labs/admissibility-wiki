@@ -172,18 +172,63 @@
       "label": "Proposal Lifecycle",
       "category": "governance_process",
       "definition": "The path by which a proposed wiki or governance change is submitted, reviewed, decided, recorded, and made reconstructable.",
-      "page": "/governance/page-template",
-      "posture": "proposed",
-      "related_terms": ["review_posture", "receipt_bound_execution", "reconstructability", "governance_boundary"]
+      "page": "/governance/proposal-lifecycle",
+      "posture": "conceptual",
+      "related_terms": ["review_posture", "receipt_bound_execution", "reconstructability", "governance_boundary", "page_decision_record"]
     },
     {
       "id": "page_decision_record",
       "label": "Page Decision Record",
       "category": "governance_process",
-      "definition": "A record that explains why a wiki page or page change was accepted, denied, escalated, refused, superseded, or deprecated.",
-      "page": "/governance/page-template",
-      "posture": "proposed",
-      "related_terms": ["proposal_lifecycle", "receipt_bound_execution", "reconstructability"]
+      "definition": "A record that explains why a wiki page or page change was accepted, denied, escalated, refused, superseded, deferred, or deprecated.",
+      "page": "/governance/decision-record",
+      "posture": "conceptual",
+      "related_terms": ["proposal_lifecycle", "receipt_bound_execution", "reconstructability", "terminology_relationship"]
+    },
+    {
+      "id": "terminology_convergence",
+      "label": "Terminology Convergence",
+      "category": "governance_process",
+      "definition": "The wiki process of mapping StegVerse terms to identical, overlapping, adjacent, broader, narrower, or contradictory terms from other domains.",
+      "page": "/governance/terminology-convergence",
+      "posture": "conceptual",
+      "related_terms": ["terminology_relationship", "equivalent_term", "overlapping_term", "adjacent_term", "proposal_lifecycle"]
+    },
+    {
+      "id": "terminology_relationship",
+      "label": "Terminology Relationship",
+      "category": "ontology_relation",
+      "definition": "A declared relationship between a StegVerse term and a term from another domain, such as equivalent, overlapping, adjacent, broader, narrower, or contradictory.",
+      "page": "/governance/terminology-convergence",
+      "posture": "conceptual",
+      "related_terms": ["terminology_convergence", "proposal_lifecycle", "page_decision_record"]
+    },
+    {
+      "id": "equivalent_term",
+      "label": "Equivalent Term",
+      "category": "ontology_relation",
+      "definition": "An external term that describes the same underlying concept as the StegVerse term for the page's purpose.",
+      "page": "/governance/terminology-convergence",
+      "posture": "conceptual",
+      "related_terms": ["terminology_relationship", "overlapping_term", "adjacent_term"]
+    },
+    {
+      "id": "overlapping_term",
+      "label": "Overlapping Term",
+      "category": "ontology_relation",
+      "definition": "An external term that partially describes the same concept but does not carry the full StegVerse meaning.",
+      "page": "/governance/terminology-convergence",
+      "posture": "conceptual",
+      "related_terms": ["terminology_relationship", "equivalent_term", "adjacent_term"]
+    },
+    {
+      "id": "adjacent_term",
+      "label": "Adjacent Term",
+      "category": "ontology_relation",
+      "definition": "An external term from the same conceptual neighborhood that answers a different governance question than the StegVerse term.",
+      "page": "/governance/terminology-convergence",
+      "posture": "conceptual",
+      "related_terms": ["terminology_relationship", "equivalent_term", "overlapping_term"]
     },
     {
       "id": "replay_link",
