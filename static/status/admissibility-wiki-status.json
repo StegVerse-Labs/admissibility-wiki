@@ -59,7 +59,15 @@
     "static/governance/proposals/proposal.example.006.json",
     "static/governance/decisions/decision.example.006.json",
     "static/governance/replay/decision.example.006.txt",
-    "static/governance/evidence/decision.example.006/README.md"
+    "static/governance/evidence/decision.example.006/README.md",
+    "static/governance/proposals/proposal.example.007.json",
+    "static/governance/decisions/decision.example.007.json",
+    "static/governance/replay/decision.example.007.txt",
+    "static/governance/evidence/decision.example.007/README.md",
+    "static/governance/proposals/proposal.example.008.json",
+    "static/governance/decisions/decision.example.008.json",
+    "static/governance/replay/decision.example.008.txt",
+    "static/governance/evidence/decision.example.008/README.md"
   ],
   "accepted_relationship_updates": [
     {
@@ -77,6 +85,24 @@
       "external_term": "policy-as-code",
       "placement": "Overlapping Terms",
       "equivalent_status": "not_accepted"
+    },
+    {
+      "proposal_id": "proposal.example.008",
+      "decision_id": "decision.example.008",
+      "target_page": "docs/glossary/commit-time-authority.md",
+      "external_term": "policy decision",
+      "placement": "Overlapping Terms",
+      "equivalent_status": "not_accepted"
+    }
+  ],
+  "deferred_relationship_updates": [
+    {
+      "proposal_id": "proposal.example.007",
+      "decision_id": "decision.example.007",
+      "target_page": "docs/glossary/governance-boundary.md",
+      "external_term": "AI risk-management governance language",
+      "placement": "none_yet",
+      "equivalent_status": "not_accepted"
     }
   ],
   "terminology_convergence_posture": {
@@ -91,7 +117,7 @@
     "task_sync": "docs/governance/current-task-sync.md"
   },
   "next_safe_build_targets": [
-    "Create another targeted source-backed relationship proposal, preferably OPA policy decision versus Commit-Time Authority or NIST Audit and Accountability versus Reconstructability.",
+    "Create another targeted source-backed relationship proposal, preferably NIST Audit and Accountability versus Reconstructability or control boundary versus Governance Boundary.",
     "Update activation posture only after public deployment or DNS status changes.",
     "Add additional source families only when they materially improve terminology classification."
   ]
