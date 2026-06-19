@@ -1,0 +1,37 @@
+Admissibility Wiki Governance Replay
+====================================
+
+Replay ID: replay.decision.example.004
+Decision ID: decision.example.004
+Proposal ID: proposal.example.004
+Target page: docs/glossary/reconstructability.md
+Policy reference: policy.wiki.page-review.v1
+Authority class: wiki_maintainer
+Review posture: entity_reviewed
+Evidence posture: partial
+Commit-time validity: true
+Decision: DEFER
+
+Replay question
+---------------
+Can the wiki resolve an external-reference dispute about whether auditability is equivalent to reconstructability when the submitted evidence is partial?
+
+Inputs
+------
+- Proposal: ../proposals/proposal.example.004.json
+- Decision: ../decisions/decision.example.004.json
+- Evidence: ../evidence/decision.example.004/README.md
+
+Expected result
+---------------
+DEFER: the dispute is recorded and preserved for future review, but the evidence posture is not sufficient to accept auditability as equivalent to reconstructability or to fully reject the relationship.
+
+Relationship result
+-------------------
+- Equivalent: not accepted.
+- Overlapping: accepted as an external view.
+- Contradiction: deferred pending source-backed review.
+
+Boundary
+--------
+Replay checks this wiki-governance example only. It does not certify any external reference, change the target page by itself, or replace formalism-tests.
