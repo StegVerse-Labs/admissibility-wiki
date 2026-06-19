@@ -1,0 +1,117 @@
+{
+  "schema": "admissibility_wiki_formalism_registry.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "authority_boundary": "This registry mirrors and classifies formalism records. It does not create source authority, proof authority, execution authority, continuity standing, or admissibility standing.",
+  "states": [
+    "intake",
+    "mirrored",
+    "crosswalked",
+    "validated",
+    "superseded"
+  ],
+  "required_record_fields": [
+    "formalism_id",
+    "name",
+    "state",
+    "source_authority",
+    "wiki_path",
+    "purpose",
+    "transition_relationship",
+    "evidence_posture",
+    "validation_posture",
+    "non_claims"
+  ],
+  "records": [
+    {
+      "formalism_id": "formalism.transition-admissibility",
+      "name": "Transition Admissibility",
+      "state": "intake",
+      "source_authority": "StegVerse ecosystem formalism and transition-table artifacts",
+      "wiki_path": null,
+      "purpose": "Determine whether a proposed transition may bind consequence under declared authority, policy, evidence, and review posture.",
+      "transition_relationship": "core admissibility formalism",
+      "evidence_posture": "source_artifact_required",
+      "validation_posture": "pending_wiki_crosswalk",
+      "non_claims": [
+        "Registry intake does not prove admissibility.",
+        "Registry intake does not replace source formalism tests."
+      ]
+    },
+    {
+      "formalism_id": "formalism.commit-time-validity",
+      "name": "Commit-Time Validity",
+      "state": "intake",
+      "source_authority": "StegVerse commit-time governance artifacts",
+      "wiki_path": "docs/glossary/commit-time-validity.md",
+      "purpose": "Preserve the distinction between prior review and valid standing at the moment consequence is committed.",
+      "transition_relationship": "standing-at-commit boundary",
+      "evidence_posture": "glossary_mirrored_source_required",
+      "validation_posture": "pending_formalism_page",
+      "non_claims": [
+        "Glossary presence does not prove commit-time validity.",
+        "Commit-time validity requires current standing evidence."
+      ]
+    },
+    {
+      "formalism_id": "formalism.receipt-bound-execution",
+      "name": "Receipt-Bound Execution",
+      "state": "intake",
+      "source_authority": "StegVerse receipt and continuity artifacts",
+      "wiki_path": "docs/glossary/receipt-bound-execution.md",
+      "purpose": "Tie execution or consequence claims to durable receipt evidence and reconstructable standing.",
+      "transition_relationship": "execution evidence boundary",
+      "evidence_posture": "receipt_required",
+      "validation_posture": "pending_formalism_page",
+      "non_claims": [
+        "A receipt alone does not grant execution authority.",
+        "Execution standing depends on the accepted authority and policy context."
+      ]
+    },
+    {
+      "formalism_id": "formalism.reconstructability",
+      "name": "Reconstructability",
+      "state": "intake",
+      "source_authority": "Continuity and replay-path artifacts",
+      "wiki_path": "docs/glossary/reconstructability.md",
+      "purpose": "Allow a later reviewer to reconstruct why a transition, decision, or handoff had standing without relying on chat memory.",
+      "transition_relationship": "replay and review support boundary",
+      "evidence_posture": "receipt_and_replay_required",
+      "validation_posture": "pending_formalism_page",
+      "non_claims": [
+        "Reconstructability does not by itself authorize the original action.",
+        "Reconstructability supports review and continuity evidence."
+      ]
+    },
+    {
+      "formalism_id": "formalism.drift-denial",
+      "name": "Drift Denial",
+      "state": "intake",
+      "source_authority": "StegVerse drift and transition-governance artifacts",
+      "wiki_path": null,
+      "purpose": "Deny or pause consequence when relevant authority, policy, evidence, identity, or state changes before commit time.",
+      "transition_relationship": "state-change denial boundary",
+      "evidence_posture": "pre_commit_state_evidence_required",
+      "validation_posture": "pending_wiki_crosswalk",
+      "non_claims": [
+        "Drift denial is not a general refusal to review.",
+        "Drift denial depends on relevant changed state."
+      ]
+    },
+    {
+      "formalism_id": "formalism.cross-repository-continuation-receipt",
+      "name": "Cross-Repository Continuation Receipt",
+      "state": "intake",
+      "source_authority": "StegVerse-Labs/Continuity",
+      "wiki_path": null,
+      "purpose": "Record why a task may continue across repositories without relying on chat-session memory.",
+      "transition_relationship": "handoff standing and reconstruction boundary",
+      "evidence_posture": "continuation_receipt_required",
+      "validation_posture": "pending_wiki_crosswalk",
+      "non_claims": [
+        "A continuation receipt does not create production authority.",
+        "A continuation receipt must be interpreted against current repository state."
+      ]
+    }
+  ],
+  "next_action": "Create formalism detail pages and crosswalk records for each intake record."
+}
