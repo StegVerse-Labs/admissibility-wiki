@@ -6,98 +6,53 @@ title: Current Task Sync
 
 This page prevents duplicate work across parallel StegVerse build sessions working on `StegVerse-Labs/admissibility-wiki`.
 
-## Done State
-
-This sync page is useful when it clearly states:
-
-- what is installed;
-- what appears to overlap with another session;
-- what was checked and not found;
-- what should not be duplicated;
-- what the next safe build target is.
-
-## Current Assessment Goal
-
-Continue build work until either the repo reaches completion or the repo contains enough handoff, governance, validation, and next-task structure for ecosystem-managed continuation.
-
-A task is ready for ecosystem-managed continuation when the repo records enough current state, installed structure, duplicate-risk, validation, and next-action context for another session or ecosystem process to proceed without the originating chat.
-
 ## Current GitHub Pages Target
-
-The wiki is configured for GitHub Pages project hosting only:
 
 ```text
 https://stegverse-labs.github.io/admissibility-wiki/
 ```
 
-Current Docusaurus settings:
-
 ```text
 url: https://stegverse-labs.github.io
 baseUrl: /admissibility-wiki/
-```
-
-Custom domain status:
-
-```text
 custom_domain: not_configured
 static/CNAME: removed
 ```
 
-Do not re-add `static/CNAME` unless a custom-domain activation goal is explicitly restored.
+## Current Assessment Goal
 
-## Installed In This Repo
+Continue build work until either the repo reaches completion or the repo contains enough handoff, governance, validation, and next-task structure for ecosystem-managed continuation.
 
-The repository currently includes:
-
-- Docusaurus site scaffold;
-- expanded landing page defining the wiki, AI-governed proposal system, transition-table elements, and proposal transition blocks;
-- GitHub Pages deployment workflow;
-- GitHub.io project URL configuration for `https://stegverse-labs.github.io/admissibility-wiki/`;
-- GitHub.io activation runbook;
-- machine-readable GitHub.io activation checklist at `static/status/admissibility-wiki-activation.json`;
-- contribution guide;
-- editorial policy;
-- page template;
-- terminology convergence governance page;
-- proposal lifecycle governance page with submission timing receipt requirements;
-- decision record governance page;
-- reconciled Site bridge status page;
-- equivalence proposal template;
-- equivalence proposal template validator;
-- terminology overlap research notes;
-- terminology convergence proposal, decision, replay, and evidence examples;
-- user-submitted terminology proposal, decision, replay, and evidence examples with submission timing;
-- external-reference dispute proposal, decision, replay, and evidence examples;
-- source-backed provenance overlap proposal, decision, replay, and evidence examples;
-- source-backed policy-as-code overlap proposal, decision, replay, and evidence examples;
-- source-backed AI risk-management governance-boundary overlap proposal, decision, replay, and evidence note;
-- source-backed policy decision overlap proposal, decision, replay, and evidence examples;
-- source-backed Audit and Accountability overlap proposal, decision, replay, and evidence examples;
-- public status JSON mirror at `static/status/admissibility-wiki-status.json`;
-- wiki status validator;
-- ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
-- first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
-- wave-2 glossary convergence for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary;
-- validation runbook;
-- validation workflow;
-- ontology validation script;
-- issue templates;
-- pull request template;
-- core glossary pages;
-- proof-path examples;
-- Admissibility-Wiki AI Entity governance page.
-
-## Known Activation Artifacts
+## Installed Activation Structure
 
 ```text
 docs/activation/github-pages-cloudflare.md
 static/status/admissibility-wiki-activation.json
 static/status/admissibility-wiki-status.json
-.github/workflows/deploy.yml
+static/status/public-activation-receipt.example.json
+github/workflows/deploy.yml
 ```
 
 Note: paths that normally begin with a leading dot are shown without the leading dot in this display rule only.
+
+## Installed Validators
+
+```text
+scripts/validate-ontology.mjs
+scripts/check-wiki-status.mjs
+scripts/check-activation-checklist.mjs
+scripts/check-equivalence-proposal-template.mjs
+scripts/check-relationship-status-summary.mjs
+scripts/check-public-activation-receipt.mjs
+```
+
+Aggregate validation is run by:
+
+```text
+npm run validate
+```
+
+The aggregate validator now checks ontology, wiki status, activation checklist, equivalence proposal template, relationship status summary, public activation receipt, and Docusaurus build.
 
 ## Known Governance Records
 
@@ -142,152 +97,48 @@ static/governance/replay/decision.example.009.txt
 static/governance/evidence/decision.example.009/README.md
 ```
 
-## Known Public Governance Pages
+## Known Public Pages
 
 Do not recreate these pages under alternate names:
 
 ```text
+docs/index.md
+docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
+docs/governance/current-task-sync.md
 docs/governance/terminology-convergence.md
 docs/governance/proposal-lifecycle.md
 docs/governance/decision-record.md
 docs/governance/site-bridge-status.md
 docs/governance/admissibility-wiki-ai-entity.md
 docs/governance/equivalence-proposal-template.md
-docs/governance/current-task-sync.md
-docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
-docs/index.md
-```
-
-## Known Research Pages
-
-```text
 docs/research/terminology-overlap-research-notes.md
 ```
 
-## Known Validators
-
-```text
-scripts/validate-ontology.mjs
-scripts/check-wiki-status.mjs
-scripts/check-equivalence-proposal-template.mjs
-```
-
-## Known Glossary Convergence Pages
-
-The following glossary pages already include terminology relationship sections and should not be reworked without a specific improvement target:
-
-```text
-docs/glossary/admissibility.md
-docs/glossary/transition.md
-docs/glossary/authority-class.md
-docs/glossary/policy-reference.md
-docs/glossary/evidence-posture.md
-docs/glossary/review-posture.md
-docs/glossary/drift.md
-docs/glossary/commit-time-authority.md
-docs/glossary/commit-time-validity.md
-docs/glossary/receipt-bound-execution.md
-docs/glossary/governance-boundary.md
-docs/glossary/reconstructability.md
-```
-
-## Current Editorial Rule
-
-The wiki now treats terminology work as a convergence-layer task.
-
-When a StegVerse term has materially identical terms in other domains, those terms should be placed directly under the StegVerse term in an `Equivalent Terms` section.
-
-Overlapping and adjacent terms should be listed separately, so the page can distinguish shared vocabulary from StegVerse-specific extensions.
-
-Initial glossary convergence should be conservative: if external equivalence has not been researched and accepted, record `No accepted equivalent terms are recorded yet` and place likely candidates under overlapping or adjacent terms.
-
-## Equivalence Proposal Rule
-
-Do not add an external term to `Equivalent Terms` without a completed proposal using:
-
-```text
-docs/governance/equivalence-proposal-template.md
-```
-
-Validate the template with:
-
-```text
-node scripts/check-equivalence-proposal-template.mjs
-```
-
-A proposal may classify a term as equivalent, overlapping, adjacent, broader, narrower, contradictory, or unresolved. Acceptance requires a decision record before glossary text changes.
-
 ## Accepted Relationship Updates
 
-The following relationship decisions have changed target-page text:
-
 ```text
-proposal.example.005 / decision.example.005:
-  target_page: docs/glossary/reconstructability.md
-  external_term: Provenance
-  disposition: accepted as Overlapping Terms only
-  equivalent_status: not accepted
-
-proposal.example.006 / decision.example.006:
-  target_page: docs/glossary/policy-reference.md
-  external_term: policy-as-code
-  disposition: accepted as Overlapping Terms only
-  equivalent_status: not accepted
-
-proposal.example.007 / decision.example.007:
-  target_page: docs/glossary/governance-boundary.md
-  external_term: AI risk-management governance language
-  disposition: accepted as Overlapping Terms only
-  equivalent_status: not accepted
-
-proposal.example.008 / decision.example.008:
-  target_page: docs/glossary/commit-time-authority.md
-  external_term: policy decision
-  disposition: accepted as Overlapping Terms only
-  equivalent_status: not accepted
-
-proposal.example.009 / decision.example.009:
-  target_page: docs/glossary/reconstructability.md
-  external_term: Audit and Accountability
-  disposition: accepted as Overlapping Terms only
-  equivalent_status: not accepted
+proposal.example.005 / decision.example.005: Provenance -> Reconstructability, Overlapping Terms only
+proposal.example.006 / decision.example.006: policy-as-code -> Policy Reference, Overlapping Terms only
+proposal.example.007 / decision.example.007: AI risk-management governance language -> Governance Boundary, Overlapping Terms only
+proposal.example.008 / decision.example.008: policy decision -> Commit-Time Authority, Overlapping Terms only
+proposal.example.009 / decision.example.009: Audit and Accountability -> Reconstructability, Overlapping Terms only
 ```
 
-## Landing Page Rule
+No accepted equivalence has been recorded yet.
 
-The landing page should explicitly explain why the wiki exists, define the AI-governed proposal system, and show the current transition-table elements and proposal transition blocks that define the wiki as it stands.
+## Editorial Rule
+
+Do not add an external term to `Equivalent Terms` without a completed proposal, source evidence, mismatch analysis, overclaiming-risk analysis, and decision record.
 
 ## Submission Receipt Timing Rule
 
 User-submitted proposals should include a `submission_timing` block in the submission receipt.
 
-The timing block should record when the proposal was received, when the receipt was issued, and the start/completion/status/timing posture for relevant submission-stage tasks.
-
 Submission timing records intake posture only. It does not accept the proposal, prove the submitted claim, or replace the decision record.
 
 ## Next Safe Build Targets
 
-The safest next build targets are:
-
 1. Verify GitHub Pages deployment at `https://stegverse-labs.github.io/admissibility-wiki/` after Actions completes.
 2. Update activation posture only after public GitHub.io deployment status changes.
-3. Add another source-backed relationship proposal only if it covers a materially new source family and does not duplicate proposals 005, 006, 007, 008, or 009.
+3. Add another source-backed relationship proposal only if it covers a materially new source family and does not duplicate proposals 005 through 009.
 4. Add additional dispute examples only when they cover a materially new dispute posture.
-
-## Build Rule
-
-Before adding a new page, check whether the exact concept already exists in:
-
-- `docs/glossary/`;
-- `docs/governance/`;
-- `docs/proof-path/`;
-- `static/ontology/admissibility-vocabulary.v0.1.json`;
-- `sidebars.js`.
-
-When a concept is added, update:
-
-- the page itself;
-- related pages;
-- the sidebar;
-- the ontology artifact if it is a core term;
-- validation expectations if structure changes.
