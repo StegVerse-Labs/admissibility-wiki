@@ -25,6 +25,12 @@ Make the Admissibility Wiki a governed, public-facing vocabulary layer and termi
 - cross-domain equivalent, overlapping, and adjacent terminology;
 - user-submitted, browser-originated, maintainer-submitted, and LLM-assisted terminology proposals.
 
+## Current Assessment Goal
+
+Continue build work until either the repo reaches completion or the repo contains enough handoff, governance, validation, and next-task structure for ecosystem-managed continuation.
+
+A task is ready for ecosystem-managed continuation when this repository records the current goal, current activation target, installed structure, duplicate-risk paths, next safe build targets, governance records for mature changes, validation expectations, and enough continuity context for another session or ecosystem process to proceed without the originating chat.
+
 ## Current Activation Goal
 
 ```text
@@ -152,6 +158,17 @@ This repository is actively touched by more than one session.
 Do not assume a previously proposed next step is still missing.
 
 Verify file presence first, then continue from the missing or explicitly open item.
+
+## Ecosystem-Managed Handoff Readiness
+
+This repo can be considered ready for ecosystem-managed continuation when:
+
+- this handoff and `docs/governance/current-task-sync.md` agree on the next safe build target;
+- new governance changes have proposal, decision, replay, and reconstruction records when mature;
+- sidebar navigation includes newly installed public pages;
+- ontology changes are completed or explicitly listed as next work;
+- validation expectations are explicit;
+- duplicate-risk paths are listed.
 
 ## Archival Readiness Rule
 
