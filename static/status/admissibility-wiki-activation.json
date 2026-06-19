@@ -15,13 +15,20 @@
     "docusaurus_baseUrl": "/admissibility-wiki/",
     "github_pages_source": "GitHub Actions",
     "deploy_workflow": ".github/workflows/deploy.yml",
-    "build_output": "build"
+    "build_output": "build",
+    "deploy_gate": "npm run validate"
   },
   "activation_checks": [
     {
       "check_id": "pages_source_github_actions",
       "description": "Repository Settings > Pages source is set to GitHub Actions.",
       "status": "external_manual_check_required",
+      "blocking": true
+    },
+    {
+      "check_id": "aggregate_validation_success",
+      "description": "npm run validate completed successfully before Pages artifact upload.",
+      "status": "pending_external_verification",
       "blocking": true
     },
     {
@@ -69,10 +76,10 @@
   "known_404_causes": [
     "Repository Pages source is not set to GitHub Actions.",
     "Deploy workflow has not run since docusaurus.config.js was changed.",
-    "Deploy workflow failed during install or build.",
+    "Deploy workflow failed during aggregate validation, install, or build.",
     "Repository visibility or Pages plan does not allow public Pages for this repository.",
     "Browser is checking the old custom-domain or wrong GitHub.io path.",
     "Docusaurus baseUrl does not match the project path."
   ],
-  "current_next_action": "Verify Settings > Pages > Source is GitHub Actions, then run or wait for the deploy workflow and re-check the target URL."
+  "current_next_action": "Verify Settings > Pages > Source is GitHub Actions, then run or wait for the validation-gated deploy workflow and re-check the target URL."
 }
