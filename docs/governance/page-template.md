@@ -40,6 +40,26 @@ Example:
 This page defines vocabulary. It does not generate receipts, authorize execution, or replace formalism-tests.
 ```
 
+## Term Relationship Placement
+
+When a page defines a StegVerse term, place materially identical terms directly under the StegVerse term before the definition.
+
+Use these sections when relationship information exists:
+
+```text
+Equivalent Terms
+Overlapping Terms
+Adjacent Terms
+```
+
+Equivalent terms are terms from other domains that describe the same underlying concept for the page's purpose.
+
+Overlapping terms describe part of the same concept but do not carry the full StegVerse meaning.
+
+Adjacent terms belong to the same conceptual neighborhood but answer a different governance question.
+
+If no equivalent term is known, say so explicitly rather than silently implying novelty.
+
 ## Definition
 
 Give a concise definition.
@@ -47,6 +67,15 @@ Give a concise definition.
 ## Distinction
 
 State what the concept is not.
+
+## Why The StegVerse Term Is Retained
+
+If the page uses StegVerse-specific terminology, explain whether the term is retained because:
+
+- no equivalent term is known;
+- existing terms are only overlapping;
+- existing terms are adjacent but not equivalent;
+- the StegVerse formulation adds commit-time, consequence, continuity, receipt, or admissibility requirements.
 
 ## Minimal Example
 
@@ -79,12 +108,20 @@ When a page is created or materially changed, the proposal record should identif
   "proposal_id": "proposal.example.001",
   "target_page": "docs/path/example.md",
   "proposal_type": "create | update | deprecate | supersede | delete",
-  "proposer_class": "maintainer | contributor | external | llm_assisted | browser_originated",
+  "proposer_class": "maintainer | contributor | external | llm_assisted | browser_originated | user_submitted",
   "claimed_page_posture": "concept",
   "claimed_maturity_posture": "conceptual",
   "authority_class": "wiki_maintainer | vocabulary_editor | external_contributor | contributor_suggest",
   "policy_ref": "policy.wiki.page-review.v1",
-  "evidence_posture": "present"
+  "evidence_posture": "present",
+  "claimed_relationships": [
+    {
+      "relationship": "equivalent | overlapping | adjacent | broader_than | narrower_than | contradicts",
+      "external_term": "Example external term",
+      "external_domain": "Example domain",
+      "notes": "Why this relationship is claimed."
+    }
+  ]
 }
 ```
 
@@ -97,12 +134,20 @@ When a page change is accepted, denied, escalated, or refused, the decision reco
   "decision_id": "decision.example.001",
   "proposal_id": "proposal.example.001",
   "target_page": "docs/path/example.md",
-  "decision": "ALLOW | DENY | ESCALATE | REFUSE",
+  "decision": "ALLOW | DENY | ESCALATE | REFUSE | DEFER | SUPERSEDE",
   "authority_class": "wiki_maintainer",
   "policy_ref": "policy.wiki.page-review.v1",
   "evidence_posture": "sufficient",
   "review_posture": "entity_reviewed | maintainer_reviewed | quorum_reviewed | external_reference",
   "commit_time_validity": true,
+  "relationship_disposition": [
+    {
+      "external_term": "Example external term",
+      "relationship": "equivalent",
+      "disposition": "accepted | rejected | deferred",
+      "notes": "Reason for disposition."
+    }
+  ],
   "issued_at": "2026-06-17T00:00:00Z"
 }
 ```
@@ -146,6 +191,7 @@ Before publishing or accepting a mature page, verify:
 - page posture is declared;
 - maturity posture is declared;
 - authority boundary is explicit;
+- term relationship placement is complete or explicitly not applicable;
 - proposal link is present or explicitly marked `not_applicable`;
 - decision link is present or explicitly marked `not_applicable`;
 - replay link is present or explicitly marked `not_applicable`;
