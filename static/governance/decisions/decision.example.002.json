@@ -1,0 +1,36 @@
+{
+  "schema": "admissibility_wiki_page_decision.v1",
+  "decision_id": "decision.example.002",
+  "proposal_id": "proposal.example.002",
+  "issued_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/governance/terminology-convergence.md",
+  "decision": "ALLOW",
+  "authority_class": "wiki_maintainer",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "sufficient",
+  "review_posture": "entity_reviewed",
+  "commit_time_validity": true,
+  "relationship_disposition": [
+    {
+      "external_term": "materially identical terminology",
+      "relationship": "equivalent",
+      "disposition": "accepted",
+      "notes": "Accepted as an editorial relationship class only."
+    }
+  ],
+  "decision_basis": [
+    "The page makes the wiki a convergence layer.",
+    "The page requires identical external terms to be visible under the StegVerse term.",
+    "The page keeps equivalence claims subject to review."
+  ],
+  "links": {
+    "proposal_link": "../proposals/proposal.example.002.json",
+    "replay_link": "../replay/decision.example.002.txt",
+    "reconstruction_link": "../evidence/decision.example.002/README.md"
+  },
+  "non_claims": [
+    "ALLOW applies only to proposal.example.002.",
+    "ALLOW does not certify any individual external term.",
+    "ALLOW does not authorize executable transition proof."
+  ]
+}
