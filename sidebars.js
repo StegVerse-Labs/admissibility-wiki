@@ -19,6 +19,7 @@ const sidebars = {
         'governance/terminology-convergence',
         'governance/proposal-lifecycle',
         'governance/decision-record',
+        'governance/relationship-status-summary',
         'governance/site-bridge-status',
         'governance/admissibility-wiki-ai-entity',
         'governance/validation',
