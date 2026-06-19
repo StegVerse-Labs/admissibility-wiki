@@ -8,8 +8,6 @@ Role: non-Site/non-Publisher mirror and continuity handoff for Admissibility Wik
 
 This file is the task-source-of-truth handoff for sessions working on `StegVerse-Labs/admissibility-wiki`.
 
-It serves the same coordination purpose as `StegVerse-Labs/Site/docs/SITE_MIRROR_HANDOFF.md`, but is scoped to the Admissibility Wiki repository.
-
 Use this handoff before continuing wiki, ontology, proof-path, governance, or activation work in this repo.
 
 ## Current Repo Goal
@@ -29,21 +27,11 @@ Make the Admissibility Wiki a governed, public-facing vocabulary layer and termi
 
 ## Current Activation Goal
 
-The current activation goal is:
-
 ```text
 Publish and validate admissibility.stegverse.org as a Docusaurus-powered public vocabulary, terminology convergence, proposal-review, and proof-path site.
 ```
 
-Activation is not complete until:
-
-- GitHub Pages deploys from GitHub Actions;
-- Cloudflare DNS points `admissibility.stegverse.org` to GitHub Pages;
-- GitHub validates the custom domain;
-- HTTPS is provisioned and enforced;
-- the public site loads;
-- the ontology JSON is reachable from the published site;
-- proposal and decision examples are reachable from the published site.
+Activation is not complete until the public site loads, GitHub Pages and HTTPS are working, the ontology JSON is reachable, and proposal and decision examples are reachable.
 
 ## Installed Structure
 
@@ -60,6 +48,7 @@ The repo currently includes:
 - terminology convergence governance page;
 - proposal lifecycle governance page;
 - decision record governance page;
+- terminology convergence proposal, decision, replay, and evidence examples;
 - current task sync page;
 - ontology validation script;
 - issue templates;
@@ -71,20 +60,6 @@ The repo currently includes:
 - proof-path examples;
 - machine-readable vocabulary artifact;
 - Admissibility-Wiki AI Entity governance page.
-
-## Known Installed Proof-Path Examples
-
-Do not recreate these under alternate names:
-
-```text
-docs/proof-path/transition-cell-example.md
-docs/proof-path/receipt-example.md
-docs/proof-path/replay-example.md
-docs/proof-path/deny-example.md
-docs/proof-path/escalate-example.md
-docs/proof-path/refuse-example.md
-docs/proof-path/drift-denial-example.md
-```
 
 ## Known Governance Files
 
@@ -99,6 +74,21 @@ docs/governance/decision-record.md
 docs/governance/validation.md
 docs/governance/current-task-sync.md
 docs/governance/admissibility-wiki-ai-entity.md
+```
+
+## Known Governance Records
+
+Do not recreate these IDs:
+
+```text
+static/governance/proposals/proposal.example.001.json
+static/governance/decisions/decision.example.001.json
+static/governance/replay/decision.example.001.txt
+static/governance/evidence/decision.example.001/README.md
+static/governance/proposals/proposal.example.002.json
+static/governance/decisions/decision.example.002.json
+static/governance/replay/decision.example.002.txt
+static/governance/evidence/decision.example.002/README.md
 ```
 
 ## Known Core Artifacts
@@ -124,31 +114,6 @@ github/ISSUE_TEMPLATE/activation-deploy.yml
 
 Note: paths that normally begin with a leading dot are shown without the leading dot in this handoff display to avoid hidden-path ambiguity in copied instructions.
 
-## Confirmed Cross-Session Overlap
-
-At least one other chat session has worked on this repository.
-
-Confirmed installed overlap includes:
-
-- DENY proof-path example;
-- ESCALATE proof-path example;
-- REFUSE proof-path example;
-- drift-denial proof-path example;
-- Admissibility-Wiki AI Entity governance page;
-- terminology convergence governance;
-- proposal lifecycle governance;
-- decision record governance.
-
-Before adding a page, check exact paths and `sidebars.js`.
-
-## Checked Missing Or Still Open
-
-The following path was previously checked and not found, but is now installed:
-
-```text
-docs/governance/proposal-lifecycle.md
-```
-
 ## Current Editorial Rule
 
 The Admissibility Wiki should operate as a terminology convergence layer for the sector.
@@ -165,22 +130,13 @@ Do not label a term StegVerse-specific until reasonable overlap search has been 
 
 Priority order:
 
-1. Proposal JSON examples.
-2. Decision JSON examples.
-3. Replay skeleton for decision examples.
-4. Reconstruction evidence skeleton for decision examples.
-5. Add ontology entries for proposal lifecycle, decision record, and terminology relationship classes.
-6. Update selected glossary pages to include equivalent, overlapping, and adjacent terminology sections.
-7. Update validation expectations if new artifact directories are added.
-8. Coordinate with `StegVerse-Labs/Site` only after checking `Site/docs/SITE_MIRROR_HANDOFF.md`.
+1. Add ontology entries for proposal lifecycle, decision record, and terminology relationship classes.
+2. Update selected glossary pages to include equivalent, overlapping, and adjacent terminology sections.
+3. Add additional proposal and decision examples for user-submitted terms and external-reference disagreements.
+4. Update validation expectations if new artifact directories are added.
+5. Coordinate with `StegVerse-Labs/Site` only after checking `Site/docs/SITE_MIRROR_HANDOFF.md`.
 
 ## Mirror Coordination Rule
-
-For Site or Publisher work:
-
-1. First check `StegVerse-Labs/Site/docs/SITE_MIRROR_HANDOFF.md`.
-2. Treat that file as source of truth.
-3. Do not mirror or alter public display files without reconciling that handoff.
 
 For Admissibility Wiki work:
 
@@ -203,4 +159,4 @@ A chat thread is archive-ready when this handoff and `docs/governance/current-ta
 
 ## Current Next Action
 
-Build proposal and decision JSON examples, then build replay and reconstruction skeletons for those examples.
+Add ontology entries for proposal lifecycle, decision record, and terminology relationship classes, then update selected glossary pages with terminology relationship sections.
