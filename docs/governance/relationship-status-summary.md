@@ -27,7 +27,7 @@ equivalent_status: not accepted
 
 proposal.example.007 / decision.example.007
 target_page: docs/glossary/governance-boundary.md
-external_term: NIST AI RMF governance and AI risk-management language
+external_term: AI risk-management governance language
 source_family: NIST AI Risk Management Framework
 disposition: ALLOW_AS_OVERLAP
 equivalent_status: not accepted
@@ -36,6 +36,13 @@ proposal.example.008 / decision.example.008
 target_page: docs/glossary/commit-time-authority.md
 external_term: policy decision
 source_family: Open Policy Agent documentation
+disposition: ALLOW_AS_OVERLAP
+equivalent_status: not accepted
+
+proposal.example.009 / decision.example.009
+target_page: docs/glossary/reconstructability.md
+external_term: Audit and Accountability
+source_family: NIST SP 800-53 Rev. 5
 disposition: ALLOW_AS_OVERLAP
 equivalent_status: not accepted
 ```
@@ -63,6 +70,6 @@ explicit equivalent-status acceptance
 
 ## Next Safe Build Target
 
-Add another source-backed relationship proposal only if it covers a materially new source family and does not duplicate proposals 005, 006, 007, or 008.
+Add another source-backed relationship proposal only if it covers a materially new source family and does not duplicate proposals 005, 006, 007, 008, or 009.
 
-Public activation status should be updated only after deployment, DNS, HTTPS, ontology reachability, and governance-record reachability are verified.
+Public activation status should be updated only after the GitHub.io project page, HTTPS, ontology reachability, status reachability, activation-checklist reachability, and governance-record reachability are verified.
