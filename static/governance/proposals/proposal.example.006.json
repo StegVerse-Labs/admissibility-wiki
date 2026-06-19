@@ -1,0 +1,73 @@
+{
+  "schema": "admissibility_wiki_governance_proposal.v1",
+  "proposal_id": "proposal.example.006",
+  "created_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/glossary/policy-reference.md",
+  "proposal_type": "update",
+  "proposal_class": "overlap_claim",
+  "title": "Source-backed overlap claim for policy-as-code and policy reference",
+  "summary": "Proposes that policy-as-code, as represented by Open Policy Agent documentation, should be classified as overlapping with the StegVerse term Policy Reference, not equivalent to it.",
+  "proposer_class": "maintainer",
+  "claimed_page_posture": "concept",
+  "claimed_maturity_posture": "conceptual",
+  "authority_class": "wiki_maintainer",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "present",
+  "source_family": {
+    "external_term": "Policy-as-code",
+    "source_type": "vendor-authored primary project documentation",
+    "source_name": "Open Policy Agent documentation",
+    "source_urls": [
+      "https://www.openpolicyagent.org/docs"
+    ]
+  },
+  "claim_comparison": [
+    {
+      "claim_dimension": "scope",
+      "stegverse_term": "Policy Reference identifies the specific rule, policy, standard, or governance artifact used to evaluate a transition.",
+      "external_term": "Policy-as-code represents and evaluates policy logic in code or structured policy language.",
+      "match_posture": "overlapping"
+    },
+    {
+      "claim_dimension": "timing",
+      "stegverse_term": "Policy Reference must be stable enough to reconstruct which rule basis applied at commit time.",
+      "external_term": "OPA evaluates structured input against policies and data, but the documentation does not by itself impose StegVerse commit-time receipt linkage.",
+      "match_posture": "overlapping"
+    },
+    {
+      "claim_dimension": "authority_boundary",
+      "stegverse_term": "Policy Reference identifies the governing basis for a transition decision without itself proving authority.",
+      "external_term": "Policy-as-code can supply a rule base or decision input but does not by itself define the full StegVerse authority class or consequence boundary.",
+      "match_posture": "adjacent"
+    },
+    {
+      "claim_dimension": "replay_or_reconstruction",
+      "stegverse_term": "Policy Reference supports reconstructing why a result was governed by a specific rule basis.",
+      "external_term": "Policy-as-code can support reproducible evaluation when versions, inputs, and data are preserved.",
+      "match_posture": "overlapping"
+    }
+  ],
+  "mismatches": [
+    "Policy-as-code can be a form of policy implementation, while Policy Reference is a citation of the rule basis used for a transition.",
+    "Policy-as-code does not by itself guarantee that the cited rule version, inputs, evidence posture, and review posture are receipt-bound.",
+    "Policy-as-code may produce a decision result without proving StegVerse commit-time authority or consequence standing."
+  ],
+  "risk_of_overclaiming": [
+    "Calling policy-as-code equivalent to Policy Reference could collapse implementation of policy with citation of policy basis.",
+    "Calling policy-as-code equivalent could imply OPA decisions automatically satisfy StegVerse admissibility, which is not claimed."
+  ],
+  "proposed_glossary_placement": "Overlapping Terms",
+  "proposed_text": "policy-as-code, when used to represent or evaluate policy logic as code or structured policy language. This overlaps with Policy Reference when the policy artifact supplies the rule basis for a transition, but it is not equivalent unless the specific policy artifact and version are cited as the commit-time rule basis.",
+  "review_requested": "admissibility_wiki_ai_entity",
+  "requested_outcome": "ALLOW_AS_OVERLAP",
+  "links": {
+    "decision_link": "../decisions/decision.example.006.json",
+    "replay_link": "../replay/decision.example.006.txt",
+    "reconstruction_link": "../evidence/decision.example.006/README.md"
+  },
+  "non_claims": [
+    "This proposal does not accept policy-as-code as equivalent to Policy Reference.",
+    "This proposal does not claim Open Policy Agent endorses StegVerse terminology.",
+    "This proposal does not claim policy-as-code output is sufficient for admissibility."
+  ]
+}
