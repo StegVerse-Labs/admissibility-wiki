@@ -7,7 +7,8 @@ const requiredRecords = [
   'proposal.example.005 / decision.example.005',
   'proposal.example.006 / decision.example.006',
   'proposal.example.007 / decision.example.007',
-  'proposal.example.008 / decision.example.008'
+  'proposal.example.008 / decision.example.008',
+  'proposal.example.009 / decision.example.009'
 ];
 
 const requiredTerms = [
@@ -17,7 +18,8 @@ const requiredTerms = [
   'Equivalent-Term Boundary',
   'No listed relationship above accepts an equivalent term.',
   'explicit equivalent-status acceptance',
-  'Public activation status should be updated only after deployment, DNS, HTTPS, ontology reachability, and governance-record reachability are verified.'
+  'GitHub.io project page',
+  'activation-checklist reachability'
 ];
 
 function fail(message) {
@@ -45,12 +47,12 @@ for (const term of requiredTerms) {
 
 const equivalentAccepted = /equivalent_status:\s*(accepted|true)/i.test(text);
 if (equivalentAccepted) {
-  fail('relationship summary must not accept equivalent status for records 005-008');
+  fail('relationship summary must not accept equivalent status for records 005-009');
 }
 
 const overlapCount = (text.match(/ALLOW_AS_OVERLAP/g) || []).length;
-if (overlapCount < 4) {
-  fail('expected at least four ALLOW_AS_OVERLAP records');
+if (overlapCount < 5) {
+  fail('expected at least five ALLOW_AS_OVERLAP records');
 }
 
 console.log(`OK: ${SUMMARY_PATH}`);
