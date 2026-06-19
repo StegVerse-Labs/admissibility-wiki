@@ -1,0 +1,42 @@
+{
+  "schema": "admissibility_wiki_governance_proposal.v1",
+  "proposal_id": "proposal.example.003",
+  "created_at": "2026-06-19T00:00:00Z",
+  "target_page": "docs/glossary/admissibility.md",
+  "proposal_type": "update",
+  "proposal_class": "equivalence_claim",
+  "title": "User-submitted equivalence claim for admissibility",
+  "summary": "Example of a user-submitted claim that an external term may be equivalent to, overlapping with, or adjacent to the StegVerse term Admissibility.",
+  "proposer_class": "user_submitted",
+  "claimed_page_posture": "concept",
+  "claimed_maturity_posture": "conceptual",
+  "authority_class": "contributor_suggest",
+  "policy_ref": "policy.wiki.page-review.v1",
+  "evidence_posture": "partial",
+  "claimed_relationships": [
+    {
+      "relationship": "overlapping",
+      "external_term": "Policy compliance",
+      "external_domain": "policy and compliance systems",
+      "notes": "The external term may overlap with admissibility when it describes whether a proposed action satisfies a governing rule. It may not include commit-time standing, evidence posture, review posture, drift, or receipt requirements."
+    },
+    {
+      "relationship": "adjacent",
+      "external_term": "Auditability",
+      "external_domain": "audit and assurance",
+      "notes": "The external term may help reconstruct or inspect a decision but does not by itself decide whether a transition may bind."
+    }
+  ],
+  "review_requested": "admissibility_wiki_ai_entity",
+  "requested_outcome": "ESCALATE",
+  "links": {
+    "decision_link": "../decisions/decision.example.003.json",
+    "replay_link": "../replay/decision.example.003.txt",
+    "reconstruction_link": "../evidence/decision.example.003/README.md"
+  },
+  "non_claims": [
+    "This proposal does not assert that the external terms are accepted equivalents.",
+    "This proposal does not authorize changing the target page without review.",
+    "This proposal does not prove that the proposed mapping is complete."
+  ]
+}
