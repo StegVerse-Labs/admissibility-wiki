@@ -1,0 +1,38 @@
+Admissibility Wiki Governance Replay
+====================================
+
+Replay ID: replay.decision.example.006
+Decision ID: decision.example.006
+Proposal ID: proposal.example.006
+Target page: docs/glossary/policy-reference.md
+Policy reference: policy.wiki.page-review.v1
+Authority class: wiki_maintainer
+Review posture: entity_reviewed
+Evidence posture: present
+Commit-time validity: true
+Decision: ALLOW_AS_OVERLAP
+
+Replay question
+---------------
+Should policy-as-code, using Open Policy Agent documentation as the source family, be placed under Equivalent Terms or Overlapping Terms for the StegVerse term Policy Reference?
+
+Inputs
+------
+- Proposal: ../proposals/proposal.example.006.json
+- Decision: ../decisions/decision.example.006.json
+- Evidence: ../evidence/decision.example.006/README.md
+- Research note: ../../../docs/research/terminology-overlap-research-notes.md
+
+Expected result
+---------------
+ALLOW_AS_OVERLAP: policy-as-code may represent or evaluate policy logic that supplies the rule basis for a transition, but it is not accepted as equivalent to Policy Reference because Policy Reference identifies the specific cited rule basis used for a transition decision at commit time.
+
+Relationship result
+-------------------
+- Equivalent: not accepted.
+- Overlapping: accepted.
+- Glossary placement: Overlapping Terms.
+
+Boundary
+--------
+Replay checks this wiki terminology decision only. It does not certify Open Policy Agent endorsement, does not replace executable proof authority, and does not claim policy evaluation alone satisfies admissibility.
