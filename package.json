@@ -15,7 +15,8 @@
     "validate:formalism-source-sync": "node scripts/check-formalism-source-sync.mjs",
     "validate:transition-origin": "node scripts/check-transition-origin-sections.mjs",
     "validate:proposal-intake": "node scripts/check-proposal-intake-interface.mjs",
-    "validate": "npm run validate:ontology && npm run validate:wiki-status && npm run validate:activation-checklist && npm run validate:equivalence-template && npm run validate:relationship-status && npm run validate:public-activation-receipt && npm run validate:formalism-registry && npm run validate:term-candidates && npm run validate:formalism-source-sync && npm run validate:transition-origin && npm run validate:proposal-intake && npm run build"
+    "validate:proposal-intake-backend": "node scripts/check-proposal-intake-backend-contract.mjs",
+    "validate": "npm run validate:ontology && npm run validate:wiki-status && npm run validate:activation-checklist && npm run validate:equivalence-template && npm run validate:relationship-status && npm run validate:public-activation-receipt && npm run validate:formalism-registry && npm run validate:term-candidates && npm run validate:formalism-source-sync && npm run validate:transition-origin && npm run validate:proposal-intake && npm run validate:proposal-intake-backend && npm run build"
   },
   "dependencies": {
     "@docusaurus/core": "^3.10.1",
