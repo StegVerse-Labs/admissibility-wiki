@@ -1,0 +1,78 @@
+{
+  "schema_version": "0.1",
+  "artifact_id": "admissibility-wiki-status.v0.1",
+  "generated_at": "2026-06-19T00:00:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "site_target": "admissibility.stegverse.org",
+  "assessment_goal": "continue_until_complete_or_ecosystem_managed",
+  "activation_status": "pending_public_validation",
+  "activation_requirements": [
+    "github_pages_deploys_from_actions",
+    "cloudflare_dns_points_custom_domain_to_github_pages",
+    "github_custom_domain_validated",
+    "https_provisioned_and_enforced",
+    "public_site_loads",
+    "ontology_json_reachable",
+    "proposal_and_decision_examples_reachable"
+  ],
+  "governance_status": {
+    "terminology_convergence_policy": "installed",
+    "proposal_lifecycle_policy": "installed",
+    "decision_record_policy": "installed",
+    "page_template_convergence_fields": "installed",
+    "ai_entity_review_posture": "installed"
+  },
+  "governance_records": {
+    "page_template_example": {
+      "proposal": "/governance/proposals/proposal.example.001.json",
+      "decision": "/governance/decisions/decision.example.001.json",
+      "replay": "/governance/replay/decision.example.001.txt",
+      "evidence": "/governance/evidence/decision.example.001/README.md"
+    },
+    "terminology_convergence_example": {
+      "proposal": "/governance/proposals/proposal.example.002.json",
+      "decision": "/governance/decisions/decision.example.002.json",
+      "replay": "/governance/replay/decision.example.002.txt",
+      "evidence": "/governance/evidence/decision.example.002/README.md"
+    },
+    "user_submitted_terminology_example": {
+      "proposal": "/governance/proposals/proposal.example.003.json",
+      "decision": "/governance/decisions/decision.example.003.json",
+      "replay": "/governance/replay/decision.example.003.txt",
+      "evidence": "/governance/evidence/decision.example.003/README.md"
+    }
+  },
+  "ontology_status": {
+    "artifact": "/ontology/admissibility-vocabulary.v0.1.json",
+    "proposal_lifecycle_entries": "installed",
+    "decision_record_entries": "installed",
+    "terminology_relationship_entries": "installed"
+  },
+  "glossary_convergence_status": {
+    "mode": "conservative_pending_research_review",
+    "equivalent_terms_policy": "accepted_equivalents_only",
+    "pages_with_relationship_sections": [
+      "/glossary/admissibility",
+      "/glossary/transition",
+      "/glossary/authority-class",
+      "/glossary/policy-reference",
+      "/glossary/evidence-posture",
+      "/glossary/review-posture",
+      "/glossary/drift",
+      "/glossary/commit-time-authority",
+      "/glossary/commit-time-validity",
+      "/glossary/receipt-bound-execution",
+      "/glossary/governance-boundary",
+      "/glossary/reconstructability"
+    ]
+  },
+  "next_safe_build_targets": [
+    "add_external_reference_disagreement_examples_if_needed",
+    "add_site_bridge_status_page_if_not_already_installed",
+    "add_research_backed_equivalence_proposals_after_cross_domain_review"
+  ],
+  "handoff_sources": [
+    "/ADMISSIBILITY_WIKI_MIRROR_HANDOFF",
+    "/governance/current-task-sync"
+  ]
+}
