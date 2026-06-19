@@ -51,21 +51,47 @@
     "static/governance/proposals/proposal.example.004.json",
     "static/governance/decisions/decision.example.004.json",
     "static/governance/replay/decision.example.004.txt",
-    "static/governance/evidence/decision.example.004/README.md"
+    "static/governance/evidence/decision.example.004/README.md",
+    "static/governance/proposals/proposal.example.005.json",
+    "static/governance/decisions/decision.example.005.json",
+    "static/governance/replay/decision.example.005.txt",
+    "static/governance/evidence/decision.example.005/README.md",
+    "static/governance/proposals/proposal.example.006.json",
+    "static/governance/decisions/decision.example.006.json",
+    "static/governance/replay/decision.example.006.txt",
+    "static/governance/evidence/decision.example.006/README.md"
+  ],
+  "accepted_relationship_updates": [
+    {
+      "proposal_id": "proposal.example.005",
+      "decision_id": "decision.example.005",
+      "target_page": "docs/glossary/reconstructability.md",
+      "external_term": "Provenance",
+      "placement": "Overlapping Terms",
+      "equivalent_status": "not_accepted"
+    },
+    {
+      "proposal_id": "proposal.example.006",
+      "decision_id": "decision.example.006",
+      "target_page": "docs/glossary/policy-reference.md",
+      "external_term": "policy-as-code",
+      "placement": "Overlapping Terms",
+      "equivalent_status": "not_accepted"
+    }
   ],
   "terminology_convergence_posture": {
     "equivalent_terms_policy": "Accepted equivalent terms should be listed directly under the StegVerse term.",
     "overlapping_terms_policy": "Partially shared terms should be listed under Overlapping Terms.",
     "adjacent_terms_policy": "Nearby but non-identical terms should be listed under Adjacent Terms.",
     "specificity_policy": "Do not label a term StegVerse-specific until reasonable overlap search has been performed.",
-    "research_posture": "source-aware preliminary notes installed; no new equivalence accepted by research note alone"
+    "research_posture": "source-aware preliminary notes installed; no equivalence accepted by research note alone"
   },
   "known_handoff_files": {
     "repo_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
     "task_sync": "docs/governance/current-task-sync.md"
   },
   "next_safe_build_targets": [
-    "Create targeted proposal records for individual researched mappings.",
+    "Create another targeted source-backed relationship proposal, preferably OPA policy decision versus Commit-Time Authority or NIST Audit and Accountability versus Reconstructability.",
     "Update activation posture only after public deployment or DNS status changes.",
     "Add additional source families only when they materially improve terminology classification."
   ]
