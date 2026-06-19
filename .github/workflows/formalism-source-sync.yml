@@ -24,6 +24,9 @@ jobs:
       - name: Validate formalism source sync manifest
         run: node scripts/check-formalism-source-sync.mjs
 
+      - name: Detect manifest-declared source drift
+        run: node scripts/check-formalism-source-drift.mjs
+
       - name: Emit sync issue body when needed
         run: node scripts/emit-formalism-sync-issues.mjs
 
@@ -33,7 +36,7 @@ jobs:
           cat > .sync-output/formalism-source-sync-summary.md <<'SUMMARY'
           # Formalism Source Sync Check
 
-          This scheduled check validates the formalism source sync manifest and emits an issue body when a manifest record is marked source_changed or wiki_update_required.
+          This scheduled check validates the formalism source sync manifest, detects manifest-declared source drift, and emits an issue body when a manifest record is marked source_changed or wiki_update_required.
 
           It preserves the authority boundary:
 
@@ -51,6 +54,7 @@ jobs:
           path: |
             .sync-output/formalism-source-sync-summary.md
             .sync-output/formalism-source-sync-issue.md
+            .sync-output/formalism-source-drift-report.md
 
       - name: Create sync-required issue
         if: ${{ hashFiles('.sync-output/formalism-source-sync-issue.md') != '' }}
