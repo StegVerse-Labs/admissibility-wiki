@@ -8,13 +8,13 @@ The Transition Table is a StegVerse formalism surface for classifying proposed s
 
 ## Visual Reference
 
-The public Site bridge for the full transition-table visual/reference page is:
+The public visual reference for the full transition-table view is:
 
 ```text
-https://stegverse-labs.github.io/Site/admissibility-wiki.html
+https://stegverse-labs.github.io/Site/transition-table-visual.html
 ```
 
-This wiki page should be treated as the terminology and formalism mirror. The Site page is the current public visual/presentation surface until a dedicated transition-table visual artifact is mirrored into this wiki.
+This wiki page should be treated as the terminology and formalism mirror. The Site visual reference is the current public presentation surface for the full transition table.
 
 ## Purpose
 
