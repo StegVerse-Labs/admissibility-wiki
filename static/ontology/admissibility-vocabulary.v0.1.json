@@ -231,6 +231,33 @@
       "related_terms": ["terminology_relationship", "equivalent_term", "overlapping_term"]
     },
     {
+      "id": "broader_than_relationship",
+      "label": "Broader-Than Relationship",
+      "category": "ontology_relation",
+      "definition": "A relationship stating that one term covers a wider conceptual scope than another term.",
+      "page": "/governance/terminology-convergence",
+      "posture": "conceptual",
+      "related_terms": ["terminology_relationship", "terminology_convergence"]
+    },
+    {
+      "id": "narrower_than_relationship",
+      "label": "Narrower-Than Relationship",
+      "category": "ontology_relation",
+      "definition": "A relationship stating that one term covers a more specific conceptual scope than another term.",
+      "page": "/governance/terminology-convergence",
+      "posture": "conceptual",
+      "related_terms": ["terminology_relationship", "terminology_convergence"]
+    },
+    {
+      "id": "contradicts_relationship",
+      "label": "Contradicts Relationship",
+      "category": "ontology_relation",
+      "definition": "A relationship stating that two terms or definitions cannot both apply as stated without conflict or qualification.",
+      "page": "/governance/terminology-convergence",
+      "posture": "conceptual",
+      "related_terms": ["terminology_relationship", "terminology_convergence", "page_decision_record"]
+    },
+    {
       "id": "replay_link",
       "label": "Replay Link",
       "category": "evidence",
