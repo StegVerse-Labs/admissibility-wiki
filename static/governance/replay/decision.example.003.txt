@@ -1,0 +1,31 @@
+Admissibility Wiki Governance Replay
+====================================
+
+Replay ID: replay.decision.example.003
+Decision ID: decision.example.003
+Proposal ID: proposal.example.003
+Target page: docs/glossary/admissibility.md
+Policy reference: policy.wiki.page-review.v1
+Authority class: wiki_maintainer
+Review posture: entity_reviewed
+Evidence posture: partial
+Commit-time validity: true
+Decision: ESCALATE
+
+Replay question
+---------------
+Can a user-submitted terminology proposal bind an external term as equivalent to a StegVerse term when the proposal contains only partial evidence?
+
+Inputs
+------
+- Proposal: ../proposals/proposal.example.003.json
+- Decision: ../decisions/decision.example.003.json
+- Evidence: ../evidence/decision.example.003/README.md
+
+Expected result
+---------------
+ESCALATE: the proposal may identify useful overlapping or adjacent terminology, but it does not contain enough evidence to bind an equivalence claim.
+
+Boundary
+--------
+Replay checks this wiki-governance decision only. It does not certify the external terminology mapping and does not authorize external execution.
