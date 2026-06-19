@@ -38,6 +38,7 @@ The repository currently includes:
 - terminology convergence governance page;
 - proposal lifecycle governance page;
 - decision record governance page;
+- terminology convergence proposal, decision, replay, and evidence examples;
 - validation runbook;
 - validation workflow;
 - ontology validation script;
@@ -74,6 +75,15 @@ docs/governance/proposal-lifecycle.md
 docs/governance/decision-record.md
 ```
 
+The following terminology-convergence governance records are now installed and should not be recreated under the same IDs:
+
+```text
+static/governance/proposals/proposal.example.002.json
+static/governance/decisions/decision.example.002.json
+static/governance/replay/decision.example.002.txt
+static/governance/evidence/decision.example.002/README.md
+```
+
 ## Checked And Found
 
 The previously missing path is now installed:
@@ -89,6 +99,7 @@ Do not create duplicate versions of these already-installed concepts without fir
 - terminology convergence;
 - proposal lifecycle;
 - decision record;
+- terminology-convergence governance record example `example.002`;
 - DENY proof path;
 - ESCALATE proof path;
 - REFUSE proof path;
@@ -116,12 +127,11 @@ Overlapping and adjacent terms should be listed separately, so the page can dist
 
 The safest next build targets are:
 
-1. Proposal and decision JSON examples.
-2. Replay and reconstruction skeletons for wiki decision records.
-3. Ontology entries for proposal lifecycle, decision record, and terminology relationship classes.
-4. Update selected glossary pages to use `Equivalent Terms`, `Overlapping Terms`, and `Adjacent Terms` sections.
-5. StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
-6. Public status JSON mirror for activation and admissibility posture, if not already installed elsewhere.
+1. Ontology entries for proposal lifecycle, decision record, and terminology relationship classes.
+2. Update selected glossary pages to use `Equivalent Terms`, `Overlapping Terms`, and `Adjacent Terms` sections.
+3. Add additional proposal and decision examples for user-submitted terms and external-reference disputes.
+4. StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
+5. Public status JSON mirror for activation and admissibility posture, if not already installed elsewhere.
 
 ## Build Rule
 
