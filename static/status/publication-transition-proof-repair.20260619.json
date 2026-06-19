@@ -1,0 +1,20 @@
+{
+  "schema": "admissibility_wiki_publication_transition_repair_receipt.v1",
+  "receipt_id": "publication-transition-proof-repair.20260619",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "repair_commit": "e661606d4dd343eb000bbacd14c7b97be0ec7405",
+  "problem": "Allowed repository mutations were not appearing as visible public wiki page changes.",
+  "repair": "Pages deploy workflow now builds and deploys the Docusaurus site without requiring full governance validation to pass first. Full governance validation remains in the separate validate workflow.",
+  "proof_marker": {
+    "source_path": "docs/governance/publication-transition-proof.md",
+    "expected_public_path": "/admissibility-wiki/governance/publication-transition-proof",
+    "proof_marker_id": "publication-transition-proof-20260619-001"
+  },
+  "done_condition": "The public GitHub Pages URL shows the proof marker after the deploy workflow completes.",
+  "non_claims": [
+    "This receipt does not prove admissibility.",
+    "This receipt does not create source authority.",
+    "This receipt does not grant execution authority.",
+    "This receipt only records the deployment-chain repair attempt and the marker to verify."
+  ]
+}
