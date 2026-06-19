@@ -45,8 +45,10 @@ The repository currently includes:
 - proposal lifecycle governance page;
 - decision record governance page;
 - terminology convergence proposal, decision, replay, and evidence examples;
+- user-submitted terminology proposal, decision, replay, and evidence examples;
 - ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
 - first glossary convergence wave for commit-time authority, commit-time validity, receipt-bound execution, and reconstructability;
+- initial wave-2 convergence update for admissibility;
 - validation runbook;
 - validation workflow;
 - ontology validation script;
@@ -92,9 +94,19 @@ static/governance/replay/decision.example.002.txt
 static/governance/evidence/decision.example.002/README.md
 ```
 
+The following user-submitted terminology governance records are now installed and should not be recreated under the same IDs:
+
+```text
+static/governance/proposals/proposal.example.003.json
+static/governance/decisions/decision.example.003.json
+static/governance/replay/decision.example.003.txt
+static/governance/evidence/decision.example.003/README.md
+```
+
 The following glossary pages already include terminology relationship sections and should not be reworked without a specific improvement target:
 
 ```text
+docs/glossary/admissibility.md
 docs/glossary/commit-time-authority.md
 docs/glossary/commit-time-validity.md
 docs/glossary/receipt-bound-execution.md
@@ -119,6 +131,7 @@ Do not create duplicate versions of these already-installed concepts without fir
 - terminology relationship classes;
 - first glossary convergence wave;
 - terminology-convergence governance record example `example.002`;
+- user-submitted terminology governance record example `example.003`;
 - DENY proof path;
 - ESCALATE proof path;
 - REFUSE proof path;
@@ -148,8 +161,8 @@ Initial glossary convergence should be conservative: if external equivalence has
 
 The safest next build targets are:
 
-1. Continue glossary convergence wave 2 for admissibility, transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary.
-2. Add additional proposal and decision examples for user-submitted terms and external-reference disputes.
+1. Continue glossary convergence wave 2 for transition, authority class, policy reference, evidence posture, review posture, drift, and governance boundary.
+2. Add external-reference disagreement examples if needed.
 3. StegVerse-Labs/Site bridge status page, if not already installed elsewhere.
 4. Public status JSON mirror for activation and admissibility posture, if not already installed elsewhere.
 
