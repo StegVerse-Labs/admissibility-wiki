@@ -27,6 +27,7 @@ A task is ready for ecosystem-managed continuation when the repo records enough 
 The repository currently includes:
 
 - Docusaurus site scaffold;
+- expanded landing page defining the wiki, AI-governed proposal system, transition-table elements, and proposal transition blocks;
 - GitHub Pages deployment workflow;
 - custom-domain file for `admissibility.stegverse.org`;
 - activation runbook;
@@ -83,6 +84,7 @@ docs/governance/site-bridge-status.md
 docs/governance/admissibility-wiki-ai-entity.md
 docs/governance/current-task-sync.md
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
+docs/index.md
 ```
 
 ## Known Glossary Convergence Pages
@@ -113,6 +115,10 @@ When a StegVerse term has materially identical terms in other domains, those ter
 Overlapping and adjacent terms should be listed separately, so the page can distinguish shared vocabulary from StegVerse-specific extensions.
 
 Initial glossary convergence should be conservative: if external equivalence has not been researched and accepted, record `No accepted equivalent terms are recorded yet` and place likely candidates under overlapping or adjacent terms.
+
+## Landing Page Rule
+
+The landing page should explicitly explain why the wiki exists, define the AI-governed proposal system, and show the current transition-table elements and proposal transition blocks that define the wiki as it stands.
 
 ## Submission Receipt Timing Rule
 
