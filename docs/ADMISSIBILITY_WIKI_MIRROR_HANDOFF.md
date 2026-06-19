@@ -55,6 +55,7 @@ The repo currently includes:
 - proposal lifecycle governance page;
 - decision record governance page;
 - terminology convergence proposal, decision, replay, and evidence examples;
+- ontology entries for proposal lifecycle, decision record, terminology convergence, and terminology relationship classes;
 - current task sync page;
 - ontology validation script;
 - issue templates;
@@ -136,11 +137,10 @@ Do not label a term StegVerse-specific until reasonable overlap search has been 
 
 Priority order:
 
-1. Add ontology entries for proposal lifecycle, decision record, and terminology relationship classes.
-2. Update selected glossary pages to include equivalent, overlapping, and adjacent terminology sections.
-3. Add additional proposal and decision examples for user-submitted terms and external-reference disagreements.
-4. Update validation expectations if new artifact directories are added.
-5. Coordinate with `StegVerse-Labs/Site` only after checking `Site/docs/SITE_MIRROR_HANDOFF.md`.
+1. Update selected glossary pages to include equivalent, overlapping, and adjacent terminology sections.
+2. Add additional proposal and decision examples for user-submitted terms and external-reference disagreements.
+3. Update validation expectations if new artifact directories are added.
+4. Coordinate with `StegVerse-Labs/Site` only after checking `Site/docs/SITE_MIRROR_HANDOFF.md`.
 
 ## Mirror Coordination Rule
 
@@ -176,4 +176,4 @@ A chat thread is archive-ready when this handoff and `docs/governance/current-ta
 
 ## Current Next Action
 
-Add ontology entries for proposal lifecycle, decision record, and terminology relationship classes, then update selected glossary pages with terminology relationship sections.
+Update selected glossary pages with terminology relationship sections, starting with commit-time authority, commit-time validity, receipt-bound execution, and reconstructability.
