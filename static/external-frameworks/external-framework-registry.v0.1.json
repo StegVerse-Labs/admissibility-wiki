@@ -1,0 +1,51 @@
+{
+  "schema": "admissibility_wiki_external_framework_registry.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "authority_boundary": "External frameworks may be crosswalked, mapped, and compared in the wiki. They do not become canonical Admissible-Existence formalism sources unless separately accepted by the canonical source process.",
+  "allowed_relationships": [
+    "precondition",
+    "adjacent",
+    "strongly_correlated",
+    "overlapping",
+    "broader",
+    "narrower",
+    "contradictory",
+    "unresolved"
+  ],
+  "required_record_fields": [
+    "framework_id",
+    "name",
+    "status",
+    "external_role",
+    "wiki_path",
+    "primary_relationship",
+    "crosswalk_targets",
+    "non_claims"
+  ],
+  "records": [
+    {
+      "framework_id": "external.glm",
+      "name": "GLM",
+      "status": "crosswalk_intake",
+      "external_role": "machine-readable boundary declaration and pre-admissibility interpretation frame",
+      "wiki_path": "docs/external-frameworks/glm.md",
+      "primary_relationship": "precondition",
+      "crosswalk_targets": [
+        "Governance Boundary",
+        "Boundary Conditions",
+        "Claims and Non-Claims",
+        "Evidence Posture",
+        "Review Posture",
+        "Transition Table",
+        "Policy Reference",
+        "Commit-Time Validity"
+      ],
+      "non_claims": [
+        "GLM is not a canonical Admissible-Existence formalism source in this registry.",
+        "GLM does not prove transition admissibility.",
+        "GLM declarations may support review but do not replace commit-time validity."
+      ]
+    }
+  ],
+  "next_action": "Add EVIDE as a separate external evidentiary reconstructability framework after GLM crosswalk is exposed in navigation."
+}
