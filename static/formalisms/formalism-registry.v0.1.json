@@ -25,18 +25,18 @@
   "records": [
     {
       "formalism_id": "ae.STCM",
-      "name": "STCM",
-      "state": "intake",
+      "name": "State Transition Continuity Model",
+      "state": "mirrored",
       "source_authority": "Admissible-Existence/STCM",
       "source_visibility": "public",
-      "wiki_path": "docs/formalisms/admissible-existence-stcm.md",
-      "purpose": "Mirror the STCM subject formalism for public comparison, crosswalk, and convergence review.",
-      "transition_relationship": "subject formalism pending source crosswalk",
-      "evidence_posture": "source_repository_required",
-      "validation_posture": "pending_detail_page_and_crosswalk",
+      "wiki_path": "docs/formalisms/state-transition-continuity-model.md",
+      "purpose": "Mirror public-safe metadata for State Transition Continuity Model and connect continuity review to transition posture, runtime governance, boundary conditions, evidence, and receipts.",
+      "transition_relationship": "state transition continuity canonical detail page installed; source-confirmed proof and validation extraction pending",
+      "evidence_posture": "public_safe_scaffold_available_public_source_crosswalk_pending",
+      "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
       "non_claims": [
         "Wiki mirroring does not make STCM a StegVerse source authority.",
-        "Wiki mirroring does not prove or validate STCM claims."
+        "Wiki mirroring does not define, prove, or validate STCM claims."
       ]
     },
     {
