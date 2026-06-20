@@ -18,6 +18,7 @@ The public deployed endpoint remains pending until an authorized runtime is sele
 local_api_server: installed
 local_api_route: POST /api/wiki/proposals/intake
 static_intake_page_can_submit_to_configured_endpoint: installed
+deploy_config: installed
 public_browser_api_endpoint: deploy_pending
 automatic_ai_review: not_installed
 automatic_decision_publication: not_installed
@@ -39,6 +40,22 @@ Health route:
 
 ```text
 http://127.0.0.1:8787/health
+```
+
+## Deployment Configuration
+
+The repository includes a container deployment file and a Render-style service blueprint.
+
+```text
+Dockerfile.intake-api
+render.intake-api.yaml
+scripts/check-intake-api-deploy-config.mjs
+```
+
+Run the deployment-config validator directly with:
+
+```text
+node scripts/check-intake-api-deploy-config.mjs
 ```
 
 ## Runtime Requirements
@@ -93,16 +110,17 @@ Only a decision record can do that.
 
 Before marking the public browser/API endpoint active:
 
-1. Deploy the API runtime.
-2. Run a health check.
-3. Submit a valid manifest fixture.
-4. Confirm candidate, receipt, queue record, and queue index are written durably.
-5. Submit malformed JSON and confirm a bounded rejection response.
-6. Confirm receipt non-claims remain present.
-7. Confirm queue non-claims remain present.
-8. Confirm no decision record is created by intake.
-9. Record a deployment receipt.
-10. Update status only after evidence exists.
+1. Validate deployment configuration.
+2. Deploy the API runtime.
+3. Run a health check.
+4. Submit a valid manifest fixture.
+5. Confirm candidate, receipt, queue record, and queue index are written durably.
+6. Submit malformed JSON and confirm a bounded rejection response.
+7. Confirm receipt non-claims remain present.
+8. Confirm queue non-claims remain present.
+9. Confirm no decision record is created by intake.
+10. Record a deployment receipt.
+11. Update status only after evidence exists.
 
 ## Not Yet Included
 
