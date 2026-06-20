@@ -101,6 +101,23 @@ Current known publication family:
 https://github.com/GCAT-BCAT-Engine/Publisher/tree/main/papers/GCAT-BCAT
 ```
 
+Durable machine-readable inventory:
+
+```text
+static/formalisms/gcat-bcat-publication-artifacts.v0.1.json
+```
+
+Inventory update path:
+
+```text
+scripts/enumerate-gcat-bcat-publisher-artifacts.mjs
+scripts/apply-gcat-bcat-publisher-artifacts.mjs
+github/workflows/enumerate-gcat-bcat-publisher-artifacts.yml
+github/workflows/apply-gcat-bcat-publisher-artifacts.yml
+```
+
+Paths shown above without leading dot for iOS readability where applicable. The actual workflow paths use the leading dot directory.
+
 This path is treated as a publication/exposition family, not as the canonical formalism authority.
 
 ## Reference Implementations
