@@ -7,12 +7,17 @@ const requiredMarkers = [
   'local_api_server: installed',
   'local_api_route: POST /api/wiki/proposals/intake',
   'static_intake_page_can_submit_to_configured_endpoint: installed',
+  'deploy_config: installed',
   'public_browser_api_endpoint: deploy_pending',
   'automatic_ai_review: not_installed',
   'automatic_decision_publication: not_installed',
   'npm run intake:api',
   'http://127.0.0.1:8787/api/wiki/proposals/intake',
   'http://127.0.0.1:8787/health',
+  'Dockerfile.intake-api',
+  'render.intake-api.yaml',
+  'scripts/check-intake-api-deploy-config.mjs',
+  'node scripts/check-intake-api-deploy-config.mjs',
   'INTAKE_OUTPUT_ROOT=static/governance/intake',
   'MAX_BODY_BYTES=256000',
   'The GitHub.io static site itself does not provide server execution.',
@@ -21,6 +26,7 @@ const requiredMarkers = [
   'queue record',
   'queue index',
   'Only a decision record can do that.',
+  'Validate deployment configuration.',
   'Confirm no decision record is created by intake.'
 ];
 
@@ -55,4 +61,5 @@ for (const marker of forbiddenMarkers) {
 }
 
 console.log(`OK: ${DEPLOYMENT_PATH}`);
+console.log('deploy_config=installed');
 console.log('public_browser_api_endpoint=deploy_pending');
