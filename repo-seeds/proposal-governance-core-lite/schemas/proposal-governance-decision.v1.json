@@ -1,0 +1,44 @@
+{
+  "schema": "proposal_governance_decision.v1",
+  "required_fields": [
+    "decision_id",
+    "proposal_id",
+    "proposal_governance_class",
+    "received_bundle_ref",
+    "sandbox_receipt_ref",
+    "ingestion_receipt_refs",
+    "master_records_copy_refs",
+    "decision_result",
+    "decision_reason",
+    "public_display_consequence",
+    "non_claims"
+  ],
+  "allowed_decision_results": [
+    "ALLOW",
+    "ALLOW_AS_OVERLAP",
+    "DENY",
+    "DEFER",
+    "ESCALATE",
+    "REFUSE",
+    "SUPERSEDE"
+  ],
+  "allowed_public_display_consequences": [
+    "NO_DISPLAY",
+    "PENDING_DISPLAY",
+    "PUBLIC_PROPOSAL_DISPLAY",
+    "ACCEPTED_GLOSSARY_UPDATE",
+    "OVERLAP_MAPPING_DISPLAY",
+    "EQUIVALENCE_MAPPING_DISPLAY",
+    "DENIAL_DISPLAY",
+    "DEFERRED_DISPLAY",
+    "ESCALATION_DISPLAY",
+    "SUPERSEDED_DISPLAY"
+  ],
+  "authority_boundary": {
+    "receipt_is_decision": false,
+    "queue_is_decision": false,
+    "sandbox_is_decision": false,
+    "llm_recommendation_is_decision": false,
+    "decision_record_required": true
+  }
+}
