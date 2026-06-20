@@ -1,0 +1,42 @@
+name: Verify Intake API Endpoint
+
+on:
+  workflow_dispatch:
+    inputs:
+      endpoint_url:
+        description: Deployed endpoint URL ending in /api/wiki/proposals/intake
+        required: true
+      fixture_path:
+        description: Fixture path to submit
+        required: true
+        default: fixtures/intake/submission.valid.example.json
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify endpoint and write observed receipt
+        run: node scripts/verify-proposal-intake-public-endpoint.mjs "${{ inputs.endpoint_url }}" "${{ inputs.fixture_path }}" static/status/proposal-intake-api-deployment-receipt.observed.json
+
+      - name: Commit observed verification receipt
+        run: |
+          if git diff --quiet -- static/status/proposal-intake-api-deployment-receipt.observed.json; then
+            echo "No verification receipt changed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add static/status/proposal-intake-api-deployment-receipt.observed.json
+          git commit -m "Record observed proposal intake API verification"
+          git push
