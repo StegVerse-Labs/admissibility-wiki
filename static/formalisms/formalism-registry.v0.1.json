@@ -73,18 +73,18 @@
     },
     {
       "formalism_id": "ae.TT",
-      "name": "TT",
-      "state": "intake",
+      "name": "Transition Table",
+      "state": "mirrored",
       "source_authority": "Admissible-Existence/TT",
       "source_visibility": "private",
-      "wiki_path": "docs/formalisms/admissible-existence-tt.md",
-      "purpose": "Mirror public-safe metadata for the TT subject formalism and connect it to the public transition-table vocabulary.",
-      "transition_relationship": "transition table subject formalism pending source crosswalk",
-      "evidence_posture": "source_repository_required_private_scope",
-      "validation_posture": "pending_detail_page_and_crosswalk",
+      "wiki_path": "docs/formalisms/transition-table.md",
+      "purpose": "Mirror public-safe metadata for the Transition Table formalism and connect it to the public transition-table vocabulary.",
+      "transition_relationship": "transition table canonical detail page installed; source-confirmed proof and validation extraction pending",
+      "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
+      "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
       "non_claims": [
-        "Wiki mirroring must not expose private TT source content.",
-        "Wiki mirroring does not prove or validate TT claims."
+        "Wiki mirroring must not expose private Transition Table source content.",
+        "Wiki mirroring does not define, prove, or validate Transition Table claims."
       ]
     },
     {
@@ -216,5 +216,5 @@
       ]
     }
   ],
-  "next_action": "Create public-safe formalism detail pages and source crosswalk records for each Admissible-Existence subject repository."
+  "next_action": "Continue public-safe formalism detail pages and source crosswalk records for each Admissible-Existence subject repository."
 }
