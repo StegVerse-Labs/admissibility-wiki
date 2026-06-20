@@ -2,8 +2,11 @@
   "schema": "admissibility_wiki_proposal_intake_backend_status.v1",
   "generated_at": "2026-06-19T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
+  "core_library": "scripts/lib/proposal-intake-core.mjs",
   "backend_script": "scripts/proposal-intake-backend.mjs",
+  "api_server": "scripts/proposal-intake-api-server.mjs",
   "runtime_validator": "scripts/check-proposal-intake-backend-runtime.mjs",
+  "api_validator": "scripts/check-proposal-intake-api-server.mjs",
   "fixture": "fixtures/intake/submission.valid.example.json",
   "authorized_workflow": ".github/workflows/intake-proposal.yml",
   "repo_local_backend": "installed",
@@ -12,11 +15,13 @@
   "durable_queue_write": "installed_repo_local",
   "queue_index_write": "installed_repo_local",
   "authorized_workflow_wrapper": "installed",
-  "browser_api_endpoint": "not_installed",
+  "local_api_endpoint": "installed",
+  "local_api_route": "POST /api/wiki/proposals/intake",
+  "public_browser_api_endpoint": "deploy_pending",
   "automatic_ai_review": "not_installed",
   "automatic_decision_publication": "not_installed",
   "receipt_boundary": "receipt_does_not_accept_proposal",
   "queue_boundary": "queue_placement_does_not_create_decision_authority",
   "decision_boundary": "decision_record_required_for_accept_deny_defer_escalate_refuse_or_supersede",
-  "next_action": "Use the authorized workflow to process committed submission fixtures, then verify durable candidate, receipt, queue, and queue index artifacts."
+  "next_action": "Deploy the API server in an authorized runtime and connect the static browser intake scaffold to the deployed endpoint."
 }
