@@ -20,10 +20,11 @@
     "validate:proposal-intake-runtime": "node scripts/check-proposal-intake-backend-runtime.mjs",
     "validate:proposal-intake-api": "node scripts/check-proposal-intake-api-server.mjs",
     "validate:proposal-intake-api-deployment": "node scripts/check-proposal-intake-api-deployment.mjs",
+    "validate:proposal-intake-api-deployment-receipt": "node scripts/check-proposal-intake-api-deployment-receipt.mjs",
     "validate:public-share-readiness": "node scripts/check-public-share-readiness.mjs",
     "intake:proposal": "node scripts/proposal-intake-backend.mjs",
     "intake:api": "node scripts/proposal-intake-api-server.mjs",
-    "validate": "npm run validate:ontology && npm run validate:wiki-status && npm run validate:activation-checklist && npm run validate:equivalence-template && npm run validate:relationship-status && npm run validate:public-activation-receipt && npm run validate:formalism-registry && npm run validate:term-candidates && npm run validate:formalism-source-sync && npm run validate:external-frameworks && npm run validate:transition-origin && npm run validate:proposal-intake && npm run validate:proposal-intake-backend && npm run validate:proposal-intake-runtime && npm run validate:proposal-intake-api && npm run validate:proposal-intake-api-deployment && npm run validate:public-share-readiness && npm run build"
+    "validate": "npm run validate:ontology && npm run validate:wiki-status && npm run validate:activation-checklist && npm run validate:equivalence-template && npm run validate:relationship-status && npm run validate:public-activation-receipt && npm run validate:formalism-registry && npm run validate:term-candidates && npm run validate:formalism-source-sync && npm run validate:external-frameworks && npm run validate:transition-origin && npm run validate:proposal-intake && npm run validate:proposal-intake-backend && npm run validate:proposal-intake-runtime && npm run validate:proposal-intake-api && npm run validate:proposal-intake-api-deployment && npm run validate:proposal-intake-api-deployment-receipt && npm run validate:public-share-readiness && npm run build"
   },
   "dependencies": {
     "@docusaurus/core": "^3.10.1",
