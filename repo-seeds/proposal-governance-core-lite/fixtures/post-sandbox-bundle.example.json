@@ -1,0 +1,45 @@
+{
+  "schema": "proposal_governance_post_sandbox_bundle.v1",
+  "bundle_id": "post-sandbox-bundle.example.001",
+  "proposal_id": "proposal.example.governance.001",
+  "proposal_governance_class": "G",
+  "source": {
+    "origin": "admissibility-wiki-intake",
+    "sandbox": "StegGhost/entity-sandbox-runner",
+    "ingestion_return": "ingestion_cge_after_sandbox"
+  },
+  "ingestion_receipt_refs": [
+    "ingestion.receipt.pre_sandbox.example",
+    "ingestion.receipt.post_sandbox.example"
+  ],
+  "master_records_copy_refs": [
+    "master-records.copy.pre_sandbox.example",
+    "master-records.copy.post_sandbox.example"
+  ],
+  "sandbox_receipt_ref": "sandbox.receipt.example.001",
+  "candidate_paths": [
+    {
+      "path_id": "candidate.allow_as_overlap",
+      "decision_result": "ALLOW_AS_OVERLAP",
+      "public_display_consequence": "OVERLAP_MAPPING_DISPLAY",
+      "status": "candidate"
+    },
+    {
+      "path_id": "candidate.defer_for_evidence",
+      "decision_result": "DEFER",
+      "public_display_consequence": "DEFERRED_DISPLAY",
+      "status": "candidate"
+    },
+    {
+      "path_id": "candidate.deny_equivalence",
+      "decision_result": "DENY",
+      "public_display_consequence": "DENIAL_DISPLAY",
+      "status": "candidate"
+    }
+  ],
+  "non_claims": [
+    "Post-sandbox bundle is not a decision record.",
+    "Sandbox candidate paths do not create public display standing.",
+    "Proposal governance core-lite must issue a decision record before public display consequence."
+  ]
+}
