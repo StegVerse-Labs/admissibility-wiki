@@ -1,0 +1,57 @@
+{
+  "manifest": {
+    "schema": "admissibility_wiki_submission_manifest.v1",
+    "proposal_id": "pending",
+    "submitted_at": "2026-06-19T00:00:00Z",
+    "submitter_class": "researcher",
+    "target": {
+      "type": "glossary_page",
+      "path": "docs/glossary/reconstructability.md"
+    },
+    "proposal": {
+      "class": "overlap_claim",
+      "summary": "Claim that an external term overlaps with Reconstructability but should not be treated as equivalent without further evidence.",
+      "requested_outcome": "ALLOW_AS_OVERLAP"
+    },
+    "transition_origin_claim": {
+      "derived_from": "External Mapping",
+      "transition_table_elements": [
+        "evidence_posture",
+        "review_posture",
+        "decision_result"
+      ],
+      "transition_blocks": [
+        "submission",
+        "review",
+        "decision",
+        "reconstruction"
+      ],
+      "standing": "External Overlap"
+    },
+    "relationship_claims": [
+      {
+        "relationship": "overlapping",
+        "external_term": "Example external term",
+        "external_domain": "example domain",
+        "notes": "The term appears to support reconstruction but does not by itself show why consequence had standing."
+      }
+    ],
+    "evidence_refs": [
+      {
+        "type": "external_reference",
+        "label": "Example source",
+        "url": "https://example.org/source"
+      }
+    ],
+    "non_claims": [
+      "This manifest does not accept the proposal.",
+      "This manifest does not prove equivalence.",
+      "This manifest does not create commit-time standing."
+    ],
+    "receipt_request": {
+      "include_submission_timing": true,
+      "include_hashes": true,
+      "include_replay_expectation": true
+    }
+  }
+}
