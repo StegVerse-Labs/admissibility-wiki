@@ -55,13 +55,16 @@ const sidebars = {
       label: 'Formalisms',
       items: [
         'formalisms/index',
+        'formalisms/canonical-catalog',
       ],
     },
     {
       type: 'category',
       label: 'External Frameworks',
       items: [
+        'external-frameworks/index',
         'external-frameworks/glm',
+        'external-frameworks/evide',
       ],
     },
     {
