@@ -169,18 +169,18 @@
     },
     {
       "formalism_id": "ae.core-lite",
-      "name": "core-lite",
-      "state": "intake",
+      "name": "Core-Lite Admissibility Engine",
+      "state": "mirrored",
       "source_authority": "Admissible-Existence/core-lite",
       "source_visibility": "private",
-      "wiki_path": "docs/formalisms/admissible-existence-core-lite.md",
-      "purpose": "Mirror public-safe metadata for the core-lite subject formalism once source boundary and publishable scope are confirmed.",
-      "transition_relationship": "subject formalism pending source crosswalk",
-      "evidence_posture": "source_repository_required_private_scope",
-      "validation_posture": "pending_detail_page_and_crosswalk",
+      "wiki_path": "docs/formalisms/core-lite-admissibility-engine.md",
+      "purpose": "Mirror public-safe metadata for Core-Lite Admissibility Engine and connect executable intake, gating, receipts, validators, and publication paths to the formalism graph.",
+      "transition_relationship": "core-lite admissibility engine canonical detail page installed; source-confirmed proof, implementation, and validation extraction pending",
+      "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
+      "validation_posture": "detail_page_installed_pending_source_confirmed_tests_and_reference_implementations",
       "non_claims": [
-        "Wiki mirroring must not expose private core-lite source content.",
-        "Wiki mirroring does not prove or validate core-lite claims."
+        "Wiki mirroring must not expose private Core-Lite source content.",
+        "Wiki mirroring does not define, prove, validate, or implement Core-Lite Admissibility Engine claims."
       ]
     },
     {
