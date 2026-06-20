@@ -51,7 +51,14 @@ if (status.seed_status !== 'installed_and_validatable') {
 if (status.target_repo_status !== 'not_created') {
   fail('target_repo_status must remain not_created');
 }
+if (status.tracking_issue !== 'https://github.com/StegVerse-Labs/admissibility-wiki/issues/1') {
+  fail('tracking_issue must point to issue #1');
+}
+if (status.tracking_issue_number !== 1) {
+  fail('tracking_issue_number must be 1');
+}
 
 console.log(`OK: ${TASK_PATH}`);
 console.log(`OK: ${STATUS_PATH}`);
 console.log('proposal_governance_core_lite_creation_task=external_blocker_recorded');
+console.log('tracking_issue=1');
