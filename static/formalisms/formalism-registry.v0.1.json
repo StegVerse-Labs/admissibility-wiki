@@ -137,18 +137,18 @@
     },
     {
       "formalism_id": "ae.DC",
-      "name": "DC",
-      "state": "intake",
+      "name": "Decision Continuity",
+      "state": "mirrored",
       "source_authority": "Admissible-Existence/DC",
       "source_visibility": "private",
-      "wiki_path": "docs/formalisms/admissible-existence-dc.md",
-      "purpose": "Mirror public-safe metadata for the DC subject formalism once source boundary and publishable scope are confirmed.",
-      "transition_relationship": "subject formalism pending source crosswalk",
-      "evidence_posture": "source_repository_required_private_scope",
-      "validation_posture": "pending_detail_page_and_crosswalk",
+      "wiki_path": "docs/formalisms/decision-continuity.md",
+      "purpose": "Mirror public-safe metadata for Decision Continuity and connect decision standing to state continuity, runtime governance, boundary conditions, evidence, handoffs, and receipts.",
+      "transition_relationship": "decision continuity canonical detail page installed; source-confirmed proof and validation extraction pending",
+      "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
+      "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
       "non_claims": [
-        "Wiki mirroring must not expose private DC source content.",
-        "Wiki mirroring does not prove or validate DC claims."
+        "Wiki mirroring must not expose private Decision Continuity source content.",
+        "Wiki mirroring does not define, prove, or validate Decision Continuity claims."
       ]
     },
     {
