@@ -1,0 +1,38 @@
+{
+  "schema": "proposal_governance_routing.v1",
+  "repository_target": "StegVerse-Labs/proposal-governance-core-lite",
+  "route_classes": {
+    "E": {
+      "name": "CLASS_E_EDITORIAL",
+      "sandbox_required": false,
+      "requires_decision_record": true,
+      "public_display_requires_decision": true
+    },
+    "G": {
+      "name": "CLASS_G_GOVERNANCE",
+      "sandbox_required": true,
+      "requires_decision_record": true,
+      "public_display_requires_decision": true
+    },
+    "F": {
+      "name": "CLASS_F_FORMALISM",
+      "sandbox_required": true,
+      "requires_decision_record": true,
+      "public_display_requires_decision": true
+    }
+  },
+  "required_routes": [
+    "ingestion_cge_to_master_records",
+    "sandbox_to_ingestion_cge",
+    "ingestion_cge_to_proposal_governance_core_lite",
+    "proposal_governance_core_lite_to_master_records",
+    "proposal_governance_core_lite_to_public_display_consequence"
+  ],
+  "invariants": [
+    "Every ingestion/CGE pass emits to master-records.",
+    "Public display is consequence path only.",
+    "Decision record is required before public display standing.",
+    "Sandbox output is evidence, not authority.",
+    "LLM recommendation is evidence, not authority."
+  ]
+}
