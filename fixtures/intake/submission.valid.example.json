@@ -4,6 +4,12 @@
     "proposal_id": "pending",
     "submitted_at": "2026-06-19T00:00:00Z",
     "submitter_class": "researcher",
+    "proposal_governance_class": "G",
+    "class_assignment": {
+      "assigned_at": "intake",
+      "assigned_by": "system",
+      "reason": "Overlap claims require standard governance review and sandbox candidate-path testing."
+    },
     "target": {
       "type": "glossary_page",
       "path": "docs/glossary/reconstructability.md"
