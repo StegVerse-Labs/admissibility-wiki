@@ -1,0 +1,14 @@
+{
+  "schema": "admissibility_wiki_proposal_governance_core_lite_seed_status.v1",
+  "generated_at": "2026-06-20T00:00:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "target_repository": "StegVerse-Labs/proposal-governance-core-lite",
+  "target_repository_exists": false,
+  "seed_path": "repo-seeds/proposal-governance-core-lite/",
+  "seed_validator": "scripts/check-proposal-governance-core-lite-seed.mjs",
+  "seed_documentation": "docs/governance/proposal-governance-core-lite-seed.md",
+  "seed_status": "installed_and_validatable",
+  "target_repo_status": "not_created",
+  "activation_boundary": "Do not claim proposal-governance-core-lite is active until the target repo exists and validates independently.",
+  "next_action": "Create StegVerse-Labs/proposal-governance-core-lite, copy the seed contents, and run npm run validate in the target repo."
+}
