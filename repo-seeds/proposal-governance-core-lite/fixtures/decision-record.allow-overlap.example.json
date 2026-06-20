@@ -1,0 +1,28 @@
+{
+  "schema": "proposal_governance_decision_record.v1",
+  "decision_id": "decision.example.allow-overlap.001",
+  "proposal_id": "proposal.example.governance.001",
+  "proposal_governance_class": "G",
+  "received_bundle_ref": "fixtures/post-sandbox-bundle.example.json",
+  "sandbox_receipt_ref": "sandbox.receipt.example.001",
+  "ingestion_receipt_refs": [
+    "ingestion.receipt.pre_sandbox.example",
+    "ingestion.receipt.post_sandbox.example",
+    "ingestion.receipt.decision.example"
+  ],
+  "master_records_copy_refs": [
+    "master-records.copy.pre_sandbox.example",
+    "master-records.copy.post_sandbox.example",
+    "master-records.copy.decision.example"
+  ],
+  "decision_result": "ALLOW_AS_OVERLAP",
+  "selected_candidate_path": "candidate.allow_as_overlap",
+  "decision_reason": "The submitted external term overlaps the target concept but does not satisfy equivalence standing.",
+  "public_display_consequence": "OVERLAP_MAPPING_DISPLAY",
+  "public_display_path": "admissibility-wiki/governance/relationship-status-summary",
+  "non_claims": [
+    "Decision allows overlap display only.",
+    "Decision does not accept equivalent-term standing.",
+    "Decision does not bypass master-records preservation."
+  ]
+}
