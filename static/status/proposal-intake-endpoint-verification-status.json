@@ -1,0 +1,26 @@
+{
+  "schema": "admissibility_wiki_proposal_intake_endpoint_verification_status.v1",
+  "generated_at": "2026-06-20T00:00:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "verifier": "scripts/verify-proposal-intake-public-endpoint.mjs",
+  "verification_workflow": ".github/workflows/verify-intake-api-endpoint.yml",
+  "expected_endpoint_path": "/api/wiki/proposals/intake",
+  "expected_health_path": "/health",
+  "observed_receipt_path": "static/status/proposal-intake-api-deployment-receipt.observed.json",
+  "verification_status": "ready_for_external_runtime",
+  "public_endpoint_status": "deploy_pending",
+  "required_evidence": [
+    "runtime_health_check",
+    "valid_manifest_submission",
+    "receipt_non_claims_present",
+    "queue_result_present",
+    "malformed_json_rejected"
+  ],
+  "non_claims": [
+    "Verification tooling does not prove the public endpoint is deployed.",
+    "Verification tooling does not accept proposals.",
+    "Verification tooling does not create decision authority.",
+    "Verification tooling does not install automatic AI review or decision publication."
+  ],
+  "next_action": "Deploy an authorized intake API runtime, then run the manual verification workflow with the deployed endpoint URL."
+}
