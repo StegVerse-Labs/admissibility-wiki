@@ -1,0 +1,90 @@
+{
+  "schema": "admissibility_wiki_proposal_governance_classes.v1",
+  "generated_at": "2026-06-20T00:00:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "classes": {
+    "E": {
+      "name": "CLASS_E_EDITORIAL",
+      "risk_posture": "low",
+      "sandbox_required": false,
+      "examples": [
+        "typo",
+        "formatting",
+        "broken_link",
+        "citation_formatting",
+        "navigation_correction",
+        "layout_correction"
+      ],
+      "route": [
+        "proposal",
+        "ingestion_cge_to_master_records",
+        "editorial_review",
+        "decision_record",
+        "ingestion_cge_to_master_records",
+        "public_display_consequence"
+      ]
+    },
+    "G": {
+      "name": "CLASS_G_GOVERNANCE",
+      "risk_posture": "standard_governance",
+      "sandbox_required": true,
+      "examples": [
+        "new_term",
+        "term_revision",
+        "overlap_claim",
+        "adjacency_claim",
+        "external_framework_mapping",
+        "new_evidence_source",
+        "relationship_dispute"
+      ],
+      "route": [
+        "proposal",
+        "ingestion_cge_to_master_records",
+        "sandbox_candidate_path_testing",
+        "ingestion_cge_to_master_records",
+        "proposal_governance_core_lite",
+        "decision_record",
+        "ingestion_cge_to_master_records",
+        "public_display_consequence"
+      ]
+    },
+    "F": {
+      "name": "CLASS_F_FORMALISM",
+      "risk_posture": "high_formalism",
+      "sandbox_required": true,
+      "examples": [
+        "equivalence_claim",
+        "transition_origin_modification",
+        "ontology_mutation",
+        "proof_path_modification",
+        "authority_model_modification",
+        "admissibility_rule_modification",
+        "formalism_creation"
+      ],
+      "route": [
+        "proposal",
+        "ingestion_cge_to_master_records",
+        "sandbox_candidate_path_generation",
+        "ingestion_cge_to_master_records",
+        "proposal_governance_core_lite",
+        "formalism_review",
+        "decision_record",
+        "ingestion_cge_to_master_records",
+        "public_display_consequence"
+      ]
+    }
+  },
+  "global_invariants": [
+    "Every ingestion/CGE pass routes to master-records.",
+    "Public display is consequence path only.",
+    "Receipt issuance is not proposal acceptance.",
+    "Queue placement is not decision authority.",
+    "LLM recommendation is not decision authority.",
+    "Decision record is required before public display standing."
+  ],
+  "core_lite_target": {
+    "organization": "StegVerse-Labs",
+    "repository_candidate": "proposal-governance-core-lite",
+    "status": "not_created_in_this_repo"
+  }
+}
