@@ -22,6 +22,7 @@ const sidebars = {
         'governance/manifest-receipt-submission',
         'governance/proposal-intake-interface',
         'governance/proposal-intake-backend-contract',
+        'governance/proposal-intake-api-deployment',
         'governance/proposal-lifecycle',
         'governance/decision-record',
         'governance/relationship-status-summary',
