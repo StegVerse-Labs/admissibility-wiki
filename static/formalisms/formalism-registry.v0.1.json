@@ -185,18 +185,18 @@
     },
     {
       "formalism_id": "ae.learning-transition-governance",
-      "name": "learning-transition-governance",
-      "state": "intake",
+      "name": "Learning Transition Governance",
+      "state": "mirrored",
       "source_authority": "Admissible-Existence/learning-transition-governance",
       "source_visibility": "public",
-      "wiki_path": "docs/formalisms/admissible-existence-learning-transition-governance.md",
-      "purpose": "Mirror the learning-transition-governance subject formalism for public comparison, crosswalk, and convergence review.",
-      "transition_relationship": "learning and transition-governance subject formalism pending source crosswalk",
-      "evidence_posture": "source_repository_required",
-      "validation_posture": "pending_detail_page_and_crosswalk",
+      "wiki_path": "docs/formalisms/learning-transition-governance.md",
+      "purpose": "Mirror public-safe metadata for Learning Transition Governance and connect learning, adaptation, feedback intake, model-state changes, and knowledge-state transitions to admissibility standing.",
+      "transition_relationship": "learning transition governance canonical detail page installed; source-confirmed proof and validation extraction pending",
+      "evidence_posture": "public_safe_scaffold_available_public_source_crosswalk_pending",
+      "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
       "non_claims": [
-        "Wiki mirroring does not make learning-transition-governance a StegVerse source authority.",
-        "Wiki mirroring does not prove or validate learning-transition-governance claims."
+        "Wiki mirroring does not make Learning Transition Governance a StegVerse source authority.",
+        "Wiki mirroring does not define, prove, validate, or implement Learning Transition Governance claims."
       ]
     },
     {
