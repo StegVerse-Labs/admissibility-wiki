@@ -1,0 +1,42 @@
+name: Intake Proposal
+
+on:
+  workflow_dispatch:
+    inputs:
+      submission_path:
+        description: Path to a committed submission JSON file to intake
+        required: true
+        default: fixtures/intake/submission.valid.example.json
+
+permissions:
+  contents: write
+
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate before intake
+        run: npm run validate:proposal-intake-backend && npm run validate:proposal-intake-runtime
+
+      - name: Run proposal intake backend
+        run: node scripts/proposal-intake-backend.mjs "${{ inputs.submission_path }}"
+
+      - name: Commit durable intake artifacts
+        run: |
+          if git diff --quiet -- static/governance/intake; then
+            echo "No intake artifacts changed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add static/governance/intake
+          git commit -m "Record durable proposal intake artifacts"
+          git push
