@@ -1,0 +1,25 @@
+{
+  "schema": "proposal_governance_core_lite_status.v1",
+  "generated_at": "2026-06-20T00:00:00Z",
+  "repository_target": "StegVerse-Labs/proposal-governance-core-lite",
+  "seed_location": "StegVerse-Labs/admissibility-wiki/repo-seeds/proposal-governance-core-lite",
+  "runtime_status": "seed_only_not_deployed",
+  "repo_created": false,
+  "installed_capabilities": [
+    "E/G/F governance class routing schema",
+    "decision record schema",
+    "post-sandbox bundle fixture",
+    "allow-overlap decision fixture",
+    "seed validator",
+    "status artifact"
+  ],
+  "pending_capabilities": [
+    "actual repository creation",
+    "ingestion/CGE receiver runtime",
+    "master-records copy emitter",
+    "public display consequence emitter",
+    "workflow validation in target repo"
+  ],
+  "routing_invariant": "Every ingestion/CGE pass emits to master-records.",
+  "public_display_boundary": "Public display requires a decision record selected by proposal-governance-core-lite."
+}
