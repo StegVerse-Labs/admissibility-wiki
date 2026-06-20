@@ -44,7 +44,7 @@ non-claims
 | Canonical Formalism | Source Repository | Wiki State | Public-Safe Definition State |
 |---|---|---|---|
 | State Transition Continuity Model | `Admissible-Existence/STCM` | watching | pending source-confirmed extraction |
-| Runtime Transition Governance | `Admissible-Existence/RTG` | watching | pending public-safe source availability |
+| [Runtime Transition Governance](./runtime-transition-governance.md) | `Admissible-Existence/RTG` | watching | initial scaffold installed |
 | Boundary Conditions | `Admissible-Existence/BC` | watching | pending public-safe source availability |
 | [Transition Table](./transition-table.md) | `Admissible-Existence/TT` | watching | initial scaffold installed |
 | Triad Governance Model | `Admissible-Existence/Triad` | watching | pending public-safe source availability |
@@ -95,4 +95,4 @@ External framework mapping does not replace canonical formalism definition.
 
 ## Next Safe Build Target
 
-Expand the Transition Table scaffold into a full source-boundary page, then continue source-confirmed mathematical, proof, and validation candidate extraction for Governance-Centered and Boundary-Centered Admissibility Testing.
+Register Runtime Transition Governance in the machine-readable formalism registry, then continue source-confirmed mathematical, proof, and validation candidate extraction.
