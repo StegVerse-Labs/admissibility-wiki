@@ -1,0 +1,24 @@
+{
+  "schema": "admissibility_wiki_publication_verification_status.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "latest_checked_commit": "45c4e0cf0747c95281ef3fb6bafce772ab076efd",
+  "commit_status_result": "no_statuses_attached",
+  "public_visibility_status": "unverified",
+  "meaning": "Repository mutation has been observed, but public GitHub Pages publication has not been confirmed from available connector status data.",
+  "required_distinction": "Committed content is not the same as externally verified public page state.",
+  "publication_paths": [
+    "github/workflows/pages-build-only.yml",
+    "github/workflows/deploy.yml"
+  ],
+  "paths_note": "Paths are shown without leading dot for iOS readability. Actual workflow paths use the leading dot directory.",
+  "next_actions": [
+    "Confirm a Pages workflow run is created for the latest commit.",
+    "Confirm the public page for the changed content is reachable after deployment.",
+    "Record the public URL and deployment ref after verification."
+  ],
+  "non_claims": [
+    "This status file does not prove deployment failure.",
+    "This status file does not prove public visibility.",
+    "This status file records the current unverified state from available status data."
+  ]
+}
