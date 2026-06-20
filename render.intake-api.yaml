@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: admissibility-wiki-intake-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile.intake-api
+    plan: starter
+    autoDeploy: false
+    healthCheckPath: /health
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 8787
+      - key: INTAKE_OUTPUT_ROOT
+        value: static/governance/intake
+      - key: MAX_BODY_BYTES
+        value: 256000
