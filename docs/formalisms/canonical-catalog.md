@@ -51,7 +51,7 @@ non-claims
 | Continuity Handoff Formalism | `Admissible-Existence/CHF` | watching | pending public-safe source availability |
 | Data Continuity | `Admissible-Existence/DaCo` | watching | pending public-safe source availability |
 | Decision Continuity | `Admissible-Existence/DC` | watching | pending public-safe source availability |
-| Governance-Centered and Boundary-Centered Admissibility Testing | `Admissible-Existence/GCAT-BCAT` | source_available | first complete publication family available through Publisher |
+| [Governance-Centered and Boundary-Centered Admissibility Testing](./governance-centered-boundary-centered-admissibility-testing.md) | `Admissible-Existence/GCAT-BCAT` | source_available | first complete publication family available through Publisher |
 | Core-Lite Admissibility Engine | `Admissible-Existence/core-lite` | watching | pending public-safe source availability |
 | Learning Transition Governance | `Admissible-Existence/learning-transition-governance` | watching | pending source-confirmed extraction |
 | Admissible-Existence Validation Factory | `Admissible-Existence/ae-validation-factory` | watching | pending public-safe source availability |
@@ -95,4 +95,4 @@ External framework mapping does not replace canonical formalism definition.
 
 ## Next Safe Build Target
 
-Create source-confirmed detail pages for the canonical formalism families, starting with Governance-Centered and Boundary-Centered Admissibility Testing because that family has the first mature publication set.
+Create source-confirmed mathematical, proof, and validation candidate links for Governance-Centered and Boundary-Centered Admissibility Testing from public-safe Publisher artifacts.
