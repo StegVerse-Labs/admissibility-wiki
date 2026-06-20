@@ -16,8 +16,10 @@
     "validate:transition-origin": "node scripts/check-transition-origin-sections.mjs",
     "validate:proposal-intake": "node scripts/check-proposal-intake-interface.mjs",
     "validate:proposal-intake-backend": "node scripts/check-proposal-intake-backend-contract.mjs",
+    "validate:proposal-intake-runtime": "node scripts/check-proposal-intake-backend-runtime.mjs",
     "validate:public-share-readiness": "node scripts/check-public-share-readiness.mjs",
-    "validate": "npm run validate:ontology && npm run validate:wiki-status && npm run validate:activation-checklist && npm run validate:equivalence-template && npm run validate:relationship-status && npm run validate:public-activation-receipt && npm run validate:formalism-registry && npm run validate:term-candidates && npm run validate:formalism-source-sync && npm run validate:transition-origin && npm run validate:proposal-intake && npm run validate:proposal-intake-backend && npm run validate:public-share-readiness && npm run build"
+    "intake:proposal": "node scripts/proposal-intake-backend.mjs",
+    "validate": "npm run validate:ontology && npm run validate:wiki-status && npm run validate:activation-checklist && npm run validate:equivalence-template && npm run validate:relationship-status && npm run validate:public-activation-receipt && npm run validate:formalism-registry && npm run validate:term-candidates && npm run validate:formalism-source-sync && npm run validate:transition-origin && npm run validate:proposal-intake && npm run validate:proposal-intake-backend && npm run validate:proposal-intake-runtime && npm run validate:public-share-readiness && npm run build"
   },
   "dependencies": {
     "@docusaurus/core": "^3.10.1",
