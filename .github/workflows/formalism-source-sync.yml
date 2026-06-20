@@ -30,6 +30,9 @@ jobs:
       - name: Detect manifest-declared source drift
         run: node scripts/check-formalism-source-drift.mjs
 
+      - name: Write sync receipt template
+        run: node scripts/write-formalism-sync-receipt-template.mjs
+
       - name: Emit sync issue body when needed
         run: node scripts/emit-formalism-sync-issues.mjs
 
@@ -39,7 +42,7 @@ jobs:
           cat > .sync-output/formalism-source-sync-summary.md <<'SUMMARY'
           # Formalism Source Sync Check
 
-          This scheduled check validates the formalism source sync manifest, fetches public canonical source refs, detects manifest-declared source drift, and emits an issue body when a manifest record is marked source_changed or wiki_update_required.
+          This scheduled check validates the formalism source sync manifest, fetches public canonical source refs, detects source drift, writes a sync receipt template, and emits an issue body when a wiki update review is required.
 
           It preserves the authority boundary:
 
@@ -58,6 +61,8 @@ jobs:
             .sync-output/formalism-source-sync-summary.md
             .sync-output/formalism-source-sync-issue.md
             .sync-output/formalism-source-drift-report.md
+            .sync-output/formalism-source-drift-report.json
+            .sync-output/formalism-source-sync-receipt-template.json
             .sync-output/public-formalism-source-refs.json
             .sync-output/public-formalism-source-refs.md
 
