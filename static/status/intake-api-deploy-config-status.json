@@ -1,0 +1,21 @@
+{
+  "schema": "admissibility_wiki_intake_api_deploy_config_status.v1",
+  "generated_at": "2026-06-20T00:00:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "dockerfile": "Dockerfile.intake-api",
+  "render_blueprint": "render.intake-api.yaml",
+  "validator": "scripts/check-intake-api-deploy-config.mjs",
+  "deploy_config": "installed",
+  "runtime": "docker_node_20",
+  "health_check_path": "/health",
+  "api_route": "POST /api/wiki/proposals/intake",
+  "public_endpoint_status": "deploy_pending",
+  "static_site_execution": "not_available_on_github_pages",
+  "required_manual_or_platform_step": "Create/deploy an authorized runtime using Dockerfile.intake-api or render.intake-api.yaml, then record verification evidence.",
+  "non_claims": [
+    "Deploy config does not prove the public endpoint is live.",
+    "Deploy config does not accept proposals.",
+    "Deploy config does not create decision authority.",
+    "Deploy config does not install automatic AI review or automatic decision publication."
+  ]
+}
