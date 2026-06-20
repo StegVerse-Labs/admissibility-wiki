@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 
 const MANIFEST_PATH = 'static/sync/formalism-source-sync.v0.1.json';
+const DRIFT_REPORT_PATH = '.sync-output/formalism-source-drift-report.json';
 const OUTPUT_PATH = '.sync-output/formalism-source-sync-issue.md';
 const ACTIONABLE_STATES = new Set(['source_changed', 'wiki_update_required']);
 
@@ -10,12 +11,42 @@ function fail(message) {
   process.exit(1);
 }
 
+function readJsonIfPresent(path) {
+  if (!fs.existsSync(path)) {
+    return null;
+  }
+  return JSON.parse(fs.readFileSync(path, 'utf8'));
+}
+
 if (!fs.existsSync(MANIFEST_PATH)) {
   fail(`missing manifest: ${MANIFEST_PATH}`);
 }
 
 const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
-const actionable = manifest.sources.filter((source) => ACTIONABLE_STATES.has(source.sync_state));
+const driftReport = readJsonIfPresent(DRIFT_REPORT_PATH);
+const actionableBySourceId = new Map();
+
+for (const source of manifest.sources.filter((item) => ACTIONABLE_STATES.has(item.sync_state))) {
+  actionableBySourceId.set(source.source_id, {
+    source,
+    reason: `manifest sync_state is ${source.sync_state}`,
+    drift: null
+  });
+}
+
+for (const drift of driftReport?.drift_records || []) {
+  const source = manifest.sources.find((item) => item.source_id === drift.source_id);
+  if (!source) {
+    continue;
+  }
+  actionableBySourceId.set(source.source_id, {
+    source,
+    reason: 'fetched or declared source ref drift detected',
+    drift
+  });
+}
+
+const actionable = [...actionableBySourceId.values()];
 fs.mkdirSync('.sync-output', { recursive: true });
 
 if (actionable.length === 0) {
@@ -27,7 +58,7 @@ if (actionable.length === 0) {
 const lines = [];
 lines.push('# Formalism source sync update required');
 lines.push('');
-lines.push('The formalism source sync manifest contains records that require wiki update review.');
+lines.push('The formalism source sync workflow detected records that require wiki update review.');
 lines.push('');
 lines.push('Authority boundary:');
 lines.push('');
@@ -38,7 +69,7 @@ lines.push('');
 lines.push('Actionable records:');
 lines.push('');
 
-for (const source of actionable) {
+for (const { source, reason, drift } of actionable) {
   lines.push(`## ${source.formalism_term}`);
   lines.push('');
   lines.push(`- Source ID: \`${source.source_id}\``);
@@ -47,6 +78,13 @@ for (const source of actionable) {
   lines.push(`- Publisher artifact: \`${source.publisher_artifact_path || 'none recorded'}\``);
   lines.push(`- Wiki target: \`${source.wiki_target_path}\``);
   lines.push(`- Sync state: \`${source.sync_state}\``);
+  lines.push(`- Reason: ${reason}`);
+  if (drift) {
+    lines.push(`- Last source ref: \`${drift.last_source_ref || 'none'}\``);
+    lines.push(`- Current source ref: \`${drift.current_source_ref || 'none'}\``);
+    lines.push(`- Last publisher ref: \`${drift.last_publisher_ref || 'none'}\``);
+    lines.push(`- Current publisher ref: \`${drift.current_publisher_ref || 'none'}\``);
+  }
   lines.push(`- Change rule: ${source.change_detection_rule}`);
   lines.push(`- Wiki update rule: ${source.wiki_update_rule}`);
   lines.push('');
