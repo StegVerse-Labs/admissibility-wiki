@@ -1,0 +1,18 @@
+{
+  "schema": "admissibility_wiki_formalism_registry_extension.v0.1",
+  "formalism_id": "ae.BC",
+  "name": "Boundary Conditions",
+  "state": "mirrored",
+  "source_authority": "Admissible-Existence/BC",
+  "source_visibility": "private",
+  "wiki_path": "docs/formalisms/boundary-conditions.md",
+  "purpose": "Mirror public-safe metadata for Boundary Conditions and connect boundary satisfaction to transition posture, runtime governance, evidence, and receipt review.",
+  "transition_relationship": "boundary conditions canonical detail page installed; source-confirmed proof and validation extraction pending",
+  "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
+  "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
+  "non_claims": [
+    "Wiki mirroring must not expose private Boundary Conditions source content.",
+    "Wiki mirroring does not define, prove, or validate Boundary Conditions claims.",
+    "This extension record supplements the main registry until the larger catalog/registry replacement can be applied safely."
+  ]
+}
