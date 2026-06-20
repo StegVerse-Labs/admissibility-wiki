@@ -49,7 +49,7 @@ non-claims
 | [Transition Table](./transition-table.md) | `Admissible-Existence/TT` | watching | initial scaffold installed |
 | Triad Governance Model | `Admissible-Existence/Triad` | watching | pending public-safe source availability |
 | Continuity Handoff Formalism | `Admissible-Existence/CHF` | watching | pending public-safe source availability |
-| Data Continuity | `Admissible-Existence/DaCo` | watching | pending public-safe source availability |
+| [Data Continuity](./data-continuity.md) | `Admissible-Existence/DaCo` | watching | initial scaffold installed |
 | [Decision Continuity](./decision-continuity.md) | `Admissible-Existence/DC` | watching | initial scaffold installed |
 | [Governance-Centered and Boundary-Centered Admissibility Testing](./governance-centered-boundary-centered-admissibility-testing.md) | `Admissible-Existence/GCAT-BCAT` | source_available | first complete publication family available through Publisher |
 | Core-Lite Admissibility Engine | `Admissible-Existence/core-lite` | watching | pending public-safe source availability |
@@ -95,4 +95,4 @@ External framework mapping does not replace canonical formalism definition.
 
 ## Next Safe Build Target
 
-Register Decision Continuity in the machine-readable formalism registry, then continue source-confirmed mathematical, proof, and validation candidate extraction.
+Register Data Continuity in the machine-readable formalism registry, then continue source-confirmed mathematical, proof, and validation candidate extraction.
