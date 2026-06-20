@@ -46,7 +46,7 @@ non-claims
 | State Transition Continuity Model | `Admissible-Existence/STCM` | watching | pending source-confirmed extraction |
 | Runtime Transition Governance | `Admissible-Existence/RTG` | watching | pending public-safe source availability |
 | Boundary Conditions | `Admissible-Existence/BC` | watching | pending public-safe source availability |
-| Transition Table | `Admissible-Existence/TT` | watching | pending public-safe source availability |
+| [Transition Table](./transition-table.md) | `Admissible-Existence/TT` | watching | initial scaffold installed |
 | Triad Governance Model | `Admissible-Existence/Triad` | watching | pending public-safe source availability |
 | Continuity Handoff Formalism | `Admissible-Existence/CHF` | watching | pending public-safe source availability |
 | Data Continuity | `Admissible-Existence/DaCo` | watching | pending public-safe source availability |
@@ -95,4 +95,4 @@ External framework mapping does not replace canonical formalism definition.
 
 ## Next Safe Build Target
 
-Create source-confirmed mathematical, proof, and validation candidate links for Governance-Centered and Boundary-Centered Admissibility Testing from public-safe Publisher artifacts.
+Expand the Transition Table scaffold into a full source-boundary page, then continue source-confirmed mathematical, proof, and validation candidate extraction for Governance-Centered and Boundary-Centered Admissibility Testing.
