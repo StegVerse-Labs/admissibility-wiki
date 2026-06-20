@@ -58,6 +58,13 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'External Frameworks',
+      items: [
+        'external-frameworks/glm',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Research',
       items: [
         'research/terminology-overlap-research-notes',
