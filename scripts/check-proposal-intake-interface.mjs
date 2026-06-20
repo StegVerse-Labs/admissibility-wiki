@@ -8,6 +8,12 @@ const htmlRequired = [
   'Option 1 — Guided Builder',
   'Option 2 — Direct Paste',
   'Shared Manifest/Receipt Preview Window',
+  'Optional API Submission',
+  'endpointUrl',
+  'submitToEndpoint()',
+  'No endpoint configured. Preview-only mode.',
+  'POST',
+  'content-type',
   'preview',
   'pasteBox',
   'buildPreview()',
@@ -50,4 +56,4 @@ assertFileContains(DOC_PATH, docRequired);
 
 console.log(`OK: ${HTML_PATH}`);
 console.log(`OK: ${DOC_PATH}`);
-console.log('proposal_intake_interface=dual_mode_preview_scaffold');
+console.log('proposal_intake_interface=dual_mode_preview_with_optional_api_submission');
