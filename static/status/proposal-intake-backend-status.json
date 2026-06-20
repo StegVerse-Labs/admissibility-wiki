@@ -1,0 +1,21 @@
+{
+  "schema": "admissibility_wiki_proposal_intake_backend_status.v1",
+  "generated_at": "2026-06-19T00:00:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "backend_script": "scripts/proposal-intake-backend.mjs",
+  "runtime_validator": "scripts/check-proposal-intake-backend-runtime.mjs",
+  "fixture": "fixtures/intake/submission.valid.example.json",
+  "repo_local_backend": "installed",
+  "durable_candidate_write": "installed_repo_local",
+  "durable_receipt_issuance": "installed_repo_local",
+  "durable_queue_write": "installed_repo_local",
+  "queue_index_write": "installed_repo_local",
+  "authorized_workflow_wrapper": "pending_install",
+  "browser_api_endpoint": "not_installed",
+  "automatic_ai_review": "not_installed",
+  "automatic_decision_publication": "not_installed",
+  "receipt_boundary": "receipt_does_not_accept_proposal",
+  "queue_boundary": "queue_placement_does_not_create_decision_authority",
+  "decision_boundary": "decision_record_required_for_accept_deny_defer_escalate_refuse_or_supersede",
+  "next_action": "Install an authorized GitHub Actions workflow wrapper that runs the backend against a maintainer-supplied submission fixture and commits durable artifacts."
+}
