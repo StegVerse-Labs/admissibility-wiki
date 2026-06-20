@@ -47,7 +47,7 @@ non-claims
 | [Runtime Transition Governance](./runtime-transition-governance.md) | `Admissible-Existence/RTG` | watching | initial scaffold installed |
 | Boundary Conditions | `Admissible-Existence/BC` | watching | pending public-safe source availability |
 | [Transition Table](./transition-table.md) | `Admissible-Existence/TT` | watching | initial scaffold installed |
-| Triad Governance Model | `Admissible-Existence/Triad` | watching | pending public-safe source availability |
+| [Triad Governance Model](./triad-governance-model.md) | `Admissible-Existence/Triad` | watching | initial scaffold installed |
 | [Continuity Handoff Formalism](./continuity-handoff-formalism.md) | `Admissible-Existence/CHF` | watching | initial scaffold installed |
 | [Data Continuity](./data-continuity.md) | `Admissible-Existence/DaCo` | watching | initial scaffold installed |
 | [Decision Continuity](./decision-continuity.md) | `Admissible-Existence/DC` | watching | initial scaffold installed |
@@ -95,4 +95,4 @@ External framework mapping does not replace canonical formalism definition.
 
 ## Next Safe Build Target
 
-Register Continuity Handoff Formalism in the machine-readable formalism registry, then continue source-confirmed mathematical, proof, and validation candidate extraction.
+Register Triad Governance Model in the machine-readable formalism registry, then continue source-confirmed mathematical, proof, and validation candidate extraction.
