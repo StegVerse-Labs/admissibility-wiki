@@ -1,0 +1,9 @@
+{
+  "name": "proposal-governance-core-lite",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-core-lite.mjs"
+  }
+}
