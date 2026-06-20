@@ -1,0 +1,59 @@
+{
+  "schema": "admissibility_wiki_proposal_intake_api_deployment_receipt.v1",
+  "receipt_id": "proposal-intake-api-deployment.example.pending",
+  "generated_at": "2026-06-19T00:00:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "deployment_state": "pending_external_runtime",
+  "local_api_status": "installed_and_validated",
+  "public_endpoint_status": "deploy_pending",
+  "expected_public_route": "POST /api/wiki/proposals/intake",
+  "required_verification_checks": [
+    {
+      "check_id": "runtime_health_check",
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "check_id": "valid_manifest_submission",
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "check_id": "durable_candidate_written",
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "check_id": "durable_receipt_written",
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "check_id": "durable_queue_record_written",
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "check_id": "queue_index_written",
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "check_id": "malformed_json_rejected",
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "check_id": "no_decision_record_created_by_intake",
+      "status": "pending",
+      "evidence": null
+    }
+  ],
+  "non_claims": [
+    "This receipt example does not prove the public endpoint is deployed.",
+    "This receipt example does not accept any proposal.",
+    "This receipt example does not create decision authority.",
+    "This receipt example does not install automatic AI review or decision publication."
+  ],
+  "next_action": "Replace pending evidence only after an authorized public runtime has been deployed and verified."
+}
