@@ -43,6 +43,46 @@ function requireObject(value, name) {
   }
 }
 
+function defaultGovernanceClass(manifest) {
+  if (['E', 'G', 'F'].includes(manifest.proposal_governance_class)) {
+    return manifest.proposal_governance_class;
+  }
+  const proposalClass = manifest.proposal?.class;
+  if ([
+    'equivalence_claim',
+    'transition_origin_modification',
+    'ontology_mutation',
+    'proof_path_modification',
+    'authority_model_modification',
+    'admissibility_rule_modification',
+    'formalism_creation'
+  ].includes(proposalClass)) {
+    return 'F';
+  }
+  if ([
+    'typo',
+    'formatting',
+    'broken_link',
+    'citation_formatting',
+    'navigation_correction',
+    'layout_correction'
+  ].includes(proposalClass)) {
+    return 'E';
+  }
+  return 'G';
+}
+
+function defaultClassAssignment(manifest, proposalGovernanceClass) {
+  if (manifest.class_assignment && typeof manifest.class_assignment === 'object') {
+    return manifest.class_assignment;
+  }
+  return {
+    assigned_at: 'intake',
+    assigned_by: 'system',
+    reason: `Defaulted to Class ${proposalGovernanceClass} during intake.`
+  };
+}
+
 export function validateManifest(manifest) {
   requireObject(manifest, 'manifest');
   for (const field of REQUIRED_MANIFEST_FIELDS) {
@@ -64,6 +104,9 @@ export function validateManifest(manifest) {
   }
   if (!Array.isArray(manifest.non_claims)) {
     throw new IntakeError('manifest.non_claims must be an array');
+  }
+  if (manifest.proposal_governance_class && !['E', 'G', 'F'].includes(manifest.proposal_governance_class)) {
+    throw new IntakeError('proposal_governance_class must be E, G, or F when provided');
   }
 }
 
@@ -96,13 +139,20 @@ export function intakeSubmission({ submission, rawText, outputRoot = OUT_ROOT })
   const manifest = submission.manifest ?? submission;
   validateManifest(manifest);
 
+  const proposalGovernanceClass = defaultGovernanceClass(manifest);
+  const classAssignment = defaultClassAssignment(manifest, proposalGovernanceClass);
+  const normalizedManifest = JSON.parse(JSON.stringify({
+    ...manifest,
+    proposal_governance_class: proposalGovernanceClass,
+    class_assignment: classAssignment
+  }));
+
   ensureDir(candidateDir);
   ensureDir(receiptDir);
   ensureDir(queueDir);
 
   const rawSubmissionText = rawText ?? JSON.stringify(submission);
   const rawHash = hash(rawSubmissionText);
-  const normalizedManifest = JSON.parse(JSON.stringify(manifest));
   const manifestHash = hash(JSON.stringify(normalizedManifest));
   const shortHash = manifestHash.slice(0, 12);
   const proposalId = manifest.proposal_id === 'pending' ? `proposal.${shortHash}` : manifest.proposal_id;
@@ -113,6 +163,8 @@ export function intakeSubmission({ submission, rawText, outputRoot = OUT_ROOT })
     schema: 'admissibility_wiki_candidate_submission.v1',
     proposal_id: proposalId,
     received_at: receivedAt,
+    proposal_governance_class: proposalGovernanceClass,
+    class_assignment: classAssignment,
     manifest: normalizedManifest,
     hashes: {
       raw_submission_sha256: rawHash,
@@ -136,6 +188,8 @@ export function intakeSubmission({ submission, rawText, outputRoot = OUT_ROOT })
     submission_lane: 'lane_1_manifest_receipt',
     preference_posture: 'preferred_triage',
     validation_posture: 'valid_manifest',
+    proposal_governance_class: proposalGovernanceClass,
+    class_assignment: classAssignment,
     candidate_ref: `../candidates/${proposalId}.json`,
     queue_ref: `../queue/${queueId}.json`,
     hashes: {
@@ -146,6 +200,7 @@ export function intakeSubmission({ submission, rawText, outputRoot = OUT_ROOT })
       { task: 'receive_request', started_at: receivedAt, completed_at: receivedAt, status: 'completed', timing_posture: 'recorded' },
       { task: 'parse_manifest', started_at: receivedAt, completed_at: receivedAt, status: 'completed', timing_posture: 'recorded' },
       { task: 'validate_manifest_schema', started_at: receivedAt, completed_at: receiptIssuedAt, status: 'completed', timing_posture: 'recorded' },
+      { task: 'assign_proposal_governance_class', started_at: receivedAt, completed_at: receiptIssuedAt, status: 'completed', timing_posture: 'recorded' },
       { task: 'classify_submission_lane', started_at: receivedAt, completed_at: receiptIssuedAt, status: 'completed', timing_posture: 'recorded' },
       { task: 'assign_preference_posture', started_at: receivedAt, completed_at: receiptIssuedAt, status: 'completed', timing_posture: 'recorded' },
       { task: 'compute_submission_hashes', started_at: receivedAt, completed_at: receiptIssuedAt, status: 'completed', timing_posture: 'recorded' },
@@ -172,9 +227,11 @@ export function intakeSubmission({ submission, rawText, outputRoot = OUT_ROOT })
     queued_at: receiptIssuedAt,
     status: 'queued_for_review',
     review_route: 'admissibility_wiki_ai_entity',
-    target: manifest.target,
-    proposal: manifest.proposal,
-    transition_origin_claim: manifest.transition_origin_claim,
+    proposal_governance_class: proposalGovernanceClass,
+    class_assignment: classAssignment,
+    target: normalizedManifest.target,
+    proposal: normalizedManifest.proposal,
+    transition_origin_claim: normalizedManifest.transition_origin_claim,
     candidate_ref: `../candidates/${proposalId}.json`,
     receipt_ref: `../receipts/${receiptId}.json`,
     hashes: {
@@ -203,7 +260,8 @@ export function intakeSubmission({ submission, rawText, outputRoot = OUT_ROOT })
     proposal_id: proposalId,
     receipt_id: receiptId,
     status: 'queued_for_review',
-    target_path: manifest.target.path,
+    target_path: normalizedManifest.target.path,
+    proposal_governance_class: proposalGovernanceClass,
     queued_at: receiptIssuedAt,
     queue_ref: `${queueId}.json`
   });
@@ -213,6 +271,7 @@ export function intakeSubmission({ submission, rawText, outputRoot = OUT_ROOT })
     proposal_id: proposalId,
     receipt_id: receiptId,
     queue_id: queueId,
+    proposal_governance_class: proposalGovernanceClass,
     candidate_path: path.join(candidateDir, `${proposalId}.json`),
     receipt_path: path.join(receiptDir, `${receiptId}.json`),
     queue_path: path.join(queueDir, `${queueId}.json`),
@@ -222,7 +281,8 @@ export function intakeSubmission({ submission, rawText, outputRoot = OUT_ROOT })
     queue_result: {
       queued: true,
       queue_id: queueId,
-      review_route: 'admissibility_wiki_ai_entity'
+      review_route: 'admissibility_wiki_ai_entity',
+      proposal_governance_class: proposalGovernanceClass
     },
     non_claims: [
       'Receipt does not accept the proposal.',
