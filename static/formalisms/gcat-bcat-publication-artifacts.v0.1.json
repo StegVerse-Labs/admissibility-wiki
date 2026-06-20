@@ -1,0 +1,29 @@
+{
+  "schema": "admissibility_wiki_formalism_publication_artifact_inventory.v0.1",
+  "formalism_id": "formalism.gcat-bcat",
+  "canonical_name": "Governance-Centered and Boundary-Centered Admissibility Testing",
+  "canonical_source_repository": "Admissible-Existence/GCAT-BCAT",
+  "publication_family": "GCAT-BCAT-Engine/Publisher/papers/GCAT-BCAT",
+  "publication_family_url": "https://github.com/GCAT-BCAT-Engine/Publisher/tree/main/papers/GCAT-BCAT",
+  "authority_boundary": "Admissible-Existence defines the formalism. Publisher publishes papers and public exposition. The Admissibility Wiki mirrors, relates, crosswalks, and discovers relationships.",
+  "artifact_status": "family_path_known_file_inventory_pending",
+  "artifacts": [],
+  "candidate_slots": {
+    "mathematical_candidates": [],
+    "proof_candidates": [],
+    "validation_candidates": []
+  },
+  "open_questions": [
+    "Which exact files exist under the Publisher GCAT-BCAT paper family path?",
+    "Which files contain mathematical candidates?",
+    "Which files contain proof candidates?",
+    "Which files contain validation candidates?",
+    "Which artifacts are public-safe and stable enough for direct citation from the wiki?"
+  ],
+  "non_claims": [
+    "This inventory does not define the formalism.",
+    "This inventory does not prove or validate the formalism.",
+    "The known publication family path is not a complete file-level citation until exact files are enumerated.",
+    "Publisher artifacts are publication evidence, not canonical source authority."
+  ]
+}
