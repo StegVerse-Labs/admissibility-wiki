@@ -1,6 +1,6 @@
 # Admissibility Wiki Mirror Handoff
 
-Generated: 2026-06-19
+Generated: 2026-06-20
 Repository: `StegVerse-Labs/admissibility-wiki`
 Role: non-Site/non-Publisher mirror and continuity handoff for Admissibility Wiki work
 
@@ -8,7 +8,7 @@ Role: non-Site/non-Publisher mirror and continuity handoff for Admissibility Wik
 
 This file is the task-source-of-truth handoff for sessions working on `StegVerse-Labs/admissibility-wiki`.
 
-Use this handoff before continuing wiki, ontology, proof-path, governance, or activation work in this repo.
+Use this handoff before continuing wiki, ontology, proof-path, governance, proposal-intake, proposal-governance, or activation work in this repo.
 
 ## Current Repo Goal
 
@@ -23,7 +23,9 @@ Make the Admissibility Wiki a governed, public-facing vocabulary layer and termi
 - machine-readable vocabulary artifacts;
 - repo-local governance and validation;
 - cross-domain equivalent, overlapping, and adjacent terminology;
-- user-submitted, browser-originated, maintainer-submitted, and LLM-assisted terminology proposals.
+- user-submitted, browser-originated, maintainer-submitted, and LLM-assisted terminology proposals;
+- E/G/F proposal governance routing;
+- proposal-governance-core-lite handoff.
 
 ## Current Assessment Goal
 
@@ -34,10 +36,60 @@ A task is ready for ecosystem-managed continuation when this repository records 
 ## Current Activation Goal
 
 ```text
-Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the GitHub Pages public vocabulary, terminology convergence, proposal-review, and proof-path site.
+Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the GitHub Pages public vocabulary, terminology convergence, proposal-review, proposal-intake, and proof-path site.
 ```
 
-Activation is not complete until the GitHub.io project page loads, GitHub Pages and HTTPS are working, the ontology JSON is reachable, and proposal and decision examples are reachable.
+Activation is not complete until the GitHub.io project page loads, GitHub Pages and HTTPS are working, the ontology JSON is reachable, proposal and decision examples are reachable, and public endpoint status is not overclaimed.
+
+## Proposal Governance Core-Lite Status
+
+The target repository does not exist yet:
+
+```text
+StegVerse-Labs/proposal-governance-core-lite
+```
+
+A complete seed is installed at:
+
+```text
+repo-seeds/proposal-governance-core-lite/
+```
+
+Seed documentation and status:
+
+```text
+docs/governance/proposal-governance-core-lite-seed.md
+docs/governance/proposal-governance-core-lite-creation-task.md
+static/status/proposal-governance-core-lite-seed-status.json
+scripts/check-proposal-governance-core-lite-seed.mjs
+scripts/check-proposal-governance-core-lite-creation-task.mjs
+```
+
+Do not create more proposal-governance-core-lite scaffolding in this repo unless the seed validator identifies a gap.
+
+The next formal task is external target repo creation:
+
+```text
+Create StegVerse-Labs/proposal-governance-core-lite
+Copy repo-seeds/proposal-governance-core-lite/* into it
+Run npm run validate in the target repo
+```
+
+## Proposal Intake and Governance Routing
+
+Installed proposal governance routing:
+
+```text
+E = Editorial
+G = Governance
+F = Formalism
+```
+
+Every ingestion/CGE pass must emit to master-records.
+
+Public display is a consequence path only and requires a decision record.
+
+The proposal page or shared SDK entry point emits governed manifest/receipt data. The sandbox is non-authoritative and preserves candidate paths. After sandbox return, ingestion/CGE routes to master-records and then to the second StegVerse-Labs core-lite target.
 
 ## GitHub Pages URL Configuration
 
@@ -59,7 +111,7 @@ Do not re-add `static/CNAME` unless custom-domain activation is explicitly reque
 The GitHub Pages deploy workflow is validation-gated.
 
 ```text
-.github/workflows/deploy.yml:
+github/workflows/deploy.yml:
   install dependencies
   npm run validate
   upload build artifact
@@ -67,6 +119,8 @@ The GitHub Pages deploy workflow is validation-gated.
 ```
 
 `npm run validate` is the preferred aggregate command and must pass before the Pages artifact is uploaded.
+
+Note: paths that normally begin with a leading dot are shown without the leading dot in this handoff display to avoid hidden-path ambiguity in copied instructions.
 
 ## Installed Structure
 
@@ -83,6 +137,10 @@ The repo currently includes:
 - terminology convergence governance page;
 - proposal lifecycle governance page;
 - decision record governance page;
+- proposal governance class page;
+- proposal-governance-core-lite seed page;
+- proposal-governance-core-lite creation task page;
+- proposal intake interface, backend contract, API deployment, endpoint verification, and final activation handoff pages;
 - reconciled Site bridge status page;
 - equivalence proposal template;
 - equivalence proposal template validator;
@@ -104,7 +162,8 @@ The repo currently includes:
 - comparison pages;
 - proof-path examples;
 - machine-readable vocabulary artifact;
-- Admissibility-Wiki AI Entity governance page.
+- Admissibility-Wiki AI Entity governance page;
+- proposal-governance-core-lite seed and validators.
 
 ## Known Governance Files
 
@@ -116,6 +175,13 @@ docs/governance/page-template.md
 docs/governance/terminology-convergence.md
 docs/governance/proposal-lifecycle.md
 docs/governance/decision-record.md
+docs/governance/proposal-governance-classes.md
+docs/governance/proposal-governance-core-lite-seed.md
+docs/governance/proposal-governance-core-lite-creation-task.md
+docs/governance/proposal-intake-interface.md
+docs/governance/proposal-intake-backend-contract.md
+docs/governance/proposal-intake-api-deployment.md
+docs/governance/intake-api-final-activation-handoff.md
 docs/governance/validation.md
 docs/governance/current-task-sync.md
 docs/governance/site-bridge-status.md
@@ -126,51 +192,42 @@ docs/governance/relationship-validator-status.md
 docs/governance/public-activation-verification.md
 ```
 
-## Known Governance Records
-
-Do not recreate existing governance record IDs under `static/governance/`.
-
-Relationship records 005 through 009 are already recorded in `docs/governance/relationship-status-summary.md`.
-
 ## Known Status Artifacts
 
 ```text
 static/status/admissibility-wiki-status.json
 static/status/admissibility-wiki-activation.json
 static/status/public-activation-receipt.example.json
+static/status/proposal-governance-core-lite-seed-status.json
+static/status/proposal-intake-backend-status.json
+static/status/proposal-intake-endpoint-verification-status.json
+static/status/intake-api-deploy-config-status.json
 scripts/check-wiki-status.mjs
 scripts/check-activation-checklist.mjs
 scripts/check-public-activation-receipt.mjs
+scripts/check-proposal-governance-core-lite-seed.mjs
+scripts/check-proposal-governance-core-lite-creation-task.mjs
 ```
 
 Do not recreate versioned status mirrors unless the status schema is intentionally versioned and the canonical file points to the active version.
 
-## Known Core Artifacts
+## Validation Commands
 
 ```text
-README.md
-CONTRIBUTING.md
-package.json
-docusaurus.config.js
-sidebars.js
-scripts/validate-ontology.mjs
-scripts/check-wiki-status.mjs
-scripts/check-activation-checklist.mjs
-scripts/check-equivalence-proposal-template.mjs
-scripts/check-relationship-status-summary.mjs
-scripts/check-public-activation-receipt.mjs
-static/img/favicon.svg
-static/ontology/admissibility-vocabulary.v0.1.json
-github/workflows/deploy.yml
-github/workflows/validate.yml
-github/PULL_REQUEST_TEMPLATE.md
-github/ISSUE_TEMPLATE/config.yml
-github/ISSUE_TEMPLATE/glossary-term.yml
-github/ISSUE_TEMPLATE/proof-path-example.yml
-github/ISSUE_TEMPLATE/activation-deploy.yml
+npm run validate
+node scripts/validate-ontology.mjs
+node scripts/check-wiki-status.mjs
+node scripts/check-activation-checklist.mjs
+node scripts/check-equivalence-proposal-template.mjs
+node scripts/check-relationship-status-summary.mjs
+node scripts/check-public-activation-receipt.mjs
+node scripts/check-proposal-governance-classes.mjs
+node scripts/check-proposal-governance-core-lite-seed.mjs
+node scripts/check-proposal-governance-core-lite-creation-task.mjs
+npm run build
 ```
 
-Note: paths that normally begin with a leading dot are shown without the leading dot in this handoff display to avoid hidden-path ambiguity in copied instructions.
+`npm run validate` is the preferred aggregate command because it runs the installed validators and the Docusaurus build. If a newly installed validator is not yet included in `npm run validate`, run it directly and then wire it into the aggregate when safe.
 
 ## Current Editorial Rule
 
@@ -202,29 +259,15 @@ node scripts/check-equivalence-proposal-template.mjs
 
 Do not add an external term to `Equivalent Terms` without a completed proposal, source evidence, mismatch analysis, overclaiming-risk analysis, and decision record.
 
-## Validation Commands
-
-```text
-npm run validate
-node scripts/validate-ontology.mjs
-node scripts/check-wiki-status.mjs
-node scripts/check-activation-checklist.mjs
-node scripts/check-equivalence-proposal-template.mjs
-node scripts/check-relationship-status-summary.mjs
-node scripts/check-public-activation-receipt.mjs
-npm run build
-```
-
-`npm run validate` is the preferred aggregate command because it runs the installed validators and the Docusaurus build.
-
 ## Next Safe Build Targets
 
 Priority order:
 
-1. Verify GitHub Pages deployment at `https://stegverse-labs.github.io/admissibility-wiki/` after Actions completes.
-2. Update activation posture only after public GitHub.io deployment status changes.
-3. Add research-backed equivalence proposals only when they materially improve terminology classification.
-4. Add additional dispute examples only when they cover a materially new dispute posture.
+1. Create `StegVerse-Labs/proposal-governance-core-lite` externally, copy the seed, and validate it independently.
+2. Verify GitHub Pages deployment at `https://stegverse-labs.github.io/admissibility-wiki/` after Actions completes.
+3. Deploy authorized intake API runtime, then run endpoint verification workflow.
+4. Update activation posture only after public GitHub.io deployment and endpoint evidence exists.
+5. Add research-backed equivalence proposals only when they materially improve terminology classification.
 
 ## Mirror Coordination Rule
 
