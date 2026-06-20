@@ -17,15 +17,17 @@
     button { margin-top: 14px; border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 750; cursor: pointer; }
     .primary { background: #80b7ff; color: #061024; }
     .secondary { background: #25345f; color: #f7f7fb; }
+    .danger { background: #ffd08a; color: #281600; }
     .notice { border-left: 4px solid #80b7ff; padding: 10px 14px; background: #101932; border-radius: 8px; }
-    .status { margin-top: 10px; color: #b9ffd0; font-size: 13px; }
+    .status { margin-top: 10px; color: #b9ffd0; font-size: 13px; white-space: pre-wrap; }
+    .warning { color: #ffd08a; }
     @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 <main>
   <h1>Manifest Receipt Intake</h1>
-  <p>This static scaffold demonstrates the intended dual-mode intake surface. It creates or accepts a candidate manifest/receipt object for preferred triage. It does not submit, approve, validate, or accept the proposal.</p>
+  <p>This dual-mode intake surface creates or accepts a candidate manifest/receipt object for preferred triage. By default it is preview-only. Submission requires a deployed intake API endpoint.</p>
 
   <div class="notice">
     <strong>Governance boundary:</strong> valid manifest/receipt structure may receive preferred triage. Preferred triage is not acceptance, proof, standing, or commit-time authority.
@@ -131,6 +133,16 @@
     <textarea id="preview"></textarea>
     <div class="status" id="previewStatus">Candidate governed data object. Not submitted.</div>
   </section>
+
+  <section class="card" style="margin-top:18px;">
+    <h2>Optional API Submission</h2>
+    <p>Enter a deployed intake API endpoint only after an authorized runtime is available. Leaving this blank keeps the page preview-only.</p>
+    <label>Endpoint URL
+      <input id="endpointUrl" placeholder="https://example.org/api/wiki/proposals/intake">
+    </label>
+    <button class="danger" onclick="submitToEndpoint()">Submit Preview To Endpoint</button>
+    <div class="status warning" id="submitStatus">No endpoint configured. Preview-only mode.</div>
+  </section>
 </main>
 
 <script>
@@ -174,33 +186,8 @@ function buildPreview() {
     }
   };
 
-  const receipt = {
-    schema: 'admissibility_wiki_submission_receipt.v1',
-    receipt_id: 'receipt.pending.preview',
-    proposal_id: 'proposal.pending.preview',
-    received_at: receivedAt,
-    receipt_issued_at: nowIso(),
-    submission_lane: 'lane_1_manifest_receipt',
-    preference_posture: 'preferred_triage',
-    validation_posture: 'preview_not_validated',
-    tasks: [
-      {
-        task: 'build_preview',
-        started_at: receivedAt,
-        completed_at: nowIso(),
-        status: 'completed',
-        timing_posture: 'browser_generated_preview'
-      }
-    ],
-    non_claims: [
-      'Receipt preview does not submit the proposal.',
-      'Receipt preview does not accept the proposal.',
-      'Preferred triage is not acceptance authority.'
-    ]
-  };
-
-  document.getElementById('preview').value = JSON.stringify({ manifest, receipt }, null, 2);
-  document.getElementById('previewStatus').textContent = 'Generated candidate manifest/receipt preview. Not submitted.';
+  document.getElementById('preview').value = JSON.stringify({ manifest }, null, 2);
+  document.getElementById('previewStatus').textContent = 'Generated candidate manifest preview. Not submitted.';
 }
 
 function usePastedStructure() {
@@ -216,6 +203,36 @@ function usePastedStructure() {
     document.getElementById('previewStatus').textContent = 'Pasted candidate manifest/receipt preview. Not submitted.';
   } catch (error) {
     document.getElementById('pasteStatus').textContent = 'Invalid JSON: ' + error.message;
+  }
+}
+
+async function submitToEndpoint() {
+  const endpoint = document.getElementById('endpointUrl').value.trim();
+  const submitStatus = document.getElementById('submitStatus');
+  if (!endpoint) {
+    submitStatus.textContent = 'No endpoint configured. Preview-only mode.';
+    return;
+  }
+
+  let payload;
+  try {
+    payload = JSON.parse(document.getElementById('preview').value);
+  } catch (error) {
+    submitStatus.textContent = 'Preview JSON is invalid: ' + error.message;
+    return;
+  }
+
+  submitStatus.textContent = 'Submitting candidate governed data object...';
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const body = await response.json();
+    submitStatus.textContent = JSON.stringify({ status: response.status, body }, null, 2);
+  } catch (error) {
+    submitStatus.textContent = 'Submission failed: ' + error.message;
   }
 }
 
