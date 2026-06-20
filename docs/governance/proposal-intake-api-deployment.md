@@ -19,6 +19,7 @@ local_api_server: installed
 local_api_route: POST /api/wiki/proposals/intake
 static_intake_page_can_submit_to_configured_endpoint: installed
 deploy_config: installed
+endpoint_verification_tooling: installed
 public_browser_api_endpoint: deploy_pending
 automatic_ai_review: not_installed
 automatic_decision_publication: not_installed
@@ -56,6 +57,35 @@ Run the deployment-config validator directly with:
 
 ```text
 node scripts/check-intake-api-deploy-config.mjs
+```
+
+## Endpoint Verification
+
+The repository includes a verifier and a manual workflow for a deployed endpoint.
+
+```text
+scripts/verify-proposal-intake-public-endpoint.mjs
+github/workflows/verify-intake-api-endpoint.yml
+static/status/proposal-intake-endpoint-verification-status.json
+scripts/check-proposal-intake-endpoint-verification-status.mjs
+```
+
+Note: paths that normally begin with a leading dot are shown without the leading dot in this page.
+
+Run the verifier manually with:
+
+```text
+node scripts/verify-proposal-intake-public-endpoint.mjs https://example.org/api/wiki/proposals/intake
+```
+
+The verifier writes an observed deployment receipt only after testing:
+
+```text
+runtime_health_check
+valid_manifest_submission
+receipt_non_claims_present
+queue_result_present
+malformed_json_rejected
 ```
 
 ## Runtime Requirements
@@ -128,7 +158,7 @@ Before marking the public browser/API endpoint active:
 automatic_ai_review
 automatic_decision_publication
 automatic_ontology_mutation
-public_endpoint_verification_receipt
+public_endpoint_active_status
 ```
 
 ## Related Pages
