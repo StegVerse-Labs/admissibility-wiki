@@ -4,6 +4,7 @@
   "authority_boundary": "External frameworks may be crosswalked, mapped, and compared in the wiki. They do not become canonical Admissible-Existence formalism sources unless separately accepted by the canonical source process.",
   "allowed_relationships": [
     "precondition",
+    "postcondition",
     "adjacent",
     "strongly_correlated",
     "overlapping",
@@ -45,7 +46,30 @@
         "GLM does not prove transition admissibility.",
         "GLM declarations may support review but do not replace commit-time validity."
       ]
+    },
+    {
+      "framework_id": "external.evide",
+      "name": "EVIDE",
+      "status": "crosswalk_intake",
+      "external_role": "post-event evidentiary reconstructability and dispute-support framework",
+      "wiki_path": "docs/external-frameworks/evide.md",
+      "primary_relationship": "postcondition",
+      "crosswalk_targets": [
+        "Evidence Posture",
+        "Receipt-Bound Execution",
+        "Reconstructability",
+        "Replay Example",
+        "Decision Record",
+        "Review Posture",
+        "Minimal Public Proof Path",
+        "Commit-Time Validity"
+      ],
+      "non_claims": [
+        "EVIDE is not a canonical Admissible-Existence formalism source in this registry.",
+        "EVIDE does not prove transition admissibility.",
+        "Evidence remaining after an event does not prove that the event had commit-time standing."
+      ]
     }
   ],
-  "next_action": "Add EVIDE as a separate external evidentiary reconstructability framework after GLM crosswalk is exposed in navigation."
+  "next_action": "Create a visible external-framework index page that presents GLM as pre-event declaration and EVIDE as post-event reconstructability."
 }
