@@ -6,20 +6,47 @@ title: Proposal Intake Backend Contract
 
 ## Purpose
 
-This page defines the future backend contract for the proposal intake interface.
+This page defines the backend contract for the proposal intake interface.
 
-It is a specification only.
+A repo-local durable intake backend is installed as a Node script.
 
-It does not claim that backend submission, durable receipt issuance, queue write, AI review, or decision publication is active.
+A public browser/API endpoint is not installed yet.
 
 ## Current Status
 
 ```text
-backend_submission: not_installed
-durable_receipt_issuance: not_installed
-queue_write: not_installed
+repo_local_backend: installed
+backend_script: scripts/proposal-intake-backend.mjs
+durable_candidate_write: installed
+durable_receipt_issuance: installed_repo_local
+durable_queue_write: installed_repo_local
+queue_index_write: installed_repo_local
+browser_api_endpoint: not_installed
 automatic_ai_review: not_installed
 automatic_decision_publication: not_installed
+```
+
+## Repo-Local Command
+
+```text
+npm run intake:proposal -- fixtures/intake/submission.valid.example.json
+```
+
+The command writes durable artifacts under:
+
+```text
+static/governance/intake/candidates/
+static/governance/intake/receipts/
+static/governance/intake/queue/
+static/governance/intake/queue/index.json
+```
+
+## Runtime Validation
+
+The runtime validator executes the backend in a temporary directory and verifies candidate, receipt, queue, and index output without polluting the repository.
+
+```text
+npm run validate:proposal-intake-runtime
 ```
 
 ## Intended Endpoint Shape
@@ -27,6 +54,8 @@ automatic_decision_publication: not_installed
 ```text
 POST /api/wiki/proposals/intake
 ```
+
+This endpoint shape is reserved for a future browser/API wrapper around the repo-local backend contract.
 
 ## Request Body
 
@@ -79,7 +108,7 @@ POST /api/wiki/proposals/intake
 
 ## Required Backend Tasks
 
-The backend should record timing for:
+The backend records timing for:
 
 ```text
 receive_request
@@ -91,7 +120,6 @@ compute_submission_hashes
 write_candidate_record
 write_queue_record
 issue_submission_receipt
-return_receipt_response
 ```
 
 ## Required Hashes
@@ -122,11 +150,11 @@ Only a decision record can accept, deny, defer, escalate, refuse, or supersede a
 
 Receipt issuance and queue placement are not decision records.
 
-## Minimum Active Criteria
+## Browser/API Active Criteria
 
-The backend can be called active only when:
+The public browser/API backend can be called active only when:
 
-- the endpoint accepts a manifest/receipt preview object;
+- a deployed endpoint accepts a manifest/receipt preview object;
 - schema validation runs server-side;
 - malformed submissions produce bounded error receipts or rejection records;
 - valid submissions receive durable receipt IDs;
