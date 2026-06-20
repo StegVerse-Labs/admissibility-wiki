@@ -1,0 +1,23 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package.json package-lock.json* ./
+RUN npm install --omit=dev
+
+COPY scripts ./scripts
+COPY fixtures ./fixtures
+COPY static/status ./static/status
+
+RUN mkdir -p static/governance/intake/candidates \
+  static/governance/intake/receipts \
+  static/governance/intake/queue
+
+ENV HOST=0.0.0.0
+ENV PORT=8787
+ENV INTAKE_OUTPUT_ROOT=static/governance/intake
+ENV MAX_BODY_BYTES=256000
+
+EXPOSE 8787
+
+CMD ["node", "scripts/proposal-intake-api-server.mjs"]
