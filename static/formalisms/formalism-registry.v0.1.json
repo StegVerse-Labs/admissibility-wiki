@@ -89,18 +89,18 @@
     },
     {
       "formalism_id": "ae.Triad",
-      "name": "Triad",
-      "state": "intake",
+      "name": "Triad Governance Model",
+      "state": "mirrored",
       "source_authority": "Admissible-Existence/Triad",
       "source_visibility": "private",
-      "wiki_path": "docs/formalisms/admissible-existence-triad.md",
-      "purpose": "Mirror public-safe metadata for the Triad subject formalism once source boundary and publishable scope are confirmed.",
-      "transition_relationship": "subject formalism pending source crosswalk",
-      "evidence_posture": "source_repository_required_private_scope",
-      "validation_posture": "pending_detail_page_and_crosswalk",
+      "wiki_path": "docs/formalisms/triad-governance-model.md",
+      "purpose": "Mirror public-safe metadata for Triad Governance Model and connect role-separated governance to runtime governance, transition posture, boundary conditions, continuity, and receipts.",
+      "transition_relationship": "triad governance model canonical detail page installed; source-confirmed proof and validation extraction pending",
+      "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
+      "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
       "non_claims": [
-        "Wiki mirroring must not expose private Triad source content.",
-        "Wiki mirroring does not prove or validate Triad claims."
+        "Wiki mirroring must not expose private Triad Governance Model source content.",
+        "Wiki mirroring does not define, prove, or validate Triad Governance Model claims."
       ]
     },
     {
