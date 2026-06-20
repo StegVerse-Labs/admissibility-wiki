@@ -41,18 +41,18 @@
     },
     {
       "formalism_id": "ae.RTG",
-      "name": "RTG",
-      "state": "intake",
+      "name": "Runtime Transition Governance",
+      "state": "mirrored",
       "source_authority": "Admissible-Existence/RTG",
       "source_visibility": "private",
-      "wiki_path": "docs/formalisms/admissible-existence-rtg.md",
-      "purpose": "Mirror public-safe metadata for the RTG subject formalism once source boundary and publishable scope are confirmed.",
-      "transition_relationship": "subject formalism pending source crosswalk",
-      "evidence_posture": "source_repository_required_private_scope",
-      "validation_posture": "pending_detail_page_and_crosswalk",
+      "wiki_path": "docs/formalisms/runtime-transition-governance.md",
+      "purpose": "Mirror public-safe metadata for Runtime Transition Governance and connect runtime checks to transition posture, authority, policy, boundary, evidence, and receipt review.",
+      "transition_relationship": "runtime transition governance canonical detail page installed; source-confirmed proof and validation extraction pending",
+      "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
+      "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
       "non_claims": [
-        "Wiki mirroring must not expose private RTG source content.",
-        "Wiki mirroring does not prove or validate RTG claims."
+        "Wiki mirroring must not expose private Runtime Transition Governance source content.",
+        "Wiki mirroring does not define, prove, or validate Runtime Transition Governance claims."
       ]
     },
     {
