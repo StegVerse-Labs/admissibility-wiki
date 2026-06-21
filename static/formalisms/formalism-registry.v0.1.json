@@ -201,20 +201,20 @@
     },
     {
       "formalism_id": "ae.ae-validation-factory",
-      "name": "ae-validation-factory",
-      "state": "intake",
+      "name": "Admissible-Existence Validation Factory",
+      "state": "mirrored",
       "source_authority": "Admissible-Existence/ae-validation-factory",
       "source_visibility": "private",
-      "wiki_path": "docs/formalisms/admissible-existence-ae-validation-factory.md",
-      "purpose": "Mirror public-safe metadata for the AE validation factory once source boundary and publishable scope are confirmed.",
-      "transition_relationship": "validation infrastructure subject formalism pending source crosswalk",
-      "evidence_posture": "source_repository_required_private_scope",
-      "validation_posture": "pending_detail_page_and_crosswalk",
+      "wiki_path": "docs/formalisms/admissible-existence-validation-factory.md",
+      "purpose": "Mirror public-safe metadata for the Admissible-Existence Validation Factory and connect validation targets, fixtures, expected outcomes, validation receipts, proof candidates, and reference implementations to the formalism graph.",
+      "transition_relationship": "admissible-existence validation factory canonical detail page installed; source-confirmed proof, fixture, expected-outcome, implementation, and validation extraction pending",
+      "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
+      "validation_posture": "detail_page_installed_pending_source_confirmed_tests_fixtures_expected_outcomes_and_reference_implementations",
       "non_claims": [
-        "Wiki mirroring must not expose private ae-validation-factory source content.",
-        "Wiki mirroring does not prove or validate ae-validation-factory claims."
+        "Wiki mirroring must not expose private Admissible-Existence Validation Factory source content.",
+        "Wiki mirroring does not define, prove, validate, or implement Admissible-Existence Validation Factory claims."
       ]
     }
   ],
-  "next_action": "Continue public-safe formalism detail pages and source crosswalk records for each Admissible-Existence subject repository."
+  "next_action": "Complete main registry merge for Boundary Conditions, then continue source-confirmed mathematical, proof, validation, artifact, and implementation extraction."
 }
