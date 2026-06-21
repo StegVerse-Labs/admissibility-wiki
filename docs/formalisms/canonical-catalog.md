@@ -54,7 +54,7 @@ non-claims
 | [Governance-Centered and Boundary-Centered Admissibility Testing](./governance-centered-boundary-centered-admissibility-testing.md) | `Admissible-Existence/GCAT-BCAT` | source_available | first complete publication family available through Publisher |
 | [Core-Lite Admissibility Engine](./core-lite-admissibility-engine.md) | `Admissible-Existence/core-lite` | watching | initial scaffold installed |
 | [Learning Transition Governance](./learning-transition-governance.md) | `Admissible-Existence/learning-transition-governance` | watching | initial scaffold installed |
-| Admissible-Existence Validation Factory | `Admissible-Existence/ae-validation-factory` | watching | pending public-safe source availability |
+| [Admissible-Existence Validation Factory](./admissible-existence-validation-factory.md) | `Admissible-Existence/ae-validation-factory` | watching | initial scaffold installed |
 
 ## Priority Rule
 
@@ -95,4 +95,4 @@ External framework mapping does not replace canonical formalism definition.
 
 ## Next Safe Build Target
 
-Register Learning Transition Governance in the machine-readable formalism registry, then continue source-confirmed mathematical, proof, and validation candidate extraction.
+Register Admissible-Existence Validation Factory in the machine-readable formalism registry, then continue source-confirmed mathematical, proof, and validation candidate extraction.
