@@ -10,6 +10,12 @@ This page defines the wiki’s formalism-catalog responsibility boundary.
 
 The Admissibility Wiki does not originate canonical formalisms. It mirrors, relates, crosswalks, and discovers relationships around canonical formalisms defined by `Admissible-Existence`.
 
+## Graph Index
+
+The current public formalism graph can be inspected here:
+
+[Canonical Formalism Graph Index](./formalism-graph-index.md)
+
 ## Source Chain
 
 ```text
@@ -95,4 +101,4 @@ External framework mapping does not replace canonical formalism definition.
 
 ## Next Safe Build Target
 
-Complete main registry merge for Boundary Conditions, then continue source-confirmed mathematical, proof, validation, artifact, and implementation extraction.
+Continue source-confirmed mathematical, proof, validation, artifact, and implementation extraction across the canonical formalism graph.
