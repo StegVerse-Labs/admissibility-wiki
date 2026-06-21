@@ -45,7 +45,7 @@ non-claims
 |---|---|---|---|
 | [State Transition Continuity Model](./state-transition-continuity-model.md) | `Admissible-Existence/STCM` | watching | initial scaffold installed |
 | [Runtime Transition Governance](./runtime-transition-governance.md) | `Admissible-Existence/RTG` | watching | initial scaffold installed |
-| Boundary Conditions | `Admissible-Existence/BC` | watching | pending public-safe source availability |
+| [Boundary Conditions](./boundary-conditions.md) | `Admissible-Existence/BC` | watching | initial scaffold installed |
 | [Transition Table](./transition-table.md) | `Admissible-Existence/TT` | watching | initial scaffold installed |
 | [Triad Governance Model](./triad-governance-model.md) | `Admissible-Existence/Triad` | watching | initial scaffold installed |
 | [Continuity Handoff Formalism](./continuity-handoff-formalism.md) | `Admissible-Existence/CHF` | watching | initial scaffold installed |
@@ -95,4 +95,4 @@ External framework mapping does not replace canonical formalism definition.
 
 ## Next Safe Build Target
 
-Register Admissible-Existence Validation Factory in the machine-readable formalism registry, then continue source-confirmed mathematical, proof, and validation candidate extraction.
+Complete main registry merge for Boundary Conditions, then continue source-confirmed mathematical, proof, validation, artifact, and implementation extraction.
