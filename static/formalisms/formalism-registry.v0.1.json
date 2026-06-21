@@ -57,18 +57,18 @@
     },
     {
       "formalism_id": "ae.BC",
-      "name": "BC",
-      "state": "intake",
+      "name": "Boundary Conditions",
+      "state": "mirrored",
       "source_authority": "Admissible-Existence/BC",
       "source_visibility": "private",
-      "wiki_path": "docs/formalisms/admissible-existence-bc.md",
-      "purpose": "Mirror public-safe metadata for the BC subject formalism once source boundary and publishable scope are confirmed.",
-      "transition_relationship": "subject formalism pending source crosswalk",
-      "evidence_posture": "source_repository_required_private_scope",
-      "validation_posture": "pending_detail_page_and_crosswalk",
+      "wiki_path": "docs/formalisms/boundary-conditions.md",
+      "purpose": "Mirror public-safe metadata for Boundary Conditions and connect boundary satisfaction to transition posture, runtime governance, evidence, and receipt review.",
+      "transition_relationship": "boundary conditions canonical detail page installed; source-confirmed proof and validation extraction pending",
+      "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
+      "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
       "non_claims": [
-        "Wiki mirroring must not expose private BC source content.",
-        "Wiki mirroring does not prove or validate BC claims."
+        "Wiki mirroring must not expose private Boundary Conditions source content.",
+        "Wiki mirroring does not define, prove, or validate Boundary Conditions claims."
       ]
     },
     {
@@ -216,5 +216,5 @@
       ]
     }
   ],
-  "next_action": "Complete main registry merge for Boundary Conditions, then continue source-confirmed mathematical, proof, validation, artifact, and implementation extraction."
+  "next_action": "Continue source-confirmed mathematical, proof, validation, artifact, and implementation extraction across the canonical formalism graph."
 }
