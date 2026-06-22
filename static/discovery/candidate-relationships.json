@@ -1,0 +1,46 @@
+{
+  "schema": "admissibility_wiki_candidate_relationships.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "authority_boundary": "This file stores candidate relationships for review. It does not assert accepted synonymy, equivalence, dependency, consequence, or conflict until reviewed and promoted through a governed decision path.",
+  "required_record_fields": [
+    "candidate_id",
+    "term_a",
+    "term_b",
+    "relationship_type",
+    "confidence",
+    "source_origin_a",
+    "source_origin_b",
+    "evidence_a",
+    "evidence_b",
+    "review_status",
+    "review_notes",
+    "created_at",
+    "updated_at"
+  ],
+  "allowed_relationship_types": [
+    "equivalent_candidate",
+    "near_equivalent_candidate",
+    "parent_candidate",
+    "child_candidate",
+    "prerequisite_candidate",
+    "consequence_candidate",
+    "conflict_candidate",
+    "adjacent_candidate",
+    "unresolved_candidate"
+  ],
+  "allowed_review_statuses": [
+    "review_required",
+    "accepted",
+    "reclassified",
+    "rejected",
+    "deferred",
+    "superseded"
+  ],
+  "records": [],
+  "non_claims": [
+    "A candidate relationship is not a final relationship claim.",
+    "A candidate relationship is not an equivalence decision.",
+    "A confidence score is not proof.",
+    "A source origin link is not endorsement."
+  ]
+}
