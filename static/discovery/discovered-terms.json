@@ -1,0 +1,30 @@
+{
+  "schema": "admissibility_wiki_discovered_terms.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "authority_boundary": "This file stores discovered term records and their formal origins. It does not define terms, assert equivalence, prove claims, validate claims, or replace source authority.",
+  "required_record_fields": [
+    "term_id",
+    "term",
+    "normalized_term",
+    "source_origin",
+    "source_path",
+    "evidence_ref",
+    "formalism_id",
+    "status",
+    "created_at",
+    "updated_at"
+  ],
+  "allowed_statuses": [
+    "observed",
+    "indexed",
+    "superseded",
+    "rejected"
+  ],
+  "records": [],
+  "non_claims": [
+    "A discovered term is not a canonical definition.",
+    "A discovered term is not a synonym decision.",
+    "A discovered term is not a proof or validation result.",
+    "A discovered term must preserve its source origin."
+  ]
+}
