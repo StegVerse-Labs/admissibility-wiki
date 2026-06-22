@@ -2,9 +2,9 @@
   "schema": "admissibility_wiki_publication_verification_status.v0.1",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "latest_checked_commit": "45c4e0cf0747c95281ef3fb6bafce772ab076efd",
-  "commit_status_result": "no_statuses_attached",
-  "public_visibility_status": "unverified",
-  "meaning": "Repository mutation has been observed, but public GitHub Pages publication has not been confirmed from available connector status data.",
+  "commit_status_result": "public_urls_reachable",
+  "public_visibility_status": "verified",
+  "meaning": "Configured public Pages URLs are reachable from the verifier.",
   "required_distinction": "Committed content is not the same as externally verified public page state.",
   "publication_paths": [
     "github/workflows/pages-build-only.yml",
@@ -20,5 +20,21 @@
     "This status file does not prove deployment failure.",
     "This status file does not prove public visibility.",
     "This status file records the current unverified state from available status data."
-  ]
+  ],
+  "latest_public_url_check": {
+    "checked_at": "2026-06-22T15:59:17.638Z",
+    "results": [
+      {
+        "url": "https://stegverse-labs.github.io/admissibility-wiki/",
+        "status_code": 200,
+        "ok": true
+      },
+      {
+        "url": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/governance-centered-boundary-centered-admissibility-testing",
+        "status_code": 301,
+        "ok": true
+      }
+    ],
+    "all_ok": true
+  }
 }
