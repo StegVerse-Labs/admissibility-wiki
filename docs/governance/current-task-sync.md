@@ -32,6 +32,7 @@ static/status/admissibility-wiki-status.json
 static/status/public-activation-receipt.example.json
 static/status/workflow-receipt-automation-status.json
 static/status/proposal-core-lite-target-watch-status.json
+static/status/no-manual-task-guard-status.json
 github/workflows/deploy.yml
 github/workflows/record-latest-success.yml
 github/workflows/proposal-core-lite-target-watch.yml
@@ -56,6 +57,7 @@ scripts/check-publication-chain-guard.mjs
 scripts/check-publication-verification-status.mjs
 scripts/check-workflow-receipt-automation-status.mjs
 scripts/check-proposal-core-lite-target-watch-status.mjs
+scripts/check-no-manual-task-assignments.mjs
 scripts/check-transition-origin-governance.mjs
 scripts/check-proposal-governance-classes.mjs
 scripts/check-proposal-intake-interface.mjs
@@ -78,7 +80,9 @@ A separate success recorder listens for successful deploy workflow completion an
 
 The proposal-governance-core-lite target watcher checks target readiness on push, schedule, and workflow dispatch. If the target is unavailable, it remains pending and emits a bounded artifact without assigning a manual task.
 
-The workflow receipt automation status and proposal core-lite target-watch status are covered by aggregate validation.
+The no-manual-task guard prevents tracked handoff/current-sync files from reintroducing manual assignment language.
+
+The workflow receipt automation status, proposal core-lite target-watch status, and no-manual-task guard status are covered by aggregate validation.
 
 ## Installed Formalism Mirrors
 
@@ -202,12 +206,13 @@ Success receipt artifact: admissibility-wiki-workflow-success
 Workflow receipt status validator: scripts/check-workflow-receipt-automation-status.mjs
 Proposal core-lite watcher artifact: proposal-core-lite-target-watch
 Proposal core-lite watcher validator: scripts/check-proposal-core-lite-target-watch-status.mjs
+No-manual-task guard validator: scripts/check-no-manual-task-assignments.mjs
 Manual task requirement: none recorded in this handoff
-Failure posture: first failing validator, missing artifact, public URL check, or watcher-status inconsistency becomes the next bounded repair target
+Failure posture: first failing validator, missing artifact, public URL check, manual-assignment guard, or watcher-status inconsistency becomes the next bounded repair target
 ```
 
 ## Next Safe Build Targets
 
-1. Let repo automation validate, build, deploy, verify public URLs, watch proposal-core-lite target readiness, and emit bounded artifacts.
-2. If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, or watcher-status inconsistency identified by failed job logs.
+1. Let repo automation validate, build, deploy, verify public URLs, watch proposal-core-lite target readiness, enforce no-manual-task assignment, and emit bounded artifacts.
+2. If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, manual-assignment guard, or watcher-status inconsistency identified by failed job logs.
 3. Update activation posture only from workflow evidence or source-confirmed deployment state.
