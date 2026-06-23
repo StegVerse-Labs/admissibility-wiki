@@ -49,6 +49,8 @@ non-claims
 
 | Canonical Formalism | Source Repository | Wiki State | Public-Safe Definition State |
 |---|---|---|---|
+| [Commit-Time Admissibility](./commit-time-admissibility.md) | `Admissible-Existence/CTA` | mirrored | initial scaffold, tests, and handoff installed |
+| [Irreversibility-Inference Convergence Theorem](./irreversibility-inference-convergence-theorem.md) | `Admissible-Existence/IICT` | mirrored | initial scaffold, tests, and handoff installed |
 | [State Transition Continuity Model](./state-transition-continuity-model.md) | `Admissible-Existence/STCM` | watching | initial scaffold installed |
 | [Runtime Transition Governance](./runtime-transition-governance.md) | `Admissible-Existence/RTG` | watching | initial scaffold installed |
 | [Boundary Conditions](./boundary-conditions.md) | `Admissible-Existence/BC` | watching | initial scaffold installed |
