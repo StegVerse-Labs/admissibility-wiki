@@ -6,43 +6,95 @@ title: Original Drawing Reference
 
 ## Purpose
 
-This page reserves a public-safe intake location for the original drawing or visual formalism artifact when it is ready to be entered into the Admissibility Wiki.
+This page records the public-safe provenance posture for the original hand-drawn source artifact now referenced as SG-001.
 
-The drawing may be relevant to Formalism and Glossary chronology, but it should not be treated as proof of priority, derivation, or admissibility until the artifact, date, custody path, and relationship are reviewable.
+The drawing may be relevant to Formalism and Glossary chronology, but it should not be treated as proof of priority, derivation, or admissibility until artifact custody, source images, date evidence, and relationship claims are reviewable.
 
-## Current Status
+## Provenance
 
 ```yaml
 original_drawing_reference:
-  artifact: pending_public_artifact
-  date: unknown
-  link: unknown
-  custody_path: unknown
-  relationship: source_candidate
+  artifact: original_hand_drawn_source_geometry
+  source_geometry_id: SG-001
+  title: Original Drawing Reference
+  creator: Rigel Randolph
+  artifact_classification: pre_BCAT_GCAT_recoverability_geometry
+  original_medium: hand_drawn_paper_artifact
+  current_earliest_preserved_copy: "2026-03-05"
+  preservation_method: photographic_capture_of_original_paper_drawing
+  earlier_upload_state: not_yet_located
+  relationship: precursor_source_candidate
   related_entries:
+    - Recoverability
+    - Coherence
+    - Unavailable Data
     - Commit-Time Admissibility
     - Boundary Conditions
     - Transition Table
     - Admissibility
-  evidence_posture: in progress
-  review_posture: in progress
-  chronology_status: in progress
-  attribution_status: in progress
+    - BCAT
+    - GCAT
+  evidence_posture: preserved_photographic_copies_available_for_review
+  review_posture: provenance_record_updated
+  chronology_status: pre_BCAT_GCAT_precursor_artifact
+  attribution_status: creator_recorded
 ```
+
+## Current Earliest Preserved Copy
+
+The currently earliest preserved copies available to this record are photographs dated 2026-03-05.
+
+These photographs document a hand-drawn paper artifact created by Rigel Randolph. The drawing predates the later BCAT/GCAT formalization work and is preserved as an early recoverability, coherence, unavailable-data, and admissible-reflection geometry that contributed to the later need for formal governance formalisms.
+
+Earlier ChatGPT uploads, drafts, scans, or preservation copies may have existed, but they have not yet been located. Therefore, this page distinguishes the earliest currently preserved copy from the original creation date and from any earlier upload date.
+
+## Historical Position
+
+This artifact should be treated as a pre-BCAT/GCAT precursor source geometry.
+
+The lineage posture is:
+
+```text
+Original hand-drawn artifact
+→ Photographic preservation
+→ Original Drawing Reference
+→ SG-001 registration
+→ Primitive geometry extraction
+→ Recoverability formalisms
+→ Admissibility formalisms
+→ BCAT/GCAT formalisms
+→ Commit-time admissibility
+```
+
+This sequence records a current provenance hypothesis and source-history ordering. It does not by itself prove that later terms, formalisms, implementations, or governance claims were derived from the drawing.
 
 ## Entry Rule
 
-When the drawing is entered, each related Formalism or Glossary entry should identify the drawing under the same metadata field:
+Each related Formalism or Glossary entry that references this artifact should identify the drawing under the same metadata field:
 
 ```yaml
 chronology:
   original_drawing_or_seed_artifact:
-    artifact: pending_public_artifact
-    date: unknown
-    link: unknown
-    relationship: source_candidate
-    status: in progress
+    artifact: original_hand_drawn_source_geometry
+    source_geometry_id: SG-001
+    creator: Rigel Randolph
+    current_earliest_preserved_copy: "2026-03-05"
+    relationship: precursor_source_candidate
+    status: provenance_recorded
 ```
+
+## Preservation Boundary
+
+The preserved photographs are source evidence for the existence and content of the hand-drawn artifact as of 2026-03-05.
+
+They do not establish:
+
+- the original creation date;
+- the earliest upload date;
+- complete custody history;
+- proof of formal derivation;
+- proof of admissibility;
+- proof that later systems inherit authority from the drawing.
 
 ## Non-Claim
 
