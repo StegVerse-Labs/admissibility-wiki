@@ -58,6 +58,8 @@ const sidebars = {
       items: [
         'formalisms/index',
         'formalisms/canonical-catalog',
+        'formalisms/commit-time-admissibility',
+        'formalisms/irreversibility-inference-convergence-theorem',
       ],
     },
     {
