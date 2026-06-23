@@ -39,6 +39,7 @@
     "durable_receipt_issuance": "not_installed",
     "queue_write": "not_installed",
     "automatic_ai_review": "not_installed",
+    "automatic_decision_publication": "not_installed",
     "preference_rule": "valid_manifest_receipt_may_receive_preferred_triage_only"
   },
   "site_bridge": {
