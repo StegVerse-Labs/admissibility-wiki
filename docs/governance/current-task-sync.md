@@ -31,6 +31,7 @@ static/status/admissibility-wiki-activation.json
 static/status/admissibility-wiki-status.json
 static/status/public-activation-receipt.example.json
 github/workflows/deploy.yml
+github/workflows/record-latest-success.yml
 ```
 
 Note: paths that normally begin with a leading dot are shown without the leading dot in this display rule only.
@@ -66,7 +67,9 @@ Aggregate validation is run by repo automation:
 npm run validate
 ```
 
-The deploy workflow validates governance artifacts, builds the Docusaurus site, deploys to GitHub Pages, and verifies public URLs for the site root, formalism index, CTA formalism page, and IICT formalism page.
+The deploy workflow validates governance artifacts, builds the Docusaurus site, deploys to GitHub Pages, verifies public URLs for the site root, formalism index, CTA formalism page, and IICT formalism page, and emits a failure receipt artifact when the chain fails.
+
+A separate success recorder listens for successful deploy workflow completion and emits a success receipt artifact.
 
 ## Installed Formalism Mirrors
 
@@ -185,12 +188,14 @@ Validation trigger: push to main
 Validation command: npm run validate
 Deployment trigger: successful validation and build
 Public verification: deploy workflow verify-public-pages job
+Failure receipt artifact: admissibility-wiki-workflow-failure
+Success receipt artifact: admissibility-wiki-workflow-success
 Manual task requirement: none recorded in this handoff
 Failure posture: first failing validator or public URL check becomes the next bounded repair target
 ```
 
 ## Next Safe Build Targets
 
-1. Let repo automation validate, build, deploy, and verify public URLs on push.
-2. If automation fails, repair only the first failing validator field, missing artifact, or public URL check.
+1. Let repo automation validate, build, deploy, verify public URLs, and emit success or failure receipt artifacts.
+2. If automation fails, repair only the first failing validator field, missing artifact, deployment issue, or public URL check identified by the failed job logs.
 3. Update activation posture only from workflow evidence or source-confirmed deployment state.
