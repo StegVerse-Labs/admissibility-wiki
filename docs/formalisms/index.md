@@ -23,6 +23,28 @@ Registry state: intake
 
 ## Formalism Terms
 
+### Commit-Time Admissibility
+
+**Definition:** A governing formalism for determining whether a proposed transition still has standing at the moment it crosses into commitment.
+
+**Source reference:** `Admissible-Existence/CTA`  
+**Source visibility:** private  
+**Formalism page:** [Commit-Time Admissibility](./commit-time-admissibility.md)  
+**Mirror handoff:** `CTA_MIRROR_HANDOFF.md`  
+**Current wiki state:** mirrored  
+**Non-claim:** CTA listing does not prove the complete formalism or create present standing for any transition.
+
+### Irreversibility-Inference Convergence Theorem
+
+**Definition:** A theorem candidate proposing that governance systems subjected to repeated admissibility optimization converge toward structures that minimize the distance between irreversible commitment and the final admissible inference while preserving reconstructability.
+
+**Source reference:** `Admissible-Existence/IICT`  
+**Source visibility:** private  
+**Formalism page:** [Irreversibility-Inference Convergence Theorem](./irreversibility-inference-convergence-theorem.md)  
+**Mirror handoff:** `IICT_MIRROR_HANDOFF.md`  
+**Current wiki state:** mirrored  
+**Non-claim:** IICT does not replace Commit-Time Admissibility and is not proven by baseline tests.
+
 ### State Transition Continuity Model
 
 **Definition:** A formalism for examining whether a proposed or observed state transition preserves enough continuity, standing, and reconstruction context to be treated as admissibly related to the prior state.
