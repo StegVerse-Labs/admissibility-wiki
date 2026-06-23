@@ -30,6 +30,7 @@ docs/activation/github-pages-cloudflare.md
 static/status/admissibility-wiki-activation.json
 static/status/admissibility-wiki-status.json
 static/status/public-activation-receipt.example.json
+static/status/workflow-receipt-automation-status.json
 github/workflows/deploy.yml
 github/workflows/record-latest-success.yml
 ```
@@ -51,6 +52,7 @@ scripts/check-formalism-source-sync.mjs
 scripts/check-external-frameworks.mjs
 scripts/check-publication-chain-guard.mjs
 scripts/check-publication-verification-status.mjs
+scripts/check-workflow-receipt-automation-status.mjs
 scripts/check-transition-origin-governance.mjs
 scripts/check-proposal-governance-classes.mjs
 scripts/check-proposal-intake-interface.mjs
@@ -70,6 +72,8 @@ npm run validate
 The deploy workflow validates governance artifacts, builds the Docusaurus site, deploys to GitHub Pages, verifies public URLs for the site root, formalism index, CTA formalism page, and IICT formalism page, and emits a failure receipt artifact when the chain fails.
 
 A separate success recorder listens for successful deploy workflow completion and emits a success receipt artifact.
+
+The workflow receipt automation status is now covered by aggregate validation.
 
 ## Installed Formalism Mirrors
 
@@ -190,6 +194,7 @@ Deployment trigger: successful validation and build
 Public verification: deploy workflow verify-public-pages job
 Failure receipt artifact: admissibility-wiki-workflow-failure
 Success receipt artifact: admissibility-wiki-workflow-success
+Workflow receipt status validator: scripts/check-workflow-receipt-automation-status.mjs
 Manual task requirement: none recorded in this handoff
 Failure posture: first failing validator or public URL check becomes the next bounded repair target
 ```
