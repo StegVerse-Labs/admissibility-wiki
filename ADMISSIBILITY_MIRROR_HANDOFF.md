@@ -6,7 +6,7 @@ This file is the current handoff and task source of truth for `StegVerse-Labs/ad
 
 ## Current Priority
 
-Add StegTalk admissibility boundary notes from Publisher/Site/StegTalk source artifacts.
+StegTalk admissibility boundary notes have been installed and propagated to the known guardian wiki target.
 
 ## Source Artifacts
 
@@ -29,18 +29,20 @@ Origin source: `StegVerse-Labs/StegTalk`
 - `STEGTALK_LOCAL_CANDIDATE.json`
 - `STEGTALK_RELEASE_HANDOFF.json`
 
-## Required Install
+## Admissibility Install Complete
 
 Destination: `StegVerse-Labs/admissibility-wiki`
 
-- StegTalk admissibility boundary page
-- Mirror receipt preserving non-production boundary
+- `pages/stegtalk-admissibility-boundary.md`
+- `receipts/stegtalk-admissibility-boundary-receipt.json`
 
-## Remaining Downstream Target
+## Downstream Propagation Complete
 
-Destination: `stegguardian-wiki`
+Destination: `StegVerse-002/stegguardian-wiki`
 
-- add/update StegTalk guardian/account boundary notes
+- `STEGGUARDIAN_WIKI_MIRROR_HANDOFF.md`
+- `pages/stegtalk-guardian-account-boundary.md`
+- `receipts/stegtalk-boundary-receipt.json`
 
 ## Build Rule
 
@@ -49,3 +51,7 @@ Before continuing any admissibility-wiki mirror task, check this file first and 
 ## Boundary
 
 StegTalk remains a non-production local prototype candidate. Do not describe it as production ready.
+
+## Next Integration Candidate
+
+No additional StegTalk propagation target is currently known from this handoff.
