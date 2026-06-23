@@ -141,6 +141,7 @@ The repo currently includes:
 - GitHub Pages deployment workflow;
 - deployment failure receipt artifact workflow path;
 - deployment success receipt artifact workflow;
+- workflow receipt automation status artifact and validator;
 - validation workflow;
 - GitHub.io project URL configuration;
 - activation runbook;
@@ -238,11 +239,13 @@ static/status/proposal-governance-core-lite-seed-status.json
 static/status/proposal-intake-backend-status.json
 static/status/proposal-intake-endpoint-verification-status.json
 static/status/intake-api-deploy-config-status.json
+static/status/workflow-receipt-automation-status.json
 scripts/check-wiki-status.mjs
 scripts/check-activation-checklist.mjs
 scripts/check-public-activation-receipt.mjs
 scripts/check-proposal-governance-core-lite-seed.mjs
 scripts/check-proposal-governance-core-lite-creation-task.mjs
+scripts/check-workflow-receipt-automation-status.mjs
 ```
 
 Do not recreate versioned status mirrors unless the status schema is intentionally versioned and the canonical file points to the active version.
@@ -256,6 +259,7 @@ Deployment trigger: successful validation and build
 Public verification: deploy workflow verify-public-pages job
 Failure receipt artifact: admissibility-wiki-workflow-failure
 Success receipt artifact: admissibility-wiki-workflow-success
+Workflow receipt status validator: scripts/check-workflow-receipt-automation-status.mjs
 Manual task requirement: none recorded in this handoff
 ```
 
