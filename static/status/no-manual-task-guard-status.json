@@ -1,0 +1,26 @@
+{
+  "schema": "admissibility_wiki_no_manual_task_guard_status.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "status": "installed",
+  "guard_script": "scripts/check-no-manual-task-assignments.mjs",
+  "guarded_files": [
+    "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+    "docs/governance/current-task-sync.md"
+  ],
+  "manual_task_requirement": "none",
+  "allowed_phrases": [
+    "Manual task requirement: none recorded in this handoff",
+    "No manual target-creation task is assigned in this handoff"
+  ],
+  "blocked_patterns": [
+    "The next formal task is external target repo creation",
+    "Create StegVerse-Labs/proposal-governance-core-lite",
+    "Copy repo-seeds/proposal-governance-core-lite/* into it",
+    "Run npm run validate in the target repo"
+  ],
+  "failure_posture": "fail_validation_until_manual_assignment_language_is_replaced_with_repo_owned_automation_or_bounded_pending_status",
+  "non_claims": [
+    "This guard does not perform the work described by automation.",
+    "This guard only prevents tracked handoff/current-sync files from assigning manual work."
+  ]
+}
