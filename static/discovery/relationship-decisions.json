@@ -1,0 +1,46 @@
+{
+  "schema": "admissibility_wiki_relationship_decisions.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "authority_boundary": "This file stores reviewed relationship decisions derived from candidate relationships. It does not define formal terms, replace source authority, or promote any relationship without an explicit recorded decision.",
+  "required_record_fields": [
+    "decision_id",
+    "candidate_id",
+    "term_a",
+    "term_b",
+    "decision",
+    "relationship_type",
+    "source_origin_a",
+    "source_origin_b",
+    "evidence_a",
+    "evidence_b",
+    "reviewer",
+    "decision_basis",
+    "created_at",
+    "updated_at"
+  ],
+  "allowed_decisions": [
+    "accepted",
+    "reclassified",
+    "rejected",
+    "deferred",
+    "superseded"
+  ],
+  "allowed_relationship_types": [
+    "equivalent",
+    "near_equivalent",
+    "parent",
+    "child",
+    "prerequisite",
+    "consequence",
+    "conflict",
+    "adjacent",
+    "unresolved"
+  ],
+  "records": [],
+  "non_claims": [
+    "A decision record does not define either term.",
+    "A decision record does not replace either source origin.",
+    "A decision record must preserve both source origins.",
+    "No candidate is promoted without a recorded decision."
+  ]
+}
