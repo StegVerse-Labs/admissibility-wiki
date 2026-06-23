@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "admissibility_wiki_receipt",
+  "target_repo": "StegVerse-Labs/admissibility-wiki",
+  "origin_repo": "StegVerse-Labs/StegTalk",
+  "site_repo": "StegVerse-Labs/Site",
+  "publisher_repo": "GCAT-BCAT-Engine/Publisher",
+  "production_ready": false,
+  "installed_files": [
+    "ADMISSIBILITY_MIRROR_HANDOFF.md",
+    "pages/stegtalk-admissibility-boundary.md"
+  ],
+  "remaining_targets": [
+    "stegguardian-wiki"
+  ]
+}
