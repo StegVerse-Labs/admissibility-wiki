@@ -51,6 +51,12 @@
     "wiki_source_authority": "admissibility-wiki-governance",
     "proof_authority": "formalism-tests where executable proof is required"
   },
+  "automation_guards": {
+    "workflow_receipt_automation_status": "static/status/workflow-receipt-automation-status.json",
+    "proposal_core_lite_target_watch_status": "static/status/proposal-core-lite-target-watch-status.json",
+    "no_manual_task_guard_status": "static/status/no-manual-task-guard-status.json",
+    "manual_task_requirement": "none"
+  },
   "installed_public_pages": {
     "landing_page": "docs/index.md",
     "activation_runbook": "docs/activation/github-pages-cloudflare.md",
@@ -122,8 +128,8 @@
     "task_sync": "docs/governance/current-task-sync.md"
   },
   "next_safe_build_targets": [
-    "Define backend submission contract for manifest/receipt intake without claiming active submission.",
-    "Verify GitHub Pages deployment at https://stegverse-labs.github.io/admissibility-wiki/ after Actions completes.",
-    "Update activation posture only after public GitHub.io deployment status changes."
+    "Let repo automation validate, build, deploy, verify public URLs, watch proposal-core-lite target readiness, enforce no-manual-task assignment, and emit bounded artifacts.",
+    "If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, manual-assignment guard, or watcher-status inconsistency identified by failed job logs.",
+    "Update activation posture only from workflow evidence or source-confirmed deployment state."
   ]
 }
