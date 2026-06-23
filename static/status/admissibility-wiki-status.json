@@ -1,6 +1,6 @@
 {
   "schema": "admissibility_wiki_status.v1",
-  "generated_at": "2026-06-19T00:00:00Z",
+  "generated_at": "2026-06-23T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "site": "https://stegverse-labs.github.io/admissibility-wiki/",
   "status": "build_in_progress",
@@ -51,6 +51,16 @@
     "wiki_source_authority": "admissibility-wiki-governance",
     "proof_authority": "formalism-tests where executable proof is required"
   },
+  "source_geometry_provenance": {
+    "status": "recorded",
+    "page": "docs/formalisms/original-drawing-reference.md",
+    "source_geometry_id": "SG-001",
+    "creator": "Rigel Randolph",
+    "artifact_classification": "pre_BCAT_GCAT_recoverability_geometry",
+    "current_earliest_preserved_copy": "2026-03-05",
+    "earlier_upload_state": "not_yet_located",
+    "authority_boundary": "records provenance posture only; does not prove derivation, priority, or admissibility"
+  },
   "automation_guards": {
     "workflow_receipt_automation_status": "static/status/workflow-receipt-automation-status.json",
     "proposal_core_lite_target_watch_status": "static/status/proposal-core-lite-target-watch-status.json",
@@ -67,6 +77,7 @@
     "decision_record": "docs/governance/decision-record.md",
     "site_bridge_status": "docs/governance/site-bridge-status.md",
     "terminology_overlap_research_notes": "docs/research/terminology-overlap-research-notes.md",
+    "original_drawing_reference": "docs/formalisms/original-drawing-reference.md",
     "page_template": "docs/governance/page-template.md",
     "current_task_sync": "docs/governance/current-task-sync.md",
     "mirror_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
@@ -129,7 +140,7 @@
   },
   "next_safe_build_targets": [
     "Let repo automation validate, build, deploy, verify public URLs, watch proposal-core-lite target readiness, enforce no-manual-task assignment, and emit bounded artifacts.",
-    "If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, manual-assignment guard, or watcher-status inconsistency identified by failed job logs.",
+    "If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, manual-assignment guard, watcher-status inconsistency, or source-geometry provenance field identified by failed job logs.",
     "Update activation posture only from workflow evidence or source-confirmed deployment state."
   ]
 }
