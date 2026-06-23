@@ -24,6 +24,40 @@
   ],
   "records": [
     {
+      "formalism_id": "ae.CTA",
+      "name": "Commit-Time Admissibility",
+      "state": "mirrored",
+      "source_authority": "Admissible-Existence/CTA",
+      "source_visibility": "private",
+      "wiki_path": "docs/formalisms/commit-time-admissibility.md",
+      "purpose": "Mirror public-safe metadata for Commit-Time Admissibility and connect present standing, commitment candidates, standing reconstruction, decision outcomes, receipts, and validation fixtures to the formalism graph.",
+      "transition_relationship": "commit-time admissibility canonical detail page installed; baseline tests and mirror handoff recorded; formal proof extraction pending",
+      "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
+      "validation_posture": "baseline_fixture_validator_installed_pending_source_confirmed_formal_tests",
+      "non_claims": [
+        "Wiki mirroring must not expose private CTA source content.",
+        "Wiki mirroring does not define, prove, or validate CTA claims.",
+        "CTA baseline tests do not prove the complete formalism."
+      ]
+    },
+    {
+      "formalism_id": "ae.IICT",
+      "name": "Irreversibility-Inference Convergence Theorem",
+      "state": "mirrored",
+      "source_authority": "Admissible-Existence/IICT",
+      "source_visibility": "private",
+      "wiki_path": "docs/formalisms/irreversibility-inference-convergence-theorem.md",
+      "purpose": "Mirror public-safe metadata for IICT and connect inference windows, points of irreversibility, Governance Distance, convergence observations, theorem evaluation, and baseline fixtures to the formalism graph.",
+      "transition_relationship": "IICT canonical detail page installed; baseline tests and mirror handoff recorded; theorem proof and peer review pending",
+      "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
+      "validation_posture": "baseline_fixture_validator_installed_pending_source_confirmed_formal_tests_and_peer_review",
+      "non_claims": [
+        "Wiki mirroring must not expose private IICT source content.",
+        "Wiki mirroring does not prove IICT.",
+        "IICT does not replace Commit-Time Admissibility."
+      ]
+    },
+    {
       "formalism_id": "ae.STCM",
       "name": "State Transition Continuity Model",
       "state": "mirrored",
