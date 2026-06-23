@@ -108,7 +108,7 @@ Do not re-add `static/CNAME` unless custom-domain activation is explicitly reque
 
 ## Deployment Gate
 
-The GitHub Pages deploy workflow is validation-gated.
+The GitHub Pages deploy workflow is validation-gated and public-verification-gated.
 
 ```text
 github/workflows/deploy.yml:
@@ -116,9 +116,20 @@ github/workflows/deploy.yml:
   npm run validate
   upload build artifact
   deploy pages
+  verify site root
+  verify formalism index
+  verify CTA formalism page
+  verify IICT formalism page
+  emit failure receipt artifact if validation, build, deploy, or URL verification fails
 ```
 
-`npm run validate` is the preferred aggregate command and must pass before the Pages artifact is uploaded.
+Successful deploy completion is recorded by:
+
+```text
+github/workflows/record-latest-success.yml:
+  listens for successful deploy workflow completion
+  emits admissibility-wiki-workflow-success artifact
+```
 
 Note: paths that normally begin with a leading dot are shown without the leading dot in this handoff display to avoid hidden-path ambiguity in copied instructions.
 
@@ -128,6 +139,8 @@ The repo currently includes:
 
 - Docusaurus scaffold;
 - GitHub Pages deployment workflow;
+- deployment failure receipt artifact workflow path;
+- deployment success receipt artifact workflow;
 - validation workflow;
 - GitHub.io project URL configuration;
 - activation runbook;
@@ -163,7 +176,9 @@ The repo currently includes:
 - proof-path examples;
 - machine-readable vocabulary artifact;
 - Admissibility-Wiki AI Entity governance page;
-- proposal-governance-core-lite seed and validators.
+- proposal-governance-core-lite seed and validators;
+- CTA and IICT formalism mirror pages;
+- CTA and IICT formalism registry records.
 
 ## Known Governance Files
 
@@ -192,6 +207,27 @@ docs/governance/relationship-validator-status.md
 docs/governance/public-activation-verification.md
 ```
 
+## Known Formalism Files
+
+Do not recreate these under alternate names:
+
+```text
+docs/formalisms/index.md
+docs/formalisms/canonical-catalog.md
+docs/formalisms/commit-time-admissibility.md
+docs/formalisms/irreversibility-inference-convergence-theorem.md
+static/formalisms/formalism-registry.v0.1.json
+```
+
+## Known Workflow Files
+
+Displayed without leading dot for iOS readability; actual repository paths use the leading-dot directory.
+
+```text
+github/workflows/deploy.yml
+github/workflows/record-latest-success.yml
+```
+
 ## Known Status Artifacts
 
 ```text
@@ -211,20 +247,16 @@ scripts/check-proposal-governance-core-lite-creation-task.mjs
 
 Do not recreate versioned status mirrors unless the status schema is intentionally versioned and the canonical file points to the active version.
 
-## Validation Commands
+## Validation and Receipt Automation
 
 ```text
-npm run validate
-node scripts/validate-ontology.mjs
-node scripts/check-wiki-status.mjs
-node scripts/check-activation-checklist.mjs
-node scripts/check-equivalence-proposal-template.mjs
-node scripts/check-relationship-status-summary.mjs
-node scripts/check-public-activation-receipt.mjs
-node scripts/check-proposal-governance-classes.mjs
-node scripts/check-proposal-governance-core-lite-seed.mjs
-node scripts/check-proposal-governance-core-lite-creation-task.mjs
-npm run build
+Validation trigger: push to main
+Validation command: npm run validate
+Deployment trigger: successful validation and build
+Public verification: deploy workflow verify-public-pages job
+Failure receipt artifact: admissibility-wiki-workflow-failure
+Success receipt artifact: admissibility-wiki-workflow-success
+Manual task requirement: none recorded in this handoff
 ```
 
 `npm run validate` is the preferred aggregate command because it runs the installed validators and the Docusaurus build. If a newly installed validator is not yet included in `npm run validate`, run it directly and then wire it into the aggregate when safe.
@@ -259,13 +291,11 @@ node scripts/check-equivalence-proposal-template.mjs
 
 Do not add an external term to `Equivalent Terms` without a completed proposal, source evidence, mismatch analysis, overclaiming-risk analysis, and decision record.
 
-## Next Safe Build Targets
-
 Priority order:
 
-1. Create `StegVerse-Labs/proposal-governance-core-lite` externally, copy the seed, and validate it independently.
-2. Verify GitHub Pages deployment at `https://stegverse-labs.github.io/admissibility-wiki/` after Actions completes.
-3. Deploy authorized intake API runtime, then run endpoint verification workflow.
+1. Let repo automation validate, build, deploy, verify public URLs, and emit success or failure receipt artifacts.
+2. If automation fails, repair only the first failing validator field, missing artifact, deployment issue, or public URL check identified by the failed job logs.
+3. Deploy authorized intake API runtime only when source-confirmed runtime authority exists.
 4. Update activation posture only after public GitHub.io deployment and endpoint evidence exists.
 5. Add research-backed equivalence proposals only when they materially improve terminology classification.
 
