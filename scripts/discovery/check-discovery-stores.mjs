@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 
+const registryPath = 'static/formalisms/formalism-registry.v0.1.json';
+
 const files = [
   {
     path: 'static/discovery/discovered-terms.json',
@@ -31,10 +33,12 @@ function fail(message) {
   process.exit(1);
 }
 
-for (const file of files) {
-  if (!fs.existsSync(file.path)) fail(`missing file: ${file.path}`);
-  const data = JSON.parse(fs.readFileSync(file.path, 'utf8'));
+function readJson(path) {
+  if (!fs.existsSync(path)) fail(`missing file: ${path}`);
+  return JSON.parse(fs.readFileSync(path, 'utf8'));
+}
 
+function validateStore(file, data) {
   if (data.schema !== file.schema) fail(`${file.path} bad schema`);
   if (!data.authority_boundary) fail(`${file.path} missing authority_boundary`);
   if (!Array.isArray(data[file.recordFieldsKey]) || data[file.recordFieldsKey].length === 0) fail(`${file.path} missing required fields`);
@@ -60,4 +64,40 @@ for (const file of files) {
   }
 }
 
-console.log(`OK: discovery stores=${files.length}`);
+function validateGeneratedCoverage(stores) {
+  const registry = readJson(registryPath);
+  const mirrored = registry.records.filter((record) => record.state === 'mirrored');
+  const terms = stores.get('static/discovery/discovered-terms.json').records;
+  const candidates = stores.get('static/discovery/candidate-relationships.json').records;
+
+  for (const formalism of mirrored) {
+    const matchingTerms = terms.filter((term) => term.formalism_id === formalism.formalism_id);
+    if (matchingTerms.length !== 1) fail(`expected exactly one discovered term for ${formalism.formalism_id}`);
+
+    const term = matchingTerms[0];
+    if (term.term !== formalism.name) fail(`term name mismatch for ${formalism.formalism_id}`);
+    if (term.source_origin !== formalism.source_authority) fail(`source origin mismatch for ${formalism.formalism_id}`);
+    if (term.source_path !== formalism.wiki_path) fail(`source path mismatch for ${formalism.formalism_id}`);
+    if (term.evidence_ref !== `${formalism.wiki_path}#definition`) fail(`evidence ref mismatch for ${formalism.formalism_id}`);
+    if (term.status !== 'indexed') fail(`term is not indexed for ${formalism.formalism_id}`);
+  }
+
+  for (const candidate of candidates) {
+    if (candidate.review_status !== 'review_required') fail(`candidate is not review_required: ${candidate.candidate_id}`);
+    if (!candidate.source_origin_a || !candidate.source_origin_b) fail(`candidate missing source origin: ${candidate.candidate_id}`);
+    if (!candidate.evidence_a || !candidate.evidence_b) fail(`candidate missing evidence: ${candidate.candidate_id}`);
+    if (!candidate.review_notes.includes('No equivalence')) fail(`candidate missing non-promotion note: ${candidate.candidate_id}`);
+  }
+}
+
+const stores = new Map();
+
+for (const file of files) {
+  const data = readJson(file.path);
+  validateStore(file, data);
+  stores.set(file.path, data);
+}
+
+validateGeneratedCoverage(stores);
+
+console.log(`OK: discovery stores=${files.length}; generated coverage checked`);
