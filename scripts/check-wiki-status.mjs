@@ -16,6 +16,7 @@ const requiredTopLevel = [
   'github_io_configuration',
   'proposal_intake',
   'site_bridge',
+  'automation_guards',
   'installed_public_pages',
   'installed_governance_records',
   'known_handoff_files',
@@ -57,6 +58,13 @@ const requiredIntakeFields = [
   'automatic_ai_review',
   'automatic_decision_publication',
   'preference_rule'
+];
+
+const requiredAutomationGuards = [
+  'workflow_receipt_automation_status',
+  'proposal_core_lite_target_watch_status',
+  'no_manual_task_guard_status',
+  'manual_task_requirement'
 ];
 
 function fail(message) {
@@ -101,6 +109,7 @@ requireObject(status.activation_checks, 'activation_checks');
 requireObject(status.github_io_configuration, 'github_io_configuration');
 requireObject(status.proposal_intake, 'proposal_intake');
 requireObject(status.site_bridge, 'site_bridge');
+requireObject(status.automation_guards, 'automation_guards');
 requireObject(status.installed_public_pages, 'installed_public_pages');
 requireObject(status.known_handoff_files, 'known_handoff_files');
 requireArray(status.installed_governance_records, 'installed_governance_records');
@@ -122,6 +131,16 @@ for (const field of requiredBridge) {
 
 if (status.site_bridge.site_display_authority !== 'bridge_display_only') {
   fail('site bridge must remain bridge_display_only');
+}
+
+for (const field of requiredAutomationGuards) {
+  if (!(field in status.automation_guards)) {
+    fail(`missing automation_guards field: ${field}`);
+  }
+}
+
+if (status.automation_guards.manual_task_requirement !== 'none') {
+  fail('automation_guards.manual_task_requirement must be none');
 }
 
 for (const field of requiredPublicPages) {
@@ -158,4 +177,5 @@ console.log(`OK: ${STATUS_PATH}`);
 console.log(`status=${status.status}`);
 console.log(`site=${status.site}`);
 console.log(`proposal_intake_backend=${status.proposal_intake.backend_submission}`);
+console.log(`manual_task_requirement=${status.automation_guards.manual_task_requirement}`);
 console.log(`next_safe_build_targets=${status.next_safe_build_targets.length}`);
