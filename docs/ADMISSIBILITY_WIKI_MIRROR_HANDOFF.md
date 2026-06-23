@@ -43,13 +43,32 @@ Activation is not complete until the GitHub.io project page loads, GitHub Pages 
 
 ## Proposal Governance Core-Lite Status
 
-The target repository does not exist yet:
+The target repository is watched by repo-owned automation:
+
+```text
+github/workflows/proposal-core-lite-target-watch.yml
+```
+
+The watcher checks:
 
 ```text
 StegVerse-Labs/proposal-governance-core-lite
 ```
 
-A complete seed is installed at:
+and emits this artifact:
+
+```text
+proposal-core-lite-target-watch
+```
+
+Current source status and validator:
+
+```text
+static/status/proposal-core-lite-target-watch-status.json
+scripts/check-proposal-core-lite-target-watch-status.mjs
+```
+
+A complete seed remains installed at:
 
 ```text
 repo-seeds/proposal-governance-core-lite/
@@ -65,15 +84,9 @@ scripts/check-proposal-governance-core-lite-seed.mjs
 scripts/check-proposal-governance-core-lite-creation-task.mjs
 ```
 
-Do not create more proposal-governance-core-lite scaffolding in this repo unless the seed validator identifies a gap.
+Do not create more proposal-governance-core-lite scaffolding in this repo unless a validator identifies a gap.
 
-The next formal task is external target repo creation:
-
-```text
-Create StegVerse-Labs/proposal-governance-core-lite
-Copy repo-seeds/proposal-governance-core-lite/* into it
-Run npm run validate in the target repo
-```
+No manual target-creation task is assigned in this handoff. If the target repository is unavailable, the watcher remains pending and emits a bounded artifact. If the target becomes available, downstream installation must be performed only by authorized repo-owned automation or a source-confirmed ecosystem process.
 
 ## Proposal Intake and Governance Routing
 
@@ -142,6 +155,7 @@ The repo currently includes:
 - deployment failure receipt artifact workflow path;
 - deployment success receipt artifact workflow;
 - workflow receipt automation status artifact and validator;
+- proposal-core-lite target watcher workflow, status artifact, and validator;
 - validation workflow;
 - GitHub.io project URL configuration;
 - activation runbook;
@@ -227,6 +241,7 @@ Displayed without leading dot for iOS readability; actual repository paths use t
 ```text
 github/workflows/deploy.yml
 github/workflows/record-latest-success.yml
+github/workflows/proposal-core-lite-target-watch.yml
 ```
 
 ## Known Status Artifacts
@@ -240,12 +255,14 @@ static/status/proposal-intake-backend-status.json
 static/status/proposal-intake-endpoint-verification-status.json
 static/status/intake-api-deploy-config-status.json
 static/status/workflow-receipt-automation-status.json
+static/status/proposal-core-lite-target-watch-status.json
 scripts/check-wiki-status.mjs
 scripts/check-activation-checklist.mjs
 scripts/check-public-activation-receipt.mjs
 scripts/check-proposal-governance-core-lite-seed.mjs
 scripts/check-proposal-governance-core-lite-creation-task.mjs
 scripts/check-workflow-receipt-automation-status.mjs
+scripts/check-proposal-core-lite-target-watch-status.mjs
 ```
 
 Do not recreate versioned status mirrors unless the status schema is intentionally versioned and the canonical file points to the active version.
@@ -260,6 +277,8 @@ Public verification: deploy workflow verify-public-pages job
 Failure receipt artifact: admissibility-wiki-workflow-failure
 Success receipt artifact: admissibility-wiki-workflow-success
 Workflow receipt status validator: scripts/check-workflow-receipt-automation-status.mjs
+Proposal core-lite watcher artifact: proposal-core-lite-target-watch
+Proposal core-lite watcher validator: scripts/check-proposal-core-lite-target-watch-status.mjs
 Manual task requirement: none recorded in this handoff
 ```
 
@@ -297,8 +316,8 @@ Do not add an external term to `Equivalent Terms` without a completed proposal, 
 
 Priority order:
 
-1. Let repo automation validate, build, deploy, verify public URLs, and emit success or failure receipt artifacts.
-2. If automation fails, repair only the first failing validator field, missing artifact, deployment issue, or public URL check identified by the failed job logs.
+1. Let repo automation validate, build, deploy, verify public URLs, watch proposal-core-lite target readiness, and emit bounded artifacts.
+2. If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, or watcher-status inconsistency identified by failed job logs.
 3. Deploy authorized intake API runtime only when source-confirmed runtime authority exists.
 4. Update activation posture only after public GitHub.io deployment and endpoint evidence exists.
 5. Add research-backed equivalence proposals only when they materially improve terminology classification.
