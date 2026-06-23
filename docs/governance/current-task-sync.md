@@ -31,8 +31,10 @@ static/status/admissibility-wiki-activation.json
 static/status/admissibility-wiki-status.json
 static/status/public-activation-receipt.example.json
 static/status/workflow-receipt-automation-status.json
+static/status/proposal-core-lite-target-watch-status.json
 github/workflows/deploy.yml
 github/workflows/record-latest-success.yml
+github/workflows/proposal-core-lite-target-watch.yml
 ```
 
 Note: paths that normally begin with a leading dot are shown without the leading dot in this display rule only.
@@ -53,6 +55,7 @@ scripts/check-external-frameworks.mjs
 scripts/check-publication-chain-guard.mjs
 scripts/check-publication-verification-status.mjs
 scripts/check-workflow-receipt-automation-status.mjs
+scripts/check-proposal-core-lite-target-watch-status.mjs
 scripts/check-transition-origin-governance.mjs
 scripts/check-proposal-governance-classes.mjs
 scripts/check-proposal-intake-interface.mjs
@@ -73,7 +76,9 @@ The deploy workflow validates governance artifacts, builds the Docusaurus site, 
 
 A separate success recorder listens for successful deploy workflow completion and emits a success receipt artifact.
 
-The workflow receipt automation status is now covered by aggregate validation.
+The proposal-governance-core-lite target watcher checks target readiness on push, schedule, and workflow dispatch. If the target is unavailable, it remains pending and emits a bounded artifact without assigning a manual task.
+
+The workflow receipt automation status and proposal core-lite target-watch status are covered by aggregate validation.
 
 ## Installed Formalism Mirrors
 
@@ -195,12 +200,14 @@ Public verification: deploy workflow verify-public-pages job
 Failure receipt artifact: admissibility-wiki-workflow-failure
 Success receipt artifact: admissibility-wiki-workflow-success
 Workflow receipt status validator: scripts/check-workflow-receipt-automation-status.mjs
+Proposal core-lite watcher artifact: proposal-core-lite-target-watch
+Proposal core-lite watcher validator: scripts/check-proposal-core-lite-target-watch-status.mjs
 Manual task requirement: none recorded in this handoff
-Failure posture: first failing validator or public URL check becomes the next bounded repair target
+Failure posture: first failing validator, missing artifact, public URL check, or watcher-status inconsistency becomes the next bounded repair target
 ```
 
 ## Next Safe Build Targets
 
-1. Let repo automation validate, build, deploy, verify public URLs, and emit success or failure receipt artifacts.
-2. If automation fails, repair only the first failing validator field, missing artifact, deployment issue, or public URL check identified by the failed job logs.
+1. Let repo automation validate, build, deploy, verify public URLs, watch proposal-core-lite target readiness, and emit bounded artifacts.
+2. If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, or watcher-status inconsistency identified by failed job logs.
 3. Update activation posture only from workflow evidence or source-confirmed deployment state.
