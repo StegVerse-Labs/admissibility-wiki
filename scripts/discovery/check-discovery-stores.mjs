@@ -15,6 +15,14 @@ const files = [
     recordFieldsKey: 'required_record_fields',
     statusField: 'review_status',
     allowedKey: 'allowed_review_statuses'
+  },
+  {
+    path: 'static/discovery/relationship-decisions.json',
+    schema: 'admissibility_wiki_relationship_decisions.v0.1',
+    recordFieldsKey: 'required_record_fields',
+    statusField: 'decision',
+    allowedKey: 'allowed_decisions',
+    relationshipTypeKey: 'allowed_relationship_types'
   }
 ];
 
@@ -32,6 +40,7 @@ for (const file of files) {
   if (!Array.isArray(data[file.recordFieldsKey]) || data[file.recordFieldsKey].length === 0) fail(`${file.path} missing required fields`);
   if (!Array.isArray(data.records)) fail(`${file.path} records must be an array`);
   if (!Array.isArray(data.non_claims) || data.non_claims.length === 0) fail(`${file.path} non_claims required`);
+  if (!Array.isArray(data[file.allowedKey]) || data[file.allowedKey].length === 0) fail(`${file.path} missing allowed status values`);
 
   for (const record of data.records) {
     for (const field of data[file.recordFieldsKey]) {
@@ -39,6 +48,14 @@ for (const file of files) {
     }
     if (!data[file.allowedKey].includes(record[file.statusField])) {
       fail(`${file.path} invalid ${file.statusField}: ${record[file.statusField]}`);
+    }
+    if (file.relationshipTypeKey && !data[file.relationshipTypeKey].includes(record.relationship_type)) {
+      fail(`${file.path} invalid relationship_type: ${record.relationship_type}`);
+    }
+    if (file.relationshipTypeKey) {
+      for (const field of ['source_origin_a', 'source_origin_b', 'evidence_a', 'evidence_b', 'decision_basis']) {
+        if (!record[field]) fail(`${file.path} decision record missing ${field}`);
+      }
     }
   }
 }
