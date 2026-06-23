@@ -1,0 +1,29 @@
+{
+  "schema": "admissibility_wiki_workflow_receipt_automation_status.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "status": "installed",
+  "workflow_paths": {
+    "deploy": ".github/workflows/deploy.yml",
+    "success_recorder": ".github/workflows/record-latest-success.yml"
+  },
+  "display_paths_note": "Paths may be displayed without the leading dot for iOS readability; actual repository workflow paths use the leading-dot directory.",
+  "receipt_artifacts": {
+    "failure": "admissibility-wiki-workflow-failure",
+    "success": "admissibility-wiki-workflow-success"
+  },
+  "automation_chain": [
+    "push_to_main",
+    "npm_run_validate",
+    "docusaurus_build",
+    "github_pages_deploy",
+    "public_url_verification",
+    "success_or_failure_receipt_artifact"
+  ],
+  "manual_task_requirement": "none",
+  "failure_rule": "Repair only the first failing validator field, missing artifact, deployment issue, or public URL check identified by failed job logs.",
+  "non_claims": [
+    "This status file records installed workflow receipt automation only.",
+    "This status file does not prove the latest workflow succeeded.",
+    "This status file does not replace workflow run artifacts."
+  ]
+}
