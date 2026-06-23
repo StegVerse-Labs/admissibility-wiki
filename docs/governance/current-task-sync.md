@@ -44,6 +44,20 @@ scripts/check-activation-checklist.mjs
 scripts/check-equivalence-proposal-template.mjs
 scripts/check-relationship-status-summary.mjs
 scripts/check-public-activation-receipt.mjs
+scripts/check-formalism-registry.mjs
+scripts/check-formalism-publication-artifacts.mjs
+scripts/check-formalism-source-sync.mjs
+scripts/check-external-frameworks.mjs
+scripts/check-publication-chain-guard.mjs
+scripts/check-publication-verification-status.mjs
+scripts/check-transition-origin-governance.mjs
+scripts/check-proposal-governance-classes.mjs
+scripts/check-proposal-intake-interface.mjs
+scripts/check-proposal-intake-backend.mjs
+scripts/check-proposal-intake-runtime.mjs
+scripts/check-proposal-intake-api.mjs
+scripts/check-proposal-intake-api-deployment.mjs
+scripts/check-proposal-intake-api-deployment-receipt.mjs
 ```
 
 Aggregate validation is run by:
@@ -52,7 +66,35 @@ Aggregate validation is run by:
 npm run validate
 ```
 
-The aggregate validator now checks ontology, wiki status, activation checklist, equivalence proposal template, relationship status summary, public activation receipt, and Docusaurus build.
+The aggregate validator now checks ontology, wiki status, activation checklist, relationship templates, formalism registry, publication artifacts, source sync, external frameworks, publication chain guard, proposal governance, proposal intake, and Docusaurus build.
+
+## Installed Formalism Mirrors
+
+Do not recreate these pages under alternate names:
+
+```text
+docs/formalisms/index.md
+docs/formalisms/canonical-catalog.md
+docs/formalisms/commit-time-admissibility.md
+docs/formalisms/irreversibility-inference-convergence-theorem.md
+static/formalisms/formalism-registry.v0.1.json
+```
+
+Current source links:
+
+```text
+Admissible-Existence/CTA -> Commit-Time Admissibility
+Admissible-Existence/IICT -> Irreversibility-Inference Convergence Theorem
+```
+
+Boundary:
+
+```text
+CTA baseline tests do not prove the complete CTA formalism.
+IICT baseline tests do not prove the theorem.
+IICT does not replace CTA.
+The wiki mirrors and explains; it does not create source authority or proof authority.
+```
 
 ## Known Governance Records
 
@@ -138,7 +180,7 @@ Submission timing records intake posture only. It does not accept the proposal, 
 
 ## Next Safe Build Targets
 
-1. Verify GitHub Pages deployment at `https://stegverse-labs.github.io/admissibility-wiki/` after Actions completes.
-2. Update activation posture only after public GitHub.io deployment status changes.
-3. Add another source-backed relationship proposal only if it covers a materially new source family and does not duplicate proposals 005 through 009.
-4. Add additional dispute examples only when they cover a materially new dispute posture.
+1. Re-run `npm run validate` after the `proposal_intake.automatic_decision_publication` status fix.
+2. If validation fails again, address only the first failing validator field or missing artifact.
+3. Verify GitHub Pages deployment at `https://stegverse-labs.github.io/admissibility-wiki/` after Actions completes.
+4. Update activation posture only after public GitHub.io deployment status changes.
