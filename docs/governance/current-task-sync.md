@@ -60,13 +60,13 @@ scripts/check-proposal-intake-api-deployment.mjs
 scripts/check-proposal-intake-api-deployment-receipt.mjs
 ```
 
-Aggregate validation is run by:
+Aggregate validation is run by repo automation:
 
 ```text
 npm run validate
 ```
 
-The aggregate validator now checks ontology, wiki status, activation checklist, relationship templates, formalism registry, publication artifacts, source sync, external frameworks, publication chain guard, proposal governance, proposal intake, and Docusaurus build.
+The deploy workflow validates governance artifacts, builds the Docusaurus site, deploys to GitHub Pages, and verifies public URLs for the site root, formalism index, CTA formalism page, and IICT formalism page.
 
 ## Installed Formalism Mirrors
 
@@ -178,9 +178,19 @@ User-submitted proposals should include a `submission_timing` block in the submi
 
 Submission timing records intake posture only. It does not accept the proposal, prove the submitted claim, or replace the decision record.
 
+## Self-Managed Continuation
+
+```text
+Validation trigger: push to main
+Validation command: npm run validate
+Deployment trigger: successful validation and build
+Public verification: deploy workflow verify-public-pages job
+Manual task requirement: none recorded in this handoff
+Failure posture: first failing validator or public URL check becomes the next bounded repair target
+```
+
 ## Next Safe Build Targets
 
-1. Re-run `npm run validate` after the `proposal_intake.automatic_decision_publication` status fix.
-2. If validation fails again, address only the first failing validator field or missing artifact.
-3. Verify GitHub Pages deployment at `https://stegverse-labs.github.io/admissibility-wiki/` after Actions completes.
-4. Update activation posture only after public GitHub.io deployment status changes.
+1. Let repo automation validate, build, deploy, and verify public URLs on push.
+2. If automation fails, repair only the first failing validator field, missing artifact, or public URL check.
+3. Update activation posture only from workflow evidence or source-confirmed deployment state.
