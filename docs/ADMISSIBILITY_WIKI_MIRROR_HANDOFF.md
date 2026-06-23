@@ -156,6 +156,7 @@ The repo currently includes:
 - deployment success receipt artifact workflow;
 - workflow receipt automation status artifact and validator;
 - proposal-core-lite target watcher workflow, status artifact, and validator;
+- no-manual-task guard status artifact and validator;
 - validation workflow;
 - GitHub.io project URL configuration;
 - activation runbook;
@@ -256,6 +257,7 @@ static/status/proposal-intake-endpoint-verification-status.json
 static/status/intake-api-deploy-config-status.json
 static/status/workflow-receipt-automation-status.json
 static/status/proposal-core-lite-target-watch-status.json
+static/status/no-manual-task-guard-status.json
 scripts/check-wiki-status.mjs
 scripts/check-activation-checklist.mjs
 scripts/check-public-activation-receipt.mjs
@@ -263,6 +265,7 @@ scripts/check-proposal-governance-core-lite-seed.mjs
 scripts/check-proposal-governance-core-lite-creation-task.mjs
 scripts/check-workflow-receipt-automation-status.mjs
 scripts/check-proposal-core-lite-target-watch-status.mjs
+scripts/check-no-manual-task-assignments.mjs
 ```
 
 Do not recreate versioned status mirrors unless the status schema is intentionally versioned and the canonical file points to the active version.
@@ -279,6 +282,7 @@ Success receipt artifact: admissibility-wiki-workflow-success
 Workflow receipt status validator: scripts/check-workflow-receipt-automation-status.mjs
 Proposal core-lite watcher artifact: proposal-core-lite-target-watch
 Proposal core-lite watcher validator: scripts/check-proposal-core-lite-target-watch-status.mjs
+No-manual-task guard validator: scripts/check-no-manual-task-assignments.mjs
 Manual task requirement: none recorded in this handoff
 ```
 
