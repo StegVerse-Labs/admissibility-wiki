@@ -1,0 +1,16 @@
+{
+  "schema": "proposal_core_lite_target_watch_status.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "status": "installed",
+  "workflow_path": ".github/workflows/proposal-core-lite-target-watch.yml",
+  "target_repository": "StegVerse-Labs/proposal-governance-core-lite",
+  "artifact_name": "proposal-core-lite-target-watch",
+  "manual_task_requirement": "none",
+  "watch_posture": "scheduled_and_push_triggered",
+  "pending_posture": "remain_pending_without_manual_task_assignment",
+  "non_claims": [
+    "This status file does not prove the target repository exists.",
+    "This status file does not install the target repository seed by itself.",
+    "This status file records watcher installation only."
+  ]
+}
