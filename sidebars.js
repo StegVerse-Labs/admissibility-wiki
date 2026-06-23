@@ -38,6 +38,7 @@ const sidebars = {
       type: 'category',
       label: 'Glossary',
       items: [
+        'glossary/index',
         'glossary/admissibility',
         'glossary/transition',
         'glossary/authority-class',
