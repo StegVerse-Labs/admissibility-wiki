@@ -43,6 +43,16 @@ This wiki is a reference and convergence layer for concepts such as:
 - proposal lifecycle;
 - decision records.
 
+## Formalism Discovery
+
+The Formalism Discovery Engine indexes formalism terms, generates review-required candidate relationships, preserves source origins, and prevents synonymy or equivalence from being promoted without a recorded decision.
+
+Start here:
+
+- [Discovery Index](./discovery/index.md)
+- [Canonical Formalism Catalog](./formalisms/canonical-catalog.md)
+- [Canonical Formalism Graph Index](./formalisms/formalism-graph-index.md)
+
 ## What This Wiki Is Not
 
 This wiki is not Wikipedia.
@@ -178,40 +188,5 @@ The wiki currently has:
 - governance pages;
 - terminology convergence rules;
 - proposal lifecycle rules;
-- decision record rules;
-- submission timing receipt requirements;
-- ontology vocabulary JSON;
-- proof-path examples;
-- proposal, decision, replay, and evidence examples;
-- a public status JSON mirror;
-- handoff and task-sync documents for ecosystem-managed continuation.
-
-The current public posture is build-in-progress until deployment and domain activation are externally verified.
-
-## Reading Path
-
-Start with:
-
-1. [Admissibility](./glossary/admissibility.md)
-2. [Transition](./glossary/transition.md)
-3. [Commit-Time Authority](./glossary/commit-time-authority.md)
-4. [Receipt-Bound Execution](./glossary/receipt-bound-execution.md)
-5. [Terminology Convergence](./governance/terminology-convergence.md)
-6. [Proposal Lifecycle](./governance/proposal-lifecycle.md)
-7. [Decision Record](./governance/decision-record.md)
-8. [Minimal Public Proof Path](./proof-path/minimal-public-proof-path.md)
-
-## Editorial Rule
-
-A page should distinguish between:
-
-- a concept;
-- an implementation;
-- a proof artifact;
-- an experimental proposal;
-- an ecosystem claim;
-- an external source;
-- a user-submitted claim;
-- an accepted decision.
-
-That distinction is central to admissibility itself.
+- a formalism discovery layer with generated term and candidate relationship stores;
+- executable validation that regenerates discovery records and fail-closes on uncommitted generated drift.
