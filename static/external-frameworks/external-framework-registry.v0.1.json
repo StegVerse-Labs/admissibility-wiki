@@ -31,22 +31,8 @@
       "external_role": "machine-readable boundary declaration and pre-admissibility interpretation frame",
       "wiki_path": "docs/external-frameworks/glm.md",
       "primary_relationship": "precondition",
-      "crosswalk_targets": [
-        "Governance Boundary",
-        "Boundary Conditions",
-        "Claims and Non-Claims",
-        "Evidence Posture",
-        "Review Posture",
-        "Transition Table",
-        "Policy Reference",
-        "Commit-Time Validity"
-      ],
-      "non_claims": [
-        "GLM is not a canonical Admissible-Existence formalism source in this registry.",
-        "GLM does not prove transition admissibility.",
-        "GLM declarations may support review but do not replace commit-time validity.",
-        "A GLM source URL is evidence of the external framework artifact, not acceptance of equivalence."
-      ]
+      "crosswalk_targets": ["Governance Boundary", "Boundary Conditions", "Claims and Non-Claims", "Evidence Posture", "Review Posture", "Transition Table", "Policy Reference", "Commit-Time Validity"],
+      "non_claims": ["GLM is not a canonical Admissible-Existence formalism source in this registry.", "GLM does not prove transition admissibility.", "GLM declarations may support review but do not replace commit-time validity.", "A GLM source URL is evidence of the external framework artifact, not acceptance of equivalence."]
     },
     {
       "framework_id": "external.evide",
@@ -55,22 +41,8 @@
       "external_role": "post-event evidentiary reconstructability and dispute-support framework",
       "wiki_path": "docs/external-frameworks/evide.md",
       "primary_relationship": "postcondition",
-      "crosswalk_targets": [
-        "Evidence Posture",
-        "Receipt-Bound Execution",
-        "Reconstructability",
-        "Replay Example",
-        "Decision Record",
-        "Review Posture",
-        "Minimal Public Proof Path",
-        "Commit-Time Validity"
-      ],
-      "non_claims": [
-        "EVIDE is not a canonical Admissible-Existence formalism source in this registry.",
-        "EVIDE does not prove transition admissibility.",
-        "Evidence remaining after an event does not prove that the event had commit-time standing.",
-        "An EVIDE source URL is evidence of the external framework artifact, not acceptance of equivalence."
-      ]
+      "crosswalk_targets": ["Evidence Posture", "Receipt-Bound Execution", "Reconstructability", "Replay Example", "Decision Record", "Review Posture", "Minimal Public Proof Path", "Commit-Time Validity"],
+      "non_claims": ["EVIDE is not a canonical Admissible-Existence formalism source in this registry.", "EVIDE does not prove transition admissibility.", "Evidence remaining after an event does not prove that the event had commit-time standing.", "An EVIDE source URL is evidence of the external framework artifact, not acceptance of equivalence."]
     },
     {
       "framework_id": "external.morrison-runtime",
@@ -79,19 +51,38 @@
       "external_role": "runtime-governance comparison target",
       "wiki_path": "docs/external-frameworks/morrison-runtime.md",
       "primary_relationship": "adjacent",
-      "crosswalk_targets": [
-        "Transition Table",
-        "Runtime Transition Governance",
-        "Evidence Posture",
-        "Review Posture",
-        "Core-Lite Admissibility Engine"
-      ],
-      "non_claims": [
-        "Morrison Runtime is not a canonical Admissible-Existence formalism source in this registry.",
-        "Morrison Runtime does not prove transition admissibility.",
-        "Runtime governance behavior does not automatically equal commit-time admissibility.",
-        "Official public source URL is required before this record is treated as externally sourced."
-      ]
+      "crosswalk_targets": ["Transition Table", "Runtime Transition Governance", "Evidence Posture", "Review Posture", "Core-Lite Admissibility Engine"],
+      "non_claims": ["Morrison Runtime is not a canonical Admissible-Existence formalism source in this registry.", "Morrison Runtime does not prove transition admissibility.", "Runtime governance behavior does not automatically equal commit-time admissibility.", "Official public source URL is required before this record is treated as externally sourced."]
+    },
+    {
+      "framework_id": "external.aar",
+      "name": "AAR",
+      "status": "crosswalk_intake_source_required",
+      "external_role": "supervised AI governance and operational forensics candidate",
+      "wiki_path": "docs/external-frameworks/aar.md",
+      "primary_relationship": "adjacent",
+      "crosswalk_targets": ["Evidence Posture", "Review Posture", "Runtime Transition Governance", "Commit-Time Validity", "Reconstructability", "Receipt-Bound Execution", "Boundary Conditions", "Governance Boundary"],
+      "non_claims": ["AAR is not a canonical Admissible-Existence formalism source in this registry.", "AAR does not prove transition admissibility.", "A screenshot is not a canonical external specification.", "A public canonical source URL is required before this record is treated as externally sourced."]
+    },
+    {
+      "framework_id": "external.agent-governance-playbook",
+      "name": "Agent Governance Playbook",
+      "status": "sourced_crosswalk_intake",
+      "external_role": "agent-continuation governance playbook",
+      "wiki_path": "docs/external-frameworks/agent-governance-playbook.md",
+      "primary_relationship": "overlapping",
+      "crosswalk_targets": ["Decision Continuity", "Runtime Transition Governance", "Approval vs Execution", "Commit-Time Validity", "Governance Boundary", "Policy Reference", "Evidence Posture", "Reconstructability"],
+      "non_claims": ["The Agent Governance Playbook is not a canonical Admissible-Existence formalism source in this registry.", "The Agent Governance Playbook does not prove transition admissibility.", "A playbook release does not grant execution authority inside StegVerse."]
+    },
+    {
+      "framework_id": "external.killswitch-md",
+      "name": "KILLSWITCH.md",
+      "status": "sourced_crosswalk_intake",
+      "external_role": "AI-agent emergency stop protocol convention",
+      "wiki_path": "docs/external-frameworks/killswitch-md.md",
+      "primary_relationship": "overlapping",
+      "crosswalk_targets": ["Fail-Closed", "Runtime Transition Governance", "Transition Table", "Commit-Time Validity", "Evidence Posture", "Reconstructability", "Governance Boundary", "Boundary Conditions"],
+      "non_claims": ["KILLSWITCH.md is not a canonical Admissible-Existence formalism source in this registry.", "KILLSWITCH.md does not prove transition admissibility.", "Emergency-stop convention does not automatically grant or revoke execution authority inside StegVerse."]
     },
     {
       "framework_id": "external.nist-ai-rmf",
@@ -100,20 +91,8 @@
       "external_role": "voluntary AI risk-management framework",
       "wiki_path": "docs/external-frameworks/nist-ai-rmf.md",
       "primary_relationship": "adjacent",
-      "crosswalk_targets": [
-        "Evidence Posture",
-        "Review Posture",
-        "Governance Boundary",
-        "Policy Reference",
-        "Runtime Transition Governance",
-        "Decision Continuity",
-        "Admissible-Existence Validation Factory"
-      ],
-      "non_claims": [
-        "NIST AI RMF is not a canonical Admissible-Existence formalism source in this registry.",
-        "NIST AI RMF does not prove transition admissibility.",
-        "Voluntary risk-management guidance does not grant execution authority."
-      ]
+      "crosswalk_targets": ["Evidence Posture", "Review Posture", "Governance Boundary", "Policy Reference", "Runtime Transition Governance", "Decision Continuity", "Admissible-Existence Validation Factory"],
+      "non_claims": ["NIST AI RMF is not a canonical Admissible-Existence formalism source in this registry.", "NIST AI RMF does not prove transition admissibility.", "Voluntary risk-management guidance does not grant execution authority."]
     },
     {
       "framework_id": "external.iso-iec-42001",
@@ -122,20 +101,8 @@
       "external_role": "AI management system standard",
       "wiki_path": "docs/external-frameworks/iso-iec-42001.md",
       "primary_relationship": "adjacent",
-      "crosswalk_targets": [
-        "Governance Boundary",
-        "Policy Reference",
-        "Evidence Posture",
-        "Review Posture",
-        "Triad Governance Model",
-        "Decision Continuity",
-        "Learning Transition Governance"
-      ],
-      "non_claims": [
-        "ISO/IEC 42001 is not a canonical Admissible-Existence formalism source in this registry.",
-        "ISO/IEC 42001 does not prove transition admissibility.",
-        "AI management system compliance does not grant execution authority inside StegVerse."
-      ]
+      "crosswalk_targets": ["Governance Boundary", "Policy Reference", "Evidence Posture", "Review Posture", "Triad Governance Model", "Decision Continuity", "Learning Transition Governance"],
+      "non_claims": ["ISO/IEC 42001 is not a canonical Admissible-Existence formalism source in this registry.", "ISO/IEC 42001 does not prove transition admissibility.", "AI management system compliance does not grant execution authority inside StegVerse."]
     },
     {
       "framework_id": "external.eu-ai-act",
@@ -144,21 +111,8 @@
       "external_role": "legal and regulatory AI framework",
       "wiki_path": "docs/external-frameworks/eu-ai-act.md",
       "primary_relationship": "adjacent",
-      "crosswalk_targets": [
-        "Policy Reference",
-        "Governance Boundary",
-        "Evidence Posture",
-        "Review Posture",
-        "Receipt-Bound Execution",
-        "Reconstructability",
-        "Triad Governance Model",
-        "Runtime Transition Governance"
-      ],
-      "non_claims": [
-        "The EU AI Act is not a canonical Admissible-Existence formalism source in this registry.",
-        "The EU AI Act does not prove transition admissibility.",
-        "Regulatory compliance does not automatically grant execution authority inside StegVerse."
-      ]
+      "crosswalk_targets": ["Policy Reference", "Governance Boundary", "Evidence Posture", "Review Posture", "Receipt-Bound Execution", "Reconstructability", "Triad Governance Model", "Runtime Transition Governance"],
+      "non_claims": ["The EU AI Act is not a canonical Admissible-Existence formalism source in this registry.", "The EU AI Act does not prove transition admissibility.", "Regulatory compliance does not automatically grant execution authority inside StegVerse."]
     },
     {
       "framework_id": "external.policy-cards",
@@ -167,20 +121,8 @@
       "external_role": "machine-readable runtime governance artifact",
       "wiki_path": "docs/external-frameworks/policy-cards.md",
       "primary_relationship": "overlapping",
-      "crosswalk_targets": [
-        "Transition Table",
-        "Runtime Transition Governance",
-        "Policy Reference",
-        "Governance Boundary",
-        "Evidence Posture",
-        "Receipt-Bound Execution",
-        "Core-Lite Admissibility Engine"
-      ],
-      "non_claims": [
-        "Policy Cards are not a canonical Admissible-Existence formalism source in this registry.",
-        "Policy Cards do not prove transition admissibility.",
-        "Machine-readable policy artifacts do not automatically grant execution authority inside StegVerse."
-      ]
+      "crosswalk_targets": ["Transition Table", "Runtime Transition Governance", "Policy Reference", "Governance Boundary", "Evidence Posture", "Receipt-Bound Execution", "Core-Lite Admissibility Engine"],
+      "non_claims": ["Policy Cards are not a canonical Admissible-Existence formalism source in this registry.", "Policy Cards do not prove transition admissibility.", "Machine-readable policy artifacts do not automatically grant execution authority inside StegVerse."]
     },
     {
       "framework_id": "external.runtime-governance-policies-on-paths",
@@ -189,22 +131,9 @@
       "external_role": "runtime path-governance framework",
       "wiki_path": "docs/external-frameworks/runtime-governance-policies-on-paths.md",
       "primary_relationship": "overlapping",
-      "crosswalk_targets": [
-        "Runtime Transition Governance",
-        "Transition Table",
-        "Commit-Time Validity",
-        "Policy Reference",
-        "Evidence Posture",
-        "Review Posture",
-        "Escalation",
-        "Fail-Closed"
-      ],
-      "non_claims": [
-        "Runtime Governance for AI Agents is not a canonical Admissible-Existence formalism source in this registry.",
-        "Runtime path governance does not prove transition admissibility.",
-        "Runtime evaluation does not automatically grant execution authority inside StegVerse."
-      ]
+      "crosswalk_targets": ["Runtime Transition Governance", "Transition Table", "Commit-Time Validity", "Policy Reference", "Evidence Posture", "Review Posture", "Escalation", "Fail-Closed"],
+      "non_claims": ["Runtime Governance for AI Agents is not a canonical Admissible-Existence formalism source in this registry.", "Runtime path governance does not prove transition admissibility.", "Runtime evaluation does not automatically grant execution authority inside StegVerse."]
     }
   ],
-  "next_action": "Add official source URL for Morrison Runtime when available; then validate external-framework navigation and registry coverage."
+  "next_action": "Add official source URL for Morrison Runtime and public canonical AAR source when available; then validate external-framework navigation and registry coverage."
 }
