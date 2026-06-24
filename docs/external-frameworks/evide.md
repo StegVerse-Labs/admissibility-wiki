@@ -11,14 +11,14 @@ Relationship type: external framework crosswalk
 Canonical StegVerse formalism source: Admissible-Existence
 External framework role: post-event evidentiary reconstructability
 Wiki role: convergence, mapping, and relationship review
-Citation status: official public source URL required
+Citation status: sourced
 ```
 
-## Citation Status
+## Source
 
-No official public EVIDE website was confirmed during the current source pass.
+Official source: `https://www.certifywebcontent.com/supervised-ai/evidentiary-deposit/`
 
-Until an official EVIDE website or canonical public artifact is supplied, this page remains an intake crosswalk record and should not be treated as externally sourced.
+The source presents EVIDE as an evidentiary registry for digital content and decisions and describes it as an external evidentiary deposit system for digital evidence and closed decision units.
 
 ## Definition
 
@@ -99,9 +99,9 @@ EVIDE does not prove transition admissibility.
 EVIDE does not grant execution authority.
 Evidence remaining after an event does not prove that the event had commit-time standing.
 The wiki relationship record is not acceptance of equivalence.
-This page is not externally sourced until an official EVIDE website or canonical public artifact is supplied.
+An EVIDE source URL is evidence of the external framework artifact, not acceptance of equivalence.
 ```
 
 ## Next Safe Build Target
 
-Add official EVIDE source URL when available, then connect it to the term-discovery and crosswalk process.
+Connect EVIDE to the term-discovery and crosswalk process.
