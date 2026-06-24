@@ -27,7 +27,7 @@
     {
       "framework_id": "external.glm",
       "name": "GLM",
-      "status": "crosswalk_intake_source_required",
+      "status": "sourced_crosswalk_intake",
       "external_role": "machine-readable boundary declaration and pre-admissibility interpretation frame",
       "wiki_path": "docs/external-frameworks/glm.md",
       "primary_relationship": "precondition",
@@ -45,7 +45,7 @@
         "GLM is not a canonical Admissible-Existence formalism source in this registry.",
         "GLM does not prove transition admissibility.",
         "GLM declarations may support review but do not replace commit-time validity.",
-        "Official public source URL is required before this record is treated as externally sourced."
+        "A GLM source URL is evidence of the external framework artifact, not acceptance of equivalence."
       ]
     },
     {
@@ -206,5 +206,5 @@
       ]
     }
   ],
-  "next_action": "Add official source URLs for GLM, EVIDE, and Morrison Runtime when available; then validate external-framework navigation and registry coverage."
+  "next_action": "Add official source URLs for EVIDE and Morrison Runtime when page updates are permitted; then validate external-framework navigation and registry coverage."
 }
