@@ -1,8 +1,8 @@
 ---
-title: AAR External Framework Intake
+title: AAR External Framework Crosswalk
 ---
 
-# AAR External Framework Intake
+# AAR External Framework Crosswalk
 
 ## Status
 
@@ -10,19 +10,19 @@ title: AAR External Framework Intake
 Relationship type: external framework crosswalk
 Canonical StegVerse formalism source: Admissible-Existence
 External framework role: supervised AI governance and operational forensics candidate
-Wiki role: convergence, mapping, relationship review, and source verification
-Citation status: public source required
+Wiki role: convergence, mapping, and relationship review
+Citation status: sourced
 ```
 
-## Source Status
+## Source
 
-The current source material is a user-supplied screenshot from a LinkedIn post describing AAR, Sovereign Cost Control, Operational Forensics and Pre-Execution Cost Governance, and Automatic Alignment Regulation.
+Public source: `https://www.resurrection-tech.com/assessment`
 
-A public canonical website, release page, repository, paper, or specification URL is still required before this page is treated as externally sourced.
+The source URL is treated as the public canonical source supplied for AAR assessment and governance framing.
 
 ## Relationship To Admissibility
 
-AAR is listed as a source-pending candidate comparison target for governance before mystification, control before harm, and architecture before opacity becomes systemic risk.
+AAR is listed as a comparison target for governance before mystification, control before harm, and architecture before opacity becomes systemic risk.
 
 Admissibility review remains separate and asks whether a transition may bind consequence at commit time.
 
@@ -41,10 +41,9 @@ Admissibility review remains separate and asks whether a transition may bind con
 AAR is not a StegVerse canonical formalism.
 AAR does not prove transition admissibility.
 AAR does not grant execution authority inside StegVerse.
-A screenshot is not a canonical external specification.
-This page is not externally sourced until a public canonical source URL is supplied.
+AAR source citation is not acceptance of equivalence.
 ```
 
 ## Next Safe Build Target
 
-Add a public canonical AAR source URL when available.
+Connect AAR to the term-discovery and crosswalk process after source review.
