@@ -10,6 +10,84 @@ This wiki exists to make the StegVerse governance vocabulary visible, stable, li
 
 It is not a substitute for Wikipedia and does not claim independent notability by itself. It is a public reference layer that can help researchers, developers, reviewers, journalists, and contributors understand the concepts accurately.
 
+## Core Assumptions
+
+The wiki treats governance as a layered constraint system, not a single approval event.
+
+The current StegVerse interpretation separates:
+
+- human experience before governance;
+- inter-entity trust and intuition before boundary formation;
+- boundary conditions before execution;
+- governance standing at the moment a transition may affect reality;
+- continuity records after execution or denial.
+
+This matters because emotional state, intuition, trust, relational coherence, and boundary recoverability can affect whether a proposed transition should ever become admissible.
+
+## Triad Governance
+
+Triad governance is the three-part StegVerse governance frame for distinguishing proposal, commitment, and reconstruction.
+
+| Component | Core Question | Function |
+| --- | --- | --- |
+| Transition Governance | Can this transition be considered? | Determines whether a proposed state change is structurally valid. |
+| Admissibility Governance | Can this transition be committed now? | Determines whether execution authority exists at the moment of commitment. |
+| Continuity Governance | Can this transition be reconstructed later? | Determines whether the resulting decision path remains replayable, receipt-bound, and independently reviewable. |
+
+The triad keeps these claims separate:
+
+- approval is not continuity;
+- execution is not admissibility;
+- history is not authority.
+
+A transition may be structurally valid, inadmissible at commit time, and still reconstructable later. A transition may also be admissible at commit time while failing continuity if receipts, manifests, or authority records are insufficient.
+
+## CAT Governance Stack
+
+The CAT stack is currently interpreted as:
+
+| Layer | Working Name | Function |
+| --- | --- | --- |
+| ECAT | Emotional / Experiential Constraint Analysis | Models intra-entity state: emotion, intuition, perception, affective processing, coherence, and meaning before governance hardens into boundary or authority. |
+| ICAT | Interpersonal / Intuitive Constraint Analysis | Models inter-entity state: trust, relationship continuity, shared understanding, social coherence, and intuition formed between entities. |
+| BCAT | Boundary Constraint Analysis | Models the boundary conditions under which a transition, entity, claim, or interaction can remain recoverable and non-inverting. |
+| GCAT | Governance Constraint Analysis | Models governance standing, admissibility, policy, delegation, authority, and fail-closed execution decisions. |
+
+ECAT and ICAT should not be reduced to evidence and identity labels. Those interpretations may appear in narrower proof-path contexts, but the broader origin of ECAT/ICAT is the human-governance problem: how emotion, intuition, coherence, and relationship dynamics shape the constraints that later become boundary and governance determinations.
+
+In shorthand:
+
+```text
+ECAT / ICAT -> BCAT -> GCAT
+```
+
+Meaning:
+
+```text
+experience and intuition -> boundary formation -> governance admissibility
+```
+
+## Existence Interpretation
+
+The expression:
+
+```text
+GCAT / BCAT : ECAT / ICAT : %Existence
+```
+
+should be read as a governed existence formulation.
+
+`%Existence` is not merely whether something can be observed. It is the degree to which an entity, claim, transition, relationship, or state can be treated as existing under the relevant governance frame.
+
+A strong existence claim requires alignment across:
+
+- ECAT: internal coherence and experiential standing;
+- ICAT: relational coherence and inter-entity standing;
+- BCAT: boundary recoverability and constraint integrity;
+- GCAT: governance admissibility and authority standing.
+
+For commit-time effects, StegVerse should treat missing or failed layers as fail-closed unless a policy explicitly defines a safe partial-standing condition.
+
 ## Done State
 
 This repository is considered initially established when it has:
@@ -37,7 +115,9 @@ npm run build
 
 ## Deploy
 
-This repository includes a GitHub Pages workflow at `.github/workflows/deploy.yml`.
+This repository includes a GitHub Pages workflow at `github/workflows/deploy.yml`.
+
+Note: the workflow path above is displayed without the leading period for iOS compatibility. The canonical repository path begins with a leading period.
 
 Before enabling deployment, configure GitHub Pages to use **GitHub Actions** as the source.
 
