@@ -11,7 +11,14 @@ Relationship type: external framework crosswalk
 Canonical StegVerse formalism source: Admissible-Existence
 External framework role: pre-admissibility boundary declaration
 Wiki role: convergence, mapping, and relationship review
+Citation status: official public source URL required
 ```
+
+## Citation Status
+
+No official public GLM website was confirmed during the current source pass.
+
+Until an official GLM website or canonical public artifact is supplied, this page remains an intake crosswalk record and should not be treated as externally sourced.
 
 ## Definition
 
@@ -91,8 +98,9 @@ GLM does not prove transition admissibility.
 GLM does not grant execution authority.
 A GLM declaration may support review, but it does not replace commit-time validity.
 The wiki relationship record is not acceptance of equivalence.
+This page is not externally sourced until an official GLM website or canonical public artifact is supplied.
 ```
 
 ## Next Safe Build Target
 
-Create a machine-readable external framework record for GLM and connect it to the term-discovery and crosswalk process.
+Add official GLM source URL when available, then connect it to the term-discovery and crosswalk process.
