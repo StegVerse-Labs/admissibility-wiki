@@ -11,14 +11,14 @@ Relationship type: external framework crosswalk
 Canonical StegVerse formalism source: Admissible-Existence
 External framework role: pre-admissibility boundary declaration
 Wiki role: convergence, mapping, and relationship review
-Citation status: official public source URL required
+Citation status: sourced
 ```
 
-## Citation Status
+## Source
 
-No official public GLM website was confirmed during the current source pass.
+Official source: `https://www.certifywebcontent.com/supervised-ai/governance-layer-manifest/`
 
-Until an official GLM website or canonical public artifact is supplied, this page remains an intake crosswalk record and should not be treated as externally sourced.
+The source presents GLM as an open implementation standard for machine-readable governance boundaries and states that independent implementations are encouraged.
 
 ## Definition
 
@@ -98,9 +98,9 @@ GLM does not prove transition admissibility.
 GLM does not grant execution authority.
 A GLM declaration may support review, but it does not replace commit-time validity.
 The wiki relationship record is not acceptance of equivalence.
-This page is not externally sourced until an official GLM website or canonical public artifact is supplied.
+A GLM source URL is evidence of the external framework artifact, not acceptance of equivalence.
 ```
 
 ## Next Safe Build Target
 
-Add official GLM source URL when available, then connect it to the term-discovery and crosswalk process.
+Connect GLM to the term-discovery and crosswalk process.
