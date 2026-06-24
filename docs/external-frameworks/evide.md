@@ -11,7 +11,14 @@ Relationship type: external framework crosswalk
 Canonical StegVerse formalism source: Admissible-Existence
 External framework role: post-event evidentiary reconstructability
 Wiki role: convergence, mapping, and relationship review
+Citation status: official public source URL required
 ```
+
+## Citation Status
+
+No official public EVIDE website was confirmed during the current source pass.
+
+Until an official EVIDE website or canonical public artifact is supplied, this page remains an intake crosswalk record and should not be treated as externally sourced.
 
 ## Definition
 
@@ -92,8 +99,9 @@ EVIDE does not prove transition admissibility.
 EVIDE does not grant execution authority.
 Evidence remaining after an event does not prove that the event had commit-time standing.
 The wiki relationship record is not acceptance of equivalence.
+This page is not externally sourced until an official EVIDE website or canonical public artifact is supplied.
 ```
 
 ## Next Safe Build Target
 
-Update the external framework registry and sidebar so GLM and EVIDE appear together as pre-event and post-event bridges into admissibility review.
+Add official EVIDE source URL when available, then connect it to the term-discovery and crosswalk process.
