@@ -33,9 +33,13 @@ function fail(message) {
   process.exit(1);
 }
 
-function readJson(path) {
+function readText(path) {
   if (!fs.existsSync(path)) fail(`missing file: ${path}`);
-  return JSON.parse(fs.readFileSync(path, 'utf8'));
+  return fs.readFileSync(path, 'utf8');
+}
+
+function readJson(path) {
+  return JSON.parse(readText(path));
 }
 
 function validateStore(file, data) {
@@ -90,6 +94,31 @@ function validateGeneratedCoverage(stores) {
   }
 }
 
+function validatePublicEntrypoints() {
+  const home = readText('docs/index.md');
+  const discovery = readText('docs/discovery/index.md');
+
+  for (const required of [
+    '[Discovery Index](./discovery/index.md)',
+    '[Canonical Formalism Catalog](./formalisms/canonical-catalog.md)',
+    '[Canonical Formalism Graph Index](./formalisms/formalism-graph-index.md)'
+  ]) {
+    if (!home.includes(required)) fail(`home page missing discovery entrypoint: ${required}`);
+  }
+
+  for (const required of [
+    '[Formalism Discovery Engine](./discovery-engine.md)',
+    '[Discovery Relationship Types](./relationship-types.md)',
+    '[Discovery Review Queue](./review-queue.md)',
+    '[Relationship Decision Validation](./relationship-decision-validation.md)',
+    'static/discovery/discovered-terms.json',
+    'static/discovery/candidate-relationships.json',
+    'static/discovery/relationship-decisions.json'
+  ]) {
+    if (!discovery.includes(required)) fail(`discovery index missing required link or store: ${required}`);
+  }
+}
+
 const stores = new Map();
 
 for (const file of files) {
@@ -99,5 +128,6 @@ for (const file of files) {
 }
 
 validateGeneratedCoverage(stores);
+validatePublicEntrypoints();
 
-console.log(`OK: discovery stores=${files.length}; generated coverage checked`);
+console.log(`OK: discovery stores=${files.length}; generated coverage and public entrypoints checked`);
