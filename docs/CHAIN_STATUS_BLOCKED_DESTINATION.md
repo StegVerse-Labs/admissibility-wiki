@@ -12,6 +12,12 @@ StegVerse-Labs/StegGuardian -> not found
 StegVerse-Labs/stegguardian -> not found
 ```
 
+## Machine-Readable Record
+
+```text
+docs/CHAIN_STATUS_BLOCKED_DESTINATION.json
+```
+
 ## Boundary
 
 Do not invent a Guardian repository name for chain-status propagation. The next destination must be created or identified before further Guardian-side wiki updates proceed.
@@ -22,6 +28,7 @@ Do not invent a Guardian repository name for chain-status propagation. The next 
 StegVerse-Labs/admissibility-wiki/docs/CHAIN_STATUS.md
 StegVerse-Labs/admissibility-wiki/docs/CHAIN_STATUS_HANDOFF.md
 StegVerse-Labs/admissibility-wiki/docs/CHAIN_STATUS_BLOCKED_DESTINATION.md
+StegVerse-Labs/admissibility-wiki/docs/CHAIN_STATUS_BLOCKED_DESTINATION.json
 ```
 
 ## Next Action
