@@ -69,8 +69,12 @@ const sidebars = {
       label: 'External Frameworks',
       items: [
         'external-frameworks/index',
+        'external-frameworks/governance-observatory-protocol',
+        'external-frameworks/commit-time-interoperability-contract',
         'external-frameworks/glm',
         'external-frameworks/evide',
+        'external-frameworks/decisionassure',
+        'external-frameworks/mindforge',
       ],
     },
     {
