@@ -88,6 +88,28 @@ A strong existence claim requires alignment across:
 
 For commit-time effects, StegVerse should treat missing or failed layers as fail-closed unless a policy explicitly defines a safe partial-standing condition.
 
+## Chain Status Surface
+
+The current chain-status reference is:
+
+```text
+docs/CHAIN_STATUS.md
+```
+
+The current chain-status handoff is:
+
+```text
+docs/CHAIN_STATUS_HANDOFF.md
+```
+
+The current blocked-destination record is:
+
+```text
+docs/CHAIN_STATUS_BLOCKED_DESTINATION.md
+```
+
+The blocked destination record exists because no Guardian standing-boundary repository was found under the checked names. This does not change the governance status of the chain. It only prevents future sessions from inventing a destination repo.
+
 ## Done State
 
 This repository is considered initially established when it has:
@@ -130,6 +152,9 @@ docs/
   comparisons/
   proof-path/
   essays/
+  CHAIN_STATUS.md
+  CHAIN_STATUS_HANDOFF.md
+  CHAIN_STATUS_BLOCKED_DESTINATION.md
 ```
 
 ## Editorial Standard
@@ -148,3 +173,7 @@ Pages should be:
 StegVerse is the originating ecosystem. The Admissibility Wiki is the public vocabulary and explanation layer.
 
 The goal is not to make every StegVerse artifact promotional. The goal is to define the language of admissible transition governance clearly enough that others can evaluate, compare, critique, reuse, or extend it.
+
+StegVerse-Labs - 5% complete
+admissibility-wiki - 8% complete
+8% complete vs current activation
