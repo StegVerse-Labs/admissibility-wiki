@@ -91,7 +91,22 @@ Adding EVIDE helps the wiki support readers from non-StegVerse ecosystems focuse
 
 For those readers, EVIDE can act as a bridge into receipt-bound execution and reconstructability terminology without requiring them to start inside StegVerse repository structure.
 
-## Non-Claims
+## AE Reflection Metadata
+
+```text
+Claim ID: CLM-FWK-EVIDE-0001
+Packet ID: ARF-FWK-EVIDE-0001
+Evidence grade: UNKNOWN
+Admissibility result: PROVISIONAL
+Standing: PROVISIONAL
+Reflection status: PROVISIONAL
+Source artifacts: 0
+Last evaluation: 2026-06-24T00:00:00Z
+```
+
+The AE reflection packet currently treats this entry as a bounded display frame. Evaluation evidence is required before standing claims are displayed.
+
+## Prohibited Claims
 
 ```text
 EVIDE is not presented here as a StegVerse canonical formalism.
@@ -100,7 +115,17 @@ EVIDE does not grant execution authority.
 Evidence remaining after an event does not prove that the event had commit-time standing.
 The wiki relationship record is not acceptance of equivalence.
 An EVIDE source URL is evidence of the external framework artifact, not acceptance of equivalence.
+EVIDE is not runtime enforcement.
+EVIDE does not replace commit-time admissibility.
 ```
+
+## Challenge Path
+
+A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
+
+## Mandatory Footer
+
+This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing that can be reconstructed from the referenced evidence, authority, and admissibility conditions.
 
 ## Next Safe Build Target
 
