@@ -92,6 +92,7 @@ const sidebars = {
         'stegverse/stegcge',
         'stegverse/tv-tvc',
         'stegverse/transition-table',
+        'stegverse/transition-element-code-representation',
       ],
     },
     {
