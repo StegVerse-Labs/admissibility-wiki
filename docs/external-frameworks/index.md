@@ -6,9 +6,58 @@ title: External Frameworks
 
 ## Purpose
 
-External frameworks are non-StegVerse systems that may help explain, declare, preserve, compare, or reconstruct parts of an admissibility review path.
+External frameworks are non-StegVerse systems that may help explain, declare, preserve, compare, review, or reconstruct parts of an admissibility review path.
 
-They are included in the wiki as crosswalk targets, not as canonical Admissible-Existence formalism sources.
+They are included in the wiki as observatory and crosswalk targets, not as canonical Admissible-Existence formalism sources.
+
+The purpose of this section is to show how external framework outputs can be processed through StegVerse under their own terms while StegVerse preserves the same governed-transition grammar and returns the expected commit-time result.
+
+## Observatory Strategy
+
+The External Frameworks section functions as a governance observatory.
+
+An observatory does not rewrite the external framework. It records the framework's own claims, terminology, artifacts, and limits, then separately records how those artifacts map into StegVerse governance primitives.
+
+```text
+External framework artifact
+        |
+        | native terms preserved
+        v
+StegVerse observation
+        |
+        | general governance primitives
+        v
+Commitment Candidate
+        |
+        | non-authorizing proposed crossing
+        v
+Standing-Proof-Engine
+        |
+        | ALLOW / DENY / FAIL-CLOSED
+        v
+Evaluation report
+```
+
+## Core Rule
+
+Historical governance artifacts are useful, but they do not become execution authority.
+
+```text
+Declaration != execution authority
+Evidence != execution authority
+Trace != execution authority
+Review != execution authority
+Commitment Candidate != execution authority
+```
+
+Execution authority must be reconstructed at the commit boundary from current standing.
+
+## Build Strategy Pages
+
+| Page | Purpose |
+|---|---|
+| [Governance Observatory Protocol](./governance-observatory-protocol.md) | Defines the neutral page structure and observation rules for external frameworks. |
+| [Commit-Time Interoperability Contract](./commit-time-interoperability-contract.md) | Defines the minimal contract for routing external artifacts into a Commitment Candidate and SPE determination. |
 
 ## Current External Frameworks
 
@@ -16,6 +65,8 @@ They are included in the wiki as crosswalk targets, not as canonical Admissible-
 |---|---|---|---|
 | [GLM](./glm.md) | Pre-event boundary declaration | sourced | Helps declare claims, non-claims, scope, composition, and interpretation frame before admissibility review. |
 | [EVIDE](./evide.md) | Post-event evidentiary reconstructability | sourced | Helps preserve and organize evidence after an event so reconstruction and dispute review remain possible. |
+| [DecisionAssure](./decisionassure.md) | Trace integrity and causal-continuity intake | artifact package required | Candidate target for testing whether supplied traces can support independent authority reconstruction without becoming authority. |
+| [MindForge](./mindforge.md) | Historical governance review evidence intake | artifact package required | Candidate target for testing whether review evidence remains non-authorizing until SPE reconstructs current standing. |
 | [Morrison Runtime](./morrison-runtime.md) | Runtime-governance comparison target | official source required | Candidate comparison target for runtime outcome and failure-state behavior. |
 | [AAR](./aar.md) | Supervised AI governance and operational forensics candidate | sourced | Crosswalk target for observable-system governance and pre-execution cost governance. |
 | [Agent Governance Playbook](./agent-governance-playbook.md) | Agent-continuation governance playbook | sourced | Crosswalk target for whether an agent should still be allowed to continue. |
@@ -34,9 +85,23 @@ Admissibility asks: May this transition bind consequence at commit time?
 EVIDE asks: What evidence remains after the event?
 ```
 
+## Expanded Observatory Bridge
+
+```text
+GLM -> declaration
+EVIDE -> evidence
+DecisionAssure -> trace
+MindForge -> review
+Commitment Candidate -> proposed crossing
+SPE -> standing determination
+Execution -> consequence binding
+```
+
 ## Source Policy
 
 Pages marked `official source required` remain intake records only. They should not be treated as externally sourced until an official website, public canonical artifact, release page, repository, paper, or specification URL is supplied.
+
+Pages marked `artifact package required` remain intake records until a public source, authorized artifact package, repository, specification, or jointly authorized technical note is supplied.
 
 Pages marked `sourced` include a public or official source URL on the page itself.
 
@@ -46,7 +111,7 @@ Pages marked `sourced` include a public or official source URL on the page itsel
 Admissible-Existence defines canonical formalisms.
 Publisher publishes papers and public exposition.
 Admissibility Wiki mirrors, relates, crosswalks, and discovers relationships.
-External frameworks are mapped here only as relationship/crosswalk targets.
+External frameworks are mapped here only as observatory and relationship/crosswalk targets.
 ```
 
 ## Non-Claims
@@ -57,4 +122,5 @@ External framework inclusion is not formalism adoption.
 External framework inclusion does not prove transition admissibility.
 External framework inclusion does not grant execution authority.
 A source URL is evidence of the external framework artifact, not acceptance of equivalence.
+A StegVerse observation does not expand the external framework's published claims.
 ```
