@@ -90,6 +90,21 @@ The candidate should still identify:
 | Supplied trace is internally valid but current context differs. | SPE should not inherit old authority. |
 | Supplied trace cannot support independent reconstruction. | SPE should FAIL-CLOSED. |
 
+## AE Reflection Metadata
+
+```text
+Claim ID: CLM-FWK-DECISIONASSURE-0001
+Packet ID: ARF-FWK-DECISIONASSURE-0001
+Evidence grade: UNKNOWN
+Admissibility result: PROVISIONAL
+Standing: PROVISIONAL
+Reflection status: PROVISIONAL
+Source artifacts: 0
+Last evaluation: 2026-06-24T00:00:00Z
+```
+
+The AE reflection packet currently treats this entry as a bounded artifact-specific display frame. Evaluation evidence is required before standing claims are displayed.
+
 ## Non-Claims
 
 ```text
@@ -98,7 +113,18 @@ This page does not claim general compatibility.
 This page does not treat a trace as execution authority.
 This page does not treat artifact-specific evaluation as system-wide validation.
 This page does not mark the framework as sourced until an authorized public source is supplied.
+DecisionAssure as a whole was not validated by this page.
+SPE or StegVerse certification is not implied.
+A successful artifact-specific result does not imply broad compatibility.
 ```
+
+## Challenge Path
+
+A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
+
+## Mandatory Footer
+
+This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing that can be reconstructed from the referenced evidence, authority, and admissibility conditions.
 
 ## Next Safe Build Target
 
