@@ -12,6 +12,8 @@ AUTO = ROOT / "docs" / "CHAIN_AUTO.json"
 REQUIRED_COMMANDS = [
     "python scripts/check_chain_status_continuation.py",
     "python scripts/check_chain_snapshot_receipt.py",
+    "python scripts/check_chain_auto.py",
+    "python scripts/check_workflow_manifest.py",
     "python scripts/check_guardian_destination.py",
 ]
 
@@ -32,6 +34,8 @@ def main() -> int:
 
     if data.get("artifact_type") != "chain_auto_state":
         failures.append("artifact type mismatch")
+    if data.get("schema_version") != "0.2":
+        failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
     if data.get("canonical_workflow") != ".github/workflows/validate-chain-continuation.yml":
