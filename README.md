@@ -102,10 +102,11 @@ The current chain-status handoff is:
 docs/CHAIN_STATUS_HANDOFF.md
 ```
 
-The current chain snapshot is:
+The current chain snapshot and receipt are:
 
 ```text
 docs/CHAIN_SNAPSHOT_v0_1_0.md
+docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
 ```
 
 The current blocked-destination records are:
@@ -204,6 +205,7 @@ docs/
   CHAIN_STATUS_CONTINUATION.json
   CHAIN_STATUS_CONTINUATION.schema.json
   CHAIN_SNAPSHOT_v0_1_0.md
+  CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
 iosnoperiod/
   github/workflows/validate-chain-continuation.yml
 scripts/
@@ -229,5 +231,5 @@ StegVerse is the originating ecosystem. The Admissibility Wiki is the public voc
 The goal is not to make every StegVerse artifact promotional. The goal is to define the language of admissible transition governance clearly enough that others can evaluate, compare, critique, reuse, or extend it.
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 18% complete
-18% complete vs current activation
+admissibility-wiki - 20% complete
+20% complete vs current activation
