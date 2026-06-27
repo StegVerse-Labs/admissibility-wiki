@@ -17,7 +17,8 @@
     "docs/CHAIN_STATUS_CONTINUATION.json",
     "docs/CHAIN_STATUS_CONTINUATION.schema.json",
     "docs/CHAIN_SNAPSHOT_v0_1_0.md",
-    "docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json"
+    "docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json",
+    "docs/CHAIN_AUTO.json"
   ],
   "blocking_condition": {
     "type": "missing_destination_repository",
