@@ -118,23 +118,37 @@ docs/CHAIN_STATUS_CONTINUATION.json
 docs/CHAIN_STATUS_CONTINUATION.schema.json
 ```
 
-The current continuation validator is:
+The current automated validators are:
 
 ```text
 scripts/check_chain_status_continuation.py
+scripts/check_chain_snapshot_receipt.py
+scripts/check_guardian_destination.py
 ```
 
 Run:
 
 ```bash
 python scripts/check_chain_status_continuation.py
+python scripts/check_chain_snapshot_receipt.py
+python scripts/check_guardian_destination.py
 ```
 
-Expected:
+Expected current state:
 
 ```text
 CHAIN CONTINUATION: PASS
+CHAIN SNAPSHOT RECEIPT: PASS
+GUARDIAN DESTINATION: BLOCKED
 ```
+
+The canonical validation workflow is displayed here without the leading dot:
+
+```text
+github/workflows/validate-chain-continuation.yml
+```
+
+It runs on push, pull request, workflow dispatch, and a daily schedule. The actual repository path begins with a leading dot.
 
 The iOS-safe workflow mirror is:
 
@@ -142,16 +156,16 @@ The iOS-safe workflow mirror is:
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
 
-It maps to the canonical workflow path displayed here without the leading dot:
-
-```text
-github/workflows/validate-chain-continuation.yml
-```
-
 The mapping is recorded in:
 
 ```text
 workflow_manifest.json
+```
+
+The destination-status report is generated at:
+
+```text
+reports/guardian_destination_status.json
 ```
 
 The blocked destination record exists because no Guardian standing-boundary repository was found under the checked names. This does not change the governance status of the chain. It only prevents future sessions from inventing a destination repo.
@@ -210,6 +224,8 @@ iosnoperiod/
   github/workflows/validate-chain-continuation.yml
 scripts/
   check_chain_status_continuation.py
+  check_chain_snapshot_receipt.py
+  check_guardian_destination.py
 workflow_manifest.json
 ```
 
@@ -231,5 +247,5 @@ StegVerse is the originating ecosystem. The Admissibility Wiki is the public voc
 The goal is not to make every StegVerse artifact promotional. The goal is to define the language of admissible transition governance clearly enough that others can evaluate, compare, critique, reuse, or extend it.
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 20% complete
-20% complete vs current activation
+admissibility-wiki - 35% complete
+35% complete vs current activation
