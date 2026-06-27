@@ -12,66 +12,48 @@
     "verification_repo",
     "wiki_repo",
     "current_documents",
+    "current_workflows",
+    "current_validators",
     "blocking_condition",
     "next_required_action",
     "non_claims",
     "resume_when"
   ],
   "properties": {
-    "artifact_type": {
-      "const": "chain_status_continuation"
-    },
-    "schema_version": {
-      "type": "string"
-    },
-    "current_stage": {
-      "type": "string"
-    },
-    "current_status": {
-      "type": "string"
-    },
-    "source_repo": {
-      "type": "string"
-    },
-    "verification_repo": {
-      "type": "string"
-    },
-    "site_status_repo": {
-      "type": "string"
-    },
-    "publisher_status_repo": {
-      "type": "string"
-    },
-    "wiki_repo": {
-      "type": "string"
-    },
+    "artifact_type": {"const": "chain_status_continuation"},
+    "schema_version": {"type": "string"},
+    "current_stage": {"type": "string"},
+    "current_status": {"type": "string"},
+    "source_repo": {"type": "string"},
+    "verification_repo": {"type": "string"},
+    "site_status_repo": {"type": "string"},
+    "publisher_status_repo": {"type": "string"},
+    "wiki_repo": {"type": "string"},
     "current_documents": {
       "type": "array",
-      "items": {
-        "type": "string"
-      }
+      "items": {"type": "string"}
+    },
+    "current_workflows": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "current_validators": {
+      "type": "array",
+      "items": {"type": "string"}
     },
     "blocking_condition": {
       "type": "object",
       "required": ["type", "required_destination_role", "checked_destinations"],
       "properties": {
-        "type": {
-          "type": "string"
-        },
-        "required_destination_role": {
-          "type": "string"
-        },
+        "type": {"type": "string"},
+        "required_destination_role": {"type": "string"},
         "checked_destinations": {
           "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "items": {"type": "string"}
         }
       }
     },
-    "next_required_action": {
-      "type": "string"
-    },
+    "next_required_action": {"type": "string"},
     "non_claims": {
       "type": "object",
       "required": [
@@ -91,8 +73,6 @@
         "do_not_invent_repository_name": {"const": true}
       }
     },
-    "resume_when": {
-      "type": "object"
-    }
+    "resume_when": {"type": "object"}
   }
 }
