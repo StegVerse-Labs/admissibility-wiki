@@ -1,11 +1,13 @@
 {
   "manifest_id": "ADMISSIBILITY-WIKI-WORKFLOW-001",
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "canonical_workflows": [
     {
       "path": ".github/workflows/validate-chain-continuation.yml",
-      "purpose": "Validate chain-status continuation manifest, blocked-destination state, and snapshot receipt",
-      "installed": true
+      "purpose": "Validate chain continuation package",
+      "installed": true,
+      "scheduled": true,
+      "cron": "17 9 * * *"
     }
   ],
   "mirrors": [
@@ -17,15 +19,24 @@
   ],
   "verification_commands": [
     "python scripts/check_chain_status_continuation.py",
-    "python scripts/check_chain_snapshot_receipt.py"
+    "python scripts/check_chain_snapshot_receipt.py",
+    "python scripts/check_chain_auto.py",
+    "python scripts/check_guardian_destination.py"
   ],
   "expected_results": {
     "chain_continuation": "CHAIN CONTINUATION: PASS",
-    "chain_snapshot_receipt": "CHAIN SNAPSHOT RECEIPT: PASS"
+    "chain_snapshot_receipt": "CHAIN SNAPSHOT RECEIPT: PASS",
+    "chain_auto": "CHAIN AUTO: PASS",
+    "destination_state": "GUARDIAN DESTINATION: BLOCKED"
   },
+  "generated_reports": [
+    "reports/guardian_destination_status.json"
+  ],
   "boundary": {
     "canonical_workflow_installed": true,
+    "scheduled_check_installed": true,
     "mirror_is_activation_evidence": false,
-    "manual_workflow_install_required": false
+    "manual_workflow_install_required": false,
+    "manual_destination_search_required": false
   }
 }
