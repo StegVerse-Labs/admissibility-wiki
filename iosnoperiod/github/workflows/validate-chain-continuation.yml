@@ -19,3 +19,6 @@ jobs:
 
       - name: Validate chain continuation
         run: python scripts/check_chain_status_continuation.py
+
+      - name: Validate chain snapshot receipt
+        run: python scripts/check_chain_snapshot_receipt.py
