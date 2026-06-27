@@ -1,8 +1,8 @@
 ---
-title: Runtime Transition Governance
+title: Relational Transition Geometry
 ---
 
-# Runtime Transition Governance
+# Relational Transition Geometry
 
 ## Status
 
@@ -10,13 +10,13 @@ Canonical source repository: `Admissible-Existence/RTG`
 
 Wiki state: watching
 
-Detail status: initial public-safe canonical detail page
+Detail status: corrected public-safe canonical detail page
 
 ## Definition
 
-Runtime Transition Governance is a canonical formalism for evaluating transition standing at or near the moment a system attempts to act.
+Relational Transition Geometry is the foundational RTG formalism for describing the geometry of a transition before it is reduced into table cells, proof paths, runtime checks, or commit-time outcomes.
 
-It connects transition classification to runtime authority, policy, boundary, evidence, and receipt conditions.
+It models the relationships among actor, target, authority, boundary, context, evidence, recoverability, inference window, coherency horizon, and point of irreversibility.
 
 ## Source Boundary
 
@@ -24,50 +24,84 @@ Admissible-Existence defines the formalism. Publisher publishes papers and publi
 
 The wiki is not the source authority for this formalism.
 
+## Correction Note
+
+Earlier public-safe wiki language used RTG as Runtime Transition Governance. That language is now narrowed.
+
+RTG is corrected to mean Relational Transition Geometry at the foundation layer. Runtime governance remains a later execution-facing application of the transition geometry, but it is not the primary RTG expansion.
+
 ## Scope
 
-Runtime Transition Governance applies where an allowed, denied, escalated, refused, deferred, or failed-closed result must be determined at execution or publication time.
+Relational Transition Geometry applies where a proposed or observed transition must be examined as a relationship rather than as a single approval, execution, state change, or result label.
 
 ## Purpose
 
-The purpose of Runtime Transition Governance is to prevent a reviewed or previously approved transition from silently becoming executable after authority, evidence, policy, or boundary state has changed.
+The purpose of Relational Transition Geometry is to prevent transition governance from collapsing into one-dimensional labels such as approved, visible, executed, reviewed, or continuous.
+
+It preserves the structural question first: what relationship is changing, under what authority, across which boundary, with what evidence, within what horizon, and at what distance from irreversible consequence?
 
 ## Core Constructs
 
 | Construct | Role |
 |---|---|
-| Runtime check | Evaluation performed when action or publication would occur. |
-| Commit-time authority | Authority that still exists when consequence would bind. |
-| Policy state | Current governing rule set. |
-| Evidence state | Current sufficiency, freshness, and conflict posture. |
-| Boundary state | Whether the attempted action is inside the required boundary. |
-| Result posture | Allow, deny, escalate, defer, refuse, or fail closed. |
-| Receipt | Record supporting reconstruction of the runtime decision. |
+| Actor | Entity or process attempting, proposing, reviewing, or carrying a transition. |
+| Target | Entity, state, artifact, boundary, or system affected by the transition. |
+| Relationship | The governed relation between actor, target, authority, evidence, context, and consequence. |
+| Transition vector | Direction and class of proposed state movement. |
+| Authority relation | Whether the actor has standing relative to the target and requested transition. |
+| Boundary relation | Whether the transition remains inside the required governance, scope, recoverability, or consent boundary. |
+| Evidence relation | Whether evidence is sufficient, fresh, relevant, and reconstructable for the attempted transition. |
+| Coherency horizon | The information boundary beyond which no additional information can be obtained from within a stabilized coherent state, even though existence may continue inside that boundary. |
+| Inference window | The region in which authority, evidence, policy, context, delegation, and memory remain usable for standing determination. |
+| Point of irreversibility | The point after which the transition cannot be fully recalled, reversed, re-bound, or restored without a new recovery or remediation process. |
+| Recoverability profile | Whether the transition can be paused, reversed, reconstructed, remediated, or fail-closed. |
+
+## Relationship to the Transition Table
+
+The Transition Table is the operational bridge from Relational Transition Geometry into discrete governance cells.
+
+Relational Transition Geometry defines the shape. The Transition Table classifies that shape into reviewable and testable transition postures. Commit-Time Admissibility then asks whether the classified transition still has standing when consequence would bind.
+
+```text
+Relational Transition Geometry -> Transition Table -> Commit-Time Admissibility -> Runtime governance
+```
+
+## Relationship to Runtime Governance
+
+Runtime governance is the execution-facing application of the geometry. It evaluates the current transition posture at or near the moment an action, publication, denial, escalation, refusal, deferral, or fail-closed result would occur.
+
+Runtime governance must not inherit authority merely because a prior geometric, table, or review record exists.
 
 ## Related Canonical Formalisms
 
 | Related Formalism | Relationship |
 |---|---|
-| Transition Table | Provides the transition posture classification surface. |
-| Governance-Centered and Boundary-Centered Admissibility Testing | Supplies governance and boundary admissibility tests. |
-| Boundary Conditions | Defines the boundary satisfaction side of runtime review. |
+| Coherency Horizon | Defines the knowability boundary inside the transition geometry. |
+| Transition Table | Operationalizes relational geometry as discrete transition cells. |
+| Commit-Time Admissibility | Determines whether the proposed transition still has standing at commitment. |
+| Governance-Centered and Boundary-Centered Admissibility Testing | Supplies governance and boundary tests over the relational geometry. |
+| Boundary Conditions | Defines required boundary satisfaction inside the geometry. |
 | State Transition Continuity Model | Supports continuity analysis across state changes. |
-| Decision Continuity | Supports persistence of decision standing. |
-| Continuity Handoff Formalism | Preserves runtime context across handoffs. |
+| Decision Continuity | Supports persistence or loss of decision standing. |
+| Continuity Handoff Formalism | Preserves context when a transition crosses sessions, systems, or actors. |
 
 ## Mathematical Candidates
 
 Status: pending source-confirmed extraction from canonical source or publication artifacts.
 
+Potential variables should describe relationships rather than only states, including actor-target relation, authority distance, boundary distance, evidence sufficiency, inference distance, irreversibility distance, recoverability, and coherency horizon.
+
 ## Proof Candidates
 
 Status: pending source-confirmed extraction from canonical source or publication artifacts.
+
+Proof candidates should show that the Transition Table is a discretized operational representation of Relational Transition Geometry, not an independent origin for the geometry.
 
 ## Validation Candidates
 
 Status: pending source-confirmed extraction from canonical source or publication artifacts.
 
-Validation candidates should include changed-policy, stale-evidence, changed-authority, and boundary-failure cases when public-safe source artifacts are available.
+Validation candidates should include changed-authority, changed-target, boundary-drift, stale-evidence, horizon-loss, non-recoverable-transition, and point-of-irreversibility cases when public-safe source artifacts are available.
 
 ## Publication Artifacts
 
@@ -81,20 +115,21 @@ Status: pending source-confirmed extraction.
 
 | External Framework | Relationship |
 |---|---|
-| GLM | May help declare pre-runtime claims, non-claims, and boundary frame. |
-| EVIDE | May help preserve post-runtime evidence for reconstruction. |
+| GLM | May help declare pre-transition claims, non-claims, and boundary frame. |
+| EVIDE | May help preserve post-transition evidence for reconstruction. |
 
 These are crosswalk targets only. They do not replace canonical formalism definition.
 
 ## Open Questions
 
 ```text
-Which exact Admissible-Existence source file defines Runtime Transition Governance?
-Which runtime outcomes are canonical versus explanatory?
-Which tests validate changed authority, stale evidence, and changed policy?
-Which receipt fields are required for reconstructing runtime standing?
+Which exact Admissible-Existence source file defines Relational Transition Geometry?
+Which variables are canonical versus explanatory?
+Which artifacts establish the earliest preserved transition-geometry discussion?
+Which proof path shows the Transition Table as the operational form of the geometry?
+Which tests validate loss beyond the coherency horizon?
 ```
 
 ## Non-Claims
 
-This wiki page does not define, prove, or validate the formalism. External framework mappings are crosswalk candidates, not equivalence decisions. A listed relationship does not imply accepted formal equivalence.
+This wiki page does not define, prove, or validate the formalism. External framework mappings are crosswalk candidates, not equivalence decisions. A listed relationship does not imply accepted formal equivalence. Runtime governance remains a related execution layer, not the corrected foundation meaning of RTG.
