@@ -130,6 +130,7 @@ The current automated validators are:
 scripts/check_chain_status_continuation.py
 scripts/check_chain_snapshot_receipt.py
 scripts/check_chain_auto.py
+scripts/check_workflow_manifest.py
 scripts/check_guardian_destination.py
 ```
 
@@ -139,6 +140,7 @@ Run:
 python scripts/check_chain_status_continuation.py
 python scripts/check_chain_snapshot_receipt.py
 python scripts/check_chain_auto.py
+python scripts/check_workflow_manifest.py
 python scripts/check_guardian_destination.py
 ```
 
@@ -148,6 +150,7 @@ Expected current state:
 CHAIN CONTINUATION: PASS
 CHAIN SNAPSHOT RECEIPT: PASS
 CHAIN AUTO: PASS
+WORKFLOW MANIFEST: PASS
 GUARDIAN DESTINATION: BLOCKED
 ```
 
@@ -236,6 +239,7 @@ scripts/
   check_chain_status_continuation.py
   check_chain_snapshot_receipt.py
   check_chain_auto.py
+  check_workflow_manifest.py
   check_guardian_destination.py
 workflow_manifest.json
 ```
@@ -258,5 +262,5 @@ StegVerse is the originating ecosystem. The Admissibility Wiki is the public voc
 The goal is not to make every StegVerse artifact promotional. The goal is to define the language of admissible transition governance clearly enough that others can evaluate, compare, critique, reuse, or extend it.
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 43% complete
-43% complete vs current activation
+admissibility-wiki - 46% complete
+46% complete vs current activation
