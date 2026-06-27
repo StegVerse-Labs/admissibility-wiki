@@ -1,21 +1,31 @@
 {
-  "manifest_id": "ADMISSIBILITY-WIKI-WORKFLOW-MIRROR-001",
-  "schema_version": "0.1",
-  "mappings": [
+  "manifest_id": "ADMISSIBILITY-WIKI-WORKFLOW-001",
+  "schema_version": "0.2",
+  "canonical_workflows": [
+    {
+      "path": ".github/workflows/validate-chain-continuation.yml",
+      "purpose": "Validate chain-status continuation manifest, blocked-destination state, and snapshot receipt",
+      "installed": true
+    }
+  ],
+  "mirrors": [
     {
       "mirror_path": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
       "canonical_path": ".github/workflows/validate-chain-continuation.yml",
-      "purpose": "Validate chain-status continuation manifest and blocked-destination state"
+      "purpose": "iOS-safe mirror of the installed canonical workflow"
     }
   ],
   "verification_commands": [
-    "python scripts/check_chain_status_continuation.py"
+    "python scripts/check_chain_status_continuation.py",
+    "python scripts/check_chain_snapshot_receipt.py"
   ],
   "expected_results": {
-    "chain_continuation": "CHAIN CONTINUATION: PASS"
+    "chain_continuation": "CHAIN CONTINUATION: PASS",
+    "chain_snapshot_receipt": "CHAIN SNAPSHOT RECEIPT: PASS"
   },
   "boundary": {
+    "canonical_workflow_installed": true,
     "mirror_is_activation_evidence": false,
-    "canonical_workflow_install_required_for_ci": true
+    "manual_workflow_install_required": false
   }
 }
