@@ -1,0 +1,21 @@
+{
+  "manifest_id": "ADMISSIBILITY-WIKI-WORKFLOW-MIRROR-001",
+  "schema_version": "0.1",
+  "mappings": [
+    {
+      "mirror_path": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
+      "canonical_path": ".github/workflows/validate-chain-continuation.yml",
+      "purpose": "Validate chain-status continuation manifest and blocked-destination state"
+    }
+  ],
+  "verification_commands": [
+    "python scripts/check_chain_status_continuation.py"
+  ],
+  "expected_results": {
+    "chain_continuation": "CHAIN CONTINUATION: PASS"
+  },
+  "boundary": {
+    "mirror_is_activation_evidence": false,
+    "canonical_workflow_install_required_for_ci": true
+  }
+}
