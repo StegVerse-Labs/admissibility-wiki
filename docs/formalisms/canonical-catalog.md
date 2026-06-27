@@ -45,6 +45,15 @@ wiki crosswalk targets
 non-claims
 ```
 
+## Current RTG / CHF Corrections
+
+```text
+RTG = Relational Transition Geometry
+CHF = Coherency Horizon
+```
+
+Runtime governance remains a downstream execution-facing application of Relational Transition Geometry. Continuity Handoff Formalism remains a related continuity concept, but it no longer claims the CHF abbreviation.
+
 ## Initial Canonical Formalism Families
 
 | Canonical Formalism | Source Repository | Wiki State | Public-Safe Definition State |
@@ -52,11 +61,12 @@ non-claims
 | [Commit-Time Admissibility](./commit-time-admissibility.md) | `Admissible-Existence/CTA` | mirrored | initial scaffold, tests, and handoff installed |
 | [Irreversibility-Inference Convergence Theorem](./irreversibility-inference-convergence-theorem.md) | `Admissible-Existence/IICT` | mirrored | initial scaffold, tests, and handoff installed |
 | [State Transition Continuity Model](./state-transition-continuity-model.md) | `Admissible-Existence/STCM` | watching | initial scaffold installed |
-| [Runtime Transition Governance](./runtime-transition-governance.md) | `Admissible-Existence/RTG` | watching | initial scaffold installed |
+| [Relational Transition Geometry](./runtime-transition-governance.md) | `Admissible-Existence/RTG` | watching | corrected foundation scaffold installed |
+| [Coherency Horizon](./coherency-horizon.md) | `Admissible-Existence/CHF` | watching | corrected information-boundary scaffold installed |
 | [Boundary Conditions](./boundary-conditions.md) | `Admissible-Existence/BC` | watching | initial scaffold installed |
 | [Transition Table](./transition-table.md) | `Admissible-Existence/TT` | watching | initial scaffold installed |
 | [Triad Governance Model](./triad-governance-model.md) | `Admissible-Existence/Triad` | watching | initial scaffold installed |
-| [Continuity Handoff Formalism](./continuity-handoff-formalism.md) | `Admissible-Existence/CHF` | watching | initial scaffold installed |
+| [Continuity Handoff Formalism](./continuity-handoff-formalism.md) | pending abbreviation-safe source confirmation | watching | abbreviation collision corrected |
 | [Data Continuity](./data-continuity.md) | `Admissible-Existence/DaCo` | watching | initial scaffold installed |
 | [Decision Continuity](./decision-continuity.md) | `Admissible-Existence/DC` | watching | initial scaffold installed |
 | [Governance-Centered and Boundary-Centered Admissibility Testing](./governance-centered-boundary-centered-admissibility-testing.md) | `Admissible-Existence/GCAT-BCAT` | source_available | first complete publication family available through Publisher |
@@ -99,8 +109,10 @@ The wiki catalog does not define the canonical formalism.
 The wiki catalog does not prove or validate the formalism.
 A listed relationship does not imply accepted equivalence.
 External framework mapping does not replace canonical formalism definition.
+Runtime governance does not replace Relational Transition Geometry.
+Continuity Handoff Formalism does not claim the CHF abbreviation.
 ```
 
 ## Next Safe Build Target
 
-Continue source-confirmed mathematical, proof, validation, artifact, and implementation extraction across the canonical formalism graph.
+Continue source-confirmed mathematical, proof, validation, artifact, and implementation extraction across the canonical formalism graph, starting with Relational Transition Geometry and Coherency Horizon.
