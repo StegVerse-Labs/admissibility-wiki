@@ -109,6 +109,12 @@ docs/CHAIN_SNAPSHOT_v0_1_0.md
 docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
 ```
 
+The current automation-state record is:
+
+```text
+docs/CHAIN_AUTO.json
+```
+
 The current blocked-destination records are:
 
 ```text
@@ -212,6 +218,7 @@ docs/
   comparisons/
   proof-path/
   essays/
+  CHAIN_AUTO.json
   CHAIN_STATUS.md
   CHAIN_STATUS_HANDOFF.md
   CHAIN_STATUS_BLOCKED_DESTINATION.md
@@ -247,5 +254,5 @@ StegVerse is the originating ecosystem. The Admissibility Wiki is the public voc
 The goal is not to make every StegVerse artifact promotional. The goal is to define the language of admissible transition governance clearly enough that others can evaluate, compare, critique, reuse, or extend it.
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 35% complete
-35% complete vs current activation
+admissibility-wiki - 40% complete
+40% complete vs current activation
