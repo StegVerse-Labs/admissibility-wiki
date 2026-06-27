@@ -28,6 +28,9 @@ jobs:
       - name: Validate chain auto state
         run: python scripts/check_chain_auto.py
 
+      - name: Validate workflow manifest
+        run: python scripts/check_workflow_manifest.py
+
       - name: Resolve Guardian destination
         run: python scripts/check_guardian_destination.py
 
