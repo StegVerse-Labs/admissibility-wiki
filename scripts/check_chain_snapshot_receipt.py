@@ -9,25 +9,57 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 RECEIPT = ROOT / "docs" / "CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json"
 
-REQUIRED_FILES = [
+REQUIRED_FILE_FIELDS = [
     "snapshot",
     "continuation_manifest",
     "continuation_schema",
-    "validator",
+    "automation_state",
+    "canonical_workflow",
     "workflow_mirror",
     "workflow_manifest",
     "blocked_destination_manifest",
 ]
 
-REQUIRED_BOUNDARIES = [
-    "snapshot_is_release_tag",
-    "snapshot_is_activation_evidence",
-    "workflow_mirror_is_ci_activation",
+REQUIRED_VALIDATORS = [
+    "scripts/check_chain_status_continuation.py",
+    "scripts/check_chain_snapshot_receipt.py",
+    "scripts/check_chain_auto.py",
+    "scripts/check_workflow_manifest.py",
+    "scripts/check_guardian_destination.py",
+]
+
+REQUIRED_COMMANDS = [
+    "python scripts/check_chain_status_continuation.py",
+    "python scripts/check_chain_snapshot_receipt.py",
+    "python scripts/check_chain_auto.py",
+    "python scripts/check_workflow_manifest.py",
+    "python scripts/check_guardian_destination.py",
+]
+
+EXPECTED_RESULTS = {
+    "chain_continuation": "CHAIN CONTINUATION: PASS",
+    "chain_snapshot_receipt": "CHAIN SNAPSHOT RECEIPT: PASS",
+    "chain_auto": "CHAIN AUTO: PASS",
+    "workflow_manifest": "WORKFLOW MANIFEST: PASS",
+    "destination_state": "GUARDIAN DESTINATION: BLOCKED",
+}
+
+TRUE_BOUNDARIES = [
+    "canonical_workflow_installed",
+    "scheduled_check_installed",
     "no_activation_claim",
     "no_closure_claim",
     "no_adoption_claim",
     "no_endorsement_claim",
     "no_consequence_binding_standing_claim",
+]
+
+FALSE_BOUNDARIES = [
+    "snapshot_is_release_tag",
+    "snapshot_is_activation_evidence",
+    "workflow_mirror_is_ci_activation",
+    "manual_workflow_install_required",
+    "manual_destination_search_required",
 ]
 
 
@@ -47,31 +79,45 @@ def main() -> int:
 
     if receipt.get("artifact_type") != "chain_snapshot_receipt":
         failures.append("artifact type mismatch")
+    if receipt.get("schema_version") != "0.2":
+        failures.append("schema version mismatch")
     if receipt.get("status") != "BLOCKED_ON_DESTINATION_REPOSITORY":
         failures.append("status mismatch")
-    if receipt.get("expected_validation_result") != "CHAIN CONTINUATION: PASS":
-        failures.append("expected validation mismatch")
 
-    for key in REQUIRED_FILES:
+    for key in REQUIRED_FILE_FIELDS:
         value = receipt.get(key)
         if not isinstance(value, str):
             failures.append(f"missing file reference: {key}")
         elif not (ROOT / value).exists():
             failures.append(f"referenced file missing: {value}")
 
+    validators = receipt.get("validators", [])
+    for validator in REQUIRED_VALIDATORS:
+        if validator not in validators:
+            failures.append(f"missing validator: {validator}")
+        elif not (ROOT / validator).exists():
+            failures.append(f"validator file missing: {validator}")
+
+    commands = receipt.get("validation_commands", [])
+    for command in REQUIRED_COMMANDS:
+        if command not in commands:
+            failures.append(f"missing validation command: {command}")
+
+    expected = receipt.get("expected_validation_results", {})
+    for key, value in EXPECTED_RESULTS.items():
+        if expected.get(key) != value:
+            failures.append(f"expected result mismatch: {key}")
+
+    if receipt.get("generated_report") != "reports/guardian_destination_status.json":
+        failures.append("generated report mismatch")
+
     boundary = receipt.get("boundary", {})
-    for key in REQUIRED_BOUNDARIES:
-        if key not in boundary:
-            failures.append(f"missing boundary: {key}")
-    if boundary.get("snapshot_is_release_tag") is not False:
-        failures.append("snapshot release-tag boundary mismatch")
-    if boundary.get("snapshot_is_activation_evidence") is not False:
-        failures.append("snapshot activation boundary mismatch")
-    if boundary.get("workflow_mirror_is_ci_activation") is not False:
-        failures.append("workflow mirror boundary mismatch")
-    for key in REQUIRED_BOUNDARIES[3:]:
+    for key in TRUE_BOUNDARIES:
         if boundary.get(key) is not True:
-            failures.append(f"non-claim not enforced: {key}")
+            failures.append(f"true boundary mismatch: {key}")
+    for key in FALSE_BOUNDARIES:
+        if boundary.get(key) is not False:
+            failures.append(f"false boundary mismatch: {key}")
 
     print("CHAIN SNAPSHOT RECEIPT:", "FAIL" if failures else "PASS")
     for failure in failures:
