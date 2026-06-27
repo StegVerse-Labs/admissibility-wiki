@@ -60,6 +60,8 @@ const sidebars = {
         'formalisms/index',
         'formalisms/original-drawing-reference',
         'formalisms/canonical-catalog',
+        'formalisms/runtime-transition-governance',
+        'formalisms/coherency-horizon',
         'formalisms/commit-time-admissibility',
         'formalisms/irreversibility-inference-convergence-theorem',
       ],
