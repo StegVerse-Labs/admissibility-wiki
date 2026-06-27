@@ -25,6 +25,9 @@ jobs:
       - name: Validate chain snapshot receipt
         run: python scripts/check_chain_snapshot_receipt.py
 
+      - name: Validate chain auto state
+        run: python scripts/check_chain_auto.py
+
       - name: Resolve Guardian destination
         run: python scripts/check_guardian_destination.py
 
