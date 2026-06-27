@@ -15,7 +15,9 @@
     "docs/CHAIN_STATUS_BLOCKED_DESTINATION.md",
     "docs/CHAIN_STATUS_BLOCKED_DESTINATION.json",
     "docs/CHAIN_STATUS_CONTINUATION.json",
-    "docs/CHAIN_STATUS_CONTINUATION.schema.json"
+    "docs/CHAIN_STATUS_CONTINUATION.schema.json",
+    "docs/CHAIN_SNAPSHOT_v0_1_0.md",
+    "docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json"
   ],
   "blocking_condition": {
     "type": "missing_destination_repository",
