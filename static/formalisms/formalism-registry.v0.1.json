@@ -64,7 +64,7 @@
       "source_authority": "Admissible-Existence/STCM",
       "source_visibility": "public",
       "wiki_path": "docs/formalisms/state-transition-continuity-model.md",
-      "purpose": "Mirror public-safe metadata for State Transition Continuity Model and connect continuity review to transition posture, runtime governance, boundary conditions, evidence, and receipts.",
+      "purpose": "Mirror public-safe metadata for State Transition Continuity Model and connect continuity review to transition posture, relational transition geometry, boundary conditions, evidence, and receipts.",
       "transition_relationship": "state transition continuity canonical detail page installed; source-confirmed proof and validation extraction pending",
       "evidence_posture": "public_safe_scaffold_available_public_source_crosswalk_pending",
       "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
@@ -75,18 +75,36 @@
     },
     {
       "formalism_id": "ae.RTG",
-      "name": "Runtime Transition Governance",
+      "name": "Relational Transition Geometry",
       "state": "mirrored",
       "source_authority": "Admissible-Existence/RTG",
       "source_visibility": "private",
       "wiki_path": "docs/formalisms/runtime-transition-governance.md",
-      "purpose": "Mirror public-safe metadata for Runtime Transition Governance and connect runtime checks to transition posture, authority, policy, boundary, evidence, and receipt review.",
-      "transition_relationship": "runtime transition governance canonical detail page installed; source-confirmed proof and validation extraction pending",
+      "purpose": "Mirror public-safe metadata for Relational Transition Geometry and connect actor, target, authority, boundary, context, evidence, recoverability, inference window, coherency horizon, and point of irreversibility to the formalism graph.",
+      "transition_relationship": "relational transition geometry corrected as the RTG foundation; runtime governance remains a later execution-facing application; source-confirmed proof and validation extraction pending",
       "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
       "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
       "non_claims": [
-        "Wiki mirroring must not expose private Runtime Transition Governance source content.",
-        "Wiki mirroring does not define, prove, or validate Runtime Transition Governance claims."
+        "Wiki mirroring must not expose private RTG source content.",
+        "Wiki mirroring does not define, prove, or validate Relational Transition Geometry claims.",
+        "Runtime governance is not the corrected foundation meaning of RTG."
+      ]
+    },
+    {
+      "formalism_id": "ae.CHF",
+      "name": "Coherency Horizon",
+      "state": "mirrored",
+      "source_authority": "Admissible-Existence/CHF",
+      "source_visibility": "private",
+      "wiki_path": "docs/formalisms/coherency-horizon.md",
+      "purpose": "Mirror public-safe metadata for Coherency Horizon and connect existence, coherence, information access, reconstructability, governance confidence, and fail-closed horizon behavior to the formalism graph.",
+      "transition_relationship": "coherency horizon corrected as the CHF formalism; continuity handoff formalism remains a related continuity concept without claiming the CHF abbreviation; source-confirmed proof and validation extraction pending",
+      "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
+      "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
+      "non_claims": [
+        "Wiki mirroring must not expose private CHF source content.",
+        "Wiki mirroring does not define, prove, or validate Coherency Horizon claims.",
+        "Existence alone does not create governance standing, reconstructability, or execution authority."
       ]
     },
     {
@@ -96,7 +114,7 @@
       "source_authority": "Admissible-Existence/BC",
       "source_visibility": "private",
       "wiki_path": "docs/formalisms/boundary-conditions.md",
-      "purpose": "Mirror public-safe metadata for Boundary Conditions and connect boundary satisfaction to transition posture, runtime governance, evidence, and receipt review.",
+      "purpose": "Mirror public-safe metadata for Boundary Conditions and connect boundary satisfaction to transition posture, relational transition geometry, evidence, and receipt review.",
       "transition_relationship": "boundary conditions canonical detail page installed; source-confirmed proof and validation extraction pending",
       "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
       "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
@@ -113,12 +131,13 @@
       "source_visibility": "private",
       "wiki_path": "docs/formalisms/transition-table.md",
       "purpose": "Mirror public-safe metadata for the Transition Table formalism and connect it to the public transition-table vocabulary.",
-      "transition_relationship": "transition table canonical detail page installed; source-confirmed proof and validation extraction pending",
+      "transition_relationship": "transition table canonical detail page installed; source-confirmed proof and validation extraction pending; operational bridge from Relational Transition Geometry into table cells",
       "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
       "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
       "non_claims": [
         "Wiki mirroring must not expose private Transition Table source content.",
-        "Wiki mirroring does not define, prove, or validate Transition Table claims."
+        "Wiki mirroring does not define, prove, or validate Transition Table claims.",
+        "The Transition Table is not independent proof of admissibility."
       ]
     },
     {
@@ -128,7 +147,7 @@
       "source_authority": "Admissible-Existence/Triad",
       "source_visibility": "private",
       "wiki_path": "docs/formalisms/triad-governance-model.md",
-      "purpose": "Mirror public-safe metadata for Triad Governance Model and connect role-separated governance to runtime governance, transition posture, boundary conditions, continuity, and receipts.",
+      "purpose": "Mirror public-safe metadata for Triad Governance Model and connect role-separated governance to transition posture, boundary conditions, continuity, and receipts.",
       "transition_relationship": "triad governance model canonical detail page installed; source-confirmed proof and validation extraction pending",
       "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
       "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
@@ -138,19 +157,20 @@
       ]
     },
     {
-      "formalism_id": "ae.CHF",
+      "formalism_id": "ae.continuity-handoff",
       "name": "Continuity Handoff Formalism",
       "state": "mirrored",
-      "source_authority": "Admissible-Existence/CHF",
+      "source_authority": "pending abbreviation-safe source confirmation",
       "source_visibility": "private",
       "wiki_path": "docs/formalisms/continuity-handoff-formalism.md",
-      "purpose": "Mirror public-safe metadata for Continuity Handoff Formalism and connect handoff standing to state continuity, decision continuity, data continuity, runtime governance, boundary conditions, and receipts.",
-      "transition_relationship": "continuity handoff formalism canonical detail page installed; source-confirmed proof and validation extraction pending",
+      "purpose": "Mirror public-safe metadata for Continuity Handoff Formalism and connect handoff standing to state continuity, decision continuity, data continuity, boundary conditions, horizon posture, and receipts without claiming the CHF abbreviation.",
+      "transition_relationship": "continuity handoff formalism page remains installed; abbreviation collision corrected; source-confirmed proof and validation extraction pending",
       "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
       "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
       "non_claims": [
         "Wiki mirroring must not expose private Continuity Handoff Formalism source content.",
-        "Wiki mirroring does not define, prove, or validate Continuity Handoff Formalism claims."
+        "Wiki mirroring does not define, prove, or validate Continuity Handoff Formalism claims.",
+        "Continuity Handoff Formalism does not claim the CHF abbreviation."
       ]
     },
     {
@@ -176,7 +196,7 @@
       "source_authority": "Admissible-Existence/DC",
       "source_visibility": "private",
       "wiki_path": "docs/formalisms/decision-continuity.md",
-      "purpose": "Mirror public-safe metadata for Decision Continuity and connect decision standing to state continuity, runtime governance, boundary conditions, evidence, handoffs, and receipts.",
+      "purpose": "Mirror public-safe metadata for Decision Continuity and connect decision standing to state continuity, boundary conditions, evidence, handoffs, and receipts.",
       "transition_relationship": "decision continuity canonical detail page installed; source-confirmed proof and validation extraction pending",
       "evidence_posture": "public_safe_scaffold_available_private_source_boundary_preserved",
       "validation_posture": "detail_page_installed_pending_source_confirmed_tests",
@@ -191,7 +211,7 @@
       "state": "intake",
       "source_authority": "Admissible-Existence/GCAT-BCAT",
       "source_visibility": "private",
-      "wiki_path": "docs/formalisms/admissible-existence-gcat-bcat.md",
+      "wiki_path": "docs/formalisms/governance-centered-boundary-centered-admissibility-testing.md",
       "purpose": "Mirror public-safe metadata for the GCAT-BCAT subject formalism once source boundary and publishable scope are confirmed.",
       "transition_relationship": "subject formalism pending source crosswalk",
       "evidence_posture": "source_repository_required_private_scope",
@@ -250,5 +270,5 @@
       ]
     }
   ],
-  "next_action": "Continue source-confirmed mathematical, proof, validation, artifact, and implementation extraction across the canonical formalism graph."
+  "next_action": "Continue source-confirmed mathematical, proof, validation, artifact, and implementation extraction for Relational Transition Geometry and Coherency Horizon, then propagate derived tests through the Transition Table and Commit-Time Admissibility path."
 }
