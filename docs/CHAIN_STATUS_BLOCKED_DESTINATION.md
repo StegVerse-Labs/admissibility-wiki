@@ -12,10 +12,11 @@ StegVerse-Labs/StegGuardian -> not found
 StegVerse-Labs/stegguardian -> not found
 ```
 
-## Machine-Readable Record
+## Machine-Readable Records
 
 ```text
 docs/CHAIN_STATUS_BLOCKED_DESTINATION.json
+docs/CHAIN_STATUS_CONTINUATION.json
 ```
 
 ## Boundary
@@ -29,6 +30,7 @@ StegVerse-Labs/admissibility-wiki/docs/CHAIN_STATUS.md
 StegVerse-Labs/admissibility-wiki/docs/CHAIN_STATUS_HANDOFF.md
 StegVerse-Labs/admissibility-wiki/docs/CHAIN_STATUS_BLOCKED_DESTINATION.md
 StegVerse-Labs/admissibility-wiki/docs/CHAIN_STATUS_BLOCKED_DESTINATION.json
+StegVerse-Labs/admissibility-wiki/docs/CHAIN_STATUS_CONTINUATION.json
 ```
 
 ## Next Action
