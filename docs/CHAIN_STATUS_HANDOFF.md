@@ -17,6 +17,7 @@ continuation schema
 continuation validator
 workflow mirror
 snapshot
+snapshot receipt
 blocked destination
 archive readiness
 ```
@@ -31,6 +32,7 @@ docs/CHAIN_STATUS_BLOCKED_DESTINATION.json
 docs/CHAIN_STATUS_CONTINUATION.json
 docs/CHAIN_STATUS_CONTINUATION.schema.json
 docs/CHAIN_SNAPSHOT_v0_1_0.md
+docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
 scripts/check_chain_status_continuation.py
 iosnoperiod.md
 iosnoperiod/github/workflows/validate-chain-continuation.yml
@@ -57,7 +59,13 @@ The current continuation snapshot is:
 docs/CHAIN_SNAPSHOT_v0_1_0.md
 ```
 
-It records the blocked continuation package as documentation state only. It is not a GitHub release tag and does not advance activation.
+The current snapshot receipt is:
+
+```text
+docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
+```
+
+They record the blocked continuation package as documentation and receipt state only. They are not GitHub release tags and do not advance activation.
 
 ## Workflow Mirror
 
