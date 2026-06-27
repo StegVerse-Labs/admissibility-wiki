@@ -4,6 +4,8 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: '17 9 * * *'
 
 jobs:
   validate-chain-continuation:
@@ -22,3 +24,12 @@ jobs:
 
       - name: Validate chain snapshot receipt
         run: python scripts/check_chain_snapshot_receipt.py
+
+      - name: Resolve Guardian destination
+        run: python scripts/check_guardian_destination.py
+
+      - name: Upload destination report
+        uses: actions/upload-artifact@v4
+        with:
+          name: guardian-destination-status
+          path: reports/guardian_destination_status.json
