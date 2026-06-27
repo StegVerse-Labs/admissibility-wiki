@@ -1,0 +1,39 @@
+{
+  "artifact_type": "chain_status_continuation",
+  "schema_version": "0.1",
+  "current_stage": "admissibility-wiki",
+  "current_status": "BLOCKED_ON_DESTINATION_REPOSITORY",
+  "source_repo": "master-records/core-lite",
+  "verification_repo": "StegVerse-Labs/Standing-Proof-Engine",
+  "site_status_repo": "StegVerse-Labs/Site",
+  "publisher_status_repo": "GCAT-BCAT-Engine/Publisher",
+  "wiki_repo": "StegVerse-Labs/admissibility-wiki",
+  "current_documents": [
+    "docs/CHAIN_STATUS.md",
+    "docs/CHAIN_STATUS_HANDOFF.md",
+    "docs/CHAIN_STATUS_BLOCKED_DESTINATION.md",
+    "docs/CHAIN_STATUS_BLOCKED_DESTINATION.json",
+    "docs/CHAIN_STATUS_CONTINUATION.json"
+  ],
+  "blocking_condition": {
+    "type": "missing_destination_repository",
+    "required_destination_role": "Guardian standing-boundary wiki or repository",
+    "checked_destinations": [
+      "StegVerse-Labs/stegguardian-wiki",
+      "StegVerse-Labs/StegGuardian",
+      "StegVerse-Labs/stegguardian"
+    ]
+  },
+  "next_required_action": "Create or identify the Guardian standing-boundary repository, then add a narrow standing-boundary reference preserving non-activation and non-authority boundaries.",
+  "non_claims": {
+    "no_activation_claim": true,
+    "no_closure_claim": true,
+    "no_adoption_claim": true,
+    "no_endorsement_claim": true,
+    "no_consequence_binding_standing_claim": true,
+    "do_not_invent_repository_name": true
+  },
+  "resume_when": {
+    "guardian_repository_identified": true
+  }
+}
