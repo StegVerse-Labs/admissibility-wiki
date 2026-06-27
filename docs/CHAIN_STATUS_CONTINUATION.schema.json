@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/chain-status-continuation.schema.json",
+  "title": "Chain Status Continuation",
+  "type": "object",
+  "required": [
+    "artifact_type",
+    "schema_version",
+    "current_stage",
+    "current_status",
+    "source_repo",
+    "verification_repo",
+    "wiki_repo",
+    "current_documents",
+    "blocking_condition",
+    "next_required_action",
+    "non_claims",
+    "resume_when"
+  ],
+  "properties": {
+    "artifact_type": {
+      "const": "chain_status_continuation"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "current_stage": {
+      "type": "string"
+    },
+    "current_status": {
+      "type": "string"
+    },
+    "source_repo": {
+      "type": "string"
+    },
+    "verification_repo": {
+      "type": "string"
+    },
+    "site_status_repo": {
+      "type": "string"
+    },
+    "publisher_status_repo": {
+      "type": "string"
+    },
+    "wiki_repo": {
+      "type": "string"
+    },
+    "current_documents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blocking_condition": {
+      "type": "object",
+      "required": ["type", "required_destination_role", "checked_destinations"],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "required_destination_role": {
+          "type": "string"
+        },
+        "checked_destinations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "next_required_action": {
+      "type": "string"
+    },
+    "non_claims": {
+      "type": "object",
+      "required": [
+        "no_activation_claim",
+        "no_closure_claim",
+        "no_adoption_claim",
+        "no_endorsement_claim",
+        "no_consequence_binding_standing_claim",
+        "do_not_invent_repository_name"
+      ],
+      "properties": {
+        "no_activation_claim": {"const": true},
+        "no_closure_claim": {"const": true},
+        "no_adoption_claim": {"const": true},
+        "no_endorsement_claim": {"const": true},
+        "no_consequence_binding_standing_claim": {"const": true},
+        "do_not_invent_repository_name": {"const": true}
+      }
+    },
+    "resume_when": {
+      "type": "object"
+    }
+  }
+}
