@@ -1,0 +1,19 @@
+{
+  "artifact_type": "chain_auto_state",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "mirror_workflow": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
+  "schedule": "17 9 * * *",
+  "commands": [
+    "python scripts/check_chain_status_continuation.py",
+    "python scripts/check_chain_snapshot_receipt.py",
+    "python scripts/check_guardian_destination.py"
+  ],
+  "report": "reports/guardian_destination_status.json",
+  "manual_tasks_removed": [
+    "workflow_install",
+    "repeat_destination_search"
+  ],
+  "remaining_state": "WAITING_FOR_DOWNSTREAM_REPO"
+}
