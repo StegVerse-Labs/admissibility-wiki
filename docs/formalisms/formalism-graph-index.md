@@ -18,16 +18,26 @@ Publisher publishes papers and public exposition.
 Admissibility Wiki mirrors, relates, crosswalks, and discovers relationships.
 ```
 
+## Correction Boundary
+
+```text
+RTG = Relational Transition Geometry
+CHF = Coherency Horizon
+Runtime governance = downstream execution-facing application
+Continuity Handoff Formalism = related continuity concept without CHF abbreviation claim
+```
+
 ## Current Graph Coverage
 
 | Formalism Page | Source Repository | Wiki Coverage | Remaining Work |
 |---|---|---|---|
 | [State Transition Continuity Model](./state-transition-continuity-model.md) | `Admissible-Existence/STCM` | page + catalog + registry | source-confirmed math/proof/validation extraction |
-| [Runtime Transition Governance](./runtime-transition-governance.md) | `Admissible-Existence/RTG` | page + catalog + registry | source-confirmed math/proof/validation extraction |
+| [Relational Transition Geometry](./runtime-transition-governance.md) | `Admissible-Existence/RTG` | page + catalog + registry | source-confirmed math/proof/validation extraction |
+| [Coherency Horizon](./coherency-horizon.md) | `Admissible-Existence/CHF` | page + catalog + registry | source-confirmed horizon/proof/validation extraction |
 | [Boundary Conditions](./boundary-conditions.md) | `Admissible-Existence/BC` | page + catalog + registry | source-confirmed math/proof/validation extraction |
 | [Transition Table](./transition-table.md) | `Admissible-Existence/TT` | page + catalog + registry | source-confirmed state/proof/validation extraction |
 | [Triad Governance Model](./triad-governance-model.md) | `Admissible-Existence/Triad` | page + catalog + registry | source-confirmed role/quorum validation extraction |
-| [Continuity Handoff Formalism](./continuity-handoff-formalism.md) | `Admissible-Existence/CHF` | page + catalog + registry | source-confirmed handoff validation extraction |
+| [Continuity Handoff Formalism](./continuity-handoff-formalism.md) | pending abbreviation-safe source confirmation | page + catalog + registry | source-confirmed handoff validation extraction |
 | [Data Continuity](./data-continuity.md) | `Admissible-Existence/DaCo` | page + catalog + registry | source-confirmed custody/data validation extraction |
 | [Decision Continuity](./decision-continuity.md) | `Admissible-Existence/DC` | page + catalog + registry | source-confirmed decision-standing validation extraction |
 | [Governance-Centered and Boundary-Centered Admissibility Testing](./governance-centered-boundary-centered-admissibility-testing.md) | `Admissible-Existence/GCAT-BCAT` | page + catalog + registry | source-confirmed paper/proof/test extraction |
@@ -40,9 +50,11 @@ Admissibility Wiki mirrors, relates, crosswalks, and discovers relationships.
 A public reader can inspect the graph in this order:
 
 ```text
+Relational Transition Geometry
+Coherency Horizon
 Transition Table
 Boundary Conditions
-Runtime Transition Governance
+Commit-Time Admissibility
 State Transition Continuity Model
 Decision Continuity
 Data Continuity
@@ -65,11 +77,13 @@ It does not yet support a claim that all formalisms have source-confirmed mathem
 ## Next Extraction Targets
 
 ```text
-1. Extract source-confirmed publication artifacts for GCAT-BCAT.
-2. Extract source-confirmed proof candidates where public papers exist.
-3. Extract validation candidates and expected outcomes from public-safe fixtures.
-4. Link reference implementations only after source authority and implementation role are confirmed.
-5. Replace pending placeholders with source-confirmed records.
+1. Extract source-confirmed Relational Transition Geometry variables.
+2. Extract source-confirmed Coherency Horizon variables and validation cases.
+3. Show how the Transition Table operationalizes RTG and horizon posture.
+4. Extract source-confirmed proof candidates where public papers exist.
+5. Extract validation candidates and expected outcomes from public-safe fixtures.
+6. Link reference implementations only after source authority and implementation role are confirmed.
+7. Replace pending placeholders with source-confirmed records.
 ```
 
 ## Non-Claims
@@ -80,4 +94,6 @@ This graph index does not prove any formalism.
 This graph index does not validate any formalism.
 This graph index does not assert equivalence with GLM, EVIDE, or any external framework.
 This graph index does not expose private source content.
+Runtime governance does not replace Relational Transition Geometry.
+Continuity Handoff Formalism does not claim the CHF abbreviation.
 ```
