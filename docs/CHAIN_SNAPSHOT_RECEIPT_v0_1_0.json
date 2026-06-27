@@ -1,0 +1,27 @@
+{
+  "artifact_type": "chain_snapshot_receipt",
+  "schema_version": "0.1",
+  "receipt_id": "admissibility-wiki-chain-snapshot-v0-1-0",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "snapshot": "docs/CHAIN_SNAPSHOT_v0_1_0.md",
+  "continuation_manifest": "docs/CHAIN_STATUS_CONTINUATION.json",
+  "continuation_schema": "docs/CHAIN_STATUS_CONTINUATION.schema.json",
+  "validator": "scripts/check_chain_status_continuation.py",
+  "workflow_mirror": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
+  "workflow_manifest": "workflow_manifest.json",
+  "blocked_destination_manifest": "docs/CHAIN_STATUS_BLOCKED_DESTINATION.json",
+  "validation_command": "python scripts/check_chain_status_continuation.py",
+  "expected_validation_result": "CHAIN CONTINUATION: PASS",
+  "status": "BLOCKED_ON_DESTINATION_REPOSITORY",
+  "boundary": {
+    "snapshot_is_release_tag": false,
+    "snapshot_is_activation_evidence": false,
+    "workflow_mirror_is_ci_activation": false,
+    "no_activation_claim": true,
+    "no_closure_claim": true,
+    "no_adoption_claim": true,
+    "no_endorsement_claim": true,
+    "no_consequence_binding_standing_claim": true
+  },
+  "next_required_action": "Create or identify the Guardian standing-boundary repository before continuing Guardian-side propagation."
+}
