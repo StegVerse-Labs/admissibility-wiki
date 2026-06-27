@@ -102,10 +102,31 @@ The current chain-status handoff is:
 docs/CHAIN_STATUS_HANDOFF.md
 ```
 
-The current blocked-destination record is:
+The current blocked-destination records are:
 
 ```text
 docs/CHAIN_STATUS_BLOCKED_DESTINATION.md
+docs/CHAIN_STATUS_BLOCKED_DESTINATION.json
+docs/CHAIN_STATUS_CONTINUATION.json
+docs/CHAIN_STATUS_CONTINUATION.schema.json
+```
+
+The current continuation validator is:
+
+```text
+scripts/check_chain_status_continuation.py
+```
+
+Run:
+
+```bash
+python scripts/check_chain_status_continuation.py
+```
+
+Expected:
+
+```text
+CHAIN CONTINUATION: PASS
 ```
 
 The blocked destination record exists because no Guardian standing-boundary repository was found under the checked names. This does not change the governance status of the chain. It only prevents future sessions from inventing a destination repo.
@@ -155,6 +176,11 @@ docs/
   CHAIN_STATUS.md
   CHAIN_STATUS_HANDOFF.md
   CHAIN_STATUS_BLOCKED_DESTINATION.md
+  CHAIN_STATUS_BLOCKED_DESTINATION.json
+  CHAIN_STATUS_CONTINUATION.json
+  CHAIN_STATUS_CONTINUATION.schema.json
+scripts/
+  check_chain_status_continuation.py
 ```
 
 ## Editorial Standard
@@ -175,5 +201,5 @@ StegVerse is the originating ecosystem. The Admissibility Wiki is the public voc
 The goal is not to make every StegVerse artifact promotional. The goal is to define the language of admissible transition governance clearly enough that others can evaluate, compare, critique, reuse, or extend it.
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 8% complete
-8% complete vs current activation
+admissibility-wiki - 12% complete
+12% complete vs current activation
