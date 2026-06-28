@@ -1,12 +1,13 @@
 {
   "artifact_type": "chain_auto_state",
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "mirror_workflow": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
   "schedule": "17 9 * * *",
   "commands": [
     "python scripts/check_chain_status_continuation.py",
+    "python scripts/check_continuation_bundle.py",
     "python scripts/check_chain_snapshot_receipt.py",
     "python scripts/check_chain_auto.py",
     "python scripts/check_workflow_manifest.py",
