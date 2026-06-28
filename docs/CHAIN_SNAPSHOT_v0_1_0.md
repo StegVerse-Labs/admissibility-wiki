@@ -7,15 +7,24 @@ This is a documentation snapshot for the current chain-status continuation packa
 ## Included Files
 
 ```text
+.github/workflows/validate-chain-continuation.yml
+docs/CHAIN_AUTO.json
 docs/CHAIN_STATUS.md
 docs/CHAIN_STATUS_HANDOFF.md
 docs/CHAIN_STATUS_BLOCKED_DESTINATION.md
 docs/CHAIN_STATUS_BLOCKED_DESTINATION.json
 docs/CHAIN_STATUS_CONTINUATION.json
 docs/CHAIN_STATUS_CONTINUATION.schema.json
-scripts/check_chain_status_continuation.py
+docs/CHAIN_SNAPSHOT_v0_1_0.md
+docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
 iosnoperiod.md
 iosnoperiod/github/workflows/validate-chain-continuation.yml
+scripts/check_chain_status_continuation.py
+scripts/check_continuation_bundle.py
+scripts/check_chain_snapshot_receipt.py
+scripts/check_chain_auto.py
+scripts/check_workflow_manifest.py
+scripts/check_guardian_destination.py
 workflow_manifest.json
 ```
 
@@ -23,15 +32,31 @@ workflow_manifest.json
 
 ```bash
 python scripts/check_chain_status_continuation.py
+python scripts/check_continuation_bundle.py
+python scripts/check_chain_snapshot_receipt.py
+python scripts/check_chain_auto.py
+python scripts/check_workflow_manifest.py
+python scripts/check_guardian_destination.py
 ```
 
 Expected:
 
 ```text
 CHAIN CONTINUATION: PASS
+CONTINUATION BUNDLE: PASS
+CHAIN SNAPSHOT RECEIPT: PASS
+CHAIN AUTO: PASS
+WORKFLOW MANIFEST: PASS
+GUARDIAN DESTINATION: BLOCKED
 ```
 
-## Workflow Mirror
+## Workflow
+
+Canonical path:
+
+```text
+.github/workflows/validate-chain-continuation.yml
+```
 
 Canonical path displayed without the leading dot:
 
@@ -50,6 +75,14 @@ Mapping:
 ```text
 workflow_manifest.json
 ```
+
+## Generated Report
+
+```text
+reports/guardian_destination_status.json
+```
+
+The workflow uploads this report as an artifact.
 
 ## Current Status
 
