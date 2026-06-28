@@ -22,6 +22,7 @@ REQUIRED_FILE_FIELDS = [
 
 REQUIRED_VALIDATORS = [
     "scripts/check_chain_status_continuation.py",
+    "scripts/check_continuation_bundle.py",
     "scripts/check_chain_snapshot_receipt.py",
     "scripts/check_chain_auto.py",
     "scripts/check_workflow_manifest.py",
@@ -30,6 +31,7 @@ REQUIRED_VALIDATORS = [
 
 REQUIRED_COMMANDS = [
     "python scripts/check_chain_status_continuation.py",
+    "python scripts/check_continuation_bundle.py",
     "python scripts/check_chain_snapshot_receipt.py",
     "python scripts/check_chain_auto.py",
     "python scripts/check_workflow_manifest.py",
@@ -38,6 +40,7 @@ REQUIRED_COMMANDS = [
 
 EXPECTED_RESULTS = {
     "chain_continuation": "CHAIN CONTINUATION: PASS",
+    "continuation_bundle": "CONTINUATION BUNDLE: PASS",
     "chain_snapshot_receipt": "CHAIN SNAPSHOT RECEIPT: PASS",
     "chain_auto": "CHAIN AUTO: PASS",
     "workflow_manifest": "WORKFLOW MANIFEST: PASS",
@@ -79,7 +82,7 @@ def main() -> int:
 
     if receipt.get("artifact_type") != "chain_snapshot_receipt":
         failures.append("artifact type mismatch")
-    if receipt.get("schema_version") != "0.2":
+    if receipt.get("schema_version") != "0.3":
         failures.append("schema version mismatch")
     if receipt.get("status") != "BLOCKED_ON_DESTINATION_REPOSITORY":
         failures.append("status mismatch")
