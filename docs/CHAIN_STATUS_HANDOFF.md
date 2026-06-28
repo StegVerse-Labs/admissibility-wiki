@@ -16,6 +16,7 @@ continuation manifest
 continuation schema
 continuation bundle validator
 snapshot
+snapshot validator
 snapshot receipt
 automation state
 canonical workflow
@@ -43,6 +44,7 @@ iosnoperiod.md
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 scripts/check_chain_status_continuation.py
 scripts/check_continuation_bundle.py
+scripts/check_chain_snapshot.py
 scripts/check_chain_snapshot_receipt.py
 scripts/check_chain_auto.py
 scripts/check_workflow_manifest.py
@@ -55,6 +57,7 @@ workflow_manifest.json
 ```bash
 python scripts/check_chain_status_continuation.py
 python scripts/check_continuation_bundle.py
+python scripts/check_chain_snapshot.py
 python scripts/check_chain_snapshot_receipt.py
 python scripts/check_chain_auto.py
 python scripts/check_workflow_manifest.py
@@ -66,6 +69,7 @@ Expected current state:
 ```text
 CHAIN CONTINUATION: PASS
 CONTINUATION BUNDLE: PASS
+CHAIN SNAPSHOT: PASS
 CHAIN SNAPSHOT RECEIPT: PASS
 CHAIN AUTO: PASS
 WORKFLOW MANIFEST: PASS
@@ -151,3 +155,7 @@ Until that destination exists, continue from this handoff and do not invent a Gu
 ## Archive Readiness
 
 Future sessions should continue from this handoff when advancing chain-status propagation work.
+
+StegVerse-Labs - 5% complete
+admissibility-wiki - 67% complete
+67% complete vs current activation
