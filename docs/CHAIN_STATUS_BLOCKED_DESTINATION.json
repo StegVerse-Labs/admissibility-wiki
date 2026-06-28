@@ -1,13 +1,29 @@
 {
   "artifact_type": "chain_status_blocked_destination",
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "status": "BLOCKED",
   "source_repo": "StegVerse-Labs/admissibility-wiki",
+  "resolver": "scripts/check_guardian_destination.py",
+  "generated_report": "reports/guardian_destination_status.json",
   "current_files": [
     "docs/CHAIN_STATUS.md",
     "docs/CHAIN_STATUS_HANDOFF.md",
     "docs/CHAIN_STATUS_BLOCKED_DESTINATION.md",
-    "docs/CHAIN_STATUS_BLOCKED_DESTINATION.json"
+    "docs/CHAIN_STATUS_BLOCKED_DESTINATION.json",
+    "docs/CHAIN_STATUS_CONTINUATION.json",
+    "docs/CHAIN_AUTO.json",
+    "docs/CHAIN_SNAPSHOT_v0_1_0.md",
+    "docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json",
+    "workflow_manifest.json"
+  ],
+  "validators": [
+    "scripts/check_chain_status_continuation.py",
+    "scripts/check_continuation_bundle.py",
+    "scripts/check_chain_snapshot.py",
+    "scripts/check_chain_snapshot_receipt.py",
+    "scripts/check_chain_auto.py",
+    "scripts/check_workflow_manifest.py",
+    "scripts/check_guardian_destination.py"
   ],
   "checked_destinations": [
     {
@@ -26,6 +42,7 @@
   "blocked_reason": "Guardian standing-boundary repository could not be resolved under checked names.",
   "boundary": {
     "do_not_invent_repository_name": true,
+    "resolver_creates_repository": false,
     "no_activation_claim": true,
     "no_closure_claim": true,
     "no_adoption_claim": true,
