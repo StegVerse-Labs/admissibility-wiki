@@ -12,6 +12,7 @@ MANIFEST = ROOT / "workflow_manifest.json"
 REQUIRED_COMMANDS = [
     "python scripts/check_chain_status_continuation.py",
     "python scripts/check_continuation_bundle.py",
+    "python scripts/check_chain_snapshot.py",
     "python scripts/check_chain_snapshot_receipt.py",
     "python scripts/check_chain_auto.py",
     "python scripts/check_workflow_manifest.py",
@@ -21,6 +22,7 @@ REQUIRED_COMMANDS = [
 EXPECTED_RESULTS = {
     "chain_continuation": "CHAIN CONTINUATION: PASS",
     "continuation_bundle": "CONTINUATION BUNDLE: PASS",
+    "chain_snapshot": "CHAIN SNAPSHOT: PASS",
     "chain_snapshot_receipt": "CHAIN SNAPSHOT RECEIPT: PASS",
     "chain_auto": "CHAIN AUTO: PASS",
     "workflow_manifest": "WORKFLOW MANIFEST: PASS",
@@ -44,7 +46,7 @@ def main() -> int:
 
     if manifest.get("manifest_id") != "ADMISSIBILITY-WIKI-WORKFLOW-001":
         failures.append("manifest id mismatch")
-    if manifest.get("schema_version") != "0.4":
+    if manifest.get("schema_version") != "0.5":
         failures.append("schema version mismatch")
 
     workflows = manifest.get("canonical_workflows", [])
