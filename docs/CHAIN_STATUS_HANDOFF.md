@@ -11,13 +11,17 @@ This handoff is complete when it records:
 ```text
 chain status page
 non-activation boundary
-manual validation command
+automated validation commands
 continuation manifest
 continuation schema
-continuation validator
-workflow mirror
+continuation bundle validator
 snapshot
 snapshot receipt
+automation state
+canonical workflow
+iOS-safe workflow mirror
+workflow manifest
+generated report path
 blocked destination
 archive readiness
 ```
@@ -25,6 +29,8 @@ archive readiness
 ## Built Files
 
 ```text
+.github/workflows/validate-chain-continuation.yml
+docs/CHAIN_AUTO.json
 docs/CHAIN_STATUS.md
 docs/CHAIN_STATUS_HANDOFF.md
 docs/CHAIN_STATUS_BLOCKED_DESTINATION.md
@@ -33,22 +39,37 @@ docs/CHAIN_STATUS_CONTINUATION.json
 docs/CHAIN_STATUS_CONTINUATION.schema.json
 docs/CHAIN_SNAPSHOT_v0_1_0.md
 docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
-scripts/check_chain_status_continuation.py
 iosnoperiod.md
 iosnoperiod/github/workflows/validate-chain-continuation.yml
+scripts/check_chain_status_continuation.py
+scripts/check_continuation_bundle.py
+scripts/check_chain_snapshot_receipt.py
+scripts/check_chain_auto.py
+scripts/check_workflow_manifest.py
+scripts/check_guardian_destination.py
 workflow_manifest.json
 ```
 
-## Manual Validation
+## Automated Validation
 
 ```bash
 python scripts/check_chain_status_continuation.py
+python scripts/check_continuation_bundle.py
+python scripts/check_chain_snapshot_receipt.py
+python scripts/check_chain_auto.py
+python scripts/check_workflow_manifest.py
+python scripts/check_guardian_destination.py
 ```
 
-Expected:
+Expected current state:
 
 ```text
 CHAIN CONTINUATION: PASS
+CONTINUATION BUNDLE: PASS
+CHAIN SNAPSHOT RECEIPT: PASS
+CHAIN AUTO: PASS
+WORKFLOW MANIFEST: PASS
+GUARDIAN DESTINATION: BLOCKED
 ```
 
 ## Snapshot
@@ -67,9 +88,15 @@ docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
 
 They record the blocked continuation package as documentation and receipt state only. They are not GitHub release tags and do not advance activation.
 
-## Workflow Mirror
+## Workflow
 
-The canonical GitHub Actions path is displayed without the leading dot:
+The canonical GitHub Actions path is:
+
+```text
+.github/workflows/validate-chain-continuation.yml
+```
+
+The same path displayed without the leading dot is:
 
 ```text
 github/workflows/validate-chain-continuation.yml
@@ -87,11 +114,21 @@ The mapping is recorded in:
 workflow_manifest.json
 ```
 
+Manual workflow installation is no longer required for this validation route.
+
+## Generated Report
+
+```text
+reports/guardian_destination_status.json
+```
+
+The workflow uploads this report as an artifact.
+
 ## Boundary
 
 The wiki is not a source of execution authority. This status page does not claim activation, closure, adoption, endorsement, or consequence-binding standing.
 
-The workflow mirror is not CI activation evidence until copied into the canonical leading-dot workflow path.
+The iOS mirror is not separate CI activation evidence. It is only a path-safe mirror of the installed canonical workflow.
 
 ## Destination Resolution
 
