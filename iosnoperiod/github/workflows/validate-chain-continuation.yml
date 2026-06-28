@@ -25,6 +25,9 @@ jobs:
       - name: Validate continuation bundle
         run: python scripts/check_continuation_bundle.py
 
+      - name: Validate chain snapshot
+        run: python scripts/check_chain_snapshot.py
+
       - name: Validate chain snapshot receipt
         run: python scripts/check_chain_snapshot_receipt.py
 
