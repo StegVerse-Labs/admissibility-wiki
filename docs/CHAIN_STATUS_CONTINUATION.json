@@ -1,7 +1,7 @@
 {
   "$schema": "docs/CHAIN_STATUS_CONTINUATION.schema.json",
   "artifact_type": "chain_status_continuation",
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "current_stage": "admissibility-wiki",
   "current_status": "BLOCKED_ON_DESTINATION_REPOSITORY",
   "source_repo": "master-records/core-lite",
@@ -28,6 +28,7 @@
   "current_validators": [
     "scripts/check_chain_status_continuation.py",
     "scripts/check_continuation_bundle.py",
+    "scripts/check_chain_snapshot.py",
     "scripts/check_chain_snapshot_receipt.py",
     "scripts/check_chain_auto.py",
     "scripts/check_workflow_manifest.py",
