@@ -1,6 +1,6 @@
 {
   "manifest_id": "ADMISSIBILITY-WIKI-WORKFLOW-001",
-  "schema_version": "0.4",
+  "schema_version": "0.5",
   "canonical_workflows": [
     {
       "path": ".github/workflows/validate-chain-continuation.yml",
@@ -20,6 +20,7 @@
   "verification_commands": [
     "python scripts/check_chain_status_continuation.py",
     "python scripts/check_continuation_bundle.py",
+    "python scripts/check_chain_snapshot.py",
     "python scripts/check_chain_snapshot_receipt.py",
     "python scripts/check_chain_auto.py",
     "python scripts/check_workflow_manifest.py",
@@ -28,6 +29,7 @@
   "expected_results": {
     "chain_continuation": "CHAIN CONTINUATION: PASS",
     "continuation_bundle": "CONTINUATION BUNDLE: PASS",
+    "chain_snapshot": "CHAIN SNAPSHOT: PASS",
     "chain_snapshot_receipt": "CHAIN SNAPSHOT RECEIPT: PASS",
     "chain_auto": "CHAIN AUTO: PASS",
     "workflow_manifest": "WORKFLOW MANIFEST: PASS",
