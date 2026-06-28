@@ -22,6 +22,7 @@ REQUIRED_WORKFLOWS = [
 REQUIRED_VALIDATORS = [
     "scripts/check_chain_status_continuation.py",
     "scripts/check_continuation_bundle.py",
+    "scripts/check_chain_snapshot.py",
     "scripts/check_chain_snapshot_receipt.py",
     "scripts/check_chain_auto.py",
     "scripts/check_workflow_manifest.py",
@@ -33,7 +34,7 @@ def main() -> int:
     failures: list[str] = []
     data = json.loads(MANIFEST.read_text(encoding="utf-8"))
 
-    if data.get("schema_version") != "0.3":
+    if data.get("schema_version") != "0.4":
         failures.append("schema version mismatch")
 
     for group in REQUIRED_GROUPS:
