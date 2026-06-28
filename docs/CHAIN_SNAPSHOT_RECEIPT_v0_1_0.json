@@ -1,6 +1,6 @@
 {
   "artifact_type": "chain_snapshot_receipt",
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "receipt_id": "admissibility-wiki-chain-snapshot-v0-1-0",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "snapshot": "docs/CHAIN_SNAPSHOT_v0_1_0.md",
@@ -14,6 +14,7 @@
   "validators": [
     "scripts/check_chain_status_continuation.py",
     "scripts/check_continuation_bundle.py",
+    "scripts/check_chain_snapshot.py",
     "scripts/check_chain_snapshot_receipt.py",
     "scripts/check_chain_auto.py",
     "scripts/check_workflow_manifest.py",
@@ -22,6 +23,7 @@
   "validation_commands": [
     "python scripts/check_chain_status_continuation.py",
     "python scripts/check_continuation_bundle.py",
+    "python scripts/check_chain_snapshot.py",
     "python scripts/check_chain_snapshot_receipt.py",
     "python scripts/check_chain_auto.py",
     "python scripts/check_workflow_manifest.py",
@@ -30,6 +32,7 @@
   "expected_validation_results": {
     "chain_continuation": "CHAIN CONTINUATION: PASS",
     "continuation_bundle": "CONTINUATION BUNDLE: PASS",
+    "chain_snapshot": "CHAIN SNAPSHOT: PASS",
     "chain_snapshot_receipt": "CHAIN SNAPSHOT RECEIPT: PASS",
     "chain_auto": "CHAIN AUTO: PASS",
     "workflow_manifest": "WORKFLOW MANIFEST: PASS",
