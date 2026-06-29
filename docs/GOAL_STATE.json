@@ -1,11 +1,11 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "0.2",
+  "schema_version": "1.0",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "current_goal": {
     "goal_id": "self-validating-governance-package",
-    "status": "ACTIVE",
-    "completion_percent": 99,
+    "status": "COMPLETE",
+    "completion_percent": 100,
     "done_when": [
       "all chain-status records are machine-verifiable",
       "all human-readable records match machine-readable state",
@@ -13,13 +13,12 @@
       "the canonical workflow runs the full validator set",
       "the repository fails closed on drift"
     ],
-    "remaining_to_close": [
-      "finalize current goal at 100 percent only after validating all expanded package references"
-    ]
+    "closure_result": "SELF_VALIDATING_PACKAGE_COMPLETE"
   },
   "next_goal": {
     "goal_id": "external-framework-compatibility-testbench",
-    "status": "QUEUED_AFTER_CURRENT_GOAL_100_PERCENT",
+    "status": "QUEUED_FOR_NEXT_ACTIVATION",
+    "initial_completion_percent_on_activation": 0,
     "parallel_safe_before_activation": [
       "framework registry draft",
       "framework manifest schema draft",
@@ -29,11 +28,12 @@
       "transition-table mapping test scaffolding",
       "generated compatibility report template"
     ],
-    "activation_rule": "Reset repository goal progress to 0 percent after current_goal reaches 100 percent."
+    "activation_rule": "Start this as the active repository goal after the self-validating-governance-package closure is recorded."
   },
   "boundary": {
     "current_goal_does_not_activate_next_goal": true,
     "parallel_safe_work_must_not_destabilize_current_goal": true,
-    "no_external_framework_validation_claim_yet": true
+    "no_external_framework_validation_claim_yet": true,
+    "next_goal_progress_reset_required": true
   }
 }
