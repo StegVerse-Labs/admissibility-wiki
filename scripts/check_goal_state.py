@@ -30,6 +30,11 @@ BUILT_SURFACES = [
     "iOS workflow mirror manifest validation step",
     "canonical workflow report validation step",
     "iOS workflow mirror report validation step",
+    "source-blocked provisional framework manifest",
+    "source-blocked compatibility report",
+    "source-blocked registry state",
+    "source-blocked manifest validation",
+    "source-blocked report validation",
 ]
 
 
@@ -45,7 +50,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "1.3":
+    if data.get("schema_version") != "1.4":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -65,9 +70,9 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 24:
+    if current.get("completion_percent") != 36:
         failures.append("current goal completion mismatch")
-    if current.get("cycle_status") != "FIRST_FRAMEWORK_CYCLE_COMPLETE":
+    if current.get("cycle_status") != "SOURCE_BLOCKED_FRAMEWORK_CYCLE_RECORDED":
         failures.append("cycle status mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
@@ -86,6 +91,7 @@ def main() -> int:
         "no_external_endorsement_claim",
         "no_execution_authority_claim",
         "testbench_outputs_are_compatibility_evidence_only",
+        "source_blocked_entries_fail_closed",
     ]:
         if boundary.get(key) is not True:
             failures.append(f"boundary mismatch: {key}")
