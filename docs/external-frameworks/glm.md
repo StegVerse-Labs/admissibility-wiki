@@ -26,6 +26,17 @@ GLM is treated in this wiki as an external framework for machine-readable bounda
 
 Its primary relationship to the Admissibility Wiki is that it may describe the declared boundaries, claims, non-claims, composition scope, and interpretation frame that exist before a StegVerse or Admissible-Existence admissibility question is evaluated.
 
+## Framework-Term Definitions
+
+| Native GLM Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
+|---|---|---|---|
+| Governance Layer Manifest | Machine-readable external framework artifact used to declare governance boundaries before interpretation. | new | Preserved as GLM-native artifact terminology. |
+| Boundary declaration | A statement of the boundary that applies before interpretation or review. | adjacent | Related to Governance Boundary, but does not by itself establish commit-time standing. |
+| Claim declaration | A statement of what the artifact or system claims. | adjacent | Supports Evidence Posture and Review Posture. |
+| Non-claim declaration | A statement of what the artifact or system does not claim. | adjacent | Supports Non-Claims and Authority Boundary. |
+| Composition declaration | A statement of what components or relationships are in scope. | adjacent | Supports Transition and Transition Table analysis. |
+| Interpretation frame | The declared frame for reading or evaluating the artifact. | adjacent | Supports Policy Reference and Commit-Time Validity review. |
+
 ## Why It Matters
 
 GLM can help a non-StegVerse ecosystem declare:
