@@ -26,6 +26,17 @@ MindForge is treated in this wiki as a candidate external framework for producin
 
 Its primary relationship to the Admissibility Wiki is the separation between a reviewed historical governance posture and a present execution-authority determination.
 
+## Framework-Term Definitions
+
+| Native MindForge Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
+|---|---|---|---|
+| MindForge | Candidate external framework for producing reconstructable historical governance review evidence. | new | Preserved as framework-native terminology pending authorized source package. |
+| Historical governance review evidence | Evidence produced from a prior review of governance posture, context, or transition conditions. | adjacent | Supports Review Posture and Evidence Posture, but does not authorize execution. |
+| Review artifact | A record of what was reviewed and under what context. | adjacent | Related to Review Posture and Reconstructability. |
+| Evidence packet | A bounded packet of evidence that may support later review. | adjacent | Related to Evidence Posture and Receipt-Bound Execution. |
+| Historical reviewer conclusion | A conclusion made at review time. | adjacent | Related to non-authorizing evidence and Commit-Time Validity. |
+| Authority re-binding | The requirement that current standing be reconstructed at commit time instead of inherited from prior review. | adjacent | Related to SPE and Commit-Time Authority. |
+
 ## Native Contribution
 
 MindForge may contribute:
