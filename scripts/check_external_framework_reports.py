@@ -61,7 +61,7 @@ def main() -> int:
         report = load_json(report_path)
         if report.get("artifact_type") != "external_framework_compatibility_report":
             failures.append(f"artifact type mismatch: {report_path.relative_to(ROOT)}")
-        if report.get("schema_version") != "0.1":
+        if report.get("schema_version") != "0.2":
             failures.append(f"schema version mismatch: {report_path.relative_to(ROOT)}")
         framework_id = report.get("framework_id")
         if framework_id not in known_ids:
@@ -70,6 +70,8 @@ def main() -> int:
             failures.append(f"basis mismatch: {framework_id}")
         if report.get("result") != "COMPATIBILITY_EVIDENCE_ONLY":
             failures.append(f"result mismatch: {framework_id}")
+        if report.get("cycle_status") != "FIRST_FRAMEWORK_CYCLE_COMPLETE":
+            failures.append(f"cycle status mismatch: {framework_id}")
 
         manifest = report.get("framework_manifest")
         if not isinstance(manifest, str) or not (ROOT / manifest).exists():
@@ -78,6 +80,13 @@ def main() -> int:
         for key in REQUIRED_STATUS_KEYS:
             if key not in status:
                 failures.append(f"missing transition table status {key}: {framework_id}")
+            elif status[key] == "PARTIAL":
+                failures.append(f"partial transition table status {key}: {framework_id}")
+
+        for overlap_key in ["SPE_overlap_result", "StegVerse_ecosystem_overlap_result"]:
+            value = report.get(overlap_key)
+            if not isinstance(value, dict) or not value:
+                failures.append(f"missing overlap result {overlap_key}: {framework_id}")
 
         boundary = report.get("boundary", {})
         for key in [
