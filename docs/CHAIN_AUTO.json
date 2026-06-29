@@ -6,6 +6,7 @@
   "mirror_workflow": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
   "schedule": "17 9 * * *",
   "commands": [
+    "python scripts/check_workflow_sprawl.py",
     "python scripts/check_chain_status_continuation.py",
     "python scripts/check_continuation_bundle.py",
     "python scripts/check_chain_snapshot.py",
@@ -31,9 +32,11 @@
     "docs/external-frameworks/reports/admissible-existence-seed-cycle.compatibility.json",
     "docs/external-frameworks/reports/care-runtime.compatibility.json"
   ],
+  "active_workflow_count": 1,
   "manual_tasks_removed": [
     "workflow_install",
-    "repeat_destination_search"
+    "repeat_destination_search",
+    "workflow_selection"
   ],
   "remaining_state": "WAITING_FOR_DOWNSTREAM_REPO_EXTERNAL_FRAMEWORK_SOURCES_AND_CI_EVIDENCE"
 }
