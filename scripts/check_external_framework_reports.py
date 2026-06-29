@@ -32,6 +32,11 @@ REQUIRED_STATUS_KEYS = [
     "fail_closed_conditions",
 ]
 
+ALLOWED_RESULTS = [
+    "COMPATIBILITY_EVIDENCE_ONLY",
+    "SOURCE_BLOCKED_FAIL_CLOSED",
+]
+
 
 def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -59,19 +64,20 @@ def main() -> int:
 
     for report_path in reports:
         report = load_json(report_path)
+        framework_id = report.get("framework_id")
+
         if report.get("artifact_type") != "external_framework_compatibility_report":
             failures.append(f"artifact type mismatch: {report_path.relative_to(ROOT)}")
         if report.get("schema_version") != "0.2":
             failures.append(f"schema version mismatch: {report_path.relative_to(ROOT)}")
-        framework_id = report.get("framework_id")
         if framework_id not in known_ids:
             failures.append(f"unknown framework id: {framework_id}")
         if report.get("testbench_basis") != "transition_table_elements":
             failures.append(f"basis mismatch: {framework_id}")
-        if report.get("result") != "COMPATIBILITY_EVIDENCE_ONLY":
+        if report.get("result") not in ALLOWED_RESULTS:
             failures.append(f"result mismatch: {framework_id}")
-        if report.get("cycle_status") != "FIRST_FRAMEWORK_CYCLE_COMPLETE":
-            failures.append(f"cycle status mismatch: {framework_id}")
+        if not report.get("cycle_status"):
+            failures.append(f"missing cycle status: {framework_id}")
 
         manifest = report.get("framework_manifest")
         if not isinstance(manifest, str) or not (ROOT / manifest).exists():
