@@ -1,39 +1,33 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "repo": "StegVerse-Labs/admissibility-wiki",
-  "current_goal": {
+  "previous_goal": {
     "goal_id": "self-validating-governance-package",
     "status": "COMPLETE",
     "completion_percent": 100,
-    "done_when": [
-      "all chain-status records are machine-verifiable",
-      "all human-readable records match machine-readable state",
-      "all automation manifests agree on the validation package",
-      "the canonical workflow runs the full validator set",
-      "the repository fails closed on drift"
-    ],
     "closure_result": "SELF_VALIDATING_PACKAGE_COMPLETE"
   },
-  "next_goal": {
+  "current_goal": {
     "goal_id": "external-framework-compatibility-testbench",
-    "status": "QUEUED_FOR_NEXT_ACTIVATION",
-    "initial_completion_percent_on_activation": 0,
-    "parallel_safe_before_activation": [
-      "framework registry draft",
-      "framework manifest schema draft",
-      "source/version citation fields",
-      "overlap taxonomy draft",
-      "SPE comparison test scaffolding",
-      "transition-table mapping test scaffolding",
-      "generated compatibility report template"
-    ],
-    "activation_rule": "Start this as the active repository goal after the self-validating-governance-package closure is recorded."
+    "status": "ACTIVE",
+    "completion_percent": 0,
+    "done_when": [
+      "framework registry exists and is machine-verifiable",
+      "each framework has a manifest with source/version and allowed-use boundaries",
+      "each framework maps claims and non-claims to SPE and ecosystem overlap fields",
+      "transition-table mapping tests run for every listed framework",
+      "generated compatibility reports are reproducible",
+      "framework pages do not claim certification, endorsement, or execution authority",
+      "the testbench fails closed on missing sources, stale versions, or undefined overlap"
+    ]
   },
   "boundary": {
-    "current_goal_does_not_activate_next_goal": true,
-    "parallel_safe_work_must_not_destabilize_current_goal": true,
-    "no_external_framework_validation_claim_yet": true,
-    "next_goal_progress_reset_required": true
+    "self_validating_package_remains_closed": true,
+    "external_framework_testbench_active": true,
+    "no_framework_certification_claim": true,
+    "no_external_endorsement_claim": true,
+    "no_execution_authority_claim": true,
+    "testbench_outputs_are_compatibility_evidence_only": true
   }
 }
