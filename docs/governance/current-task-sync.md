@@ -21,9 +21,17 @@ static/CNAME: removed
 
 ## Current Assessment Goal
 
-Continue build work until either the repo reaches completion or the repo contains enough handoff, governance, validation, and next-task structure for ecosystem-managed continuation.
+Continue the active `declarative-external-framework-generation-pipeline` goal until framework pages can be generated, validated, and published from governed artifacts without page-status editing or separate result-posting work.
+
+## Current Activation Goal
+
+Publish and validate the Admissibility Wiki as the public vocabulary, terminology convergence, proposal-review, proposal-intake, proof-path, and external-framework crosswalk site.
+
+Activation must remain evidence-bound. Public deployment, generated framework result pages, generated framework page-status blocks, and URL verification must be produced by repository automation before activation posture advances.
 
 ## Installed Activation Structure
+
+Displayed without leading-dot paths for iOS readability. Actual repository paths beginning with `github/` use a leading `.github/` directory.
 
 ```text
 docs/activation/github-pages-cloudflare.md
@@ -35,12 +43,70 @@ static/status/workflow-evidence-status.json
 static/status/proposal-core-lite-target-watch-status.json
 static/status/no-manual-task-guard-status.json
 static/status/mirror-handoff-guard-status.json
-github/workflows/deploy.yml
-github/workflows/record-latest-success.yml
-github/workflows/proposal-core-lite-target-watch.yml
+github/workflows/validate-chain-continuation.yml
+iosnoperiod/github/workflows/validate-chain-continuation.yml
+workflow_manifest.json
+docs/CHAIN_AUTO.json
+docs/CI_EVIDENCE.json
+docs/GOAL_STATE.json
 ```
 
-Note: paths that normally begin with a leading dot are shown without the leading dot in this display rule only.
+## Single Workflow Policy
+
+Only one active GitHub Actions workflow is intended to exist:
+
+```text
+github/workflows/validate-chain-continuation.yml
+```
+
+The iOS-safe mirror is inert and exists only for copied path readability:
+
+```text
+iosnoperiod/github/workflows/validate-chain-continuation.yml
+```
+
+Workflow sprawl is guarded by:
+
+```text
+scripts/check_workflow_sprawl.py
+```
+
+## Declarative External Framework Pipeline
+
+The current build path is:
+
+```text
+framework manifest
+  -> generated compatibility report
+  -> generated evaluation results page
+  -> generated framework page-status block
+  -> Docusaurus build
+  -> GitHub Pages deploy
+  -> public URL verification
+```
+
+Installed generators and validators:
+
+```text
+scripts/generate_external_framework_reports.py
+scripts/generate_external_framework_results.py
+scripts/generate_external_framework_page_status.py
+scripts/check_external_framework_reports.py
+scripts/check_external_framework_report_coverage.py
+scripts/check_external_framework_report_generation.py
+scripts/check_external_framework_results_page.py
+scripts/check_external_framework_page_status.py
+scripts/check_external_framework_terminology.py
+scripts/check_external_framework_expansion_policy.py
+```
+
+Generated publication surface:
+
+```text
+docs/external-frameworks/evaluation-results.md
+```
+
+Generated page-status blocks are inserted into registered framework pages from manifests plus compatibility reports. The generated blocks are compatibility evidence only and do not grant certification, endorsement, formalism adoption, admissibility proof, or execution authority.
 
 ## Installed Validators
 
@@ -54,43 +120,46 @@ scripts/check-public-activation-receipt.mjs
 scripts/check-formalism-registry.mjs
 scripts/check-formalism-publication-artifacts.mjs
 scripts/check-formalism-source-sync.mjs
-scripts/check-external-frameworks.mjs
+scripts/check-external-framework-registry.mjs
 scripts/check-publication-chain-guard.mjs
 scripts/check-publication-verification-status.mjs
 scripts/check-workflow-receipt-automation-status.mjs
 scripts/check-workflow-evidence-status.mjs
+scripts/check-workflow-evidence-watch-status.mjs
 scripts/check-proposal-core-lite-target-watch-status.mjs
 scripts/check-no-manual-task-assignments.mjs
 scripts/check-mirror-handoff-guard.mjs
-scripts/check-transition-origin-governance.mjs
+scripts/check-transition-origin-sections.mjs
 scripts/check-proposal-governance-classes.mjs
+scripts/check-proposal-governance-core-lite-seed.mjs
+scripts/check-proposal-governance-core-lite-creation-task.mjs
 scripts/check-proposal-intake-interface.mjs
-scripts/check-proposal-intake-backend.mjs
-scripts/check-proposal-intake-runtime.mjs
-scripts/check-proposal-intake-api.mjs
+scripts/check-proposal-intake-backend-contract.mjs
+scripts/check-proposal-intake-backend-runtime.mjs
+scripts/check-proposal-intake-api-server.mjs
 scripts/check-proposal-intake-api-deployment.mjs
 scripts/check-proposal-intake-api-deployment-receipt.mjs
+scripts/check-proposal-intake-endpoint-verification-status.mjs
+scripts/check-intake-api-deploy-config.mjs
+scripts/check-public-share-readiness.mjs
+scripts/check-entity-sandbox-runner-admissibility-plane-status.mjs
+scripts/check_workflow_sprawl.py
+scripts/check_chain_status_continuation.py
+scripts/check_continuation_bundle.py
+scripts/check_chain_snapshot.py
+scripts/check_chain_snapshot_receipt.py
+scripts/check_chain_auto.py
+scripts/check_blocked_destination_record.py
+scripts/check_goal_state.py
+scripts/check_workflow_manifest.py
+scripts/check_ci_evidence.py
 ```
 
-Aggregate validation is run by repo automation:
+Aggregate validation is run by repo automation through the single canonical workflow. Local aggregate validation remains:
 
 ```text
 npm run validate
 ```
-
-The deploy workflow validates governance artifacts, builds the Docusaurus site, deploys to GitHub Pages, verifies public URLs for the site root, formalism index, CTA formalism page, and IICT formalism page, and emits a failure receipt artifact when the chain fails.
-
-A separate success recorder listens for successful deploy workflow completion and emits a success receipt artifact.
-
-Workflow evidence status records whether connector-visible commit status evidence has been observed. Pending evidence must not advance activation posture.
-
-The proposal-governance-core-lite target watcher checks target readiness on push, schedule, and workflow dispatch. If the target is unavailable, it remains pending and emits a bounded artifact without assigning a manual task.
-
-The no-manual-task guard prevents tracked handoff/current-sync files from reintroducing manual assignment language.
-
-The mirror-handoff guard prevents sessions from proceeding if the root handoff source of truth loses required continuity sections.
-
-The workflow receipt automation status, workflow evidence status, proposal core-lite target-watch status, no-manual-task guard status, and mirror-handoff guard status are covered by aggregate validation.
 
 ## Installed Formalism Mirrors
 
@@ -178,51 +247,36 @@ docs/governance/site-bridge-status.md
 docs/governance/admissibility-wiki-ai-entity.md
 docs/governance/equivalence-proposal-template.md
 docs/research/terminology-overlap-research-notes.md
+docs/external-frameworks/index.md
+docs/external-frameworks/evaluation-results.md
 ```
 
-## Accepted Relationship Updates
+## Known Remaining Installation Targets
 
 ```text
-proposal.example.005 / decision.example.005: Provenance -> Reconstructability, Overlapping Terms only
-proposal.example.006 / decision.example.006: policy-as-code -> Policy Reference, Overlapping Terms only
-proposal.example.007 / decision.example.007: AI risk-management governance language -> Governance Boundary, Overlapping Terms only
-proposal.example.008 / decision.example.008: policy decision -> Commit-Time Authority, Overlapping Terms only
-proposal.example.009 / decision.example.009: Audit and Accountability -> Reconstructability, Overlapping Terms only
+StegVerse-Labs/admissibility-wiki:
+  - framework-page full generator for non-status sections
+  - generated framework-page validator for full declarative pages
+  - generated narrative boundary that preserves authored analysis while generating repeatable metadata
+
+StegVerse-Labs/Site:
+  - mirror/public summary of generated external-framework evaluation results after admissibility-wiki release/tag
+
+GCAT-BCAT-Engine/Publisher:
+  - publication/import awareness for generated external-framework result artifacts after admissibility-wiki release/tag
+
+stegguardian-wiki:
+  - downstream summary of framework execution-authority boundary once admissibility-wiki release/tag is stable
 ```
 
-No accepted equivalence has been recorded yet.
+## Current Continuation Rule
 
-## Editorial Rule
+1. Check `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` first.
+2. Check this file second.
+3. Verify exact repo paths before creating or replacing files.
+4. Repair the first failing validator, generated artifact drift, build issue, deploy issue, public URL verification issue, or handoff inconsistency identified by the active workflow.
+5. Do not reintroduce separate active workflows for validation, deployment, evidence watch, success recording, proposal watching, or framework result posting.
 
-Do not add an external term to `Equivalent Terms` without a completed proposal, source evidence, mismatch analysis, overclaiming-risk analysis, and decision record.
+## Current Redundancy Posture
 
-## Submission Receipt Timing Rule
-
-User-submitted proposals should include a `submission_timing` block in the submission receipt.
-
-Submission timing records intake posture only. It does not accept the proposal, prove the submitted claim, or replace the decision record.
-
-## Self-Managed Continuation
-
-```text
-Validation trigger: push to main
-Validation command: npm run validate
-Deployment trigger: successful validation and build
-Public verification: deploy workflow verify-public-pages job
-Failure receipt artifact: admissibility-wiki-workflow-failure
-Success receipt artifact: admissibility-wiki-workflow-success
-Workflow receipt status validator: scripts/check-workflow-receipt-automation-status.mjs
-Workflow evidence status validator: scripts/check-workflow-evidence-status.mjs
-Proposal core-lite watcher artifact: proposal-core-lite-target-watch
-Proposal core-lite watcher validator: scripts/check-proposal-core-lite-target-watch-status.mjs
-No-manual-task guard validator: scripts/check-no-manual-task-assignments.mjs
-Mirror-handoff guard validator: scripts/check-mirror-handoff-guard.mjs
-Manual task requirement: none recorded in this handoff
-Failure posture: first failing validator, missing artifact, public URL check, workflow evidence gap, manual-assignment guard, mirror-handoff guard, or watcher-status inconsistency becomes the next bounded repair target
-```
-
-## Next Safe Build Targets
-
-1. Let repo automation validate, build, deploy, verify public URLs, watch proposal-core-lite target readiness, enforce no-manual-task assignment, guard mirror handoff continuity, track workflow evidence, and emit bounded artifacts.
-2. If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, workflow evidence gap, manual-assignment guard, mirror-handoff guard, or watcher-status inconsistency identified by failed job logs.
-3. Update activation posture only from workflow evidence or source-confirmed deployment state.
+This repository may be touched by more than one session. Do not assume a previously proposed next step is still missing. Verify file presence first, then continue from the missing or explicitly open item.
