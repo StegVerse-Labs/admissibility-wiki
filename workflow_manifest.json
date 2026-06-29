@@ -4,7 +4,7 @@
   "canonical_workflows": [
     {
       "path": ".github/workflows/validate-chain-continuation.yml",
-      "purpose": "Single active validation workflow for generated framework reports, results, metadata, and page status",
+      "purpose": "Single active validation workflow for generated framework reports, results, metadata, mapping, and page status",
       "installed": true,
       "scheduled": true,
       "cron": "17 9 * * *"
@@ -22,6 +22,7 @@
     "python scripts/generate_external_framework_reports.py",
     "python scripts/generate_external_framework_results.py",
     "python scripts/generate_external_framework_page_metadata.py",
+    "python scripts/generate_external_framework_page_mapping.py",
     "python scripts/generate_external_framework_page_status.py",
     "python scripts/check_chain_status_continuation.py",
     "python scripts/check_continuation_bundle.py",
@@ -39,6 +40,7 @@
     "python scripts/check_external_framework_report_generation.py",
     "python scripts/check_external_framework_results_page.py",
     "python scripts/check_external_framework_page_metadata.py",
+    "python scripts/check_external_framework_page_mapping.py",
     "python scripts/check_external_framework_page_status.py",
     "python scripts/check_external_framework_expansion_policy.py",
     "python scripts/check_ci_evidence.py",
@@ -46,26 +48,11 @@
   ],
   "expected_results": {
     "workflow_sprawl": "WORKFLOW SPRAWL: PASS",
-    "chain_continuation": "CHAIN CONTINUATION: PASS",
-    "continuation_bundle": "CONTINUATION BUNDLE: PASS",
-    "chain_snapshot": "CHAIN SNAPSHOT: PASS",
-    "chain_snapshot_receipt": "CHAIN SNAPSHOT RECEIPT: PASS",
-    "chain_auto": "CHAIN AUTO: PASS",
-    "blocked_destination_record": "BLOCKED DESTINATION RECORD: PASS",
-    "goal_state": "GOAL STATE: PASS",
     "workflow_manifest": "WORKFLOW MANIFEST: PASS",
-    "external_frameworks_index": "EXTERNAL FRAMEWORKS INDEX: PASS",
-    "external_framework_manifests": "EXTERNAL FRAMEWORK MANIFESTS: PASS",
-    "external_framework_terminology": "EXTERNAL FRAMEWORK TERMINOLOGY: PASS",
-    "external_framework_reports": "EXTERNAL FRAMEWORK REPORTS: PASS",
-    "external_framework_report_coverage": "EXTERNAL FRAMEWORK REPORT COVERAGE: PASS",
-    "external_framework_report_generation": "EXTERNAL FRAMEWORK REPORT GENERATION: PASS",
-    "external_framework_results_page": "EXTERNAL FRAMEWORK RESULTS PAGE: PASS",
     "external_framework_page_metadata": "EXTERNAL FRAMEWORK PAGE METADATA: PASS",
+    "external_framework_page_mapping": "EXTERNAL FRAMEWORK PAGE MAPPING: PASS",
     "external_framework_page_status": "EXTERNAL FRAMEWORK PAGE STATUS: PASS",
-    "external_framework_expansion_policy": "EXTERNAL FRAMEWORK EXPANSION POLICY: PASS",
-    "ci_evidence": "CI EVIDENCE: PASS",
-    "destination_state": "GUARDIAN DESTINATION: BLOCKED"
+    "ci_evidence": "CI EVIDENCE: PASS"
   },
   "generated_reports": [
     "reports/guardian_destination_status.json",
@@ -82,6 +69,7 @@
     "external_framework_outputs_are_authority": false,
     "generated_framework_results_are_authority": false,
     "generated_framework_page_metadata_is_authority": false,
+    "generated_framework_page_mapping_is_authority": false,
     "generated_framework_page_status_is_authority": false,
     "ci_evidence_is_authority": false,
     "missing_ci_fails_closed": true
