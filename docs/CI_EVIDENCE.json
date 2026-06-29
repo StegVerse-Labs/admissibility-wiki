@@ -1,8 +1,8 @@
 {
   "artifact_type": "ci_evidence_state",
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "repo": "StegVerse-Labs/admissibility-wiki",
-  "commit_checked": "aaa22d752abc0fe9ffa151d0252a7bf4bb1de844",
+  "commit_checked": "e15849924c6fe80ce6f881a5e1790b42df44fb8f",
   "workflow_runs_returned": 0,
   "combined_statuses_returned": 0,
   "ci_evidence_result": "NO_CI_EVIDENCE_FAIL_CLOSED",
@@ -10,19 +10,25 @@
   "allowed_claims": [
     "validators are wired",
     "repository contains machine-checkable validation surfaces",
-    "CI evidence was queried and not returned"
+    "CI evidence was queried and not returned",
+    "missing CI evidence is handled by an explicit fail-closed state",
+    "no manual task is required to preserve the fail-closed boundary"
   ],
   "non_claims": [
     "CI did not prove green",
     "workflow success is not claimed",
     "expansion-cycle closure is not claimed",
-    "validation evidence does not grant execution authority"
+    "validation evidence does not grant execution authority",
+    "manual confirmation is not treated as a substitute for CI evidence"
   ],
-  "next_required_action": "Obtain a visible GitHub Actions run or other reviewable validation evidence before closing the expansion cycle.",
+  "next_required_action": "Keep the scheduled workflow and connector evidence path as the reviewable validation source; close the expansion cycle only after validation evidence is present.",
   "boundary": {
     "no_ci_evidence_is_green": false,
     "ci_evidence_is_execution_authority": false,
     "missing_ci_fails_closed": true,
-    "expansion_cycle_closure_blocked": true
+    "expansion_cycle_closure_blocked": true,
+    "manual_task_required": false,
+    "manual_confirmation_substitutes_for_ci": false,
+    "scheduled_validation_path_exists": true
   }
 }
