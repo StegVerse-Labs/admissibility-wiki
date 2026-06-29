@@ -80,6 +80,7 @@ const sidebars = {
         'external-frameworks/commit-time-interoperability-contract',
         'external-frameworks/glm',
         'external-frameworks/evide',
+        'external-frameworks/asro',
         'external-frameworks/decisionassure',
         'external-frameworks/mindforge',
         'external-frameworks/care-runtime',
