@@ -38,6 +38,9 @@ jobs:
       - name: Generate external framework evaluation results
         run: python scripts/generate_external_framework_results.py
 
+      - name: Generate external framework page status
+        run: python scripts/generate_external_framework_page_status.py
+
       - name: Validate chain continuation
         run: python scripts/check_chain_status_continuation.py
 
@@ -82,6 +85,9 @@ jobs:
 
       - name: Validate external framework results page
         run: python scripts/check_external_framework_results_page.py
+
+      - name: Validate external framework page status
+        run: python scripts/check_external_framework_page_status.py
 
       - name: Validate external framework expansion policy
         run: python scripts/check_external_framework_expansion_policy.py
