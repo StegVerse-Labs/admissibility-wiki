@@ -1,6 +1,6 @@
 {
   "artifact_type": "chain_auto_state",
-  "schema_version": "0.9",
+  "schema_version": "1.0",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "mirror_workflow": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
@@ -18,7 +18,9 @@
     "python scripts/check_external_framework_manifests.py",
     "python scripts/check_external_framework_terminology.py",
     "python scripts/check_external_framework_reports.py",
+    "python scripts/check_external_framework_report_coverage.py",
     "python scripts/check_external_framework_report_generation.py",
+    "python scripts/check_external_framework_expansion_policy.py",
     "python scripts/check_guardian_destination.py"
   ],
   "generator": "scripts/generate_external_framework_reports.py",
