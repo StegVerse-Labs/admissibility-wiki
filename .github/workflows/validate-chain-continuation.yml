@@ -37,6 +37,9 @@ jobs:
       - name: Validate blocked destination record
         run: python scripts/check_blocked_destination_record.py
 
+      - name: Validate goal state
+        run: python scripts/check_goal_state.py
+
       - name: Validate workflow manifest
         run: python scripts/check_workflow_manifest.py
 
