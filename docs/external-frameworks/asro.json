@@ -1,0 +1,71 @@
+{
+  "artifact_type": "external_framework_manifest",
+  "schema_version": "0.1",
+  "framework_id": "asro",
+  "name": "ASRO",
+  "source_reference": "https://aisystemsreliability.org/",
+  "source_version": "public source and repository recorded",
+  "allowed_use_boundary": [
+    "Use as external AI governance-state attestation crosswalk evidence.",
+    "Preserve ASRO-native terminology.",
+    "Do not treat as certification, endorsement, execution authority, or commit-time authority."
+  ],
+  "claims": [
+    "ASRO can support independent witnessing of declared governance-state continuity.",
+    "ASRO can be mapped to host measurement, edge witnessing, verifier reconciliation, governance-state change, and selective-attestation terms."
+  ],
+  "non_claims": [
+    "ASRO does not prove transition admissibility.",
+    "ASRO does not grant execution authority inside StegVerse.",
+    "ASRO attestation evidence may support review, but review does not become authority."
+  ],
+  "transition_table_mapping": {
+    "framework_identity": "ASRO",
+    "source_reference": "https://aisystemsreliability.org/",
+    "source_version": "public source and repository recorded",
+    "allowed_use_boundary": "governance-state attestation crosswalk evidence only",
+    "claims": "host-side governance-state measurement, edge-side witnessing, verifier reconciliation, governance-state change record, selective-attestation threat model",
+    "non_claims": "no admissibility proof, certification, endorsement, legal compliance guarantee, output-quality evaluation, or execution authority",
+    "input_artifact_type": "attestation record or governance-state evidence artifact",
+    "output_artifact_type": "crosswalk and compatibility evidence",
+    "actor_or_authority_model": "external attestation posture; no StegVerse authority inherited",
+    "evidence_model": "host measurement, edge witnessing, verifier reconciliation, and governance-state change records",
+    "policy_or_rule_model": "declared governance-state and change-record comparison",
+    "delegation_model": "not asserted by wiki entry",
+    "decision_or_result_model": "attestation evidence only",
+    "execution_authority_claim": false,
+    "receipt_or_trace_model": "source reference, repository reference, and wiki record",
+    "reconstruction_model": "source plus crosswalk can reconstruct governance-state attestation relationship limits",
+    "SPE_overlap": "may inform evidence and review posture, not standing determination",
+    "StegVerse_ecosystem_overlap": "Evidence Posture, Receipt-Bound Execution, Reconstructability, Drift, Commit-Time Validity",
+    "fail_closed_conditions": "missing source, undefined mapping, selective attestation uncertainty, or authority overclaim"
+  },
+  "SPE_overlap": {
+    "standing_boundary": "attestation evidence only",
+    "authority_evaluation": "not performed by ASRO",
+    "commit_time_admissibility": "not claimed",
+    "receipt_reconstruction": "source-reference bounded"
+  },
+  "StegVerse_ecosystem_overlap": {
+    "transition_table": "governance-state attestation mapping",
+    "chain_status": "crosswalk evidence",
+    "documentation_surface": "wiki reference",
+    "execution_path": "not authorized"
+  },
+  "fail_closed_conditions": [
+    "source reference is missing",
+    "source version is missing",
+    "transition-table mapping is incomplete",
+    "SPE overlap is undefined",
+    "selective-attestation uncertainty is unresolved",
+    "any certification, endorsement, execution authority, or commit-time authority claim appears"
+  ],
+  "boundary": {
+    "certification_claim": false,
+    "endorsement_claim": false,
+    "execution_authority_claim": false,
+    "commit_time_authority_claim": false,
+    "compatibility_manifest_is_authority": false,
+    "missing_or_partial_fields_fail_closed": true
+  }
+}
