@@ -1,6 +1,6 @@
 {
   "artifact_type": "chain_status_blocked_destination",
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "status": "BLOCKED",
   "source_repo": "StegVerse-Labs/admissibility-wiki",
   "resolver": "scripts/check_guardian_destination.py",
@@ -12,6 +12,7 @@
     "docs/CHAIN_STATUS_BLOCKED_DESTINATION.json",
     "docs/CHAIN_STATUS_CONTINUATION.json",
     "docs/CHAIN_AUTO.json",
+    "docs/GOAL_STATE.json",
     "docs/CHAIN_SNAPSHOT_v0_1_0.md",
     "docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json",
     "workflow_manifest.json"
@@ -23,7 +24,9 @@
     "scripts/check_chain_snapshot_receipt.py",
     "scripts/check_chain_auto.py",
     "scripts/check_blocked_destination_record.py",
+    "scripts/check_goal_state.py",
     "scripts/check_workflow_manifest.py",
+    "scripts/check_external_frameworks_index.py",
     "scripts/check_guardian_destination.py"
   ],
   "checked_destinations": [
@@ -44,10 +47,12 @@
   "boundary": {
     "do_not_invent_repository_name": true,
     "resolver_creates_repository": false,
+    "queued_external_framework_testbench_is_active": false,
     "no_activation_claim": true,
     "no_closure_claim": true,
     "no_adoption_claim": true,
     "no_endorsement_claim": true,
+    "no_external_framework_validation_claim": true,
     "no_consequence_binding_standing_claim": true
   },
   "next_action": "Create or identify the Guardian standing-boundary repository before continuing Guardian-side propagation."
