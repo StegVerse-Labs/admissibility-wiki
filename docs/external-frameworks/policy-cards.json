@@ -1,0 +1,16 @@
+{
+  "artifact_type": "external_framework_manifest",
+  "schema_version": "0.1",
+  "framework_id": "policy-cards",
+  "name": "Policy Cards",
+  "source_reference": "https://arxiv.org/abs/2510.24383",
+  "source_version": "public source recorded",
+  "allowed_use_boundary": ["Use as external machine-readable policy artifact crosswalk evidence.", "Preserve Policy Cards-native terminology.", "Do not treat as certification, endorsement, execution authority, or commit-time authority."],
+  "claims": ["Policy Cards can express operational, regulatory, and ethical constraints.", "Policy Cards can be mapped to allow/deny rules, obligations, and evidentiary requirements."],
+  "non_claims": ["Policy Cards do not prove transition admissibility.", "Machine-readable policy artifacts do not automatically grant execution authority.", "The wiki relationship record is not acceptance of equivalence."],
+  "transition_table_mapping": {"framework_identity":"Policy Cards","source_reference":"https://arxiv.org/abs/2510.24383","source_version":"public source recorded","allowed_use_boundary":"machine-readable policy artifact crosswalk evidence only","claims":"deployment-layer policy artifact, operational constraints, regulatory constraints, ethical constraints, allow/deny rules, evidentiary requirements","non_claims":"no admissibility proof, certification, endorsement, or execution authority","input_artifact_type":"machine-readable policy card artifact","output_artifact_type":"crosswalk and compatibility evidence","actor_or_authority_model":"external policy-artifact posture; no StegVerse authority inherited","evidence_model":"evidentiary requirements and policy metadata","policy_or_rule_model":"allow/deny rules and obligations","delegation_model":"not asserted by wiki entry","decision_or_result_model":"runtime policy evidence only","execution_authority_claim":false,"receipt_or_trace_model":"source reference and wiki record","reconstruction_model":"source plus crosswalk can reconstruct policy-artifact relationship limits","SPE_overlap":"may inform policy reference and evidence posture, not standing determination","StegVerse_ecosystem_overlap":"Transition Table, Runtime Transition Governance, Policy Reference, Evidence Posture","fail_closed_conditions":"missing source, undefined mapping, policy overclaim, or authority overclaim"},
+  "SPE_overlap": {"standing_boundary":"policy-artifact evidence only","authority_evaluation":"not performed by Policy Cards","commit_time_admissibility":"not claimed","receipt_reconstruction":"source-reference bounded"},
+  "StegVerse_ecosystem_overlap": {"transition_table":"allow/deny and obligation mapping","chain_status":"crosswalk evidence","documentation_surface":"wiki reference","execution_path":"not authorized"},
+  "fail_closed_conditions": ["source reference is missing", "source version is missing", "transition-table mapping is incomplete", "SPE overlap is undefined", "any certification, endorsement, execution authority, or commit-time authority claim appears"],
+  "boundary": {"certification_claim":false,"endorsement_claim":false,"execution_authority_claim":false,"commit_time_authority_claim":false,"compatibility_manifest_is_authority":false,"missing_or_partial_fields_fail_closed":true}
+}
