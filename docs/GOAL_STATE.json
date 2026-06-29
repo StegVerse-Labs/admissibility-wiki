@@ -1,6 +1,6 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "3.2",
+  "schema_version": "3.3",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "previous_goals": [
     {
@@ -25,8 +25,8 @@
   "current_goal": {
     "goal_id": "declarative-external-framework-generation-pipeline",
     "status": "ACTIVE",
-    "completion_percent": 18,
-    "cycle_status": "PAGE_STATUS_GENERATION_DECLARED",
+    "completion_percent": 36,
+    "cycle_status": "PAGE_STATUS_PUBLICATION_PATH_RECORDED",
     "built_surfaces": [
       "framework page-status generator",
       "framework page-status validator",
@@ -35,17 +35,23 @@
       "iOS workflow mirror page-status generation step",
       "iOS workflow mirror page-status validation step",
       "workflow-manifest page-status declarations",
-      "auto-state page-status declarations"
+      "auto-state page-status declarations",
+      "canonical workflow build-pages page-status regeneration step",
+      "iOS workflow mirror build-pages page-status regeneration step",
+      "public generated evaluation results URL verification step",
+      "auto-state page-status publication path declaration"
     ],
     "done_when": [
       "framework-page displayed evaluation status is generated from manifests and compatibility reports",
       "manual framework-page evaluation status editing is not required",
+      "manual framework-page evaluation status publication is not required",
       "generated page-status blocks are non-authorizing",
       "workflow generates page-status blocks before validation and publication",
       "validator detects drift between generated page-status blocks and source reports",
-      "framework narrative remains separable from generated status"
+      "framework narrative remains separable from generated status",
+      "published site build regenerates page-status blocks before Docusaurus build"
     ],
-    "next_required_action": "Run CI and repair the first generator, validator, or page-status drift failure."
+    "next_required_action": "Run CI and repair the first generator, validator, build, deploy, or public URL verification failure."
   },
   "boundary": {
     "prior_testbench_remains_closed": true,
@@ -59,6 +65,7 @@
     "generated_framework_page_status_is_non_authorizing": true,
     "manual_task_required": false,
     "manual_framework_page_status_editing_required": false,
+    "manual_framework_page_status_publication_required": false,
     "scheduled_validation_path_exists": true,
     "active_workflow_count": 1
   }
