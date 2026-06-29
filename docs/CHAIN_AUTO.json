@@ -1,6 +1,6 @@
 {
   "artifact_type": "chain_auto_state",
-  "schema_version": "0.6",
+  "schema_version": "0.7",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "mirror_workflow": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
@@ -15,12 +15,18 @@
     "python scripts/check_goal_state.py",
     "python scripts/check_workflow_manifest.py",
     "python scripts/check_external_frameworks_index.py",
+    "python scripts/check_external_framework_manifests.py",
+    "python scripts/check_external_framework_reports.py",
     "python scripts/check_guardian_destination.py"
   ],
   "report": "reports/guardian_destination_status.json",
+  "testbench_reports": [
+    "docs/external-frameworks/reports/admissible-existence-seed-cycle.compatibility.json",
+    "docs/external-frameworks/reports/care-runtime.compatibility.json"
+  ],
   "manual_tasks_removed": [
     "workflow_install",
     "repeat_destination_search"
   ],
-  "remaining_state": "WAITING_FOR_DOWNSTREAM_REPO"
+  "remaining_state": "WAITING_FOR_DOWNSTREAM_REPO_AND_EXTERNAL_FRAMEWORK_SOURCES"
 }
