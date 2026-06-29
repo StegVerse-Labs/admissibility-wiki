@@ -1,6 +1,6 @@
 {
   "artifact_type": "chain_auto_state",
-  "schema_version": "1.3",
+  "schema_version": "1.4",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "mirror_workflow": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
@@ -37,6 +37,7 @@
   "ci_evidence": "docs/CI_EVIDENCE.json",
   "generated_results_page": "docs/external-frameworks/evaluation-results.md",
   "generated_page_status_source": "framework manifests plus compatibility reports",
+  "generated_page_status_publication_path": "single workflow build-pages job regenerates page status before Docusaurus build",
   "testbench_reports": [
     "docs/external-frameworks/reports/admissible-existence-seed-cycle.compatibility.json",
     "docs/external-frameworks/reports/care-runtime.compatibility.json"
@@ -47,7 +48,8 @@
     "repeat_destination_search",
     "workflow_selection",
     "external_framework_result_posting",
-    "external_framework_page_status_editing"
+    "external_framework_page_status_editing",
+    "external_framework_page_status_publication"
   ],
   "remaining_state": "WAITING_FOR_DOWNSTREAM_REPO_EXTERNAL_FRAMEWORK_SOURCES_AND_CI_EVIDENCE"
 }
