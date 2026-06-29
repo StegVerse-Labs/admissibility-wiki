@@ -35,9 +35,10 @@ The workflow uploads that report as an artifact.
 ## Machine-Readable Records
 
 ```text
-docs/CHAIN_STATUS_BLOCKED_DESTINATION.json schema_version 0.3
+docs/CHAIN_STATUS_BLOCKED_DESTINATION.json schema_version 0.4
 docs/CHAIN_STATUS_CONTINUATION.json
 docs/CHAIN_AUTO.json
+docs/GOAL_STATE.json
 workflow_manifest.json
 ```
 
@@ -62,7 +63,9 @@ python scripts/check_chain_snapshot.py
 python scripts/check_chain_snapshot_receipt.py
 python scripts/check_chain_auto.py
 python scripts/check_blocked_destination_record.py
+python scripts/check_goal_state.py
 python scripts/check_workflow_manifest.py
+python scripts/check_external_frameworks_index.py
 python scripts/check_guardian_destination.py
 ```
 
@@ -75,7 +78,9 @@ CHAIN SNAPSHOT: PASS
 CHAIN SNAPSHOT RECEIPT: PASS
 CHAIN AUTO: PASS
 BLOCKED DESTINATION RECORD: PASS
+GOAL STATE: PASS
 WORKFLOW MANIFEST: PASS
+EXTERNAL FRAMEWORKS INDEX: PASS
 GUARDIAN DESTINATION: BLOCKED
 ```
 
@@ -84,6 +89,8 @@ GUARDIAN DESTINATION: BLOCKED
 Do not invent a Guardian repository name for chain-status propagation. The next destination must be created or identified before further Guardian-side wiki updates proceed.
 
 The automated resolver checks state and writes a report. It does not create the downstream repository, activate the chain, close the chain, or grant execution authority.
+
+The queued External Framework Compatibility Testbench is not active yet and does not create an external-framework validation claim.
 
 ## Current Holding Point
 
@@ -94,6 +101,7 @@ StegVerse-Labs/admissibility-wiki/docs/CHAIN_STATUS_BLOCKED_DESTINATION.md
 StegVerse-Labs/admissibility-wiki/docs/CHAIN_STATUS_BLOCKED_DESTINATION.json
 StegVerse-Labs/admissibility-wiki/docs/CHAIN_STATUS_CONTINUATION.json
 StegVerse-Labs/admissibility-wiki/docs/CHAIN_AUTO.json
+StegVerse-Labs/admissibility-wiki/docs/GOAL_STATE.json
 StegVerse-Labs/admissibility-wiki/workflow_manifest.json
 ```
 
@@ -108,5 +116,5 @@ Create or identify the Guardian standing-boundary repository, then add a narrow 
 Future sessions should continue from this document if Guardian-side propagation is requested again before a destination repo exists.
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 84% complete
-84% complete vs current activation
+admissibility-wiki - 98% complete
+98% complete vs current activation
