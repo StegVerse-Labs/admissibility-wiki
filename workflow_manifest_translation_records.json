@@ -1,0 +1,25 @@
+{
+  "manifest_version": "0.1",
+  "purpose": "Records validation commands and iOS-safe status mirrors for the Disciplinary Translation Groundwork translation records.",
+  "canonical_paths": [
+    "docs/formalisms/disciplinary-translation-groundwork.md",
+    "docs/formalisms/translation-records.md",
+    "static/translation-records/disciplinary-translation-records.v0.1.json",
+    "scripts/check_translation_records.py",
+    "docs/TRANSLATION_RECORDS_STATUS.md"
+  ],
+  "ios_safe_mirrors": [
+    {
+      "canonical": "docs/TRANSLATION_RECORDS_STATUS.md",
+      "mirror": "iosnoperiod/docs/TRANSLATION_RECORDS_STATUS.md",
+      "note": "Both paths are displayed without a leading period because neither canonical path begins with one."
+    }
+  ],
+  "validation_commands": [
+    "python scripts/check_translation_records.py"
+  ],
+  "expected_outputs": [
+    "TRANSLATION RECORDS: PASS - 6 records validated"
+  ],
+  "authority_boundary": "Translation records are interoperability artifacts, not proof authority or commit-time authority."
+}
