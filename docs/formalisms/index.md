@@ -113,6 +113,16 @@ For non-obvious StegVerse ecosystem entries, `in progress` may be used as a temp
 **Current wiki state:** mirrored  
 **Non-claim:** A visual table is not itself proof of admissibility.
 
+### Disciplinary Translation Groundwork
+
+**Definition:** A public-safe translation groundwork for expressing discipline-specific consequential changes as state transitions without claiming that the source disciplines are equivalent.
+
+**Source reference:** Admissibility Wiki public groundwork  
+**Source visibility:** public  
+**Formalism page:** [Disciplinary Translation Groundwork](./disciplinary-translation-groundwork.md)  
+**Current wiki state:** intake  
+**Non-claim:** This page does not prove a new physical theory, replace source-discipline mathematics, or turn analogy into equivalence.
+
 ### Triad Governance Model
 
 **Definition:** A formalism for modeling governance across three interacting roles, dimensions, or authorities where admissibility depends on the relationship among all three rather than a single actor or single approval path.
@@ -218,47 +228,3 @@ StegCore = admissibility interpretation where applicable
 ```
 
 Private source repositories must not have private content copied into the public wiki. They may be represented by public-safe metadata, source identity, boundary declarations, and later approved public mirror excerpts.
-
-## Term Discovery Role
-
-After formalism pages are mirrored, the wiki entity should periodically search for terms and ideas that are exactly or strongly correlated with existing terms.
-
-Candidate origins must be formalized artifacts, such as:
-
-```text
-formalism repository
-standards document
-academic paper
-technical report
-public specification
-machine-readable schema
-reference implementation
-policy framework
-regulatory guidance
-public ontology
-stable whitepaper
-```
-
-Social posts or comments may be leads, but they are not acceptable origins.
-
-When a social post, comment thread, or conversation identifies a candidate term, the wiki may record it as a lead only when the record explicitly says `source: social lead` or `relationship_status: unresolved`. It must not be treated as origin evidence until a stable artifact is linked.
-
-## Validation
-
-The current formalism registry is validated by:
-
-```text
-node scripts/check-formalism-registry.mjs
-npm run validate
-```
-
-The term candidate queue is validated by:
-
-```text
-node scripts/check-term-candidate-queue.mjs
-npm run validate
-```
-
-## Next Safe Build Target
-
-Create source-confirmed mathematical definitions, proof candidates, validation fixtures, and public-safe crosswalk records for Relational Transition Geometry and Coherency Horizon.
