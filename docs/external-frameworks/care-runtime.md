@@ -31,6 +31,16 @@ From consequence to governance
 
 These terms are recorded as observed terms from the supplied screenshot. They are not expanded here into claims that have not been confirmed from an official source.
 
+## Framework-Term Definitions
+
+| Native CARE Runtime Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
+|---|---|---|---|
+| CARE Runtime | Candidate public runtime-governance platform term observed from supplied screenshot. | unresolved | Preserved as intake terminology until official source confirmation. |
+| Public Platform Edition | Observed edition or platform label associated with CARE Runtime. | unresolved | Source confirmation required before mapping. |
+| From consequence to governance | Observed phrase suggesting a relationship between consequence and governance. | adjacent | Directionally related to consequence-boundary and commit-time standing language, but not equivalent. |
+| Public-platform artifact | A publicly displayed artifact or claim surface supplied for intake. | adjacent | Related to Governance Observatory Protocol. |
+| Consequence-boundary language | Language describing where governance and consequence relate. | adjacent | Related to Commit-Time Validity and Fail-Closed review. |
+
 ## Relationship To Admissibility
 
 CARE Runtime is listed as a candidate external-framework crosswalk target for runtime-governance behavior, public-platform governance posture, and consequence-boundary language.
