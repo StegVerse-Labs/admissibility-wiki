@@ -63,6 +63,7 @@
   },
   "automation_guards": {
     "workflow_receipt_automation_status": "static/status/workflow-receipt-automation-status.json",
+    "workflow_evidence_status": "static/status/workflow-evidence-status.json",
     "proposal_core_lite_target_watch_status": "static/status/proposal-core-lite-target-watch-status.json",
     "no_manual_task_guard_status": "static/status/no-manual-task-guard-status.json",
     "mirror_handoff_guard_status": "static/status/mirror-handoff-guard-status.json",
@@ -140,8 +141,8 @@
     "task_sync": "docs/governance/current-task-sync.md"
   },
   "next_safe_build_targets": [
-    "Let repo automation validate, build, deploy, verify public URLs, watch proposal-core-lite target readiness, enforce no-manual-task assignment, guard mirror handoff continuity, and emit bounded artifacts.",
-    "If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, manual-assignment guard, mirror-handoff guard, watcher-status inconsistency, or source-geometry provenance field identified by failed job logs.",
+    "Let repo automation validate, build, deploy, verify public URLs, watch proposal-core-lite target readiness, enforce no-manual-task assignment, guard mirror handoff continuity, track workflow evidence, and emit bounded artifacts.",
+    "If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, workflow evidence gap, manual-assignment guard, mirror-handoff guard, watcher-status inconsistency, or source-geometry provenance field identified by failed job logs.",
     "Update activation posture only from workflow evidence or source-confirmed deployment state."
   ]
 }
