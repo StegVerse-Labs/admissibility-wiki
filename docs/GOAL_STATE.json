@@ -1,6 +1,6 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "2.7",
+  "schema_version": "2.8",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "previous_goals": [
     {
@@ -19,8 +19,8 @@
   "current_goal": {
     "goal_id": "external-framework-expansion-cycle",
     "status": "ACTIVE",
-    "completion_percent": 72,
-    "cycle_status": "ALL_REPORT_REPRODUCIBILITY_ENFORCED",
+    "completion_percent": 84,
+    "cycle_status": "CI_EVIDENCE_FAIL_CLOSED_RECORDED",
     "built_surfaces": [
       "expansion policy",
       "expansion policy validator",
@@ -43,7 +43,13 @@
       "third expansion framework manifest",
       "third expansion framework compatibility report",
       "third expansion framework registry entry",
-      "all-entry report reproducibility validator"
+      "all-entry report reproducibility validator",
+      "CI evidence state record",
+      "CI evidence validator",
+      "canonical workflow CI evidence validation step",
+      "iOS workflow mirror CI evidence validation step",
+      "auto-state CI evidence declaration",
+      "workflow-manifest CI evidence declaration"
     ],
     "done_when": [
       "expansion intake rules exist and are machine-verifiable",
@@ -53,9 +59,10 @@
       "artifact-package-required frameworks remain bounded to artifact-specific intake",
       "new framework pages include native terminology definitions",
       "the expansion cycle preserves all prior non-authority boundaries",
-      "every registry entry has a deterministic generated compatibility report"
+      "every registry entry has a deterministic generated compatibility report",
+      "CI evidence is recorded as green or fail-closed before cycle closure"
     ],
-    "next_required_action": "Run or inspect CI validation for the all-entry report reproducibility checker, then close the expansion cycle if all validators pass."
+    "next_required_action": "Obtain visible GitHub Actions evidence or another reviewable validation record; close the expansion cycle only after validation evidence is present."
   },
   "boundary": {
     "prior_testbench_remains_closed": true,
@@ -67,6 +74,7 @@
     "source_blocked_entries_fail_closed": true,
     "unresolved_intake_states_are_non_authorizing": true,
     "expansion_policy_is_non_authorizing": true,
-    "generated_reports_are_non_authorizing": true
+    "generated_reports_are_non_authorizing": true,
+    "missing_ci_evidence_fails_closed": true
   }
 }
