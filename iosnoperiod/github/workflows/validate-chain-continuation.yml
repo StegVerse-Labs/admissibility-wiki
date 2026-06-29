@@ -40,6 +40,9 @@ jobs:
       - name: Validate workflow manifest
         run: python scripts/check_workflow_manifest.py
 
+      - name: Validate external frameworks index
+        run: python scripts/check_external_frameworks_index.py
+
       - name: Resolve Guardian destination
         run: python scripts/check_guardian_destination.py
 
