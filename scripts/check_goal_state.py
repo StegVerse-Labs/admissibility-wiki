@@ -22,10 +22,14 @@ BUILT_SURFACES = [
     "transition-table-based framework registry",
     "framework manifest schema",
     "registry validator",
-    "first compatibility report",
+    "normalized seed framework manifest",
+    "framework manifest validator",
+    "first complete compatibility report",
     "compatibility report validator",
-    "canonical workflow validation step",
-    "iOS workflow mirror validation step",
+    "canonical workflow manifest validation step",
+    "iOS workflow mirror manifest validation step",
+    "canonical workflow report validation step",
+    "iOS workflow mirror report validation step",
 ]
 
 
@@ -41,7 +45,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "1.2":
+    if data.get("schema_version") != "1.3":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -61,8 +65,10 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 12:
+    if current.get("completion_percent") != 24:
         failures.append("current goal completion mismatch")
+    if current.get("cycle_status") != "FIRST_FRAMEWORK_CYCLE_COMPLETE":
+        failures.append("cycle status mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
             failures.append(f"missing done criterion: {item}")
