@@ -1,0 +1,16 @@
+{
+  "schema": "admissibility_wiki_workflow_evidence_watch_status.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "status": "installed",
+  "workflow_path": ".github/workflows/workflow-evidence-watch.yml",
+  "artifact_name": "workflow-evidence-watch",
+  "manual_task_requirement": "none",
+  "watch_posture": "scheduled_and_push_triggered",
+  "activation_claim": "not_advanced_by_this_watch",
+  "failure_posture": "fail_closed_without_public_activation_claim",
+  "non_claims": [
+    "This watcher does not prove deployment success by itself.",
+    "This watcher does not advance activation posture by itself.",
+    "This watcher only emits bounded workflow evidence observations."
+  ]
+}
