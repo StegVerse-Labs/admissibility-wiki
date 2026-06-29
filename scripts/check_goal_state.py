@@ -11,10 +11,12 @@ GOAL_STATE = ROOT / "docs" / "GOAL_STATE.json"
 CURRENT_DONE_WHEN = [
     "framework-page displayed evaluation status is generated from manifests and compatibility reports",
     "manual framework-page evaluation status editing is not required",
+    "manual framework-page evaluation status publication is not required",
     "generated page-status blocks are non-authorizing",
     "workflow generates page-status blocks before validation and publication",
     "validator detects drift between generated page-status blocks and source reports",
     "framework narrative remains separable from generated status",
+    "published site build regenerates page-status blocks before Docusaurus build",
 ]
 
 BUILT_SURFACES = [
@@ -26,6 +28,10 @@ BUILT_SURFACES = [
     "iOS workflow mirror page-status validation step",
     "workflow-manifest page-status declarations",
     "auto-state page-status declarations",
+    "canonical workflow build-pages page-status regeneration step",
+    "iOS workflow mirror build-pages page-status regeneration step",
+    "public generated evaluation results URL verification step",
+    "auto-state page-status publication path declaration",
 ]
 
 
@@ -41,7 +47,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "3.2":
+    if data.get("schema_version") != "3.3":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -62,9 +68,9 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 18:
+    if current.get("completion_percent") != 36:
         failures.append("current goal completion mismatch")
-    if current.get("cycle_status") != "PAGE_STATUS_GENERATION_DECLARED":
+    if current.get("cycle_status") != "PAGE_STATUS_PUBLICATION_PATH_RECORDED":
         failures.append("cycle status mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
@@ -93,7 +99,9 @@ def main() -> int:
     if boundary.get("manual_task_required") is not False:
         failures.append("manual task boundary mismatch")
     if boundary.get("manual_framework_page_status_editing_required") is not False:
-        failures.append("manual page-status boundary mismatch")
+        failures.append("manual page-status editing boundary mismatch")
+    if boundary.get("manual_framework_page_status_publication_required") is not False:
+        failures.append("manual page-status publication boundary mismatch")
     if boundary.get("active_workflow_count") != 1:
         failures.append("active workflow count mismatch")
 
