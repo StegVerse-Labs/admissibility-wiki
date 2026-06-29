@@ -132,6 +132,7 @@ scripts/check_continuation_bundle.py
 scripts/check_chain_snapshot.py
 scripts/check_chain_snapshot_receipt.py
 scripts/check_chain_auto.py
+scripts/check_blocked_destination_record.py
 scripts/check_workflow_manifest.py
 scripts/check_guardian_destination.py
 ```
@@ -144,6 +145,7 @@ python scripts/check_continuation_bundle.py
 python scripts/check_chain_snapshot.py
 python scripts/check_chain_snapshot_receipt.py
 python scripts/check_chain_auto.py
+python scripts/check_blocked_destination_record.py
 python scripts/check_workflow_manifest.py
 python scripts/check_guardian_destination.py
 ```
@@ -156,6 +158,7 @@ CONTINUATION BUNDLE: PASS
 CHAIN SNAPSHOT: PASS
 CHAIN SNAPSHOT RECEIPT: PASS
 CHAIN AUTO: PASS
+BLOCKED DESTINATION RECORD: PASS
 WORKFLOW MANIFEST: PASS
 GUARDIAN DESTINATION: BLOCKED
 ```
@@ -247,6 +250,7 @@ scripts/
   check_chain_snapshot.py
   check_chain_snapshot_receipt.py
   check_chain_auto.py
+  check_blocked_destination_record.py
   check_workflow_manifest.py
   check_guardian_destination.py
 workflow_manifest.json
@@ -270,5 +274,5 @@ StegVerse is the originating ecosystem. The Admissibility Wiki is the public voc
 The goal is not to make every StegVerse artifact promotional. The goal is to define the language of admissible transition governance clearly enough that others can evaluate, compare, critique, reuse, or extend it.
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 66% complete
-66% complete vs current activation
+admissibility-wiki - 75% complete
+75% complete vs current activation
