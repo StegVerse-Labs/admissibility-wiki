@@ -1,0 +1,28 @@
+{
+  "artifact_type": "ci_evidence_state",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "commit_checked": "aaa22d752abc0fe9ffa151d0252a7bf4bb1de844",
+  "workflow_runs_returned": 0,
+  "combined_statuses_returned": 0,
+  "ci_evidence_result": "NO_CI_EVIDENCE_FAIL_CLOSED",
+  "standing_effect": "DO_NOT_CLOSE_EXPANSION_CYCLE",
+  "allowed_claims": [
+    "validators are wired",
+    "repository contains machine-checkable validation surfaces",
+    "CI evidence was queried and not returned"
+  ],
+  "non_claims": [
+    "CI did not prove green",
+    "workflow success is not claimed",
+    "expansion-cycle closure is not claimed",
+    "validation evidence does not grant execution authority"
+  ],
+  "next_required_action": "Obtain a visible GitHub Actions run or other reviewable validation evidence before closing the expansion cycle.",
+  "boundary": {
+    "no_ci_evidence_is_green": false,
+    "ci_evidence_is_execution_authority": false,
+    "missing_ci_fails_closed": true,
+    "expansion_cycle_closure_blocked": true
+  }
+}
