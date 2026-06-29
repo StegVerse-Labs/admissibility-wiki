@@ -6,57 +6,55 @@ This file is the current handoff and task source of truth for `StegVerse-Labs/ad
 
 ## Current Priority
 
-Standing-Proof-Engine v0.5.0 standing-boundary propagation has been recorded.
+Admissible Existence seed-cycle publication is linked and CI-validated.
 
-## Source Artifacts
+## Current Source Artifacts
 
-Publisher source: `GCAT-BCAT-Engine/Publisher`
+Admissible Existence source: `Admissible-Existence/AE`
 
-- `PUBLISHER_MIRROR_HANDOFF.md`
-- `data/spe-v0-5-0-status.json`
+- `org-status/admissible-existence-seed-cycle.json`
+- `dist/org-seed-cycle-status.json`
+- `activation/org-seed-cycle.json`
 
-Site source: `StegVerse-Labs/Site`
+Wiki destination: `StegVerse-Labs/admissibility-wiki`
 
-- `SITE_MIRROR_HANDOFF.md`
-- `data/spe-v0-5-0-status.json`
+- `docs/external-frameworks/admissible-existence-seed-cycle.md`
+- `docs/external-frameworks/admissible-existence-seed-cycle.json`
+- `docs/external-frameworks/index.md`
+- `docs/external-frameworks/index.json`
+- `scripts/check_external_frameworks_index.py`
+- `.github/workflows/validate-chain-continuation.yml`
+- `iosnoperiod/github/workflows/validate-chain-continuation.yml`
 
-Origin source: `StegVerse-Labs/Standing-Proof-Engine`
+Note: workflow paths are displayed above in canonical form. The iOS mirror path intentionally omits the leading period.
 
-- `SPE_MIRROR_HANDOFF.md`
-- `docs/release_snapshot_v0_5_0.md`
-- `samples/destination_receipt_chain_001.json`
+## Validation
 
-Master-records source: `master-records/core-lite`
+Current validation includes:
 
-- `records/spe_destination_receipt_chain_001.json`
+```bash
+python scripts/check_external_frameworks_index.py
+```
 
-## Admissibility Install Complete
-
-Destination: `StegVerse-Labs/admissibility-wiki`
-
-- `pages/spe-v0-5-0-standing-boundary.md`
-
-## Downstream Propagation Target
-
-Destination: `StegVerse-002/stegguardian-wiki`
-
-- `STEGGUARDIAN_WIKI_MIRROR_HANDOFF.md`
-- `pages/spe-v0-5-0-guardian-boundary.md`
-
-## Remaining Known Files Or Modules To Install
-
-Destination: `StegVerse-002/stegguardian-wiki`
-
-- `pages/spe-v0-5-0-guardian-boundary.md`
-
-## Build Rule
-
-Before continuing any admissibility-wiki mirror task, check this file first and treat it as the current handoff and task source of truth.
+The canonical and iOS workflow copies both run the external-frameworks index check.
 
 ## Boundary
 
-SPE v0.5.0 records a receipt-chain package and master-records emission. Receipt-chain evidence supports reconstructability, not automatic execution authority.
+The wiki mirrors evidence-bounded ecosystem status. Publication does not create certification, endorsement, execution authority, or commit-time standing.
+
+## Historical Context
+
+Standing-Proof-Engine v0.5.0 standing-boundary propagation remains recorded as historical wiki work.
+
+Former downstream candidate:
+
+- `StegVerse-002/stegguardian-wiki`
+- `pages/spe-v0-5-0-guardian-boundary.md`
 
 ## Next Integration Candidate
 
-Complete StegGuardian wiki propagation.
+Publish or mirror additional evidence-bounded ecosystem status pages only when source artifacts provide explicit activation, validation, and non-claim boundaries.
+
+## Archive Readiness
+
+The Admissible Existence seed-cycle mirror thread is ready for archiving.
