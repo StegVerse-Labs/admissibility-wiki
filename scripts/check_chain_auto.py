@@ -22,7 +22,9 @@ REQUIRED_COMMANDS = [
     "python scripts/check_external_framework_manifests.py",
     "python scripts/check_external_framework_terminology.py",
     "python scripts/check_external_framework_reports.py",
+    "python scripts/check_external_framework_report_coverage.py",
     "python scripts/check_external_framework_report_generation.py",
+    "python scripts/check_external_framework_expansion_policy.py",
     "python scripts/check_guardian_destination.py",
 ]
 
@@ -48,7 +50,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "chain_auto_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "0.9":
+    if data.get("schema_version") != "1.0":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
