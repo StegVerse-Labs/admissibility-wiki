@@ -1,17 +1,20 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "current_goal": {
     "goal_id": "self-validating-governance-package",
     "status": "ACTIVE",
-    "completion_percent": 85,
+    "completion_percent": 99,
     "done_when": [
       "all chain-status records are machine-verifiable",
       "all human-readable records match machine-readable state",
       "all automation manifests agree on the validation package",
       "the canonical workflow runs the full validator set",
       "the repository fails closed on drift"
+    ],
+    "remaining_to_close": [
+      "finalize current goal at 100 percent only after validating all expanded package references"
     ]
   },
   "next_goal": {
