@@ -76,6 +76,7 @@ Execution authority must be reconstructed at the commit boundary from current st
 | [EU AI Act](./eu-ai-act.md) | Legal/regulatory AI framework | sourced | Crosswalk target for obligations, risk classes, documentation, oversight, and governance duties. |
 | [Policy Cards](./policy-cards.md) | Machine-readable runtime governance artifact | sourced | Crosswalk target for runtime policy artifacts, obligations, evidentiary requirements, and allow/deny rules. |
 | [Runtime Governance for AI Agents](./runtime-governance-policies-on-paths.md) | Runtime path-governance framework | sourced | Crosswalk target for path-dependent runtime checks and proposed next-action review. |
+| [Admissible Existence Seed Cycle](./admissible-existence-seed-cycle.md) | Ecosystem seed-cycle status mirror | sourced | Mirrors completed AE seed-cycle artifacts while preserving that publication does not create standing or execution authority. |
 
 ## Three-Part Bridge
 
