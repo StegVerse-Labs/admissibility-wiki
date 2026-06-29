@@ -23,12 +23,16 @@ REQUIRED_COMMANDS = [
     "python scripts/check_external_framework_reports.py",
     "python scripts/check_external_framework_report_coverage.py",
     "python scripts/check_external_framework_report_generation.py",
+    "python scripts/check_external_framework_expansion_policy.py",
+    "python scripts/check_ci_evidence.py",
     "python scripts/check_guardian_destination.py",
 ]
 
 EXPECTED = {
     "workflow_manifest": "WORKFLOW MANIFEST: PASS",
     "external_framework_report_coverage": "EXTERNAL FRAMEWORK REPORT COVERAGE: PASS",
+    "external_framework_expansion_policy": "EXTERNAL FRAMEWORK EXPANSION POLICY: PASS",
+    "ci_evidence": "CI EVIDENCE: PASS",
 }
 
 
@@ -42,7 +46,7 @@ def main() -> int:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     if manifest.get("manifest_id") != "ADMISSIBILITY-WIKI-WORKFLOW-001":
         failures.append("manifest id mismatch")
-    if manifest.get("schema_version") != "1.0":
+    if manifest.get("schema_version") != "1.1":
         failures.append("schema version mismatch")
 
     workflows = manifest.get("canonical_workflows", [])
@@ -80,6 +84,10 @@ def main() -> int:
         failures.append("manual search boundary mismatch")
     if boundary.get("external_framework_outputs_are_authority") is not False:
         failures.append("external output boundary mismatch")
+    if boundary.get("ci_evidence_is_authority") is not False:
+        failures.append("CI authority boundary mismatch")
+    if boundary.get("missing_ci_fails_closed") is not True:
+        failures.append("missing-CI fail-closed boundary mismatch")
 
     print("WORKFLOW MANIFEST:", "FAIL" if failures else "PASS")
     for failure in failures:
