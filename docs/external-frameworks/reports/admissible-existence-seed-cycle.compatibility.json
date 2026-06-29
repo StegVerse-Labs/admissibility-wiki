@@ -1,11 +1,12 @@
 {
   "artifact_type": "external_framework_compatibility_report",
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "framework_id": "admissible-existence-seed-cycle",
   "framework_manifest": "docs/external-frameworks/admissible-existence-seed-cycle.json",
   "registry": "docs/external-frameworks/index.json",
   "testbench_basis": "transition_table_elements",
   "result": "COMPATIBILITY_EVIDENCE_ONLY",
+  "cycle_status": "FIRST_FRAMEWORK_CYCLE_COMPLETE",
   "transition_table_mapping_status": {
     "framework_identity": "PRESENT",
     "source_reference": "PRESENT",
@@ -13,19 +14,31 @@
     "allowed_use_boundary": "PRESENT",
     "claims": "PRESENT",
     "non_claims": "PRESENT",
-    "input_artifact_type": "PARTIAL",
-    "output_artifact_type": "PARTIAL",
-    "actor_or_authority_model": "PARTIAL",
-    "evidence_model": "PARTIAL",
-    "policy_or_rule_model": "PARTIAL",
-    "delegation_model": "PARTIAL",
-    "decision_or_result_model": "PARTIAL",
+    "input_artifact_type": "PRESENT",
+    "output_artifact_type": "PRESENT",
+    "actor_or_authority_model": "PRESENT",
+    "evidence_model": "PRESENT",
+    "policy_or_rule_model": "PRESENT",
+    "delegation_model": "PRESENT",
+    "decision_or_result_model": "PRESENT",
     "execution_authority_claim": "DENIED_BY_BOUNDARY",
-    "receipt_or_trace_model": "PARTIAL",
-    "reconstruction_model": "PARTIAL",
-    "SPE_overlap": "PARTIAL",
-    "StegVerse_ecosystem_overlap": "PARTIAL",
+    "receipt_or_trace_model": "PRESENT",
+    "reconstruction_model": "PRESENT",
+    "SPE_overlap": "PRESENT",
+    "StegVerse_ecosystem_overlap": "PRESENT",
     "fail_closed_conditions": "PRESENT"
+  },
+  "SPE_overlap_result": {
+    "standing_boundary": "overlaps",
+    "authority_evaluation": "non-authorizing reference only",
+    "commit_time_admissibility": "not claimed",
+    "receipt_reconstruction": "partial"
+  },
+  "StegVerse_ecosystem_overlap_result": {
+    "transition_table": "mapped",
+    "chain_status": "status mirror",
+    "documentation_surface": "wiki reference",
+    "execution_path": "not authorized"
   },
   "boundary": {
     "certification_claim": false,
@@ -35,5 +48,5 @@
     "compatibility_report_is_authority": false,
     "missing_or_partial_fields_fail_closed": true
   },
-  "next_required_action": "Normalize framework manifest fields against framework-manifest.schema.json and generate a full transition-table compatibility report."
+  "next_required_action": "Expand the same manifest-and-report cycle to every registry entry with an official source reference."
 }
