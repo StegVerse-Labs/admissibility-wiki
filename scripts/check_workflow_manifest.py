@@ -16,7 +16,9 @@ REQUIRED_COMMANDS = [
     "python scripts/check_chain_snapshot_receipt.py",
     "python scripts/check_chain_auto.py",
     "python scripts/check_blocked_destination_record.py",
+    "python scripts/check_goal_state.py",
     "python scripts/check_workflow_manifest.py",
+    "python scripts/check_external_frameworks_index.py",
     "python scripts/check_guardian_destination.py",
 ]
 
@@ -27,7 +29,9 @@ EXPECTED_RESULTS = {
     "chain_snapshot_receipt": "CHAIN SNAPSHOT RECEIPT: PASS",
     "chain_auto": "CHAIN AUTO: PASS",
     "blocked_destination_record": "BLOCKED DESTINATION RECORD: PASS",
+    "goal_state": "GOAL STATE: PASS",
     "workflow_manifest": "WORKFLOW MANIFEST: PASS",
+    "external_frameworks_index": "EXTERNAL FRAMEWORKS INDEX: PASS",
     "destination_state": "GUARDIAN DESTINATION: BLOCKED",
 }
 
@@ -48,7 +52,7 @@ def main() -> int:
 
     if manifest.get("manifest_id") != "ADMISSIBILITY-WIKI-WORKFLOW-001":
         failures.append("manifest id mismatch")
-    if manifest.get("schema_version") != "0.6":
+    if manifest.get("schema_version") != "0.7":
         failures.append("schema version mismatch")
 
     workflows = manifest.get("canonical_workflows", [])
