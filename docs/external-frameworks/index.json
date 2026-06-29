@@ -30,30 +30,21 @@
     ]
   },
   "entries": [
-    {
-      "framework_id": "admissible-existence-seed-cycle",
-      "name": "Admissible Existence Seed Cycle",
-      "status": "SEED-CYCLE-COMPLETE",
-      "path": "docs/external-frameworks/admissible-existence-seed-cycle.md",
-      "manifest_path": "docs/external-frameworks/admissible-existence-seed-cycle.json",
-      "source": "Admissible-Existence/AE",
-      "testbench_state": "FIRST_FRAMEWORK_CYCLE_COMPLETE",
-      "claims_certification": false,
-      "claims_endorsement": false,
-      "claims_execution_authority": false
-    },
-    {
-      "framework_id": "care-runtime",
-      "name": "CARE Runtime",
-      "status": "INTAKE-PROVISIONAL",
-      "path": "docs/external-frameworks/care-runtime.md",
-      "manifest_path": "docs/external-frameworks/care-runtime.json",
-      "source": "official public source URL required",
-      "testbench_state": "SOURCE_BLOCKED_FAIL_CLOSED",
-      "claims_certification": false,
-      "claims_endorsement": false,
-      "claims_execution_authority": false
-    }
+    {"framework_id":"glm","name":"GLM","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/glm.md","manifest_path":"docs/external-frameworks/glm.json","source":"https://www.certifywebcontent.com/supervised-ai/governance-layer-manifest/","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"evide","name":"EVIDE","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/evide.md","manifest_path":"docs/external-frameworks/evide.json","source":"https://www.certifywebcontent.com/supervised-ai/evidentiary-deposit/","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"decisionassure","name":"DecisionAssure","status":"ARTIFACT-PACKAGE-REQUIRED","path":"docs/external-frameworks/decisionassure.md","manifest_path":"docs/external-frameworks/decisionassure.json","source":"artifact package required","testbench_state":"ARTIFACT_PACKAGE_REQUIRED_FAIL_CLOSED","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"mindforge","name":"MindForge","status":"ARTIFACT-PACKAGE-REQUIRED","path":"docs/external-frameworks/mindforge.md","manifest_path":"docs/external-frameworks/mindforge.json","source":"artifact package required","testbench_state":"ARTIFACT_PACKAGE_REQUIRED_FAIL_CLOSED","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"morrison-runtime","name":"Morrison Runtime","status":"OFFICIAL-SOURCE-REQUIRED","path":"docs/external-frameworks/morrison-runtime.md","manifest_path":"docs/external-frameworks/morrison-runtime.json","source":"official public source URL required","testbench_state":"SOURCE_BLOCKED_FAIL_CLOSED","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"care-runtime","name":"CARE Runtime","status":"INTAKE-PROVISIONAL","path":"docs/external-frameworks/care-runtime.md","manifest_path":"docs/external-frameworks/care-runtime.json","source":"official public source URL required","testbench_state":"SOURCE_BLOCKED_FAIL_CLOSED","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"aar","name":"AAR","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/aar.md","manifest_path":"docs/external-frameworks/aar.json","source":"https://www.resurrection-tech.com/assessment","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"agent-governance-playbook","name":"Agent Governance Playbook","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/agent-governance-playbook.md","manifest_path":"docs/external-frameworks/agent-governance-playbook.json","source":"https://github.com/a1k7/agent-governance-playbook/releases/tag/v1.0","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"emergency-stop-convention","name":"Emergency Stop Convention","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/killswitch-md.md","manifest_path":"docs/external-frameworks/emergency-stop-convention.json","source":"https://killswitch.md/","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"nist-ai-rmf","name":"NIST AI RMF","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/nist-ai-rmf.md","manifest_path":"docs/external-frameworks/nist-ai-rmf.json","source":"https://www.nist.gov/itl/ai-risk-management-framework","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"iso-iec-42001","name":"ISO/IEC 42001","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/iso-iec-42001.md","manifest_path":"docs/external-frameworks/iso-iec-42001.json","source":"https://www.iso.org/standard/42001","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"eu-ai-act","name":"EU AI Act","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/eu-ai-act.md","manifest_path":"docs/external-frameworks/eu-ai-act.json","source":"https://eur-lex.europa.eu/eli/reg/2024/1689/oj","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"policy-cards","name":"Policy Cards","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/policy-cards.md","manifest_path":"docs/external-frameworks/policy-cards.json","source":"https://arxiv.org/abs/2510.24383","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"runtime-governance-for-ai-agents","name":"Runtime Governance for AI Agents","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/runtime-governance-policies-on-paths.md","manifest_path":"docs/external-frameworks/runtime-governance-for-ai-agents.json","source":"https://arxiv.org/abs/2603.16586","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"admissible-existence-seed-cycle","name":"Admissible Existence Seed Cycle","status":"SEED-CYCLE-COMPLETE","path":"docs/external-frameworks/admissible-existence-seed-cycle.md","manifest_path":"docs/external-frameworks/admissible-existence-seed-cycle.json","source":"Admissible-Existence/AE","testbench_state":"FIRST_FRAMEWORK_CYCLE_COMPLETE","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false}
   ],
   "required_entry_fields": [
     "framework_id",
