@@ -19,6 +19,9 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Validate single workflow policy
+        run: python scripts/check_workflow_sprawl.py
+
       - name: Validate chain continuation
         run: python scripts/check_chain_status_continuation.py
 
