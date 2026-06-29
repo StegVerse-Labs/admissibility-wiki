@@ -74,30 +74,36 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "1.8":
+    if data.get("schema_version") != "2.0":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
 
-    previous = data.get("previous_goal", {})
-    if previous.get("goal_id") != "self-validating-governance-package":
-        failures.append("previous goal id mismatch")
-    if previous.get("status") != "COMPLETE":
-        failures.append("previous goal status mismatch")
-    if previous.get("completion_percent") != 100:
-        failures.append("previous goal completion mismatch")
-    if previous.get("closure_result") != "SELF_VALIDATING_PACKAGE_COMPLETE":
-        failures.append("previous closure result mismatch")
+    previous_goals = data.get("previous_goals", [])
+    if not previous_goals:
+        failures.append("missing previous goals")
+    else:
+        previous = previous_goals[0]
+        if previous.get("goal_id") != "self-validating-governance-package":
+            failures.append("previous goal id mismatch")
+        if previous.get("status") != "COMPLETE":
+            failures.append("previous goal status mismatch")
+        if previous.get("completion_percent") != 100:
+            failures.append("previous goal completion mismatch")
+        if previous.get("closure_result") != "SELF_VALIDATING_PACKAGE_COMPLETE":
+            failures.append("previous closure result mismatch")
 
     current = data.get("current_goal", {})
     if current.get("goal_id") != "external-framework-compatibility-testbench":
         failures.append("current goal id mismatch")
-    if current.get("status") != "ACTIVE":
+    if current.get("status") != "COMPLETE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 96:
+    if current.get("completion_percent") != 100:
         failures.append("current goal completion mismatch")
-    if current.get("cycle_status") != "CLOSURE_READY_WITH_EXPLICIT_UNRESOLVED_INTAKE":
+    if current.get("cycle_status") != "COMPLETE_WITH_EXPLICIT_UNRESOLVED_INTAKE":
         failures.append("cycle status mismatch")
+    if current.get("closure_result") != "TESTBENCH_COMPLETE_WITH_FAIL_CLOSED_UNRESOLVED_STATES":
+        failures.append("closure result mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
             failures.append(f"missing done criterion: {item}")
@@ -107,13 +113,20 @@ def main() -> int:
     for item in UNRESOLVED_FINAL_INTAKE_STATES:
         if item not in current.get("unresolved_final_intake_states", []):
             failures.append(f"missing unresolved intake state: {item}")
-    if not current.get("next_required_action"):
-        failures.append("missing next required action")
+
+    next_goal = data.get("next_goal", {})
+    if next_goal.get("goal_id") != "external-framework-expansion-cycle":
+        failures.append("next goal id mismatch")
+    if next_goal.get("status") != "QUEUED_FOR_NEXT_ACTIVATION":
+        failures.append("next goal status mismatch")
+    if next_goal.get("initial_completion_percent_on_activation") != 0:
+        failures.append("next goal reset mismatch")
 
     boundary = data.get("boundary", {})
     for key in [
         "self_validating_package_remains_closed",
-        "external_framework_testbench_active",
+        "external_framework_testbench_complete",
+        "next_goal_not_activated",
         "no_framework_certification_claim",
         "no_external_endorsement_claim",
         "no_execution_authority_claim",
