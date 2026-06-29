@@ -19,6 +19,22 @@ No official public Morrison Runtime website was confirmed during the current sou
 
 Until an official Morrison Runtime website or canonical public artifact is supplied, this page remains an intake record only.
 
+## Definition
+
+Morrison Runtime is treated in this wiki as a candidate runtime-governance comparison target.
+
+Because no official public source URL is currently confirmed, all terms on this page are intake terms only and must remain unresolved until a canonical source or authorized artifact package is supplied.
+
+## Framework-Term Definitions
+
+| Native Morrison Runtime Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
+|---|---|---|---|
+| Morrison Runtime | Candidate runtime-governance comparison target. | unresolved | Preserved as an intake term until an official source is supplied. |
+| Runtime outcome | A runtime result or behavior observed during comparison. | adjacent | Related to Transition Table outcome review. |
+| Runtime policy | A policy condition or behavior evaluated at runtime. | adjacent | Related to Runtime Transition Governance. |
+| Failure state | A runtime state where expected governance behavior does not complete or does not remain valid. | adjacent | Related to Fail-Closed and Commit-Time Validity. |
+| Execution boundary | The boundary near execution where runtime behavior may affect consequence. | adjacent | Related to Core-Lite Admissibility Engine and SPE review. |
+
 ## Relationship To Admissibility
 
 Morrison Runtime is listed as a candidate comparison target for runtime-governance behavior.
