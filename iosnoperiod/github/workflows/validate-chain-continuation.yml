@@ -46,6 +46,9 @@ jobs:
       - name: Validate external frameworks index
         run: python scripts/check_external_frameworks_index.py
 
+      - name: Validate external framework reports
+        run: python scripts/check_external_framework_reports.py
+
       - name: Resolve Guardian destination
         run: python scripts/check_guardian_destination.py
 
