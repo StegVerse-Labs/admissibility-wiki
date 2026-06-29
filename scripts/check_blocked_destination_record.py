@@ -44,7 +44,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "chain_status_blocked_destination":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "0.2":
+    if data.get("schema_version") != "0.3":
         failures.append("schema version mismatch")
     if data.get("status") != "BLOCKED":
         failures.append("status mismatch")
