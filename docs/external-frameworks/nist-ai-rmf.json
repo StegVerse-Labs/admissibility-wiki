@@ -1,0 +1,16 @@
+{
+  "artifact_type": "external_framework_manifest",
+  "schema_version": "0.1",
+  "framework_id": "nist-ai-rmf",
+  "name": "NIST AI RMF",
+  "source_reference": "https://www.nist.gov/itl/ai-risk-management-framework",
+  "source_version": "public source recorded",
+  "allowed_use_boundary": ["Use as external risk-management crosswalk evidence.", "Preserve NIST AI RMF-native terminology.", "Do not treat as certification, endorsement, execution authority, or commit-time authority."],
+  "claims": ["NIST AI RMF can support risk management and trustworthiness comparison.", "NIST AI RMF can be mapped to lifecycle review and evaluation support terms."],
+  "non_claims": ["NIST AI RMF does not prove transition admissibility.", "Voluntary guidance does not grant execution authority.", "The wiki relationship record is not acceptance of equivalence."],
+  "transition_table_mapping": {"framework_identity":"NIST AI RMF","source_reference":"https://www.nist.gov/itl/ai-risk-management-framework","source_version":"public source recorded","allowed_use_boundary":"risk-management crosswalk evidence only","claims":"risk management, trustworthiness considerations, lifecycle review, evaluation support","non_claims":"no admissibility proof, certification, endorsement, or execution authority","input_artifact_type":"risk-management guidance artifact","output_artifact_type":"crosswalk and compatibility evidence","actor_or_authority_model":"external guidance posture; no StegVerse authority inherited","evidence_model":"risk and evaluation evidence posture","policy_or_rule_model":"risk-management and trustworthiness guidance","delegation_model":"not asserted by wiki entry","decision_or_result_model":"comparison evidence only","execution_authority_claim":false,"receipt_or_trace_model":"source reference and wiki record","reconstruction_model":"source plus crosswalk can reconstruct risk-management relationship limits","SPE_overlap":"may inform evidence/review posture, not standing determination","StegVerse_ecosystem_overlap":"Evidence Posture, Review Posture, Governance Boundary, Policy Reference","fail_closed_conditions":"missing source, undefined mapping, or authority overclaim"},
+  "SPE_overlap": {"standing_boundary":"risk-review evidence only","authority_evaluation":"not performed by NIST AI RMF","commit_time_admissibility":"not claimed","receipt_reconstruction":"source-reference bounded"},
+  "StegVerse_ecosystem_overlap": {"transition_table":"risk and trustworthiness mapping","chain_status":"crosswalk evidence","documentation_surface":"wiki reference","execution_path":"not authorized"},
+  "fail_closed_conditions": ["source reference is missing", "source version is missing", "transition-table mapping is incomplete", "SPE overlap is undefined", "any certification, endorsement, execution authority, or commit-time authority claim appears"],
+  "boundary": {"certification_claim":false,"endorsement_claim":false,"execution_authority_claim":false,"commit_time_authority_claim":false,"compatibility_manifest_is_authority":false,"missing_or_partial_fields_fail_closed":true}
+}
