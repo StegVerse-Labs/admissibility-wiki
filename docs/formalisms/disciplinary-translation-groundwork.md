@@ -12,6 +12,10 @@ Wiki state: intake
 
 Detail status: initial translation-groundwork section for mapping discipline-specific claims into transition-table language
 
+Record artifact: [`static/translation-records/disciplinary-translation-records.v0.1.json`](../../static/translation-records/disciplinary-translation-records.v0.1.json)
+
+Record reference page: [Translation Records](./translation-records.md)
+
 ## Purpose
 
 Disciplinary Translation Groundwork defines the public-safe bridge between domain-specific formalisms and the Transition Table.
@@ -193,6 +197,7 @@ This section is done when:
 4. The page provides non-physics crosswalks for governance/law, AI/runtime systems, biology/systems theory, and economics/exchange.
 5. The sidebar exposes the page publicly.
 6. The Formalisms index lists the page and preserves the non-claim boundary.
+7. Initial translation records exist and have a validation path.
 
 ## Open Questions
 
