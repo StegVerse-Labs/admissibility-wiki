@@ -14,6 +14,7 @@ REQUIRED_FILE_FIELDS = [
     "continuation_manifest",
     "continuation_schema",
     "automation_state",
+    "goal_state",
     "canonical_workflow",
     "workflow_mirror",
     "workflow_manifest",
@@ -27,7 +28,9 @@ REQUIRED_VALIDATORS = [
     "scripts/check_chain_snapshot_receipt.py",
     "scripts/check_chain_auto.py",
     "scripts/check_blocked_destination_record.py",
+    "scripts/check_goal_state.py",
     "scripts/check_workflow_manifest.py",
+    "scripts/check_external_frameworks_index.py",
     "scripts/check_guardian_destination.py",
 ]
 
@@ -38,7 +41,9 @@ REQUIRED_COMMANDS = [
     "python scripts/check_chain_snapshot_receipt.py",
     "python scripts/check_chain_auto.py",
     "python scripts/check_blocked_destination_record.py",
+    "python scripts/check_goal_state.py",
     "python scripts/check_workflow_manifest.py",
+    "python scripts/check_external_frameworks_index.py",
     "python scripts/check_guardian_destination.py",
 ]
 
@@ -49,7 +54,9 @@ EXPECTED_RESULTS = {
     "chain_snapshot_receipt": "CHAIN SNAPSHOT RECEIPT: PASS",
     "chain_auto": "CHAIN AUTO: PASS",
     "blocked_destination_record": "BLOCKED DESTINATION RECORD: PASS",
+    "goal_state": "GOAL STATE: PASS",
     "workflow_manifest": "WORKFLOW MANIFEST: PASS",
+    "external_frameworks_index": "EXTERNAL FRAMEWORKS INDEX: PASS",
     "destination_state": "GUARDIAN DESTINATION: BLOCKED",
 }
 
@@ -60,6 +67,7 @@ TRUE_BOUNDARIES = [
     "no_closure_claim",
     "no_adoption_claim",
     "no_endorsement_claim",
+    "no_external_framework_validation_claim",
     "no_consequence_binding_standing_claim",
 ]
 
@@ -69,6 +77,7 @@ FALSE_BOUNDARIES = [
     "workflow_mirror_is_ci_activation",
     "manual_workflow_install_required",
     "manual_destination_search_required",
+    "queued_external_framework_testbench_is_active",
 ]
 
 
@@ -88,7 +97,7 @@ def main() -> int:
 
     if receipt.get("artifact_type") != "chain_snapshot_receipt":
         failures.append("artifact type mismatch")
-    if receipt.get("schema_version") != "0.5":
+    if receipt.get("schema_version") != "0.6":
         failures.append("schema version mismatch")
     if receipt.get("status") != "BLOCKED_ON_DESTINATION_REPOSITORY":
         failures.append("status mismatch")
