@@ -16,7 +16,9 @@ REQUIRED_COMMANDS = [
     "python scripts/check_chain_snapshot_receipt.py",
     "python scripts/check_chain_auto.py",
     "python scripts/check_blocked_destination_record.py",
+    "python scripts/check_goal_state.py",
     "python scripts/check_workflow_manifest.py",
+    "python scripts/check_external_frameworks_index.py",
     "python scripts/check_guardian_destination.py",
 ]
 
@@ -37,7 +39,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "chain_auto_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "0.5":
+    if data.get("schema_version") != "0.6":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
