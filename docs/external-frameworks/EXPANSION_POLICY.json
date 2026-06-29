@@ -1,0 +1,73 @@
+{
+  "artifact_type": "external_framework_expansion_policy",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "goal_id": "external-framework-expansion-cycle",
+  "allowed_source_states": [
+    "SOURCE_RECORDED_CROSSWALK_PROVISIONAL",
+    "SOURCE_BLOCKED_FAIL_CLOSED",
+    "ARTIFACT_PACKAGE_REQUIRED_FAIL_CLOSED",
+    "FIRST_FRAMEWORK_CYCLE_COMPLETE"
+  ],
+  "required_new_entry_fields": [
+    "framework_id",
+    "name",
+    "status",
+    "path",
+    "manifest_path",
+    "source",
+    "testbench_state",
+    "claims_certification",
+    "claims_endorsement",
+    "claims_execution_authority"
+  ],
+  "required_manifest_fields": [
+    "artifact_type",
+    "schema_version",
+    "framework_id",
+    "name",
+    "source_reference",
+    "source_version",
+    "allowed_use_boundary",
+    "claims",
+    "non_claims",
+    "transition_table_mapping",
+    "SPE_overlap",
+    "StegVerse_ecosystem_overlap",
+    "fail_closed_conditions",
+    "boundary"
+  ],
+  "required_page_sections": [
+    "Framework-Term Definitions",
+    "Reconciliation Class",
+    "Admissibility Relationship"
+  ],
+  "required_boundaries": {
+    "claims_certification": false,
+    "claims_endorsement": false,
+    "claims_execution_authority": false,
+    "certification_claim": false,
+    "endorsement_claim": false,
+    "execution_authority_claim": false,
+    "commit_time_authority_claim": false,
+    "compatibility_manifest_is_authority": false
+  },
+  "fail_closed_conditions": [
+    "missing source state",
+    "missing manifest path",
+    "missing framework page",
+    "missing native terminology table",
+    "missing transition-table mapping",
+    "missing SPE overlap",
+    "missing StegVerse ecosystem overlap",
+    "any certification, endorsement, execution authority, or commit-time authority claim appears"
+  ],
+  "boundary": {
+    "expansion_policy_is_authority": false,
+    "expansion_policy_is_certification": false,
+    "new_entries_require_source_state": true,
+    "new_entries_require_native_terminology": true,
+    "new_entries_require_transition_table_mapping": true,
+    "new_entries_preserve_non_authority_boundary": true
+  }
+}
