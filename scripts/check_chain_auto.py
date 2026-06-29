@@ -57,7 +57,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "chain_auto_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "1.3":
+    if data.get("schema_version") != "1.4":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -83,6 +83,8 @@ def main() -> int:
         failures.append("page-status generator file missing")
     if data.get("generated_page_status_source") != "framework manifests plus compatibility reports":
         failures.append("generated page-status source mismatch")
+    if data.get("generated_page_status_publication_path") != "single workflow build-pages job regenerates page status before Docusaurus build":
+        failures.append("generated page-status publication path mismatch")
     if data.get("generated_results_page") != "docs/external-frameworks/evaluation-results.md":
         failures.append("generated results page mismatch")
     elif not (ROOT / data["generated_results_page"]).exists():
@@ -110,7 +112,7 @@ def main() -> int:
             failures.append(f"testbench report missing from repo: {report}")
 
     removed = data.get("manual_tasks_removed", [])
-    for task in ["workflow_install", "repeat_destination_search", "workflow_selection", "external_framework_result_posting", "external_framework_page_status_editing"]:
+    for task in ["workflow_install", "repeat_destination_search", "workflow_selection", "external_framework_result_posting", "external_framework_page_status_editing", "external_framework_page_status_publication"]:
         if task not in removed:
             failures.append(f"manual task not removed: {task}")
 
