@@ -18,6 +18,8 @@ Publisher status surface
 SPE verification surface
 local continuation package
 local automated validation commands
+goal-state validation
+external-frameworks index validation
 blocked-destination record validation
 non-activation boundary
 next governed follow-up
@@ -77,6 +79,7 @@ docs/CHAIN_STATUS_CONTINUATION.json
 docs/CHAIN_STATUS_CONTINUATION.schema.json
 docs/CHAIN_STATUS_BLOCKED_DESTINATION.json
 docs/CHAIN_AUTO.json
+docs/GOAL_STATE.json
 docs/CHAIN_SNAPSHOT_v0_1_0.md
 docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
 workflow_manifest.json
@@ -91,7 +94,9 @@ python scripts/check_chain_snapshot.py
 python scripts/check_chain_snapshot_receipt.py
 python scripts/check_chain_auto.py
 python scripts/check_blocked_destination_record.py
+python scripts/check_goal_state.py
 python scripts/check_workflow_manifest.py
+python scripts/check_external_frameworks_index.py
 python scripts/check_guardian_destination.py
 ```
 
@@ -104,9 +109,19 @@ CHAIN SNAPSHOT: PASS
 CHAIN SNAPSHOT RECEIPT: PASS
 CHAIN AUTO: PASS
 BLOCKED DESTINATION RECORD: PASS
+GOAL STATE: PASS
 WORKFLOW MANIFEST: PASS
+EXTERNAL FRAMEWORKS INDEX: PASS
 GUARDIAN DESTINATION: BLOCKED
 ```
+
+## Queued Next Goal
+
+```text
+docs/GOAL_STATE.json
+```
+
+The External Framework Compatibility Testbench is queued after the current self-validating governance package reaches 100%. It is not active yet and does not create a framework-validation claim.
 
 ## Boundary
 
@@ -123,5 +138,5 @@ Create or identify the Guardian standing-boundary repository before adding or up
 ```
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 77% complete
-77% complete vs current activation
+admissibility-wiki - 93% complete
+93% complete vs current activation
