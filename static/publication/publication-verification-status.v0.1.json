@@ -22,7 +22,7 @@
     "This status file records the current unverified state from available status data."
   ],
   "latest_public_url_check": {
-    "checked_at": "2026-06-22T15:59:17.638Z",
+    "checked_at": "2026-06-29T14:52:27.779Z",
     "results": [
       {
         "url": "https://stegverse-labs.github.io/admissibility-wiki/",
