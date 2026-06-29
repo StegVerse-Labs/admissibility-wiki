@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "record_state": "intake",
+  "authority_boundary": "Bibliographic intake records identify source references for translation review. They do not validate source claims, prove equivalence, create citation sufficiency, or create commit-time authority.",
+  "required_fields": [
+    "bibliographic_id",
+    "source_id",
+    "source_title",
+    "creator_or_author_posture",
+    "publication_or_source_posture",
+    "source_locator",
+    "access_posture",
+    "evidence_posture",
+    "review_posture",
+    "linked_external_record_ids",
+    "non_claims"
+  ],
+  "records": [
+    {
+      "bibliographic_id": "bib-lai-operational-architecture-v0-1",
+      "source_id": "external-physics-lai-operational-architecture-v0-1",
+      "source_title": "pending_source_confirmed_title",
+      "creator_or_author_posture": "Jonathan Lai named in discussion context; source-confirmed bibliographic author record pending",
+      "publication_or_source_posture": "external paper or preprint discussed from uploaded images; stable URL, DOI, arXiv ID, repository path, or citation record pending",
+      "source_locator": "pending_source_confirmed_locator",
+      "access_posture": "partial_context_available",
+      "evidence_posture": "partial",
+      "review_posture": "proposed",
+      "linked_external_record_ids": [
+        "ext-phys-lai-admissibility-operator-v0-1",
+        "ext-phys-lai-transition-operator-v0-1",
+        "ext-phys-lai-stable-branch-v0-1",
+        "ext-phys-lai-emergent-geometry-v0-1",
+        "ext-phys-lai-translation-failure-v0-1"
+      ],
+      "non_claims": "This bibliographic record does not confirm publication status, peer review, correctness, prediction, or equivalence to StegVerse formalisms."
+    }
+  ]
+}
