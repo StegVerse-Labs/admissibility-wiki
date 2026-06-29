@@ -60,6 +60,7 @@ const sidebars = {
         'formalisms/index',
         'formalisms/original-drawing-reference',
         'formalisms/disciplinary-translation-groundwork',
+        'formalisms/translation-records',
         'formalisms/canonical-catalog',
         'formalisms/runtime-transition-governance',
         'formalisms/coherency-horizon',
