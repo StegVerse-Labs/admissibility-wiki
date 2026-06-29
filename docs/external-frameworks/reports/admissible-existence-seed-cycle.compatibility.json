@@ -1,0 +1,39 @@
+{
+  "artifact_type": "external_framework_compatibility_report",
+  "schema_version": "0.1",
+  "framework_id": "admissible-existence-seed-cycle",
+  "framework_manifest": "docs/external-frameworks/admissible-existence-seed-cycle.json",
+  "registry": "docs/external-frameworks/index.json",
+  "testbench_basis": "transition_table_elements",
+  "result": "COMPATIBILITY_EVIDENCE_ONLY",
+  "transition_table_mapping_status": {
+    "framework_identity": "PRESENT",
+    "source_reference": "PRESENT",
+    "source_version": "PRESENT",
+    "allowed_use_boundary": "PRESENT",
+    "claims": "PRESENT",
+    "non_claims": "PRESENT",
+    "input_artifact_type": "PARTIAL",
+    "output_artifact_type": "PARTIAL",
+    "actor_or_authority_model": "PARTIAL",
+    "evidence_model": "PARTIAL",
+    "policy_or_rule_model": "PARTIAL",
+    "delegation_model": "PARTIAL",
+    "decision_or_result_model": "PARTIAL",
+    "execution_authority_claim": "DENIED_BY_BOUNDARY",
+    "receipt_or_trace_model": "PARTIAL",
+    "reconstruction_model": "PARTIAL",
+    "SPE_overlap": "PARTIAL",
+    "StegVerse_ecosystem_overlap": "PARTIAL",
+    "fail_closed_conditions": "PRESENT"
+  },
+  "boundary": {
+    "certification_claim": false,
+    "endorsement_claim": false,
+    "execution_authority_claim": false,
+    "commit_time_authority_claim": false,
+    "compatibility_report_is_authority": false,
+    "missing_or_partial_fields_fail_closed": true
+  },
+  "next_required_action": "Normalize framework manifest fields against framework-manifest.schema.json and generate a full transition-table compatibility report."
+}
