@@ -15,6 +15,7 @@ REQUIRED_FILES = [
     "docs/CHAIN_STATUS_BLOCKED_DESTINATION.json",
     "docs/CHAIN_STATUS_CONTINUATION.json",
     "docs/CHAIN_AUTO.json",
+    "docs/GOAL_STATE.json",
     "docs/CHAIN_SNAPSHOT_v0_1_0.md",
     "docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json",
     "workflow_manifest.json",
@@ -27,7 +28,9 @@ REQUIRED_VALIDATORS = [
     "scripts/check_chain_snapshot_receipt.py",
     "scripts/check_chain_auto.py",
     "scripts/check_blocked_destination_record.py",
+    "scripts/check_goal_state.py",
     "scripts/check_workflow_manifest.py",
+    "scripts/check_external_frameworks_index.py",
     "scripts/check_guardian_destination.py",
 ]
 
@@ -44,7 +47,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "chain_status_blocked_destination":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "0.3":
+    if data.get("schema_version") != "0.4":
         failures.append("schema version mismatch")
     if data.get("status") != "BLOCKED":
         failures.append("status mismatch")
@@ -75,6 +78,10 @@ def main() -> int:
         failures.append("missing no-invention boundary")
     if boundary.get("resolver_creates_repository") is not False:
         failures.append("resolver creation boundary mismatch")
+    if boundary.get("queued_external_framework_testbench_is_active") is not False:
+        failures.append("queued external framework boundary mismatch")
+    if boundary.get("no_external_framework_validation_claim") is not True:
+        failures.append("missing no external-framework validation claim boundary")
 
     print("BLOCKED DESTINATION RECORD:", "FAIL" if failures else "PASS")
     for failure in failures:
