@@ -124,6 +124,10 @@ def main() -> int:
         if boundary.get("missing_or_partial_fields_fail_closed") is not True:
             failures.append(f"{entry['framework_id']} fail-closed boundary missing")
 
+        if entry.get("testbench_state") == "SOURCE_BLOCKED_FAIL_CLOSED":
+            if boundary.get("official_source_required_for_completion") is not True:
+                failures.append(f"{entry['framework_id']} source-required boundary missing")
+
     print("EXTERNAL FRAMEWORK MANIFESTS:", "FAIL" if failures else "PASS")
     for failure in failures:
         print(f"- {failure}")
