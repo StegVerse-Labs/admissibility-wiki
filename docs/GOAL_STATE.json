@@ -1,6 +1,6 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "3.3",
+  "schema_version": "3.4",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "previous_goals": [
     {
@@ -25,8 +25,8 @@
   "current_goal": {
     "goal_id": "declarative-external-framework-generation-pipeline",
     "status": "ACTIVE",
-    "completion_percent": 36,
-    "cycle_status": "PAGE_STATUS_PUBLICATION_PATH_RECORDED",
+    "completion_percent": 44,
+    "cycle_status": "HANDOFF_SYNC_RECORDED",
     "built_surfaces": [
       "framework page-status generator",
       "framework page-status validator",
@@ -39,7 +39,10 @@
       "canonical workflow build-pages page-status regeneration step",
       "iOS workflow mirror build-pages page-status regeneration step",
       "public generated evaluation results URL verification step",
-      "auto-state page-status publication path declaration"
+      "auto-state page-status publication path declaration",
+      "root handoff synchronized",
+      "current task sync synchronized",
+      "remaining installation targets listed"
     ],
     "done_when": [
       "framework-page displayed evaluation status is generated from manifests and compatibility reports",
@@ -49,9 +52,11 @@
       "workflow generates page-status blocks before validation and publication",
       "validator detects drift between generated page-status blocks and source reports",
       "framework narrative remains separable from generated status",
-      "published site build regenerates page-status blocks before Docusaurus build"
+      "published site build regenerates page-status blocks before Docusaurus build",
+      "handoff files reflect the active workflow and declarative generation state",
+      "remaining installation targets are listed"
     ],
-    "next_required_action": "Run CI and repair the first generator, validator, build, deploy, or public URL verification failure."
+    "next_required_action": "Build the full framework-page generator and validator for non-status generated sections."
   },
   "boundary": {
     "prior_testbench_remains_closed": true,
