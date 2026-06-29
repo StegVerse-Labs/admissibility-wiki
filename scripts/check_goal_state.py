@@ -35,6 +35,10 @@ BUILT_SURFACES = [
     "source-blocked registry state",
     "source-blocked manifest validation",
     "source-blocked report validation",
+    "deterministic compatibility report generator",
+    "report reproducibility verifier",
+    "canonical workflow reproducibility validation step",
+    "iOS workflow mirror reproducibility validation step",
 ]
 
 
@@ -50,7 +54,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "1.4":
+    if data.get("schema_version") != "1.5":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -70,9 +74,9 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 36:
+    if current.get("completion_percent") != 48:
         failures.append("current goal completion mismatch")
-    if current.get("cycle_status") != "SOURCE_BLOCKED_FRAMEWORK_CYCLE_RECORDED":
+    if current.get("cycle_status") != "REPORT_REPRODUCIBILITY_RECORDED":
         failures.append("cycle status mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
@@ -92,6 +96,7 @@ def main() -> int:
         "no_execution_authority_claim",
         "testbench_outputs_are_compatibility_evidence_only",
         "source_blocked_entries_fail_closed",
+        "generated_reports_are_evidence_only",
     ]:
         if boundary.get(key) is not True:
             failures.append(f"boundary mismatch: {key}")
