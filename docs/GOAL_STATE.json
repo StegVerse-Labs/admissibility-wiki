@@ -1,6 +1,6 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "1.3",
+  "schema_version": "1.4",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "previous_goal": {
     "goal_id": "self-validating-governance-package",
@@ -11,8 +11,8 @@
   "current_goal": {
     "goal_id": "external-framework-compatibility-testbench",
     "status": "ACTIVE",
-    "completion_percent": 24,
-    "cycle_status": "FIRST_FRAMEWORK_CYCLE_COMPLETE",
+    "completion_percent": 36,
+    "cycle_status": "SOURCE_BLOCKED_FRAMEWORK_CYCLE_RECORDED",
     "built_surfaces": [
       "transition-table-based framework registry",
       "framework manifest schema",
@@ -24,7 +24,12 @@
       "canonical workflow manifest validation step",
       "iOS workflow mirror manifest validation step",
       "canonical workflow report validation step",
-      "iOS workflow mirror report validation step"
+      "iOS workflow mirror report validation step",
+      "source-blocked provisional framework manifest",
+      "source-blocked compatibility report",
+      "source-blocked registry state",
+      "source-blocked manifest validation",
+      "source-blocked report validation"
     ],
     "done_when": [
       "framework registry exists and is machine-verifiable",
@@ -35,7 +40,7 @@
       "framework pages do not claim certification, endorsement, or execution authority",
       "the testbench fails closed on missing sources, stale versions, or undefined overlap"
     ],
-    "next_required_action": "Expand the same complete manifest-and-report cycle to every registry entry with an official source reference."
+    "next_required_action": "Add official source references for source-blocked frameworks, then upgrade blocked reports into complete compatibility reports."
   },
   "boundary": {
     "self_validating_package_remains_closed": true,
@@ -43,6 +48,7 @@
     "no_framework_certification_claim": true,
     "no_external_endorsement_claim": true,
     "no_execution_authority_claim": true,
-    "testbench_outputs_are_compatibility_evidence_only": true
+    "testbench_outputs_are_compatibility_evidence_only": true,
+    "source_blocked_entries_fail_closed": true
   }
 }
