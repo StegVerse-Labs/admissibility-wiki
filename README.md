@@ -24,6 +24,58 @@ The current StegVerse interpretation separates:
 
 This matters because emotional state, intuition, trust, relational coherence, and boundary recoverability can affect whether a proposed transition should ever become admissible.
 
+## Disciplinary Translation Groundwork
+
+The current translation-groundwork section is:
+
+```text
+docs/formalisms/disciplinary-translation-groundwork.md
+```
+
+The current translation-records reference page is:
+
+```text
+docs/formalisms/translation-records.md
+```
+
+The current machine-readable translation-record artifact is:
+
+```text
+static/translation-records/disciplinary-translation-records.v0.1.json
+```
+
+The current validator is:
+
+```text
+scripts/check_translation_records.py
+```
+
+Run:
+
+```bash
+python scripts/check_translation_records.py
+```
+
+Expected current state:
+
+```text
+TRANSLATION RECORDS: PASS - 6 records validated
+```
+
+The validation workflow is displayed here without the leading period:
+
+```text
+github/workflows/validate-translation-records.yml
+```
+
+The actual repository path begins with a leading period.
+
+The iOS-safe workflow mirror is:
+
+```text
+iosnoperiod/github/workflows/validate-translation-records.yml
+```
+
 ## Triad Governance
 
 Triad governance is the three-part StegVerse governance frame for distinguishing proposal, commitment, and reconstruction.
@@ -138,6 +190,7 @@ scripts/check_goal_state.py
 scripts/check_workflow_manifest.py
 scripts/check_external_frameworks_index.py
 scripts/check_guardian_destination.py
+scripts/check_translation_records.py
 ```
 
 Run:
@@ -153,6 +206,7 @@ python scripts/check_goal_state.py
 python scripts/check_workflow_manifest.py
 python scripts/check_external_frameworks_index.py
 python scripts/check_guardian_destination.py
+python scripts/check_translation_records.py
 ```
 
 Expected current state:
@@ -168,6 +222,7 @@ GOAL STATE: PASS
 WORKFLOW MANIFEST: PASS
 EXTERNAL FRAMEWORKS INDEX: PASS
 GUARDIAN DESTINATION: BLOCKED
+TRANSLATION RECORDS: PASS - 6 records validated
 ```
 
 The canonical validation workflow is displayed here without the leading dot:
@@ -197,127 +252,3 @@ reports/guardian_destination_status.json
 ```
 
 The blocked destination record exists because no Guardian standing-boundary repository was found under the checked names. This does not change the governance status of the chain. It only prevents future sessions from inventing a destination repo.
-
-## External Frameworks Status Surface
-
-The current external-frameworks index is:
-
-```text
-docs/external-frameworks/index.md
-docs/external-frameworks/index.json
-```
-
-The Admissible Existence seed-cycle mirror is:
-
-```text
-docs/external-frameworks/admissible-existence-seed-cycle.md
-docs/external-frameworks/admissible-existence-seed-cycle.json
-```
-
-The current publication marker is:
-
-```text
-docs/external-frameworks/activation/admissible-existence-seed-cycle.json
-```
-
-These files mirror evidence-bounded ecosystem status. They do not create certification, endorsement, execution authority, or commit-time standing.
-
-## Queued Next Goal
-
-The next repository goal is queued in:
-
-```text
-docs/GOAL_STATE.json
-```
-
-The queued goal is the External Framework Compatibility Testbench. It remains non-active until the current self-validating governance package reaches 100%.
-
-## Done State
-
-This repository is considered initially established when it has:
-
-- a publishable Docusaurus configuration;
-- a core glossary;
-- StegVerse implementation mapping pages;
-- comparison pages that explain common governance distinctions;
-- a minimal public proof path;
-- essays suitable for public linking;
-- version-controlled Markdown pages that can be cited, reviewed, and expanded.
-
-## Local Development
-
-```bash
-npm install
-npm run start
-```
-
-## Build
-
-```bash
-npm run build
-```
-
-## Deploy
-
-This repository includes a GitHub Pages workflow at `github/workflows/deploy.yml`.
-
-Note: the workflow path above is displayed without the leading period for iOS compatibility. The canonical repository path begins with a leading period.
-
-Before enabling deployment, configure GitHub Pages to use **GitHub Actions** as the source.
-
-## Site Structure
-
-```text
-docs/
-  glossary/
-  stegverse/
-  comparisons/
-  proof-path/
-  essays/
-  external-frameworks/
-  CHAIN_AUTO.json
-  CHAIN_STATUS.md
-  CHAIN_STATUS_HANDOFF.md
-  CHAIN_STATUS_BLOCKED_DESTINATION.md
-  CHAIN_STATUS_BLOCKED_DESTINATION.json
-  CHAIN_STATUS_CONTINUATION.json
-  CHAIN_STATUS_CONTINUATION.schema.json
-  CHAIN_SNAPSHOT_v0_1_0.md
-  CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
-  GOAL_STATE.json
-iosnoperiod/
-  github/workflows/validate-chain-continuation.yml
-scripts/
-  check_chain_status_continuation.py
-  check_continuation_bundle.py
-  check_chain_snapshot.py
-  check_chain_snapshot_receipt.py
-  check_chain_auto.py
-  check_blocked_destination_record.py
-  check_goal_state.py
-  check_workflow_manifest.py
-  check_external_frameworks_index.py
-  check_guardian_destination.py
-workflow_manifest.json
-```
-
-## Editorial Standard
-
-Pages should be:
-
-- neutral;
-- source-aware;
-- distinction-focused;
-- version-controlled;
-- careful not to overclaim;
-- clear about whether a claim is conceptual, implemented, experimental, or proposed.
-
-## Relationship to StegVerse
-
-StegVerse is the originating ecosystem. The Admissibility Wiki is the public vocabulary and explanation layer.
-
-The goal is not to make every StegVerse artifact promotional. The goal is to define the language of admissible transition governance clearly enough that others can evaluate, compare, critique, reuse, or extend it.
-
-StegVerse-Labs - 5% complete
-admissibility-wiki - 91% complete
-91% complete vs current activation
