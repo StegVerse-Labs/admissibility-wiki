@@ -26,6 +26,17 @@ DecisionAssure is treated in this wiki as a candidate external framework for tra
 
 Its primary relationship to the Admissibility Wiki is the question of whether supplied traces can support independent reconstruction of authority, continuity, drift, and corruption states without treating the trace itself as execution authority.
 
+## Framework-Term Definitions
+
+| Native DecisionAssure Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
+|---|---|---|---|
+| DecisionAssure | Candidate external framework for trace integrity, causal-continuity review, and artifact-specific governance evaluation. | new | Preserved as framework-native terminology pending authorized source package. |
+| Trace record | A supplied record describing claimed continuity, state, policy, delegation, or verifier output. | adjacent | Related to Receipt-Bound Execution and Reconstructability. |
+| Causal continuity | A claim or finding that a decision path remained causally connected across state changes. | adjacent | Related to Continuity Governance, but not execution authority. |
+| Drift indicator | A signal that policy, delegation, identity, context, or state may have changed. | adjacent | Related to Drift and Commit-Time Validity. |
+| Corruption indicator | A signal that the trace or decision path may no longer support trusted reconstruction. | adjacent | Related to Fail-Closed behavior. |
+| Artifact-specific verifier output | A verifier result tied to a supplied artifact package rather than a general framework certification. | adjacent | May support SPE evidence review without replacing SPE. |
+
 ## Native Contribution
 
 DecisionAssure may contribute:
