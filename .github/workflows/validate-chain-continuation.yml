@@ -41,6 +41,9 @@ jobs:
       - name: Generate external framework page metadata
         run: python scripts/generate_external_framework_page_metadata.py
 
+      - name: Generate external framework page mapping
+        run: python scripts/generate_external_framework_page_mapping.py
+
       - name: Generate external framework page status
         run: python scripts/generate_external_framework_page_status.py
 
@@ -92,6 +95,9 @@ jobs:
       - name: Validate external framework page metadata
         run: python scripts/check_external_framework_page_metadata.py
 
+      - name: Validate external framework page mapping
+        run: python scripts/check_external_framework_page_mapping.py
+
       - name: Validate external framework page status
         run: python scripts/check_external_framework_page_status.py
 
@@ -131,6 +137,9 @@ jobs:
 
       - name: Generate external framework page metadata
         run: python scripts/generate_external_framework_page_metadata.py
+
+      - name: Generate external framework page mapping
+        run: python scripts/generate_external_framework_page_mapping.py
 
       - name: Generate external framework page status
         run: python scripts/generate_external_framework_page_status.py
