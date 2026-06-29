@@ -1,6 +1,6 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "1.5",
+  "schema_version": "1.6",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "previous_goal": {
     "goal_id": "self-validating-governance-package",
@@ -11,8 +11,8 @@
   "current_goal": {
     "goal_id": "external-framework-compatibility-testbench",
     "status": "ACTIVE",
-    "completion_percent": 48,
-    "cycle_status": "REPORT_REPRODUCIBILITY_RECORDED",
+    "completion_percent": 72,
+    "cycle_status": "ALL_LISTED_FRAMEWORK_MANIFESTS_AND_TERMINOLOGY_RECORDED",
     "built_surfaces": [
       "transition-table-based framework registry",
       "framework manifest schema",
@@ -33,18 +33,28 @@
       "deterministic compatibility report generator",
       "report reproducibility verifier",
       "canonical workflow reproducibility validation step",
-      "iOS workflow mirror reproducibility validation step"
+      "iOS workflow mirror reproducibility validation step",
+      "all listed framework registry entries",
+      "all listed framework compatibility manifests",
+      "governed terminology reconciliation rule",
+      "terminology reconciliation glossary entry",
+      "per-framework native term definition tables",
+      "external framework terminology validator",
+      "canonical workflow terminology validation step",
+      "iOS workflow mirror terminology validation step"
     ],
     "done_when": [
       "framework registry exists and is machine-verifiable",
       "each framework has a manifest with source/version and allowed-use boundaries",
       "each framework maps claims and non-claims to SPE and ecosystem overlap fields",
+      "each framework page has explicit native terminology definitions",
+      "terminology reconciliation classes are machine-verifiable",
       "transition-table mapping tests run for every listed framework",
       "generated compatibility reports are reproducible",
       "framework pages do not claim certification, endorsement, or execution authority",
       "the testbench fails closed on missing sources, stale versions, or undefined overlap"
     ],
-    "next_required_action": "Add official source references for source-blocked frameworks, then upgrade blocked reports into complete compatibility reports."
+    "next_required_action": "Generate and record compatibility reports for every registry entry, then upgrade source-blocked entries only when official source references or authorized artifact packages exist."
   },
   "boundary": {
     "self_validating_package_remains_closed": true,
