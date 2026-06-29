@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "docs/external-frameworks/framework-manifest.schema.json",
+  "title": "External Framework Manifest",
+  "type": "object",
+  "required": [
+    "artifact_type",
+    "schema_version",
+    "framework_id",
+    "name",
+    "source_reference",
+    "source_version",
+    "allowed_use_boundary",
+    "claims",
+    "non_claims",
+    "transition_table_mapping",
+    "SPE_overlap",
+    "StegVerse_ecosystem_overlap",
+    "fail_closed_conditions",
+    "boundary"
+  ],
+  "properties": {
+    "artifact_type": {"const": "external_framework_manifest"},
+    "schema_version": {"type": "string"},
+    "framework_id": {"type": "string"},
+    "name": {"type": "string"},
+    "source_reference": {"type": "string"},
+    "source_version": {"type": "string"},
+    "allowed_use_boundary": {"type": "array", "items": {"type": "string"}},
+    "claims": {"type": "array", "items": {"type": "string"}},
+    "non_claims": {"type": "array", "items": {"type": "string"}},
+    "transition_table_mapping": {"type": "object"},
+    "SPE_overlap": {"type": "object"},
+    "StegVerse_ecosystem_overlap": {"type": "object"},
+    "fail_closed_conditions": {"type": "array", "items": {"type": "string"}},
+    "boundary": {"type": "object"}
+  }
+}
