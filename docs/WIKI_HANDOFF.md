@@ -26,14 +26,23 @@ The wiki must not claim final validated release status unless source validation 
 ## Installed Files
 
 - docs/WIKI_HANDOFF.md
+- docs/REPO_STANDARDS_ADMISSIBILITY.md
+- docs/REPO_STANDARDS_STATUS.md
+- docs/REPO_STANDARDS_CHECK.md
+
+## Current State
+
+Repository standards admissibility reference is installed for the repo-standards release-candidate surface.
 
 ## Remaining Work
 
-- Add repository standards admissibility reference.
-- Add status document.
-- Add check surface.
-- Preserve downstream pending target: stegguardian-wiki.
+- Add executable checker when connector permits script writes.
+- Continue downstream target: stegguardian-wiki.
 
 ## Completion Target
 
-Goal activation is reached when the wiki has a standards admissibility reference, status artifact, check surface, and updated handoff.
+Goal activation is reached. The wiki has a standards admissibility reference, status artifact, check surface, and updated handoff.
+
+## Next Integration Goal Candidate
+
+Install Org AI Entity capability standards summary in stegguardian-wiki, preserving source authority and release-candidate validation boundary.
