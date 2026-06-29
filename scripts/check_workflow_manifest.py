@@ -20,7 +20,9 @@ REQUIRED_COMMANDS = [
     "python scripts/check_workflow_manifest.py",
     "python scripts/check_external_frameworks_index.py",
     "python scripts/check_external_framework_manifests.py",
+    "python scripts/check_external_framework_terminology.py",
     "python scripts/check_external_framework_reports.py",
+    "python scripts/check_external_framework_report_generation.py",
     "python scripts/check_guardian_destination.py",
 ]
 
@@ -35,7 +37,9 @@ EXPECTED_RESULTS = {
     "workflow_manifest": "WORKFLOW MANIFEST: PASS",
     "external_frameworks_index": "EXTERNAL FRAMEWORKS INDEX: PASS",
     "external_framework_manifests": "EXTERNAL FRAMEWORK MANIFESTS: PASS",
+    "external_framework_terminology": "EXTERNAL FRAMEWORK TERMINOLOGY: PASS",
     "external_framework_reports": "EXTERNAL FRAMEWORK REPORTS: PASS",
+    "external_framework_report_generation": "EXTERNAL FRAMEWORK REPORT GENERATION: PASS",
     "destination_state": "GUARDIAN DESTINATION: BLOCKED",
 }
 
@@ -62,7 +66,7 @@ def main() -> int:
 
     if manifest.get("manifest_id") != "ADMISSIBILITY-WIKI-WORKFLOW-001":
         failures.append("manifest id mismatch")
-    if manifest.get("schema_version") != "0.8":
+    if manifest.get("schema_version") != "0.9":
         failures.append("schema version mismatch")
 
     workflows = manifest.get("canonical_workflows", [])
