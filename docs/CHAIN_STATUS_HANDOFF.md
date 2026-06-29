@@ -22,6 +22,7 @@ automation state
 canonical workflow
 iOS-safe workflow mirror
 workflow manifest
+blocked-destination record validator
 generated report path
 blocked destination
 archive readiness
@@ -47,6 +48,7 @@ scripts/check_continuation_bundle.py
 scripts/check_chain_snapshot.py
 scripts/check_chain_snapshot_receipt.py
 scripts/check_chain_auto.py
+scripts/check_blocked_destination_record.py
 scripts/check_workflow_manifest.py
 scripts/check_guardian_destination.py
 workflow_manifest.json
@@ -60,6 +62,7 @@ python scripts/check_continuation_bundle.py
 python scripts/check_chain_snapshot.py
 python scripts/check_chain_snapshot_receipt.py
 python scripts/check_chain_auto.py
+python scripts/check_blocked_destination_record.py
 python scripts/check_workflow_manifest.py
 python scripts/check_guardian_destination.py
 ```
@@ -72,6 +75,7 @@ CONTINUATION BUNDLE: PASS
 CHAIN SNAPSHOT: PASS
 CHAIN SNAPSHOT RECEIPT: PASS
 CHAIN AUTO: PASS
+BLOCKED DESTINATION RECORD: PASS
 WORKFLOW MANIFEST: PASS
 GUARDIAN DESTINATION: BLOCKED
 ```
@@ -144,6 +148,12 @@ StegVerse-Labs/StegGuardian -> not found
 StegVerse-Labs/stegguardian -> not found
 ```
 
+The blocked-destination machine record is validated by:
+
+```text
+scripts/check_blocked_destination_record.py
+```
+
 ## Next Governed Destination
 
 ```text
@@ -157,5 +167,5 @@ Until that destination exists, continue from this handoff and do not invent a Gu
 Future sessions should continue from this handoff when advancing chain-status propagation work.
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 67% complete
-67% complete vs current activation
+admissibility-wiki - 76% complete
+76% complete vs current activation
