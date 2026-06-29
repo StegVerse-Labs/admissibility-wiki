@@ -1,18 +1,21 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "1.8",
+  "schema_version": "2.0",
   "repo": "StegVerse-Labs/admissibility-wiki",
-  "previous_goal": {
-    "goal_id": "self-validating-governance-package",
-    "status": "COMPLETE",
-    "completion_percent": 100,
-    "closure_result": "SELF_VALIDATING_PACKAGE_COMPLETE"
-  },
+  "previous_goals": [
+    {
+      "goal_id": "self-validating-governance-package",
+      "status": "COMPLETE",
+      "completion_percent": 100,
+      "closure_result": "SELF_VALIDATING_PACKAGE_COMPLETE"
+    }
+  ],
   "current_goal": {
     "goal_id": "external-framework-compatibility-testbench",
-    "status": "ACTIVE",
-    "completion_percent": 96,
-    "cycle_status": "CLOSURE_READY_WITH_EXPLICIT_UNRESOLVED_INTAKE",
+    "status": "COMPLETE",
+    "completion_percent": 100,
+    "cycle_status": "COMPLETE_WITH_EXPLICIT_UNRESOLVED_INTAKE",
+    "closure_result": "TESTBENCH_COMPLETE_WITH_FAIL_CLOSED_UNRESOLVED_STATES",
     "built_surfaces": [
       "transition-table-based framework registry",
       "framework manifest schema",
@@ -62,12 +65,18 @@
     "unresolved_final_intake_states": [
       "source-blocked framework entries remain fail-closed until official sources exist",
       "artifact-package-required entries remain bounded to artifact-specific intake evidence"
-    ],
-    "next_required_action": "Close the active testbench goal by recording unresolved intake states as non-authorizing final blocked states, then start the next expansion goal for adding more sourced frameworks."
+    ]
+  },
+  "next_goal": {
+    "goal_id": "external-framework-expansion-cycle",
+    "status": "QUEUED_FOR_NEXT_ACTIVATION",
+    "initial_completion_percent_on_activation": 0,
+    "activation_rule": "Start only after this closure state is validated; add more sourced frameworks without weakening fail-closed intake boundaries."
   },
   "boundary": {
     "self_validating_package_remains_closed": true,
-    "external_framework_testbench_active": true,
+    "external_framework_testbench_complete": true,
+    "next_goal_not_activated": true,
     "no_framework_certification_claim": true,
     "no_external_endorsement_claim": true,
     "no_execution_authority_claim": true,
