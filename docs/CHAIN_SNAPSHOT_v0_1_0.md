@@ -21,8 +21,10 @@ iosnoperiod.md
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 scripts/check_chain_status_continuation.py
 scripts/check_continuation_bundle.py
+scripts/check_chain_snapshot.py
 scripts/check_chain_snapshot_receipt.py
 scripts/check_chain_auto.py
+scripts/check_blocked_destination_record.py
 scripts/check_workflow_manifest.py
 scripts/check_guardian_destination.py
 workflow_manifest.json
@@ -33,8 +35,10 @@ workflow_manifest.json
 ```bash
 python scripts/check_chain_status_continuation.py
 python scripts/check_continuation_bundle.py
+python scripts/check_chain_snapshot.py
 python scripts/check_chain_snapshot_receipt.py
 python scripts/check_chain_auto.py
+python scripts/check_blocked_destination_record.py
 python scripts/check_workflow_manifest.py
 python scripts/check_guardian_destination.py
 ```
@@ -44,8 +48,10 @@ Expected:
 ```text
 CHAIN CONTINUATION: PASS
 CONTINUATION BUNDLE: PASS
+CHAIN SNAPSHOT: PASS
 CHAIN SNAPSHOT RECEIPT: PASS
 CHAIN AUTO: PASS
+BLOCKED DESTINATION RECORD: PASS
 WORKFLOW MANIFEST: PASS
 GUARDIAN DESTINATION: BLOCKED
 ```
@@ -108,3 +114,7 @@ This snapshot records continuation state only. It does not claim activation, clo
 ```text
 Create or identify the Guardian standing-boundary repository, then add a narrow standing-boundary reference preserving the existing boundary.
 ```
+
+StegVerse-Labs - 5% complete
+admissibility-wiki - 78% complete
+78% complete vs current activation
