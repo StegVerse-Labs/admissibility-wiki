@@ -1,9 +1,34 @@
 {
   "artifact_type": "external_framework_registry",
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "section": "external-frameworks",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "goal_id": "external-framework-compatibility-testbench",
+  "testbench_model": {
+    "basis": "transition_table_elements",
+    "purpose": "Generalized compatibility testing for external framework outputs against SPE and StegVerse ecosystem semantics.",
+    "minimum_transition_table_elements": [
+      "framework_identity",
+      "source_reference",
+      "source_version",
+      "allowed_use_boundary",
+      "claims",
+      "non_claims",
+      "input_artifact_type",
+      "output_artifact_type",
+      "actor_or_authority_model",
+      "evidence_model",
+      "policy_or_rule_model",
+      "delegation_model",
+      "decision_or_result_model",
+      "execution_authority_claim",
+      "receipt_or_trace_model",
+      "reconstruction_model",
+      "SPE_overlap",
+      "StegVerse_ecosystem_overlap",
+      "fail_closed_conditions"
+    ]
+  },
   "entries": [
     {
       "framework_id": "admissible-existence-seed-cycle",
@@ -47,6 +72,8 @@
     "index_inclusion_is_endorsement": false,
     "index_inclusion_is_execution_authority": false,
     "testbench_outputs_are_compatibility_evidence_only": true,
-    "missing_source_fails_closed": true
+    "missing_source_fails_closed": true,
+    "missing_transition_table_mapping_fails_closed": true,
+    "undefined_overlap_fails_closed": true
   }
 }
