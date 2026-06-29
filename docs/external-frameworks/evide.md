@@ -26,6 +26,17 @@ EVIDE is treated in this wiki as an external framework for preserving or organiz
 
 Its primary relationship to the Admissibility Wiki is reconstructability: what evidence remains after the fact, whether a reviewer can inspect it, and whether the evidentiary path can explain what occurred without relying only on narrative descriptions.
 
+## Framework-Term Definitions
+
+| Native EVIDE Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
+|---|---|---|---|
+| EVIDE | External evidentiary deposit framework for preserving or organizing evidence after an event, decision, or attempted transition. | new | Preserved as EVIDE-native framework terminology. |
+| Evidentiary deposit | A post-event artifact or record deposit used to support later inspection or reconstruction. | adjacent | Related to Evidence Posture and Receipt-Bound Execution. |
+| Evidentiary registry | A registry or record surface for organizing deposited evidence. | adjacent | Supports Reconstructability and dispute review. |
+| Closed decision unit | A bounded decision artifact or unit whose evidence may be deposited and later reviewed. | new | Preserved as EVIDE-native terminology until separately evaluated. |
+| Event reconstruction | Later reconstruction of what occurred from evidence records. | adjacent | Related to Reconstructability, but not proof of commit-time standing. |
+| Dispute support | Evidence organization that may assist later challenge or review. | adjacent | Related to Decision Record and Review Posture. |
+
 ## Why It Matters
 
 EVIDE can help a non-StegVerse ecosystem describe:
