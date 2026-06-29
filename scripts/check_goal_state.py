@@ -18,6 +18,8 @@ CURRENT_DONE_WHEN = [
     "the expansion cycle preserves all prior non-authority boundaries",
     "every registry entry has a deterministic generated compatibility report",
     "CI evidence is recorded as green or fail-closed before cycle closure",
+    "manual task state is false",
+    "scheduled validation path exists",
 ]
 
 BUILT_SURFACES = [
@@ -49,6 +51,7 @@ BUILT_SURFACES = [
     "iOS workflow mirror CI evidence validation step",
     "auto-state CI evidence declaration",
     "workflow-manifest CI evidence declaration",
+    "non-manual CI evidence boundary",
 ]
 
 
@@ -64,7 +67,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "2.8":
+    if data.get("schema_version") != "2.9":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -83,9 +86,9 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 84:
+    if current.get("completion_percent") != 92:
         failures.append("current goal completion mismatch")
-    if current.get("cycle_status") != "CI_EVIDENCE_FAIL_CLOSED_RECORDED":
+    if current.get("cycle_status") != "NON_MANUAL_CI_EVIDENCE_BOUNDARY_RECORDED":
         failures.append("cycle status mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
@@ -109,9 +112,12 @@ def main() -> int:
         "expansion_policy_is_non_authorizing",
         "generated_reports_are_non_authorizing",
         "missing_ci_evidence_fails_closed",
+        "scheduled_validation_path_exists",
     ]:
         if boundary.get(key) is not True:
             failures.append(f"boundary mismatch: {key}")
+    if boundary.get("manual_task_required") is not False:
+        failures.append("manual task boundary mismatch")
 
     print("GOAL STATE:", "FAIL" if failures else "PASS")
     for failure in failures:
