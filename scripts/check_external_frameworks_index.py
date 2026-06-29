@@ -69,7 +69,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "external_framework_registry":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "0.2":
+    if data.get("schema_version") != "0.3":
         failures.append("schema version mismatch")
     if data.get("goal_id") != "external-framework-compatibility-testbench":
         failures.append("goal id mismatch")
@@ -98,7 +98,7 @@ def main() -> int:
         if isinstance(path, str) and not (ROOT / path).exists():
             failures.append(f"entry path missing: {path}")
         manifest_path = entry.get("manifest_path")
-        if isinstance(manifest_path, str) and not (ROOT / manifest_path).exists():
+        if not isinstance(manifest_path, str) or not (ROOT / manifest_path).exists():
             failures.append(f"manifest path missing: {manifest_path}")
         for claim_field in ["claims_certification", "claims_endorsement", "claims_execution_authority"]:
             if entry.get(claim_field) is not False:
