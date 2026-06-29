@@ -1,0 +1,79 @@
+{
+  "schema_version": "0.1",
+  "record_state": "intake",
+  "source_authority_boundary": "Mathematics crosswalk rows are interoperability artifacts. They do not prove equations, validate parameters, create source-discipline equivalence, or create commit-time authority.",
+  "rows": [
+    {
+      "crosswalk_id": "math-gcat-state-v0-1",
+      "equation_or_object": "x = (g,c,a,t) in [0,1]^4",
+      "source_framing": "four-dimensional governed-autonomy state",
+      "transition_table_role": "prior_state_or_resulting_state",
+      "translation_record_ids": ["dtg-physics-state-v0-1", "dtg-gcat-capacity-margin-v0-1"],
+      "review_posture": "mapped",
+      "non_claims": "This row does not prove a physical state model or validate a GCAT deployment."
+    },
+    {
+      "crosswalk_id": "math-gcat-capacity-v0-1",
+      "equation_or_object": "Lambda(x) = K g^alpha c^beta t^gamma",
+      "source_framing": "legitimacy or governance capacity function",
+      "transition_table_role": "constraint_reference",
+      "translation_record_ids": ["dtg-gcat-capacity-margin-v0-1"],
+      "review_posture": "mapped",
+      "non_claims": "This row does not prove the capacity function or any parameterization."
+    },
+    {
+      "crosswalk_id": "math-gcat-margin-v0-1",
+      "equation_or_object": "m(x) = Lambda(x) - a",
+      "source_framing": "admissibility margin",
+      "transition_table_role": "admissibility_question",
+      "translation_record_ids": ["dtg-gcat-capacity-margin-v0-1"],
+      "review_posture": "mapped",
+      "non_claims": "This row does not prove any specific admissibility result."
+    },
+    {
+      "crosswalk_id": "math-gcat-region-v0-1",
+      "equation_or_object": "A = {x : m(x) >= 0}",
+      "source_framing": "admissible region",
+      "transition_table_role": "boundary_condition",
+      "translation_record_ids": ["dtg-gcat-capacity-margin-v0-1", "dtg-bcat-boundary-v0-1"],
+      "review_posture": "mapped",
+      "non_claims": "This row does not prove that a real transition is inside the admissible region."
+    },
+    {
+      "crosswalk_id": "math-control-dynamics-v0-1",
+      "equation_or_object": "dot{x} = f(x) + G(x)u",
+      "source_framing": "control-affine system evolution",
+      "transition_table_role": "candidate_transition_or_transition_dynamics",
+      "translation_record_ids": ["dtg-physics-interaction-v0-1"],
+      "review_posture": "proposed",
+      "non_claims": "This row does not assign agency or governance authority to a physical interaction."
+    },
+    {
+      "crosswalk_id": "math-control-barrier-v0-1",
+      "equation_or_object": "dot{m}(x,u) >= -kappa m(x)",
+      "source_framing": "barrier condition preserving admissibility",
+      "transition_table_role": "constraint_reference_or_policy_gate_analogue",
+      "translation_record_ids": ["dtg-gcat-capacity-margin-v0-1", "dtg-runtime-fail-closed-v0-1"],
+      "review_posture": "mapped",
+      "non_claims": "This row does not prove runtime safety outside the declared assumptions."
+    },
+    {
+      "crosswalk_id": "math-rigel-face-distance-v0-1",
+      "equation_or_object": "d_F(tilde{x}) = min_i tilde{x}_i",
+      "source_framing": "distance to nearest collapse face",
+      "transition_table_role": "boundary_distance_or_recoverability_evidence",
+      "translation_record_ids": ["dtg-bcat-boundary-v0-1"],
+      "review_posture": "mapped",
+      "non_claims": "This row does not prove collapse or recovery in any specific system."
+    },
+    {
+      "crosswalk_id": "math-commit-allow-v0-1",
+      "equation_or_object": "ALLOW_ideal(u; x, tau) iff Phi(x,u) in R_rob(tau)",
+      "source_framing": "ideal commit admissibility condition",
+      "transition_table_role": "decision_result_and_commit_time_validity",
+      "translation_record_ids": ["dtg-runtime-fail-closed-v0-1"],
+      "review_posture": "mapped",
+      "non_claims": "This row does not authorize execution or prove an implementation satisfies the ideal condition."
+    }
+  ]
+}
