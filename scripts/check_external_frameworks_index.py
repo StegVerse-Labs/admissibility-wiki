@@ -46,6 +46,12 @@ MINIMUM_TRANSITION_TABLE_ELEMENTS = [
     "fail_closed_conditions",
 ]
 
+ALLOWED_SCHEMA_VERSIONS = {"0.3", "0.4"}
+ALLOWED_GOAL_IDS = {
+    "external-framework-compatibility-testbench",
+    "external-framework-expansion-cycle",
+}
+
 
 def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -69,9 +75,9 @@ def main() -> int:
 
     if data.get("artifact_type") != "external_framework_registry":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "0.3":
+    if data.get("schema_version") not in ALLOWED_SCHEMA_VERSIONS:
         failures.append("schema version mismatch")
-    if data.get("goal_id") != "external-framework-compatibility-testbench":
+    if data.get("goal_id") not in ALLOWED_GOAL_IDS:
         failures.append("goal id mismatch")
 
     model = data.get("testbench_model", {})
