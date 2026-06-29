@@ -41,6 +41,20 @@ Morrison Runtime is listed as a candidate comparison target for runtime-governan
 
 Admissibility review remains separate and asks whether a transition may bind consequence at commit time.
 
+## Execution Authority Boundary
+
+Morrison Runtime is unevaluated for StegVerse execution-authority purposes.
+
+No Morrison Runtime artifact, output, recommendation, trace, proof, runtime result, or evaluation constitutes execution authority inside StegVerse.
+
+Morrison Runtime material may be evaluated as external evidence, but execution authority is determined only by StegVerse commit-time admissibility under current standing semantics.
+
+## Evaluation Result Posting
+
+Evaluation results for Morrison Runtime must be posted from the generated compatibility report at `docs/external-frameworks/reports/morrison-runtime.compatibility.json`.
+
+Until the generated report changes from `SOURCE_BLOCKED_FAIL_CLOSED`, this page remains a source-blocked intake record.
+
 ## Crosswalk Targets
 
 | Candidate Function | Wiki / AE Relationship |
@@ -71,6 +85,7 @@ The AE reflection packet currently treats this entry as a bounded test-result di
 ```text
 Morrison Runtime is not a StegVerse canonical formalism.
 Morrison Runtime does not prove transition admissibility.
+Morrison Runtime does not grant execution authority.
 Runtime-governance behavior does not automatically equal commit-time admissibility.
 This page is not externally sourced until an official Morrison Runtime website or canonical public artifact is supplied.
 Morrison Runtime was not fully validated by this page.
