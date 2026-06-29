@@ -31,6 +31,7 @@ static/status/admissibility-wiki-activation.json
 static/status/admissibility-wiki-status.json
 static/status/public-activation-receipt.example.json
 static/status/workflow-receipt-automation-status.json
+static/status/workflow-evidence-status.json
 static/status/proposal-core-lite-target-watch-status.json
 static/status/no-manual-task-guard-status.json
 static/status/mirror-handoff-guard-status.json
@@ -57,6 +58,7 @@ scripts/check-external-frameworks.mjs
 scripts/check-publication-chain-guard.mjs
 scripts/check-publication-verification-status.mjs
 scripts/check-workflow-receipt-automation-status.mjs
+scripts/check-workflow-evidence-status.mjs
 scripts/check-proposal-core-lite-target-watch-status.mjs
 scripts/check-no-manual-task-assignments.mjs
 scripts/check-mirror-handoff-guard.mjs
@@ -80,13 +82,15 @@ The deploy workflow validates governance artifacts, builds the Docusaurus site, 
 
 A separate success recorder listens for successful deploy workflow completion and emits a success receipt artifact.
 
+Workflow evidence status records whether connector-visible commit status evidence has been observed. Pending evidence must not advance activation posture.
+
 The proposal-governance-core-lite target watcher checks target readiness on push, schedule, and workflow dispatch. If the target is unavailable, it remains pending and emits a bounded artifact without assigning a manual task.
 
 The no-manual-task guard prevents tracked handoff/current-sync files from reintroducing manual assignment language.
 
 The mirror-handoff guard prevents sessions from proceeding if the root handoff source of truth loses required continuity sections.
 
-The workflow receipt automation status, proposal core-lite target-watch status, no-manual-task guard status, and mirror-handoff guard status are covered by aggregate validation.
+The workflow receipt automation status, workflow evidence status, proposal core-lite target-watch status, no-manual-task guard status, and mirror-handoff guard status are covered by aggregate validation.
 
 ## Installed Formalism Mirrors
 
@@ -208,16 +212,17 @@ Public verification: deploy workflow verify-public-pages job
 Failure receipt artifact: admissibility-wiki-workflow-failure
 Success receipt artifact: admissibility-wiki-workflow-success
 Workflow receipt status validator: scripts/check-workflow-receipt-automation-status.mjs
+Workflow evidence status validator: scripts/check-workflow-evidence-status.mjs
 Proposal core-lite watcher artifact: proposal-core-lite-target-watch
 Proposal core-lite watcher validator: scripts/check-proposal-core-lite-target-watch-status.mjs
 No-manual-task guard validator: scripts/check-no-manual-task-assignments.mjs
 Mirror-handoff guard validator: scripts/check-mirror-handoff-guard.mjs
 Manual task requirement: none recorded in this handoff
-Failure posture: first failing validator, missing artifact, public URL check, manual-assignment guard, mirror-handoff guard, or watcher-status inconsistency becomes the next bounded repair target
+Failure posture: first failing validator, missing artifact, public URL check, workflow evidence gap, manual-assignment guard, mirror-handoff guard, or watcher-status inconsistency becomes the next bounded repair target
 ```
 
 ## Next Safe Build Targets
 
-1. Let repo automation validate, build, deploy, verify public URLs, watch proposal-core-lite target readiness, enforce no-manual-task assignment, guard mirror handoff continuity, and emit bounded artifacts.
-2. If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, manual-assignment guard, mirror-handoff guard, or watcher-status inconsistency identified by failed job logs.
+1. Let repo automation validate, build, deploy, verify public URLs, watch proposal-core-lite target readiness, enforce no-manual-task assignment, guard mirror handoff continuity, track workflow evidence, and emit bounded artifacts.
+2. If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, workflow evidence gap, manual-assignment guard, mirror-handoff guard, or watcher-status inconsistency identified by failed job logs.
 3. Update activation posture only from workflow evidence or source-confirmed deployment state.
