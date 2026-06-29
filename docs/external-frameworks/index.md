@@ -52,12 +52,21 @@ Commitment Candidate != execution authority
 
 Execution authority must be reconstructed at the commit boundary from current standing.
 
+## Terminology Reconciliation
+
+External terminology is governed by the [Governed Terminology Reconciliation Rule](./terminology-reconciliation-rule.md).
+
+A relationship may be classified only as `synonymous`, `adjacent`, `new`, or `unresolved`.
+
+Similar wording, intent, implementation, or outcome is insufficient to establish synonymy. No reconciliation may inherit execution authority, admissibility, standing, certification, governance proofs, or the published claims of the external framework.
+
 ## Build Strategy Pages
 
 | Page | Purpose |
 |---|---|
 | [Governance Observatory Protocol](./governance-observatory-protocol.md) | Defines the neutral page structure and observation rules for external frameworks. |
 | [Commit-Time Interoperability Contract](./commit-time-interoperability-contract.md) | Defines the minimal contract for routing external artifacts into a Commitment Candidate and SPE determination. |
+| [Governed Terminology Reconciliation Rule](./terminology-reconciliation-rule.md) | Defines how external terms may be classified as synonymous, adjacent, new, or unresolved without inheriting authority. |
 
 ## Current External Frameworks
 
@@ -71,7 +80,7 @@ Execution authority must be reconstructed at the commit boundary from current st
 | [CARE Runtime](./care-runtime.md) | Public runtime-governance platform candidate | official source required | Candidate crosswalk target for runtime governance, public-platform posture, and consequence-boundary language. |
 | [AAR](./aar.md) | Supervised AI governance and operational forensics candidate | sourced | Crosswalk target for observable-system governance and pre-execution cost governance. |
 | [Agent Governance Playbook](./agent-governance-playbook.md) | Agent-continuation governance playbook | sourced | Crosswalk target for whether an agent should still be allowed to continue. |
-| [Emergency Stop Convention](./killswitch-md.md) | AI-agent emergency stop convention | sourced | Crosswalk target for emergency shutdown, stop conditions, and fail-closed behavior. |
+| [Emergency Stop Convention](./killswitch-md.md) | AI-agent emergency stop convention | sourced | Crosswalk target for emergency stop conditions and fail-closed behavior. |
 | [NIST AI RMF](./nist-ai-rmf.md) | Voluntary AI risk management | sourced | Crosswalk target for risk, trustworthiness, lifecycle review, and evaluation posture. |
 | [ISO/IEC 42001](./iso-iec-42001.md) | AI management system standard | sourced | Crosswalk target for organizational AI governance and management-system controls. |
 | [EU AI Act](./eu-ai-act.md) | Legal/regulatory AI framework | sourced | Crosswalk target for obligations, risk classes, documentation, oversight, and governance duties. |
