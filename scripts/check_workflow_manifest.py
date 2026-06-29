@@ -12,6 +12,7 @@ REQUIRED_COMMANDS = [
     "python scripts/check_workflow_sprawl.py",
     "python scripts/generate_external_framework_reports.py",
     "python scripts/generate_external_framework_results.py",
+    "python scripts/generate_external_framework_page_metadata.py",
     "python scripts/generate_external_framework_page_status.py",
     "python scripts/check_chain_status_continuation.py",
     "python scripts/check_continuation_bundle.py",
@@ -28,6 +29,7 @@ REQUIRED_COMMANDS = [
     "python scripts/check_external_framework_report_coverage.py",
     "python scripts/check_external_framework_report_generation.py",
     "python scripts/check_external_framework_results_page.py",
+    "python scripts/check_external_framework_page_metadata.py",
     "python scripts/check_external_framework_page_status.py",
     "python scripts/check_external_framework_expansion_policy.py",
     "python scripts/check_ci_evidence.py",
@@ -39,6 +41,7 @@ EXPECTED = {
     "external_framework_report_coverage": "EXTERNAL FRAMEWORK REPORT COVERAGE: PASS",
     "external_framework_report_generation": "EXTERNAL FRAMEWORK REPORT GENERATION: PASS",
     "external_framework_results_page": "EXTERNAL FRAMEWORK RESULTS PAGE: PASS",
+    "external_framework_page_metadata": "EXTERNAL FRAMEWORK PAGE METADATA: PASS",
     "external_framework_page_status": "EXTERNAL FRAMEWORK PAGE STATUS: PASS",
     "external_framework_expansion_policy": "EXTERNAL FRAMEWORK EXPANSION POLICY: PASS",
     "ci_evidence": "CI EVIDENCE: PASS",
@@ -55,7 +58,7 @@ def main() -> int:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     if manifest.get("manifest_id") != "ADMISSIBILITY-WIKI-WORKFLOW-001":
         failures.append("manifest id mismatch")
-    if manifest.get("schema_version") != "1.2":
+    if manifest.get("schema_version") != "1.3":
         failures.append("schema version mismatch")
 
     workflows = manifest.get("canonical_workflows", [])
@@ -85,6 +88,8 @@ def main() -> int:
         failures.append("external output boundary mismatch")
     if boundary.get("generated_framework_results_are_authority") is not False:
         failures.append("generated results authority boundary mismatch")
+    if boundary.get("generated_framework_page_metadata_is_authority") is not False:
+        failures.append("generated metadata authority boundary mismatch")
     if boundary.get("generated_framework_page_status_is_authority") is not False:
         failures.append("generated page status authority boundary mismatch")
 
