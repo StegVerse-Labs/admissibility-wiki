@@ -109,10 +109,11 @@ docs/CHAIN_SNAPSHOT_v0_1_0.md
 docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
 ```
 
-The current automation-state record is:
+The current automation-state and goal-state records are:
 
 ```text
 docs/CHAIN_AUTO.json
+docs/GOAL_STATE.json
 ```
 
 The current blocked-destination records are:
@@ -133,7 +134,9 @@ scripts/check_chain_snapshot.py
 scripts/check_chain_snapshot_receipt.py
 scripts/check_chain_auto.py
 scripts/check_blocked_destination_record.py
+scripts/check_goal_state.py
 scripts/check_workflow_manifest.py
+scripts/check_external_frameworks_index.py
 scripts/check_guardian_destination.py
 ```
 
@@ -146,7 +149,9 @@ python scripts/check_chain_snapshot.py
 python scripts/check_chain_snapshot_receipt.py
 python scripts/check_chain_auto.py
 python scripts/check_blocked_destination_record.py
+python scripts/check_goal_state.py
 python scripts/check_workflow_manifest.py
+python scripts/check_external_frameworks_index.py
 python scripts/check_guardian_destination.py
 ```
 
@@ -159,7 +164,9 @@ CHAIN SNAPSHOT: PASS
 CHAIN SNAPSHOT RECEIPT: PASS
 CHAIN AUTO: PASS
 BLOCKED DESTINATION RECORD: PASS
+GOAL STATE: PASS
 WORKFLOW MANIFEST: PASS
+EXTERNAL FRAMEWORKS INDEX: PASS
 GUARDIAN DESTINATION: BLOCKED
 ```
 
@@ -215,6 +222,16 @@ docs/external-frameworks/activation/admissible-existence-seed-cycle.json
 
 These files mirror evidence-bounded ecosystem status. They do not create certification, endorsement, execution authority, or commit-time standing.
 
+## Queued Next Goal
+
+The next repository goal is queued in:
+
+```text
+docs/GOAL_STATE.json
+```
+
+The queued goal is the External Framework Compatibility Testbench. It remains non-active until the current self-validating governance package reaches 100%.
+
 ## Done State
 
 This repository is considered initially established when it has:
@@ -267,6 +284,7 @@ docs/
   CHAIN_STATUS_CONTINUATION.schema.json
   CHAIN_SNAPSHOT_v0_1_0.md
   CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
+  GOAL_STATE.json
 iosnoperiod/
   github/workflows/validate-chain-continuation.yml
 scripts/
@@ -276,7 +294,9 @@ scripts/
   check_chain_snapshot_receipt.py
   check_chain_auto.py
   check_blocked_destination_record.py
+  check_goal_state.py
   check_workflow_manifest.py
+  check_external_frameworks_index.py
   check_guardian_destination.py
 workflow_manifest.json
 ```
@@ -299,5 +319,5 @@ StegVerse is the originating ecosystem. The Admissibility Wiki is the public voc
 The goal is not to make every StegVerse artifact promotional. The goal is to define the language of admissible transition governance clearly enough that others can evaluate, compare, critique, reuse, or extend it.
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 82% complete
-82% complete vs current activation
+admissibility-wiki - 91% complete
+91% complete vs current activation
