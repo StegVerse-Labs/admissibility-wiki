@@ -1,6 +1,6 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "1.6",
+  "schema_version": "1.7",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "previous_goal": {
     "goal_id": "self-validating-governance-package",
@@ -11,8 +11,8 @@
   "current_goal": {
     "goal_id": "external-framework-compatibility-testbench",
     "status": "ACTIVE",
-    "completion_percent": 72,
-    "cycle_status": "ALL_LISTED_FRAMEWORK_MANIFESTS_AND_TERMINOLOGY_RECORDED",
+    "completion_percent": 84,
+    "cycle_status": "DECLARED_VALIDATION_PACKAGE_ALIGNED",
     "built_surfaces": [
       "transition-table-based framework registry",
       "framework manifest schema",
@@ -41,7 +41,10 @@
       "per-framework native term definition tables",
       "external framework terminology validator",
       "canonical workflow terminology validation step",
-      "iOS workflow mirror terminology validation step"
+      "iOS workflow mirror terminology validation step",
+      "auto-state terminology validation declaration",
+      "auto-state report-generation validation declaration",
+      "auto-state generator declaration"
     ],
     "done_when": [
       "framework registry exists and is machine-verifiable",
@@ -54,7 +57,7 @@
       "framework pages do not claim certification, endorsement, or execution authority",
       "the testbench fails closed on missing sources, stale versions, or undefined overlap"
     ],
-    "next_required_action": "Generate and record compatibility reports for every registry entry, then upgrade source-blocked entries only when official source references or authorized artifact packages exist."
+    "next_required_action": "Close the active testbench goal only after source-blocked entries either receive official source references or remain explicitly blocked as final unresolved intake state."
   },
   "boundary": {
     "self_validating_package_remains_closed": true,
@@ -64,6 +67,7 @@
     "no_execution_authority_claim": true,
     "testbench_outputs_are_compatibility_evidence_only": true,
     "source_blocked_entries_fail_closed": true,
-    "generated_reports_are_evidence_only": true
+    "generated_reports_are_evidence_only": true,
+    "declared_validation_package_aligned": true
   }
 }
