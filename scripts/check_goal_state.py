@@ -22,6 +22,8 @@ CURRENT_DONE_WHEN = [
     "scheduled validation path exists",
     "only one active workflow exists",
     "workflow selection task is removed",
+    "framework evaluation results are posted from compatibility reports",
+    "unevaluated frameworks explicitly deny execution authority",
 ]
 
 BUILT_SURFACES = [
@@ -58,6 +60,11 @@ BUILT_SURFACES = [
     "workflow sprawl validator",
     "extra active workflows removed",
     "extra iOS mirror workflow files removed",
+    "external framework result generator",
+    "external framework generated results page",
+    "external framework results page validator",
+    "source-blocked execution-authority boundary pages",
+    "artifact-required execution-authority boundary pages",
 ]
 
 
@@ -73,7 +80,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "3.0":
+    if data.get("schema_version") != "3.1":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -92,9 +99,9 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 96:
+    if current.get("completion_percent") != 98:
         failures.append("current goal completion mismatch")
-    if current.get("cycle_status") != "SINGLE_ACTIVE_WORKFLOW_POLICY_RECORDED":
+    if current.get("cycle_status") != "GENERATED_FRAMEWORK_RESULT_POSTING_RECORDED":
         failures.append("cycle status mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
@@ -117,6 +124,7 @@ def main() -> int:
         "unresolved_intake_states_are_non_authorizing",
         "expansion_policy_is_non_authorizing",
         "generated_reports_are_non_authorizing",
+        "generated_framework_results_are_non_authorizing",
         "missing_ci_evidence_fails_closed",
         "scheduled_validation_path_exists",
     ]:
@@ -126,6 +134,8 @@ def main() -> int:
         failures.append("manual task boundary mismatch")
     if boundary.get("manual_workflow_selection_required") is not False:
         failures.append("workflow selection boundary mismatch")
+    if boundary.get("manual_external_framework_result_posting_required") is not False:
+        failures.append("framework result posting boundary mismatch")
     if boundary.get("active_workflow_count") != 1:
         failures.append("active workflow count mismatch")
 
