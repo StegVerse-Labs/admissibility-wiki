@@ -1,9 +1,9 @@
 {
   "artifact_type": "external_framework_registry",
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "section": "external-frameworks",
   "repo": "StegVerse-Labs/admissibility-wiki",
-  "goal_id": "external-framework-compatibility-testbench",
+  "goal_id": "external-framework-expansion-cycle",
   "testbench_model": {
     "basis": "transition_table_elements",
     "purpose": "Generalized compatibility testing for external framework outputs against SPE and StegVerse ecosystem semantics.",
@@ -37,6 +37,7 @@
     {"framework_id":"morrison-runtime","name":"Morrison Runtime","status":"OFFICIAL-SOURCE-REQUIRED","path":"docs/external-frameworks/morrison-runtime.md","manifest_path":"docs/external-frameworks/morrison-runtime.json","source":"official public source URL required","testbench_state":"SOURCE_BLOCKED_FAIL_CLOSED","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
     {"framework_id":"care-runtime","name":"CARE Runtime","status":"INTAKE-PROVISIONAL","path":"docs/external-frameworks/care-runtime.md","manifest_path":"docs/external-frameworks/care-runtime.json","source":"official public source URL required","testbench_state":"SOURCE_BLOCKED_FAIL_CLOSED","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
     {"framework_id":"aar","name":"AAR","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/aar.md","manifest_path":"docs/external-frameworks/aar.json","source":"https://www.resurrection-tech.com/assessment","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"asro","name":"ASRO","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/asro.md","manifest_path":"docs/external-frameworks/asro.json","source":"https://aisystemsreliability.org/","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
     {"framework_id":"agent-governance-playbook","name":"Agent Governance Playbook","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/agent-governance-playbook.md","manifest_path":"docs/external-frameworks/agent-governance-playbook.json","source":"https://github.com/a1k7/agent-governance-playbook/releases/tag/v1.0","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
     {"framework_id":"emergency-stop-convention","name":"Emergency Stop Convention","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/killswitch-md.md","manifest_path":"docs/external-frameworks/emergency-stop-convention.json","source":"https://killswitch.md/","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
     {"framework_id":"nist-ai-rmf","name":"NIST AI RMF","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/nist-ai-rmf.md","manifest_path":"docs/external-frameworks/nist-ai-rmf.json","source":"https://www.nist.gov/itl/ai-risk-management-framework","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
