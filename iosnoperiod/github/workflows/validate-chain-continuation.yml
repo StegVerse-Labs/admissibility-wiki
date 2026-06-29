@@ -49,6 +49,9 @@ jobs:
       - name: Validate external framework manifests
         run: python scripts/check_external_framework_manifests.py
 
+      - name: Validate external framework terminology
+        run: python scripts/check_external_framework_terminology.py
+
       - name: Validate external framework reports
         run: python scripts/check_external_framework_reports.py
 
