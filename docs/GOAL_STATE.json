@@ -1,73 +1,50 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "3.5",
+  "schema_version": "3.4",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "previous_goals": [
-    {"goal_id":"self-validating-governance-package","status":"COMPLETE","completion_percent":100,"closure_result":"SELF_VALIDATING_PACKAGE_COMPLETE"},
-    {"goal_id":"external-framework-compatibility-testbench","status":"COMPLETE","completion_percent":100,"closure_result":"TESTBENCH_COMPLETE_WITH_FAIL_CLOSED_UNRESOLVED_STATES"},
-    {"goal_id":"external-framework-expansion-cycle","status":"COMPLETE-PENDING-CI-EVIDENCE-RETENTION","completion_percent":100,"closure_result":"EXPANSION_PIPELINE_GREEN_AND_SINGLE_WORKFLOW_CONFIRMED"}
+    {
+      "goal_id": "self-validating-governance-package",
+      "status": "COMPLETE",
+      "completion_percent": 100,
+      "closure_result": "SELF_VALIDATING_PACKAGE_COMPLETE"
+    },
+    {
+      "goal_id": "external-framework-compatibility-testbench",
+      "status": "COMPLETE",
+      "completion_percent": 100,
+      "closure_result": "TESTBENCH_COMPLETE_WITH_FAIL_CLOSED_UNRESOLVED_STATES"
+    },
+    {
+      "goal_id": "external-framework-expansion-cycle",
+      "status": "COMPLETE-PENDING-CI-EVIDENCE-RETENTION",
+      "completion_percent": 100,
+      "closure_result": "EXPANSION_PIPELINE_GREEN_AND_SINGLE_WORKFLOW_CONFIRMED"
+    }
   ],
   "current_goal": {
     "goal_id": "declarative-external-framework-generation-pipeline",
     "status": "ACTIVE",
-    "completion_percent": 52,
-    "cycle_status": "FRAMEWORK_PAGE_METADATA_GENERATION_RECORDED",
+    "completion_percent": 44,
+    "cycle_status": "HANDOFF_SYNC_RECORDED",
     "built_surfaces": [
       "framework page-status generator",
       "framework page-status validator",
-      "canonical workflow page-status generation step",
-      "canonical workflow page-status validation step",
-      "iOS workflow mirror page-status generation step",
-      "iOS workflow mirror page-status validation step",
-      "workflow-manifest page-status declarations",
-      "auto-state page-status declarations",
       "canonical workflow build-pages page-status regeneration step",
-      "iOS workflow mirror build-pages page-status regeneration step",
-      "public generated evaluation results URL verification step",
-      "auto-state page-status publication path declaration",
       "root handoff synchronized",
       "current task sync synchronized",
-      "remaining installation targets listed",
-      "framework page metadata generator",
-      "framework page metadata validator",
-      "canonical workflow page metadata generation step",
-      "canonical workflow page metadata validation step",
-      "iOS workflow mirror page metadata generation step",
-      "workflow-manifest page metadata declarations",
-      "auto-state page metadata declarations"
+      "remaining installation targets listed"
     ],
     "done_when": [
       "framework-page displayed evaluation status is generated from manifests and compatibility reports",
-      "manual framework-page evaluation status editing is not required",
-      "manual framework-page evaluation status publication is not required",
-      "generated page-status blocks are non-authorizing",
-      "workflow generates page-status blocks before validation and publication",
-      "validator detects drift between generated page-status blocks and source reports",
-      "framework narrative remains separable from generated status",
       "published site build regenerates page-status blocks before Docusaurus build",
       "handoff files reflect the active workflow and declarative generation state",
-      "remaining installation targets are listed",
-      "framework-page metadata is generated from registry and manifest records",
-      "manual framework-page metadata editing is not required"
+      "remaining installation targets are listed"
     ],
-    "next_required_action": "Generate framework-page terminology tables from manifests while preserving authored analysis."
+    "next_required_action": "Continue declarative external-framework generation from installed generators and validators."
   },
   "boundary": {
-    "prior_testbench_remains_closed": true,
-    "prior_expansion_cycle_remains_closed": true,
-    "declarative_generation_pipeline_active": true,
-    "no_framework_certification_claim": true,
-    "no_external_endorsement_claim": true,
-    "no_execution_authority_claim": true,
-    "generated_reports_are_non_authorizing": true,
-    "generated_framework_results_are_non_authorizing": true,
-    "generated_framework_page_status_is_non_authorizing": true,
-    "generated_framework_page_metadata_is_non_authorizing": true,
-    "manual_task_required": false,
-    "manual_framework_page_status_editing_required": false,
-    "manual_framework_page_status_publication_required": false,
-    "manual_framework_page_metadata_editing_required": false,
-    "scheduled_validation_path_exists": true,
-    "active_workflow_count": 1
+    "active_workflow_count": 1,
+    "scheduled_validation_path_exists": true
   }
 }
