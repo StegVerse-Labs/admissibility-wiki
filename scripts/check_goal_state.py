@@ -18,6 +18,16 @@ CURRENT_DONE_WHEN = [
     "the testbench fails closed on missing sources, stale versions, or undefined overlap",
 ]
 
+BUILT_SURFACES = [
+    "transition-table-based framework registry",
+    "framework manifest schema",
+    "registry validator",
+    "first compatibility report",
+    "compatibility report validator",
+    "canonical workflow validation step",
+    "iOS workflow mirror validation step",
+]
+
 
 def main() -> int:
     failures: list[str] = []
@@ -31,7 +41,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "1.1":
+    if data.get("schema_version") != "1.2":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -51,11 +61,16 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 0:
+    if current.get("completion_percent") != 12:
         failures.append("current goal completion mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
             failures.append(f"missing done criterion: {item}")
+    for item in BUILT_SURFACES:
+        if item not in current.get("built_surfaces", []):
+            failures.append(f"missing built surface: {item}")
+    if not current.get("next_required_action"):
+        failures.append("missing next required action")
 
     boundary = data.get("boundary", {})
     for key in [
