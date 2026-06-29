@@ -22,6 +22,16 @@ Official source: `https://www.iso.org/standard/42001`
 
 ISO describes ISO/IEC 42001:2023 as an international standard for establishing, implementing, maintaining, and continually improving an Artificial Intelligence Management System within organizations.
 
+## Framework-Term Definitions
+
+| Native ISO/IEC 42001 Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
+|---|---|---|---|
+| ISO/IEC 42001 | External international AI management system standard. | new | Preserved as ISO-native standard terminology. |
+| Artificial Intelligence Management System | Organizational management system for AI governance and improvement. | adjacent | Related to Governance Boundary and Policy Reference. |
+| Risk and opportunity management | Organizational process for managing AI-related risks and opportunities. | adjacent | Related to Evidence Posture and Review Posture. |
+| Organizational process | Managed organizational procedure or control surface. | adjacent | Related to Triad Governance Model and Decision Continuity. |
+| Continual improvement | Repeated improvement of the management system over time. | adjacent | Related to Learning Transition Governance. |
+
 ## Relationship To Admissibility
 
 ISO/IEC 42001 is useful as an organizational AI-management crosswalk target.
