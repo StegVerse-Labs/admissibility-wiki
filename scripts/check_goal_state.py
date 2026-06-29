@@ -20,6 +20,8 @@ CURRENT_DONE_WHEN = [
     "CI evidence is recorded as green or fail-closed before cycle closure",
     "manual task state is false",
     "scheduled validation path exists",
+    "only one active workflow exists",
+    "workflow selection task is removed",
 ]
 
 BUILT_SURFACES = [
@@ -52,6 +54,10 @@ BUILT_SURFACES = [
     "auto-state CI evidence declaration",
     "workflow-manifest CI evidence declaration",
     "non-manual CI evidence boundary",
+    "single active workflow policy",
+    "workflow sprawl validator",
+    "extra active workflows removed",
+    "extra iOS mirror workflow files removed",
 ]
 
 
@@ -67,7 +73,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "2.9":
+    if data.get("schema_version") != "3.0":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -86,9 +92,9 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 92:
+    if current.get("completion_percent") != 96:
         failures.append("current goal completion mismatch")
-    if current.get("cycle_status") != "NON_MANUAL_CI_EVIDENCE_BOUNDARY_RECORDED":
+    if current.get("cycle_status") != "SINGLE_ACTIVE_WORKFLOW_POLICY_RECORDED":
         failures.append("cycle status mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
@@ -118,6 +124,10 @@ def main() -> int:
             failures.append(f"boundary mismatch: {key}")
     if boundary.get("manual_task_required") is not False:
         failures.append("manual task boundary mismatch")
+    if boundary.get("manual_workflow_selection_required") is not False:
+        failures.append("workflow selection boundary mismatch")
+    if boundary.get("active_workflow_count") != 1:
+        failures.append("active workflow count mismatch")
 
     print("GOAL STATE:", "FAIL" if failures else "PASS")
     for failure in failures:
