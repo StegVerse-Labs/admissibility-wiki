@@ -1,6 +1,6 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "2.8",
+  "schema_version": "2.9",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "previous_goals": [
     {
@@ -19,8 +19,8 @@
   "current_goal": {
     "goal_id": "external-framework-expansion-cycle",
     "status": "ACTIVE",
-    "completion_percent": 84,
-    "cycle_status": "CI_EVIDENCE_FAIL_CLOSED_RECORDED",
+    "completion_percent": 92,
+    "cycle_status": "NON_MANUAL_CI_EVIDENCE_BOUNDARY_RECORDED",
     "built_surfaces": [
       "expansion policy",
       "expansion policy validator",
@@ -49,7 +49,8 @@
       "canonical workflow CI evidence validation step",
       "iOS workflow mirror CI evidence validation step",
       "auto-state CI evidence declaration",
-      "workflow-manifest CI evidence declaration"
+      "workflow-manifest CI evidence declaration",
+      "non-manual CI evidence boundary"
     ],
     "done_when": [
       "expansion intake rules exist and are machine-verifiable",
@@ -60,9 +61,11 @@
       "new framework pages include native terminology definitions",
       "the expansion cycle preserves all prior non-authority boundaries",
       "every registry entry has a deterministic generated compatibility report",
-      "CI evidence is recorded as green or fail-closed before cycle closure"
+      "CI evidence is recorded as green or fail-closed before cycle closure",
+      "manual task state is false",
+      "scheduled validation path exists"
     ],
-    "next_required_action": "Obtain visible GitHub Actions evidence or another reviewable validation record; close the expansion cycle only after validation evidence is present."
+    "next_required_action": "Close the expansion cycle only when scheduled or connector-returned CI evidence shows validation success."
   },
   "boundary": {
     "prior_testbench_remains_closed": true,
@@ -75,6 +78,8 @@
     "unresolved_intake_states_are_non_authorizing": true,
     "expansion_policy_is_non_authorizing": true,
     "generated_reports_are_non_authorizing": true,
-    "missing_ci_evidence_fails_closed": true
+    "missing_ci_evidence_fails_closed": true,
+    "manual_task_required": false,
+    "scheduled_validation_path_exists": true
   }
 }
