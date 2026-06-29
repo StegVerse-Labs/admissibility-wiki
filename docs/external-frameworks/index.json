@@ -1,0 +1,12 @@
+{
+  "section": "external-frameworks",
+  "entries": [
+    {
+      "name": "Admissible Existence Seed Cycle",
+      "status": "SEED-CYCLE-COMPLETE",
+      "path": "docs/external-frameworks/admissible-existence-seed-cycle.md",
+      "source": "Admissible-Existence/AE"
+    }
+  ],
+  "boundary": "Index inclusion does not create certification, endorsement, execution authority, or commit-time standing."
+}
