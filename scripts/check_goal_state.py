@@ -23,6 +23,11 @@ BUILT_SURFACES = [
     "expansion policy validator",
     "canonical workflow expansion-policy validation step",
     "iOS workflow mirror expansion-policy validation step",
+    "report coverage validator",
+    "canonical workflow report coverage validation step",
+    "iOS workflow mirror report coverage validation step",
+    "auto-state report coverage declaration",
+    "workflow-manifest report coverage declaration",
 ]
 
 
@@ -38,7 +43,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "2.2":
+    if data.get("schema_version") != "2.3":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -57,9 +62,9 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 12:
+    if current.get("completion_percent") != 24:
         failures.append("current goal completion mismatch")
-    if current.get("cycle_status") != "EXPANSION_CONTROL_SURFACE_ACTIVE":
+    if current.get("cycle_status") != "EXPANSION_REPORT_COVERAGE_DECLARED":
         failures.append("cycle status mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
