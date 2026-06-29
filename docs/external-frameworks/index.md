@@ -79,6 +79,7 @@ Similar wording, intent, implementation, or outcome is insufficient to establish
 | [Morrison Runtime](./morrison-runtime.md) | Runtime-governance comparison target | official source required | Candidate comparison target for runtime outcome and failure-state behavior. |
 | [CARE Runtime](./care-runtime.md) | Public runtime-governance platform candidate | official source required | Candidate crosswalk target for runtime governance, public-platform posture, and consequence-boundary language. |
 | [AAR](./aar.md) | Supervised AI governance and operational forensics candidate | sourced | Crosswalk target for observable-system governance and pre-execution cost governance. |
+| [ASRO](./asro.md) | Independent AI governance-state attestation | sourced | Crosswalk target for host-side measurement, edge-side witnessing, and independent verification of whether declared governance remained in force. |
 | [Agent Governance Playbook](./agent-governance-playbook.md) | Agent-continuation governance playbook | sourced | Crosswalk target for whether an agent should still be allowed to continue. |
 | [Emergency Stop Convention](./killswitch-md.md) | AI-agent emergency stop convention | sourced | Crosswalk target for emergency stop conditions and fail-closed behavior. |
 | [NIST AI RMF](./nist-ai-rmf.md) | Voluntary AI risk management | sourced | Crosswalk target for risk, trustworthiness, lifecycle review, and evaluation posture. |
@@ -101,6 +102,7 @@ EVIDE asks: What evidence remains after the event?
 ```text
 GLM -> declaration
 EVIDE -> evidence
+ASRO -> governance-state attestation
 DecisionAssure -> trace
 MindForge -> review
 Commitment Candidate -> proposed crossing
