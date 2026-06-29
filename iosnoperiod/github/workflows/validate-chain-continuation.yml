@@ -7,6 +7,16 @@ on:
   schedule:
     - cron: '17 9 * * *'
 
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: admissibility-wiki-canonical
+  cancel-in-progress: false
+
 jobs:
   validate-chain-continuation:
     runs-on: ubuntu-latest
@@ -21,6 +31,12 @@ jobs:
 
       - name: Validate single workflow policy
         run: python scripts/check_workflow_sprawl.py
+
+      - name: Generate external framework reports
+        run: python scripts/generate_external_framework_reports.py
+
+      - name: Generate external framework evaluation results
+        run: python scripts/generate_external_framework_results.py
 
       - name: Validate chain continuation
         run: python scripts/check_chain_status_continuation.py
