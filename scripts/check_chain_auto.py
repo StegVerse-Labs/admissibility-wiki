@@ -13,6 +13,7 @@ REQUIRED_COMMANDS = [
     "python scripts/check_workflow_sprawl.py",
     "python scripts/generate_external_framework_reports.py",
     "python scripts/generate_external_framework_results.py",
+    "python scripts/generate_external_framework_page_metadata.py",
     "python scripts/generate_external_framework_page_status.py",
     "python scripts/check_chain_status_continuation.py",
     "python scripts/check_continuation_bundle.py",
@@ -29,6 +30,7 @@ REQUIRED_COMMANDS = [
     "python scripts/check_external_framework_report_coverage.py",
     "python scripts/check_external_framework_report_generation.py",
     "python scripts/check_external_framework_results_page.py",
+    "python scripts/check_external_framework_page_metadata.py",
     "python scripts/check_external_framework_page_status.py",
     "python scripts/check_external_framework_expansion_policy.py",
     "python scripts/check_ci_evidence.py",
@@ -47,17 +49,15 @@ def load_json(path: Path) -> dict[str, Any]:
 
 def main() -> int:
     failures: list[str] = []
-
     if not AUTO.exists():
         print("CHAIN AUTO: FAIL")
         print("- missing docs/CHAIN_AUTO.json")
         return 1
 
     data = load_json(AUTO)
-
     if data.get("artifact_type") != "chain_auto_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "1.4":
+    if data.get("schema_version") != "1.5":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -69,30 +69,24 @@ def main() -> int:
         failures.append("schedule mismatch")
     if data.get("remaining_state") != "WAITING_FOR_DOWNSTREAM_REPO_EXTERNAL_FRAMEWORK_SOURCES_AND_CI_EVIDENCE":
         failures.append("remaining state mismatch")
-    if data.get("generator") != "scripts/generate_external_framework_reports.py":
-        failures.append("generator mismatch")
-    elif not (ROOT / data["generator"]).exists():
-        failures.append("generator file missing")
-    if data.get("results_generator") != "scripts/generate_external_framework_results.py":
-        failures.append("results generator mismatch")
-    elif not (ROOT / data["results_generator"]).exists():
-        failures.append("results generator file missing")
-    if data.get("page_status_generator") != "scripts/generate_external_framework_page_status.py":
-        failures.append("page-status generator mismatch")
-    elif not (ROOT / data["page_status_generator"]).exists():
-        failures.append("page-status generator file missing")
+
+    for key, value in {
+        "generator": "scripts/generate_external_framework_reports.py",
+        "results_generator": "scripts/generate_external_framework_results.py",
+        "page_metadata_generator": "scripts/generate_external_framework_page_metadata.py",
+        "page_status_generator": "scripts/generate_external_framework_page_status.py",
+        "ci_evidence": "docs/CI_EVIDENCE.json",
+        "generated_results_page": "docs/external-frameworks/evaluation-results.md",
+    }.items():
+        if data.get(key) != value:
+            failures.append(f"{key} mismatch")
+        elif not (ROOT / value).exists():
+            failures.append(f"{key} file missing")
+
+    if data.get("generated_page_metadata_source") != "framework registry plus manifests":
+        failures.append("generated page metadata source mismatch")
     if data.get("generated_page_status_source") != "framework manifests plus compatibility reports":
         failures.append("generated page-status source mismatch")
-    if data.get("generated_page_status_publication_path") != "single workflow build-pages job regenerates page status before Docusaurus build":
-        failures.append("generated page-status publication path mismatch")
-    if data.get("generated_results_page") != "docs/external-frameworks/evaluation-results.md":
-        failures.append("generated results page mismatch")
-    elif not (ROOT / data["generated_results_page"]).exists():
-        failures.append("generated results page missing")
-    if data.get("ci_evidence") != "docs/CI_EVIDENCE.json":
-        failures.append("CI evidence path mismatch")
-    elif not (ROOT / data["ci_evidence"]).exists():
-        failures.append("CI evidence file missing")
 
     for path_key in ["canonical_workflow", "mirror_workflow"]:
         path = data.get(path_key)
@@ -112,7 +106,7 @@ def main() -> int:
             failures.append(f"testbench report missing from repo: {report}")
 
     removed = data.get("manual_tasks_removed", [])
-    for task in ["workflow_install", "repeat_destination_search", "workflow_selection", "external_framework_result_posting", "external_framework_page_status_editing", "external_framework_page_status_publication"]:
+    for task in ["workflow_install", "repeat_destination_search", "workflow_selection", "external_framework_result_posting", "external_framework_page_metadata_editing", "external_framework_page_status_editing", "external_framework_page_status_publication"]:
         if task not in removed:
             failures.append(f"manual task not removed: {task}")
 
