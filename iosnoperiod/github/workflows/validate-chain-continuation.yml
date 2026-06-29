@@ -64,6 +64,9 @@ jobs:
       - name: Validate external framework expansion policy
         run: python scripts/check_external_framework_expansion_policy.py
 
+      - name: Validate CI evidence state
+        run: python scripts/check_ci_evidence.py
+
       - name: Resolve Guardian destination
         run: python scripts/check_guardian_destination.py
 
