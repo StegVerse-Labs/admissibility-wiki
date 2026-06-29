@@ -19,6 +19,20 @@ REQUIRED_WORKFLOWS = [
     "iosnoperiod/github/workflows/validate-chain-continuation.yml",
 ]
 
+REQUIRED_DOCUMENTS = [
+    "docs/CHAIN_STATUS.md",
+    "docs/CHAIN_STATUS_HANDOFF.md",
+    "docs/CHAIN_STATUS_BLOCKED_DESTINATION.md",
+    "docs/CHAIN_STATUS_BLOCKED_DESTINATION.json",
+    "docs/CHAIN_STATUS_CONTINUATION.json",
+    "docs/CHAIN_STATUS_CONTINUATION.schema.json",
+    "docs/CHAIN_SNAPSHOT_v0_1_0.md",
+    "docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json",
+    "docs/CHAIN_AUTO.json",
+    "docs/GOAL_STATE.json",
+    "workflow_manifest.json",
+]
+
 REQUIRED_VALIDATORS = [
     "scripts/check_chain_status_continuation.py",
     "scripts/check_continuation_bundle.py",
@@ -26,7 +40,9 @@ REQUIRED_VALIDATORS = [
     "scripts/check_chain_snapshot_receipt.py",
     "scripts/check_chain_auto.py",
     "scripts/check_blocked_destination_record.py",
+    "scripts/check_goal_state.py",
     "scripts/check_workflow_manifest.py",
+    "scripts/check_external_frameworks_index.py",
     "scripts/check_guardian_destination.py",
 ]
 
@@ -35,7 +51,7 @@ def main() -> int:
     failures: list[str] = []
     data = json.loads(MANIFEST.read_text(encoding="utf-8"))
 
-    if data.get("schema_version") != "0.5":
+    if data.get("schema_version") != "0.6":
         failures.append("schema version mismatch")
 
     for group in REQUIRED_GROUPS:
@@ -50,6 +66,10 @@ def main() -> int:
     for value in REQUIRED_WORKFLOWS:
         if value not in data.get("current_workflows", []):
             failures.append(f"missing workflow entry: {value}")
+
+    for value in REQUIRED_DOCUMENTS:
+        if value not in data.get("current_documents", []):
+            failures.append(f"missing document entry: {value}")
 
     for value in REQUIRED_VALIDATORS:
         if value not in data.get("current_validators", []):
