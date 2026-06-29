@@ -93,6 +93,21 @@ record:
   open_questions:
 ```
 
+## Governed Terminology Reconciliation
+
+External terms are reconciled under the [Terminology Reconciliation](./terminology-reconciliation.md) glossary entry and the external-frameworks [Governed Terminology Reconciliation Rule](../external-frameworks/terminology-reconciliation-rule.md).
+
+A relationship may be recorded only as:
+
+| Class | Glossary use |
+|---|---|
+| Synonymous | Direct substitution is safe without changing governance semantics, authority reconstruction, transition meaning, or commit-time behavior. |
+| Adjacent | The term is related but differs in scope, authority, timing, assumptions, or governance semantics. |
+| New | The term adds external-native vocabulary that is not presently represented by an Admissibility term. |
+| Unresolved | The relationship has insufficient evidence and must remain undecided. |
+
+No glossary relationship may silently inherit execution authority, admissibility, standing, certification, governance proofs, or external-framework claims.
+
 ## Current Glossary Entries
 
 | Entry | Current state | Record posture |
@@ -109,6 +124,7 @@ record:
 | [Receipt-Bound Execution](./receipt-bound-execution.md) | active | in progress |
 | [Governance Boundary](./governance-boundary.md) | active | in progress |
 | [Reconstructability](./reconstructability.md) | active | in progress |
+| [Terminology Reconciliation](./terminology-reconciliation.md) | active | in progress |
 
 ## Entry Status Placeholders
 
