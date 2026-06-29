@@ -123,6 +123,26 @@ For non-obvious StegVerse ecosystem entries, `in progress` may be used as a temp
 **Current wiki state:** intake  
 **Non-claim:** This page does not prove a new physical theory, replace source-discipline mathematics, or turn analogy into equivalence.
 
+### Translation Records
+
+**Definition:** A machine-readable and human-readable record layer for mapping source-discipline terms into Transition Table roles while preserving native meaning, evidence posture, review posture, and non-claim boundaries.
+
+**Source reference:** `static/translation-records/disciplinary-translation-records.v0.1.json`  
+**Source visibility:** public  
+**Formalism page:** [Translation Records](./translation-records.md)  
+**Current wiki state:** intake  
+**Non-claim:** Translation records are interoperability artifacts, not proof authority or commit-time authority.
+
+### Mathematics Crosswalk
+
+**Definition:** A public-safe crosswalk from selected GCAT / BCAT equation forms into Transition Table roles and translation-record IDs.
+
+**Source reference:** `static/translation-records/mathematics-crosswalk.v0.1.json`  
+**Source visibility:** public  
+**Formalism page:** [Mathematics Crosswalk](./mathematics-crosswalk.md)  
+**Current wiki state:** intake  
+**Non-claim:** This page does not validate equations, prove physical interpretation, or authorize any transition.
+
 ### Triad Governance Model
 
 **Definition:** A formalism for modeling governance across three interacting roles, dimensions, or authorities where admissibility depends on the relationship among all three rather than a single actor or single approval path.
