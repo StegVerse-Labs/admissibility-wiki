@@ -80,6 +80,9 @@ jobs:
       - name: Validate external framework report generation
         run: python scripts/check_external_framework_report_generation.py
 
+      - name: Validate external framework results page
+        run: python scripts/check_external_framework_results_page.py
+
       - name: Validate external framework expansion policy
         run: python scripts/check_external_framework_expansion_policy.py
 
