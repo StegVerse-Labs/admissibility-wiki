@@ -30,4 +30,13 @@ for (const phrase of status.required_phrases || []) {
   if (!handoff.includes(phrase)) fail(`handoff missing required phrase: ${phrase}`);
 }
 
+const addendumPath = status.addendum_path;
+if (!addendumPath || !fs.existsSync(addendumPath)) fail(`missing handoff addendum ${addendumPath}`);
+
+const addendum = fs.readFileSync(addendumPath, 'utf8');
+
+for (const phrase of status.required_addendum_phrases || []) {
+  if (!addendum.includes(phrase)) fail(`handoff addendum missing required phrase: ${phrase}`);
+}
+
 console.log('mirror handoff guard OK');
