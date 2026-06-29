@@ -1,6 +1,6 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "2.2",
+  "schema_version": "2.3",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "previous_goals": [
     {
@@ -19,13 +19,18 @@
   "current_goal": {
     "goal_id": "external-framework-expansion-cycle",
     "status": "ACTIVE",
-    "completion_percent": 12,
-    "cycle_status": "EXPANSION_CONTROL_SURFACE_ACTIVE",
+    "completion_percent": 24,
+    "cycle_status": "EXPANSION_REPORT_COVERAGE_DECLARED",
     "built_surfaces": [
       "expansion policy",
       "expansion policy validator",
       "canonical workflow expansion-policy validation step",
-      "iOS workflow mirror expansion-policy validation step"
+      "iOS workflow mirror expansion-policy validation step",
+      "report coverage validator",
+      "canonical workflow report coverage validation step",
+      "iOS workflow mirror report coverage validation step",
+      "auto-state report coverage declaration",
+      "workflow-manifest report coverage declaration"
     ],
     "done_when": [
       "expansion intake rules exist and are machine-verifiable",
@@ -36,7 +41,7 @@
       "new framework pages include native terminology definitions",
       "the expansion cycle preserves all prior non-authority boundaries"
     ],
-    "next_required_action": "Update workflow and auto-state manifests to declare the expansion policy validator, then begin adding more sourced framework entries."
+    "next_required_action": "Add the first new sourced framework entry through the expansion policy, including page, manifest, report, registry entry, and terminology table."
   },
   "boundary": {
     "prior_testbench_remains_closed": true,
