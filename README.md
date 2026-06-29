@@ -191,6 +191,30 @@ reports/guardian_destination_status.json
 
 The blocked destination record exists because no Guardian standing-boundary repository was found under the checked names. This does not change the governance status of the chain. It only prevents future sessions from inventing a destination repo.
 
+## External Frameworks Status Surface
+
+The current external-frameworks index is:
+
+```text
+docs/external-frameworks/index.md
+docs/external-frameworks/index.json
+```
+
+The Admissible Existence seed-cycle mirror is:
+
+```text
+docs/external-frameworks/admissible-existence-seed-cycle.md
+docs/external-frameworks/admissible-existence-seed-cycle.json
+```
+
+The current publication marker is:
+
+```text
+docs/external-frameworks/activation/admissible-existence-seed-cycle.json
+```
+
+These files mirror evidence-bounded ecosystem status. They do not create certification, endorsement, execution authority, or commit-time standing.
+
 ## Done State
 
 This repository is considered initially established when it has:
@@ -233,6 +257,7 @@ docs/
   comparisons/
   proof-path/
   essays/
+  external-frameworks/
   CHAIN_AUTO.json
   CHAIN_STATUS.md
   CHAIN_STATUS_HANDOFF.md
@@ -274,5 +299,5 @@ StegVerse is the originating ecosystem. The Admissibility Wiki is the public voc
 The goal is not to make every StegVerse artifact promotional. The goal is to define the language of admissible transition governance clearly enough that others can evaluate, compare, critique, reuse, or extend it.
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 75% complete
-75% complete vs current activation
+admissibility-wiki - 82% complete
+82% complete vs current activation
