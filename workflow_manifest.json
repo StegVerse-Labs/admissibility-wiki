@@ -1,10 +1,10 @@
 {
   "manifest_id": "ADMISSIBILITY-WIKI-WORKFLOW-001",
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "canonical_workflows": [
     {
       "path": ".github/workflows/validate-chain-continuation.yml",
-      "purpose": "Validate chain continuation and external framework testbench package",
+      "purpose": "Validate chain continuation, external framework testbench package, and CI evidence state",
       "installed": true,
       "scheduled": true,
       "cron": "17 9 * * *"
@@ -32,6 +32,8 @@
     "python scripts/check_external_framework_reports.py",
     "python scripts/check_external_framework_report_coverage.py",
     "python scripts/check_external_framework_report_generation.py",
+    "python scripts/check_external_framework_expansion_policy.py",
+    "python scripts/check_ci_evidence.py",
     "python scripts/check_guardian_destination.py"
   ],
   "expected_results": {
@@ -49,12 +51,13 @@
     "external_framework_reports": "EXTERNAL FRAMEWORK REPORTS: PASS",
     "external_framework_report_coverage": "EXTERNAL FRAMEWORK REPORT COVERAGE: PASS",
     "external_framework_report_generation": "EXTERNAL FRAMEWORK REPORT GENERATION: PASS",
+    "external_framework_expansion_policy": "EXTERNAL FRAMEWORK EXPANSION POLICY: PASS",
+    "ci_evidence": "CI EVIDENCE: PASS",
     "destination_state": "GUARDIAN DESTINATION: BLOCKED"
   },
   "generated_reports": [
     "reports/guardian_destination_status.json",
-    "docs/external-frameworks/reports/admissible-existence-seed-cycle.compatibility.json",
-    "docs/external-frameworks/reports/care-runtime.compatibility.json"
+    "docs/CI_EVIDENCE.json"
   ],
   "boundary": {
     "canonical_workflow_installed": true,
@@ -62,6 +65,8 @@
     "mirror_is_activation_evidence": false,
     "manual_workflow_install_required": false,
     "manual_destination_search_required": false,
-    "external_framework_outputs_are_authority": false
+    "external_framework_outputs_are_authority": false,
+    "ci_evidence_is_authority": false,
+    "missing_ci_fails_closed": true
   }
 }
