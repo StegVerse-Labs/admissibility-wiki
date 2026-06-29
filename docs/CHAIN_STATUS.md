@@ -18,6 +18,7 @@ Publisher status surface
 SPE verification surface
 local continuation package
 local automated validation commands
+blocked-destination record validation
 non-activation boundary
 next governed follow-up
 ```
@@ -74,6 +75,7 @@ CHAIN_BOUND
 ```text
 docs/CHAIN_STATUS_CONTINUATION.json
 docs/CHAIN_STATUS_CONTINUATION.schema.json
+docs/CHAIN_STATUS_BLOCKED_DESTINATION.json
 docs/CHAIN_AUTO.json
 docs/CHAIN_SNAPSHOT_v0_1_0.md
 docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
@@ -88,6 +90,7 @@ python scripts/check_continuation_bundle.py
 python scripts/check_chain_snapshot.py
 python scripts/check_chain_snapshot_receipt.py
 python scripts/check_chain_auto.py
+python scripts/check_blocked_destination_record.py
 python scripts/check_workflow_manifest.py
 python scripts/check_guardian_destination.py
 ```
@@ -100,6 +103,7 @@ CONTINUATION BUNDLE: PASS
 CHAIN SNAPSHOT: PASS
 CHAIN SNAPSHOT RECEIPT: PASS
 CHAIN AUTO: PASS
+BLOCKED DESTINATION RECORD: PASS
 WORKFLOW MANIFEST: PASS
 GUARDIAN DESTINATION: BLOCKED
 ```
@@ -119,5 +123,5 @@ Create or identify the Guardian standing-boundary repository before adding or up
 ```
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 69% complete
-69% complete vs current activation
+admissibility-wiki - 77% complete
+77% complete vs current activation
