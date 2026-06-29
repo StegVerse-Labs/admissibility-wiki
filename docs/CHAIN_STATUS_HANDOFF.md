@@ -19,10 +19,12 @@ snapshot
 snapshot validator
 snapshot receipt
 automation state
+goal state
 canonical workflow
 iOS-safe workflow mirror
 workflow manifest
 blocked-destination record validator
+external-frameworks index validator
 generated report path
 blocked destination
 archive readiness
@@ -41,6 +43,7 @@ docs/CHAIN_STATUS_CONTINUATION.json
 docs/CHAIN_STATUS_CONTINUATION.schema.json
 docs/CHAIN_SNAPSHOT_v0_1_0.md
 docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
+docs/GOAL_STATE.json
 iosnoperiod.md
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 scripts/check_chain_status_continuation.py
@@ -49,7 +52,9 @@ scripts/check_chain_snapshot.py
 scripts/check_chain_snapshot_receipt.py
 scripts/check_chain_auto.py
 scripts/check_blocked_destination_record.py
+scripts/check_goal_state.py
 scripts/check_workflow_manifest.py
+scripts/check_external_frameworks_index.py
 scripts/check_guardian_destination.py
 workflow_manifest.json
 ```
@@ -63,7 +68,9 @@ python scripts/check_chain_snapshot.py
 python scripts/check_chain_snapshot_receipt.py
 python scripts/check_chain_auto.py
 python scripts/check_blocked_destination_record.py
+python scripts/check_goal_state.py
 python scripts/check_workflow_manifest.py
+python scripts/check_external_frameworks_index.py
 python scripts/check_guardian_destination.py
 ```
 
@@ -76,7 +83,9 @@ CHAIN SNAPSHOT: PASS
 CHAIN SNAPSHOT RECEIPT: PASS
 CHAIN AUTO: PASS
 BLOCKED DESTINATION RECORD: PASS
+GOAL STATE: PASS
 WORKFLOW MANIFEST: PASS
+EXTERNAL FRAMEWORKS INDEX: PASS
 GUARDIAN DESTINATION: BLOCKED
 ```
 
@@ -95,6 +104,16 @@ docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
 ```
 
 They record the blocked continuation package as documentation and receipt state only. They are not GitHub release tags and do not advance activation.
+
+## Goal State
+
+The current machine-readable goal record is:
+
+```text
+docs/GOAL_STATE.json
+```
+
+It records the active self-validating-governance-package goal and queues the External Framework Compatibility Testbench as the next goal after this package reaches 100%.
 
 ## Workflow
 
@@ -138,6 +157,8 @@ The wiki is not a source of execution authority. This status page does not claim
 
 The iOS mirror is not separate CI activation evidence. It is only a path-safe mirror of the installed canonical workflow.
 
+The queued external-framework testbench goal is not active yet and does not create a framework-validation claim.
+
 ## Destination Resolution
 
 Checked destination candidates:
@@ -167,5 +188,5 @@ Until that destination exists, continue from this handoff and do not invent a Gu
 Future sessions should continue from this handoff when advancing chain-status propagation work.
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 76% complete
-76% complete vs current activation
+admissibility-wiki - 92% complete
+92% complete vs current activation
