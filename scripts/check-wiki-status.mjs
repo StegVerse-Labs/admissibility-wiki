@@ -62,6 +62,7 @@ const requiredIntakeFields = [
 
 const requiredAutomationGuards = [
   'workflow_receipt_automation_status',
+  'workflow_evidence_status',
   'proposal_core_lite_target_watch_status',
   'no_manual_task_guard_status',
   'mirror_handoff_guard_status',
