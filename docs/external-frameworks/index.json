@@ -1,6 +1,6 @@
 {
   "artifact_type": "external_framework_registry",
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "section": "external-frameworks",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "goal_id": "external-framework-compatibility-testbench",
@@ -37,7 +37,7 @@
       "path": "docs/external-frameworks/admissible-existence-seed-cycle.md",
       "manifest_path": "docs/external-frameworks/admissible-existence-seed-cycle.json",
       "source": "Admissible-Existence/AE",
-      "testbench_state": "REGISTRY_SEEDED",
+      "testbench_state": "FIRST_FRAMEWORK_CYCLE_COMPLETE",
       "claims_certification": false,
       "claims_endorsement": false,
       "claims_execution_authority": false
@@ -47,9 +47,9 @@
       "name": "CARE Runtime",
       "status": "INTAKE-PROVISIONAL",
       "path": "docs/external-frameworks/care-runtime.md",
-      "manifest_path": null,
-      "source": "screenshot supplied by user; official public source URL required",
-      "testbench_state": "SOURCE_REQUIRED",
+      "manifest_path": "docs/external-frameworks/care-runtime.json",
+      "source": "official public source URL required",
+      "testbench_state": "SOURCE_BLOCKED_FAIL_CLOSED",
       "claims_certification": false,
       "claims_endorsement": false,
       "claims_execution_authority": false
