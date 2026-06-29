@@ -1,6 +1,6 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "1.4",
+  "schema_version": "1.5",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "previous_goal": {
     "goal_id": "self-validating-governance-package",
@@ -11,8 +11,8 @@
   "current_goal": {
     "goal_id": "external-framework-compatibility-testbench",
     "status": "ACTIVE",
-    "completion_percent": 36,
-    "cycle_status": "SOURCE_BLOCKED_FRAMEWORK_CYCLE_RECORDED",
+    "completion_percent": 48,
+    "cycle_status": "REPORT_REPRODUCIBILITY_RECORDED",
     "built_surfaces": [
       "transition-table-based framework registry",
       "framework manifest schema",
@@ -29,7 +29,11 @@
       "source-blocked compatibility report",
       "source-blocked registry state",
       "source-blocked manifest validation",
-      "source-blocked report validation"
+      "source-blocked report validation",
+      "deterministic compatibility report generator",
+      "report reproducibility verifier",
+      "canonical workflow reproducibility validation step",
+      "iOS workflow mirror reproducibility validation step"
     ],
     "done_when": [
       "framework registry exists and is machine-verifiable",
@@ -49,6 +53,7 @@
     "no_external_endorsement_claim": true,
     "no_execution_authority_claim": true,
     "testbench_outputs_are_compatibility_evidence_only": true,
-    "source_blocked_entries_fail_closed": true
+    "source_blocked_entries_fail_closed": true,
+    "generated_reports_are_evidence_only": true
   }
 }
