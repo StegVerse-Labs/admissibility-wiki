@@ -59,6 +59,7 @@ const sidebars = {
       items: [
         'formalisms/index',
         'formalisms/original-drawing-reference',
+        'formalisms/disciplinary-translation-groundwork',
         'formalisms/canonical-catalog',
         'formalisms/runtime-transition-governance',
         'formalisms/coherency-horizon',
