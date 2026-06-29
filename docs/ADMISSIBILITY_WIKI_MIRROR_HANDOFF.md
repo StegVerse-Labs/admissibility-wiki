@@ -1,31 +1,24 @@
 # Admissibility Wiki Mirror Handoff
 
-Generated: 2026-06-20
+Generated: 2026-06-29
 Repository: `StegVerse-Labs/admissibility-wiki`
-Role: non-Site/non-Publisher mirror and continuity handoff for Admissibility Wiki work
+Role: public vocabulary, terminology convergence, proposal-review, proof-path, and external-framework crosswalk site
 
 ## Purpose
 
 This file is the task-source-of-truth handoff for sessions working on `StegVerse-Labs/admissibility-wiki`.
 
-Use this handoff before continuing wiki, ontology, proof-path, governance, proposal-intake, proposal-governance, or activation work in this repo.
+Use this handoff before continuing wiki, ontology, proof-path, governance, proposal-intake, proposal-governance, external-framework, or activation work in this repo.
 
 ## Current Repo Goal
 
-Make the Admissibility Wiki a governed, public-facing vocabulary layer and terminology convergence surface for:
+The active goal is:
 
-- admissibility;
-- transition governance;
-- commit-time authority;
-- receipt-bound execution;
-- reconstructability;
-- proof-path examples;
-- machine-readable vocabulary artifacts;
-- repo-local governance and validation;
-- cross-domain equivalent, overlapping, and adjacent terminology;
-- user-submitted, browser-originated, maintainer-submitted, and LLM-assisted terminology proposals;
-- E/G/F proposal governance routing;
-- proposal-governance-core-lite handoff.
+```text
+declarative-external-framework-generation-pipeline
+```
+
+The goal is to make external-framework pages, evaluation status, compatibility reports, and public evaluation results reproducible from governed artifacts while preserving authored analysis and denying execution-authority inheritance.
 
 ## Current Assessment Goal
 
@@ -36,128 +29,114 @@ A task is ready for ecosystem-managed continuation when this repository records 
 ## Current Activation Goal
 
 ```text
-Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the GitHub Pages public vocabulary, terminology convergence, proposal-review, proposal-intake, and proof-path site.
+Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the GitHub Pages public vocabulary, terminology convergence, proposal-review, proposal-intake, proof-path, and external-framework crosswalk site.
 ```
 
-Activation is not complete until the GitHub.io project page loads, GitHub Pages and HTTPS are working, the ontology JSON is reachable, proposal and decision examples are reachable, and public endpoint status is not overclaimed.
+Activation is not complete until GitHub Pages loads, HTTPS works, ontology JSON is reachable, proposal and decision examples are reachable, generated external-framework evaluation results are reachable, generated framework page-status blocks are included in the build, and public endpoint status is not overclaimed.
 
-## Proposal Governance Core-Lite Status
+## Path Display Rule
 
-The target repository is watched by repo-owned automation:
+Paths normally beginning with a leading dot are displayed without that leading dot in this handoff for iOS readability. Actual repository paths that display as `github/...` use `.github/...` in the repository.
+
+## Single Workflow Policy
+
+Only one active workflow is intended to exist:
 
 ```text
-github/workflows/proposal-core-lite-target-watch.yml
+github/workflows/validate-chain-continuation.yml
 ```
 
-The watcher checks:
+The iOS-safe mirror is inert and exists only for copied path readability:
 
 ```text
-StegVerse-Labs/proposal-governance-core-lite
+iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
 
-and emits this artifact:
+Workflow sprawl is guarded by:
 
 ```text
-proposal-core-lite-target-watch
+scripts/check_workflow_sprawl.py
 ```
 
-Current source status and validator:
+Do not reintroduce separate active workflows for validation, deployment, evidence watch, success recording, proposal watching, or framework result posting.
+
+## Current Declarative External Framework Pipeline
+
+The active external-framework pipeline is:
 
 ```text
-static/status/proposal-core-lite-target-watch-status.json
-scripts/check-proposal-core-lite-target-watch-status.mjs
+framework manifest
+  -> generated compatibility report
+  -> generated evaluation results page
+  -> generated framework page-status block
+  -> Docusaurus build
+  -> GitHub Pages deploy
+  -> public URL verification
 ```
 
-A complete seed remains installed at:
+Installed generators:
 
 ```text
-repo-seeds/proposal-governance-core-lite/
+scripts/generate_external_framework_reports.py
+scripts/generate_external_framework_results.py
+scripts/generate_external_framework_page_status.py
 ```
 
-Seed documentation and status:
+Installed validators:
 
 ```text
-docs/governance/proposal-governance-core-lite-seed.md
-docs/governance/proposal-governance-core-lite-creation-task.md
-static/status/proposal-governance-core-lite-seed-status.json
-scripts/check-proposal-governance-core-lite-seed.mjs
-scripts/check-proposal-governance-core-lite-creation-task.mjs
+scripts/check_external_framework_reports.py
+scripts/check_external_framework_report_coverage.py
+scripts/check_external_framework_report_generation.py
+scripts/check_external_framework_results_page.py
+scripts/check_external_framework_page_status.py
+scripts/check_external_framework_terminology.py
+scripts/check_external_framework_expansion_policy.py
 ```
 
-Do not create more proposal-governance-core-lite scaffolding in this repo unless a validator identifies a gap.
-
-No manual target-creation task is assigned in this handoff. If the target repository is unavailable, the watcher remains pending and emits a bounded artifact. If the target becomes available, downstream installation must be performed only by authorized repo-owned automation or a source-confirmed ecosystem process.
-
-## Proposal Intake and Governance Routing
-
-Installed proposal governance routing:
+Generated public surface:
 
 ```text
-E = Editorial
-G = Governance
-F = Formalism
+docs/external-frameworks/evaluation-results.md
 ```
 
-Every ingestion/CGE pass must emit to master-records.
-
-Public display is a consequence path only and requires a decision record.
-
-The proposal page or shared SDK entry point emits governed manifest/receipt data. The sandbox is non-authoritative and preserves candidate paths. After sandbox return, ingestion/CGE routes to master-records and then to the second StegVerse-Labs core-lite target.
-
-## GitHub Pages URL Configuration
-
-The wiki is currently configured for GitHub Pages project hosting, not a custom domain.
-
-```text
-docusaurus.config.js:
-  url: https://stegverse-labs.github.io
-  baseUrl: /admissibility-wiki/
-
-static/CNAME:
-  removed
-```
-
-Do not re-add `static/CNAME` unless custom-domain activation is explicitly requested.
+Generated page-status blocks are inserted into registered framework pages from manifests plus compatibility reports. They are compatibility evidence only and are not certification, endorsement, formalism adoption, admissibility proof, or execution authority.
 
 ## Deployment Gate
 
-The GitHub Pages deploy workflow is validation-gated and public-verification-gated.
+The single canonical workflow performs validation and, on main-branch push, performs build/deploy/public verification.
 
 ```text
-github/workflows/deploy.yml:
-  install dependencies
-  npm run validate
-  upload build artifact
-  deploy pages
-  verify site root
-  verify formalism index
-  verify CTA formalism page
-  verify IICT formalism page
-  emit failure receipt artifact if validation, build, deploy, or URL verification fails
+github/workflows/validate-chain-continuation.yml:
+  validate single workflow policy
+  generate external framework reports
+  generate external framework evaluation results
+  generate external framework page status
+  validate governance/status/goal/workflow artifacts
+  validate external framework registry, manifests, terminology, reports, coverage, generation, results page, and page status
+  validate CI evidence state
+  resolve Guardian destination
+  build Docusaurus site
+  deploy GitHub Pages
+  verify deployed site root
+  verify generated external-framework evaluation results page
 ```
-
-Successful deploy completion is recorded by:
-
-```text
-github/workflows/record-latest-success.yml:
-  listens for successful deploy workflow completion
-  emits admissibility-wiki-workflow-success artifact
-```
-
-Note: paths that normally begin with a leading dot are shown without the leading dot in this handoff display to avoid hidden-path ambiguity in copied instructions.
 
 ## Installed Structure
 
 The repo currently includes:
 
 - Docusaurus scaffold;
-- GitHub Pages deployment workflow;
-- deployment failure receipt artifact workflow path;
-- deployment success receipt artifact workflow;
-- workflow receipt automation status artifact and validator;
-- proposal-core-lite target watcher workflow, status artifact, and validator;
-- no-manual-task guard status artifact and validator;
-- validation workflow;
+- single canonical validation/build/deploy workflow;
+- iOS-safe workflow mirror;
+- workflow sprawl validator;
+- workflow manifest;
+- chain auto state;
+- CI evidence state;
+- goal state;
+- generated external-framework report pipeline;
+- generated external-framework result page pipeline;
+- generated external-framework page-status pipeline;
 - GitHub.io project URL configuration;
 - activation runbook;
 - contribution guide;
@@ -192,7 +171,6 @@ The repo currently includes:
 - proof-path examples;
 - machine-readable vocabulary artifact;
 - Admissibility-Wiki AI Entity governance page;
-- proposal-governance-core-lite seed and validators;
 - CTA and IICT formalism mirror pages;
 - CTA and IICT formalism registry records.
 
@@ -240,9 +218,8 @@ static/formalisms/formalism-registry.v0.1.json
 Displayed without leading dot for iOS readability; actual repository paths use the leading-dot directory.
 
 ```text
-github/workflows/deploy.yml
-github/workflows/record-latest-success.yml
-github/workflows/proposal-core-lite-target-watch.yml
+github/workflows/validate-chain-continuation.yml
+iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
 
 ## Known Status Artifacts
@@ -258,35 +235,60 @@ static/status/intake-api-deploy-config-status.json
 static/status/workflow-receipt-automation-status.json
 static/status/proposal-core-lite-target-watch-status.json
 static/status/no-manual-task-guard-status.json
-scripts/check-wiki-status.mjs
-scripts/check-activation-checklist.mjs
-scripts/check-public-activation-receipt.mjs
-scripts/check-proposal-governance-core-lite-seed.mjs
-scripts/check-proposal-governance-core-lite-creation-task.mjs
-scripts/check-workflow-receipt-automation-status.mjs
-scripts/check-proposal-core-lite-target-watch-status.mjs
-scripts/check-no-manual-task-assignments.mjs
+static/status/mirror-handoff-guard-status.json
+static/status/workflow-evidence-status.json
 ```
-
-Do not recreate versioned status mirrors unless the status schema is intentionally versioned and the canonical file points to the active version.
 
 ## Validation and Receipt Automation
 
 ```text
-Validation trigger: push to main
-Validation command: npm run validate
-Deployment trigger: successful validation and build
-Public verification: deploy workflow verify-public-pages job
-Failure receipt artifact: admissibility-wiki-workflow-failure
-Success receipt artifact: admissibility-wiki-workflow-success
-Workflow receipt status validator: scripts/check-workflow-receipt-automation-status.mjs
-Proposal core-lite watcher artifact: proposal-core-lite-target-watch
-Proposal core-lite watcher validator: scripts/check-proposal-core-lite-target-watch-status.mjs
+Validation trigger: push, pull_request, workflow_dispatch, scheduled run
+Validation command: python validators in canonical workflow plus npm run validate in build path
+Deployment trigger: main-branch push after validation job
+Public verification: canonical workflow verify-public-pages job
+Failure evidence: workflow job result and bounded CI evidence state
+Workflow evidence status validator: scripts/check-workflow-evidence-status.mjs
 No-manual-task guard validator: scripts/check-no-manual-task-assignments.mjs
+Mirror handoff guard validator: scripts/check-mirror-handoff-guard.mjs
 Manual task requirement: none recorded in this handoff
 ```
 
-`npm run validate` is the preferred aggregate command because it runs the installed validators and the Docusaurus build. If a newly installed validator is not yet included in `npm run validate`, run it directly and then wire it into the aggregate when safe.
+`npm run validate` remains the preferred local aggregate command for Node/Docusaurus governance validation. The canonical workflow also runs Python validators for the external-framework and chain-continuation surfaces.
+
+## Proposal Governance Core-Lite Status
+
+The proposal-governance-core-lite seed remains installed at:
+
+```text
+repo-seeds/proposal-governance-core-lite/
+```
+
+Seed documentation and status:
+
+```text
+docs/governance/proposal-governance-core-lite-seed.md
+docs/governance/proposal-governance-core-lite-creation-task.md
+static/status/proposal-governance-core-lite-seed-status.json
+scripts/check-proposal-governance-core-lite-seed.mjs
+scripts/check-proposal-governance-core-lite-creation-task.mjs
+```
+
+Do not create more proposal-governance-core-lite scaffolding in this repo unless a validator identifies a gap.
+
+## GitHub Pages URL Configuration
+
+The wiki is currently configured for GitHub Pages project hosting, not a custom domain.
+
+```text
+docusaurus.config.js:
+  url: https://stegverse-labs.github.io
+  baseUrl: /admissibility-wiki/
+
+static/CNAME:
+  removed
+```
+
+Do not re-add `static/CNAME` unless custom-domain activation is explicitly requested.
 
 ## Current Editorial Rule
 
@@ -318,13 +320,32 @@ node scripts/check-equivalence-proposal-template.mjs
 
 Do not add an external term to `Equivalent Terms` without a completed proposal, source evidence, mismatch analysis, overclaiming-risk analysis, and decision record.
 
-Priority order:
+## Known Remaining Installation Targets
 
-1. Let repo automation validate, build, deploy, verify public URLs, watch proposal-core-lite target readiness, and emit bounded artifacts.
-2. If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, or watcher-status inconsistency identified by failed job logs.
-3. Deploy authorized intake API runtime only when source-confirmed runtime authority exists.
-4. Update activation posture only after public GitHub.io deployment and endpoint evidence exists.
-5. Add research-backed equivalence proposals only when they materially improve terminology classification.
+```text
+StegVerse-Labs/admissibility-wiki:
+  - framework-page full generator for non-status sections
+  - generated framework-page validator for full declarative pages
+  - generated narrative boundary that preserves authored analysis while generating repeatable metadata
+
+StegVerse-Labs/Site:
+  - mirror/public summary of generated external-framework evaluation results after admissibility-wiki release/tag
+
+GCAT-BCAT-Engine/Publisher:
+  - publication/import awareness for generated external-framework result artifacts after admissibility-wiki release/tag
+
+stegguardian-wiki:
+  - downstream summary of framework execution-authority boundary once admissibility-wiki release/tag is stable
+```
+
+## Priority Order
+
+1. Let repo automation validate, build, deploy, verify public URLs, generate framework reports, generate framework results, generate page-status blocks, and emit bounded artifacts.
+2. If automation fails, repair only the first failing validator field, generated artifact drift, build issue, deployment issue, public URL check, or handoff inconsistency identified by failed job logs.
+3. Continue the declarative external-framework generation pipeline by generating additional repeatable page sections from manifests and reports.
+4. Deploy authorized intake API runtime only when source-confirmed runtime authority exists.
+5. Update activation posture only after public GitHub.io deployment and endpoint evidence exists.
+6. Add research-backed equivalence proposals only when they materially improve terminology classification.
 
 ## Mirror Coordination Rule
 
@@ -337,7 +358,7 @@ For Admissibility Wiki work:
 
 ## Current Redundancy Posture
 
-This repository is actively touched by more than one session.
+This repository may be touched by more than one session.
 
 Do not assume a previously proposed next step is still missing.
 
