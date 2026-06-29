@@ -1,0 +1,16 @@
+{
+  "artifact_type": "external_framework_manifest",
+  "schema_version": "0.1",
+  "framework_id": "mindforge",
+  "name": "MindForge",
+  "source_reference": "artifact package required",
+  "source_version": "ARTIFACT_PACKAGE_REQUIRED",
+  "allowed_use_boundary": ["Use only as artifact-package-required intake evidence.", "Do not treat as sourced until an authorized package or public source is recorded.", "Do not treat as certification, endorsement, execution authority, or commit-time authority."],
+  "claims": ["MindForge is a candidate historical governance review evidence intake target.", "Review evidence may support a non-authorizing Commitment Candidate."],
+  "non_claims": ["MindForge is not certified.", "Review evidence is not execution authority.", "A Commitment Candidate is not authorization."],
+  "transition_table_mapping": {"framework_identity":"MindForge","source_reference":"artifact package required","source_version":"ARTIFACT_PACKAGE_REQUIRED","allowed_use_boundary":"historical evidence intake only","claims":"review artifacts, evidence packets, governance context, review posture, transition context","non_claims":"no certification, endorsement, execution authority, or current standing inheritance","input_artifact_type":"historical governance evidence package","output_artifact_type":"compatibility manifest and report","actor_or_authority_model":"historical reviewer posture only; current authority must be rebound","evidence_model":"review artifacts and evidence packets","policy_or_rule_model":"review-time evidence does not become commit-time authority","delegation_model":"must be reconstructed at commit time if relevant","decision_or_result_model":"historical review evidence only","execution_authority_claim":false,"receipt_or_trace_model":"evidence packet reference if supplied","reconstruction_model":"blocked until artifact package supports authority re-binding review","SPE_overlap":"current standing must be reconstructed by SPE","StegVerse_ecosystem_overlap":"Commitment Candidate and non-authorizing evidence boundary","fail_closed_conditions":"artifact package missing, stale evidence, changed standing, or authority overclaim"},
+  "SPE_overlap": {"standing_boundary":"current standing required","authority_evaluation":"blocked until package is supplied","commit_time_admissibility":"not claimed","receipt_reconstruction":"source-insufficient"},
+  "StegVerse_ecosystem_overlap": {"transition_table":"historical-evidence mapping","chain_status":"provisional intake","documentation_surface":"wiki reference","execution_path":"not authorized"},
+  "fail_closed_conditions": ["authorized artifact package is missing", "current standing cannot be reconstructed", "review evidence is stale or incomplete", "transition-table mapping is incomplete", "any certification, endorsement, execution authority, or commit-time authority claim appears"],
+  "boundary": {"certification_claim":false,"endorsement_claim":false,"execution_authority_claim":false,"commit_time_authority_claim":false,"compatibility_manifest_is_authority":false,"missing_or_partial_fields_fail_closed":true}
+}
