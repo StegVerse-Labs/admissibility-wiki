@@ -1,6 +1,6 @@
 {
   "artifact_type": "chain_auto_state",
-  "schema_version": "1.2",
+  "schema_version": "1.3",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "mirror_workflow": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
@@ -9,6 +9,7 @@
     "python scripts/check_workflow_sprawl.py",
     "python scripts/generate_external_framework_reports.py",
     "python scripts/generate_external_framework_results.py",
+    "python scripts/generate_external_framework_page_status.py",
     "python scripts/check_chain_status_continuation.py",
     "python scripts/check_continuation_bundle.py",
     "python scripts/check_chain_snapshot.py",
@@ -24,15 +25,18 @@
     "python scripts/check_external_framework_report_coverage.py",
     "python scripts/check_external_framework_report_generation.py",
     "python scripts/check_external_framework_results_page.py",
+    "python scripts/check_external_framework_page_status.py",
     "python scripts/check_external_framework_expansion_policy.py",
     "python scripts/check_ci_evidence.py",
     "python scripts/check_guardian_destination.py"
   ],
   "generator": "scripts/generate_external_framework_reports.py",
   "results_generator": "scripts/generate_external_framework_results.py",
+  "page_status_generator": "scripts/generate_external_framework_page_status.py",
   "report": "reports/guardian_destination_status.json",
   "ci_evidence": "docs/CI_EVIDENCE.json",
   "generated_results_page": "docs/external-frameworks/evaluation-results.md",
+  "generated_page_status_source": "framework manifests plus compatibility reports",
   "testbench_reports": [
     "docs/external-frameworks/reports/admissible-existence-seed-cycle.compatibility.json",
     "docs/external-frameworks/reports/care-runtime.compatibility.json"
@@ -42,7 +46,8 @@
     "workflow_install",
     "repeat_destination_search",
     "workflow_selection",
-    "external_framework_result_posting"
+    "external_framework_result_posting",
+    "external_framework_page_status_editing"
   ],
   "remaining_state": "WAITING_FOR_DOWNSTREAM_REPO_EXTERNAL_FRAMEWORK_SOURCES_AND_CI_EVIDENCE"
 }
