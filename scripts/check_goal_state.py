@@ -49,6 +49,9 @@ BUILT_SURFACES = [
     "external framework terminology validator",
     "canonical workflow terminology validation step",
     "iOS workflow mirror terminology validation step",
+    "auto-state terminology validation declaration",
+    "auto-state report-generation validation declaration",
+    "auto-state generator declaration",
 ]
 
 
@@ -64,7 +67,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "1.6":
+    if data.get("schema_version") != "1.7":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -84,9 +87,9 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 72:
+    if current.get("completion_percent") != 84:
         failures.append("current goal completion mismatch")
-    if current.get("cycle_status") != "ALL_LISTED_FRAMEWORK_MANIFESTS_AND_TERMINOLOGY_RECORDED":
+    if current.get("cycle_status") != "DECLARED_VALIDATION_PACKAGE_ALIGNED":
         failures.append("cycle status mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
@@ -107,6 +110,7 @@ def main() -> int:
         "testbench_outputs_are_compatibility_evidence_only",
         "source_blocked_entries_fail_closed",
         "generated_reports_are_evidence_only",
+        "declared_validation_package_aligned",
     ]:
         if boundary.get(key) is not True:
             failures.append(f"boundary mismatch: {key}")
