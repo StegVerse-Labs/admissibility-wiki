@@ -55,6 +55,9 @@ jobs:
       - name: Validate external framework reports
         run: python scripts/check_external_framework_reports.py
 
+      - name: Validate report coverage
+        run: python scripts/check_external_framework_report_coverage.py
+
       - name: Validate external framework report generation
         run: python scripts/check_external_framework_report_generation.py
 
