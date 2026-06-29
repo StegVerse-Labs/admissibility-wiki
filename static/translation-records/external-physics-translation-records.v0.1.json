@@ -1,0 +1,83 @@
+{
+  "schema_version": "0.1",
+  "record_state": "intake",
+  "source_authority_boundary": "External physics translation records are interoperability artifacts. They do not prove source physics claims, create equivalence with StegVerse formalisms, validate a physical theory, or create commit-time authority.",
+  "sources": [
+    {
+      "source_id": "external-physics-lai-operational-architecture-v0-1",
+      "source_name": "Jonathan Lai candidate operational architecture paper",
+      "source_title_status": "pending_source_confirmed_bibliographic_record",
+      "source_type": "external physics-adjacent paper or preprint",
+      "evidence_posture": "partial",
+      "review_posture": "proposed",
+      "non_claims": "This source record does not assert the paper is correct, predictive, peer reviewed, or equivalent to GCAT / BCAT."
+    }
+  ],
+  "records": [
+    {
+      "external_record_id": "ext-phys-lai-admissibility-operator-v0-1",
+      "source_id": "external-physics-lai-operational-architecture-v0-1",
+      "native_term": "admissibility operator",
+      "native_meaning": "A source-described operator that excludes impossible or invalid states before further evolution or translation.",
+      "transition_table_role": "admissibility_question",
+      "related_translation_record_ids": ["dtg-gcat-capacity-margin-v0-1", "dtg-bcat-boundary-v0-1"],
+      "related_math_crosswalk_ids": ["math-gcat-margin-v0-1", "math-gcat-region-v0-1"],
+      "evidence_posture": "partial",
+      "review_posture": "proposed",
+      "source_boundary": "Term is mapped only as an operator-role analogy until source text and bibliographic record are confirmed.",
+      "non_claims": "This mapping does not claim the source operator and GCAT admissibility are mathematically equivalent."
+    },
+    {
+      "external_record_id": "ext-phys-lai-transition-operator-v0-1",
+      "source_id": "external-physics-lai-operational-architecture-v0-1",
+      "native_term": "transition operator",
+      "native_meaning": "A source-described operator that advances or transforms the relational substrate after admissibility filtering.",
+      "transition_table_role": "candidate_transition_or_transition_dynamics",
+      "related_translation_record_ids": ["dtg-physics-interaction-v0-1"],
+      "related_math_crosswalk_ids": ["math-control-dynamics-v0-1"],
+      "evidence_posture": "partial",
+      "review_posture": "proposed",
+      "source_boundary": "Mapped only as transition-role structure, not as a claim that source physics dynamics equal GCAT control dynamics.",
+      "non_claims": "This mapping does not assign governance agency to physical evolution."
+    },
+    {
+      "external_record_id": "ext-phys-lai-stable-branch-v0-1",
+      "source_id": "external-physics-lai-operational-architecture-v0-1",
+      "native_term": "stable branch",
+      "native_meaning": "A source-described stable path or branch that survives filtering and transition operations.",
+      "transition_table_role": "review_posture_or_recoverability_evidence",
+      "related_translation_record_ids": ["dtg-bcat-boundary-v0-1"],
+      "related_math_crosswalk_ids": ["math-rigel-face-distance-v0-1"],
+      "evidence_posture": "partial",
+      "review_posture": "proposed",
+      "source_boundary": "Mapped as a recoverability/stability comparison only.",
+      "non_claims": "This mapping does not prove recoverability or stability in the source model."
+    },
+    {
+      "external_record_id": "ext-phys-lai-emergent-geometry-v0-1",
+      "source_id": "external-physics-lai-operational-architecture-v0-1",
+      "native_term": "emergent geometry",
+      "native_meaning": "A source-described geometry arising from earlier relational or operational structure rather than being assumed as primitive.",
+      "transition_table_role": "resulting_state_or_translated_state_layer",
+      "related_translation_record_ids": ["dtg-physics-state-v0-1"],
+      "related_math_crosswalk_ids": ["math-gcat-state-v0-1"],
+      "evidence_posture": "partial",
+      "review_posture": "proposed",
+      "source_boundary": "Mapped as layered translation structure only.",
+      "non_claims": "This mapping does not claim StegVerse derives spacetime or gravity."
+    },
+    {
+      "external_record_id": "ext-phys-lai-translation-failure-v0-1",
+      "source_id": "external-physics-lai-operational-architecture-v0-1",
+      "native_term": "translation failure",
+      "native_meaning": "A source-described failure mode where a lower-level description cannot be translated into a higher-level representation without breakdown or loss of meaning.",
+      "transition_table_role": "refuse_or_escalate_boundary_failure",
+      "related_translation_record_ids": ["dtg-physics-horizon-v0-1", "dtg-runtime-fail-closed-v0-1"],
+      "related_math_crosswalk_ids": ["math-commit-allow-v0-1"],
+      "evidence_posture": "partial",
+      "review_posture": "proposed",
+      "source_boundary": "Mapped as a failure-to-translate posture, not as source validation.",
+      "non_claims": "This mapping does not prove singularities are translation failures."
+    }
+  ]
+}
