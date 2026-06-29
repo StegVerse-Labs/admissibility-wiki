@@ -20,6 +20,20 @@ Public source: `https://killswitch.md/`
 
 The public page presents KILLSWITCH.md as a plain-text file convention for defining emergency shutdown protocols in AI-agent projects.
 
+## Definition
+
+KILLSWITCH.md is treated in this wiki as an external plain-text emergency-stop convention for AI-agent projects.
+
+## Framework-Term Definitions
+
+| Native Convention Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
+|---|---|---|---|
+| KILLSWITCH.md | External plain-text convention for documenting emergency-stop procedures in AI-agent projects. | new | Preserved as convention-native terminology. |
+| Emergency shutdown protocol | A documented procedure for stopping or disabling agent behavior under defined conditions. | adjacent | Related to Fail-Closed and Runtime Transition Governance. |
+| Agent stop condition | A condition under which an agent should stop or be prevented from continuing. | adjacent | Related to Transition Table and Commit-Time Validity. |
+| Repository-root convention | A convention that places a governance/safety file at a standard repository location. | adjacent | Related to Evidence Posture and Reconstructability. |
+| Operational safety boundary | A safety-oriented boundary around agent operation. | adjacent | Related to Governance Boundary and Boundary Conditions. |
+
 ## Relationship To Admissibility
 
 KILLSWITCH.md is useful as an external comparison target for emergency-stop, fail-closed, and agent shutdown conventions.
