@@ -6,6 +6,12 @@
       "status": "SEED-CYCLE-COMPLETE",
       "path": "docs/external-frameworks/admissible-existence-seed-cycle.md",
       "source": "Admissible-Existence/AE"
+    },
+    {
+      "name": "CARE Runtime",
+      "status": "INTAKE-PROVISIONAL",
+      "path": "docs/external-frameworks/care-runtime.md",
+      "source": "screenshot supplied by user; official public source URL required"
     }
   ],
   "boundary": "Index inclusion does not create certification, endorsement, execution authority, or commit-time standing."
