@@ -12,6 +12,8 @@ CURRENT_DONE_WHEN = [
     "framework registry exists and is machine-verifiable",
     "each framework has a manifest with source/version and allowed-use boundaries",
     "each framework maps claims and non-claims to SPE and ecosystem overlap fields",
+    "each framework page has explicit native terminology definitions",
+    "terminology reconciliation classes are machine-verifiable",
     "transition-table mapping tests run for every listed framework",
     "generated compatibility reports are reproducible",
     "framework pages do not claim certification, endorsement, or execution authority",
@@ -39,6 +41,14 @@ BUILT_SURFACES = [
     "report reproducibility verifier",
     "canonical workflow reproducibility validation step",
     "iOS workflow mirror reproducibility validation step",
+    "all listed framework registry entries",
+    "all listed framework compatibility manifests",
+    "governed terminology reconciliation rule",
+    "terminology reconciliation glossary entry",
+    "per-framework native term definition tables",
+    "external framework terminology validator",
+    "canonical workflow terminology validation step",
+    "iOS workflow mirror terminology validation step",
 ]
 
 
@@ -54,7 +64,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "1.5":
+    if data.get("schema_version") != "1.6":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -74,9 +84,9 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 48:
+    if current.get("completion_percent") != 72:
         failures.append("current goal completion mismatch")
-    if current.get("cycle_status") != "REPORT_REPRODUCIBILITY_RECORDED":
+    if current.get("cycle_status") != "ALL_LISTED_FRAMEWORK_MANIFESTS_AND_TERMINOLOGY_RECORDED":
         failures.append("cycle status mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
