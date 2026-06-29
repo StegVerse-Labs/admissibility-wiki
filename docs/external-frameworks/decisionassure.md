@@ -61,6 +61,20 @@ DecisionAssure asks: What does the trace show about continuity, drift, and causa
 SPE asks: Does current execution authority exist at the commit boundary?
 ```
 
+## Execution Authority Boundary
+
+DecisionAssure is unevaluated for general StegVerse execution-authority purposes.
+
+No DecisionAssure artifact, output, recommendation, trace, proof, runtime result, or evaluation constitutes execution authority inside StegVerse.
+
+DecisionAssure material may be evaluated as external evidence, but execution authority is determined only by StegVerse commit-time admissibility under current standing semantics.
+
+## Evaluation Result Posting
+
+Evaluation results for DecisionAssure must be posted from the generated compatibility report at `docs/external-frameworks/reports/decisionassure.compatibility.json`.
+
+Until an authorized artifact package is supplied and evaluated, this page remains an artifact-package-required intake record.
+
 ## Crosswalk Targets
 
 | DecisionAssure Function | Wiki / AE Relationship |
