@@ -17,6 +17,7 @@ docs/CHAIN_STATUS_CONTINUATION.json
 docs/CHAIN_STATUS_CONTINUATION.schema.json
 docs/CHAIN_SNAPSHOT_v0_1_0.md
 docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
+docs/GOAL_STATE.json
 iosnoperiod.md
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 scripts/check_chain_status_continuation.py
@@ -25,7 +26,9 @@ scripts/check_chain_snapshot.py
 scripts/check_chain_snapshot_receipt.py
 scripts/check_chain_auto.py
 scripts/check_blocked_destination_record.py
+scripts/check_goal_state.py
 scripts/check_workflow_manifest.py
+scripts/check_external_frameworks_index.py
 scripts/check_guardian_destination.py
 workflow_manifest.json
 ```
@@ -39,7 +42,9 @@ python scripts/check_chain_snapshot.py
 python scripts/check_chain_snapshot_receipt.py
 python scripts/check_chain_auto.py
 python scripts/check_blocked_destination_record.py
+python scripts/check_goal_state.py
 python scripts/check_workflow_manifest.py
+python scripts/check_external_frameworks_index.py
 python scripts/check_guardian_destination.py
 ```
 
@@ -52,7 +57,9 @@ CHAIN SNAPSHOT: PASS
 CHAIN SNAPSHOT RECEIPT: PASS
 CHAIN AUTO: PASS
 BLOCKED DESTINATION RECORD: PASS
+GOAL STATE: PASS
 WORKFLOW MANIFEST: PASS
+EXTERNAL FRAMEWORKS INDEX: PASS
 GUARDIAN DESTINATION: BLOCKED
 ```
 
@@ -90,6 +97,14 @@ reports/guardian_destination_status.json
 
 The workflow uploads this report as an artifact.
 
+## Goal State
+
+```text
+docs/GOAL_STATE.json
+```
+
+The current goal remains the self-validating governance package. The External Framework Compatibility Testbench is queued after this goal reaches 100%.
+
 ## Current Status
 
 ```text
@@ -107,7 +122,7 @@ StegVerse-Labs/stegguardian
 
 ## Boundary
 
-This snapshot records continuation state only. It does not claim activation, closure, adoption, endorsement, or consequence-binding standing.
+This snapshot records continuation state only. It does not claim activation, closure, adoption, endorsement, consequence-binding standing, or external-framework validation standing.
 
 ## Next Action
 
@@ -116,5 +131,5 @@ Create or identify the Guardian standing-boundary repository, then add a narrow 
 ```
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 78% complete
-78% complete vs current activation
+admissibility-wiki - 94% complete
+94% complete vs current activation
