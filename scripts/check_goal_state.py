@@ -16,6 +16,7 @@ CURRENT_DONE_WHEN = [
     "artifact-package-required frameworks remain bounded to artifact-specific intake",
     "new framework pages include native terminology definitions",
     "the expansion cycle preserves all prior non-authority boundaries",
+    "every registry entry has a deterministic generated compatibility report",
 ]
 
 BUILT_SURFACES = [
@@ -40,6 +41,7 @@ BUILT_SURFACES = [
     "third expansion framework manifest",
     "third expansion framework compatibility report",
     "third expansion framework registry entry",
+    "all-entry report reproducibility validator",
 ]
 
 
@@ -55,7 +57,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "2.6":
+    if data.get("schema_version") != "2.7":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -74,9 +76,9 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 60:
+    if current.get("completion_percent") != 72:
         failures.append("current goal completion mismatch")
-    if current.get("cycle_status") != "THIRD_EXPANSION_FRAMEWORK_RECORDED":
+    if current.get("cycle_status") != "ALL_REPORT_REPRODUCIBILITY_ENFORCED":
         failures.append("cycle status mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
@@ -98,6 +100,7 @@ def main() -> int:
         "source_blocked_entries_fail_closed",
         "unresolved_intake_states_are_non_authorizing",
         "expansion_policy_is_non_authorizing",
+        "generated_reports_are_non_authorizing",
     ]:
         if boundary.get(key) is not True:
             failures.append(f"boundary mismatch: {key}")
