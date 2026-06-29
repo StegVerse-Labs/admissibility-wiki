@@ -62,6 +62,7 @@ const sidebars = {
         'formalisms/disciplinary-translation-groundwork',
         'formalisms/translation-records',
         'formalisms/mathematics-crosswalk',
+        'formalisms/external-physics-translation-records',
         'formalisms/canonical-catalog',
         'formalisms/runtime-transition-governance',
         'formalisms/coherency-horizon',
