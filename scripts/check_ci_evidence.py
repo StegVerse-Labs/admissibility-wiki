@@ -21,7 +21,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "ci_evidence_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "0.1":
+    if data.get("schema_version") != "0.2":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -45,6 +45,12 @@ def main() -> int:
         failures.append("missing-CI fail-closed boundary mismatch")
     if boundary.get("expansion_cycle_closure_blocked") is not True:
         failures.append("closure blocked boundary mismatch")
+    if boundary.get("manual_task_required") is not False:
+        failures.append("manual task boundary mismatch")
+    if boundary.get("manual_confirmation_substitutes_for_ci") is not False:
+        failures.append("manual confirmation boundary mismatch")
+    if boundary.get("scheduled_validation_path_exists") is not True:
+        failures.append("scheduled validation boundary mismatch")
 
     print("CI EVIDENCE:", "FAIL" if failures else "PASS")
     for failure in failures:
