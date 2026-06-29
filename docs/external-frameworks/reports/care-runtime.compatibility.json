@@ -1,0 +1,53 @@
+{
+  "artifact_type": "external_framework_compatibility_report",
+  "schema_version": "0.2",
+  "framework_id": "care-runtime",
+  "framework_manifest": "docs/external-frameworks/care-runtime.json",
+  "registry": "docs/external-frameworks/index.json",
+  "testbench_basis": "transition_table_elements",
+  "result": "SOURCE_BLOCKED_FAIL_CLOSED",
+  "cycle_status": "SOURCE_BLOCKED_CYCLE_RECORDED",
+  "transition_table_mapping_status": {
+    "framework_identity": "PRESENT",
+    "source_reference": "SOURCE_REQUIRED",
+    "source_version": "SOURCE_REQUIRED",
+    "allowed_use_boundary": "PROVISIONAL",
+    "claims": "PROVISIONAL",
+    "non_claims": "PRESENT",
+    "input_artifact_type": "PROVISIONAL",
+    "output_artifact_type": "PRESENT",
+    "actor_or_authority_model": "SOURCE_REQUIRED",
+    "evidence_model": "SOURCE_REQUIRED",
+    "policy_or_rule_model": "PRESENT",
+    "delegation_model": "SOURCE_REQUIRED",
+    "decision_or_result_model": "PRESENT",
+    "execution_authority_claim": "DENIED_BY_BOUNDARY",
+    "receipt_or_trace_model": "PRESENT",
+    "reconstruction_model": "PRESENT",
+    "SPE_overlap": "SOURCE_REQUIRED",
+    "StegVerse_ecosystem_overlap": "SOURCE_REQUIRED",
+    "fail_closed_conditions": "PRESENT"
+  },
+  "SPE_overlap_result": {
+    "standing_boundary": "source insufficient",
+    "authority_evaluation": "blocked; official source required",
+    "commit_time_admissibility": "not claimed",
+    "receipt_reconstruction": "blocked-state reconstructable"
+  },
+  "StegVerse_ecosystem_overlap_result": {
+    "transition_table": "blocked by source sufficiency",
+    "chain_status": "provisional intake only",
+    "documentation_surface": "wiki reference requires source upgrade before compatibility cycle completion",
+    "execution_path": "not authorized"
+  },
+  "boundary": {
+    "certification_claim": false,
+    "endorsement_claim": false,
+    "execution_authority_claim": false,
+    "commit_time_authority_claim": false,
+    "compatibility_report_is_authority": false,
+    "missing_or_partial_fields_fail_closed": true,
+    "official_source_required_for_completion": true
+  },
+  "next_required_action": "Add an official public source reference before upgrading this report from SOURCE_BLOCKED_FAIL_CLOSED to COMPATIBILITY_EVIDENCE_ONLY."
+}
