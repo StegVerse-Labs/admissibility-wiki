@@ -68,9 +68,10 @@ Execution authority must be reconstructed at the commit boundary from current st
 | [DecisionAssure](./decisionassure.md) | Trace integrity and causal-continuity intake | artifact package required | Candidate target for testing whether supplied traces can support independent authority reconstruction without becoming authority. |
 | [MindForge](./mindforge.md) | Historical governance review evidence intake | artifact package required | Candidate target for testing whether review evidence remains non-authorizing until SPE reconstructs current standing. |
 | [Morrison Runtime](./morrison-runtime.md) | Runtime-governance comparison target | official source required | Candidate comparison target for runtime outcome and failure-state behavior. |
+| [CARE Runtime](./care-runtime.md) | Public runtime-governance platform candidate | official source required | Candidate crosswalk target for runtime governance, public-platform posture, and consequence-boundary language. |
 | [AAR](./aar.md) | Supervised AI governance and operational forensics candidate | sourced | Crosswalk target for observable-system governance and pre-execution cost governance. |
 | [Agent Governance Playbook](./agent-governance-playbook.md) | Agent-continuation governance playbook | sourced | Crosswalk target for whether an agent should still be allowed to continue. |
-| [KILLSWITCH.md](./killswitch-md.md) | AI-agent emergency stop convention | sourced | Crosswalk target for emergency shutdown, stop conditions, and fail-closed behavior. |
+| [Emergency Stop Convention](./killswitch-md.md) | AI-agent emergency stop convention | sourced | Crosswalk target for emergency shutdown, stop conditions, and fail-closed behavior. |
 | [NIST AI RMF](./nist-ai-rmf.md) | Voluntary AI risk management | sourced | Crosswalk target for risk, trustworthiness, lifecycle review, and evaluation posture. |
 | [ISO/IEC 42001](./iso-iec-42001.md) | AI management system standard | sourced | Crosswalk target for organizational AI governance and management-system controls. |
 | [EU AI Act](./eu-ai-act.md) | Legal/regulatory AI framework | sourced | Crosswalk target for obligations, risk classes, documentation, oversight, and governance duties. |
