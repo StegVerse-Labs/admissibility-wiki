@@ -19,6 +19,8 @@ REQUIRED_COMMANDS = [
     "python scripts/check_goal_state.py",
     "python scripts/check_workflow_manifest.py",
     "python scripts/check_external_frameworks_index.py",
+    "python scripts/check_external_framework_manifests.py",
+    "python scripts/check_external_framework_reports.py",
     "python scripts/check_guardian_destination.py",
 ]
 
@@ -32,8 +34,16 @@ EXPECTED_RESULTS = {
     "goal_state": "GOAL STATE: PASS",
     "workflow_manifest": "WORKFLOW MANIFEST: PASS",
     "external_frameworks_index": "EXTERNAL FRAMEWORKS INDEX: PASS",
+    "external_framework_manifests": "EXTERNAL FRAMEWORK MANIFESTS: PASS",
+    "external_framework_reports": "EXTERNAL FRAMEWORK REPORTS: PASS",
     "destination_state": "GUARDIAN DESTINATION: BLOCKED",
 }
+
+REQUIRED_REPORTS = [
+    "reports/guardian_destination_status.json",
+    "docs/external-frameworks/reports/admissible-existence-seed-cycle.compatibility.json",
+    "docs/external-frameworks/reports/care-runtime.compatibility.json",
+]
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -52,7 +62,7 @@ def main() -> int:
 
     if manifest.get("manifest_id") != "ADMISSIBILITY-WIKI-WORKFLOW-001":
         failures.append("manifest id mismatch")
-    if manifest.get("schema_version") != "0.7":
+    if manifest.get("schema_version") != "0.8":
         failures.append("schema version mismatch")
 
     workflows = manifest.get("canonical_workflows", [])
@@ -83,8 +93,11 @@ def main() -> int:
             failures.append(f"expected result mismatch: {key}")
 
     reports = manifest.get("generated_reports", [])
-    if "reports/guardian_destination_status.json" not in reports:
-        failures.append("missing generated report path")
+    for report in REQUIRED_REPORTS:
+        if report not in reports:
+            failures.append(f"missing generated report path: {report}")
+        elif not (ROOT / report).exists() and report != "reports/guardian_destination_status.json":
+            failures.append(f"generated report file missing: {report}")
 
     boundary = manifest.get("boundary", {})
     for key in [
@@ -92,6 +105,7 @@ def main() -> int:
         "scheduled_check_installed",
         "manual_workflow_install_required",
         "manual_destination_search_required",
+        "external_framework_outputs_are_authority",
     ]:
         if key not in boundary:
             failures.append(f"missing boundary key: {key}")
@@ -103,6 +117,8 @@ def main() -> int:
         failures.append("manual workflow boundary mismatch")
     if boundary.get("manual_destination_search_required") is not False:
         failures.append("manual search boundary mismatch")
+    if boundary.get("external_framework_outputs_are_authority") is not False:
+        failures.append("external framework authority boundary mismatch")
 
     print("WORKFLOW MANIFEST:", "FAIL" if failures else "PASS")
     for failure in failures:
