@@ -36,6 +36,10 @@ BUILT_SURFACES = [
     "second expansion framework manifest",
     "second expansion framework compatibility report",
     "second expansion framework registry entry",
+    "third expansion framework page",
+    "third expansion framework manifest",
+    "third expansion framework compatibility report",
+    "third expansion framework registry entry",
 ]
 
 
@@ -51,7 +55,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "2.5":
+    if data.get("schema_version") != "2.6":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -70,9 +74,9 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 48:
+    if current.get("completion_percent") != 60:
         failures.append("current goal completion mismatch")
-    if current.get("cycle_status") != "SECOND_EXPANSION_FRAMEWORK_RECORDED":
+    if current.get("cycle_status") != "THIRD_EXPANSION_FRAMEWORK_RECORDED":
         failures.append("cycle status mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
