@@ -25,6 +25,7 @@ REQUIRED_COMMANDS = [
     "python scripts/check_external_framework_report_coverage.py",
     "python scripts/check_external_framework_report_generation.py",
     "python scripts/check_external_framework_expansion_policy.py",
+    "python scripts/check_ci_evidence.py",
     "python scripts/check_guardian_destination.py",
 ]
 
@@ -50,7 +51,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "chain_auto_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "1.0":
+    if data.get("schema_version") != "1.1":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -60,12 +61,16 @@ def main() -> int:
         failures.append("mirror workflow mismatch")
     if data.get("schedule") != "17 9 * * *":
         failures.append("schedule mismatch")
-    if data.get("remaining_state") != "WAITING_FOR_DOWNSTREAM_REPO_AND_EXTERNAL_FRAMEWORK_SOURCES":
+    if data.get("remaining_state") != "WAITING_FOR_DOWNSTREAM_REPO_EXTERNAL_FRAMEWORK_SOURCES_AND_CI_EVIDENCE":
         failures.append("remaining state mismatch")
     if data.get("generator") != "scripts/generate_external_framework_reports.py":
         failures.append("generator mismatch")
     elif not (ROOT / data["generator"]).exists():
         failures.append("generator file missing")
+    if data.get("ci_evidence") != "docs/CI_EVIDENCE.json":
+        failures.append("CI evidence path mismatch")
+    elif not (ROOT / data["ci_evidence"]).exists():
+        failures.append("CI evidence file missing")
 
     for path_key in ["canonical_workflow", "mirror_workflow"]:
         path = data.get(path_key)
