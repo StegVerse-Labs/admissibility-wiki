@@ -1,12 +1,13 @@
 {
   "artifact_type": "chain_snapshot_receipt",
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "receipt_id": "admissibility-wiki-chain-snapshot-v0-1-0",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "snapshot": "docs/CHAIN_SNAPSHOT_v0_1_0.md",
   "continuation_manifest": "docs/CHAIN_STATUS_CONTINUATION.json",
   "continuation_schema": "docs/CHAIN_STATUS_CONTINUATION.schema.json",
   "automation_state": "docs/CHAIN_AUTO.json",
+  "goal_state": "docs/GOAL_STATE.json",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "workflow_mirror": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
   "workflow_manifest": "workflow_manifest.json",
@@ -18,7 +19,9 @@
     "scripts/check_chain_snapshot_receipt.py",
     "scripts/check_chain_auto.py",
     "scripts/check_blocked_destination_record.py",
+    "scripts/check_goal_state.py",
     "scripts/check_workflow_manifest.py",
+    "scripts/check_external_frameworks_index.py",
     "scripts/check_guardian_destination.py"
   ],
   "validation_commands": [
@@ -28,7 +31,9 @@
     "python scripts/check_chain_snapshot_receipt.py",
     "python scripts/check_chain_auto.py",
     "python scripts/check_blocked_destination_record.py",
+    "python scripts/check_goal_state.py",
     "python scripts/check_workflow_manifest.py",
+    "python scripts/check_external_frameworks_index.py",
     "python scripts/check_guardian_destination.py"
   ],
   "expected_validation_results": {
@@ -38,7 +43,9 @@
     "chain_snapshot_receipt": "CHAIN SNAPSHOT RECEIPT: PASS",
     "chain_auto": "CHAIN AUTO: PASS",
     "blocked_destination_record": "BLOCKED DESTINATION RECORD: PASS",
+    "goal_state": "GOAL STATE: PASS",
     "workflow_manifest": "WORKFLOW MANIFEST: PASS",
+    "external_frameworks_index": "EXTERNAL FRAMEWORKS INDEX: PASS",
     "destination_state": "GUARDIAN DESTINATION: BLOCKED"
   },
   "generated_report": "reports/guardian_destination_status.json",
@@ -51,10 +58,12 @@
     "scheduled_check_installed": true,
     "manual_workflow_install_required": false,
     "manual_destination_search_required": false,
+    "queued_external_framework_testbench_is_active": false,
     "no_activation_claim": true,
     "no_closure_claim": true,
     "no_adoption_claim": true,
     "no_endorsement_claim": true,
+    "no_external_framework_validation_claim": true,
     "no_consequence_binding_standing_claim": true
   },
   "next_required_action": "Create or identify the Guardian standing-boundary repository before continuing Guardian-side propagation."
