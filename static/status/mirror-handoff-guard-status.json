@@ -1,0 +1,31 @@
+{
+  "schema": "admissibility_wiki_mirror_handoff_guard_status.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "status": "installed",
+  "handoff_path": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+  "guard_script": "scripts/check-mirror-handoff-guard.mjs",
+  "required_sections": [
+    "# Admissibility Wiki Mirror Handoff",
+    "## Current Repo Goal",
+    "## Current Activation Goal",
+    "## Proposal Governance Core-Lite Status",
+    "## Deployment Gate",
+    "## Known Workflow Files",
+    "## Known Status Artifacts",
+    "## Validation and Receipt Automation",
+    "## Mirror Coordination Rule"
+  ],
+  "required_phrases": [
+    "Manual task requirement: none recorded in this handoff",
+    "No manual target-creation task is assigned in this handoff",
+    "github/workflows/deploy.yml",
+    "github/workflows/record-latest-success.yml",
+    "github/workflows/proposal-core-lite-target-watch.yml"
+  ],
+  "manual_task_requirement": "none",
+  "failure_posture": "fail_validation_until_handoff_source_of_truth_is_restored",
+  "non_claims": [
+    "This guard does not prove public activation.",
+    "This guard only confirms the root handoff remains present and contains required continuity sections."
+  ]
+}
