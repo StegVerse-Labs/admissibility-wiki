@@ -1,0 +1,16 @@
+{
+  "receipt_type": "pwc002_admissibility_wiki_vocabulary_entries_receipt",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "branch": "pwc002-runtime-handoff",
+  "installed_entries": [
+    "docs/glossary/pwc002-workflow-class.md",
+    "docs/glossary/install-pr-wave-standing.md",
+    "docs/glossary/connector-receipt-boundary.md"
+  ],
+  "semantic_acceptance_claimed": false,
+  "manual_vocabulary_mapping_required": false,
+  "remaining_items": [
+    "propagation verification task"
+  ],
+  "result": "VOCABULARY_ENTRIES_INSTALLED_PENDING_LATER_ACCEPTANCE"
+}
