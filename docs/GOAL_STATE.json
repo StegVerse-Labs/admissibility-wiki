@@ -1,6 +1,6 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "2.1",
+  "schema_version": "2.2",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "previous_goals": [
     {
@@ -19,8 +19,14 @@
   "current_goal": {
     "goal_id": "external-framework-expansion-cycle",
     "status": "ACTIVE",
-    "completion_percent": 0,
-    "cycle_status": "EXPANSION_CYCLE_ACTIVATED",
+    "completion_percent": 12,
+    "cycle_status": "EXPANSION_CONTROL_SURFACE_ACTIVE",
+    "built_surfaces": [
+      "expansion policy",
+      "expansion policy validator",
+      "canonical workflow expansion-policy validation step",
+      "iOS workflow mirror expansion-policy validation step"
+    ],
     "done_when": [
       "expansion intake rules exist and are machine-verifiable",
       "new framework entries require a source state before report generation",
@@ -30,7 +36,7 @@
       "new framework pages include native terminology definitions",
       "the expansion cycle preserves all prior non-authority boundaries"
     ],
-    "next_required_action": "Create the expansion intake rules and validator before adding additional framework entries."
+    "next_required_action": "Update workflow and auto-state manifests to declare the expansion policy validator, then begin adding more sourced framework entries."
   },
   "boundary": {
     "prior_testbench_remains_closed": true,
@@ -40,6 +46,7 @@
     "no_execution_authority_claim": true,
     "testbench_outputs_are_compatibility_evidence_only": true,
     "source_blocked_entries_fail_closed": true,
-    "unresolved_intake_states_are_non_authorizing": true
+    "unresolved_intake_states_are_non_authorizing": true,
+    "expansion_policy_is_non_authorizing": true
   }
 }
