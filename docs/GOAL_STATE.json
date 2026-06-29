@@ -1,6 +1,6 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "2.5",
+  "schema_version": "2.6",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "previous_goals": [
     {
@@ -19,8 +19,8 @@
   "current_goal": {
     "goal_id": "external-framework-expansion-cycle",
     "status": "ACTIVE",
-    "completion_percent": 48,
-    "cycle_status": "SECOND_EXPANSION_FRAMEWORK_RECORDED",
+    "completion_percent": 60,
+    "cycle_status": "THIRD_EXPANSION_FRAMEWORK_RECORDED",
     "built_surfaces": [
       "expansion policy",
       "expansion policy validator",
@@ -38,7 +38,11 @@
       "second expansion framework page",
       "second expansion framework manifest",
       "second expansion framework compatibility report",
-      "second expansion framework registry entry"
+      "second expansion framework registry entry",
+      "third expansion framework page",
+      "third expansion framework manifest",
+      "third expansion framework compatibility report",
+      "third expansion framework registry entry"
     ],
     "done_when": [
       "expansion intake rules exist and are machine-verifiable",
@@ -49,7 +53,7 @@
       "new framework pages include native terminology definitions",
       "the expansion cycle preserves all prior non-authority boundaries"
     ],
-    "next_required_action": "Add a third sourced framework through the expansion policy, or strengthen generator reproducibility to cover all report files directly."
+    "next_required_action": "Strengthen generator reproducibility to cover all report files directly, or add a fourth sourced framework through the expansion policy."
   },
   "boundary": {
     "prior_testbench_remains_closed": true,
