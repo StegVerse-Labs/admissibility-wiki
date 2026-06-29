@@ -1,10 +1,10 @@
 {
   "manifest_id": "ADMISSIBILITY-WIKI-WORKFLOW-001",
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "canonical_workflows": [
     {
       "path": ".github/workflows/validate-chain-continuation.yml",
-      "purpose": "Validate chain continuation, external framework testbench package, and CI evidence state",
+      "purpose": "Single active validation workflow for all repository checks",
       "installed": true,
       "scheduled": true,
       "cron": "17 9 * * *"
@@ -14,10 +14,11 @@
     {
       "mirror_path": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
       "canonical_path": ".github/workflows/validate-chain-continuation.yml",
-      "purpose": "iOS-safe mirror of the installed canonical workflow"
+      "purpose": "iOS-safe mirror of the single active validation workflow"
     }
   ],
   "verification_commands": [
+    "python scripts/check_workflow_sprawl.py",
     "python scripts/check_chain_status_continuation.py",
     "python scripts/check_continuation_bundle.py",
     "python scripts/check_chain_snapshot.py",
@@ -37,6 +38,7 @@
     "python scripts/check_guardian_destination.py"
   ],
   "expected_results": {
+    "workflow_sprawl": "WORKFLOW SPRAWL: PASS",
     "chain_continuation": "CHAIN CONTINUATION: PASS",
     "continuation_bundle": "CONTINUATION BUNDLE: PASS",
     "chain_snapshot": "CHAIN SNAPSHOT: PASS",
@@ -60,6 +62,7 @@
     "docs/CI_EVIDENCE.json"
   ],
   "boundary": {
+    "active_workflow_count": 1,
     "canonical_workflow_installed": true,
     "scheduled_check_installed": true,
     "mirror_is_activation_evidence": false,
