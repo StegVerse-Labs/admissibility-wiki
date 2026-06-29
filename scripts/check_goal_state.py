@@ -17,6 +17,7 @@ CURRENT_DONE_WHEN = [
     "new framework pages include native terminology definitions",
     "the expansion cycle preserves all prior non-authority boundaries",
     "every registry entry has a deterministic generated compatibility report",
+    "CI evidence is recorded as green or fail-closed before cycle closure",
 ]
 
 BUILT_SURFACES = [
@@ -42,6 +43,12 @@ BUILT_SURFACES = [
     "third expansion framework compatibility report",
     "third expansion framework registry entry",
     "all-entry report reproducibility validator",
+    "CI evidence state record",
+    "CI evidence validator",
+    "canonical workflow CI evidence validation step",
+    "iOS workflow mirror CI evidence validation step",
+    "auto-state CI evidence declaration",
+    "workflow-manifest CI evidence declaration",
 ]
 
 
@@ -57,7 +64,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "2.7":
+    if data.get("schema_version") != "2.8":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -76,9 +83,9 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 72:
+    if current.get("completion_percent") != 84:
         failures.append("current goal completion mismatch")
-    if current.get("cycle_status") != "ALL_REPORT_REPRODUCIBILITY_ENFORCED":
+    if current.get("cycle_status") != "CI_EVIDENCE_FAIL_CLOSED_RECORDED":
         failures.append("cycle status mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
@@ -101,6 +108,7 @@ def main() -> int:
         "unresolved_intake_states_are_non_authorizing",
         "expansion_policy_is_non_authorizing",
         "generated_reports_are_non_authorizing",
+        "missing_ci_evidence_fails_closed",
     ]:
         if boundary.get(key) is not True:
             failures.append(f"boundary mismatch: {key}")
