@@ -49,6 +49,20 @@ Admissibility review remains separate and asks whether a transition may bind con
 
 Runtime visibility, platform display, public availability, or governance wording does not by itself create execution authority.
 
+## Execution Authority Boundary
+
+CARE Runtime is unevaluated for StegVerse execution-authority purposes.
+
+No CARE Runtime artifact, output, recommendation, trace, proof, runtime result, platform display, or evaluation constitutes execution authority inside StegVerse.
+
+CARE Runtime material may be evaluated as external evidence, but execution authority is determined only by StegVerse commit-time admissibility under current standing semantics.
+
+## Evaluation Result Posting
+
+Evaluation results for CARE Runtime must be posted from the generated compatibility report at `docs/external-frameworks/reports/care-runtime.compatibility.json`.
+
+Until the generated report changes from `SOURCE_BLOCKED_FAIL_CLOSED`, this page remains a source-blocked intake record.
+
 ## Crosswalk Targets
 
 | Candidate Function | Wiki / AE Relationship |
