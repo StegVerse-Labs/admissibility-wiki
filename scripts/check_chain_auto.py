@@ -13,6 +13,7 @@ REQUIRED_COMMANDS = [
     "python scripts/check_workflow_sprawl.py",
     "python scripts/generate_external_framework_reports.py",
     "python scripts/generate_external_framework_results.py",
+    "python scripts/generate_external_framework_page_status.py",
     "python scripts/check_chain_status_continuation.py",
     "python scripts/check_continuation_bundle.py",
     "python scripts/check_chain_snapshot.py",
@@ -28,6 +29,7 @@ REQUIRED_COMMANDS = [
     "python scripts/check_external_framework_report_coverage.py",
     "python scripts/check_external_framework_report_generation.py",
     "python scripts/check_external_framework_results_page.py",
+    "python scripts/check_external_framework_page_status.py",
     "python scripts/check_external_framework_expansion_policy.py",
     "python scripts/check_ci_evidence.py",
     "python scripts/check_guardian_destination.py",
@@ -55,7 +57,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "chain_auto_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "1.2":
+    if data.get("schema_version") != "1.3":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -75,6 +77,12 @@ def main() -> int:
         failures.append("results generator mismatch")
     elif not (ROOT / data["results_generator"]).exists():
         failures.append("results generator file missing")
+    if data.get("page_status_generator") != "scripts/generate_external_framework_page_status.py":
+        failures.append("page-status generator mismatch")
+    elif not (ROOT / data["page_status_generator"]).exists():
+        failures.append("page-status generator file missing")
+    if data.get("generated_page_status_source") != "framework manifests plus compatibility reports":
+        failures.append("generated page-status source mismatch")
     if data.get("generated_results_page") != "docs/external-frameworks/evaluation-results.md":
         failures.append("generated results page mismatch")
     elif not (ROOT / data["generated_results_page"]).exists():
@@ -102,7 +110,7 @@ def main() -> int:
             failures.append(f"testbench report missing from repo: {report}")
 
     removed = data.get("manual_tasks_removed", [])
-    for task in ["workflow_install", "repeat_destination_search", "workflow_selection", "external_framework_result_posting"]:
+    for task in ["workflow_install", "repeat_destination_search", "workflow_selection", "external_framework_result_posting", "external_framework_page_status_editing"]:
         if task not in removed:
             failures.append(f"manual task not removed: {task}")
 
