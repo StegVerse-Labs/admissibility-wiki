@@ -1,18 +1,52 @@
 {
+  "artifact_type": "external_framework_registry",
+  "schema_version": "0.1",
   "section": "external-frameworks",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "goal_id": "external-framework-compatibility-testbench",
   "entries": [
     {
+      "framework_id": "admissible-existence-seed-cycle",
       "name": "Admissible Existence Seed Cycle",
       "status": "SEED-CYCLE-COMPLETE",
       "path": "docs/external-frameworks/admissible-existence-seed-cycle.md",
-      "source": "Admissible-Existence/AE"
+      "manifest_path": "docs/external-frameworks/admissible-existence-seed-cycle.json",
+      "source": "Admissible-Existence/AE",
+      "testbench_state": "REGISTRY_SEEDED",
+      "claims_certification": false,
+      "claims_endorsement": false,
+      "claims_execution_authority": false
     },
     {
+      "framework_id": "care-runtime",
       "name": "CARE Runtime",
       "status": "INTAKE-PROVISIONAL",
       "path": "docs/external-frameworks/care-runtime.md",
-      "source": "screenshot supplied by user; official public source URL required"
+      "manifest_path": null,
+      "source": "screenshot supplied by user; official public source URL required",
+      "testbench_state": "SOURCE_REQUIRED",
+      "claims_certification": false,
+      "claims_endorsement": false,
+      "claims_execution_authority": false
     }
   ],
-  "boundary": "Index inclusion does not create certification, endorsement, execution authority, or commit-time standing."
+  "required_entry_fields": [
+    "framework_id",
+    "name",
+    "status",
+    "path",
+    "manifest_path",
+    "source",
+    "testbench_state",
+    "claims_certification",
+    "claims_endorsement",
+    "claims_execution_authority"
+  ],
+  "boundary": {
+    "index_inclusion_is_certification": false,
+    "index_inclusion_is_endorsement": false,
+    "index_inclusion_is_execution_authority": false,
+    "testbench_outputs_are_compatibility_evidence_only": true,
+    "missing_source_fails_closed": true
+  }
 }
