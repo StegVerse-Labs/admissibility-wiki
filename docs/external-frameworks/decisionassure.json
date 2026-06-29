@@ -1,0 +1,16 @@
+{
+  "artifact_type": "external_framework_manifest",
+  "schema_version": "0.1",
+  "framework_id": "decisionassure",
+  "name": "DecisionAssure",
+  "source_reference": "artifact package required",
+  "source_version": "ARTIFACT_PACKAGE_REQUIRED",
+  "allowed_use_boundary": ["Use only as artifact-package-required intake evidence.", "Do not treat as sourced until an authorized package or public source is recorded.", "Do not treat as certification, endorsement, execution authority, or commit-time authority."],
+  "claims": ["DecisionAssure is a candidate trace integrity and causal-continuity intake target.", "Supplied traces may be evaluated for independent authority reconstruction."],
+  "non_claims": ["DecisionAssure as a whole is not validated.", "No SPE or StegVerse certification is implied.", "Trace evidence does not become execution authority."],
+  "transition_table_mapping": {"framework_identity":"DecisionAssure","source_reference":"artifact package required","source_version":"ARTIFACT_PACKAGE_REQUIRED","allowed_use_boundary":"bounded artifact-specific intake only","claims":"trace integrity, causal-continuity, drift, corruption, verifier-output review","non_claims":"no general validation, certification, endorsement, or execution authority","input_artifact_type":"trace package","output_artifact_type":"compatibility manifest and report","actor_or_authority_model":"requires artifact package; not inherited","evidence_model":"trace records, policy references, delegation references, hashes, verifier outputs","policy_or_rule_model":"artifact-specific source sufficiency and commit-time standing boundary","delegation_model":"must be reconstructed if supplied","decision_or_result_model":"compatibility evidence only","execution_authority_claim":false,"receipt_or_trace_model":"supplied trace package if available","reconstruction_model":"blocked until artifact package supports independent reconstruction","SPE_overlap":"trace may support SPE review but cannot replace it","StegVerse_ecosystem_overlap":"trace, drift, corruption, and fail-closed behavior comparison","fail_closed_conditions":"artifact package missing, independent reconstruction unsupported, or authority overclaim"},
+  "SPE_overlap": {"standing_boundary":"artifact package required","authority_evaluation":"blocked until package is supplied","commit_time_admissibility":"not claimed","receipt_reconstruction":"source-insufficient"},
+  "StegVerse_ecosystem_overlap": {"transition_table":"artifact-package blocked mapping","chain_status":"provisional intake","documentation_surface":"wiki reference","execution_path":"not authorized"},
+  "fail_closed_conditions": ["authorized artifact package is missing", "source version is missing", "transition-table mapping is incomplete", "independent authority reconstruction is unsupported", "any certification, endorsement, execution authority, or commit-time authority claim appears"],
+  "boundary": {"certification_claim":false,"endorsement_claim":false,"execution_authority_claim":false,"commit_time_authority_claim":false,"compatibility_manifest_is_authority":false,"missing_or_partial_fields_fail_closed":true}
+}
