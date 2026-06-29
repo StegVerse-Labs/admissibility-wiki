@@ -1,0 +1,22 @@
+{
+  "source_repo": "StegGhost/entity-sandbox-runner",
+  "release_goal": "admissibility_plane_activation_candidate",
+  "wiki_status": "documentation_surface_installed",
+  "activation_state": "pending_external_evidence",
+  "documented_components": [
+    "manifest schema validation",
+    "transition table resolution",
+    "CGE route fingerprint",
+    "transition receipt emission",
+    "sandbox repair route",
+    "repair result re-entry through ingestion",
+    "startup admissibility verification",
+    "release integration verification"
+  ],
+  "wiki_non_claims": [
+    "Wiki does not certify runtime admissibility.",
+    "Wiki does not issue commit-time permission.",
+    "Wiki does not replace source repository receipts.",
+    "Wiki does not become transition table or CGE authority."
+  ]
+}
