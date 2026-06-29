@@ -1,7 +1,7 @@
 {
   "$schema": "docs/CHAIN_STATUS_CONTINUATION.schema.json",
   "artifact_type": "chain_status_continuation",
-  "schema_version": "0.5",
+  "schema_version": "0.6",
   "current_stage": "admissibility-wiki",
   "current_status": "BLOCKED_ON_DESTINATION_REPOSITORY",
   "source_repo": "master-records/core-lite",
@@ -19,6 +19,7 @@
     "docs/CHAIN_SNAPSHOT_v0_1_0.md",
     "docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json",
     "docs/CHAIN_AUTO.json",
+    "docs/GOAL_STATE.json",
     "workflow_manifest.json"
   ],
   "current_workflows": [
@@ -32,7 +33,9 @@
     "scripts/check_chain_snapshot_receipt.py",
     "scripts/check_chain_auto.py",
     "scripts/check_blocked_destination_record.py",
+    "scripts/check_goal_state.py",
     "scripts/check_workflow_manifest.py",
+    "scripts/check_external_frameworks_index.py",
     "scripts/check_guardian_destination.py"
   ],
   "blocking_condition": {
