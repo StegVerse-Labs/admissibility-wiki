@@ -1,0 +1,16 @@
+{
+  "artifact_type": "external_framework_manifest",
+  "schema_version": "0.1",
+  "framework_id": "glm",
+  "name": "GLM",
+  "source_reference": "https://www.certifywebcontent.com/supervised-ai/governance-layer-manifest/",
+  "source_version": "public source recorded",
+  "allowed_use_boundary": ["Use as external boundary-declaration crosswalk evidence.", "Preserve GLM-native terminology.", "Do not treat as certification, endorsement, execution authority, or commit-time authority."],
+  "claims": ["GLM can declare claims, non-claims, scope, composition, and interpretation frame.", "GLM can support pre-admissibility review."],
+  "non_claims": ["GLM does not prove transition admissibility.", "GLM does not grant execution authority.", "GLM does not replace SPE standing determination."],
+  "transition_table_mapping": {"framework_identity":"GLM","source_reference":"https://www.certifywebcontent.com/supervised-ai/governance-layer-manifest/","source_version":"public source recorded","allowed_use_boundary":"pre-admissibility boundary declaration evidence only","claims":"machine-readable boundary, claim, non-claim, composition, and interpretation-frame declarations","non_claims":"no admissibility proof, execution authority, or SPE replacement","input_artifact_type":"governance layer manifest","output_artifact_type":"crosswalk and compatibility evidence","actor_or_authority_model":"declared externally; not inherited by StegVerse","evidence_model":"source URL plus local wiki crosswalk","policy_or_rule_model":"declared boundary and interpretation frame","delegation_model":"not asserted by wiki entry","decision_or_result_model":"declaration evidence only","execution_authority_claim":false,"receipt_or_trace_model":"manifest reference and wiki record","reconstruction_model":"source plus crosswalk can reconstruct why the term relationship is bounded","SPE_overlap":"pre-commit boundary evidence may inform standing review","StegVerse_ecosystem_overlap":"governance observatory and transition-table precondition mapping","fail_closed_conditions":"missing source, undefined mapping, or authority overclaim"},
+  "SPE_overlap": {"standing_boundary":"pre-commit evidence only","authority_evaluation":"not performed by GLM","commit_time_admissibility":"not claimed","receipt_reconstruction":"source-reference bounded"},
+  "StegVerse_ecosystem_overlap": {"transition_table":"boundary declaration mapping","chain_status":"crosswalk evidence","documentation_surface":"wiki reference","execution_path":"not authorized"},
+  "fail_closed_conditions": ["source reference is missing", "source version is missing", "transition-table mapping is incomplete", "SPE overlap is undefined", "any certification, endorsement, execution authority, or commit-time authority claim appears"],
+  "boundary": {"certification_claim":false,"endorsement_claim":false,"execution_authority_claim":false,"commit_time_authority_claim":false,"compatibility_manifest_is_authority":false,"missing_or_partial_fields_fail_closed":true}
+}
