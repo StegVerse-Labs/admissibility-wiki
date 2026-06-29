@@ -10,6 +10,9 @@ ROOT = Path(__file__).resolve().parents[1]
 AUTO = ROOT / "docs" / "CHAIN_AUTO.json"
 
 REQUIRED_COMMANDS = [
+    "python scripts/check_workflow_sprawl.py",
+    "python scripts/generate_external_framework_reports.py",
+    "python scripts/generate_external_framework_results.py",
     "python scripts/check_chain_status_continuation.py",
     "python scripts/check_continuation_bundle.py",
     "python scripts/check_chain_snapshot.py",
@@ -24,6 +27,7 @@ REQUIRED_COMMANDS = [
     "python scripts/check_external_framework_reports.py",
     "python scripts/check_external_framework_report_coverage.py",
     "python scripts/check_external_framework_report_generation.py",
+    "python scripts/check_external_framework_results_page.py",
     "python scripts/check_external_framework_expansion_policy.py",
     "python scripts/check_ci_evidence.py",
     "python scripts/check_guardian_destination.py",
@@ -51,7 +55,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "chain_auto_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "1.1":
+    if data.get("schema_version") != "1.2":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -67,6 +71,14 @@ def main() -> int:
         failures.append("generator mismatch")
     elif not (ROOT / data["generator"]).exists():
         failures.append("generator file missing")
+    if data.get("results_generator") != "scripts/generate_external_framework_results.py":
+        failures.append("results generator mismatch")
+    elif not (ROOT / data["results_generator"]).exists():
+        failures.append("results generator file missing")
+    if data.get("generated_results_page") != "docs/external-frameworks/evaluation-results.md":
+        failures.append("generated results page mismatch")
+    elif not (ROOT / data["generated_results_page"]).exists():
+        failures.append("generated results page missing")
     if data.get("ci_evidence") != "docs/CI_EVIDENCE.json":
         failures.append("CI evidence path mismatch")
     elif not (ROOT / data["ci_evidence"]).exists():
@@ -90,7 +102,7 @@ def main() -> int:
             failures.append(f"testbench report missing from repo: {report}")
 
     removed = data.get("manual_tasks_removed", [])
-    for task in ["workflow_install", "repeat_destination_search"]:
+    for task in ["workflow_install", "repeat_destination_search", "workflow_selection", "external_framework_result_posting"]:
         if task not in removed:
             failures.append(f"manual task not removed: {task}")
 
