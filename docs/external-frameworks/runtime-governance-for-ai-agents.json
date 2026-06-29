@@ -1,0 +1,16 @@
+{
+  "artifact_type": "external_framework_manifest",
+  "schema_version": "0.1",
+  "framework_id": "runtime-governance-for-ai-agents",
+  "name": "Runtime Governance for AI Agents",
+  "source_reference": "https://arxiv.org/abs/2603.16586",
+  "source_version": "public source recorded",
+  "allowed_use_boundary": ["Use as external runtime path-governance crosswalk evidence.", "Preserve source-native terminology.", "Do not treat as certification, endorsement, execution authority, or commit-time authority."],
+  "claims": ["Runtime Governance for AI Agents can support execution-path and proposed-next-action comparison.", "Policies on Paths can be mapped to runtime transition governance and fail-closed terms."],
+  "non_claims": ["Runtime path governance does not prove transition admissibility.", "Runtime evaluation does not automatically grant execution authority.", "The wiki relationship record is not acceptance of equivalence."],
+  "transition_table_mapping": {"framework_identity":"Runtime Governance for AI Agents","source_reference":"https://arxiv.org/abs/2603.16586","source_version":"public source recorded","allowed_use_boundary":"runtime path-governance crosswalk evidence only","claims":"execution path evaluation, proposed next action, organizational state, runtime policy violation probability","non_claims":"no admissibility proof, certification, endorsement, or execution authority","input_artifact_type":"runtime path-governance framework reference","output_artifact_type":"crosswalk and compatibility evidence","actor_or_authority_model":"external runtime-governance posture; no StegVerse authority inherited","evidence_model":"execution path and organizational state evidence","policy_or_rule_model":"policies on paths and violation-probability review","delegation_model":"not asserted by wiki entry","decision_or_result_model":"runtime evaluation evidence only","execution_authority_claim":false,"receipt_or_trace_model":"source reference and wiki record","reconstruction_model":"source plus crosswalk can reconstruct runtime-governance relationship limits","SPE_overlap":"may inform proposed-action review, not standing determination","StegVerse_ecosystem_overlap":"Runtime Transition Governance, Transition Table, Escalation, Fail-Closed","fail_closed_conditions":"missing source, undefined mapping, probabilistic overclaim, or authority overclaim"},
+  "SPE_overlap": {"standing_boundary":"runtime path evidence only","authority_evaluation":"not performed by this wiki page","commit_time_admissibility":"not claimed","receipt_reconstruction":"source-reference bounded"},
+  "StegVerse_ecosystem_overlap": {"transition_table":"runtime path and proposed-action mapping","chain_status":"crosswalk evidence","documentation_surface":"wiki reference","execution_path":"not authorized"},
+  "fail_closed_conditions": ["source reference is missing", "source version is missing", "transition-table mapping is incomplete", "SPE overlap is undefined", "any certification, endorsement, execution authority, or commit-time authority claim appears"],
+  "boundary": {"certification_claim":false,"endorsement_claim":false,"execution_authority_claim":false,"commit_time_authority_claim":false,"compatibility_manifest_is_authority":false,"missing_or_partial_fields_fail_closed":true}
+}
