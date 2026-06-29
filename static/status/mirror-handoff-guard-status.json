@@ -3,6 +3,7 @@
   "repository": "StegVerse-Labs/admissibility-wiki",
   "status": "installed",
   "handoff_path": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+  "addendum_path": "docs/MIRROR_HANDOFF_GUARD_ADDENDUM.md",
   "guard_script": "scripts/check-mirror-handoff-guard.mjs",
   "required_sections": [
     "# Admissibility Wiki Mirror Handoff",
@@ -22,10 +23,16 @@
     "github/workflows/record-latest-success.yml",
     "github/workflows/proposal-core-lite-target-watch.yml"
   ],
+  "required_addendum_phrases": [
+    "static/status/workflow-evidence-status.json",
+    "scripts/check-workflow-evidence-status.mjs",
+    "Pending workflow evidence must not advance activation posture by itself.",
+    "Manual task requirement: none recorded in this handoff."
+  ],
   "manual_task_requirement": "none",
-  "failure_posture": "fail_validation_until_handoff_source_of_truth_is_restored",
+  "failure_posture": "fail_validation_until_handoff_source_of_truth_or_addendum_is_restored",
   "non_claims": [
     "This guard does not prove public activation.",
-    "This guard only confirms the root handoff remains present and contains required continuity sections."
+    "This guard only confirms the root handoff and addendum remain present and contain required continuity sections."
   ]
 }
