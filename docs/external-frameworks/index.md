@@ -60,6 +60,14 @@ A relationship may be classified only as `synonymous`, `adjacent`, `new`, or `un
 
 Similar wording, intent, implementation, or outcome is insufficient to establish synonymy. No reconciliation may inherit execution authority, admissibility, standing, certification, governance proofs, or the published claims of the external framework.
 
+## Evaluation Result Posting
+
+External framework evaluation results are posted from generated compatibility reports, not by manually asserting standing on framework pages.
+
+The current generated results surface is [External Framework Evaluation Results](./evaluation-results.md).
+
+A generated compatibility result is evidence only. It is not certification, endorsement, formalism adoption, admissibility proof, or execution authority.
+
 ## Build Strategy Pages
 
 | Page | Purpose |
@@ -67,6 +75,7 @@ Similar wording, intent, implementation, or outcome is insufficient to establish
 | [Governance Observatory Protocol](./governance-observatory-protocol.md) | Defines the neutral page structure and observation rules for external frameworks. |
 | [Commit-Time Interoperability Contract](./commit-time-interoperability-contract.md) | Defines the minimal contract for routing external artifacts into a Commitment Candidate and SPE determination. |
 | [Governed Terminology Reconciliation Rule](./terminology-reconciliation-rule.md) | Defines how external terms may be classified as synonymous, adjacent, new, or unresolved without inheriting authority. |
+| [External Framework Evaluation Results](./evaluation-results.md) | Generated posting surface for compatibility-report results. |
 
 ## Current External Frameworks
 
