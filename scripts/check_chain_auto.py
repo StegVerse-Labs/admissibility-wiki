@@ -19,7 +19,14 @@ REQUIRED_COMMANDS = [
     "python scripts/check_goal_state.py",
     "python scripts/check_workflow_manifest.py",
     "python scripts/check_external_frameworks_index.py",
+    "python scripts/check_external_framework_manifests.py",
+    "python scripts/check_external_framework_reports.py",
     "python scripts/check_guardian_destination.py",
+]
+
+REQUIRED_TESTBENCH_REPORTS = [
+    "docs/external-frameworks/reports/admissible-existence-seed-cycle.compatibility.json",
+    "docs/external-frameworks/reports/care-runtime.compatibility.json",
 ]
 
 
@@ -39,7 +46,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "chain_auto_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "0.6":
+    if data.get("schema_version") != "0.7":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -49,7 +56,7 @@ def main() -> int:
         failures.append("mirror workflow mismatch")
     if data.get("schedule") != "17 9 * * *":
         failures.append("schedule mismatch")
-    if data.get("remaining_state") != "WAITING_FOR_DOWNSTREAM_REPO":
+    if data.get("remaining_state") != "WAITING_FOR_DOWNSTREAM_REPO_AND_EXTERNAL_FRAMEWORK_SOURCES":
         failures.append("remaining state mismatch")
 
     for path_key in ["canonical_workflow", "mirror_workflow"]:
@@ -61,6 +68,13 @@ def main() -> int:
     for command in REQUIRED_COMMANDS:
         if command not in commands:
             failures.append(f"missing command: {command}")
+
+    reports = data.get("testbench_reports", [])
+    for report in REQUIRED_TESTBENCH_REPORTS:
+        if report not in reports:
+            failures.append(f"missing testbench report: {report}")
+        elif not (ROOT / report).exists():
+            failures.append(f"testbench report missing from repo: {report}")
 
     removed = data.get("manual_tasks_removed", [])
     for task in ["workflow_install", "repeat_destination_search"]:
