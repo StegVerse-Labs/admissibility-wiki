@@ -1,6 +1,6 @@
 {
   "artifact_type": "goal_state",
-  "schema_version": "2.9",
+  "schema_version": "3.0",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "previous_goals": [
     {
@@ -19,8 +19,8 @@
   "current_goal": {
     "goal_id": "external-framework-expansion-cycle",
     "status": "ACTIVE",
-    "completion_percent": 92,
-    "cycle_status": "NON_MANUAL_CI_EVIDENCE_BOUNDARY_RECORDED",
+    "completion_percent": 96,
+    "cycle_status": "SINGLE_ACTIVE_WORKFLOW_POLICY_RECORDED",
     "built_surfaces": [
       "expansion policy",
       "expansion policy validator",
@@ -50,7 +50,11 @@
       "iOS workflow mirror CI evidence validation step",
       "auto-state CI evidence declaration",
       "workflow-manifest CI evidence declaration",
-      "non-manual CI evidence boundary"
+      "non-manual CI evidence boundary",
+      "single active workflow policy",
+      "workflow sprawl validator",
+      "extra active workflows removed",
+      "extra iOS mirror workflow files removed"
     ],
     "done_when": [
       "expansion intake rules exist and are machine-verifiable",
@@ -63,7 +67,9 @@
       "every registry entry has a deterministic generated compatibility report",
       "CI evidence is recorded as green or fail-closed before cycle closure",
       "manual task state is false",
-      "scheduled validation path exists"
+      "scheduled validation path exists",
+      "only one active workflow exists",
+      "workflow selection task is removed"
     ],
     "next_required_action": "Close the expansion cycle only when scheduled or connector-returned CI evidence shows validation success."
   },
@@ -80,6 +86,8 @@
     "generated_reports_are_non_authorizing": true,
     "missing_ci_evidence_fails_closed": true,
     "manual_task_required": false,
-    "scheduled_validation_path_exists": true
+    "manual_workflow_selection_required": false,
+    "scheduled_validation_path_exists": true,
+    "active_workflow_count": 1
   }
 }
