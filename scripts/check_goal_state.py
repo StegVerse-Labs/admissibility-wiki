@@ -26,6 +26,10 @@ PARALLEL_SAFE = [
     "generated compatibility report template",
 ]
 
+REMAINING_TO_CLOSE = [
+    "finalize current goal at 100 percent only after validating all expanded package references",
+]
+
 
 def main() -> int:
     failures: list[str] = []
@@ -39,7 +43,7 @@ def main() -> int:
 
     if data.get("artifact_type") != "goal_state":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "0.1":
+    if data.get("schema_version") != "0.2":
         failures.append("schema version mismatch")
     if data.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("repo mismatch")
@@ -49,11 +53,14 @@ def main() -> int:
         failures.append("current goal id mismatch")
     if current.get("status") != "ACTIVE":
         failures.append("current goal status mismatch")
-    if current.get("completion_percent") != 85:
+    if current.get("completion_percent") != 99:
         failures.append("completion percent mismatch")
     for item in CURRENT_DONE_WHEN:
         if item not in current.get("done_when", []):
             failures.append(f"missing done criterion: {item}")
+    for item in REMAINING_TO_CLOSE:
+        if item not in current.get("remaining_to_close", []):
+            failures.append(f"missing remaining closure item: {item}")
 
     next_goal = data.get("next_goal", {})
     if next_goal.get("goal_id") != "external-framework-compatibility-testbench":
