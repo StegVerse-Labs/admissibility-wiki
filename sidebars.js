@@ -77,6 +77,7 @@ const sidebars = {
         'external-frameworks/evide',
         'external-frameworks/decisionassure',
         'external-frameworks/mindforge',
+        'external-frameworks/care-runtime',
       ],
     },
     {
