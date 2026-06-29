@@ -61,6 +61,20 @@ Commitment Candidate asks: What exact transition is now being proposed?
 SPE asks: Does current standing still exist at the crossing point?
 ```
 
+## Execution Authority Boundary
+
+MindForge is unevaluated for general StegVerse execution-authority purposes.
+
+No MindForge artifact, output, recommendation, trace, proof, review artifact, evidence packet, or evaluation constitutes execution authority inside StegVerse.
+
+MindForge material may be evaluated as external evidence, but execution authority is determined only by StegVerse commit-time admissibility under current standing semantics.
+
+## Evaluation Result Posting
+
+Evaluation results for MindForge must be posted from the generated compatibility report at `docs/external-frameworks/reports/mindforge.compatibility.json`.
+
+Until an authorized artifact package is supplied and evaluated, this page remains an artifact-package-required intake record.
+
 ## Required Boundary
 
 ```text
