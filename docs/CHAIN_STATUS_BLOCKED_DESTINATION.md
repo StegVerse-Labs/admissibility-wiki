@@ -35,10 +35,22 @@ The workflow uploads that report as an artifact.
 ## Machine-Readable Records
 
 ```text
-docs/CHAIN_STATUS_BLOCKED_DESTINATION.json
+docs/CHAIN_STATUS_BLOCKED_DESTINATION.json schema_version 0.3
 docs/CHAIN_STATUS_CONTINUATION.json
 docs/CHAIN_AUTO.json
 workflow_manifest.json
+```
+
+The blocked-destination machine record is validated by:
+
+```bash
+python scripts/check_blocked_destination_record.py
+```
+
+Expected record state:
+
+```text
+BLOCKED DESTINATION RECORD: PASS
 ```
 
 ## Local Validation Package
@@ -49,6 +61,7 @@ python scripts/check_continuation_bundle.py
 python scripts/check_chain_snapshot.py
 python scripts/check_chain_snapshot_receipt.py
 python scripts/check_chain_auto.py
+python scripts/check_blocked_destination_record.py
 python scripts/check_workflow_manifest.py
 python scripts/check_guardian_destination.py
 ```
@@ -61,6 +74,7 @@ CONTINUATION BUNDLE: PASS
 CHAIN SNAPSHOT: PASS
 CHAIN SNAPSHOT RECEIPT: PASS
 CHAIN AUTO: PASS
+BLOCKED DESTINATION RECORD: PASS
 WORKFLOW MANIFEST: PASS
 GUARDIAN DESTINATION: BLOCKED
 ```
@@ -94,5 +108,5 @@ Create or identify the Guardian standing-boundary repository, then add a narrow 
 Future sessions should continue from this document if Guardian-side propagation is requested again before a destination repo exists.
 
 StegVerse-Labs - 5% complete
-admissibility-wiki - 70% complete
-70% complete vs current activation
+admissibility-wiki - 84% complete
+84% complete vs current activation
