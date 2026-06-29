@@ -26,6 +26,7 @@ REQUIRED_VALIDATORS = [
     "scripts/check_chain_snapshot.py",
     "scripts/check_chain_snapshot_receipt.py",
     "scripts/check_chain_auto.py",
+    "scripts/check_blocked_destination_record.py",
     "scripts/check_workflow_manifest.py",
     "scripts/check_guardian_destination.py",
 ]
@@ -36,6 +37,7 @@ REQUIRED_COMMANDS = [
     "python scripts/check_chain_snapshot.py",
     "python scripts/check_chain_snapshot_receipt.py",
     "python scripts/check_chain_auto.py",
+    "python scripts/check_blocked_destination_record.py",
     "python scripts/check_workflow_manifest.py",
     "python scripts/check_guardian_destination.py",
 ]
@@ -46,6 +48,7 @@ EXPECTED_RESULTS = {
     "chain_snapshot": "CHAIN SNAPSHOT: PASS",
     "chain_snapshot_receipt": "CHAIN SNAPSHOT RECEIPT: PASS",
     "chain_auto": "CHAIN AUTO: PASS",
+    "blocked_destination_record": "BLOCKED DESTINATION RECORD: PASS",
     "workflow_manifest": "WORKFLOW MANIFEST: PASS",
     "destination_state": "GUARDIAN DESTINATION: BLOCKED",
 }
@@ -85,7 +88,7 @@ def main() -> int:
 
     if receipt.get("artifact_type") != "chain_snapshot_receipt":
         failures.append("artifact type mismatch")
-    if receipt.get("schema_version") != "0.4":
+    if receipt.get("schema_version") != "0.5":
         failures.append("schema version mismatch")
     if receipt.get("status") != "BLOCKED_ON_DESTINATION_REPOSITORY":
         failures.append("status mismatch")
