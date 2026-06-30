@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TAG = ROOT / "docs" / "external-frameworks" / "generated-page-tag-candidate.json"
+CLOSEOUT_CHECK = ROOT / "scripts" / "check_generated_page_closeout_bundle.py"
 
 REQUIRED_ARTIFACTS = [
     "docs/external-frameworks/generated-page-progress.json",
@@ -51,6 +53,11 @@ def main() -> int:
         failures.append("green CI boundary mismatch")
     if boundary.get("manual_tag_readiness_reconstruction_required") is not False:
         failures.append("manual reconstruction boundary mismatch")
+
+    if CLOSEOUT_CHECK.exists():
+        result = subprocess.run(["python", str(CLOSEOUT_CHECK)], check=False)
+        if result.returncode != 0:
+            failures.append("closeout bundle check failed")
 
     print("GENERATED PAGE TAG CANDIDATE:", "FAIL" if failures else "PASS")
     for failure in failures:
