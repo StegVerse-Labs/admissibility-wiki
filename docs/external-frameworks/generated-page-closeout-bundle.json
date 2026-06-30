@@ -11,6 +11,7 @@
     "docs/external-frameworks/generated-page-release-readiness.json",
     "docs/external-frameworks/generated-page-downstream-tasks.json",
     "docs/external-frameworks/generated-page-ci-evidence-request.json",
+    "docs/external-frameworks/generated-page-ci-evidence-surface-handoff.json",
     "docs/external-frameworks/generated-page-tag-candidate.json",
     "docs/external-frameworks/generated-page-closeout-bundle.json",
     "docs/external-frameworks/generated-page-activation-gate.json",
