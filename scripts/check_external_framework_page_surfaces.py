@@ -31,6 +31,14 @@ REQUIRED_ACTIVE = {
         "scripts/generate_generated_page_closeout_state.py",
         "scripts/check_generated_page_closeout_state_generation.py",
     ),
+    "workflow_entrypoint_migration": (
+        "docs/external-frameworks/generated-page-workflow-entrypoint-migration.json",
+        "scripts/check_generated_page_workflow_entrypoint_migration.py",
+    ),
+    "entrypoint_closeout_propagation": (
+        "docs/external-frameworks/generated-page-entrypoint-closeout-propagation.json",
+        "scripts/check_generated_page_entrypoint_closeout_propagation.py",
+    ),
 }
 
 
