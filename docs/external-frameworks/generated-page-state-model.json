@@ -26,7 +26,8 @@
     "closeout_bundle",
     "activation_gate",
     "workflow_entrypoint_migration",
-    "entrypoint_closeout_propagation"
+    "entrypoint_closeout_propagation",
+    "release_evidence_bundle"
   ],
   "generated_outputs": [
     "docs/external-frameworks/generated-page-validation-summary.json",
@@ -38,7 +39,8 @@
     "docs/external-frameworks/generated-page-closeout-bundle.json",
     "docs/external-frameworks/generated-page-activation-gate.json",
     "docs/external-frameworks/generated-page-workflow-entrypoint-migration.json",
-    "docs/external-frameworks/generated-page-entrypoint-closeout-propagation.json"
+    "docs/external-frameworks/generated-page-entrypoint-closeout-propagation.json",
+    "docs/external-frameworks/generated-page-release-evidence-bundle.json"
   ],
   "remaining_tasks": [
     {
