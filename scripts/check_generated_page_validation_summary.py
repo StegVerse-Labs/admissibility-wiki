@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SUMMARY = ROOT / "docs" / "external-frameworks" / "generated-page-validation-summary.json"
+PROGRESS_CHECK = ROOT / "scripts" / "check_generated_page_progress.py"
 
 REQUIRED_VALIDATORS = [
     "scripts/check_external_framework_page_analysis_boundary.py",
@@ -58,6 +60,11 @@ def main() -> int:
         failures.append("single workflow boundary mismatch")
     if boundary.get("manual_generated_surface_discovery_required") is not False:
         failures.append("manual discovery boundary mismatch")
+
+    if PROGRESS_CHECK.exists():
+        result = subprocess.run(["python", str(PROGRESS_CHECK)], check=False)
+        if result.returncode != 0:
+            failures.append("generated page progress check failed")
 
     print("GENERATED PAGE VALIDATION SUMMARY:", "FAIL" if failures else "PASS")
     for failure in failures:
