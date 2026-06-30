@@ -1,0 +1,22 @@
+{
+  "schema": "admissibility_wiki.governed_ecosystem_transitions_status.v1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "status": "GOVERNED_ECOSYSTEM_TRANSITION_FRAMING_PRESENT",
+  "public_page": "docs/governance/governed-ecosystem-transitions.md",
+  "claim_boundary": {
+    "external_frameworks_are_input_class": true,
+    "live_connector_installed": false,
+    "production_authority_claimed": false,
+    "canonical_strp_admission_claimed": false
+  },
+  "transition_path": [
+    "input_or_request",
+    "governed_ingestion",
+    "cge_fingerprinting",
+    "gcat_bcat_evaluation",
+    "transition_table_standing",
+    "allow_deny_fail_closed",
+    "receipt_chain_or_strp_record",
+    "governed_output"
+  ]
+}
