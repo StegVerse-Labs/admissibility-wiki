@@ -2,12 +2,14 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "docs" / "external-frameworks" / "index.json"
 REPORT_DIR = ROOT / "docs" / "external-frameworks" / "reports"
+ANALYSIS_BOUNDARY = ROOT / "scripts" / "generate_external_framework_page_analysis_boundary.py"
 START = "<!-- GENERATED:EXTERNAL_FRAMEWORK_EVALUATION_STATUS:START -->"
 END = "<!-- GENERATED:EXTERNAL_FRAMEWORK_EVALUATION_STATUS:END -->"
 
@@ -46,7 +48,7 @@ def block_for(entry: dict[str, Any]) -> str:
         f"- Cycle status: `{cycle_status}`",
         f"- Execution authority claim: `{authority}`",
         "- Posting source: generated compatibility report",
-        "- Authority boundary: generated status is compatibility evidence only; it is not certification, endorsement, formalism adoption, admissibility proof, or execution authority.",
+        "- Generated status is descriptive compatibility evidence only.",
         "",
         END,
     ])
@@ -82,6 +84,8 @@ def main() -> int:
         text = path.read_text(encoding="utf-8")
         updated = insert_block(text, block_for(entry))
         path.write_text(updated, encoding="utf-8")
+    if ANALYSIS_BOUNDARY.exists():
+        subprocess.run(["python", str(ANALYSIS_BOUNDARY)], check=True)
     return 0
 
 
