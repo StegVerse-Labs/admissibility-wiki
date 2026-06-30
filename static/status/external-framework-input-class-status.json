@@ -1,0 +1,27 @@
+{
+  "schema": "admissibility_wiki.external_framework_input_class_status.v1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "status": "EXTERNAL_FRAMEWORK_INPUT_CLASS_FRAMING_PRESENT",
+  "public_page": "docs/governance/external-frameworks-as-input-class.md",
+  "parent_page": "docs/governance/governed-ecosystem-transitions.md",
+  "claim_boundary": {
+    "external_frameworks_are_input_class": true,
+    "compatibility_evidence_only": true,
+    "certification_claimed": false,
+    "endorsement_claimed": false,
+    "formalism_adoption_claimed": false,
+    "admissibility_proof_claimed": false,
+    "execution_authority_claimed": false,
+    "canonical_strp_admission_claimed": false
+  },
+  "transition_path": [
+    "external_framework_artifact",
+    "governed_ingestion",
+    "cge_fingerprinting",
+    "gcat_bcat_evaluation",
+    "transition_table_standing",
+    "allow_deny_fail_closed",
+    "receipt_chain_or_strp_record",
+    "governed_output"
+  ]
+}
