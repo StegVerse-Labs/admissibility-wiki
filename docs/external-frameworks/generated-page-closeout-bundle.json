@@ -12,8 +12,10 @@
     "docs/external-frameworks/generated-page-downstream-tasks.json",
     "docs/external-frameworks/generated-page-ci-evidence-request.json",
     "docs/external-frameworks/generated-page-tag-candidate.json",
+    "docs/external-frameworks/generated-page-closeout-bundle.json",
     "docs/external-frameworks/generated-page-activation-gate.json",
-    "docs/external-frameworks/generated-page-workflow-entrypoint-migration.json"
+    "docs/external-frameworks/generated-page-workflow-entrypoint-migration.json",
+    "docs/external-frameworks/generated-page-entrypoint-closeout-propagation.json"
   ],
   "blocked_by": [
     "explicit release authorization not yet recorded",
