@@ -37,6 +37,7 @@ def validation_summary(model: dict[str, Any]) -> dict[str, Any]:
             "scripts/check_generated_page_surfaces_root_addendum.py",
             "scripts/check_generated_page_workflow_entrypoint_migration.py",
             "scripts/check_generated_page_entrypoint_closeout_propagation.py",
+            "scripts/check_generated_page_release_evidence_bundle.py",
             "scripts/check_generated_page_closeout_state_generation.py"
         ],
         "manual_tasks_removed": [
