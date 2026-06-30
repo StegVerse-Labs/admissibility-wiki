@@ -1,0 +1,32 @@
+{
+  "artifact_type": "generated_page_downstream_tasks",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "active_goal": "declarative-external-framework-generation-pipeline",
+  "activation_condition": "after release tag and green public verification",
+  "tasks": [
+    {
+      "destination": "StegVerse-Labs/Site",
+      "task_id": "site.generated-framework-results-summary",
+      "required_input": "docs/external-frameworks/evaluation-results.md",
+      "status": "pending_release_tag"
+    },
+    {
+      "destination": "GCAT-BCAT-Engine/Publisher",
+      "task_id": "publisher.generated-framework-results-import-awareness",
+      "required_input": "docs/external-frameworks/reports/*.compatibility.json",
+      "status": "pending_release_tag"
+    },
+    {
+      "destination": "stegguardian-wiki",
+      "task_id": "guardian.execution-authority-boundary-summary",
+      "required_input": "docs/external-frameworks/generated-page-release-readiness.json",
+      "status": "pending_release_tag"
+    }
+  ],
+  "boundary": {
+    "downstream_tasks_are_authority": false,
+    "manual_downstream_task_reconstruction_required": false,
+    "release_tag_required_before_downstream_install": true
+  }
+}
