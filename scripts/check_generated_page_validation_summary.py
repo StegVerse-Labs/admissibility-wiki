@@ -18,6 +18,7 @@ REQUIRED_VALIDATORS = [
     "scripts/check_external_framework_page_surfaces.py",
     "scripts/check_generated_page_surfaces_handoff.py",
     "scripts/check_generated_page_surfaces_root_addendum.py",
+    "scripts/check_generated_page_workflow_entrypoint_migration.py",
     "scripts/check_generated_page_closeout_state_generation.py",
 ]
 
