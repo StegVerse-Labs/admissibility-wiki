@@ -10,6 +10,29 @@ This wiki exists to make the StegVerse governance vocabulary visible, stable, li
 
 It is not a substitute for Wikipedia and does not claim independent notability by itself. It is a public reference layer that can help researchers, developers, reviewers, journalists, and contributors understand the concepts accurately.
 
+## Governed Ecosystem Transition Framing
+
+The current public framing is shifting from external-framework comparison toward a governed ecosystem for inputs, proposed actions, desired outputs, and receipt-bound outputs.
+
+External frameworks are one input class. The broader path is:
+
+```text
+input or request
+  -> governed ingestion
+  -> CGE fingerprinting
+  -> GCAT / BCAT evaluation
+  -> Transition Table standing
+  -> ALLOW / DENY / FAIL-CLOSED
+  -> receipt_chain / STRP record
+  -> governed output
+```
+
+The framing page is:
+
+```text
+docs/governance/governed-ecosystem-transitions.md
+```
+
 ## Core Assumptions
 
 The wiki treats governance as a layered constraint system, not a single approval event.
