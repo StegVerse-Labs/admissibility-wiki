@@ -8,12 +8,10 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 governed-ecosystem-transition-framing
 ```
 
-The current goal is to present StegVerse as a governed ecosystem for inputs, proposed actions, desired outputs, and receipt-bound outputs. External frameworks remain one input class, not the center of the architecture.
-
 ## Current version
 
 ```text
-1.0.0-ecosystem-capability-status-page
+1.1.0-ecosystem-capability-status-package-wired
 ```
 
 ## Current status
@@ -24,10 +22,8 @@ GOVERNED_ECOSYSTEM_TRANSITION_FRAMING_PRESENT
 GOVERNED_TRANSITION_MAP_PRESENT
 CAPABILITY_LIFECYCLE_REGISTRY_PRESENT
 ECOSYSTEM_CAPABILITY_STATUS_EXAMPLE_PRESENT
-ECOSYSTEM_CAPABILITY_STATUS_EXAMPLE_VALIDATOR_PRESENT
 ECOSYSTEM_CAPABILITY_STATUS_PAGE_PRESENT
-ECOSYSTEM_CAPABILITY_STATUS_PAGE_VALIDATOR_PRESENT
-WORKFLOW_GREEN_REPORTED
+ECOSYSTEM_CAPABILITY_STATUS_PACKAGE_WIRED
 LOCAL_DOCS_ONLY
 ```
 
@@ -46,18 +42,6 @@ scripts/check_ecosystem_capability_status_page.py
 package.json
 ```
 
-## Capability lifecycle states
-
-```text
-proposed
-implemented
-internally_validated
-release_authorized
-publicly_verified
-operational
-deprecated
-```
-
 ## Validation
 
 ```text
@@ -65,6 +49,8 @@ python scripts/check_capability_lifecycle_status.py
 python scripts/check_ecosystem_capability_status_example.py
 python scripts/check_ecosystem_capability_status_page.py
 npm run validate:capability-lifecycle
+npm run validate:ecosystem-capability-status-example
+npm run validate:ecosystem-capability-status-page
 npm run validate
 ```
 
@@ -86,24 +72,21 @@ The iOS-safe mirror is:
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
 
-Do not add a second active workflow for this goal.
-
 ## Known remaining installation targets
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - add package validation wiring for ecosystem capability status example and page if accepted
   - validate through canonical workflow
   - public deployment verification for governed ecosystem pages
 
 StegVerse-Labs/Site:
-  - mirror/public summary of governed ecosystem transition framing after admissibility-wiki validation
+  - mirror public summary after admissibility-wiki validation
 
 GCAT-BCAT-Engine/Publisher:
-  - publication/import awareness for governed ecosystem transition framing after admissibility-wiki validation
+  - publication/import awareness after admissibility-wiki validation
 
 stegguardian-wiki:
-  - downstream summary of governed input/output transition boundary once admissibility-wiki validation is stable
+  - downstream summary after admissibility-wiki validation
 ```
 
 ## Boundary rules
@@ -114,7 +97,7 @@ This wiki does not claim live connector installation, production authority, cano
 
 ## Next build candidate
 
-Let the canonical validation workflow validate the lifecycle and status pages. If continuing before workflow evidence is visible, package validation wiring remains the only local integration gap and may be retried carefully.
+Let the canonical validation workflow validate the package-wired lifecycle and status pages. If continuing before workflow evidence is visible, the next local candidate is public navigation/index consolidation for governed ecosystem pages.
 
 ## Handoff instruction
 
