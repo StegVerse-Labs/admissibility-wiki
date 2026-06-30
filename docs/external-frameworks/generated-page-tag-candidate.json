@@ -1,0 +1,24 @@
+{
+  "artifact_type": "generated_page_tag_candidate",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "active_goal": "declarative-external-framework-generation-pipeline",
+  "tag_candidate": "v0.1.0-generated-framework-pages",
+  "tag_ready": false,
+  "blocked_by": [
+    "green CI evidence not yet recorded after downstream task manifest installation",
+    "public generated evaluation results verification not yet recorded after downstream task manifest installation",
+    "release readiness remains false until CI and public verification pass"
+  ],
+  "required_artifacts": [
+    "docs/external-frameworks/generated-page-progress.json",
+    "docs/external-frameworks/generated-page-release-readiness.json",
+    "docs/external-frameworks/generated-page-downstream-tasks.json",
+    "docs/external-frameworks/generated-page-ci-evidence-request.json"
+  ],
+  "boundary": {
+    "tag_candidate_is_authority": false,
+    "tag_ready_without_green_ci_allowed": false,
+    "manual_tag_readiness_reconstruction_required": false
+  }
+}
