@@ -1,0 +1,24 @@
+{
+  "schema": "admissibility_wiki.governed_output_classes_status.v1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "status": "GOVERNED_OUTPUT_CLASS_REGISTRY_PRESENT",
+  "public_page": "docs/governance/governed-output-classes.md",
+  "parent_page": "docs/governance/governed-ecosystem-transitions.md",
+  "output_classes": [
+    "admitted_response",
+    "denial_receipt",
+    "fail_closed_receipt",
+    "committed_repo_change",
+    "strp_handoff",
+    "receipt_chain_continuation",
+    "state_transition_summary"
+  ],
+  "claim_boundary": {
+    "registration_grants_validity": false,
+    "registration_grants_execution_authority": false,
+    "registration_grants_canonical_receipt_admission": false,
+    "each_instance_requires_transition_record": true,
+    "each_instance_requires_authority_posture": true,
+    "each_instance_requires_receipt_binding": true
+  }
+}
