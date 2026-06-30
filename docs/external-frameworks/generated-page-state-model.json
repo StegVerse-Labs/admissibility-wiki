@@ -26,6 +26,16 @@
     "closeout_bundle",
     "activation_gate"
   ],
+  "generated_outputs": [
+    "docs/external-frameworks/generated-page-validation-summary.json",
+    "docs/external-frameworks/generated-page-progress.json",
+    "docs/external-frameworks/generated-page-release-readiness.json",
+    "docs/external-frameworks/generated-page-downstream-tasks.json",
+    "docs/external-frameworks/generated-page-ci-evidence-request.json",
+    "docs/external-frameworks/generated-page-tag-candidate.json",
+    "docs/external-frameworks/generated-page-closeout-bundle.json",
+    "docs/external-frameworks/generated-page-activation-gate.json"
+  ],
   "remaining_tasks": [
     {
       "destination": "StegVerse-Labs/admissibility-wiki",
