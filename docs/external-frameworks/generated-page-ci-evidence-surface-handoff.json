@@ -1,0 +1,16 @@
+{
+  "artifact_type": "generated_page_ci_evidence_surface_handoff",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "active_goal": "declarative-external-framework-generation-pipeline",
+  "surface_id": "ci_evidence_request",
+  "surface_inventory": "docs/external-frameworks/generated-page-surfaces.json",
+  "generator": "scripts/generate_generated_page_ci_evidence_request.py",
+  "validator": "scripts/check_generated_page_ci_evidence_request.py",
+  "manual_task_required": false,
+  "boundary": {
+    "handoff_addendum_is_authority": false,
+    "manual_surface_reconstruction_required": false,
+    "single_workflow_policy_preserved": true
+  }
+}
