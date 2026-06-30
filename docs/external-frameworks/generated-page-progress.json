@@ -3,14 +3,14 @@
   "schema_version": "0.1",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "org": "StegVerse-Labs",
-  "repo_percent_complete": 74,
-  "goal_activation_percent_complete": 74,
+  "repo_percent_complete": 84,
+  "goal_activation_percent_complete": 84,
   "active_goal": "declarative-external-framework-generation-pipeline",
-  "current_checkpoint": "VALIDATION_SUMMARY_RECORDED",
+  "current_checkpoint": "CLOSEOUT_BUNDLE_RECORDED",
   "actual_vs_recorded": {
-    "actual_percent": 74,
+    "actual_percent": 84,
     "recorded_goal_state_percent": 44,
-    "reason": "Generated page metadata, mapping, status, analysis boundary, surface inventory, handoff, root addendum, and validation summary are installed and machine-checked through the existing page-status path."
+    "reason": "Generated page state artifacts are now consolidated behind a generator and machine-checked through the existing validation chain."
   },
   "active_surfaces": [
     "metadata",
@@ -20,16 +20,21 @@
     "surface_inventory",
     "surface_handoff",
     "root_addendum",
-    "validation_summary"
+    "validation_summary",
+    "release_readiness",
+    "downstream_tasks",
+    "ci_evidence_request",
+    "tag_candidate",
+    "closeout_bundle"
   ],
   "remaining_tasks": [
     {
       "destination": "StegVerse-Labs/admissibility-wiki",
-      "task": "CI run confirms generated-page validation remains green"
+      "task": "CI run confirms generated-page closeout state remains green"
     },
     {
       "destination": "StegVerse-Labs/admissibility-wiki",
-      "task": "Promote recorded GOAL_STATE once validator update is no longer blocked"
+      "task": "Promote recorded GOAL_STATE once validator update is unblocked"
     },
     {
       "destination": "StegVerse-Labs/Site",
