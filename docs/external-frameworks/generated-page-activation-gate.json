@@ -1,0 +1,24 @@
+{
+  "artifact_type": "generated_page_activation_gate",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "active_goal": "declarative-external-framework-generation-pipeline",
+  "activation_ready": false,
+  "activation_percent": 98,
+  "required_to_activate": [
+    "current single canonical workflow conclusion is success",
+    "public GitHub Pages root verification is success",
+    "public generated evaluation results page verification is success",
+    "GOAL_STATE is promoted to the current generated closeout-state checkpoint"
+  ],
+  "fail_closed_until": [
+    "green CI evidence is recorded after the validation summary generation checkpoint",
+    "public verification evidence is recorded after the validation summary generation checkpoint"
+  ],
+  "boundary": {
+    "activation_gate_is_authority": false,
+    "missing_evidence_blocks_activation": true,
+    "manual_activation_reconstruction_required": false,
+    "thread_archive_ready": false
+  }
+}
