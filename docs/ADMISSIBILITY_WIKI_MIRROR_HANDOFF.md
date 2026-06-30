@@ -13,7 +13,7 @@ The current goal is to present StegVerse as a governed ecosystem for inputs, pro
 ## Current version
 
 ```text
-0.7.0-capability-check-repair
+0.8.0-capability-lifecycle-registry
 ```
 
 ## Current status
@@ -24,8 +24,11 @@ GOVERNED_ECOSYSTEM_TRANSITION_FRAMING_PRESENT
 GOVERNED_TRANSITION_MAP_PRESENT
 CAPABILITY_GENERATOR_ALIAS_PRESENT
 CAPABILITY_BLOCKERS_ALIGNED_WITH_STATE_MODEL
+CAPABILITY_LIFECYCLE_REGISTRY_PRESENT
+CAPABILITY_LIFECYCLE_STATUS_PRESENT
+CAPABILITY_LIFECYCLE_VALIDATOR_PRESENT
+WORKFLOW_GREEN_REPORTED
 LOCAL_DOCS_ONLY
-AWAITING_WORKFLOW_RECHECK
 ```
 
 ## Source-of-truth documents
@@ -38,38 +41,24 @@ docs/governance/external-frameworks-as-input-class.md
 docs/governance/governed-input-classes.md
 docs/governance/governed-output-classes.md
 docs/governance/governed-transition-map.md
+docs/governance/capability-lifecycle.md
+static/status/capability-lifecycle-status.json
+scripts/check_capability_lifecycle_status.py
 docs/external-frameworks/generated-page-subsystem-capability.json
 scripts/generate_external_framework_evaluation_results.py
 package.json
 ```
 
-## Workflow failure repaired
-
-The failed workflow reported:
+## Capability lifecycle states
 
 ```text
-capability referenced file missing: scripts/generate_external_framework_evaluation_results.py
-tag blocker missing from capability boundary: explicit release authorization not yet recorded
-tag blocker missing from capability boundary: public generated evaluation results verification not yet recorded after release authorization
-tag blocker missing from capability boundary: release readiness remains false until release authorization and public verification pass
-```
-
-Installed repair:
-
-```text
-scripts/generate_external_framework_evaluation_results.py
-```
-
-This is a compatibility wrapper around:
-
-```text
-scripts/generate_external_framework_results.py
-```
-
-Aligned blocker list in:
-
-```text
-docs/external-frameworks/generated-page-subsystem-capability.json
+proposed
+implemented
+internally_validated
+release_authorized
+publicly_verified
+operational
+deprecated
 ```
 
 ## Core transition path
@@ -88,8 +77,8 @@ input or request
 ## Validation
 
 ```text
-python scripts/check_generated_page_subsystem_capability.py
-python scripts/check_external_framework_page_status.py
+python scripts/check_capability_lifecycle_status.py
+npm run validate:capability-lifecycle
 npm run validate
 ```
 
@@ -117,7 +106,7 @@ Do not add a second active workflow for this goal.
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - rerun workflow and verify generated page subsystem capability passes
+  - validate capability lifecycle registry through canonical workflow
   - public deployment verification for governed ecosystem pages
   - optional public navigation/index consolidation for governed ecosystem pages
 
@@ -133,13 +122,13 @@ stegguardian-wiki:
 
 ## Boundary rules
 
-This wiki records vocabulary, proof framing, and public explanation paths.
+This wiki records vocabulary, proof framing, lifecycle classification, and public explanation paths.
 
 This wiki does not claim live connector installation, production authority, canonical STRP admission, or release status.
 
 ## Next build candidate
 
-Let the canonical validation workflow re-run. If continuing before workflow evidence is visible, check only the first failing validator from the new logs.
+Let the canonical validation workflow validate the capability lifecycle registry. If continuing before workflow evidence is visible, the next local build candidate is a machine-readable ecosystem capability status example using the lifecycle states.
 
 ## Handoff instruction
 
