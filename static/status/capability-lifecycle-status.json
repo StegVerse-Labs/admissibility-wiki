@@ -1,0 +1,22 @@
+{
+  "schema": "admissibility_wiki.capability_lifecycle_status.v1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "status": "CAPABILITY_LIFECYCLE_REGISTRY_PRESENT",
+  "public_page": "docs/governance/capability-lifecycle.md",
+  "states": [
+    "proposed",
+    "implemented",
+    "internally_validated",
+    "release_authorized",
+    "publicly_verified",
+    "operational",
+    "deprecated"
+  ],
+  "claim_boundary": {
+    "lifecycle_model_grants_authority": false,
+    "implemented_implies_released": false,
+    "released_implies_publicly_verified": false,
+    "publicly_verified_implies_operational": false,
+    "operational_requires_current_standing": true
+  }
+}
