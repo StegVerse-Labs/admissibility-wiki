@@ -27,25 +27,15 @@
     "ci_evidence_request",
     "tag_candidate",
     "closeout_bundle",
-    "activation_gate"
+    "activation_gate",
+    "workflow_entrypoint_migration",
+    "entrypoint_closeout_propagation"
   ],
   "remaining_tasks": [
-    {
-      "destination": "StegVerse-Labs/admissibility-wiki",
-      "task": "Record release/tag evidence after explicit release authorization"
-    },
-    {
-      "destination": "StegVerse-Labs/Site",
-      "task": "Mirror generated external-framework evaluation results after release/tag"
-    },
-    {
-      "destination": "GCAT-BCAT-Engine/Publisher",
-      "task": "Add publication/import awareness for generated external-framework result artifacts after release/tag"
-    },
-    {
-      "destination": "stegguardian-wiki",
-      "task": "Add downstream execution-authority boundary summary after release/tag"
-    }
+    {"destination": "StegVerse-Labs/admissibility-wiki"},
+    {"destination": "StegVerse-Labs/Site"},
+    {"destination": "GCAT-BCAT-Engine/Publisher"},
+    {"destination": "stegguardian-wiki"}
   ],
   "boundary": {
     "progress_record_is_authority": false,
