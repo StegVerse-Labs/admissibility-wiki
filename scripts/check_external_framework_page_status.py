@@ -17,6 +17,7 @@ WORKFLOW_MIGRATION_CHECK = ROOT / "scripts" / "check_generated_page_workflow_ent
 ENTRYPOINT_PROPAGATION_CHECK = ROOT / "scripts" / "check_generated_page_entrypoint_closeout_propagation.py"
 RELEASE_EVIDENCE_CHECK = ROOT / "scripts" / "check_generated_page_release_evidence_bundle.py"
 CI_EVIDENCE_SURFACE_CHECK = ROOT / "scripts" / "check_generated_page_ci_evidence_surface.py"
+CI_EVIDENCE_HANDOFF_CHECK = ROOT / "scripts" / "check_generated_page_ci_evidence_surface_handoff.py"
 REGISTRY = ROOT / "docs" / "external-frameworks" / "index.json"
 
 
@@ -73,6 +74,7 @@ def main() -> int:
     run_check(ENTRYPOINT_PROPAGATION_CHECK, "entrypoint closeout propagation check", failures)
     run_check(RELEASE_EVIDENCE_CHECK, "release evidence bundle check", failures)
     run_check(CI_EVIDENCE_SURFACE_CHECK, "CI evidence surface check", failures)
+    run_check(CI_EVIDENCE_HANDOFF_CHECK, "CI evidence handoff check", failures)
 
     print("EXTERNAL FRAMEWORK PAGE STATUS:", "FAIL" if failures else "PASS")
     for failure in failures:
