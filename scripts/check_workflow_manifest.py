@@ -7,12 +7,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "workflow_manifest.json"
+LOCAL_ENTRYPOINT = "python scripts/run_canonical_validation.py"
 
 REQUIRED_COMMANDS = [
     "python scripts/check_workflow_sprawl.py",
     "python scripts/generate_external_framework_reports.py",
     "python scripts/generate_external_framework_results.py",
     "python scripts/generate_external_framework_page_metadata.py",
+    "python scripts/generate_external_framework_page_mapping.py",
     "python scripts/generate_external_framework_page_status.py",
     "python scripts/check_chain_status_continuation.py",
     "python scripts/check_continuation_bundle.py",
@@ -30,6 +32,7 @@ REQUIRED_COMMANDS = [
     "python scripts/check_external_framework_report_generation.py",
     "python scripts/check_external_framework_results_page.py",
     "python scripts/check_external_framework_page_metadata.py",
+    "python scripts/check_external_framework_page_mapping.py",
     "python scripts/check_external_framework_page_status.py",
     "python scripts/check_external_framework_expansion_policy.py",
     "python scripts/check_ci_evidence.py",
@@ -42,6 +45,7 @@ EXPECTED = {
     "external_framework_report_generation": "EXTERNAL FRAMEWORK REPORT GENERATION: PASS",
     "external_framework_results_page": "EXTERNAL FRAMEWORK RESULTS PAGE: PASS",
     "external_framework_page_metadata": "EXTERNAL FRAMEWORK PAGE METADATA: PASS",
+    "external_framework_page_mapping": "EXTERNAL FRAMEWORK PAGE MAPPING: PASS",
     "external_framework_page_status": "EXTERNAL FRAMEWORK PAGE STATUS: PASS",
     "external_framework_expansion_policy": "EXTERNAL FRAMEWORK EXPANSION POLICY: PASS",
     "ci_evidence": "CI EVIDENCE: PASS",
@@ -67,6 +71,13 @@ def main() -> int:
     elif workflows[0].get("path") != ".github/workflows/validate-chain-continuation.yml":
         failures.append("canonical workflow path mismatch")
 
+    if manifest.get("local_validation_entrypoint") != LOCAL_ENTRYPOINT:
+        failures.append("local validation entrypoint mismatch")
+    if LOCAL_ENTRYPOINT in manifest.get("verification_commands", []):
+        failures.append("local validation entrypoint must not recurse through verification_commands")
+    if not (ROOT / "scripts" / "run_canonical_validation.py").exists():
+        failures.append("local validation entrypoint script missing")
+
     commands = manifest.get("verification_commands", [])
     for command in REQUIRED_COMMANDS:
         if command not in commands:
@@ -84,12 +95,16 @@ def main() -> int:
         failures.append("canonical workflow boundary mismatch")
     if boundary.get("manual_workflow_install_required") is not False:
         failures.append("manual workflow boundary mismatch")
+    if boundary.get("local_validation_entrypoint_is_authority") is not False:
+        failures.append("local validation entrypoint authority boundary mismatch")
     if boundary.get("external_framework_outputs_are_authority") is not False:
         failures.append("external output boundary mismatch")
     if boundary.get("generated_framework_results_are_authority") is not False:
         failures.append("generated results authority boundary mismatch")
     if boundary.get("generated_framework_page_metadata_is_authority") is not False:
         failures.append("generated metadata authority boundary mismatch")
+    if boundary.get("generated_framework_page_mapping_is_authority") is not False:
+        failures.append("generated mapping authority boundary mismatch")
     if boundary.get("generated_framework_page_status_is_authority") is not False:
         failures.append("generated page status authority boundary mismatch")
 
