@@ -4,23 +4,26 @@
   "repo": "StegVerse-Labs/admissibility-wiki",
   "active_goal": "declarative-external-framework-generation-pipeline",
   "release_ready": false,
-  "readiness_percent": 96,
+  "readiness_percent": 99,
   "required_before_tag": [
-    "single canonical workflow green after validation summary generation installation",
-    "public GitHub Pages verification green",
-    "generated external-framework evaluation results reachable on public site",
-    "GOAL_STATE promoted after validator update is unblocked",
-    "downstream update tasks created for StegVerse-Labs/Site, GCAT-BCAT-Engine/Publisher, and stegguardian-wiki"
+    "explicit release authorization recorded",
+    "public GitHub Pages root verification is recorded after release authorization",
+    "public generated evaluation results page verification is recorded after release authorization",
+    "downstream update tasks remain pending release tag"
   ],
   "already_satisfied": [
     "single workflow policy preserved",
-    "generated-page validation summary installed",
+    "canonical validation green",
+    "metadata generator idempotence installed",
+    "mapping generator idempotence installed",
+    "page-status generator idempotence installed",
     "generated-page validation summary generation check installed",
     "machine-readable progress state installed",
     "downstream task manifest installed",
     "CI evidence request installed",
     "tag candidate gate installed",
-    "closeout bundle installed"
+    "closeout bundle installed",
+    "activation gate installed"
   ],
   "boundary": {
     "release_readiness_is_authority": false,
