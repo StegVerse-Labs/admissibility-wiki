@@ -16,6 +16,7 @@ REQUIRED_VALIDATORS = [
     "scripts/check_external_framework_page_surfaces.py",
     "scripts/check_generated_page_surfaces_handoff.py",
     "scripts/check_generated_page_surfaces_root_addendum.py",
+    "scripts/check_generated_page_closeout_state_generation.py",
 ]
 
 
@@ -29,7 +30,7 @@ def main() -> int:
     data = json.loads(SUMMARY.read_text(encoding="utf-8"))
     if data.get("artifact_type") != "generated_page_validation_summary":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "0.1":
+    if data.get("schema_version") != "0.2":
         failures.append("schema version mismatch")
     if data.get("active_goal") != "declarative-external-framework-generation-pipeline":
         failures.append("active goal mismatch")
@@ -49,7 +50,7 @@ def main() -> int:
             failures.append(f"validator file missing: {validator}")
 
     removed = data.get("manual_tasks_removed", [])
-    for task in ["generated_surface_discovery", "generated_surface_handoff_discovery", "generated_surface_root_handoff_discovery"]:
+    for task in ["generated_surface_discovery", "generated_surface_handoff_discovery", "generated_surface_root_handoff_discovery", "generated_closeout_state_reconstruction"]:
         if task not in removed:
             failures.append(f"manual task not removed: {task}")
 
