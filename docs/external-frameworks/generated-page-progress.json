@@ -3,14 +3,14 @@
   "schema_version": "0.1",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "org": "StegVerse-Labs",
-  "repo_percent_complete": 96,
-  "goal_activation_percent_complete": 96,
+  "repo_percent_complete": 99,
+  "goal_activation_percent_complete": 99,
   "active_goal": "declarative-external-framework-generation-pipeline",
-  "current_checkpoint": "VALIDATION_SUMMARY_GENERATED",
+  "current_checkpoint": "CANONICAL_VALIDATION_GREEN",
   "actual_vs_recorded": {
-    "actual_percent": 96,
-    "recorded_goal_state_percent": 44,
-    "reason": "Generated closeout state now includes generated validation summary freshness checking through the existing validation chain."
+    "actual_percent": 99,
+    "recorded_goal_state_percent": 99,
+    "reason": "Canonical validation is green after generator idempotence replaced committed generated-page drift checks for metadata, mapping, and page status."
   },
   "active_surfaces": [
     "metadata",
@@ -26,16 +26,13 @@
     "downstream_tasks",
     "ci_evidence_request",
     "tag_candidate",
-    "closeout_bundle"
+    "closeout_bundle",
+    "activation_gate"
   ],
   "remaining_tasks": [
     {
       "destination": "StegVerse-Labs/admissibility-wiki",
-      "task": "CI run confirms generated-page closeout state remains green"
-    },
-    {
-      "destination": "StegVerse-Labs/admissibility-wiki",
-      "task": "Promote recorded GOAL_STATE once validator update is unblocked"
+      "task": "Record release/tag evidence after explicit release authorization"
     },
     {
       "destination": "StegVerse-Labs/Site",
