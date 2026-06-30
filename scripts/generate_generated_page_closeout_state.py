@@ -99,17 +99,14 @@ def release_readiness(model: dict[str, Any]) -> dict[str, Any]:
 
 
 def downstream_tasks(model: dict[str, Any]) -> dict[str, Any]:
+    downstream = model["downstream"]
     return {
         "artifact_type": "generated_page_downstream_tasks",
         "schema_version": "0.1",
         "repo": model["repo"],
         "active_goal": model["active_goal"],
-        "activation_condition": "after release tag and green public verification",
-        "tasks": [
-            {"destination": "StegVerse-Labs/Site", "task_id": "site.generated-framework-results-summary", "required_input": "docs/external-frameworks/evaluation-results.md", "status": "pending_release_tag"},
-            {"destination": "GCAT-BCAT-Engine/Publisher", "task_id": "publisher.generated-framework-results-import-awareness", "required_input": "docs/external-frameworks/reports/*.compatibility.json", "status": "pending_release_tag"},
-            {"destination": "stegguardian-wiki", "task_id": "guardian.execution-authority-boundary-summary", "required_input": "docs/external-frameworks/generated-page-release-readiness.json", "status": "pending_release_tag"}
-        ],
+        "activation_condition": downstream["activation_condition"],
+        "tasks": downstream["tasks"],
         "boundary": {
             "downstream_tasks_are_authority": False,
             "manual_downstream_task_reconstruction_required": False,
@@ -181,15 +178,7 @@ def closeout_bundle(model: dict[str, Any]) -> dict[str, Any]:
         "active_goal": model["active_goal"],
         "closeout_ready": False,
         "closeout_percent": model["repo_percent_complete"],
-        "required_artifacts": [
-            "docs/external-frameworks/generated-page-validation-summary.json",
-            "docs/external-frameworks/generated-page-progress.json",
-            "docs/external-frameworks/generated-page-release-readiness.json",
-            "docs/external-frameworks/generated-page-downstream-tasks.json",
-            "docs/external-frameworks/generated-page-ci-evidence-request.json",
-            "docs/external-frameworks/generated-page-tag-candidate.json",
-            "docs/external-frameworks/generated-page-activation-gate.json"
-        ],
+        "required_artifacts": model["generated_outputs"],
         "blocked_by": tag_candidate(model)["blocked_by"],
         "next_integration_goal_candidate": "post-release downstream generated-framework-results propagation",
         "boundary": {
