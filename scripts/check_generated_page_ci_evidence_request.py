@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUEST = ROOT / "docs" / "external-frameworks" / "generated-page-ci-evidence-request.json"
+TAG_CHECK = ROOT / "scripts" / "check_generated_page_tag_candidate.py"
 
 REQUIRED_EVIDENCE = [
     "single canonical workflow conclusion",
@@ -54,6 +56,11 @@ def main() -> int:
         failures.append("missing CI boundary mismatch")
     if boundary.get("single_workflow_policy_preserved") is not True:
         failures.append("single workflow boundary mismatch")
+
+    if TAG_CHECK.exists():
+        result = subprocess.run(["python", str(TAG_CHECK)], check=False)
+        if result.returncode != 0:
+            failures.append("tag candidate check failed")
 
     print("GENERATED PAGE CI EVIDENCE REQUEST:", "FAIL" if failures else "PASS")
     for failure in failures:
