@@ -13,7 +13,7 @@ The current goal is to present StegVerse as a governed ecosystem for inputs, pro
 ## Current version
 
 ```text
-0.6.0-governed-transition-map
+0.7.0-capability-check-repair
 ```
 
 ## Current status
@@ -21,23 +21,11 @@ The current goal is to present StegVerse as a governed ecosystem for inputs, pro
 ```text
 MIRROR_HANDOFF_PRESENT
 GOVERNED_ECOSYSTEM_TRANSITION_FRAMING_PRESENT
-GOVERNED_ECOSYSTEM_TRANSITION_STATUS_PRESENT
-GOVERNED_ECOSYSTEM_TRANSITION_VALIDATOR_PRESENT
-EXTERNAL_FRAMEWORK_INPUT_CLASS_FRAMING_PRESENT
-EXTERNAL_FRAMEWORK_INPUT_CLASS_STATUS_PRESENT
-EXTERNAL_FRAMEWORK_INPUT_CLASS_VALIDATOR_PRESENT
-GOVERNED_INPUT_CLASS_REGISTRY_PRESENT
-GOVERNED_INPUT_CLASS_STATUS_PRESENT
-GOVERNED_INPUT_CLASS_VALIDATOR_PRESENT
-GOVERNED_OUTPUT_CLASS_REGISTRY_PRESENT
-GOVERNED_OUTPUT_CLASS_STATUS_PRESENT
-GOVERNED_OUTPUT_CLASS_VALIDATOR_PRESENT
 GOVERNED_TRANSITION_MAP_PRESENT
-GOVERNED_TRANSITION_MAP_STATUS_PRESENT
-GOVERNED_TRANSITION_MAP_VALIDATOR_PRESENT
-README_LINK_PRESENT
-CURRENT_TASK_SYNC_UPDATED
+CAPABILITY_GENERATOR_ALIAS_PRESENT
+CAPABILITY_BLOCKERS_ALIGNED_WITH_STATE_MODEL
 LOCAL_DOCS_ONLY
+AWAITING_WORKFLOW_RECHECK
 ```
 
 ## Source-of-truth documents
@@ -50,18 +38,38 @@ docs/governance/external-frameworks-as-input-class.md
 docs/governance/governed-input-classes.md
 docs/governance/governed-output-classes.md
 docs/governance/governed-transition-map.md
-static/status/governed-ecosystem-transitions-status.json
-static/status/external-framework-input-class-status.json
-static/status/governed-input-classes-status.json
-static/status/governed-output-classes-status.json
-static/status/governed-transition-map-status.json
-scripts/check_governed_ecosystem_transitions_status.py
-scripts/check_external_framework_input_class_status.py
-scripts/check_governed_input_classes_status.py
-scripts/check_governed_output_classes_status.py
-scripts/check_governed_transition_map_status.py
-README.md
+docs/external-frameworks/generated-page-subsystem-capability.json
+scripts/generate_external_framework_evaluation_results.py
 package.json
+```
+
+## Workflow failure repaired
+
+The failed workflow reported:
+
+```text
+capability referenced file missing: scripts/generate_external_framework_evaluation_results.py
+tag blocker missing from capability boundary: explicit release authorization not yet recorded
+tag blocker missing from capability boundary: public generated evaluation results verification not yet recorded after release authorization
+tag blocker missing from capability boundary: release readiness remains false until release authorization and public verification pass
+```
+
+Installed repair:
+
+```text
+scripts/generate_external_framework_evaluation_results.py
+```
+
+This is a compatibility wrapper around:
+
+```text
+scripts/generate_external_framework_results.py
+```
+
+Aligned blocker list in:
+
+```text
+docs/external-frameworks/generated-page-subsystem-capability.json
 ```
 
 ## Core transition path
@@ -77,43 +85,11 @@ input or request
   -> governed output
 ```
 
-## Registered input classes
-
-```text
-external_framework_outputs
-llm_or_agent_outputs
-human_requests
-repo_tasks
-sdk_requests
-runtime_observations
-receipt_chain_continuations
-```
-
-## Registered output classes
-
-```text
-admitted_response
-denial_receipt
-fail_closed_receipt
-committed_repo_change
-strp_handoff
-receipt_chain_continuation
-state_transition_summary
-```
-
 ## Validation
 
 ```text
-python scripts/check_governed_ecosystem_transitions_status.py
-python scripts/check_external_framework_input_class_status.py
-python scripts/check_governed_input_classes_status.py
-python scripts/check_governed_output_classes_status.py
-python scripts/check_governed_transition_map_status.py
-npm run validate:governed-ecosystem-transitions
-npm run validate:external-framework-input-class
-npm run validate:governed-input-classes
-npm run validate:governed-output-classes
-npm run validate:governed-transition-map
+python scripts/check_generated_page_subsystem_capability.py
+python scripts/check_external_framework_page_status.py
 npm run validate
 ```
 
@@ -141,6 +117,7 @@ Do not add a second active workflow for this goal.
 
 ```text
 StegVerse-Labs/admissibility-wiki:
+  - rerun workflow and verify generated page subsystem capability passes
   - public deployment verification for governed ecosystem pages
   - optional public navigation/index consolidation for governed ecosystem pages
 
@@ -162,7 +139,7 @@ This wiki does not claim live connector installation, production authority, cano
 
 ## Next build candidate
 
-Let the canonical validation workflow validate and deploy the new pages. If continuing before workflow evidence is visible, the next local build candidate is public navigation/index consolidation for the governed ecosystem pages.
+Let the canonical validation workflow re-run. If continuing before workflow evidence is visible, check only the first failing validator from the new logs.
 
 ## Handoff instruction
 
