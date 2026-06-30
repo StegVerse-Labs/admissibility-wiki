@@ -44,6 +44,29 @@
       "task": "Add downstream execution-authority boundary summary after release/tag"
     }
   ],
+  "downstream": {
+    "activation_condition": "after release tag and green public verification",
+    "tasks": [
+      {
+        "destination": "StegVerse-Labs/Site",
+        "task_id": "site.generated-framework-results-summary",
+        "required_input": "docs/external-frameworks/evaluation-results.md",
+        "status": "pending_release_tag"
+      },
+      {
+        "destination": "GCAT-BCAT-Engine/Publisher",
+        "task_id": "publisher.generated-framework-results-import-awareness",
+        "required_input": "docs/external-frameworks/reports/*.compatibility.json",
+        "status": "pending_release_tag"
+      },
+      {
+        "destination": "stegguardian-wiki",
+        "task_id": "guardian.execution-authority-boundary-summary",
+        "required_input": "docs/external-frameworks/generated-page-release-readiness.json",
+        "status": "pending_release_tag"
+      }
+    ]
+  },
   "release": {
     "release_ready": false,
     "readiness_percent": 99,
