@@ -11,12 +11,6 @@ TASKS = ROOT / "docs" / "external-frameworks" / "generated-page-downstream-tasks
 MODEL = ROOT / "docs" / "external-frameworks" / "generated-page-state-model.json"
 CI_REQUEST_CHECK = ROOT / "scripts" / "check_generated_page_ci_evidence_request.py"
 
-TASK_IDS = {
-    "StegVerse-Labs/Site": "site.generated-framework-results-summary",
-    "GCAT-BCAT-Engine/Publisher": "publisher.generated-framework-results-import-awareness",
-    "stegguardian-wiki": "guardian.execution-authority-boundary-summary",
-}
-
 
 def main() -> int:
     failures: list[str] = []
@@ -31,6 +25,7 @@ def main() -> int:
 
     data = json.loads(TASKS.read_text(encoding="utf-8"))
     model = json.loads(MODEL.read_text(encoding="utf-8"))
+    downstream = model.get("downstream", {})
     if data.get("artifact_type") != "generated_page_downstream_tasks":
         failures.append("artifact type mismatch")
     if data.get("schema_version") != "0.1":
@@ -39,24 +34,19 @@ def main() -> int:
         failures.append("repo mismatch")
     if data.get("active_goal") != model.get("active_goal"):
         failures.append("active goal mismatch")
-    if data.get("activation_condition") != "after release tag and green public verification":
+    if data.get("activation_condition") != downstream.get("activation_condition"):
         failures.append("activation condition mismatch")
 
     tasks = {item.get("destination"): item for item in data.get("tasks", [])}
-    model_destinations = {item.get("destination") for item in model.get("remaining_tasks", [])}
-    for destination, task_id in TASK_IDS.items():
-        if destination not in model_destinations:
-            failures.append(f"missing model destination: {destination}")
+    model_tasks = {item.get("destination"): item for item in downstream.get("tasks", [])}
+    for destination, expected in model_tasks.items():
         item = tasks.get(destination)
         if not item:
             failures.append(f"missing destination: {destination}")
             continue
-        if item.get("task_id") != task_id:
-            failures.append(f"task id mismatch: {destination}")
-        if item.get("status") != "pending_release_tag":
-            failures.append(f"task status mismatch: {destination}")
-        if not item.get("required_input"):
-            failures.append(f"required input missing: {destination}")
+        for key in ["task_id", "required_input", "status"]:
+            if item.get(key) != expected.get(key):
+                failures.append(f"{key} mismatch: {destination}")
 
     boundary = data.get("boundary", {})
     if boundary.get("downstream_tasks_are_authority") is not False:
