@@ -7,25 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 READY = ROOT / "docs" / "external-frameworks" / "generated-page-release-readiness.json"
-
-REQUIRED_BEFORE_TAG = [
-    "single canonical workflow green after validation summary generation installation",
-    "public GitHub Pages verification green",
-    "generated external-framework evaluation results reachable on public site",
-    "GOAL_STATE promoted after validator update is unblocked",
-    "downstream update tasks created for StegVerse-Labs/Site, GCAT-BCAT-Engine/Publisher, and stegguardian-wiki",
-]
-
-REQUIRED_SATISFIED = [
-    "single workflow policy preserved",
-    "generated-page validation summary installed",
-    "generated-page validation summary generation check installed",
-    "machine-readable progress state installed",
-    "downstream task manifest installed",
-    "CI evidence request installed",
-    "tag candidate gate installed",
-    "closeout bundle installed",
-]
+MODEL = ROOT / "docs" / "external-frameworks" / "generated-page-state-model.json"
 
 
 def main() -> int:
@@ -34,26 +16,35 @@ def main() -> int:
         print("GENERATED PAGE RELEASE READINESS: FAIL")
         print("- readiness file missing")
         return 1
+    if not MODEL.exists():
+        print("GENERATED PAGE RELEASE READINESS: FAIL")
+        print("- state model missing")
+        return 1
 
     data = json.loads(READY.read_text(encoding="utf-8"))
+    model = json.loads(MODEL.read_text(encoding="utf-8"))
+    release = model.get("release", {})
+
     if data.get("artifact_type") != "generated_page_release_readiness":
         failures.append("artifact type mismatch")
     if data.get("schema_version") != "0.1":
         failures.append("schema version mismatch")
-    if data.get("active_goal") != "declarative-external-framework-generation-pipeline":
+    if data.get("repo") != model.get("repo"):
+        failures.append("repo mismatch")
+    if data.get("active_goal") != model.get("active_goal"):
         failures.append("active goal mismatch")
-    if data.get("release_ready") is not False:
-        failures.append("release readiness must remain false before green CI and downstream tasks")
-    if data.get("readiness_percent") != 96:
+    if data.get("release_ready") != release.get("release_ready"):
+        failures.append("release readiness mismatch")
+    if data.get("readiness_percent") != release.get("readiness_percent"):
         failures.append("readiness percent mismatch")
 
     before_tag = data.get("required_before_tag", [])
-    for item in REQUIRED_BEFORE_TAG:
+    for item in release.get("required_before_tag", []):
         if item not in before_tag:
             failures.append(f"missing before-tag blocker: {item}")
 
     satisfied = data.get("already_satisfied", [])
-    for item in REQUIRED_SATISFIED:
+    for item in release.get("already_satisfied", []):
         if item not in satisfied:
             failures.append(f"missing satisfied item: {item}")
 
