@@ -9,6 +9,8 @@
     "generated page progress validation conclusion",
     "generated page release readiness validation conclusion",
     "generated page downstream task validation conclusion",
+    "generated page tag candidate validation conclusion",
+    "generated page closeout bundle validation conclusion",
     "public GitHub Pages verification conclusion"
   ],
   "current_state": "pending_next_workflow_run",
