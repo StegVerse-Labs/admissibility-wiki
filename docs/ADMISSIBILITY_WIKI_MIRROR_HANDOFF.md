@@ -13,7 +13,7 @@ The current goal is to present StegVerse as a governed ecosystem for inputs, pro
 ## Current version
 
 ```text
-0.8.0-capability-lifecycle-registry
+0.9.0-ecosystem-capability-status-example
 ```
 
 ## Current status
@@ -22,11 +22,9 @@ The current goal is to present StegVerse as a governed ecosystem for inputs, pro
 MIRROR_HANDOFF_PRESENT
 GOVERNED_ECOSYSTEM_TRANSITION_FRAMING_PRESENT
 GOVERNED_TRANSITION_MAP_PRESENT
-CAPABILITY_GENERATOR_ALIAS_PRESENT
-CAPABILITY_BLOCKERS_ALIGNED_WITH_STATE_MODEL
 CAPABILITY_LIFECYCLE_REGISTRY_PRESENT
-CAPABILITY_LIFECYCLE_STATUS_PRESENT
-CAPABILITY_LIFECYCLE_VALIDATOR_PRESENT
+ECOSYSTEM_CAPABILITY_STATUS_EXAMPLE_PRESENT
+ECOSYSTEM_CAPABILITY_STATUS_EXAMPLE_VALIDATOR_PRESENT
 WORKFLOW_GREEN_REPORTED
 LOCAL_DOCS_ONLY
 ```
@@ -35,17 +33,11 @@ LOCAL_DOCS_ONLY
 
 ```text
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
-docs/governance/current-task-sync.md
-docs/governance/governed-ecosystem-transitions.md
-docs/governance/external-frameworks-as-input-class.md
-docs/governance/governed-input-classes.md
-docs/governance/governed-output-classes.md
-docs/governance/governed-transition-map.md
 docs/governance/capability-lifecycle.md
 static/status/capability-lifecycle-status.json
+static/status/ecosystem-capability-status.example.json
 scripts/check_capability_lifecycle_status.py
-docs/external-frameworks/generated-page-subsystem-capability.json
-scripts/generate_external_framework_evaluation_results.py
+scripts/check_ecosystem_capability_status_example.py
 package.json
 ```
 
@@ -61,23 +53,11 @@ operational
 deprecated
 ```
 
-## Core transition path
-
-```text
-input or request
-  -> governed ingestion
-  -> CGE fingerprinting
-  -> GCAT / BCAT evaluation
-  -> Transition Table standing
-  -> ALLOW / DENY / FAIL-CLOSED
-  -> receipt_chain / STRP record
-  -> governed output
-```
-
 ## Validation
 
 ```text
 python scripts/check_capability_lifecycle_status.py
+python scripts/check_ecosystem_capability_status_example.py
 npm run validate:capability-lifecycle
 npm run validate
 ```
@@ -106,9 +86,9 @@ Do not add a second active workflow for this goal.
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - validate capability lifecycle registry through canonical workflow
+  - add package validation wiring for ecosystem capability status example if needed
+  - validate through canonical workflow
   - public deployment verification for governed ecosystem pages
-  - optional public navigation/index consolidation for governed ecosystem pages
 
 StegVerse-Labs/Site:
   - mirror/public summary of governed ecosystem transition framing after admissibility-wiki validation
@@ -128,7 +108,7 @@ This wiki does not claim live connector installation, production authority, cano
 
 ## Next build candidate
 
-Let the canonical validation workflow validate the capability lifecycle registry. If continuing before workflow evidence is visible, the next local build candidate is a machine-readable ecosystem capability status example using the lifecycle states.
+Let the canonical validation workflow validate the lifecycle and status example. If continuing before workflow evidence is visible, wire the example validator into aggregate package validation only if the package update is accepted.
 
 ## Handoff instruction
 
