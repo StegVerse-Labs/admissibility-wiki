@@ -16,6 +16,9 @@ REQUIRED_EVIDENCE = [
     "generated page progress validation conclusion",
     "generated page release readiness validation conclusion",
     "generated page downstream task validation conclusion",
+    "generated page tag candidate validation conclusion",
+    "generated page closeout bundle validation conclusion",
+    "generated page validation summary generation conclusion",
     "public GitHub Pages verification conclusion",
 ]
 
