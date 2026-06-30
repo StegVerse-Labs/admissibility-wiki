@@ -34,6 +34,12 @@ REQUIRED_DESTINATIONS = [
     "stegguardian-wiki",
 ]
 
+REQUIRED_DOWNSTREAM_DESTINATIONS = [
+    "StegVerse-Labs/Site",
+    "GCAT-BCAT-Engine/Publisher",
+    "stegguardian-wiki",
+]
+
 
 def require_bool(boundary: dict[str, Any], key: str, expected: bool, failures: list[str]) -> None:
     if boundary.get(key) is not expected:
@@ -76,6 +82,22 @@ def main() -> int:
     for destination in REQUIRED_DESTINATIONS:
         if destination not in destinations:
             failures.append(f"missing destination: {destination}")
+
+    downstream = data.get("downstream", {})
+    if downstream.get("activation_condition") != "after release tag and green public verification":
+        failures.append("downstream activation condition mismatch")
+    downstream_tasks = {item.get("destination"): item for item in downstream.get("tasks", [])}
+    for destination in REQUIRED_DOWNSTREAM_DESTINATIONS:
+        task = downstream_tasks.get(destination)
+        if not task:
+            failures.append(f"missing downstream task: {destination}")
+            continue
+        if not task.get("task_id"):
+            failures.append(f"downstream task id missing: {destination}")
+        if not task.get("required_input"):
+            failures.append(f"downstream required input missing: {destination}")
+        if task.get("status") != "pending_release_tag":
+            failures.append(f"downstream task status mismatch: {destination}")
 
     release = data.get("release", {})
     if release.get("release_ready") is not False:
