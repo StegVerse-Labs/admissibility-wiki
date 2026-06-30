@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / "docs" / "external-frameworks" / "generated-page-surfaces.json"
+SUMMARY_CHECK = ROOT / "scripts" / "check_generated_page_validation_summary.py"
 
 REQUIRED_ACTIVE = {
     "metadata": (
@@ -67,6 +69,11 @@ def main() -> int:
         failures.append("manual wiring boundary mismatch")
     if boundary.get("single_workflow_policy_preserved") is not True:
         failures.append("single workflow boundary mismatch")
+
+    if SUMMARY_CHECK.exists():
+        result = subprocess.run(["python", str(SUMMARY_CHECK)], check=False)
+        if result.returncode != 0:
+            failures.append("validation summary check failed")
 
     print("EXTERNAL FRAMEWORK PAGE SURFACES:", "FAIL" if failures else "PASS")
     for failure in failures:
