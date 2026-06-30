@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 READY = ROOT / "docs" / "external-frameworks" / "generated-page-release-readiness.json"
 
 REQUIRED_BEFORE_TAG = [
-    "single canonical workflow green after closeout bundle installation",
+    "single canonical workflow green after validation summary generation installation",
     "public GitHub Pages verification green",
     "generated external-framework evaluation results reachable on public site",
     "GOAL_STATE promoted after validator update is unblocked",
@@ -19,6 +19,7 @@ REQUIRED_BEFORE_TAG = [
 REQUIRED_SATISFIED = [
     "single workflow policy preserved",
     "generated-page validation summary installed",
+    "generated-page validation summary generation check installed",
     "machine-readable progress state installed",
     "downstream task manifest installed",
     "CI evidence request installed",
@@ -43,7 +44,7 @@ def main() -> int:
         failures.append("active goal mismatch")
     if data.get("release_ready") is not False:
         failures.append("release readiness must remain false before green CI and downstream tasks")
-    if data.get("readiness_percent") != 84:
+    if data.get("readiness_percent") != 96:
         failures.append("readiness percent mismatch")
 
     before_tag = data.get("required_before_tag", [])
