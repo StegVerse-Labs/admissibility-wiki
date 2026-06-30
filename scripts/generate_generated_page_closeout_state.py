@@ -7,9 +7,11 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "external-frameworks"
-ACTIVE_GOAL = "declarative-external-framework-generation-pipeline"
-PERCENT = 96
-RECORDED_GOAL_STATE_PERCENT = 44
+MODEL_PATH = OUT / "generated-page-state-model.json"
+
+
+def read_model() -> dict[str, Any]:
+    return json.loads(MODEL_PATH.read_text(encoding="utf-8"))
 
 
 def write_json(name: str, data: dict[str, Any]) -> None:
@@ -17,12 +19,12 @@ def write_json(name: str, data: dict[str, Any]) -> None:
     path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 
 
-def validation_summary() -> dict[str, Any]:
+def validation_summary(model: dict[str, Any]) -> dict[str, Any]:
     return {
         "artifact_type": "generated_page_validation_summary",
         "schema_version": "0.2",
-        "repo": "StegVerse-Labs/admissibility-wiki",
-        "active_goal": ACTIVE_GOAL,
+        "repo": model["repo"],
+        "active_goal": model["active_goal"],
         "validated_through": "scripts/check_external_framework_page_status.py",
         "surface_inventory": "docs/external-frameworks/generated-page-surfaces.json",
         "surface_handoff": "docs/external-frameworks/GENERATED_PAGE_SURFACES_HANDOFF.md",
@@ -49,44 +51,24 @@ def validation_summary() -> dict[str, Any]:
     }
 
 
-def progress() -> dict[str, Any]:
+def progress(model: dict[str, Any]) -> dict[str, Any]:
+    percent = model["repo_percent_complete"]
     return {
         "artifact_type": "generated_page_progress",
         "schema_version": "0.1",
-        "repo": "StegVerse-Labs/admissibility-wiki",
-        "org": "StegVerse-Labs",
-        "repo_percent_complete": PERCENT,
-        "goal_activation_percent_complete": PERCENT,
-        "active_goal": ACTIVE_GOAL,
-        "current_checkpoint": "VALIDATION_SUMMARY_GENERATED",
+        "repo": model["repo"],
+        "org": model["org"],
+        "repo_percent_complete": percent,
+        "goal_activation_percent_complete": model["goal_activation_percent_complete"],
+        "active_goal": model["active_goal"],
+        "current_checkpoint": model["current_checkpoint"],
         "actual_vs_recorded": {
-            "actual_percent": PERCENT,
-            "recorded_goal_state_percent": RECORDED_GOAL_STATE_PERCENT,
-            "reason": "Generated closeout state now includes generated validation summary freshness checking through the existing validation chain."
+            "actual_percent": percent,
+            "recorded_goal_state_percent": model["recorded_goal_state_percent"],
+            "reason": model["checkpoint_reason"]
         },
-        "active_surfaces": [
-            "metadata",
-            "mapping",
-            "page_status",
-            "analysis_boundary",
-            "surface_inventory",
-            "surface_handoff",
-            "root_addendum",
-            "validation_summary",
-            "validation_summary_generation",
-            "release_readiness",
-            "downstream_tasks",
-            "ci_evidence_request",
-            "tag_candidate",
-            "closeout_bundle"
-        ],
-        "remaining_tasks": [
-            {"destination": "StegVerse-Labs/admissibility-wiki", "task": "CI run confirms generated-page closeout state remains green"},
-            {"destination": "StegVerse-Labs/admissibility-wiki", "task": "Promote recorded GOAL_STATE once validator update is unblocked"},
-            {"destination": "StegVerse-Labs/Site", "task": "Mirror generated external-framework evaluation results after release/tag"},
-            {"destination": "GCAT-BCAT-Engine/Publisher", "task": "Add publication/import awareness for generated external-framework result artifacts after release/tag"},
-            {"destination": "stegguardian-wiki", "task": "Add downstream execution-authority boundary summary after release/tag"}
-        ],
+        "active_surfaces": model["active_surfaces"],
+        "remaining_tasks": model["remaining_tasks"],
         "boundary": {
             "progress_record_is_authority": False,
             "manual_progress_reconstruction_required": False,
@@ -95,31 +77,17 @@ def progress() -> dict[str, Any]:
     }
 
 
-def release_readiness() -> dict[str, Any]:
+def release_readiness(model: dict[str, Any]) -> dict[str, Any]:
+    release = model["release"]
     return {
         "artifact_type": "generated_page_release_readiness",
         "schema_version": "0.1",
-        "repo": "StegVerse-Labs/admissibility-wiki",
-        "active_goal": ACTIVE_GOAL,
-        "release_ready": False,
-        "readiness_percent": PERCENT,
-        "required_before_tag": [
-            "single canonical workflow green after validation summary generation installation",
-            "public GitHub Pages verification green",
-            "generated external-framework evaluation results reachable on public site",
-            "GOAL_STATE promoted after validator update is unblocked",
-            "downstream update tasks created for StegVerse-Labs/Site, GCAT-BCAT-Engine/Publisher, and stegguardian-wiki"
-        ],
-        "already_satisfied": [
-            "single workflow policy preserved",
-            "generated-page validation summary installed",
-            "generated-page validation summary generation check installed",
-            "machine-readable progress state installed",
-            "downstream task manifest installed",
-            "CI evidence request installed",
-            "tag candidate gate installed",
-            "closeout bundle installed"
-        ],
+        "repo": model["repo"],
+        "active_goal": model["active_goal"],
+        "release_ready": release["release_ready"],
+        "readiness_percent": release["readiness_percent"],
+        "required_before_tag": release["required_before_tag"],
+        "already_satisfied": release["already_satisfied"],
         "boundary": {
             "release_readiness_is_authority": False,
             "tag_without_green_ci_allowed": False,
@@ -128,12 +96,12 @@ def release_readiness() -> dict[str, Any]:
     }
 
 
-def downstream_tasks() -> dict[str, Any]:
+def downstream_tasks(model: dict[str, Any]) -> dict[str, Any]:
     return {
         "artifact_type": "generated_page_downstream_tasks",
         "schema_version": "0.1",
-        "repo": "StegVerse-Labs/admissibility-wiki",
-        "active_goal": ACTIVE_GOAL,
+        "repo": model["repo"],
+        "active_goal": model["active_goal"],
         "activation_condition": "after release tag and green public verification",
         "tasks": [
             {"destination": "StegVerse-Labs/Site", "task_id": "site.generated-framework-results-summary", "required_input": "docs/external-frameworks/evaluation-results.md", "status": "pending_release_tag"},
@@ -148,12 +116,12 @@ def downstream_tasks() -> dict[str, Any]:
     }
 
 
-def ci_request() -> dict[str, Any]:
+def ci_request(model: dict[str, Any]) -> dict[str, Any]:
     return {
         "artifact_type": "generated_page_ci_evidence_request",
         "schema_version": "0.1",
-        "repo": "StegVerse-Labs/admissibility-wiki",
-        "active_goal": ACTIVE_GOAL,
+        "repo": model["repo"],
+        "active_goal": model["active_goal"],
         "requested_evidence": [
             "single canonical workflow conclusion",
             "generated page status validation conclusion",
@@ -165,8 +133,8 @@ def ci_request() -> dict[str, Any]:
             "generated page validation summary generation conclusion",
             "public GitHub Pages verification conclusion"
         ],
-        "current_state": "pending_next_workflow_run",
-        "release_gate": "blocked_until_green_ci_and_public_verification",
+        "current_state": "canonical_validation_green_public_release_pending",
+        "release_gate": "blocked_until_release_authorization_and_public_verification",
         "manual_tasks_removed": [
             "manual_ci_evidence_reconstruction",
             "manual_public_verification_reconstruction"
@@ -179,19 +147,16 @@ def ci_request() -> dict[str, Any]:
     }
 
 
-def tag_candidate() -> dict[str, Any]:
+def tag_candidate(model: dict[str, Any]) -> dict[str, Any]:
+    tag = model["tag"]
     return {
         "artifact_type": "generated_page_tag_candidate",
         "schema_version": "0.1",
-        "repo": "StegVerse-Labs/admissibility-wiki",
-        "active_goal": ACTIVE_GOAL,
-        "tag_candidate": "v0.1.0-generated-framework-pages",
-        "tag_ready": False,
-        "blocked_by": [
-            "green CI evidence not yet recorded after validation summary generation installation",
-            "public generated evaluation results verification not yet recorded after validation summary generation installation",
-            "release readiness remains false until CI and public verification pass"
-        ],
+        "repo": model["repo"],
+        "active_goal": model["active_goal"],
+        "tag_candidate": tag["tag_candidate"],
+        "tag_ready": tag["tag_ready"],
+        "blocked_by": tag["blocked_by"],
         "required_artifacts": [
             "docs/external-frameworks/generated-page-progress.json",
             "docs/external-frameworks/generated-page-release-readiness.json",
@@ -206,45 +171,63 @@ def tag_candidate() -> dict[str, Any]:
     }
 
 
-def closeout_bundle() -> dict[str, Any]:
+def closeout_bundle(model: dict[str, Any]) -> dict[str, Any]:
     return {
         "artifact_type": "generated_page_closeout_bundle",
         "schema_version": "0.1",
-        "repo": "StegVerse-Labs/admissibility-wiki",
-        "active_goal": ACTIVE_GOAL,
+        "repo": model["repo"],
+        "active_goal": model["active_goal"],
         "closeout_ready": False,
-        "closeout_percent": PERCENT,
+        "closeout_percent": model["repo_percent_complete"],
         "required_artifacts": [
             "docs/external-frameworks/generated-page-validation-summary.json",
             "docs/external-frameworks/generated-page-progress.json",
             "docs/external-frameworks/generated-page-release-readiness.json",
             "docs/external-frameworks/generated-page-downstream-tasks.json",
             "docs/external-frameworks/generated-page-ci-evidence-request.json",
-            "docs/external-frameworks/generated-page-tag-candidate.json"
+            "docs/external-frameworks/generated-page-tag-candidate.json",
+            "docs/external-frameworks/generated-page-activation-gate.json"
         ],
-        "blocked_by": [
-            "green CI evidence after validation summary generation installation not yet recorded",
-            "public generated evaluation results verification after validation summary generation installation not yet recorded",
-            "release readiness remains false",
-            "tag candidate remains blocked"
-        ],
+        "blocked_by": tag_candidate(model)["blocked_by"],
         "next_integration_goal_candidate": "post-release downstream generated-framework-results propagation",
         "boundary": {
             "closeout_bundle_is_authority": False,
             "manual_closeout_reconstruction_required": False,
-            "thread_archive_ready": False
+            "thread_archive_ready": model["boundary"]["thread_archive_ready"]
+        }
+    }
+
+
+def activation_gate(model: dict[str, Any]) -> dict[str, Any]:
+    activation = model["activation"]
+    return {
+        "artifact_type": "generated_page_activation_gate",
+        "schema_version": "0.1",
+        "repo": model["repo"],
+        "active_goal": model["active_goal"],
+        "activation_ready": activation["activation_ready"],
+        "activation_percent": activation["activation_percent"],
+        "required_to_activate": activation["required_to_activate"],
+        "fail_closed_until": activation["fail_closed_until"],
+        "boundary": {
+            "activation_gate_is_authority": False,
+            "missing_evidence_blocks_activation": True,
+            "manual_activation_reconstruction_required": False,
+            "thread_archive_ready": model["boundary"]["thread_archive_ready"]
         }
     }
 
 
 def main() -> int:
-    write_json("generated-page-validation-summary.json", validation_summary())
-    write_json("generated-page-progress.json", progress())
-    write_json("generated-page-release-readiness.json", release_readiness())
-    write_json("generated-page-downstream-tasks.json", downstream_tasks())
-    write_json("generated-page-ci-evidence-request.json", ci_request())
-    write_json("generated-page-tag-candidate.json", tag_candidate())
-    write_json("generated-page-closeout-bundle.json", closeout_bundle())
+    model = read_model()
+    write_json("generated-page-validation-summary.json", validation_summary(model))
+    write_json("generated-page-progress.json", progress(model))
+    write_json("generated-page-release-readiness.json", release_readiness(model))
+    write_json("generated-page-downstream-tasks.json", downstream_tasks(model))
+    write_json("generated-page-ci-evidence-request.json", ci_request(model))
+    write_json("generated-page-tag-candidate.json", tag_candidate(model))
+    write_json("generated-page-closeout-bundle.json", closeout_bundle(model))
+    write_json("generated-page-activation-gate.json", activation_gate(model))
     return 0
 
 
