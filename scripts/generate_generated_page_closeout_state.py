@@ -133,8 +133,8 @@ def ci_request(model: dict[str, Any]) -> dict[str, Any]:
             "generated page validation summary generation conclusion",
             "public GitHub Pages verification conclusion"
         ],
-        "current_state": "canonical_validation_green_public_release_pending",
-        "release_gate": "blocked_until_release_authorization_and_public_verification",
+        "current_state": "pending_next_workflow_run",
+        "release_gate": "blocked_until_green_ci_and_public_verification",
         "manual_tasks_removed": [
             "manual_ci_evidence_reconstruction",
             "manual_public_verification_reconstruction"
