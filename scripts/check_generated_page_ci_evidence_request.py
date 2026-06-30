@@ -11,18 +11,6 @@ REQUEST = ROOT / "docs" / "external-frameworks" / "generated-page-ci-evidence-re
 MODEL = ROOT / "docs" / "external-frameworks" / "generated-page-state-model.json"
 TAG_CHECK = ROOT / "scripts" / "check_generated_page_tag_candidate.py"
 
-REQUIRED_EVIDENCE = [
-    "single canonical workflow conclusion",
-    "generated page status validation conclusion",
-    "generated page progress validation conclusion",
-    "generated page release readiness validation conclusion",
-    "generated page downstream task validation conclusion",
-    "generated page tag candidate validation conclusion",
-    "generated page closeout bundle validation conclusion",
-    "generated page validation summary generation conclusion",
-    "public GitHub Pages verification conclusion",
-]
-
 
 def main() -> int:
     failures: list[str] = []
@@ -37,6 +25,7 @@ def main() -> int:
 
     data = json.loads(REQUEST.read_text(encoding="utf-8"))
     model = json.loads(MODEL.read_text(encoding="utf-8"))
+    ci = model.get("ci", {})
     boundary_model = model.get("boundary", {})
 
     if data.get("artifact_type") != "generated_page_ci_evidence_request":
@@ -47,20 +36,28 @@ def main() -> int:
         failures.append("repo mismatch")
     if data.get("active_goal") != model.get("active_goal"):
         failures.append("active goal mismatch")
-    if data.get("current_state") not in ["pending_next_workflow_run", "canonical_validation_green_public_release_pending"]:
+    if data.get("current_state") != ci.get("current_state"):
         failures.append("current state mismatch")
-    if data.get("release_gate") not in ["blocked_until_green_ci_and_public_verification", "blocked_until_release_authorization_and_public_verification"]:
+    if data.get("release_gate") != ci.get("release_gate"):
         failures.append("release gate mismatch")
 
     evidence = data.get("requested_evidence", [])
-    for item in REQUIRED_EVIDENCE:
+    required_evidence = ci.get("requested_evidence", [])
+    for item in required_evidence:
         if item not in evidence:
             failures.append(f"missing evidence request: {item}")
+    for item in evidence:
+        if item not in required_evidence:
+            failures.append(f"undeclared evidence request: {item}")
 
     removed = data.get("manual_tasks_removed", [])
-    for task in ["manual_ci_evidence_reconstruction", "manual_public_verification_reconstruction"]:
+    required_removed = ci.get("manual_tasks_removed", [])
+    for task in required_removed:
         if task not in removed:
             failures.append(f"manual task not removed: {task}")
+    for task in removed:
+        if task not in required_removed:
+            failures.append(f"undeclared removed manual task: {task}")
 
     boundary = data.get("boundary", {})
     if boundary.get("ci_request_is_authority") is not False:
