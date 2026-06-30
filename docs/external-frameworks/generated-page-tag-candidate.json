@@ -6,8 +6,8 @@
   "tag_candidate": "v0.1.0-generated-framework-pages",
   "tag_ready": false,
   "blocked_by": [
-    "green CI evidence not yet recorded after downstream task manifest installation",
-    "public generated evaluation results verification not yet recorded after downstream task manifest installation",
+    "green CI evidence not yet recorded after closeout bundle installation",
+    "public generated evaluation results verification not yet recorded after closeout bundle installation",
     "release readiness remains false until CI and public verification pass"
   ],
   "required_artifacts": [
