@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PROGRESS = ROOT / "docs" / "external-frameworks" / "generated-page-progress.json"
+RELEASE_CHECK = ROOT / "scripts" / "check_generated_page_release_readiness.py"
 
 REQUIRED_SURFACES = [
     "metadata",
@@ -71,6 +73,11 @@ def main() -> int:
         failures.append("manual reconstruction boundary mismatch")
     if boundary.get("single_workflow_policy_preserved") is not True:
         failures.append("single workflow boundary mismatch")
+
+    if RELEASE_CHECK.exists():
+        result = subprocess.run(["python", str(RELEASE_CHECK)], check=False)
+        if result.returncode != 0:
+            failures.append("release readiness check failed")
 
     print("GENERATED PAGE PROGRESS:", "FAIL" if failures else "PASS")
     for failure in failures:
