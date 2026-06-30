@@ -27,6 +27,9 @@ metadata
 mapping
 page_status
 analysis_boundary
+closeout_state
+workflow_entrypoint_migration
+entrypoint_closeout_propagation
 ```
 
 ## Inactive Generated Surfaces
