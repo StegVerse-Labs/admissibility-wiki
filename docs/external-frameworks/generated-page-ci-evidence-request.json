@@ -1,0 +1,25 @@
+{
+  "artifact_type": "generated_page_ci_evidence_request",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "active_goal": "declarative-external-framework-generation-pipeline",
+  "requested_evidence": [
+    "single canonical workflow conclusion",
+    "generated page status validation conclusion",
+    "generated page progress validation conclusion",
+    "generated page release readiness validation conclusion",
+    "generated page downstream task validation conclusion",
+    "public GitHub Pages verification conclusion"
+  ],
+  "current_state": "pending_next_workflow_run",
+  "release_gate": "blocked_until_green_ci_and_public_verification",
+  "manual_tasks_removed": [
+    "manual_ci_evidence_reconstruction",
+    "manual_public_verification_reconstruction"
+  ],
+  "boundary": {
+    "ci_request_is_authority": false,
+    "missing_ci_fails_closed": true,
+    "single_workflow_policy_preserved": true
+  }
+}
