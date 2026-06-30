@@ -12,16 +12,6 @@ MODEL = ROOT / "docs" / "external-frameworks" / "generated-page-state-model.json
 GENERATION_CHECK = ROOT / "scripts" / "check_generated_page_closeout_state_generation.py"
 ACTIVATION_GATE_CHECK = ROOT / "scripts" / "check_generated_page_activation_gate.py"
 
-REQUIRED_ARTIFACTS = [
-    "docs/external-frameworks/generated-page-validation-summary.json",
-    "docs/external-frameworks/generated-page-progress.json",
-    "docs/external-frameworks/generated-page-release-readiness.json",
-    "docs/external-frameworks/generated-page-downstream-tasks.json",
-    "docs/external-frameworks/generated-page-ci-evidence-request.json",
-    "docs/external-frameworks/generated-page-tag-candidate.json",
-    "docs/external-frameworks/generated-page-activation-gate.json",
-]
-
 
 def run_optional_check(path: Path, label: str, failures: list[str]) -> None:
     if path.exists():
@@ -58,11 +48,16 @@ def main() -> int:
     if data.get("closeout_percent") != model.get("repo_percent_complete"):
         failures.append("closeout percent mismatch")
 
-    for artifact in REQUIRED_ARTIFACTS:
-        if artifact not in data.get("required_artifacts", []):
-            failures.append(f"missing required artifact: {artifact}")
+    declared_outputs = set(model.get("generated_outputs", []))
+    required_artifacts = data.get("required_artifacts", [])
+    for artifact in required_artifacts:
+        if artifact not in declared_outputs:
+            failures.append(f"required artifact not declared by state model: {artifact}")
         elif not (ROOT / artifact).exists():
             failures.append(f"required artifact file missing: {artifact}")
+    for artifact in declared_outputs:
+        if artifact not in required_artifacts:
+            failures.append(f"declared generated output missing from closeout: {artifact}")
 
     blocked_by = data.get("blocked_by", [])
     for item in tag.get("blocked_by", []):
