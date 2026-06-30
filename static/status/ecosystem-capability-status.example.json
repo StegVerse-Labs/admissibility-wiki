@@ -1,0 +1,32 @@
+{
+  "schema": "stegverse.ecosystem_capability_status.v1",
+  "status": "ECOSYSTEM_CAPABILITY_STATUS_EXAMPLE_PRESENT",
+  "capabilities": [
+    {
+      "capability_id": "admissibility_wiki.governed_ecosystem_transition_framing",
+      "repo": "StegVerse-Labs/admissibility-wiki",
+      "current_state": "internally_validated",
+      "implemented": true,
+      "internally_validated": true,
+      "release_authorized": false,
+      "publicly_verified": false,
+      "operational": false,
+      "deprecated": false,
+      "blocked_by": [
+        "release authorization not recorded",
+        "public verification not recorded"
+      ],
+      "evidence": [
+        "docs/governance/governed-ecosystem-transitions.md",
+        "docs/governance/governed-input-classes.md",
+        "docs/governance/governed-output-classes.md",
+        "docs/governance/governed-transition-map.md",
+        "docs/governance/capability-lifecycle.md"
+      ],
+      "boundary": {
+        "status_record_is_authority": false,
+        "operational_requires_current_standing": true
+      }
+    }
+  ]
+}
