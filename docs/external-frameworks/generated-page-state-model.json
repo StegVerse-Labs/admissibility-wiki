@@ -83,6 +83,26 @@
       }
     ]
   },
+  "ci": {
+    "requested_evidence": [
+      "single canonical workflow conclusion",
+      "generated page status validation conclusion",
+      "generated page progress validation conclusion",
+      "generated page release readiness validation conclusion",
+      "generated page downstream task validation conclusion",
+      "generated page tag candidate validation conclusion",
+      "generated page closeout bundle validation conclusion",
+      "generated page release evidence bundle validation conclusion",
+      "generated page validation summary generation conclusion",
+      "public GitHub Pages verification conclusion"
+    ],
+    "current_state": "pending_next_workflow_run",
+    "release_gate": "blocked_until_green_ci_and_public_verification",
+    "manual_tasks_removed": [
+      "manual_ci_evidence_reconstruction",
+      "manual_public_verification_reconstruction"
+    ]
+  },
   "release": {
     "release_ready": false,
     "readiness_percent": 99,
