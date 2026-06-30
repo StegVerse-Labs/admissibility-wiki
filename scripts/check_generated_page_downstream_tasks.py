@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TASKS = ROOT / "docs" / "external-frameworks" / "generated-page-downstream-tasks.json"
+CI_REQUEST_CHECK = ROOT / "scripts" / "check_generated_page_ci_evidence_request.py"
 
 REQUIRED = {
     "StegVerse-Labs/Site": "site.generated-framework-results-summary",
@@ -52,6 +54,11 @@ def main() -> int:
         failures.append("manual reconstruction boundary mismatch")
     if boundary.get("release_tag_required_before_downstream_install") is not True:
         failures.append("release gate boundary mismatch")
+
+    if CI_REQUEST_CHECK.exists():
+        result = subprocess.run(["python", str(CI_REQUEST_CHECK)], check=False)
+        if result.returncode != 0:
+            failures.append("CI evidence request check failed")
 
     print("GENERATED PAGE DOWNSTREAM TASKS:", "FAIL" if failures else "PASS")
     for failure in failures:
