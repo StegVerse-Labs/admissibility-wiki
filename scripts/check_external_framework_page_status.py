@@ -12,6 +12,7 @@ BOUNDARY_CHECK = ROOT / "scripts" / "check_external_framework_page_analysis_boun
 CANDIDATE_CHECK = ROOT / "scripts" / "check_external_framework_page_candidates.py"
 SURFACE_CHECK = ROOT / "scripts" / "check_external_framework_page_surfaces.py"
 SURFACE_HANDOFF_CHECK = ROOT / "scripts" / "check_generated_page_surfaces_handoff.py"
+ROOT_ADDENDUM_CHECK = ROOT / "scripts" / "check_generated_page_surfaces_root_addendum.py"
 REGISTRY = ROOT / "docs" / "external-frameworks" / "index.json"
 
 
@@ -60,6 +61,7 @@ def main() -> int:
     run_check(CANDIDATE_CHECK, "page candidate state check", failures)
     run_check(SURFACE_CHECK, "page surface inventory check", failures)
     run_check(SURFACE_HANDOFF_CHECK, "page surface handoff check", failures)
+    run_check(ROOT_ADDENDUM_CHECK, "page surface root addendum check", failures)
 
     print("EXTERNAL FRAMEWORK PAGE STATUS:", "FAIL" if failures else "PASS")
     for failure in failures:
