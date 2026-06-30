@@ -25,6 +25,7 @@
     "release_readiness",
     "downstream_tasks",
     "ci_evidence_request",
+    "ci_evidence_surface_handoff",
     "tag_candidate",
     "closeout_bundle",
     "activation_gate",
