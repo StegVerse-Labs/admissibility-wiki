@@ -21,13 +21,13 @@ static/CNAME: removed
 
 ## Current Assessment Goal
 
-Continue the active `declarative-external-framework-generation-pipeline` goal until framework pages can be generated, validated, and published from governed artifacts without page-status editing or separate result-posting work.
+Continue the active `governed-ecosystem-transition-framing` goal until the wiki presents external frameworks as one governed input class within the broader transition ecosystem.
 
 ## Current Activation Goal
 
-Publish and validate the Admissibility Wiki as the public vocabulary, terminology convergence, proposal-review, proposal-intake, proof-path, and external-framework crosswalk site.
+Publish and validate the Admissibility Wiki as the public vocabulary, terminology convergence, proposal-review, proposal-intake, proof-path, external-framework input-class, and governed ecosystem transition framing site.
 
-Activation must remain evidence-bound. Public deployment, generated framework result pages, generated framework page-status blocks, and URL verification must be produced by repository automation before activation posture advances.
+Activation must remain evidence-bound. Public deployment, generated framework result pages, governed ecosystem transition pages, generated framework page-status blocks, and URL verification must be produced by repository automation before activation posture advances.
 
 ## Installed Activation Structure
 
@@ -43,6 +43,8 @@ static/status/workflow-evidence-status.json
 static/status/proposal-core-lite-target-watch-status.json
 static/status/no-manual-task-guard-status.json
 static/status/mirror-handoff-guard-status.json
+static/status/governed-ecosystem-transitions-status.json
+static/status/external-framework-input-class-status.json
 github/workflows/validate-chain-continuation.yml
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 workflow_manifest.json
@@ -71,9 +73,35 @@ Workflow sprawl is guarded by:
 scripts/check_workflow_sprawl.py
 ```
 
+## Governed Ecosystem Transition Framing
+
+The current governed ecosystem transition path is:
+
+```text
+input or request
+  -> governed ingestion
+  -> CGE fingerprinting
+  -> GCAT / BCAT evaluation
+  -> Transition Table standing
+  -> ALLOW / DENY / FAIL-CLOSED
+  -> receipt_chain / STRP record
+  -> governed output
+```
+
+Installed pages and status:
+
+```text
+docs/governance/governed-ecosystem-transitions.md
+docs/governance/external-frameworks-as-input-class.md
+static/status/governed-ecosystem-transitions-status.json
+static/status/external-framework-input-class-status.json
+scripts/check_governed_ecosystem_transitions_status.py
+scripts/check_external_framework_input_class_status.py
+```
+
 ## Declarative External Framework Pipeline
 
-The current build path is:
+External frameworks remain supported as one governed input-class surface:
 
 ```text
 framework manifest
@@ -106,130 +134,19 @@ Generated publication surface:
 docs/external-frameworks/evaluation-results.md
 ```
 
-Generated page-status blocks are inserted into registered framework pages from manifests plus compatibility reports. The generated blocks are compatibility evidence only and do not grant certification, endorsement, formalism adoption, admissibility proof, or execution authority.
+Generated page-status blocks are compatibility evidence only and do not grant certification, endorsement, formalism adoption, admissibility proof, execution authority, or canonical STRP admission.
 
-## Installed Validators
-
-```text
-scripts/validate-ontology.mjs
-scripts/check-wiki-status.mjs
-scripts/check-activation-checklist.mjs
-scripts/check-equivalence-proposal-template.mjs
-scripts/check-relationship-status-summary.mjs
-scripts/check-public-activation-receipt.mjs
-scripts/check-formalism-registry.mjs
-scripts/check-formalism-publication-artifacts.mjs
-scripts/check-formalism-source-sync.mjs
-scripts/check-external-framework-registry.mjs
-scripts/check-publication-chain-guard.mjs
-scripts/check-publication-verification-status.mjs
-scripts/check-workflow-receipt-automation-status.mjs
-scripts/check-workflow-evidence-status.mjs
-scripts/check-workflow-evidence-watch-status.mjs
-scripts/check-proposal-core-lite-target-watch-status.mjs
-scripts/check-no-manual-task-assignments.mjs
-scripts/check-mirror-handoff-guard.mjs
-scripts/check-transition-origin-sections.mjs
-scripts/check-proposal-governance-classes.mjs
-scripts/check-proposal-governance-core-lite-seed.mjs
-scripts/check-proposal-governance-core-lite-creation-task.mjs
-scripts/check-proposal-intake-interface.mjs
-scripts/check-proposal-intake-backend-contract.mjs
-scripts/check-proposal-intake-backend-runtime.mjs
-scripts/check-proposal-intake-api-server.mjs
-scripts/check-proposal-intake-api-deployment.mjs
-scripts/check-proposal-intake-api-deployment-receipt.mjs
-scripts/check-proposal-intake-endpoint-verification-status.mjs
-scripts/check-intake-api-deploy-config.mjs
-scripts/check-public-share-readiness.mjs
-scripts/check-entity-sandbox-runner-admissibility-plane-status.mjs
-scripts/check_workflow_sprawl.py
-scripts/check_chain_status_continuation.py
-scripts/check_continuation_bundle.py
-scripts/check_chain_snapshot.py
-scripts/check_chain_snapshot_receipt.py
-scripts/check_chain_auto.py
-scripts/check_blocked_destination_record.py
-scripts/check_goal_state.py
-scripts/check_workflow_manifest.py
-scripts/check_ci_evidence.py
-```
-
-Aggregate validation is run by repo automation through the single canonical workflow. Local aggregate validation remains:
+## Aggregate Validation
 
 ```text
 npm run validate
 ```
 
-## Installed Formalism Mirrors
-
-Do not recreate these pages under alternate names:
+The aggregate validation now includes:
 
 ```text
-docs/formalisms/index.md
-docs/formalisms/canonical-catalog.md
-docs/formalisms/commit-time-admissibility.md
-docs/formalisms/irreversibility-inference-convergence-theorem.md
-static/formalisms/formalism-registry.v0.1.json
-```
-
-Current source links:
-
-```text
-Admissible-Existence/CTA -> Commit-Time Admissibility
-Admissible-Existence/IICT -> Irreversibility-Inference Convergence Theorem
-```
-
-Boundary:
-
-```text
-CTA baseline tests do not prove the complete CTA formalism.
-IICT baseline tests do not prove the theorem.
-IICT does not replace CTA.
-The wiki mirrors and explains; it does not create source authority or proof authority.
-```
-
-## Known Governance Records
-
-Do not recreate these IDs:
-
-```text
-static/governance/proposals/proposal.example.001.json
-static/governance/decisions/decision.example.001.json
-static/governance/replay/decision.example.001.txt
-static/governance/evidence/decision.example.001/README.md
-static/governance/proposals/proposal.example.002.json
-static/governance/decisions/decision.example.002.json
-static/governance/replay/decision.example.002.txt
-static/governance/evidence/decision.example.002/README.md
-static/governance/proposals/proposal.example.003.json
-static/governance/decisions/decision.example.003.json
-static/governance/replay/decision.example.003.txt
-static/governance/evidence/decision.example.003/README.md
-static/governance/proposals/proposal.example.004.json
-static/governance/decisions/decision.example.004.json
-static/governance/replay/decision.example.004.txt
-static/governance/evidence/decision.example.004/README.md
-static/governance/proposals/proposal.example.005.json
-static/governance/decisions/decision.example.005.json
-static/governance/replay/decision.example.005.txt
-static/governance/evidence/decision.example.005/README.md
-static/governance/proposals/proposal.example.006.json
-static/governance/decisions/decision.example.006.json
-static/governance/replay/decision.example.006.txt
-static/governance/evidence/decision.example.006/README.md
-static/governance/proposals/proposal.example.007.json
-static/governance/decisions/decision.example.007.json
-static/governance/replay/decision.example.007.txt
-static/governance/evidence/decision.example.007/README.md
-static/governance/proposals/proposal.example.008.json
-static/governance/decisions/decision.example.008.json
-static/governance/replay/decision.example.008.txt
-static/governance/evidence/decision.example.008/README.md
-static/governance/proposals/proposal.example.009.json
-static/governance/decisions/decision.example.009.json
-static/governance/replay/decision.example.009.txt
-static/governance/evidence/decision.example.009/README.md
+npm run validate:governed-ecosystem-transitions
+npm run validate:external-framework-input-class
 ```
 
 ## Known Public Pages
@@ -246,6 +163,8 @@ docs/governance/decision-record.md
 docs/governance/site-bridge-status.md
 docs/governance/admissibility-wiki-ai-entity.md
 docs/governance/equivalence-proposal-template.md
+docs/governance/governed-ecosystem-transitions.md
+docs/governance/external-frameworks-as-input-class.md
 docs/research/terminology-overlap-research-notes.md
 docs/external-frameworks/index.md
 docs/external-frameworks/evaluation-results.md
@@ -255,18 +174,17 @@ docs/external-frameworks/evaluation-results.md
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - framework-page full generator for non-status sections
-  - generated framework-page validator for full declarative pages
-  - generated narrative boundary that preserves authored analysis while generating repeatable metadata
+  - public deployment verification for governed ecosystem transition and external-framework input-class pages
+  - optional generated status surface grouping all input classes
 
 StegVerse-Labs/Site:
-  - mirror/public summary of generated external-framework evaluation results after admissibility-wiki release/tag
+  - mirror/public summary of governed ecosystem transition framing after admissibility-wiki validation
 
 GCAT-BCAT-Engine/Publisher:
-  - publication/import awareness for generated external-framework result artifacts after admissibility-wiki release/tag
+  - publication/import awareness for governed ecosystem transition framing after admissibility-wiki validation
 
 stegguardian-wiki:
-  - downstream summary of framework execution-authority boundary once admissibility-wiki release/tag is stable
+  - downstream summary of governed input/output transition boundary once admissibility-wiki validation is stable
 ```
 
 ## Current Continuation Rule
