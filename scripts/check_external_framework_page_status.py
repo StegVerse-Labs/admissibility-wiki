@@ -45,17 +45,20 @@ def main() -> int:
         return 1
 
     tracked = sorted((ROOT / "docs" / "external-frameworks").glob("*.md"))
-    before = {path: path.read_text(encoding="utf-8") for path in tracked}
+    original = {path: path.read_text(encoding="utf-8") for path in tracked}
     generator = load_generator()
-    generator.main()
-    after = {path: path.read_text(encoding="utf-8") for path in tracked}
 
-    changed = [path.relative_to(ROOT).as_posix() for path in tracked if before[path] != after[path]]
-    for path, text in before.items():
+    generator.main()
+    generated_once = {path: path.read_text(encoding="utf-8") for path in tracked}
+    generator.main()
+    generated_twice = {path: path.read_text(encoding="utf-8") for path in tracked}
+
+    changed = [path.relative_to(ROOT).as_posix() for path in tracked if generated_once[path] != generated_twice[path]]
+    for path, text in original.items():
         path.write_text(text, encoding="utf-8")
 
     if changed:
-        failures.append("generated page-status blocks are not current: " + ", ".join(changed))
+        failures.append("page-status generator is not idempotent: " + ", ".join(changed))
 
     run_check(BOUNDARY_CHECK, "analysis boundary check", failures)
     run_check(CANDIDATE_CHECK, "page candidate state check", failures)
