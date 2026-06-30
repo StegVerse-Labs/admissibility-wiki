@@ -22,9 +22,14 @@ REQUIRED_SURFACES = [
     "release_readiness",
     "downstream_tasks",
     "ci_evidence_request",
+    "ci_evidence_surface_handoff",
     "tag_candidate",
     "closeout_bundle",
     "activation_gate",
+]
+
+REQUIRED_OUTPUTS = [
+    "docs/external-frameworks/generated-page-ci-evidence-surface-handoff.json",
 ]
 
 REQUIRED_DESTINATIONS = [
@@ -53,6 +58,9 @@ def validate_generated_outputs(data: dict[str, Any], failures: list[str]) -> Non
         return
     if len(outputs) != len(set(outputs)):
         failures.append("generated outputs contain duplicates")
+    for required in REQUIRED_OUTPUTS:
+        if required not in outputs:
+            failures.append(f"missing generated output: {required}")
     for output in outputs:
         if not isinstance(output, str):
             failures.append("generated output path is not a string")
