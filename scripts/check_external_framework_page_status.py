@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 GENERATOR = ROOT / "scripts" / "generate_external_framework_page_status.py"
 BOUNDARY_CHECK = ROOT / "scripts" / "check_external_framework_page_analysis_boundary.py"
 CANDIDATE_CHECK = ROOT / "scripts" / "check_external_framework_page_candidates.py"
+SURFACE_CHECK = ROOT / "scripts" / "check_external_framework_page_surfaces.py"
 REGISTRY = ROOT / "docs" / "external-frameworks" / "index.json"
 
 
@@ -56,6 +57,7 @@ def main() -> int:
 
     run_check(BOUNDARY_CHECK, "analysis boundary check", failures)
     run_check(CANDIDATE_CHECK, "page candidate state check", failures)
+    run_check(SURFACE_CHECK, "page surface inventory check", failures)
 
     print("EXTERNAL FRAMEWORK PAGE STATUS:", "FAIL" if failures else "PASS")
     for failure in failures:
