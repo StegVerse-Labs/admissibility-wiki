@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TAG = ROOT / "docs" / "external-frameworks" / "generated-page-tag-candidate.json"
+MODEL = ROOT / "docs" / "external-frameworks" / "generated-page-state-model.json"
 CLOSEOUT_CHECK = ROOT / "scripts" / "check_generated_page_closeout_bundle.py"
 
 REQUIRED_ARTIFACTS = [
@@ -24,18 +25,27 @@ def main() -> int:
         print("GENERATED PAGE TAG CANDIDATE: FAIL")
         print("- tag candidate missing")
         return 1
+    if not MODEL.exists():
+        print("GENERATED PAGE TAG CANDIDATE: FAIL")
+        print("- state model missing")
+        return 1
 
     data = json.loads(TAG.read_text(encoding="utf-8"))
+    model = json.loads(MODEL.read_text(encoding="utf-8"))
+    tag = model.get("tag", {})
+
     if data.get("artifact_type") != "generated_page_tag_candidate":
         failures.append("artifact type mismatch")
     if data.get("schema_version") != "0.1":
         failures.append("schema version mismatch")
-    if data.get("active_goal") != "declarative-external-framework-generation-pipeline":
+    if data.get("repo") != model.get("repo"):
+        failures.append("repo mismatch")
+    if data.get("active_goal") != model.get("active_goal"):
         failures.append("active goal mismatch")
-    if data.get("tag_candidate") != "v0.1.0-generated-framework-pages":
+    if data.get("tag_candidate") != tag.get("tag_candidate"):
         failures.append("tag candidate mismatch")
-    if data.get("tag_ready") is not False:
-        failures.append("tag must remain blocked before green CI evidence")
+    if data.get("tag_ready") != tag.get("tag_ready"):
+        failures.append("tag ready mismatch")
 
     for artifact in REQUIRED_ARTIFACTS:
         if artifact not in data.get("required_artifacts", []):
@@ -43,8 +53,10 @@ def main() -> int:
         elif not (ROOT / artifact).exists():
             failures.append(f"required artifact file missing: {artifact}")
 
-    if len(data.get("blocked_by", [])) < 3:
-        failures.append("blocked-by list incomplete")
+    blocked_by = data.get("blocked_by", [])
+    for item in tag.get("blocked_by", []):
+        if item not in blocked_by:
+            failures.append(f"missing blocker: {item}")
 
     boundary = data.get("boundary", {})
     if boundary.get("tag_candidate_is_authority") is not False:
