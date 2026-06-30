@@ -4,8 +4,9 @@
   "repo": "StegVerse-Labs/admissibility-wiki",
   "active_goal": "declarative-external-framework-generation-pipeline",
   "closeout_ready": false,
-  "closeout_percent": 84,
+  "closeout_percent": 96,
   "required_artifacts": [
+    "docs/external-frameworks/generated-page-validation-summary.json",
     "docs/external-frameworks/generated-page-progress.json",
     "docs/external-frameworks/generated-page-release-readiness.json",
     "docs/external-frameworks/generated-page-downstream-tasks.json",
@@ -13,8 +14,8 @@
     "docs/external-frameworks/generated-page-tag-candidate.json"
   ],
   "blocked_by": [
-    "green CI evidence after closeout bundle installation not yet recorded",
-    "public generated evaluation results verification after closeout bundle installation not yet recorded",
+    "green CI evidence after validation summary generation installation not yet recorded",
+    "public generated evaluation results verification after validation summary generation installation not yet recorded",
     "release readiness remains false",
     "tag candidate remains blocked"
   ],
