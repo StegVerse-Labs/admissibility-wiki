@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BUNDLE = ROOT / "docs" / "external-frameworks" / "generated-page-closeout-bundle.json"
+GENERATION_CHECK = ROOT / "scripts" / "check_generated_page_closeout_state_generation.py"
 
 REQUIRED_ARTIFACTS = [
     "docs/external-frameworks/generated-page-progress.json",
@@ -54,6 +56,11 @@ def main() -> int:
         failures.append("manual reconstruction boundary mismatch")
     if boundary.get("thread_archive_ready") is not False:
         failures.append("archive boundary mismatch")
+
+    if GENERATION_CHECK.exists():
+        result = subprocess.run(["python", str(GENERATION_CHECK)], check=False)
+        if result.returncode != 0:
+            failures.append("closeout state generation check failed")
 
     print("GENERATED PAGE CLOSEOUT BUNDLE:", "FAIL" if failures else "PASS")
     for failure in failures:
