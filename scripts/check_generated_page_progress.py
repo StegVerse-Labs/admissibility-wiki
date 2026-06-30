@@ -20,6 +20,7 @@ REQUIRED_SURFACES = [
     "surface_handoff",
     "root_addendum",
     "validation_summary",
+    "validation_summary_generation",
     "release_readiness",
     "downstream_tasks",
     "ci_evidence_request",
@@ -56,15 +57,15 @@ def main() -> int:
         failures.append("schema version mismatch")
     if data.get("active_goal") != "declarative-external-framework-generation-pipeline":
         failures.append("active goal mismatch")
-    if data.get("current_checkpoint") != "CLOSEOUT_BUNDLE_RECORDED":
+    if data.get("current_checkpoint") != "VALIDATION_SUMMARY_GENERATED":
         failures.append("checkpoint mismatch")
-    if data.get("repo_percent_complete") != 84:
+    if data.get("repo_percent_complete") != 96:
         failures.append("repo percent mismatch")
-    if data.get("goal_activation_percent_complete") != 84:
+    if data.get("goal_activation_percent_complete") != 96:
         failures.append("activation percent mismatch")
 
     delta = data.get("actual_vs_recorded", {})
-    if delta.get("actual_percent") != 84:
+    if delta.get("actual_percent") != 96:
         failures.append("actual percent mismatch")
     if delta.get("recorded_goal_state_percent") != 44:
         failures.append("recorded percent mismatch")
