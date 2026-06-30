@@ -1,0 +1,27 @@
+{
+  "artifact_type": "generated_page_closeout_bundle",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "active_goal": "declarative-external-framework-generation-pipeline",
+  "closeout_ready": false,
+  "closeout_percent": 84,
+  "required_artifacts": [
+    "docs/external-frameworks/generated-page-progress.json",
+    "docs/external-frameworks/generated-page-release-readiness.json",
+    "docs/external-frameworks/generated-page-downstream-tasks.json",
+    "docs/external-frameworks/generated-page-ci-evidence-request.json",
+    "docs/external-frameworks/generated-page-tag-candidate.json"
+  ],
+  "blocked_by": [
+    "green CI evidence after tag candidate gate installation not yet recorded",
+    "public generated evaluation results verification after tag candidate gate installation not yet recorded",
+    "release readiness remains false",
+    "tag candidate remains blocked"
+  ],
+  "next_integration_goal_candidate": "post-release downstream generated-framework-results propagation",
+  "boundary": {
+    "closeout_bundle_is_authority": false,
+    "manual_closeout_reconstruction_required": false,
+    "thread_archive_ready": false
+  }
+}
