@@ -14,6 +14,38 @@ def write_json(name: str, data: dict[str, Any]) -> None:
     path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 
 
+def validation_summary() -> dict[str, Any]:
+    return {
+        "artifact_type": "generated_page_validation_summary",
+        "schema_version": "0.2",
+        "repo": "StegVerse-Labs/admissibility-wiki",
+        "active_goal": "declarative-external-framework-generation-pipeline",
+        "validated_through": "scripts/check_external_framework_page_status.py",
+        "surface_inventory": "docs/external-frameworks/generated-page-surfaces.json",
+        "surface_handoff": "docs/external-frameworks/GENERATED_PAGE_SURFACES_HANDOFF.md",
+        "root_addendum": "docs/GENERATED_PAGE_SURFACES_ROOT_ADDENDUM.md",
+        "validators_called_by_page_status": [
+            "scripts/check_external_framework_page_analysis_boundary.py",
+            "scripts/check_external_framework_page_candidates.py",
+            "scripts/check_external_framework_page_surfaces.py",
+            "scripts/check_generated_page_surfaces_handoff.py",
+            "scripts/check_generated_page_surfaces_root_addendum.py",
+            "scripts/check_generated_page_closeout_state_generation.py"
+        ],
+        "manual_tasks_removed": [
+            "generated_surface_discovery",
+            "generated_surface_handoff_discovery",
+            "generated_surface_root_handoff_discovery",
+            "generated_closeout_state_reconstruction"
+        ],
+        "boundary": {
+            "validation_summary_is_authority": False,
+            "single_workflow_policy_preserved": True,
+            "manual_generated_surface_discovery_required": False
+        }
+    }
+
+
 def progress() -> dict[str, Any]:
     return {
         "artifact_type": "generated_page_progress",
@@ -199,6 +231,7 @@ def closeout_bundle() -> dict[str, Any]:
 
 
 def main() -> int:
+    write_json("generated-page-validation-summary.json", validation_summary())
     write_json("generated-page-progress.json", progress())
     write_json("generated-page-release-readiness.json", release_readiness())
     write_json("generated-page-downstream-tasks.json", downstream_tasks())
