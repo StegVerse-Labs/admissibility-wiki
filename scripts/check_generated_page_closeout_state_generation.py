@@ -9,6 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 GENERATOR = ROOT / "scripts" / "generate_generated_page_closeout_state.py"
+CI_GENERATOR = ROOT / "scripts" / "generate_generated_page_ci_evidence_request.py"
 STATE_MODEL = ROOT / "docs" / "external-frameworks" / "generated-page-state-model.json"
 STATE_MODEL_CHECK = ROOT / "scripts" / "check_generated_page_state_model.py"
 
@@ -50,6 +51,7 @@ def main() -> int:
     paths = generated_paths()
     before = {path: path.read_text(encoding="utf-8") if path.exists() else None for path in paths}
     load_generator().main()
+    run_check(CI_GENERATOR, "CI evidence request generation", failures)
     after = {path: path.read_text(encoding="utf-8") if path.exists() else None for path in paths}
 
     changed = [path.relative_to(ROOT).as_posix() for path in paths if before[path] != after[path]]
