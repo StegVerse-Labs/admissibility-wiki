@@ -14,6 +14,7 @@ SURFACE_CHECK = ROOT / "scripts" / "check_external_framework_page_surfaces.py"
 SURFACE_HANDOFF_CHECK = ROOT / "scripts" / "check_generated_page_surfaces_handoff.py"
 ROOT_ADDENDUM_CHECK = ROOT / "scripts" / "check_generated_page_surfaces_root_addendum.py"
 WORKFLOW_MIGRATION_CHECK = ROOT / "scripts" / "check_generated_page_workflow_entrypoint_migration.py"
+ENTRYPOINT_PROPAGATION_CHECK = ROOT / "scripts" / "check_generated_page_entrypoint_closeout_propagation.py"
 REGISTRY = ROOT / "docs" / "external-frameworks" / "index.json"
 
 
@@ -67,6 +68,7 @@ def main() -> int:
     run_check(SURFACE_HANDOFF_CHECK, "page surface handoff check", failures)
     run_check(ROOT_ADDENDUM_CHECK, "page surface root addendum check", failures)
     run_check(WORKFLOW_MIGRATION_CHECK, "workflow entrypoint migration check", failures)
+    run_check(ENTRYPOINT_PROPAGATION_CHECK, "entrypoint closeout propagation check", failures)
 
     print("EXTERNAL FRAMEWORK PAGE STATUS:", "FAIL" if failures else "PASS")
     for failure in failures:
