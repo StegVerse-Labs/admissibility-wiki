@@ -1,0 +1,84 @@
+{
+  "artifact_type": "generated_page_subsystem_capability",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "active_goal": "declarative-external-framework-generation-pipeline",
+  "status": "validated_fail_closed_before_release_authorization",
+  "validated_by": "validate-chain-continuation.yml",
+  "state_model": "docs/external-frameworks/generated-page-state-model.json",
+  "capabilities": [
+    {
+      "capability_id": "framework_report_generation",
+      "generator": "scripts/generate_external_framework_reports.py",
+      "validator": "scripts/check_external_framework_manifests.py",
+      "output_family": "docs/external-frameworks/reports/*.compatibility.json"
+    },
+    {
+      "capability_id": "framework_results_page_generation",
+      "generator": "scripts/generate_external_framework_evaluation_results.py",
+      "validator": "scripts/check_external_framework_results_page.py",
+      "output_family": "docs/external-frameworks/evaluation-results.md"
+    },
+    {
+      "capability_id": "page_metadata_generation",
+      "generator": "scripts/generate_external_framework_page_metadata.py",
+      "validator": "scripts/check_external_framework_page_metadata.py",
+      "output_family": "docs/external-frameworks/generated-page-metadata.json"
+    },
+    {
+      "capability_id": "page_mapping_generation",
+      "generator": "scripts/generate_external_framework_page_mapping.py",
+      "validator": "scripts/check_external_framework_page_mapping.py",
+      "output_family": "docs/external-frameworks/generated-page-mapping.json"
+    },
+    {
+      "capability_id": "page_status_validation",
+      "generator": "scripts/generate_external_framework_page_status.py",
+      "validator": "scripts/check_external_framework_page_status.py",
+      "output_family": "docs/external-frameworks/*.md"
+    },
+    {
+      "capability_id": "closeout_state_generation",
+      "generator": "scripts/generate_generated_page_closeout_state.py",
+      "validator": "scripts/check_generated_page_closeout_state_generation.py",
+      "output_family": "docs/external-frameworks/generated-page-*.json"
+    },
+    {
+      "capability_id": "validation_summary_generation",
+      "generator": "scripts/generate_generated_page_validation_summary.py",
+      "validator": "scripts/check_generated_page_validation_summary_generation.py",
+      "output_family": "docs/external-frameworks/generated-page-validation-summary.json"
+    },
+    {
+      "capability_id": "ci_evidence_request_generation",
+      "generator": "scripts/generate_generated_page_ci_evidence_request.py",
+      "validator": "scripts/check_generated_page_ci_evidence_request.py",
+      "output_family": "docs/external-frameworks/generated-page-ci-evidence-request.json"
+    }
+  ],
+  "evidence_artifacts": [
+    "docs/external-frameworks/generated-page-validation-summary.json",
+    "docs/external-frameworks/generated-page-progress.json",
+    "docs/external-frameworks/generated-page-release-readiness.json",
+    "docs/external-frameworks/generated-page-downstream-tasks.json",
+    "docs/external-frameworks/generated-page-ci-evidence-request.json",
+    "docs/external-frameworks/generated-page-ci-evidence-surface-handoff.json",
+    "docs/external-frameworks/generated-page-tag-candidate.json",
+    "docs/external-frameworks/generated-page-closeout-bundle.json",
+    "docs/external-frameworks/generated-page-activation-gate.json",
+    "docs/external-frameworks/generated-page-workflow-entrypoint-migration.json",
+    "docs/external-frameworks/generated-page-entrypoint-closeout-propagation.json",
+    "docs/external-frameworks/generated-page-release-evidence-bundle.json"
+  ],
+  "blocked_until": [
+    "explicit release authorization recorded",
+    "public generated evaluation results verification recorded after release authorization",
+    "release tag evidence recorded"
+  ],
+  "boundary": {
+    "capability_artifact_is_authority": false,
+    "release_without_authorization_allowed": false,
+    "downstream_install_before_tag_allowed": false,
+    "single_workflow_policy_preserved": true
+  }
+}
