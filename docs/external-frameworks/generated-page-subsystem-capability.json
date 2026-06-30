@@ -71,6 +71,9 @@
     "docs/external-frameworks/generated-page-release-evidence-bundle.json"
   ],
   "blocked_until": [
+    "explicit release authorization not yet recorded",
+    "public generated evaluation results verification not yet recorded after release authorization",
+    "release readiness remains false until release authorization and public verification pass",
     "explicit release authorization recorded",
     "public generated evaluation results verification recorded after release authorization",
     "release tag evidence recorded"
