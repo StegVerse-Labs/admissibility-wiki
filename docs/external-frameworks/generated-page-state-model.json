@@ -24,7 +24,8 @@
     "ci_evidence_request",
     "tag_candidate",
     "closeout_bundle",
-    "activation_gate"
+    "activation_gate",
+    "workflow_entrypoint_migration"
   ],
   "generated_outputs": [
     "docs/external-frameworks/generated-page-validation-summary.json",
@@ -34,7 +35,8 @@
     "docs/external-frameworks/generated-page-ci-evidence-request.json",
     "docs/external-frameworks/generated-page-tag-candidate.json",
     "docs/external-frameworks/generated-page-closeout-bundle.json",
-    "docs/external-frameworks/generated-page-activation-gate.json"
+    "docs/external-frameworks/generated-page-activation-gate.json",
+    "docs/external-frameworks/generated-page-workflow-entrypoint-migration.json"
   ],
   "remaining_tasks": [
     {
