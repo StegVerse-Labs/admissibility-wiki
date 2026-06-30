@@ -1,0 +1,30 @@
+{
+  "artifact_type": "generated_page_release_evidence_bundle",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "active_goal": "declarative-external-framework-generation-pipeline",
+  "release_candidate": "v0.1.0-generated-framework-pages",
+  "release_ready": false,
+  "required_evidence": [
+    "docs/external-frameworks/generated-page-state-model.json",
+    "docs/external-frameworks/generated-page-validation-summary.json",
+    "docs/external-frameworks/generated-page-progress.json",
+    "docs/external-frameworks/generated-page-release-readiness.json",
+    "docs/external-frameworks/generated-page-downstream-tasks.json",
+    "docs/external-frameworks/generated-page-ci-evidence-request.json",
+    "docs/external-frameworks/generated-page-tag-candidate.json",
+    "docs/external-frameworks/generated-page-closeout-bundle.json",
+    "docs/external-frameworks/generated-page-activation-gate.json"
+  ],
+  "blocked_by": [
+    "explicit release authorization not yet recorded",
+    "public generated evaluation results verification not yet recorded after release authorization",
+    "release readiness remains false until release authorization and public verification pass"
+  ],
+  "boundary": {
+    "release_evidence_bundle_is_authority": false,
+    "release_without_authorization_allowed": false,
+    "missing_public_verification_fails_closed": true,
+    "downstream_install_allowed_before_tag": false
+  }
+}
