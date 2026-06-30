@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BUNDLE = ROOT / "docs" / "external-frameworks" / "generated-page-closeout-bundle.json"
+MODEL = ROOT / "docs" / "external-frameworks" / "generated-page-state-model.json"
 GENERATION_CHECK = ROOT / "scripts" / "check_generated_page_closeout_state_generation.py"
 ACTIVATION_GATE_CHECK = ROOT / "scripts" / "check_generated_page_activation_gate.py"
 
@@ -18,6 +19,7 @@ REQUIRED_ARTIFACTS = [
     "docs/external-frameworks/generated-page-downstream-tasks.json",
     "docs/external-frameworks/generated-page-ci-evidence-request.json",
     "docs/external-frameworks/generated-page-tag-candidate.json",
+    "docs/external-frameworks/generated-page-activation-gate.json",
 ]
 
 
@@ -34,17 +36,26 @@ def main() -> int:
         print("GENERATED PAGE CLOSEOUT BUNDLE: FAIL")
         print("- closeout bundle missing")
         return 1
+    if not MODEL.exists():
+        print("GENERATED PAGE CLOSEOUT BUNDLE: FAIL")
+        print("- state model missing")
+        return 1
 
     data = json.loads(BUNDLE.read_text(encoding="utf-8"))
+    model = json.loads(MODEL.read_text(encoding="utf-8"))
+    tag = model.get("tag", {})
+
     if data.get("artifact_type") != "generated_page_closeout_bundle":
         failures.append("artifact type mismatch")
     if data.get("schema_version") != "0.1":
         failures.append("schema version mismatch")
-    if data.get("active_goal") != "declarative-external-framework-generation-pipeline":
+    if data.get("repo") != model.get("repo"):
+        failures.append("repo mismatch")
+    if data.get("active_goal") != model.get("active_goal"):
         failures.append("active goal mismatch")
     if data.get("closeout_ready") is not False:
-        failures.append("closeout must remain blocked before green CI evidence")
-    if data.get("closeout_percent") != 96:
+        failures.append("closeout must remain blocked before release authorization")
+    if data.get("closeout_percent") != model.get("repo_percent_complete"):
         failures.append("closeout percent mismatch")
 
     for artifact in REQUIRED_ARTIFACTS:
@@ -53,8 +64,11 @@ def main() -> int:
         elif not (ROOT / artifact).exists():
             failures.append(f"required artifact file missing: {artifact}")
 
-    if len(data.get("blocked_by", [])) < 4:
-        failures.append("blocked-by list incomplete")
+    blocked_by = data.get("blocked_by", [])
+    for item in tag.get("blocked_by", []):
+        if item not in blocked_by:
+            failures.append(f"missing closeout blocker: {item}")
+
     if data.get("next_integration_goal_candidate") != "post-release downstream generated-framework-results propagation":
         failures.append("next integration goal mismatch")
 
@@ -63,7 +77,7 @@ def main() -> int:
         failures.append("authority boundary mismatch")
     if boundary.get("manual_closeout_reconstruction_required") is not False:
         failures.append("manual reconstruction boundary mismatch")
-    if boundary.get("thread_archive_ready") is not False:
+    if boundary.get("thread_archive_ready") != model.get("boundary", {}).get("thread_archive_ready"):
         failures.append("archive boundary mismatch")
 
     run_optional_check(GENERATION_CHECK, "closeout state generation check", failures)
