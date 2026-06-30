@@ -1,0 +1,52 @@
+{
+  "artifact_type": "generated_page_progress",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "org": "StegVerse-Labs",
+  "repo_percent_complete": 74,
+  "goal_activation_percent_complete": 74,
+  "active_goal": "declarative-external-framework-generation-pipeline",
+  "current_checkpoint": "VALIDATION_SUMMARY_RECORDED",
+  "actual_vs_recorded": {
+    "actual_percent": 74,
+    "recorded_goal_state_percent": 44,
+    "reason": "Generated page metadata, mapping, status, analysis boundary, surface inventory, handoff, root addendum, and validation summary are installed and machine-checked through the existing page-status path."
+  },
+  "active_surfaces": [
+    "metadata",
+    "mapping",
+    "page_status",
+    "analysis_boundary",
+    "surface_inventory",
+    "surface_handoff",
+    "root_addendum",
+    "validation_summary"
+  ],
+  "remaining_tasks": [
+    {
+      "destination": "StegVerse-Labs/admissibility-wiki",
+      "task": "CI run confirms generated-page validation remains green"
+    },
+    {
+      "destination": "StegVerse-Labs/admissibility-wiki",
+      "task": "Promote recorded GOAL_STATE once validator update is no longer blocked"
+    },
+    {
+      "destination": "StegVerse-Labs/Site",
+      "task": "Mirror generated external-framework evaluation results after release/tag"
+    },
+    {
+      "destination": "GCAT-BCAT-Engine/Publisher",
+      "task": "Add publication/import awareness for generated external-framework result artifacts after release/tag"
+    },
+    {
+      "destination": "stegguardian-wiki",
+      "task": "Add downstream execution-authority boundary summary after release/tag"
+    }
+  ],
+  "boundary": {
+    "progress_record_is_authority": false,
+    "manual_progress_reconstruction_required": false,
+    "single_workflow_policy_preserved": true
+  }
+}
