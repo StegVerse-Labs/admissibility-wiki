@@ -1,0 +1,15 @@
+{
+  "artifact_type": "generated_page_entrypoint_closeout_propagation",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "active_goal": "declarative-external-framework-generation-pipeline",
+  "source_artifact": "docs/external-frameworks/generated-page-workflow-entrypoint-migration.json",
+  "closeout_artifact": "docs/external-frameworks/generated-page-closeout-bundle.json",
+  "propagation_state": "required_by_closeout_bundle",
+  "boundary": {
+    "propagation_record_is_authority": false,
+    "source_artifact_is_authority": false,
+    "closeout_artifact_is_authority": false,
+    "missing_closeout_propagation_fails_closed": true
+  }
+}
