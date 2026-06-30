@@ -40,6 +40,13 @@
       "manual_task_required": false
     },
     {
+      "surface_id": "ci_evidence_request",
+      "generator": "scripts/generate_generated_page_ci_evidence_request.py",
+      "validator": "scripts/check_generated_page_ci_evidence_request.py",
+      "activation_path": "called by closeout-state generation validator",
+      "manual_task_required": false
+    },
+    {
       "surface_id": "workflow_entrypoint_migration",
       "generator": "docs/external-frameworks/generated-page-workflow-entrypoint-migration.json",
       "validator": "scripts/check_generated_page_workflow_entrypoint_migration.py",
