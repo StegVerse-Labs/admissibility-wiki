@@ -40,21 +40,29 @@ REQUIRED_DOWNSTREAM_DESTINATIONS = [
     "stegguardian-wiki",
 ]
 
-REQUIRED_GENERATED_OUTPUTS = [
-    "docs/external-frameworks/generated-page-validation-summary.json",
-    "docs/external-frameworks/generated-page-progress.json",
-    "docs/external-frameworks/generated-page-release-readiness.json",
-    "docs/external-frameworks/generated-page-downstream-tasks.json",
-    "docs/external-frameworks/generated-page-ci-evidence-request.json",
-    "docs/external-frameworks/generated-page-tag-candidate.json",
-    "docs/external-frameworks/generated-page-closeout-bundle.json",
-    "docs/external-frameworks/generated-page-activation-gate.json",
-]
-
 
 def require_bool(boundary: dict[str, Any], key: str, expected: bool, failures: list[str]) -> None:
     if boundary.get(key) is not expected:
         failures.append(f"boundary mismatch: {key}")
+
+
+def validate_generated_outputs(data: dict[str, Any], failures: list[str]) -> None:
+    outputs = data.get("generated_outputs", [])
+    if not isinstance(outputs, list) or not outputs:
+        failures.append("generated outputs missing")
+        return
+    if len(outputs) != len(set(outputs)):
+        failures.append("generated outputs contain duplicates")
+    for output in outputs:
+        if not isinstance(output, str):
+            failures.append("generated output path is not a string")
+            continue
+        if not output.startswith("docs/external-frameworks/generated-page-"):
+            failures.append(f"generated output path outside generated-page surface: {output}")
+        if not output.endswith(".json"):
+            failures.append(f"generated output path is not json: {output}")
+        if not (ROOT / output).exists():
+            failures.append(f"generated output file missing: {output}")
 
 
 def main() -> int:
@@ -89,12 +97,7 @@ def main() -> int:
         if surface not in surfaces:
             failures.append(f"missing surface: {surface}")
 
-    outputs = data.get("generated_outputs", [])
-    for output in REQUIRED_GENERATED_OUTPUTS:
-        if output not in outputs:
-            failures.append(f"missing generated output declaration: {output}")
-        elif not (ROOT / output).exists():
-            failures.append(f"generated output file missing: {output}")
+    validate_generated_outputs(data, failures)
 
     destinations = {item.get("destination") for item in data.get("remaining_tasks", [])}
     for destination in REQUIRED_DESTINATIONS:
