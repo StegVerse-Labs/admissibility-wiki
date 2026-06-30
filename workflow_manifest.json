@@ -49,9 +49,13 @@
   "expected_results": {
     "workflow_sprawl": "WORKFLOW SPRAWL: PASS",
     "workflow_manifest": "WORKFLOW MANIFEST: PASS",
+    "external_framework_report_coverage": "EXTERNAL FRAMEWORK REPORT COVERAGE: PASS",
+    "external_framework_report_generation": "EXTERNAL FRAMEWORK REPORT GENERATION: PASS",
+    "external_framework_results_page": "EXTERNAL FRAMEWORK RESULTS PAGE: PASS",
     "external_framework_page_metadata": "EXTERNAL FRAMEWORK PAGE METADATA: PASS",
     "external_framework_page_mapping": "EXTERNAL FRAMEWORK PAGE MAPPING: PASS",
     "external_framework_page_status": "EXTERNAL FRAMEWORK PAGE STATUS: PASS",
+    "external_framework_expansion_policy": "EXTERNAL FRAMEWORK EXPANSION POLICY: PASS",
     "ci_evidence": "CI EVIDENCE: PASS"
   },
   "generated_reports": [
