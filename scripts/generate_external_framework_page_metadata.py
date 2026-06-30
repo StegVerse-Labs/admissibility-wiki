@@ -16,32 +16,26 @@ def read_json(path: Path) -> dict[str, Any]:
 
 
 def block_for(entry: dict[str, Any]) -> str:
-    manifest_path = entry.get("manifest_path", "")
-    manifest_file = ROOT / manifest_path
-    manifest = read_json(manifest_file) if manifest_file.exists() else {}
     framework_id = entry.get("framework_id", "")
-    source = entry.get("source", manifest.get("source_reference", ""))
+    manifest_path = entry.get("manifest_path", "")
+    source = entry.get("source", "")
     status = entry.get("status", "")
     testbench_state = entry.get("testbench_state", "")
-    name = entry.get("name", manifest.get("name", framework_id))
-    schema_version = manifest.get("schema_version", "missing")
-    source_version = manifest.get("source_version", "missing")
+    name = entry.get("name", framework_id)
 
     return "\n".join([
         START,
         "",
         "## Generated Framework Metadata",
         "",
-        "This section is generated from the external-framework registry and manifest. Do not edit it manually.",
+        "This section is generated from the external-framework registry. Do not edit it manually.",
         "",
         f"- Framework ID: `{framework_id}`",
         f"- Name: `{name}`",
         f"- Registry status: `{status}`",
         f"- Testbench state: `{testbench_state}`",
         f"- Manifest path: `{manifest_path}`",
-        f"- Manifest schema version: `{schema_version}`",
         f"- Source reference: `{source}`",
-        f"- Source version: `{source_version}`",
         "- Metadata boundary: generated metadata is descriptive only; it does not create certification, endorsement, formalism adoption, admissibility proof, or execution authority.",
         "",
         END,
