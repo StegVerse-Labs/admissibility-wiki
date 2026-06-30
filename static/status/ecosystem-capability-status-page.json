@@ -1,0 +1,14 @@
+{
+  "schema": "admissibility_wiki.ecosystem_capability_status_page.v1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "status": "ECOSYSTEM_CAPABILITY_STATUS_PAGE_PRESENT",
+  "public_page": "docs/governance/ecosystem-capability-status.md",
+  "example_status": "static/status/ecosystem-capability-status.example.json",
+  "validator": "scripts/check_ecosystem_capability_status_example.py",
+  "claim_boundary": {
+    "status_page_grants_authority": false,
+    "status_example_is_release_evidence": false,
+    "status_example_is_public_verification": false,
+    "operational_requires_current_standing": true
+  }
+}
