@@ -13,7 +13,7 @@ The current goal is to present StegVerse as a governed ecosystem for inputs, pro
 ## Current version
 
 ```text
-0.9.0-ecosystem-capability-status-example
+1.0.0-ecosystem-capability-status-page
 ```
 
 ## Current status
@@ -25,6 +25,8 @@ GOVERNED_TRANSITION_MAP_PRESENT
 CAPABILITY_LIFECYCLE_REGISTRY_PRESENT
 ECOSYSTEM_CAPABILITY_STATUS_EXAMPLE_PRESENT
 ECOSYSTEM_CAPABILITY_STATUS_EXAMPLE_VALIDATOR_PRESENT
+ECOSYSTEM_CAPABILITY_STATUS_PAGE_PRESENT
+ECOSYSTEM_CAPABILITY_STATUS_PAGE_VALIDATOR_PRESENT
 WORKFLOW_GREEN_REPORTED
 LOCAL_DOCS_ONLY
 ```
@@ -34,10 +36,13 @@ LOCAL_DOCS_ONLY
 ```text
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 docs/governance/capability-lifecycle.md
+docs/governance/ecosystem-capability-status.md
 static/status/capability-lifecycle-status.json
 static/status/ecosystem-capability-status.example.json
+static/status/ecosystem-capability-status-page.json
 scripts/check_capability_lifecycle_status.py
 scripts/check_ecosystem_capability_status_example.py
+scripts/check_ecosystem_capability_status_page.py
 package.json
 ```
 
@@ -58,6 +63,7 @@ deprecated
 ```text
 python scripts/check_capability_lifecycle_status.py
 python scripts/check_ecosystem_capability_status_example.py
+python scripts/check_ecosystem_capability_status_page.py
 npm run validate:capability-lifecycle
 npm run validate
 ```
@@ -86,7 +92,7 @@ Do not add a second active workflow for this goal.
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - add package validation wiring for ecosystem capability status example if needed
+  - add package validation wiring for ecosystem capability status example and page if accepted
   - validate through canonical workflow
   - public deployment verification for governed ecosystem pages
 
@@ -108,7 +114,7 @@ This wiki does not claim live connector installation, production authority, cano
 
 ## Next build candidate
 
-Let the canonical validation workflow validate the lifecycle and status example. If continuing before workflow evidence is visible, wire the example validator into aggregate package validation only if the package update is accepted.
+Let the canonical validation workflow validate the lifecycle and status pages. If continuing before workflow evidence is visible, package validation wiring remains the only local integration gap and may be retried carefully.
 
 ## Handoff instruction
 
