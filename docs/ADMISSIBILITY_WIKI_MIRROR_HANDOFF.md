@@ -13,7 +13,7 @@ The current goal is to present StegVerse as a governed ecosystem for inputs, pro
 ## Current version
 
 ```text
-0.3.0-external-framework-input-class
+0.4.0-governed-input-classes
 ```
 
 ## Current status
@@ -26,6 +26,9 @@ GOVERNED_ECOSYSTEM_TRANSITION_VALIDATOR_PRESENT
 EXTERNAL_FRAMEWORK_INPUT_CLASS_FRAMING_PRESENT
 EXTERNAL_FRAMEWORK_INPUT_CLASS_STATUS_PRESENT
 EXTERNAL_FRAMEWORK_INPUT_CLASS_VALIDATOR_PRESENT
+GOVERNED_INPUT_CLASS_REGISTRY_PRESENT
+GOVERNED_INPUT_CLASS_STATUS_PRESENT
+GOVERNED_INPUT_CLASS_VALIDATOR_PRESENT
 README_LINK_PRESENT
 CURRENT_TASK_SYNC_UPDATED
 LOCAL_DOCS_ONLY
@@ -38,10 +41,13 @@ docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 docs/governance/current-task-sync.md
 docs/governance/governed-ecosystem-transitions.md
 docs/governance/external-frameworks-as-input-class.md
+docs/governance/governed-input-classes.md
 static/status/governed-ecosystem-transitions-status.json
 static/status/external-framework-input-class-status.json
+static/status/governed-input-classes-status.json
 scripts/check_governed_ecosystem_transitions_status.py
 scripts/check_external_framework_input_class_status.py
+scripts/check_governed_input_classes_status.py
 README.md
 package.json
 ```
@@ -59,17 +65,16 @@ input or request
   -> governed output
 ```
 
-## External-framework input-class path
+## Registered input classes
 
 ```text
-external framework artifact
-  -> governed ingestion
-  -> CGE fingerprinting
-  -> GCAT / BCAT evaluation
-  -> Transition Table standing
-  -> ALLOW / DENY / FAIL-CLOSED
-  -> receipt_chain / STRP record
-  -> governed output
+external_framework_outputs
+llm_or_agent_outputs
+human_requests
+repo_tasks
+sdk_requests
+runtime_observations
+receipt_chain_continuations
 ```
 
 ## Validation
@@ -77,8 +82,10 @@ external framework artifact
 ```text
 python scripts/check_governed_ecosystem_transitions_status.py
 python scripts/check_external_framework_input_class_status.py
+python scripts/check_governed_input_classes_status.py
 npm run validate:governed-ecosystem-transitions
 npm run validate:external-framework-input-class
+npm run validate:governed-input-classes
 npm run validate
 ```
 
@@ -110,8 +117,8 @@ External framework pages remain valid but are now presented as one governed inpu
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - public deployment verification for governed ecosystem transition and external-framework input-class pages
-  - optional generated status surface grouping all input classes
+  - public deployment verification for governed ecosystem transition, external-framework input-class, and governed input-class registry pages
+  - optional desired-output-class registry/status surface
 
 StegVerse-Labs/Site:
   - mirror/public summary of governed ecosystem transition framing after admissibility-wiki validation
@@ -131,7 +138,7 @@ This wiki does not claim live connector installation, production mutation author
 
 ## Next build candidate
 
-Let the canonical validation workflow validate and deploy the new pages. If continuing before workflow evidence is visible, the next local build candidate is an input-class registry/status surface grouping external frameworks, LLM or agent outputs, human requests, repo tasks, SDK requests, runtime observations, and receipt-chain continuations.
+Let the canonical validation workflow validate and deploy the new pages. If continuing before workflow evidence is visible, the next local build candidate is a desired-output-class registry/status surface.
 
 ## Handoff instruction
 
