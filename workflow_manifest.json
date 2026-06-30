@@ -17,6 +17,7 @@
       "purpose": "iOS-safe mirror of the single active validation workflow"
     }
   ],
+  "local_validation_entrypoint": "python scripts/run_canonical_validation.py",
   "verification_commands": [
     "python scripts/check_workflow_sprawl.py",
     "python scripts/generate_external_framework_reports.py",
@@ -70,6 +71,7 @@
     "mirror_is_activation_evidence": false,
     "manual_workflow_install_required": false,
     "manual_destination_search_required": false,
+    "local_validation_entrypoint_is_authority": false,
     "external_framework_outputs_are_authority": false,
     "generated_framework_results_are_authority": false,
     "generated_framework_page_metadata_is_authority": false,
