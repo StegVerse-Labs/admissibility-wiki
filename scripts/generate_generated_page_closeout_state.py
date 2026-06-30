@@ -156,12 +156,7 @@ def tag_candidate(model: dict[str, Any]) -> dict[str, Any]:
         "tag_candidate": tag["tag_candidate"],
         "tag_ready": tag["tag_ready"],
         "blocked_by": tag["blocked_by"],
-        "required_artifacts": [
-            "docs/external-frameworks/generated-page-progress.json",
-            "docs/external-frameworks/generated-page-release-readiness.json",
-            "docs/external-frameworks/generated-page-downstream-tasks.json",
-            "docs/external-frameworks/generated-page-ci-evidence-request.json"
-        ],
+        "required_artifacts": model["generated_outputs"],
         "boundary": {
             "tag_candidate_is_authority": False,
             "tag_ready_without_green_ci_allowed": False,
