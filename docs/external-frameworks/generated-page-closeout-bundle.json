@@ -13,8 +13,8 @@
     "docs/external-frameworks/generated-page-tag-candidate.json"
   ],
   "blocked_by": [
-    "green CI evidence after tag candidate gate installation not yet recorded",
-    "public generated evaluation results verification after tag candidate gate installation not yet recorded",
+    "green CI evidence after closeout bundle installation not yet recorded",
+    "public generated evaluation results verification after closeout bundle installation not yet recorded",
     "release readiness remains false",
     "tag candidate remains blocked"
   ],
