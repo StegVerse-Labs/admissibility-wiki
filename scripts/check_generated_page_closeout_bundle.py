@@ -11,6 +11,7 @@ BUNDLE = ROOT / "docs" / "external-frameworks" / "generated-page-closeout-bundle
 GENERATION_CHECK = ROOT / "scripts" / "check_generated_page_closeout_state_generation.py"
 
 REQUIRED_ARTIFACTS = [
+    "docs/external-frameworks/generated-page-validation-summary.json",
     "docs/external-frameworks/generated-page-progress.json",
     "docs/external-frameworks/generated-page-release-readiness.json",
     "docs/external-frameworks/generated-page-downstream-tasks.json",
@@ -35,7 +36,7 @@ def main() -> int:
         failures.append("active goal mismatch")
     if data.get("closeout_ready") is not False:
         failures.append("closeout must remain blocked before green CI evidence")
-    if data.get("closeout_percent") != 84:
+    if data.get("closeout_percent") != 96:
         failures.append("closeout percent mismatch")
 
     for artifact in REQUIRED_ARTIFACTS:
