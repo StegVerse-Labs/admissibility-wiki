@@ -20,6 +20,7 @@ REQUIRED_VALIDATORS = [
     "scripts/check_generated_page_surfaces_root_addendum.py",
     "scripts/check_generated_page_workflow_entrypoint_migration.py",
     "scripts/check_generated_page_entrypoint_closeout_propagation.py",
+    "scripts/check_generated_page_release_evidence_bundle.py",
     "scripts/check_generated_page_closeout_state_generation.py",
 ]
 
