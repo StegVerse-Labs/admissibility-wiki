@@ -6,9 +6,9 @@
   "tag_candidate": "v0.1.0-generated-framework-pages",
   "tag_ready": false,
   "blocked_by": [
-    "green CI evidence not yet recorded after validation summary generation installation",
-    "public generated evaluation results verification not yet recorded after validation summary generation installation",
-    "release readiness remains false until CI and public verification pass"
+    "explicit release authorization not yet recorded",
+    "public generated evaluation results verification not yet recorded after release authorization",
+    "release readiness remains false until release authorization and public verification pass"
   ],
   "required_artifacts": [
     "docs/external-frameworks/generated-page-progress.json",
