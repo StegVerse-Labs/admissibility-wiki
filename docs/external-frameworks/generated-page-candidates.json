@@ -1,0 +1,28 @@
+{
+  "artifact_type": "generated_page_candidates",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "active_goal": "declarative-external-framework-generation-pipeline",
+  "installed_candidates": [
+    {
+      "candidate_id": "external_framework_page_analysis_boundary",
+      "generator": "scripts/generate_external_framework_page_analysis_boundary.py",
+      "validator": "scripts/check_external_framework_page_analysis_boundary.py",
+      "status": "installed_not_wired",
+      "reason": "workflow replacement was blocked during this session; candidate is preserved for the next safe wiring pass"
+    },
+    {
+      "candidate_id": "external_framework_page_terms",
+      "generator": "scripts/generate_external_framework_page_terms.py",
+      "validator": "scripts/check_external_framework_page_terms.py",
+      "status": "installed_not_wired",
+      "reason": "generated transition mapping already covers the active manifest mapping surface"
+    }
+  ],
+  "active_generated_page_surfaces": [
+    "metadata",
+    "mapping",
+    "page_status"
+  ],
+  "next_safe_action": "Wire analysis-boundary only after the current active workflow remains green or after a failing run identifies the generated page boundary as the first missing surface."
+}
