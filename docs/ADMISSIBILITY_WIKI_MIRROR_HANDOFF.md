@@ -13,7 +13,7 @@ The current goal is to present StegVerse as a governed ecosystem for inputs, pro
 ## Current version
 
 ```text
-0.2.0-governed-ecosystem-transition-framing
+0.3.0-external-framework-input-class
 ```
 
 ## Current status
@@ -23,7 +23,11 @@ MIRROR_HANDOFF_PRESENT
 GOVERNED_ECOSYSTEM_TRANSITION_FRAMING_PRESENT
 GOVERNED_ECOSYSTEM_TRANSITION_STATUS_PRESENT
 GOVERNED_ECOSYSTEM_TRANSITION_VALIDATOR_PRESENT
+EXTERNAL_FRAMEWORK_INPUT_CLASS_FRAMING_PRESENT
+EXTERNAL_FRAMEWORK_INPUT_CLASS_STATUS_PRESENT
+EXTERNAL_FRAMEWORK_INPUT_CLASS_VALIDATOR_PRESENT
 README_LINK_PRESENT
+CURRENT_TASK_SYNC_UPDATED
 LOCAL_DOCS_ONLY
 ```
 
@@ -31,10 +35,15 @@ LOCAL_DOCS_ONLY
 
 ```text
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
+docs/governance/current-task-sync.md
 docs/governance/governed-ecosystem-transitions.md
+docs/governance/external-frameworks-as-input-class.md
 static/status/governed-ecosystem-transitions-status.json
+static/status/external-framework-input-class-status.json
 scripts/check_governed_ecosystem_transitions_status.py
+scripts/check_external_framework_input_class_status.py
 README.md
+package.json
 ```
 
 ## Core transition path
@@ -50,11 +59,26 @@ input or request
   -> governed output
 ```
 
+## External-framework input-class path
+
+```text
+external framework artifact
+  -> governed ingestion
+  -> CGE fingerprinting
+  -> GCAT / BCAT evaluation
+  -> Transition Table standing
+  -> ALLOW / DENY / FAIL-CLOSED
+  -> receipt_chain / STRP record
+  -> governed output
+```
+
 ## Validation
 
 ```text
 python scripts/check_governed_ecosystem_transitions_status.py
+python scripts/check_external_framework_input_class_status.py
 npm run validate:governed-ecosystem-transitions
+npm run validate:external-framework-input-class
 npm run validate
 ```
 
@@ -80,21 +104,14 @@ Do not add a second active workflow for this goal.
 
 ## Current external-framework posture
 
-External framework pages remain valid but are now presented as one governed input class:
-
-```text
-external framework artifact
-  -> governed ingestion
-  -> admissibility path
-  -> receipt-bound result
-```
+External framework pages remain valid but are now presented as one governed input class. Generated compatibility reports and page-status blocks are compatibility evidence only and do not grant certification, endorsement, formalism adoption, admissibility proof, execution authority, or canonical STRP admission.
 
 ## Known remaining installation targets
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - public deployment verification for governed ecosystem transition page
-  - optional generated status surface linking external frameworks as one input class
+  - public deployment verification for governed ecosystem transition and external-framework input-class pages
+  - optional generated status surface grouping all input classes
 
 StegVerse-Labs/Site:
   - mirror/public summary of governed ecosystem transition framing after admissibility-wiki validation
@@ -114,7 +131,7 @@ This wiki does not claim live connector installation, production mutation author
 
 ## Next build candidate
 
-Let the canonical validation workflow validate and deploy the new page. If validation fails, repair only the first failing validator field, build issue, public URL check, or handoff inconsistency identified by logs.
+Let the canonical validation workflow validate and deploy the new pages. If continuing before workflow evidence is visible, the next local build candidate is an input-class registry/status surface grouping external frameworks, LLM or agent outputs, human requests, repo tasks, SDK requests, runtime observations, and receipt-chain continuations.
 
 ## Handoff instruction
 
