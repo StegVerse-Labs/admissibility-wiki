@@ -38,6 +38,20 @@
       "validator": "scripts/check_generated_page_closeout_state_generation.py",
       "activation_path": "called by closeout-bundle validator through existing chain",
       "manual_task_required": false
+    },
+    {
+      "surface_id": "workflow_entrypoint_migration",
+      "generator": "docs/external-frameworks/generated-page-workflow-entrypoint-migration.json",
+      "validator": "scripts/check_generated_page_workflow_entrypoint_migration.py",
+      "activation_path": "called by page-status validator",
+      "manual_task_required": false
+    },
+    {
+      "surface_id": "entrypoint_closeout_propagation",
+      "generator": "docs/external-frameworks/generated-page-entrypoint-closeout-propagation.json",
+      "validator": "scripts/check_generated_page_entrypoint_closeout_propagation.py",
+      "activation_path": "called by page-status validator",
+      "manual_task_required": false
     }
   ],
   "inactive_surfaces": [
