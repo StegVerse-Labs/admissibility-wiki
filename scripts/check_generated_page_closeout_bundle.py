@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BUNDLE = ROOT / "docs" / "external-frameworks" / "generated-page-closeout-bundle.json"
 GENERATION_CHECK = ROOT / "scripts" / "check_generated_page_closeout_state_generation.py"
+ACTIVATION_GATE_CHECK = ROOT / "scripts" / "check_generated_page_activation_gate.py"
 
 REQUIRED_ARTIFACTS = [
     "docs/external-frameworks/generated-page-validation-summary.json",
@@ -18,6 +19,13 @@ REQUIRED_ARTIFACTS = [
     "docs/external-frameworks/generated-page-ci-evidence-request.json",
     "docs/external-frameworks/generated-page-tag-candidate.json",
 ]
+
+
+def run_optional_check(path: Path, label: str, failures: list[str]) -> None:
+    if path.exists():
+        result = subprocess.run(["python", str(path)], check=False)
+        if result.returncode != 0:
+            failures.append(f"{label} failed")
 
 
 def main() -> int:
@@ -58,10 +66,8 @@ def main() -> int:
     if boundary.get("thread_archive_ready") is not False:
         failures.append("archive boundary mismatch")
 
-    if GENERATION_CHECK.exists():
-        result = subprocess.run(["python", str(GENERATION_CHECK)], check=False)
-        if result.returncode != 0:
-            failures.append("closeout state generation check failed")
+    run_optional_check(GENERATION_CHECK, "closeout state generation check", failures)
+    run_optional_check(ACTIVATION_GATE_CHECK, "activation gate check", failures)
 
     print("GENERATED PAGE CLOSEOUT BUNDLE:", "FAIL" if failures else "PASS")
     for failure in failures:
