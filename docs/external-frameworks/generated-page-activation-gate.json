@@ -4,16 +4,16 @@
   "repo": "StegVerse-Labs/admissibility-wiki",
   "active_goal": "declarative-external-framework-generation-pipeline",
   "activation_ready": false,
-  "activation_percent": 98,
+  "activation_percent": 99,
   "required_to_activate": [
-    "current single canonical workflow conclusion is success",
-    "public GitHub Pages root verification is success",
-    "public generated evaluation results page verification is success",
-    "GOAL_STATE is promoted to the current generated closeout-state checkpoint"
+    "explicit release authorization recorded",
+    "public GitHub Pages root verification is success after release authorization",
+    "public generated evaluation results page verification is success after release authorization",
+    "release tag evidence is recorded"
   ],
   "fail_closed_until": [
-    "green CI evidence is recorded after the validation summary generation checkpoint",
-    "public verification evidence is recorded after the validation summary generation checkpoint"
+    "release authorization evidence is recorded",
+    "public verification evidence is recorded after release authorization"
   ],
   "boundary": {
     "activation_gate_is_authority": false,
