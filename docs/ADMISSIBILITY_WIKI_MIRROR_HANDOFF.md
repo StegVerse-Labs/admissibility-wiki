@@ -11,7 +11,7 @@ governed-ecosystem-transition-framing
 ## Current version
 
 ```text
-1.1.0-ecosystem-capability-status-package-wired
+1.2.0-governed-ecosystem-public-index
 ```
 
 ## Current status
@@ -24,33 +24,47 @@ CAPABILITY_LIFECYCLE_REGISTRY_PRESENT
 ECOSYSTEM_CAPABILITY_STATUS_EXAMPLE_PRESENT
 ECOSYSTEM_CAPABILITY_STATUS_PAGE_PRESENT
 ECOSYSTEM_CAPABILITY_STATUS_PACKAGE_WIRED
+GOVERNED_ECOSYSTEM_INDEX_PRESENT
+GOVERNED_ECOSYSTEM_INDEX_STATUS_PRESENT
+GOVERNED_ECOSYSTEM_INDEX_VALIDATOR_PRESENT
+SIDEBAR_NAVIGATION_PRESENT
 LOCAL_DOCS_ONLY
+```
+
+## Public-facing verification page
+
+```text
+https://stegverse-labs.github.io/admissibility-wiki/governance/ecosystem-capability-status
+```
+
+## Public-facing index page
+
+```text
+https://stegverse-labs.github.io/admissibility-wiki/governance/governed-ecosystem-index
 ```
 
 ## Source-of-truth documents
 
 ```text
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
-docs/governance/capability-lifecycle.md
+docs/governance/governed-ecosystem-index.md
 docs/governance/ecosystem-capability-status.md
-static/status/capability-lifecycle-status.json
+static/status/governed-ecosystem-index-status.json
 static/status/ecosystem-capability-status.example.json
 static/status/ecosystem-capability-status-page.json
-scripts/check_capability_lifecycle_status.py
+scripts/check_governed_ecosystem_index_status.py
 scripts/check_ecosystem_capability_status_example.py
 scripts/check_ecosystem_capability_status_page.py
+sidebars.js
 package.json
 ```
 
 ## Validation
 
 ```text
-python scripts/check_capability_lifecycle_status.py
+python scripts/check_governed_ecosystem_index_status.py
 python scripts/check_ecosystem_capability_status_example.py
 python scripts/check_ecosystem_capability_status_page.py
-npm run validate:capability-lifecycle
-npm run validate:ecosystem-capability-status-example
-npm run validate:ecosystem-capability-status-page
 npm run validate
 ```
 
@@ -76,6 +90,7 @@ iosnoperiod/github/workflows/validate-chain-continuation.yml
 
 ```text
 StegVerse-Labs/admissibility-wiki:
+  - wire governed ecosystem index validator into aggregate package validation if desired
   - validate through canonical workflow
   - public deployment verification for governed ecosystem pages
 
@@ -94,10 +109,6 @@ stegguardian-wiki:
 This wiki records vocabulary, proof framing, lifecycle classification, and public explanation paths.
 
 This wiki does not claim live connector installation, production authority, canonical STRP admission, or release status.
-
-## Next build candidate
-
-Let the canonical validation workflow validate the package-wired lifecycle and status pages. If continuing before workflow evidence is visible, the next local candidate is public navigation/index consolidation for governed ecosystem pages.
 
 ## Handoff instruction
 
