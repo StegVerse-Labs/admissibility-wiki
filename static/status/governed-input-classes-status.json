@@ -1,0 +1,23 @@
+{
+  "schema": "admissibility_wiki.governed_input_classes_status.v1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "status": "GOVERNED_INPUT_CLASS_REGISTRY_PRESENT",
+  "public_page": "docs/governance/governed-input-classes.md",
+  "parent_page": "docs/governance/governed-ecosystem-transitions.md",
+  "input_classes": [
+    "external_framework_outputs",
+    "llm_or_agent_outputs",
+    "human_requests",
+    "repo_tasks",
+    "sdk_requests",
+    "runtime_observations",
+    "receipt_chain_continuations"
+  ],
+  "claim_boundary": {
+    "registration_grants_admissibility": false,
+    "registration_grants_execution_authority": false,
+    "registration_grants_canonical_receipt_admission": false,
+    "each_instance_requires_governed_ingestion": true,
+    "each_instance_requires_transition_evaluation": true
+  }
+}
