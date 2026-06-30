@@ -7,6 +7,9 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "external-frameworks"
+ACTIVE_GOAL = "declarative-external-framework-generation-pipeline"
+PERCENT = 96
+RECORDED_GOAL_STATE_PERCENT = 44
 
 
 def write_json(name: str, data: dict[str, Any]) -> None:
@@ -19,7 +22,7 @@ def validation_summary() -> dict[str, Any]:
         "artifact_type": "generated_page_validation_summary",
         "schema_version": "0.2",
         "repo": "StegVerse-Labs/admissibility-wiki",
-        "active_goal": "declarative-external-framework-generation-pipeline",
+        "active_goal": ACTIVE_GOAL,
         "validated_through": "scripts/check_external_framework_page_status.py",
         "surface_inventory": "docs/external-frameworks/generated-page-surfaces.json",
         "surface_handoff": "docs/external-frameworks/GENERATED_PAGE_SURFACES_HANDOFF.md",
@@ -52,14 +55,14 @@ def progress() -> dict[str, Any]:
         "schema_version": "0.1",
         "repo": "StegVerse-Labs/admissibility-wiki",
         "org": "StegVerse-Labs",
-        "repo_percent_complete": 84,
-        "goal_activation_percent_complete": 84,
-        "active_goal": "declarative-external-framework-generation-pipeline",
-        "current_checkpoint": "CLOSEOUT_BUNDLE_RECORDED",
+        "repo_percent_complete": PERCENT,
+        "goal_activation_percent_complete": PERCENT,
+        "active_goal": ACTIVE_GOAL,
+        "current_checkpoint": "VALIDATION_SUMMARY_GENERATED",
         "actual_vs_recorded": {
-            "actual_percent": 84,
-            "recorded_goal_state_percent": 44,
-            "reason": "Generated page state artifacts are now consolidated behind a generator and machine-checked through the existing validation chain."
+            "actual_percent": PERCENT,
+            "recorded_goal_state_percent": RECORDED_GOAL_STATE_PERCENT,
+            "reason": "Generated closeout state now includes generated validation summary freshness checking through the existing validation chain."
         },
         "active_surfaces": [
             "metadata",
@@ -70,6 +73,7 @@ def progress() -> dict[str, Any]:
             "surface_handoff",
             "root_addendum",
             "validation_summary",
+            "validation_summary_generation",
             "release_readiness",
             "downstream_tasks",
             "ci_evidence_request",
@@ -96,11 +100,11 @@ def release_readiness() -> dict[str, Any]:
         "artifact_type": "generated_page_release_readiness",
         "schema_version": "0.1",
         "repo": "StegVerse-Labs/admissibility-wiki",
-        "active_goal": "declarative-external-framework-generation-pipeline",
+        "active_goal": ACTIVE_GOAL,
         "release_ready": False,
-        "readiness_percent": 84,
+        "readiness_percent": PERCENT,
         "required_before_tag": [
-            "single canonical workflow green after closeout bundle installation",
+            "single canonical workflow green after validation summary generation installation",
             "public GitHub Pages verification green",
             "generated external-framework evaluation results reachable on public site",
             "GOAL_STATE promoted after validator update is unblocked",
@@ -109,6 +113,7 @@ def release_readiness() -> dict[str, Any]:
         "already_satisfied": [
             "single workflow policy preserved",
             "generated-page validation summary installed",
+            "generated-page validation summary generation check installed",
             "machine-readable progress state installed",
             "downstream task manifest installed",
             "CI evidence request installed",
@@ -128,7 +133,7 @@ def downstream_tasks() -> dict[str, Any]:
         "artifact_type": "generated_page_downstream_tasks",
         "schema_version": "0.1",
         "repo": "StegVerse-Labs/admissibility-wiki",
-        "active_goal": "declarative-external-framework-generation-pipeline",
+        "active_goal": ACTIVE_GOAL,
         "activation_condition": "after release tag and green public verification",
         "tasks": [
             {"destination": "StegVerse-Labs/Site", "task_id": "site.generated-framework-results-summary", "required_input": "docs/external-frameworks/evaluation-results.md", "status": "pending_release_tag"},
@@ -148,7 +153,7 @@ def ci_request() -> dict[str, Any]:
         "artifact_type": "generated_page_ci_evidence_request",
         "schema_version": "0.1",
         "repo": "StegVerse-Labs/admissibility-wiki",
-        "active_goal": "declarative-external-framework-generation-pipeline",
+        "active_goal": ACTIVE_GOAL,
         "requested_evidence": [
             "single canonical workflow conclusion",
             "generated page status validation conclusion",
@@ -157,6 +162,7 @@ def ci_request() -> dict[str, Any]:
             "generated page downstream task validation conclusion",
             "generated page tag candidate validation conclusion",
             "generated page closeout bundle validation conclusion",
+            "generated page validation summary generation conclusion",
             "public GitHub Pages verification conclusion"
         ],
         "current_state": "pending_next_workflow_run",
@@ -178,12 +184,12 @@ def tag_candidate() -> dict[str, Any]:
         "artifact_type": "generated_page_tag_candidate",
         "schema_version": "0.1",
         "repo": "StegVerse-Labs/admissibility-wiki",
-        "active_goal": "declarative-external-framework-generation-pipeline",
+        "active_goal": ACTIVE_GOAL,
         "tag_candidate": "v0.1.0-generated-framework-pages",
         "tag_ready": False,
         "blocked_by": [
-            "green CI evidence not yet recorded after closeout bundle installation",
-            "public generated evaluation results verification not yet recorded after closeout bundle installation",
+            "green CI evidence not yet recorded after validation summary generation installation",
+            "public generated evaluation results verification not yet recorded after validation summary generation installation",
             "release readiness remains false until CI and public verification pass"
         ],
         "required_artifacts": [
@@ -205,10 +211,11 @@ def closeout_bundle() -> dict[str, Any]:
         "artifact_type": "generated_page_closeout_bundle",
         "schema_version": "0.1",
         "repo": "StegVerse-Labs/admissibility-wiki",
-        "active_goal": "declarative-external-framework-generation-pipeline",
+        "active_goal": ACTIVE_GOAL,
         "closeout_ready": False,
-        "closeout_percent": 84,
+        "closeout_percent": PERCENT,
         "required_artifacts": [
+            "docs/external-frameworks/generated-page-validation-summary.json",
             "docs/external-frameworks/generated-page-progress.json",
             "docs/external-frameworks/generated-page-release-readiness.json",
             "docs/external-frameworks/generated-page-downstream-tasks.json",
@@ -216,8 +223,8 @@ def closeout_bundle() -> dict[str, Any]:
             "docs/external-frameworks/generated-page-tag-candidate.json"
         ],
         "blocked_by": [
-            "green CI evidence after closeout bundle installation not yet recorded",
-            "public generated evaluation results verification after closeout bundle installation not yet recorded",
+            "green CI evidence after validation summary generation installation not yet recorded",
+            "public generated evaluation results verification after validation summary generation installation not yet recorded",
             "release readiness remains false",
             "tag candidate remains blocked"
         ],
