@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SUMMARY = ROOT / "docs" / "external-frameworks" / "generated-page-validation-summary.json"
+MODEL = ROOT / "docs" / "external-frameworks" / "generated-page-state-model.json"
 PROGRESS_CHECK = ROOT / "scripts" / "check_generated_page_progress.py"
 SUMMARY_GENERATION_CHECK = ROOT / "scripts" / "check_generated_page_validation_summary_generation.py"
 
@@ -34,13 +35,20 @@ def main() -> int:
         print("GENERATED PAGE VALIDATION SUMMARY: FAIL")
         print("- summary missing")
         return 1
+    if not MODEL.exists():
+        print("GENERATED PAGE VALIDATION SUMMARY: FAIL")
+        print("- state model missing")
+        return 1
 
     data = json.loads(SUMMARY.read_text(encoding="utf-8"))
+    model = json.loads(MODEL.read_text(encoding="utf-8"))
     if data.get("artifact_type") != "generated_page_validation_summary":
         failures.append("artifact type mismatch")
     if data.get("schema_version") != "0.2":
         failures.append("schema version mismatch")
-    if data.get("active_goal") != "declarative-external-framework-generation-pipeline":
+    if data.get("repo") != model.get("repo"):
+        failures.append("repo mismatch")
+    if data.get("active_goal") != model.get("active_goal"):
         failures.append("active goal mismatch")
     if data.get("validated_through") != "scripts/check_external_framework_page_status.py":
         failures.append("validated-through mismatch")
@@ -69,6 +77,8 @@ def main() -> int:
         failures.append("single workflow boundary mismatch")
     if boundary.get("manual_generated_surface_discovery_required") is not False:
         failures.append("manual discovery boundary mismatch")
+    if model.get("boundary", {}).get("manual_state_reconstruction_required") is not False:
+        failures.append("state model manual reconstruction boundary mismatch")
 
     run_check(SUMMARY_GENERATION_CHECK, "validation summary generation check", failures)
     run_check(PROGRESS_CHECK, "generated page progress check", failures)
