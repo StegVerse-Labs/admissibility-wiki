@@ -1,0 +1,45 @@
+{
+  "artifact_type": "generated_page_workflow_entrypoint_migration",
+  "schema_version": "0.1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "active_goal": "declarative-external-framework-generation-pipeline",
+  "local_entrypoint": "python scripts/run_canonical_validation.py",
+  "completed": [
+    {
+      "path": "scripts/run_canonical_validation.py",
+      "state": "installed",
+      "purpose": "manifest-driven canonical local validation runner"
+    },
+    {
+      "path": "workflow_manifest.json",
+      "state": "installed",
+      "purpose": "declares local validation entrypoint without recursion"
+    },
+    {
+      "path": "scripts/check_workflow_manifest.py",
+      "state": "installed",
+      "purpose": "validates local entrypoint and non-recursive boundary"
+    }
+  ],
+  "pending_install": [
+    {
+      "display_path": "github/workflows/validate-chain-continuation.yml",
+      "display_path_note": "Displayed without the leading period for iOS compatibility.",
+      "state": "connector_blocked",
+      "purpose": "replace duplicated workflow command list with python scripts/run_canonical_validation.py"
+    },
+    {
+      "display_path": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
+      "state": "connector_blocked",
+      "purpose": "mirror the manifest-driven workflow entrypoint for iOS-safe handoff"
+    }
+  ],
+  "boundary": {
+    "migration_record_is_authority": false,
+    "workflow_replacement_complete": false,
+    "manual_workflow_install_required": false,
+    "connector_block_blocks_goal_activation": true,
+    "local_entrypoint_is_authority": false,
+    "missing_ci_fails_closed": true
+  }
+}
