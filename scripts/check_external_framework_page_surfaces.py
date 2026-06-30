@@ -39,6 +39,10 @@ REQUIRED_ACTIVE = {
         "docs/external-frameworks/generated-page-entrypoint-closeout-propagation.json",
         "scripts/check_generated_page_entrypoint_closeout_propagation.py",
     ),
+    "release_evidence_bundle": (
+        "docs/external-frameworks/generated-page-release-evidence-bundle.json",
+        "scripts/check_generated_page_release_evidence_bundle.py",
+    ),
 }
 
 
