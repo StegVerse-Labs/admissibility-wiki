@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PROGRESS = ROOT / "docs" / "external-frameworks" / "generated-page-progress.json"
 RELEASE_CHECK = ROOT / "scripts" / "check_generated_page_release_readiness.py"
+DOWNSTREAM_CHECK = ROOT / "scripts" / "check_generated_page_downstream_tasks.py"
 
 REQUIRED_SURFACES = [
     "metadata",
@@ -27,6 +28,13 @@ REQUIRED_DESTINATIONS = [
     "GCAT-BCAT-Engine/Publisher",
     "stegguardian-wiki",
 ]
+
+
+def run_optional_check(path: Path, label: str, failures: list[str]) -> None:
+    if path.exists():
+        result = subprocess.run(["python", str(path)], check=False)
+        if result.returncode != 0:
+            failures.append(f"{label} failed")
 
 
 def main() -> int:
@@ -74,10 +82,8 @@ def main() -> int:
     if boundary.get("single_workflow_policy_preserved") is not True:
         failures.append("single workflow boundary mismatch")
 
-    if RELEASE_CHECK.exists():
-        result = subprocess.run(["python", str(RELEASE_CHECK)], check=False)
-        if result.returncode != 0:
-            failures.append("release readiness check failed")
+    run_optional_check(RELEASE_CHECK, "release readiness check", failures)
+    run_optional_check(DOWNSTREAM_CHECK, "downstream task check", failures)
 
     print("GENERATED PAGE PROGRESS:", "FAIL" if failures else "PASS")
     for failure in failures:
