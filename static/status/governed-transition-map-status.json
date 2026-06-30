@@ -1,0 +1,25 @@
+{
+  "schema": "admissibility_wiki.governed_transition_map_status.v1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "status": "GOVERNED_TRANSITION_MAP_PRESENT",
+  "public_page": "docs/governance/governed-transition-map.md",
+  "input_registry": "docs/governance/governed-input-classes.md",
+  "output_registry": "docs/governance/governed-output-classes.md",
+  "claim_boundary": {
+    "map_grants_authority": false,
+    "map_grants_admissibility": false,
+    "map_grants_output_permission": false,
+    "each_transition_requires_current_standing": true,
+    "each_transition_requires_receipt_binding": true
+  },
+  "transition_path": [
+    "input_class_instance",
+    "governed_ingestion",
+    "cge_fingerprinting",
+    "gcat_bcat_evaluation",
+    "transition_table_standing",
+    "allow_deny_fail_closed",
+    "receipt_chain_or_strp_record",
+    "output_class_instance"
+  ]
+}
