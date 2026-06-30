@@ -30,6 +30,7 @@ analysis_boundary
 closeout_state
 workflow_entrypoint_migration
 entrypoint_closeout_propagation
+release_evidence_bundle
 ```
 
 ## Inactive Generated Surfaces
