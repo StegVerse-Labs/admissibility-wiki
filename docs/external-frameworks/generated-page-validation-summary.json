@@ -1,6 +1,6 @@
 {
   "artifact_type": "generated_page_validation_summary",
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "active_goal": "declarative-external-framework-generation-pipeline",
   "validated_through": "scripts/check_external_framework_page_status.py",
@@ -12,12 +12,14 @@
     "scripts/check_external_framework_page_candidates.py",
     "scripts/check_external_framework_page_surfaces.py",
     "scripts/check_generated_page_surfaces_handoff.py",
-    "scripts/check_generated_page_surfaces_root_addendum.py"
+    "scripts/check_generated_page_surfaces_root_addendum.py",
+    "scripts/check_generated_page_closeout_state_generation.py"
   ],
   "manual_tasks_removed": [
     "generated_surface_discovery",
     "generated_surface_handoff_discovery",
-    "generated_surface_root_handoff_discovery"
+    "generated_surface_root_handoff_discovery",
+    "generated_closeout_state_reconstruction"
   ],
   "boundary": {
     "validation_summary_is_authority": false,
