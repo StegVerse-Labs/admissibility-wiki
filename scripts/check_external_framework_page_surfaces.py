@@ -27,6 +27,10 @@ REQUIRED_ACTIVE = {
         "scripts/generate_external_framework_page_analysis_boundary.py",
         "scripts/check_external_framework_page_analysis_boundary.py",
     ),
+    "closeout_state": (
+        "scripts/generate_generated_page_closeout_state.py",
+        "scripts/check_generated_page_closeout_state_generation.py",
+    ),
 }
 
 
@@ -40,7 +44,7 @@ def main() -> int:
     data = json.loads(STATE.read_text(encoding="utf-8"))
     if data.get("artifact_type") != "generated_page_surfaces":
         failures.append("artifact type mismatch")
-    if data.get("schema_version") != "0.1":
+    if data.get("schema_version") != "0.2":
         failures.append("schema version mismatch")
     if data.get("active_goal") != "declarative-external-framework-generation-pipeline":
         failures.append("active goal mismatch")
