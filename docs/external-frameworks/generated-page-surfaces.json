@@ -1,6 +1,6 @@
 {
   "artifact_type": "generated_page_surfaces",
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "active_goal": "declarative-external-framework-generation-pipeline",
   "active_surfaces": [
@@ -30,6 +30,13 @@
       "generator": "scripts/generate_external_framework_page_analysis_boundary.py",
       "validator": "scripts/check_external_framework_page_analysis_boundary.py",
       "activation_path": "called by page-status generator and validator",
+      "manual_task_required": false
+    },
+    {
+      "surface_id": "closeout_state",
+      "generator": "scripts/generate_generated_page_closeout_state.py",
+      "validator": "scripts/check_generated_page_closeout_state_generation.py",
+      "activation_path": "called by closeout-bundle validator through existing chain",
       "manual_task_required": false
     }
   ],
