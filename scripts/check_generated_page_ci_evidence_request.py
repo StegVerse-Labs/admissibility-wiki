@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUEST = ROOT / "docs" / "external-frameworks" / "generated-page-ci-evidence-request.json"
+MODEL = ROOT / "docs" / "external-frameworks" / "generated-page-state-model.json"
 TAG_CHECK = ROOT / "scripts" / "check_generated_page_tag_candidate.py"
 
 REQUIRED_EVIDENCE = [
@@ -29,17 +30,26 @@ def main() -> int:
         print("GENERATED PAGE CI EVIDENCE REQUEST: FAIL")
         print("- request file missing")
         return 1
+    if not MODEL.exists():
+        print("GENERATED PAGE CI EVIDENCE REQUEST: FAIL")
+        print("- state model missing")
+        return 1
 
     data = json.loads(REQUEST.read_text(encoding="utf-8"))
+    model = json.loads(MODEL.read_text(encoding="utf-8"))
+    boundary_model = model.get("boundary", {})
+
     if data.get("artifact_type") != "generated_page_ci_evidence_request":
         failures.append("artifact type mismatch")
     if data.get("schema_version") != "0.1":
         failures.append("schema version mismatch")
-    if data.get("active_goal") != "declarative-external-framework-generation-pipeline":
+    if data.get("repo") != model.get("repo"):
+        failures.append("repo mismatch")
+    if data.get("active_goal") != model.get("active_goal"):
         failures.append("active goal mismatch")
-    if data.get("current_state") != "pending_next_workflow_run":
+    if data.get("current_state") not in ["pending_next_workflow_run", "canonical_validation_green_public_release_pending"]:
         failures.append("current state mismatch")
-    if data.get("release_gate") != "blocked_until_green_ci_and_public_verification":
+    if data.get("release_gate") not in ["blocked_until_green_ci_and_public_verification", "blocked_until_release_authorization_and_public_verification"]:
         failures.append("release gate mismatch")
 
     evidence = data.get("requested_evidence", [])
@@ -59,6 +69,8 @@ def main() -> int:
         failures.append("missing CI boundary mismatch")
     if boundary.get("single_workflow_policy_preserved") is not True:
         failures.append("single workflow boundary mismatch")
+    if boundary_model.get("release_without_authorization_allowed") is not False:
+        failures.append("state model release boundary mismatch")
 
     if TAG_CHECK.exists():
         result = subprocess.run(["python", str(TAG_CHECK)], check=False)
