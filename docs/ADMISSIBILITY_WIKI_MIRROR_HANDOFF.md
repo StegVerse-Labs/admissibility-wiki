@@ -13,7 +13,7 @@ The current goal is to present StegVerse as a governed ecosystem for inputs, pro
 ## Current version
 
 ```text
-0.4.0-governed-input-classes
+0.5.0-governed-output-classes
 ```
 
 ## Current status
@@ -29,6 +29,9 @@ EXTERNAL_FRAMEWORK_INPUT_CLASS_VALIDATOR_PRESENT
 GOVERNED_INPUT_CLASS_REGISTRY_PRESENT
 GOVERNED_INPUT_CLASS_STATUS_PRESENT
 GOVERNED_INPUT_CLASS_VALIDATOR_PRESENT
+GOVERNED_OUTPUT_CLASS_REGISTRY_PRESENT
+GOVERNED_OUTPUT_CLASS_STATUS_PRESENT
+GOVERNED_OUTPUT_CLASS_VALIDATOR_PRESENT
 README_LINK_PRESENT
 CURRENT_TASK_SYNC_UPDATED
 LOCAL_DOCS_ONLY
@@ -42,12 +45,15 @@ docs/governance/current-task-sync.md
 docs/governance/governed-ecosystem-transitions.md
 docs/governance/external-frameworks-as-input-class.md
 docs/governance/governed-input-classes.md
+docs/governance/governed-output-classes.md
 static/status/governed-ecosystem-transitions-status.json
 static/status/external-framework-input-class-status.json
 static/status/governed-input-classes-status.json
+static/status/governed-output-classes-status.json
 scripts/check_governed_ecosystem_transitions_status.py
 scripts/check_external_framework_input_class_status.py
 scripts/check_governed_input_classes_status.py
+scripts/check_governed_output_classes_status.py
 README.md
 package.json
 ```
@@ -77,15 +83,29 @@ runtime_observations
 receipt_chain_continuations
 ```
 
+## Registered output classes
+
+```text
+admitted_response
+denial_receipt
+fail_closed_receipt
+committed_repo_change
+strp_handoff
+receipt_chain_continuation
+state_transition_summary
+```
+
 ## Validation
 
 ```text
 python scripts/check_governed_ecosystem_transitions_status.py
 python scripts/check_external_framework_input_class_status.py
 python scripts/check_governed_input_classes_status.py
+python scripts/check_governed_output_classes_status.py
 npm run validate:governed-ecosystem-transitions
 npm run validate:external-framework-input-class
 npm run validate:governed-input-classes
+npm run validate:governed-output-classes
 npm run validate
 ```
 
@@ -117,8 +137,8 @@ External framework pages remain valid but are now presented as one governed inpu
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - public deployment verification for governed ecosystem transition, external-framework input-class, and governed input-class registry pages
-  - optional desired-output-class registry/status surface
+  - public deployment verification for governed ecosystem transition, external-framework input-class, governed input-class registry, and governed output-class registry pages
+  - optional complete transition map tying input classes to output classes
 
 StegVerse-Labs/Site:
   - mirror/public summary of governed ecosystem transition framing after admissibility-wiki validation
@@ -134,11 +154,11 @@ stegguardian-wiki:
 
 This wiki records vocabulary, proof framing, and public explanation paths.
 
-This wiki does not claim live connector installation, production mutation authority, canonical STRP admission, or release status.
+This wiki does not claim live connector installation, production authority, canonical STRP admission, or release status.
 
 ## Next build candidate
 
-Let the canonical validation workflow validate and deploy the new pages. If continuing before workflow evidence is visible, the next local build candidate is a desired-output-class registry/status surface.
+Let the canonical validation workflow validate and deploy the new pages. If continuing before workflow evidence is visible, the next local build candidate is a complete transition map tying input classes to output classes.
 
 ## Handoff instruction
 
