@@ -11,22 +11,13 @@ governed-ecosystem-transition-framing
 ## Current version
 
 ```text
-1.2.0-governed-ecosystem-public-index
+1.3.0-governed-ecosystem-index-package-wired
 ```
 
 ## Current status
 
 ```text
-MIRROR_HANDOFF_PRESENT
-GOVERNED_ECOSYSTEM_TRANSITION_FRAMING_PRESENT
-GOVERNED_TRANSITION_MAP_PRESENT
-CAPABILITY_LIFECYCLE_REGISTRY_PRESENT
-ECOSYSTEM_CAPABILITY_STATUS_EXAMPLE_PRESENT
-ECOSYSTEM_CAPABILITY_STATUS_PAGE_PRESENT
-ECOSYSTEM_CAPABILITY_STATUS_PACKAGE_WIRED
-GOVERNED_ECOSYSTEM_INDEX_PRESENT
-GOVERNED_ECOSYSTEM_INDEX_STATUS_PRESENT
-GOVERNED_ECOSYSTEM_INDEX_VALIDATOR_PRESENT
+GOVERNED_ECOSYSTEM_INDEX_PACKAGE_WIRED
 SIDEBAR_NAVIGATION_PRESENT
 LOCAL_DOCS_ONLY
 ```
@@ -46,7 +37,6 @@ https://stegverse-labs.github.io/admissibility-wiki/governance/governed-ecosyste
 ## Source-of-truth documents
 
 ```text
-docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 docs/governance/governed-ecosystem-index.md
 docs/governance/ecosystem-capability-status.md
 static/status/governed-ecosystem-index-status.json
@@ -63,52 +53,32 @@ package.json
 
 ```text
 python scripts/check_governed_ecosystem_index_status.py
-python scripts/check_ecosystem_capability_status_example.py
-python scripts/check_ecosystem_capability_status_page.py
+npm run validate:governed-ecosystem-index
 npm run validate
 ```
 
-## Path display rule
-
-Paths normally beginning with a leading dot are displayed without that leading dot in this handoff for iOS readability. Actual repository paths that display as `github/...` use `.github/...` in the repository.
-
-## Workflow policy
-
-Only one active workflow is intended to exist:
-
-```text
-github/workflows/validate-chain-continuation.yml
-```
-
-The iOS-safe mirror is:
-
-```text
-iosnoperiod/github/workflows/validate-chain-continuation.yml
-```
-
-## Known remaining installation targets
+## Remaining targets
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - wire governed ecosystem index validator into aggregate package validation if desired
-  - validate through canonical workflow
-  - public deployment verification for governed ecosystem pages
+  - canonical workflow verification
+  - public deployment verification
 
 StegVerse-Labs/Site:
-  - mirror public summary after admissibility-wiki validation
+  - mirror public summary after wiki validation
 
 GCAT-BCAT-Engine/Publisher:
-  - publication/import awareness after admissibility-wiki validation
+  - publication/import awareness after wiki validation
 
 stegguardian-wiki:
-  - downstream summary after admissibility-wiki validation
+  - downstream summary after wiki validation
 ```
 
 ## Boundary rules
 
 This wiki records vocabulary, proof framing, lifecycle classification, and public explanation paths.
 
-This wiki does not claim live connector installation, production authority, canonical STRP admission, or release status.
+It does not claim production authority or release status.
 
 ## Handoff instruction
 
