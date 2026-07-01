@@ -1,0 +1,42 @@
+{
+  "artifact_type": "guardian_destination_resolution_status",
+  "schema_version": "0.1",
+  "status": "UNBLOCKED",
+  "resolved_at_goal": "governed-ecosystem-transition-framing",
+  "checked_destinations": [
+    {
+      "repository_full_name": "StegVerse-Labs/stegguardian-wiki",
+      "result": "not_found"
+    },
+    {
+      "repository_full_name": "StegVerse-Labs/StegGuardian",
+      "result": "not_found"
+    },
+    {
+      "repository_full_name": "StegVerse-Labs/stegguardian",
+      "result": "not_found"
+    },
+    {
+      "repository_full_name": "StegVerse-002/StegGuardian",
+      "result": "found",
+      "visibility": "private",
+      "role": "private_guardian_implementation_standing_boundary"
+    },
+    {
+      "repository_full_name": "StegVerse-002/stegguardian-wiki",
+      "result": "found",
+      "visibility": "public",
+      "role": "public_guardian_wiki_summary_destination"
+    }
+  ],
+  "canonical_public_destination": "StegVerse-002/stegguardian-wiki",
+  "canonical_private_destination": "StegVerse-002/StegGuardian",
+  "next_action": "route downstream public Guardian summary to StegVerse-002/stegguardian-wiki after wiki validation",
+  "boundary": {
+    "do_not_invent_repository_name": true,
+    "no_activation_claim": true,
+    "no_closure_claim": true,
+    "no_consequence_binding_standing_claim": true,
+    "public_destination_is_private_repo": false
+  }
+}
