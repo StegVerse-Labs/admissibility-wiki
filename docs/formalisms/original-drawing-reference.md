@@ -42,6 +42,8 @@ original_drawing_reference:
 
 ## Current Earliest Preserved Copy
 
+![Original hand-drawn SG-001 source geometry](./assets/original-drawing-reference.png)
+
 The currently earliest preserved copies available to this record are photographs dated 2026-03-05.
 
 These photographs document a hand-drawn paper artifact created by Rigel Randolph. The drawing predates the later BCAT/GCAT formalization work and is preserved as an early recoverability, coherence, unavailable-data, and admissible-reflection geometry that contributed to the later need for formal governance formalisms.
