@@ -4,9 +4,15 @@
   "status": "GOVERNED_ECOSYSTEM_INDEX_PRESENT",
   "public_page": "docs/governance/governed-ecosystem-index.md",
   "verification_page": "docs/governance/ecosystem-capability-status.md",
+  "destination_resolution": {
+    "guardian_status_artifact": "static/status/guardian-destination-resolution-status.json",
+    "canonical_public_guardian_destination": "StegVerse-002/stegguardian-wiki",
+    "canonical_private_guardian_destination": "StegVerse-002/StegGuardian"
+  },
   "claim_boundary": {
     "index_grants_authority": false,
     "index_claims_release_authorization": false,
-    "index_claims_operational_standing": false
+    "index_claims_operational_standing": false,
+    "guardian_destination_resolution_grants_activation": false
   }
 }
