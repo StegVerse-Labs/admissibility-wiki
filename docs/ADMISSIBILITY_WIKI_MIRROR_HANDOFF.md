@@ -20,6 +20,7 @@ governed-ecosystem-transition-framing
 GOVERNED_ECOSYSTEM_INDEX_PACKAGE_WIRED
 SIDEBAR_NAVIGATION_PRESENT
 LOCAL_DOCS_ONLY
+GUARDIAN_DESTINATION_RESOLVED
 ```
 
 ## Public-facing verification page
@@ -42,6 +43,7 @@ docs/governance/ecosystem-capability-status.md
 static/status/governed-ecosystem-index-status.json
 static/status/ecosystem-capability-status.example.json
 static/status/ecosystem-capability-status-page.json
+static/status/guardian-destination-resolution-status.json
 scripts/check_governed_ecosystem_index_status.py
 scripts/check_ecosystem_capability_status_example.py
 scripts/check_ecosystem_capability_status_page.py
@@ -70,8 +72,11 @@ StegVerse-Labs/Site:
 GCAT-BCAT-Engine/Publisher:
   - publication/import awareness after wiki validation
 
-stegguardian-wiki:
-  - downstream summary after wiki validation
+StegVerse-002/stegguardian-wiki:
+  - downstream public Guardian summary after wiki validation
+
+StegVerse-002/StegGuardian:
+  - private Guardian implementation standing-boundary awareness after wiki validation
 ```
 
 ## Boundary rules
