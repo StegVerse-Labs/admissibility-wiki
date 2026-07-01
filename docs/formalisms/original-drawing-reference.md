@@ -42,7 +42,7 @@ original_drawing_reference:
 
 ## Current Earliest Preserved Copy
 
-![Original hand-drawn SG-001 source geometry](./assets/original-drawing-reference.png)
+<img src="https://raw.githubusercontent.com/StegVerse-Labs/admissibility-wiki/main/docs/formalisms/assets/original-drawing-reference.png" alt="Original hand-drawn SG-001 source geometry" />
 
 The currently earliest preserved copies available to this record are photographs dated 2026-03-05.
 
