@@ -33,6 +33,36 @@ The framing page is:
 docs/governance/governed-ecosystem-transitions.md
 ```
 
+## Governed LLM and Reconstructive Search
+
+A StegVerse-governed LLM is a reasoning participant inside a governed transition path, not an execution authority.
+
+The current public doctrine page is:
+
+```text
+docs/governance/governed-llm-reconstructive-search.md
+```
+
+The active implementation split is:
+
+| Repository | Responsibility |
+| --- | --- |
+| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. |
+| `StegVerse-org/StegVerse-SDK` | Shared packet, receipt, evidence, and reconstruction contracts. |
+| `StegVerse-org/LLM-adapter` | Runtime adapter that converts model output into governed response artifacts. |
+
+The minimum proof path is:
+
+```text
+query
+  -> adapter classification
+  -> SDK query packet
+  -> candidate model output
+  -> SDK response receipt
+  -> reconstruction summary
+  -> ALLOW / DENY / QUARANTINE
+```
+
 ## Core Assumptions
 
 The wiki treats governance as a layered constraint system, not a single approval event.
@@ -158,120 +188,3 @@ A strong existence claim requires alignment across:
 
 - ECAT: internal coherence and experiential standing;
 - ICAT: relational coherence and inter-entity standing;
-- BCAT: boundary recoverability and constraint integrity;
-- GCAT: governance admissibility and authority standing.
-
-For commit-time effects, StegVerse should treat missing or failed layers as fail-closed unless a policy explicitly defines a safe partial-standing condition.
-
-## Chain Status Surface
-
-The current chain-status reference is:
-
-```text
-docs/CHAIN_STATUS.md
-```
-
-The current chain-status handoff is:
-
-```text
-docs/CHAIN_STATUS_HANDOFF.md
-```
-
-The current chain snapshot and receipt are:
-
-```text
-docs/CHAIN_SNAPSHOT_v0_1_0.md
-docs/CHAIN_SNAPSHOT_RECEIPT_v0_1_0.json
-```
-
-The current automation-state and goal-state records are:
-
-```text
-docs/CHAIN_AUTO.json
-docs/GOAL_STATE.json
-```
-
-The current blocked-destination records are:
-
-```text
-docs/CHAIN_STATUS_BLOCKED_DESTINATION.md
-docs/CHAIN_STATUS_BLOCKED_DESTINATION.json
-docs/CHAIN_STATUS_CONTINUATION.json
-docs/CHAIN_STATUS_CONTINUATION.schema.json
-```
-
-The current automated validators are:
-
-```text
-scripts/check_chain_status_continuation.py
-scripts/check_continuation_bundle.py
-scripts/check_chain_snapshot.py
-scripts/check_chain_snapshot_receipt.py
-scripts/check_chain_auto.py
-scripts/check_blocked_destination_record.py
-scripts/check_goal_state.py
-scripts/check_workflow_manifest.py
-scripts/check_external_frameworks_index.py
-scripts/check_guardian_destination.py
-scripts/check_translation_records.py
-```
-
-Run:
-
-```bash
-python scripts/check_chain_status_continuation.py
-python scripts/check_continuation_bundle.py
-python scripts/check_chain_snapshot.py
-python scripts/check_chain_snapshot_receipt.py
-python scripts/check_chain_auto.py
-python scripts/check_blocked_destination_record.py
-python scripts/check_goal_state.py
-python scripts/check_workflow_manifest.py
-python scripts/check_external_frameworks_index.py
-python scripts/check_guardian_destination.py
-python scripts/check_translation_records.py
-```
-
-Expected current state:
-
-```text
-CHAIN CONTINUATION: PASS
-CONTINUATION BUNDLE: PASS
-CHAIN SNAPSHOT: PASS
-CHAIN SNAPSHOT RECEIPT: PASS
-CHAIN AUTO: PASS
-BLOCKED DESTINATION RECORD: PASS
-GOAL STATE: PASS
-WORKFLOW MANIFEST: PASS
-EXTERNAL FRAMEWORKS INDEX: PASS
-GUARDIAN DESTINATION: BLOCKED
-TRANSLATION RECORDS: PASS - 6 records validated
-```
-
-The canonical validation workflow is displayed here without the leading dot:
-
-```text
-github/workflows/validate-chain-continuation.yml
-```
-
-It runs on push, pull request, workflow dispatch, and a daily schedule. The actual repository path begins with a leading dot.
-
-The iOS-safe workflow mirror is:
-
-```text
-iosnoperiod/github/workflows/validate-chain-continuation.yml
-```
-
-The mapping is recorded in:
-
-```text
-workflow_manifest.json
-```
-
-The destination-status report is generated at:
-
-```text
-reports/guardian_destination_status.json
-```
-
-The blocked destination record exists because no Guardian standing-boundary repository was found under the checked names. This does not change the governance status of the chain. It only prevents future sessions from inventing a destination repo.
