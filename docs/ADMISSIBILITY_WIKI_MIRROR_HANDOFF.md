@@ -11,13 +11,14 @@ repo-standards-integration-pending-release
 ## Current version
 
 ```text
-1.4.0-repo-standards-integration-page-wired
+1.4.1-repo-standards-integration-validator-wired
 ```
 
 ## Current status
 
 ```text
 REPO_STANDARDS_INTEGRATION_PAGE_WIRED
+REPO_STANDARDS_INTEGRATION_VALIDATOR_WIRED
 SIDEBAR_NAVIGATION_PRESENT
 UPSTREAM_REPO_STANDARDS_RELEASE_READY
 UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
@@ -48,6 +49,18 @@ Sidebar entry:
 governance/repo-standards-integration
 ```
 
+Validator:
+
+```text
+scripts/check_repo_standards_integration.py
+```
+
+Package command:
+
+```text
+npm run validate:repo-standards-integration
+```
+
 ## Source-of-truth documents
 
 ```text
@@ -59,6 +72,7 @@ static/status/governed-ecosystem-index-status.json
 static/status/ecosystem-capability-status.example.json
 static/status/ecosystem-capability-status-page.json
 static/status/guardian-destination-resolution-status.json
+scripts/check_repo_standards_integration.py
 scripts/check_governed_ecosystem_index_status.py
 scripts/check_ecosystem_capability_status_example.py
 scripts/check_ecosystem_capability_status_page.py
@@ -69,6 +83,8 @@ package.json
 ## Validation
 
 ```text
+python scripts/check_repo_standards_integration.py
+npm run validate:repo-standards-integration
 python scripts/check_governed_ecosystem_index_status.py
 npm run validate:governed-ecosystem-index
 npm run validate
@@ -84,7 +100,7 @@ SIDEBAR_NAVIGATION_PRESENT
 Additional current docs state:
 
 ```text
-repo-standards integration page exists and is sidebar-linked
+REPO STANDARDS INTEGRATION: PASS - page, sidebar, and handoff references present
 ```
 
 ## Upstream repo-standards state
@@ -100,7 +116,7 @@ Actual Git tag/release: pending outside current connector action set
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - run local/wiki validation after repo-standards integration page wiring
+  - run local/wiki validation after repo-standards integration validator wiring
   - update repo-standards integration page after upstream tag/release exists
   - public deployment verification
 
