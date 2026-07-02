@@ -1,0 +1,50 @@
+{
+  "activation_id": "repo-standards-downstream-mirror-activation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "goal_id": "repo-standards-integration-and-installation-bundle-pending-release",
+  "status": "PENDING_UPSTREAM_TAG_RELEASE_AND_LOCAL_VALIDATION",
+  "activation_conditions": [
+    "upstream repo-standards Git tag/release exists",
+    "python scripts/check_repo_standards_integration.py passes",
+    "npm run validate passes or failing unrelated validators are explicitly recorded",
+    "public deployment verification is ready or complete"
+  ],
+  "downstream_targets": [
+    {
+      "target": "StegVerse-Labs/Site",
+      "handoff_pattern": "*_MIRROR_HANDOFF.md",
+      "required_action": "mirror public summary after wiki validation and repo-standards tag/release",
+      "status": "PENDING_ACTIVATION"
+    },
+    {
+      "target": "GCAT-BCAT-Engine/Publisher",
+      "handoff_pattern": "*_MIRROR_HANDOFF.md",
+      "required_action": "publication/import awareness after wiki validation and repo-standards tag/release",
+      "status": "PENDING_ACTIVATION"
+    },
+    {
+      "target": "StegVerse-002/stegguardian-wiki",
+      "handoff_pattern": "*_MIRROR_HANDOFF.md",
+      "required_action": "downstream public Guardian summary after wiki validation and repo-standards tag/release",
+      "status": "PENDING_ACTIVATION"
+    },
+    {
+      "target": "StegVerse-002/StegGuardian",
+      "handoff_pattern": "*_MIRROR_HANDOFF.md",
+      "required_action": "private Guardian implementation standing-boundary awareness after wiki validation",
+      "status": "PENDING_ACTIVATION"
+    }
+  ],
+  "required_preflight_for_each_target": [
+    "locate target handoff before editing",
+    "treat target handoff as local source of truth",
+    "record whether release reference is already present",
+    "do not infer target destination from memory alone",
+    "do not treat mirror visibility as runtime authority"
+  ],
+  "non_claims": [
+    "downstream mirror activation is not deployment authority",
+    "publisher awareness is not admissibility",
+    "guardian summary is not private implementation standing"
+  ]
+}
