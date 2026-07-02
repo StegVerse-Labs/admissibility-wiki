@@ -6,10 +6,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGE = ROOT / "docs" / "governance" / "repo-standards-integration.md"
+BUNDLE_PAGE = ROOT / "docs" / "governance" / "repo-standards-installation-bundle.md"
 SIDEBAR = ROOT / "sidebars.js"
 HANDOFF = ROOT / "docs" / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
 STATUS = ROOT / "static" / "status" / "repo-standards-integration-status.json"
 QUEUE = ROOT / "static" / "status" / "repo-standards-integration-release-update-queue.json"
+BUNDLE_PLAN = ROOT / "static" / "status" / "repo-standards-installation-bundle-plan.json"
 
 REQUIRED_PAGE_SNIPPETS = [
     "StegVerse-Labs/repo-standards",
@@ -18,7 +20,18 @@ REQUIRED_PAGE_SNIPPETS = [
     "repository validation equals admissibility",
 ]
 
-REQUIRED_SIDEBAR_SNIPPET = "governance/repo-standards-integration"
+REQUIRED_BUNDLE_PAGE_SNIPPETS = [
+    "Repo Standards Installation Bundle",
+    "Bundle Contents Expected After Tag",
+    "Cross-Org Install Test",
+    "PENDING_UPSTREAM_TAG_RELEASE",
+]
+
+REQUIRED_SIDEBAR_SNIPPETS = [
+    "governance/repo-standards-integration",
+    "governance/repo-standards-installation-bundle",
+]
+
 REQUIRED_HANDOFF_SNIPPETS = [
     "repo-standards-integration-pending-release",
     "docs/governance/repo-standards-integration.md",
@@ -97,18 +110,41 @@ def require_queue() -> None:
         raise SystemExit(f"REPO STANDARDS INTEGRATION: FAIL - queue missing targets: {', '.join(missing)}")
 
 
+def require_bundle_plan() -> None:
+    data = read_json(BUNDLE_PLAN, "bundle plan")
+    expected = {
+        "plan_id": "repo-standards-installation-bundle-plan",
+        "repository": "StegVerse-Labs/admissibility-wiki",
+        "status": "PENDING_UPSTREAM_TAG_RELEASE",
+        "source_repository": "StegVerse-Labs/repo-standards",
+    }
+    for key, value in expected.items():
+        if data.get(key) != value:
+            raise SystemExit(
+                f"REPO STANDARDS INTEGRATION: FAIL - bundle plan {key} expected {value!r}, got {data.get(key)!r}"
+            )
+    paths = data.get("expected_bundle_paths")
+    if not isinstance(paths, list) or "config/org-profile.yaml" not in paths:
+        raise SystemExit("REPO STANDARDS INTEGRATION: FAIL - bundle plan must require config/org-profile.yaml")
+    if "runtime/" not in paths or "orchestration/" not in paths:
+        raise SystemExit("REPO STANDARDS INTEGRATION: FAIL - bundle plan missing runtime/orchestration paths")
+
+
 def main() -> int:
     page = require_file(PAGE)
+    bundle_page = require_file(BUNDLE_PAGE)
     sidebar = require_file(SIDEBAR)
     handoff = require_file(HANDOFF)
 
     require_snippets("page", page, REQUIRED_PAGE_SNIPPETS)
-    require_snippets("sidebar", sidebar, [REQUIRED_SIDEBAR_SNIPPET])
+    require_snippets("bundle page", bundle_page, REQUIRED_BUNDLE_PAGE_SNIPPETS)
+    require_snippets("sidebar", sidebar, REQUIRED_SIDEBAR_SNIPPETS)
     require_snippets("handoff", handoff, REQUIRED_HANDOFF_SNIPPETS)
     require_status()
     require_queue()
+    require_bundle_plan()
 
-    print("REPO STANDARDS INTEGRATION: PASS - page, sidebar, handoff, status artifact, and release-update queue present")
+    print("REPO STANDARDS INTEGRATION: PASS - integration and installation bundle surfaces present")
     return 0
 
 
