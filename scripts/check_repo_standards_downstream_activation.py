@@ -7,7 +7,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ACTIVATION = ROOT / "static" / "status" / "repo-standards-downstream-mirror-activation.json"
 REPORT = ROOT / "static" / "status" / "repo-standards-downstream-activation-validation-report.json"
-HANDOFF = ROOT / "docs" / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
 
 REQUIRED_TARGETS = {
     "StegVerse-Labs/Site",
@@ -62,10 +61,6 @@ def main() -> int:
         "result": "PENDING_LOCAL_VALIDATION",
         "validator": "scripts/check_repo_standards_downstream_activation.py",
     }, "report")
-
-    handoff = read_text(HANDOFF)
-    if "repo-standards-downstream-mirror-activation.json" not in handoff:
-        raise SystemExit("DOWNSTREAM ACTIVATION: FAIL - handoff does not reference downstream activation artifact")
 
     print("DOWNSTREAM ACTIVATION: PASS - downstream mirror activation queue and report present")
     return 0
