@@ -3,27 +3,26 @@
   "repository": "StegVerse-Labs/admissibility-wiki",
   "status": "installed",
   "workflow_paths": {
-    "deploy": ".github/workflows/deploy.yml",
-    "success_recorder": ".github/workflows/record-latest-success.yml"
+    "canonical": ".github/workflows/validate-chain-continuation.yml"
   },
   "display_paths_note": "Paths may be displayed without the leading dot for iOS readability; actual repository workflow paths use the leading-dot directory.",
   "receipt_artifacts": {
-    "failure": "admissibility-wiki-workflow-failure",
-    "success": "admissibility-wiki-workflow-success"
+    "guardian_destination": "guardian-destination-status"
   },
   "automation_chain": [
-    "push_to_main",
-    "npm_run_validate",
-    "docusaurus_build",
-    "github_pages_deploy",
-    "public_url_verification",
-    "success_or_failure_receipt_artifact"
+    "push_or_manual_dispatch_on_main",
+    "validate_chain_continuation",
+    "upload_guardian_destination_status_artifact",
+    "build_pages",
+    "deploy_pages",
+    "verify_public_pages"
   ],
   "manual_task_requirement": "none",
-  "failure_rule": "Repair only the first failing validator field, missing artifact, deployment issue, or public URL check identified by failed job logs.",
+  "failure_rule": "Run the full validation path in a sandbox or preflight before treating a single surfaced workflow error as complete.",
   "non_claims": [
     "This status file records installed workflow receipt automation only.",
     "This status file does not prove the latest workflow succeeded.",
-    "This status file does not replace workflow run artifacts."
+    "This status file does not replace workflow run artifacts.",
+    "A single canonical workflow does not collapse validation and publication authority."
   ]
 }
