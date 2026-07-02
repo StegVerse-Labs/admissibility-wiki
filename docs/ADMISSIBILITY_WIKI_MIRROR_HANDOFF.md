@@ -11,7 +11,7 @@ repo-standards-integration-pending-release
 ## Current version
 
 ```text
-1.4.1-repo-standards-integration-validator-wired
+1.4.2-repo-standards-integration-status-wired
 ```
 
 ## Current status
@@ -19,6 +19,7 @@ repo-standards-integration-pending-release
 ```text
 REPO_STANDARDS_INTEGRATION_PAGE_WIRED
 REPO_STANDARDS_INTEGRATION_VALIDATOR_WIRED
+REPO_STANDARDS_INTEGRATION_STATUS_WIRED
 SIDEBAR_NAVIGATION_PRESENT
 UPSTREAM_REPO_STANDARDS_RELEASE_READY
 UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
@@ -49,6 +50,12 @@ Sidebar entry:
 governance/repo-standards-integration
 ```
 
+Machine-readable status:
+
+```text
+static/status/repo-standards-integration-status.json
+```
+
 Validator:
 
 ```text
@@ -66,6 +73,7 @@ npm run validate:repo-standards-integration
 ```text
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 docs/governance/repo-standards-integration.md
+static/status/repo-standards-integration-status.json
 docs/governance/governed-ecosystem-index.md
 docs/governance/ecosystem-capability-status.md
 static/status/governed-ecosystem-index-status.json
@@ -100,7 +108,7 @@ SIDEBAR_NAVIGATION_PRESENT
 Additional current docs state:
 
 ```text
-REPO STANDARDS INTEGRATION: PASS - page, sidebar, and handoff references present
+REPO STANDARDS INTEGRATION: PASS - page, sidebar, handoff, and status artifact present
 ```
 
 ## Upstream repo-standards state
@@ -116,7 +124,7 @@ Actual Git tag/release: pending outside current connector action set
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - run local/wiki validation after repo-standards integration validator wiring
+  - run local/wiki validation after repo-standards integration status wiring
   - update repo-standards integration page after upstream tag/release exists
   - public deployment verification
 
