@@ -1,0 +1,20 @@
+{
+  "receipt_id": "repo-standards-local-validation-receipt-template",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "status": "TEMPLATE_READY",
+  "command": "python scripts/check_repo_standards_all.py",
+  "expected_result": "REPO STANDARDS ALL: PASS",
+  "fill_after_run": {
+    "run_timestamp_utc": "",
+    "runner": "",
+    "commit": "",
+    "result": "",
+    "stdout_excerpt": "",
+    "stderr_excerpt": "",
+    "follow_up_required": false
+  },
+  "remaining_after_pass": [
+    "record upstream repo-standards tag/release reference",
+    "verify public deployment"
+  ]
+}
