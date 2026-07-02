@@ -1,0 +1,31 @@
+{
+  "report_id": "repo-standards-installation-validation-report",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "goal_id": "repo-standards-integration-and-installation-bundle-pending-release",
+  "version": "1.5.0-repo-standards-installation-bundle-wired",
+  "result": "PENDING_LOCAL_VALIDATION",
+  "validator": "scripts/check_repo_standards_integration.py",
+  "commands": [
+    "python scripts/check_repo_standards_integration.py",
+    "npm run validate:repo-standards-integration",
+    "npm run validate"
+  ],
+  "validated_surfaces_expected": [
+    "docs/governance/repo-standards-integration.md",
+    "docs/governance/repo-standards-installation-bundle.md",
+    "sidebars.js",
+    "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+    "static/status/repo-standards-integration-status.json",
+    "static/status/repo-standards-integration-release-update-queue.json",
+    "static/status/repo-standards-installation-bundle-plan.json"
+  ],
+  "release_blockers": [
+    "upstream repo-standards Git tag/release pending outside current connector action set",
+    "local validation run not yet observed in this session"
+  ],
+  "non_blocking_notes": [
+    "manual upstream main validation was observed successful from GitHub Actions screenshot",
+    "repo-standards release-readiness report records tag_allowed true"
+  ],
+  "next_result_when_validated": "PASS_LOCAL_INTEGRATION_SURFACE"
+}
