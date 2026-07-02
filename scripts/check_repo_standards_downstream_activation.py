@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ACTIVATION = ROOT / "static" / "status" / "repo-standards-downstream-mirror-activation.json"
+REPORT = ROOT / "static" / "status" / "repo-standards-downstream-activation-validation-report.json"
 HANDOFF = ROOT / "docs" / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
 
 REQUIRED_TARGETS = {
@@ -33,28 +34,40 @@ def read_json(path: Path) -> dict:
     return data
 
 
+def expect(data: dict, expected: dict, label: str) -> None:
+    for key, value in expected.items():
+        if data.get(key) != value:
+            raise SystemExit(f"DOWNSTREAM ACTIVATION: FAIL - {label} {key} expected {value!r}, got {data.get(key)!r}")
+
+
 def main() -> int:
     data = read_json(ACTIVATION)
-    expected = {
+    expect(data, {
         "activation_id": "repo-standards-downstream-mirror-activation",
         "repository": "StegVerse-Labs/admissibility-wiki",
         "goal_id": "repo-standards-integration-and-installation-bundle-pending-release",
         "status": "PENDING_UPSTREAM_TAG_RELEASE_AND_LOCAL_VALIDATION",
-    }
-    for key, value in expected.items():
-        if data.get(key) != value:
-            raise SystemExit(f"DOWNSTREAM ACTIVATION: FAIL - {key} expected {value!r}, got {data.get(key)!r}")
+    }, "activation")
 
     targets = {item.get("target") for item in data.get("downstream_targets", []) if isinstance(item, dict)}
     missing = sorted(REQUIRED_TARGETS - targets)
     if missing:
         raise SystemExit(f"DOWNSTREAM ACTIVATION: FAIL - missing targets: {', '.join(missing)}")
 
+    report = read_json(REPORT)
+    expect(report, {
+        "report_id": "repo-standards-downstream-activation-validation-report",
+        "repository": "StegVerse-Labs/admissibility-wiki",
+        "goal_id": "repo-standards-integration-and-installation-bundle-pending-release",
+        "result": "PENDING_LOCAL_VALIDATION",
+        "validator": "scripts/check_repo_standards_downstream_activation.py",
+    }, "report")
+
     handoff = read_text(HANDOFF)
     if "repo-standards-downstream-mirror-activation.json" not in handoff:
         raise SystemExit("DOWNSTREAM ACTIVATION: FAIL - handoff does not reference downstream activation artifact")
 
-    print("DOWNSTREAM ACTIVATION: PASS - downstream mirror activation queue present")
+    print("DOWNSTREAM ACTIVATION: PASS - downstream mirror activation queue and report present")
     return 0
 
 
