@@ -4,17 +4,17 @@
   "canonical_workflows": [
     {
       "path": ".github/workflows/validate-chain-continuation.yml",
-      "purpose": "Single active validation workflow for generated framework reports, results, metadata, mapping, and page status",
+      "purpose": "Single active validation, scheduled self-deploy, and public Pages verification workflow for generated framework reports, results, metadata, mapping, page status, and governed LLM demo pages",
       "installed": true,
       "scheduled": true,
-      "cron": "17 9 * * *"
+      "cron": "17 * * * *"
     }
   ],
   "mirrors": [
     {
       "mirror_path": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
       "canonical_path": ".github/workflows/validate-chain-continuation.yml",
-      "purpose": "iOS-safe mirror of the single active validation workflow"
+      "purpose": "iOS-safe mirror of the single active validation and deployment workflow"
     }
   ],
   "local_validation_entrypoint": "python scripts/run_canonical_validation.py",
@@ -68,6 +68,7 @@
     "active_workflow_count": 1,
     "canonical_workflow_installed": true,
     "scheduled_check_installed": true,
+    "scheduled_self_deploy_installed": true,
     "mirror_is_activation_evidence": false,
     "manual_workflow_install_required": false,
     "manual_destination_search_required": false,
