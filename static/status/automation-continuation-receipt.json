@@ -1,0 +1,17 @@
+{
+  "schema": "admissibility_wiki_automation_continuation_receipt.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "generated_at": "2026-07-02T00:00:00Z",
+  "purpose": "Push-trigger canonical workflow after stale split-workflow assumptions were normalized.",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "manual_task_requirement": "none",
+  "expected_jobs": [
+    "validate-chain-continuation",
+    "build-pages",
+    "deploy-pages",
+    "verify-public-pages"
+  ],
+  "activation_claim": false,
+  "failure_posture": "fail_closed_without_public_activation_claim",
+  "next_state_rule": "Workflow result, Pages deployment, and public URL verification determine activation status."
+}
