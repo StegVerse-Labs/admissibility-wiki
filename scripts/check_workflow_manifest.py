@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "workflow_manifest.json"
 LOCAL_ENTRYPOINT = "python scripts/run_canonical_validation.py"
+EXPECTED_CRON = "17 * * * *"
 
 REQUIRED_COMMANDS = [
     "python scripts/check_workflow_sprawl.py",
@@ -70,6 +71,8 @@ def main() -> int:
         failures.append("canonical workflow count mismatch")
     elif workflows[0].get("path") != ".github/workflows/validate-chain-continuation.yml":
         failures.append("canonical workflow path mismatch")
+    elif workflows[0].get("cron") != EXPECTED_CRON:
+        failures.append("canonical workflow cron mismatch")
 
     if manifest.get("local_validation_entrypoint") != LOCAL_ENTRYPOINT:
         failures.append("local validation entrypoint mismatch")
@@ -93,6 +96,8 @@ def main() -> int:
         failures.append("active workflow count mismatch")
     if boundary.get("canonical_workflow_installed") is not True:
         failures.append("canonical workflow boundary mismatch")
+    if boundary.get("scheduled_self_deploy_installed") is not True:
+        failures.append("scheduled self-deploy boundary mismatch")
     if boundary.get("manual_workflow_install_required") is not False:
         failures.append("manual workflow boundary mismatch")
     if boundary.get("local_validation_entrypoint_is_authority") is not False:
