@@ -34,6 +34,7 @@ const sidebars = {
         'governance/current-task-sync',
         'governance/repo-standards-integration',
         'governance/repo-standards-installation-bundle',
+        'governance/repo-standards-validation-runbook',
         'governance/governed-ecosystem-index',
         'governance/governed-ecosystem-transitions',
         'governance/governed-llm-reconstructive-search',
