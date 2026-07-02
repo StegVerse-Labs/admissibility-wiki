@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGE = ROOT / "docs" / "governance" / "repo-standards-integration.md"
 SIDEBAR = ROOT / "sidebars.js"
 HANDOFF = ROOT / "docs" / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
+STATUS = ROOT / "static" / "status" / "repo-standards-integration-status.json"
 
 REQUIRED_PAGE_SNIPPETS = [
     "StegVerse-Labs/repo-standards",
@@ -36,6 +38,32 @@ def require_snippets(label: str, text: str, snippets: list[str]) -> None:
         raise SystemExit(f"REPO STANDARDS INTEGRATION: FAIL - {label} missing: {joined}")
 
 
+def require_status() -> None:
+    raw = require_file(STATUS)
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise SystemExit(f"REPO STANDARDS INTEGRATION: FAIL - status JSON invalid: {exc}") from exc
+
+    expected = {
+        "status_id": "repo-standards-integration-status",
+        "repository": "StegVerse-Labs/admissibility-wiki",
+        "goal_id": "repo-standards-integration-pending-release",
+        "status": "PENDING_UPSTREAM_TAG_RELEASE",
+    }
+    for key, value in expected.items():
+        if data.get(key) != value:
+            raise SystemExit(
+                f"REPO STANDARDS INTEGRATION: FAIL - status {key} expected {value!r}, got {data.get(key)!r}"
+            )
+
+    local = data.get("local_artifacts", {})
+    if local.get("page") != "docs/governance/repo-standards-integration.md":
+        raise SystemExit("REPO STANDARDS INTEGRATION: FAIL - status local_artifacts.page is incorrect")
+    if local.get("validator") != "scripts/check_repo_standards_integration.py":
+        raise SystemExit("REPO STANDARDS INTEGRATION: FAIL - status local_artifacts.validator is incorrect")
+
+
 def main() -> int:
     page = require_file(PAGE)
     sidebar = require_file(SIDEBAR)
@@ -44,8 +72,9 @@ def main() -> int:
     require_snippets("page", page, REQUIRED_PAGE_SNIPPETS)
     require_snippets("sidebar", sidebar, [REQUIRED_SIDEBAR_SNIPPET])
     require_snippets("handoff", handoff, REQUIRED_HANDOFF_SNIPPETS)
+    require_status()
 
-    print("REPO STANDARDS INTEGRATION: PASS - page, sidebar, and handoff references present")
+    print("REPO STANDARDS INTEGRATION: PASS - page, sidebar, handoff, and status artifact present")
     return 0
 
 
