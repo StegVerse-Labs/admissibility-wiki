@@ -4,7 +4,8 @@ import fs from 'node:fs';
 const STATUS_PATH = 'static/status/workflow-receipt-automation-status.json';
 const CANONICAL_WORKFLOW = '.github/workflows/validate-chain-continuation.yml';
 const REQUIRED_ARTIFACTS = [
-  'guardian-destination-status'
+  'guardian-destination-status',
+  'public-activation-receipt'
 ];
 const REQUIRED_WORKFLOW_MARKERS = [
   'validate-chain-continuation:',
@@ -16,7 +17,9 @@ const REQUIRED_WORKFLOW_MARKERS = [
   'workflow_dispatch',
   "github.event_name == 'push'",
   "github.event_name == 'schedule'",
-  "cron: '17 * * * *'"
+  "cron: '17 * * * *'",
+  'Write public activation receipt',
+  'Upload public activation receipt'
 ];
 
 function fail(message) {
@@ -66,6 +69,10 @@ if (!Array.isArray(status.automation_chain) || status.automation_chain.length < 
 
 if (!status.automation_chain.includes('scheduled_self_deploy')) {
   fail('automation_chain must include scheduled_self_deploy');
+}
+
+if (!status.automation_chain.includes('upload_public_activation_receipt_artifact')) {
+  fail('automation_chain must include upload_public_activation_receipt_artifact');
 }
 
 console.log('workflow receipt automation status OK');
