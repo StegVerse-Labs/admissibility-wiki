@@ -32,6 +32,7 @@ const sidebars = {
         'governance/admissibility-wiki-ai-entity',
         'governance/validation',
         'governance/current-task-sync',
+        'governance/repo-standards-integration',
         'governance/governed-ecosystem-index',
         'governance/governed-ecosystem-transitions',
         'governance/governed-llm-reconstructive-search',
