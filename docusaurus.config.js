@@ -43,6 +43,7 @@ const config = {
         {to: '/', label: 'Start', position: 'left'},
         {to: '/glossary/admissibility', label: 'Glossary', position: 'left'},
         {to: '/proof-path/minimal-public-proof-path', label: 'Proof Path', position: 'left'},
+        {to: '/governance/governed-llm-activation-map', label: 'Governed LLM', position: 'left'},
         {
           href: 'https://github.com/StegVerse-Labs/admissibility-wiki',
           label: 'GitHub',
@@ -59,6 +60,7 @@ const config = {
             {label: 'Admissibility', to: '/glossary/admissibility'},
             {label: 'Transition Table', to: '/stegverse/transition-table'},
             {label: 'Minimal Public Proof Path', to: '/proof-path/minimal-public-proof-path'},
+            {label: 'Governed LLM', to: '/governance/governed-llm-activation-map'},
           ],
         },
       ],
