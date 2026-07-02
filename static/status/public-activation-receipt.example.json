@@ -1,43 +1,21 @@
 {
   "schema": "admissibility_wiki_public_activation_receipt.v1",
   "receipt_id": "public-activation.example.pending",
-  "created_at": "2026-06-19T00:00:00Z",
+  "created_at": "2026-07-02T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "activation_target": "https://stegverse-labs.github.io/admissibility-wiki/",
-  "activation_state": "pending_external_verification",
+  "activation_state": "pending_workflow_observation",
   "checks": {
-    "public_site_loads": {
-      "status": "pending",
-      "evidence": null
-    },
-    "github_pages_source_is_actions": {
-      "status": "pending",
-      "evidence": null
-    },
-    "https_valid": {
-      "status": "pending",
-      "evidence": null
-    },
-    "ontology_json_reachable": {
-      "status": "pending",
-      "evidence": null
-    },
-    "status_json_reachable": {
-      "status": "pending",
-      "evidence": null
-    },
-    "activation_checklist_reachable": {
-      "status": "pending",
-      "evidence": null
-    },
-    "governance_records_reachable": {
-      "status": "pending",
-      "evidence": null
-    },
-    "public_navigation_works": {
-      "status": "pending",
-      "evidence": null
-    }
+    "public_site_loads": {"status": "pending", "evidence": null},
+    "github_pages_source_is_actions": {"status": "pending", "evidence": null},
+    "https_valid": {"status": "pending", "evidence": null},
+    "ontology_json_reachable": {"status": "pending", "evidence": null},
+    "status_json_reachable": {"status": "pending", "evidence": null},
+    "activation_checklist_reachable": {"status": "pending", "evidence": null},
+    "governance_records_reachable": {"status": "pending", "evidence": null},
+    "public_navigation_works": {"status": "pending", "evidence": null},
+    "governed_llm_demo_overview_reachable": {"status": "pending", "evidence": null},
+    "governed_llm_demo_verification_reachable": {"status": "pending", "evidence": null}
   },
   "non_claims": [
     "This receipt does not activate the site.",
@@ -45,5 +23,5 @@
     "This receipt does not grant publication authority.",
     "This receipt is an example template until real evidence replaces pending values."
   ],
-  "next_action": "Record actual GitHub Pages Actions source, HTTPS, ontology, status, activation-checklist, governance-record, and navigation evidence after public deployment."
+  "next_action": "Canonical workflow should record actual GitHub Pages source, HTTPS, ontology, status, activation-checklist, governance-record, navigation, and governed LLM demo page evidence after public deployment."
 }
