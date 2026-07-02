@@ -1,0 +1,17 @@
+{
+  "record_id": "repo-standards-active-validation-command",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "status": "READY_FOR_LOCAL_VALIDATION",
+  "active_command": "python scripts/check_repo_standards_all.py",
+  "fallback_command": "python scripts/check_repo_standards_bundle.py",
+  "included_checks": [
+    "scripts/check_repo_standards_integration.py",
+    "scripts/check_repo_standards_downstream_activation.py",
+    "scripts/check_repo_standards_runbook.py"
+  ],
+  "remaining_gates": [
+    "local validation execution evidence",
+    "upstream repo-standards tag/release reference",
+    "public deployment verification"
+  ]
+}
