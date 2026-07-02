@@ -13,6 +13,7 @@ STATUS = ROOT / "static" / "status" / "repo-standards-integration-status.json"
 QUEUE = ROOT / "static" / "status" / "repo-standards-integration-release-update-queue.json"
 BUNDLE_PLAN = ROOT / "static" / "status" / "repo-standards-installation-bundle-plan.json"
 VALIDATION_REPORT = ROOT / "static" / "status" / "repo-standards-installation-validation-report.json"
+DEPLOYMENT_VERIFICATION = ROOT / "static" / "status" / "repo-standards-public-deployment-verification.json"
 
 REQUIRED_PAGE_SNIPPETS = [
     "StegVerse-Labs/repo-standards",
@@ -151,6 +152,29 @@ def require_validation_report() -> None:
         raise SystemExit("REPO STANDARDS INTEGRATION: FAIL - validation report must include npm validation command")
 
 
+def require_deployment_verification() -> None:
+    data = read_json(DEPLOYMENT_VERIFICATION, "deployment verification")
+    expected = {
+        "verification_id": "repo-standards-public-deployment-verification",
+        "repository": "StegVerse-Labs/admissibility-wiki",
+        "goal_id": "repo-standards-integration-and-installation-bundle-pending-release",
+        "status": "PENDING_PUBLIC_DEPLOYMENT_VERIFICATION",
+    }
+    for key, value in expected.items():
+        if data.get(key) != value:
+            raise SystemExit(
+                f"REPO STANDARDS INTEGRATION: FAIL - deployment verification {key} expected {value!r}, got {data.get(key)!r}"
+            )
+    public_paths = {item.get("public_path") for item in data.get("pages_expected_after_deploy", []) if isinstance(item, dict)}
+    required_paths = {
+        "/governance/repo-standards-integration",
+        "/governance/repo-standards-installation-bundle",
+    }
+    missing = sorted(required_paths - public_paths)
+    if missing:
+        raise SystemExit(f"REPO STANDARDS INTEGRATION: FAIL - deployment verification missing public paths: {', '.join(missing)}")
+
+
 def main() -> int:
     page = require_file(PAGE)
     bundle_page = require_file(BUNDLE_PAGE)
@@ -165,8 +189,9 @@ def main() -> int:
     require_queue()
     require_bundle_plan()
     require_validation_report()
+    require_deployment_verification()
 
-    print("REPO STANDARDS INTEGRATION: PASS - integration, installation bundle, and validation report surfaces present")
+    print("REPO STANDARDS INTEGRATION: PASS - integration, installation bundle, validation, and deployment verification surfaces present")
     return 0
 
 
