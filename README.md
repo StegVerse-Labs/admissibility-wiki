@@ -49,10 +49,28 @@ The current activation map is:
 docs/governance/governed-llm-activation-map.md
 ```
 
+The governed LLM demo overview page is:
+
+```text
+docs/governance/governed-llm-demo-overview.md
+```
+
+The governed LLM demo verification page is:
+
+```text
+docs/governance/governed-llm-demo-verification.md
+```
+
 The local Site verification page is:
 
 ```text
 docs/governance/governed-llm-site-verification.md
+```
+
+The Site mirror handoff is:
+
+```text
+docs/SITE_MIRROR_HANDOFF.md
 ```
 
 The archive handoff page is:
@@ -65,21 +83,23 @@ Run:
 
 ```bash
 python scripts/check_governed_llm_pages.py
+python scripts/check_governed_llm_demo_docs.py
 ```
 
 Expected current state:
 
 ```text
 GOVERNED LLM PAGES: PASS - docs and navigation references present
+GOVERNED LLM DEMO DOCS: PASS - demo pages and navigation references present
 ```
 
 The active implementation split is:
 
 | Repository | Responsibility | Build state |
 | --- | --- | --- |
-| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. | Public doctrine, activation map, Site verification, deployment status, and archive handoff. |
-| `StegVerse-org/StegVerse-SDK` | Shared packet, receipt, evidence, manifest, and handoff contracts. | Governed LLM contract layer active. |
-| `StegVerse-org/LLM-adapter` | Runtime adapter that converts model output into governed response artifacts. | Adapter boundary complete. |
+| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. | Public doctrine, activation map, Site verification, demo overview, demo verification, deployment status, and archive handoff. |
+| `StegVerse-org/StegVerse-SDK` | Shared packet, receipt, evidence, manifest, and handoff contracts. | Governed LLM contract layer active with demo packet verification. |
+| `StegVerse-org/LLM-adapter` | Runtime adapter that converts model output into governed response artifacts. | Adapter boundary complete with fixture-first end-to-end demo files. |
 
 The current proof path is:
 
@@ -88,7 +108,7 @@ query
   -> provider request
   -> provider response
   -> continuity evidence
-  -> adapter receipt
+  -> governed session packet
   -> action route
   -> commitment request
   -> authority decision
@@ -97,6 +117,8 @@ query
   -> SDK intake routing
   -> SDK manifest binding
   -> SDK receipt handoff
+  -> public demo overview
+  -> public demo verification
 ```
 
 ## Core Assumptions
