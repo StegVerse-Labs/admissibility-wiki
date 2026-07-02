@@ -2,7 +2,22 @@
 
 ## Status
 
-Public doctrine draft. This page describes the StegVerse-governed LLM model and the reconstructive search layer needed to support replay, reconstruction, freshness review, and storage minimization.
+Public doctrine and implementation-status page.
+
+This page describes the StegVerse-governed LLM model, the reconstructive search layer needed to support replay and reconstruction, and the current repository split that implements the adapter and SDK contract boundaries.
+
+## Current Build State
+
+```text
+StegVerse-org/LLM-adapter
+  -> adapter boundary complete
+
+StegVerse-org/StegVerse-SDK
+  -> governed LLM contract layer active
+
+StegVerse-Labs/admissibility-wiki
+  -> public doctrine and verification map
+```
 
 ## Purpose
 
@@ -17,20 +32,30 @@ A governed LLM should not merely answer from memory.
 It should answer from an admissible evidence state and emit a reconstructable receipt.
 ```
 
-## System Shape
+## Built Runtime Shape
+
+The current adapter-side runtime chain is:
 
 ```text
-user query
-  -> ingestion
-  -> query classification
-  -> allowed source map
-  -> reconstructive search / governed retrieval
-  -> evidence packet
-  -> candidate model response
-  -> output admissibility check
-  -> response receipt
-  -> reconstruction record
-  -> user
+provider request
+  -> provider response
+  -> continuity evidence
+  -> governed adapter receipt
+  -> action route
+  -> commitment request
+  -> authority decision
+  -> disabled execution handoff
+  -> no side effect by default
+```
+
+The current SDK-side contract chain is:
+
+```text
+adapter session packet
+  -> SDK validation
+  -> SDK intake routing
+  -> SDK manifest binding
+  -> SDK receipt handoff
 ```
 
 ## Why Reconstructive Search Is Needed
@@ -119,11 +144,35 @@ These actions require current standing at commit time.
 
 ## Repository Responsibilities
 
-| Repository | Responsibility |
-| --- | --- |
-| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. |
-| `StegVerse-org/StegVerse-SDK` | Shared packet, receipt, evidence, and reconstruction contracts. |
-| `StegVerse-org/LLM-adapter` | Runtime adapter that converts model output into governed response artifacts. |
+| Repository | Responsibility | Current implementation state |
+| --- | --- | --- |
+| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. | This page plus related governance documentation. |
+| `StegVerse-org/StegVerse-SDK` | Shared packet, receipt, evidence, manifest, and handoff contracts. | Governed LLM contract layer active. |
+| `StegVerse-org/LLM-adapter` | Runtime adapter that converts model output into governed response artifacts. | Adapter boundary complete. |
+
+## Implementation Artifacts
+
+### LLM Adapter
+
+```text
+adapter.capabilities.json
+docs/ACTIVATION_STATUS.md
+docs/GOVERNED_LLM_RUNTIME.md
+scripts/smoke_governed_session.py
+```
+
+The adapter proves the full chain through fixture and optional provider boundaries while keeping execution disabled by default.
+
+### SDK
+
+```text
+sdk.capabilities.json
+docs/GOVERNED_LLM_SDK_ACTIVATION.md
+docs/GOVERNED_LLM_SESSION_PACKETS.md
+scripts/smoke_governed_llm_sdk.py
+```
+
+The SDK validates adapter session packets, routes them, binds manifests, and produces receipt handoffs without granting authority or executing side effects.
 
 ## Minimum Public Proof Path
 
@@ -131,11 +180,37 @@ A minimum public proof path should show:
 
 1. a user query enters the LLM adapter;
 2. the adapter classifies the query and allowed sources;
-3. the SDK creates a governed query packet;
-4. the adapter receives candidate output from a model or fixture;
-5. the SDK creates a governed response receipt;
-6. the reconstruction summary proves the response path;
-7. high-consequence output is quarantined until commit-time authority is established.
+3. continuity search supplies evidence pointers;
+4. a provider or fixture produces candidate output;
+5. the adapter emits a governed session packet;
+6. high-consequence output becomes an action route, not an action;
+7. the action route becomes a non-authorizing commitment request;
+8. authority decision is captured without side effects;
+9. execution handoff remains disabled by default;
+10. SDK validates the session packet;
+11. SDK intake returns route, quarantine, reject, or fail-closed guidance;
+12. SDK binds a manifest and receipt handoff for later persistence or review.
+
+## Local Verification Commands
+
+Adapter verification:
+
+```bash
+pytest
+stegverse-llm-adapter fixtures/governed_response_fixture.json --pretty
+python scripts/smoke_governed_session.py
+```
+
+SDK verification:
+
+```bash
+pytest tests/test_governed_llm.py
+pytest tests/test_governed_llm_session.py
+pytest tests/test_governed_llm_session_intake.py
+pytest tests/test_governed_llm_manifest.py
+pytest tests/test_governed_llm_receipt.py
+python scripts/smoke_governed_llm_sdk.py
+```
 
 ## Non-Claims
 
@@ -145,8 +220,12 @@ This page does not claim that a model output is true merely because it has a rec
 
 This page does not claim that historical reconstruction creates current authority.
 
+This page does not claim that an adapter receipt grants execution authority.
+
+This page does not claim that SDK manifest binding creates master-record persistence by itself.
+
 ## Working Definition
 
 ```text
-A StegVerse-governed LLM is an LLM adapter path that turns user requests and model outputs into admissible, bounded, receipt-backed, reconstructable transitions.
+A StegVerse-governed LLM is an LLM adapter path that turns user requests and model outputs into admissible, bounded, receipt-backed, reconstructable transitions while preserving a hard boundary between candidate output, authority, and side-effect execution.
 ```
