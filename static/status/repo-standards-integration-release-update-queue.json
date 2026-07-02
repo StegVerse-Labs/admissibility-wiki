@@ -1,0 +1,28 @@
+{
+  "queue_id": "repo-standards-integration-release-update-queue",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "status": "PENDING_UPSTREAM_TAG_RELEASE",
+  "activation_condition": "StegVerse-Labs/repo-standards Git tag/release exists and release bundle source is known",
+  "blocked_by": [
+    "repo-standards tag/release not visible to this connector session"
+  ],
+  "pending_updates": [
+    {
+      "target": "docs/governance/repo-standards-integration.md",
+      "action": "replace pending upstream tag/release placeholders with final release tag, release URL, bundle source, validation report path, org-profile adoption path, and downstream sync issue"
+    },
+    {
+      "target": "static/status/repo-standards-integration-status.json",
+      "action": "set status to UPSTREAM_TAG_RELEASE_REFERENCED and record release tag metadata"
+    },
+    {
+      "target": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+      "action": "update upstream state from pending release to release referenced and record validation result"
+    }
+  ],
+  "non_claims": [
+    "Do not claim repo validation equals admissibility.",
+    "Do not claim repo-standards is execution authority.",
+    "Do not claim bundle installation grants governance standing."
+  ]
+}
