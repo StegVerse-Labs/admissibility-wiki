@@ -5,22 +5,24 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 ## Current goal
 
 ```text
-repo-standards-integration-pending-release
+repo-standards-integration-and-installation-bundle-pending-release
 ```
 
 ## Current version
 
 ```text
-1.4.3-repo-standards-release-update-queue-wired
+1.5.0-repo-standards-installation-bundle-wired
 ```
 
 ## Current status
 
 ```text
 REPO_STANDARDS_INTEGRATION_PAGE_WIRED
+REPO_STANDARDS_INSTALLATION_BUNDLE_PAGE_WIRED
 REPO_STANDARDS_INTEGRATION_VALIDATOR_WIRED
 REPO_STANDARDS_INTEGRATION_STATUS_WIRED
 REPO_STANDARDS_RELEASE_UPDATE_QUEUE_WIRED
+REPO_STANDARDS_INSTALLATION_BUNDLE_PLAN_WIRED
 SIDEBAR_NAVIGATION_PRESENT
 UPSTREAM_REPO_STANDARDS_RELEASE_READY
 UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
@@ -39,28 +41,26 @@ https://stegverse-labs.github.io/admissibility-wiki/governance/ecosystem-capabil
 https://stegverse-labs.github.io/admissibility-wiki/governance/governed-ecosystem-index
 ```
 
-## New standards integration page
+## Repo-standards integration pages
 
 ```text
 docs/governance/repo-standards-integration.md
+docs/governance/repo-standards-installation-bundle.md
 ```
 
-Sidebar entry:
+Sidebar entries:
 
 ```text
 governance/repo-standards-integration
+governance/repo-standards-installation-bundle
 ```
 
 Machine-readable status:
 
 ```text
 static/status/repo-standards-integration-status.json
-```
-
-Release update queue:
-
-```text
 static/status/repo-standards-integration-release-update-queue.json
+static/status/repo-standards-installation-bundle-plan.json
 ```
 
 Validator:
@@ -80,8 +80,10 @@ npm run validate:repo-standards-integration
 ```text
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 docs/governance/repo-standards-integration.md
+docs/governance/repo-standards-installation-bundle.md
 static/status/repo-standards-integration-status.json
 static/status/repo-standards-integration-release-update-queue.json
+static/status/repo-standards-installation-bundle-plan.json
 docs/governance/governed-ecosystem-index.md
 docs/governance/ecosystem-capability-status.md
 static/status/governed-ecosystem-index-status.json
@@ -116,7 +118,7 @@ SIDEBAR_NAVIGATION_PRESENT
 Additional current docs state:
 
 ```text
-REPO STANDARDS INTEGRATION: PASS - page, sidebar, handoff, status artifact, and release-update queue present
+REPO STANDARDS INTEGRATION: PASS - integration and installation bundle surfaces present
 ```
 
 ## Upstream repo-standards state
@@ -132,8 +134,8 @@ Actual Git tag/release: pending outside current connector action set
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - run local/wiki validation after repo-standards release-update queue wiring
-  - update repo-standards integration page after upstream tag/release exists
+  - run local/wiki validation after repo-standards installation bundle wiring
+  - update repo-standards integration and installation pages after upstream tag/release exists
   - public deployment verification
 
 StegVerse-Labs/Site:
@@ -151,11 +153,13 @@ StegVerse-002/StegGuardian:
 
 ## Boundary rules
 
-This wiki records vocabulary, proof framing, lifecycle classification, public explanation paths, and release-gated integration references.
+This wiki records vocabulary, proof framing, lifecycle classification, public explanation paths, release-gated integration references, and release-gated bundle installation doctrine.
 
 It does not claim production authority or release status.
 
 It must not treat an untagged upstream release as final authority.
+
+It must not treat bundle installation as admissibility or runtime authority.
 
 ## Handoff instruction
 
