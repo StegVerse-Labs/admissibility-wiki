@@ -43,24 +43,36 @@ The current public doctrine page is:
 docs/governance/governed-llm-reconstructive-search.md
 ```
 
+The current activation map is:
+
+```text
+docs/governance/governed-llm-activation-map.md
+```
+
 The active implementation split is:
 
-| Repository | Responsibility |
-| --- | --- |
-| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. |
-| `StegVerse-org/StegVerse-SDK` | Shared packet, receipt, evidence, and reconstruction contracts. |
-| `StegVerse-org/LLM-adapter` | Runtime adapter that converts model output into governed response artifacts. |
+| Repository | Responsibility | Build state |
+| --- | --- | --- |
+| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. | Public doctrine and activation map. |
+| `StegVerse-org/StegVerse-SDK` | Shared packet, receipt, evidence, manifest, and handoff contracts. | Governed LLM contract layer active. |
+| `StegVerse-org/LLM-adapter` | Runtime adapter that converts model output into governed response artifacts. | Adapter boundary complete. |
 
-The minimum proof path is:
+The current proof path is:
 
 ```text
 query
-  -> adapter classification
-  -> SDK query packet
-  -> candidate model output
-  -> SDK response receipt
-  -> reconstruction summary
-  -> ALLOW / DENY / QUARANTINE
+  -> provider request
+  -> provider response
+  -> continuity evidence
+  -> adapter receipt
+  -> action route
+  -> commitment request
+  -> authority decision
+  -> disabled execution handoff
+  -> SDK validation
+  -> SDK intake routing
+  -> SDK manifest binding
+  -> SDK receipt handoff
 ```
 
 ## Core Assumptions
