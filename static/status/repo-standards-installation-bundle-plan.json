@@ -1,0 +1,46 @@
+{
+  "plan_id": "repo-standards-installation-bundle-plan",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "status": "PENDING_UPSTREAM_TAG_RELEASE",
+  "source_repository": "StegVerse-Labs/repo-standards",
+  "source_release_state": {
+    "manual_main_validation": "success",
+    "release_readiness": "tag_allowed_true",
+    "tag_release": "pending_outside_connector"
+  },
+  "expected_bundle_paths": [
+    "runtime/",
+    "orchestration/",
+    "task-profiles/",
+    "standards/",
+    "schemas/",
+    "templates/",
+    "tools/",
+    "config/org-profile.yaml",
+    "docs/ORG_PROFILE_ADOPTION.md",
+    "REPO_STANDARDS_MIRROR_HANDOFF.md",
+    "reports/release-readiness.report.json",
+    "reports/downstream-sync-preflight.report.md",
+    "orchestration/task-registry.json"
+  ],
+  "target_install_requirements": [
+    "replace org profile values",
+    "create or update target mirror handoff",
+    "run validator",
+    "record validation evidence",
+    "declare downstream sync targets",
+    "preserve authority boundary"
+  ],
+  "non_claims": [
+    "bundle_install_does_not_grant_execution_authority",
+    "repo_validation_is_not_admissibility",
+    "target_runtime_authority_requires_separate_policy_receipt_and_validation"
+  ],
+  "post_release_updates": [
+    "record release tag",
+    "record release URL",
+    "record bundle source",
+    "record bundle hash if available",
+    "record first cross-org target"
+  ]
+}
