@@ -1,6 +1,6 @@
 {
   "schema": "admissibility_wiki_activation.v1",
-  "generated_at": "2026-06-19T00:00:00Z",
+  "generated_at": "2026-07-02T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "target_url": "https://stegverse-labs.github.io/admissibility-wiki/",
   "hosting_mode": "github_pages_project_site",
@@ -14,9 +14,9 @@
     "docusaurus_url": "https://stegverse-labs.github.io",
     "docusaurus_baseUrl": "/admissibility-wiki/",
     "github_pages_source": "GitHub Actions",
-    "deploy_workflow": ".github/workflows/deploy.yml",
+    "deploy_workflow": ".github/workflows/validate-chain-continuation.yml",
     "build_output": "build",
-    "deploy_gate": "npm run validate"
+    "deploy_gate": "canonical validate-chain-continuation workflow"
   },
   "activation_checks": [
     {
@@ -27,13 +27,13 @@
     },
     {
       "check_id": "aggregate_validation_success",
-      "description": "npm run validate completed successfully before Pages artifact upload.",
+      "description": "Canonical workflow validation completed before Pages artifact upload.",
       "status": "pending_external_verification",
       "blocking": true
     },
     {
       "check_id": "deploy_workflow_success",
-      "description": "The GitHub Pages deploy workflow completed successfully after the GitHub.io configuration commit.",
+      "description": "The canonical workflow completed build-pages, deploy-pages, and verify-public-pages successfully.",
       "status": "pending_external_verification",
       "blocking": true
     },
@@ -75,11 +75,11 @@
   ],
   "known_404_causes": [
     "Repository Pages source is not set to GitHub Actions.",
-    "Deploy workflow has not run since docusaurus.config.js was changed.",
-    "Deploy workflow failed during aggregate validation, install, or build.",
+    "Canonical workflow has not run since Docusaurus or docs content changed.",
+    "Canonical workflow failed during validation, install, build, Pages upload, deploy, or public verification.",
     "Repository visibility or Pages plan does not allow public Pages for this repository.",
     "Browser is checking the old custom-domain or wrong GitHub.io path.",
     "Docusaurus baseUrl does not match the project path."
   ],
-  "current_next_action": "Verify Settings > Pages > Source is GitHub Actions, then run or wait for the validation-gated deploy workflow and re-check the target URL."
+  "current_next_action": "Run the canonical validate-chain-continuation workflow on main and verify build-pages, deploy-pages, and verify-public-pages complete."
 }
