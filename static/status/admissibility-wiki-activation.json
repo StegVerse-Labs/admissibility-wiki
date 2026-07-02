@@ -21,55 +21,55 @@
   "activation_checks": [
     {
       "check_id": "pages_source_github_actions",
-      "description": "Repository Settings > Pages source is set to GitHub Actions.",
-      "status": "external_manual_check_required",
+      "description": "Repository Pages publication is expected to run through the canonical GitHub Actions workflow.",
+      "status": "pending_workflow_observation",
       "blocking": true
     },
     {
       "check_id": "aggregate_validation_success",
       "description": "Canonical workflow validation completed before Pages artifact upload.",
-      "status": "pending_external_verification",
+      "status": "pending_workflow_observation",
       "blocking": true
     },
     {
       "check_id": "deploy_workflow_success",
       "description": "The canonical workflow completed build-pages, deploy-pages, and verify-public-pages successfully.",
-      "status": "pending_external_verification",
+      "status": "pending_workflow_observation",
       "blocking": true
     },
     {
       "check_id": "root_url_loads",
       "description": "The root project page loads without 404.",
       "url": "https://stegverse-labs.github.io/admissibility-wiki/",
-      "status": "pending_external_verification",
+      "status": "pending_workflow_observation",
       "blocking": true
     },
     {
       "check_id": "glossary_route_loads",
       "description": "A representative Docusaurus route loads under the project base URL.",
       "url": "https://stegverse-labs.github.io/admissibility-wiki/glossary/admissibility",
-      "status": "pending_external_verification",
+      "status": "pending_workflow_observation",
       "blocking": true
     },
     {
       "check_id": "status_json_loads",
       "description": "The public status JSON is reachable as a static asset.",
       "url": "https://stegverse-labs.github.io/admissibility-wiki/status/admissibility-wiki-status.json",
-      "status": "pending_external_verification",
+      "status": "pending_workflow_observation",
       "blocking": true
     },
     {
       "check_id": "ontology_json_loads",
       "description": "The ontology JSON is reachable as a static asset.",
       "url": "https://stegverse-labs.github.io/admissibility-wiki/ontology/admissibility-vocabulary.v0.1.json",
-      "status": "pending_external_verification",
+      "status": "pending_workflow_observation",
       "blocking": true
     },
     {
       "check_id": "example_proposal_loads",
       "description": "A representative governance proposal JSON is reachable as a static asset.",
       "url": "https://stegverse-labs.github.io/admissibility-wiki/governance/proposals/proposal.example.009.json",
-      "status": "pending_external_verification",
+      "status": "pending_workflow_observation",
       "blocking": false
     }
   ],
@@ -81,5 +81,5 @@
     "Browser is checking the old custom-domain or wrong GitHub.io path.",
     "Docusaurus baseUrl does not match the project path."
   ],
-  "current_next_action": "Run the canonical validate-chain-continuation workflow on main and verify build-pages, deploy-pages, and verify-public-pages complete."
+  "current_next_action": "Canonical workflow push-triggered deployment and verification should advance or fail closed without assigning manual tasks."
 }
