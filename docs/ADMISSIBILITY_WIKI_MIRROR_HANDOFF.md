@@ -5,22 +5,23 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 ## Current goal
 
 ```text
-governed-ecosystem-transition-framing
+repo-standards-integration-pending-release
 ```
 
 ## Current version
 
 ```text
-1.3.0-governed-ecosystem-index-package-wired
+1.4.0-repo-standards-integration-page-wired
 ```
 
 ## Current status
 
 ```text
-GOVERNED_ECOSYSTEM_INDEX_PACKAGE_WIRED
+REPO_STANDARDS_INTEGRATION_PAGE_WIRED
 SIDEBAR_NAVIGATION_PRESENT
+UPSTREAM_REPO_STANDARDS_RELEASE_READY
+UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
 LOCAL_DOCS_ONLY
-GUARDIAN_DESTINATION_RESOLVED
 ```
 
 ## Public-facing verification page
@@ -35,9 +36,23 @@ https://stegverse-labs.github.io/admissibility-wiki/governance/ecosystem-capabil
 https://stegverse-labs.github.io/admissibility-wiki/governance/governed-ecosystem-index
 ```
 
+## New standards integration page
+
+```text
+docs/governance/repo-standards-integration.md
+```
+
+Sidebar entry:
+
+```text
+governance/repo-standards-integration
+```
+
 ## Source-of-truth documents
 
 ```text
+docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
+docs/governance/repo-standards-integration.md
 docs/governance/governed-ecosystem-index.md
 docs/governance/ecosystem-capability-status.md
 static/status/governed-ecosystem-index-status.json
@@ -59,21 +74,44 @@ npm run validate:governed-ecosystem-index
 npm run validate
 ```
 
+Expected current state from prior handoff:
+
+```text
+GOVERNED_ECOSYSTEM_INDEX_PACKAGE_WIRED
+SIDEBAR_NAVIGATION_PRESENT
+```
+
+Additional current docs state:
+
+```text
+repo-standards integration page exists and is sidebar-linked
+```
+
+## Upstream repo-standards state
+
+```text
+Repository: StegVerse-Labs/repo-standards
+Manual main validation: successful via Declared Tasks #5 screenshot
+Release readiness report: updated with tag_allowed true
+Actual Git tag/release: pending outside current connector action set
+```
+
 ## Remaining targets
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - canonical workflow verification
+  - run local/wiki validation after repo-standards integration page wiring
+  - update repo-standards integration page after upstream tag/release exists
   - public deployment verification
 
 StegVerse-Labs/Site:
-  - mirror public summary after wiki validation
+  - mirror public summary after wiki validation and repo-standards tag/release
 
 GCAT-BCAT-Engine/Publisher:
-  - publication/import awareness after wiki validation
+  - publication/import awareness after wiki validation and repo-standards tag/release
 
 StegVerse-002/stegguardian-wiki:
-  - downstream public Guardian summary after wiki validation
+  - downstream public Guardian summary after wiki validation and repo-standards tag/release
 
 StegVerse-002/StegGuardian:
   - private Guardian implementation standing-boundary awareness after wiki validation
@@ -81,9 +119,11 @@ StegVerse-002/StegGuardian:
 
 ## Boundary rules
 
-This wiki records vocabulary, proof framing, lifecycle classification, and public explanation paths.
+This wiki records vocabulary, proof framing, lifecycle classification, public explanation paths, and release-gated integration references.
 
 It does not claim production authority or release status.
+
+It must not treat an untagged upstream release as final authority.
 
 ## Handoff instruction
 
