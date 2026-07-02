@@ -1,6 +1,6 @@
 {
   "schema": "admissibility_wiki_status.v1",
-  "generated_at": "2026-06-23T00:00:00Z",
+  "generated_at": "2026-07-02T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "site": "https://stegverse-labs.github.io/admissibility-wiki/",
   "status": "build_in_progress",
@@ -9,7 +9,7 @@
   "activation_artifacts": {
     "activation_checklist": "static/status/admissibility-wiki-activation.json",
     "activation_runbook": "docs/activation/github-pages-cloudflare.md",
-    "deploy_workflow": ".github/workflows/deploy.yml"
+    "deploy_workflow": ".github/workflows/validate-chain-continuation.yml"
   },
   "activation_checks": {
     "github_pages_actions_source": "pending_external_verification",
@@ -26,40 +26,6 @@
     "pages_source_required": "GitHub Actions",
     "custom_domain": "not_configured",
     "cname_file": "removed"
-  },
-  "proposal_intake": {
-    "governance_page": "docs/governance/proposal-intake-interface.md",
-    "manifest_receipt_policy": "docs/governance/manifest-receipt-submission.md",
-    "static_scaffold": "static/intake/manifest-receipt-intake.html",
-    "validator": "scripts/check-proposal-intake-interface.mjs",
-    "guided_builder": "installed_static_preview",
-    "direct_paste": "installed_static_preview",
-    "shared_preview_window": "installed",
-    "backend_submission": "not_installed",
-    "durable_receipt_issuance": "not_installed",
-    "queue_write": "not_installed",
-    "automatic_ai_review": "not_installed",
-    "automatic_decision_publication": "not_installed",
-    "preference_rule": "valid_manifest_receipt_may_receive_preferred_triage_only"
-  },
-  "site_bridge": {
-    "status": "site_bridge_page_updated",
-    "site_repository": "StegVerse-Labs/Site",
-    "site_bridge_path": "https://stegverse-labs.github.io/Site/admissibility-wiki.html",
-    "site_public_path_semantics": "StegVerse-Labs/Site/docs/SITE_PUBLIC_PATHS.md",
-    "site_display_authority": "bridge_display_only",
-    "wiki_source_authority": "admissibility-wiki-governance",
-    "proof_authority": "formalism-tests where executable proof is required"
-  },
-  "source_geometry_provenance": {
-    "status": "recorded",
-    "page": "docs/formalisms/original-drawing-reference.md",
-    "source_geometry_id": "SG-001",
-    "creator": "Rigel Randolph",
-    "artifact_classification": "pre_BCAT_GCAT_recoverability_geometry",
-    "current_earliest_preserved_copy": "2026-03-05",
-    "earlier_upload_state": "not_yet_located",
-    "authority_boundary": "records provenance posture only; does not prove derivation, priority, or admissibility"
   },
   "automation_guards": {
     "workflow_receipt_automation_status": "static/status/workflow-receipt-automation-status.json",
@@ -82,67 +48,13 @@
     "original_drawing_reference": "docs/formalisms/original-drawing-reference.md",
     "page_template": "docs/governance/page-template.md",
     "current_task_sync": "docs/governance/current-task-sync.md",
-    "mirror_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
-  },
-  "installed_governance_records": [
-    "static/governance/proposals/proposal.example.001.json",
-    "static/governance/decisions/decision.example.001.json",
-    "static/governance/replay/decision.example.001.txt",
-    "static/governance/evidence/decision.example.001/README.md",
-    "static/governance/proposals/proposal.example.002.json",
-    "static/governance/decisions/decision.example.002.json",
-    "static/governance/replay/decision.example.002.txt",
-    "static/governance/evidence/decision.example.002/README.md",
-    "static/governance/proposals/proposal.example.003.json",
-    "static/governance/decisions/decision.example.003.json",
-    "static/governance/replay/decision.example.003.txt",
-    "static/governance/evidence/decision.example.003/README.md",
-    "static/governance/proposals/proposal.example.004.json",
-    "static/governance/decisions/decision.example.004.json",
-    "static/governance/replay/decision.example.004.txt",
-    "static/governance/evidence/decision.example.004/README.md",
-    "static/governance/proposals/proposal.example.005.json",
-    "static/governance/decisions/decision.example.005.json",
-    "static/governance/replay/decision.example.005.txt",
-    "static/governance/evidence/decision.example.005/README.md",
-    "static/governance/proposals/proposal.example.006.json",
-    "static/governance/decisions/decision.example.006.json",
-    "static/governance/replay/decision.example.006.txt",
-    "static/governance/evidence/decision.example.006/README.md",
-    "static/governance/proposals/proposal.example.007.json",
-    "static/governance/decisions/decision.example.007.json",
-    "static/governance/replay/decision.example.007.txt",
-    "static/governance/evidence/decision.example.007/README.md",
-    "static/governance/proposals/proposal.example.008.json",
-    "static/governance/decisions/decision.example.008.json",
-    "static/governance/replay/decision.example.008.txt",
-    "static/governance/evidence/decision.example.008/README.md",
-    "static/governance/proposals/proposal.example.009.json",
-    "static/governance/decisions/decision.example.009.json",
-    "static/governance/replay/decision.example.009.txt",
-    "static/governance/evidence/decision.example.009/README.md"
-  ],
-  "accepted_relationship_updates": [
-    {"proposal_id":"proposal.example.005","decision_id":"decision.example.005","target_page":"docs/glossary/reconstructability.md","external_term":"Provenance","placement":"Overlapping Terms","equivalent_status":"not_accepted"},
-    {"proposal_id":"proposal.example.006","decision_id":"decision.example.006","target_page":"docs/glossary/policy-reference.md","external_term":"policy-as-code","placement":"Overlapping Terms","equivalent_status":"not_accepted"},
-    {"proposal_id":"proposal.example.007","decision_id":"decision.example.007","target_page":"docs/glossary/governance-boundary.md","external_term":"AI risk-management governance language","placement":"Overlapping Terms","equivalent_status":"not_accepted"},
-    {"proposal_id":"proposal.example.008","decision_id":"decision.example.008","target_page":"docs/glossary/commit-time-authority.md","external_term":"policy decision","placement":"Overlapping Terms","equivalent_status":"not_accepted"},
-    {"proposal_id":"proposal.example.009","decision_id":"decision.example.009","target_page":"docs/glossary/reconstructability.md","external_term":"Audit and Accountability","placement":"Overlapping Terms","equivalent_status":"not_accepted"}
-  ],
-  "terminology_convergence_posture": {
-    "equivalent_terms_policy": "Accepted equivalent terms should be listed directly under the StegVerse term.",
-    "overlapping_terms_policy": "Partially shared terms should be listed under Overlapping Terms.",
-    "adjacent_terms_policy": "Nearby but non-identical terms should be listed under Adjacent Terms.",
-    "specificity_policy": "Do not label a term StegVerse-specific until reasonable overlap search has been performed.",
-    "research_posture": "source-aware preliminary notes installed; no equivalence accepted by research note alone"
-  },
-  "known_handoff_files": {
-    "repo_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-    "task_sync": "docs/governance/current-task-sync.md"
+    "mirror_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+    "governed_llm_demo_overview": "docs/governance/governed-llm-demo-overview.md",
+    "governed_llm_demo_verification": "docs/governance/governed-llm-demo-verification.md"
   },
   "next_safe_build_targets": [
-    "Let repo automation validate, build, deploy, verify public URLs, watch proposal-core-lite target readiness, enforce no-manual-task assignment, guard mirror handoff continuity, track workflow evidence, and emit bounded artifacts.",
-    "If automation fails, repair only the first failing validator field, missing artifact, deployment issue, public URL check, workflow evidence gap, manual-assignment guard, mirror-handoff guard, watcher-status inconsistency, or source-geometry provenance field identified by failed job logs.",
-    "Update activation posture only from workflow evidence or source-confirmed deployment state."
+    "Run the canonical validate-chain-continuation workflow on main.",
+    "Confirm build-pages, deploy-pages, and verify-public-pages complete successfully.",
+    "If automation fails, run a full preflight sweep of stale workflow assumptions before patching another single surfaced error."
   ]
 }
