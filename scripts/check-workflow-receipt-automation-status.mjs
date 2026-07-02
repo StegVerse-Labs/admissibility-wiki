@@ -2,13 +2,19 @@
 import fs from 'node:fs';
 
 const STATUS_PATH = 'static/status/workflow-receipt-automation-status.json';
-const REQUIRED_WORKFLOWS = [
-  '.github/workflows/deploy.yml',
-  '.github/workflows/record-latest-success.yml'
-];
+const CANONICAL_WORKFLOW = '.github/workflows/validate-chain-continuation.yml';
 const REQUIRED_ARTIFACTS = [
-  'admissibility-wiki-workflow-failure',
-  'admissibility-wiki-workflow-success'
+  'guardian-destination-status'
+];
+const REQUIRED_WORKFLOW_MARKERS = [
+  'validate-chain-continuation:',
+  'build-pages:',
+  'deploy-pages:',
+  'verify-public-pages:',
+  'actions/upload-artifact@v4',
+  'actions/deploy-pages@v4',
+  'workflow_dispatch',
+  "github.event_name == 'push'"
 ];
 
 function fail(message) {
@@ -17,8 +23,10 @@ function fail(message) {
 }
 
 if (!fs.existsSync(STATUS_PATH)) fail(`missing ${STATUS_PATH}`);
+if (!fs.existsSync(CANONICAL_WORKFLOW)) fail(`missing workflow ${CANONICAL_WORKFLOW}`);
 
 const status = JSON.parse(fs.readFileSync(STATUS_PATH, 'utf8'));
+const workflow = fs.readFileSync(CANONICAL_WORKFLOW, 'utf8');
 
 if (status.schema !== 'admissibility_wiki_workflow_receipt_automation_status.v0.1') {
   fail('workflow receipt automation status schema mismatch');
@@ -32,8 +40,12 @@ if (status.status !== 'installed') {
   fail('workflow receipt automation status must be installed');
 }
 
-for (const workflowPath of REQUIRED_WORKFLOWS) {
-  if (!fs.existsSync(workflowPath)) fail(`missing workflow ${workflowPath}`);
+if (status.workflow_paths?.canonical !== CANONICAL_WORKFLOW) {
+  fail('workflow receipt automation must point to the canonical workflow');
+}
+
+for (const marker of REQUIRED_WORKFLOW_MARKERS) {
+  if (!workflow.includes(marker)) fail(`canonical workflow missing marker ${marker}`);
 }
 
 for (const artifact of REQUIRED_ARTIFACTS) {
