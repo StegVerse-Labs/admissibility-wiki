@@ -12,6 +12,7 @@ HANDOFF = ROOT / "docs" / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
 STATUS = ROOT / "static" / "status" / "repo-standards-integration-status.json"
 QUEUE = ROOT / "static" / "status" / "repo-standards-integration-release-update-queue.json"
 BUNDLE_PLAN = ROOT / "static" / "status" / "repo-standards-installation-bundle-plan.json"
+VALIDATION_REPORT = ROOT / "static" / "status" / "repo-standards-installation-validation-report.json"
 
 REQUIRED_PAGE_SNIPPETS = [
     "StegVerse-Labs/repo-standards",
@@ -33,8 +34,9 @@ REQUIRED_SIDEBAR_SNIPPETS = [
 ]
 
 REQUIRED_HANDOFF_SNIPPETS = [
-    "repo-standards-integration-pending-release",
+    "repo-standards-integration-and-installation-bundle-pending-release",
     "docs/governance/repo-standards-integration.md",
+    "docs/governance/repo-standards-installation-bundle.md",
     "UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR",
 ]
 
@@ -130,6 +132,25 @@ def require_bundle_plan() -> None:
         raise SystemExit("REPO STANDARDS INTEGRATION: FAIL - bundle plan missing runtime/orchestration paths")
 
 
+def require_validation_report() -> None:
+    data = read_json(VALIDATION_REPORT, "validation report")
+    expected = {
+        "report_id": "repo-standards-installation-validation-report",
+        "repository": "StegVerse-Labs/admissibility-wiki",
+        "goal_id": "repo-standards-integration-and-installation-bundle-pending-release",
+        "result": "PENDING_LOCAL_VALIDATION",
+        "validator": "scripts/check_repo_standards_integration.py",
+    }
+    for key, value in expected.items():
+        if data.get(key) != value:
+            raise SystemExit(
+                f"REPO STANDARDS INTEGRATION: FAIL - validation report {key} expected {value!r}, got {data.get(key)!r}"
+            )
+    commands = data.get("commands")
+    if not isinstance(commands, list) or "npm run validate:repo-standards-integration" not in commands:
+        raise SystemExit("REPO STANDARDS INTEGRATION: FAIL - validation report must include npm validation command")
+
+
 def main() -> int:
     page = require_file(PAGE)
     bundle_page = require_file(BUNDLE_PAGE)
@@ -143,8 +164,9 @@ def main() -> int:
     require_status()
     require_queue()
     require_bundle_plan()
+    require_validation_report()
 
-    print("REPO STANDARDS INTEGRATION: PASS - integration and installation bundle surfaces present")
+    print("REPO STANDARDS INTEGRATION: PASS - integration, installation bundle, and validation report surfaces present")
     return 0
 
 
