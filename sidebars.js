@@ -37,6 +37,7 @@ const sidebars = {
         'governance/governed-llm-reconstructive-search',
         'governance/governed-llm-activation-map',
         'governance/governed-llm-site-verification',
+        'governance/governed-llm-deployment-status',
         'governance/external-frameworks-as-input-class',
         'governance/governed-input-classes',
         'governance/governed-output-classes',
