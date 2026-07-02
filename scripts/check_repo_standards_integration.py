@@ -9,6 +9,7 @@ PAGE = ROOT / "docs" / "governance" / "repo-standards-integration.md"
 SIDEBAR = ROOT / "sidebars.js"
 HANDOFF = ROOT / "docs" / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
 STATUS = ROOT / "static" / "status" / "repo-standards-integration-status.json"
+QUEUE = ROOT / "static" / "status" / "repo-standards-integration-release-update-queue.json"
 
 REQUIRED_PAGE_SNIPPETS = [
     "StegVerse-Labs/repo-standards",
@@ -31,6 +32,17 @@ def require_file(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
+def read_json(path: Path, label: str) -> dict:
+    raw = require_file(path)
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise SystemExit(f"REPO STANDARDS INTEGRATION: FAIL - {label} JSON invalid: {exc}") from exc
+    if not isinstance(data, dict):
+        raise SystemExit(f"REPO STANDARDS INTEGRATION: FAIL - {label} JSON root must be an object")
+    return data
+
+
 def require_snippets(label: str, text: str, snippets: list[str]) -> None:
     missing = [snippet for snippet in snippets if snippet not in text]
     if missing:
@@ -39,12 +51,7 @@ def require_snippets(label: str, text: str, snippets: list[str]) -> None:
 
 
 def require_status() -> None:
-    raw = require_file(STATUS)
-    try:
-        data = json.loads(raw)
-    except json.JSONDecodeError as exc:
-        raise SystemExit(f"REPO STANDARDS INTEGRATION: FAIL - status JSON invalid: {exc}") from exc
-
+    data = read_json(STATUS, "status")
     expected = {
         "status_id": "repo-standards-integration-status",
         "repository": "StegVerse-Labs/admissibility-wiki",
@@ -64,6 +71,32 @@ def require_status() -> None:
         raise SystemExit("REPO STANDARDS INTEGRATION: FAIL - status local_artifacts.validator is incorrect")
 
 
+def require_queue() -> None:
+    data = read_json(QUEUE, "queue")
+    expected = {
+        "queue_id": "repo-standards-integration-release-update-queue",
+        "repository": "StegVerse-Labs/admissibility-wiki",
+        "status": "PENDING_UPSTREAM_TAG_RELEASE",
+    }
+    for key, value in expected.items():
+        if data.get(key) != value:
+            raise SystemExit(
+                f"REPO STANDARDS INTEGRATION: FAIL - queue {key} expected {value!r}, got {data.get(key)!r}"
+            )
+    pending = data.get("pending_updates")
+    if not isinstance(pending, list) or len(pending) < 3:
+        raise SystemExit("REPO STANDARDS INTEGRATION: FAIL - queue must define at least three pending updates")
+    targets = {item.get("target") for item in pending if isinstance(item, dict)}
+    required_targets = {
+        "docs/governance/repo-standards-integration.md",
+        "static/status/repo-standards-integration-status.json",
+        "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+    }
+    missing = sorted(required_targets - targets)
+    if missing:
+        raise SystemExit(f"REPO STANDARDS INTEGRATION: FAIL - queue missing targets: {', '.join(missing)}")
+
+
 def main() -> int:
     page = require_file(PAGE)
     sidebar = require_file(SIDEBAR)
@@ -73,8 +106,9 @@ def main() -> int:
     require_snippets("sidebar", sidebar, [REQUIRED_SIDEBAR_SNIPPET])
     require_snippets("handoff", handoff, REQUIRED_HANDOFF_SNIPPETS)
     require_status()
+    require_queue()
 
-    print("REPO STANDARDS INTEGRATION: PASS - page, sidebar, handoff, and status artifact present")
+    print("REPO STANDARDS INTEGRATION: PASS - page, sidebar, handoff, status artifact, and release-update queue present")
     return 0
 
 
