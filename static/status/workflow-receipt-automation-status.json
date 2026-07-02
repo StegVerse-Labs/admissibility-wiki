@@ -7,7 +7,8 @@
   },
   "display_paths_note": "Paths may be displayed without the leading dot for iOS readability; actual repository workflow paths use the leading-dot directory.",
   "receipt_artifacts": {
-    "guardian_destination": "guardian-destination-status"
+    "guardian_destination": "guardian-destination-status",
+    "public_activation": "public-activation-receipt"
   },
   "automation_chain": [
     "push_on_main",
@@ -17,7 +18,8 @@
     "upload_guardian_destination_status_artifact",
     "build_pages",
     "deploy_pages",
-    "verify_public_pages"
+    "verify_public_pages",
+    "upload_public_activation_receipt_artifact"
   ],
   "manual_task_requirement": "none",
   "failure_rule": "Run the full validation path in a sandbox or preflight before treating a single surfaced workflow error as complete.",
