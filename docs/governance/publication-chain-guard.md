@@ -13,9 +13,10 @@ A full governance validator failure should not silently hide otherwise valid pag
 ## Current Guard Rule
 
 ```text
-Pages publication must have a build-only path.
+Pages publication must have a build-only job inside the canonical workflow.
 Full governance validation may run separately.
 Pages publication must not depend only on npm run validate.
+Manual republish from main must remain available through workflow_dispatch.
 ```
 
 ## Why This Exists
@@ -40,26 +41,29 @@ claim is not externally verifiable
 
 ## Required Publication Paths
 
-The repo should preserve two separate paths:
+The repo preserves these paths inside one canonical workflow:
 
 ```text
-Build-only Pages publication
+Build-only Pages publication job
   Purpose: make public page state visible.
   Command boundary: npm run build.
 
-Governance validation
+Governance validation job
   Purpose: validate registries, receipts, manifests, and governance artifacts.
   Command boundary: npm run validate.
+
+Manual republish path
+  Purpose: recover public publication without adding a second workflow.
+  Trigger boundary: workflow_dispatch on main.
 ```
 
-## Current Workflow Paths
+## Current Workflow Path
 
 ```text
-github/workflows/pages-build-only.yml
-github/workflows/deploy.yml
+github/workflows/validate-chain-continuation.yml
 ```
 
-Paths are shown without the leading dot for iOS readability. Actual workflow paths use the leading dot directory.
+The path is shown without the leading dot for iOS readability. The actual workflow path uses the leading dot directory.
 
 ## Non-Claims
 
@@ -68,8 +72,19 @@ Build-only publication does not prove governance validity.
 Governance validation does not itself publish public state.
 A committed wiki update is not complete until public visibility can be verified.
 A public page is not a canonical formalism source.
+A single canonical workflow does not remove the separation between validation and publication jobs.
 ```
 
-## Next Safe Build Target
+## Guard Check
 
-Add a validator that checks the build-only Pages workflow remains present and does not run `npm run validate` before publication.
+The publication guard validates that the canonical workflow includes:
+
+```text
+build-pages
+deploy-pages
+verify-public-pages
+npm run build
+actions/deploy-pages@v4
+push on main
+workflow_dispatch on main
+```
