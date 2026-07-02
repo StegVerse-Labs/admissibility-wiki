@@ -1,0 +1,45 @@
+{
+  "verification_id": "repo-standards-public-deployment-verification",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "goal_id": "repo-standards-integration-and-installation-bundle-pending-release",
+  "status": "PENDING_PUBLIC_DEPLOYMENT_VERIFICATION",
+  "pages_expected_after_deploy": [
+    {
+      "path": "docs/governance/repo-standards-integration.md",
+      "public_path": "/governance/repo-standards-integration",
+      "required_text": [
+        "Repo Standards Integration",
+        "Release-Gated Reference Rule",
+        "PENDING_UPSTREAM_TAG_RELEASE"
+      ]
+    },
+    {
+      "path": "docs/governance/repo-standards-installation-bundle.md",
+      "public_path": "/governance/repo-standards-installation-bundle",
+      "required_text": [
+        "Repo Standards Installation Bundle",
+        "Bundle Contents Expected After Tag",
+        "Cross-Org Install Test"
+      ]
+    }
+  ],
+  "navigation_expected": [
+    "governance/repo-standards-integration",
+    "governance/repo-standards-installation-bundle"
+  ],
+  "validation_commands_before_deploy_check": [
+    "python scripts/check_repo_standards_integration.py",
+    "npm run validate:repo-standards-integration",
+    "npm run validate"
+  ],
+  "release_gates": [
+    "upstream repo-standards tag/release exists before final release reference update",
+    "local validation passes before public deployment verification",
+    "public deployment check records page reachability"
+  ],
+  "non_claims": [
+    "public page visibility is not governance authority",
+    "bundle installation doctrine is not runtime admissibility",
+    "release reference must remain gated until upstream tag/release exists"
+  ]
+}
