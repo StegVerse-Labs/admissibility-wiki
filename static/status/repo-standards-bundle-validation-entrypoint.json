@@ -1,0 +1,17 @@
+{
+  "entrypoint_id": "repo-standards-bundle-validation-entrypoint",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "goal_id": "repo-standards-integration-and-installation-bundle-pending-release",
+  "status": "ACTIVE_VALIDATION_ENTRYPOINT",
+  "command": "python scripts/check_repo_standards_bundle.py",
+  "runs": [
+    "python scripts/check_repo_standards_integration.py",
+    "python scripts/check_repo_standards_downstream_activation.py"
+  ],
+  "expected_result": "REPO STANDARDS BUNDLE: PASS - integration and downstream activation checks passed",
+  "remaining_external_gates": [
+    "upstream repo-standards Git tag/release",
+    "local validation execution evidence",
+    "public deployment verification after site deploy"
+  ]
+}
