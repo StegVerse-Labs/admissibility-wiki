@@ -49,11 +49,29 @@ The current activation map is:
 docs/governance/governed-llm-activation-map.md
 ```
 
+The local Site verification page is:
+
+```text
+docs/governance/governed-llm-site-verification.md
+```
+
+Run:
+
+```bash
+python scripts/check_governed_llm_pages.py
+```
+
+Expected current state:
+
+```text
+GOVERNED LLM PAGES: PASS - docs and navigation references present
+```
+
 The active implementation split is:
 
 | Repository | Responsibility | Build state |
 | --- | --- | --- |
-| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. | Public doctrine and activation map. |
+| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. | Public doctrine, activation map, and Site verification. |
 | `StegVerse-org/StegVerse-SDK` | Shared packet, receipt, evidence, manifest, and handoff contracts. | Governed LLM contract layer active. |
 | `StegVerse-org/LLM-adapter` | Runtime adapter that converts model output into governed response artifacts. | Adapter boundary complete. |
 
