@@ -36,6 +36,8 @@ const sidebars = {
         'governance/governed-ecosystem-transitions',
         'governance/governed-llm-reconstructive-search',
         'governance/governed-llm-activation-map',
+        'governance/governed-llm-demo-overview',
+        'governance/governed-llm-demo-verification',
         'governance/governed-llm-site-verification',
         'governance/governed-llm-deployment-status',
         'governance/governed-llm-archive-handoff',
