@@ -14,7 +14,9 @@ const REQUIRED_WORKFLOW_MARKERS = [
   'actions/upload-artifact@v4',
   'actions/deploy-pages@v4',
   'workflow_dispatch',
-  "github.event_name == 'push'"
+  "github.event_name == 'push'",
+  "github.event_name == 'schedule'",
+  "cron: '17 * * * *'"
 ];
 
 function fail(message) {
@@ -60,6 +62,10 @@ if (status.manual_task_requirement !== 'none') {
 
 if (!Array.isArray(status.automation_chain) || status.automation_chain.length < 5) {
   fail('automation_chain must list the validation/deploy/receipt chain');
+}
+
+if (!status.automation_chain.includes('scheduled_self_deploy')) {
+  fail('automation_chain must include scheduled_self_deploy');
 }
 
 console.log('workflow receipt automation status OK');
