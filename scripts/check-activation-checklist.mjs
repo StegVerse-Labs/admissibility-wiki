@@ -3,6 +3,7 @@ import fs from 'node:fs';
 
 const CHECKLIST_PATH = 'static/status/admissibility-wiki-activation.json';
 const EXPECTED_URL = 'https://stegverse-labs.github.io/admissibility-wiki/';
+const CANONICAL_WORKFLOW = '.github/workflows/validate-chain-continuation.yml';
 
 const requiredTopLevel = [
   'schema',
@@ -58,6 +59,10 @@ if (!fs.existsSync(CHECKLIST_PATH)) {
   fail(`missing activation checklist: ${CHECKLIST_PATH}`);
 }
 
+if (!fs.existsSync(CANONICAL_WORKFLOW)) {
+  fail(`missing canonical workflow: ${CANONICAL_WORKFLOW}`);
+}
+
 const checklist = JSON.parse(fs.readFileSync(CHECKLIST_PATH, 'utf8'));
 
 for (const field of requiredTopLevel) {
@@ -106,11 +111,11 @@ if (checklist.required_repository_configuration.docusaurus_baseUrl !== '/admissi
 if (checklist.required_repository_configuration.github_pages_source !== 'GitHub Actions') {
   fail('github_pages_source must be GitHub Actions');
 }
-if (checklist.required_repository_configuration.deploy_workflow !== '.github/workflows/deploy.yml') {
-  fail('deploy_workflow must be .github/workflows/deploy.yml');
+if (checklist.required_repository_configuration.deploy_workflow !== CANONICAL_WORKFLOW) {
+  fail(`deploy_workflow must be ${CANONICAL_WORKFLOW}`);
 }
-if (checklist.required_repository_configuration.deploy_gate !== 'npm run validate') {
-  fail('deploy_gate must be npm run validate');
+if (checklist.required_repository_configuration.deploy_gate !== 'canonical validate-chain-continuation workflow') {
+  fail('deploy_gate must be canonical validate-chain-continuation workflow');
 }
 
 requireArray(checklist.activation_checks, 'activation_checks');
@@ -142,8 +147,8 @@ if (checklist.known_404_causes.length === 0) {
 }
 
 const causes = checklist.known_404_causes.join('\n');
-if (!causes.includes('aggregate validation')) {
-  fail('known_404_causes must mention aggregate validation failures');
+if (!causes.includes('canonical workflow')) {
+  fail('known_404_causes must mention canonical workflow publication failures');
 }
 
 console.log(`OK: ${CHECKLIST_PATH}`);
