@@ -11,7 +11,7 @@ repo-standards-integration-and-installation-bundle-pending-release
 ## Current version
 
 ```text
-1.5.0-repo-standards-installation-bundle-wired
+1.5.1-repo-standards-validation-report-wired
 ```
 
 ## Current status
@@ -23,6 +23,7 @@ REPO_STANDARDS_INTEGRATION_VALIDATOR_WIRED
 REPO_STANDARDS_INTEGRATION_STATUS_WIRED
 REPO_STANDARDS_RELEASE_UPDATE_QUEUE_WIRED
 REPO_STANDARDS_INSTALLATION_BUNDLE_PLAN_WIRED
+REPO_STANDARDS_INSTALLATION_VALIDATION_REPORT_WIRED
 SIDEBAR_NAVIGATION_PRESENT
 UPSTREAM_REPO_STANDARDS_RELEASE_READY
 UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
@@ -61,6 +62,7 @@ Machine-readable status:
 static/status/repo-standards-integration-status.json
 static/status/repo-standards-integration-release-update-queue.json
 static/status/repo-standards-installation-bundle-plan.json
+static/status/repo-standards-installation-validation-report.json
 ```
 
 Validator:
@@ -84,6 +86,7 @@ docs/governance/repo-standards-installation-bundle.md
 static/status/repo-standards-integration-status.json
 static/status/repo-standards-integration-release-update-queue.json
 static/status/repo-standards-installation-bundle-plan.json
+static/status/repo-standards-installation-validation-report.json
 docs/governance/governed-ecosystem-index.md
 docs/governance/ecosystem-capability-status.md
 static/status/governed-ecosystem-index-status.json
@@ -118,7 +121,7 @@ SIDEBAR_NAVIGATION_PRESENT
 Additional current docs state:
 
 ```text
-REPO STANDARDS INTEGRATION: PASS - integration and installation bundle surfaces present
+REPO STANDARDS INTEGRATION: PASS - integration, installation bundle, and validation report surfaces present
 ```
 
 ## Upstream repo-standards state
@@ -134,7 +137,7 @@ Actual Git tag/release: pending outside current connector action set
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - run local/wiki validation after repo-standards installation bundle wiring
+  - run local/wiki validation after repo-standards installation validation report wiring
   - update repo-standards integration and installation pages after upstream tag/release exists
   - public deployment verification
 
