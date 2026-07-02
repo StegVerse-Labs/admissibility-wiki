@@ -24,7 +24,9 @@ const requiredChecks = [
   'status_json_reachable',
   'activation_checklist_reachable',
   'governance_records_reachable',
-  'public_navigation_works'
+  'public_navigation_works',
+  'governed_llm_demo_overview_reachable',
+  'governed_llm_demo_verification_reachable'
 ];
 
 const requiredNonClaims = [
@@ -63,8 +65,8 @@ if (receipt.activation_target !== EXPECTED_TARGET) {
   fail(`activation_target must be ${EXPECTED_TARGET}`);
 }
 
-if (receipt.activation_state !== 'pending_external_verification') {
-  fail('example receipt must remain pending_external_verification');
+if (receipt.activation_state !== 'pending_workflow_observation') {
+  fail('example receipt must remain pending_workflow_observation');
 }
 
 if (!receipt.checks || typeof receipt.checks !== 'object' || Array.isArray(receipt.checks)) {
