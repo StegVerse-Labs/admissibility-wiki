@@ -10,7 +10,9 @@
     "guardian_destination": "guardian-destination-status"
   },
   "automation_chain": [
-    "push_or_manual_dispatch_on_main",
+    "push_on_main",
+    "dispatch_on_main",
+    "scheduled_self_deploy",
     "validate_chain_continuation",
     "upload_guardian_destination_status_artifact",
     "build_pages",
