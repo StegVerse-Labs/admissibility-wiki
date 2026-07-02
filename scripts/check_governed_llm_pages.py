@@ -11,12 +11,14 @@ REQUIRED_FILES = (
     "docs/governance/governed-llm-reconstructive-search.md",
     "docs/governance/governed-llm-activation-map.md",
     "docs/governance/governed-llm-site-verification.md",
+    "docs/governance/governed-llm-deployment-status.md",
 )
 REQUIRED_REFERENCES = {
     "sidebars.js": (
         "governance/governed-llm-reconstructive-search",
         "governance/governed-llm-activation-map",
         "governance/governed-llm-site-verification",
+        "governance/governed-llm-deployment-status",
     ),
     "docusaurus.config.js": (
         "/governance/governed-llm-activation-map",
