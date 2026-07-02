@@ -1,40 +1,29 @@
 {
   "schema": "admissibility_wiki_publication_verification_status.v0.1",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "latest_checked_commit": "45c4e0cf0747c95281ef3fb6bafce772ab076efd",
-  "commit_status_result": "public_urls_reachable",
-  "public_visibility_status": "verified",
-  "meaning": "Configured public Pages URLs are reachable from the verifier.",
+  "latest_checked_commit": "pending_current_run",
+  "commit_status_result": "pending_canonical_workflow_verification",
+  "public_visibility_status": "pending_verification",
+  "meaning": "Configured public Pages URLs must be verified after the canonical workflow deploys the latest main commit.",
   "required_distinction": "Committed content is not the same as externally verified public page state.",
   "publication_paths": [
-    "github/workflows/pages-build-only.yml",
-    "github/workflows/deploy.yml"
+    "github/workflows/validate-chain-continuation.yml"
   ],
-  "paths_note": "Paths are shown without leading dot for iOS readability. Actual workflow paths use the leading dot directory.",
+  "paths_note": "Path is shown without leading dot for iOS readability. Actual workflow path uses the leading dot directory.",
   "next_actions": [
-    "Confirm a Pages workflow run is created for the latest commit.",
+    "Run the canonical workflow on main.",
+    "Confirm build-pages, deploy-pages, and verify-public-pages complete successfully.",
     "Confirm the public page for the changed content is reachable after deployment.",
     "Record the public URL and deployment ref after verification."
   ],
   "non_claims": [
     "This status file does not prove deployment failure.",
-    "This status file does not prove public visibility.",
+    "This status file does not prove public visibility before the current workflow run completes.",
     "This status file records the current unverified state from available status data."
   ],
   "latest_public_url_check": {
-    "checked_at": "2026-06-29T14:52:27.779Z",
-    "results": [
-      {
-        "url": "https://stegverse-labs.github.io/admissibility-wiki/",
-        "status_code": 200,
-        "ok": true
-      },
-      {
-        "url": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/governance-centered-boundary-centered-admissibility-testing",
-        "status_code": 301,
-        "ok": true
-      }
-    ],
-    "all_ok": true
+    "checked_at": null,
+    "results": [],
+    "all_ok": false
   }
 }
