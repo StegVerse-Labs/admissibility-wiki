@@ -55,6 +55,12 @@ The local Site verification page is:
 docs/governance/governed-llm-site-verification.md
 ```
 
+The archive handoff page is:
+
+```text
+docs/governance/governed-llm-archive-handoff.md
+```
+
 Run:
 
 ```bash
@@ -71,7 +77,7 @@ The active implementation split is:
 
 | Repository | Responsibility | Build state |
 | --- | --- | --- |
-| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. | Public doctrine, activation map, and Site verification. |
+| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. | Public doctrine, activation map, Site verification, deployment status, and archive handoff. |
 | `StegVerse-org/StegVerse-SDK` | Shared packet, receipt, evidence, manifest, and handoff contracts. | Governed LLM contract layer active. |
 | `StegVerse-org/LLM-adapter` | Runtime adapter that converts model output into governed response artifacts. | Adapter boundary complete. |
 
