@@ -34,6 +34,8 @@ const sidebars = {
         'governance/current-task-sync',
         'governance/governed-ecosystem-index',
         'governance/governed-ecosystem-transitions',
+        'governance/governed-llm-reconstructive-search',
+        'governance/governed-llm-activation-map',
         'governance/external-frameworks-as-input-class',
         'governance/governed-input-classes',
         'governance/governed-output-classes',
