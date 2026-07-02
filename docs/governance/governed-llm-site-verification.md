@@ -9,12 +9,14 @@ This page defines the local verification path for governed LLM public documentat
 ```text
 docs/governance/governed-llm-reconstructive-search.md
 docs/governance/governed-llm-activation-map.md
+docs/governance/governed-llm-site-verification.md
+docs/governance/governed-llm-deployment-status.md
 sidebars.js
 docusaurus.config.js
 README.md
 ```
 
-## Verification Command
+## Local Verification Command
 
 Run:
 
@@ -28,11 +30,25 @@ Expected result:
 GOVERNED LLM PAGES: PASS - docs and navigation references present
 ```
 
+## Deployment Verification Command
+
+Run after GitHub Pages deployment has completed:
+
+```bash
+python scripts/check_governed_llm_deployment_status.py
+```
+
+Expected deployed result:
+
+```text
+GOVERNED LLM DEPLOYMENT: PASS - deployed pages reachable
+```
+
 ## Boundary
 
 This verifies local documentation and navigation references only.
 
-It does not prove deployed GitHub Pages status, Cloudflare cache state, or external indexing.
+It does not prove deployed GitHub Pages status, Cloudflare cache state, or external indexing. Deployment reachability must be checked separately.
 
 ## Site Exposure
 
