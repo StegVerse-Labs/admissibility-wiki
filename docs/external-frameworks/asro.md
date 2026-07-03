@@ -57,6 +57,18 @@ In StegVerse terms, ASRO evidence may support a Commitment Candidate by supplyin
 | Governance-state change record | Drift; Commit-Time Validity; Receipt-Bound Execution |
 | Selective-attestation threat model | FAIL-CLOSED behavior; evidence sufficiency review |
 
+## Commitment Candidate Fixture
+
+ASRO is now connected to a non-authorizing Commitment Candidate fixture:
+
+```text
+docs/external-frameworks/asro-commitment-candidate.json
+```
+
+The fixture records how an ASRO governance-state attestation artifact may be routed into StegVerse review without converting the attestation into execution authority.
+
+The fixture's default posture is `FAIL-CLOSED` unless current policy, delegation, evidence, context, and recoverability are independently reconstructed at the commit boundary.
+
 ## Three-Part Boundary
 
 ```text
@@ -77,4 +89,4 @@ ASRO attestation evidence may support review, but review does not become authori
 
 ## Next Safe Build Target
 
-Connect ASRO to the governance observatory protocol and test whether ASRO-style governance-state attestation can be routed into a Commitment Candidate without granting execution authority to the attestation record itself.
+Build a validation guard for ASRO's commitment-candidate fixture so the registry, manifest, page, and non-authorizing authority boundary remain synchronized.
