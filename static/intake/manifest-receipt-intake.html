@@ -30,7 +30,7 @@
   <p>This dual-mode intake surface creates or accepts a candidate manifest/receipt object for preferred triage. By default it is preview-only. Submission requires a deployed intake API endpoint.</p>
 
   <div class="notice">
-    <strong>Governance boundary:</strong> valid manifest/receipt structure may receive preferred triage. Preferred triage is not acceptance, proof, standing, or commit-time authority.
+    <strong>Preview ≠ submission:</strong> valid manifest/receipt structure may receive preferred triage. Preferred triage is not acceptance, proof, standing, or commit-time authority. Not submitted until an authorized endpoint exists and is explicitly used.
   </div>
 
   <div class="grid">
@@ -141,7 +141,7 @@
   <section class="card" style="margin-top:18px;">
     <h2>Shared Manifest/Receipt Preview Window</h2>
     <textarea id="preview"></textarea>
-    <div class="status" id="previewStatus">Candidate governed data object. Not submitted.</div>
+    <div class="status" id="previewStatus">Candidate governed data object. Preview ≠ submission. Not submitted.</div>
   </section>
 
   <section class="card" style="margin-top:18px;">
@@ -189,7 +189,8 @@ function buildPreview() {
       'This manifest does not accept the proposal.',
       'This manifest does not prove equivalence.',
       'This manifest does not create commit-time standing.',
-      'preferred_triage is not acceptance authority.'
+      'preferred_triage is not acceptance authority.',
+      'Preview does not submit data by itself.'
     ],
     receipt_request: {
       include_submission_timing: true,
@@ -199,7 +200,7 @@ function buildPreview() {
   };
 
   document.getElementById('preview').value = JSON.stringify({ manifest }, null, 2);
-  document.getElementById('previewStatus').textContent = 'Generated candidate manifest preview. Not submitted.';
+  document.getElementById('previewStatus').textContent = 'Generated candidate manifest preview. Preview ≠ submission. Not submitted.';
 }
 
 function usePastedStructure() {
@@ -212,7 +213,7 @@ function usePastedStructure() {
     const parsed = JSON.parse(value);
     document.getElementById('preview').value = JSON.stringify(parsed, null, 2);
     document.getElementById('pasteStatus').textContent = 'Pasted structure parsed into shared preview window.';
-    document.getElementById('previewStatus').textContent = 'Pasted candidate manifest/receipt preview. Not submitted.';
+    document.getElementById('previewStatus').textContent = 'Pasted candidate manifest/receipt preview. Preview ≠ submission. Not submitted.';
   } catch (error) {
     document.getElementById('pasteStatus').textContent = 'Invalid JSON: ' + error.message;
   }
