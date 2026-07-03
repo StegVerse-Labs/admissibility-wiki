@@ -1,0 +1,42 @@
+name: Proposal Core Lite Target Watch
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'static/status/proposal-core-lite-target-watch-status.json'
+      - 'docs/governance/proposal-governance-core-lite-seed.md'
+      - 'docs/governance/proposal-governance-core-lite-target-watch-status.md'
+      - '.github/workflows/proposal-core-lite-target-watch.yml'
+  schedule:
+    - cron: '37 6 * * *'
+
+permissions:
+  contents: read
+
+env:
+  TARGET_REPOSITORY: StegVerse-Labs/proposal-governance-core-lite
+  ARTIFACT_NAME: proposal-core-lite-target-watch
+
+jobs:
+  validate-watch-status:
+    name: Validate proposal core-lite target watch status
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate watch status
+        run: npm run validate:proposal-core-lite-target-watch-status
+
+      - name: Emit watch posture
+        run: |
+          echo "target_repository=${TARGET_REPOSITORY}"
+          echo "artifact_name=${ARTIFACT_NAME}"
+          echo "manual_task_requirement=none"
+          echo "pending_posture=remain_pending_without_manual_task_assignment"
