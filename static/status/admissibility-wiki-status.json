@@ -19,7 +19,8 @@
     "public_site_loads": "pending_external_verification",
     "ontology_json_reachable": "pending_external_verification",
     "proposal_decision_examples_reachable": "pending_external_verification",
-    "governed_llm_demo_routes_reachable": "pending_external_verification"
+    "governed_llm_demo_routes_reachable": "pending_external_verification",
+    "governed_llm_full_route_set_reachable": "pending_external_verification"
   },
   "github_io_configuration": {
     "url": "https://stegverse-labs.github.io",
@@ -57,6 +58,12 @@
     "no_manual_task_guard_status": "static/status/no-manual-task-guard-status.json",
     "mirror_handoff_guard_status": "static/status/mirror-handoff-guard-status.json",
     "manual_task_requirement": "none"
+  },
+  "workflow_validation": {
+    "governed_llm_pages_checker": "wired_in_validate_chain_continuation_job",
+    "governed_llm_demo_docs_checker": "wired_in_validate_chain_continuation_job_and_npm_validate",
+    "governed_llm_public_route_set": "wired_in_verify_public_pages_job",
+    "deployment_status_checker": "wired_in_verify_public_pages_job"
   },
   "installed_public_pages": {
     "landing_page": "docs/index.md",
@@ -101,11 +108,9 @@
     "governed_llm_archive_handoff": "docs/governance/governed-llm-archive-handoff.md"
   },
   "next_safe_build_targets": [
-    "Run python scripts/check_governed_llm_pages.py.",
-    "Run python scripts/check_governed_llm_demo_docs.py.",
-    "Run npm run build.",
     "Run the canonical validate-chain-continuation workflow on main.",
     "Confirm build-pages, deploy-pages, and verify-public-pages complete successfully.",
+    "Confirm governed LLM full route set reachability after Pages deployment.",
     "Mirror generated adapter or SDK demo outputs only after matching receipt-bound artifacts exist."
   ]
 }
