@@ -38,6 +38,7 @@ REQUIRED_COMMANDS = [
     "python scripts/check_external_framework_expansion_policy.py",
     "python scripts/check_governed_llm_pages.py",
     "python scripts/check_governed_llm_demo_docs.py",
+    "python scripts/check_ios_workflow_mirror_status.py",
     "python scripts/check_ci_evidence.py",
     "python scripts/check_guardian_destination.py",
 ]
@@ -53,6 +54,7 @@ EXPECTED = {
     "external_framework_expansion_policy": "EXTERNAL FRAMEWORK EXPANSION POLICY: PASS",
     "governed_llm_pages": "GOVERNED LLM PAGES: PASS",
     "governed_llm_demo_docs": "GOVERNED LLM DEMO DOCS: PASS",
+    "ios_workflow_mirror": "IOS WORKFLOW MIRROR: PATCHED",
     "ci_evidence": "CI EVIDENCE: PASS",
 }
 
@@ -67,7 +69,7 @@ def main() -> int:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     if manifest.get("manifest_id") != "ADMISSIBILITY-WIKI-WORKFLOW-001":
         failures.append("manifest id mismatch")
-    if manifest.get("schema_version") != "1.4":
+    if manifest.get("schema_version") != "1.5":
         failures.append("schema version mismatch")
 
     workflows = manifest.get("canonical_workflows", [])
@@ -120,6 +122,8 @@ def main() -> int:
         failures.append("governed LLM docs authority boundary mismatch")
     if boundary.get("governed_llm_route_verification_is_external_indexing") is not False:
         failures.append("governed LLM route verification boundary mismatch")
+    if boundary.get("ios_workflow_mirror_is_activation_evidence") is not False:
+        failures.append("iOS workflow mirror authority boundary mismatch")
 
     print("WORKFLOW MANIFEST:", "FAIL" if failures else "PASS")
     for failure in failures:
