@@ -1,6 +1,6 @@
 {
   "manifest_id": "ADMISSIBILITY-WIKI-WORKFLOW-001",
-  "schema_version": "1.4",
+  "schema_version": "1.5",
   "canonical_workflows": [
     {
       "path": ".github/workflows/validate-chain-continuation.yml",
@@ -14,7 +14,9 @@
     {
       "mirror_path": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
       "canonical_path": ".github/workflows/validate-chain-continuation.yml",
-      "purpose": "iOS-safe mirror of the single active validation and deployment workflow"
+      "patch_path": "iosnoperiod/github/workflows/validate-chain-continuation.patch.md",
+      "purpose": "iOS-safe mirror of the single active validation and deployment workflow",
+      "status": "patched_delta_recorded"
     }
   ],
   "local_validation_entrypoint": "python scripts/run_canonical_validation.py",
@@ -46,6 +48,7 @@
     "python scripts/check_external_framework_expansion_policy.py",
     "python scripts/check_governed_llm_pages.py",
     "python scripts/check_governed_llm_demo_docs.py",
+    "python scripts/check_ios_workflow_mirror_status.py",
     "python scripts/check_ci_evidence.py",
     "python scripts/check_guardian_destination.py"
   ],
@@ -61,6 +64,7 @@
     "external_framework_expansion_policy": "EXTERNAL FRAMEWORK EXPANSION POLICY: PASS",
     "governed_llm_pages": "GOVERNED LLM PAGES: PASS",
     "governed_llm_demo_docs": "GOVERNED LLM DEMO DOCS: PASS",
+    "ios_workflow_mirror": "IOS WORKFLOW MIRROR: PATCHED",
     "ci_evidence": "CI EVIDENCE: PASS"
   },
   "generated_reports": [
@@ -74,6 +78,7 @@
     "scheduled_check_installed": true,
     "scheduled_self_deploy_installed": true,
     "mirror_is_activation_evidence": false,
+    "ios_workflow_mirror_is_activation_evidence": false,
     "manual_workflow_install_required": false,
     "manual_destination_search_required": false,
     "local_validation_entrypoint_is_authority": false,
