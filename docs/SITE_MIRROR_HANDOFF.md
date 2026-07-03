@@ -19,7 +19,11 @@ fixture query
 -> SDK receipt handoff
 -> wiki public demo overview
 -> wiki public demo verification
--> Site navigation and deployment verification
+-> canonical scheduled workflow
+-> build-pages
+-> deploy-pages
+-> verify-public-pages
+-> public-activation-receipt artifact
 ```
 
 ## Installed files
@@ -28,10 +32,14 @@ fixture query
 docs/governance/governed-llm-demo-overview.md
 docs/governance/governed-llm-demo-verification.md
 scripts/check_governed_llm_demo_docs.py
+scripts/write-public-activation-receipt.mjs
+scripts/check-public-activation-receipt-writer.mjs
 sidebars.js update
 README.md update
 docs/governance/governed-llm-activation-map.md update
 ADMISSIBILITY_MIRROR_HANDOFF.md update
+.github/workflows/validate-chain-continuation.yml update
+iosnoperiod/github/workflows/validate-chain-continuation.yml update
 ```
 
 ## Local verification
@@ -39,13 +47,28 @@ ADMISSIBILITY_MIRROR_HANDOFF.md update
 ```bash
 python scripts/check_governed_llm_pages.py
 python scripts/check_governed_llm_demo_docs.py
+node scripts/check-public-activation-receipt-writer.mjs
 npm run build
 ```
 
 ## Deployment verification
 
-```bash
-python scripts/check_governed_llm_deployment_status.py
+```text
+Scheduled canonical workflow run completed successfully.
+validate-chain-continuation: PASS
+build-pages: PASS
+deploy-pages: PASS
+verify-public-pages: PASS
+artifacts: 3
+```
+
+## Remaining hardening
+
+```text
+Inspect workflow artifacts and archive public-activation-receipt.
+Resolve non-blocking workflow warnings.
+Confirm public pages remain reachable after cache propagation.
+Prepare release/tag candidate after warning cleanup and artifact review.
 ```
 
 ## Boundary
