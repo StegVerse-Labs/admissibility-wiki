@@ -6,9 +6,9 @@ This file is the current handoff and task source of truth for `StegVerse-Labs/ad
 
 ## Current priority
 
-Goal 3: Governed LLM end-to-end demonstrator public documentation.
+Goal 3: Governed LLM end-to-end demonstrator public documentation and Site mirror sync.
 
-The wiki should publish the public explanation of the demonstrator after the adapter and SDK handoffs authorize the demo installation.
+The wiki publishes the public explanation of the demonstrator after the adapter and SDK handoffs authorize the demo installation.
 
 ## Source repositories
 
@@ -25,21 +25,25 @@ StegVerse-org/StegVerse-SDK
 ```text
 docs/governance/governed-llm-reconstructive-search.md
 docs/governance/governed-llm-activation-map.md
+docs/governance/governed-llm-demo-overview.md
+docs/governance/governed-llm-demo-verification.md
 docs/governance/governed-llm-site-verification.md
 docs/governance/governed-llm-deployment-status.md
 docs/governance/governed-llm-archive-handoff.md
 scripts/check_governed_llm_pages.py
+scripts/check_governed_llm_demo_docs.py
 scripts/check_governed_llm_deployment_status.py
 ```
 
-## Files to install for Goal 3
+## Goal 3 installation state
 
 ```text
-docs/governance/governed-llm-demo-overview.md
-docs/governance/governed-llm-demo-verification.md
-scripts/check_governed_llm_demo_docs.py
-sidebars.js update
-README.md update
+docs/governance/governed-llm-demo-overview.md -> installed
+docs/governance/governed-llm-demo-verification.md -> installed
+scripts/check_governed_llm_demo_docs.py -> installed and hardened
+sidebars.js -> linked
+README.md -> linked
+docs/governance/governed-llm-activation-map.md -> updated with demo chain
 ```
 
 ## Required invariant
@@ -66,4 +70,4 @@ The wiki mirrors evidence-bounded ecosystem status. Publication does not create 
 
 ## Archive posture
 
-Not archive-ready until the demo overview and verification page are installed and linked from navigation.
+Repo-local archive posture is ready after both local checkers and the Docusaurus build pass. Deployment reachability and cross-repo generated receipts remain separate follow-up checks.
