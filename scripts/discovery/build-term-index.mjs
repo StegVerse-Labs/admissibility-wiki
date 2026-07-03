@@ -4,6 +4,7 @@ import crypto from 'node:crypto';
 
 const registryPath = 'static/formalisms/formalism-registry.v0.1.json';
 const outputPath = 'static/discovery/discovered-terms.json';
+const shouldRefresh = process.env.DISCOVERY_REFRESH === '1';
 
 function fail(message) {
   console.error(`FAIL: ${message}`);
@@ -25,6 +26,25 @@ function makeId(input) {
 function extractTitle(markdown, fallback) {
   const match = markdown.match(/^#\s+(.+)$/m);
   return match ? match[1].trim() : fallback;
+}
+
+function validateExistingStore() {
+  if (!fs.existsSync(outputPath)) return false;
+  const output = JSON.parse(fs.readFileSync(outputPath, 'utf8'));
+  if (output.schema !== 'admissibility_wiki_discovered_terms.v0.1') fail('discovered terms schema mismatch');
+  if (output.repository !== 'StegVerse-Labs/admissibility-wiki') fail('discovered terms repository mismatch');
+  if (!Array.isArray(output.records)) fail('discovered terms records must be an array');
+  for (const record of output.records) {
+    for (const field of ['term_id', 'term', 'normalized_term', 'source_origin', 'source_path', 'evidence_ref', 'formalism_id', 'status', 'created_at', 'updated_at']) {
+      if (!(field in record)) fail(`discovered term missing field: ${field}`);
+    }
+  }
+  console.log(`OK: preserved ${output.records.length} discovered terms in ${outputPath}`);
+  return true;
+}
+
+if (!shouldRefresh && validateExistingStore()) {
+  process.exit(0);
 }
 
 if (!fs.existsSync(registryPath)) fail(`missing registry: ${registryPath}`);
