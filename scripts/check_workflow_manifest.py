@@ -36,6 +36,8 @@ REQUIRED_COMMANDS = [
     "python scripts/check_external_framework_page_mapping.py",
     "python scripts/check_external_framework_page_status.py",
     "python scripts/check_external_framework_expansion_policy.py",
+    "python scripts/check_governed_llm_pages.py",
+    "python scripts/check_governed_llm_demo_docs.py",
     "python scripts/check_ci_evidence.py",
     "python scripts/check_guardian_destination.py",
 ]
@@ -49,6 +51,8 @@ EXPECTED = {
     "external_framework_page_mapping": "EXTERNAL FRAMEWORK PAGE MAPPING: PASS",
     "external_framework_page_status": "EXTERNAL FRAMEWORK PAGE STATUS: PASS",
     "external_framework_expansion_policy": "EXTERNAL FRAMEWORK EXPANSION POLICY: PASS",
+    "governed_llm_pages": "GOVERNED LLM PAGES: PASS",
+    "governed_llm_demo_docs": "GOVERNED LLM DEMO DOCS: PASS",
     "ci_evidence": "CI EVIDENCE: PASS",
 }
 
@@ -63,7 +67,7 @@ def main() -> int:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     if manifest.get("manifest_id") != "ADMISSIBILITY-WIKI-WORKFLOW-001":
         failures.append("manifest id mismatch")
-    if manifest.get("schema_version") != "1.3":
+    if manifest.get("schema_version") != "1.4":
         failures.append("schema version mismatch")
 
     workflows = manifest.get("canonical_workflows", [])
@@ -105,13 +109,17 @@ def main() -> int:
     if boundary.get("external_framework_outputs_are_authority") is not False:
         failures.append("external output boundary mismatch")
     if boundary.get("generated_framework_results_are_authority") is not False:
-        failures.append("generated results authority boundary mismatch")
+        failures.append("generated results authority mismatch")
     if boundary.get("generated_framework_page_metadata_is_authority") is not False:
-        failures.append("generated metadata authority boundary mismatch")
+        failures.append("generated metadata authority mismatch")
     if boundary.get("generated_framework_page_mapping_is_authority") is not False:
-        failures.append("generated mapping authority boundary mismatch")
+        failures.append("generated mapping authority mismatch")
     if boundary.get("generated_framework_page_status_is_authority") is not False:
-        failures.append("generated page status authority boundary mismatch")
+        failures.append("generated page status authority mismatch")
+    if boundary.get("governed_llm_docs_are_execution_authority") is not False:
+        failures.append("governed LLM docs authority boundary mismatch")
+    if boundary.get("governed_llm_route_verification_is_external_indexing") is not False:
+        failures.append("governed LLM route verification boundary mismatch")
 
     print("WORKFLOW MANIFEST:", "FAIL" if failures else "PASS")
     for failure in failures:
