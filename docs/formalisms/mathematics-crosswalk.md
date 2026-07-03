@@ -20,20 +20,22 @@ The crosswalk exists so mathematical terms can be related to state-transition go
 
 ## Core Equation Crosswalk
 
+The expressions below are written in MDX-safe plain text so the site renderer does not evaluate mathematical braces as JavaScript.
+
 | Equation or object | Source framing | Transition Table role | Translation record link |
 |---|---|---|---|
-| `x = (g,c,a,t) in [0,1]^4` | Four-dimensional governed-autonomy state | Prior state or resulting state | `dtg-physics-state-v0-1`, `dtg-gcat-capacity-margin-v0-1` |
-| `Lambda(x) = K g^alpha c^beta t^gamma` | Legitimacy / governance capacity function | Constraint reference | `dtg-gcat-capacity-margin-v0-1` |
-| `m(x) = Lambda(x) - a` | Admissibility margin | Admissibility question | `dtg-gcat-capacity-margin-v0-1` |
-| `A = {x : m(x) >= 0}` | Admissible region | Boundary condition / admissible state set | `dtg-gcat-capacity-margin-v0-1`, `dtg-bcat-boundary-v0-1` |
-| `dot{x} = f(x) + G(x)u` | Control-affine system evolution | Candidate transition / transition dynamics | `dtg-physics-interaction-v0-1` |
-| `dot{m}(x,u) >= -kappa m(x)` | Barrier condition preserving admissibility | Constraint reference / policy gate analogue | `dtg-gcat-capacity-margin-v0-1`, `dtg-runtime-fail-closed-v0-1` |
-| `tilde{x} = x / ||x||_1 in Delta^3` | Normalized simplex projection | State normalization for recoverability review | `dtg-physics-state-v0-1` |
-| `d_F(tilde{x}) = min_i tilde{x}_i` | Distance to nearest collapse face | Boundary distance / recoverability evidence | `dtg-bcat-boundary-v0-1` |
-| `R_i(tilde{x}) = d_F / (d_F + d_Delta + delta)` | Rigel number | Recoverability posture | `dtg-bcat-boundary-v0-1` |
-| `tau = tau_obs + tau_dec + tau_act` | Total lag | Drift / time validity condition | `dtg-runtime-fail-closed-v0-1` |
-| `R_rob(tau)` | Robust recoverability under lag | Commit-time validity input | `dtg-runtime-fail-closed-v0-1` |
-| `ALLOW_ideal(u; x, tau) iff Phi(x,u) in R_rob(tau)` | Ideal commit admissibility condition | Decision result and commit-time validity | `dtg-runtime-fail-closed-v0-1` |
+| state vector x = tuple(g, c, a, t) within unit interval to the fourth power | Four-dimensional governed-autonomy state | Prior state or resulting state | `dtg-physics-state-v0-1`, `dtg-gcat-capacity-margin-v0-1` |
+| Lambda of x = K times g^alpha times c^beta times t^gamma | Legitimacy / governance capacity function | Constraint reference | `dtg-gcat-capacity-margin-v0-1` |
+| margin m of x = Lambda of x minus a | Admissibility margin | Admissibility question | `dtg-gcat-capacity-margin-v0-1` |
+| admissible region A = states where margin is greater than or equal to zero | Admissible region | Boundary condition / admissible state set | `dtg-gcat-capacity-margin-v0-1`, `dtg-bcat-boundary-v0-1` |
+| time derivative of x = f of x plus G of x times control u | Control-affine system evolution | Candidate transition / transition dynamics | `dtg-physics-interaction-v0-1` |
+| time derivative of margin under x and u is bounded below by negative kappa times margin | Barrier condition preserving admissibility | Constraint reference / policy gate analogue | `dtg-gcat-capacity-margin-v0-1`, `dtg-runtime-fail-closed-v0-1` |
+| normalized x = x divided by L1 norm of x, projected into Delta cubed | Normalized simplex projection | State normalization for recoverability review | `dtg-physics-state-v0-1` |
+| face distance of normalized x = minimum component of normalized x | Distance to nearest collapse face | Boundary distance / recoverability evidence | `dtg-bcat-boundary-v0-1` |
+| Rigel number R_i of normalized x = face distance divided by face distance plus Delta distance plus delta | Rigel number | Recoverability posture | `dtg-bcat-boundary-v0-1` |
+| total lag tau = observation lag plus decision lag plus action lag | Total lag | Drift / time validity condition | `dtg-runtime-fail-closed-v0-1` |
+| robust recoverability under lag R_rob of tau | Robust recoverability under lag | Commit-time validity input | `dtg-runtime-fail-closed-v0-1` |
+| ideal ALLOW predicate for u, x, and tau holds when Phi of x and u is in robust recoverability under tau | Ideal commit admissibility condition | Decision result and commit-time validity | `dtg-runtime-fail-closed-v0-1` |
 
 ## Physics Translation Boundary
 
