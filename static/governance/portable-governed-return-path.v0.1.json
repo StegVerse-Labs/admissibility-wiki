@@ -1,0 +1,29 @@
+{
+  "artifact_id": "portable-governed-return-path.v0.1",
+  "status": "fixture_bound_contract_compatible",
+  "proof_chain": [
+    "external_llm_or_ui",
+    "llm_adapter_fixture",
+    "micro_node_compatible_transition_request",
+    "sdk_fixture_validation",
+    "governed_return_payload",
+    "original_customer_path"
+  ],
+  "repositories": {
+    "micro_node_runtime": "StegVerse-002/micro-node-runtime",
+    "core_node_runtime_demo": "StegVerse-org/core-node-runtime-demo",
+    "llm_adapter": "StegVerse-org/LLM-adapter",
+    "sdk": "StegVerse-org/StegVerse-SDK",
+    "wiki": "StegVerse-Labs/admissibility-wiki"
+  },
+  "terminal_decisions": ["ALLOW", "DENY", "FAIL_CLOSED"],
+  "required_invariants": {
+    "return_path_preserved": true,
+    "returned_to_origin": true,
+    "receipt_reference_required": true,
+    "runtime_execution_granted": false,
+    "provider_output_is_authority": false,
+    "live_provider_required": false
+  },
+  "boundary": "fixture-bound contract compatibility only"
+}
