@@ -95,6 +95,16 @@
         </select>
       </label>
 
+      <label>Preferred Triage
+        <select id="preferred_triage">
+          <option selected>standard_review</option>
+          <option>expedited_review_requested</option>
+          <option>external_framework_mapping</option>
+          <option>maintainer_attention_requested</option>
+          <option>defer_until_authority_exists</option>
+        </select>
+      </label>
+
       <label>Derived From
         <select id="derivedFrom">
           <option>Transition Table</option>
@@ -157,6 +167,7 @@ function buildPreview() {
     proposal_id: 'pending',
     submitted_at: receivedAt,
     submitter_class: document.getElementById('submitterClass').value,
+    preferred_triage: document.getElementById('preferred_triage').value,
     target: {
       type: document.getElementById('targetType').value,
       path: document.getElementById('targetPath').value
@@ -177,7 +188,8 @@ function buildPreview() {
     non_claims: [
       'This manifest does not accept the proposal.',
       'This manifest does not prove equivalence.',
-      'This manifest does not create commit-time standing.'
+      'This manifest does not create commit-time standing.',
+      'preferred_triage is not acceptance authority.'
     ],
     receipt_request: {
       include_submission_timing: true,
