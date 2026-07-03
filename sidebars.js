@@ -44,6 +44,7 @@ const sidebars = {
         'governance/governed-llm-demo-verification',
         'governance/governed-llm-site-verification',
         'governance/governed-llm-deployment-status',
+        'governance/portable-governed-return-path',
         'governance/governed-llm-archive-handoff',
         'governance/external-frameworks-as-input-class',
         'governance/governed-input-classes',
