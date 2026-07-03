@@ -1,0 +1,63 @@
+{
+  "schema": "stegverse_repo_preflight_status.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "status": "PASS",
+  "checked_at": "1970-01-01T00:00:00Z",
+  "summary": {
+    "pass": 8,
+    "warn": 0,
+    "fail": 0,
+    "skip": 0
+  },
+  "findings": [
+    {
+      "class": "PASS",
+      "category": "handoff_state",
+      "message": "Primary mirror handoff exists.",
+      "path": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
+    },
+    {
+      "class": "PASS",
+      "category": "handoff_state",
+      "message": "Site mirror handoff exists.",
+      "path": "docs/SITE_MIRROR_HANDOFF.md"
+    },
+    {
+      "class": "PASS",
+      "category": "workflow_policy",
+      "message": "Single active workflow policy is satisfied."
+    },
+    {
+      "class": "PASS",
+      "category": "governance_validation",
+      "message": "package script exists: validate",
+      "path": "package.json"
+    },
+    {
+      "class": "PASS",
+      "category": "governance_validation",
+      "message": "package script exists: build",
+      "path": "package.json"
+    },
+    {
+      "class": "PASS",
+      "category": "status_artifact_state",
+      "message": "Core status artifacts exist and are JSON parseable."
+    },
+    {
+      "class": "PASS",
+      "category": "generated_artifact_state",
+      "message": "Generated-artifact guard is documented and preflight-aware."
+    },
+    {
+      "class": "PASS",
+      "category": "render_build",
+      "message": "No known simple MDX math-expression hazards found."
+    }
+  ],
+  "non_claims": [
+    "Preflight does not replace release readiness.",
+    "Preflight does not authorize deployment.",
+    "Preflight does not prove runtime admissibility."
+  ]
+}
