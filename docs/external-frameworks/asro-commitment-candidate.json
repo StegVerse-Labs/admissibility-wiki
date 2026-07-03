@@ -1,0 +1,75 @@
+{
+  "artifact_type": "external_framework_commitment_candidate_fixture",
+  "schema_version": "0.1",
+  "framework_id": "asro",
+  "name": "ASRO governance-state attestation commitment candidate fixture",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "transition_id": "asro-governance-state-attestation-crosswalk-v0-1",
+  "requested_action": "route_asro_attestation_record_for_commit_time_review",
+  "actor": {
+    "type": "external_framework_artifact",
+    "name": "ASRO attestation evidence package",
+    "authority_inherited": false
+  },
+  "target": {
+    "type": "stegverse_review_boundary",
+    "name": "Standing-Proof-Engine commitment evaluation path"
+  },
+  "scope": [
+    "governance-state attestation evidence",
+    "host-side measurement reference",
+    "edge-side witnessing reference",
+    "independent verifier reconciliation reference",
+    "selective-attestation uncertainty review"
+  ],
+  "policy_reference": [
+    "docs/external-frameworks/governance-observatory-protocol.md",
+    "docs/external-frameworks/commit-time-interoperability-contract.md",
+    "docs/governance/external-frameworks-as-input-class.md"
+  ],
+  "delegation_reference": {
+    "supplied_by_asro": false,
+    "stegverse_authority_inherited_from_asro": false,
+    "required_for_allow": "current delegation or authority source must be reconstructed independently by SPE if execution is proposed"
+  },
+  "evidence_references": [
+    "https://aisystemsreliability.org/",
+    "https://github.com/magicianzcardstockllc/asro",
+    "docs/external-frameworks/asro.md",
+    "docs/external-frameworks/asro.json"
+  ],
+  "execution_context": {
+    "context_type": "documentation_fixture",
+    "live_provider_activation": false,
+    "production_authority": false,
+    "public_endorsement": false,
+    "repository_mutation_authority": false,
+    "general_external_llm_validation": false
+  },
+  "validity_window": {
+    "type": "documentation_only",
+    "standing_expires_at_execution_boundary": true,
+    "fresh_spe_reconstruction_required": true
+  },
+  "recoverability_profile": {
+    "fail_closed_on_missing_source": true,
+    "fail_closed_on_missing_mapping": true,
+    "fail_closed_on_selective_attestation_uncertainty": true,
+    "fail_closed_on_authority_overclaim": true,
+    "fail_closed_on_stale_or_changed_governance_state": true
+  },
+  "expected_spe_result": {
+    "default": "FAIL-CLOSED",
+    "allow_condition": "ALLOW only if current policy, delegation, evidence, context, and recoverability are independently reconstructed at the commit boundary",
+    "deny_condition": "DENY if standing is reconstructed and does not authorize the proposed consequence-binding transition",
+    "fail_closed_condition": "FAIL-CLOSED if standing cannot be reconstructed or if ASRO evidence is treated as authority"
+  },
+  "authority_boundary": {
+    "commitment_candidate_is_authority": false,
+    "asro_attestation_is_authority": false,
+    "external_framework_inclusion_is_certification": false,
+    "external_framework_inclusion_is_endorsement": false,
+    "external_framework_inclusion_is_admissibility_proof": false,
+    "external_framework_inclusion_is_execution_authority": false
+  }
+}
