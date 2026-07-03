@@ -63,7 +63,8 @@
     "governed_llm_pages_checker": "wired_in_validate_chain_continuation_job",
     "governed_llm_demo_docs_checker": "wired_in_validate_chain_continuation_job_and_npm_validate",
     "governed_llm_public_route_set": "wired_in_verify_public_pages_job",
-    "deployment_status_checker": "wired_in_verify_public_pages_job"
+    "deployment_status_checker": "wired_in_verify_public_pages_job",
+    "ios_workflow_mirror": "stale_after_canonical_workflow_update"
   },
   "installed_public_pages": {
     "landing_page": "docs/index.md",
@@ -111,6 +112,7 @@
     "Run the canonical validate-chain-continuation workflow on main.",
     "Confirm build-pages, deploy-pages, and verify-public-pages complete successfully.",
     "Confirm governed LLM full route set reachability after Pages deployment.",
+    "Sync iosnoperiod/github/workflows/validate-chain-continuation.yml with the canonical workflow.",
     "Mirror generated adapter or SDK demo outputs only after matching receipt-bound artifacts exist."
   ]
 }
