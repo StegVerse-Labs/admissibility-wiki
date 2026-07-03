@@ -1,0 +1,22 @@
+{
+  "schema": "admissibility_wiki.asro_commitment_candidate_status.v1",
+  "repo": "StegVerse-Labs/admissibility-wiki",
+  "status": "ASRO_COMMITMENT_CANDIDATE_FIXTURE_PRESENT",
+  "framework_id": "asro",
+  "page": "docs/external-frameworks/asro.md",
+  "manifest": "docs/external-frameworks/asro.json",
+  "commitment_candidate_fixture": "docs/external-frameworks/asro-commitment-candidate.json",
+  "validator": "scripts/check_asro_commitment_candidate.py",
+  "boundary": {
+    "fixture_is_authority": false,
+    "asro_attestation_is_authority": false,
+    "certification_claimed": false,
+    "endorsement_claimed": false,
+    "admissibility_proof_claimed": false,
+    "execution_authority_claimed": false,
+    "live_provider_activation_claimed": false,
+    "general_external_llm_validation_claimed": false
+  },
+  "default_spe_posture": "FAIL-CLOSED unless current standing is independently reconstructed at commit time",
+  "next_safe_build_target": "Wire ASRO candidate guard into the repo validation chain after package-script edit access is safe."
+}
