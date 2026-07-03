@@ -15,7 +15,11 @@ from urllib.request import Request, urlopen
 PAGES = (
     "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-reconstructive-search",
     "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-activation-map",
+    "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-demo-overview",
+    "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-demo-verification",
     "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-site-verification",
+    "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-deployment-status",
+    "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-archive-handoff",
 )
 
 
