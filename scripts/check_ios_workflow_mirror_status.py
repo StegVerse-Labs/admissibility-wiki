@@ -7,12 +7,14 @@ changes and neither a synced mirror nor a patch note records the delta.
 """
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
 MIRROR = ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.yml"
 PATCH = ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.patch.md"
+STATUS = ROOT / "static" / "status" / "ios-workflow-mirror-status.json"
 
 REQUIRED_PATCH_MARKERS = (
     "Validate governed LLM public pages",
@@ -20,6 +22,35 @@ REQUIRED_PATCH_MARKERS = (
     "Verify governed LLM route set",
     "not activation evidence",
 )
+
+REQUIRED_STATUS = {
+    "schema": "ios_workflow_mirror_status.v1",
+    "repository": "StegVerse-Labs/admissibility-wiki",
+    "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "ios_safe_mirror": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
+    "patch_note": "iosnoperiod/github/workflows/validate-chain-continuation.patch.md",
+    "status": "patched_delta_recorded",
+    "guard": "scripts/check_ios_workflow_mirror_status.py",
+    "npm_script": "validate:ios-workflow-mirror",
+    "main_validation_chain": "included",
+}
+
+
+def check_status_file(failures: list[str]) -> None:
+    if not STATUS.exists():
+        failures.append("missing iOS workflow mirror status artifact")
+        return
+    data = json.loads(STATUS.read_text(encoding="utf-8"))
+    for key, expected in REQUIRED_STATUS.items():
+        if data.get(key) != expected:
+            failures.append(f"status artifact mismatch: {key}")
+    boundary = data.get("boundary", {})
+    if boundary.get("mirror_is_activation_evidence") is not False:
+        failures.append("status boundary mismatch: mirror_is_activation_evidence")
+    if boundary.get("patch_note_is_activation_evidence") is not False:
+        failures.append("status boundary mismatch: patch_note_is_activation_evidence")
+    if boundary.get("canonical_workflow_remains_source_of_truth") is not True:
+        failures.append("status boundary mismatch: canonical_workflow_remains_source_of_truth")
 
 
 def main() -> int:
@@ -29,6 +60,8 @@ def main() -> int:
         failures.append("missing canonical workflow")
     if not MIRROR.exists():
         failures.append("missing iOS workflow mirror")
+
+    check_status_file(failures)
 
     if failures:
         print("IOS WORKFLOW MIRROR: FAIL")
