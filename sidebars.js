@@ -35,6 +35,7 @@ const sidebars = {
         'governance/repo-standards-integration',
         'governance/repo-standards-installation-bundle',
         'governance/repo-standards-validation-runbook',
+        'governance/repo-preflight',
         'governance/governed-ecosystem-index',
         'governance/governed-ecosystem-transitions',
         'governance/governed-llm-reconstructive-search',
