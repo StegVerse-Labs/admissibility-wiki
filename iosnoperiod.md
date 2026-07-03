@@ -12,9 +12,21 @@ iosnoperiod/github/workflows/validate-chain-continuation.yml -> .github/workflow
 
 The left side is the iOS-safe mirror path. The right side is the canonical GitHub Actions path.
 
+## Current status
+
+The canonical workflow is ahead of the iOS-safe mirror after governed LLM route verification was added.
+
+The controlled patch note is:
+
+```text
+iosnoperiod/github/workflows/validate-chain-continuation.patch.md
+```
+
 ## Done Criteria
 
 The mirror is ready when the workflow file exists under `iosnoperiod/github/workflows/` and can be copied to the canonical path without content changes.
+
+Until the patch note is applied to the mirror file, the mirror must be treated as stale and not activation-ready.
 
 ## Boundary
 
