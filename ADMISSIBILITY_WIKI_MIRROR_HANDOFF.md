@@ -1,50 +1,81 @@
 # Admissibility Wiki Mirror Handoff
 
-## Source of Truth
+## Current source of truth
 
-This file is the current handoff and task source of truth for `StegVerse-Labs/admissibility-wiki`.
+This file is the handoff source of truth for `StegVerse-Labs/admissibility-wiki` until superseded.
 
-## Active Goal
+## Active goal
 
-Goal ID: `ADMWIKI-REPO-STANDARDS-SYNC-001`
+Sync public documentation for the portable governed return-path proof after completion of the runtime, adapter, and SDK integration chain.
 
-Resume admissibility-wiki progress and prepare the wiki to receive validated `repo-standards` release references once the upstream tag/release is created.
+## Completed upstream inputs
 
-## Current Status
+```text
+StegVerse-002/micro-node-runtime
+  -> transition-table-native portable micro-node runtime merged on main
 
-- Repository is accessible and writable.
-- No prior `*_MIRROR_HANDOFF.md` was found by repository search.
-- This handoff was created first, before further repo work.
-- Upstream `repo-standards` is structurally complete and release-ready, with manual validation evidence recorded, but actual Git tag/release creation must be completed outside the currently exposed connector action set.
+StegVerse-org/core-node-runtime-demo
+  -> micro-node compatibility comparison merged on main
 
-## Current Dependencies
+StegVerse-org/LLM-adapter
+  -> micro-node governed return-path proof merged on main
 
-### Upstream
+StegVerse-org/StegVerse-SDK
+  -> SDK-side micro-node adapter fixture validation merged on main
+```
 
-- `StegVerse-Labs/repo-standards`
-- Release gate is validated.
-- Tag/release is still pending outside this connector session.
+## Installed on main
 
-### Downstream / Local
+```text
+docs/governance/portable-governed-return-path.md
+static/governance/portable-governed-return-path.v0.1.json
+sidebars.js includes governance/portable-governed-return-path
+```
 
-- Identify admissibility-wiki documentation location for repository standards/admissibility references.
-- Add or update pages only after confirming current wiki structure.
-- Avoid mirroring an untagged upstream release as final release authority.
+## Public proof chain
 
-## Next Actions
+```text
+external LLM or UI
+-> LLM-adapter fixture
+-> micro-node-compatible transition request
+-> SDK fixture validation
+-> governed return payload
+-> original customer path
+```
 
-1. Inspect repository structure.
-2. Identify docs/pages related to standards, admissibility, transition table, or repo governance.
-3. Add a pending reference page or update plan for `repo-standards` release integration.
-4. Once upstream release tag exists, update admissibility-wiki with the release reference.
+## Required boundary statement
 
-## Known Remaining Work
+This documentation must remain fixture-bound and must not claim live provider activation, live production authority, public endorsement, repository mutation authority, or general validation of any external LLM.
 
-- Locate current wiki build framework and docs root.
-- Determine whether this repo already has standards/admissibility pages.
-- Add a repo-standards integration page or queue entry.
-- Record any missing module/page destinations.
+## Verification target
 
-## Archive Readiness
+```text
+public page builds
+JSON status artifact parses
+boundary/non-claim language is preserved
+```
 
-READY_FOR_HANDOFF. Future sessions can continue from this file without requiring the full thread.
+## Remaining files or modules to install
+
+Intended Org/Repo: `StegVerse-Labs/admissibility-wiki`
+
+```text
+No additional portable governed return-path files currently required before build verification.
+```
+
+Intended Org/Repo: `StegVerse-Labs/Site`
+
+```text
+Mirror or index this public proof only after admissibility-wiki build passes.
+Check Site docs/SITE_MIRROR_HANDOFF.md before any Site update.
+```
+
+Intended Org/Repo: `GCAT-BCAT-Engine/Publisher`
+
+```text
+No publisher sync performed yet; queue only after wiki page is green.
+```
+
+## Archive posture
+
+This handoff preserves the current sync state so the complete thread can be archived without needing additional context to continue.
