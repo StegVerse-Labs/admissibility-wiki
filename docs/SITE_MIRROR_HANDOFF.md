@@ -18,10 +18,11 @@ fixture query
 -> SDK manifest binding
 -> SDK receipt handoff
 -> wiki public demo overview
+-> wiki public demo verification
 -> Site navigation and deployment verification
 ```
 
-## Authorized files
+## Installed files
 
 ```text
 docs/governance/governed-llm-demo-overview.md
@@ -29,8 +30,28 @@ docs/governance/governed-llm-demo-verification.md
 scripts/check_governed_llm_demo_docs.py
 sidebars.js update
 README.md update
+docs/governance/governed-llm-activation-map.md update
+ADMISSIBILITY_MIRROR_HANDOFF.md update
+```
+
+## Local verification
+
+```bash
+python scripts/check_governed_llm_pages.py
+python scripts/check_governed_llm_demo_docs.py
+npm run build
+```
+
+## Deployment verification
+
+```bash
+python scripts/check_governed_llm_deployment_status.py
 ```
 
 ## Boundary
 
 Site mirror publication is not provider governance, execution authority, commit-time standing, external indexing, or master-record persistence.
+
+## Next mirror input
+
+Only mirror generated adapter or SDK demo outputs after the adapter and SDK repositories produce matching receipt-bound artifacts.
