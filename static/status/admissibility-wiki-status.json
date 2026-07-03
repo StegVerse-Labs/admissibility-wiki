@@ -1,11 +1,11 @@
 {
   "schema": "admissibility_wiki_status.v1",
-  "generated_at": "2026-07-02T00:00:00Z",
+  "generated_at": "2026-07-03T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "site": "https://stegverse-labs.github.io/admissibility-wiki/",
   "status": "build_in_progress",
   "assessment_goal": "Continue build work until completion or ecosystem-managed continuation is supported by handoff, governance, validation, and next-task structure.",
-  "activation_target": "Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the GitHub Pages public vocabulary, terminology convergence, proposal-review, and proof-path site.",
+  "activation_target": "Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the GitHub Pages public vocabulary, terminology convergence, proposal-review, proof-path, and governed LLM public documentation site.",
   "activation_artifacts": {
     "activation_checklist": "static/status/admissibility-wiki-activation.json",
     "activation_runbook": "docs/activation/github-pages-cloudflare.md",
@@ -18,7 +18,8 @@
     "https_enforced": "pending_external_verification",
     "public_site_loads": "pending_external_verification",
     "ontology_json_reachable": "pending_external_verification",
-    "proposal_decision_examples_reachable": "pending_external_verification"
+    "proposal_decision_examples_reachable": "pending_external_verification",
+    "governed_llm_demo_routes_reachable": "pending_external_verification"
   },
   "github_io_configuration": {
     "url": "https://stegverse-labs.github.io",
@@ -71,8 +72,14 @@
     "page_template": "docs/governance/page-template.md",
     "current_task_sync": "docs/governance/current-task-sync.md",
     "mirror_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+    "site_mirror_handoff": "docs/SITE_MIRROR_HANDOFF.md",
+    "governed_llm_reconstructive_search": "docs/governance/governed-llm-reconstructive-search.md",
+    "governed_llm_activation_map": "docs/governance/governed-llm-activation-map.md",
     "governed_llm_demo_overview": "docs/governance/governed-llm-demo-overview.md",
-    "governed_llm_demo_verification": "docs/governance/governed-llm-demo-verification.md"
+    "governed_llm_demo_verification": "docs/governance/governed-llm-demo-verification.md",
+    "governed_llm_site_verification": "docs/governance/governed-llm-site-verification.md",
+    "governed_llm_deployment_status": "docs/governance/governed-llm-deployment-status.md",
+    "governed_llm_archive_handoff": "docs/governance/governed-llm-archive-handoff.md"
   },
   "installed_governance_records": [
     "docs/governance/proposal-intake-interface.md",
@@ -80,17 +87,25 @@
     "docs/governance/proposal-lifecycle.md",
     "docs/governance/decision-record.md",
     "docs/governance/current-task-sync.md",
+    "docs/governance/governed-llm-reconstructive-search.md",
+    "docs/governance/governed-llm-activation-map.md",
     "docs/governance/governed-llm-demo-overview.md",
-    "docs/governance/governed-llm-demo-verification.md"
+    "docs/governance/governed-llm-demo-verification.md",
+    "docs/governance/governed-llm-site-verification.md",
+    "docs/governance/governed-llm-deployment-status.md",
+    "docs/governance/governed-llm-archive-handoff.md"
   ],
   "known_handoff_files": {
-    "repo_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+    "repo_handoff": "ADMISSIBILITY_MIRROR_HANDOFF.md",
     "site_handoff": "docs/SITE_MIRROR_HANDOFF.md",
     "governed_llm_archive_handoff": "docs/governance/governed-llm-archive-handoff.md"
   },
   "next_safe_build_targets": [
+    "Run python scripts/check_governed_llm_pages.py.",
+    "Run python scripts/check_governed_llm_demo_docs.py.",
+    "Run npm run build.",
     "Run the canonical validate-chain-continuation workflow on main.",
     "Confirm build-pages, deploy-pages, and verify-public-pages complete successfully.",
-    "If automation fails, run a full preflight sweep of stale workflow assumptions before patching another single surfaced error."
+    "Mirror generated adapter or SDK demo outputs only after matching receipt-bound artifacts exist."
   ]
 }
