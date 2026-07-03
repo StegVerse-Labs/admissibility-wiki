@@ -155,6 +155,9 @@ jobs:
       - name: Repo preflight
         run: node scripts/repo_preflight.mjs
 
+      - name: Validate repo preflight status
+        run: node scripts/check-repo-preflight-status.mjs
+
       - name: Validate public activation receipt writer
         run: node scripts/check-public-activation-receipt-writer.mjs
 
