@@ -1,0 +1,20 @@
+{
+  "schema": "ios_workflow_mirror_status.v1",
+  "generated_at": "2026-07-03T00:00:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "ios_safe_mirror": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
+  "patch_note": "iosnoperiod/github/workflows/validate-chain-continuation.patch.md",
+  "status": "patched_delta_recorded",
+  "guard": "scripts/check_ios_workflow_mirror_status.py",
+  "npm_script": "validate:ios-workflow-mirror",
+  "main_validation_chain": "included",
+  "expected_result": "IOS WORKFLOW MIRROR: PATCHED",
+  "boundary": {
+    "mirror_is_activation_evidence": false,
+    "patch_note_is_activation_evidence": false,
+    "canonical_workflow_remains_source_of_truth": true,
+    "mirror_must_not_be_used_as_current_workflow_until_synced": true
+  },
+  "next_safe_action": "Replace the iOS-safe workflow mirror with the canonical workflow when full mirror sync is available."
+}
