@@ -49,11 +49,27 @@ The current proof is fixture-bound and demonstrates contract compatibility only.
 
 ## Verification commands
 
+Adapter proof:
+
 ```bash
-python tools/verify_all.py
-python tools/verify_micro_node_compatibility.py
 python scripts/verify_micro_node_return_path.py
-python scripts/verify_micro_node_adapter_fixture.py
+pytest tests/test_micro_node_return_path.py -v
+pytest tests/ -v
+```
+
+SDK proof:
+
+```bash
+python scripts/verify_micro_node_return_path.py
+pytest tests/test_micro_node_return_path.py -v
+```
+
+Site proof:
+
+```bash
+python scripts/check_governed_llm_pages.py
+python scripts/check_governed_llm_demo_docs.py
+npm run build
 ```
 
 ## Status
