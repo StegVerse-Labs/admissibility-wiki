@@ -1,10 +1,10 @@
 {
   "manifest_id": "ADMISSIBILITY-WIKI-WORKFLOW-001",
-  "schema_version": "1.6",
+  "schema_version": "1.7",
   "canonical_workflows": [
     {
       "path": ".github/workflows/validate-chain-continuation.yml",
-      "purpose": "Single active validation, scheduled self-deploy, public Pages verification workflow, generated framework reports, ASRO commitment-candidate guard, and governed LLM route verification",
+      "purpose": "Single active validation, scheduled self-deploy, public Pages verification workflow, generated framework reports, ASRO commitment-candidate guard, governed LLM route verification, and automation handoff guard",
       "installed": true,
       "scheduled": true,
       "cron": "17 * * * *"
@@ -50,6 +50,7 @@
     "python scripts/check_governed_llm_pages.py",
     "python scripts/check_governed_llm_demo_docs.py",
     "python scripts/check_ios_workflow_mirror_status.py",
+    "python scripts/check_admissibility_automation_handoff.py",
     "python scripts/check_ci_evidence.py",
     "python scripts/check_guardian_destination.py"
   ],
@@ -67,13 +68,15 @@
     "governed_llm_pages": "GOVERNED LLM PAGES: PASS",
     "governed_llm_demo_docs": "GOVERNED LLM DEMO DOCS: PASS",
     "ios_workflow_mirror": "IOS WORKFLOW MIRROR: PATCHED",
+    "admissibility_automation_handoff": "ADMISSIBILITY AUTOMATION HANDOFF: PASS",
     "ci_evidence": "CI EVIDENCE: PASS"
   },
   "generated_reports": [
     "reports/guardian_destination_status.json",
     "docs/CI_EVIDENCE.json",
     "docs/external-frameworks/evaluation-results.md",
-    "static/status/asro-commitment-candidate-status.json"
+    "static/status/asro-commitment-candidate-status.json",
+    "static/status/ios-workflow-mirror-status.json"
   ],
   "boundary": {
     "active_workflow_count": 1,
@@ -93,6 +96,7 @@
     "generated_framework_page_status_is_authority": false,
     "governed_llm_docs_are_execution_authority": false,
     "governed_llm_route_verification_is_external_indexing": false,
+    "automation_handoff_is_authority": false,
     "ci_evidence_is_authority": false,
     "missing_ci_fails_closed": true
   }
