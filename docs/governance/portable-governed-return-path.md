@@ -52,16 +52,13 @@ The current proof is fixture-bound and demonstrates contract compatibility only.
 Adapter proof:
 
 ```bash
-python scripts/verify_micro_node_return_path.py
-pytest tests/test_micro_node_return_path.py -v
-pytest tests/ -v
+python scripts/verify_goal4.py
 ```
 
 SDK proof:
 
 ```bash
-python scripts/verify_micro_node_return_path.py
-pytest tests/test_micro_node_return_path.py -v
+python scripts/verify_goal4.py
 ```
 
 Site proof:
@@ -71,6 +68,10 @@ python scripts/check_governed_llm_pages.py
 python scripts/check_governed_llm_demo_docs.py
 npm run build
 ```
+
+## Manual task reduction
+
+The adapter and SDK proof paths now expose single-command aggregate verifiers. Each aggregate verifier runs the repo-local Goal 4 scripts and tests, emits JSON output, and fails closed when any constituent command fails.
 
 ## Status
 
