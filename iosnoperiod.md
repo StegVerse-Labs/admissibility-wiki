@@ -8,15 +8,25 @@ Some clients cannot reliably create or move paths that begin with a leading peri
 
 ```text
 iosnoperiod/github/workflows/validate-chain-continuation.yml -> .github/workflows/validate-chain-continuation.yml
+iosnoperiod/github/workflows/validate.yml -> .github/workflows/validate.yml
 ```
 
 The left side is the iOS-safe mirror path. The right side is the canonical GitHub Actions path.
 
 ## Current status
 
-The canonical workflow is ahead of the iOS-safe mirror after governed LLM route verification was added.
+`iosnoperiod/github/workflows/validate.yml` contains the Goal 5 wiki validation path:
 
-The controlled patch note is:
+```text
+npm ci
+python scripts/check_governed_llm_pages.py
+python scripts/check_governed_llm_demo_docs.py
+npm run build
+```
+
+The mirror preserves the max-two-workflows rule. It is intended to become the single canonical validate workflow if canonical workflow activation is authorized.
+
+The controlled patch note for the older chain-continuation workflow is:
 
 ```text
 iosnoperiod/github/workflows/validate-chain-continuation.patch.md
@@ -26,7 +36,7 @@ iosnoperiod/github/workflows/validate-chain-continuation.patch.md
 
 The mirror is ready when the workflow file exists under `iosnoperiod/github/workflows/` and can be copied to the canonical path without content changes.
 
-Until the patch note is applied to the mirror file, the mirror must be treated as stale and not activation-ready.
+Until a mirror is copied to its canonical `.github/workflows/` destination, the mirror must be treated as prepared-but-not-activated CI evidence.
 
 ## Boundary
 
