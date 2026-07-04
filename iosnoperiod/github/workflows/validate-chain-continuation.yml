@@ -104,6 +104,9 @@ jobs:
       - name: Validate external framework expansion policy
         run: python scripts/check_external_framework_expansion_policy.py
 
+      - name: Validate ASRO commitment candidate
+        run: python scripts/check_asro_commitment_candidate.py
+
       - name: Validate CI evidence state
         run: python scripts/check_ci_evidence.py
 
