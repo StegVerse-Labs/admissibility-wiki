@@ -45,6 +45,7 @@ const sidebars = {
         'governance/governed-llm-site-verification',
         'governance/governed-llm-deployment-status',
         'governance/portable-governed-return-path',
+        'governance/goal5-cross-repo-verification',
         'governance/governed-llm-archive-handoff',
         'governance/external-frameworks-as-input-class',
         'governance/governed-input-classes',
@@ -118,52 +119,9 @@ const sidebars = {
       label: 'StegVerse',
       items: [
         'stegverse/stegcore',
-        'stegverse/stegcge',
-        'stegverse/tv-tvc',
-        'stegverse/transition-table',
-        'stegverse/transition-element-code-representation',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Comparisons',
-      items: [
-        'comparisons/admissibility-vs-continuity',
-        'comparisons/approval-vs-execution',
-        'comparisons/visibility-vs-governance',
-        'comparisons/auditability-vs-admissibility',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Proof Path',
-      items: [
-        'proof-path/minimal-public-proof-path',
-        'proof-path/transition-cell-example',
-        'proof-path/receipt-example',
-        'proof-path/replay-example',
-        'proof-path/deny-example',
-        'proof-path/escalate-example',
-        'proof-path/refuse-example',
-        'proof-path/drift-denial-example',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Ontology',
-      items: [
-        'ontology/machine-readable-vocabulary',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Essays',
-      items: [
-        'essays/why-admissibility-matters',
-        'essays/consequence-standing',
       ],
     },
   ],
 };
 
-export default sidebars;
+module.exports = sidebars;
