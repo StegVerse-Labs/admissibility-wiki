@@ -36,7 +36,7 @@ Goal-specific workflows should not be added. Goal verification must be folded in
 | `StegVerse-org/core-node-runtime-demo` | larger runtime comparison against micro-node contract | `python tools/verify_goal5.py` | folded into existing `.github/workflows/validate.yml` |
 | `StegVerse-org/LLM-adapter` | external LLM adapter governed return-path proof | `python scripts/verify_goal4.py` | installed as single `.github/workflows/validate.yml` |
 | `StegVerse-org/StegVerse-SDK` | SDK validation of adapter-originated micro-node fixtures | `python scripts/verify_goal4.py` | installed as single `.github/workflows/validate.yml` |
-| `StegVerse-Labs/admissibility-wiki` | public documentation and Site verification | `python scripts/check_governed_llm_pages.py && python scripts/check_governed_llm_demo_docs.py && npm run build` | should be folded into one existing or new validate/build workflow, not a separate Goal workflow |
+| `StegVerse-Labs/admissibility-wiki` | public documentation and Site verification | `python scripts/check_governed_llm_pages.py && python scripts/check_governed_llm_demo_docs.py && npm run build` | prepared in `iosnoperiod/github/workflows/validate.yml` until canonical workflow activation |
 
 ## CI-owned execution model
 
@@ -48,6 +48,15 @@ push / pull_request / workflow_dispatch
 -> artifact or workflow log
 -> handoff records latest passing commit
 ```
+
+## Prepared-but-not-activated mirrors
+
+```text
+StegVerse-002/micro-node-runtime/iosnoperiod/github/workflows/validate.yml
+StegVerse-Labs/admissibility-wiki/iosnoperiod/github/workflows/validate.yml
+```
+
+These mirrors do not count as active GitHub Actions workflows until copied to the canonical `.github/workflows/` location. They preserve the one-validate-workflow pattern without adding separate Goal workflows.
 
 ## Proof chain
 
@@ -68,6 +77,7 @@ execution_authority_granted == false
 master_record_persistence_claimed == false
 external_system_certified == false
 workflow_count_exceeds_two == false
+mirror_is_activation_evidence == false
 ```
 
 ## Completion rule
