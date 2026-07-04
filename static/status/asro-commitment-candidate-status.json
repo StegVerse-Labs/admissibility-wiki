@@ -1,12 +1,15 @@
 {
   "schema": "admissibility_wiki.asro_commitment_candidate_status.v1",
   "repo": "StegVerse-Labs/admissibility-wiki",
-  "status": "ASRO_COMMITMENT_CANDIDATE_FIXTURE_PRESENT",
+  "status": "ASRO_COMMITMENT_CANDIDATE_GUARD_WIRED",
   "framework_id": "asro",
   "page": "docs/external-frameworks/asro.md",
   "manifest": "docs/external-frameworks/asro.json",
   "commitment_candidate_fixture": "docs/external-frameworks/asro-commitment-candidate.json",
   "validator": "scripts/check_asro_commitment_candidate.py",
+  "workflow": ".github/workflows/validate-chain-continuation.yml",
+  "ios_workflow_mirror": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
+  "workflow_manifest": "workflow_manifest.json",
   "boundary": {
     "fixture_is_authority": false,
     "asro_attestation_is_authority": false,
@@ -18,5 +21,11 @@
     "general_external_llm_validation_claimed": false
   },
   "default_spe_posture": "FAIL-CLOSED unless current standing is independently reconstructed at commit time",
-  "next_safe_build_target": "Wire ASRO candidate guard into the repo validation chain after package-script edit access is safe."
+  "automation_status": {
+    "canonical_workflow_guard_wired": true,
+    "ios_workflow_mirror_guard_wired": true,
+    "workflow_manifest_guard_declared": true,
+    "package_aggregate_guard_wired": false
+  },
+  "next_safe_build_target": "Run canonical validation and public build verification; package aggregate wiring remains optional because the canonical workflow now calls the ASRO guard directly."
 }
