@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "workflow_manifest.json"
 LOCAL_ENTRYPOINT = "python scripts/run_canonical_validation.py"
 EXPECTED_CRON = "17 * * * *"
+EXPECTED_SCHEMA_VERSION = "1.6"
 
 REQUIRED_COMMANDS = [
     "python scripts/check_workflow_sprawl.py",
@@ -36,6 +37,7 @@ REQUIRED_COMMANDS = [
     "python scripts/check_external_framework_page_mapping.py",
     "python scripts/check_external_framework_page_status.py",
     "python scripts/check_external_framework_expansion_policy.py",
+    "python scripts/check_asro_commitment_candidate.py",
     "python scripts/check_governed_llm_pages.py",
     "python scripts/check_governed_llm_demo_docs.py",
     "python scripts/check_ios_workflow_mirror_status.py",
@@ -52,6 +54,7 @@ EXPECTED = {
     "external_framework_page_mapping": "EXTERNAL FRAMEWORK PAGE MAPPING: PASS",
     "external_framework_page_status": "EXTERNAL FRAMEWORK PAGE STATUS: PASS",
     "external_framework_expansion_policy": "EXTERNAL FRAMEWORK EXPANSION POLICY: PASS",
+    "asro_commitment_candidate": "ASRO COMMITMENT CANDIDATE: PASS",
     "governed_llm_pages": "GOVERNED LLM PAGES: PASS",
     "governed_llm_demo_docs": "GOVERNED LLM DEMO DOCS: PASS",
     "ios_workflow_mirror": "IOS WORKFLOW MIRROR: PATCHED",
@@ -69,7 +72,7 @@ def main() -> int:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     if manifest.get("manifest_id") != "ADMISSIBILITY-WIKI-WORKFLOW-001":
         failures.append("manifest id mismatch")
-    if manifest.get("schema_version") != "1.5":
+    if manifest.get("schema_version") != EXPECTED_SCHEMA_VERSION:
         failures.append("schema version mismatch")
 
     workflows = manifest.get("canonical_workflows", [])
@@ -110,6 +113,8 @@ def main() -> int:
         failures.append("local validation entrypoint authority boundary mismatch")
     if boundary.get("external_framework_outputs_are_authority") is not False:
         failures.append("external output boundary mismatch")
+    if boundary.get("asro_commitment_candidate_is_authority") is not False:
+        failures.append("ASRO commitment candidate authority mismatch")
     if boundary.get("generated_framework_results_are_authority") is not False:
         failures.append("generated results authority mismatch")
     if boundary.get("generated_framework_page_metadata_is_authority") is not False:
