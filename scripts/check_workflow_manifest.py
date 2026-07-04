@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "workflow_manifest.json"
 LOCAL_ENTRYPOINT = "python scripts/run_canonical_validation.py"
 EXPECTED_CRON = "17 * * * *"
-EXPECTED_SCHEMA_VERSION = "1.6"
+EXPECTED_SCHEMA_VERSION = "1.7"
 
 REQUIRED_COMMANDS = [
     "python scripts/check_workflow_sprawl.py",
@@ -41,6 +41,7 @@ REQUIRED_COMMANDS = [
     "python scripts/check_governed_llm_pages.py",
     "python scripts/check_governed_llm_demo_docs.py",
     "python scripts/check_ios_workflow_mirror_status.py",
+    "python scripts/check_admissibility_automation_handoff.py",
     "python scripts/check_ci_evidence.py",
     "python scripts/check_guardian_destination.py",
 ]
@@ -58,6 +59,7 @@ EXPECTED = {
     "governed_llm_pages": "GOVERNED LLM PAGES: PASS",
     "governed_llm_demo_docs": "GOVERNED LLM DEMO DOCS: PASS",
     "ios_workflow_mirror": "IOS WORKFLOW MIRROR: PATCHED",
+    "admissibility_automation_handoff": "ADMISSIBILITY AUTOMATION HANDOFF: PASS",
     "ci_evidence": "CI EVIDENCE: PASS",
 }
 
@@ -129,6 +131,8 @@ def main() -> int:
         failures.append("governed LLM route verification boundary mismatch")
     if boundary.get("ios_workflow_mirror_is_activation_evidence") is not False:
         failures.append("iOS workflow mirror authority boundary mismatch")
+    if boundary.get("automation_handoff_is_authority") is not False:
+        failures.append("automation handoff authority boundary mismatch")
 
     print("WORKFLOW MANIFEST:", "FAIL" if failures else "PASS")
     for failure in failures:
