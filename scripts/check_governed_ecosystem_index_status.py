@@ -7,9 +7,14 @@ PAGE = ROOT / "docs" / "governance" / "governed-ecosystem-index.md"
 VERIFY_PAGE = ROOT / "docs" / "governance" / "ecosystem-capability-status.md"
 GUARDIAN_STATUS = ROOT / "static" / "status" / "guardian-destination-resolution-status.json"
 
+PUBLIC_GUARDIAN = "StegVerse-002/stegguardian-wiki"
+PRIVATE_GUARDIAN = "StegVerse-002/StegGuardian"
+GUARDIAN_STATUS_PATH = "static/status/guardian-destination-resolution-status.json"
+
 
 def main():
     errors = []
+    page_text = ""
     if not STATUS.exists():
         errors.append("missing_status")
         data = {}
@@ -17,6 +22,8 @@ def main():
         data = json.loads(STATUS.read_text(encoding="utf-8"))
     if not PAGE.exists():
         errors.append("missing_page")
+    else:
+        page_text = PAGE.read_text(encoding="utf-8")
     if not VERIFY_PAGE.exists():
         errors.append("missing_verification_page")
     if not GUARDIAN_STATUS.exists():
@@ -27,12 +34,21 @@ def main():
         errors.append("status")
 
     destination = data.get("destination_resolution", {})
-    if destination.get("guardian_status_artifact") != "static/status/guardian-destination-resolution-status.json":
+    if destination.get("guardian_status_artifact") != GUARDIAN_STATUS_PATH:
         errors.append("guardian_status_artifact")
-    if destination.get("canonical_public_guardian_destination") != "StegVerse-002/stegguardian-wiki":
+    if destination.get("canonical_public_guardian_destination") != PUBLIC_GUARDIAN:
         errors.append("canonical_public_guardian_destination")
-    if destination.get("canonical_private_guardian_destination") != "StegVerse-002/StegGuardian":
+    if destination.get("canonical_private_guardian_destination") != PRIVATE_GUARDIAN:
         errors.append("canonical_private_guardian_destination")
+
+    for required in [
+        "## Destination resolution",
+        PUBLIC_GUARDIAN,
+        PRIVATE_GUARDIAN,
+        GUARDIAN_STATUS_PATH,
+    ]:
+        if required not in page_text:
+            errors.append(f"page_missing:{required}")
 
     boundary = data.get("claim_boundary", {})
     for key in [
