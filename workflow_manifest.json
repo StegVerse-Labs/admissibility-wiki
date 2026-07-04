@@ -1,10 +1,10 @@
 {
   "manifest_id": "ADMISSIBILITY-WIKI-WORKFLOW-001",
-  "schema_version": "1.5",
+  "schema_version": "1.6",
   "canonical_workflows": [
     {
       "path": ".github/workflows/validate-chain-continuation.yml",
-      "purpose": "Single active validation, scheduled self-deploy, public Pages verification workflow, generated framework reports, and governed LLM route verification",
+      "purpose": "Single active validation, scheduled self-deploy, public Pages verification workflow, generated framework reports, ASRO commitment-candidate guard, and governed LLM route verification",
       "installed": true,
       "scheduled": true,
       "cron": "17 * * * *"
@@ -46,6 +46,7 @@
     "python scripts/check_external_framework_page_mapping.py",
     "python scripts/check_external_framework_page_status.py",
     "python scripts/check_external_framework_expansion_policy.py",
+    "python scripts/check_asro_commitment_candidate.py",
     "python scripts/check_governed_llm_pages.py",
     "python scripts/check_governed_llm_demo_docs.py",
     "python scripts/check_ios_workflow_mirror_status.py",
@@ -62,6 +63,7 @@
     "external_framework_page_mapping": "EXTERNAL FRAMEWORK PAGE MAPPING: PASS",
     "external_framework_page_status": "EXTERNAL FRAMEWORK PAGE STATUS: PASS",
     "external_framework_expansion_policy": "EXTERNAL FRAMEWORK EXPANSION POLICY: PASS",
+    "asro_commitment_candidate": "ASRO COMMITMENT CANDIDATE: PASS",
     "governed_llm_pages": "GOVERNED LLM PAGES: PASS",
     "governed_llm_demo_docs": "GOVERNED LLM DEMO DOCS: PASS",
     "ios_workflow_mirror": "IOS WORKFLOW MIRROR: PATCHED",
@@ -70,7 +72,8 @@
   "generated_reports": [
     "reports/guardian_destination_status.json",
     "docs/CI_EVIDENCE.json",
-    "docs/external-frameworks/evaluation-results.md"
+    "docs/external-frameworks/evaluation-results.md",
+    "static/status/asro-commitment-candidate-status.json"
   ],
   "boundary": {
     "active_workflow_count": 1,
@@ -83,6 +86,7 @@
     "manual_destination_search_required": false,
     "local_validation_entrypoint_is_authority": false,
     "external_framework_outputs_are_authority": false,
+    "asro_commitment_candidate_is_authority": false,
     "generated_framework_results_are_authority": false,
     "generated_framework_page_metadata_is_authority": false,
     "generated_framework_page_mapping_is_authority": false,
