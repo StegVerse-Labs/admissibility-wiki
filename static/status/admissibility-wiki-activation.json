@@ -1,6 +1,6 @@
 {
-  "schema": "admissibility_wiki_activation.v1",
-  "generated_at": "2026-07-02T00:00:00Z",
+  "schema": "admissibility_wiki_activation.v2",
+  "generated_at": "2026-07-04T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "target_url": "https://stegverse-labs.github.io/admissibility-wiki/",
   "hosting_mode": "github_pages_project_site",
@@ -15,6 +15,7 @@
     "docusaurus_baseUrl": "/admissibility-wiki/",
     "github_pages_source": "GitHub Actions",
     "deploy_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "workflow_manifest_schema": "1.7",
     "build_output": "build",
     "deploy_gate": "canonical validate-chain-continuation workflow"
   },
@@ -38,6 +39,30 @@
       "blocking": true
     },
     {
+      "check_id": "governed_llm_validation_guards",
+      "description": "Governed LLM page and demo documentation checks run in package validation and canonical workflow validation.",
+      "status": "declared_in_workflow_and_manifest",
+      "blocking": true
+    },
+    {
+      "check_id": "automation_handoff_guard",
+      "description": "Automation handoff guard is installed and declared in package validation plus workflow manifest.",
+      "status": "declared_in_validation_chain",
+      "blocking": true
+    },
+    {
+      "check_id": "ios_workflow_mirror_guard",
+      "description": "iOS-safe workflow mirror drift is checked by a guard and recorded as patched delta until the mirror matches canonical workflow.",
+      "status": "patched_delta_recorded",
+      "blocking": true
+    },
+    {
+      "check_id": "asro_commitment_candidate_guard",
+      "description": "ASRO commitment-candidate guard is included in the canonical workflow and workflow manifest.",
+      "status": "declared_in_workflow_and_manifest",
+      "blocking": true
+    },
+    {
       "check_id": "root_url_loads",
       "description": "The root project page loads without 404.",
       "url": "https://stegverse-labs.github.io/admissibility-wiki/",
@@ -55,6 +80,34 @@
       "check_id": "status_json_loads",
       "description": "The public status JSON is reachable as a static asset.",
       "url": "https://stegverse-labs.github.io/admissibility-wiki/status/admissibility-wiki-status.json",
+      "status": "pending_workflow_observation",
+      "blocking": true
+    },
+    {
+      "check_id": "ios_workflow_mirror_status_json_loads",
+      "description": "The iOS workflow mirror status JSON is reachable as a static asset.",
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/status/ios-workflow-mirror-status.json",
+      "status": "pending_workflow_observation",
+      "blocking": true
+    },
+    {
+      "check_id": "governed_llm_demo_overview_route_loads",
+      "description": "Governed LLM demo overview route loads under the project base URL.",
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-demo-overview",
+      "status": "pending_workflow_observation",
+      "blocking": true
+    },
+    {
+      "check_id": "governed_llm_demo_verification_route_loads",
+      "description": "Governed LLM demo verification route loads under the project base URL.",
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-demo-verification",
+      "status": "pending_workflow_observation",
+      "blocking": true
+    },
+    {
+      "check_id": "asro_route_loads",
+      "description": "ASRO external framework route loads under the project base URL.",
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/asro",
       "status": "pending_workflow_observation",
       "blocking": true
     },
