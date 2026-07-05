@@ -113,6 +113,12 @@ jobs:
       - name: Validate governed LLM demo docs
         run: python scripts/check_governed_llm_demo_docs.py
 
+      - name: Validate iOS workflow mirror status
+        run: python scripts/check_ios_workflow_mirror_status.py
+
+      - name: Validate admissibility automation handoff
+        run: python scripts/check_admissibility_automation_handoff.py
+
       - name: Validate CI evidence state
         run: python scripts/check_ci_evidence.py
 
