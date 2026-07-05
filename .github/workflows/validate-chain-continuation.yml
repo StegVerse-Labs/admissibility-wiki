@@ -113,6 +113,9 @@ jobs:
       - name: Validate governed LLM demo docs
         run: python scripts/check_governed_llm_demo_docs.py
 
+      - name: Validate LLM free-tier trust chain
+        run: python scripts/check_llm_free_tier_trust_chain.py
+
       - name: Validate iOS workflow mirror status
         run: python scripts/check_ios_workflow_mirror_status.py
 
@@ -243,6 +246,9 @@ jobs:
 
       - name: Verify governed LLM deployment status
         run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-deployment-status"
+
+      - name: Verify LLM free-tier trust chain
+        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/llm-free-tier-trust-chain"
 
       - name: Verify governed LLM archive handoff
         run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-archive-handoff"
