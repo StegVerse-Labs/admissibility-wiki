@@ -11,11 +11,20 @@ A full mirror replacement was not applied in this session. This patch note recor
 Add these steps after external framework expansion policy validation and before CI evidence validation:
 
 ```yaml
+      - name: Validate ASRO commitment candidate
+        run: python scripts/check_asro_commitment_candidate.py
+
       - name: Validate governed LLM public pages
         run: python scripts/check_governed_llm_pages.py
 
       - name: Validate governed LLM demo docs
         run: python scripts/check_governed_llm_demo_docs.py
+
+      - name: Validate iOS workflow mirror status
+        run: python scripts/check_ios_workflow_mirror_status.py
+
+      - name: Validate admissibility automation handoff
+        run: python scripts/check_admissibility_automation_handoff.py
 ```
 
 ## Required additions to the build job
@@ -32,7 +41,7 @@ Ensure the build job includes both repo preflight steps before `npm run validate
 
 ## Required additions to the public verification job
 
-The public verification job must include checkout, Node setup, every governed LLM route, and the deployment status checker:
+The public verification job must include checkout, Node setup, every governed LLM route, ASRO route verification, and the deployment status checker:
 
 ```yaml
       - name: Checkout
@@ -66,6 +75,9 @@ The public verification job must include checkout, Node setup, every governed LL
 
       - name: Verify governed LLM route set
         run: python scripts/check_governed_llm_deployment_status.py
+
+      - name: Verify ASRO external framework page
+        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/asro"
 ```
 
 ## Required activation receipt steps
