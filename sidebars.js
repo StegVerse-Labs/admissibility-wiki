@@ -44,6 +44,7 @@ const sidebars = {
         'governance/governed-llm-demo-verification',
         'governance/governed-llm-site-verification',
         'governance/governed-llm-deployment-status',
+        'governance/llm-free-tier-trust-chain',
         'governance/portable-governed-return-path',
         'governance/goal5-cross-repo-verification',
         'governance/goal5-1-ci-closure-status',
