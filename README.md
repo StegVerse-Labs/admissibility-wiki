@@ -61,6 +61,12 @@ The governed LLM demo verification page is:
 docs/governance/governed-llm-demo-verification.md
 ```
 
+The bounded free-tier trust chain page is:
+
+```text
+docs/governance/llm-free-tier-trust-chain.md
+```
+
 The local Site verification page is:
 
 ```text
@@ -84,6 +90,7 @@ Run:
 ```bash
 python scripts/check_governed_llm_pages.py
 python scripts/check_governed_llm_demo_docs.py
+python scripts/check_llm_free_tier_trust_chain.py
 ```
 
 Expected current state:
@@ -91,15 +98,17 @@ Expected current state:
 ```text
 GOVERNED LLM PAGES: PASS - docs and navigation references present
 GOVERNED LLM DEMO DOCS: PASS - demo pages and navigation references present
+LLM FREE TIER TRUST CHAIN: PASS
 ```
 
 The active implementation split is:
 
 | Repository | Responsibility | Build state |
 | --- | --- | --- |
-| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. | Public doctrine, activation map, Site verification, demo overview, demo verification, deployment status, and archive handoff. |
-| `StegVerse-org/StegVerse-SDK` | Shared packet, receipt, evidence, manifest, and handoff contracts. | Governed LLM contract layer active with demo packet verification. |
-| `StegVerse-org/LLM-adapter` | Runtime adapter that converts model output into governed response artifacts. | Adapter boundary complete with fixture-first end-to-end demo files. |
+| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. | Public doctrine, activation map, Site verification, demo overview, demo verification, deployment status, free-tier trust chain, and archive handoff. |
+| `StegVerse-org/StegVerse-SDK` | Shared packet, receipt, evidence, manifest, handoff, and metadata ingestion contracts. | Governed LLM contract layer active with demo packet verification and free-tier metadata ingestion. |
+| `StegVerse-org/LLM-adapter` | Runtime adapter that converts model output into governed response artifacts. | Adapter boundary complete with fixture-first end-to-end demo files and `free_tier_trust` metadata. |
+| `StegVerse-Labs/Site` | Public display surface for governed LLM entry and bounded trust envelope. | Ecosystem Chat displays bounded free-tier trust and guards it with the public mirror status workflow. |
 
 The current proof path is:
 
@@ -119,6 +128,15 @@ query
   -> SDK receipt handoff
   -> public demo overview
   -> public demo verification
+```
+
+The bounded free-tier trust chain is:
+
+```text
+LLM-adapter free_tier_trust metadata
+  -> Site display and checker
+  -> SDK metadata ingestion and workflow verification
+  -> wiki public chain documentation
 ```
 
 ## Core Assumptions
@@ -217,32 +235,3 @@ The CAT stack is currently interpreted as:
 | GCAT | Governance Constraint Analysis | Models governance standing, admissibility, policy, delegation, authority, and fail-closed execution decisions. |
 
 ECAT and ICAT should not be reduced to evidence and identity labels. Those interpretations may appear in narrower proof-path contexts, but the broader origin of ECAT/ICAT is the human-governance problem: how emotion, intuition, coherence, and relationship dynamics shape the constraints that later become boundary and governance determinations.
-
-In shorthand:
-
-```text
-ECAT / ICAT -> BCAT -> GCAT
-```
-
-Meaning:
-
-```text
-experience and intuition -> boundary formation -> governance admissibility
-```
-
-## Existence Interpretation
-
-The expression:
-
-```text
-GCAT / BCAT : ECAT / ICAT : %Existence
-```
-
-should be read as a governed existence formulation.
-
-`%Existence` is not merely whether something can be observed. It is the degree to which an entity, claim, transition, relationship, or state can be treated as existing under the relevant governance frame.
-
-A strong existence claim requires alignment across:
-
-- ECAT: internal coherence and experiential standing;
-- ICAT: relational coherence and inter-entity standing;
