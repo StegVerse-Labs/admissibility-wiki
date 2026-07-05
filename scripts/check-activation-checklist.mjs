@@ -23,6 +23,7 @@ const requiredRepoConfig = [
   'docusaurus_baseUrl',
   'github_pages_source',
   'deploy_workflow',
+  'workflow_manifest_schema',
   'build_output',
   'deploy_gate'
 ];
@@ -31,9 +32,17 @@ const requiredCheckIds = [
   'pages_source_github_actions',
   'aggregate_validation_success',
   'deploy_workflow_success',
+  'governed_llm_validation_guards',
+  'automation_handoff_guard',
+  'ios_workflow_mirror_guard',
+  'asro_commitment_candidate_guard',
   'root_url_loads',
   'glossary_route_loads',
   'status_json_loads',
+  'ios_workflow_mirror_status_json_loads',
+  'governed_llm_demo_overview_route_loads',
+  'governed_llm_demo_verification_route_loads',
+  'asro_route_loads',
   'ontology_json_loads',
   'example_proposal_loads'
 ];
@@ -71,7 +80,7 @@ for (const field of requiredTopLevel) {
   }
 }
 
-if (checklist.schema !== 'admissibility_wiki_activation.v1') {
+if (checklist.schema !== 'admissibility_wiki_activation.v2') {
   fail('unexpected schema');
 }
 
@@ -113,6 +122,9 @@ if (checklist.required_repository_configuration.github_pages_source !== 'GitHub 
 }
 if (checklist.required_repository_configuration.deploy_workflow !== CANONICAL_WORKFLOW) {
   fail(`deploy_workflow must be ${CANONICAL_WORKFLOW}`);
+}
+if (checklist.required_repository_configuration.workflow_manifest_schema !== '1.7') {
+  fail('workflow_manifest_schema must be 1.7');
 }
 if (checklist.required_repository_configuration.deploy_gate !== 'canonical validate-chain-continuation workflow') {
   fail('deploy_gate must be canonical validate-chain-continuation workflow');
