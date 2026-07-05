@@ -17,9 +17,13 @@ PATCH = ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continua
 STATUS = ROOT / "static" / "status" / "ios-workflow-mirror-status.json"
 
 REQUIRED_PATCH_MARKERS = (
+    "Validate ASRO commitment candidate",
     "Validate governed LLM public pages",
     "Validate governed LLM demo docs",
+    "Validate iOS workflow mirror status",
+    "Validate admissibility automation handoff",
     "Verify governed LLM route set",
+    "Verify ASRO external framework page",
     "not activation evidence",
 )
 
