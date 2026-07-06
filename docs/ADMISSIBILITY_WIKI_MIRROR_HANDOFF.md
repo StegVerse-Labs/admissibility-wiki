@@ -88,6 +88,7 @@ npm run validate:no-manual-task-assignments
 npm run validate:mirror-handoff-guard
 npm run validate:guardian-destination-resolution
 npm run validate:guardian-handoff-destinations
+npm run validate:repo-standards-integration
 python scripts/check_external_framework_expansion_policy.py
 python scripts/check_external_framework_evidence_provenance.py
 npm run validate
@@ -113,6 +114,19 @@ Public destination summary: downstream public Guardian summary after wiki valida
 Implementation destination summary: private Guardian implementation standing-boundary awareness after wiki validation
 ```
 
+## Repo Standards Integration Status
+
+```text
+Goal id: repo-standards-integration-and-installation-bundle-pending-release
+Source repository: StegVerse-Labs/repo-standards
+Integration page: docs/governance/repo-standards-integration.md
+Installation bundle page: docs/governance/repo-standards-installation-bundle.md
+Status artifact: static/status/repo-standards-integration-status.json
+Release posture: UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
+Validation command: npm run validate:repo-standards-integration
+Boundary: repository validation equals evidence only; it does not equal admissibility, release authority, or execution authority.
+```
+
 ## Current goal
 
 ```text
@@ -122,7 +136,7 @@ all-external-framework-evidence-provenance-rollout
 ## Current version
 
 ```text
-1.5.12-guardian-destination-handoff-content-restored
+1.5.13-repo-standards-handoff-snippets-restored
 ```
 
 ## Current status
@@ -141,6 +155,7 @@ EXTERNAL_FRAMEWORK_EVIDENCE_PROVENANCE_VALIDATOR_WIRED_IN_PACKAGE
 EXTERNAL_FRAMEWORK_EVIDENCE_PROVENANCE_VALIDATOR_WIRED_IN_CANONICAL_WORKFLOW
 MIRROR_HANDOFF_GUARD_REQUIRED_SECTIONS_RESTORED
 GUARDIAN_DESTINATION_HANDOFF_CONTENT_RESTORED
+REPO_STANDARDS_HANDOFF_SNIPPETS_RESTORED
 UPSTREAM_REPO_STANDARDS_RELEASE_READY
 UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
 LOCAL_DOCS_ONLY
@@ -192,9 +207,13 @@ docs/external-frameworks/evidence-provenance-rollout.json
 docs/external-frameworks/evaluation-standard.md
 docs/external-frameworks/failure-class-catalog.md
 docs/external-frameworks/external-framework-template.md
+docs/governance/repo-standards-integration.md
+docs/governance/repo-standards-installation-bundle.md
 static/status/guardian-destination-resolution-status.json
+static/status/repo-standards-integration-status.json
 scripts/check_external_framework_evidence_provenance.py
 scripts/check_admissibility_wiki_mirror_handoff_guardian_destinations.py
+scripts/check_repo_standards_integration.py
 .github/workflows/validate-chain-continuation.yml
 package.json
 ```
