@@ -13,6 +13,7 @@ External framework role: pre-execution runtime-governance boundary
 Wiki role: sourced observatory record, compatibility map, and bounded validation path
 Citation status: sourced from Resurrection Tech public pages
 Validation posture: cooperative, bounded, non-certifying
+Runtime-result posture: no public result claim until test parameters and outputs are attached
 ```
 
 ## Source
@@ -114,20 +115,42 @@ No Morrison Runtime artifact, output, recommendation, trace, proof, runtime resu
 
 Morrison material may be evaluated as external evidence. Execution authority is determined only by StegVerse commit-time admissibility under current standing semantics.
 
-## Historical Local Comparison Record
+## Historical Local Observation Boundary
 
-A prior local comparison record preserved the following six-test outcome summary against a public Morrison / Resurrection Tech runtime-governance demo surface:
+A prior informal local comparison exists in conversation memory, but this page must not present those outcomes as public runtime validation evidence until the test record is reconstructable.
 
-| Test | Observed Result | StegVerse Expected Result | Validation Meaning |
-|---|---:|---:|---|
-| 1 | ALLOW | BLOCK | False allow under the tested StegVerse boundary. |
-| 2 | BLOCK | BLOCK | Matched expected block. |
-| 3 | BLOCK | BLOCK | Matched expected block. |
-| 4 | BLOCK | BLOCK | Matched expected block. |
-| 5 | ERROR | Deterministic governance verdict or FAIL-CLOSED | Runtime error treated as validation gap. |
-| 6 | BLOCK | BLOCK | Matched expected block. |
+The historical observation is therefore bounded as:
 
-This table is a historical local comparison record, not a public certification record. The original prompt-by-prompt transcript is not presently attached to this page. Until those exact prompts, screenshots, returned audit payloads, timestamps, and source hashes are attached, the table must remain a bounded reconstruction note.
+```text
+Status: historical internal observation only
+Public validation evidence: not yet
+Prompt-by-prompt parameters attached: no
+Runtime configuration attached: no
+Screenshots or returned audit payloads attached: no
+Timestamps and source hashes attached: no
+External reproducibility: not established
+```
+
+The previously remembered outcomes must not be used outwardly to demonstrate Morrison Runtime Governance performance unless the corresponding test parameters are attached. That includes:
+
+```text
+input prompt or planner output
+selected demo or repository version
+runtime configuration
+policy/rule set
+expected StegVerse boundary
+observed Morrison output
+returned audit evidence
+screenshot or raw payload
+timestamp
+source URL or commit hash
+```
+
+Until those artifacts are present, the fair public statement is:
+
+```text
+StegVerse has identified Morrison Runtime Governance as a sourced external runtime-governance framework and has prepared a cooperative validation path. Prior informal observations are not sufficient for public runtime-result claims.
+```
 
 ## Cooperative Validation Suite
 
@@ -208,11 +231,11 @@ Manual claims on this page should not outrun that report.
 ```text
 Claim ID: CLM-FWK-MORRISON-RUNTIME-0001
 Packet ID: ARF-FWK-MORRISON-RUNTIME-0001
-Evidence grade: SOURCED_PUBLIC_SITE_WITH_LOCAL_HISTORY
+Evidence grade: SOURCED_PUBLIC_SITE_WITH_INTERNAL_OBSERVATION_NOT_PUBLICLY_RECONSTRUCTABLE
 Admissibility result: PROVISIONAL
 Standing: PROVISIONAL
 Reflection status: COOPERATIVE_VALIDATION_READY
-Source artifacts: 5 public URLs plus historical local comparison record
+Source artifacts: 5 public URLs; no public runtime-result artifact package yet
 Last evaluation: 2026-07-06T00:00:00-05:00
 ```
 
@@ -225,7 +248,7 @@ This page should be considered validation-ready when:
 ```text
 public source URLs remain available
 compatibility report parses
-six historical tests are either reconstructed with evidence or marked historical-only
+historical tests are either reconstructed with full parameters or excluded from public result claims
 cooperative validation suite is run against captured inputs
 runtime outputs are routed into Commitment Candidate fixtures
 SPE results are generated from those fixtures
@@ -245,6 +268,7 @@ This page does not claim Resurrection Tech endorses StegVerse.
 This page does not claim StegVerse endorses Resurrection Tech.
 This page does not claim live integration, production activation, or customer deployment.
 Observed behavior alone does not establish admissibility.
+Informal remembered outcomes do not establish public runtime validation.
 A Morrison ALLOW does not equal StegVerse ALLOW.
 A Morrison BLOCK does not equal StegVerse DENY until SPE evaluates the transition.
 ```
@@ -259,4 +283,4 @@ This page reflects a bounded admissibility packet. Publication does not create s
 
 ## Next Safe Build Target
 
-Attach prompt-by-prompt Morrison test artifacts, generate `morrison-runtime.compatibility.json`, and route each result through the Commit-Time Interoperability Contract so the page can display evidence-backed cooperative validation rather than historical reconstruction only.
+Attach prompt-by-prompt Morrison test artifacts and route each result through the Commit-Time Interoperability Contract before publishing any runtime-result claim.
