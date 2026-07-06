@@ -12,11 +12,34 @@ Canonical StegVerse formalism source: Admissible-Existence
 External framework role: runtime path-governance framework
 Wiki role: convergence, mapping, and relationship review
 Citation status: sourced
+Evidence provenance status: Batch 4 refactor installed
 ```
 
 ## Source
 
 Public source: `https://arxiv.org/abs/2603.16586`
+
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | Public arXiv source URL. | present | Versioned source snapshot and source hash. |
+| Official Implementation Sources | Treated as paper/artifact-dependent; no implementation package is attached on this page. | paper_or_artifact_dependent | Runtime policy/path schema, examples, repository, release, or commit reference. |
+| Observed Behavior | No runtime behavior is claimed. | not_started | Path input, proposed action, policy state, output, timestamp, and source version. |
+| Reproduced Behavior | No independent reproduction is claimed. | not_started | Reproduction fixture for path-policy evaluation. |
+| StegVerse Analysis | Execution paths, proposed next actions, organizational state, and policy-violation probabilities are mapped to admissibility primitives. | runtime_path_governance_crosswalk_with_page_provenance | Path-governance-to-Commitment-Candidate fixture. |
+| Interoperability Assessment | Runtime path-governance material may support StegVerse review, not authority. | pending_path_policy_fixture | Fixture and compatibility report. |
+| Standing | Sourced provisional. | provisional | Source snapshot and fixture. |
+
+Evidence classification:
+
+```text
+F1: public Runtime Governance for AI Agents source URL and paper-native claims.
+F2: pending until implementation/schema/artifact package is attached.
+S1: StegVerse interpretation of runtime path governance as runtime review context.
+S2: mapping to Runtime Transition Governance, Transition Table, Commit-Time Validity, Policy Reference, Evidence Posture, Review Posture, Escalation, and Fail-Closed.
+H1: future path-policy fixture until concrete artifacts are attached.
+```
 
 ## Definition
 
@@ -55,3 +78,11 @@ Runtime Governance for AI Agents is not a StegVerse canonical formalism.
 Runtime path governance does not prove transition admissibility.
 Runtime evaluation does not automatically grant execution authority inside StegVerse.
 ```
+
+## Challenge Path
+
+A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
+
+## Mandatory Footer
+
+This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing that can be reconstructed from the referenced evidence, authority, and admissibility conditions.
