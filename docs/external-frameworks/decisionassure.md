@@ -12,6 +12,7 @@ Canonical StegVerse formalism source: Admissible-Existence
 External framework role: trace integrity and causal continuity
 Wiki role: observatory record, mapping, and artifact-specific evaluation
 Citation status: artifact package required
+Evidence provenance status: Batch 2 refactor installed
 ```
 
 ## Source
@@ -19,6 +20,29 @@ Citation status: artifact package required
 Public canonical source required before this page is marked `sourced`.
 
 Until a public source, artifact package, repository, specification, or jointly authorized technical note is supplied, this page remains an intake record only.
+
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | No public canonical source is attached on this page. | artifact_package_required | Public source, authorized artifact package, repository, specification, or jointly authorized technical note. |
+| Official Implementation Sources | No official implementation package is attached on this page. | not_attached | Repository, release, package, verifier source, or trace schema if available. |
+| Observed Behavior | Prior trace-oriented discussion exists outside this page, but this page does not publish runtime or verifier results. | artifact_dependent | Input trace, verifier output, timestamp, source version, and artifact hash. |
+| Reproduced Behavior | No independent reproduction is claimed. | not_started | Reproduction fixture and deterministic verifier run. |
+| StegVerse Analysis | Trace integrity, causal continuity, drift, policy mutation, identity/delegation mutation, and corruption are mapped to admissibility primitives. | partial_trace_crosswalk | Artifact package reconstruction and SPE current-standing review. |
+| Interoperability Assessment | DecisionAssure artifacts may be referenced by a Commitment Candidate as evidence, not authority. | pending_artifact_package_reconstruction | Commitment Candidate fixture with source artifacts. |
+| Standing | Artifact-package-required fail-closed. | provisional_fail_closed | Source package and reconstruction evidence. |
+
+Evidence classification:
+
+```text
+F1: not yet available on this page; source required.
+F2: not yet available on this page; implementation/package required.
+O1/O2: not claimed publicly until trace parameters and raw verifier outputs are attached.
+S1: StegVerse interpretation of traces as possible evidence, not authority.
+S2: mapping to Receipt-Bound Execution, Reconstructability, Drift, Policy Reference, Authority Class, Commit-Time Authority, and Fail-Closed behavior.
+H1: future artifact-specific evaluation until authorized artifacts are attached.
+```
 
 ## Definition
 
@@ -120,12 +144,12 @@ The candidate should still identify:
 ```text
 Claim ID: CLM-FWK-DECISIONASSURE-0001
 Packet ID: ARF-FWK-DECISIONASSURE-0001
-Evidence grade: UNKNOWN
-Admissibility result: PROVISIONAL
-Standing: PROVISIONAL
-Reflection status: PROVISIONAL
-Source artifacts: 0
-Last evaluation: 2026-06-24T00:00:00Z
+Evidence grade: ARTIFACT_PACKAGE_REQUIRED_WITH_PROVENANCE_SECTION
+Admissibility result: PROVISIONAL_FAIL_CLOSED
+Standing: PROVISIONAL_FAIL_CLOSED
+Reflection status: ARTIFACT_REQUIRED
+Source artifacts: 0 public canonical artifacts attached
+Last evaluation: 2026-07-06T00:00:00-05:00
 ```
 
 The AE reflection packet currently treats this entry as a bounded artifact-specific display frame. Evaluation evidence is required before standing claims are displayed.
