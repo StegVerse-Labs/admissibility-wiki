@@ -12,6 +12,7 @@ Canonical StegVerse formalism source: Admissible-Existence
 External framework role: pre-admissibility boundary declaration
 Wiki role: convergence, mapping, and relationship review
 Citation status: sourced
+Evidence provenance status: Batch 1 refactor installed
 ```
 
 ## Source
@@ -19,6 +20,27 @@ Citation status: sourced
 Official source: `https://www.certifywebcontent.com/supervised-ai/governance-layer-manifest/`
 
 The source presents GLM as an open implementation standard for machine-readable governance boundaries and states that independent implementations are encouraged.
+
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | Official GLM source URL. | present | Versioned source snapshot and source hash. |
+| Official Implementation Sources | No implementation package attached in this page. | unknown_or_not_attached | Repository, schema package, release, or commit reference if available. |
+| Observed Behavior | No runtime or demo behavior is claimed. | not_applicable | Not a runtime-result page. |
+| Reproduced Behavior | No independent reproduction is claimed. | not_started | Reproduction fixture only if a GLM parser/schema test is added. |
+| StegVerse Analysis | Boundary declaration, claim declaration, non-claim declaration, composition, and interpretation frame mapped to admissibility primitives. | provisional_crosswalk | Commitment Candidate fixture and SPE review. |
+| Interoperability Assessment | GLM may provide pre-admissibility boundary metadata for StegVerse review. | pending_commitment_candidate | Example GLM-to-Commitment-Candidate artifact. |
+| Standing | Sourced provisional. | provisional | Evidence grade update after source snapshot and fixture. |
+
+Evidence classification:
+
+```text
+F1: official GLM source URL and framework-native claims.
+S1: StegVerse interpretation of GLM as boundary-declaration support.
+S2: mapping to Governance Boundary, Evidence Posture, Non-Claims, Transition Table, Policy Reference, and Commit-Time Validity.
+H1: future parser/schema/reproduction work until artifacts are attached.
+```
 
 ## Definition
 
@@ -106,12 +128,12 @@ For those readers, GLM can act as a bridge into admissibility terminology withou
 ```text
 Claim ID: CLM-FWK-GLM-0001
 Packet ID: ARF-FWK-GLM-0001
-Evidence grade: UNKNOWN
+Evidence grade: SOURCED_PROVISIONAL_WITH_PROVENANCE_SECTION
 Admissibility result: PROVISIONAL
 Standing: PROVISIONAL
 Reflection status: PROVISIONAL
-Source artifacts: 0
-Last evaluation: 2026-06-24T00:00:00Z
+Source artifacts: 1 official source URL; no implementation package attached
+Last evaluation: 2026-07-06T00:00:00-05:00
 ```
 
 The AE reflection packet currently treats this entry as a bounded display frame. Evaluation evidence is required before standing claims are displayed.
@@ -139,4 +161,4 @@ This page reflects a bounded admissibility packet. Publication does not create s
 
 ## Next Safe Build Target
 
-Connect GLM to the term-discovery and crosswalk process.
+Connect GLM to a GLM-to-Commitment-Candidate fixture so the pre-admissibility boundary declaration can be tested through SPE without becoming execution authority.
