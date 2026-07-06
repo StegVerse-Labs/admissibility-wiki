@@ -99,6 +99,9 @@ const sidebars = {
       label: 'External Frameworks',
       items: [
         'external-frameworks/index',
+        'external-frameworks/evaluation-standard',
+        'external-frameworks/failure-class-catalog',
+        'external-frameworks/external-framework-template',
         'external-frameworks/governance-observatory-protocol',
         'external-frameworks/commit-time-interoperability-contract',
         'external-frameworks/glm',
