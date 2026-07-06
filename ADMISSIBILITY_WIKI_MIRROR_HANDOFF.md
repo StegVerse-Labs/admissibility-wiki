@@ -38,6 +38,12 @@ docs/external-frameworks/reports/morrison-runtime.compatibility.json
   -> upgraded from SOURCE_BLOCKED_FAIL_CLOSED to COMPATIBILITY_EVIDENCE_ONLY / COOPERATIVE_VALIDATION_READY
 
 sidebars.js includes external-frameworks/morrison-runtime
+
+iosnoperiod.md
+  -> corrected to single approved iOS mirror workflow mapping
+
+iosnoperiod/github/workflows/validate.yml
+  -> removed as obsolete stale mirror workflow file
 ```
 
 ## Public proof chain
@@ -84,6 +90,7 @@ JSON status artifact parses
 boundary/non-claim language is preserved
 Morrison Runtime page remains cooperative and non-certifying
 historical six-test record remains marked as conversation-level reconstruction until prompt-by-prompt artifacts are attached
+single workflow policy passes for active and iOS mirror workflow directories
 ```
 
 ## Remaining files or modules to install
@@ -94,6 +101,7 @@ Intended Org/Repo: `StegVerse-Labs/admissibility-wiki`
 Attach prompt-by-prompt Morrison test artifacts when available.
 Generate or attach captured runtime outputs/audit payloads for each cooperative validation case.
 Route each captured result through the Commit-Time Interoperability Contract.
+Wait for validate-chain-continuation workflow to rerun green after mirror cleanup.
 ```
 
 Intended Org/Repo: `StegVerse-Labs/Site`
