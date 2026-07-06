@@ -12,11 +12,33 @@ Canonical StegVerse formalism source: Admissible-Existence
 External framework role: voluntary AI risk-management framework
 Wiki role: convergence, mapping, and relationship review
 Citation status: sourced
+Evidence provenance status: Batch 3 refactor installed
 ```
 
 ## Source
 
 Official source: `https://www.nist.gov/itl/ai-risk-management-framework`
+
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | Official NIST AI RMF source URL. | present | Versioned source snapshot and source hash. |
+| Official Implementation Sources | NIST AI RMF is treated here as voluntary guidance rather than a runtime implementation. | not_applicable_standard_framework | Specific profile/version snapshot if used in a fixture. |
+| Observed Behavior | No runtime behavior is claimed. | not_applicable_for_runtime_result | Not a runtime-result page. |
+| Reproduced Behavior | No independent reproduction is claimed. | not_applicable | Reproduction only if a mapping fixture is created. |
+| StegVerse Analysis | Risk management, trustworthiness considerations, lifecycle review, and evaluation support are mapped to admissibility primitives. | risk_management_crosswalk | Concrete mapping fixture and compatibility report. |
+| Interoperability Assessment | NIST AI RMF may provide risk-management context for review posture, not authority. | pending_management_system_mapping | Fixture and report. |
+| Standing | Sourced provisional. | provisional | Source snapshot and mapping artifact. |
+
+Evidence classification:
+
+```text
+F1: official NIST AI RMF source URL and framework-native guidance claims.
+S1: StegVerse interpretation of NIST AI RMF as risk-management and trustworthiness review context.
+S2: mapping to Evidence Posture, Review Posture, Governance Boundary, Policy Reference, Runtime Transition Governance, Decision Continuity, and Admissible-Existence Validation Factory.
+H1: future mapping fixture until concrete profile references are attached.
+```
 
 ## Definition
 
@@ -54,3 +76,11 @@ NIST AI RMF is not a StegVerse canonical formalism.
 NIST AI RMF does not prove transition admissibility.
 Voluntary risk-management guidance does not grant execution authority.
 ```
+
+## Challenge Path
+
+A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
+
+## Mandatory Footer
+
+This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing that can be reconstructed from the referenced evidence, authority, and admissibility conditions.
