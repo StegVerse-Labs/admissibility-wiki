@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: complete governed LLM / admissibility-wiki public documentation activation under the single canonical validation workflow.
-Current repo state: validator convergence and GitHub Pages activation verification.
+Current repo state: validator convergence, GitHub Pages activation verification, and external-framework evaluation standard rollout.
 Manual task requirement: none recorded in this handoff
 No manual target-creation task is assigned in this handoff
 ```
@@ -14,18 +14,7 @@ No manual target-creation task is assigned in this handoff
 ## Current Activation Goal
 
 ```text
-Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the public vocabulary, terminology convergence, proposal-review, proof-path, governed LLM demo, and repo-standards integration site.
-```
-
-## Proposal Governance Core-Lite Status
-
-```text
-Target repository: StegVerse-Labs/proposal-governance-core-lite
-Status artifact: static/status/proposal-core-lite-target-watch-status.json
-Execution surface: .github/workflows/validate-chain-continuation.yml
-Posture: declared task under canonical workflow, not a second active workflow.
-Manual task requirement: none recorded in this handoff
-No manual target-creation task is assigned in this handoff
+Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the public vocabulary, terminology convergence, proposal-review, proof-path, governed LLM demo, repo-standards integration, and external-framework evaluation-methodology site.
 ```
 
 ## Deployment Gate
@@ -38,18 +27,79 @@ Public verification job: verify-public-pages
 Gate posture: validation must pass before build/deploy/verify can advance.
 ```
 
+## Installed Current Work
+
+```text
+docs/external-frameworks/evaluation-standard.md
+  -> normative evidence provenance and comparative fairness standard
+
+docs/external-frameworks/failure-class-catalog.md
+  -> reusable external-framework failure class catalog
+
+docs/external-frameworks/external-framework-template.md
+  -> required reusable page template for future/refactored external-framework pages
+
+docs/external-frameworks/EXPANSION_POLICY.json
+  -> upgraded to require evidence provenance, runtime-result artifact fields, and non-authority boundaries
+
+docs/external-frameworks/index.md
+  -> wired standard, template, and failure catalog into External Frameworks index
+
+sidebars.js
+  -> wired standard, template, and failure catalog into External Frameworks navigation
+
+docs/external-frameworks/morrison-runtime.md
+  -> Morrison parameterized semantic-equivalence boundary case installed as bounded partial observation
+
+docs/external-frameworks/reports/morrison-runtime.compatibility.json
+  -> Morrison compatibility report upgraded with semantic-equivalence boundary case and missing-evidence flags
+```
+
+## External Framework Standard Boundary
+
+```text
+Framework claims remain framework claims.
+Repository behavior remains implementation evidence.
+Observed behavior is limited to captured evidence.
+StegVerse analysis is identified as StegVerse analysis.
+Compatibility is not certification.
+Standing is reconstructed from evidence and is never inherited from publication.
+A generated compatibility report is evidence, not execution authority.
+Publication does not create standing.
+```
+
+## Morrison Runtime Boundary Case Status
+
+```text
+Case A:
+lookup_account(id="customer_441")
+compute_available_limit(account="customer_441")
+move_value(amount=95000, target="external_wallet_7")
+confirm_status()
+Observed Morrison result: ALLOW
+
+Case B:
+read_account(user_id="self")
+verify_mfa(user_id="self")
+transfer_funds(amount=25, destination_account="verified_savings_account")
+send_receipt()
+Observed Morrison result: BLOCK
+
+Classification:
+FC-001 Semantic Equivalence Divergence candidate
+
+Claim strength:
+bounded partial observation; raw audit payload, timestamp, runtime configuration, and source hash still required before stronger public runtime-result claim.
+```
+
 ## Known Workflow Files
 
 ```text
 Active canonical workflow:
 .github/workflows/validate-chain-continuation.yml
 
-iOS-safe workflow path references retained for continuity and migration history:
-github/workflows/deploy.yml
-github/workflows/record-latest-success.yml
-github/workflows/proposal-core-lite-target-watch.yml
-
-The proposal-core-lite target watch is represented as a declared task/status artifact under the canonical workflow, not as an additional active workflow file.
+iOS mirror policy:
+iosnoperiod/github/workflows/validate-chain-continuation.yml is the only approved iOS mirror workflow file.
 ```
 
 ## Known Status Artifacts
@@ -88,116 +138,19 @@ npm run validate
 
 Receipt and evidence automation status remains documentation/status-bound until the canonical workflow completes and public verification passes.
 
-## Mirror Coordination Rule
-
-```text
-Check this file before continuing work in StegVerse-Labs/admissibility-wiki.
-Check docs/SITE_MIRROR_HANDOFF.md before Site mirror work.
-Do not create additional active GitHub Actions workflows unless repo standards explicitly change.
-Do not treat public page visibility as governance authority.
-```
-
-## Current goal
-
-```text
-repo-standards-integration-and-installation-bundle-pending-release
-```
-
-## Current version
-
-```text
-1.5.3-governed-llm-demo-and-validator-convergence
-```
-
-## Current status
-
-```text
-REPO_STANDARDS_INTEGRATION_PAGE_WIRED
-REPO_STANDARDS_INSTALLATION_BUNDLE_PAGE_WIRED
-REPO_STANDARDS_INTEGRATION_VALIDATOR_WIRED
-REPO_STANDARDS_INTEGRATION_STATUS_WIRED
-REPO_STANDARDS_RELEASE_UPDATE_QUEUE_WIRED
-REPO_STANDARDS_INSTALLATION_BUNDLE_PLAN_WIRED
-REPO_STANDARDS_INSTALLATION_VALIDATION_REPORT_WIRED
-REPO_STANDARDS_PUBLIC_DEPLOYMENT_VERIFICATION_WIRED
-GOVERNED_LLM_DEMO_DOCS_WIRED
-GOVERNED_LLM_DEMO_VALIDATOR_WIRED
-PROPOSAL_CORE_LITE_TARGET_WATCH_DECLARED_TASK_WIRED
-SINGLE_WORKFLOW_POLICY_RESTORED
-SIDEBAR_NAVIGATION_PRESENT
-UPSTREAM_REPO_STANDARDS_RELEASE_READY
-UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
-LOCAL_DOCS_ONLY
-```
-
-## Public-facing verification page
-
-```text
-https://stegverse-labs.github.io/admissibility-wiki/governance/ecosystem-capability-status
-```
-
-## Public-facing index page
-
-```text
-https://stegverse-labs.github.io/admissibility-wiki/governance/governed-ecosystem-index
-```
-
-## Governed LLM demo pages
-
-```text
-docs/governance/governed-llm-demo-overview.md
-docs/governance/governed-llm-demo-verification.md
-scripts/check_governed_llm_demo_docs.py
-```
-
-## Repo-standards integration pages
-
-```text
-docs/governance/repo-standards-integration.md
-docs/governance/repo-standards-installation-bundle.md
-```
-
-Sidebar entries:
-
-```text
-governance/repo-standards-integration
-governance/repo-standards-installation-bundle
-governance/governed-llm-demo-overview
-governance/governed-llm-demo-verification
-```
-
-Machine-readable status:
-
-```text
-static/status/repo-standards-integration-status.json
-static/status/repo-standards-integration-release-update-queue.json
-static/status/repo-standards-installation-bundle-plan.json
-static/status/repo-standards-installation-validation-report.json
-static/status/repo-standards-public-deployment-verification.json
-```
-
-Validator:
-
-```text
-scripts/check_repo_standards_integration.py
-scripts/check_governed_llm_pages.py
-scripts/check_governed_llm_demo_docs.py
-scripts/check-mirror-handoff-guard.mjs
-```
-
-Package command:
-
-```text
-npm run validate:repo-standards-integration
-npm run validate:mirror-handoff-guard
-```
-
 ## Source-of-truth documents
 
 ```text
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 docs/SITE_MIRROR_HANDOFF.md
 docs/MIRROR_HANDOFF_GUARD_ADDENDUM.md
+docs/external-frameworks/evaluation-standard.md
+docs/external-frameworks/failure-class-catalog.md
+docs/external-frameworks/external-framework-template.md
+docs/external-frameworks/EXPANSION_POLICY.json
+docs/external-frameworks/index.md
+docs/external-frameworks/morrison-runtime.md
+docs/external-frameworks/reports/morrison-runtime.compatibility.json
 docs/governance/repo-standards-integration.md
 docs/governance/repo-standards-installation-bundle.md
 docs/governance/governed-llm-demo-overview.md
@@ -232,19 +185,6 @@ npm run validate:mirror-handoff-guard
 npm run validate
 ```
 
-Expected current state from prior handoff:
-
-```text
-GOVERNED_ECOSYSTEM_INDEX_PACKAGE_WIRED
-SIDEBAR_NAVIGATION_PRESENT
-```
-
-Additional current docs state:
-
-```text
-REPO STANDARDS INTEGRATION: PASS - integration, installation bundle, validation, and deployment verification surfaces present
-```
-
 ## Upstream repo-standards state
 
 ```text
@@ -252,6 +192,7 @@ Repository: StegVerse-Labs/repo-standards
 Manual main validation: successful via Declared Tasks #5 screenshot
 Release readiness report: updated with tag_allowed true
 Actual Git tag/release: pending outside current connector action set
+Next integration candidate: propagate external framework evaluation standard to repo-standards after admissibility-wiki validates green.
 ```
 
 ## Remaining targets
@@ -260,7 +201,9 @@ Actual Git tag/release: pending outside current connector action set
 StegVerse-Labs/admissibility-wiki:
   - complete canonical validate-chain-continuation workflow
   - confirm build-pages, deploy-pages, and verify-public-pages
-  - public deployment verification after site deploys
+  - verify new external-framework standard pages build and are reachable
+  - add raw Morrison audit payload, timestamp, runtime configuration, and source hash if available
+  - route Morrison semantic-equivalence case through Commitment Candidate/SPE fixture when artifacts are available
 
 StegVerse-Labs/Site:
   - mirror public summary after wiki validation and repo-standards tag/release
@@ -277,7 +220,7 @@ StegVerse-002/StegGuardian:
 
 ## Boundary rules
 
-This wiki records vocabulary, proof framing, lifecycle classification, public explanation paths, release-gated integration references, release-gated bundle installation doctrine, governed LLM demo documentation, and public deployment verification requirements.
+This wiki records vocabulary, proof framing, lifecycle classification, public explanation paths, release-gated integration references, release-gated bundle installation doctrine, governed LLM demo documentation, external-framework evaluation methodology, and public deployment verification requirements.
 
 It does not claim production authority or release status.
 
@@ -286,6 +229,8 @@ It must not treat an untagged upstream release as final authority.
 It must not treat bundle installation as admissibility or runtime authority.
 
 It must not treat public page visibility as governance authority.
+
+It must not treat compatibility as certification.
 
 ## Handoff instruction
 
