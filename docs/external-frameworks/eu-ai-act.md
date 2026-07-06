@@ -12,11 +12,33 @@ Canonical StegVerse formalism source: Admissible-Existence
 External framework role: legal/regulatory AI framework
 Wiki role: convergence, mapping, and relationship review
 Citation status: sourced
+Evidence provenance status: Batch 3 refactor installed
 ```
 
 ## Source
 
 Official source: `https://eur-lex.europa.eu/eli/reg/2024/1689/oj`
+
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | Official EU AI Act legal text URL. | present | Versioned source snapshot and source hash. |
+| Official Implementation Sources | The EU AI Act is treated here as legal/regulatory text rather than a runtime implementation. | not_applicable_legal_text | Specific article/obligation snapshot if used in a fixture. |
+| Observed Behavior | No runtime behavior is claimed. | not_applicable_for_runtime_result | Not a runtime-result page. |
+| Reproduced Behavior | No independent reproduction is claimed. | not_applicable | Reproduction only if an obligation-mapping fixture is created. |
+| StegVerse Analysis | Regulatory obligation, risk classification, documentation/traceability, human oversight, prohibited practices, and high-risk systems are mapped to admissibility primitives. | legal_obligation_crosswalk | Concrete mapping fixture and compatibility report. |
+| Interoperability Assessment | EU AI Act material may provide legal or regulatory context for review posture, not authority. | pending_obligation_mapping | Fixture and report. |
+| Standing | Sourced provisional. | provisional | Source snapshot and mapping artifact. |
+
+Evidence classification:
+
+```text
+F1: official EU AI Act legal text URL and legal-framework claims.
+S1: StegVerse interpretation of the EU AI Act as regulatory and obligation-context evidence.
+S2: mapping to Policy Reference, Governance Boundary, Evidence Posture, Review Posture, Receipt-Bound Execution, Reconstructability, Triad Governance Model, Runtime Transition Governance, and Fail-Closed review.
+H1: future mapping fixture until concrete article/obligation references are attached.
+```
 
 ## Definition
 
@@ -56,3 +78,11 @@ The EU AI Act is not a StegVerse canonical formalism.
 The EU AI Act does not prove transition admissibility.
 Regulatory compliance does not automatically grant execution authority inside StegVerse.
 ```
+
+## Challenge Path
+
+A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
+
+## Mandatory Footer
+
+This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing that can be reconstructed from the referenced evidence, authority, and admissibility conditions.
