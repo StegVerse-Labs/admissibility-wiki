@@ -36,7 +36,7 @@ external-framework-evaluation-standard-rollout-and-validator-convergence
 ## Current version
 
 ```text
-1.5.4-external-framework-evidence-provenance-standard
+1.5.5-external-framework-evidence-provenance-validator
 ```
 
 ## Current status
@@ -53,6 +53,9 @@ EXTERNAL_FRAMEWORK_FAILURE_CLASS_CATALOG_INSTALLED
 EXTERNAL_FRAMEWORK_TEMPLATE_INSTALLED
 EXTERNAL_FRAMEWORK_INDEX_UPDATED
 EXTERNAL_FRAMEWORK_EXPANSION_POLICY_UPDATED
+EXTERNAL_FRAMEWORK_EVIDENCE_PROVENANCE_VALIDATOR_INSTALLED
+EXTERNAL_FRAMEWORK_EVIDENCE_PROVENANCE_VALIDATOR_WIRED_IN_PACKAGE
+EXTERNAL_FRAMEWORK_EVIDENCE_PROVENANCE_VALIDATOR_WIRED_IN_CANONICAL_WORKFLOW
 UPSTREAM_REPO_STANDARDS_RELEASE_READY
 UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
 LOCAL_DOCS_ONLY
@@ -69,13 +72,13 @@ docs/external-frameworks/reports/morrison-runtime.compatibility.json
 docs/external-frameworks/EXPANSION_POLICY.json
 ```
 
-Sidebar entries:
+## Validator additions
 
 ```text
-external-frameworks/evaluation-standard
-external-frameworks/failure-class-catalog
-external-frameworks/external-framework-template
-external-frameworks/morrison-runtime
+scripts/check_external_framework_evidence_provenance.py
+package.json -> validate:external-framework-evidence-provenance
+package.json -> npm run validate includes expansion-policy and evidence-provenance validators
+.github/workflows/validate-chain-continuation.yml -> validates external framework evidence provenance in canonical validation job
 ```
 
 ## Validation and Receipt Automation
@@ -91,6 +94,7 @@ npm run validate:proposal-core-lite-target-watch-status
 npm run validate:no-manual-task-assignments
 npm run validate:mirror-handoff-guard
 python scripts/check_external_framework_expansion_policy.py
+python scripts/check_external_framework_evidence_provenance.py
 npm run validate
 ```
 
@@ -107,6 +111,8 @@ docs/external-frameworks/morrison-runtime.md
 docs/external-frameworks/reports/morrison-runtime.compatibility.json
 docs/external-frameworks/EXPANSION_POLICY.json
 docs/external-frameworks/index.md
+scripts/check_external_framework_evidence_provenance.py
+.github/workflows/validate-chain-continuation.yml
 sidebars.js
 package.json
 ```
@@ -119,7 +125,7 @@ StegVerse-Labs/admissibility-wiki:
   - confirm build-pages, deploy-pages, and verify-public-pages
   - public deployment verification after site deploys
   - refactor existing external-framework pages to include Evidence Provenance section
-  - add or update validators for evidence provenance and failure-class references
+  - extend validator from standard-file/Morrison coverage to all external-framework pages after refactor
 
 StegVerse-Labs/repo-standards:
   - propagate external-framework evidence provenance standard and failure-class catalog as org-level standard
