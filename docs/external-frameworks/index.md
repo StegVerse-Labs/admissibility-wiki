@@ -52,6 +52,24 @@ Commitment Candidate != execution authority
 
 Execution authority must be reconstructed at the commit boundary from current standing.
 
+## Evidence Provenance Standard
+
+External framework pages must distinguish at least five evidence classes:
+
+```text
+framework claims
+framework implementation evidence
+observed behavior
+StegVerse analysis
+interoperability standing
+```
+
+The governing page is [External Framework Evaluation Standard](./evaluation-standard.md).
+
+The reusable template is [External Framework Page Template](./external-framework-template.md).
+
+Failure observations should use the [External Framework Failure Class Catalog](./failure-class-catalog.md).
+
 ## Terminology Reconciliation
 
 External terminology is governed by the [Governed Terminology Reconciliation Rule](./terminology-reconciliation-rule.md).
@@ -72,6 +90,9 @@ A generated compatibility result is evidence only. It is not certification, endo
 
 | Page | Purpose |
 |---|---|
+| [External Framework Evaluation Standard](./evaluation-standard.md) | Defines evidence provenance, claim traceability, comparative fairness, and required page structure for all external-framework pages. |
+| [External Framework Failure Class Catalog](./failure-class-catalog.md) | Defines reusable failure classes so observations are classified by failure kind rather than only pass/fail. |
+| [External Framework Page Template](./external-framework-template.md) | Provides a reusable page structure for new or refactored external-framework entries. |
 | [Governance Observatory Protocol](./governance-observatory-protocol.md) | Defines the neutral page structure and observation rules for external frameworks. |
 | [Commit-Time Interoperability Contract](./commit-time-interoperability-contract.md) | Defines the minimal contract for routing external artifacts into a Commitment Candidate and SPE determination. |
 | [Governed Terminology Reconciliation Rule](./terminology-reconciliation-rule.md) | Defines how external terms may be classified as synonymous, adjacent, new, or unresolved without inheriting authority. |
@@ -85,7 +106,7 @@ A generated compatibility result is evidence only. It is not certification, endo
 | [EVIDE](./evide.md) | Post-event evidentiary reconstructability | sourced | Helps preserve and organize evidence after an event so reconstruction and dispute review remain possible. |
 | [DecisionAssure](./decisionassure.md) | Trace integrity and causal-continuity intake | artifact package required | Candidate target for testing whether supplied traces can support independent authority reconstruction without becoming authority. |
 | [MindForge](./mindforge.md) | Historical governance review evidence intake | artifact package required | Candidate target for testing whether review evidence remains non-authorizing until SPE reconstructs current standing. |
-| [Morrison Runtime](./morrison-runtime.md) | Runtime-governance comparison target | official source required | Candidate comparison target for runtime outcome and failure-state behavior. |
+| [Morrison Runtime](./morrison-runtime.md) | Runtime-governance comparison target | sourced with parameterized boundary case partial | Candidate comparison target for runtime outcome, failure-state behavior, and semantic-equivalence boundary testing. |
 | [CARE Runtime](./care-runtime.md) | Public runtime-governance platform candidate | official source required | Candidate crosswalk target for runtime governance, public-platform posture, and consequence-boundary language. |
 | [AAR](./aar.md) | Supervised AI governance and operational forensics candidate | sourced | Crosswalk target for observable-system governance and pre-execution cost governance. |
 | [ASRO](./asro.md) | Independent AI governance-state attestation | sourced | Crosswalk target for host-side measurement, edge-side witnessing, and independent verification of whether declared governance remained in force. |
@@ -118,6 +139,7 @@ MITRE ATLAS -> adversarial AI threat context
 OWASP Top 10 for LLM Applications -> LLM application risk context
 DecisionAssure -> trace
 MindForge -> review
+Morrison Runtime -> pre-execution runtime verdict and audit evidence
 Commitment Candidate -> proposed crossing
 SPE -> standing determination
 Execution -> consequence binding
@@ -128,6 +150,8 @@ Execution -> consequence binding
 Pages marked `official source required` remain intake records only. They should not be treated as externally sourced until an official website, public canonical artifact, release page, repository, paper, or specification URL is supplied.
 
 Pages marked `artifact package required` remain intake records until a public source, authorized artifact package, repository, specification, or jointly authorized technical note is supplied.
+
+Pages marked `sourced with parameterized boundary case partial` have official source references and at least one parameterized observation, but are not full public validation results until raw outputs, timestamps, source versions, and audit payloads are attached.
 
 Pages marked `sourced` include a public or official source URL on the page itself.
 
@@ -149,4 +173,5 @@ External framework inclusion does not prove transition admissibility.
 External framework inclusion does not grant execution authority.
 A source URL is evidence of the external framework artifact, not acceptance of equivalence.
 A StegVerse observation does not expand the external framework's published claims.
+A parameterized observation is not general compatibility.
 ```
