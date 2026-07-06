@@ -8,23 +8,22 @@ Some clients cannot reliably create or move paths that begin with a leading peri
 
 ```text
 iosnoperiod/github/workflows/validate-chain-continuation.yml -> .github/workflows/validate-chain-continuation.yml
-iosnoperiod/github/workflows/validate.yml -> .github/workflows/validate.yml
 ```
 
 The left side is the iOS-safe mirror path. The right side is the canonical GitHub Actions path.
 
 ## Current status
 
-`iosnoperiod/github/workflows/validate.yml` contains the Goal 5 wiki validation path:
+`iosnoperiod/github/workflows/validate-chain-continuation.yml` is the only approved iOS mirror workflow file.
+
+The mirror preserves the single-canonical-workflow policy enforced by `scripts/check_workflow_sprawl.py`:
 
 ```text
-npm ci
-python scripts/check_governed_llm_pages.py
-python scripts/check_governed_llm_demo_docs.py
-npm run build
+active workflows must equal [validate-chain-continuation.yml]
+iOS mirror workflows must equal [validate-chain-continuation.yml]
 ```
 
-The mirror preserves the max-two-workflows rule. It is intended to become the single canonical validate workflow if canonical workflow activation is authorized.
+Legacy or prepared-but-not-activated workflow files must not remain in `iosnoperiod/github/workflows/` because the mirror is validated as an activation-facing workflow surface.
 
 The controlled patch note for the older chain-continuation workflow is:
 
@@ -34,7 +33,11 @@ iosnoperiod/github/workflows/validate-chain-continuation.patch.md
 
 ## Done Criteria
 
-The mirror is ready when the workflow file exists under `iosnoperiod/github/workflows/` and can be copied to the canonical path without content changes.
+The mirror is ready when exactly one workflow file exists under `iosnoperiod/github/workflows/` and can be copied to the canonical path without content changes:
+
+```text
+validate-chain-continuation.yml
+```
 
 Until a mirror is copied to its canonical `.github/workflows/` destination, the mirror must be treated as prepared-but-not-activated CI evidence.
 
