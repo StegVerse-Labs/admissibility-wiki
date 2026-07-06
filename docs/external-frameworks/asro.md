@@ -12,6 +12,7 @@ Canonical StegVerse formalism source: Admissible-Existence
 External framework role: independent AI governance-state attestation
 Wiki role: evidence-layer observatory, comparison, and relationship review
 Citation status: sourced
+Evidence provenance status: Batch 2 refactor installed
 ```
 
 ## Source
@@ -21,6 +22,29 @@ Public source: `https://aisystemsreliability.org/`
 Public repository: `https://github.com/magicianzcardstockllc/asro`
 
 The public source is treated as the canonical public source supplied for ASRO framing. The repository is treated as the public artifact source for the ASRO v1.0 release-candidate materials described by the source site.
+
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | Public ASRO source URL. | present | Versioned source snapshot and source hash. |
+| Official Implementation Sources | Public ASRO repository URL. | present_repository_reference | Specific release, commit hash, and artifact package snapshot. |
+| Observed Behavior | Commitment Candidate fixture is referenced; no reproduced runtime/attestation run is claimed here. | commitment_candidate_material_present_or_pending | Raw attestation output, verifier payload, timestamp, source version, and hash. |
+| Reproduced Behavior | No independent reproduction is claimed. | not_started | Reproduction fixture and deterministic ASRO verification run. |
+| StegVerse Analysis | Host-side measurement, edge-side witnessing, verifier reconciliation, governance-state changes, and selective attestation are mapped to admissibility primitives. | governance_state_attestation_crosswalk | SPE review over concrete attestation artifacts. |
+| Interoperability Assessment | ASRO evidence may support a Commitment Candidate without becoming execution authority. | pending_or_partial_commitment_candidate | Completed fixture validation report and compatibility report. |
+| Standing | Sourced provisional. | provisional | Release/commit hash and validation artifact package. |
+
+Evidence classification:
+
+```text
+F1: ASRO public source URL and framework-native public framing.
+F2: ASRO public repository reference.
+V1: ASRO non-authorizing Commitment Candidate fixture reference.
+S1: StegVerse interpretation of ASRO as governance-state attestation evidence.
+S2: mapping to Evidence Posture, Policy Reference, Governance Boundary, Reconstructability, Receipt-Bound Execution, Review Posture, Drift, Commit-Time Validity, and FAIL-CLOSED behavior.
+I1: pending until the ASRO artifact is routed through a validated Commitment Candidate/SPE fixture.
+```
 
 ## Definition
 
@@ -86,6 +110,14 @@ ASRO does not grant execution authority inside StegVerse.
 ASRO source citation is not acceptance of equivalence.
 ASRO attestation evidence may support review, but review does not become authority.
 ```
+
+## Challenge Path
+
+A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
+
+## Mandatory Footer
+
+This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing that can be reconstructed from the referenced evidence, authority, and admissibility conditions.
 
 ## Next Safe Build Target
 
