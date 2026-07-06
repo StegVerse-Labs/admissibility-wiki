@@ -12,6 +12,7 @@ Canonical StegVerse formalism source: Admissible-Existence
 External framework role: LLM application risk and vulnerability guidance
 Wiki role: risk-control observatory, evidence comparison, and relationship review
 Citation status: sourced
+Evidence provenance status: Batch 3 refactor installed
 ```
 
 ## Source
@@ -19,6 +20,27 @@ Citation status: sourced
 Official source: `https://owasp.org/www-project-top-10-for-large-language-model-applications/`
 
 The official source is treated as the canonical public source for OWASP Top 10 for LLM Applications framing.
+
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | Official OWASP project source URL. | present | Versioned source snapshot and source hash. |
+| Official Implementation Sources | OWASP Top 10 for LLM Applications is treated here as external guidance rather than a runtime implementation. | not_applicable_or_external_guidance | Specific version/snapshot if used in a test. |
+| Observed Behavior | No runtime behavior is claimed. | not_applicable_for_runtime_result | Not a runtime-result page. |
+| Reproduced Behavior | No independent reproduction is claimed. | not_applicable | Reproduction only if a mapping fixture is created. |
+| StegVerse Analysis | Risk categories, prompt injection, output handling, mitigations, and application security review are mapped to admissibility primitives. | risk_category_crosswalk | Concrete Commitment Candidate fixture with risk-category references. |
+| Interoperability Assessment | OWASP risk evidence may support review posture, not authority. | pending_mapping_to_application_review_posture | Fixture and compatibility report. |
+| Standing | Sourced provisional. | provisional | Source snapshot and mapping artifact. |
+
+Evidence classification:
+
+```text
+F1: official OWASP project source URL and framework-native guidance claims.
+S1: StegVerse interpretation of OWASP LLM risk categories as review-context evidence.
+S2: mapping to Review Posture, Evidence Posture, Governance Boundary, Drift, Fail-Closed behavior, Commit-Time Validity, Receipt-Bound Execution, Policy Reference, Boundary Conditions, and Reconstructability.
+H1: future mapping fixture until concrete risk-category references are attached.
+```
 
 ## Definition
 
@@ -72,6 +94,14 @@ OWASP Top 10 for LLM Applications does not grant execution authority inside Steg
 OWASP source citation is not acceptance of equivalence.
 Security-risk review may support evidence and review posture, but review does not become authority.
 ```
+
+## Challenge Path
+
+A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
+
+## Mandatory Footer
+
+This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing that can be reconstructed from the referenced evidence, authority, and admissibility conditions.
 
 ## Next Safe Build Target
 
