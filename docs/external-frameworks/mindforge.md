@@ -12,6 +12,7 @@ Canonical StegVerse formalism source: Admissible-Existence
 External framework role: historical governance review evidence
 Wiki role: observatory record, boundary mapping, and commit-time test target
 Citation status: artifact package required
+Evidence provenance status: Batch 2 refactor installed
 ```
 
 ## Source
@@ -19,6 +20,29 @@ Citation status: artifact package required
 Public canonical source required before this page is marked `sourced`.
 
 Until a public source, artifact package, repository, specification, or jointly authorized technical note is supplied, this page remains an intake record only.
+
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | No public canonical source is attached on this page. | artifact_package_required | Public source, authorized artifact package, repository, specification, or jointly authorized technical note. |
+| Official Implementation Sources | No official implementation package is attached on this page. | not_attached | Repository, release, package, review schema, evidence-packet schema, or verifier source if available. |
+| Observed Behavior | No public runtime, review, or evidence-packet behavior is claimed. | artifact_dependent | Evidence packet, review artifact, timestamp, source version, and artifact hash. |
+| Reproduced Behavior | No independent reproduction is claimed. | not_started | Reconstruction fixture and deterministic review/evidence replay. |
+| StegVerse Analysis | Historical review evidence, review artifacts, evidence packets, governance context, transition context, and authority re-binding are mapped to admissibility primitives. | partial_review_evidence_crosswalk | Artifact package reconstruction and SPE current-standing review. |
+| Interoperability Assessment | MindForge artifacts may be referenced by a Commitment Candidate as historical evidence, not authority. | pending_artifact_package_reconstruction | Commitment Candidate fixture with source artifacts. |
+| Standing | Artifact-package-required fail-closed. | provisional_fail_closed | Source package and reconstruction evidence. |
+
+Evidence classification:
+
+```text
+F1: not yet available on this page; source required.
+F2: not yet available on this page; implementation/package required.
+O1/O2: not claimed publicly until review artifacts, evidence packets, and raw outputs are attached.
+S1: StegVerse interpretation of MindForge evidence as historical review evidence, not authority.
+S2: mapping to Review Posture, Evidence Posture, Reconstructability, Receipt-Bound Execution, Governance Boundary, Policy Reference, Transition Table, and Commit-Time Validity.
+H1: future artifact-specific evaluation until authorized artifacts are attached.
+```
 
 ## Definition
 
@@ -135,6 +159,14 @@ This page does not treat a Commitment Candidate as authorization.
 This page does not treat artifact-specific evaluation as system-wide validation.
 This page does not mark the framework as sourced until an authorized public source is supplied.
 ```
+
+## Challenge Path
+
+A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
+
+## Mandatory Footer
+
+This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing that can be reconstructed from the referenced evidence, authority, and admissibility conditions.
 
 ## Next Safe Build Target
 
