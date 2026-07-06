@@ -53,14 +53,51 @@ REQUIRED_TEMPLATE_SECTIONS = [
     "## Non-Claims",
 ]
 
-REQUIRED_MORRISON_TERMS = [
-    "Evidence Provenance",
-    "Parameterized Boundary Case",
-    "Semantic Value Movement Versus Tool Label",
-    "FC-001",
-    "raw audit payload",
-    "timestamp",
-]
+BATCH1_PAGE_REQUIREMENTS = {
+    "glm": {
+        "path": DOCS / "glm.md",
+        "terms": [
+            "## Evidence Provenance",
+            "Official Framework Sources",
+            "Official Implementation Sources",
+            "Observed Behavior",
+            "Reproduced Behavior",
+            "StegVerse Analysis",
+            "Interoperability Assessment",
+            "Standing",
+            "F1:",
+            "S1:",
+            "S2:",
+        ],
+    },
+    "evide": {
+        "path": DOCS / "evide.md",
+        "terms": [
+            "## Evidence Provenance",
+            "Official Framework Sources",
+            "Official Implementation Sources",
+            "Observed Behavior",
+            "Reproduced Behavior",
+            "StegVerse Analysis",
+            "Interoperability Assessment",
+            "Standing",
+            "F1:",
+            "S1:",
+            "S2:",
+        ],
+    },
+    "morrison-runtime": {
+        "path": DOCS / "morrison-runtime.md",
+        "terms": [
+            "Evidence Provenance",
+            "Parameterized Boundary Case",
+            "Semantic Value Movement Versus Tool Label",
+            "FC-001",
+            "raw audit payload",
+            "timestamp",
+        ],
+    },
+}
 
 REQUIRED_ROLLOUT_ENTRY_FIELDS = [
     "framework_id",
@@ -93,6 +130,11 @@ def main() -> int:
         if not path.exists():
             failures.append(f"missing standard file: {path.relative_to(ROOT)}")
 
+    for framework_id, requirement in BATCH1_PAGE_REQUIREMENTS.items():
+        path = requirement["path"]
+        if not path.exists():
+            failures.append(f"missing Batch 1 page: {framework_id}: {path.relative_to(ROOT)}")
+
     if failures:
         print("EXTERNAL FRAMEWORK EVIDENCE PROVENANCE: FAIL")
         for failure in failures:
@@ -103,7 +145,6 @@ def main() -> int:
     standard = read(DOCS / "evaluation-standard.md")
     catalog = read(DOCS / "failure-class-catalog.md")
     template = read(DOCS / "external-framework-template.md")
-    morrison = read(DOCS / "morrison-runtime.md")
     rollout_page = read(DOCS / "evidence-provenance-rollout.md")
     rollout = load_json(ROLLOUT)
     registry = load_json(REGISTRY)
@@ -124,9 +165,11 @@ def main() -> int:
         if section not in template:
             failures.append(f"template missing section: {section}")
 
-    for term in REQUIRED_MORRISON_TERMS:
-        if term not in morrison:
-            failures.append(f"Morrison page missing term: {term}")
+    for framework_id, requirement in BATCH1_PAGE_REQUIREMENTS.items():
+        content = read(requirement["path"])
+        for term in requirement["terms"]:
+            if term not in content:
+                failures.append(f"Batch 1 page {framework_id} missing term: {term}")
 
     for term in ["First-Pass Rollout Matrix", "Batch 1", "Batch 5"]:
         if term not in rollout_page:
@@ -161,6 +204,10 @@ def main() -> int:
             if not page_path.exists():
                 failures.append(f"rollout entry {framework_id} page does not exist: {page}")
 
+    batch1_status = rollout.get("batch_status", {}).get("batch_1")
+    if batch1_status != "PAGE_PROVENANCE_SECTIONS_INSTALLED":
+        failures.append("rollout batch_1 status must be PAGE_PROVENANCE_SECTIONS_INSTALLED")
+
     boundary = rollout.get("global_boundary", {})
     for key in [
         "rollout_is_certification",
@@ -172,11 +219,11 @@ def main() -> int:
         if boundary.get(key) is not False:
             failures.append(f"rollout boundary must be false: {key}")
 
-    # The page must not present the remembered historical six-test table as public validation evidence.
     banned_morrison_fragments = [
         "| 1 | ALLOW | BLOCK | False allow",
         "| Test | Observed Result | StegVerse Expected Result | Validation Meaning |",
     ]
+    morrison = read(DOCS / "morrison-runtime.md")
     for fragment in banned_morrison_fragments:
         if fragment in morrison:
             failures.append("Morrison page still contains unsupported historical public result table")
