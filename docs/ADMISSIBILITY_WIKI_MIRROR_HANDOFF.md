@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: complete governed LLM / admissibility-wiki public documentation activation under the single canonical validation workflow.
-Current repo state: all-framework evidence-provenance rollout matrix installed; Batch 1, Batch 2, Batch 3, and Batch 4 page provenance refactors installed and validator-enforced.
+Current repo state: all-framework evidence-provenance rollout matrix installed; Batch 1, Batch 2, Batch 3, Batch 4, and Batch 5 page provenance refactors installed or in closure.
 Manual task requirement: none recorded in this handoff
 No manual target-creation task is assigned in this handoff
 ```
@@ -15,6 +15,19 @@ No manual target-creation task is assigned in this handoff
 
 ```text
 Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the public vocabulary, terminology convergence, proposal-review, proof-path, governed LLM demo, repo-standards integration, and external-framework evaluation-standard site.
+```
+
+## Proposal Governance Core-Lite Status
+
+```text
+Target repository: StegVerse-Labs/proposal-governance-core-lite
+Status artifact: static/status/proposal-core-lite-target-watch-status.json
+Validation command: npm run validate:proposal-core-lite-target-watch-status
+Execution surface: .github/workflows/validate-chain-continuation.yml
+Posture: declared task under the canonical workflow, not a second active workflow.
+Last observed validator result: proposal core-lite target watch status OK
+Manual task requirement: none recorded in this handoff
+No manual target-creation task is assigned in this handoff
 ```
 
 ## Deployment Gate
@@ -27,6 +40,66 @@ Public verification job: verify-public-pages
 Gate posture: validation must pass before build/deploy/verify can advance.
 ```
 
+## Known Workflow Files
+
+```text
+Active canonical workflow:
+.github/workflows/validate-chain-continuation.yml
+
+iOS-safe workflow path references retained for continuity and migration history:
+github/workflows/deploy.yml
+github/workflows/record-latest-success.yml
+github/workflows/proposal-core-lite-target-watch.yml
+
+The proposal-core-lite target watch is represented as a declared task/status artifact under the canonical workflow, not as an additional active workflow file.
+```
+
+## Known Status Artifacts
+
+```text
+static/status/admissibility-wiki-status.json
+static/status/admissibility-wiki-activation.json
+static/status/proposal-core-lite-target-watch-status.json
+static/status/no-manual-task-guard-status.json
+static/status/mirror-handoff-guard-status.json
+static/status/workflow-receipt-automation-status.json
+static/status/workflow-evidence-status.json
+static/status/workflow-evidence-watch-status.json
+static/status/publication-verification-status.json
+static/status/repo-standards-integration-status.json
+static/status/repo-standards-integration-release-update-queue.json
+static/status/repo-standards-installation-bundle-plan.json
+static/status/repo-standards-installation-validation-report.json
+static/status/repo-standards-public-deployment-verification.json
+```
+
+## Validation and Receipt Automation
+
+```text
+npm run validate:wiki-status
+npm run validate:activation-checklist
+npm run validate:publication-verification-status
+npm run validate:workflow-receipt-automation-status
+npm run validate:workflow-evidence-status
+npm run validate:workflow-evidence-watch-status
+npm run validate:proposal-core-lite-target-watch-status
+npm run validate:no-manual-task-assignments
+npm run validate:mirror-handoff-guard
+python scripts/check_external_framework_expansion_policy.py
+python scripts/check_external_framework_evidence_provenance.py
+npm run validate
+```
+
+## Mirror Coordination Rule
+
+```text
+Check this file before continuing work in StegVerse-Labs/admissibility-wiki.
+Check docs/SITE_MIRROR_HANDOFF.md before Site mirror work.
+Do not create additional active GitHub Actions workflows unless repo standards explicitly change.
+Do not treat public page visibility as governance authority.
+Manual task requirement: none recorded in this handoff
+```
+
 ## Current goal
 
 ```text
@@ -36,7 +109,7 @@ all-external-framework-evidence-provenance-rollout
 ## Current version
 
 ```text
-1.5.10-batch4-external-framework-provenance-refactor
+1.5.11-mirror-handoff-guard-restored
 ```
 
 ## Current status
@@ -50,39 +123,13 @@ BATCH3_MITRE_OWASP_NIST_ISO_EUAI_PROVENANCE_SECTIONS_INSTALLED
 BATCH3_PROVENANCE_VALIDATOR_ENFORCED
 BATCH4_POLICY_RUNTIME_AGENT_KILLSWITCH_CARE_AAR_PROVENANCE_SECTIONS_INSTALLED
 BATCH4_PROVENANCE_VALIDATOR_ENFORCED
+BATCH5_AE_SEED_CYCLE_PROVENANCE_SECTION_INSTALLED
 EXTERNAL_FRAMEWORK_EVIDENCE_PROVENANCE_VALIDATOR_WIRED_IN_PACKAGE
 EXTERNAL_FRAMEWORK_EVIDENCE_PROVENANCE_VALIDATOR_WIRED_IN_CANONICAL_WORKFLOW
+MIRROR_HANDOFF_GUARD_REQUIRED_SECTIONS_RESTORED
 UPSTREAM_REPO_STANDARDS_RELEASE_READY
 UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
 LOCAL_DOCS_ONLY
-```
-
-## Batch 4 complete
-
-```text
-Policy Cards:
-  - docs/external-frameworks/policy-cards.md includes Evidence Provenance
-  - remains sourced provisional with policy-card fixture pending
-
-Runtime Governance for AI Agents:
-  - docs/external-frameworks/runtime-governance-policies-on-paths.md includes Evidence Provenance
-  - remains sourced provisional with path-policy fixture pending
-
-Agent Governance Playbook:
-  - docs/external-frameworks/agent-governance-playbook.md includes Evidence Provenance
-  - release source classified as F1/F2-pending snapshot
-
-Emergency Stop Convention:
-  - docs/external-frameworks/killswitch-md.md includes Evidence Provenance
-  - remains sourced provisional with fail-closed fixture pending
-
-CARE Runtime:
-  - docs/external-frameworks/care-runtime.md includes Evidence Provenance
-  - remains screenshot-only/source-blocked fail-closed until official source exists
-
-AAR:
-  - docs/external-frameworks/aar.md includes Evidence Provenance
-  - remains sourced provisional with assessment fixture pending
 ```
 
 ## Completed rollout batches
@@ -92,14 +139,15 @@ Batch 1: GLM, EVIDE, Morrison Runtime
 Batch 2: DecisionAssure, MindForge, ASRO
 Batch 3: MITRE ATLAS, OWASP Top 10 for LLM Applications, NIST AI RMF, ISO/IEC 42001, EU AI Act
 Batch 4: Policy Cards, Runtime Governance for AI Agents, Agent Governance Playbook, Emergency Stop Convention, CARE Runtime, AAR
+Batch 5: Admissible Existence Seed Cycle
 ```
 
 ## Remaining targets
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - Batch 5 refactor: Admissible Existence Seed Cycle
-  - extend validator from Batch 4 to Batch 5 after refactor
+  - mark Batch 5 complete in evidence-provenance-rollout.json if not already complete
+  - extend validator from Batch 4 to Batch 5 if not already enforced
   - complete canonical validate-chain-continuation workflow
   - confirm build-pages, deploy-pages, and verify-public-pages
   - public deployment verification after site deploys
