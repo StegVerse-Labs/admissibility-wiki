@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: complete governed LLM / admissibility-wiki public documentation activation under the single canonical validation workflow.
-Current repo state: validator convergence, GitHub Pages activation verification, and external-framework evidence-provenance standard rollout.
+Current repo state: all-framework evidence-provenance rollout matrix installed and validator coverage expanded.
 Manual task requirement: none recorded in this handoff
 No manual target-creation task is assigned in this handoff
 ```
@@ -30,13 +30,13 @@ Gate posture: validation must pass before build/deploy/verify can advance.
 ## Current goal
 
 ```text
-external-framework-evaluation-standard-rollout-and-validator-convergence
+all-external-framework-evidence-provenance-rollout
 ```
 
 ## Current version
 
 ```text
-1.5.5-external-framework-evidence-provenance-validator
+1.5.6-all-framework-evidence-provenance-rollout
 ```
 
 ## Current status
@@ -56,6 +56,9 @@ EXTERNAL_FRAMEWORK_EXPANSION_POLICY_UPDATED
 EXTERNAL_FRAMEWORK_EVIDENCE_PROVENANCE_VALIDATOR_INSTALLED
 EXTERNAL_FRAMEWORK_EVIDENCE_PROVENANCE_VALIDATOR_WIRED_IN_PACKAGE
 EXTERNAL_FRAMEWORK_EVIDENCE_PROVENANCE_VALIDATOR_WIRED_IN_CANONICAL_WORKFLOW
+ALL_FRAMEWORK_EVIDENCE_PROVENANCE_ROLLOUT_MATRIX_INSTALLED
+ALL_FRAMEWORK_EVIDENCE_PROVENANCE_ROLLOUT_PAGE_INSTALLED
+ALL_FRAMEWORK_EVIDENCE_PROVENANCE_ROLLOUT_VALIDATOR_COVERAGE_INSTALLED
 UPSTREAM_REPO_STANDARDS_RELEASE_READY
 UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
 LOCAL_DOCS_ONLY
@@ -67,15 +70,45 @@ LOCAL_DOCS_ONLY
 docs/external-frameworks/evaluation-standard.md
 docs/external-frameworks/failure-class-catalog.md
 docs/external-frameworks/external-framework-template.md
+docs/external-frameworks/evidence-provenance-rollout.md
+docs/external-frameworks/evidence-provenance-rollout.json
 docs/external-frameworks/morrison-runtime.md
 docs/external-frameworks/reports/morrison-runtime.compatibility.json
 docs/external-frameworks/EXPANSION_POLICY.json
+```
+
+## All-framework rollout coverage
+
+```text
+GLM
+EVIDE
+DecisionAssure
+MindForge
+Morrison Runtime
+CARE Runtime
+AAR
+ASRO
+MITRE ATLAS
+OWASP Top 10 for LLM Applications
+Agent Governance Playbook
+Emergency Stop Convention
+NIST AI RMF
+ISO/IEC 42001
+EU AI Act
+Policy Cards
+Runtime Governance for AI Agents
+Admissible Existence Seed Cycle
 ```
 
 ## Validator additions
 
 ```text
 scripts/check_external_framework_evidence_provenance.py
+  -> validates standard files
+  -> validates rollout page and JSON matrix
+  -> confirms every registry framework appears in rollout exactly once
+  -> confirms no unsupported Morrison historical result table is restored
+
 package.json -> validate:external-framework-evidence-provenance
 package.json -> npm run validate includes expansion-policy and evidence-provenance validators
 .github/workflows/validate-chain-continuation.yml -> validates external framework evidence provenance in canonical validation job
@@ -107,6 +140,8 @@ docs/MIRROR_HANDOFF_GUARD_ADDENDUM.md
 docs/external-frameworks/evaluation-standard.md
 docs/external-frameworks/failure-class-catalog.md
 docs/external-frameworks/external-framework-template.md
+docs/external-frameworks/evidence-provenance-rollout.md
+docs/external-frameworks/evidence-provenance-rollout.json
 docs/external-frameworks/morrison-runtime.md
 docs/external-frameworks/reports/morrison-runtime.compatibility.json
 docs/external-frameworks/EXPANSION_POLICY.json
@@ -124,8 +159,8 @@ StegVerse-Labs/admissibility-wiki:
   - complete canonical validate-chain-continuation workflow
   - confirm build-pages, deploy-pages, and verify-public-pages
   - public deployment verification after site deploys
-  - refactor existing external-framework pages to include Evidence Provenance section
-  - extend validator from standard-file/Morrison coverage to all external-framework pages after refactor
+  - refactor existing external-framework pages to include Evidence Provenance section in rollout batches
+  - extend validator from rollout-file coverage to per-page Evidence Provenance enforcement after refactor
 
 StegVerse-Labs/repo-standards:
   - propagate external-framework evidence provenance standard and failure-class catalog as org-level standard
@@ -136,7 +171,7 @@ StegVerse-Labs/Site:
 GCAT-BCAT-Engine/Publisher:
   - publication/import awareness after wiki validation and repo-standards tag/release
 
-StegVerse-002/stegguardian-wiki:
+StegVerse-002/stegguardianian-wiki:
   - downstream public Guardian summary after wiki validation and repo-standards tag/release
 
 StegVerse-002/StegGuardian:
@@ -145,7 +180,7 @@ StegVerse-002/StegGuardian:
 
 ## Boundary rules
 
-This wiki records vocabulary, proof framing, lifecycle classification, public explanation paths, release-gated integration references, release-gated bundle installation doctrine, governed LLM demo documentation, external-framework evidence-provenance standards, and public deployment verification requirements.
+This wiki records vocabulary, proof framing, lifecycle classification, public explanation paths, release-gated integration references, release-gated bundle installation doctrine, governed LLM demo documentation, external-framework evidence-provenance standards, all-framework rollout state, and public deployment verification requirements.
 
 It does not claim production authority or release status.
 
