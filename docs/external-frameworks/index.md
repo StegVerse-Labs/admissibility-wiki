@@ -70,6 +70,8 @@ The reusable template is [External Framework Page Template](./external-framework
 
 Failure observations should use the [External Framework Failure Class Catalog](./failure-class-catalog.md).
 
+The rollout tracker is [Evidence Provenance Rollout](./evidence-provenance-rollout.md).
+
 ## Terminology Reconciliation
 
 External terminology is governed by the [Governed Terminology Reconciliation Rule](./terminology-reconciliation-rule.md).
@@ -93,6 +95,7 @@ A generated compatibility result is evidence only. It is not certification, endo
 | [External Framework Evaluation Standard](./evaluation-standard.md) | Defines evidence provenance, claim traceability, comparative fairness, and required page structure for all external-framework pages. |
 | [External Framework Failure Class Catalog](./failure-class-catalog.md) | Defines reusable failure classes so observations are classified by failure kind rather than only pass/fail. |
 | [External Framework Page Template](./external-framework-template.md) | Provides a reusable page structure for new or refactored external-framework entries. |
+| [Evidence Provenance Rollout](./evidence-provenance-rollout.md) | Tracks rollout of the provenance standard across all registered external-framework pages. |
 | [Governance Observatory Protocol](./governance-observatory-protocol.md) | Defines the neutral page structure and observation rules for external frameworks. |
 | [Commit-Time Interoperability Contract](./commit-time-interoperability-contract.md) | Defines the minimal contract for routing external artifacts into a Commitment Candidate and SPE determination. |
 | [Governed Terminology Reconciliation Rule](./terminology-reconciliation-rule.md) | Defines how external terms may be classified as synonymous, adjacent, new, or unresolved without inheriting authority. |
