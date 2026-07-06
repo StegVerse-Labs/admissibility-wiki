@@ -3,6 +3,9 @@
   "schema_version": "0.1",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "goal_id": "external-framework-expansion-cycle",
+  "standard_path": "docs/external-frameworks/evaluation-standard.md",
+  "template_path": "docs/external-frameworks/external-framework-template.md",
+  "failure_class_catalog_path": "docs/external-frameworks/failure-class-catalog.md",
   "allowed_source_states": [
     "SOURCE_RECORDED_CROSSWALK_PROVISIONAL",
     "SOURCE_BLOCKED_FAIL_CLOSED",
@@ -38,9 +41,47 @@
     "boundary"
   ],
   "required_page_sections": [
+    "Evidence Provenance",
     "Framework-Term Definitions",
     "Reconciliation Class",
-    "Admissibility Relationship"
+    "Admissibility Relationship",
+    "Execution Authority Boundary",
+    "Evaluation Result Posting",
+    "Non-Claims",
+    "Challenge Path"
+  ],
+  "evidence_classification_codes": [
+    "F1",
+    "F2",
+    "O1",
+    "O2",
+    "R1",
+    "S1",
+    "S2",
+    "I1",
+    "V1",
+    "H1"
+  ],
+  "required_evidence_provenance_classes": [
+    "official_framework_sources",
+    "official_implementation_sources",
+    "observed_behavior",
+    "reproduced_behavior",
+    "stegverse_analysis",
+    "interoperability_assessment",
+    "standing"
+  ],
+  "required_runtime_result_artifacts": [
+    "input_prompt_or_planner_output",
+    "selected_demo_repository_version_release_or_commit",
+    "runtime_configuration",
+    "policy_or_rule_set",
+    "expected_boundary",
+    "observed_output",
+    "returned_audit_evidence_or_trace",
+    "screenshot_or_raw_payload",
+    "timestamp",
+    "source_url_or_commit_hash"
   ],
   "required_boundaries": {
     "claims_certification": false,
@@ -57,17 +98,23 @@
     "missing manifest path",
     "missing framework page",
     "missing native terminology table",
+    "missing evidence provenance section",
     "missing transition-table mapping",
     "missing SPE overlap",
     "missing StegVerse ecosystem overlap",
-    "any certification, endorsement, execution authority, or commit-time authority claim appears"
+    "any certification, endorsement, execution authority, or commit-time authority claim appears",
+    "public runtime-result claim without required runtime result artifacts"
   ],
   "boundary": {
     "expansion_policy_is_authority": false,
     "expansion_policy_is_certification": false,
     "new_entries_require_source_state": true,
     "new_entries_require_native_terminology": true,
+    "new_entries_require_evidence_provenance": true,
     "new_entries_require_transition_table_mapping": true,
-    "new_entries_preserve_non_authority_boundary": true
+    "new_entries_preserve_non_authority_boundary": true,
+    "observed_behavior_must_not_be_generalized_beyond_captured_evidence": true,
+    "compatibility_is_not_certification": true,
+    "standing_is_never_inherited_from_publication": true
   }
 }
