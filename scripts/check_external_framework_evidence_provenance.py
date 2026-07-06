@@ -18,6 +18,7 @@ REQUIRED_FAILURE_CLASSES = ["FC-001", "Semantic Equivalence Divergence", "FC-007
 REQUIRED_TEMPLATE_SECTIONS = ["## Evidence Provenance", "## Parameterized Test Cases", "## StegVerse Analysis", "## Failure Classes", "## Non-Claims"]
 COMMON_PROVENANCE_TERMS = ["## Evidence Provenance", "Official Framework Sources", "Official Implementation Sources", "Observed Behavior", "Reproduced Behavior", "StegVerse Analysis", "Interoperability Assessment", "Standing"]
 GUIDANCE_TERMS = COMMON_PROVENANCE_TERMS + ["F1:", "S1:", "S2:", "H1:", "not_applicable_for_runtime_result"]
+ARTIFACT_TERMS = COMMON_PROVENANCE_TERMS + ["F1:", "F2:", "S1:", "S2:", "H1:"]
 
 BATCH_PAGE_REQUIREMENTS = {
     "batch_1": {
@@ -36,6 +37,14 @@ BATCH_PAGE_REQUIREMENTS = {
         "nist-ai-rmf": {"path": DOCS / "nist-ai-rmf.md", "terms": GUIDANCE_TERMS + ["risk_management_crosswalk"]},
         "iso-iec-42001": {"path": DOCS / "iso-iec-42001.md", "terms": GUIDANCE_TERMS + ["ai_management_system_crosswalk"]},
         "eu-ai-act": {"path": DOCS / "eu-ai-act.md", "terms": GUIDANCE_TERMS + ["legal_obligation_crosswalk"]},
+    },
+    "batch_4": {
+        "policy-cards": {"path": DOCS / "policy-cards.md", "terms": ARTIFACT_TERMS + ["runtime_policy_artifact_crosswalk"]},
+        "runtime-governance-for-ai-agents": {"path": DOCS / "runtime-governance-policies-on-paths.md", "terms": ARTIFACT_TERMS + ["runtime_path_governance_crosswalk"]},
+        "agent-governance-playbook": {"path": DOCS / "agent-governance-playbook.md", "terms": ARTIFACT_TERMS + ["agent_continuation_crosswalk"]},
+        "emergency-stop-convention": {"path": DOCS / "killswitch-md.md", "terms": ARTIFACT_TERMS + ["emergency_stop_fail_closed_crosswalk"]},
+        "care-runtime": {"path": DOCS / "care-runtime.md", "terms": COMMON_PROVENANCE_TERMS + ["missing_or_unconfirmed", "O1:", "S1:", "S2:", "H1:"]},
+        "aar": {"path": DOCS / "aar.md", "terms": ARTIFACT_TERMS + ["provisional_crosswalk_with_page_provenance"]},
     },
 }
 REQUIRED_ROLLOUT_ENTRY_FIELDS = ["framework_id", "name", "page", "source_status", "official_framework_sources", "official_implementation_sources", "observed_behavior", "reproduced_behavior", "stegverse_analysis", "interoperability_assessment", "standing", "next_action"]
@@ -114,7 +123,7 @@ def main() -> int:
         page = entry.get("page")
         if isinstance(page, str) and page.startswith("docs/external-frameworks/") and not (ROOT / page).exists():
             failures.append(f"rollout entry {framework_id} page does not exist: {page}")
-    for batch_id in ["batch_1", "batch_2", "batch_3"]:
+    for batch_id in ["batch_1", "batch_2", "batch_3", "batch_4"]:
         if rollout.get("batch_status", {}).get(batch_id) != "PAGE_PROVENANCE_SECTIONS_INSTALLED":
             failures.append(f"rollout {batch_id} status must be PAGE_PROVENANCE_SECTIONS_INSTALLED")
     boundary = rollout.get("global_boundary", {})
