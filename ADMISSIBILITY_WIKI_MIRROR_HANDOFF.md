@@ -6,7 +6,7 @@ This file is the handoff source of truth for `StegVerse-Labs/admissibility-wiki`
 
 ## Active goal
 
-Sync public documentation for the portable governed return-path proof after completion of the runtime, adapter, and SDK integration chain.
+Sync public documentation for the portable governed return-path proof and external runtime-governance compatibility records after completion of the runtime, adapter, and SDK integration chain.
 
 ## Completed upstream inputs
 
@@ -30,6 +30,14 @@ StegVerse-org/StegVerse-SDK
 docs/governance/portable-governed-return-path.md
 static/governance/portable-governed-return-path.v0.1.json
 sidebars.js includes governance/portable-governed-return-path
+
+docs/external-frameworks/morrison-runtime.md
+  -> upgraded from source-blocked intake to sourced cooperative validation page
+
+docs/external-frameworks/reports/morrison-runtime.compatibility.json
+  -> upgraded from SOURCE_BLOCKED_FAIL_CLOSED to COMPATIBILITY_EVIDENCE_ONLY / COOPERATIVE_VALIDATION_READY
+
+sidebars.js includes external-frameworks/morrison-runtime
 ```
 
 ## Public proof chain
@@ -43,9 +51,30 @@ external LLM or UI
 -> original customer path
 ```
 
+## Morrison Runtime cooperative validation chain
+
+```text
+agent or planner output
+-> Morrison Runtime Governance pre-execution evaluation
+-> runtime verdict and audit evidence
+-> StegVerse Commitment Candidate
+-> SPE current-standing reconstruction
+-> ALLOW / DENY / FAIL-CLOSED
+-> governed return path
+```
+
 ## Required boundary statement
 
-This documentation must remain fixture-bound and must not claim live provider activation, live production authority, public endorsement, repository mutation authority, or general validation of any external LLM.
+This documentation must remain fixture-bound and must not claim live provider activation, live production authority, public endorsement, repository mutation authority, or general validation of any external LLM or external runtime-governance framework.
+
+For Morrison Runtime Governance specifically:
+
+```text
+A Morrison ALLOW is not StegVerse execution authority.
+A Morrison BLOCK is evidence, not final StegVerse standing.
+A Morrison ERROR or unavailable verdict should fail closed for consequence-binding actions.
+No Resurrection Tech endorsement, StegVerse certification, or live integration is claimed.
+```
 
 ## Verification target
 
@@ -53,6 +82,8 @@ This documentation must remain fixture-bound and must not claim live provider ac
 public page builds
 JSON status artifact parses
 boundary/non-claim language is preserved
+Morrison Runtime page remains cooperative and non-certifying
+historical six-test record remains marked as conversation-level reconstruction until prompt-by-prompt artifacts are attached
 ```
 
 ## Remaining files or modules to install
@@ -60,7 +91,9 @@ boundary/non-claim language is preserved
 Intended Org/Repo: `StegVerse-Labs/admissibility-wiki`
 
 ```text
-No additional portable governed return-path files currently required before build verification.
+Attach prompt-by-prompt Morrison test artifacts when available.
+Generate or attach captured runtime outputs/audit payloads for each cooperative validation case.
+Route each captured result through the Commit-Time Interoperability Contract.
 ```
 
 Intended Org/Repo: `StegVerse-Labs/Site`
