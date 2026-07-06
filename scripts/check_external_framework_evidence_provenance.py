@@ -53,49 +53,30 @@ REQUIRED_TEMPLATE_SECTIONS = [
     "## Non-Claims",
 ]
 
-BATCH1_PAGE_REQUIREMENTS = {
-    "glm": {
-        "path": DOCS / "glm.md",
-        "terms": [
-            "## Evidence Provenance",
-            "Official Framework Sources",
-            "Official Implementation Sources",
-            "Observed Behavior",
-            "Reproduced Behavior",
-            "StegVerse Analysis",
-            "Interoperability Assessment",
-            "Standing",
-            "F1:",
-            "S1:",
-            "S2:",
-        ],
+COMMON_PROVENANCE_TERMS = [
+    "## Evidence Provenance",
+    "Official Framework Sources",
+    "Official Implementation Sources",
+    "Observed Behavior",
+    "Reproduced Behavior",
+    "StegVerse Analysis",
+    "Interoperability Assessment",
+    "Standing",
+]
+
+BATCH_PAGE_REQUIREMENTS = {
+    "batch_1": {
+        "glm": {"path": DOCS / "glm.md", "terms": COMMON_PROVENANCE_TERMS + ["F1:", "S1:", "S2:"]},
+        "evide": {"path": DOCS / "evide.md", "terms": COMMON_PROVENANCE_TERMS + ["F1:", "S1:", "S2:"]},
+        "morrison-runtime": {
+            "path": DOCS / "morrison-runtime.md",
+            "terms": ["Evidence Provenance", "Parameterized Boundary Case", "Semantic Value Movement Versus Tool Label", "FC-001", "raw audit payload", "timestamp"],
+        },
     },
-    "evide": {
-        "path": DOCS / "evide.md",
-        "terms": [
-            "## Evidence Provenance",
-            "Official Framework Sources",
-            "Official Implementation Sources",
-            "Observed Behavior",
-            "Reproduced Behavior",
-            "StegVerse Analysis",
-            "Interoperability Assessment",
-            "Standing",
-            "F1:",
-            "S1:",
-            "S2:",
-        ],
-    },
-    "morrison-runtime": {
-        "path": DOCS / "morrison-runtime.md",
-        "terms": [
-            "Evidence Provenance",
-            "Parameterized Boundary Case",
-            "Semantic Value Movement Versus Tool Label",
-            "FC-001",
-            "raw audit payload",
-            "timestamp",
-        ],
+    "batch_2": {
+        "decisionassure": {"path": DOCS / "decisionassure.md", "terms": COMMON_PROVENANCE_TERMS + ["artifact_package_required", "S1:", "S2:", "H1:"]},
+        "mindforge": {"path": DOCS / "mindforge.md", "terms": COMMON_PROVENANCE_TERMS + ["artifact_package_required", "S1:", "S2:", "H1:"]},
+        "asro": {"path": DOCS / "asro.md", "terms": COMMON_PROVENANCE_TERMS + ["F1:", "F2:", "V1:", "S1:", "S2:"]},
     },
 }
 
@@ -130,10 +111,11 @@ def main() -> int:
         if not path.exists():
             failures.append(f"missing standard file: {path.relative_to(ROOT)}")
 
-    for framework_id, requirement in BATCH1_PAGE_REQUIREMENTS.items():
-        path = requirement["path"]
-        if not path.exists():
-            failures.append(f"missing Batch 1 page: {framework_id}: {path.relative_to(ROOT)}")
+    for batch_id, requirements in BATCH_PAGE_REQUIREMENTS.items():
+        for framework_id, requirement in requirements.items():
+            path = requirement["path"]
+            if not path.exists():
+                failures.append(f"missing {batch_id} page: {framework_id}: {path.relative_to(ROOT)}")
 
     if failures:
         print("EXTERNAL FRAMEWORK EVIDENCE PROVENANCE: FAIL")
@@ -165,11 +147,12 @@ def main() -> int:
         if section not in template:
             failures.append(f"template missing section: {section}")
 
-    for framework_id, requirement in BATCH1_PAGE_REQUIREMENTS.items():
-        content = read(requirement["path"])
-        for term in requirement["terms"]:
-            if term not in content:
-                failures.append(f"Batch 1 page {framework_id} missing term: {term}")
+    for batch_id, requirements in BATCH_PAGE_REQUIREMENTS.items():
+        for framework_id, requirement in requirements.items():
+            content = read(requirement["path"])
+            for term in requirement["terms"]:
+                if term not in content:
+                    failures.append(f"{batch_id} page {framework_id} missing term: {term}")
 
     for term in ["First-Pass Rollout Matrix", "Batch 1", "Batch 5"]:
         if term not in rollout_page:
@@ -204,9 +187,10 @@ def main() -> int:
             if not page_path.exists():
                 failures.append(f"rollout entry {framework_id} page does not exist: {page}")
 
-    batch1_status = rollout.get("batch_status", {}).get("batch_1")
-    if batch1_status != "PAGE_PROVENANCE_SECTIONS_INSTALLED":
-        failures.append("rollout batch_1 status must be PAGE_PROVENANCE_SECTIONS_INSTALLED")
+    for batch_id in ["batch_1", "batch_2"]:
+        status = rollout.get("batch_status", {}).get(batch_id)
+        if status != "PAGE_PROVENANCE_SECTIONS_INSTALLED":
+            failures.append(f"rollout {batch_id} status must be PAGE_PROVENANCE_SECTIONS_INSTALLED")
 
     boundary = rollout.get("global_boundary", {})
     for key in [
