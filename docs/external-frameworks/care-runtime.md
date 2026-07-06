@@ -11,6 +11,7 @@ Relationship type: external framework crosswalk
 Canonical StegVerse formalism source: Admissible-Existence
 External framework role: public runtime-governance platform candidate
 Citation status: official public source URL required
+Evidence provenance status: Batch 4 refactor installed
 ```
 
 ## Citation Status
@@ -20,6 +21,29 @@ A screenshot supplied for intake shows a public-platform artifact labeled `CARE 
 No official CARE Runtime website, repository, specification, release page, paper, or canonical public artifact URL was confirmed during this source pass.
 
 Until an official source URL or authorized artifact package is supplied, this page remains an intake record only.
+
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | No official public source URL confirmed. | missing_or_unconfirmed | Official website, repository, specification, release page, paper, or authorized artifact package. |
+| Official Implementation Sources | No official implementation package attached. | missing_or_unconfirmed | Repository, release, package, platform docs, or commit reference if available. |
+| Observed Behavior | Screenshot-only terminology intake. No runtime behavior is claimed. | screenshot_only_not_public_validation | Raw source URL, timestamp, platform context, and source hash. |
+| Reproduced Behavior | No independent reproduction is claimed. | not_started | Reproduction only after official source is identified. |
+| StegVerse Analysis | Runtime-governance, consequence-boundary, platform artifact, authority/permission, and evidence/display-state comparison targets are mapped provisionally. | intake_only_with_page_provenance | Official source and compatibility report. |
+| Interoperability Assessment | CARE Runtime material may become evidence only after official source confirmation. | fail_closed_until_source | Official source and Commitment Candidate fixture. |
+| Standing | Source-blocked fail-closed. | source_blocked_fail_closed | Official source or authorized artifact package. |
+
+Evidence classification:
+
+```text
+F1: not available on this page; official source required.
+F2: not available on this page; implementation/source package required.
+O1: screenshot-only terminology intake, not public validation evidence.
+S1: StegVerse preliminary interpretation of observed consequence/governance language as possible crosswalk context.
+S2: provisional mapping to Runtime Transition Governance, Commit-Time Validity, Fail-Closed, Governance Observatory Protocol, Standing-Proof-Engine, Evidence Posture, and Review Posture.
+H1: future source-confirmed evaluation until official artifacts are attached.
+```
 
 ## Observed Native Terms
 
@@ -104,12 +128,12 @@ Evaluation report
 ```text
 Claim ID: CLM-FWK-CARE-RUNTIME-0001
 Packet ID: ARF-FWK-CARE-RUNTIME-0001
-Evidence grade: SCREENSHOT-ONLY
-Admissibility result: PROVISIONAL
-Standing: PROVISIONAL
-Reflection status: PROVISIONAL
-Source artifacts: 1 screenshot supplied by user
-Last evaluation: 2026-06-29T00:00:00Z
+Evidence grade: SCREENSHOT_ONLY_WITH_PROVENANCE_SECTION
+Admissibility result: PROVISIONAL_FAIL_CLOSED
+Standing: SOURCE_BLOCKED_FAIL_CLOSED
+Reflection status: OFFICIAL_SOURCE_REQUIRED
+Source artifacts: 1 screenshot supplied by user; no official source URL confirmed
+Last evaluation: 2026-07-06T00:00:00-05:00
 ```
 
 The AE reflection packet currently treats this entry as a bounded intake frame. Evaluation evidence is required before standing claims are displayed.
