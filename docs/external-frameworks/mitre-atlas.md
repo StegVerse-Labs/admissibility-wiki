@@ -12,6 +12,7 @@ Canonical StegVerse formalism source: Admissible-Existence
 External framework role: adversarial AI threat knowledge base
 Wiki role: threat-model observatory, evidence comparison, and relationship review
 Citation status: sourced
+Evidence provenance status: Batch 3 refactor installed
 ```
 
 ## Source
@@ -19,6 +20,27 @@ Citation status: sourced
 Official source: `https://atlas.mitre.org/`
 
 The official source is treated as the canonical public source for MITRE ATLAS framing.
+
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | Official MITRE ATLAS source URL. | present | Versioned source snapshot and source hash. |
+| Official Implementation Sources | MITRE ATLAS is treated here as an external knowledge base rather than a runtime implementation. | not_applicable_or_external_knowledgebase | Specific technique/version snapshot if used in a test. |
+| Observed Behavior | No runtime behavior is claimed. | not_applicable_for_runtime_result | Not a runtime-result page. |
+| Reproduced Behavior | No independent reproduction is claimed. | not_applicable | Reproduction only if a mapping fixture is created. |
+| StegVerse Analysis | Tactics, techniques, mitigations, case studies, and threat-informed review are mapped to admissibility primitives. | threat_context_crosswalk | Concrete Commitment Candidate fixture with threat-context references. |
+| Interoperability Assessment | MITRE ATLAS may provide threat-context evidence for review posture, not authority. | pending_mapping_to_review_posture | Fixture and compatibility report. |
+| Standing | Sourced provisional. | provisional | Source snapshot and mapping artifact. |
+
+Evidence classification:
+
+```text
+F1: official MITRE ATLAS source URL and framework-native threat-knowledge claims.
+S1: StegVerse interpretation of MITRE ATLAS as adversarial AI threat-context evidence.
+S2: mapping to Review Posture, Governance Boundary, Evidence Posture, Drift, Commit-Time Validity, Policy Reference, Boundary Conditions, Reconstructability, and Fail-Closed behavior.
+H1: future mapping fixture until concrete technique references are attached.
+```
 
 ## Definition
 
@@ -72,6 +94,14 @@ MITRE ATLAS does not grant execution authority inside StegVerse.
 MITRE ATLAS source citation is not acceptance of equivalence.
 Threat-informed review may support evidence and review posture, but review does not become authority.
 ```
+
+## Challenge Path
+
+A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
+
+## Mandatory Footer
+
+This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing that can be reconstructed from the referenced evidence, authority, and admissibility conditions.
 
 ## Next Safe Build Target
 
