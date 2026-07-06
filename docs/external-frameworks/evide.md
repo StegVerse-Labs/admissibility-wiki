@@ -12,6 +12,7 @@ Canonical StegVerse formalism source: Admissible-Existence
 External framework role: post-event evidentiary reconstructability
 Wiki role: convergence, mapping, and relationship review
 Citation status: sourced
+Evidence provenance status: Batch 1 refactor installed
 ```
 
 ## Source
@@ -19,6 +20,27 @@ Citation status: sourced
 Official source: `https://www.certifywebcontent.com/supervised-ai/evidentiary-deposit/`
 
 The source presents EVIDE as an evidentiary registry for digital content and decisions and describes it as an external evidentiary deposit system for digital evidence and closed decision units.
+
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | Official EVIDE source URL. | present | Versioned source snapshot and source hash. |
+| Official Implementation Sources | No implementation package attached in this page. | unknown_or_not_attached | Repository, API, schema package, release, or commit reference if available. |
+| Observed Behavior | No runtime or replay behavior is claimed. | not_applicable | Test artifact only if an evidentiary-deposit fixture is attached. |
+| Reproduced Behavior | No independent reproduction is claimed. | not_started | Reproduction fixture or deposited-record reconstruction test. |
+| StegVerse Analysis | Evidence preservation, event reconstruction, dispute support, and evidence limits mapped to admissibility primitives. | provisional_crosswalk | Commitment Candidate fixture and SPE review. |
+| Interoperability Assessment | EVIDE may provide post-event evidence material for StegVerse reconstruction and challenge review. | pending_commitment_candidate | Example EVIDE-to-reconstruction artifact. |
+| Standing | Sourced provisional. | provisional | Evidence grade update after source snapshot and fixture. |
+
+Evidence classification:
+
+```text
+F1: official EVIDE source URL and framework-native claims.
+S1: StegVerse interpretation of EVIDE as post-event evidence/reconstruction support.
+S2: mapping to Evidence Posture, Receipt-Bound Execution, Reconstructability, Decision Record, Review Posture, and Commit-Time Validity.
+H1: future deposited-record/reconstruction work until artifacts are attached.
+```
 
 ## Definition
 
@@ -107,12 +129,12 @@ For those readers, EVIDE can act as a bridge into receipt-bound execution and re
 ```text
 Claim ID: CLM-FWK-EVIDE-0001
 Packet ID: ARF-FWK-EVIDE-0001
-Evidence grade: UNKNOWN
+Evidence grade: SOURCED_PROVISIONAL_WITH_PROVENANCE_SECTION
 Admissibility result: PROVISIONAL
 Standing: PROVISIONAL
 Reflection status: PROVISIONAL
-Source artifacts: 0
-Last evaluation: 2026-06-24T00:00:00Z
+Source artifacts: 1 official source URL; no implementation package attached
+Last evaluation: 2026-07-06T00:00:00-05:00
 ```
 
 The AE reflection packet currently treats this entry as a bounded display frame. Evaluation evidence is required before standing claims are displayed.
@@ -140,4 +162,4 @@ This page reflects a bounded admissibility packet. Publication does not create s
 
 ## Next Safe Build Target
 
-Connect EVIDE to the term-discovery and crosswalk process.
+Connect EVIDE to a deposited-record reconstruction fixture so post-event evidence can be tested for reconstructability without becoming execution authority.
