@@ -1,13 +1,13 @@
 {
   "artifact_type": "external_framework_compatibility_report",
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "framework_id": "morrison-runtime",
   "framework_name": "Morrison Runtime Governance",
   "provider": "Resurrection Tech",
   "framework_manifest": "docs/external-frameworks/morrison-runtime.json",
   "registry": "docs/external-frameworks/index.json",
   "testbench_basis": "transition_table_elements",
-  "result": "COMPATIBILITY_EVIDENCE_ONLY",
+  "result": "COMPATIBILITY_EVIDENCE_ONLY_NO_RUNTIME_RESULT_CLAIM",
   "cycle_status": "COOPERATIVE_VALIDATION_READY",
   "sources": [
     {
@@ -63,7 +63,8 @@
     "runtime_error_fails_closed_for_consequence_binding_actions": true,
     "commit_time_authority_must_be_reconstructed_by_spe": true,
     "no_certification_or_endorsement_claimed": true,
-    "no_live_integration_claimed": true
+    "no_live_integration_claimed": true,
+    "no_public_runtime_result_claim_without_test_parameters": true
   },
   "cooperative_model": [
     "agent_or_planner_output",
@@ -74,49 +75,29 @@
     "allow_deny_or_fail_closed",
     "governed_return_path"
   ],
-  "historical_local_comparison_record": {
-    "evidence_posture": "conversation_level_summary_only",
+  "historical_local_observation_boundary": {
+    "evidence_posture": "internal_observation_only_not_public_validation_evidence",
     "transcript_attached": false,
+    "test_parameters_attached": false,
+    "runtime_configuration_attached": false,
+    "screenshots_or_raw_payloads_attached": false,
+    "timestamps_and_source_hashes_attached": false,
     "certification_claimed": false,
-    "tests": [
-      {
-        "id": "MRG-HIST-001",
-        "observed": "ALLOW",
-        "stegverse_expected": "BLOCK",
-        "meaning": "false_allow_under_tested_stegverse_boundary"
-      },
-      {
-        "id": "MRG-HIST-002",
-        "observed": "BLOCK",
-        "stegverse_expected": "BLOCK",
-        "meaning": "matched_expected_block"
-      },
-      {
-        "id": "MRG-HIST-003",
-        "observed": "BLOCK",
-        "stegverse_expected": "BLOCK",
-        "meaning": "matched_expected_block"
-      },
-      {
-        "id": "MRG-HIST-004",
-        "observed": "BLOCK",
-        "stegverse_expected": "BLOCK",
-        "meaning": "matched_expected_block"
-      },
-      {
-        "id": "MRG-HIST-005",
-        "observed": "ERROR",
-        "stegverse_expected": "DETERMINISTIC_VERDICT_OR_FAIL_CLOSED",
-        "meaning": "runtime_error_validation_gap"
-      },
-      {
-        "id": "MRG-HIST-006",
-        "observed": "BLOCK",
-        "stegverse_expected": "BLOCK",
-        "meaning": "matched_expected_block"
-      }
-    ]
+    "public_runtime_result_claim_allowed": false,
+    "fair_public_statement": "StegVerse has identified Morrison Runtime Governance as a sourced external runtime-governance framework and has prepared a cooperative validation path. Prior informal observations are not sufficient for public runtime-result claims."
   },
+  "required_runtime_result_artifacts": [
+    "input_prompt_or_planner_output",
+    "selected_demo_or_repository_version",
+    "runtime_configuration",
+    "policy_or_rule_set",
+    "expected_stegverse_boundary",
+    "observed_morrison_output",
+    "returned_audit_evidence",
+    "screenshot_or_raw_payload",
+    "timestamp",
+    "source_url_or_commit_hash"
+  ],
   "cooperative_validation_suite": [
     {
       "id": "MRG-COOP-001",
@@ -179,7 +160,7 @@
     "standing_boundary": "runtime_result_may_be_evidence_but_not_authority",
     "authority_evaluation": "must_be_reconstructed_by_spe_at_commit_boundary",
     "commit_time_admissibility": "not_claimed_by_runtime_result",
-    "receipt_reconstruction": "partial_until_prompt_outputs_and_audit_payloads_are_attached"
+    "receipt_reconstruction": "not_publicly_reconstructable_until_prompt_outputs_and_audit_payloads_are_attached"
   },
   "StegVerse_ecosystem_overlap_result": {
     "transition_table": "adjacent_runtime_boundary_input",
@@ -195,7 +176,8 @@
     "compatibility_report_is_authority": false,
     "missing_or_partial_fields_fail_closed": true,
     "official_source_required_for_completion": false,
-    "prompt_by_prompt_artifacts_required_for_full_validation": true
+    "prompt_by_prompt_artifacts_required_for_full_validation": true,
+    "informal_remembered_outcomes_are_public_validation_evidence": false
   },
-  "next_required_action": "attach_prompt_by_prompt_test_artifacts_and_route_each_result_through_commit_time_interoperability_contract"
+  "next_required_action": "attach_prompt_by_prompt_test_artifacts_before_publishing_any_runtime_result_claim"
 }
