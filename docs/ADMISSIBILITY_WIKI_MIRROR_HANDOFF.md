@@ -66,6 +66,7 @@ static/status/workflow-receipt-automation-status.json
 static/status/workflow-evidence-status.json
 static/status/workflow-evidence-watch-status.json
 static/status/publication-verification-status.json
+static/status/guardian-destination-resolution-status.json
 static/status/repo-standards-integration-status.json
 static/status/repo-standards-integration-release-update-queue.json
 static/status/repo-standards-installation-bundle-plan.json
@@ -85,6 +86,8 @@ npm run validate:workflow-evidence-watch-status
 npm run validate:proposal-core-lite-target-watch-status
 npm run validate:no-manual-task-assignments
 npm run validate:mirror-handoff-guard
+npm run validate:guardian-destination-resolution
+npm run validate:guardian-handoff-destinations
 python scripts/check_external_framework_expansion_policy.py
 python scripts/check_external_framework_evidence_provenance.py
 npm run validate
@@ -100,6 +103,16 @@ Do not treat public page visibility as governance authority.
 Manual task requirement: none recorded in this handoff
 ```
 
+## Guardian Destination Status
+
+```text
+Status artifact: static/status/guardian-destination-resolution-status.json
+Public destination repo: StegVerse-002/stegguardian-wiki
+Implementation destination repo: StegVerse-002/StegGuardian
+Public destination summary: downstream public Guardian summary after wiki validation and repo-standards tag/release
+Implementation destination summary: private Guardian implementation standing-boundary awareness after wiki validation
+```
+
 ## Current goal
 
 ```text
@@ -109,7 +122,7 @@ all-external-framework-evidence-provenance-rollout
 ## Current version
 
 ```text
-1.5.11-mirror-handoff-guard-restored
+1.5.12-guardian-destination-handoff-content-restored
 ```
 
 ## Current status
@@ -127,6 +140,7 @@ BATCH5_AE_SEED_CYCLE_PROVENANCE_SECTION_INSTALLED
 EXTERNAL_FRAMEWORK_EVIDENCE_PROVENANCE_VALIDATOR_WIRED_IN_PACKAGE
 EXTERNAL_FRAMEWORK_EVIDENCE_PROVENANCE_VALIDATOR_WIRED_IN_CANONICAL_WORKFLOW
 MIRROR_HANDOFF_GUARD_REQUIRED_SECTIONS_RESTORED
+GUARDIAN_DESTINATION_HANDOFF_CONTENT_RESTORED
 UPSTREAM_REPO_STANDARDS_RELEASE_READY
 UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
 LOCAL_DOCS_ONLY
@@ -178,7 +192,9 @@ docs/external-frameworks/evidence-provenance-rollout.json
 docs/external-frameworks/evaluation-standard.md
 docs/external-frameworks/failure-class-catalog.md
 docs/external-frameworks/external-framework-template.md
+static/status/guardian-destination-resolution-status.json
 scripts/check_external_framework_evidence_provenance.py
+scripts/check_admissibility_wiki_mirror_handoff_guardian_destinations.py
 .github/workflows/validate-chain-continuation.yml
 package.json
 ```
