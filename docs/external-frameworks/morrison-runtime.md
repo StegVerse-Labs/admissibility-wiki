@@ -14,6 +14,7 @@ Wiki role: sourced observatory record, compatibility map, and bounded validation
 Citation status: sourced from Resurrection Tech public pages
 Validation posture: cooperative, bounded, non-certifying
 Runtime-result posture: bounded case observation only where parameters are stated
+Evidence provenance status: Batch 1 refactor installed
 ```
 
 ## Source
@@ -33,6 +34,29 @@ The public Resurrection Tech site describes Morrison Runtime Governance as a run
 The live-demo page describes a workflow in which a planner output is evaluated before execution and returns an `ALLOW` or `BLOCK` verdict with rule, layer, and audit evidence.
 
 These source statements are treated as external-framework claims. They are not StegVerse claims, certification, endorsement, or execution authority.
+
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | Resurrection Tech public site, live demo page, no-agent demo page, pilot page. | present | Versioned source snapshot and source hash. |
+| Official Implementation Sources | Public Morrison Runtime Governance repository reference. | present_repository_reference | Commit hash, release tag, and local reproduction environment. |
+| Observed Behavior | One parameterized semantic-equivalence boundary case is recorded. | O2_partial | Raw audit payload, timestamp, runtime configuration, and source hash. |
+| Reproduced Behavior | No independent reproduction is claimed. | not_started | Reproduction run against repository or pinned demo version. |
+| StegVerse Analysis | Morrison ALLOW/BLOCK results are treated as evidence for commit-time review, not authority. | semantic_equivalence_boundary_case_with_page_provenance | Commitment Candidate fixture and SPE review. |
+| Interoperability Assessment | Morrison outputs may route into StegVerse as evidence. | pending_commitment_candidate_fixture | Fixture and compatibility report with raw outputs. |
+| Standing | Bounded partial observation. | provisional | Raw output package and reproduction. |
+
+Evidence classification:
+
+```text
+F1: Resurrection Tech public site and demo source statements.
+F2: Morrison Runtime Governance public repository reference.
+O2: parameterized semantic-equivalence boundary case with missing raw output package.
+S1: StegVerse interpretation of Morrison output as evidence, not execution authority.
+S2: mapping to Runtime Transition Governance, Commit-Time Validity, Evidence Posture, Fail-Closed, and Consequence-Binding Transition Review.
+H1: future reproduction and fixture work until raw artifacts are attached.
+```
 
 ## Definition
 
@@ -155,6 +179,8 @@ StegVerse has identified Morrison Runtime Governance as a sourced external runti
 ## Parameterized Boundary Case: Semantic Value Movement Versus Tool Label
 
 The following case is recorded because the input parameters and observed outcomes are stated. It remains a bounded observation, not a certification claim, because the returned raw audit payload, timestamp, runtime configuration, and source hash are not yet attached.
+
+Failure class candidate: `FC-001 Semantic Equivalence Divergence`.
 
 ### Case A: Higher-risk reachable semantics allowed
 
