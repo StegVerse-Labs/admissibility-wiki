@@ -12,6 +12,7 @@ Canonical StegVerse formalism source: Admissible-Existence
 External framework role: AI-agent emergency stop protocol convention
 Wiki role: convergence, mapping, and relationship review
 Citation status: sourced
+Evidence provenance status: Batch 4 refactor installed
 ```
 
 ## Source
@@ -19,6 +20,28 @@ Citation status: sourced
 Public source: `https://killswitch.md/`
 
 The public page presents KILLSWITCH.md as a plain-text file convention for defining emergency shutdown protocols in AI-agent projects.
+
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | Public KILLSWITCH.md source URL. | present | Versioned source snapshot and source hash. |
+| Official Implementation Sources | Treated as a convention/source page rather than a runtime implementation. | unknown_or_not_attached | Repository, release, example file hash, or implementation reference if available. |
+| Observed Behavior | No runtime behavior is claimed. | not_started | Example KILLSWITCH.md file, stop condition, output, timestamp, and source version. |
+| Reproduced Behavior | No independent reproduction is claimed. | not_started | Reproduction fixture for emergency-stop review. |
+| StegVerse Analysis | Emergency shutdown protocol, stop conditions, repository-root convention, and operational safety boundary are mapped to admissibility primitives. | emergency_stop_fail_closed_crosswalk_with_page_provenance | Emergency-stop-to-Commitment-Candidate fixture. |
+| Interoperability Assessment | KILLSWITCH.md material may support fail-closed review context, not authority. | pending_failure_behavior_mapping | Fixture and compatibility report. |
+| Standing | Sourced provisional. | provisional | Source snapshot and fixture. |
+
+Evidence classification:
+
+```text
+F1: public KILLSWITCH.md source URL and convention-native claims.
+F2: pending until example/repository artifact is attached.
+S1: StegVerse interpretation of KILLSWITCH.md as emergency-stop and fail-closed review context.
+S2: mapping to Fail-Closed, Runtime Transition Governance, Transition Table, Commit-Time Validity, Evidence Posture, Reconstructability, Governance Boundary, and Boundary Conditions.
+H1: future emergency-stop fixture until concrete artifacts are attached.
+```
 
 ## Definition
 
@@ -57,3 +80,11 @@ KILLSWITCH.md does not prove transition admissibility.
 Emergency-stop convention does not automatically grant or revoke execution authority inside StegVerse.
 The wiki relationship record is not acceptance of equivalence.
 ```
+
+## Challenge Path
+
+A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
+
+## Mandatory Footer
+
+This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing that can be reconstructed from the referenced evidence, authority, and admissibility conditions.
