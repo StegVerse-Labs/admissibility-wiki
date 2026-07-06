@@ -1,0 +1,8 @@
+{
+  "receipt_id": "admissibility-device-continuity-v0.1.0",
+  "source_repo": "StegVerse-Labs/device-continuity-layer",
+  "destination_repo": "StegVerse-Labs/admissibility-wiki",
+  "created_at": "2026-07-05T19:30:00Z",
+  "decision": "admissibility_record_created",
+  "reconstructable": true
+}
