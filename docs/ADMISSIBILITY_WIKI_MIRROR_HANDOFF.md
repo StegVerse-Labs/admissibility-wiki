@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: complete governed LLM / admissibility-wiki public documentation activation under the single canonical validation workflow.
-Current repo state: all-framework evidence-provenance rollout matrix installed and validator coverage expanded.
+Current repo state: all-framework evidence-provenance rollout matrix installed; Batch 1 page provenance refactor installed and validator-enforced.
 Manual task requirement: none recorded in this handoff
 No manual target-creation task is assigned in this handoff
 ```
@@ -36,7 +36,7 @@ all-external-framework-evidence-provenance-rollout
 ## Current version
 
 ```text
-1.5.6-all-framework-evidence-provenance-rollout
+1.5.7-batch1-external-framework-provenance-refactor
 ```
 
 ## Current status
@@ -59,9 +59,30 @@ EXTERNAL_FRAMEWORK_EVIDENCE_PROVENANCE_VALIDATOR_WIRED_IN_CANONICAL_WORKFLOW
 ALL_FRAMEWORK_EVIDENCE_PROVENANCE_ROLLOUT_MATRIX_INSTALLED
 ALL_FRAMEWORK_EVIDENCE_PROVENANCE_ROLLOUT_PAGE_INSTALLED
 ALL_FRAMEWORK_EVIDENCE_PROVENANCE_ROLLOUT_VALIDATOR_COVERAGE_INSTALLED
+BATCH1_GLM_EVIDE_MORRISON_PROVENANCE_SECTIONS_INSTALLED
+BATCH1_PROVENANCE_VALIDATOR_ENFORCED
 UPSTREAM_REPO_STANDARDS_RELEASE_READY
 UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
 LOCAL_DOCS_ONLY
+```
+
+## Batch 1 complete
+
+```text
+GLM:
+  - docs/external-frameworks/glm.md includes Evidence Provenance
+  - claims classified as F1/S1/S2/H1
+  - next target: GLM-to-Commitment-Candidate fixture
+
+EVIDE:
+  - docs/external-frameworks/evide.md includes Evidence Provenance
+  - claims classified as F1/S1/S2/H1
+  - next target: deposited-record reconstruction fixture
+
+Morrison Runtime:
+  - docs/external-frameworks/morrison-runtime.md already includes parameterized boundary case posture
+  - semantic-equivalence boundary remains bounded partial observation
+  - next target: raw audit payload, timestamp, runtime configuration, source hash
 ```
 
 ## External Framework Evaluation Standard pages
@@ -107,6 +128,7 @@ scripts/check_external_framework_evidence_provenance.py
   -> validates standard files
   -> validates rollout page and JSON matrix
   -> confirms every registry framework appears in rollout exactly once
+  -> validates Batch 1 page Evidence Provenance sections
   -> confirms no unsupported Morrison historical result table is restored
 
 package.json -> validate:external-framework-evidence-provenance
@@ -137,12 +159,14 @@ npm run validate
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 docs/SITE_MIRROR_HANDOFF.md
 docs/MIRROR_HANDOFF_GUARD_ADDENDUM.md
+docs/external-frameworks/glm.md
+docs/external-frameworks/evide.md
+docs/external-frameworks/morrison-runtime.md
 docs/external-frameworks/evaluation-standard.md
 docs/external-frameworks/failure-class-catalog.md
 docs/external-frameworks/external-framework-template.md
 docs/external-frameworks/evidence-provenance-rollout.md
 docs/external-frameworks/evidence-provenance-rollout.json
-docs/external-frameworks/morrison-runtime.md
 docs/external-frameworks/reports/morrison-runtime.compatibility.json
 docs/external-frameworks/EXPANSION_POLICY.json
 docs/external-frameworks/index.md
@@ -159,8 +183,8 @@ StegVerse-Labs/admissibility-wiki:
   - complete canonical validate-chain-continuation workflow
   - confirm build-pages, deploy-pages, and verify-public-pages
   - public deployment verification after site deploys
-  - refactor existing external-framework pages to include Evidence Provenance section in rollout batches
-  - extend validator from rollout-file coverage to per-page Evidence Provenance enforcement after refactor
+  - Batch 2 refactor: DecisionAssure, MindForge, ASRO
+  - extend validator from Batch 1 to Batch 2 after refactor
 
 StegVerse-Labs/repo-standards:
   - propagate external-framework evidence provenance standard and failure-class catalog as org-level standard
@@ -171,7 +195,7 @@ StegVerse-Labs/Site:
 GCAT-BCAT-Engine/Publisher:
   - publication/import awareness after wiki validation and repo-standards tag/release
 
-StegVerse-002/stegguardianian-wiki:
+StegVerse-002/stegguardian-wiki:
   - downstream public Guardian summary after wiki validation and repo-standards tag/release
 
 StegVerse-002/StegGuardian:
