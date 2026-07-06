@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: complete governed LLM / admissibility-wiki public documentation activation under the single canonical validation workflow.
-Current repo state: all-framework evidence-provenance rollout matrix installed; Batch 1 and Batch 2 page provenance refactors installed and validator-enforced.
+Current repo state: all-framework evidence-provenance rollout matrix installed; Batch 1, Batch 2, and Batch 3 page provenance refactors installed and validator-enforced.
 Manual task requirement: none recorded in this handoff
 No manual target-creation task is assigned in this handoff
 ```
@@ -36,7 +36,7 @@ all-external-framework-evidence-provenance-rollout
 ## Current version
 
 ```text
-1.5.8-batch2-external-framework-provenance-refactor
+1.5.9-batch3-external-framework-provenance-refactor
 ```
 
 ## Current status
@@ -63,6 +63,8 @@ BATCH1_GLM_EVIDE_MORRISON_PROVENANCE_SECTIONS_INSTALLED
 BATCH1_PROVENANCE_VALIDATOR_ENFORCED
 BATCH2_DECISIONASSURE_MINDFORGE_ASRO_PROVENANCE_SECTIONS_INSTALLED
 BATCH2_PROVENANCE_VALIDATOR_ENFORCED
+BATCH3_MITRE_OWASP_NIST_ISO_EUAI_PROVENANCE_SECTIONS_INSTALLED
+BATCH3_PROVENANCE_VALIDATOR_ENFORCED
 UPSTREAM_REPO_STANDARDS_RELEASE_READY
 UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
 LOCAL_DOCS_ONLY
@@ -104,6 +106,35 @@ ASRO:
   - docs/external-frameworks/asro.md includes Evidence Provenance
   - public source and repository references classified as F1/F2
   - next target: validate ASRO commitment-candidate fixture and attach report
+```
+
+## Batch 3 complete
+
+```text
+MITRE ATLAS:
+  - docs/external-frameworks/mitre-atlas.md includes Evidence Provenance
+  - treated as threat-knowledge evidence, not runtime result or authority
+  - next target: threat-context Commitment Candidate fixture
+
+OWASP Top 10 for LLM Applications:
+  - docs/external-frameworks/owasp-top-10-llm.md includes Evidence Provenance
+  - treated as LLM-risk guidance evidence, not runtime result or authority
+  - next target: LLM-risk Commitment Candidate fixture
+
+NIST AI RMF:
+  - docs/external-frameworks/nist-ai-rmf.md includes Evidence Provenance
+  - treated as voluntary risk-management context, not runtime result or authority
+  - next target: risk-management mapping fixture
+
+ISO/IEC 42001:
+  - docs/external-frameworks/iso-iec-42001.md includes Evidence Provenance
+  - treated as AI management-system context, not runtime result or authority
+  - next target: organizational-control mapping fixture
+
+EU AI Act:
+  - docs/external-frameworks/eu-ai-act.md includes Evidence Provenance
+  - treated as legal/regulatory context, not runtime result or authority
+  - next target: legal-obligation mapping fixture
 ```
 
 ## External Framework Evaluation Standard pages
@@ -149,7 +180,7 @@ scripts/check_external_framework_evidence_provenance.py
   -> validates standard files
   -> validates rollout page and JSON matrix
   -> confirms every registry framework appears in rollout exactly once
-  -> validates Batch 1 and Batch 2 page Evidence Provenance sections
+  -> validates Batch 1, Batch 2, and Batch 3 page Evidence Provenance sections
   -> confirms no unsupported Morrison historical result table is restored
 
 package.json -> validate:external-framework-evidence-provenance
@@ -185,6 +216,11 @@ docs/external-frameworks/evide.md
 docs/external-frameworks/decisionassure.md
 docs/external-frameworks/mindforge.md
 docs/external-frameworks/asro.md
+docs/external-frameworks/mitre-atlas.md
+docs/external-frameworks/owasp-top-10-llm.md
+docs/external-frameworks/nist-ai-rmf.md
+docs/external-frameworks/iso-iec-42001.md
+docs/external-frameworks/eu-ai-act.md
 docs/external-frameworks/morrison-runtime.md
 docs/external-frameworks/evaluation-standard.md
 docs/external-frameworks/failure-class-catalog.md
@@ -207,8 +243,8 @@ StegVerse-Labs/admissibility-wiki:
   - complete canonical validate-chain-continuation workflow
   - confirm build-pages, deploy-pages, and verify-public-pages
   - public deployment verification after site deploys
-  - Batch 3 refactor: MITRE ATLAS, OWASP Top 10 for LLM Applications, NIST AI RMF, ISO/IEC 42001, EU AI Act
-  - extend validator from Batch 2 to Batch 3 after refactor
+  - Batch 4 refactor: Policy Cards, Runtime Governance for AI Agents, Agent Governance Playbook, Emergency Stop Convention, CARE Runtime, AAR
+  - extend validator from Batch 3 to Batch 4 after refactor
 
 StegVerse-Labs/repo-standards:
   - propagate external-framework evidence provenance standard and failure-class catalog as org-level standard
