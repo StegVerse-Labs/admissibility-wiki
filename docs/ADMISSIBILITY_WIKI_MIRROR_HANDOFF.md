@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: complete governed LLM / admissibility-wiki public documentation activation under the single canonical validation workflow.
-Current repo state: all-framework evidence-provenance rollout matrix installed; Batch 1 page provenance refactor installed and validator-enforced.
+Current repo state: all-framework evidence-provenance rollout matrix installed; Batch 1 and Batch 2 page provenance refactors installed and validator-enforced.
 Manual task requirement: none recorded in this handoff
 No manual target-creation task is assigned in this handoff
 ```
@@ -36,7 +36,7 @@ all-external-framework-evidence-provenance-rollout
 ## Current version
 
 ```text
-1.5.7-batch1-external-framework-provenance-refactor
+1.5.8-batch2-external-framework-provenance-refactor
 ```
 
 ## Current status
@@ -61,6 +61,8 @@ ALL_FRAMEWORK_EVIDENCE_PROVENANCE_ROLLOUT_PAGE_INSTALLED
 ALL_FRAMEWORK_EVIDENCE_PROVENANCE_ROLLOUT_VALIDATOR_COVERAGE_INSTALLED
 BATCH1_GLM_EVIDE_MORRISON_PROVENANCE_SECTIONS_INSTALLED
 BATCH1_PROVENANCE_VALIDATOR_ENFORCED
+BATCH2_DECISIONASSURE_MINDFORGE_ASRO_PROVENANCE_SECTIONS_INSTALLED
+BATCH2_PROVENANCE_VALIDATOR_ENFORCED
 UPSTREAM_REPO_STANDARDS_RELEASE_READY
 UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
 LOCAL_DOCS_ONLY
@@ -80,9 +82,28 @@ EVIDE:
   - next target: deposited-record reconstruction fixture
 
 Morrison Runtime:
-  - docs/external-frameworks/morrison-runtime.md already includes parameterized boundary case posture
+  - docs/external-frameworks/morrison-runtime.md includes parameterized boundary case posture
   - semantic-equivalence boundary remains bounded partial observation
   - next target: raw audit payload, timestamp, runtime configuration, source hash
+```
+
+## Batch 2 complete
+
+```text
+DecisionAssure:
+  - docs/external-frameworks/decisionassure.md includes Evidence Provenance
+  - remains artifact-package-required fail-closed
+  - next target: authorized artifact package and Commitment Candidate fixture
+
+MindForge:
+  - docs/external-frameworks/mindforge.md includes Evidence Provenance
+  - remains artifact-package-required fail-closed
+  - next target: authorized evidence package and authority re-binding fixture
+
+ASRO:
+  - docs/external-frameworks/asro.md includes Evidence Provenance
+  - public source and repository references classified as F1/F2
+  - next target: validate ASRO commitment-candidate fixture and attach report
 ```
 
 ## External Framework Evaluation Standard pages
@@ -128,7 +149,7 @@ scripts/check_external_framework_evidence_provenance.py
   -> validates standard files
   -> validates rollout page and JSON matrix
   -> confirms every registry framework appears in rollout exactly once
-  -> validates Batch 1 page Evidence Provenance sections
+  -> validates Batch 1 and Batch 2 page Evidence Provenance sections
   -> confirms no unsupported Morrison historical result table is restored
 
 package.json -> validate:external-framework-evidence-provenance
@@ -161,6 +182,9 @@ docs/SITE_MIRROR_HANDOFF.md
 docs/MIRROR_HANDOFF_GUARD_ADDENDUM.md
 docs/external-frameworks/glm.md
 docs/external-frameworks/evide.md
+docs/external-frameworks/decisionassure.md
+docs/external-frameworks/mindforge.md
+docs/external-frameworks/asro.md
 docs/external-frameworks/morrison-runtime.md
 docs/external-frameworks/evaluation-standard.md
 docs/external-frameworks/failure-class-catalog.md
@@ -183,8 +207,8 @@ StegVerse-Labs/admissibility-wiki:
   - complete canonical validate-chain-continuation workflow
   - confirm build-pages, deploy-pages, and verify-public-pages
   - public deployment verification after site deploys
-  - Batch 2 refactor: DecisionAssure, MindForge, ASRO
-  - extend validator from Batch 1 to Batch 2 after refactor
+  - Batch 3 refactor: MITRE ATLAS, OWASP Top 10 for LLM Applications, NIST AI RMF, ISO/IEC 42001, EU AI Act
+  - extend validator from Batch 2 to Batch 3 after refactor
 
 StegVerse-Labs/repo-standards:
   - propagate external-framework evidence provenance standard and failure-class catalog as org-level standard
