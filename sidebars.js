@@ -102,6 +102,7 @@ const sidebars = {
         'external-frameworks/index',
         'external-frameworks/evaluation-standard',
         'external-frameworks/runtime-governance-benchmark-suite',
+        'external-frameworks/benchmark-mapping-rollout',
         'external-frameworks/morrison-runtime-boundary-observation',
         'external-frameworks/failure-class-catalog',
         'external-frameworks/external-framework-template',
