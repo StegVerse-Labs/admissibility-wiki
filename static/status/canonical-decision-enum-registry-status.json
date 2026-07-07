@@ -1,0 +1,44 @@
+{
+  "schema": "canonical_decision_enum_registry_status.v0.1",
+  "status": "installed",
+  "version": "1.5.14-canonical-decision-enum-registry",
+  "installed_artifacts": [
+    "docs/governance/canonical-decision-enum-registry.md",
+    "static/ontology/canonical-decision-enum-registry.v0.1.json",
+    "docs/governance/decision-record.md",
+    "sidebars.js"
+  ],
+  "installed_status": [
+    "CANONICAL_DECISION_ENUM_REGISTRY_INSTALLED",
+    "CANONICAL_DECISION_ENUM_REGISTRY_NAV_WIRED",
+    "DECISION_RECORD_ENUM_REGISTRY_LINKED"
+  ],
+  "surface_labels": [
+    "runtime_transition_decision",
+    "wiki_governance_decision",
+    "interop_failure_posture",
+    "downstream_status_label"
+  ],
+  "runtime_transition_decision_values": ["ALLOW", "DENY", "DEFER"],
+  "wiki_governance_decision_values": [
+    "ALLOW",
+    "ALLOW_AS_OVERLAP",
+    "DENY",
+    "DEFER",
+    "ESCALATE",
+    "REFUSE",
+    "SUPERSEDE"
+  ],
+  "interop_failure_posture_values": ["FAIL-CLOSED", "FAIL_CLOSED", "CONDITIONAL"],
+  "remaining_targets": [
+    "add validator for canonical-decision-enum-registry.v0.1.json",
+    "propagate enum-surface registry requirement to repo-standards",
+    "mirror public summary to Site after validation and release gate",
+    "mirror downstream Guardian summary after validation and release gate"
+  ],
+  "boundary": {
+    "public_page_visibility_is_authority": false,
+    "registry_is_runtime_authority": false,
+    "unmapped_surface_copy_is_valid": false
+  }
+}
