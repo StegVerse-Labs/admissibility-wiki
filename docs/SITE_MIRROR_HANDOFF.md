@@ -6,104 +6,79 @@ This file is the documentation mirror handoff source of truth for `StegVerse-Lab
 
 ## Active goal
 
-Goal 4: public documentation for the bounded LLM free-tier trust chain across LLM-adapter, Site, and SDK.
+Goal 5: external framework benchmark mechanism and Morrison Runtime boundary observation.
 
-Goal 3 documented the governed LLM end-to-end demonstrator public documentation and Site mirror sync. Goal 4 now documents the free-tier trust chain that proves the public LLM entry path is not merely static demonstration material while preserving non-authority, non-admissibility, non-retention, and non-standing boundaries.
+Goal 4 documented the bounded LLM free-tier trust chain across LLM-adapter, Site, and SDK. Goal 5 adds a reusable benchmark surface for comparing external framework boundaries under evidence-governed, non-certifying terms.
 
 ## Current proof path
 
 ```text
-fixture query
--> LLM-adapter governed session packet
--> SDK validation
--> SDK intake routing
--> SDK manifest binding
--> SDK receipt handoff
--> wiki public demo overview
--> wiki public demo verification
--> canonical scheduled workflow
--> build-pages
--> deploy-pages
--> verify-public-pages
--> public-activation-receipt artifact
+external framework material
+-> benchmark case definition
+-> exact input capture
+-> observed result capture
+-> parser and evaluated-step check
+-> boundary-class assignment
+-> StegVerse expected posture
+-> interoperability opportunity
+-> commitment-candidate path
+-> SPE standing reconstruction
+-> public observatory page
 ```
 
-## Goal 4 free-tier trust chain
+## Goal 5 benchmark chain
 
 ```text
-StegVerse-org/LLM-adapter
-  -> emits free_tier_trust metadata
-  -> exposes adapter.capabilities.json free-tier fields
-
-StegVerse-Labs/Site
-  -> displays bounded free-tier trust envelope on ecosystem-chat.html
-  -> guards the display with scripts/check_site_llm_free_tier_trust.py
-  -> includes the checker in site-public-mirror-status-guard.yml
-
-StegVerse-org/StegVerse-SDK
-  -> validates free_tier_trust metadata shape
-  -> validates quota / receipt / replay / reconstruction non-claims
-  -> exposes validate_free_tier_metadata
-  -> verifies ingestion in sdk-demo-test.yml
-
 StegVerse-Labs/admissibility-wiki
-  -> documents the chain in docs/governance/llm-free-tier-trust-chain.md
-  -> checks the page with scripts/check_llm_free_tier_trust_chain.py
+  -> docs/external-frameworks/runtime-governance-benchmark-suite.md
+  -> static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
+  -> scripts/check_runtime_governance_benchmark_suite.py
+  -> docs/external-frameworks/morrison-runtime-boundary-observation.md
+  -> docs/external-frameworks/index.md update
 ```
 
 ## Installed files
 
 ```text
-docs/governance/governed-llm-demo-overview.md
-docs/governance/governed-llm-demo-verification.md
-docs/governance/llm-free-tier-trust-chain.md
-scripts/check_governed_llm_demo_docs.py
-scripts/check_llm_free_tier_trust_chain.py
-scripts/write-public-activation-receipt.mjs
-scripts/check-public-activation-receipt-writer.mjs
-sidebars.js update
-README.md update
-docs/governance/governed-llm-activation-map.md update
-ADMISSIBILITY_MIRROR_HANDOFF.md update
-.github/workflows/validate-chain-continuation.yml update
-iosnoperiod/github/workflows/validate-chain-continuation.yml update
+docs/external-frameworks/runtime-governance-benchmark-suite.md
+static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
+scripts/check_runtime_governance_benchmark_suite.py
+docs/external-frameworks/morrison-runtime-boundary-observation.md
+docs/external-frameworks/index.md update
 docs/SITE_MIRROR_HANDOFF.md update
 ```
 
 ## Local verification
 
 ```bash
-python scripts/check_governed_llm_pages.py
-python scripts/check_governed_llm_demo_docs.py
-python scripts/check_llm_free_tier_trust_chain.py
-node scripts/check-public-activation-receipt-writer.mjs
+python scripts/check_runtime_governance_benchmark_suite.py
+python scripts/check_external_frameworks_index.py
 npm run build
 ```
 
 ## Deployment verification
 
 ```text
-Scheduled canonical workflow run completed successfully.
-validate-chain-continuation: PASS
-build-pages: PASS
-deploy-pages: PASS
-verify-public-pages: PASS
-artifacts: 3
+Pending next canonical workflow run.
 ```
 
 ## Remaining hardening
 
 ```text
-Inspect workflow artifacts and archive public-activation-receipt.
-Resolve non-blocking workflow warnings.
-Confirm public pages remain reachable after cache propagation.
-Prepare release/tag candidate after warning cleanup and artifact review.
+Attach raw audit payloads or screenshots for Morrison observed cases.
+Add replay table for repeated Morrison runs and trajectory hashes.
+Update sidebars.js with runtime-governance-benchmark-suite when the contents update is available.
+Route benchmark observations into generated compatibility reports.
+Add framework-specific benchmark mapping pages for the remaining external frameworks.
+Prepare release/tag candidate after build and artifact review.
 ```
 
 ## Boundary
 
-Site mirror publication and LLM free-tier documentation are not provider governance, execution authority, commit-time standing, external indexing, master-record persistence, permanent receipt retention, replay authority, reconstruction authority, or upgrade-based admissibility.
+External framework benchmark publication is not certification, endorsement, provider governance, execution authority, commit-time standing, replay authority, reconstruction authority, or upgrade-based admissibility.
+
+Benchmark results identify observed boundaries, interoperability requirements, missing evidence, and improvement opportunities. They do not declare external frameworks invalid.
 
 ## Next mirror input
 
-Only mirror generated adapter or SDK demo outputs after the adapter and SDK repositories produce matching receipt-bound artifacts. For free-tier trust metadata, use the adapter `free_tier_trust` response field and SDK `validate_free_tier_metadata` ingestion result as the source contract.
+Only mirror benchmark results after exact input, output, timestamp, source URL or commit, parser status, evaluated steps, trajectory hash or trace ID, screenshot or raw audit payload, and StegVerse expected posture are captured.
