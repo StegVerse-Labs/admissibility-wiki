@@ -38,6 +38,10 @@ StegVerse-Labs/admissibility-wiki
   -> docs/external-frameworks/benchmark-mapping-rollout.json
   -> docs/external-frameworks/benchmark-mappings/morrison-runtime.mapping.json
   -> docs/external-frameworks/benchmark-mappings/asro.mapping.json
+  -> docs/external-frameworks/benchmark-mappings/glm.mapping.json
+  -> docs/external-frameworks/benchmark-mappings/evide.mapping.json
+  -> docs/external-frameworks/benchmark-mappings/decisionassure.mapping.json
+  -> docs/external-frameworks/benchmark-mappings/mindforge.mapping.json
   -> scripts/check_external_framework_benchmark_mappings.py
   -> scripts/check_runtime_governance_benchmark_suite.py
   -> docs/external-frameworks/morrison-runtime-boundary-observation.md
@@ -59,6 +63,10 @@ docs/external-frameworks/benchmark-mapping-rollout.md
 docs/external-frameworks/benchmark-mapping-rollout.json
 docs/external-frameworks/benchmark-mappings/morrison-runtime.mapping.json
 docs/external-frameworks/benchmark-mappings/asro.mapping.json
+docs/external-frameworks/benchmark-mappings/glm.mapping.json
+docs/external-frameworks/benchmark-mappings/evide.mapping.json
+docs/external-frameworks/benchmark-mappings/decisionassure.mapping.json
+docs/external-frameworks/benchmark-mappings/mindforge.mapping.json
 scripts/check_external_framework_benchmark_mappings.py
 scripts/check_runtime_governance_benchmark_suite.py
 docs/external-frameworks/morrison-runtime-boundary-observation.md
@@ -94,7 +102,8 @@ Pending next canonical workflow run.
 ```text
 Attach raw audit payloads for Morrison observed cases.
 Run replay captures for repeated Morrison inputs and trajectory hashes.
-Add benchmark mapping companions for the remaining external frameworks.
+Add benchmark mapping companions for CARE Runtime, AAR, MITRE ATLAS, OWASP, Agent Governance Playbook, Emergency Stop Convention, NIST AI RMF, ISO/IEC 42001, EU AI Act, Policy Cards, Runtime Governance for AI Agents, and Admissible Existence Seed Cycle if applicable.
+Add GLM, EVIDE, DecisionAssure, and MindForge fixtures.
 Prepare release/tag candidate after build and artifact review.
 ```
 
