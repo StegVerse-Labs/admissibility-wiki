@@ -1,0 +1,109 @@
+{
+  "schema": "canonical_decision_enum_registry.v0.1",
+  "status": "active",
+  "boundary": {
+    "registry_is_runtime_authority": false,
+    "registry_is_spe_resolution": false,
+    "public_page_visibility_is_authority": false,
+    "unmapped_surface_copy_is_valid": false
+  },
+  "surfaces": {
+    "runtime_transition_decision": {
+      "description": "Narrow transition-boundary decision values.",
+      "values": ["ALLOW", "DENY", "DEFER"]
+    },
+    "wiki_governance_decision": {
+      "description": "Documentation proposal and page-change outcomes.",
+      "values": [
+        "ALLOW",
+        "ALLOW_AS_OVERLAP",
+        "DENY",
+        "DEFER",
+        "ESCALATE",
+        "REFUSE",
+        "SUPERSEDE"
+      ]
+    },
+    "interop_failure_posture": {
+      "description": "External or interop status values that describe standing or failure posture.",
+      "values": ["FAIL-CLOSED", "FAIL_CLOSED", "CONDITIONAL"]
+    },
+    "downstream_status_label": {
+      "description": "Destination-local labels. Must provide a mapping before being used as a decision value.",
+      "values": []
+    }
+  },
+  "value_map": {
+    "ALLOW": {
+      "runtime_transition_decision": true,
+      "wiki_governance_decision": true,
+      "interop_failure_posture": false,
+      "mapping_required_across_surfaces": true
+    },
+    "DENY": {
+      "runtime_transition_decision": true,
+      "wiki_governance_decision": true,
+      "interop_failure_posture": false,
+      "mapping_required_across_surfaces": true
+    },
+    "DEFER": {
+      "runtime_transition_decision": true,
+      "wiki_governance_decision": true,
+      "interop_failure_posture": false,
+      "mapping_required_across_surfaces": true
+    },
+    "ALLOW_AS_OVERLAP": {
+      "runtime_transition_decision": false,
+      "wiki_governance_decision": true,
+      "interop_failure_posture": false,
+      "mapping_required_across_surfaces": true
+    },
+    "ESCALATE": {
+      "runtime_transition_decision": false,
+      "wiki_governance_decision": true,
+      "interop_failure_posture": false,
+      "mapping_required_across_surfaces": true
+    },
+    "REFUSE": {
+      "runtime_transition_decision": false,
+      "wiki_governance_decision": true,
+      "interop_failure_posture": false,
+      "mapping_required_across_surfaces": true
+    },
+    "SUPERSEDE": {
+      "runtime_transition_decision": false,
+      "wiki_governance_decision": true,
+      "interop_failure_posture": false,
+      "mapping_required_across_surfaces": true
+    },
+    "FAIL-CLOSED": {
+      "runtime_transition_decision": false,
+      "wiki_governance_decision": false,
+      "interop_failure_posture": true,
+      "mapping_required_across_surfaces": true
+    },
+    "FAIL_CLOSED": {
+      "runtime_transition_decision": false,
+      "wiki_governance_decision": false,
+      "interop_failure_posture": true,
+      "mapping_required_across_surfaces": true
+    },
+    "CONDITIONAL": {
+      "runtime_transition_decision": false,
+      "wiki_governance_decision": false,
+      "interop_failure_posture": true,
+      "mapping_required_across_surfaces": true
+    }
+  },
+  "required_surface_labels": [
+    "runtime_transition_decision",
+    "wiki_governance_decision",
+    "interop_failure_posture",
+    "downstream_status_label"
+  ],
+  "related_documents": [
+    "docs/governance/canonical-decision-enum-registry.md",
+    "docs/governance/decision-record.md",
+    "repo-seeds/proposal-governance-core-lite/schemas/proposal-governance-decision.v1.json"
+  ]
+}
