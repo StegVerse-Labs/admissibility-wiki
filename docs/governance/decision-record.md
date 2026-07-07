@@ -36,10 +36,17 @@ Decision-record outcomes are public wiki-governance outcomes. They are not the c
 
 ## Canonical Enum Boundary
 
+Canonical registry:
+
+```text
+docs/governance/canonical-decision-enum-registry.md
+static/ontology/canonical-decision-enum-registry.v0.1.json
+```
+
 The public wiki currently exposes three related but different decision surfaces:
 
 ```text
-Runtime execution decision surface:
+Runtime transition decision surface:
   ALLOW
   DENY
   DEFER
@@ -59,7 +66,7 @@ Failure/posture terms used by interop or downstream documentation:
   CONDITIONAL
 ```
 
-Until a dedicated canonical enum registry is installed, pages must identify which surface they are using and must not present local wiki, interop, or downstream status values as canonical runtime execution values.
+Pages must identify which surface they are using and must not present local wiki, interop, or downstream status values as canonical runtime transition values.
 
 ## Definition
 
@@ -159,6 +166,7 @@ A decision record explains wiki standing. It does not prove that the underlying 
 
 ## Related Pages
 
+- [Canonical Decision Enum Registry](./canonical-decision-enum-registry.md)
 - [Proposal Lifecycle](./proposal-lifecycle.md)
 - [Terminology Convergence](./terminology-convergence.md)
 - [Page Template](./page-template.md)
