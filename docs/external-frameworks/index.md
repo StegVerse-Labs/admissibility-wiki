@@ -68,6 +68,8 @@ The governing page is [External Framework Evaluation Standard](./evaluation-stan
 
 The reusable benchmark suite is [Runtime Governance Benchmark Suite](./runtime-governance-benchmark-suite.md).
 
+The benchmark rollout tracker is [External Framework Benchmark Mapping Rollout](./benchmark-mapping-rollout.md).
+
 The reusable template is [External Framework Page Template](./external-framework-template.md).
 
 Failure observations should use the [External Framework Failure Class Catalog](./failure-class-catalog.md).
@@ -111,6 +113,7 @@ A generated compatibility result is evidence only. It is not certification, endo
 |---|---|
 | [External Framework Evaluation Standard](./evaluation-standard.md) | Defines evidence provenance, claim traceability, comparative fairness, and required page structure for all external-framework pages. |
 | [Runtime Governance Benchmark Suite](./runtime-governance-benchmark-suite.md) | Defines reusable benchmark cases and boundary classes for testing runtime governance, preparation, commitment, execution, semantic equivalence, unknown trajectories, replay, and reconstruction. |
+| [External Framework Benchmark Mapping Rollout](./benchmark-mapping-rollout.md) | Tracks how the runtime-governance benchmark dimensions are mapped across all registered external frameworks without treating unmapped dimensions as failures. |
 | [External Framework Failure Class Catalog](./failure-class-catalog.md) | Defines reusable failure classes so observations are classified by failure kind rather than only pass/fail. |
 | [External Framework Page Template](./external-framework-template.md) | Provides a reusable page structure for new or refactored external-framework entries. |
 | [Evidence Provenance Rollout](./evidence-provenance-rollout.md) | Tracks rollout of the provenance standard across all registered external-framework pages. |
@@ -162,6 +165,7 @@ DecisionAssure -> trace
 MindForge -> review
 Morrison Runtime -> pre-execution runtime verdict and audit evidence
 Runtime Governance Benchmark Suite -> shared boundary tests
+Benchmark Mapping Rollout -> cross-framework applicability tracker
 Commitment Candidate -> proposed crossing
 SPE -> standing determination
 Execution -> consequence binding
@@ -197,4 +201,5 @@ A source URL is evidence of the external framework artifact, not acceptance of e
 A StegVerse observation does not expand the external framework's published claims.
 A parameterized observation is not general compatibility.
 Benchmark results are not judgments of framework value.
+Benchmark mapping does not make unmapped dimensions failures.
 ```
