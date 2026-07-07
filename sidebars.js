@@ -27,6 +27,7 @@ const sidebars = {
         'governance/proposal-intake-api-deployment',
         'governance/proposal-lifecycle',
         'governance/decision-record',
+        'governance/canonical-decision-enum-registry',
         'governance/relationship-status-summary',
         'governance/site-bridge-status',
         'governance/admissibility-wiki-ai-entity',
