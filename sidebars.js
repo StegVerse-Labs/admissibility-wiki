@@ -101,6 +101,8 @@ const sidebars = {
       items: [
         'external-frameworks/index',
         'external-frameworks/evaluation-standard',
+        'external-frameworks/runtime-governance-benchmark-suite',
+        'external-frameworks/morrison-runtime-boundary-observation',
         'external-frameworks/failure-class-catalog',
         'external-frameworks/external-framework-template',
         'external-frameworks/evidence-provenance-rollout',
