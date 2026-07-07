@@ -6,7 +6,7 @@ This file is the documentation mirror handoff source of truth for `StegVerse-Lab
 
 ## Active goal
 
-Goal 5: external framework benchmark mechanism and Morrison Runtime boundary observation.
+Goal 5: external framework benchmark mechanism, Morrison Runtime boundary observation, and cross-framework benchmark mapping rollout.
 
 Goal 4 documented the bounded LLM free-tier trust chain across LLM-adapter, Site, and SDK. Goal 5 adds a reusable benchmark surface for comparing external framework boundaries under evidence-governed, non-certifying terms.
 
@@ -23,6 +23,7 @@ external framework material
 -> compatibility report
 -> observation fixture
 -> commitment-candidate fixture
+-> benchmark mapping companion
 -> SPE standing reconstruction
 -> public observatory page
 ```
@@ -33,6 +34,11 @@ external framework material
 StegVerse-Labs/admissibility-wiki
   -> docs/external-frameworks/runtime-governance-benchmark-suite.md
   -> static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
+  -> docs/external-frameworks/benchmark-mapping-rollout.md
+  -> docs/external-frameworks/benchmark-mapping-rollout.json
+  -> docs/external-frameworks/benchmark-mappings/morrison-runtime.mapping.json
+  -> docs/external-frameworks/benchmark-mappings/asro.mapping.json
+  -> scripts/check_external_framework_benchmark_mappings.py
   -> scripts/check_runtime_governance_benchmark_suite.py
   -> docs/external-frameworks/morrison-runtime-boundary-observation.md
   -> docs/external-frameworks/reports/morrison-runtime.compatibility.json
@@ -49,6 +55,11 @@ StegVerse-Labs/admissibility-wiki
 ```text
 docs/external-frameworks/runtime-governance-benchmark-suite.md
 static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
+docs/external-frameworks/benchmark-mapping-rollout.md
+docs/external-frameworks/benchmark-mapping-rollout.json
+docs/external-frameworks/benchmark-mappings/morrison-runtime.mapping.json
+docs/external-frameworks/benchmark-mappings/asro.mapping.json
+scripts/check_external_framework_benchmark_mappings.py
 scripts/check_runtime_governance_benchmark_suite.py
 docs/external-frameworks/morrison-runtime-boundary-observation.md
 docs/external-frameworks/reports/morrison-runtime.compatibility.json update
@@ -67,6 +78,7 @@ docs/SITE_MIRROR_HANDOFF.md update
 python scripts/check_runtime_governance_benchmark_suite.py
 python scripts/check_morrison_runtime_benchmark_fixtures.py
 python scripts/check_external_framework_reports.py
+python scripts/check_external_framework_benchmark_mappings.py
 python scripts/check_external_frameworks_index.py
 npm run build
 ```
@@ -82,7 +94,7 @@ Pending next canonical workflow run.
 ```text
 Attach raw audit payloads for Morrison observed cases.
 Run replay captures for repeated Morrison inputs and trajectory hashes.
-Add framework-specific benchmark mapping pages for the remaining external frameworks.
+Add benchmark mapping companions for the remaining external frameworks.
 Prepare release/tag candidate after build and artifact review.
 ```
 
