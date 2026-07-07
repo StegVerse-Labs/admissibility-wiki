@@ -6,7 +6,7 @@ title: Decision Record
 
 ## Purpose
 
-This page defines the wiki decision record used to accept, reject, defer, escalate, or refuse proposed wiki changes.
+This page defines the wiki decision record used to accept, reject, defer, escalate, refuse, supersede, or map proposed wiki changes.
 
 Decision records make the wiki review process reconstructable instead of relying on undocumented editorial judgment.
 
@@ -32,6 +32,35 @@ conceptual
 
 This page defines decision-record vocabulary for wiki governance. It does not authorize execution, prove runtime admissibility, or replace formalism-tests.
 
+Decision-record outcomes are public wiki-governance outcomes. They are not the canonical runtime execution decision enum.
+
+## Canonical Enum Boundary
+
+The public wiki currently exposes three related but different decision surfaces:
+
+```text
+Runtime execution decision surface:
+  ALLOW
+  DENY
+  DEFER
+
+Wiki governance decision surface:
+  ALLOW
+  ALLOW_AS_OVERLAP
+  DENY
+  DEFER
+  ESCALATE
+  REFUSE
+  SUPERSEDE
+
+Failure/posture terms used by interop or downstream documentation:
+  FAIL-CLOSED
+  FAIL_CLOSED
+  CONDITIONAL
+```
+
+Until a dedicated canonical enum registry is installed, pages must identify which surface they are using and must not present local wiki, interop, or downstream status values as canonical runtime execution values.
+
 ## Definition
 
 A decision record is a structured record explaining how a proposal was resolved, what authority class reviewed it, what evidence posture was available, and whether the page change had standing at the binding wiki commit moment.
@@ -40,11 +69,24 @@ A decision record is a structured record explaining how a proposal was resolved,
 
 ```text
 ALLOW
+ALLOW_AS_OVERLAP
 DENY
+DEFER
 ESCALATE
 REFUSE
-DEFER
 SUPERSEDE
+```
+
+## Outcome Classification
+
+```text
+ALLOW: wiki change accepted for the stated scope.
+ALLOW_AS_OVERLAP: wiki change accepted as an overlap/mapping, not as full equivalence.
+DENY: wiki change rejected for the stated scope.
+DEFER: wiki change postponed pending required evidence, authority, or review.
+ESCALATE: wiki change moved to a higher authority class or review path.
+REFUSE: wiki change refused because the request itself is out of bounds.
+SUPERSEDE: wiki change replaced by a newer or more authoritative record.
 ```
 
 ## Required Decision Fields
@@ -54,12 +96,13 @@ SUPERSEDE
   "decision_id": "decision.example.001",
   "proposal_id": "proposal.example.001",
   "target_page": "docs/glossary/example.md",
-  "decision": "ALLOW",
+  "decision_result": "ALLOW",
   "authority_class": "wiki_maintainer",
   "policy_ref": "policy.wiki.page-review.v1",
   "evidence_posture": "sufficient",
   "review_posture": "maintainer_reviewed",
   "commit_time_validity": true,
+  "enum_surface": "wiki_governance_decision",
   "relationship_disposition": [
     {
       "external_term": "Example external term",
