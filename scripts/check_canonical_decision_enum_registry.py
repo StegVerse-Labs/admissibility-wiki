@@ -10,6 +10,7 @@ REGISTRY = ROOT / "static" / "ontology" / "canonical-decision-enum-registry.v0.1
 STATUS = ROOT / "static" / "status" / "canonical-decision-enum-registry-status.json"
 DECISION_RECORD = ROOT / "docs" / "governance" / "decision-record.md"
 SIDEBAR = ROOT / "sidebars.js"
+PACKAGE = ROOT / "package.json"
 
 RUNTIME_VALUES = ["ALLOW", "DENY", "DEFER"]
 WIKI_VALUES = ["ALLOW", "ALLOW_AS_OVERLAP", "DENY", "DEFER", "ESCALATE", "REFUSE", "SUPERSEDE"]
@@ -20,6 +21,7 @@ SURFACE_LABELS = [
     "interop_failure_posture",
     "downstream_status_label",
 ]
+ALLOWED_STATUS_VALUES = {"installed", "validator_wired"}
 
 REQUIRED_PAGE_SNIPPETS = [
     "Canonical Decision Enum Registry",
@@ -115,16 +117,16 @@ def require_registry() -> None:
 
 def require_status() -> None:
     data = read_json(STATUS, "status")
-    expected = {
-        "schema": "canonical_decision_enum_registry_status.v0.1",
-        "status": "installed",
-        "version": "1.5.14-canonical-decision-enum-registry",
-    }
-    for key, value in expected.items():
-        if data.get(key) != value:
-            raise SystemExit(
-                f"CANONICAL DECISION ENUM REGISTRY: FAIL - status {key} expected {value!r}, got {data.get(key)!r}"
-            )
+    if data.get("schema") != "canonical_decision_enum_registry_status.v0.1":
+        raise SystemExit("CANONICAL DECISION ENUM REGISTRY: FAIL - status schema mismatch")
+    if data.get("status") not in ALLOWED_STATUS_VALUES:
+        raise SystemExit(
+            "CANONICAL DECISION ENUM REGISTRY: FAIL - status must be one of "
+            + ", ".join(sorted(ALLOWED_STATUS_VALUES))
+        )
+    version = data.get("version")
+    if not isinstance(version, str) or not version.startswith("1.5.") or "canonical-decision-enum-registry" not in version:
+        raise SystemExit("CANONICAL DECISION ENUM REGISTRY: FAIL - status version must describe canonical decision enum registry")
     if data.get("surface_labels") != SURFACE_LABELS:
         raise SystemExit("CANONICAL DECISION ENUM REGISTRY: FAIL - status surface labels mismatch")
     if data.get("runtime_transition_decision_values") != RUNTIME_VALUES:
@@ -133,6 +135,31 @@ def require_status() -> None:
         raise SystemExit("CANONICAL DECISION ENUM REGISTRY: FAIL - status wiki values mismatch")
     if data.get("interop_failure_posture_values") != POSTURE_VALUES:
         raise SystemExit("CANONICAL DECISION ENUM REGISTRY: FAIL - status posture values mismatch")
+
+    installed = data.get("installed_artifacts")
+    if not isinstance(installed, list):
+        raise SystemExit("CANONICAL DECISION ENUM REGISTRY: FAIL - installed_artifacts must be a list")
+    for required in [
+        "scripts/check_canonical_decision_enum_registry.py",
+        "static/status/canonical-decision-enum-registry-status.json",
+        "static/ontology/canonical-decision-enum-registry.v0.1.json",
+        "package.json",
+    ]:
+        if required not in installed:
+            raise SystemExit(f"CANONICAL DECISION ENUM REGISTRY: FAIL - installed_artifacts missing {required}")
+
+
+def require_package_wiring() -> None:
+    data = read_json(PACKAGE, "package")
+    scripts = data.get("scripts")
+    if not isinstance(scripts, dict):
+        raise SystemExit("CANONICAL DECISION ENUM REGISTRY: FAIL - package scripts missing")
+    command = scripts.get("validate:canonical-decision-enum-registry")
+    if command != "python scripts/check_canonical_decision_enum_registry.py":
+        raise SystemExit("CANONICAL DECISION ENUM REGISTRY: FAIL - package validator command mismatch")
+    validate = scripts.get("validate", "")
+    if "npm run validate:canonical-decision-enum-registry" not in validate:
+        raise SystemExit("CANONICAL DECISION ENUM REGISTRY: FAIL - package validate chain missing enum registry validator")
 
 
 def main() -> int:
@@ -144,7 +171,8 @@ def main() -> int:
     require_snippets("sidebar", sidebar, ["governance/canonical-decision-enum-registry"])
     require_registry()
     require_status()
-    print("CANONICAL DECISION ENUM REGISTRY: PASS - page, machine registry, status, decision record, and sidebar are aligned")
+    require_package_wiring()
+    print("CANONICAL DECISION ENUM REGISTRY: PASS - page, machine registry, status, decision record, sidebar, and package wiring are aligned")
     return 0
 
 
