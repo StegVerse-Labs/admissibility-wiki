@@ -67,11 +67,11 @@ fixture_ready
 | Framework | Mapping State | Next Action |
 |---|---|---|
 | Morrison Runtime | fixture_ready | Attach raw audit payloads and replay table. |
-| GLM | intake | Map declaration boundaries to authority, evidence freshness, and commitment dimensions. |
-| EVIDE | intake | Map post-event evidence to reconstruction and replay dimensions. |
-| DecisionAssure | intake | Map trace integrity to policy drift, authority reconstruction, and commitment dimensions. |
-| MindForge | intake | Map historical review evidence to non-authorizing commitment review. |
-| ASRO | fixture_ready | Map attestation evidence to reconstruction and authority boundary dimensions. |
+| GLM | mapped_partial | Add GLM benchmark fixture for declaration freshness and semantic-equivalence boundary handling. |
+| EVIDE | mapped_partial | Add EVIDE evidence fixture for replay and reconstruction dimensions. |
+| DecisionAssure | mapped_partial | Add DecisionAssure canonical-policy fixture and map policy drift cases to benchmark dimensions. |
+| MindForge | mapped_partial | Add MindForge historical-review fixture showing non-authorizing evidence routed through SPE. |
+| ASRO | fixture_ready | Add ASRO observation fixture and replay/reconstruction status record. |
 | CARE Runtime | intake | Source public scope and map runtime-governance dimensions. |
 | AAR | intake | Map supervised operational forensics to runtime and authority boundaries. |
 | MITRE ATLAS | intake | Map threat knowledge to benchmark case design rather than runtime verdicts. |
