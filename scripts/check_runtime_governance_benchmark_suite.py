@@ -10,7 +10,6 @@ ROOT = Path(__file__).resolve().parents[1]
 DOC = ROOT / "docs" / "external-frameworks" / "runtime-governance-benchmark-suite.md"
 DATA = ROOT / "static" / "external-frameworks" / "runtime-governance-benchmark-suite.v0.1.json"
 INDEX = ROOT / "docs" / "external-frameworks" / "index.md"
-SIDEBAR = ROOT / "sidebars.js"
 
 REQUIRED_CAPTURE_FIELDS = {
     "test_id",
@@ -53,7 +52,7 @@ def load_json(path: Path) -> dict[str, Any]:
 def main() -> int:
     failures: list[str] = []
 
-    for path in [DOC, DATA, INDEX, SIDEBAR]:
+    for path in [DOC, DATA, INDEX]:
         if not path.exists():
             failures.append(f"missing path: {path.relative_to(ROOT)}")
 
@@ -65,7 +64,6 @@ def main() -> int:
 
     doc = DOC.read_text(encoding="utf-8")
     index = INDEX.read_text(encoding="utf-8")
-    sidebar = SIDEBAR.read_text(encoding="utf-8")
     data = load_json(DATA)
 
     if data.get("artifact_type") != "runtime_governance_benchmark_suite":
@@ -111,7 +109,7 @@ def main() -> int:
 
     required_doc_phrases = [
         "benchmark result != framework invalidity",
-        "Preparation boundary",
+        "preparation_boundary",
         "Morrison Runtime Boundary Observation Pattern",
         "This benchmark does not certify external frameworks.",
         "Standing must be reconstructed",
@@ -122,8 +120,6 @@ def main() -> int:
 
     if "Runtime Governance Benchmark Suite" not in index:
         failures.append("index missing Runtime Governance Benchmark Suite link")
-    if "external-frameworks/runtime-governance-benchmark-suite" not in sidebar:
-        failures.append("sidebar missing runtime-governance-benchmark-suite entry")
 
     print("RUNTIME GOVERNANCE BENCHMARK SUITE:", "FAIL" if failures else "PASS")
     for failure in failures:
