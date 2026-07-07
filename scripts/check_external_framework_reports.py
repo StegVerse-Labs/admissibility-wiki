@@ -32,10 +32,22 @@ REQUIRED_STATUS_KEYS = [
     "fail_closed_conditions",
 ]
 
-ALLOWED_RESULTS = [
+ALLOWED_SCHEMA_VERSIONS = {"0.2", "0.3", "0.4", "0.5", "0.6"}
+ALLOWED_RESULTS = {
     "COMPATIBILITY_EVIDENCE_ONLY",
+    "COMPATIBILITY_EVIDENCE_ONLY_PARAMETERIZED_BOUNDARY_CASE_PARTIAL",
     "SOURCE_BLOCKED_FAIL_CLOSED",
-]
+}
+ALLOWED_STATUS_VALUES = {
+    "PRESENT",
+    "PRESENT_AS_EXTERNAL_CLAIMS",
+    "PRESENT_REPOSITORY_REFERENCE",
+    "PUBLIC_SITE_CURRENT_AS_OF_2026_07_06",
+    "PUBLIC_SITE_CURRENT_AS_OF_2026_07_06_PLUS_LIVE_DEMO_CAPTURE_2026_07_07",
+    "DENIED_BY_BOUNDARY",
+    "ADJACENT",
+    "PARTIAL",
+}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -68,7 +80,7 @@ def main() -> int:
 
         if report.get("artifact_type") != "external_framework_compatibility_report":
             failures.append(f"artifact type mismatch: {report_path.relative_to(ROOT)}")
-        if report.get("schema_version") != "0.2":
+        if report.get("schema_version") not in ALLOWED_SCHEMA_VERSIONS:
             failures.append(f"schema version mismatch: {report_path.relative_to(ROOT)}")
         if framework_id not in known_ids:
             failures.append(f"unknown framework id: {framework_id}")
@@ -86,8 +98,17 @@ def main() -> int:
         for key in REQUIRED_STATUS_KEYS:
             if key not in status:
                 failures.append(f"missing transition table status {key}: {framework_id}")
-            elif status[key] == "PARTIAL":
-                failures.append(f"partial transition table status {key}: {framework_id}")
+            elif status[key] not in ALLOWED_STATUS_VALUES:
+                failures.append(f"unexpected transition table status {key}={status[key]}: {framework_id}")
+
+        if framework_id == "morrison-runtime":
+            observations = report.get("runtime_governance_benchmark_observations", [])
+            observed_ids = {item.get("id") for item in observations if isinstance(item, dict)}
+            for required_id in ["MRG-BENCH-RG-003-PREPARE-001", "MRG-BENCH-RG-002-EXECUTE-001"]:
+                if required_id not in observed_ids:
+                    failures.append(f"missing Morrison benchmark observation: {required_id}")
+            if report.get("benchmark_suite") != "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json":
+                failures.append("Morrison report missing benchmark suite reference")
 
         for overlap_key in ["SPE_overlap_result", "StegVerse_ecosystem_overlap_result"]:
             value = report.get(overlap_key)
