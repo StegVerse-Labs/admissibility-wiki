@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DOC = ROOT / "docs" / "external-frameworks" / "runtime-governance-benchmark-suite.md"
 DATA = ROOT / "static" / "external-frameworks" / "runtime-governance-benchmark-suite.v0.1.json"
 INDEX = ROOT / "docs" / "external-frameworks" / "index.md"
+BOUNDARY = ROOT / "docs" / "external-frameworks" / "morrison-runtime-boundary-observation.md"
+SIDEBAR = ROOT / "sidebars.js"
 
 REQUIRED_CAPTURE_FIELDS = {
     "test_id",
@@ -52,7 +54,7 @@ def load_json(path: Path) -> dict[str, Any]:
 def main() -> int:
     failures: list[str] = []
 
-    for path in [DOC, DATA, INDEX]:
+    for path in [DOC, DATA, INDEX, BOUNDARY, SIDEBAR]:
         if not path.exists():
             failures.append(f"missing path: {path.relative_to(ROOT)}")
 
@@ -64,6 +66,8 @@ def main() -> int:
 
     doc = DOC.read_text(encoding="utf-8")
     index = INDEX.read_text(encoding="utf-8")
+    boundary = BOUNDARY.read_text(encoding="utf-8")
+    sidebar = SIDEBAR.read_text(encoding="utf-8")
     data = load_json(DATA)
 
     if data.get("artifact_type") != "runtime_governance_benchmark_suite":
@@ -118,8 +122,25 @@ def main() -> int:
         if phrase not in doc:
             failures.append(f"doc missing phrase: {phrase}")
 
+    required_boundary_phrases = [
+        "Observed Case A: Preparation Permitted",
+        "Observed Case B: Execution-Capable Transfer Blocked",
+        "prepare_transfer",
+        "transfer_funds",
+        "This page does not claim Morrison Runtime is defective.",
+    ]
+    for phrase in required_boundary_phrases:
+        if phrase not in boundary:
+            failures.append(f"boundary page missing phrase: {phrase}")
+
     if "Runtime Governance Benchmark Suite" not in index:
         failures.append("index missing Runtime Governance Benchmark Suite link")
+    for slug in [
+        "external-frameworks/runtime-governance-benchmark-suite",
+        "external-frameworks/morrison-runtime-boundary-observation",
+    ]:
+        if slug not in sidebar:
+            failures.append(f"sidebar missing slug: {slug}")
 
     print("RUNTIME GOVERNANCE BENCHMARK SUITE:", "FAIL" if failures else "PASS")
     for failure in failures:
