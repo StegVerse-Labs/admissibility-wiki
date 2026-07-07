@@ -66,11 +66,28 @@ interoperability standing
 
 The governing page is [External Framework Evaluation Standard](./evaluation-standard.md).
 
+The reusable benchmark suite is [Runtime Governance Benchmark Suite](./runtime-governance-benchmark-suite.md).
+
 The reusable template is [External Framework Page Template](./external-framework-template.md).
 
 Failure observations should use the [External Framework Failure Class Catalog](./failure-class-catalog.md).
 
 The rollout tracker is [Evidence Provenance Rollout](./evidence-provenance-rollout.md).
+
+## Benchmark Posture
+
+The Runtime Governance Benchmark Suite is framework improvement infrastructure, not a takedown mechanism.
+
+```text
+benchmark result != framework invalidity
+ALLOW != StegVerse authority
+BLOCK != StegVerse certification
+ESCALATE != failure
+parser limitation != governance conclusion
+observed behavior != general compatibility
+```
+
+Each framework may be strongest in a different region. A missed case may identify an implementation gap, a scope boundary, an adapter requirement, a missing policy, or an undeclared assumption.
 
 ## Terminology Reconciliation
 
@@ -93,6 +110,7 @@ A generated compatibility result is evidence only. It is not certification, endo
 | Page | Purpose |
 |---|---|
 | [External Framework Evaluation Standard](./evaluation-standard.md) | Defines evidence provenance, claim traceability, comparative fairness, and required page structure for all external-framework pages. |
+| [Runtime Governance Benchmark Suite](./runtime-governance-benchmark-suite.md) | Defines reusable benchmark cases and boundary classes for testing runtime governance, preparation, commitment, execution, semantic equivalence, unknown trajectories, replay, and reconstruction. |
 | [External Framework Failure Class Catalog](./failure-class-catalog.md) | Defines reusable failure classes so observations are classified by failure kind rather than only pass/fail. |
 | [External Framework Page Template](./external-framework-template.md) | Provides a reusable page structure for new or refactored external-framework entries. |
 | [Evidence Provenance Rollout](./evidence-provenance-rollout.md) | Tracks rollout of the provenance standard across all registered external-framework pages. |
@@ -109,7 +127,7 @@ A generated compatibility result is evidence only. It is not certification, endo
 | [EVIDE](./evide.md) | Post-event evidentiary reconstructability | sourced | Helps preserve and organize evidence after an event so reconstruction and dispute review remain possible. |
 | [DecisionAssure](./decisionassure.md) | Trace integrity and causal-continuity intake | artifact package required | Candidate target for testing whether supplied traces can support independent authority reconstruction without becoming authority. |
 | [MindForge](./mindforge.md) | Historical governance review evidence intake | artifact package required | Candidate target for testing whether review evidence remains non-authorizing until SPE reconstructs current standing. |
-| [Morrison Runtime](./morrison-runtime.md) | Runtime-governance comparison target | sourced with parameterized boundary case partial | Candidate comparison target for runtime outcome, failure-state behavior, and semantic-equivalence boundary testing. |
+| [Morrison Runtime](./morrison-runtime.md) | Runtime-governance comparison target | sourced with parameterized boundary case partial | Candidate comparison target for runtime outcome, failure-state behavior, semantic-equivalence boundary testing, and preparation-vs-execution boundary testing. |
 | [CARE Runtime](./care-runtime.md) | Public runtime-governance platform candidate | official source required | Candidate crosswalk target for runtime governance, public-platform posture, and consequence-boundary language. |
 | [AAR](./aar.md) | Supervised AI governance and operational forensics candidate | sourced | Crosswalk target for observable-system governance and pre-execution cost governance. |
 | [ASRO](./asro.md) | Independent AI governance-state attestation | sourced | Crosswalk target for host-side measurement, edge-side witnessing, and independent verification of whether declared governance remained in force. |
@@ -143,6 +161,7 @@ OWASP Top 10 for LLM Applications -> LLM application risk context
 DecisionAssure -> trace
 MindForge -> review
 Morrison Runtime -> pre-execution runtime verdict and audit evidence
+Runtime Governance Benchmark Suite -> shared boundary tests
 Commitment Candidate -> proposed crossing
 SPE -> standing determination
 Execution -> consequence binding
@@ -177,4 +196,5 @@ External framework inclusion does not grant execution authority.
 A source URL is evidence of the external framework artifact, not acceptance of equivalence.
 A StegVerse observation does not expand the external framework's published claims.
 A parameterized observation is not general compatibility.
+Benchmark results are not judgments of framework value.
 ```
