@@ -1,0 +1,54 @@
+{
+  "artifact_type": "external_framework_benchmark_mapping",
+  "schema_version": "0.1",
+  "framework_id": "asro",
+  "framework_role": "independent governance-state attestation",
+  "source_status": "sourced_with_commitment_candidate_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_state": "fixture_ready",
+  "benchmark_dimensions": {
+    "execution_boundary": {
+      "state": "not_applicable",
+      "summary": "ASRO attests governance state rather than directly permitting or blocking runtime execution."
+    },
+    "preparation_boundary": {
+      "state": "adapter_required",
+      "summary": "Preparation-state evidence may be attested, but StegVerse must decide whether it binds consequence."
+    },
+    "commitment_boundary": {
+      "state": "fixture_ready",
+      "summary": "ASRO commitment-candidate fixture routes attestation into SPE review."
+    },
+    "semantic_equivalence_boundary": {
+      "state": "not_applicable",
+      "summary": "ASRO is not a semantic tool-trajectory evaluator."
+    },
+    "unknown_trajectory_boundary": {
+      "state": "adapter_required",
+      "summary": "Unknown governance-state evidence should fail closed unless mapping is present."
+    },
+    "authority_boundary": {
+      "state": "fixture_ready",
+      "summary": "ASRO attestation is evidence, not authority."
+    },
+    "evidence_freshness_boundary": {
+      "state": "applicable",
+      "summary": "Attestation freshness is central to whether evidence can support current standing."
+    },
+    "reconstruction_boundary": {
+      "state": "applicable",
+      "summary": "Independent attestation can support reconstruction if source, timestamp, verifier, and measurement context are preserved."
+    },
+    "interoperability_path": {
+      "state": "fixture_ready",
+      "summary": "ASRO has a commitment-candidate fixture and can route into SPE review."
+    }
+  },
+  "non_claims": {
+    "is_certification": false,
+    "is_endorsement": false,
+    "is_execution_authority": false,
+    "attestation_is_stegverse_authority": false
+  },
+  "next_required_action": "add ASRO observation fixture and replay/reconstruction status record"
+}
