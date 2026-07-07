@@ -21,6 +21,7 @@ external framework material
 -> boundary-class assignment
 -> StegVerse expected posture
 -> interoperability opportunity
+-> compatibility report
 -> commitment-candidate path
 -> SPE standing reconstruction
 -> public observatory page
@@ -34,7 +35,10 @@ StegVerse-Labs/admissibility-wiki
   -> static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
   -> scripts/check_runtime_governance_benchmark_suite.py
   -> docs/external-frameworks/morrison-runtime-boundary-observation.md
-  -> docs/external-frameworks/index.md update
+  -> docs/external-frameworks/reports/morrison-runtime.compatibility.json
+  -> scripts/check_external_framework_reports.py
+  -> docs/external-frameworks/index.md
+  -> sidebars.js
 ```
 
 ## Installed files
@@ -44,7 +48,10 @@ docs/external-frameworks/runtime-governance-benchmark-suite.md
 static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
 scripts/check_runtime_governance_benchmark_suite.py
 docs/external-frameworks/morrison-runtime-boundary-observation.md
+docs/external-frameworks/reports/morrison-runtime.compatibility.json update
+scripts/check_external_framework_reports.py update
 docs/external-frameworks/index.md update
+sidebars.js update
 docs/SITE_MIRROR_HANDOFF.md update
 ```
 
@@ -52,6 +59,7 @@ docs/SITE_MIRROR_HANDOFF.md update
 
 ```bash
 python scripts/check_runtime_governance_benchmark_suite.py
+python scripts/check_external_framework_reports.py
 python scripts/check_external_frameworks_index.py
 npm run build
 ```
@@ -65,10 +73,9 @@ Pending next canonical workflow run.
 ## Remaining hardening
 
 ```text
-Attach raw audit payloads or screenshots for Morrison observed cases.
+Attach raw audit payloads for Morrison observed cases.
 Add replay table for repeated Morrison runs and trajectory hashes.
-Update sidebars.js with runtime-governance-benchmark-suite when the contents update is available.
-Route benchmark observations into generated compatibility reports.
+Route benchmark observations into Commitment Candidate fixtures.
 Add framework-specific benchmark mapping pages for the remaining external frameworks.
 Prepare release/tag candidate after build and artifact review.
 ```
