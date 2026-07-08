@@ -1,0 +1,50 @@
+{
+  "schema": "stegverse.decision_authority_compatibility.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "canonical_source": "StegVerse-Labs/repo-standards/schemas/decision-authority.schema.json",
+  "canonical_values": [
+    "allowed",
+    "denied",
+    "advisory-only",
+    "requires-human-review",
+    "fail-closed"
+  ],
+  "scan_observation": {
+    "detected_values": [
+      "ALLOW",
+      "DENY",
+      "FAIL-CLOSED"
+    ],
+    "source": "README.md governed ecosystem transition framing"
+  },
+  "mappings": [
+    {
+      "source_value": "ALLOW",
+      "canonical_value": "allowed"
+    },
+    {
+      "source_value": "DENY",
+      "canonical_value": "denied"
+    },
+    {
+      "source_value": "FAIL-CLOSED",
+      "canonical_value": "fail-closed"
+    },
+    {
+      "source_value": "FAIL_CLOSED",
+      "canonical_value": "fail-closed",
+      "status": "normalized_alias"
+    },
+    {
+      "source_value": "DEFER",
+      "canonical_value": "requires-human-review",
+      "status": "reserved"
+    },
+    {
+      "source_value": "ADVISORY_ONLY",
+      "canonical_value": "advisory-only",
+      "status": "reserved"
+    }
+  ],
+  "authority_boundary": "Wiki vocabulary is public doctrine and explanatory framing. It is not ST-004 transition authority unless mapped to the canonical authority vocabulary and supported by policy, delegation, evidence, and validation."
+}
