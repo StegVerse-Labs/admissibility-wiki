@@ -86,6 +86,14 @@ asro-benchmark-fixture.v0.1.json
 policy-cards-benchmark-fixture.v0.1.json
 runtime-governance-policies-on-paths-benchmark-fixture.v0.1.json
 killswitch-md-benchmark-fixture.v0.1.json
+care-runtime-benchmark-fixture.v0.1.json
+aar-benchmark-fixture.v0.1.json
+mitre-atlas-benchmark-fixture.v0.1.json
+owasp-top-10-llm-benchmark-fixture.v0.1.json
+agent-governance-playbook-benchmark-fixture.v0.1.json
+nist-ai-rmf-benchmark-fixture.v0.1.json
+iso-iec-42001-benchmark-fixture.v0.1.json
+eu-ai-act-benchmark-fixture.v0.1.json
 ```
 
 ## Installed files
@@ -96,14 +104,7 @@ static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
 docs/external-frameworks/benchmark-mapping-rollout.md
 docs/external-frameworks/benchmark-mapping-rollout.json
 docs/external-frameworks/benchmark-mappings/*.mapping.json
-docs/external-frameworks/fixtures/glm-benchmark-fixture.v0.1.json
-docs/external-frameworks/fixtures/evide-benchmark-fixture.v0.1.json
-docs/external-frameworks/fixtures/decisionassure-benchmark-fixture.v0.1.json
-docs/external-frameworks/fixtures/mindforge-benchmark-fixture.v0.1.json
-docs/external-frameworks/fixtures/asro-benchmark-fixture.v0.1.json
-docs/external-frameworks/fixtures/policy-cards-benchmark-fixture.v0.1.json
-docs/external-frameworks/fixtures/runtime-governance-policies-on-paths-benchmark-fixture.v0.1.json
-docs/external-frameworks/fixtures/killswitch-md-benchmark-fixture.v0.1.json
+docs/external-frameworks/fixtures/*-benchmark-fixture.v0.1.json
 scripts/check_external_framework_benchmark_mappings.py
 scripts/check_external_framework_benchmark_fixtures.py
 scripts/check_runtime_governance_benchmark_suite.py
@@ -141,7 +142,6 @@ Pending next canonical workflow run.
 ```text
 Attach raw audit payloads for Morrison observed cases.
 Run replay captures for repeated Morrison inputs and trajectory hashes.
-Add fixture artifacts for CARE Runtime, AAR, MITRE ATLAS, OWASP, Agent Governance Playbook, NIST AI RMF, ISO/IEC 42001, and EU AI Act.
 Attach concrete source-versioned examples to fixture artifacts.
 Decide whether Admissible Existence Seed Cycle needs a benchmark mapping or should remain a mirror-only page.
 Prepare release/tag candidate after build and artifact review.
