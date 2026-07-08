@@ -82,6 +82,10 @@ glm-benchmark-fixture.v0.1.json
 evide-benchmark-fixture.v0.1.json
 decisionassure-benchmark-fixture.v0.1.json
 mindforge-benchmark-fixture.v0.1.json
+asro-benchmark-fixture.v0.1.json
+policy-cards-benchmark-fixture.v0.1.json
+runtime-governance-policies-on-paths-benchmark-fixture.v0.1.json
+killswitch-md-benchmark-fixture.v0.1.json
 ```
 
 ## Installed files
@@ -96,6 +100,10 @@ docs/external-frameworks/fixtures/glm-benchmark-fixture.v0.1.json
 docs/external-frameworks/fixtures/evide-benchmark-fixture.v0.1.json
 docs/external-frameworks/fixtures/decisionassure-benchmark-fixture.v0.1.json
 docs/external-frameworks/fixtures/mindforge-benchmark-fixture.v0.1.json
+docs/external-frameworks/fixtures/asro-benchmark-fixture.v0.1.json
+docs/external-frameworks/fixtures/policy-cards-benchmark-fixture.v0.1.json
+docs/external-frameworks/fixtures/runtime-governance-policies-on-paths-benchmark-fixture.v0.1.json
+docs/external-frameworks/fixtures/killswitch-md-benchmark-fixture.v0.1.json
 scripts/check_external_framework_benchmark_mappings.py
 scripts/check_external_framework_benchmark_fixtures.py
 scripts/check_runtime_governance_benchmark_suite.py
@@ -133,8 +141,8 @@ Pending next canonical workflow run.
 ```text
 Attach raw audit payloads for Morrison observed cases.
 Run replay captures for repeated Morrison inputs and trajectory hashes.
-Add fixture artifacts for ASRO, CARE Runtime, AAR, MITRE ATLAS, OWASP, Agent Governance Playbook, Emergency Stop Convention, NIST AI RMF, ISO/IEC 42001, EU AI Act, Policy Cards, and Runtime Governance for AI Agents.
-Attach concrete source-versioned examples to GLM, EVIDE, DecisionAssure, and MindForge fixtures.
+Add fixture artifacts for CARE Runtime, AAR, MITRE ATLAS, OWASP, Agent Governance Playbook, NIST AI RMF, ISO/IEC 42001, and EU AI Act.
+Attach concrete source-versioned examples to fixture artifacts.
 Decide whether Admissible Existence Seed Cycle needs a benchmark mapping or should remain a mirror-only page.
 Prepare release/tag candidate after build and artifact review.
 ```
