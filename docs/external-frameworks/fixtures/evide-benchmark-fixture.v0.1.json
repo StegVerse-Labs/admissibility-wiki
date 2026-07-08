@@ -1,0 +1,36 @@
+{
+  "artifact_type": "external_framework_benchmark_fixture",
+  "schema_version": "0.1",
+  "framework_id": "evide",
+  "framework_name": "EVIDE",
+  "fixture_role": "post_event_evidentiary_reconstructability_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_companion": "docs/external-frameworks/benchmark-mappings/evide.mapping.json",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "fixture_cases": [
+    {
+      "fixture_id": "evide-reconstruction-001",
+      "benchmark_dimensions": ["reconstruction_boundary", "evidence_freshness_boundary"],
+      "input_artifact_type": "post_event_evidence_package",
+      "required_evidence": ["event_time", "source_reference", "custody_record", "artifact_hash", "interpretation_scope"],
+      "stegverse_expected_posture": "USE_AS_RECONSTRUCTION_EVIDENCE_ONLY_NOT_AUTHORITY",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["event_time", "custody_record", "source_reference", "current_policy_context"]
+    },
+    {
+      "fixture_id": "evide-commitment-evidence-001",
+      "benchmark_dimensions": ["preparation_boundary", "commitment_boundary"],
+      "input_artifact_type": "evidence_of_preparation_or_commitment_state",
+      "review_question": "Does preserved evidence show a commitment state existed before final execution?",
+      "stegverse_expected_posture": "ROUTE_TO_COMMIT_TIME_RECONSTRUCTION_BEFORE_ANY_STANDING_CLAIM",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["commitment_time", "actor", "policy_reference", "delegation_reference", "recoverability_record"]
+    }
+  ],
+  "authority_boundary": {
+    "fixture_is_authority": false,
+    "evide_evidence_is_stegverse_authority": false,
+    "external_framework_inclusion_is_certification": false,
+    "external_framework_inclusion_is_execution_authority": false
+  }
+}
