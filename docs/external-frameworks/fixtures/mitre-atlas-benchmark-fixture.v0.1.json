@@ -1,0 +1,36 @@
+{
+  "artifact_type": "external_framework_benchmark_fixture",
+  "schema_version": "0.1",
+  "framework_id": "mitre-atlas",
+  "framework_name": "MITRE ATLAS",
+  "fixture_role": "adversarial_ai_case_design_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_companion": "docs/external-frameworks/benchmark-mappings/mitre-atlas.mapping.json",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "fixture_cases": [
+    {
+      "fixture_id": "mitre-atlas-trajectory-design-001",
+      "benchmark_dimensions": ["semantic_equivalence_boundary", "unknown_trajectory_boundary", "preparation_boundary"],
+      "input_artifact_type": "threat_knowledge_reference",
+      "review_question": "Can adversarial AI threat knowledge inform semantically equivalent trajectory benchmark cases without becoming authority?",
+      "stegverse_expected_posture": "USE_AS_THREAT_CONTEXT_AND_CASE_DESIGN_EVIDENCE_ONLY",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["technique_reference", "source_version", "case_mapping", "policy_context"]
+    },
+    {
+      "fixture_id": "mitre-atlas-reconstruction-context-001",
+      "benchmark_dimensions": ["reconstruction_boundary", "evidence_freshness_boundary"],
+      "input_artifact_type": "threat_context_annotation",
+      "review_question": "Can threat context help reconstruct why a trajectory was escalated or denied?",
+      "stegverse_expected_posture": "ATTACH_CONTEXT_TO_EVIDENCE_WITHOUT_TREATING_CATALOG_AS_VERDICT",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["source_reference", "annotation_scope", "evidence_link", "current_review_context"]
+    }
+  ],
+  "authority_boundary": {
+    "fixture_is_authority": false,
+    "mitre_atlas_reference_is_stegverse_authority": false,
+    "threat_catalog_is_certification": false,
+    "external_framework_inclusion_is_execution_authority": false
+  }
+}
