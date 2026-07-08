@@ -36,12 +36,7 @@ StegVerse-Labs/admissibility-wiki
   -> static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
   -> docs/external-frameworks/benchmark-mapping-rollout.md
   -> docs/external-frameworks/benchmark-mapping-rollout.json
-  -> docs/external-frameworks/benchmark-mappings/morrison-runtime.mapping.json
-  -> docs/external-frameworks/benchmark-mappings/asro.mapping.json
-  -> docs/external-frameworks/benchmark-mappings/glm.mapping.json
-  -> docs/external-frameworks/benchmark-mappings/evide.mapping.json
-  -> docs/external-frameworks/benchmark-mappings/decisionassure.mapping.json
-  -> docs/external-frameworks/benchmark-mappings/mindforge.mapping.json
+  -> docs/external-frameworks/benchmark-mappings/*.mapping.json
   -> scripts/check_external_framework_benchmark_mappings.py
   -> scripts/check_runtime_governance_benchmark_suite.py
   -> docs/external-frameworks/morrison-runtime-boundary-observation.md
@@ -54,6 +49,28 @@ StegVerse-Labs/admissibility-wiki
   -> sidebars.js
 ```
 
+## Installed mapping companions
+
+```text
+morrison-runtime
+asro
+glm
+evide
+decisionassure
+mindforge
+care-runtime
+aar
+mitre-atlas
+owasp-top-10-llm
+agent-governance-playbook
+killswitch-md
+nist-ai-rmf
+iso-iec-42001
+eu-ai-act
+policy-cards
+runtime-governance-policies-on-paths
+```
+
 ## Installed files
 
 ```text
@@ -61,12 +78,7 @@ docs/external-frameworks/runtime-governance-benchmark-suite.md
 static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
 docs/external-frameworks/benchmark-mapping-rollout.md
 docs/external-frameworks/benchmark-mapping-rollout.json
-docs/external-frameworks/benchmark-mappings/morrison-runtime.mapping.json
-docs/external-frameworks/benchmark-mappings/asro.mapping.json
-docs/external-frameworks/benchmark-mappings/glm.mapping.json
-docs/external-frameworks/benchmark-mappings/evide.mapping.json
-docs/external-frameworks/benchmark-mappings/decisionassure.mapping.json
-docs/external-frameworks/benchmark-mappings/mindforge.mapping.json
+docs/external-frameworks/benchmark-mappings/*.mapping.json
 scripts/check_external_framework_benchmark_mappings.py
 scripts/check_runtime_governance_benchmark_suite.py
 docs/external-frameworks/morrison-runtime-boundary-observation.md
@@ -102,8 +114,8 @@ Pending next canonical workflow run.
 ```text
 Attach raw audit payloads for Morrison observed cases.
 Run replay captures for repeated Morrison inputs and trajectory hashes.
-Add benchmark mapping companions for CARE Runtime, AAR, MITRE ATLAS, OWASP, Agent Governance Playbook, Emergency Stop Convention, NIST AI RMF, ISO/IEC 42001, EU AI Act, Policy Cards, Runtime Governance for AI Agents, and Admissible Existence Seed Cycle if applicable.
-Add GLM, EVIDE, DecisionAssure, and MindForge fixtures.
+Add fixture artifacts for GLM, EVIDE, DecisionAssure, MindForge, ASRO, CARE Runtime, AAR, MITRE ATLAS, OWASP, Agent Governance Playbook, Emergency Stop Convention, NIST AI RMF, ISO/IEC 42001, EU AI Act, Policy Cards, and Runtime Governance for AI Agents.
+Decide whether Admissible Existence Seed Cycle needs a benchmark mapping or should remain a mirror-only page.
 Prepare release/tag candidate after build and artifact review.
 ```
 
