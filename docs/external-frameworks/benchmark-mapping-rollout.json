@@ -2,12 +2,7 @@
   "artifact_type": "external_framework_benchmark_mapping_rollout",
   "schema_version": "0.1",
   "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
-  "posture": {
-    "is_certification": false,
-    "is_ranking": false,
-    "is_execution_authority": false,
-    "unmapped_dimension_is_failure": false
-  },
+  "posture": {"is_certification": false, "is_ranking": false, "is_execution_authority": false, "unmapped_dimension_is_failure": false},
   "allowed_mapping_states": ["not_started", "intake", "mapped_partial", "mapped_core", "fixture_ready", "replay_ready", "interoperability_ready"],
   "allowed_dimension_states": ["applicable", "not_applicable", "adapter_required", "insufficient_evidence", "observed_partial", "replay_required", "fixture_ready"],
   "required_dimensions": ["execution_boundary", "preparation_boundary", "commitment_boundary", "semantic_equivalence_boundary", "unknown_trajectory_boundary", "authority_boundary", "evidence_freshness_boundary", "reconstruction_boundary", "interoperability_path"],
@@ -17,17 +12,17 @@
     {"framework_id": "evide", "mapping_state": "fixture_ready", "next_action": "Attach concrete EVIDE evidence package examples and reconstruction receipt."},
     {"framework_id": "decisionassure", "mapping_state": "fixture_ready", "next_action": "Attach canonical policy/delegation examples and trace hashes."},
     {"framework_id": "mindforge", "mapping_state": "fixture_ready", "next_action": "Attach historical review sample and current-standing reconstruction example."},
-    {"framework_id": "asro", "mapping_state": "fixture_ready", "next_action": "Add ASRO observation fixture and replay/reconstruction status record."},
+    {"framework_id": "asro", "mapping_state": "fixture_ready", "next_action": "Attach concrete ASRO attestation examples and reconstruction receipt."},
     {"framework_id": "care-runtime", "mapping_state": "mapped_partial", "next_action": "Identify official CARE Runtime source and create first sourced benchmark fixture."},
     {"framework_id": "aar", "mapping_state": "mapped_partial", "next_action": "Add AAR evidence fixture for operational preparation and execution boundary records."},
     {"framework_id": "mitre-atlas", "mapping_state": "mapped_partial", "next_action": "Add MITRE ATLAS case-design fixture for adversarial trajectory benchmark categories."},
     {"framework_id": "owasp-top-10-llm", "mapping_state": "mapped_partial", "next_action": "Add OWASP risk-category fixture mapped to runtime benchmark cases."},
     {"framework_id": "agent-governance-playbook", "mapping_state": "mapped_partial", "next_action": "Add continuation-state fixture for preparation and unknown-trajectory benchmark cases."},
-    {"framework_id": "killswitch-md", "mapping_state": "mapped_partial", "next_action": "Add emergency-stop fixture for execution and unknown-trajectory benchmark cases."},
+    {"framework_id": "killswitch-md", "mapping_state": "fixture_ready", "next_action": "Attach emergency-stop trigger examples and reconstruction receipt."},
     {"framework_id": "nist-ai-rmf", "mapping_state": "mapped_partial", "next_action": "Add NIST AI RMF control-mapping fixture for evidence freshness and lifecycle review."},
     {"framework_id": "iso-iec-42001", "mapping_state": "mapped_partial", "next_action": "Add ISO/IEC 42001 management-control fixture for authority and policy dimensions."},
     {"framework_id": "eu-ai-act", "mapping_state": "mapped_partial", "next_action": "Add EU AI Act obligation-mapping fixture for documentation and oversight dimensions."},
-    {"framework_id": "policy-cards", "mapping_state": "mapped_partial", "next_action": "Add policy-card fixture for unknown trajectory and preparation boundary cases."},
-    {"framework_id": "runtime-governance-policies-on-paths", "mapping_state": "mapped_partial", "next_action": "Add path-governance fixture for multi-step and unknown-trajectory benchmark cases."}
+    {"framework_id": "policy-cards", "mapping_state": "fixture_ready", "next_action": "Attach source-versioned policy-card examples and replay through unknown/preparation cases."},
+    {"framework_id": "runtime-governance-policies-on-paths", "mapping_state": "fixture_ready", "next_action": "Attach concrete path-policy traces and replay through multi-step cases."}
   ]
 }
