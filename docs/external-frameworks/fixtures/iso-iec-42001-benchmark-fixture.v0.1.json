@@ -1,0 +1,36 @@
+{
+  "artifact_type": "external_framework_benchmark_fixture",
+  "schema_version": "0.1",
+  "framework_id": "iso-iec-42001",
+  "framework_name": "ISO/IEC 42001",
+  "fixture_role": "ai_management_system_control_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_companion": "docs/external-frameworks/benchmark-mappings/iso-iec-42001.mapping.json",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "fixture_cases": [
+    {
+      "fixture_id": "iso-42001-management-control-001",
+      "benchmark_dimensions": ["authority_boundary", "evidence_freshness_boundary", "commitment_boundary"],
+      "input_artifact_type": "ai_management_system_control_record",
+      "review_question": "Does management-system evidence provide a current policy/control reference without becoming execution authority?",
+      "stegverse_expected_posture": "USE_CONTROL_RECORD_AS_POLICY_EVIDENCE_ONLY_AND_RECONSTRUCT_CURRENT_AUTHORITY",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["control_scope", "control_version", "record_timestamp", "actor_authority"]
+    },
+    {
+      "fixture_id": "iso-42001-unknown-operation-001",
+      "benchmark_dimensions": ["unknown_trajectory_boundary", "reconstruction_boundary", "preparation_boundary"],
+      "input_artifact_type": "unknown_operation_management_record",
+      "review_question": "Does the management system define escalation or fail-closed handling for unknown operations?",
+      "stegverse_expected_posture": "ESCALATE_OR_FAIL_CLOSED_AND_PRESERVE_MANAGEMENT_RECORD_FOR_RECONSTRUCTION",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["operation_scope", "escalation_rule", "responsible_role", "evidence_link"]
+    }
+  ],
+  "authority_boundary": {
+    "fixture_is_authority": false,
+    "iso_iec_42001_is_stegverse_authority": false,
+    "management_standard_is_certification": false,
+    "external_framework_inclusion_is_execution_authority": false
+  }
+}
