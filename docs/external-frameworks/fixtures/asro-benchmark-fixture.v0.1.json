@@ -1,0 +1,36 @@
+{
+  "artifact_type": "external_framework_benchmark_fixture",
+  "schema_version": "0.1",
+  "framework_id": "asro",
+  "framework_name": "ASRO",
+  "fixture_role": "independent_governance_state_attestation_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_companion": "docs/external-frameworks/benchmark-mappings/asro.mapping.json",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "fixture_cases": [
+    {
+      "fixture_id": "asro-attestation-freshness-001",
+      "benchmark_dimensions": ["authority_boundary", "evidence_freshness_boundary", "reconstruction_boundary"],
+      "input_artifact_type": "governance_state_attestation",
+      "required_evidence": ["attestation_time", "measurement_context", "verifier_identity_or_role", "artifact_hash", "scope"],
+      "stegverse_expected_posture": "USE_AS_GOVERNANCE_STATE_EVIDENCE_ONLY_AND_REQUIRE_CURRENT_SPE_STANDING",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["attestation_time", "measurement_context", "source_hash", "current_policy_context"]
+    },
+    {
+      "fixture_id": "asro-commitment-state-001",
+      "benchmark_dimensions": ["preparation_boundary", "commitment_boundary"],
+      "input_artifact_type": "attested_preparation_or_commitment_state",
+      "review_question": "Does the attested governance state show that declared controls remained in force before consequence binding?",
+      "stegverse_expected_posture": "ROUTE_TO_COMMITMENT_CANDIDATE_AND_FAIL_CLOSED_IF_CURRENT_STATE_CANNOT_BE_RECONSTRUCTED",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["state_measurement", "control_version", "validity_window", "recoverability_profile"]
+    }
+  ],
+  "authority_boundary": {
+    "fixture_is_authority": false,
+    "asro_attestation_is_stegverse_authority": false,
+    "attestation_is_certification": false,
+    "external_framework_inclusion_is_execution_authority": false
+  }
+}
