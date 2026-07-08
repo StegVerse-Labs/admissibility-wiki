@@ -1,0 +1,36 @@
+{
+  "artifact_type": "external_framework_benchmark_fixture",
+  "schema_version": "0.1",
+  "framework_id": "nist-ai-rmf",
+  "framework_name": "NIST AI RMF",
+  "fixture_role": "risk_management_lifecycle_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_companion": "docs/external-frameworks/benchmark-mappings/nist-ai-rmf.mapping.json",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "fixture_cases": [
+    {
+      "fixture_id": "nist-lifecycle-evidence-001",
+      "benchmark_dimensions": ["evidence_freshness_boundary", "authority_boundary", "commitment_boundary"],
+      "input_artifact_type": "risk_management_lifecycle_record",
+      "review_question": "Does current risk-management evidence support a commitment-time standing review?",
+      "stegverse_expected_posture": "USE_RISK_MANAGEMENT_RECORD_AS_EVIDENCE_ONLY_AND_REQUIRE_CURRENT_STANDING",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["risk_context", "source_version", "control_mapping", "current_policy"]
+    },
+    {
+      "fixture_id": "nist-unknown-risk-001",
+      "benchmark_dimensions": ["unknown_trajectory_boundary", "reconstruction_boundary"],
+      "input_artifact_type": "unknown_risk_review_record",
+      "review_question": "Does an unknown trajectory require measurement, management, escalation, or fail-closed handling?",
+      "stegverse_expected_posture": "ESCALATE_OR_FAIL_CLOSED_AND_PRESERVE_RISK_REVIEW_EVIDENCE",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["risk_assessment", "measurement_record", "decision_rationale", "evidence_hash"]
+    }
+  ],
+  "authority_boundary": {
+    "fixture_is_authority": false,
+    "nist_ai_rmf_is_stegverse_authority": false,
+    "risk_framework_is_certification": false,
+    "external_framework_inclusion_is_execution_authority": false
+  }
+}
