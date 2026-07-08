@@ -48,10 +48,22 @@ ALLOWED_STATUS_VALUES = {
     "ADJACENT",
     "PARTIAL",
 }
+SOURCE_BLOCKED_STATUS_VALUES = {
+    "SOURCE_REQUIRED",
+    "PROVISIONAL",
+    "MISSING",
+}
 
 
 def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def allowed_status_values_for_result(result: str | None) -> set[str]:
+    values = set(ALLOWED_STATUS_VALUES)
+    if result == "SOURCE_BLOCKED_FAIL_CLOSED":
+        values.update(SOURCE_BLOCKED_STATUS_VALUES)
+    return values
 
 
 def main() -> int:
@@ -77,6 +89,8 @@ def main() -> int:
     for report_path in reports:
         report = load_json(report_path)
         framework_id = report.get("framework_id")
+        result = report.get("result")
+        allowed_status_values = allowed_status_values_for_result(result)
 
         if report.get("artifact_type") != "external_framework_compatibility_report":
             failures.append(f"artifact type mismatch: {report_path.relative_to(ROOT)}")
@@ -86,7 +100,7 @@ def main() -> int:
             failures.append(f"unknown framework id: {framework_id}")
         if report.get("testbench_basis") != "transition_table_elements":
             failures.append(f"basis mismatch: {framework_id}")
-        if report.get("result") not in ALLOWED_RESULTS:
+        if result not in ALLOWED_RESULTS:
             failures.append(f"result mismatch: {framework_id}")
         if not report.get("cycle_status"):
             failures.append(f"missing cycle status: {framework_id}")
@@ -98,8 +112,18 @@ def main() -> int:
         for key in REQUIRED_STATUS_KEYS:
             if key not in status:
                 failures.append(f"missing transition table status {key}: {framework_id}")
-            elif status[key] not in ALLOWED_STATUS_VALUES:
+            elif status[key] not in allowed_status_values:
                 failures.append(f"unexpected transition table status {key}={status[key]}: {framework_id}")
+
+        if result != "SOURCE_BLOCKED_FAIL_CLOSED":
+            source_blocked_values = sorted(
+                {value for value in status.values() if value in SOURCE_BLOCKED_STATUS_VALUES}
+            )
+            if source_blocked_values:
+                failures.append(
+                    f"source-blocked status outside SOURCE_BLOCKED_FAIL_CLOSED result: {framework_id}: "
+                    + ", ".join(source_blocked_values)
+                )
 
         if framework_id == "morrison-runtime":
             observations = report.get("runtime_governance_benchmark_observations", [])
