@@ -1,0 +1,36 @@
+{
+  "artifact_type": "external_framework_benchmark_fixture",
+  "schema_version": "0.1",
+  "framework_id": "policy-cards",
+  "framework_name": "Policy Cards",
+  "fixture_role": "machine_readable_runtime_policy_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_companion": "docs/external-frameworks/benchmark-mappings/policy-cards.mapping.json",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "fixture_cases": [
+    {
+      "fixture_id": "policy-cards-unknown-trajectory-001",
+      "benchmark_dimensions": ["unknown_trajectory_boundary", "execution_boundary", "authority_boundary"],
+      "input_artifact_type": "machine_readable_policy_rule_set",
+      "policy_question": "What happens when no policy rule matches a potentially consequence-binding trajectory?",
+      "stegverse_expected_posture": "FAIL_CLOSED_OR_ESCALATE_NOT_SILENT_ALLOW",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["matching_rule", "policy_version", "validity_window", "actor_authority"]
+    },
+    {
+      "fixture_id": "policy-cards-preparation-001",
+      "benchmark_dimensions": ["preparation_boundary", "commitment_boundary", "semantic_equivalence_boundary"],
+      "input_artifact_type": "policy_rule_for_preparation_state",
+      "policy_question": "Does a machine-readable policy explicitly govern preparation states before execution?",
+      "stegverse_expected_posture": "ROUTE_MATCHED_POLICY_AS_POLICY_EVIDENCE_ONLY_AND_RECONSTRUCT_CURRENT_STANDING",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["preparation_rule", "semantic_action_mapping", "delegation_reference", "recoverability_profile"]
+    }
+  ],
+  "authority_boundary": {
+    "fixture_is_authority": false,
+    "policy_card_is_actor_authority": false,
+    "policy_artifact_is_certification": false,
+    "external_framework_inclusion_is_execution_authority": false
+  }
+}
