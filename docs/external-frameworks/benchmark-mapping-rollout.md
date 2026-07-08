@@ -72,17 +72,17 @@ fixture_ready
 | DecisionAssure | mapped_partial | Add DecisionAssure canonical-policy fixture and map policy drift cases to benchmark dimensions. |
 | MindForge | mapped_partial | Add MindForge historical-review fixture showing non-authorizing evidence routed through SPE. |
 | ASRO | fixture_ready | Add ASRO observation fixture and replay/reconstruction status record. |
-| CARE Runtime | intake | Source public scope and map runtime-governance dimensions. |
-| AAR | intake | Map supervised operational forensics to runtime and authority boundaries. |
-| MITRE ATLAS | intake | Map threat knowledge to benchmark case design rather than runtime verdicts. |
-| OWASP Top 10 for LLM Applications | intake | Map risks to benchmark case categories and mitigations. |
-| Agent Governance Playbook | intake | Map continuation governance to commitment and unknown-trajectory dimensions. |
-| Emergency Stop Convention | intake | Map stop conditions to fail-closed and execution boundary dimensions. |
-| NIST AI RMF | intake | Map risk-management controls to evidence and governance lifecycle dimensions. |
-| ISO/IEC 42001 | intake | Map management-system controls to authority, policy, and evidence dimensions. |
-| EU AI Act | intake | Map legal obligations to documentation and oversight dimensions. |
-| Policy Cards | intake | Map machine-readable policy artifacts to runtime rule and authority dimensions. |
-| Runtime Governance for AI Agents | intake | Map path-dependent runtime checks to benchmark trajectory cases. |
+| CARE Runtime | mapped_partial | Identify official CARE Runtime source and create first sourced benchmark fixture. |
+| AAR | mapped_partial | Add AAR evidence fixture for operational preparation and execution boundary records. |
+| MITRE ATLAS | mapped_partial | Add MITRE ATLAS case-design fixture for adversarial trajectory benchmark categories. |
+| OWASP Top 10 for LLM Applications | mapped_partial | Add OWASP risk-category fixture mapped to runtime benchmark cases. |
+| Agent Governance Playbook | mapped_partial | Add continuation-state fixture for preparation and unknown-trajectory benchmark cases. |
+| Emergency Stop Convention | mapped_partial | Add emergency-stop fixture for execution and unknown-trajectory benchmark cases. |
+| NIST AI RMF | mapped_partial | Add NIST AI RMF control-mapping fixture for evidence freshness and lifecycle review. |
+| ISO/IEC 42001 | mapped_partial | Add ISO/IEC 42001 management-control fixture for authority and policy dimensions. |
+| EU AI Act | mapped_partial | Add EU AI Act obligation-mapping fixture for documentation and oversight dimensions. |
+| Policy Cards | mapped_partial | Add policy-card fixture for unknown trajectory and preparation boundary cases. |
+| Runtime Governance for AI Agents | mapped_partial | Add path-governance fixture for multi-step and unknown-trajectory benchmark cases. |
 
 ## Framework Mapping Template
 
