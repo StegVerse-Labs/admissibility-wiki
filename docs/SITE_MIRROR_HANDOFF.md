@@ -6,7 +6,7 @@ This file is the documentation mirror handoff source of truth for `StegVerse-Lab
 
 ## Active goal
 
-Goal 5: external framework benchmark mechanism, Morrison Runtime boundary observation, and cross-framework benchmark mapping rollout.
+Goal 5: external framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework benchmark mapping rollout, and fixture hardening.
 
 Goal 4 documented the bounded LLM free-tier trust chain across LLM-adapter, Site, and SDK. Goal 5 adds a reusable benchmark surface for comparing external framework boundaries under evidence-governed, non-certifying terms.
 
@@ -24,6 +24,7 @@ external framework material
 -> observation fixture
 -> commitment-candidate fixture
 -> benchmark mapping companion
+-> benchmark fixture
 -> SPE standing reconstruction
 -> public observatory page
 ```
@@ -37,11 +38,13 @@ StegVerse-Labs/admissibility-wiki
   -> docs/external-frameworks/benchmark-mapping-rollout.md
   -> docs/external-frameworks/benchmark-mapping-rollout.json
   -> docs/external-frameworks/benchmark-mappings/*.mapping.json
+  -> docs/external-frameworks/fixtures/*-benchmark-fixture.v0.1.json
+  -> docs/external-frameworks/fixtures/morrison-runtime-benchmark-observations.v0.1.json
   -> scripts/check_external_framework_benchmark_mappings.py
+  -> scripts/check_external_framework_benchmark_fixtures.py
   -> scripts/check_runtime_governance_benchmark_suite.py
   -> docs/external-frameworks/morrison-runtime-boundary-observation.md
   -> docs/external-frameworks/reports/morrison-runtime.compatibility.json
-  -> docs/external-frameworks/fixtures/morrison-runtime-benchmark-observations.v0.1.json
   -> docs/external-frameworks/morrison-runtime-commitment-candidate.json
   -> scripts/check_morrison_runtime_benchmark_fixtures.py
   -> scripts/check_external_framework_reports.py
@@ -71,6 +74,16 @@ policy-cards
 runtime-governance-policies-on-paths
 ```
 
+## Installed fixture artifacts
+
+```text
+morrison-runtime-benchmark-observations.v0.1.json
+glm-benchmark-fixture.v0.1.json
+evide-benchmark-fixture.v0.1.json
+decisionassure-benchmark-fixture.v0.1.json
+mindforge-benchmark-fixture.v0.1.json
+```
+
 ## Installed files
 
 ```text
@@ -79,7 +92,12 @@ static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
 docs/external-frameworks/benchmark-mapping-rollout.md
 docs/external-frameworks/benchmark-mapping-rollout.json
 docs/external-frameworks/benchmark-mappings/*.mapping.json
+docs/external-frameworks/fixtures/glm-benchmark-fixture.v0.1.json
+docs/external-frameworks/fixtures/evide-benchmark-fixture.v0.1.json
+docs/external-frameworks/fixtures/decisionassure-benchmark-fixture.v0.1.json
+docs/external-frameworks/fixtures/mindforge-benchmark-fixture.v0.1.json
 scripts/check_external_framework_benchmark_mappings.py
+scripts/check_external_framework_benchmark_fixtures.py
 scripts/check_runtime_governance_benchmark_suite.py
 docs/external-frameworks/morrison-runtime-boundary-observation.md
 docs/external-frameworks/reports/morrison-runtime.compatibility.json update
@@ -99,6 +117,7 @@ python scripts/check_runtime_governance_benchmark_suite.py
 python scripts/check_morrison_runtime_benchmark_fixtures.py
 python scripts/check_external_framework_reports.py
 python scripts/check_external_framework_benchmark_mappings.py
+python scripts/check_external_framework_benchmark_fixtures.py
 python scripts/check_external_frameworks_index.py
 npm run build
 ```
@@ -114,7 +133,8 @@ Pending next canonical workflow run.
 ```text
 Attach raw audit payloads for Morrison observed cases.
 Run replay captures for repeated Morrison inputs and trajectory hashes.
-Add fixture artifacts for GLM, EVIDE, DecisionAssure, MindForge, ASRO, CARE Runtime, AAR, MITRE ATLAS, OWASP, Agent Governance Playbook, Emergency Stop Convention, NIST AI RMF, ISO/IEC 42001, EU AI Act, Policy Cards, and Runtime Governance for AI Agents.
+Add fixture artifacts for ASRO, CARE Runtime, AAR, MITRE ATLAS, OWASP, Agent Governance Playbook, Emergency Stop Convention, NIST AI RMF, ISO/IEC 42001, EU AI Act, Policy Cards, and Runtime Governance for AI Agents.
+Attach concrete source-versioned examples to GLM, EVIDE, DecisionAssure, and MindForge fixtures.
 Decide whether Admissible Existence Seed Cycle needs a benchmark mapping or should remain a mirror-only page.
 Prepare release/tag candidate after build and artifact review.
 ```
