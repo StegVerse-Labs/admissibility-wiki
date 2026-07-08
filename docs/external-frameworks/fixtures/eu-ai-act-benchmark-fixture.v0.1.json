@@ -1,0 +1,36 @@
+{
+  "artifact_type": "external_framework_benchmark_fixture",
+  "schema_version": "0.1",
+  "framework_id": "eu-ai-act",
+  "framework_name": "EU AI Act",
+  "fixture_role": "legal_obligation_mapping_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_companion": "docs/external-frameworks/benchmark-mappings/eu-ai-act.mapping.json",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "fixture_cases": [
+    {
+      "fixture_id": "eu-ai-act-obligation-mapping-001",
+      "benchmark_dimensions": ["authority_boundary", "evidence_freshness_boundary", "commitment_boundary"],
+      "input_artifact_type": "legal_obligation_mapping_record",
+      "review_question": "Does the legal obligation mapping identify documentation, oversight, or classification requirements without becoming execution authority?",
+      "stegverse_expected_posture": "USE_LEGAL_MAPPING_AS_POLICY_CONTEXT_ONLY_AND_REQUIRE_CURRENT_STANDING",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["jurisdiction", "obligation_reference", "system_classification", "current_policy"]
+    },
+    {
+      "fixture_id": "eu-ai-act-high-risk-unknown-001",
+      "benchmark_dimensions": ["unknown_trajectory_boundary", "reconstruction_boundary", "preparation_boundary"],
+      "input_artifact_type": "unknown_or_high_risk_use_context",
+      "review_question": "Does unknown or high-risk use require classification, documentation, oversight, or fail-closed handling?",
+      "stegverse_expected_posture": "ESCALATE_OR_FAIL_CLOSED_AND_PRESERVE_OBLIGATION_MAPPING_FOR_RECONSTRUCTION",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["use_case_scope", "classification_record", "documentation_link", "oversight_record"]
+    }
+  ],
+  "authority_boundary": {
+    "fixture_is_authority": false,
+    "eu_ai_act_reference_is_stegverse_authority": false,
+    "legal_mapping_is_certification": false,
+    "external_framework_inclusion_is_execution_authority": false
+  }
+}
