@@ -1,0 +1,43 @@
+{
+  "artifact_type": "external_framework_benchmark_fixture",
+  "schema_version": "0.1",
+  "framework_id": "glm",
+  "framework_name": "GLM",
+  "fixture_role": "pre_event_boundary_declaration_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_companion": "docs/external-frameworks/benchmark-mappings/glm.mapping.json",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "fixture_cases": [
+    {
+      "fixture_id": "glm-declaration-freshness-001",
+      "benchmark_dimensions": ["commitment_boundary", "authority_boundary", "evidence_freshness_boundary", "reconstruction_boundary"],
+      "input_artifact_type": "boundary_declaration",
+      "declared_boundary": {
+        "claims": ["scope is declared before interpretation"],
+        "non_claims": ["declaration is not execution authority", "declaration is not certification"],
+        "validity_requirement": "source, version, scope, and declaration time must be preserved"
+      },
+      "stegverse_expected_posture": "ALLOW_ONLY_AS_EVIDENCE_IN_COMMITMENT_CANDIDATE_IF_CURRENT_AND_RECONSTRUCTABLE",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["source_version", "declaration_timestamp", "scope", "non_claims", "current_standing"]
+    },
+    {
+      "fixture_id": "glm-semantic-equivalence-001",
+      "benchmark_dimensions": ["semantic_equivalence_boundary", "unknown_trajectory_boundary"],
+      "input_artifact_type": "semantic_boundary_declaration",
+      "declared_boundary": {
+        "equivalence_claim": "semantically equivalent consequence paths should share the same declared interpretation boundary",
+        "non_claims": ["semantic equivalence declaration does not itself prove equivalence", "semantic equivalence declaration does not grant authority"]
+      },
+      "stegverse_expected_posture": "ROUTE_TO_TERMINOLOGY_RECONCILIATION_AND_SPE_BEFORE_COMMITMENT",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["equivalence_evidence", "policy_reference", "authority_reference"]
+    }
+  ],
+  "authority_boundary": {
+    "fixture_is_authority": false,
+    "glm_declaration_is_stegverse_authority": false,
+    "external_framework_inclusion_is_certification": false,
+    "external_framework_inclusion_is_execution_authority": false
+  }
+}
