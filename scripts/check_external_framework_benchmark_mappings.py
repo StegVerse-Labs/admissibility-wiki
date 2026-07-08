@@ -34,6 +34,14 @@ ALLOWED_MAPPING_STATES = {
     "interoperability_ready",
 }
 
+MAPPING_REQUIRED_STATES = {
+    "mapped_partial",
+    "mapped_core",
+    "fixture_ready",
+    "replay_ready",
+    "interoperability_ready",
+}
+
 ALLOWED_DIMENSION_STATES = {
     "applicable",
     "not_applicable",
@@ -95,7 +103,26 @@ def main() -> int:
         if required not in entry_ids:
             failures.append(f"rollout missing framework id: {required}")
 
-    for mapping_path in sorted(MAPPING_DIR.glob("*.mapping.json")):
+    mapping_paths = sorted(MAPPING_DIR.glob("*.mapping.json"))
+    mappings_by_id: dict[str, dict[str, Any]] = {}
+    for mapping_path in mapping_paths:
+        mapping = load_json(mapping_path)
+        framework_id = mapping.get("framework_id")
+        if isinstance(framework_id, str):
+            mappings_by_id[framework_id] = mapping
+
+    for entry in entries:
+        if not isinstance(entry, dict):
+            failures.append("rollout entry must be object")
+            continue
+        framework_id = entry.get("framework_id")
+        mapping_state = entry.get("mapping_state")
+        if mapping_state not in ALLOWED_MAPPING_STATES:
+            failures.append(f"rollout entry mapping state mismatch: {framework_id}")
+        if mapping_state in MAPPING_REQUIRED_STATES and framework_id not in mappings_by_id:
+            failures.append(f"rollout mapped framework missing companion: {framework_id}")
+
+    for mapping_path in mapping_paths:
         mapping = load_json(mapping_path)
         framework_id = mapping.get("framework_id")
         if mapping.get("artifact_type") != "external_framework_benchmark_mapping":
