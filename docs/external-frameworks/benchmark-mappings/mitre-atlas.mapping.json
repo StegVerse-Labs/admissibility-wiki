@@ -1,0 +1,22 @@
+{
+  "artifact_type": "external_framework_benchmark_mapping",
+  "schema_version": "0.1",
+  "framework_id": "mitre-atlas",
+  "framework_role": "adversarial AI threat knowledge base",
+  "source_status": "sourced",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_state": "mapped_partial",
+  "benchmark_dimensions": {
+    "execution_boundary": {"state": "adapter_required", "summary": "ATLAS informs execution-risk cases but does not itself block runtime execution."},
+    "preparation_boundary": {"state": "applicable", "summary": "ATLAS techniques can inform preparation and staging benchmark cases."},
+    "commitment_boundary": {"state": "adapter_required", "summary": "Threat knowledge must be converted into StegVerse policy or evidence references before commitment review."},
+    "semantic_equivalence_boundary": {"state": "applicable", "summary": "Tactics and techniques can support semantic-equivalent case design across labels."},
+    "unknown_trajectory_boundary": {"state": "applicable", "summary": "Unknown or suspicious trajectories can be compared against threat knowledge for escalation posture."},
+    "authority_boundary": {"state": "applicable", "summary": "Threat knowledge is context, not authority."},
+    "evidence_freshness_boundary": {"state": "applicable", "summary": "Threat references need source and version context."},
+    "reconstruction_boundary": {"state": "adapter_required", "summary": "ATLAS can support reconstructive explanation when mapped to preserved evidence."},
+    "interoperability_path": {"state": "mapped_partial", "summary": "ATLAS maps into benchmark case design and threat-informed review posture."}
+  },
+  "non_claims": {"is_certification": false, "is_endorsement": false, "is_execution_authority": false, "threat_catalog_is_stegverse_authority": false},
+  "next_required_action": "add MITRE ATLAS case-design fixture for adversarial trajectory benchmark categories"
+}
