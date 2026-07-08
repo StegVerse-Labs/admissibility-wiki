@@ -8,35 +8,9 @@
     "is_execution_authority": false,
     "unmapped_dimension_is_failure": false
   },
-  "allowed_mapping_states": [
-    "not_started",
-    "intake",
-    "mapped_partial",
-    "mapped_core",
-    "fixture_ready",
-    "replay_ready",
-    "interoperability_ready"
-  ],
-  "allowed_dimension_states": [
-    "applicable",
-    "not_applicable",
-    "adapter_required",
-    "insufficient_evidence",
-    "observed_partial",
-    "replay_required",
-    "fixture_ready"
-  ],
-  "required_dimensions": [
-    "execution_boundary",
-    "preparation_boundary",
-    "commitment_boundary",
-    "semantic_equivalence_boundary",
-    "unknown_trajectory_boundary",
-    "authority_boundary",
-    "evidence_freshness_boundary",
-    "reconstruction_boundary",
-    "interoperability_path"
-  ],
+  "allowed_mapping_states": ["not_started", "intake", "mapped_partial", "mapped_core", "fixture_ready", "replay_ready", "interoperability_ready"],
+  "allowed_dimension_states": ["applicable", "not_applicable", "adapter_required", "insufficient_evidence", "observed_partial", "replay_required", "fixture_ready"],
+  "required_dimensions": ["execution_boundary", "preparation_boundary", "commitment_boundary", "semantic_equivalence_boundary", "unknown_trajectory_boundary", "authority_boundary", "evidence_freshness_boundary", "reconstruction_boundary", "interoperability_path"],
   "entries": [
     {"framework_id": "morrison-runtime", "mapping_state": "fixture_ready", "next_action": "Attach raw audit payloads and replay table."},
     {"framework_id": "glm", "mapping_state": "mapped_partial", "next_action": "Add GLM benchmark fixture for declaration freshness and semantic-equivalence boundary handling."},
@@ -44,16 +18,16 @@
     {"framework_id": "decisionassure", "mapping_state": "mapped_partial", "next_action": "Add DecisionAssure canonical-policy fixture and map policy drift cases to benchmark dimensions."},
     {"framework_id": "mindforge", "mapping_state": "mapped_partial", "next_action": "Add MindForge historical-review fixture showing non-authorizing evidence routed through SPE."},
     {"framework_id": "asro", "mapping_state": "fixture_ready", "next_action": "Add ASRO observation fixture and replay/reconstruction status record."},
-    {"framework_id": "care-runtime", "mapping_state": "intake", "next_action": "Source public scope and map runtime-governance dimensions."},
-    {"framework_id": "aar", "mapping_state": "intake", "next_action": "Map supervised operational forensics to runtime and authority boundaries."},
-    {"framework_id": "mitre-atlas", "mapping_state": "intake", "next_action": "Map threat knowledge to benchmark case design rather than runtime verdicts."},
-    {"framework_id": "owasp-top-10-llm", "mapping_state": "intake", "next_action": "Map risks to benchmark case categories and mitigations."},
-    {"framework_id": "agent-governance-playbook", "mapping_state": "intake", "next_action": "Map continuation governance to commitment and unknown-trajectory dimensions."},
-    {"framework_id": "killswitch-md", "mapping_state": "intake", "next_action": "Map stop conditions to fail-closed and execution boundary dimensions."},
-    {"framework_id": "nist-ai-rmf", "mapping_state": "intake", "next_action": "Map risk-management controls to evidence and governance lifecycle dimensions."},
-    {"framework_id": "iso-iec-42001", "mapping_state": "intake", "next_action": "Map management-system controls to authority, policy, and evidence dimensions."},
-    {"framework_id": "eu-ai-act", "mapping_state": "intake", "next_action": "Map legal obligations to documentation and oversight dimensions."},
-    {"framework_id": "policy-cards", "mapping_state": "intake", "next_action": "Map machine-readable policy artifacts to runtime rule and authority dimensions."},
-    {"framework_id": "runtime-governance-policies-on-paths", "mapping_state": "intake", "next_action": "Map path-dependent runtime checks to benchmark trajectory cases."}
+    {"framework_id": "care-runtime", "mapping_state": "mapped_partial", "next_action": "Identify official CARE Runtime source and create first sourced benchmark fixture."},
+    {"framework_id": "aar", "mapping_state": "mapped_partial", "next_action": "Add AAR evidence fixture for operational preparation and execution boundary records."},
+    {"framework_id": "mitre-atlas", "mapping_state": "mapped_partial", "next_action": "Add MITRE ATLAS case-design fixture for adversarial trajectory benchmark categories."},
+    {"framework_id": "owasp-top-10-llm", "mapping_state": "mapped_partial", "next_action": "Add OWASP risk-category fixture mapped to runtime benchmark cases."},
+    {"framework_id": "agent-governance-playbook", "mapping_state": "mapped_partial", "next_action": "Add continuation-state fixture for preparation and unknown-trajectory benchmark cases."},
+    {"framework_id": "killswitch-md", "mapping_state": "mapped_partial", "next_action": "Add emergency-stop fixture for execution and unknown-trajectory benchmark cases."},
+    {"framework_id": "nist-ai-rmf", "mapping_state": "mapped_partial", "next_action": "Add NIST AI RMF control-mapping fixture for evidence freshness and lifecycle review."},
+    {"framework_id": "iso-iec-42001", "mapping_state": "mapped_partial", "next_action": "Add ISO/IEC 42001 management-control fixture for authority and policy dimensions."},
+    {"framework_id": "eu-ai-act", "mapping_state": "mapped_partial", "next_action": "Add EU AI Act obligation-mapping fixture for documentation and oversight dimensions."},
+    {"framework_id": "policy-cards", "mapping_state": "mapped_partial", "next_action": "Add policy-card fixture for unknown trajectory and preparation boundary cases."},
+    {"framework_id": "runtime-governance-policies-on-paths", "mapping_state": "mapped_partial", "next_action": "Add path-governance fixture for multi-step and unknown-trajectory benchmark cases."}
   ]
 }
