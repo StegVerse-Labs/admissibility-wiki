@@ -1,0 +1,36 @@
+{
+  "artifact_type": "external_framework_benchmark_fixture",
+  "schema_version": "0.1",
+  "framework_id": "mindforge",
+  "framework_name": "MindForge",
+  "fixture_role": "historical_review_evidence_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_companion": "docs/external-frameworks/benchmark-mappings/mindforge.mapping.json",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "fixture_cases": [
+    {
+      "fixture_id": "mindforge-historical-review-001",
+      "benchmark_dimensions": ["commitment_boundary", "authority_boundary", "evidence_freshness_boundary"],
+      "input_artifact_type": "historical_review_record",
+      "required_evidence": ["review_time", "review_scope", "reviewer_identity_or_role", "artifact_hash", "non_authority_boundary"],
+      "stegverse_expected_posture": "USE_AS_HISTORICAL_REVIEW_EVIDENCE_ONLY_AND_REQUIRE_FRESH_SPE_STANDING",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["review_time", "review_scope", "source_artifact", "current_standing"]
+    },
+    {
+      "fixture_id": "mindforge-commitment-replay-001",
+      "benchmark_dimensions": ["reconstruction_boundary", "semantic_equivalence_boundary", "unknown_trajectory_boundary"],
+      "input_artifact_type": "reviewed_transition_rationale",
+      "review_question": "Can the historical rationale be replayed without turning old review into current authority?",
+      "stegverse_expected_posture": "REPLAY_AS_EVIDENCE_THEN_RECONSTRUCT_CURRENT_AUTHORITY_SEPARATELY",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["rationale_hash", "terminology_reconciliation", "current_policy", "current_delegation"]
+    }
+  ],
+  "authority_boundary": {
+    "fixture_is_authority": false,
+    "mindforge_review_is_stegverse_authority": false,
+    "historical_review_is_certification": false,
+    "external_framework_inclusion_is_execution_authority": false
+  }
+}
