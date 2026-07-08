@@ -67,10 +67,10 @@ fixture_ready
 | Framework | Mapping State | Next Action |
 |---|---|---|
 | Morrison Runtime | fixture_ready | Attach raw audit payloads and replay table. |
-| GLM | mapped_partial | Add GLM benchmark fixture for declaration freshness and semantic-equivalence boundary handling. |
-| EVIDE | mapped_partial | Add EVIDE evidence fixture for replay and reconstruction dimensions. |
-| DecisionAssure | mapped_partial | Add DecisionAssure canonical-policy fixture and map policy drift cases to benchmark dimensions. |
-| MindForge | mapped_partial | Add MindForge historical-review fixture showing non-authorizing evidence routed through SPE. |
+| GLM | fixture_ready | Attach source-versioned GLM declaration examples and replay through Commitment Candidate. |
+| EVIDE | fixture_ready | Attach concrete EVIDE evidence package examples and reconstruction receipt. |
+| DecisionAssure | fixture_ready | Attach canonical policy/delegation examples and trace hashes. |
+| MindForge | fixture_ready | Attach historical review sample and current-standing reconstruction example. |
 | ASRO | fixture_ready | Add ASRO observation fixture and replay/reconstruction status record. |
 | CARE Runtime | mapped_partial | Identify official CARE Runtime source and create first sourced benchmark fixture. |
 | AAR | mapped_partial | Add AAR evidence fixture for operational preparation and execution boundary records. |
