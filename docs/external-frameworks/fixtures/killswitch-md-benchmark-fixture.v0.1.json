@@ -1,0 +1,36 @@
+{
+  "artifact_type": "external_framework_benchmark_fixture",
+  "schema_version": "0.1",
+  "framework_id": "killswitch-md",
+  "framework_name": "Emergency Stop Convention",
+  "fixture_role": "emergency_stop_fail_closed_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_companion": "docs/external-frameworks/benchmark-mappings/killswitch-md.mapping.json",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "fixture_cases": [
+    {
+      "fixture_id": "killswitch-execution-stop-001",
+      "benchmark_dimensions": ["execution_boundary", "unknown_trajectory_boundary", "authority_boundary"],
+      "input_artifact_type": "emergency_stop_trigger",
+      "review_question": "Does a stop trigger interrupt execution-capable or unknown unsafe trajectories without being treated as standing authority?",
+      "stegverse_expected_posture": "FAIL_CLOSED_AND_PRESERVE_STOP_EVIDENCE_FOR_STANDING_RECONSTRUCTION",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["stop_trigger", "trigger_time", "scope", "current_state_record"]
+    },
+    {
+      "fixture_id": "killswitch-preparation-stop-001",
+      "benchmark_dimensions": ["preparation_boundary", "commitment_boundary"],
+      "input_artifact_type": "pre_execution_stop_condition",
+      "review_question": "Can a stop condition fire before final execution when preparation becomes unsafe?",
+      "stegverse_expected_posture": "STOP_OR_ESCALATE_AND_REQUIRE_FRESH_COMMITMENT_REVIEW_BEFORE_RESUME",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["pre_execution_condition", "resume_policy", "operator_authority", "recoverability_record"]
+    }
+  ],
+  "authority_boundary": {
+    "fixture_is_authority": false,
+    "stop_signal_is_stegverse_authority": false,
+    "stop_convention_is_certification": false,
+    "external_framework_inclusion_is_execution_authority": false
+  }
+}
