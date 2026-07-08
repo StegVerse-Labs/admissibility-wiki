@@ -1,0 +1,36 @@
+{
+  "artifact_type": "external_framework_benchmark_fixture",
+  "schema_version": "0.1",
+  "framework_id": "decisionassure",
+  "framework_name": "DecisionAssure",
+  "fixture_role": "trace_integrity_and_policy_drift_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_companion": "docs/external-frameworks/benchmark-mappings/decisionassure.mapping.json",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "fixture_cases": [
+    {
+      "fixture_id": "decisionassure-policy-drift-001",
+      "benchmark_dimensions": ["commitment_boundary", "evidence_freshness_boundary", "authority_boundary"],
+      "input_artifact_type": "trace_with_policy_version_change",
+      "required_evidence": ["pre_policy_hash", "post_policy_hash", "actor_identity", "delegation_reference", "evidence_timestamp", "decision_trace"],
+      "stegverse_expected_posture": "DENY_OR_FAIL_CLOSED_ON_POLICY_OR_IDENTITY_DRIFT_UNLESS_CURRENT_STANDING_RECONSTRUCTS_ALLOW",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["canonical_policy", "canonical_delegation", "actor_identity", "trace_hash"]
+    },
+    {
+      "fixture_id": "decisionassure-precommit-pressure-001",
+      "benchmark_dimensions": ["preparation_boundary", "commitment_boundary", "reconstruction_boundary"],
+      "input_artifact_type": "pre_commit_pressure_trace",
+      "review_question": "Does the trace show a pressure region or staged transition before execution?",
+      "stegverse_expected_posture": "ROUTE_TO_COMMITMENT_CANDIDATE_AND_REQUIRE_CURRENT_STANDING",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["pressure_receipt", "transition_id", "current_policy", "recoverability_profile"]
+    }
+  ],
+  "authority_boundary": {
+    "fixture_is_authority": false,
+    "decisionassure_trace_is_stegverse_authority": false,
+    "trace_integrity_is_certification": false,
+    "external_framework_inclusion_is_execution_authority": false
+  }
+}
