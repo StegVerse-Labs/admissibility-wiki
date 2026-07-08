@@ -1,0 +1,36 @@
+{
+  "artifact_type": "external_framework_benchmark_fixture",
+  "schema_version": "0.1",
+  "framework_id": "aar",
+  "framework_name": "AAR",
+  "fixture_role": "operational_forensics_boundary_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_companion": "docs/external-frameworks/benchmark-mappings/aar.mapping.json",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "fixture_cases": [
+    {
+      "fixture_id": "aar-operational-preparation-001",
+      "benchmark_dimensions": ["preparation_boundary", "commitment_boundary", "evidence_freshness_boundary"],
+      "input_artifact_type": "operational_forensics_record",
+      "review_question": "Does operational evidence show a preparation state that may have become consequence-binding?",
+      "stegverse_expected_posture": "USE_FORENSICS_AS_EVIDENCE_ONLY_AND_RECONSTRUCT_CURRENT_STANDING",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["event_time", "actor", "operation_scope", "forensics_hash", "current_policy"]
+    },
+    {
+      "fixture_id": "aar-execution-reconstruction-001",
+      "benchmark_dimensions": ["execution_boundary", "reconstruction_boundary", "authority_boundary"],
+      "input_artifact_type": "execution_forensics_record",
+      "review_question": "Can execution or attempted execution be reconstructed from preserved operational evidence?",
+      "stegverse_expected_posture": "RECONSTRUCT_AS_EVIDENCE_NOT_AUTHORITY_AND_FAIL_CLOSED_ON_GAPS",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["execution_trace", "audit_source", "custody_record", "authority_reference"]
+    }
+  ],
+  "authority_boundary": {
+    "fixture_is_authority": false,
+    "aar_evidence_is_stegverse_authority": false,
+    "forensics_is_certification": false,
+    "external_framework_inclusion_is_execution_authority": false
+  }
+}
