@@ -10,7 +10,7 @@ No active parallel-session block is recorded in this handoff for Goal 5. Reposit
 
 ## Active goal
 
-Goal 5: external framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework benchmark mapping rollout, fixture hardening, source-versioned example registry, expanded external-framework intake, and intake promotion criteria.
+Goal 5: external framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework benchmark mapping rollout, fixture hardening, source-versioned example registry, expanded external-framework intake, intake promotion criteria, and release-readiness gating.
 
 Goal 4 documented the bounded LLM free-tier trust chain across LLM-adapter, Site, and SDK. Goal 5 adds a reusable benchmark surface for comparing external framework boundaries under evidence-governed, non-certifying terms and a broader candidate intake path so the observatory does not underrepresent available external frameworks.
 
@@ -32,6 +32,7 @@ external framework material
 -> benchmark mapping companion
 -> benchmark fixture
 -> source-versioned example registry
+-> release-readiness gate
 -> SPE standing reconstruction
 -> public observatory page
 ```
@@ -47,6 +48,9 @@ StegVerse-Labs/admissibility-wiki
   -> docs/external-frameworks/intake-promotion-criteria.md
   -> docs/external-frameworks/intake-promotion-criteria.json
   -> docs/external-frameworks/promoted-intake-records.v0.1.json
+  -> docs/external-frameworks/goal5-release-readiness.md
+  -> docs/external-frameworks/goal5-release-readiness.json
+  -> scripts/check_goal5_release_readiness.py
   -> scripts/check_expanded_external_framework_intake.py
   -> scripts/check_external_framework_intake_promotion.py
   -> docs/external-frameworks/benchmark-mapping-rollout.md
@@ -126,6 +130,17 @@ check_external_framework_intake_promotion.py
 
 The expanded intake registry currently tracks candidate families across policy-as-code, identity/authority, provenance/trace, risk/assurance, threat/security, privacy/data governance, model evaluation/monitoring, regulatory/standards, runtime governance, and agent protocols. Intake candidates are source-required and non-authorizing.
 
+## Release readiness
+
+```text
+goal5-release-readiness.md
+goal5-release-readiness.json
+check_goal5_release_readiness.py
+release_readiness: not_ready_for_tag
+```
+
+Goal 5 is structure-ready but not validation-release-ready until raw/replay evidence and source-versioned examples are attached or explicitly marked externally blocked.
+
 ## Installed files
 
 ```text
@@ -136,6 +151,9 @@ docs/external-frameworks/expanded-framework-intake.json
 docs/external-frameworks/intake-promotion-criteria.md
 docs/external-frameworks/intake-promotion-criteria.json
 docs/external-frameworks/promoted-intake-records.v0.1.json
+docs/external-frameworks/goal5-release-readiness.md
+docs/external-frameworks/goal5-release-readiness.json
+scripts/check_goal5_release_readiness.py
 scripts/check_expanded_external_framework_intake.py
 scripts/check_external_framework_intake_promotion.py
 docs/external-frameworks/benchmark-mapping-rollout.md
@@ -167,6 +185,7 @@ python scripts/check_external_framework_benchmark_mappings.py
 python scripts/check_external_framework_benchmark_fixtures.py
 python scripts/check_expanded_external_framework_intake.py
 python scripts/check_external_framework_intake_promotion.py
+python scripts/check_goal5_release_readiness.py
 python scripts/check_external_frameworks_index.py
 npm run build
 ```
@@ -185,7 +204,7 @@ Run replay captures for repeated Morrison inputs and trajectory hashes.
 Attach concrete external source versions and raw payloads to example registry entries.
 Promote selected source-required candidates into sourced intake records after canonical sources are attached.
 Decide whether Admissible Existence Seed Cycle needs a benchmark mapping or should remain a mirror-only page.
-Prepare release/tag candidate after build and artifact review.
+Run validation/build and then revisit release/tag candidacy.
 ```
 
 ## Boundary
@@ -195,6 +214,8 @@ External framework benchmark publication is not certification, endorsement, prov
 Candidate intake publication is not certification, endorsement, provider governance, execution authority, commit-time standing, sourced validation evidence, replay authority, or reconstruction authority.
 
 Candidate promotion is not certification, endorsement, equivalence, execution authority, StegVerse standing, or benchmark pass.
+
+Release readiness is not certification. A tag records repository state only. It does not create standing, authority, external-framework endorsement, or public validation beyond the evidence actually attached.
 
 Benchmark results and candidate intake identify observed boundaries, interoperability requirements, missing evidence, and improvement opportunities. They do not declare external frameworks invalid.
 
