@@ -72,6 +72,8 @@ The benchmark rollout tracker is [External Framework Benchmark Mapping Rollout](
 
 The broader candidate intake registry is [Expanded External Framework Intake](./expanded-framework-intake.md).
 
+Candidate promotion is governed by [External Framework Intake Promotion Criteria](./intake-promotion-criteria.md).
+
 The reusable template is [External Framework Page Template](./external-framework-template.md).
 
 Failure observations should use the [External Framework Failure Class Catalog](./failure-class-catalog.md).
@@ -117,6 +119,7 @@ A generated compatibility result is evidence only. It is not certification, endo
 | [Runtime Governance Benchmark Suite](./runtime-governance-benchmark-suite.md) | Defines reusable benchmark cases and boundary classes for testing runtime governance, preparation, commitment, execution, semantic equivalence, unknown trajectories, replay, and reconstruction. |
 | [External Framework Benchmark Mapping Rollout](./benchmark-mapping-rollout.md) | Tracks how the runtime-governance benchmark dimensions are mapped across all registered external frameworks without treating unmapped dimensions as failures. |
 | [Expanded External Framework Intake](./expanded-framework-intake.md) | Tracks additional candidate frameworks and framework families without treating intake candidates as sourced validation evidence. |
+| [External Framework Intake Promotion Criteria](./intake-promotion-criteria.md) | Defines how source-required candidates become sourced intake, page, mapping, or fixture candidates without creating authority. |
 | [External Framework Failure Class Catalog](./failure-class-catalog.md) | Defines reusable failure classes so observations are classified by failure kind rather than only pass/fail. |
 | [External Framework Page Template](./external-framework-template.md) | Provides a reusable page structure for new or refactored external-framework entries. |
 | [Evidence Provenance Rollout](./evidence-provenance-rollout.md) | Tracks rollout of the provenance standard across all registered external-framework pages. |
@@ -172,6 +175,7 @@ Morrison Runtime -> pre-execution runtime verdict and audit evidence
 Runtime Governance Benchmark Suite -> shared boundary tests
 Benchmark Mapping Rollout -> cross-framework applicability tracker
 Expanded External Framework Intake -> candidate discovery without validation claims
+Intake Promotion Criteria -> source-gated promotion path
 Commitment Candidate -> proposed crossing
 SPE -> standing determination
 Execution -> consequence binding
@@ -211,4 +215,5 @@ A parameterized observation is not general compatibility.
 Benchmark results are not judgments of framework value.
 Benchmark mapping does not make unmapped dimensions failures.
 Candidate intake does not make unsourced candidates validation evidence.
+Candidate promotion does not create certification or execution authority.
 ```
