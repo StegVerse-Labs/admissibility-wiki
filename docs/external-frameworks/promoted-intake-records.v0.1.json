@@ -1,0 +1,14 @@
+{
+  "artifact_type": "external_framework_promoted_intake_records",
+  "schema_version": "0.1",
+  "status": "EMPTY_REGISTRY_READY_FOR_SOURCED_PROMOTION",
+  "criteria_reference": "docs/external-frameworks/intake-promotion-criteria.json",
+  "records": [],
+  "non_claims": {
+    "empty_registry_is_failure": false,
+    "promotion_is_certification": false,
+    "promotion_is_endorsement": false,
+    "promotion_is_execution_authority": false,
+    "promotion_is_stegverse_standing": false
+  }
+}
