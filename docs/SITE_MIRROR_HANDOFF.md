@@ -10,7 +10,7 @@ No active parallel-session block is recorded in this handoff for Goal 5. Reposit
 
 ## Active goal
 
-Goal 5: external framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework benchmark mapping rollout, fixture hardening, source-versioned example registry, and expanded external-framework intake.
+Goal 5: external framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework benchmark mapping rollout, fixture hardening, source-versioned example registry, expanded external-framework intake, and intake promotion criteria.
 
 Goal 4 documented the bounded LLM free-tier trust chain across LLM-adapter, Site, and SDK. Goal 5 adds a reusable benchmark surface for comparing external framework boundaries under evidence-governed, non-certifying terms and a broader candidate intake path so the observatory does not underrepresent available external frameworks.
 
@@ -19,6 +19,7 @@ Goal 4 documented the bounded LLM free-tier trust chain across LLM-adapter, Site
 ```text
 external framework material
 -> candidate intake if not yet registered
+-> promotion gates if source material exists
 -> benchmark case definition
 -> exact input capture
 -> observed result capture
@@ -43,7 +44,11 @@ StegVerse-Labs/admissibility-wiki
   -> static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
   -> docs/external-frameworks/expanded-framework-intake.md
   -> docs/external-frameworks/expanded-framework-intake.json
+  -> docs/external-frameworks/intake-promotion-criteria.md
+  -> docs/external-frameworks/intake-promotion-criteria.json
+  -> docs/external-frameworks/promoted-intake-records.v0.1.json
   -> scripts/check_expanded_external_framework_intake.py
+  -> scripts/check_external_framework_intake_promotion.py
   -> docs/external-frameworks/benchmark-mapping-rollout.md
   -> docs/external-frameworks/benchmark-mapping-rollout.json
   -> docs/external-frameworks/benchmark-mappings/*.mapping.json
@@ -113,6 +118,10 @@ source-versioned-examples.v0.1.json
 expanded-framework-intake.md
 expanded-framework-intake.json
 check_expanded_external_framework_intake.py
+intake-promotion-criteria.md
+intake-promotion-criteria.json
+promoted-intake-records.v0.1.json
+check_external_framework_intake_promotion.py
 ```
 
 The expanded intake registry currently tracks candidate families across policy-as-code, identity/authority, provenance/trace, risk/assurance, threat/security, privacy/data governance, model evaluation/monitoring, regulatory/standards, runtime governance, and agent protocols. Intake candidates are source-required and non-authorizing.
@@ -124,7 +133,11 @@ docs/external-frameworks/runtime-governance-benchmark-suite.md
 static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
 docs/external-frameworks/expanded-framework-intake.md
 docs/external-frameworks/expanded-framework-intake.json
+docs/external-frameworks/intake-promotion-criteria.md
+docs/external-frameworks/intake-promotion-criteria.json
+docs/external-frameworks/promoted-intake-records.v0.1.json
 scripts/check_expanded_external_framework_intake.py
+scripts/check_external_framework_intake_promotion.py
 docs/external-frameworks/benchmark-mapping-rollout.md
 docs/external-frameworks/benchmark-mapping-rollout.json
 docs/external-frameworks/benchmark-mappings/*.mapping.json
@@ -153,6 +166,7 @@ python scripts/check_external_framework_reports.py
 python scripts/check_external_framework_benchmark_mappings.py
 python scripts/check_external_framework_benchmark_fixtures.py
 python scripts/check_expanded_external_framework_intake.py
+python scripts/check_external_framework_intake_promotion.py
 python scripts/check_external_frameworks_index.py
 npm run build
 ```
@@ -179,6 +193,8 @@ Prepare release/tag candidate after build and artifact review.
 External framework benchmark publication is not certification, endorsement, provider governance, execution authority, commit-time standing, replay authority, reconstruction authority, or upgrade-based admissibility.
 
 Candidate intake publication is not certification, endorsement, provider governance, execution authority, commit-time standing, sourced validation evidence, replay authority, or reconstruction authority.
+
+Candidate promotion is not certification, endorsement, equivalence, execution authority, StegVerse standing, or benchmark pass.
 
 Benchmark results and candidate intake identify observed boundaries, interoperability requirements, missing evidence, and improvement opportunities. They do not declare external frameworks invalid.
 
