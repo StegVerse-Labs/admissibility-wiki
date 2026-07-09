@@ -4,9 +4,13 @@
 
 This file is the documentation mirror handoff source of truth for `StegVerse-Labs/admissibility-wiki/docs/` until superseded.
 
+## Parallel-session status
+
+No active parallel-session block is recorded in this handoff for Goal 5. Continue from this file unless a newer handoff supersedes it.
+
 ## Active goal
 
-Goal 5: external framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework benchmark mapping rollout, and fixture hardening.
+Goal 5: external framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework benchmark mapping rollout, fixture hardening, and source-versioned example registry.
 
 Goal 4 documented the bounded LLM free-tier trust chain across LLM-adapter, Site, and SDK. Goal 5 adds a reusable benchmark surface for comparing external framework boundaries under evidence-governed, non-certifying terms.
 
@@ -25,6 +29,7 @@ external framework material
 -> commitment-candidate fixture
 -> benchmark mapping companion
 -> benchmark fixture
+-> source-versioned example registry
 -> SPE standing reconstruction
 -> public observatory page
 ```
@@ -39,6 +44,7 @@ StegVerse-Labs/admissibility-wiki
   -> docs/external-frameworks/benchmark-mapping-rollout.json
   -> docs/external-frameworks/benchmark-mappings/*.mapping.json
   -> docs/external-frameworks/fixtures/*-benchmark-fixture.v0.1.json
+  -> docs/external-frameworks/fixtures/source-versioned-examples.v0.1.json
   -> docs/external-frameworks/fixtures/morrison-runtime-benchmark-observations.v0.1.json
   -> scripts/check_external_framework_benchmark_mappings.py
   -> scripts/check_external_framework_benchmark_fixtures.py
@@ -94,6 +100,7 @@ agent-governance-playbook-benchmark-fixture.v0.1.json
 nist-ai-rmf-benchmark-fixture.v0.1.json
 iso-iec-42001-benchmark-fixture.v0.1.json
 eu-ai-act-benchmark-fixture.v0.1.json
+source-versioned-examples.v0.1.json
 ```
 
 ## Installed files
@@ -105,6 +112,7 @@ docs/external-frameworks/benchmark-mapping-rollout.md
 docs/external-frameworks/benchmark-mapping-rollout.json
 docs/external-frameworks/benchmark-mappings/*.mapping.json
 docs/external-frameworks/fixtures/*-benchmark-fixture.v0.1.json
+docs/external-frameworks/fixtures/source-versioned-examples.v0.1.json
 scripts/check_external_framework_benchmark_mappings.py
 scripts/check_external_framework_benchmark_fixtures.py
 scripts/check_runtime_governance_benchmark_suite.py
@@ -142,7 +150,7 @@ Pending next canonical workflow run.
 ```text
 Attach raw audit payloads for Morrison observed cases.
 Run replay captures for repeated Morrison inputs and trajectory hashes.
-Attach concrete source-versioned examples to fixture artifacts.
+Attach concrete external source versions and raw payloads to example registry entries.
 Decide whether Admissible Existence Seed Cycle needs a benchmark mapping or should remain a mirror-only page.
 Prepare release/tag candidate after build and artifact review.
 ```
