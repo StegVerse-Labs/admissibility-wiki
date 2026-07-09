@@ -1,0 +1,44 @@
+{
+  "artifact_type": "goal5_external_framework_release_readiness",
+  "schema_version": "0.1",
+  "goal_id": "external-framework-benchmark-mechanism",
+  "release_readiness": "not_ready_for_tag",
+  "structure_status": {
+    "benchmark_suite_installed": true,
+    "mapping_companions_installed": true,
+    "fixture_artifacts_installed": true,
+    "expanded_intake_installed": true,
+    "promotion_criteria_installed": true,
+    "release_readiness_gate_installed": true
+  },
+  "evidence_status": {
+    "source_versioned_examples_attached": false,
+    "morrison_raw_audit_payloads_attached": false,
+    "morrison_replay_captures_attached": false,
+    "candidate_promotions_sourced": false,
+    "build_verification_passed": false
+  },
+  "allowed_pre_release_claim": "The admissibility-wiki contains a reusable non-authorizing external-framework benchmark structure, mapping rollout, fixture layer, source-versioned example registry, expanded candidate intake, and source-gated promotion workflow.",
+  "disallowed_claims": {
+    "certifies_external_frameworks": false,
+    "validates_morrison_runtime": false,
+    "validates_candidate_intake_records": false,
+    "proves_benchmark_pass_fail_status": false,
+    "grants_execution_authority": false,
+    "establishes_stegverse_standing": false
+  },
+  "next_actions_before_tag": [
+    "run validation scripts",
+    "run site build",
+    "attach Morrison raw audit payloads or mark as externally blocked",
+    "run Morrison replay captures or mark as externally blocked",
+    "attach source-versioned examples or keep registry as stub-only",
+    "confirm no open parallel-session block"
+  ],
+  "cross_repo_update_targets": [
+    "StegVerse-Labs/Site",
+    "GCAT-BCAT-Engine/Publisher",
+    "StegVerse-Labs/admissibility-wiki",
+    "StegVerse-Labs/stegguardian-wiki"
+  ]
+}
