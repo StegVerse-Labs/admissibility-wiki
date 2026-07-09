@@ -6,18 +6,19 @@ This file is the documentation mirror handoff source of truth for `StegVerse-Lab
 
 ## Parallel-session status
 
-No active parallel-session block is recorded in this handoff for Goal 5. Continue from this file unless a newer handoff supersedes it.
+No active parallel-session block is recorded in this handoff for Goal 5. Repository searches found no open PRs or issues indicating another active session on the same external-framework benchmark issue.
 
 ## Active goal
 
-Goal 5: external framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework benchmark mapping rollout, fixture hardening, and source-versioned example registry.
+Goal 5: external framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework benchmark mapping rollout, fixture hardening, source-versioned example registry, and expanded external-framework intake.
 
-Goal 4 documented the bounded LLM free-tier trust chain across LLM-adapter, Site, and SDK. Goal 5 adds a reusable benchmark surface for comparing external framework boundaries under evidence-governed, non-certifying terms.
+Goal 4 documented the bounded LLM free-tier trust chain across LLM-adapter, Site, and SDK. Goal 5 adds a reusable benchmark surface for comparing external framework boundaries under evidence-governed, non-certifying terms and a broader candidate intake path so the observatory does not underrepresent available external frameworks.
 
 ## Current proof path
 
 ```text
 external framework material
+-> candidate intake if not yet registered
 -> benchmark case definition
 -> exact input capture
 -> observed result capture
@@ -40,6 +41,9 @@ external framework material
 StegVerse-Labs/admissibility-wiki
   -> docs/external-frameworks/runtime-governance-benchmark-suite.md
   -> static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
+  -> docs/external-frameworks/expanded-framework-intake.md
+  -> docs/external-frameworks/expanded-framework-intake.json
+  -> scripts/check_expanded_external_framework_intake.py
   -> docs/external-frameworks/benchmark-mapping-rollout.md
   -> docs/external-frameworks/benchmark-mapping-rollout.json
   -> docs/external-frameworks/benchmark-mappings/*.mapping.json
@@ -103,11 +107,24 @@ eu-ai-act-benchmark-fixture.v0.1.json
 source-versioned-examples.v0.1.json
 ```
 
+## Expanded candidate intake
+
+```text
+expanded-framework-intake.md
+expanded-framework-intake.json
+check_expanded_external_framework_intake.py
+```
+
+The expanded intake registry currently tracks candidate families across policy-as-code, identity/authority, provenance/trace, risk/assurance, threat/security, privacy/data governance, model evaluation/monitoring, regulatory/standards, runtime governance, and agent protocols. Intake candidates are source-required and non-authorizing.
+
 ## Installed files
 
 ```text
 docs/external-frameworks/runtime-governance-benchmark-suite.md
 static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json
+docs/external-frameworks/expanded-framework-intake.md
+docs/external-frameworks/expanded-framework-intake.json
+scripts/check_expanded_external_framework_intake.py
 docs/external-frameworks/benchmark-mapping-rollout.md
 docs/external-frameworks/benchmark-mapping-rollout.json
 docs/external-frameworks/benchmark-mappings/*.mapping.json
@@ -135,6 +152,7 @@ python scripts/check_morrison_runtime_benchmark_fixtures.py
 python scripts/check_external_framework_reports.py
 python scripts/check_external_framework_benchmark_mappings.py
 python scripts/check_external_framework_benchmark_fixtures.py
+python scripts/check_expanded_external_framework_intake.py
 python scripts/check_external_frameworks_index.py
 npm run build
 ```
@@ -151,6 +169,7 @@ Pending next canonical workflow run.
 Attach raw audit payloads for Morrison observed cases.
 Run replay captures for repeated Morrison inputs and trajectory hashes.
 Attach concrete external source versions and raw payloads to example registry entries.
+Promote selected source-required candidates into sourced intake records after canonical sources are attached.
 Decide whether Admissible Existence Seed Cycle needs a benchmark mapping or should remain a mirror-only page.
 Prepare release/tag candidate after build and artifact review.
 ```
@@ -159,8 +178,12 @@ Prepare release/tag candidate after build and artifact review.
 
 External framework benchmark publication is not certification, endorsement, provider governance, execution authority, commit-time standing, replay authority, reconstruction authority, or upgrade-based admissibility.
 
-Benchmark results identify observed boundaries, interoperability requirements, missing evidence, and improvement opportunities. They do not declare external frameworks invalid.
+Candidate intake publication is not certification, endorsement, provider governance, execution authority, commit-time standing, sourced validation evidence, replay authority, or reconstruction authority.
+
+Benchmark results and candidate intake identify observed boundaries, interoperability requirements, missing evidence, and improvement opportunities. They do not declare external frameworks invalid.
 
 ## Next mirror input
 
 Only mirror benchmark results after exact input, output, timestamp, source URL or commit, parser status, evaluated steps, trajectory hash or trace ID, screenshot or raw audit payload, and StegVerse expected posture are captured.
+
+Only promote intake candidates after canonical source, scope, non-claims, relationship class, benchmark relevance, and authority boundary are recorded.
