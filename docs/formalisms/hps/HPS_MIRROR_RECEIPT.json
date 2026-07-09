@@ -1,0 +1,20 @@
+{
+  "receipt_type": "hps_public_mirror_receipt",
+  "receipt_id": "hps_public_mirror_admissibility_wiki_2026_07_08",
+  "timestamp": "2026-07-08T00:00:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "canonical_source": "Admissible-Existence/HPS",
+  "orchestration_source": "master-records/orchestration",
+  "installed_artifacts": [
+    "docs/formalisms/hps/README.md",
+    "scripts/check_hps_public_mirror.py"
+  ],
+  "boundary": {
+    "explanatory_only": true,
+    "execution_authority": false,
+    "live_heartbeat_receipt": false,
+    "canonical_verifier_replacement": false
+  },
+  "status": "INSTALLED_OBSERVATION_PENDING",
+  "reconstruction_available": true
+}
