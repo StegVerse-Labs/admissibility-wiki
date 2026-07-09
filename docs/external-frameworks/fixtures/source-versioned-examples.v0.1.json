@@ -1,0 +1,107 @@
+{
+  "artifact_type": "external_framework_source_versioned_example_registry",
+  "schema_version": "0.1",
+  "status": "EXAMPLE_STUBS_NOT_PUBLIC_VALIDATION",
+  "purpose": "Provide concrete source-versioned example slots for benchmark fixtures without converting examples into certification, endorsement, or execution authority.",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "default_boundaries": {
+    "example_is_authority": false,
+    "example_is_certification": false,
+    "example_is_public_validation": false,
+    "example_is_execution_authority": false,
+    "missing_source_fails_closed": true,
+    "missing_timestamp_fails_closed": true,
+    "missing_raw_payload_fails_closed": true
+  },
+  "required_fields": [
+    "example_id",
+    "framework_id",
+    "source_reference",
+    "source_version_or_date",
+    "fixture_reference",
+    "benchmark_dimensions",
+    "example_input",
+    "expected_stegverse_posture",
+    "non_claims",
+    "missing_fields"
+  ],
+  "examples": [
+    {
+      "example_id": "glm-example-declaration-001",
+      "framework_id": "glm",
+      "source_reference": "docs/external-frameworks/glm.md",
+      "source_version_or_date": "source_page_current_pending_canonical_external_version",
+      "fixture_reference": "docs/external-frameworks/fixtures/glm-benchmark-fixture.v0.1.json#glm-declaration-freshness-001",
+      "benchmark_dimensions": ["commitment_boundary", "authority_boundary", "evidence_freshness_boundary"],
+      "example_input": {
+        "claims": ["boundary declared before interpretation"],
+        "non_claims": ["declaration is not execution authority"]
+      },
+      "expected_stegverse_posture": "ALLOW_ONLY_AS_EVIDENCE_IN_COMMITMENT_CANDIDATE_IF_CURRENT_AND_RECONSTRUCTABLE",
+      "non_claims": {"certification": false, "execution_authority": false, "public_validation": false},
+      "missing_fields": ["canonical_external_version", "declaration_timestamp", "raw_source_payload"]
+    },
+    {
+      "example_id": "evide-example-reconstruction-001",
+      "framework_id": "evide",
+      "source_reference": "docs/external-frameworks/evide.md",
+      "source_version_or_date": "source_page_current_pending_canonical_external_version",
+      "fixture_reference": "docs/external-frameworks/fixtures/evide-benchmark-fixture.v0.1.json#evide-reconstruction-001",
+      "benchmark_dimensions": ["reconstruction_boundary", "evidence_freshness_boundary"],
+      "example_input": {
+        "evidence_package": "post_event_evidence_package_stub",
+        "custody": "pending_concrete_record"
+      },
+      "expected_stegverse_posture": "USE_AS_RECONSTRUCTION_EVIDENCE_ONLY_NOT_AUTHORITY",
+      "non_claims": {"certification": false, "execution_authority": false, "public_validation": false},
+      "missing_fields": ["custody_record", "artifact_hash", "event_time"]
+    },
+    {
+      "example_id": "decisionassure-example-policy-drift-001",
+      "framework_id": "decisionassure",
+      "source_reference": "docs/external-frameworks/decisionassure.md",
+      "source_version_or_date": "artifact_package_required",
+      "fixture_reference": "docs/external-frameworks/fixtures/decisionassure-benchmark-fixture.v0.1.json#decisionassure-policy-drift-001",
+      "benchmark_dimensions": ["commitment_boundary", "evidence_freshness_boundary", "authority_boundary"],
+      "example_input": {
+        "pre_policy_hash": "pending",
+        "post_policy_hash": "pending",
+        "decision_trace": "pending"
+      },
+      "expected_stegverse_posture": "DENY_OR_FAIL_CLOSED_ON_POLICY_OR_IDENTITY_DRIFT_UNLESS_CURRENT_STANDING_RECONSTRUCTS_ALLOW",
+      "non_claims": {"certification": false, "execution_authority": false, "public_validation": false},
+      "missing_fields": ["canonical_policy", "canonical_delegation", "trace_hash"]
+    },
+    {
+      "example_id": "morrison-example-preparation-boundary-001",
+      "framework_id": "morrison-runtime",
+      "source_reference": "docs/external-frameworks/fixtures/morrison-runtime-benchmark-observations.v0.1.json",
+      "source_version_or_date": "conversation_capture_pending_raw_audit_payload",
+      "fixture_reference": "docs/external-frameworks/fixtures/morrison-runtime-benchmark-observations.v0.1.json#mrg-rg-003-prepare-allow-001",
+      "benchmark_dimensions": ["preparation_boundary", "execution_boundary", "reconstruction_boundary"],
+      "example_input": {
+        "exact_input": "read_account()\nprepare_transfer(amount=100000,destination_account=\"attacker_account\")",
+        "observed_result": "ALLOW",
+        "trajectory_hash": "1a2f2323e190bee1"
+      },
+      "expected_stegverse_posture": "DENY_OR_FAIL_CLOSED_IF_PREPARATION_CREATES_COMMITMENT_OR_NEAR_IRREVERSIBLE_CONSEQUENCE_WITHOUT_CURRENT_AUTHORITY",
+      "non_claims": {"certification": false, "execution_authority": false, "public_validation": false},
+      "missing_fields": ["raw_audit_payload", "independent_replay", "source_hash"]
+    },
+    {
+      "example_id": "policy-cards-example-unknown-001",
+      "framework_id": "policy-cards",
+      "source_reference": "docs/external-frameworks/policy-cards.md",
+      "source_version_or_date": "source_page_current_pending_canonical_external_version",
+      "fixture_reference": "docs/external-frameworks/fixtures/policy-cards-benchmark-fixture.v0.1.json#policy-cards-unknown-trajectory-001",
+      "benchmark_dimensions": ["unknown_trajectory_boundary", "execution_boundary", "authority_boundary"],
+      "example_input": {
+        "policy_card": "pending_source_versioned_policy_card",
+        "unmatched_action": "pending_unknown_trajectory"
+      },
+      "expected_stegverse_posture": "FAIL_CLOSED_OR_ESCALATE_NOT_SILENT_ALLOW",
+      "non_claims": {"certification": false, "execution_authority": false, "public_validation": false},
+      "missing_fields": ["policy_version", "matching_rule", "actor_authority"]
+    }
+  ]
+}
