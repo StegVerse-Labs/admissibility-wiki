@@ -70,6 +70,8 @@ The reusable benchmark suite is [Runtime Governance Benchmark Suite](./runtime-g
 
 The benchmark rollout tracker is [External Framework Benchmark Mapping Rollout](./benchmark-mapping-rollout.md).
 
+The broader candidate intake registry is [Expanded External Framework Intake](./expanded-framework-intake.md).
+
 The reusable template is [External Framework Page Template](./external-framework-template.md).
 
 Failure observations should use the [External Framework Failure Class Catalog](./failure-class-catalog.md).
@@ -114,6 +116,7 @@ A generated compatibility result is evidence only. It is not certification, endo
 | [External Framework Evaluation Standard](./evaluation-standard.md) | Defines evidence provenance, claim traceability, comparative fairness, and required page structure for all external-framework pages. |
 | [Runtime Governance Benchmark Suite](./runtime-governance-benchmark-suite.md) | Defines reusable benchmark cases and boundary classes for testing runtime governance, preparation, commitment, execution, semantic equivalence, unknown trajectories, replay, and reconstruction. |
 | [External Framework Benchmark Mapping Rollout](./benchmark-mapping-rollout.md) | Tracks how the runtime-governance benchmark dimensions are mapped across all registered external frameworks without treating unmapped dimensions as failures. |
+| [Expanded External Framework Intake](./expanded-framework-intake.md) | Tracks additional candidate frameworks and framework families without treating intake candidates as sourced validation evidence. |
 | [External Framework Failure Class Catalog](./failure-class-catalog.md) | Defines reusable failure classes so observations are classified by failure kind rather than only pass/fail. |
 | [External Framework Page Template](./external-framework-template.md) | Provides a reusable page structure for new or refactored external-framework entries. |
 | [Evidence Provenance Rollout](./evidence-provenance-rollout.md) | Tracks rollout of the provenance standard across all registered external-framework pages. |
@@ -123,6 +126,8 @@ A generated compatibility result is evidence only. It is not certification, endo
 | [External Framework Evaluation Results](./evaluation-results.md) | Generated posting surface for compatibility-report results. |
 
 ## Current External Frameworks
+
+The current registered framework table contains sourced pages, page candidates, mapping companions, or fixture-backed records. It is not the full universe of possible external frameworks. Additional candidates are tracked in [Expanded External Framework Intake](./expanded-framework-intake.md).
 
 | Framework | Primary Role | Citation Status | Relationship To Admissibility |
 |---|---|---|---|
@@ -166,6 +171,7 @@ MindForge -> review
 Morrison Runtime -> pre-execution runtime verdict and audit evidence
 Runtime Governance Benchmark Suite -> shared boundary tests
 Benchmark Mapping Rollout -> cross-framework applicability tracker
+Expanded External Framework Intake -> candidate discovery without validation claims
 Commitment Candidate -> proposed crossing
 SPE -> standing determination
 Execution -> consequence binding
@@ -180,6 +186,8 @@ Pages marked `artifact package required` remain intake records until a public so
 Pages marked `sourced with parameterized boundary case partial` have official source references and at least one parameterized observation, but are not full public validation results until raw outputs, timestamps, source versions, and audit payloads are attached.
 
 Pages marked `sourced` include a public or official source URL on the page itself.
+
+Candidate intake records are not sourced framework pages and should not be used as evidence until canonical sources are attached and the relationship to StegVerse is classified.
 
 ## Authority Boundary
 
@@ -202,4 +210,5 @@ A StegVerse observation does not expand the external framework's published claim
 A parameterized observation is not general compatibility.
 Benchmark results are not judgments of framework value.
 Benchmark mapping does not make unmapped dimensions failures.
+Candidate intake does not make unsourced candidates validation evidence.
 ```
