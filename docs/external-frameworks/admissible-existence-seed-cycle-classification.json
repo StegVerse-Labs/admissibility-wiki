@@ -1,0 +1,32 @@
+{
+  "artifact_type": "external_framework_scope_classification",
+  "schema_version": "0.1",
+  "artifact_id": "admissible-existence-seed-cycle",
+  "classification": "mirror_only_internal_ecosystem_status",
+  "benchmark_mapping_required": false,
+  "reason": "The page mirrors internal Admissible-Existence seed-cycle status and is not an external framework in the same sense as third-party systems. Applying the external runtime-governance benchmark would blur internal status evidence with external framework comparison.",
+  "allowed_uses": [
+    "mirror bounded seed-cycle status",
+    "record internal artifact presence",
+    "preserve source and reconstruction requirements",
+    "route future reconstruction fixtures through SPE if consequence binding is proposed"
+  ],
+  "disallowed_uses": [
+    "count as an external framework benchmark target",
+    "treat seed-cycle completion as execution authority",
+    "treat publication as standing",
+    "treat internal artifact presence as public validation"
+  ],
+  "future_reclassification_gate": [
+    "public canonical source snapshot",
+    "machine-readable reconstruction receipt",
+    "source hashes and release tags",
+    "explicit reason to compare it as an external framework rather than internal mirror"
+  ],
+  "authority_boundary": {
+    "classification_is_certification": false,
+    "mirror_status_is_execution_authority": false,
+    "seed_cycle_complete_is_universal_compatibility": false,
+    "publication_creates_standing": false
+  }
+}
