@@ -1,0 +1,62 @@
+{
+  "artifact_type": "goal5_external_dependency_blocker_registry",
+  "schema_version": "0.1",
+  "goal_id": "external-framework-benchmark-mechanism",
+  "status": "OPEN_EXTERNAL_DEPENDENCIES",
+  "blockers": [
+    {
+      "blocker_id": "morrison-raw-audit-payload",
+      "dependency_type": "external_framework_output",
+      "framework_id": "morrison-runtime",
+      "required_artifact": "raw audit payload for observed preparation and execution cases",
+      "current_state": "not_attached",
+      "owner_boundary": "external_or_operator_capture_required",
+      "blocks_structure_completion": false,
+      "blocks_validation_release_readiness": true,
+      "fallback_posture": "preserve screenshot-backed observation as partial evidence only",
+      "next_action": "capture or receive raw audit payload and bind it to source version and timestamp"
+    },
+    {
+      "blocker_id": "morrison-replay-captures",
+      "dependency_type": "external_framework_replay",
+      "framework_id": "morrison-runtime",
+      "required_artifact": "three repeated runs per observed case with result, evaluated steps, and trajectory hash",
+      "current_state": "not_started",
+      "owner_boundary": "external_demo_or_operator_replay_required",
+      "blocks_structure_completion": false,
+      "blocks_validation_release_readiness": true,
+      "fallback_posture": "do not claim replayability or deterministic stability",
+      "next_action": "run or receive replay captures against a pinned demo or repository version"
+    },
+    {
+      "blocker_id": "source-versioned-example-payloads",
+      "dependency_type": "canonical_external_sources",
+      "framework_id": "multiple",
+      "required_artifact": "concrete source versions, timestamps, and raw payloads for example registry entries",
+      "current_state": "stub_only",
+      "owner_boundary": "canonical source retrieval or authorized artifact package required",
+      "blocks_structure_completion": false,
+      "blocks_validation_release_readiness": true,
+      "fallback_posture": "retain examples as explicit non-validating stubs",
+      "next_action": "promote only records with canonical source, scope, version, and authority boundary"
+    },
+    {
+      "blocker_id": "workflow-result-capture",
+      "dependency_type": "github_actions_execution",
+      "framework_id": "repository",
+      "required_artifact": "captured canonical validation and build result",
+      "current_state": "not_observed",
+      "owner_boundary": "GitHub Actions runtime",
+      "blocks_structure_completion": false,
+      "blocks_validation_release_readiness": true,
+      "fallback_posture": "do not claim passing CI or build",
+      "next_action": "observe a completed canonical workflow run and record job conclusions"
+    }
+  ],
+  "authority_boundary": {
+    "blocker_registry_is_authority": false,
+    "external_dependency_is_framework_failure": false,
+    "externally_blocked_is_validation_pass": false,
+    "structure_ready_is_release_ready": false
+  }
+}
