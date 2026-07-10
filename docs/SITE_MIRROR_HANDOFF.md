@@ -10,7 +10,7 @@ No active parallel-session block is recorded for Goal 5. Repository searches fou
 
 ## Active goal
 
-Goal 5: external-framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework mappings, fixtures, source-versioned example registry, expanded intake, promotion criteria, release-readiness gating, and canonical validation integration.
+Goal 5: external-framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework mappings, fixtures, source-versioned example registry, expanded intake, promotion criteria, release-readiness gating, and canonical validation execution.
 
 ## Current proof path
 
@@ -54,14 +54,22 @@ scripts/check_external_framework_intake_promotion.py
 
 ## Validation integration
 
-The Goal 5 aggregate checker is now part of the canonical repo validation chain.
+The Goal 5 aggregate checker is integrated at all existing validation layers without adding a workflow.
+
+```text
+package.json -> validate:goal5-external-frameworks
+package.json -> validate
+.github/workflows/validate-chain-continuation.yml -> first validation job
+.github/workflows/validate-chain-continuation.yml -> build-pages npm run validate
+iosnoperiod/github/workflows/validate-chain-continuation.yml -> synchronized canonical mirror
+```
+
+Commands:
 
 ```bash
 npm run validate:goal5-external-frameworks
 npm run validate
 ```
-
-`npm run validate` executes the Goal 5 aggregate checker before the remaining repository validators and final Docusaurus build. No additional workflow was added.
 
 ## Validation repairs
 
@@ -70,7 +78,9 @@ mapping dimension state drift: repaired
 mapped_partial dimension status: explicitly allowed
 rollout JSON and documentation: aligned
 aggregate checker: installed
-canonical validation integration: installed
+package validation integration: installed
+canonical workflow integration: installed
+iOS workflow mirror synchronization: installed
 ```
 
 ## Release readiness
@@ -78,17 +88,19 @@ canonical validation integration: installed
 ```text
 structure_status: ready
 canonical_validation_integration: ready
+canonical_workflow_integration: ready
+ios_workflow_mirror: synchronized
 validation_execution: pending
 build_result: pending
 release_readiness: not_ready_for_tag
 ```
 
-Goal 5 remains structure-ready but not validation-release-ready.
+No CI status context was available immediately after the mirror-sync commit. Do not infer a pass or failure until a run result is captured.
 
 ## Remaining hardening
 
 ```text
-Execute npm run validate and capture the result.
+Observe the triggered canonical workflow and capture validation/build results.
 Attach Morrison raw audit payloads or mark the dependency externally blocked.
 Run Morrison replay captures or mark the dependency externally blocked.
 Attach concrete source versions and raw payloads to example registry records, or retain explicit stub-only posture.
@@ -103,8 +115,8 @@ After validation and evidence review, prepare a tag/release candidate and verify
 
 ## Boundary
 
-Benchmark publication, candidate intake, promotion, release readiness, and repository tags do not create certification, endorsement, equivalence, execution authority, StegVerse standing, or external-framework validation beyond the evidence actually attached.
+Benchmark publication, candidate intake, promotion, release readiness, workflow integration, and repository tags do not create certification, endorsement, equivalence, execution authority, StegVerse standing, or external-framework validation beyond the evidence actually attached.
 
 ## Next action
 
-Run or observe the canonical validation chain. Do not claim a passing build until a local or workflow result is captured.
+Observe the canonical workflow triggered by the latest commits. Do not claim a passing build until a workflow result is captured.
