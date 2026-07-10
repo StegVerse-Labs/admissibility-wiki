@@ -10,7 +10,7 @@ No active parallel-session block is recorded in this handoff for Goal 5. Reposit
 
 ## Active goal
 
-Goal 5: external framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework benchmark mapping rollout, fixture hardening, source-versioned example registry, expanded external-framework intake, intake promotion criteria, and release-readiness gating.
+Goal 5: external framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework benchmark mapping rollout, fixture hardening, source-versioned example registry, expanded external-framework intake, intake promotion criteria, release-readiness gating, and aggregate verification.
 
 Goal 4 documented the bounded LLM free-tier trust chain across LLM-adapter, Site, and SDK. Goal 5 adds a reusable benchmark surface for comparing external framework boundaries under evidence-governed, non-certifying terms and a broader candidate intake path so the observatory does not underrepresent available external frameworks.
 
@@ -33,6 +33,7 @@ external framework material
 -> benchmark fixture
 -> source-versioned example registry
 -> release-readiness gate
+-> aggregate verification
 -> SPE standing reconstruction
 -> public observatory page
 ```
@@ -51,6 +52,7 @@ StegVerse-Labs/admissibility-wiki
   -> docs/external-frameworks/goal5-release-readiness.md
   -> docs/external-frameworks/goal5-release-readiness.json
   -> scripts/check_goal5_release_readiness.py
+  -> scripts/check_goal5_external_frameworks_all.py
   -> scripts/check_expanded_external_framework_intake.py
   -> scripts/check_external_framework_intake_promotion.py
   -> docs/external-frameworks/benchmark-mapping-rollout.md
@@ -141,6 +143,14 @@ release_readiness: not_ready_for_tag
 
 Goal 5 is structure-ready but not validation-release-ready until raw/replay evidence and source-versioned examples are attached or explicitly marked externally blocked.
 
+## Aggregate verification
+
+```text
+python scripts/check_goal5_external_frameworks_all.py
+```
+
+The aggregate checker runs all Goal 5 external-framework benchmark, fixture, intake, promotion, report, index, and release-readiness checks in one command.
+
 ## Installed files
 
 ```text
@@ -154,6 +164,7 @@ docs/external-frameworks/promoted-intake-records.v0.1.json
 docs/external-frameworks/goal5-release-readiness.md
 docs/external-frameworks/goal5-release-readiness.json
 scripts/check_goal5_release_readiness.py
+scripts/check_goal5_external_frameworks_all.py
 scripts/check_expanded_external_framework_intake.py
 scripts/check_external_framework_intake_promotion.py
 docs/external-frameworks/benchmark-mapping-rollout.md
@@ -178,6 +189,13 @@ docs/SITE_MIRROR_HANDOFF.md update
 ## Local verification
 
 ```bash
+python scripts/check_goal5_external_frameworks_all.py
+npm run build
+```
+
+The aggregate checker expands to:
+
+```bash
 python scripts/check_runtime_governance_benchmark_suite.py
 python scripts/check_morrison_runtime_benchmark_fixtures.py
 python scripts/check_external_framework_reports.py
@@ -187,7 +205,6 @@ python scripts/check_expanded_external_framework_intake.py
 python scripts/check_external_framework_intake_promotion.py
 python scripts/check_goal5_release_readiness.py
 python scripts/check_external_frameworks_index.py
-npm run build
 ```
 
 ## Deployment verification
