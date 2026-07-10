@@ -48,6 +48,7 @@ ALLOWED_DIMENSION_STATES = {
     "adapter_required",
     "insufficient_evidence",
     "observed_partial",
+    "mapped_partial",
     "replay_required",
     "fixture_ready",
 }
