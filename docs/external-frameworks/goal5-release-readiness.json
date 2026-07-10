@@ -11,11 +11,14 @@
     "promotion_criteria_installed": true,
     "release_readiness_gate_installed": true,
     "aggregate_checker_installed": true,
+    "aggregate_checker_wired_into_canonical_validation": true,
     "mapping_schema_drift_repaired": true
   },
   "validation_findings": {
     "mapping_dimension_state_drift": "repaired",
-    "repair": "mapped_partial is now an explicitly allowed dimension state and the rollout documentation/registry are aligned",
+    "repair": "mapped_partial is explicitly allowed as a dimension state and the rollout documentation and registry are aligned",
+    "canonical_validation_command": "npm run validate",
+    "goal5_validation_command": "npm run validate:goal5-external-frameworks",
     "latest_commit_status_contexts": 0,
     "ci_result_available": false,
     "local_or_workflow_execution_still_required": true
@@ -27,7 +30,7 @@
     "candidate_promotions_sourced": false,
     "build_verification_passed": false
   },
-  "allowed_pre_release_claim": "The admissibility-wiki contains a reusable non-authorizing external-framework benchmark structure, mapping rollout, fixture layer, source-versioned example registry, expanded candidate intake, source-gated promotion workflow, aggregate checker, and repaired mapping-schema alignment.",
+  "allowed_pre_release_claim": "The admissibility-wiki contains a reusable non-authorizing external-framework benchmark structure, mapping rollout, fixture layer, source-versioned example registry, expanded candidate intake, source-gated promotion workflow, aggregate checker, canonical validation integration, and repaired mapping-schema alignment.",
   "disallowed_claims": {
     "certifies_external_frameworks": false,
     "validates_morrison_runtime": false,
@@ -37,11 +40,11 @@
     "establishes_stegverse_standing": false
   },
   "next_actions_before_tag": [
-    "run aggregate validation script",
-    "run site build",
+    "execute npm run validate",
+    "capture validation and build result",
     "attach Morrison raw audit payloads or mark as externally blocked",
     "run Morrison replay captures or mark as externally blocked",
-    "attach source-versioned examples or keep registry as stub-only",
+    "attach source-versioned examples or retain explicit stub-only posture",
     "confirm no open parallel-session block"
   ],
   "cross_repo_update_targets": [
