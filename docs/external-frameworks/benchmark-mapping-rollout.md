@@ -58,9 +58,12 @@ not_applicable
 adapter_required
 insufficient_evidence
 observed_partial
+mapped_partial
 replay_required
 fixture_ready
 ```
+
+`mapped_partial` at the dimension level means that a crosswalk exists, but the dimension still lacks the source, replay, or implementation evidence required for a stronger state.
 
 ## Current Rollout Table
 
@@ -71,18 +74,18 @@ fixture_ready
 | EVIDE | fixture_ready | Attach concrete EVIDE evidence package examples and reconstruction receipt. |
 | DecisionAssure | fixture_ready | Attach canonical policy/delegation examples and trace hashes. |
 | MindForge | fixture_ready | Attach historical review sample and current-standing reconstruction example. |
-| ASRO | fixture_ready | Add ASRO observation fixture and replay/reconstruction status record. |
-| CARE Runtime | mapped_partial | Identify official CARE Runtime source and create first sourced benchmark fixture. |
-| AAR | mapped_partial | Add AAR evidence fixture for operational preparation and execution boundary records. |
-| MITRE ATLAS | mapped_partial | Add MITRE ATLAS case-design fixture for adversarial trajectory benchmark categories. |
-| OWASP Top 10 for LLM Applications | mapped_partial | Add OWASP risk-category fixture mapped to runtime benchmark cases. |
-| Agent Governance Playbook | mapped_partial | Add continuation-state fixture for preparation and unknown-trajectory benchmark cases. |
-| Emergency Stop Convention | mapped_partial | Add emergency-stop fixture for execution and unknown-trajectory benchmark cases. |
-| NIST AI RMF | mapped_partial | Add NIST AI RMF control-mapping fixture for evidence freshness and lifecycle review. |
-| ISO/IEC 42001 | mapped_partial | Add ISO/IEC 42001 management-control fixture for authority and policy dimensions. |
-| EU AI Act | mapped_partial | Add EU AI Act obligation-mapping fixture for documentation and oversight dimensions. |
-| Policy Cards | mapped_partial | Add policy-card fixture for unknown trajectory and preparation boundary cases. |
-| Runtime Governance for AI Agents | mapped_partial | Add path-governance fixture for multi-step and unknown-trajectory benchmark cases. |
+| ASRO | fixture_ready | Attach concrete ASRO attestation examples and reconstruction receipt. |
+| CARE Runtime | fixture_ready | Attach official CARE Runtime source before any public behavior claim. |
+| AAR | fixture_ready | Attach concrete AAR operational evidence package and reconstruction receipt. |
+| MITRE ATLAS | fixture_ready | Attach source-versioned MITRE ATLAS technique mappings to benchmark cases. |
+| OWASP Top 10 for LLM Applications | fixture_ready | Attach source-versioned OWASP risk category mappings to benchmark cases. |
+| Agent Governance Playbook | fixture_ready | Attach concrete continuation-state examples and replay through Commitment Candidate. |
+| Emergency Stop Convention | fixture_ready | Attach emergency-stop trigger examples and reconstruction receipt. |
+| NIST AI RMF | fixture_ready | Attach NIST AI RMF control examples and lifecycle evidence package. |
+| ISO/IEC 42001 | fixture_ready | Attach ISO/IEC 42001 control examples and management-record evidence package. |
+| EU AI Act | fixture_ready | Attach EU AI Act obligation mapping examples and documentation evidence package. |
+| Policy Cards | fixture_ready | Attach source-versioned policy-card examples and replay through unknown/preparation cases. |
+| Runtime Governance for AI Agents | fixture_ready | Attach concrete path-policy traces and replay through multi-step cases. |
 
 ## Framework Mapping Template
 
