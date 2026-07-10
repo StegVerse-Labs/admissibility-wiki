@@ -4,7 +4,7 @@
   "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
   "posture": {"is_certification": false, "is_ranking": false, "is_execution_authority": false, "unmapped_dimension_is_failure": false},
   "allowed_mapping_states": ["not_started", "intake", "mapped_partial", "mapped_core", "fixture_ready", "replay_ready", "interoperability_ready"],
-  "allowed_dimension_states": ["applicable", "not_applicable", "adapter_required", "insufficient_evidence", "observed_partial", "replay_required", "fixture_ready"],
+  "allowed_dimension_states": ["applicable", "not_applicable", "adapter_required", "insufficient_evidence", "observed_partial", "mapped_partial", "replay_required", "fixture_ready"],
   "required_dimensions": ["execution_boundary", "preparation_boundary", "commitment_boundary", "semantic_equivalence_boundary", "unknown_trajectory_boundary", "authority_boundary", "evidence_freshness_boundary", "reconstruction_boundary", "interoperability_path"],
   "entries": [
     {"framework_id": "morrison-runtime", "mapping_state": "fixture_ready", "next_action": "Attach raw audit payloads and replay table."},
