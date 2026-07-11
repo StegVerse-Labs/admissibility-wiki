@@ -38,6 +38,21 @@ MISSING
 
 These tokens do not certify compatibility, grant authority, or complete validation. They only record that source evidence is unavailable or insufficient and must remain bounded by `SOURCE_BLOCKED_FAIL_CLOSED`.
 
+## External Framework Generator Regression Repair
+
+```text
+Observed workflow run: 29135881700
+Observed commit: 631877c2d20498452cc2b58286087ba994299c4a
+Failure class: generated_artifact_regression
+Failed step: Validate external framework reports
+Root cause: scripts/generate_external_framework_reports.py replaced the enriched Morrison compatibility report with a baseline generated report before validation.
+Repair commit: 7284f1f74a32503b49f8de8cd02eddfd65f58fc8
+Receipt: receipts/external-framework-report-generation-repair-2026-07-11.json
+Repair state: installed; canonical workflow verification pending
+```
+
+The generator now preserves explicitly enriched framework evidence reports while refreshing canonical identity references and mandatory fail-closed boundary fields. This repair does not certify Morrison Runtime Governance or elevate benchmark observations into execution authority.
+
 ## Documentation Mesh Status
 
 ```text
@@ -172,6 +187,7 @@ Goal id: repo-standards-integration-and-installation-bundle-pending-release
 ## Remaining Open Check
 
 ```text
+- confirm the canonical workflow passes after the external framework generator regression repair
 - confirm the canonical workflow passes with documentation mesh validation
 - confirm both public status URLs respond after deployment
 - standardize the shared records in StegVerse-Labs/Site after checking SITE_MIRROR_HANDOFF.md
