@@ -1,0 +1,29 @@
+{
+  "schema": "admissibility_wiki.portable_user_ai_pair_participation_status.v1",
+  "status": "LOCAL_VALIDATION_CHAIN_WIRED",
+  "page": "docs/governance/portable-user-ai-pair-participation.md",
+  "manifest": "static/governance/portable-user-ai-pair-participation.v0.1.json",
+  "receipt": "receipts/portable-user-ai-pair-participation-receipt.json",
+  "validator": "scripts/check_portable_user_ai_pair_participation.py",
+  "sidebar_entry": "governance/portable-user-ai-pair-participation",
+  "package_script": "validate:portable-user-ai-pair",
+  "origin_classes": [
+    "PORTABLE_USER_AI_PAIR",
+    "THREAD_SCOPED_PARTICIPANT"
+  ],
+  "verification": {
+    "artifacts_installed": true,
+    "sidebar_registered": true,
+    "package_validation_registered": true,
+    "canonical_validation_chain_registered": true,
+    "github_actions_verified": false,
+    "public_route_verified": false,
+    "live_portable_node_runtime_verified": false
+  },
+  "authority_boundary": {
+    "user_authority_equals_ai_authority": false,
+    "persistent_pair_identity_inferred_for_thread_participant": false,
+    "network_standing_inferred": false,
+    "master_records_is_global_identity_authority": false
+  }
+}
