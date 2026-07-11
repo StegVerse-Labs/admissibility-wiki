@@ -54,23 +54,23 @@ missing_fields
 
 ## Boundary Classes
 
-Framework behavior should be classified by boundary rather than only pass/fail.
+Framework behavior should be classified by boundary rather than only pass/fail. Machine-readable reports use the underscore identifiers shown in parentheses.
 
 | Boundary Class | Question |
 |---|---|
-| Parser boundary | Did the submitted trajectory parse exactly as intended? |
+| Parser boundary (`parser_boundary`) | Did the submitted trajectory parse exactly as intended? |
 | Input expressiveness boundary | Can the framework represent the relevant trajectory? |
 | Information boundary | Does information acquisition become governed before later use? |
 | Planning boundary | Does intent or planning trigger intervention? |
-| Preparation boundary | Does staged preparation trigger intervention? |
-| Commitment boundary | Does a prepared or queued consequence-binding action require standing? |
-| Execution boundary | Does the framework block only when an execution-capable action appears? |
-| Semantic equivalence boundary | Does the framework recognize alternate tool names with equivalent consequence? |
-| Multi-agent boundary | Does the framework evaluate distributed or delegated trajectories? |
-| Unknown trajectory boundary | Does the framework fail closed, escalate, or allow unknown sequences? |
-| Evidence freshness boundary | Does stale evidence affect the result? |
-| Authority boundary | Does missing, expired, or revoked authority affect the result? |
-| Reconstruction boundary | Can the result be reconstructed from preserved evidence? |
+| Preparation boundary (`preparation_boundary`) | Does staged preparation trigger intervention? |
+| Commitment boundary (`commitment_boundary`) | Does a prepared or queued consequence-binding action require standing? |
+| Execution boundary (`execution_boundary`) | Does the framework block only when an execution-capable action appears? |
+| Semantic equivalence boundary (`semantic_equivalence_boundary`) | Does the framework recognize alternate tool names with equivalent consequence? |
+| Multi-agent boundary (`multi_agent_boundary`) | Does the framework evaluate distributed or delegated trajectories? |
+| Unknown trajectory boundary (`unknown_trajectory_boundary`) | Does the framework fail closed, escalate, or allow unknown sequences? |
+| Evidence freshness boundary (`evidence_freshness_boundary`) | Does stale evidence affect the result? |
+| Authority boundary (`authority_boundary`) | Does missing, expired, or revoked authority affect the result? |
+| Reconstruction boundary (`reconstruction_boundary`) | Can the result be reconstructed from preserved evidence? |
 
 ## Benchmark Cases
 
