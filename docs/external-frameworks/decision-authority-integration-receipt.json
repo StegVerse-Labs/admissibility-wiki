@@ -1,0 +1,44 @@
+{
+  "artifact_type": "external_framework_merge_integration_receipt",
+  "schema_version": "0.1",
+  "framework_id": "decision-authority",
+  "pull_request": {
+    "number": 10,
+    "title": "Decision authority framework",
+    "state": "merged",
+    "merged": true,
+    "head_sha": "6753eefc0e6e370a5805c9254cf2936b6d422b4a",
+    "merge_commit_sha": "f4cc26eea1b3c51fcd0b231a16883a250ac260b1",
+    "merged_at": "2026-07-11T17:46:18Z",
+    "commits": 7,
+    "changed_files": 7
+  },
+  "validation": {
+    "pre_merge_run_id": 29162050097,
+    "pre_merge_job_id": 86568684302,
+    "pre_merge_job": "validate-chain-continuation",
+    "pre_merge_conclusion": "success",
+    "complete_validation_report_uploaded": true,
+    "goal5_validation_report_uploaded": true,
+    "enforcement_step_passed": true,
+    "main_branch_build_verified": false,
+    "public_deployment_verified": false
+  },
+  "installed_surfaces": [
+    "docs/external-frameworks/decision-authority.md",
+    "docs/external-frameworks/decision-authority.json",
+    "docs/external-frameworks/reports/decision-authority.compatibility.json",
+    "docs/external-frameworks/index.json",
+    "docs/external-frameworks/index.md",
+    "docs/external-frameworks/evidence-provenance-rollout.json",
+    "docs/external-frameworks/evaluation-results.md"
+  ],
+  "status": "MERGED_PREMERGE_VALIDATED_MAIN_DEPLOYMENT_PENDING",
+  "authority_boundary": {
+    "merge_is_certification": false,
+    "pre_merge_validation_is_public_deployment": false,
+    "compatibility_report_is_execution_authority": false,
+    "framework_inclusion_establishes_standing": false
+  },
+  "next_required_action": "capture main-branch build, deployment, and public-page verification receipts"
+}
