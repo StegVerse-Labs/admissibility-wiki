@@ -217,3 +217,15 @@ jobs:
 
       - name: Verify governed LLM route set
         run: python scripts/check_governed_llm_deployment_status.py
+
+      - name: Write public activation receipt
+        env:
+          PAGE_URL: ${{ needs.deploy-pages.outputs.page_url }}
+        run: node scripts/write-public-activation-receipt.mjs
+
+      - name: Upload public activation receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-activation-receipt
+          path: reports/public-activation-receipt.json
+          if-no-files-found: error
