@@ -1,0 +1,25 @@
+{
+  "artifact_type": "external_framework_capture_manifest",
+  "schema_version": "0.1",
+  "framework_id": "guardrails-ai",
+  "case_id": "guardrails-output-validation-001",
+  "source_reference": "https://guardrailsai.com/",
+  "source_version_or_date": "official documentation captured 2026-07-11",
+  "target_behavior": "capture an exact validator pass, fail, or correction response",
+  "input_payload": {
+    "prompt": "Return a JSON object with a single integer field named count.",
+    "candidate_output": {"count": "not-an-integer"},
+    "expected_schema": {"count": "integer"}
+  },
+  "required_runtime_context": [
+    "exact Guardrails AI version",
+    "validator identifiers and versions",
+    "rail or schema configuration",
+    "model or provider context if used",
+    "correction policy"
+  ],
+  "limitations": [
+    "validation or correction does not create execution authority",
+    "one validator result does not establish general safety"
+  ]
+}
