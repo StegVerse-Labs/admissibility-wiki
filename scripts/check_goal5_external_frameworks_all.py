@@ -15,6 +15,7 @@ CHECKS = [
     "scripts/check_external_framework_benchmark_fixtures.py",
     "scripts/check_expanded_external_framework_intake.py",
     "scripts/check_external_framework_intake_promotion.py",
+    "scripts/check_goal5_external_blockers.py",
     "scripts/check_goal5_release_readiness.py",
     "scripts/check_external_frameworks_index.py",
 ]
@@ -46,7 +47,7 @@ def main() -> int:
         return 1
 
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: structure_ready_not_validation_release_ready")
+    print("release_readiness: structure_ready_external_dependencies_open")
     return 0
 
 
