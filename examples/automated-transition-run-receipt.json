@@ -1,0 +1,70 @@
+{
+  "receipt_id": "run-receipt.github-handoff-watch.example-001",
+  "receipt_version": "0.1.0",
+  "transition_id": "automation.github-handoff-watch.hourly.v1",
+  "run_id": "example-run-001",
+  "event_ref": "gmail:github-notification:example-001",
+  "origin_class": "BOOTSTRAP_AUTOMATION",
+  "actor_ref": "automation:github-handoff-watch",
+  "target_ref": "repo:StegVerse-Labs/admissibility-wiki",
+  "scope": {
+    "level": "repository",
+    "branch": "main",
+    "cross_repository": false
+  },
+  "policy_refs": [
+    "automation:github-handoff-watch:prompt-boundary:v1",
+    "repo:StegVerse-Labs/admissibility-wiki:ADMISSIBILITY_AUTOMATION_HANDOFF.md"
+  ],
+  "delegation_refs": [
+    "handoff:current-task:wire-observatory-validators"
+  ],
+  "evidence_refs": [
+    "file:package.json",
+    "file:sidebars.js",
+    "file:scripts/check_admissible_automated_transitions.py",
+    "file:scripts/check_portable_user_ai_pair_participation.py"
+  ],
+  "transition_signature": {
+    "mutation": "additive_configuration",
+    "authority": "bounded_repository",
+    "evidence": "required_current",
+    "recoverability": "reversible",
+    "verification": "pre_and_post",
+    "continuation": "next_declared_task"
+  },
+  "micro_node_manifest_ref": "manifest:example:validator-wiring-node-assembly",
+  "admissibility_result": "ALLOW",
+  "commit_time_validity": {
+    "checked": true,
+    "result": "VALID",
+    "evidence_refs": [
+      "handoff-sha:c1cfccdc9e66a42335be311598ac1576f37c045e",
+      "package-sha:4be55c1385da3e7c571b48f09d0280d73e02c184",
+      "sidebars-sha:aaaf01f7fd8c45f6f68fdd524c8976af8b419393"
+    ]
+  },
+  "action_result": {
+    "status": "COMPLETED",
+    "changed_artifacts": [
+      "package.json",
+      "sidebars.js"
+    ]
+  },
+  "verification": {
+    "status": "STATICALLY_VERIFIED",
+    "canonical_validation_registered": true,
+    "public_route_verified": false
+  },
+  "input_state_hash": "sha256:example-input-state",
+  "output_state_hash": "sha256:example-output-state",
+  "previous_receipt_ref": null,
+  "resulting_handoff_ref": "ADMISSIBILITY_AUTOMATION_HANDOFF.md",
+  "master_records": {
+    "record_status": "NOT_SUBMITTED",
+    "record_ref": null,
+    "reconstruction_status": "NOT_CHECKED"
+  },
+  "recorded_at": "2026-07-10T00:00:00Z",
+  "authority_boundary": "Example receipt only; it does not prove a live run, public-route activation, or Master-Records admission."
+}
