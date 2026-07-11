@@ -18,6 +18,7 @@ CHECKS = [
     "scripts/check_external_framework_benchmark_fixtures.py",
     "scripts/check_observed_evidence_capture_queue.py",
     "scripts/check_opa_observation_capture_harness.py",
+    "scripts/check_cedar_observation_capture_harness.py",
     "scripts/check_expanded_external_framework_intake.py",
     "scripts/check_external_framework_candidate_directory.py",
     "scripts/check_external_framework_family_coverage.py",
@@ -32,7 +33,6 @@ CHECKS = [
 
 def main() -> int:
     results: list[dict[str, object]] = []
-
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE CHECK")
     print("=" * 64)
 
@@ -56,14 +56,7 @@ def main() -> int:
 
         if output:
             print(output)
-        results.append(
-            {
-                "path": check,
-                "status": "PASS" if return_code == 0 else "FAIL",
-                "return_code": return_code,
-                "output": output,
-            }
-        )
+        results.append({"path": check, "status": "PASS" if return_code == 0 else "FAIL", "return_code": return_code, "output": output})
 
     failures = [item for item in results if item["status"] == "FAIL"]
     REPORT.parent.mkdir(parents=True, exist_ok=True)
