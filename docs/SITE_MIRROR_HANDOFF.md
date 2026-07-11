@@ -86,7 +86,28 @@ canonical workflow integration: installed
 iOS workflow mirror synchronization: installed
 external blocker registry: installed
 Admissible Existence Seed Cycle: classified mirror-only, no benchmark mapping required
+Goal 5 nested failure observability: installed
+runtime benchmark preparation_boundary identifier drift: repaired at cb1d60e2c3135cb62008e98c6177c677ae8795cd
 ```
+
+## Latest canonical workflow evidence
+
+```text
+run_id: 29137668903
+commit: a1be570cb8b5a601342a0c5e1cbb86db395c7522
+branch: main
+workflow: Validate chain continuation
+job: validate-chain-continuation
+result: failed
+full_validation_summary: 29/30 passed
+failing_aggregate: scripts/check_goal5_external_frameworks_all.py
+failing_child: scripts/check_runtime_governance_benchmark_suite.py
+failure_assertion: doc missing phrase: preparation_boundary
+repair_commit: cb1d60e2c3135cb62008e98c6177c677ae8795cd
+repair_verification: pending canonical workflow result
+```
+
+The repair is documentation-only and aligns the human-readable boundary-class table with the machine-readable identifier already required by the validator. It does not alter framework observations, benchmark verdicts, authority, promotion state, or release posture.
 
 ## External dependency blockers
 
@@ -107,17 +128,17 @@ canonical_validation_integration: ready
 canonical_workflow_integration: ready
 ios_workflow_mirror: synchronized
 external_blockers_classified: ready
-validation_execution: pending
+validation_execution: pending repair verification
 build_result: pending
 release_readiness: not_ready_for_tag
 ```
 
-No CI status context or pull-request workflow run is currently available for the latest commits. Do not infer a pass or failure until a run result is captured.
+Do not infer a passing build until the workflow triggered by repair commit `cb1d60e2c3135cb62008e98c6177c677ae8795cd` completes successfully.
 
 ## Remaining hardening
 
 ```text
-Observe a completed canonical workflow and capture validation/build results.
+Observe the canonical workflow triggered by repair commit cb1d60e2c3135cb62008e98c6177c677ae8795cd and capture validation/build results.
 Attach Morrison raw audit payloads or retain externally-blocked partial-evidence posture.
 Run Morrison replay captures or retain no-replayability-claim posture.
 Attach concrete source versions and raw payloads to example registry records, or retain explicit stub-only posture.
@@ -135,4 +156,4 @@ Benchmark publication, candidate intake, promotion, release readiness, workflow 
 
 ## Next action
 
-Observe the canonical workflow triggered by the latest commits. Do not claim a passing build until a workflow result is captured.
+Observe the canonical workflow triggered by repair commit `cb1d60e2c3135cb62008e98c6177c677ae8795cd`. If validation passes, capture the validation/build receipts and proceed only to the next bounded task declared above. Do not tag or release while external evidence blockers remain open unless a later handoff explicitly authorizes an evidence-limited release posture.
