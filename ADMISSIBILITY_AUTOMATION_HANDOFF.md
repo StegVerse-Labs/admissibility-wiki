@@ -10,7 +10,7 @@ This file extends `ADMISSIBILITY_MIRROR_HANDOFF.md` with automation-specific sta
 Automated-transitions observatory: local implementation complete
 Portable user/AI pair participation model: local implementation complete
 Canonical validation-chain wiring: complete
-Run-specific final receipt model: installed
+Run-specific final receipt model: schema, example, validator, and status installed
 CI, public-route, live-run, and Master-Records verification: pending
 ```
 
@@ -23,10 +23,13 @@ scripts/check_governed_llm_deployment_status.py
 scripts/check_ios_workflow_mirror_status.py
 scripts/check_admissible_automated_transitions.py
 scripts/check_portable_user_ai_pair_participation.py
+scripts/check_automated_transition_run_receipt.py
+scripts/check_admissibility_automation_handoff.py
 static/status/ios-workflow-mirror-status.json
 static/status/ios-workflow-mirror-sync-next.json
 static/status/admissible-automated-transitions-status.json
 static/status/portable-user-ai-pair-participation-status.json
+static/status/automated-transition-run-receipt-status.json
 static/governance/admissible-automated-transitions.v0.1.json
 static/governance/portable-user-ai-pair-participation.v0.1.json
 schemas/automated-transition-run-receipt.schema.json
@@ -89,16 +92,13 @@ The portable node remains the user's continuity and reconstruction authority. Ma
 
 ## Run-specific final receipt model
 
-Installed schema:
+Installed surfaces:
 
 ```text
 schemas/automated-transition-run-receipt.schema.json
-```
-
-Installed non-live example:
-
-```text
 examples/automated-transition-run-receipt.json
+scripts/check_automated_transition_run_receipt.py
+static/status/automated-transition-run-receipt-status.json
 ```
 
 The final receipt binds:
@@ -122,16 +122,26 @@ reconstruction status
 
 The final run receipt is the continuity artifact intended for Master-Records custody and later reconstruction. The installed example is not a live-run claim.
 
+The validator checks required receipt fields, transition-signature dimensions, policy/delegation/evidence references, admissibility result, commit-time validity, Master-Records status, reconstruction status, observatory-page references, and the example's non-live authority boundary.
+
 ## Validation chain
 
-The existing single canonical workflow remains unchanged. `package.json` now includes:
+The existing single canonical workflow remains unchanged. `package.json` includes:
 
 ```text
 validate:admissible-automated-transitions
 validate:portable-user-ai-pair
+validate:admissibility-automation-handoff
 ```
 
-Both commands are included in:
+`validate:admissibility-automation-handoff` now executes:
+
+```text
+scripts/check_documentation_mesh_status.py
+scripts/check_automated_transition_run_receipt.py
+```
+
+All are reached through:
 
 ```text
 npm run validate
@@ -150,6 +160,7 @@ mirror_drift_status -> machine-readable
 automated_transition_catalog_consistency -> canonical validation chain
 automated_transition_table_derivation -> canonical validation chain
 run_receipt_schema_and_example -> canonical validation chain
+run_receipt_consistency -> canonical validation chain
 portable_user_ai_pair_boundary -> canonical validation chain
 navigation_registration -> validator enforced
 ```
@@ -173,6 +184,8 @@ Required sequence:
 8. Update status and receipts from pending to the evidence-supported result.
 ```
 
+Stop and record a blocker if the active automation cannot expose a stable run/event identity, exact evidence references, commit-time validity record, or resulting handoff hash.
+
 ## Remaining nonlocal confirmations
 
 ```text
@@ -190,7 +203,7 @@ full iOS mirror sync when connector allows canonical replacement
 
 Automation records status and fail-closed checks. It does not create execution authority, provider governance, external indexing, certification, cross-repository mutation authority, or Master-Records admission authority.
 
-The observatory, portable-pair model, schema, and examples are descriptive and reconstructive. They do not prove that a specific run or participant currently has standing. Run-specific evidence, commit-time validity, final receipts, and custody records remain required.
+The observatory, portable-pair model, schema, examples, validators, and status artifacts are descriptive and reconstructive. They do not prove that a specific run or participant currently has standing. Run-specific evidence, commit-time validity, final receipts, and custody records remain required.
 
 The iOS workflow mirror is not activation evidence. The canonical workflow remains source of truth.
 
