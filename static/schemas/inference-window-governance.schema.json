@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/inference-window-governance.schema.json",
+  "title": "Inference-Window Governance Record",
+  "type": "object",
+  "required": ["schema_version", "cases"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/case"}
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "score": {"type": "number", "minimum": 0, "maximum": 1},
+    "isoTime": {"type": "string", "format": "date-time"},
+    "evidence": {
+      "type": "object",
+      "required": ["id", "observed_at", "max_age_seconds", "decay_rate_per_second", "weight", "material", "sufficiency"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "observed_at": {"$ref": "#/$defs/isoTime"},
+        "max_age_seconds": {"type": "number", "exclusiveMinimum": 0},
+        "decay_rate_per_second": {"type": "number", "minimum": 0},
+        "weight": {"type": "number", "exclusiveMinimum": 0},
+        "material": {"type": "boolean"},
+        "sufficiency": {"$ref": "#/$defs/score"}
+      },
+      "additionalProperties": false
+    },
+    "coefficients": {
+      "type": "object",
+      "required": ["base", "irreversibility", "harm", "uncertainty", "unrecoverability"],
+      "properties": {
+        "base": {"$ref": "#/$defs/score"},
+        "irreversibility": {"$ref": "#/$defs/score"},
+        "harm": {"$ref": "#/$defs/score"},
+        "uncertainty": {"$ref": "#/$defs/score"},
+        "unrecoverability": {"$ref": "#/$defs/score"}
+      },
+      "additionalProperties": false
+    },
+    "standing": {
+      "type": "object",
+      "required": ["authority", "policy", "context", "consent", "scope"],
+      "properties": {
+        "authority": {"$ref": "#/$defs/score"},
+        "policy": {"$ref": "#/$defs/score"},
+        "context": {"$ref": "#/$defs/score"},
+        "consent": {"type": "boolean"},
+        "scope": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "consequence": {
+      "type": "object",
+      "required": ["irreversibility", "harm", "uncertainty", "recoverability", "recovery_paths"],
+      "properties": {
+        "irreversibility": {"$ref": "#/$defs/score"},
+        "harm": {"$ref": "#/$defs/score"},
+        "uncertainty": {"$ref": "#/$defs/score"},
+        "recoverability": {"$ref": "#/$defs/score"},
+        "recovery_paths": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"enum": ["rollback", "repair", "compensate", "contain", "appeal", "learn"]}
+        }
+      },
+      "additionalProperties": false
+    },
+    "case": {
+      "type": "object",
+      "required": [
+        "id", "title", "commit_time", "evidence", "standing", "consequence",
+        "threshold_coefficients", "independent_review_required", "expected_disposition"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$"},
+        "title": {"type": "string", "minLength": 1},
+        "commit_time": {"$ref": "#/$defs/isoTime"},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}},
+        "standing": {"$ref": "#/$defs/standing"},
+        "consequence": {"$ref": "#/$defs/consequence"},
+        "threshold_coefficients": {"$ref": "#/$defs/coefficients"},
+        "independent_review_required": {"type": "boolean"},
+        "expected_disposition": {"enum": ["ALLOW", "DENY", "DEFER", "ESCALATE"]},
+        "notes": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  }
+}
