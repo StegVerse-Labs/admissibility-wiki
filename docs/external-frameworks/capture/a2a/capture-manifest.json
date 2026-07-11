@@ -1,0 +1,31 @@
+{
+  "artifact_type": "external_framework_capture_manifest",
+  "schema_version": "0.1",
+  "framework_id": "a2a",
+  "case_id": "a2a-task-submit-001",
+  "source_reference": "https://a2a-protocol.org/latest/specification/",
+  "source_version_or_date": "official specification captured 2026-07-11",
+  "target_behavior": "capture an exact agent-card discovery or task submission response",
+  "input_payload": {
+    "jsonrpc": "2.0",
+    "id": "task-001",
+    "method": "message/send",
+    "params": {
+      "message": {
+        "role": "user",
+        "parts": [{"kind": "text", "text": "Return a bounded status response only."}]
+      }
+    }
+  },
+  "required_runtime_context": [
+    "exact A2A implementation",
+    "agent card version",
+    "transport",
+    "authentication context",
+    "delegation context"
+  ],
+  "limitations": [
+    "task acceptance does not prove consequence authority",
+    "one agent exchange does not establish protocol-wide compatibility"
+  ]
+}
