@@ -102,6 +102,7 @@ const sidebars = {
       label: 'External Frameworks',
       items: [
         'external-frameworks/index',
+        'external-frameworks/candidate-directory',
         'external-frameworks/evaluation-standard',
         'external-frameworks/runtime-governance-benchmark-suite',
         'external-frameworks/benchmark-mapping-rollout',
