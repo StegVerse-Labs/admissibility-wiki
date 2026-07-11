@@ -72,6 +72,8 @@ The benchmark rollout tracker is [External Framework Benchmark Mapping Rollout](
 
 The broader candidate intake registry is [Expanded External Framework Intake](./expanded-framework-intake.md).
 
+Candidate-family representation and promotion order are tracked in [External Framework Family Coverage](./framework-family-coverage.md).
+
 Candidate promotion is governed by [External Framework Intake Promotion Criteria](./intake-promotion-criteria.md).
 
 The reusable template is [External Framework Page Template](./external-framework-template.md).
@@ -119,6 +121,7 @@ A generated compatibility result is evidence only. It is not certification, endo
 | [Runtime Governance Benchmark Suite](./runtime-governance-benchmark-suite.md) | Defines reusable benchmark cases and boundary classes for testing runtime governance, preparation, commitment, execution, semantic equivalence, unknown trajectories, replay, and reconstruction. |
 | [External Framework Benchmark Mapping Rollout](./benchmark-mapping-rollout.md) | Tracks how the runtime-governance benchmark dimensions are mapped across all registered external frameworks without treating unmapped dimensions as failures. |
 | [Expanded External Framework Intake](./expanded-framework-intake.md) | Tracks additional candidate frameworks and framework families without treating intake candidates as sourced validation evidence. |
+| [External Framework Family Coverage](./framework-family-coverage.md) | Measures representation across intake classes, defines promotion priority tiers, and identifies future framework-family gaps. |
 | [External Framework Intake Promotion Criteria](./intake-promotion-criteria.md) | Defines how source-required candidates become sourced intake, page, mapping, or fixture candidates without creating authority. |
 | [External Framework Failure Class Catalog](./failure-class-catalog.md) | Defines reusable failure classes so observations are classified by failure kind rather than only pass/fail. |
 | [External Framework Page Template](./external-framework-template.md) | Provides a reusable page structure for new or refactored external-framework entries. |
@@ -130,7 +133,7 @@ A generated compatibility result is evidence only. It is not certification, endo
 
 ## Current External Frameworks
 
-The current registered framework table contains sourced pages, page candidates, mapping companions, or fixture-backed records. It is not the full universe of possible external frameworks. Additional candidates are tracked in [Expanded External Framework Intake](./expanded-framework-intake.md).
+The current registered framework table contains sourced pages, page candidates, mapping companions, or fixture-backed records. It is not the full universe of possible external frameworks. Additional candidates are tracked in [Expanded External Framework Intake](./expanded-framework-intake.md), while family coverage and promotion priority are tracked in [External Framework Family Coverage](./framework-family-coverage.md).
 
 | Framework | Primary Role | Citation Status | Relationship To Admissibility |
 |---|---|---|---|
@@ -175,6 +178,7 @@ Morrison Runtime -> pre-execution runtime verdict and audit evidence
 Runtime Governance Benchmark Suite -> shared boundary tests
 Benchmark Mapping Rollout -> cross-framework applicability tracker
 Expanded External Framework Intake -> candidate discovery without validation claims
+Framework Family Coverage -> representation and promotion priority
 Intake Promotion Criteria -> source-gated promotion path
 Commitment Candidate -> proposed crossing
 SPE -> standing determination
@@ -216,4 +220,5 @@ Benchmark results are not judgments of framework value.
 Benchmark mapping does not make unmapped dimensions failures.
 Candidate intake does not make unsourced candidates validation evidence.
 Candidate promotion does not create certification or execution authority.
+Framework-family coverage does not create validation, ranking, or compatibility claims.
 ```
