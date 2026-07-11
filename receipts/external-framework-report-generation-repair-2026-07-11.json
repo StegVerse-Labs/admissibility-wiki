@@ -1,0 +1,21 @@
+{
+  "receipt_id": "external-framework-report-generation-repair-2026-07-11",
+  "recorded_at": "2026-07-11T02:21:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "workflow": "Validate chain continuation",
+  "workflow_run_id": 29135881700,
+  "branch": "main",
+  "failed_commit": "631877c2d20498452cc2b58286087ba994299c4a",
+  "failure_class": "generated_artifact_regression",
+  "failed_step": "Validate external framework reports",
+  "observed_failures": [
+    "missing Morrison benchmark observation MRG-BENCH-RG-003-PREPARE-001",
+    "missing Morrison benchmark observation MRG-BENCH-RG-002-EXECUTE-001",
+    "Morrison report missing benchmark suite reference"
+  ],
+  "root_cause": "scripts/generate_external_framework_reports.py replaced an enriched Morrison compatibility report with a baseline generated report before validation",
+  "repair_commit": "7284f1f74a32503b49f8de8cd02eddfd65f58fc8",
+  "repair": "preserve enriched framework-specific evidence reports while refreshing canonical identity references and fail-closed boundary fields",
+  "authority_boundary": "This receipt records a bounded generator repair in the same repository. It does not certify Morrison Runtime Governance, grant execution authority, or authorize cross-repository mutation.",
+  "verification_state": "PENDING_CANONICAL_WORKFLOW_RESULT"
+}
