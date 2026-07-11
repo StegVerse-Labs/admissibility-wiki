@@ -1,9 +1,9 @@
 {
   "manifest_id": "admissible-automated-transitions.v0.1",
-  "manifest_version": "0.1.0",
+  "manifest_version": "0.2.0",
   "generated_at": "2026-07-10T00:00:00Z",
   "scope": "StegVerse bootstrap orchestration observability",
-  "authority_boundary": "The manifest catalogs declared automation and does not grant execution authority.",
+  "authority_boundary": "The manifest catalogs declared automation and derived transition-table requirements; it does not grant execution authority.",
   "transitions": [
     {
       "transition_id": "automation.github-handoff-watch.hourly.v1",
@@ -27,12 +27,135 @@
         "source": "current *_MIRROR_HANDOFF.md",
         "event_does_not_select_task": true
       },
+      "transition_table_derivation": {
+        "transition_id": {
+          "source": "catalog identity plus run/event identity",
+          "required": true
+        },
+        "input_state": {
+          "source": "GitHub notification, repository state, current handoff, checks, files, manifests, and receipts",
+          "required": true
+        },
+        "proposed_action": {
+          "source": "current handoff active task or explicitly permitted repair class",
+          "required": true
+        },
+        "actor": {
+          "value": "scheduled bootstrap handoff executor",
+          "authority_posture": "non-sovereign tool participant"
+        },
+        "target": {
+          "source": "repository resolved from event and confirmed against current handoff",
+          "required": true
+        },
+        "scope": {
+          "default": "repository",
+          "cross_repository_requires_explicit_authority": true
+        },
+        "policy_reference": {
+          "sources": [
+            "automation prompt boundaries",
+            "repository handoff constraints",
+            "repository workflow and release policy",
+            "applicable ecosystem governance rules"
+          ],
+          "required": true
+        },
+        "delegation_reference": {
+          "source": "explicit task or repair permission in current handoff",
+          "missing_or_ambiguous_result": "FAIL_CLOSED"
+        },
+        "evidence_references": {
+          "sources": [
+            "email event",
+            "commit workflow PR or check context",
+            "repository files",
+            "tests and checks",
+            "manifests and receipts",
+            "prior handoff state"
+          ],
+          "freshness_required": true
+        },
+        "authority_class": {
+          "allowed_default": "inspect_only",
+          "bounded_mutation_requires_explicit_handoff_authority": true,
+          "release_deploy_merge_or_ecosystem_authority_inferred": false
+        },
+        "review_posture": {
+          "bounded_declared_work": "automated_review",
+          "ambiguous_destructive_irreversible_credentialed_or_cross_boundary": "human_review_required"
+        },
+        "execution_context": {
+          "sources": [
+            "condition-watch run identity",
+            "repository branch commit or PR",
+            "available credentials",
+            "current tool capabilities"
+          ]
+        },
+        "validity_window": {
+          "value": "current run only",
+          "commit_time_recheck_required": true
+        },
+        "recoverability_profile": {
+          "preferred": "additive reversible auditable",
+          "unknown_or_unrecoverable_result": "FAIL_CLOSED"
+        },
+        "admissibility_result": {
+          "enum": [
+            "ALLOW",
+            "DENY",
+            "FAIL_CLOSED"
+          ],
+          "applies_to": "proposed run transition"
+        },
+        "commit_time_validity": {
+          "recheck": [
+            "handoff version",
+            "target state",
+            "evidence freshness",
+            "policy reference",
+            "delegation reference",
+            "authority class",
+            "stop conditions"
+          ],
+          "required_before_mutation": true
+        },
+        "output_state": {
+          "allowed_values": [
+            "verified_repair",
+            "verified_phase_completion",
+            "updated_handoff",
+            "next_task_activation",
+            "blocker_record",
+            "denial",
+            "fail_closed"
+          ]
+        },
+        "receipt_chain": {
+          "run_specific_receipt_required": true,
+          "must_bind": [
+            "event identity",
+            "derived transition-table elements",
+            "admissibility result",
+            "action or no-action result",
+            "verification evidence",
+            "resulting handoff state"
+          ]
+        },
+        "continuation_rule": {
+          "next_task_requires_verified_current_completion": true,
+          "next_task_requires_updated_handoff_declaration": true
+        }
+      },
       "permitted_actions": [
         "inspect_notification",
         "resolve_repository_context",
         "read_current_handoff",
         "inspect_related_github_context",
         "classify_failure_or_completion",
+        "derive_transition_table_elements",
+        "evaluate_admissibility",
         "apply_bounded_explicitly_authorized_repair",
         "verify_declared_completion_conditions",
         "update_handoff",
@@ -50,8 +173,11 @@
       ],
       "stop_conditions": [
         "ambiguous_authority",
+        "missing_policy_reference",
+        "missing_or_ambiguous_delegation",
         "destructive_action_required",
         "cross_boundary_action_required",
+        "unrecoverable_action",
         "tests_unverifiable",
         "required_credentials_unavailable",
         "no_next_task_declared"
@@ -65,6 +191,8 @@
       "verification_requirements": [
         "declared_files_or_outputs_present",
         "declared_tests_or_checks_verified_when_available",
+        "derived_transition_table_elements_complete",
+        "commit_time_validity_rechecked",
         "authority_boundary_preserved",
         "handoff_advanced_only_after_verified_completion"
       ],
