@@ -12,40 +12,49 @@
     "release_readiness_gate_installed": true,
     "aggregate_checker_installed": true,
     "aggregate_checker_wired_into_canonical_validation": true,
-    "mapping_schema_drift_repaired": true
+    "mapping_schema_drift_repaired": true,
+    "decision_authority_merged": true,
+    "decision_authority_integration_receipt_installed": true
   },
   "validation_findings": {
     "mapping_dimension_state_drift": "repaired",
     "repair": "mapped_partial is explicitly allowed as a dimension state and the rollout documentation and registry are aligned",
     "canonical_validation_command": "npm run validate",
     "goal5_validation_command": "npm run validate:goal5-external-frameworks",
-    "latest_commit_status_contexts": 0,
-    "ci_result_available": false,
-    "local_or_workflow_execution_still_required": true
+    "decision_authority_pre_merge_run_id": 29162050097,
+    "decision_authority_pre_merge_job_id": 86568684302,
+    "decision_authority_pre_merge_conclusion": "success",
+    "decision_authority_merge_commit": "f4cc26eea1b3c51fcd0b231a16883a250ac260b1",
+    "ci_result_available": true,
+    "main_branch_build_result_available": false,
+    "public_deployment_result_available": false,
+    "main_branch_workflow_execution_still_required": true
   },
   "evidence_status": {
     "source_versioned_examples_attached": false,
     "morrison_raw_audit_payloads_attached": false,
     "morrison_replay_captures_attached": false,
     "candidate_promotions_sourced": false,
-    "build_verification_passed": false
+    "pre_merge_structural_validation_passed": true,
+    "build_verification_passed": false,
+    "public_deployment_verified": false
   },
-  "allowed_pre_release_claim": "The admissibility-wiki contains a reusable non-authorizing external-framework benchmark structure, mapping rollout, fixture layer, source-versioned example registry, expanded candidate intake, source-gated promotion workflow, aggregate checker, canonical validation integration, and repaired mapping-schema alignment.",
+  "allowed_pre_release_claim": "The admissibility-wiki contains a reusable non-authorizing external-framework benchmark structure, mapping rollout, fixture layer, source-versioned example registry, expanded candidate intake, source-gated promotion workflow, aggregate checker, canonical validation integration, and a merged pre-merge-validated Decision Authority framework entry.",
   "disallowed_claims": {
     "certifies_external_frameworks": false,
     "validates_morrison_runtime": false,
     "validates_candidate_intake_records": false,
-    "proves_benchmark_pass_fail_status": false,
+    "proves_public_deployment": false,
     "grants_execution_authority": false,
     "establishes_stegverse_standing": false
   },
   "next_actions_before_tag": [
-    "execute npm run validate",
-    "capture validation and build result",
-    "attach Morrison raw audit payloads or mark as externally blocked",
-    "run Morrison replay captures or mark as externally blocked",
+    "capture main-branch build and deployment result",
+    "verify public Decision Authority page and generated result surfaces",
+    "attach Morrison raw audit payloads or retain externally blocked posture",
+    "run Morrison replay captures or retain no-replayability-claim posture",
     "attach source-versioned examples or retain explicit stub-only posture",
-    "confirm no open parallel-session block"
+    "confirm no unresolved parallel-session block"
   ],
   "cross_repo_update_targets": [
     "StegVerse-Labs/Site",
