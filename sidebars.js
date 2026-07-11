@@ -15,6 +15,7 @@ const sidebars = {
         'governance/current-visible-updates',
         'ADMISSIBILITY_WIKI_MIRROR_HANDOFF',
         'governance/admissible-automated-transitions',
+        'governance/portable-user-ai-pair-participation',
         'governance/public-share-readiness',
         'governance/intake-api-final-activation-handoff',
         'governance/proposal-governance-classes',
