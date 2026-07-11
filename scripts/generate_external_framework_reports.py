@@ -31,6 +31,10 @@ STATUS_FIELDS = [
     "fail_closed_conditions",
 ]
 
+ENRICHED_RESULTS = {
+    "COMPATIBILITY_EVIDENCE_ONLY_PARAMETERIZED_BOUNDARY_CASE_PARTIAL",
+}
+
 
 def read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -87,7 +91,7 @@ def status_for_source_blocked(manifest: dict[str, Any]) -> dict[str, str]:
     return status
 
 
-def build_report(entry: dict[str, Any], manifest: dict[str, Any]) -> dict[str, Any]:
+def build_base_report(entry: dict[str, Any], manifest: dict[str, Any]) -> dict[str, Any]:
     source_blocked = entry.get("testbench_state") == "SOURCE_BLOCKED_FAIL_CLOSED"
     result = "SOURCE_BLOCKED_FAIL_CLOSED" if source_blocked else "COMPATIBILITY_EVIDENCE_ONLY"
     cycle_status = "SOURCE_BLOCKED_CYCLE_RECORDED" if source_blocked else "FIRST_FRAMEWORK_CYCLE_COMPLETE"
@@ -127,6 +131,35 @@ def build_report(entry: dict[str, Any], manifest: dict[str, Any]) -> dict[str, A
     }
 
 
+def preserve_enriched_report(
+    base: dict[str, Any], existing: dict[str, Any] | None
+) -> dict[str, Any]:
+    """Preserve verified framework-specific evidence while refreshing canonical references.
+
+    Generated reports are baseline artifacts. Once a report has been explicitly enriched
+    with bounded benchmark observations, generation must not erase that evidence. The
+    existing enriched report remains authoritative for its extension fields, while core
+    identity/reference fields and mandatory fail-closed boundaries are refreshed.
+    """
+    if not existing or existing.get("result") not in ENRICHED_RESULTS:
+        return base
+
+    report = dict(existing)
+    for key in [
+        "artifact_type",
+        "framework_id",
+        "framework_manifest",
+        "registry",
+        "testbench_basis",
+    ]:
+        report[key] = base[key]
+
+    boundary = dict(report.get("boundary", {}))
+    boundary.update(base["boundary"])
+    report["boundary"] = boundary
+    return report
+
+
 def main() -> int:
     registry = read_json(REGISTRY)
     for entry in registry.get("entries", []):
@@ -134,8 +167,9 @@ def main() -> int:
         if not isinstance(manifest_path, str):
             continue
         manifest = read_json(ROOT / manifest_path)
-        report = build_report(entry, manifest)
         out = REPORT_DIR / f"{entry['framework_id']}.compatibility.json"
+        existing = read_json(out) if out.exists() else None
+        report = preserve_enriched_report(build_base_report(entry, manifest), existing)
         write_json(out, report)
     return 0
 
