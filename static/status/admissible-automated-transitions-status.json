@@ -1,6 +1,6 @@
 {
   "schema": "admissibility_wiki.admissible_automated_transitions_status.v1",
-  "status": "OBSERVATORY_ARTIFACTS_INSTALLED",
+  "status": "TRANSITION_TABLE_DERIVATION_INSTALLED",
   "page": "docs/governance/admissible-automated-transitions.md",
   "manifest": "static/governance/admissible-automated-transitions.v0.1.json",
   "receipt": "receipts/admissible-automated-transitions-observatory-receipt.json",
@@ -8,14 +8,38 @@
   "catalogued_transition_ids": [
     "automation.github-handoff-watch.hourly.v1"
   ],
+  "transition_table_elements": [
+    "transition_id",
+    "input_state",
+    "proposed_action",
+    "actor",
+    "target",
+    "scope",
+    "policy_reference",
+    "delegation_reference",
+    "evidence_references",
+    "authority_class",
+    "review_posture",
+    "execution_context",
+    "validity_window",
+    "recoverability_profile",
+    "admissibility_result",
+    "commit_time_validity",
+    "output_state",
+    "receipt_chain",
+    "continuation_rule"
+  ],
   "verification": {
     "local_artifact_check_declared": true,
+    "transition_table_derivation_validator_installed": true,
     "repository_build_verified": false,
-    "public_route_verified": false
+    "public_route_verified": false,
+    "run_specific_receipt_ingestion_active": false
   },
   "authority_boundary": {
     "catalog_grants_execution_authority": false,
     "cross_repository_authority_inferred": false,
-    "run_specific_receipts_required": true
+    "run_specific_receipts_required": true,
+    "commit_time_validity_required_before_mutation": true
   }
 }
