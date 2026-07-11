@@ -182,7 +182,14 @@ Implementation destination summary: private Guardian implementation standing-bou
 
 ```text
 Goal id: repo-standards-integration-and-installation-bundle-pending-release
+Integration page: docs/governance/repo-standards-integration.md
+Installation bundle page: docs/governance/repo-standards-installation-bundle.md
+Status: UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
+Local integration state: installed and validation-bound
+Release posture: PENDING_UPSTREAM_TAG_RELEASE
 ```
+
+The `UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR` state is an external release dependency, not a local repository defect. The current local surfaces remain governed by `PENDING_UPSTREAM_TAG_RELEASE` until a verifiable release reference is available from `StegVerse-Labs/repo-standards`.
 
 ## Remaining Open Check
 
