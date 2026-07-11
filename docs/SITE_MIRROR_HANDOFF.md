@@ -6,16 +6,17 @@ This file is the documentation mirror handoff source of truth for `StegVerse-Lab
 
 ## Parallel-session status
 
-Concurrent repository evolution remains present for Goal 5. Preserve newer CI-repair and validation-reporting work. This workstream owns framework-family coverage, source-intake packet structure, and merge-integration receipts.
+Concurrent repository evolution remains present for Goal 5. Preserve newer CI-repair and validation-reporting work. This workstream owns framework-family coverage, candidate visibility, source-intake packet structure, and merge-integration receipts.
 
 ## Active goal
 
-Goal 5: external-framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework mappings, fixtures, source-versioned examples, expanded intake, framework-family coverage, source-intake work packets, promotion criteria, release-readiness gating, canonical validation execution, explicit external-dependency tracking, and merge-integration receipts.
+Goal 5: external-framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework mappings, fixtures, source-versioned examples, expanded intake, full candidate visibility, framework-family coverage, source-intake work packets, promotion criteria, release-readiness gating, canonical validation execution, explicit external-dependency tracking, and merge-integration receipts.
 
 ## Current proof path
 
 ```text
 candidate intake
+-> complete public candidate directory
 -> family coverage and promotion priority
 -> Tier 1 source-intake work packet
 -> canonical source capture
@@ -43,6 +44,7 @@ docs/external-frameworks/fixtures/morrison-runtime-benchmark-observations.v0.1.j
 docs/external-frameworks/fixtures/source-versioned-examples.v0.1.json
 docs/external-frameworks/expanded-framework-intake.md
 docs/external-frameworks/expanded-framework-intake.json
+docs/external-frameworks/candidate-directory.md
 docs/external-frameworks/framework-family-coverage.md
 docs/external-frameworks/framework-family-coverage.json
 docs/external-frameworks/tier1-source-intake-work-packets.md
@@ -56,6 +58,7 @@ docs/external-frameworks/goal5-release-readiness.json
 docs/external-frameworks/goal5-external-blockers.json
 docs/external-frameworks/admissible-existence-seed-cycle-classification.json
 scripts/check_goal5_external_frameworks_all.py
+scripts/check_external_framework_candidate_directory.py
 scripts/check_decision_authority_integration_receipt.py
 scripts/check_goal5_release_readiness.py
 scripts/check_goal5_external_blockers.py
@@ -66,6 +69,18 @@ scripts/check_external_framework_family_coverage.py
 scripts/check_tier1_source_intake_work_packets.py
 scripts/check_external_framework_intake_promotion.py
 ```
+
+## External framework visibility
+
+```text
+registered framework and crosswalk entries: 19
+additional source-required candidates: 42
+total visible observatory entries: 61
+intake classes: 10
+candidate directory validation: installed
+```
+
+The previous visibility gap was caused by the main index showing registered pages while the expanded intake described—but did not list—the 42 candidate names. The candidate directory now exposes all documented candidates without representing them as sourced, validated, compatible, or authorized.
 
 ## Framework-family and source-intake status
 
@@ -90,7 +105,7 @@ changed_files: 7
 pre_merge_run_id: 29162050097
 pre_merge_job_id: 86568684302
 pre_merge_validation: success
-main_branch_build: pending
+main_branch_build: pending receipt synchronization
 public_deployment_verification: pending
 ```
 
@@ -101,8 +116,6 @@ docs/external-frameworks/decision-authority-integration-receipt.json
 scripts/check_decision_authority_integration_receipt.py
 ```
 
-The pre-merge validation completed successfully and uploaded both the complete validation report and Goal 5 validation report. The merge does not establish public deployment, certification, compatibility standing, or execution authority.
-
 ## Validation integration
 
 ```text
@@ -111,7 +124,7 @@ package.json -> validate
 .github/workflows/validate-chain-continuation.yml -> first validation job
 .github/workflows/validate-chain-continuation.yml -> build-pages npm run validate
 iosnoperiod/github/workflows/validate-chain-continuation.yml -> synchronized canonical mirror
-scripts/check_goal5_external_frameworks_all.py -> Decision Authority receipt validator included
+scripts/check_goal5_external_frameworks_all.py -> candidate directory validator included
 ```
 
 Commands:
@@ -132,11 +145,13 @@ iOS workflow mirror synchronization: installed
 external blocker registry: installed
 Admissible Existence Seed Cycle: mirror-only
 framework family coverage: installed
+complete candidate directory: installed
 Tier 1 source-intake work packets: installed
 Decision Authority stale branch conflict: repaired
 Decision Authority pre-merge validation: passed
 Decision Authority PR: merged
 Decision Authority integration receipt: installed
+Morrison validation table visibility: installed
 ```
 
 ## External dependency blockers
@@ -145,7 +160,7 @@ Decision Authority integration receipt: installed
 morrison-raw-audit-payload: open
 morrison-replay-captures: open
 source-versioned-example-payloads: open
-workflow-result-capture: pre-merge success; main build/deployment receipt pending
+workflow-result-capture: main receipt synchronization pending
 ```
 
 These dependencies do not block structural completion. They do block validation-release readiness.
@@ -154,6 +169,7 @@ These dependencies do not block structural completion. They do block validation-
 
 ```text
 structure_status: ready
+external_framework_visibility: 61 entries visible
 framework_family_coverage: ready
 tier1_source_intake_packets: ready
 decision_authority_integration: merged_premerge_validated
@@ -161,7 +177,6 @@ canonical_validation_integration: ready
 canonical_workflow_integration: ready
 ios_workflow_mirror: synchronized
 external_blockers_classified: ready
-main_branch_build_result: pending
 public_deployment_result: pending
 release_readiness: not_ready_for_tag
 ```
@@ -169,12 +184,13 @@ release_readiness: not_ready_for_tag
 ## Remaining hardening
 
 ```text
-Capture a completed main-branch build, deployment, and public verification receipt.
-Verify the public Decision Authority page and generated evaluation-result surfaces.
+Synchronize the successful main-validation receipts into release-readiness records.
+Capture public deployment and page-verification receipts.
 Attach Morrison raw audit payloads or retain externally-blocked partial-evidence posture.
 Run Morrison replay captures or retain no-replayability-claim posture.
 Attach concrete source versions and raw payloads to example registry records, or retain explicit stub-only posture.
 Populate Tier 1 source packets only from canonical sources; do not promote until every gate passes.
+Promote candidate frameworks into individual pages progressively rather than treating directory presence as page completion.
 After validation and evidence review, prepare a tag/release candidate and verify updates for:
 - StegVerse-Labs/Site
 - GCAT-BCAT-Engine/Publisher
@@ -184,8 +200,8 @@ After validation and evidence review, prepare a tag/release candidate and verify
 
 ## Boundary
 
-Benchmark publication, candidate intake, family coverage, work packets, promotion, merge integration, release readiness, workflow integration, blocker classification, mirror-only classification, and repository tags do not create certification, endorsement, equivalence, execution authority, StegVerse standing, or external-framework validation beyond the evidence actually attached.
+Benchmark publication, candidate intake, directory visibility, family coverage, work packets, promotion, merge integration, release readiness, workflow integration, blocker classification, mirror-only classification, and repository tags do not create certification, endorsement, equivalence, execution authority, StegVerse standing, or external-framework validation beyond the evidence actually attached.
 
 ## Next action
 
-Observe the next completed main-branch workflow. If build, deployment, and public verification pass, update the Decision Authority integration receipt and release-readiness evidence. Do not tag while external evidence blockers remain open unless a later handoff explicitly authorizes an evidence-limited release posture.
+Observe the workflow triggered by the candidate-directory commits. If validation passes, continue source-gated promotion of Tier 1 candidates into sourced intake records and individual pages without collapsing candidate, sourced, mapped, fixture-ready, and validated states.
