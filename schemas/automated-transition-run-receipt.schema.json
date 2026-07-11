@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/automated-transition-run-receipt.schema.json",
+  "title": "Automated Transition Run Receipt",
+  "type": "object",
+  "required": [
+    "receipt_id",
+    "receipt_version",
+    "transition_id",
+    "run_id",
+    "event_ref",
+    "origin_class",
+    "actor_ref",
+    "target_ref",
+    "scope",
+    "policy_refs",
+    "delegation_refs",
+    "evidence_refs",
+    "transition_signature",
+    "micro_node_manifest_ref",
+    "admissibility_result",
+    "commit_time_validity",
+    "action_result",
+    "verification",
+    "input_state_hash",
+    "output_state_hash",
+    "previous_receipt_ref",
+    "resulting_handoff_ref",
+    "recorded_at",
+    "authority_boundary"
+  ],
+  "properties": {
+    "receipt_id": {"type": "string", "minLength": 1},
+    "receipt_version": {"type": "string", "minLength": 1},
+    "transition_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "event_ref": {"type": "string", "minLength": 1},
+    "origin_class": {
+      "type": "string",
+      "enum": [
+        "BOOTSTRAP_AUTOMATION",
+        "PORTABLE_USER_AI_PAIR",
+        "THREAD_SCOPED_PARTICIPANT",
+        "REPOSITORY_NATIVE_ORCHESTRATOR",
+        "ORGANIZATION_ORCHESTRATOR",
+        "ECOSYSTEM_ORCHESTRATOR"
+      ]
+    },
+    "actor_ref": {"type": "string", "minLength": 1},
+    "target_ref": {"type": "string", "minLength": 1},
+    "scope": {"type": "object"},
+    "policy_refs": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "delegation_refs": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "transition_signature": {"type": "object"},
+    "micro_node_manifest_ref": {"type": "string", "minLength": 1},
+    "admissibility_result": {"type": "string", "enum": ["ALLOW", "DENY", "FAIL_CLOSED"]},
+    "commit_time_validity": {
+      "type": "object",
+      "required": ["checked", "result"],
+      "properties": {
+        "checked": {"const": true},
+        "result": {"type": "string", "enum": ["VALID", "INVALID", "NOT_APPLICABLE"]},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "action_result": {"type": "object"},
+    "verification": {"type": "object"},
+    "input_state_hash": {"type": "string", "minLength": 1},
+    "output_state_hash": {"type": "string", "minLength": 1},
+    "previous_receipt_ref": {"type": ["string", "null"]},
+    "resulting_handoff_ref": {"type": "string", "minLength": 1},
+    "master_records": {
+      "type": "object",
+      "properties": {
+        "record_status": {"type": "string", "enum": ["NOT_SUBMITTED", "PENDING", "RECORDED", "REJECTED"]},
+        "record_ref": {"type": ["string", "null"]},
+        "reconstruction_status": {"type": "string", "enum": ["NOT_CHECKED", "PARTIAL", "PASS", "FAIL"]}
+      },
+      "additionalProperties": false
+    },
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "authority_boundary": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}
