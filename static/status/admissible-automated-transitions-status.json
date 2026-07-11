@@ -1,0 +1,21 @@
+{
+  "schema": "admissibility_wiki.admissible_automated_transitions_status.v1",
+  "status": "OBSERVATORY_ARTIFACTS_INSTALLED",
+  "page": "docs/governance/admissible-automated-transitions.md",
+  "manifest": "static/governance/admissible-automated-transitions.v0.1.json",
+  "receipt": "receipts/admissible-automated-transitions-observatory-receipt.json",
+  "sidebar_entry": "governance/admissible-automated-transitions",
+  "catalogued_transition_ids": [
+    "automation.github-handoff-watch.hourly.v1"
+  ],
+  "verification": {
+    "local_artifact_check_declared": true,
+    "repository_build_verified": false,
+    "public_route_verified": false
+  },
+  "authority_boundary": {
+    "catalog_grants_execution_authority": false,
+    "cross_repository_authority_inferred": false,
+    "run_specific_receipts_required": true
+  }
+}
