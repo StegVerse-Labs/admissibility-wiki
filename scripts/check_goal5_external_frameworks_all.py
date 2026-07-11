@@ -17,6 +17,7 @@ CHECKS = [
     "scripts/check_external_framework_benchmark_mappings.py",
     "scripts/check_external_framework_benchmark_fixtures.py",
     "scripts/check_observed_evidence_capture_queue.py",
+    "scripts/check_opa_observation_capture_harness.py",
     "scripts/check_expanded_external_framework_intake.py",
     "scripts/check_external_framework_candidate_directory.py",
     "scripts/check_external_framework_family_coverage.py",
