@@ -2,49 +2,50 @@
 
 ## Scope
 
-This file extends `ADMISSIBILITY_MIRROR_HANDOFF.md` with automation-specific state for `StegVerse-Labs/admissibility-wiki`.
+This file is the automation-specific continuation source for `StegVerse-Labs/admissibility-wiki`.
 
 ## Current state
 
 ```text
 Automated-transitions observatory: local implementation complete
 Portable user/AI pair participation model: local implementation complete
+Run-specific final receipt model: installed
 Canonical validation-chain wiring: complete
-Run-specific final receipt model: schema, example, validator, and status installed
-CI, public-route, live-run, and Master-Records verification: pending
+Comprehensive validation-chain scanner: installed
+Canonical and iOS workflow mirrors: synchronized
+Latest complete scan: 27/30 validators passed
 ```
 
-## Installed automation surfaces
+## Required installed surfaces
 
 ```text
-scripts/check_governed_llm_pages.py
-scripts/check_governed_llm_demo_docs.py
-scripts/check_governed_llm_deployment_status.py
 scripts/check_ios_workflow_mirror_status.py
-scripts/check_admissible_automated_transitions.py
-scripts/check_portable_user_ai_pair_participation.py
-scripts/check_automated_transition_run_receipt.py
-scripts/check_admissibility_automation_handoff.py
 static/status/ios-workflow-mirror-status.json
-static/status/ios-workflow-mirror-sync-next.json
-static/status/admissible-automated-transitions-status.json
-static/status/portable-user-ai-pair-participation-status.json
-static/status/automated-transition-run-receipt-status.json
-static/governance/admissible-automated-transitions.v0.1.json
-static/governance/portable-user-ai-pair-participation.v0.1.json
+validate:ios-workflow-mirror
 schemas/automated-transition-run-receipt.schema.json
 examples/automated-transition-run-receipt.json
-receipts/admissible-automated-transitions-observatory-receipt.json
-receipts/portable-user-ai-pair-participation-receipt.json
-workflow_manifest.json
-sidebars.js
-package.json
+scripts/check_automated_transition_run_receipt.py
+scripts/check_full_validation_chain.py
+reports/full_validation_chain_report.json
 .github/workflows/validate-chain-continuation.yml
+iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
 
-## Automated transition-table derivation
+The canonical workflow remains source of truth. The iOS workflow mirror is a synchronized transport mirror and is not activation evidence.
 
-The observatory derives and displays the elements required to treat a proposed automated action as a governed transition:
+## LLM free-tier trust chain
+
+```text
+LLM free-tier trust chain
+docs/governance/llm-free-tier-trust-chain.md
+scripts/check_llm_free_tier_trust_chain.py
+```
+
+The trust-chain page remains bounded documentation. Quota availability is not admissibility, receipt export is not permanent retention, and reconstruction does not grant commit-time standing.
+
+## Governing transition elements
+
+Every automated run must derive:
 
 ```text
 transition_id
@@ -68,145 +69,64 @@ receipt_chain
 continuation_rule
 ```
 
-A scheduled trigger does not satisfy these elements by itself. They must be derived for each run from the event, current handoff, repository state, policy, delegation, evidence, and current validity.
+A trigger wakes the process but does not select or authorize the task. The current handoff remains the task source of truth.
 
-## Portable user/AI pair participation
+## Portable participation classes
 
 ```text
 PORTABLE_USER_AI_PAIR
-  -> persistent user-controlled continuity
-  -> independently attributable user and AI identities
-  -> bounded delegation and consent
-  -> local-first receipt custody
-  -> network participation only when standing is current
-  -> user-authorized ecosystem reconstruction
-
 THREAD_SCOPED_PARTICIPANT
-  -> thread, session, or supplied-capability continuity only
-  -> no persistent pair identity inferred
-  -> no network standing inferred
-  -> reconstruction limited to the current thread and explicit records
 ```
 
-The portable node remains the user's continuity and reconstruction authority. Master-Records preserves final continuity records and reconstruction references without becoming the user's global identity authority.
+The portable node is the user's continuity and reconstruction authority. User authority is not AI authority. Pair continuity is not unrestricted delegation. Master-Records preserves final continuity records and reconstruction references without becoming the user's global identity authority.
 
-## Run-specific final receipt model
+## Final receipt model
 
-Installed surfaces:
+Final automated-transition receipts bind the event, run identity, actor, target, scope, policies, delegations, evidence, transition signature, micro-node manifest, admissibility result, commit-time validity, action result, verification result, state hashes, previous receipt, resulting handoff, Master-Records status, and reconstruction status.
+
+The final receipt is intended for Master-Records custody and later reconstruction. The checked-in example is illustrative and does not prove a live run, admission, or reconstruction result.
+
+## Comprehensive validation scan
 
 ```text
-schemas/automated-transition-run-receipt.schema.json
-examples/automated-transition-run-receipt.json
-scripts/check_automated_transition_run_receipt.py
-static/status/automated-transition-run-receipt-status.json
+python scripts/check_full_validation_chain.py
 ```
 
-The final receipt binds:
+The scanner executes every canonical Python validator, records all outcomes, writes `reports/full_validation_chain_report.json`, uploads the report even on failure, and fails only after the complete result set is available.
+
+Latest complete scan:
 
 ```text
-event and run identity
-origin class
-actor, target, and scope
-policy, delegation, and evidence references
-transition signature
-micro-node manifest reference
-ALLOW / DENY / FAIL_CLOSED
-commit-time validity
-action and verification results
-input and output state hashes
-prior receipt reference
-resulting handoff reference
-Master-Records status
-reconstruction status
+27 passed
+3 failed
 ```
 
-The final run receipt is the continuity artifact intended for Master-Records custody and later reconstruction. The installed example is not a live-run claim.
-
-The validator checks required receipt fields, transition-signature dimensions, policy/delegation/evidence references, admissibility result, commit-time validity, Master-Records status, reconstruction status, observatory-page references, and the example's non-live authority boundary.
-
-## Validation chain
-
-The existing single canonical workflow remains unchanged. `package.json` includes:
+Repair batch targets:
 
 ```text
-validate:admissible-automated-transitions
-validate:portable-user-ai-pair
-validate:admissibility-automation-handoff
+scripts/check_goal5_external_frameworks_all.py
+scripts/check_llm_free_tier_trust_chain.py
+scripts/check_admissibility_automation_handoff.py
 ```
 
-`validate:admissibility-automation-handoff` now executes:
-
-```text
-scripts/check_documentation_mesh_status.py
-scripts/check_automated_transition_run_receipt.py
-```
-
-All are reached through:
-
-```text
-npm run validate
-```
-
-No additional workflow was created.
-
-## Manual-task reduction
-
-```text
-governed_llm_docs_check -> automated
-governed_llm_demo_docs_check -> automated
-ios_workflow_mirror_drift_detection -> automated
-public_route_set_after_deploy -> automated
-mirror_drift_status -> machine-readable
-automated_transition_catalog_consistency -> canonical validation chain
-automated_transition_table_derivation -> canonical validation chain
-run_receipt_schema_and_example -> canonical validation chain
-run_receipt_consistency -> canonical validation chain
-portable_user_ai_pair_boundary -> canonical validation chain
-navigation_registration -> validator enforced
-```
+Goal 5 repair includes the Morrison runtime fixture authority boundary and all remaining benchmark-suite or fixture assertions exposed by the next complete scan.
 
 ## Next task
 
 ```text
-Obtain CI and public-route evidence, then ingest the first live run-specific automated-transition receipt.
-```
-
-Required sequence:
-
-```text
-1. Run npm run validate through the canonical workflow.
-2. Confirm the Docusaurus build succeeds.
-3. Verify /docs/governance/admissible-automated-transitions.
-4. Verify /docs/governance/portable-user-ai-pair-participation.
-5. Capture one real GitHub Handoff Watch run using the run-receipt schema.
-6. Preserve or submit the final receipt through the Master-Records custody path.
-7. Verify reconstruction using the recorded continuity references.
-8. Update status and receipts from pending to the evidence-supported result.
-```
-
-Stop and record a blocker if the active automation cannot expose a stable run/event identity, exact evidence references, commit-time validity record, or resulting handoff hash.
-
-## Remaining nonlocal confirmations
-
-```text
-GitHub Actions execution
-GitHub Pages deployment propagation
-both public routes reachable
-first live run-specific bootstrap orchestration receipt
-Master-Records custody reference
-reconstruction verification
-portable-node runtime implementation and network-standing proof
-full iOS mirror sync when connector allows canonical replacement
+Run the complete validation scan again.
+Repair all remaining deterministic failures as one batch.
+Proceed to npm validation and Docusaurus build only after the Python scan is green.
+Then verify public observatory and portable-pair routes.
+Capture the first live GitHub Handoff Watch receipt.
+Queue the final receipt for Master-Records custody.
+Verify reconstruction.
 ```
 
 ## Boundary
 
-Automation records status and fail-closed checks. It does not create execution authority, provider governance, external indexing, certification, cross-repository mutation authority, or Master-Records admission authority.
-
-The observatory, portable-pair model, schema, examples, validators, and status artifacts are descriptive and reconstructive. They do not prove that a specific run or participant currently has standing. Run-specific evidence, commit-time validity, final receipts, and custody records remain required.
-
-The iOS workflow mirror is not activation evidence. The canonical workflow remains source of truth.
+Validation success does not create execution, merge, deployment, release, certification, cross-repository, or Master-Records admission authority. Run-specific evidence, commit-time validity, final receipts, custody records, and reconstruction evidence remain required.
 
 ## Archive instruction
 
-This thread is ready for archiving. This handoff contains the complete continuation path without requiring additional conversation context.
+This thread is ready for archiving. This handoff contains the complete continuation path without requiring earlier conversation context.
