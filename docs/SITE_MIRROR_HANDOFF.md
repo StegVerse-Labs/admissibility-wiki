@@ -10,7 +10,7 @@ No active parallel-session block is recorded for Goal 5. Repository searches fou
 
 ## Active goal
 
-Goal 5: external-framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework mappings, fixtures, source-versioned example registry, expanded intake, promotion criteria, release-readiness gating, and canonical validation execution.
+Goal 5: external-framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework mappings, fixtures, source-versioned examples, expanded intake, promotion criteria, release-readiness gating, canonical validation execution, and explicit external-dependency tracking.
 
 ## Current proof path
 
@@ -44,8 +44,11 @@ docs/external-frameworks/intake-promotion-criteria.json
 docs/external-frameworks/promoted-intake-records.v0.1.json
 docs/external-frameworks/goal5-release-readiness.md
 docs/external-frameworks/goal5-release-readiness.json
+docs/external-frameworks/goal5-external-blockers.json
+docs/external-frameworks/admissible-existence-seed-cycle-classification.json
 scripts/check_goal5_external_frameworks_all.py
 scripts/check_goal5_release_readiness.py
+scripts/check_goal5_external_blockers.py
 scripts/check_external_framework_benchmark_mappings.py
 scripts/check_external_framework_benchmark_fixtures.py
 scripts/check_expanded_external_framework_intake.py
@@ -71,7 +74,7 @@ npm run validate:goal5-external-frameworks
 npm run validate
 ```
 
-## Validation repairs
+## Validation repairs and closures
 
 ```text
 mapping dimension state drift: repaired
@@ -81,7 +84,20 @@ aggregate checker: installed
 package validation integration: installed
 canonical workflow integration: installed
 iOS workflow mirror synchronization: installed
+external blocker registry: installed
+Admissible Existence Seed Cycle: classified mirror-only, no benchmark mapping required
 ```
+
+## External dependency blockers
+
+```text
+morrison-raw-audit-payload: open
+morrison-replay-captures: open
+source-versioned-example-payloads: open
+workflow-result-capture: open
+```
+
+These dependencies do not block structural completion. They do block validation-release readiness. Fallback posture is explicit partial evidence, no replayability claim, no CI pass claim, and no source promotion without canonical source records.
 
 ## Release readiness
 
@@ -90,22 +106,22 @@ structure_status: ready
 canonical_validation_integration: ready
 canonical_workflow_integration: ready
 ios_workflow_mirror: synchronized
+external_blockers_classified: ready
 validation_execution: pending
 build_result: pending
 release_readiness: not_ready_for_tag
 ```
 
-No CI status context was available immediately after the mirror-sync commit. Do not infer a pass or failure until a run result is captured.
+No CI status context or pull-request workflow run is currently available for the latest commits. Do not infer a pass or failure until a run result is captured.
 
 ## Remaining hardening
 
 ```text
-Observe the triggered canonical workflow and capture validation/build results.
-Attach Morrison raw audit payloads or mark the dependency externally blocked.
-Run Morrison replay captures or mark the dependency externally blocked.
+Observe a completed canonical workflow and capture validation/build results.
+Attach Morrison raw audit payloads or retain externally-blocked partial-evidence posture.
+Run Morrison replay captures or retain no-replayability-claim posture.
 Attach concrete source versions and raw payloads to example registry records, or retain explicit stub-only posture.
 Promote selected source-required candidates only after canonical sources are attached.
-Decide whether Admissible Existence Seed Cycle remains mirror-only or receives a benchmark mapping.
 After validation and evidence review, prepare a tag/release candidate and verify updates for:
 - StegVerse-Labs/Site
 - GCAT-BCAT-Engine/Publisher
@@ -115,7 +131,7 @@ After validation and evidence review, prepare a tag/release candidate and verify
 
 ## Boundary
 
-Benchmark publication, candidate intake, promotion, release readiness, workflow integration, and repository tags do not create certification, endorsement, equivalence, execution authority, StegVerse standing, or external-framework validation beyond the evidence actually attached.
+Benchmark publication, candidate intake, promotion, release readiness, workflow integration, blocker classification, mirror-only classification, and repository tags do not create certification, endorsement, equivalence, execution authority, StegVerse standing, or external-framework validation beyond the evidence actually attached.
 
 ## Next action
 
