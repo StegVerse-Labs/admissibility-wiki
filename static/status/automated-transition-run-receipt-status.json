@@ -1,0 +1,23 @@
+{
+  "schema": "admissibility_wiki.automated_transition_run_receipt_status.v1",
+  "status": "SCHEMA_EXAMPLE_AND_VALIDATOR_INSTALLED",
+  "schema_path": "schemas/automated-transition-run-receipt.schema.json",
+  "example_path": "examples/automated-transition-run-receipt.json",
+  "validator_path": "scripts/check_automated_transition_run_receipt.py",
+  "canonical_chain": {
+    "entry": "validate:admissibility-automation-handoff",
+    "indirect_validator_execution": true,
+    "additional_workflow_created": false
+  },
+  "master_records": {
+    "intended_custody": true,
+    "live_record_submitted": false,
+    "record_ref": null,
+    "reconstruction_verified": false
+  },
+  "authority_boundary": {
+    "example_is_live_run_evidence": false,
+    "schema_grants_execution_authority": false,
+    "master_records_admission_claimed": false
+  }
+}
