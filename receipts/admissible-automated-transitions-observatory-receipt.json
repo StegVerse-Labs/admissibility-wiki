@@ -1,10 +1,10 @@
 {
-  "receipt_id": "admissible-automated-transitions-observatory-install.v0.2",
-  "receipt_version": "0.2.0",
+  "receipt_id": "admissible-automated-transitions-observatory-install.v0.3",
+  "receipt_version": "0.3.0",
   "recorded_at": "2026-07-10T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "transition": "install_admissible_automated_transitions_observatory",
-  "result": "DECLARED_INSTALLED_AND_LOCALLY_CHECKABLE",
+  "result": "TRANSITION_TABLE_DERIVATION_INSTALLED",
   "installed_artifacts": [
     "docs/governance/admissible-automated-transitions.md",
     "static/governance/admissible-automated-transitions.v0.1.json",
@@ -16,15 +16,37 @@
   "catalogued_transition_ids": [
     "automation.github-handoff-watch.hourly.v1"
   ],
-  "authority_boundary": "This receipt records observatory installation and local validation coverage only. It does not grant execution, deployment, release, merge, or cross-repository authority.",
-  "verification_status": "STATIC_ARTIFACT_VALIDATOR_INSTALLED",
-  "runtime_verification": "PENDING_VALIDATION_CHAIN_AND_PUBLIC_ROUTE_CHECK",
+  "derived_transition_table_elements": [
+    "transition_id",
+    "input_state",
+    "proposed_action",
+    "actor",
+    "target",
+    "scope",
+    "policy_reference",
+    "delegation_reference",
+    "evidence_references",
+    "authority_class",
+    "review_posture",
+    "execution_context",
+    "validity_window",
+    "recoverability_profile",
+    "admissibility_result",
+    "commit_time_validity",
+    "output_state",
+    "receipt_chain",
+    "continuation_rule"
+  ],
+  "authority_boundary": "This receipt records observatory installation, transition-table derivation coverage, and local validation coverage only. It does not grant execution, deployment, release, merge, or cross-repository authority.",
+  "verification_status": "TRANSITION_TABLE_DERIVATION_VALIDATOR_INSTALLED",
+  "runtime_verification": "PENDING_VALIDATION_CHAIN_PUBLIC_ROUTE_AND_RUN_RECEIPT_CHECK",
   "validator_command": "python scripts/check_admissible_automated_transitions.py",
   "next_verification": [
     "wire validator into package validation chain",
     "run validator",
     "build admissibility wiki",
     "verify governance/admissible-automated-transitions public route",
-    "confirm sidebar navigation entry"
+    "confirm sidebar navigation entry",
+    "ingest first run-specific transition receipt"
   ]
 }
