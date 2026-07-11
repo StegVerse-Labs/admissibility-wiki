@@ -10,6 +10,19 @@ This page prevents the External Frameworks section from appearing artificially s
 
 The current registered framework list contains frameworks that already have wiki pages, mappings, or fixtures. The broader observatory should also track candidate frameworks that may become relevant to runtime governance, AI safety, auditability, authorization, provenance, privacy, supply-chain integrity, identity, assurance, policy-as-code, agent security, model evaluation, and regulatory governance.
 
+The full visible list is maintained in the [External Framework Candidate Directory](./candidate-directory.md).
+
+## Current Visible Scope
+
+```text
+registered framework and crosswalk entries: 19
+additional source-required candidates: 42
+total visible observatory entries: 61
+intake classes represented: 10
+```
+
+The registered and candidate sets have different evidence states. The combined count is for observatory visibility and work planning only.
+
 Candidate inclusion is not validation.
 
 ```text
@@ -87,6 +100,7 @@ This intake page does not rank external frameworks.
 This intake page does not claim equivalence with StegVerse.
 This intake page does not grant execution authority.
 This intake page does not make unsourced candidates usable evidence.
+The combined observatory count is not a compatibility or quality score.
 ```
 
 External-framework intake is observatory work. Publication does not create standing. Standing must be reconstructed from source, evidence, authority, admissibility, and current commit-time conditions.
