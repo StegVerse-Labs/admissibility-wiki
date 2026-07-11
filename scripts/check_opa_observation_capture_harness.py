@@ -8,16 +8,30 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "capture_opa_observation.py"
+PINNED_RUNNER = ROOT / "scripts" / "run_pinned_opa_ci_capture.py"
 RUNBOOK = ROOT / "docs" / "external-frameworks" / "opa-observation-capture-runbook.md"
 POLICY = ROOT / "docs" / "external-frameworks" / "capture" / "opa" / "policy.rego"
 ALLOW_INPUT = ROOT / "docs" / "external-frameworks" / "capture" / "opa" / "input-allow.json"
 DENY_INPUT = ROOT / "docs" / "external-frameworks" / "capture" / "opa" / "input-deny.json"
 FIXTURE = ROOT / "docs" / "external-frameworks" / "fixtures" / "opa-benchmark-fixture.v0.1.json"
+WORKFLOW = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
+WORKFLOW_MIRROR = ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.yml"
 
 
 def main() -> int:
     failures: list[str] = []
-    for path in [SCRIPT, RUNBOOK, POLICY, ALLOW_INPUT, DENY_INPUT, FIXTURE]:
+    required_paths = [
+        SCRIPT,
+        PINNED_RUNNER,
+        RUNBOOK,
+        POLICY,
+        ALLOW_INPUT,
+        DENY_INPUT,
+        FIXTURE,
+        WORKFLOW,
+        WORKFLOW_MIRROR,
+    ]
+    for path in required_paths:
         if not path.exists():
             failures.append(f"missing path: {path.relative_to(ROOT)}")
 
@@ -28,14 +42,18 @@ def main() -> int:
         return 1
 
     script_text = SCRIPT.read_text(encoding="utf-8")
+    pinned_runner_text = PINNED_RUNNER.read_text(encoding="utf-8")
     runbook = RUNBOOK.read_text(encoding="utf-8")
     policy = POLICY.read_text(encoding="utf-8")
     fixture = json.loads(FIXTURE.read_text(encoding="utf-8"))
+    workflow = WORKFLOW.read_text(encoding="utf-8")
+    workflow_mirror = WORKFLOW_MIRROR.read_text(encoding="utf-8")
 
-    try:
-        ast.parse(script_text)
-    except SyntaxError as exc:
-        failures.append(f"capture script syntax error: {exc}")
+    for label, source in [("capture script", script_text), ("pinned runner", pinned_runner_text)]:
+        try:
+            ast.parse(source)
+        except SyntaxError as exc:
+            failures.append(f"{label} syntax error: {exc}")
 
     for input_path in [ALLOW_INPUT, DENY_INPUT]:
         try:
@@ -47,7 +65,7 @@ def main() -> int:
             if key not in payload:
                 failures.append(f"input missing {key}: {input_path.relative_to(ROOT)}")
 
-    required_script_phrases = [
+    for phrase in [
         '"capture_state": "captured_unverified"',
         '"opa_decision_is_execution_authority": False',
         '"capture_is_compatibility_proof": False',
@@ -55,10 +73,20 @@ def main() -> int:
         '"stdout_sha256"',
         '"replay"',
         '"limitations"',
-    ]
-    for phrase in required_script_phrases:
+    ]:
         if phrase not in script_text:
             failures.append(f"capture script missing phrase: {phrase}")
+
+    for phrase in [
+        'OPA_VERSION = "v1.0.0"',
+        'CHECKSUM_URL',
+        '"replay_confirmed_same_environment"',
+        '"same_environment_replay_is_independent_replay": False',
+        '"runtime_binary_sha256"',
+        '"github_run_id"',
+    ]:
+        if phrase not in pinned_runner_text:
+            failures.append(f"pinned runner missing phrase: {phrase}")
 
     for phrase in [
         "OPA ALLOW != execution authority",
@@ -72,6 +100,18 @@ def main() -> int:
     for phrase in ["default allow := false", 'input.action == "read"', "test material only"]:
         if phrase not in policy:
             failures.append(f"policy missing phrase: {phrase}")
+
+    for phrase in [
+        "capture-opa-evidence:",
+        "python scripts/run_pinned_opa_ci_capture.py",
+        "opa-pinned-capture-replay",
+        "continue-on-error: true",
+    ]:
+        if phrase not in workflow:
+            failures.append(f"canonical workflow missing phrase: {phrase}")
+
+    if workflow != workflow_mirror:
+        failures.append("canonical workflow and iOS workflow mirror differ")
 
     if fixture.get("framework_id") != "opa":
         failures.append("OPA fixture framework id mismatch")
