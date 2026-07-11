@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import json
 import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+REPORT = ROOT / "reports" / "goal5_external_frameworks_report.json"
 
 CHECKS = [
     "scripts/check_runtime_governance_benchmark_suite.py",
@@ -22,32 +24,71 @@ CHECKS = [
 
 
 def main() -> int:
-    failures: list[str] = []
+    results: list[dict[str, object]] = []
 
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE CHECK")
-    print("=" * 52)
+    print("=" * 64)
 
     for check in CHECKS:
         path = ROOT / check
+        print(f"\n--- RUN: {check} ---")
         if not path.exists():
-            print(f"MISSING: {check}")
-            failures.append(check)
-            continue
+            output = f"MISSING: {check}"
+            return_code = 127
+        else:
+            completed = subprocess.run(
+                [sys.executable, str(path)],
+                cwd=ROOT,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                check=False,
+            )
+            return_code = completed.returncode
+            output = completed.stdout.rstrip()
 
-        print(f"RUN: {check}")
-        result = subprocess.run([sys.executable, str(path)], cwd=ROOT, text=True)
-        if result.returncode != 0:
-            failures.append(check)
+        if output:
+            print(output)
+        results.append(
+            {
+                "path": check,
+                "status": "PASS" if return_code == 0 else "FAIL",
+                "return_code": return_code,
+                "output": output,
+            }
+        )
 
-    print("=" * 52)
+    failures = [item for item in results if item["status"] == "FAIL"]
+    REPORT.parent.mkdir(parents=True, exist_ok=True)
+    REPORT.write_text(
+        json.dumps(
+            {
+                "schema": "admissibility_wiki.goal5_external_frameworks_report.v1",
+                "total_checks": len(results),
+                "passed_checks": len(results) - len(failures),
+                "failed_checks": len(failures),
+                "overall_status": "FAIL" if failures else "PASS",
+                "results": results,
+                "authority_boundary": "This report records structural validation outcomes only and does not create external-framework certification, equivalence, standing, or execution authority.",
+            },
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    print("\n" + "=" * 64)
     if failures:
-        print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: FAIL")
+        print(f"GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: FAIL ({len(failures)}/{len(results)} failed)")
         for failure in failures:
-            print(f"- {failure}")
+            print(f"\nFAIL: {failure['path']}")
+            print(failure["output"] or "(no validator output)")
+        print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
 
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
     print("release_readiness: structure_ready_external_dependencies_open")
+    print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
 
