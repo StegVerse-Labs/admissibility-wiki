@@ -29,9 +29,6 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Validate single workflow policy
-        run: python scripts/check_workflow_sprawl.py
-
       - name: Generate external framework reports
         run: python scripts/generate_external_framework_reports.py
 
@@ -47,98 +44,48 @@ jobs:
       - name: Generate external framework page status
         run: python scripts/generate_external_framework_page_status.py
 
-      - name: Validate chain continuation
-        run: python scripts/check_chain_status_continuation.py
+      - name: Scan complete validation chain
+        id: full-validation-scan
+        continue-on-error: true
+        run: python scripts/check_full_validation_chain.py
 
-      - name: Validate continuation bundle
-        run: python scripts/check_continuation_bundle.py
+      - name: Upload complete validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-validation-chain-report
+          path: reports/full_validation_chain_report.json
+          if-no-files-found: error
 
-      - name: Validate chain snapshot
-        run: python scripts/check_chain_snapshot.py
-
-      - name: Validate chain snapshot receipt
-        run: python scripts/check_chain_snapshot_receipt.py
-
-      - name: Validate chain auto state
-        run: python scripts/check_chain_auto.py
-
-      - name: Validate blocked destination record
-        run: python scripts/check_blocked_destination_record.py
-
-      - name: Validate goal state
-        run: python scripts/check_goal_state.py
-
-      - name: Validate workflow manifest
-        run: python scripts/check_workflow_manifest.py
-
-      - name: Validate external frameworks index
-        run: python scripts/check_external_frameworks_index.py
-
-      - name: Validate external framework manifests
-        run: python scripts/check_external_framework_manifests.py
-
-      - name: Validate external framework terminology
-        run: python scripts/check_external_framework_terminology.py
-
-      - name: Validate external framework reports
-        run: python scripts/check_external_framework_reports.py
-
-      - name: Validate report coverage
-        run: python scripts/check_external_framework_report_coverage.py
-
-      - name: Validate external framework report generation
-        run: python scripts/check_external_framework_report_generation.py
-
-      - name: Validate external framework results page
-        run: python scripts/check_external_framework_results_page.py
-
-      - name: Validate external framework page metadata
-        run: python scripts/check_external_framework_page_metadata.py
-
-      - name: Validate external framework page mapping
-        run: python scripts/check_external_framework_page_mapping.py
-
-      - name: Validate external framework page status
-        run: python scripts/check_external_framework_page_status.py
-
-      - name: Validate external framework expansion policy
-        run: python scripts/check_external_framework_expansion_policy.py
-
-      - name: Validate external framework evidence provenance
-        run: python scripts/check_external_framework_evidence_provenance.py
-
-      - name: Validate Goal 5 external framework benchmark chain
-        run: python scripts/check_goal5_external_frameworks_all.py
-
-      - name: Validate ASRO commitment candidate
-        run: python scripts/check_asro_commitment_candidate.py
-
-      - name: Validate governed LLM public pages
-        run: python scripts/check_governed_llm_pages.py
-
-      - name: Validate governed LLM demo docs
-        run: python scripts/check_governed_llm_demo_docs.py
-
-      - name: Validate LLM free-tier trust chain
-        run: python scripts/check_llm_free_tier_trust_chain.py
-
-      - name: Validate iOS workflow mirror status
-        run: python scripts/check_ios_workflow_mirror_status.py
-
-      - name: Validate admissibility automation handoff
-        run: python scripts/check_admissibility_automation_handoff.py
-
-      - name: Validate CI evidence state
-        run: python scripts/check_ci_evidence.py
-
-      - name: Resolve Guardian destination
-        run: python scripts/check_guardian_destination.py
-
-      - name: Upload destination report
+      - name: Upload Guardian destination report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: guardian-destination-status
           path: reports/guardian_destination_status.json
+          if-no-files-found: warn
+
+      - name: Enforce complete validation result
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('reports/full_validation_chain_report.json')
+          if not path.exists():
+              raise SystemExit('full validation report was not produced')
+          report = json.loads(path.read_text(encoding='utf-8'))
+          print(
+              f"Validation summary: {report['passed_checks']}/{report['total_checks']} passed; "
+              f"{report['failed_checks']} failed"
+          )
+          for result in report['results']:
+              if result['status'] == 'FAIL':
+                  print(f"FAIL: {result['path']}")
+          if report['overall_status'] != 'PASS':
+              raise SystemExit(1)
+          PY
 
   build-pages:
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
