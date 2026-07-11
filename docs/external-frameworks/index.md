@@ -155,6 +155,7 @@ The current registered framework table contains sourced pages, page candidates, 
 | [Policy Cards](./policy-cards.md) | Machine-readable runtime governance artifact | sourced | Crosswalk target for runtime policy artifacts, obligations, evidentiary requirements, and allow/deny rules. |
 | [Runtime Governance for AI Agents](./runtime-governance-policies-on-paths.md) | Runtime path-governance framework | sourced | Crosswalk target for path-dependent runtime checks and proposed next-action review. |
 | [Admissible Existence Seed Cycle](./admissible-existence-seed-cycle.md) | Ecosystem seed-cycle status mirror | sourced | Mirrors completed AE seed-cycle artifacts while preserving that publication does not create standing or execution authority. |
+| [Decision Authority Compatibility](./decision-authority.md) | ST-004 decision vocabulary compatibility | sourced | Crosswalk target for mapping public wiki decision shorthand into canonical transition-authority values without creating authority. |
 
 ## Three-Part Bridge
 
@@ -180,6 +181,7 @@ Benchmark Mapping Rollout -> cross-framework applicability tracker
 Expanded External Framework Intake -> candidate discovery without validation claims
 Framework Family Coverage -> representation and promotion priority
 Intake Promotion Criteria -> source-gated promotion path
+Decision Authority Compatibility -> decision vocabulary reconciliation
 Commitment Candidate -> proposed crossing
 SPE -> standing determination
 Execution -> consequence binding
@@ -221,4 +223,5 @@ Benchmark mapping does not make unmapped dimensions failures.
 Candidate intake does not make unsourced candidates validation evidence.
 Candidate promotion does not create certification or execution authority.
 Framework-family coverage does not create validation, ranking, or compatibility claims.
+Decision-authority compatibility does not create execution authority or override current standing.
 ```
