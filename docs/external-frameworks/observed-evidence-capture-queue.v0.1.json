@@ -1,0 +1,106 @@
+{
+  "artifact_type": "external_framework_observed_evidence_capture_queue",
+  "schema_version": "0.1",
+  "status": "AWAITING_CAPTURE_NOT_OBSERVED_EVIDENCE",
+  "protocol_reference": "docs/external-frameworks/observed-evidence-capture-protocol.md",
+  "required_capture_fields": [
+    "observation_id",
+    "framework_id",
+    "fixture_reference",
+    "source_reference",
+    "source_version_or_commit",
+    "capture_timestamp_utc",
+    "execution_environment",
+    "exact_input",
+    "exact_output",
+    "exit_status_or_protocol_state",
+    "policy_or_configuration_reference",
+    "authority_context",
+    "freshness_context",
+    "trace_or_trajectory_reference",
+    "artifact_hashes",
+    "replay_instructions",
+    "capture_limitations",
+    "stegverse_expected_posture",
+    "non_claims"
+  ],
+  "allowed_states": [
+    "awaiting_capture",
+    "captured_unverified",
+    "observed_partial",
+    "replay_ready",
+    "replay_confirmed",
+    "interoperability_candidate"
+  ],
+  "entries": [
+    {
+      "framework_id": "opa",
+      "framework_name": "Open Policy Agent",
+      "fixture_reference": "docs/external-frameworks/fixtures/opa-benchmark-fixture.v0.1.json",
+      "capture_state": "awaiting_capture",
+      "capture_targets": ["allow decision", "deny decision", "undefined decision", "policy/data version drift"],
+      "required_runtime": "OPA CLI or equivalent pinned runtime",
+      "next_action": "capture exact query, policy, data, output, version, exit status, and decision trace"
+    },
+    {
+      "framework_id": "cedar-policy",
+      "framework_name": "Cedar Policy",
+      "fixture_reference": "docs/external-frameworks/fixtures/cedar-policy-benchmark-fixture.v0.1.json",
+      "capture_state": "awaiting_capture",
+      "capture_targets": ["allow authorization", "deny authorization", "unknown action", "policy version drift"],
+      "required_runtime": "Cedar evaluator or equivalent pinned implementation",
+      "next_action": "capture principal, action, resource, context, policy set, diagnostics, and decision"
+    },
+    {
+      "framework_id": "mcp",
+      "framework_name": "Model Context Protocol",
+      "fixture_reference": "docs/external-frameworks/fixtures/mcp-benchmark-fixture.v0.1.json",
+      "capture_state": "awaiting_capture",
+      "capture_targets": ["tool discovery", "prepared call", "unknown tool", "authority drift before invocation"],
+      "required_runtime": "Pinned MCP client/server pair",
+      "next_action": "capture initialization, capability negotiation, tool schema, request, response, and authorization context"
+    },
+    {
+      "framework_id": "a2a",
+      "framework_name": "Agent2Agent Protocol",
+      "fixture_reference": "docs/external-frameworks/fixtures/a2a-benchmark-fixture.v0.1.json",
+      "capture_state": "awaiting_capture",
+      "capture_targets": ["agent discovery", "delegated task", "unknown skill", "authority drift before task completion"],
+      "required_runtime": "Pinned A2A client/agent pair",
+      "next_action": "capture Agent Card, task request, task state transitions, artifacts, authentication, and completion result"
+    },
+    {
+      "framework_id": "guardrails-ai",
+      "framework_name": "Guardrails AI",
+      "fixture_reference": "docs/external-frameworks/fixtures/guardrails-ai-benchmark-fixture.v0.1.json",
+      "capture_state": "awaiting_capture",
+      "capture_targets": ["validator pass", "validator fail", "correction/reask", "unknown validator", "tool-boundary case"],
+      "required_runtime": "Pinned Guardrails AI package and validator versions",
+      "next_action": "capture schema, validators, model/input, raw output, validated output, failure or correction path, and versions"
+    },
+    {
+      "framework_id": "llama-guard",
+      "framework_name": "Llama Guard",
+      "fixture_reference": "docs/external-frameworks/fixtures/llama-guard-benchmark-fixture.v0.1.json",
+      "capture_state": "awaiting_capture",
+      "capture_targets": ["safe label", "unsafe label", "semantic-equivalent prompt", "taxonomy gap"],
+      "required_runtime": "Exact Llama Guard model identifier, digest, template, and inference runtime",
+      "next_action": "capture exact model/version, prompt template, input, generated label, taxonomy category, parameters, and hardware/runtime context"
+    },
+    {
+      "framework_id": "neMo-guardrails",
+      "framework_name": "NeMo Guardrails",
+      "fixture_reference": "docs/external-frameworks/fixtures/nemo-guardrails-benchmark-fixture.v0.1.json",
+      "capture_state": "awaiting_capture",
+      "capture_targets": ["allowed flow", "blocked flow", "alternate intent", "unknown action", "authority drift"],
+      "required_runtime": "Pinned NeMo Guardrails version, rails configuration, and model provider",
+      "next_action": "capture rails configuration, model/provider versions, input, generated events, output, blocked path, and trace"
+    }
+  ],
+  "authority_boundary": {
+    "queue_is_observed_evidence": false,
+    "capture_target_is_framework_verdict": false,
+    "captured_output_is_execution_authority": false,
+    "replay_confirmation_is_stegverse_standing": false
+  }
+}
