@@ -1,0 +1,53 @@
+{
+  "schema": "inference_window_governance_status.v1",
+  "generated_at": "2026-07-11T23:45:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "goal": "Publish a canonical, executable governance model for inference-window decay, commit-time standing, irreversibility-adjusted assurance, and governed recovery.",
+  "status": "installed_pending_canonical_ci_verification",
+  "manual_task_requirement": "none",
+  "canonical_artifacts": {
+    "formalism": "docs/formalisms/inference-window-irreversibility-governance.md",
+    "schema": "static/schemas/inference-window-governance.schema.json",
+    "worked_cases": "static/examples/inference-window-governance.worked-cases.json",
+    "validator": "scripts/validate_inference_window_governance.py",
+    "tests": "tests/test_inference_window_governance.py"
+  },
+  "canonical_workflow": {
+    "path": ".github/workflows/validate-chain-continuation.yml",
+    "validator_bound": true,
+    "tests_bound": true,
+    "public_route_checks_bound": true,
+    "binding_commit": "94e23cbb360e8d7e1c9c942b4d8fe773f79df493",
+    "observed_result": "pending"
+  },
+  "decision_classes": [
+    "ALLOW",
+    "DENY",
+    "DEFER",
+    "ESCALATE"
+  ],
+  "hard_failure_classes": [
+    "authority_invalid",
+    "policy_invalid",
+    "consent_absent",
+    "scope_exceeded"
+  ],
+  "public_routes": {
+    "formalism": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/inference-window-irreversibility-governance",
+    "schema": "https://stegverse-labs.github.io/admissibility-wiki/schemas/inference-window-governance.schema.json",
+    "worked_cases": "https://stegverse-labs.github.io/admissibility-wiki/examples/inference-window-governance.worked-cases.json",
+    "status": "https://stegverse-labs.github.io/admissibility-wiki/status/inference-window-governance-status.json"
+  },
+  "claims_boundary": {
+    "guarantees_correctness": false,
+    "grants_execution_authority": false,
+    "certifies_legal_compliance": false,
+    "function": "Tests whether explicit evidence, authority, policy, scope, consequence, and recovery conditions satisfy the declared commit-time governance rule."
+  },
+  "remaining_checks": [
+    "Confirm the canonical validation job executes the validator and unit tests successfully.",
+    "Confirm build-pages and deploy-pages complete.",
+    "Confirm the formalism, schema, worked cases, and status routes are publicly reachable.",
+    "Record the successful workflow run and public verification receipt before declaring activation complete."
+  ]
+}
