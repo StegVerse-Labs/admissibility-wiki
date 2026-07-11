@@ -17,12 +17,11 @@ total visible observatory entries: 61
 sourced_intake records: 18
 individual sourced-intake pages: 18
 benchmark mappings for promoted candidates: 18 of 18
-fixture observations for promoted candidates: 0
+non-authorizing fixture definitions: 18 of 18
+observed external outputs attached: 0 of 18
 ```
 
-## Promotion waves
-
-Tier 1 and second-wave promoted frameworks now each have canonical-source capture, an individual observatory page, and a `mapped_partial` benchmark applicability mapping.
+## Promoted framework set
 
 ```text
 Open Policy Agent
@@ -45,7 +44,19 @@ Llama Guard
 NeMo Guardrails
 ```
 
-The second-wave mappings classify all nine required benchmark dimensions: execution, preparation, commitment, semantic equivalence, unknown trajectory, authority, evidence freshness, reconstruction, and interoperability.
+Each promoted framework now has canonical-source capture, an individual observatory page, a benchmark applicability mapping, and a source-versioned non-authorizing fixture definition. Fixture coverage is enforced by `scripts/check_external_framework_benchmark_fixtures.py`.
+
+## Fixture posture
+
+```text
+fixture_ready != framework executed
+fixture definition != observed result
+expected StegVerse posture != external framework verdict
+FAIL-CLOSED default != claim that the external framework fails
+source reference != compatibility evidence
+```
+
+Every promoted fixture defaults to `FAIL-CLOSED` when required source, version, identity, policy, authority, freshness, trace, or reconstruction fields are missing.
 
 ## Source classification posture
 
@@ -65,7 +76,8 @@ The NeuralTrust AI-governance guide and NHIMG OAuth FAQ remain secondary context
 source capture != validation
 sourced_intake != compatibility
 framework page != benchmark pass
-mapped_partial != observed behavior
+mapping != observed behavior
+fixture_ready != replay_ready
 secondary commentary != canonical specification
 distribution availability != model-behavior proof
 editor draft != final recommendation
@@ -81,19 +93,19 @@ Concurrent Goal 5 evolution exists. This workstream owns candidate visibility, c
 Destination: `StegVerse-Labs/admissibility-wiki`
 
 ```text
-18 promoted-framework source-versioned fixture definitions
-fixture validator coverage for all 18 promoted IDs
+source-versioned example payloads or exact runtime outputs for the 18 promoted fixtures
+replay captures where the framework exposes executable behavior
 compatibility reports only after actual observations exist
-promotion-status validator enforcing source/page/mapping state
+promotion-status validator enforcing source/page/mapping/fixture state
 canonical Goal 5 aggregate-check integration for any new validator
 ```
 
 ## Next action
 
-Create non-authorizing source-versioned fixture definitions for the 18 promoted mappings. Fixtures remain expected-posture test definitions until exact external outputs are captured. Preserve exact source/model/version caution where required.
+Attach exact source examples or runtime outputs to the 18 fixture definitions. Prioritize OPA, Cedar, MCP, A2A, Guardrails AI, Llama Guard, and NeMo Guardrails because they expose decision, protocol, classifier, or runtime behavior that can be replayed. Do not claim compatibility until exact inputs, outputs, versions, timestamps, and authority context are captured.
 
 ## Release path
 
-The repo is not ready to tag solely because source capture, page creation, and mapping are complete. After fixture validation and evidence review, verify pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
+The repo is not ready to tag solely because source capture, pages, mappings, and fixture definitions are complete. After observed-evidence and replay review, verify pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
 
 The complete prior thread is not required to continue from this handoff.
