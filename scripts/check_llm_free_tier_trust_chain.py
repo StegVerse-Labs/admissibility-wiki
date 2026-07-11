@@ -4,7 +4,8 @@ ROOT = Path(__file__).resolve().parents[1]
 PAGE = ROOT / "docs" / "governance" / "llm-free-tier-trust-chain.md"
 SIDEBAR = ROOT / "sidebars.js"
 README = ROOT / "README.md"
-HANDOFF = ROOT / "docs" / "SITE_MIRROR_HANDOFF.md"
+SITE_HANDOFF = ROOT / "docs" / "SITE_MIRROR_HANDOFF.md"
+AUTOMATION_HANDOFF = ROOT / "ADMISSIBILITY_AUTOMATION_HANDOFF.md"
 
 REQUIRED_PAGE_TEXT = [
     "LLM Free Tier Trust Chain",
@@ -23,15 +24,11 @@ REQUIRED_PAGE_TEXT = [
     "reconstruction_grants_commit_time_standing == false",
 ]
 
-REQUIRED_SIDEBAR_TEXT = [
-    "governance/llm-free-tier-trust-chain",
-]
-
+REQUIRED_SIDEBAR_TEXT = ["governance/llm-free-tier-trust-chain"]
 REQUIRED_README_TEXT = [
     "docs/governance/llm-free-tier-trust-chain.md",
     "bounded free-tier trust chain",
 ]
-
 REQUIRED_HANDOFF_TEXT = [
     "LLM free-tier trust chain",
     "docs/governance/llm-free-tier-trust-chain.md",
@@ -48,15 +45,16 @@ def main() -> int:
     page_text = _read(PAGE)
     sidebar_text = _read(SIDEBAR)
     readme_text = _read(README)
-    handoff_text = _read(HANDOFF)
+    handoff_text = _read(SITE_HANDOFF) + "\n" + _read(AUTOMATION_HANDOFF)
 
-    if not PAGE.exists():
-        errors.append("missing_page")
-    if not SIDEBAR.exists():
-        errors.append("missing_sidebar")
-    if not README.exists():
-        errors.append("missing_readme")
-    if not HANDOFF.exists():
+    for path, label in [
+        (PAGE, "page"),
+        (SIDEBAR, "sidebar"),
+        (README, "readme"),
+    ]:
+        if not path.exists():
+            errors.append("missing_" + label)
+    if not SITE_HANDOFF.exists() and not AUTOMATION_HANDOFF.exists():
         errors.append("missing_handoff")
 
     for item in REQUIRED_PAGE_TEXT:
