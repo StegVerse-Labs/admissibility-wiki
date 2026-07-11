@@ -6,19 +6,11 @@ This file is the documentation mirror handoff source of truth for `StegVerse-Lab
 
 ## Parallel-session status
 
-Concurrent repository evolution is present for Goal 5. A separate workstream added nested failure observability, captured canonical workflow evidence, and repaired the runtime benchmark `preparation_boundary` identifier drift. This session preserved those changes and limited its work to framework-family coverage, promotion prioritization, Tier 1 source-intake work packets, and related validation.
-
-Coordination rule:
-
-```text
-workflow failure repair and CI evidence -> preserve existing workstream
-framework family coverage and source-intake packet structure -> this workstream
-shared aggregate checker and handoff -> merge current repository state; do not overwrite newer behavior
-```
+Concurrent repository evolution remains present for Goal 5. Preserve newer CI-repair and validation-reporting work. This workstream owns framework-family coverage, source-intake packet structure, and merge-integration receipts.
 
 ## Active goal
 
-Goal 5: external-framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework mappings, fixtures, source-versioned examples, expanded intake, framework-family coverage, source-intake work packets, promotion criteria, release-readiness gating, canonical validation execution, and explicit external-dependency tracking.
+Goal 5: external-framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework mappings, fixtures, source-versioned examples, expanded intake, framework-family coverage, source-intake work packets, promotion criteria, release-readiness gating, canonical validation execution, explicit external-dependency tracking, and merge-integration receipts.
 
 ## Current proof path
 
@@ -34,6 +26,7 @@ candidate intake
 -> compatibility report
 -> fixture and Commitment Candidate
 -> SPE standing reconstruction
+-> merge integration receipt
 -> public observatory page
 ```
 
@@ -57,11 +50,13 @@ docs/external-frameworks/tier1-source-intake-work-packets.json
 docs/external-frameworks/intake-promotion-criteria.md
 docs/external-frameworks/intake-promotion-criteria.json
 docs/external-frameworks/promoted-intake-records.v0.1.json
+docs/external-frameworks/decision-authority-integration-receipt.json
 docs/external-frameworks/goal5-release-readiness.md
 docs/external-frameworks/goal5-release-readiness.json
 docs/external-frameworks/goal5-external-blockers.json
 docs/external-frameworks/admissible-existence-seed-cycle-classification.json
 scripts/check_goal5_external_frameworks_all.py
+scripts/check_decision_authority_integration_receipt.py
 scripts/check_goal5_release_readiness.py
 scripts/check_goal5_external_blockers.py
 scripts/check_external_framework_benchmark_mappings.py
@@ -72,34 +67,43 @@ scripts/check_tier1_source_intake_work_packets.py
 scripts/check_external_framework_intake_promotion.py
 ```
 
-## Framework-family coverage
+## Framework-family and source-intake status
 
 ```text
 candidate_total: 42
 intake_classes: 10
 promotion_tiers: 3
-all intake classes represented: yes
-future gap families declared: 10
+tier1_packet_count: 10
+tier1_packet_state: source_capture_required
+candidate_promotion_performed: no
 ```
 
-The promotion queue prioritizes direct transition-boundary systems first, security/evaluation/runtime evidence second, and documentation/privacy/broader governance context third. Priority is not endorsement and does not bypass source-gated promotion.
-
-## Tier 1 source-intake packets
+## Decision Authority integration
 
 ```text
-packet_count: 10
-packet_state: source_capture_required
-target_state: sourced_intake
-promotion_performed: no
+pull_request: 10
+state: merged
+head_sha: 6753eefc0e6e370a5805c9254cf2936b6d422b4a
+merge_commit_sha: f4cc26eea1b3c51fcd0b231a16883a250ac260b1
+merged_at: 2026-07-11T17:46:18Z
+changed_files: 7
+pre_merge_run_id: 29162050097
+pre_merge_job_id: 86568684302
+pre_merge_validation: success
+main_branch_build: pending
+public_deployment_verification: pending
 ```
 
-Packets now exist for Open Policy Agent, Cedar Policy, OSCAL, SPIFFE/SPIRE, W3C Verifiable Credentials, in-toto, SLSA, Sigstore, Model Context Protocol, and Agent2Agent Protocol.
+Receipt:
 
-Each packet defines required source capture fields, capture focus, expected relationship class, and likely benchmark dimensions. These are structural expectations only. No candidate has been promoted, sourced, mapped, or validated by creating a work packet.
+```text
+docs/external-frameworks/decision-authority-integration-receipt.json
+scripts/check_decision_authority_integration_receipt.py
+```
+
+The pre-merge validation completed successfully and uploaded both the complete validation report and Goal 5 validation report. The merge does not establish public deployment, certification, compatibility standing, or execution authority.
 
 ## Validation integration
-
-The Goal 5 aggregate checker is integrated at all existing validation layers without adding a workflow.
 
 ```text
 package.json -> validate:goal5-external-frameworks
@@ -107,7 +111,7 @@ package.json -> validate
 .github/workflows/validate-chain-continuation.yml -> first validation job
 .github/workflows/validate-chain-continuation.yml -> build-pages npm run validate
 iosnoperiod/github/workflows/validate-chain-continuation.yml -> synchronized canonical mirror
-scripts/check_goal5_external_frameworks_all.py -> family coverage and Tier 1 packet validators included
+scripts/check_goal5_external_frameworks_all.py -> Decision Authority receipt validator included
 ```
 
 Commands:
@@ -117,42 +121,23 @@ npm run validate:goal5-external-frameworks
 npm run validate
 ```
 
-## Validation repairs and closures
+## Validation closures
 
 ```text
 mapping dimension state drift: repaired
-mapped_partial dimension status: explicitly allowed
-rollout JSON and documentation: aligned
+runtime benchmark preparation_boundary identifier drift: repaired
 aggregate checker: installed and report-producing
-package validation integration: installed
 canonical workflow integration: installed
 iOS workflow mirror synchronization: installed
 external blocker registry: installed
-Admissible Existence Seed Cycle: classified mirror-only, no benchmark mapping required
-Goal 5 nested failure observability: installed
-runtime benchmark preparation_boundary identifier drift: repaired at cb1d60e2c3135cb62008e98c6177c677ae8795cd
-framework family coverage and promotion queue: installed
+Admissible Existence Seed Cycle: mirror-only
+framework family coverage: installed
 Tier 1 source-intake work packets: installed
+Decision Authority stale branch conflict: repaired
+Decision Authority pre-merge validation: passed
+Decision Authority PR: merged
+Decision Authority integration receipt: installed
 ```
-
-## Latest canonical workflow evidence
-
-```text
-run_id: 29137668903
-commit: a1be570cb8b5a601342a0c5e1cbb86db395c7522
-branch: main
-workflow: Validate chain continuation
-job: validate-chain-continuation
-result: failed
-full_validation_summary: 29/30 passed
-failing_aggregate: scripts/check_goal5_external_frameworks_all.py
-failing_child: scripts/check_runtime_governance_benchmark_suite.py
-failure_assertion: doc missing phrase: preparation_boundary
-repair_commit: cb1d60e2c3135cb62008e98c6177c677ae8795cd
-repair_verification: pending canonical workflow result
-```
-
-The repair is documentation-only and aligns the human-readable boundary-class table with the machine-readable identifier already required by the validator. It does not alter framework observations, benchmark verdicts, authority, promotion state, or release posture.
 
 ## External dependency blockers
 
@@ -160,10 +145,10 @@ The repair is documentation-only and aligns the human-readable boundary-class ta
 morrison-raw-audit-payload: open
 morrison-replay-captures: open
 source-versioned-example-payloads: open
-workflow-result-capture: open
+workflow-result-capture: pre-merge success; main build/deployment receipt pending
 ```
 
-These dependencies do not block structural completion. They do block validation-release readiness. Fallback posture is explicit partial evidence, no replayability claim, no CI pass claim, and no source promotion without canonical source records.
+These dependencies do not block structural completion. They do block validation-release readiness.
 
 ## Release readiness
 
@@ -171,26 +156,25 @@ These dependencies do not block structural completion. They do block validation-
 structure_status: ready
 framework_family_coverage: ready
 tier1_source_intake_packets: ready
+decision_authority_integration: merged_premerge_validated
 canonical_validation_integration: ready
 canonical_workflow_integration: ready
 ios_workflow_mirror: synchronized
 external_blockers_classified: ready
-validation_execution: pending repair verification
-build_result: pending
+main_branch_build_result: pending
+public_deployment_result: pending
 release_readiness: not_ready_for_tag
 ```
-
-Do not infer a passing build until the workflow triggered by repair commit `cb1d60e2c3135cb62008e98c6177c677ae8795cd` and subsequent structural commits completes successfully.
 
 ## Remaining hardening
 
 ```text
-Observe the next canonical workflow and capture validation/build results.
+Capture a completed main-branch build, deployment, and public verification receipt.
+Verify the public Decision Authority page and generated evaluation-result surfaces.
 Attach Morrison raw audit payloads or retain externally-blocked partial-evidence posture.
 Run Morrison replay captures or retain no-replayability-claim posture.
 Attach concrete source versions and raw payloads to example registry records, or retain explicit stub-only posture.
-Populate Tier 1 packet source fields only from canonical sources; do not promote until all gates pass.
-Expand future gap families through source-required intake records before promotion.
+Populate Tier 1 source packets only from canonical sources; do not promote until every gate passes.
 After validation and evidence review, prepare a tag/release candidate and verify updates for:
 - StegVerse-Labs/Site
 - GCAT-BCAT-Engine/Publisher
@@ -200,8 +184,8 @@ After validation and evidence review, prepare a tag/release candidate and verify
 
 ## Boundary
 
-Benchmark publication, candidate intake, family coverage, work packets, promotion priority, promotion, release readiness, workflow integration, blocker classification, mirror-only classification, and repository tags do not create certification, endorsement, equivalence, execution authority, StegVerse standing, or external-framework validation beyond the evidence actually attached.
+Benchmark publication, candidate intake, family coverage, work packets, promotion, merge integration, release readiness, workflow integration, blocker classification, mirror-only classification, and repository tags do not create certification, endorsement, equivalence, execution authority, StegVerse standing, or external-framework validation beyond the evidence actually attached.
 
 ## Next action
 
-Observe the canonical workflow after the latest structural commits. If validation passes, capture the validation/build receipts and continue only with canonical source capture for Tier 1 packets or other bounded structural work. Do not tag or release while external evidence blockers remain open unless a later handoff explicitly authorizes an evidence-limited release posture.
+Observe the next completed main-branch workflow. If build, deployment, and public verification pass, update the Decision Authority integration receipt and release-readiness evidence. Do not tag while external evidence blockers remain open unless a later handoff explicitly authorizes an evidence-limited release posture.
