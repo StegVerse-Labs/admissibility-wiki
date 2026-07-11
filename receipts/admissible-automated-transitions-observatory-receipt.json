@@ -1,0 +1,26 @@
+{
+  "receipt_id": "admissible-automated-transitions-observatory-install.v0.1",
+  "receipt_version": "0.1.0",
+  "recorded_at": "2026-07-10T00:00:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "transition": "install_admissible_automated_transitions_observatory",
+  "result": "DECLARED_AND_INSTALLED",
+  "installed_artifacts": [
+    "docs/governance/admissible-automated-transitions.md",
+    "static/governance/admissible-automated-transitions.v0.1.json",
+    "receipts/admissible-automated-transitions-observatory-receipt.json",
+    "sidebars.js"
+  ],
+  "catalogued_transition_ids": [
+    "automation.github-handoff-watch.hourly.v1"
+  ],
+  "authority_boundary": "This receipt records observatory installation only. It does not grant execution, deployment, release, merge, or cross-repository authority.",
+  "verification_status": "STATIC_ARTIFACT_INSTALL_RECORDED",
+  "runtime_verification": "PENDING_REPOSITORY_BUILD_AND_PUBLIC_ROUTE_CHECK",
+  "next_verification": [
+    "parse manifest JSON",
+    "build admissibility wiki",
+    "verify governance/admissible-automated-transitions public route",
+    "confirm sidebar navigation entry"
+  ]
+}
