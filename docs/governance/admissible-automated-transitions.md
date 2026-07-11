@@ -148,7 +148,7 @@ The manifest records:
 
 ## Receipt
 
-The installation and declaration receipt is stored at:
+The observatory installation receipt is stored at:
 
 ```text
 receipts/admissible-automated-transitions-observatory-receipt.json
@@ -157,6 +157,46 @@ receipts/admissible-automated-transitions-observatory-receipt.json
 This receipt confirms that the catalog page, manifest, status artifact, validator, and navigation entry were installed. It does not certify the truth of every future event or grant authority to the automation.
 
 Run-specific receipts remain required to show which transition-table elements were actually derived and whether the proposed action was allowed, denied, or failed closed.
+
+## Run-specific final receipt
+
+The schema for a completed automated transition is:
+
+```text
+schemas/automated-transition-run-receipt.schema.json
+```
+
+An illustrative, non-live receipt is published at:
+
+```text
+examples/automated-transition-run-receipt.json
+```
+
+A final run receipt binds:
+
+- the event and run identity;
+- origin class, actor, target, and scope;
+- policy, delegation, and evidence references;
+- the transition signature;
+- the instantiated micro-node manifest reference;
+- `ALLOW`, `DENY`, or `FAIL_CLOSED`;
+- commit-time validity;
+- action and verification results;
+- input and output state hashes;
+- prior receipt and resulting handoff references;
+- Master-Records submission and reconstruction status.
+
+The final run receipt is the continuity artifact intended for Master-Records custody. Master-Records may record its hash, continuity links, custody metadata, and reconstruction references. The observatory then renders a governed projection of those records.
+
+```text
+runtime evidence
+-> final run receipt
+-> Master-Records record
+-> reconstruction
+-> observatory continuity view
+```
+
+The example receipt is not evidence of a live automation run and is marked accordingly.
 
 ## Update protocol
 
