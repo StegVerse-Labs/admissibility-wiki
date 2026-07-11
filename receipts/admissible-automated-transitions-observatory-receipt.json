@@ -1,17 +1,20 @@
 {
-  "receipt_id": "admissible-automated-transitions-observatory-install.v0.3",
-  "receipt_version": "0.3.0",
+  "receipt_id": "admissible-automated-transitions-observatory-install.v0.4",
+  "receipt_version": "0.4.0",
   "recorded_at": "2026-07-10T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "transition": "install_admissible_automated_transitions_observatory",
-  "result": "TRANSITION_TABLE_DERIVATION_INSTALLED",
+  "result": "RUN_RECEIPT_MODEL_INSTALLED",
   "installed_artifacts": [
     "docs/governance/admissible-automated-transitions.md",
     "static/governance/admissible-automated-transitions.v0.1.json",
     "static/status/admissible-automated-transitions-status.json",
+    "schemas/automated-transition-run-receipt.schema.json",
+    "examples/automated-transition-run-receipt.json",
     "scripts/check_admissible_automated_transitions.py",
     "receipts/admissible-automated-transitions-observatory-receipt.json",
-    "sidebars.js"
+    "sidebars.js",
+    "package.json"
   ],
   "catalogued_transition_ids": [
     "automation.github-handoff-watch.hourly.v1"
@@ -37,16 +40,23 @@
     "receipt_chain",
     "continuation_rule"
   ],
-  "authority_boundary": "This receipt records observatory installation, transition-table derivation coverage, and local validation coverage only. It does not grant execution, deployment, release, merge, or cross-repository authority.",
-  "verification_status": "TRANSITION_TABLE_DERIVATION_VALIDATOR_INSTALLED",
-  "runtime_verification": "PENDING_VALIDATION_CHAIN_PUBLIC_ROUTE_AND_RUN_RECEIPT_CHECK",
-  "validator_command": "python scripts/check_admissible_automated_transitions.py",
+  "run_receipt_model": {
+    "schema": "schemas/automated-transition-run-receipt.schema.json",
+    "example": "examples/automated-transition-run-receipt.json",
+    "master_records_posture": "FINAL_RUN_RECEIPT_INTENDED_FOR_CUSTODY_AND_RECONSTRUCTION",
+    "live_run_evidence_present": false
+  },
+  "authority_boundary": "This receipt records observatory installation, transition-table derivation, validation-chain wiring, and the run-receipt model only. It does not grant execution, deployment, release, merge, cross-repository, or Master-Records admission authority.",
+  "verification_status": "RUN_RECEIPT_SCHEMA_AND_EXAMPLE_VALIDATOR_INSTALLED",
+  "runtime_verification": "PENDING_CANONICAL_VALIDATION_PUBLIC_ROUTE_LIVE_RUN_AND_MASTER_RECORDS_CHECK",
+  "validator_command": "npm run validate:admissible-automated-transitions",
   "next_verification": [
-    "wire validator into package validation chain",
-    "run validator",
+    "run canonical validation chain",
     "build admissibility wiki",
     "verify governance/admissible-automated-transitions public route",
-    "confirm sidebar navigation entry",
-    "ingest first run-specific transition receipt"
+    "verify governance/portable-user-ai-pair-participation public route",
+    "ingest first live run-specific transition receipt",
+    "submit or reference final run receipt through Master-Records custody path",
+    "verify reconstruction from the recorded continuity references"
   ]
 }
