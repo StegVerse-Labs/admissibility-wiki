@@ -14,58 +14,74 @@ Progress documented external-framework candidates through explicit states withou
 registered framework and crosswalk entries: 19
 candidate intake records: 42
 total visible observatory entries: 61
-Tier 1 source-intake packets: 10
-Tier 1 canonical sources captured: 10
-Tier 1 sourced_intake records: 10
-Tier 1 framework pages: 10 of 10
-Tier 1 benchmark mappings: 10 of 10
-Tier 1 fixture observations: 0 of 10
+sourced_intake records: 18
+individual sourced-intake pages: 18
+benchmark mappings for promoted candidates: 10
+fixture observations for promoted candidates: 0
 ```
 
-## Newly installed
+## Second-wave source classification
+
+Supplied URLs were classified before use:
 
 ```text
-docs/external-frameworks/promoted-intake-records.v0.1.json
-docs/external-frameworks/tier1-source-promotion-status.md
-docs/external-frameworks/open-policy-agent.md
-docs/external-frameworks/cedar-policy.md
-docs/external-frameworks/oscal.md
-docs/external-frameworks/spiffe-spire.md
-docs/external-frameworks/w3c-verifiable-credentials.md
-docs/external-frameworks/in-toto.md
-docs/external-frameworks/slsa.md
-docs/external-frameworks/sigstore.md
-docs/external-frameworks/model-context-protocol.md
-docs/external-frameworks/agent2agent-protocol.md
-docs/external-frameworks/benchmark-mappings/opa.mapping.json
-docs/external-frameworks/benchmark-mappings/cedar-policy.mapping.json
-docs/external-frameworks/benchmark-mappings/oscal.mapping.json
-docs/external-frameworks/benchmark-mappings/spiffe-spire.mapping.json
-docs/external-frameworks/benchmark-mappings/w3c-verifiable-credentials.mapping.json
-docs/external-frameworks/benchmark-mappings/in-toto.mapping.json
-docs/external-frameworks/benchmark-mappings/slsa.mapping.json
-docs/external-frameworks/benchmark-mappings/sigstore.mapping.json
-docs/external-frameworks/benchmark-mappings/mcp.mapping.json
-docs/external-frameworks/benchmark-mappings/a2a.mapping.json
-docs/external-frameworks/benchmark-mapping-rollout.json updated
+canonical/official sources -> promotion evidence
+secondary commentary -> context only
+editor draft -> sourced with draft caution
+distribution page -> sourced with distribution caution
+Wikipedia -> discovery only; replaced by official W3C source
 ```
 
-## Tier 1 state
+Record:
 
 ```text
-Open Policy Agent: page complete; mapped_partial
-Cedar Policy: page complete; mapped_partial
-OSCAL: page complete; mapped_partial
-SPIFFE/SPIRE: page complete; mapped_partial
-W3C Verifiable Credentials: page complete; mapped_partial
-in-toto: page complete; mapped_partial
-SLSA: page complete; mapped_partial
-Sigstore: page complete; mapped_partial
-Model Context Protocol: page complete; mapped_partial
-Agent2Agent Protocol: page complete; mapped_partial
+docs/external-frameworks/supplied-source-classification-2026-07-11.md
 ```
 
-Each mapping classifies execution, preparation, commitment, semantic equivalence, unknown trajectory, authority, freshness, reconstruction, and interoperability boundaries.
+## Tier 1 complete through mapping
+
+```text
+Open Policy Agent
+Cedar Policy
+OSCAL
+SPIFFE/SPIRE
+W3C Verifiable Credentials
+in-toto
+SLSA
+Sigstore
+Model Context Protocol
+Agent2Agent Protocol
+```
+
+Each has canonical source capture, sourced-intake record, individual page, and `mapped_partial` benchmark applicability mapping.
+
+## Second-wave sourced intake and pages
+
+```text
+OpenID Connect
+OAuth 2.0
+W3C Decentralized Identifiers
+OpenLineage
+W3C PROV
+Guardrails AI
+Llama Guard
+NeMo Guardrails
+```
+
+Installed pages:
+
+```text
+docs/external-frameworks/openid-connect.md
+docs/external-frameworks/oauth2.md
+docs/external-frameworks/w3c-did.md
+docs/external-frameworks/openlineage.md
+docs/external-frameworks/w3c-prov.md
+docs/external-frameworks/guardrails-ai.md
+docs/external-frameworks/llama-guard.md
+docs/external-frameworks/nemo-guardrails.md
+```
+
+The NeuralTrust AI-governance guide and NHIMG OAuth FAQ remain secondary context. The OpenID AI-governance tag is official organizational context, while OpenID Connect Core is the canonical protocol source. The Wikipedia W3C PROV page is discovery-only and the W3C PROV Overview is canonical. Llama Guard remains explicitly bounded by distribution-source caution.
 
 ## Boundary
 
@@ -74,34 +90,35 @@ source capture != validation
 sourced_intake != compatibility
 framework page != benchmark pass
 mapped_partial != observed behavior
+secondary commentary != canonical specification
+distribution availability != model-behavior proof
+editor draft != final recommendation
 fixture != execution authority
-protocol authorization != StegVerse standing
-credential verification != current delegation
-signature verification != transition admissibility
 ```
 
 ## Parallel coordination
 
-Concurrent Goal 5 evolution exists. This workstream owns candidate visibility, Tier 1 canonical-source capture, sourced-intake promotion records, and progressive framework-page/mapping/fixture creation. Do not overwrite newer CI repair, workflow receipt, deployment verification, or documentation-mesh state from other workstreams.
+Concurrent Goal 5 evolution exists. This workstream owns candidate visibility, canonical-source capture, sourced-intake promotion records, and progressive framework-page/mapping/fixture creation. Do not overwrite newer CI repair, workflow receipt, deployment verification, or documentation-mesh state from other workstreams.
 
 ## Remaining files/modules to install
 
 Destination: `StegVerse-Labs/admissibility-wiki`
 
 ```text
+8 second-wave benchmark applicability mappings
 10 Tier 1 source-versioned fixture artifacts
-fixture validator coverage for all Tier 1 IDs
+fixture validator coverage for promoted IDs
 compatibility reports only after actual observations exist
-promotion-status validator enforcing 10/10 source records, pages, and mappings
+promotion-status validator enforcing source/page/mapping state
 canonical Goal 5 aggregate-check integration for any new validator
 ```
 
 ## Next action
 
-Create non-authorizing source-versioned fixture artifacts for the ten Tier 1 mappings. Fixtures must remain expected-posture test definitions until exact external outputs are captured.
+Create benchmark applicability mappings for the eight second-wave pages, then create non-authorizing source-versioned fixture definitions. Do not claim observed behavior until exact external outputs are captured.
 
 ## Release path
 
-The repo is not ready to tag solely because Tier 1 source capture, pages, and mappings are complete. After fixture validation and evidence review, verify pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
+The repo is not ready to tag solely because source capture and page creation are complete. After mapping/fixture validation and evidence review, verify pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
 
 The complete prior thread is not required to continue from this handoff.
