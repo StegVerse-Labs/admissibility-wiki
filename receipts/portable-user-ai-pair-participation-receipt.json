@@ -1,19 +1,30 @@
 {
-  "receipt_id": "portable-user-ai-pair-participation-install.v0.1",
-  "receipt_version": "0.1.0",
+  "receipt_id": "portable-user-ai-pair-participation-install.v0.2",
+  "receipt_version": "0.2.0",
   "recorded_at": "2026-07-10T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "transition": "install_portable_user_ai_pair_participation_model",
-  "result": "DECLARED_AND_INSTALLED",
+  "result": "LOCAL_VALIDATION_CHAIN_WIRED",
   "installed_artifacts": [
     "docs/governance/portable-user-ai-pair-participation.md",
     "static/governance/portable-user-ai-pair-participation.v0.1.json",
-    "receipts/portable-user-ai-pair-participation-receipt.json"
+    "static/status/portable-user-ai-pair-participation-status.json",
+    "receipts/portable-user-ai-pair-participation-receipt.json",
+    "scripts/check_portable_user_ai_pair_participation.py",
+    "sidebars.js",
+    "package.json"
   ],
   "origin_classes": [
     "PORTABLE_USER_AI_PAIR",
     "THREAD_SCOPED_PARTICIPANT"
   ],
-  "authority_boundary": "This receipt records installation of the participant-origin model only. It does not activate a portable node, grant AI authority, establish network standing, or authorize reconstruction beyond valid scope.",
-  "runtime_verification": "PENDING_SCHEMA_VALIDATION_BUILD_AND_PUBLIC_ROUTE_CHECK"
+  "validation": {
+    "command": "npm run validate:portable-user-ai-pair",
+    "canonical_chain_registered": true,
+    "sidebar_registered": true,
+    "github_actions_verified": false,
+    "public_route_verified": false
+  },
+  "authority_boundary": "This receipt records installation, navigation registration, and local validation-chain wiring only. It does not activate a portable node, grant AI authority, establish network standing, or authorize reconstruction beyond valid scope.",
+  "runtime_verification": "PENDING_GITHUB_ACTIONS_PUBLIC_ROUTE_AND_LIVE_RUNTIME_CHECK"
 }
