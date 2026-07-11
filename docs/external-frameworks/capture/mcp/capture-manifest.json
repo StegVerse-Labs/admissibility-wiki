@@ -1,0 +1,26 @@
+{
+  "artifact_type": "external_framework_capture_manifest",
+  "schema_version": "0.1",
+  "framework_id": "mcp",
+  "case_id": "mcp-tool-call-001",
+  "source_reference": "https://modelcontextprotocol.io/specification/2025-06-18",
+  "source_version_or_date": "2025-06-18",
+  "target_behavior": "capture an exact MCP client/server tool discovery or tool-call response",
+  "input_payload": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "tools/list",
+    "params": {}
+  },
+  "required_runtime_context": [
+    "exact client implementation",
+    "exact server implementation",
+    "transport",
+    "capability negotiation state",
+    "authorization context"
+  ],
+  "limitations": [
+    "tool discovery does not prove tool-call authority",
+    "one server response does not establish protocol-wide compatibility"
+  ]
+}
