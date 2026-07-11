@@ -1,0 +1,55 @@
+{
+  "artifact_type": "external_framework_family_coverage",
+  "schema_version": "0.1",
+  "status": "STRUCTURAL_COVERAGE_NOT_VALIDATION",
+  "source_registry": "docs/external-frameworks/expanded-framework-intake.json",
+  "promotion_criteria": "docs/external-frameworks/intake-promotion-criteria.json",
+  "posture": {
+    "coverage_is_validation": false,
+    "candidate_count_is_quality": false,
+    "promotion_priority_is_endorsement": false,
+    "promotion_queue_is_execution_authority": false
+  },
+  "families": [
+    {"intake_class": "risk_and_assurance", "candidate_count": 8, "structural_status": "represented"},
+    {"intake_class": "model_eval_and_monitoring", "candidate_count": 6, "structural_status": "represented"},
+    {"intake_class": "identity_and_authority", "candidate_count": 5, "structural_status": "represented"},
+    {"intake_class": "provenance_and_trace", "candidate_count": 5, "structural_status": "represented"},
+    {"intake_class": "policy_as_code", "candidate_count": 3, "structural_status": "represented"},
+    {"intake_class": "threat_and_security", "candidate_count": 3, "structural_status": "represented"},
+    {"intake_class": "privacy_and_data_governance", "candidate_count": 3, "structural_status": "represented"},
+    {"intake_class": "runtime_governance", "candidate_count": 3, "structural_status": "represented"},
+    {"intake_class": "regulatory_and_standards", "candidate_count": 3, "structural_status": "represented"},
+    {"intake_class": "agent_protocols", "candidate_count": 3, "structural_status": "represented"}
+  ],
+  "candidate_total": 42,
+  "promotion_queue": [
+    {
+      "tier": 1,
+      "reason": "direct transition-boundary relevance",
+      "candidate_ids": ["opa", "cedar-policy", "oscal", "spiffe-spire", "w3c-verifiable-credentials", "in-toto", "slsa", "sigstore", "mcp", "a2a"]
+    },
+    {
+      "tier": 2,
+      "reason": "security evaluation and runtime evidence",
+      "candidate_ids": ["attack", "d3fend", "nist-sp-800-53", "nist-sp-800-207", "nist-ssdf", "nist-genai-profile", "mlcommons-ai-safety", "helm", "garak", "promptfoo", "guardrails-ai", "llama-guard", "neMo-guardrails"]
+    },
+    {
+      "tier": 3,
+      "reason": "documentation privacy and broader governance context",
+      "candidate_ids": ["w3c-prov", "openlineage", "openid-connect", "oauth2", "w3c-did", "gdpr", "nist-privacy-framework", "iso-27701", "model-cards", "datasheets-for-datasets", "oecd-ai-principles", "unesco-ai-ethics", "ai-verify"]
+    }
+  ],
+  "future_gap_families": [
+    "formal_verification",
+    "capability_based_security",
+    "confidential_computing",
+    "hardware_rooted_attestation",
+    "data_usage_control",
+    "multi_agent_delegation",
+    "sector_specific_safety_cases",
+    "human_oversight_and_appeal",
+    "incident_disclosure",
+    "cross_border_data_governance"
+  ]
+}
