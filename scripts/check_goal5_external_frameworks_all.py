@@ -12,6 +12,7 @@ REPORT = ROOT / "reports" / "goal5_external_frameworks_report.json"
 CHECKS = [
     "scripts/check_runtime_governance_benchmark_suite.py",
     "scripts/check_morrison_runtime_benchmark_fixtures.py",
+    "scripts/check_morrison_validation_table_visibility.py",
     "scripts/check_external_framework_reports.py",
     "scripts/check_external_framework_benchmark_mappings.py",
     "scripts/check_external_framework_benchmark_fixtures.py",
