@@ -16,6 +16,7 @@ CHECKS = [
     "scripts/check_external_framework_benchmark_mappings.py",
     "scripts/check_external_framework_benchmark_fixtures.py",
     "scripts/check_expanded_external_framework_intake.py",
+    "scripts/check_external_framework_family_coverage.py",
     "scripts/check_external_framework_intake_promotion.py",
     "scripts/check_goal5_external_blockers.py",
     "scripts/check_goal5_release_readiness.py",
