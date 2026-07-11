@@ -1,0 +1,137 @@
+{
+  "artifact_type": "external_framework_source_intake_work_packets",
+  "schema_version": "0.1",
+  "status": "STRUCTURAL_WORK_PACKETS_NOT_PROMOTION",
+  "source_queue": "docs/external-frameworks/framework-family-coverage.json",
+  "promotion_criteria": "docs/external-frameworks/intake-promotion-criteria.json",
+  "authority_boundary": {
+    "work_packet_is_promotion": false,
+    "work_packet_is_certification": false,
+    "work_packet_is_endorsement": false,
+    "work_packet_is_execution_authority": false,
+    "work_packet_is_stegverse_standing": false
+  },
+  "required_capture_fields": [
+    "canonical_source",
+    "source_version_or_date",
+    "published_scope",
+    "published_non_claims",
+    "artifact_type",
+    "relationship_class",
+    "benchmark_relevance",
+    "authority_boundary",
+    "evidence_posture"
+  ],
+  "packets": [
+    {
+      "candidate_id": "opa",
+      "name": "Open Policy Agent",
+      "intake_class": "policy_as_code",
+      "priority_tier": 1,
+      "target_state": "sourced_intake",
+      "capture_focus": ["policy decision model", "input/output contract", "decision authority boundary", "runtime integration surface"],
+      "expected_relationship_class": "adjacent",
+      "expected_benchmark_dimensions": ["commitment_boundary", "authority_boundary", "unknown_trajectory_boundary", "interoperability_path"],
+      "status": "source_capture_required"
+    },
+    {
+      "candidate_id": "cedar-policy",
+      "name": "Cedar Policy",
+      "intake_class": "policy_as_code",
+      "priority_tier": 1,
+      "target_state": "sourced_intake",
+      "capture_focus": ["authorization model", "policy language scope", "entity and action semantics", "decision boundary"],
+      "expected_relationship_class": "adjacent",
+      "expected_benchmark_dimensions": ["authority_boundary", "semantic_equivalence_boundary", "commitment_boundary", "interoperability_path"],
+      "status": "source_capture_required"
+    },
+    {
+      "candidate_id": "oscal",
+      "name": "OSCAL",
+      "intake_class": "risk_and_assurance",
+      "priority_tier": 1,
+      "target_state": "sourced_intake",
+      "capture_focus": ["machine-readable controls", "assessment artifacts", "evidence references", "control versioning"],
+      "expected_relationship_class": "adjacent",
+      "expected_benchmark_dimensions": ["evidence_freshness_boundary", "reconstruction_boundary", "authority_boundary", "interoperability_path"],
+      "status": "source_capture_required"
+    },
+    {
+      "candidate_id": "spiffe-spire",
+      "name": "SPIFFE/SPIRE",
+      "intake_class": "identity_and_authority",
+      "priority_tier": 1,
+      "target_state": "sourced_intake",
+      "capture_focus": ["workload identity", "trust domain", "attestation", "credential lifecycle"],
+      "expected_relationship_class": "adjacent",
+      "expected_benchmark_dimensions": ["authority_boundary", "evidence_freshness_boundary", "commitment_boundary", "reconstruction_boundary"],
+      "status": "source_capture_required"
+    },
+    {
+      "candidate_id": "w3c-verifiable-credentials",
+      "name": "W3C Verifiable Credentials",
+      "intake_class": "identity_and_authority",
+      "priority_tier": 1,
+      "target_state": "sourced_intake",
+      "capture_focus": ["credential data model", "issuer-holder-verifier roles", "proof and status", "revocation or suspension semantics"],
+      "expected_relationship_class": "adjacent",
+      "expected_benchmark_dimensions": ["authority_boundary", "evidence_freshness_boundary", "reconstruction_boundary", "interoperability_path"],
+      "status": "source_capture_required"
+    },
+    {
+      "candidate_id": "in-toto",
+      "name": "in-toto",
+      "intake_class": "provenance_and_trace",
+      "priority_tier": 1,
+      "target_state": "sourced_intake",
+      "capture_focus": ["supply-chain layout", "link metadata", "functionary identity", "verification result"],
+      "expected_relationship_class": "adjacent",
+      "expected_benchmark_dimensions": ["reconstruction_boundary", "evidence_freshness_boundary", "authority_boundary", "interoperability_path"],
+      "status": "source_capture_required"
+    },
+    {
+      "candidate_id": "slsa",
+      "name": "SLSA",
+      "intake_class": "provenance_and_trace",
+      "priority_tier": 1,
+      "target_state": "sourced_intake",
+      "capture_focus": ["provenance levels", "build integrity", "source and builder identity", "verification requirements"],
+      "expected_relationship_class": "adjacent",
+      "expected_benchmark_dimensions": ["reconstruction_boundary", "evidence_freshness_boundary", "authority_boundary", "interoperability_path"],
+      "status": "source_capture_required"
+    },
+    {
+      "candidate_id": "sigstore",
+      "name": "Sigstore",
+      "intake_class": "provenance_and_trace",
+      "priority_tier": 1,
+      "target_state": "sourced_intake",
+      "capture_focus": ["artifact signing", "identity binding", "transparency log", "verification workflow"],
+      "expected_relationship_class": "adjacent",
+      "expected_benchmark_dimensions": ["reconstruction_boundary", "evidence_freshness_boundary", "authority_boundary", "interoperability_path"],
+      "status": "source_capture_required"
+    },
+    {
+      "candidate_id": "mcp",
+      "name": "Model Context Protocol",
+      "intake_class": "agent_protocols",
+      "priority_tier": 1,
+      "target_state": "sourced_intake",
+      "capture_focus": ["tool and resource contract", "client-server roles", "capability exposure", "authorization boundary"],
+      "expected_relationship_class": "adjacent",
+      "expected_benchmark_dimensions": ["preparation_boundary", "commitment_boundary", "authority_boundary", "interoperability_path"],
+      "status": "source_capture_required"
+    },
+    {
+      "candidate_id": "a2a",
+      "name": "Agent2Agent Protocol",
+      "intake_class": "agent_protocols",
+      "priority_tier": 1,
+      "target_state": "sourced_intake",
+      "capture_focus": ["agent identity", "task delegation", "message and artifact exchange", "completion and failure semantics"],
+      "expected_relationship_class": "adjacent",
+      "expected_benchmark_dimensions": ["preparation_boundary", "commitment_boundary", "authority_boundary", "interoperability_path"],
+      "status": "source_capture_required"
+    }
+  ]
+}
