@@ -6,16 +6,25 @@ This file is the documentation mirror handoff source of truth for `StegVerse-Lab
 
 ## Parallel-session status
 
-No active parallel-session block is recorded for Goal 5. Repository searches found no open PRs or issues indicating another active session on this same external-framework benchmark issue.
+Concurrent repository evolution is present for Goal 5. A separate workstream added nested failure observability, captured canonical workflow evidence, and repaired the runtime benchmark `preparation_boundary` identifier drift. This session preserved those changes and limited its work to framework-family coverage, promotion prioritization, and related validation.
+
+Coordination rule:
+
+```text
+workflow failure repair and CI evidence -> preserve existing workstream
+framework family coverage and promotion queue -> this workstream
+shared aggregate checker and handoff -> merge current repository state; do not overwrite newer behavior
+```
 
 ## Active goal
 
-Goal 5: external-framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework mappings, fixtures, source-versioned examples, expanded intake, promotion criteria, release-readiness gating, canonical validation execution, and explicit external-dependency tracking.
+Goal 5: external-framework benchmark mechanism, Morrison Runtime boundary observation, cross-framework mappings, fixtures, source-versioned examples, expanded intake, framework-family coverage, promotion criteria, release-readiness gating, canonical validation execution, and explicit external-dependency tracking.
 
 ## Current proof path
 
 ```text
 candidate intake
+-> family coverage and promotion priority
 -> source-gated promotion
 -> benchmark definition
 -> exact input and observed result
@@ -39,6 +48,8 @@ docs/external-frameworks/fixtures/morrison-runtime-benchmark-observations.v0.1.j
 docs/external-frameworks/fixtures/source-versioned-examples.v0.1.json
 docs/external-frameworks/expanded-framework-intake.md
 docs/external-frameworks/expanded-framework-intake.json
+docs/external-frameworks/framework-family-coverage.md
+docs/external-frameworks/framework-family-coverage.json
 docs/external-frameworks/intake-promotion-criteria.md
 docs/external-frameworks/intake-promotion-criteria.json
 docs/external-frameworks/promoted-intake-records.v0.1.json
@@ -52,8 +63,21 @@ scripts/check_goal5_external_blockers.py
 scripts/check_external_framework_benchmark_mappings.py
 scripts/check_external_framework_benchmark_fixtures.py
 scripts/check_expanded_external_framework_intake.py
+scripts/check_external_framework_family_coverage.py
 scripts/check_external_framework_intake_promotion.py
 ```
+
+## Framework-family coverage
+
+```text
+candidate_total: 42
+intake_classes: 10
+promotion_tiers: 3
+all intake classes represented: yes
+future gap families declared: 10
+```
+
+The promotion queue prioritizes direct transition-boundary systems first, security/evaluation/runtime evidence second, and documentation/privacy/broader governance context third. Priority is not endorsement and does not bypass source-gated promotion.
 
 ## Validation integration
 
@@ -65,6 +89,7 @@ package.json -> validate
 .github/workflows/validate-chain-continuation.yml -> first validation job
 .github/workflows/validate-chain-continuation.yml -> build-pages npm run validate
 iosnoperiod/github/workflows/validate-chain-continuation.yml -> synchronized canonical mirror
+scripts/check_goal5_external_frameworks_all.py -> family coverage validator included
 ```
 
 Commands:
@@ -80,7 +105,7 @@ npm run validate
 mapping dimension state drift: repaired
 mapped_partial dimension status: explicitly allowed
 rollout JSON and documentation: aligned
-aggregate checker: installed
+aggregate checker: installed and report-producing
 package validation integration: installed
 canonical workflow integration: installed
 iOS workflow mirror synchronization: installed
@@ -88,6 +113,7 @@ external blocker registry: installed
 Admissible Existence Seed Cycle: classified mirror-only, no benchmark mapping required
 Goal 5 nested failure observability: installed
 runtime benchmark preparation_boundary identifier drift: repaired at cb1d60e2c3135cb62008e98c6177c677ae8795cd
+framework family coverage and promotion queue: installed
 ```
 
 ## Latest canonical workflow evidence
@@ -124,6 +150,7 @@ These dependencies do not block structural completion. They do block validation-
 
 ```text
 structure_status: ready
+framework_family_coverage: ready
 canonical_validation_integration: ready
 canonical_workflow_integration: ready
 ios_workflow_mirror: synchronized
@@ -133,16 +160,17 @@ build_result: pending
 release_readiness: not_ready_for_tag
 ```
 
-Do not infer a passing build until the workflow triggered by repair commit `cb1d60e2c3135cb62008e98c6177c677ae8795cd` completes successfully.
+Do not infer a passing build until the workflow triggered by repair commit `cb1d60e2c3135cb62008e98c6177c677ae8795cd` and subsequent structural commits completes successfully.
 
 ## Remaining hardening
 
 ```text
-Observe the canonical workflow triggered by repair commit cb1d60e2c3135cb62008e98c6177c677ae8795cd and capture validation/build results.
+Observe the next canonical workflow and capture validation/build results.
 Attach Morrison raw audit payloads or retain externally-blocked partial-evidence posture.
 Run Morrison replay captures or retain no-replayability-claim posture.
 Attach concrete source versions and raw payloads to example registry records, or retain explicit stub-only posture.
-Promote selected source-required candidates only after canonical sources are attached.
+Promote selected Tier 1 candidates only after canonical sources are attached.
+Expand future gap families through source-required intake records before promotion.
 After validation and evidence review, prepare a tag/release candidate and verify updates for:
 - StegVerse-Labs/Site
 - GCAT-BCAT-Engine/Publisher
@@ -152,8 +180,8 @@ After validation and evidence review, prepare a tag/release candidate and verify
 
 ## Boundary
 
-Benchmark publication, candidate intake, promotion, release readiness, workflow integration, blocker classification, mirror-only classification, and repository tags do not create certification, endorsement, equivalence, execution authority, StegVerse standing, or external-framework validation beyond the evidence actually attached.
+Benchmark publication, candidate intake, family coverage, promotion priority, promotion, release readiness, workflow integration, blocker classification, mirror-only classification, and repository tags do not create certification, endorsement, equivalence, execution authority, StegVerse standing, or external-framework validation beyond the evidence actually attached.
 
 ## Next action
 
-Observe the canonical workflow triggered by repair commit `cb1d60e2c3135cb62008e98c6177c677ae8795cd`. If validation passes, capture the validation/build receipts and proceed only to the next bounded task declared above. Do not tag or release while external evidence blockers remain open unless a later handoff explicitly authorizes an evidence-limited release posture.
+Observe the canonical workflow after the latest structural commits. If validation passes, capture the validation/build receipts and continue only with source-gated candidate promotion or other bounded structural work. Do not tag or release while external evidence blockers remain open unless a later handoff explicitly authorizes an evidence-limited release posture.
