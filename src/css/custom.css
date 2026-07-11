@@ -6,8 +6,62 @@
   --ifm-color-primary-light: #2f63d4;
   --ifm-color-primary-lighter: #3b6bd7;
   --ifm-color-primary-lightest: #5b83de;
+
+  /* Cooperative validation comparison states. */
+  --cooperative-agreement-bg: #edf9f0;
+  --cooperative-agreement-accent: #8fc79c;
+  --cooperative-disagreement-bg: #fff0f0;
+  --cooperative-disagreement-accent: #df9a9a;
+  --cooperative-caution-bg: #fff9df;
+  --cooperative-caution-accent: #d8bd69;
+}
+
+[data-theme='dark'] {
+  --cooperative-agreement-bg: rgba(71, 139, 88, 0.18);
+  --cooperative-agreement-accent: #76b985;
+  --cooperative-disagreement-bg: rgba(170, 70, 70, 0.2);
+  --cooperative-disagreement-accent: #d98585;
+  --cooperative-caution-bg: rgba(174, 139, 46, 0.2);
+  --cooperative-caution-accent: #d5b85e;
 }
 
 .hero__title {
   letter-spacing: -0.03em;
+}
+
+/*
+ * Morrison Runtime — Cooperative Validation Suite
+ *
+ * Color is supplementary: each row already states the two expected outcomes
+ * and cooperative pass condition in text. The inset accent improves scanning
+ * without replacing the written interpretation.
+ */
+article h2#cooperative-validation-suite + p + table tbody tr:nth-child(1),
+article h2#cooperative-validation-suite + p + table tbody tr:nth-child(2),
+article h2#cooperative-validation-suite + p + table tbody tr:nth-child(3),
+article h2#cooperative-validation-suite + p + table tbody tr:nth-child(6),
+article h2#cooperative-validation-suite + p + table tbody tr:nth-child(9) {
+  background: var(--cooperative-agreement-bg);
+  box-shadow: inset 4px 0 0 var(--cooperative-agreement-accent);
+}
+
+article h2#cooperative-validation-suite + p + table tbody tr:nth-child(8) {
+  background: var(--cooperative-disagreement-bg);
+  box-shadow: inset 4px 0 0 var(--cooperative-disagreement-accent);
+}
+
+article h2#cooperative-validation-suite + p + table tbody tr:nth-child(4),
+article h2#cooperative-validation-suite + p + table tbody tr:nth-child(5),
+article h2#cooperative-validation-suite + p + table tbody tr:nth-child(7),
+article h2#cooperative-validation-suite + p + table tbody tr:nth-child(10) {
+  background: var(--cooperative-caution-bg);
+  box-shadow: inset 4px 0 0 var(--cooperative-caution-accent);
+}
+
+article h2#cooperative-validation-suite + p + table tbody tr:hover {
+  filter: brightness(0.985);
+}
+
+[data-theme='dark'] article h2#cooperative-validation-suite + p + table tbody tr:hover {
+  filter: brightness(1.08);
 }
