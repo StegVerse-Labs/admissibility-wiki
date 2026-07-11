@@ -131,6 +131,16 @@ def build_base_report(entry: dict[str, Any], manifest: dict[str, Any]) -> dict[s
     }
 
 
+def build_report(entry: dict[str, Any], manifest: dict[str, Any]) -> dict[str, Any]:
+    """Backward-compatible report builder used by validators and older callers.
+
+    `build_base_report` is the canonical implementation. This alias preserves the
+    established public module API so report-generation checks do not fail when
+    older integrations still call `build_report`.
+    """
+    return build_base_report(entry, manifest)
+
+
 def preserve_enriched_report(
     base: dict[str, Any], existing: dict[str, Any] | None
 ) -> dict[str, Any]:
