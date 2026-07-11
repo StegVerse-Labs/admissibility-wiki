@@ -47,20 +47,10 @@
     {"framework_id":"eu-ai-act","name":"EU AI Act","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/eu-ai-act.md","manifest_path":"docs/external-frameworks/eu-ai-act.json","source":"https://eur-lex.europa.eu/eli/reg/2024/1689/oj","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
     {"framework_id":"policy-cards","name":"Policy Cards","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/policy-cards.md","manifest_path":"docs/external-frameworks/policy-cards.json","source":"https://arxiv.org/abs/2510.24383","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
     {"framework_id":"runtime-governance-for-ai-agents","name":"Runtime Governance for AI Agents","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/runtime-governance-policies-on-paths.md","manifest_path":"docs/external-frameworks/runtime-governance-for-ai-agents.json","source":"https://arxiv.org/abs/2603.16586","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
-    {"framework_id":"admissible-existence-seed-cycle","name":"Admissible Existence Seed Cycle","status":"SEED-CYCLE-COMPLETE","path":"docs/external-frameworks/admissible-existence-seed-cycle.md","manifest_path":"docs/external-frameworks/admissible-existence-seed-cycle.json","source":"Admissible-Existence/AE","testbench_state":"FIRST_FRAMEWORK_CYCLE_COMPLETE","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false}
+    {"framework_id":"admissible-existence-seed-cycle","name":"Admissible Existence Seed Cycle","status":"SEED-CYCLE-COMPLETE","path":"docs/external-frameworks/admissible-existence-seed-cycle.md","manifest_path":"docs/external-frameworks/admissible-existence-seed-cycle.json","source":"Admissible-Existence/AE","testbench_state":"FIRST_FRAMEWORK_CYCLE_COMPLETE","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false},
+    {"framework_id":"decision-authority","name":"Decision Authority Compatibility","status":"SOURCED-CROSSWALK-PROVISIONAL","path":"docs/external-frameworks/decision-authority.md","manifest_path":"docs/external-frameworks/decision-authority.json","source":"StegVerse-Labs/repo-standards/schemas/decision-authority.schema.json","testbench_state":"SOURCE_RECORDED_CROSSWALK_PROVISIONAL","claims_certification":false,"claims_endorsement":false,"claims_execution_authority":false}
   ],
-  "required_entry_fields": [
-    "framework_id",
-    "name",
-    "status",
-    "path",
-    "manifest_path",
-    "source",
-    "testbench_state",
-    "claims_certification",
-    "claims_endorsement",
-    "claims_execution_authority"
-  ],
+  "required_entry_fields": ["framework_id","name","status","path","manifest_path","source","testbench_state","claims_certification","claims_endorsement","claims_execution_authority"],
   "boundary": {
     "index_inclusion_is_certification": false,
     "index_inclusion_is_endorsement": false,
