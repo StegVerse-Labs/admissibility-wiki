@@ -56,6 +56,8 @@ missing_fields
 
 Framework behavior should be classified by boundary rather than only pass/fail. Machine-readable reports use the underscore identifiers shown in parentheses.
 
+The canonical identifier `preparation_boundary` represents staged activity that prepares a later consequence-bearing transition without automatically proving that execution authority exists. It remains distinct from `commitment_boundary` and `execution_boundary`, even when a framework elects to evaluate those stages together.
+
 | Boundary Class | Question |
 |---|---|
 | Parser boundary (`parser_boundary`) | Did the submitted trajectory parse exactly as intended? |
