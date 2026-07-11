@@ -1,0 +1,192 @@
+{
+  "schema_version": "1.0.0",
+  "cases": [
+    {
+      "id": "allow.reversible-notification",
+      "title": "Fresh evidence and reversible notification",
+      "commit_time": "2026-07-11T20:00:00Z",
+      "evidence": [
+        {
+          "id": "account-state",
+          "observed_at": "2026-07-11T19:59:30Z",
+          "max_age_seconds": 300,
+          "decay_rate_per_second": 0.0001,
+          "weight": 1.0,
+          "material": true,
+          "sufficiency": 0.94
+        },
+        {
+          "id": "delivery-preference",
+          "observed_at": "2026-07-11T19:50:00Z",
+          "max_age_seconds": 3600,
+          "decay_rate_per_second": 0.00002,
+          "weight": 0.5,
+          "material": false,
+          "sufficiency": 0.90
+        }
+      ],
+      "standing": {
+        "authority": 0.98,
+        "policy": 0.97,
+        "context": 0.95,
+        "consent": true,
+        "scope": true
+      },
+      "consequence": {
+        "irreversibility": 0.10,
+        "harm": 0.10,
+        "uncertainty": 0.08,
+        "recoverability": 0.95,
+        "recovery_paths": ["rollback", "repair", "appeal", "learn"]
+      },
+      "threshold_coefficients": {
+        "base": 0.30,
+        "irreversibility": 0.20,
+        "harm": 0.20,
+        "uncertainty": 0.15,
+        "unrecoverability": 0.15
+      },
+      "independent_review_required": false,
+      "expected_disposition": "ALLOW",
+      "notes": "Low-consequence action remains well above the calculated threshold."
+    },
+    {
+      "id": "deny.expired-delegation",
+      "title": "Technically executable transfer with expired delegation",
+      "commit_time": "2026-07-11T20:00:00Z",
+      "evidence": [
+        {
+          "id": "payment-instruction",
+          "observed_at": "2026-07-11T19:59:45Z",
+          "max_age_seconds": 120,
+          "decay_rate_per_second": 0.0002,
+          "weight": 1.0,
+          "material": true,
+          "sufficiency": 0.98
+        }
+      ],
+      "standing": {
+        "authority": 0.0,
+        "policy": 0.96,
+        "context": 0.95,
+        "consent": true,
+        "scope": true
+      },
+      "consequence": {
+        "irreversibility": 0.85,
+        "harm": 0.75,
+        "uncertainty": 0.05,
+        "recoverability": 0.20,
+        "recovery_paths": ["contain", "appeal", "learn"]
+      },
+      "threshold_coefficients": {
+        "base": 0.30,
+        "irreversibility": 0.20,
+        "harm": 0.20,
+        "uncertainty": 0.15,
+        "unrecoverability": 0.15
+      },
+      "independent_review_required": false,
+      "expected_disposition": "DENY",
+      "notes": "Operational capability cannot substitute for valid commit-time authority."
+    },
+    {
+      "id": "defer.stale-location-evidence",
+      "title": "Material location evidence exceeds its inference window",
+      "commit_time": "2026-07-11T20:00:00Z",
+      "evidence": [
+        {
+          "id": "current-location",
+          "observed_at": "2026-07-11T19:50:00Z",
+          "max_age_seconds": 120,
+          "decay_rate_per_second": 0.001,
+          "weight": 1.0,
+          "material": true,
+          "sufficiency": 0.96
+        },
+        {
+          "id": "route-condition",
+          "observed_at": "2026-07-11T19:59:20Z",
+          "max_age_seconds": 180,
+          "decay_rate_per_second": 0.0005,
+          "weight": 0.8,
+          "material": true,
+          "sufficiency": 0.88
+        }
+      ],
+      "standing": {
+        "authority": 0.95,
+        "policy": 0.95,
+        "context": 0.90,
+        "consent": true,
+        "scope": true
+      },
+      "consequence": {
+        "irreversibility": 0.40,
+        "harm": 0.55,
+        "uncertainty": 0.35,
+        "recoverability": 0.65,
+        "recovery_paths": ["rollback", "repair", "contain", "appeal", "learn"]
+      },
+      "threshold_coefficients": {
+        "base": 0.30,
+        "irreversibility": 0.20,
+        "harm": 0.20,
+        "uncertainty": 0.15,
+        "unrecoverability": 0.15
+      },
+      "independent_review_required": false,
+      "expected_disposition": "DEFER",
+      "notes": "The action may become admissible after refreshing the stale material evidence."
+    },
+    {
+      "id": "escalate.high-consequence-uncertainty",
+      "title": "High-consequence action with insufficient aggregate standing",
+      "commit_time": "2026-07-11T20:00:00Z",
+      "evidence": [
+        {
+          "id": "risk-assessment",
+          "observed_at": "2026-07-11T19:58:00Z",
+          "max_age_seconds": 600,
+          "decay_rate_per_second": 0.0002,
+          "weight": 1.0,
+          "material": true,
+          "sufficiency": 0.58
+        },
+        {
+          "id": "identity-binding",
+          "observed_at": "2026-07-11T19:59:00Z",
+          "max_age_seconds": 600,
+          "decay_rate_per_second": 0.0001,
+          "weight": 1.0,
+          "material": true,
+          "sufficiency": 0.70
+        }
+      ],
+      "standing": {
+        "authority": 0.82,
+        "policy": 0.88,
+        "context": 0.55,
+        "consent": true,
+        "scope": true
+      },
+      "consequence": {
+        "irreversibility": 0.90,
+        "harm": 0.90,
+        "uncertainty": 0.65,
+        "recoverability": 0.10,
+        "recovery_paths": ["contain", "compensate", "appeal", "learn"]
+      },
+      "threshold_coefficients": {
+        "base": 0.30,
+        "irreversibility": 0.20,
+        "harm": 0.20,
+        "uncertainty": 0.15,
+        "unrecoverability": 0.15
+      },
+      "independent_review_required": true,
+      "expected_disposition": "ESCALATE",
+      "notes": "No hard authority failure exists, but the consequence profile requires independent review."
+    }
+  ]
+}
