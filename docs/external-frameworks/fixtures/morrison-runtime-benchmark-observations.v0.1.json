@@ -60,6 +60,7 @@
   },
   "authority_boundary": {
     "fixture_is_authority": false,
+    "external_framework_inclusion_is_execution_authority": false,
     "runtime_allow_is_stegverse_allow": false,
     "runtime_block_is_stegverse_certification": false,
     "captured_observation_is_general_validation": false
