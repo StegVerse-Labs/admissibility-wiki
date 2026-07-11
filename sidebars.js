@@ -107,6 +107,7 @@ const sidebars = {
         'external-frameworks/benchmark-mapping-rollout',
         'external-frameworks/expanded-framework-intake',
         'external-frameworks/framework-family-coverage',
+        'external-frameworks/tier1-source-intake-work-packets',
         'external-frameworks/intake-promotion-criteria',
         'external-frameworks/morrison-runtime-boundary-observation',
         'external-frameworks/failure-class-catalog',
