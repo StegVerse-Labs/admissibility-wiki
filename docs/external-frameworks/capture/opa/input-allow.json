@@ -1,0 +1,6 @@
+{
+  "actor": "alice",
+  "action": "read",
+  "resource": "document-1",
+  "approval": true
+}
