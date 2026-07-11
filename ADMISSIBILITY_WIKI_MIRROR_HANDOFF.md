@@ -46,6 +46,47 @@ iosnoperiod/github/workflows/validate.yml
   -> removed as obsolete stale mirror workflow file
 ```
 
+## Automated transitions observatory
+
+Installed as an additive observability surface for bootstrap orchestration:
+
+```text
+docs/governance/admissible-automated-transitions.md
+static/governance/admissible-automated-transitions.v0.1.json
+receipts/admissible-automated-transitions-observatory-receipt.json
+sidebars.js includes governance/admissible-automated-transitions
+```
+
+Current catalogued transition:
+
+```text
+automation.github-handoff-watch.hourly.v1
+  -> hourly Gmail condition watch
+  -> GitHub failure and completion/progress event classes
+  -> current *_MIRROR_HANDOFF.md selects the permitted task
+  -> bounded authorized repair or verified next-task continuation
+  -> stop on ambiguous authority, destructive boundaries, unavailable credentials, unverifiable tests, or missing next task
+```
+
+Observatory boundary:
+
+```text
+cataloguing does not grant execution authority
+manifest presence does not prove a run succeeded
+run-specific evidence and receipts remain required
+cross-repository authority is never inferred
+```
+
+Next observatory verification:
+
+```text
+parse static/governance/admissible-automated-transitions.v0.1.json
+run the repository validation/build chain
+verify /docs/governance/admissible-automated-transitions public route
+confirm sidebar navigation
+replace STATIC_ARTIFACT_INSTALL_RECORDED with build/public-route evidence when available
+```
+
 ## Public proof chain
 
 ```text
@@ -86,11 +127,12 @@ No Resurrection Tech endorsement, StegVerse certification, or live integration i
 
 ```text
 public page builds
-JSON status artifact parses
+JSON status artifacts parse
 boundary/non-claim language is preserved
 Morrison Runtime page remains cooperative and non-certifying
 historical six-test record remains marked as conversation-level reconstruction until prompt-by-prompt artifacts are attached
 single workflow policy passes for active and iOS mirror workflow directories
+automated transitions manifest parses and public observatory route resolves
 ```
 
 ## Remaining files or modules to install
@@ -102,21 +144,31 @@ Attach prompt-by-prompt Morrison test artifacts when available.
 Generate or attach captured runtime outputs/audit payloads for each cooperative validation case.
 Route each captured result through the Commit-Time Interoperability Contract.
 Wait for validate-chain-continuation workflow to rerun green after mirror cleanup.
+Add automated catalog update and receipt generation after the first public observatory build is verified.
 ```
 
 Intended Org/Repo: `StegVerse-Labs/Site`
 
 ```text
-Mirror or index this public proof only after admissibility-wiki build passes.
+Mirror or index public proofs only after admissibility-wiki build passes.
 Check Site docs/SITE_MIRROR_HANDOFF.md before any Site update.
+Queue the automated transitions observatory for indexing only after its public route is green.
 ```
 
 Intended Org/Repo: `GCAT-BCAT-Engine/Publisher`
 
 ```text
-No publisher sync performed yet; queue only after wiki page is green.
+No publisher sync performed yet; queue only after wiki pages are green.
+```
+
+Intended Org/Repo: bootstrap orchestration framework
+
+```text
+Emit run-specific transition receipts consumable by the observatory manifest.
+Provide duplicate/stale-event identifiers and lifecycle state updates.
+Declare migration from bootstrap orchestration to native orchestration per scope.
 ```
 
 ## Archive posture
 
-This handoff preserves the current sync state so the complete thread can be archived without needing additional context to continue.
+This handoff preserves the current sync and observatory state so the complete thread can be archived without needing additional context to continue.
