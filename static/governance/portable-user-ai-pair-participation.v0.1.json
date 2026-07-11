@@ -1,0 +1,61 @@
+{
+  "manifest_id": "portable-user-ai-pair-participation.v0.1",
+  "manifest_version": "0.1.0",
+  "generated_at": "2026-07-10T00:00:00Z",
+  "origin_classes": [
+    {
+      "origin_class": "PORTABLE_USER_AI_PAIR",
+      "continuity": "persistent_user_controlled",
+      "network_standing": "conditional_current_verification",
+      "reconstruction_authority": "portable_node",
+      "required_refs": [
+        "pair_id",
+        "user_subject_ref",
+        "ai_entity_ref",
+        "relationship_declaration_ref",
+        "delegation_ref",
+        "consent_policy_ref",
+        "continuity_state_ref",
+        "local_receipt_index_ref"
+      ],
+      "action_origin_enum": [
+        "USER_DIRECT",
+        "AI_ASSISTED",
+        "AI_EXPLICITLY_DELEGATED",
+        "PAIR_JOINT",
+        "NODE_AUTOMATION"
+      ],
+      "authority_boundaries": {
+        "user_authority_equals_ai_authority": false,
+        "pair_continuity_implies_unrestricted_delegation": false,
+        "ai_assistance_implies_autonomous_consent": false
+      },
+      "reconstruction_scope": "user_authorized_ecosystem_records"
+    },
+    {
+      "origin_class": "THREAD_SCOPED_PARTICIPANT",
+      "continuity": "thread_session_or_capability_scoped",
+      "network_standing": "not_inferred",
+      "reconstruction_authority": "thread_or_supplied_capability_only",
+      "required_refs": [
+        "thread_id",
+        "thread_participant_ref",
+        "transition_id",
+        "visibility_class"
+      ],
+      "authority_boundaries": {
+        "persistent_pair_identity_inferred": false,
+        "cross_thread_identity_linkage_inferred": false,
+        "ecosystem_standing_inferred": false
+      },
+      "reconstruction_scope": "current_thread_and_explicitly_supplied_records"
+    }
+  ],
+  "master_records_boundary": {
+    "preserves_final_continuity_records": true,
+    "becomes_global_user_identity_authority": false,
+    "portable_node_retains_private_identifier_mappings": true
+  },
+  "public_page": "docs/governance/portable-user-ai-pair-participation.md",
+  "authority_boundary": "This manifest defines participant-origin classes and does not activate a portable-node runtime or grant AI, reconstruction, or network authority."
+}
