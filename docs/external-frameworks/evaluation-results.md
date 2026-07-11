@@ -30,3 +30,4 @@ When an external framework is evaluated, the generated compatibility report is t
 | [Policy Cards](./policy-cards.md) | `COMPATIBILITY_EVIDENCE_ONLY` | `FIRST_FRAMEWORK_CYCLE_COMPLETE` | `False` | [report](./reports/policy-cards.compatibility.json) |
 | [Runtime Governance for AI Agents](./runtime-governance-policies-on-paths.md) | `COMPATIBILITY_EVIDENCE_ONLY` | `FIRST_FRAMEWORK_CYCLE_COMPLETE` | `False` | [report](./reports/runtime-governance-for-ai-agents.compatibility.json) |
 | [Admissible Existence Seed Cycle](./admissible-existence-seed-cycle.md) | `COMPATIBILITY_EVIDENCE_ONLY` | `FIRST_FRAMEWORK_CYCLE_COMPLETE` | `False` | [report](./reports/admissible-existence-seed-cycle.compatibility.json) |
+| [Decision Authority Compatibility](./decision-authority.md) | `COMPATIBILITY_EVIDENCE_ONLY` | `FIRST_FRAMEWORK_CYCLE_COMPLETE` | `False` | [report](./reports/decision-authority.compatibility.json) |
