@@ -13,23 +13,14 @@ ROLLOUT = ROOT / "docs" / "external-frameworks" / "benchmark-mapping-rollout.jso
 EXAMPLES = FIXTURE_DIR / "source-versioned-examples.v0.1.json"
 
 REQUIRED_FRAMEWORK_FIXTURES = {
-    "glm",
-    "evide",
-    "decisionassure",
-    "mindforge",
-    "morrison-runtime",
-    "asro",
-    "care-runtime",
-    "aar",
-    "mitre-atlas",
-    "owasp-top-10-llm",
-    "agent-governance-playbook",
-    "killswitch-md",
-    "nist-ai-rmf",
-    "iso-iec-42001",
-    "eu-ai-act",
-    "policy-cards",
-    "runtime-governance-policies-on-paths",
+    "glm", "evide", "decisionassure", "mindforge", "morrison-runtime", "asro",
+    "care-runtime", "aar", "mitre-atlas", "owasp-top-10-llm",
+    "agent-governance-playbook", "killswitch-md", "nist-ai-rmf", "iso-iec-42001",
+    "eu-ai-act", "policy-cards", "runtime-governance-policies-on-paths",
+    "opa", "cedar-policy", "oscal", "spiffe-spire", "w3c-verifiable-credentials",
+    "in-toto", "slsa", "sigstore", "mcp", "a2a", "openid-connect", "oauth2",
+    "w3c-did", "openlineage", "w3c-prov", "guardrails-ai", "llama-guard",
+    "nemo-guardrails",
 }
 
 REQUIRED_AUTHORITY_FALSE_KEYS = {
@@ -38,16 +29,9 @@ REQUIRED_AUTHORITY_FALSE_KEYS = {
 }
 
 REQUIRED_EXAMPLE_FIELDS = {
-    "example_id",
-    "framework_id",
-    "source_reference",
-    "source_version_or_date",
-    "fixture_reference",
-    "benchmark_dimensions",
-    "example_input",
-    "expected_stegverse_posture",
-    "non_claims",
-    "missing_fields",
+    "example_id", "framework_id", "source_reference", "source_version_or_date",
+    "fixture_reference", "benchmark_dimensions", "example_input",
+    "expected_stegverse_posture", "non_claims", "missing_fields",
 }
 
 
@@ -57,11 +41,9 @@ def load_json(path: Path) -> dict[str, Any]:
 
 def main() -> int:
     failures: list[str] = []
-
     for path in [FIXTURE_DIR, MAPPING_DIR, ROLLOUT, EXAMPLES]:
         if not path.exists():
             failures.append(f"missing path: {path.relative_to(ROOT)}")
-
     if failures:
         print("EXTERNAL FRAMEWORK BENCHMARK FIXTURES: FAIL")
         for failure in failures:
@@ -72,11 +54,9 @@ def main() -> int:
     examples = load_json(EXAMPLES)
     rollout_ids = {entry.get("framework_id") for entry in rollout.get("entries", []) if isinstance(entry, dict)}
     mapping_ids = {load_json(path).get("framework_id") for path in MAPPING_DIR.glob("*.mapping.json")}
-
     fixture_ids: set[str] = set()
     fixture_paths = sorted(FIXTURE_DIR.glob("*-benchmark-fixture.v0.1.json"))
     fixture_paths += sorted(FIXTURE_DIR.glob("*-benchmark-observations.v0.1.json"))
-
     if not fixture_paths:
         failures.append("no benchmark fixture files found")
 
@@ -85,7 +65,6 @@ def main() -> int:
         framework_id = fixture.get("framework_id")
         fixture_ids.add(framework_id)
         artifact_type = fixture.get("artifact_type")
-
         if artifact_type not in {"external_framework_benchmark_fixture", "external_framework_runtime_benchmark_observation_fixture"}:
             failures.append(f"fixture artifact type mismatch: {fixture_path.relative_to(ROOT)}")
         if fixture.get("schema_version") != "0.1":
@@ -94,7 +73,6 @@ def main() -> int:
             failures.append(f"fixture framework not in rollout: {framework_id}")
         if framework_id not in mapping_ids:
             failures.append(f"fixture framework missing mapping companion: {framework_id}")
-
         if artifact_type == "external_framework_benchmark_fixture":
             cases = fixture.get("fixture_cases", [])
             if not isinstance(cases, list) or not cases:
@@ -110,7 +88,6 @@ def main() -> int:
                     failures.append(f"fixture case must default fail closed: {framework_id}:{case.get('fixture_id')}")
                 if not case.get("missing_fields_fail_closed"):
                     failures.append(f"fixture case missing fail-closed fields: {framework_id}:{case.get('fixture_id')}")
-
         authority = fixture.get("authority_boundary", {})
         for required_key in REQUIRED_AUTHORITY_FALSE_KEYS:
             if authority.get(required_key) is not False:
