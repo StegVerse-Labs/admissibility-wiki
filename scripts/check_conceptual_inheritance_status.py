@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 STATUS_PATH = ROOT / "static" / "status" / "conceptual-inheritance-provenance-status.json"
 PUBLICATION_STATUS_PATH = ROOT / "static" / "status" / "conceptual-inheritance-publication-verification.json"
+PROPAGATION_PLAN_PATH = ROOT / "static" / "status" / "conceptual-inheritance-propagation-plan.json"
 DOCTRINE_PATH = ROOT / "docs" / "formalisms" / "conceptual-inheritance-provenance.md"
 INDEX_PATH = ROOT / "docs" / "formalisms" / "index.md"
 SIDEBAR_PATH = ROOT / "sidebars.js"
@@ -14,6 +15,7 @@ SCHEMA_PATH = ROOT / "static" / "schemas" / "conceptual-inheritance-record.schem
 FIXTURES_PATH = ROOT / "tests" / "fixtures" / "conceptual-inheritance-cases.json"
 VALIDATOR_PATH = ROOT / "scripts" / "check_conceptual_inheritance_claims.py"
 PUBLICATION_VALIDATOR_PATH = ROOT / "scripts" / "check_conceptual_inheritance_publication.py"
+PROPAGATION_VALIDATOR_PATH = ROOT / "scripts" / "check_conceptual_inheritance_propagation_plan.py"
 
 EXPECTED_OUTCOMES = {"ADMIT", "DENY", "FAIL_CLOSED", "REVIEW_REQUIRED"}
 EXPECTED_STATUS = {
@@ -34,6 +36,7 @@ def main() -> int:
     required_files = (
         STATUS_PATH,
         PUBLICATION_STATUS_PATH,
+        PROPAGATION_PLAN_PATH,
         DOCTRINE_PATH,
         INDEX_PATH,
         SIDEBAR_PATH,
@@ -41,6 +44,7 @@ def main() -> int:
         FIXTURES_PATH,
         VALIDATOR_PATH,
         PUBLICATION_VALIDATOR_PATH,
+        PROPAGATION_VALIDATOR_PATH,
     )
     for path in required_files:
         if not path.exists():
@@ -74,6 +78,8 @@ def main() -> int:
         "status_validator",
         "publication_verification",
         "publication_validator",
+        "propagation_plan",
+        "propagation_validator",
         "decision_outcomes",
         "governance_boundaries",
         "remaining_checks",
@@ -106,6 +112,8 @@ def main() -> int:
         "status_validator": "scripts/check_conceptual_inheritance_status.py",
         "publication_verification": "static/status/conceptual-inheritance-publication-verification.json",
         "publication_validator": "scripts/check_conceptual_inheritance_publication.py",
+        "propagation_plan": "static/status/conceptual-inheritance-propagation-plan.json",
+        "propagation_validator": "scripts/check_conceptual_inheritance_propagation_plan.py",
     }
     for field, expected in expected_paths.items():
         if status.get(field) != expected:
@@ -134,6 +142,10 @@ def main() -> int:
     boundary_text = " ".join(str(item) for item in status.get("governance_boundaries", [])).lower()
     if "pending deployment" not in boundary_text:
         fail("status boundaries must reject pending deployment as public verification", failures)
+    if "queued propagation" not in boundary_text:
+        fail("status boundaries must reject queued propagation as completed propagation", failures)
+    if "destination mirror handoffs" not in boundary_text:
+        fail("status boundaries must preserve destination handoff authority", failures)
 
     if failures:
         print("CONCEPTUAL INHERITANCE STATUS: FAIL")
