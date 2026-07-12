@@ -21,6 +21,7 @@ non-authorizing fixture definitions: 18 of 18
 priority observed-evidence queue entries: 7 of 7
 executable capture harnesses: 7 of 7
 automated pinned capture jobs: 1 of 7
+generated capture artifact validators: 1 of 7
 observed external outputs attached: pending workflow result
 independently replayed outputs: 0 of 18
 ```
@@ -75,14 +76,17 @@ docs/external-frameworks/capture/opa/input-deny.json
 docs/external-frameworks/opa-observation-capture-runbook.md
 scripts/capture_opa_observation.py
 scripts/run_pinned_opa_ci_capture.py
+scripts/validate_opa_capture_artifacts.py
 scripts/check_opa_observation_capture_harness.py
 ```
 
 The pinned runner downloads OPA `v1.0.0` from the official GitHub release, verifies its published SHA-256 file, executes allow and deny cases twice in separate processes on the same runner, and writes capture plus replay receipts. The receipt preserves the runtime binary hash, runtime version, GitHub run/SHA context, exact commands, source artifacts, outputs, hashes, limitations, and replay comparison.
 
-The canonical `validate-chain-continuation.yml` now contains a `capture-opa-evidence` job. It runs automatically on main push, workflow dispatch, and scheduled executions, uploads `opa-pinned-capture-replay`, and does not block site deployment when an external download or capture fails. The iOS workflow mirror is byte-identical and validator-enforced.
+The generated-artifact validator requires all four capture/replay files plus the replay receipt, confirms the `captured_unverified` and `replay_confirmed_same_environment` boundaries, checks the authority and compatibility non-claims, verifies every replay comparison, hashes each generated JSON file, and writes `opa-capture-status.json`. It explicitly records independent replay as `not_performed`, compatibility as `not_claimed`, and execution authority as `not_created`.
 
-No successful workflow capture is claimed until the job result and uploaded artifact are inspected.
+The canonical `validate-chain-continuation.yml` contains a `capture-opa-evidence` job. It runs automatically on main push, workflow dispatch, and scheduled executions, validates generated receipts before upload, uploads `opa-pinned-capture-replay`, and does not block site deployment when an external download or capture fails. The iOS workflow mirror is logically identical and validator-enforced.
+
+No successful workflow capture is claimed until the job result and uploaded artifact are inspected. The GitHub connector currently exposes no push or scheduled workflow run for the relevant commits, so no run, job, or artifact identifier has been inferred.
 
 ### Cedar Policy
 
@@ -152,7 +156,7 @@ replay confirmation != execution authority
 
 ## Parallel coordination
 
-This workstream owns candidate visibility, canonical-source capture, sourced-intake promotion records, framework pages, mappings, fixtures, capture queues, capture harnesses, automated capture jobs, and the public capture-status surface. Do not overwrite newer CI repair, workflow receipt, deployment verification, or documentation-mesh state from other workstreams.
+This workstream owns candidate visibility, canonical-source capture, sourced-intake promotion records, framework pages, mappings, fixtures, capture queues, capture harnesses, automated capture jobs, generated-artifact validators, and the public capture-status surface. Do not overwrite newer CI repair, workflow receipt, deployment verification, lifecycle-formalism, inference-window, or documentation-mesh state from other workstreams.
 
 ## Remaining files/modules to install
 
@@ -162,7 +166,7 @@ Destination: `StegVerse-Labs/admissibility-wiki`
 inspect the first automated OPA capture job and artifact
 record exact run, job, artifact, and receipt hashes after success
 run OPA replay in a second independent environment before observed_partial
-add automated pinned capture jobs for other priority frameworks when reproducible runtimes are selected
+add automated pinned capture jobs and generated-artifact validators for other priority frameworks when reproducible runtimes are selected
 produce observed-partial compatibility reports only after exact evidence exists
 update capture queue and public status from inspected receipts
 capture public deployment/page verification receipts
@@ -170,10 +174,10 @@ capture public deployment/page verification receipts
 
 ## Next action
 
-Observe the workflow triggered by the pinned OPA automation commits. If the capture job succeeds, inspect and preserve the uploaded allow, deny, replay, and receipt artifacts as `captured_unverified` plus `replay_confirmed_same_environment`. Do not advance to independent replay, observed compatibility, or execution authority.
+Observe the workflow triggered by the OPA artifact-validation commits. If the capture job succeeds, inspect and preserve the uploaded allow, deny, replay, replay-receipt, and `opa-capture-status.json` artifacts as `captured_unverified` plus `replay_confirmed_same_environment`. Do not advance to independent replay, observed compatibility, or execution authority.
 
 ## Release path
 
-The repo is not ready to tag solely because source capture, pages, mappings, fixtures, queues, all seven priority harnesses, and one automated capture job exist. After observed-evidence, independent replay, and deployment review, verify pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
+The repo is not ready to tag solely because source capture, pages, mappings, fixtures, queues, all seven priority harnesses, one automated capture job, and one generated-artifact validator exist. After observed-evidence, independent replay, and deployment review, verify pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
 
 The complete prior thread is not required to continue from this handoff.
