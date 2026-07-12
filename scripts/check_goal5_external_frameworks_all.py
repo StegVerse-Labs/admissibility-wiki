@@ -23,6 +23,7 @@ CHECKS = [
     "scripts/check_external_framework_evidence_tooling_coverage.py",
     "scripts/check_external_framework_implementation_selection_gates.py",
     "scripts/check_external_framework_automation_readiness.py",
+    "scripts/check_external_framework_execution_plans.py",
     "scripts/check_expanded_external_framework_intake.py",
     "scripts/check_external_framework_candidate_directory.py",
     "scripts/check_external_framework_family_coverage.py",
@@ -91,7 +92,7 @@ def main() -> int:
         return 1
 
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: evidence_tooling_7_of_7_selection_gated_automation_readiness_generated")
+    print("release_readiness: selection_gated_execution_plans_generated_no_runtime_jobs_emitted")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
