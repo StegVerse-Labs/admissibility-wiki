@@ -2,7 +2,7 @@
 
 ## Source of truth
 
-This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, replay, evidence-status, implementation-selection, automation-readiness, and execution-plan work. Preserve unrelated CI repair, deployment verification, lifecycle-formalism, inference-window, and documentation-mesh work owned by other workstreams.
+This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, replay, evidence-status, implementation-selection, automation-readiness, execution-plan, and job-materialization governance work. Preserve unrelated CI repair, deployment verification, lifecycle-formalism, inference-window, and documentation-mesh work owned by other workstreams.
 
 ## Current state
 
@@ -23,6 +23,7 @@ fresh-runner replay jobs: 1 of 7
 implementation-selection gate records: 6 of 6 remaining unpinned frameworks
 automated implementation-readiness matrix: installed and workflow-integrated
 automated fail-closed execution-plan matrix: installed and chained from readiness generation
+job-materialization receipt layer: installed and aggregate-validated
 runtime jobs emitted by execution-plan automation: 0
 observed external outputs attached: pending workflow result
 fresh-runner replay outputs attached: pending workflow result
@@ -81,7 +82,7 @@ NeMo Guardrails
 
 The readiness matrix records selection state, missing required fields, framework-specific context completeness, hash evidence, version or commit evidence, command evidence, selection completeness, registry authorization, execution-job eligibility, and automation state.
 
-The canonical workflow invokes the readiness generator. Readiness generation now automatically invokes the execution-plan generator before the readiness validator and complete Goal 5 aggregate scan. The aggregate checker separately validates the generated plan matrix.
+The canonical workflow invokes the readiness generator. Readiness generation automatically invokes the execution-plan generator before the readiness validator and complete Goal 5 aggregate scan. The aggregate checker separately validates the generated plan matrix.
 
 Generated reports:
 
@@ -128,6 +129,42 @@ a plan claims authority or external consequence permission
 a separate governed materialization transition is not required
 ```
 
+## Governed job-materialization receipt layer
+
+Installed:
+
+```text
+static/schemas/external-framework-job-materialization-receipt.schema.json
+tests/fixtures/external-framework-job-materialization-receipt.blocked.json
+scripts/check_external_framework_job_materialization_receipt.py
+receipts/external-framework-job-materialization-receipt-layer-2026-07-11.json
+scripts/check_goal5_external_frameworks_all.py
+```
+
+The materialization receipt layer consumes readiness and execution-plan references but does not create a runtime job or runtime authority. It requires readiness and plan SHA-256 bindings, a separate authority review, a separate consequence-boundary review, and an explicit materialization decision.
+
+The current fixture remains blocked:
+
+```text
+materialization_decision: BLOCKED
+runtime_execution_authorized: false
+runtime_job: null
+authority_review.status: MISSING
+consequence_boundary_review.status: MISSING
+```
+
+The validator rejects any receipt that:
+
+```text
+omits readiness or execution-plan hashes
+allows execution for BLOCKED, DENY, or REVIEW_REQUIRED
+contains a runtime job while execution is unauthorized
+claims that job materialization is execution authority
+claims that an eligible plan may self-materialize
+omits separate authority or consequence-boundary review
+permits materialization to bypass a distinct governed transition
+```
+
 ## Eligibility predicates
 
 Execution-job review may become eligible only when all are true:
@@ -153,7 +190,7 @@ No successful OPA capture or replay is claimed until workflow jobs and artifacts
 
 ## Remaining framework posture
 
-Cedar, MCP, A2A, Guardrails AI, Llama Guard, and NeMo Guardrails have complete capture, validation, summary, selection-gate, readiness, and blocked-plan automation. None has an exact selected implementation, version, command, hash-bound environment, provider, transport/model context, or observed output.
+Cedar, MCP, A2A, Guardrails AI, Llama Guard, and NeMo Guardrails have complete capture, validation, summary, selection-gate, readiness, blocked-plan, and blocked materialization-receipt structure. None has an exact selected implementation, version, command, hash-bound environment, provider, transport/model context, observed output, approved materialization receipt, or runtime authority.
 
 ## Evidence progression
 
@@ -163,7 +200,9 @@ fixture_ready
 -> implementation_selected_hash_bound
 -> automation_readiness_review
 -> eligible_for_execution_job_materialization
--> separate_governed_job_materialization_transition
+-> governed_job_materialization_receipt
+-> separate_authority_and_consequence_review
+-> runtime_execution_authorization_if_admissible
 -> awaiting_capture
 -> captured_unverified
 -> replay_confirmed_same_environment
@@ -173,7 +212,7 @@ fixture_ready
 -> interoperability_candidate
 ```
 
-No framework may advance merely because tooling, readiness, or a plan exists.
+No framework may advance merely because tooling, readiness, a plan, or a receipt structure exists.
 
 ## Boundary
 
@@ -187,6 +226,8 @@ implementation selection != execution authorization
 automation readiness != execution authority
 execution plan != executable job
 execution-plan eligibility != job materialization
+job-materialization receipt != runtime execution authority
+materialization approval != consequence authority
 job materialization != authority to cause external consequence
 policy decision != execution authority
 protocol response != standing
@@ -203,11 +244,12 @@ replay confirmation != execution authority
 
 ```text
 confirm the repaired Goal 5 aggregate passes in the canonical workflow
+confirm the job-materialization validator passes in the canonical aggregate
 inspect first completed OPA capture and fresh-runner replay artifacts
 record exact run, job, artifact, runtime, and receipt hashes after success
 populate one implementation-selection record from exact reproducible source evidence
-keep execution jobs blocked until every required field, hash, and authorization predicate is present
-add a separately governed job-materialization receipt before any newly eligible framework can run
+keep execution jobs blocked until every required field, hash, authorization, and consequence predicate is present
+add an approved-but-non-executable fixture to test the boundary between materialization approval and runtime authority
 perform replay outside the same GitHub repository/provider before stronger independence claims
 produce observed-partial reports only after exact evidence exists
 update public capture status from inspected receipts
@@ -216,10 +258,10 @@ capture public deployment/page verification receipts
 
 ## Next action
 
-Add the separately governed job-materialization receipt schema and validator. It must consume an eligible execution-plan entry, preserve readiness and plan hashes, and remain non-executable until a distinct authority and consequence-boundary review is attached. In parallel, inspect OPA artifacts when the workflow run becomes accessible.
+Add an approved-but-non-executable job-materialization fixture and extend the validator to prove that `MATERIALIZATION_APPROVED` still requires `runtime_execution_authorized: false`, `runtime_job: null`, and a later distinct runtime-authorization transition. In parallel, inspect OPA artifacts when the workflow run becomes accessible.
 
 ## Release path
 
-The repo is not ready to tag solely because capture, validation, replay, selection-gating, readiness, and fail-closed execution-plan automation exist. After artifact inspection, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
+The repo is not ready to tag solely because capture, validation, replay, selection-gating, readiness, fail-closed execution-plan automation, and materialization-receipt validation exist. After artifact inspection, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
 
 The complete prior thread is not required to continue from this handoff.
