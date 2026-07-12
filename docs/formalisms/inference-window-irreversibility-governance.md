@@ -10,6 +10,33 @@ AI governance cannot guarantee that an intelligent system is always correct. Cor
 
 This formalism separates operational success, epistemic support, execution authority, admissibility, continuity, reconstructability, and recoverability. It also requires assurance to rise as harm, uncertainty, and irreversibility rise, particularly where recovery approaches zero.
 
+## Relationship to the Governed Action Lifecycle and IICT
+
+This page defines the executable commit-time evaluation model for an individual proposed transition.
+
+The broader sequence is documented in [Governed Action Lifecycle](./governed-action-lifecycle.md):
+
+```text
+proposal
+  -> commit-time revalidation
+  -> bounded execution
+  -> consequence observation
+  -> recovery, correction, or accountability
+  -> reconstruction
+```
+
+The [Irreversibility-Inference Convergence Theorem](./irreversibility-inference-convergence-theorem.md) is separate. It is a theorem candidate asking whether repeated admissibility optimization causes governance architectures to converge toward a smaller distance between the final valid inference and irreversible commitment.
+
+Therefore:
+
+```text
+Inference-window governance = operational evaluation of one transition.
+Governed Action Lifecycle = placement of that evaluation within the full action path.
+IICT = convergence hypothesis about repeated governance optimization.
+```
+
+A passing validator on this page does not prove IICT, and IICT need not be proven for this operational model to be useful.
+
 ## 1. Governing claim
 
 A well-governed system is not one that never makes a mistake. It is one that:
@@ -205,6 +232,8 @@ RequiredAssurance \propto \frac{H \times I \times U}{max(R,\epsilon)}
 \]
 
 where \(\epsilon\) prevents division by zero while preserving the limiting behavior. Where recovery is effectively unavailable, autonomous authority should narrow sharply and may collapse to mandatory escalation or denial.
+
+Recovery follows commit-time revalidation; it does not replace it. Commit-time revalidation prevents stale justification from advancing where possible. Recovery governs the obligations that remain when an admitted action still produces error, harm, or unanticipated consequence.
 
 ## 10. Reconstruction requirement
 
