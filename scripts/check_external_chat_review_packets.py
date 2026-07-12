@@ -11,14 +11,17 @@ REVIEW = ROOT / "docs/external-frameworks/examples/external-chat-cooperative-rev
 CORRECTION = ROOT / "docs/external-frameworks/examples/external-chat-correction-receipt.example.json"
 DELEGATION = ROOT / "docs/external-frameworks/examples/external-chat-reviewer-delegation.example.json"
 PUBLICATION = ROOT / "docs/external-frameworks/examples/external-chat-publication-transition.example.json"
+MUTATION = ROOT / "docs/external-frameworks/examples/external-chat-repository-mutation-receipt.example.json"
 SCHEMAS = [
     ROOT / "docs/external-frameworks/schemas/external-chat-cooperative-review-package.schema.json",
     ROOT / "docs/external-frameworks/schemas/external-chat-correction-receipt.schema.json",
     ROOT / "docs/external-frameworks/schemas/external-chat-reviewer-delegation.schema.json",
     ROOT / "docs/external-frameworks/schemas/external-chat-publication-transition.schema.json",
+    ROOT / "docs/external-frameworks/schemas/external-chat-repository-mutation-receipt.schema.json",
 ]
 RECEIPT_RE = re.compile(r"^external-compatibility-receipt:sha256:[a-f0-9]{64}$")
 HASH_RE = re.compile(r"^[a-f0-9]{64}$")
+SHA40_RE = re.compile(r"^[a-f0-9]{40}$")
 SCOPE_RE = re.compile(r"^(field:[A-Za-z0-9_.:-]+|package:read|publication_review|\*)$")
 
 
@@ -28,7 +31,7 @@ def fail(message: str) -> int:
 
 
 def main() -> int:
-    for path in [REVIEW, CORRECTION, DELEGATION, PUBLICATION, *SCHEMAS]:
+    for path in [REVIEW, CORRECTION, DELEGATION, PUBLICATION, MUTATION, *SCHEMAS]:
         if not path.exists():
             return fail(f"missing {path.relative_to(ROOT)}")
         json.loads(path.read_text(encoding="utf-8"))
@@ -37,6 +40,7 @@ def main() -> int:
     correction = json.loads(CORRECTION.read_text(encoding="utf-8"))
     delegation = json.loads(DELEGATION.read_text(encoding="utf-8"))
     publication = json.loads(PUBLICATION.read_text(encoding="utf-8"))
+    mutation = json.loads(MUTATION.read_text(encoding="utf-8"))
 
     if review.get("packet_type") != "external_framework_cooperative_review_package":
         return fail("review packet type mismatch")
@@ -102,7 +106,20 @@ def main() -> int:
     if publication.get("boundary") != required_boundary:
         return fail("publication transition boundary mismatch")
 
-    print("EXTERNAL CHAT REVIEW PACKETS: PASS (package, correction, reviewer delegation, publication transition)")
+    if mutation.get("receipt_type") != "external_framework_repository_mutation_receipt":
+        return fail("repository mutation receipt type mismatch")
+    if mutation.get("repository_full_name") != "StegVerse-Labs/admissibility-wiki":
+        return fail("repository mutation target mismatch")
+    if not mutation.get("target_path", "").startswith("docs/external-frameworks/"):
+        return fail("repository mutation path outside external-framework scope")
+    if not SHA40_RE.match(mutation.get("commit_sha", "")) or not SHA40_RE.match(mutation.get("new_blob_sha", "")):
+        return fail("repository mutation commit/blob SHA invalid")
+    if set(mutation.get("commit_time_revalidation", {}).values()) != {"PASS"}:
+        return fail("repository mutation commit-time revalidation incomplete")
+    if any(value is not False for value in mutation.get("boundary", {}).values()):
+        return fail("repository mutation receipt boundary must remain false")
+
+    print("EXTERNAL CHAT REVIEW PACKETS: PASS (package, correction, delegation, publication, mutation)")
     return 0
 
 
