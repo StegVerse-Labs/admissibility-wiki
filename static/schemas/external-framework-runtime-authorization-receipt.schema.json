@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/external-framework-runtime-authorization-receipt.schema.json",
+  "title": "External Framework Runtime Authorization Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_type",
+    "receipt_id",
+    "framework_id",
+    "source_materialization_receipt",
+    "materialized_descriptor_hash",
+    "commit_time_evidence",
+    "decision",
+    "runtime_execution_authorized",
+    "runtime_transition",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "receipt_type": {"const": "external_framework_runtime_authorization_receipt"},
+    "receipt_id": {"type": "string", "minLength": 1},
+    "framework_id": {"type": "string", "minLength": 1},
+    "source_materialization_receipt": {"$ref": "#/$defs/boundArtifact"},
+    "materialized_descriptor_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "commit_time_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "delegation", "policy", "freshness", "scope", "consequence_boundary", "evaluated_at"],
+      "properties": {
+        "authority": {"$ref": "#/$defs/predicate"},
+        "delegation": {"$ref": "#/$defs/predicate"},
+        "policy": {"$ref": "#/$defs/predicate"},
+        "freshness": {"$ref": "#/$defs/predicate"},
+        "scope": {"$ref": "#/$defs/predicate"},
+        "consequence_boundary": {"$ref": "#/$defs/predicate"},
+        "evaluated_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "decision": {"enum": ["FAIL_CLOSED", "DENY", "REVIEW_REQUIRED", "ALLOW_RUNTIME_TRANSITION"]},
+    "runtime_execution_authorized": {"type": "boolean"},
+    "runtime_transition": {"type": ["object", "null"]},
+    "non_claims": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"decision": {"const": "ALLOW_RUNTIME_TRANSITION"}}},
+      "then": {
+        "properties": {
+          "runtime_execution_authorized": {"const": true},
+          "runtime_transition": {"type": "object"}
+        }
+      },
+      "else": {
+        "properties": {
+          "runtime_execution_authorized": {"const": false},
+          "runtime_transition": {"type": "null"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "boundArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "predicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reference", "checked_at"],
+      "properties": {
+        "status": {"enum": ["PASS", "FAIL", "MISSING", "STALE", "UNRESOLVED"]},
+        "reference": {"type": ["string", "null"]},
+        "checked_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    }
+  }
+}
