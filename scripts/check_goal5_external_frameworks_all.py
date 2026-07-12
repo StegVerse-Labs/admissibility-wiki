@@ -20,6 +20,7 @@ CHECKS = [
     "scripts/check_opa_observation_capture_harness.py",
     "scripts/check_cedar_observation_capture_harness.py",
     "scripts/check_priority_command_capture_harnesses.py",
+    "scripts/check_external_framework_evidence_tooling_coverage.py",
     "scripts/check_expanded_external_framework_intake.py",
     "scripts/check_external_framework_candidate_directory.py",
     "scripts/check_external_framework_family_coverage.py",
@@ -88,7 +89,7 @@ def main() -> int:
         return 1
 
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: capture_harnesses_complete_observed_evidence_open")
+    print("release_readiness: evidence_tooling_7_of_7_observed_evidence_open")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
