@@ -1,0 +1,141 @@
+{
+  "artifact_type": "external_framework_implementation_selection_gates",
+  "schema_version": "0.1",
+  "purpose": "Prevent capture execution until an exact reproducible implementation context is declared without treating selection as certification, compatibility, standing, or authority.",
+  "frameworks": [
+    {
+      "framework_id": "cedar-policy",
+      "selection_state": "selection_required",
+      "required_fields": [
+        "implementation_identifier",
+        "implementation_source",
+        "version_or_commit",
+        "version_command",
+        "evaluation_command_template",
+        "artifact_or_package_hash",
+        "execution_environment",
+        "license_or_usage_boundary"
+      ],
+      "framework_specific_requirements": [
+        "policy parser/evaluator identity",
+        "entity-store or schema posture",
+        "request serialization contract"
+      ],
+      "execution_authorized": false
+    },
+    {
+      "framework_id": "mcp",
+      "selection_state": "selection_required",
+      "required_fields": [
+        "client_implementation_identifier",
+        "server_implementation_identifier",
+        "client_version_or_commit",
+        "server_version_or_commit",
+        "transport",
+        "capability_negotiation_state",
+        "authorization_context",
+        "artifact_or_package_hashes",
+        "execution_environment"
+      ],
+      "framework_specific_requirements": [
+        "protocol revision",
+        "tool-list or tool-call boundary",
+        "server configuration hash"
+      ],
+      "execution_authorized": false
+    },
+    {
+      "framework_id": "a2a",
+      "selection_state": "selection_required",
+      "required_fields": [
+        "implementation_identifier",
+        "version_or_commit",
+        "agent_card_version",
+        "transport",
+        "authentication_context",
+        "delegation_context",
+        "artifact_or_package_hash",
+        "execution_environment"
+      ],
+      "framework_specific_requirements": [
+        "protocol revision",
+        "agent-card artifact hash",
+        "task or message method boundary"
+      ],
+      "execution_authorized": false
+    },
+    {
+      "framework_id": "guardrails-ai",
+      "selection_state": "selection_required",
+      "required_fields": [
+        "implementation_identifier",
+        "version_or_commit",
+        "guard_configuration_hash",
+        "validator_set",
+        "model_or_provider_context",
+        "execution_command",
+        "artifact_or_package_hash",
+        "execution_environment"
+      ],
+      "framework_specific_requirements": [
+        "input/output validation boundary",
+        "failure behavior",
+        "remote dependency posture"
+      ],
+      "execution_authorized": false
+    },
+    {
+      "framework_id": "llama-guard",
+      "selection_state": "selection_required",
+      "required_fields": [
+        "runtime_identifier",
+        "runtime_version_or_commit",
+        "model_identifier",
+        "model_digest",
+        "prompt_or_template_hash",
+        "inference_parameters",
+        "execution_command",
+        "execution_environment"
+      ],
+      "framework_specific_requirements": [
+        "model family and size",
+        "taxonomy or policy version",
+        "quantization and tokenizer posture"
+      ],
+      "execution_authorized": false
+    },
+    {
+      "framework_id": "neMo-guardrails",
+      "selection_state": "selection_required",
+      "required_fields": [
+        "implementation_identifier",
+        "version_or_commit",
+        "rails_configuration_hash",
+        "model_or_provider_context",
+        "runtime_dependencies",
+        "execution_command",
+        "artifact_or_package_hashes",
+        "execution_environment"
+      ],
+      "framework_specific_requirements": [
+        "Colang or configuration revision",
+        "dialog/input/output rails enabled",
+        "remote model and retrieval dependency posture"
+      ],
+      "execution_authorized": false
+    }
+  ],
+  "gate": {
+    "all_required_fields_present": false,
+    "all_artifacts_hash_bound": false,
+    "all_versions_pinned": false,
+    "execution_jobs_may_be_added": false
+  },
+  "authority_boundary": {
+    "implementation_selection_is_certification": false,
+    "implementation_selection_is_compatibility": false,
+    "implementation_selection_creates_standing": false,
+    "implementation_selection_creates_execution_authority": false,
+    "selection_gate_may_authorize_external_consequence": false
+  }
+}
