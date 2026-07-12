@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "runtime_dispatch_state_progression_fixture_installation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "goal": "Observed runtime-dispatch receipt activation",
+  "installed": [
+    "static/schemas/external-framework-runtime-dispatch-observation.schema.json",
+    "tests/fixtures/external-framework-runtime-dispatch-observation.not-dispatched.json",
+    "tests/fixtures/external-framework-runtime-dispatch-observation.dispatch-attempted.json",
+    "tests/fixtures/external-framework-runtime-dispatch-observation.dispatched.json",
+    "tests/fixtures/external-framework-runtime-dispatch-observation.execution-observed.json",
+    "scripts/check_external_framework_runtime_dispatch_observation.py"
+  ],
+  "state_coverage": [
+    "NOT_DISPATCHED",
+    "DISPATCH_ATTEMPTED",
+    "DISPATCHED",
+    "EXECUTION_OBSERVED"
+  ],
+  "state_boundaries": {
+    "not_dispatched_may_claim_attempt": false,
+    "dispatch_attempted_may_claim_dispatch": false,
+    "dispatched_may_claim_execution": false,
+    "execution_observed_requires_output_reference": true,
+    "completed_execution_requires_exit_status": true,
+    "fixtures_may_cause_external_consequence": false
+  },
+  "commits": {
+    "schema_state_constraints": "4f9fa01e3205bf7219c58bb813a7b600cdafdfd2",
+    "dispatch_attempted_fixture": "d1a6abb1190dd458d0a2cbe3ff9c003c29b04dd4",
+    "dispatched_fixture": "a73adf1e8ac496a2d34781ab3361d21872e3e7ef",
+    "execution_observed_fixture": "b91942531690490c4701f82bd3fba7de85974c1a",
+    "state_progression_validator": "748482a3734ed8a0166045ad6ed8cf610fd10856"
+  },
+  "authority_boundary": {
+    "receipt_may_dispatch": false,
+    "validator_may_dispatch": false,
+    "fixture_may_execute": false,
+    "fixture_may_attach_credentials": false,
+    "fixture_may_create_external_consequence": false,
+    "observation_equals_authority": false
+  },
+  "verification_state": "INSTALLED_PENDING_CANONICAL_WORKFLOW_CONFIRMATION",
+  "manual_task_required": false,
+  "recorded_at": "2026-07-12T13:10:00Z"
+}
