@@ -9,6 +9,8 @@
   "validator": "scripts/check_conceptual_inheritance_claims.py",
   "canonical_integration": "scripts/check_admissibility_automation_handoff.py",
   "navigation": "sidebars.js",
+  "formalism_index": "docs/formalisms/index.md",
+  "status_validator": "scripts/check_conceptual_inheritance_status.py",
   "decision_outcomes": [
     "ADMIT",
     "DENY",
@@ -26,7 +28,6 @@
     "canonical workflow pass",
     "public page deployment",
     "status endpoint deployment",
-    "formalism index inclusion",
     "Publisher and Site propagation after destination handoff review",
     "StegGuardian wiki and implementation awareness after validation"
   ],
