@@ -27,6 +27,20 @@ fresh-runner replay outputs attached: pending workflow result
 independent organization/provider replays: 0 of 18
 ```
 
+## Observed evidence capture layer
+
+Installed and required by the Goal 5 aggregate validator:
+
+```text
+docs/external-frameworks/observed-evidence-capture-protocol.md
+docs/external-frameworks/observed-evidence-capture-queue.v0.1.json
+scripts/check_observed_evidence_capture_queue.py
+```
+
+The protocol governs the transition from non-authorizing fixture definitions to observed evidence. The queue remains explicitly `AWAITING_CAPTURE_NOT_OBSERVED_EVIDENCE` until exact source, version or commit, input, output, timestamp, execution environment, policy or configuration, authority context, freshness context, hashes, replay instructions, and limitations are attached.
+
+These references are validation-critical. Removing either `observed-evidence-capture-protocol.md` or `observed-evidence-capture-queue.v0.1.json` from this handoff causes the Goal 5 external-framework aggregate to fail closed.
+
 ## Automation readiness layer
 
 Installed:
