@@ -11,6 +11,7 @@ MESH_CHECK = ROOT / "scripts" / "check_documentation_mesh_status.py"
 RUN_RECEIPT_CHECK = ROOT / "scripts" / "check_automated_transition_run_receipt.py"
 CONCEPTUAL_INHERITANCE_CHECK = ROOT / "scripts" / "check_conceptual_inheritance_claims.py"
 CONCEPTUAL_INHERITANCE_STATUS_CHECK = ROOT / "scripts" / "check_conceptual_inheritance_status.py"
+CONCEPTUAL_INHERITANCE_PUBLICATION_CHECK = ROOT / "scripts" / "check_conceptual_inheritance_publication.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -54,6 +55,11 @@ def main() -> int:
     run_check(
         CONCEPTUAL_INHERITANCE_STATUS_CHECK,
         "conceptual inheritance activation status",
+        failures,
+    )
+    run_check(
+        CONCEPTUAL_INHERITANCE_PUBLICATION_CHECK,
+        "conceptual inheritance publication gate",
         failures,
     )
 
