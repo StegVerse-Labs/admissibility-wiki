@@ -14,13 +14,50 @@ The Irreversibility-Inference Convergence Theorem, or IICT, is a theorem candida
 
 IICT proposes that governance systems subjected to repeated admissibility optimization converge toward structures that minimize the distance between irreversible commitment and the final admissible inference while preserving reconstructability.
 
-## Relationship to CTA
+## Relationship to Commit-Time Admissibility
 
 IICT is for Commit-Time Admissibility. It does not replace Commit-Time Admissibility.
 
 Commit-Time Admissibility asks whether a transition still has standing at the moment of commitment.
 
 IICT asks whether repeated admissibility optimization causes governance systems to converge toward structures that make commit-time standing necessary or optimal.
+
+## Relationship to Inference-Window Governance
+
+[Inference-Window and Irreversibility-Bounded Governance](./inference-window-irreversibility-governance.md) is the operational formalism for evaluating one proposed transition. It defines evidence freshness, commit-time standing, consequence-adjusted assurance, hard failures, recovery posture, and the `ALLOW`, `DENY`, `DEFER`, and `ESCALATE` dispositions.
+
+IICT is different. It is a theorem candidate about what may happen to governance architecture after such commit-time controls are applied repeatedly.
+
+```text
+Inference-window governance
+  -> evaluates a proposed transition now
+
+IICT
+  -> studies whether repeated governed evaluation causes
+     architecture to converge toward a smaller distance
+     between final valid inference and irreversible commitment
+```
+
+The operational formalism can be useful and testable without IICT being proven. A passing inference-window validator is not proof of architectural convergence.
+
+## Pre-Commit and Post-Commit Responsibilities
+
+IICT concerns the placement of valid inference relative to irreversible commitment. It should not collapse pre-commit revalidation and post-commit recovery into one responsibility.
+
+```text
+proposal
+  -> commit-time revalidation
+  -> bounded execution
+  -> consequence observation
+  -> recovery, correction, or accountability
+  -> reconstruction
+```
+
+Commit-time revalidation asks whether evidence, policy, authority, delegation, consent, scope, and context still retain standing before execution.
+
+Recovery governance asks what obligations remain when an admitted action still produces error, harm, or an unforeseen consequence.
+
+Reconstruction preserves enough material to determine what occurred and whether the pre-commit and post-commit responsibilities were satisfied.
 
 ## Core Theorem Candidate
 
@@ -85,6 +122,8 @@ The handoff identifies source files, downstream mirror targets, validation comma
 
 ## Related Formalisms
 
+- [Inference-Window and Irreversibility-Bounded Governance](./inference-window-irreversibility-governance.md)
+- [Governed Action Lifecycle](./governed-action-lifecycle.md)
 - [Commit-Time Admissibility](./commit-time-admissibility.md)
 - [Transition Table](./transition-table.md)
 - [Runtime Transition Governance](./runtime-transition-governance.md)
@@ -101,7 +140,9 @@ Publisher currently carries `sv-iict-2026` as a draft paper record. The draft re
 ```text
 The wiki does not prove IICT by listing it.
 IICT baseline tests do not prove the theorem.
+Inference-window governance validation does not prove IICT.
 IICT does not replace Commit-Time Admissibility.
+IICT does not replace recovery governance.
 A theorem-supporting case is not final theorem validation.
 A public page is not proof of admissibility by itself.
 ```
