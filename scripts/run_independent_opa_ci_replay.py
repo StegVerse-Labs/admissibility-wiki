@@ -110,12 +110,22 @@ def main() -> int:
         return 1
     binary.chmod(binary.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
-    version_result = run([str(binary), "version", "--format=json"])
+    version_result = run([str(binary), "version"])
     if version_result.returncode != 0:
         print(version_result.stderr, file=sys.stderr)
         OUTPUT.mkdir(parents=True, exist_ok=True)
         write_pipeline_summary()
         return version_result.returncode
+    version_output = version_result.stdout.strip()
+    expected_version = OPA_VERSION.removeprefix("v")
+    if expected_version not in version_output:
+        print(
+            f"OPA INDEPENDENT REPLAY: version mismatch expected={expected_version} output={version_output!r}",
+            file=sys.stderr,
+        )
+        OUTPUT.mkdir(parents=True, exist_ok=True)
+        write_pipeline_summary()
+        return 1
 
     OUTPUT.mkdir(parents=True, exist_ok=True)
     independent_paths: dict[str, Path] = {}
@@ -164,6 +174,7 @@ def main() -> int:
         "framework_id": "opa",
         "runtime_version_pin": OPA_VERSION,
         "runtime_binary_sha256": actual_binary_hash,
+        "runtime_version_output": version_output,
         "captured_at_utc": datetime.now(timezone.utc).isoformat(),
         "upstream_capture": {
             "github_run_id": upstream_receipt.get("capture_environment", {}).get("github_run_id"),
