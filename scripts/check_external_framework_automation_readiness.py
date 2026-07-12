@@ -10,6 +10,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 GENERATOR = ROOT / "scripts" / "generate_external_framework_automation_readiness.py"
 OUTPUT = ROOT / "reports" / "external-frameworks" / "implementation-automation-readiness.json"
+PLANS = ROOT / "reports" / "external-frameworks" / "implementation-execution-plans.json"
 EXPECTED = ["cedar-policy", "mcp", "a2a", "guardrails-ai", "llama-guard", "neMo-guardrails"]
 
 
@@ -46,6 +47,9 @@ def main() -> int:
             payload = load(OUTPUT)
         except (OSError, json.JSONDecodeError, ValueError) as exc:
             failures.append(str(exc))
+
+    if not PLANS.exists():
+        failures.append(f"chained execution plan output missing: {PLANS.relative_to(ROOT)}")
 
     if payload:
         if payload.get("artifact_type") != "external_framework_automation_readiness_matrix":
@@ -84,6 +88,8 @@ def main() -> int:
             failures.append("summary ready count mismatch")
         if summary.get("execution_jobs_may_be_added") is not (allowed_count > 0):
             failures.append("summary execution_jobs_may_be_added mismatch")
+        if summary.get("execution_plan_generation_chained") is not True:
+            failures.append("execution plan generation must be chained")
 
         boundary = payload.get("authority_boundary", {})
         for key in [
