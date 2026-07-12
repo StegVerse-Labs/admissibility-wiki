@@ -66,10 +66,18 @@ def main() -> int:
         return 1
 
     binary.chmod(binary.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
-    version = run([str(binary), "version", "--format=json"])
+    version = run([str(binary), "version"])
     if version.returncode != 0:
         print(version.stderr, file=sys.stderr)
         return version.returncode
+    version_output = version.stdout.strip()
+    expected_version = OPA_VERSION.removeprefix("v")
+    if expected_version not in version_output:
+        print(
+            f"OPA PINNED CAPTURE: version mismatch expected={expected_version} output={version_output!r}",
+            file=sys.stderr,
+        )
+        return 1
 
     REPORTS.mkdir(parents=True, exist_ok=True)
     cases = {
@@ -131,7 +139,7 @@ def main() -> int:
         "framework_id": "opa",
         "runtime_version_pin": OPA_VERSION,
         "runtime_binary_sha256": actual,
-        "runtime_version_output": json.loads(version.stdout),
+        "runtime_version_output": version_output,
         "captured_at_utc": datetime.now(timezone.utc).isoformat(),
         "capture_environment": {
             "runner": os.environ.get("RUNNER_NAME", "unknown"),
