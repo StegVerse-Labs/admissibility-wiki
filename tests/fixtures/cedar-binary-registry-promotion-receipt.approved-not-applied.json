@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "cedar_binary_registry_promotion_receipt",
+  "framework_id": "cedar-policy",
+  "source_promotion_candidate": {
+    "path": "reports/external-frameworks/cedar-build/cedar-binary-registry-promotion-candidate.json",
+    "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "candidate_state": "READY_FOR_REGISTRY_PROMOTION_REVIEW",
+    "binary_sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "decision": "ALLOW_REGISTRY_PROMOTION_ONLY",
+  "promotion_state": "APPROVED_NOT_APPLIED",
+  "review": {
+    "status": "PASS",
+    "reviewer_identity": "fixture-reviewer",
+    "delegation_ref": "fixture://delegation/cedar-binary-hash-promotion",
+    "reviewed_at_utc": "2026-07-12T00:00:00Z",
+    "evidence_refs": [
+      "fixture://cedar-build-receipt",
+      "fixture://cedar-promotion-candidate"
+    ]
+  },
+  "registry_target": {
+    "path": "docs/external-frameworks/implementation-selection-gates.v0.1.json",
+    "field": "frameworks[cedar-policy].selection.compiled_binary_sha256",
+    "expected_previous_value": null,
+    "proposed_value": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "registry_mutation_applied": false,
+  "runtime_execution_authorized": false,
+  "external_consequence_allowed": false,
+  "required_next_transition": "apply_hash_only_registry_mutation_in_separate_governed_commit_then_revalidate_selection_registry",
+  "non_claims": [
+    "promotion approval does not create execution authority",
+    "binary hash promotion does not establish compatibility",
+    "registry mutation does not authorize runtime execution",
+    "review completion does not establish standing"
+  ]
+}
