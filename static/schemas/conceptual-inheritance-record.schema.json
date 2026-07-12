@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/conceptual-inheritance-record.schema.json",
+  "title": "Conceptual Inheritance Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "transition_id",
+    "source_artifact_refs",
+    "source_concept_refs",
+    "exposure_event_refs",
+    "received_artifact_refs",
+    "transformation_record_refs",
+    "inheritance_state",
+    "attribution_required",
+    "attribution_satisfied",
+    "independence_claim_requested",
+    "claim_admissibility",
+    "evaluated_at",
+    "policy_ref"
+  ],
+  "properties": {
+    "transition_id": {"type": "string", "minLength": 1},
+    "source_artifact_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "source_concept_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "exposure_event_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "received_artifact_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "transformation_record_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "inheritance_state": {
+      "enum": [
+        "NO_KNOWN_EXPOSURE",
+        "INDEPENDENT_PARALLEL_DEVELOPMENT",
+        "GENERAL_DOMAIN_INFLUENCE",
+        "ACKNOWLEDGED_CONCEPTUAL_INFLUENCE",
+        "BOUNDED_INTEROPERABILITY",
+        "STRUCTURAL_INHERITANCE",
+        "DIRECT_ARTIFACT_TRANSFER",
+        "TRANSFORMED_DERIVATION",
+        "CO_DEVELOPED",
+        "PROVENANCE_UNRESOLVED",
+        "PROVENANCE_CONFLICTED"
+      ]
+    },
+    "attribution_required": {"type": "boolean"},
+    "attribution_satisfied": {"type": "boolean"},
+    "independence_claim_requested": {"type": "boolean"},
+    "claim_admissibility": {"enum": ["ADMIT", "DENY", "FAIL_CLOSED", "REVIEW_REQUIRED"]},
+    "material_exposure_established": {"type": "boolean"},
+    "direct_receipt_established": {"type": "boolean"},
+    "structural_inheritance_established": {"type": "boolean"},
+    "provenance_unresolved": {"type": "boolean"},
+    "contradiction_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "evaluated_at": {"type": "string", "format": "date-time"},
+    "policy_ref": {"type": "string", "minLength": 1}
+  }
+}
