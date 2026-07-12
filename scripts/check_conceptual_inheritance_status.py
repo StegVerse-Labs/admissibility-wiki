@@ -2,17 +2,18 @@
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS_PATH = ROOT / "static" / "status" / "conceptual-inheritance-provenance-status.json"
+PUBLICATION_STATUS_PATH = ROOT / "static" / "status" / "conceptual-inheritance-publication-verification.json"
 DOCTRINE_PATH = ROOT / "docs" / "formalisms" / "conceptual-inheritance-provenance.md"
 INDEX_PATH = ROOT / "docs" / "formalisms" / "index.md"
 SIDEBAR_PATH = ROOT / "sidebars.js"
 SCHEMA_PATH = ROOT / "static" / "schemas" / "conceptual-inheritance-record.schema.json"
 FIXTURES_PATH = ROOT / "tests" / "fixtures" / "conceptual-inheritance-cases.json"
 VALIDATOR_PATH = ROOT / "scripts" / "check_conceptual_inheritance_claims.py"
+PUBLICATION_VALIDATOR_PATH = ROOT / "scripts" / "check_conceptual_inheritance_publication.py"
 
 EXPECTED_OUTCOMES = {"ADMIT", "DENY", "FAIL_CLOSED", "REVIEW_REQUIRED"}
 EXPECTED_STATUS = {
@@ -32,12 +33,14 @@ def main() -> int:
 
     required_files = (
         STATUS_PATH,
+        PUBLICATION_STATUS_PATH,
         DOCTRINE_PATH,
         INDEX_PATH,
         SIDEBAR_PATH,
         SCHEMA_PATH,
         FIXTURES_PATH,
         VALIDATOR_PATH,
+        PUBLICATION_VALIDATOR_PATH,
     )
     for path in required_files:
         if not path.exists():
@@ -68,6 +71,9 @@ def main() -> int:
         "canonical_integration",
         "navigation",
         "formalism_index",
+        "status_validator",
+        "publication_verification",
+        "publication_validator",
         "decision_outcomes",
         "governance_boundaries",
         "remaining_checks",
@@ -97,6 +103,9 @@ def main() -> int:
         "canonical_integration": "scripts/check_admissibility_automation_handoff.py",
         "navigation": "sidebars.js",
         "formalism_index": "docs/formalisms/index.md",
+        "status_validator": "scripts/check_conceptual_inheritance_status.py",
+        "publication_verification": "static/status/conceptual-inheritance-publication-verification.json",
+        "publication_validator": "scripts/check_conceptual_inheritance_publication.py",
     }
     for field, expected in expected_paths.items():
         if status.get(field) != expected:
@@ -121,6 +130,10 @@ def main() -> int:
         fail("sidebar does not publish conceptual inheritance formalism", failures)
     if "Conceptual Inheritance and Provenance Standing" not in index_text:
         fail("formalism index does not include conceptual inheritance entry", failures)
+
+    boundary_text = " ".join(str(item) for item in status.get("governance_boundaries", [])).lower()
+    if "pending deployment" not in boundary_text:
+        fail("status boundaries must reject pending deployment as public verification", failures)
 
     if failures:
         print("CONCEPTUAL INHERITANCE STATUS: FAIL")
