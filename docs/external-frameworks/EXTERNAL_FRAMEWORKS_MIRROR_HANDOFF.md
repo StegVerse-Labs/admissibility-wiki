@@ -39,6 +39,16 @@ OPA observed external outputs: pending successful capture
 independent organization/provider replays: 0 of 18
 ```
 
+## Validation-critical observed-evidence references
+
+```text
+docs/external-frameworks/observed-evidence-capture-protocol.md
+docs/external-frameworks/observed-evidence-capture-queue.v0.1.json
+scripts/check_observed_evidence_capture_queue.py
+```
+
+The queue remains `AWAITING_CAPTURE_NOT_OBSERVED_EVIDENCE` until exact source, version or commit, input, output, timestamp, environment, policy/configuration, authority context, freshness context, hashes, replay instructions, and limitations are attached.
+
 ## Governed transition chain
 
 ```text
@@ -122,26 +132,25 @@ The progression validator checks canonical order, prior receipt identity and SHA
 
 ```text
 Workflow: Validate chain continuation
-Run: 29206548078
-Commit: 3dc11143ee077fcaf5b12a498e620bb508f125ac
+Run: 29206709456
+Commit: 397c5d376ad68a1f1cc6da5e812418a097321637
 Job: validate-chain-continuation
 First failing step: Enforce complete validation result
-Full-validation artifact: 8263908851
-Artifact digest: sha256:9299517ce7dea63198435ce498dd33cb3a6f405a4a6f8b585759404e28d2bcd1
-Aggregate result: 32 of 34 Goal 5 checks passed
-Failure class: stale pre-promotion compiled-binary-null assertions
+Full-validation artifact: 8263961471
+Artifact digest: sha256:8faf83abbb222be86dcd2546da10de936c55486b25fe939ae5e7b19c1904d4aa
+Aggregate result: 33 of 34 Goal 5 checks passed
+Failure class: handoff lost required observed-evidence protocol and queue references
 ```
 
-Bounded repairs:
+Bounded repair:
 
 ```text
-95df392f5e3de3c5a5fac3fadbd09023289b7b59
-  -> implementation-selection gate accepts only evidence-bound Cedar APPLIED_HASH_ONLY state
-7b4f3f7d104860c678a0927afd98e7d420eeb831
-  -> Cedar selection evidence binds the registry hash to the applied promotion receipt
+restore exact references to:
+  docs/external-frameworks/observed-evidence-capture-protocol.md
+  docs/external-frameworks/observed-evidence-capture-queue.v0.1.json
 ```
 
-Both validators continue to require `execution_authorized=false`, a valid lowercase SHA-256, the exact Cedar registry field, a ready candidate, delegated review PASS, `APPLIED_HASH_ONLY`, and no external consequence.
+No validator, queue state, runtime authority, execution authority, or release boundary was changed. The repair restores documentation references required by `scripts/check_observed_evidence_capture_queue.py`.
 
 ## OPA blocker
 
@@ -170,7 +179,7 @@ Additional active workflow created: no
 ## Next task
 
 ```text
-1. Verify the canonical Goal 5 aggregate and full validation chain on commit 7b4f3f7d104860c678a0927afd98e7d420eeb831 or a documented successor.
+1. Verify the canonical Goal 5 aggregate and full validation chain on the documented successor to 397c5d376ad68a1f1cc6da5e812418a097321637.
 2. Preserve the passing full-validation and Goal 5 receipts.
 3. If canonical validation passes, inspect the next OPA capture job logs and artifacts.
 4. Apply only a bounded OPA acquisition/capture robustness repair after the first failure is confirmed.
@@ -218,4 +227,4 @@ No deployment, release, tag, merge, external-repository mutation, runtime execut
 
 ## Archive readiness
 
-This handoff preserves the current Cedar build evidence, hash-only promotion receipts, dispatch progression chain, canonical failure and repairs, OPA blockers, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
+This handoff preserves the current Cedar build evidence, hash-only promotion receipts, dispatch progression chain, canonical failure and bounded repair, OPA blockers, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
