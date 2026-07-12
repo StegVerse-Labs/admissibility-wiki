@@ -18,6 +18,7 @@ CHECKS = [
     "scripts/check_external_framework_benchmark_fixtures.py",
     "scripts/check_observed_evidence_capture_queue.py",
     "scripts/check_opa_observation_capture_harness.py",
+    "scripts/check_opa_version_probe_compatibility.py",
     "scripts/check_cedar_observation_capture_harness.py",
     "scripts/check_priority_command_capture_harnesses.py",
     "scripts/check_external_framework_evidence_tooling_coverage.py",
@@ -86,7 +87,7 @@ def main() -> int:
         print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: cedar_hash_only_registry_application_and_dispatch_progression_validated_without_execution_authority")
+    print("release_readiness: opa_version_probe_compatibility_and_goal5_governance_chain_validated_without_execution_authority")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
