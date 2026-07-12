@@ -1,0 +1,29 @@
+{
+  "receipt_type": "external_framework_runtime_authorization_layer_installation",
+  "schema_version": "1.0.0",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "installed_at": "2026-07-12T00:00:00Z",
+  "installed_artifacts": [
+    "static/schemas/external-framework-runtime-authorization-receipt.schema.json",
+    "tests/fixtures/external-framework-runtime-authorization-receipt.blocked.json",
+    "scripts/check_external_framework_runtime_authorization_receipt.py",
+    "scripts/check_goal5_external_frameworks_all.py"
+  ],
+  "decision_posture": "FAIL_CLOSED_UNTIL_ALL_COMMIT_TIME_PREDICATES_PASS",
+  "required_predicates": [
+    "authority",
+    "delegation",
+    "policy",
+    "freshness",
+    "scope",
+    "consequence_boundary"
+  ],
+  "runtime_jobs_emitted": 0,
+  "runtime_execution_authorized": false,
+  "non_claims": [
+    "installation does not authorize runtime execution",
+    "runtime authorization does not prove framework compatibility",
+    "schema presence does not establish current authority or delegation",
+    "validation does not cause external consequence"
+  ]
+}
