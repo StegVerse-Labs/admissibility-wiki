@@ -2,7 +2,7 @@
 
 ## Source of truth
 
-This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, replay, and evidence-status work. Preserve unrelated CI repair, deployment verification, lifecycle-formalism, inference-window, and documentation-mesh work owned by other workstreams.
+This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, replay, evidence-status, and implementation-selection work. Preserve unrelated CI repair, deployment verification, lifecycle-formalism, inference-window, and documentation-mesh work owned by other workstreams.
 
 ## Current state
 
@@ -20,6 +20,7 @@ artifact-validation tooling: 7 of 7
 durable pipeline-summary tooling: 7 of 7
 automated pinned capture jobs: 1 of 7
 fresh-runner replay jobs: 1 of 7
+implementation-selection gate records: 6 of 6 remaining unpinned frameworks
 observed external outputs attached: pending workflow result
 fresh-runner replay outputs attached: pending workflow result
 independent organization/provider replays: 0 of 18
@@ -62,13 +63,39 @@ scripts/check_goal5_external_frameworks_all.py -> coverage validator integrated
 
 The registry accounts for all seven priority frameworks and binds each to its capture harness, artifact validator, pipeline summarizer, implementation-selection state, and observed-evidence state. Shared command tooling is used for MCP, A2A, Guardrails AI, Llama Guard, and NeMo Guardrails without collapsing their framework identities or evidence records.
 
+## Implementation-selection gates
+
+Installed:
+
+```text
+docs/external-frameworks/implementation-selection-gates.v0.1.json
+scripts/check_external_framework_implementation_selection_gates.py
+scripts/check_goal5_external_frameworks_all.py -> selection-gate validator integrated
+```
+
+The selection registry covers the six priority frameworks that do not yet have a pinned execution job:
+
+```text
+Cedar Policy
+Model Context Protocol
+Agent2Agent Protocol
+Guardrails AI
+Llama Guard
+NeMo Guardrails
+```
+
+Every record remains `selection_required` and `execution_authorized: false`. Before an execution job may be added, the record requires an exact implementation or model identity, version or commit, execution command, artifact/package/model hashes, execution environment, and framework-specific context such as transport, capability negotiation, delegation, guard configuration, model digest, tokenizer/quantization posture, or rails configuration.
+
+The aggregate validator fails if any framework is omitted, reordered, marked selected without evidence, given fewer than the required selection fields, or allowed to authorize execution.
+
 Machine-readable boundaries:
 
 ```text
-tooling coverage is not execution
-artifact validation is not compatibility
-pipeline summary does not create standing
-tooling configuration does not create execution authority
+implementation selection != certification
+implementation selection != compatibility
+implementation selection != standing
+implementation selection != execution authority
+selection gate != authority to cause external consequence
 ```
 
 ## OPA evidence pipeline
@@ -108,7 +135,7 @@ scripts/summarize_cedar_evidence_pipeline.py
 scripts/check_cedar_observation_capture_harness.py
 ```
 
-The Cedar harness remains implementation-neutral and requires an exact implementation identifier, version command, and evaluation command template. No Cedar implementation has been selected or executed.
+The Cedar harness remains implementation-neutral. No Cedar implementation has been selected or executed. The new selection gate requires exact evaluator identity, source, version/commit, version command, evaluation command template, package/artifact hash, environment, license/usage boundary, parser/evaluator identity, entity-store/schema posture, and request serialization contract before automation.
 
 ## Reusable command evidence tooling
 
@@ -133,12 +160,14 @@ NeMo Guardrails
 
 Each framework retains its own manifest under `docs/external-frameworks/capture/<framework>/capture-manifest.json`. The validator preserves exact implementation, version, command, manifest, input, output, and hash evidence while keeping every first capture at `captured_unverified`. The summary reports artifact availability and structural validation only.
 
-For Guardrails AI, Llama Guard, and NeMo Guardrails, this completes artifact-validation and pipeline-summary readiness. No guard configuration, model digest, runtime, provider, or output has been selected or observed.
+No client/server pair, agent implementation, guard configuration, model digest, runtime, provider, transport, authentication/delegation context, or output has been selected or observed for these five frameworks.
 
 ## Evidence progression
 
 ```text
 fixture_ready
+-> awaiting_implementation_selection
+-> implementation_selected_hash_bound
 -> awaiting_capture
 -> captured_unverified
 -> replay_confirmed_same_environment
@@ -148,7 +177,7 @@ fixture_ready
 -> interoperability_candidate
 ```
 
-The fresh-runner stage does not itself establish compatibility, standing, delegation, admissibility, or execution authority.
+No framework may advance from implementation selection to capture merely because tooling exists.
 
 ## Boundary
 
@@ -166,6 +195,7 @@ same-runner replay != fresh-runner replay
 fresh-runner replay != independent implementation
 fresh-runner replay != independent provider or authority review
 implementation selection != certification
+implementation selection != execution authorization
 matching output != current delegation
 replay confirmation != execution authority
 ```
@@ -177,7 +207,8 @@ Destination: `StegVerse-Labs/admissibility-wiki`
 ```text
 inspect first completed OPA capture and fresh-runner replay artifacts
 record exact run, job, artifact, runtime, and receipt hashes after success
-select reproducible implementations, versions, configurations, or model digests before automating the remaining six priority frameworks
+populate one implementation-selection record only from exact reproducible source evidence
+keep execution_jobs_may_be_added false until every required field and hash is present
 perform replay outside the same GitHub repository/provider before stronger independence claims
 produce observed-partial reports only after exact evidence exists
 update public capture status from inspected receipts
@@ -186,10 +217,10 @@ capture public deployment/page verification receipts
 
 ## Next action
 
-Inspect `opa-pinned-capture-replay` and `opa-fresh-runner-replay` when their run becomes accessible. In parallel, select exact reproducible implementations for Cedar, MCP, A2A, Guardrails AI, Llama Guard, and NeMo Guardrails before adding pinned execution jobs. Do not infer execution, compatibility, standing, certification, or authority from complete tooling coverage.
+Populate and validate the first exact implementation-selection record, preferably Cedar because its deterministic allow/deny fixtures already exist. Do not add a pinned Cedar execution job until the selection record contains exact implementation source, version/commit, commands, artifact hash, environment, and framework-specific context. In parallel, inspect the OPA artifacts when the run becomes accessible.
 
 ## Release path
 
-The repo is not ready to tag solely because capture, validation, replay, and pipeline-summary tooling covers all seven priority frameworks. After artifact inspection, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
+The repo is not ready to tag solely because capture, validation, replay, pipeline-summary, and implementation-selection tooling exists. After artifact inspection, selected implementations, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
 
 The complete prior thread is not required to continue from this handoff.
