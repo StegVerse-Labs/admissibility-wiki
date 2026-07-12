@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "goal_id": "conceptual-inheritance-provenance-standing",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "verification_state": "PENDING_LIVE_DEPLOYMENT_VERIFICATION",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "local_artifacts": {
+    "doctrine": "docs/formalisms/conceptual-inheritance-provenance.md",
+    "schema": "static/schemas/conceptual-inheritance-record.schema.json",
+    "fixtures": "tests/fixtures/conceptual-inheritance-cases.json",
+    "claim_validator": "scripts/check_conceptual_inheritance_claims.py",
+    "status_validator": "scripts/check_conceptual_inheritance_status.py",
+    "status_record": "static/status/conceptual-inheritance-provenance-status.json"
+  },
+  "public_targets": [
+    {
+      "kind": "doctrine_page",
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/docs/formalisms/conceptual-inheritance-provenance",
+      "state": "PENDING",
+      "http_status": null,
+      "content_marker_verified": false,
+      "verified_at": null
+    },
+    {
+      "kind": "status_artifact",
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/status/conceptual-inheritance-provenance-status.json",
+      "state": "PENDING",
+      "http_status": null,
+      "content_marker_verified": false,
+      "verified_at": null
+    }
+  ],
+  "required_content_markers": [
+    "Conceptual Inheritance and Provenance Standing",
+    "architectural integrity",
+    "provenance continuity",
+    "origin-claim standing"
+  ],
+  "activation_rule": "VERIFIED only when every public target returns a successful response and its expected content is observed after a canonical workflow pass.",
+  "non_claims": [
+    "Pending deployment is not public verification",
+    "Public visibility is not execution authority",
+    "A passing publication check does not decide authorship, ownership, infringement, or intent"
+  ],
+  "manual_task_required": false,
+  "recorded_at": "2026-07-11T00:00:00Z"
+}
