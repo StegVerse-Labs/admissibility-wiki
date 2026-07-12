@@ -11,7 +11,7 @@ MIRROR = ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continu
 
 REQUIRED_SCRIPT_MARKERS = [
     "0807ec154afd7ffa14a658c9955d25bfe12770ca",
-    "cargo build --locked --release -p cedar-policy-cli",
+    '["cargo", "build", "--locked", "--release", "-p", "cedar-policy-cli"]',
     "BUILT_HASHED_UNEXECUTED",
     '"executed_after_build": False',
     '"runtime_execution_authorized": False',
