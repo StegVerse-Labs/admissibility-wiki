@@ -2,15 +2,25 @@
   "schema": "inference_window_governance_status.v1",
   "generated_at": "2026-07-11T23:45:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "goal": "Publish a canonical, executable governance model for inference-window decay, commit-time standing, irreversibility-adjusted assurance, and governed recovery.",
+  "goal": "Publish a canonical, executable governance model for inference-window decay, commit-time standing, irreversibility-adjusted assurance, governed recovery, and lifecycle placement.",
   "status": "installed_pending_canonical_ci_verification",
   "manual_task_requirement": "none",
   "canonical_artifacts": {
     "formalism": "docs/formalisms/inference-window-irreversibility-governance.md",
+    "lifecycle": "docs/formalisms/governed-action-lifecycle.md",
+    "related_theorem_candidate": "docs/formalisms/irreversibility-inference-convergence-theorem.md",
     "schema": "static/schemas/inference-window-governance.schema.json",
     "worked_cases": "static/examples/inference-window-governance.worked-cases.json",
     "validator": "scripts/validate_inference_window_governance.py",
     "tests": "tests/test_inference_window_governance.py"
+  },
+  "concept_boundaries": {
+    "inference_window_governance": "Operational evaluation of one proposed transition at commitment.",
+    "governed_action_lifecycle": "Placement of commit-time evaluation within proposal, bounded execution, consequence observation, recovery, accountability, and reconstruction.",
+    "iict": "Theorem candidate about architectural convergence under repeated admissibility optimization.",
+    "validator_pass_proves_iict": false,
+    "recovery_replaces_commit_time_revalidation": false,
+    "commit_time_revalidation_eliminates_recovery_obligations": false
   },
   "canonical_workflow": {
     "path": ".github/workflows/validate-chain-continuation.yml",
@@ -34,6 +44,8 @@
   ],
   "public_routes": {
     "formalism": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/inference-window-irreversibility-governance",
+    "lifecycle": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/governed-action-lifecycle",
+    "iict": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/irreversibility-inference-convergence-theorem",
     "schema": "https://stegverse-labs.github.io/admissibility-wiki/schemas/inference-window-governance.schema.json",
     "worked_cases": "https://stegverse-labs.github.io/admissibility-wiki/examples/inference-window-governance.worked-cases.json",
     "status": "https://stegverse-labs.github.io/admissibility-wiki/status/inference-window-governance-status.json"
@@ -42,12 +54,13 @@
     "guarantees_correctness": false,
     "grants_execution_authority": false,
     "certifies_legal_compliance": false,
-    "function": "Tests whether explicit evidence, authority, policy, scope, consequence, and recovery conditions satisfy the declared commit-time governance rule."
+    "proves_iict": false,
+    "function": "Tests whether explicit evidence, authority, policy, scope, consequence, and recovery conditions satisfy the declared commit-time governance rule and documents where that evaluation belongs in the governed action lifecycle."
   },
   "remaining_checks": [
     "Confirm the canonical validation job executes the validator and unit tests successfully.",
     "Confirm build-pages and deploy-pages complete.",
-    "Confirm the formalism, schema, worked cases, and status routes are publicly reachable.",
+    "Confirm the formalism, lifecycle, IICT, schema, worked cases, and status routes are publicly reachable.",
     "Record the successful workflow run and public verification receipt before declaring activation complete."
   ]
 }
