@@ -40,10 +40,10 @@
     },
     "decision": {"enum": ["FAIL_CLOSED", "DENY", "REVIEW_REQUIRED", "ALLOW_RUNTIME_TRANSITION"]},
     "runtime_execution_authorized": {"type": "boolean"},
-    "runtime_transition": {"type": ["object", "null"]},
+    "runtime_transition": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/nonDispatchedRuntimeTransition"}]},
     "non_claims": {
       "type": "array",
-      "minItems": 4,
+      "minItems": 5,
       "uniqueItems": true,
       "items": {"type": "string", "minLength": 1}
     }
@@ -54,7 +54,7 @@
       "then": {
         "properties": {
           "runtime_execution_authorized": {"const": true},
-          "runtime_transition": {"type": "object"}
+          "runtime_transition": {"$ref": "#/$defs/nonDispatchedRuntimeTransition"}
         }
       },
       "else": {
@@ -83,6 +83,34 @@
         "status": {"enum": ["PASS", "FAIL", "MISSING", "STALE", "UNRESOLVED"]},
         "reference": {"type": ["string", "null"]},
         "checked_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "nonDispatchedRuntimeTransition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "transition_id",
+        "transition_state",
+        "scheduled",
+        "dispatched",
+        "execution_started",
+        "execution_endpoint",
+        "command",
+        "credentials_attached",
+        "external_consequence_allowed",
+        "required_next_transition"
+      ],
+      "properties": {
+        "transition_id": {"type": "string", "minLength": 1},
+        "transition_state": {"const": "AUTHORIZED_NOT_DISPATCHED"},
+        "scheduled": {"const": false},
+        "dispatched": {"const": false},
+        "execution_started": {"const": false},
+        "execution_endpoint": {"type": "null"},
+        "command": {"type": "null"},
+        "credentials_attached": {"const": false},
+        "external_consequence_allowed": {"const": false},
+        "required_next_transition": {"const": "separate_observed_runtime_dispatch_transition"}
       }
     }
   }
