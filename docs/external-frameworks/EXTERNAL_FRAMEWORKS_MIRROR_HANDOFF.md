@@ -2,7 +2,7 @@
 
 ## Source of truth
 
-This file is the current handoff for Goal 5 external-framework intake, evidence capture, implementation selection, readiness, execution planning, materialization, runtime authorization, dispatch observation, replay, and publication work.
+This file is the current handoff for Goal 5 external-framework intake, evidence capture, implementation selection, binary build and promotion, readiness, execution planning, materialization, runtime authorization, dispatch observation, replay, and publication work.
 
 Preserve unrelated CI repair, conceptual-inheritance, lifecycle-formalism, inference-window, and documentation-mesh work owned by other workstreams.
 
@@ -19,6 +19,9 @@ priority capture queue entries: 7 of 7
 capture harnesses: 7 of 7
 artifact validators: 7 of 7
 implementation-selection gates: installed
+Cedar pinned build-and-hash automation: installed
+Cedar build-receipt inspection candidate: installed
+Cedar binary registry-promotion receipt layer: installed
 readiness matrix: installed
 fail-closed execution-plan matrix: installed
 job-materialization layer: installed
@@ -46,6 +49,10 @@ The queue remains `AWAITING_CAPTURE_NOT_OBSERVED_EVIDENCE` until exact source, v
 fixture_ready
 -> awaiting_implementation_selection
 -> implementation_selected_hash_bound
+-> selected_binary_build_hashed_unexecuted
+-> binary_build_receipt_inspection
+-> registry_promotion_review
+-> hash_only_registry_promotion_if_approved
 -> automation_readiness_review
 -> eligible_for_execution_job_materialization
 -> governed_job_materialization_receipt
@@ -64,7 +71,49 @@ fixture_ready
 -> interoperability_candidate
 ```
 
-No stage advances merely because tooling, a schema, fixture, plan, authorization, or observation record exists.
+No stage advances merely because tooling, a schema, fixture, plan, authorization, promotion receipt, or observation record exists.
+
+## Cedar binary build and registry promotion
+
+Installed:
+
+```text
+scripts/build_selected_cedar_binary.py
+scripts/check_cedar_selected_binary_build_harness.py
+scripts/inspect_cedar_binary_build_receipt.py
+scripts/check_cedar_binary_promotion_automation.py
+static/schemas/cedar-binary-registry-promotion-receipt.schema.json
+tests/fixtures/cedar-binary-registry-promotion-receipt.blocked.json
+tests/fixtures/cedar-binary-registry-promotion-receipt.approved-not-applied.json
+scripts/check_cedar_binary_registry_promotion_receipts.py
+```
+
+The build stage may produce only `BUILT_HASHED_UNEXECUTED`. The inspection stage may produce only a non-mutating promotion candidate. The promotion receipt distinguishes:
+
+```text
+BLOCKED_NO_VALID_CANDIDATE
+PENDING_REVIEW
+DENIED
+APPROVED_NOT_APPLIED
+APPLIED_HASH_ONLY
+```
+
+`ALLOW_REGISTRY_PROMOTION_ONLY` requires a ready candidate, a valid binary SHA-256, completed delegated review, and the exact target field:
+
+```text
+frameworks[cedar-policy].selection.compiled_binary_sha256
+```
+
+The approved fixture remains:
+
+```text
+promotion_state: APPROVED_NOT_APPLIED
+registry_mutation_applied: false
+runtime_execution_authorized: false
+external_consequence_allowed: false
+```
+
+A real `APPLIED_HASH_ONLY` receipt must bind the actual workflow candidate and binary hashes and be produced in a separate governed commit after artifact inspection. Hash promotion is not compatibility, standing, runtime authority, dispatch authority, or consequence authority.
 
 ## Installed selection, planning, and materialization surfaces
 
@@ -170,6 +219,11 @@ fixture_ready != framework executed
 capture harness != observed evidence
 artifact validator != observed success
 implementation selection != certification
+binary build != runtime execution
+binary hash != compatibility proof
+promotion candidate != registry mutation
+promotion approval != mutation applied
+registry hash promotion != execution authority
 readiness != execution authority
 execution plan != executable job
 plan eligibility != job materialization
@@ -196,6 +250,7 @@ Additional active workflow created: no
 The aggregate includes:
 
 ```text
+scripts/check_cedar_binary_registry_promotion_receipts.py
 scripts/check_external_framework_job_materialization_receipt.py
 scripts/check_external_framework_runtime_authorization_receipt.py
 scripts/check_external_framework_runtime_dispatch_observation.py
@@ -207,7 +262,11 @@ Canonical workflow confirmation remains pending because the available connector 
 
 ```text
 confirm the repaired Goal 5 aggregate passes in the canonical workflow
+inspect the Cedar selected-binary build artifact and promotion candidate
+bind the real candidate and binary hashes into an approved promotion receipt
+apply only the compiled_binary_sha256 registry field in a separate governed commit
 confirm all four dispatch-observation fixtures pass in the aggregate
+add dispatch-observation progression validation with prior-receipt hash chaining
 inspect the first completed OPA capture and fresh-runner replay artifacts
 record exact run, job, artifact, runtime, and receipt hashes after success
 perform replay outside the same repository/provider before stronger independence claims
@@ -217,13 +276,11 @@ capture public deployment and downstream propagation receipts
 
 ## Next action
 
-Add a dispatch-observation progression validator that checks allowed state transitions between sequential receipts, prevents regression or skipped-state claims without explicit evidence, binds each observation to the previous receipt hash, and remains incapable of dispatch or execution.
-
-In parallel, inspect OPA workflow artifacts when a run becomes accessible.
+Inspect the first accessible `cedar-selected-binary-build` artifact. If its receipt and promotion candidate validate, create an evidence-bound `APPROVED_NOT_APPLIED` receipt using the actual hashes; only then apply the single compiled-binary hash field in a separate commit. In parallel, add dispatch-observation progression validation without initiating dispatch or execution.
 
 ## Release path
 
-No release tag is authorized solely from schema, fixture, validation, or automation installation. After canonical validation, artifact inspection, independent replay, and public deployment verification, check destination handoffs before updating:
+No release tag is authorized solely from schema, fixture, validation, promotion, or automation installation. After canonical validation, artifact inspection, independent replay, and public deployment verification, check destination handoffs before updating:
 
 ```text
 StegVerse-Labs/Site
