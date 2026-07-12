@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse.org/schemas/external-chat-cooperative-review-package.schema.json",
+  "title": "External Chat Cooperative Review Package",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "packet_type",
+    "framework_id",
+    "compatibility_receipt_id",
+    "submission_sha256",
+    "compatibility_result",
+    "submitter_opt_in",
+    "publication_requested",
+    "raw_submission_included",
+    "review_scope",
+    "evidence_references",
+    "boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "packet_type": {"const": "external_framework_cooperative_review_package"},
+    "framework_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "framework_name": {"type": ["string", "null"], "maxLength": 256},
+    "compatibility_receipt_id": {"type": "string", "pattern": "^external-compatibility-receipt:sha256:[a-f0-9]{64}$"},
+    "submission_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "compatibility_result": {"enum": ["COMPATIBILITY_EVIDENCE_READY", "PARTIAL_COMPATIBILITY_INTAKE", "FAIL_CLOSED_BOUNDARY_REVIEW"]},
+    "submitter_opt_in": {"const": true},
+    "publication_requested": {"type": "boolean"},
+    "raw_submission_included": {"const": false},
+    "review_scope": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "evidence_references": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "contact_reference": {"type": ["string", "null"], "maxLength": 512},
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["package_is_publication_authority", "package_is_certification", "package_creates_standing", "review_may_change_result_without_receipt"],
+      "properties": {
+        "package_is_publication_authority": {"const": false},
+        "package_is_certification": {"const": false},
+        "package_creates_standing": {"const": false},
+        "review_may_change_result_without_receipt": {"const": false}
+      }
+    }
+  }
+}
