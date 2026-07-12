@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "external_framework_job_materialization_receipt",
+  "receipt_id": "ef-job-materialization-cedar-approved-non-executable-001",
+  "framework_id": "cedar-policy",
+  "source_readiness": {
+    "path": "reports/external-frameworks/implementation-automation-readiness.json",
+    "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "source_execution_plan": {
+    "path": "reports/external-frameworks/implementation-execution-plans.json",
+    "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "materialization_state": "MATERIALIZED_NOT_EXECUTABLE",
+  "authority_review": {
+    "status": "PASS",
+    "reviewer_or_authority_ref": "authority-review://fixture/cedar/001",
+    "evidence_refs": [
+      "evidence://fixture/authority-boundary/001"
+    ]
+  },
+  "consequence_boundary_review": {
+    "status": "PASS",
+    "reviewer_or_authority_ref": "consequence-review://fixture/cedar/001",
+    "evidence_refs": [
+      "evidence://fixture/consequence-boundary/001"
+    ]
+  },
+  "runtime_execution_authorized": false,
+  "runtime_job": {
+    "job_id": "cedar-materialized-fixture-001",
+    "job_state": "NON_EXECUTABLE_MATERIALIZED_DESCRIPTOR",
+    "execution_endpoint": null,
+    "command": null,
+    "credentials_attached": false,
+    "external_consequence_allowed": false,
+    "required_next_transition": "separate_runtime_authorization_review"
+  },
+  "decision": "ALLOW_MATERIALIZATION_ONLY",
+  "non_claims": [
+    "receipt existence does not create execution authority",
+    "plan eligibility does not materialize a runtime job",
+    "job materialization does not authorize runtime execution",
+    "validation does not establish framework compatibility"
+  ]
+}
