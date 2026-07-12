@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "external_chat_reviewer_delegation",
+  "reviewer_ref": "reviewer:example",
+  "token_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "delegation_ref": "delegation:external-chat-review:example",
+  "scopes": [
+    "field:evidence_model",
+    "field:receipt_or_trace_model"
+  ],
+  "valid_from": "2026-07-12T00:00:00Z",
+  "valid_until": "2026-08-12T00:00:00Z",
+  "authority_boundary": {
+    "delegation_is_certification_authority": false,
+    "delegation_is_publication_authority": false,
+    "delegation_is_execution_authority": false,
+    "delegation_creates_standing": false
+  }
+}
