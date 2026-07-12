@@ -91,7 +91,12 @@ def main() -> int:
         OUTPUT.mkdir(parents=True, exist_ok=True)
         write_pipeline_summary()
         return 2
-    if upstream_status.get("overall_status") != "PASS":
+    upstream_validation_passed = (
+        upstream_status.get("capture_state") == "captured_unverified"
+        and upstream_status.get("same_environment_replay_state") == "replay_confirmed_same_environment"
+        and upstream_status.get("validation_failures") == []
+    )
+    if not upstream_validation_passed:
         print("OPA INDEPENDENT REPLAY: BLOCKED — upstream capture validation not PASS", file=sys.stderr)
         OUTPUT.mkdir(parents=True, exist_ok=True)
         write_pipeline_summary()
@@ -181,7 +186,8 @@ def main() -> int:
             "github_sha": upstream_receipt.get("capture_environment", {}).get("github_sha"),
             "runtime_binary_sha256": upstream_receipt.get("runtime_binary_sha256"),
             "same_environment_replay_state": upstream_receipt.get("replay_state"),
-            "validation_status": upstream_status.get("overall_status"),
+            "validation_capture_state": upstream_status.get("capture_state"),
+            "validation_failures": upstream_status.get("validation_failures"),
         },
         "independent_environment": {
             "runner": os.environ.get("RUNNER_NAME", "unknown"),
