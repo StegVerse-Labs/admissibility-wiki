@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import ast
 import json
 import sys
 from pathlib import Path
@@ -8,6 +9,8 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 ENGINE = ROOT / "scripts" / "capture_external_command_observation.py"
+VALIDATOR = ROOT / "scripts" / "validate_command_capture_artifacts.py"
+SUMMARIZER = ROOT / "scripts" / "summarize_command_evidence_pipeline.py"
 RUNBOOK = ROOT / "docs" / "external-frameworks" / "command-capture-runbook.md"
 CAPTURE_ROOT = ROOT / "docs" / "external-frameworks" / "capture"
 
@@ -27,24 +30,31 @@ def load_json(path: Path) -> dict[str, Any]:
 def main() -> int:
     failures: list[str] = []
 
-    for path in [ENGINE, RUNBOOK]:
+    for path in [ENGINE, VALIDATOR, SUMMARIZER, RUNBOOK]:
         if not path.exists():
             failures.append(f"missing path: {path.relative_to(ROOT)}")
 
-    engine_text = ENGINE.read_text(encoding="utf-8") if ENGINE.exists() else ""
+    sources = {}
+    for label, path in [("capture engine", ENGINE), ("artifact validator", VALIDATOR), ("pipeline summarizer", SUMMARIZER)]:
+        text = path.read_text(encoding="utf-8") if path.exists() else ""
+        sources[label] = text
+        if text:
+            try:
+                ast.parse(text)
+            except SyntaxError as exc:
+                failures.append(f"{label} syntax error: {exc}")
+
+    phrase_sets = {
+        "capture engine": ["captured_unverified", "external_output_is_execution_authority", "capture_is_compatibility_proof", "version_command", "execute_command", "sha256"],
+        "artifact validator": ["captured_unverified", "same_runner_replay_state", "fresh_runner_replay_state", "independent_implementation_or_provider_review", "compatibility_state", "validation_creates_delegation"],
+        "pipeline summarizer": ["artifacts_not_available", "captured_unverified_validated", "same_runner_replay", "fresh_runner_replay", "execution_authority_state", "validated_capture_is_compatibility_proof"],
+    }
+    for label, phrases in phrase_sets.items():
+        for phrase in phrases:
+            if phrase not in sources.get(label, ""):
+                failures.append(f"{label} missing phrase: {phrase}")
+
     runbook_text = RUNBOOK.read_text(encoding="utf-8") if RUNBOOK.exists() else ""
-
-    for phrase in [
-        "captured_unverified",
-        "external_output_is_execution_authority",
-        "capture_is_compatibility_proof",
-        "version_command",
-        "execute_command",
-        "sha256",
-    ]:
-        if phrase not in engine_text:
-            failures.append(f"capture engine missing phrase: {phrase}")
-
     for framework_id, source in REQUIRED.items():
         path = CAPTURE_ROOT / framework_id / "capture-manifest.json"
         if not path.exists():
@@ -64,14 +74,7 @@ def main() -> int:
             failures.append(f"framework id mismatch: {framework_id}")
         if manifest.get("source_reference") != source:
             failures.append(f"canonical source mismatch: {framework_id}")
-        for field in [
-            "case_id",
-            "source_version_or_date",
-            "target_behavior",
-            "input_payload",
-            "required_runtime_context",
-            "limitations",
-        ]:
+        for field in ["case_id", "source_version_or_date", "target_behavior", "input_payload", "required_runtime_context", "limitations"]:
             if not manifest.get(field):
                 failures.append(f"manifest missing {field}: {framework_id}")
         if len(manifest.get("required_runtime_context", [])) < 4:
@@ -81,11 +84,7 @@ def main() -> int:
         if str(path.relative_to(ROOT)) not in runbook_text and framework_id != "mcp":
             failures.append(f"runbook missing manifest path: {framework_id}")
 
-    for phrase in [
-        "captured_unverified != observed_partial",
-        "classifier result != admissibility",
-        "allowed flow != execution authority",
-    ]:
+    for phrase in ["captured_unverified != observed_partial", "classifier result != admissibility", "allowed flow != execution authority"]:
         if phrase not in runbook_text:
             failures.append(f"runbook missing boundary phrase: {phrase}")
 
