@@ -13,6 +13,8 @@
   "status_validator": "scripts/check_conceptual_inheritance_status.py",
   "publication_verification": "static/status/conceptual-inheritance-publication-verification.json",
   "publication_validator": "scripts/check_conceptual_inheritance_publication.py",
+  "propagation_plan": "static/status/conceptual-inheritance-propagation-plan.json",
+  "propagation_validator": "scripts/check_conceptual_inheritance_propagation_plan.py",
   "decision_outcomes": [
     "ADMIT",
     "DENY",
@@ -25,7 +27,9 @@
     "Does not convert similarity into proof of derivation",
     "Does not convert unresolved evidence into certification of independence",
     "Keeps architectural integrity separate from provenance continuity and origin-claim standing",
-    "Does not treat pending deployment as public verification"
+    "Does not treat pending deployment as public verification",
+    "Does not treat queued propagation as completed propagation",
+    "Does not supersede destination mirror handoffs"
   ],
   "remaining_checks": [
     "canonical workflow pass",
