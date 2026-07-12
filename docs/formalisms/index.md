@@ -52,6 +52,26 @@ For non-obvious StegVerse ecosystem entries, `in progress` may be used as a temp
 **Current wiki state:** mirrored  
 **Non-claim:** CTA listing does not prove the complete formalism or create present standing for any transition.
 
+### Inference-Window and Irreversibility-Bounded Governance
+
+**Definition:** An executable governance formalism for evaluating whether evidence, authority, policy, scope, context, consequence, and recovery conditions retain sufficient standing at commitment.
+
+**Source reference:** Admissibility Wiki public formalism  
+**Source visibility:** public  
+**Formalism page:** [Inference-Window and Irreversibility-Bounded Governance](./inference-window-irreversibility-governance.md)  
+**Current wiki state:** validated implementation pending public deployment verification  
+**Non-claim:** A passing validator does not prove factual correctness, legal compliance, or IICT.
+
+### Governed Action Lifecycle
+
+**Definition:** A lifecycle formalism separating proposal, commit-time revalidation, bounded execution, consequence observation, recovery or accountability, and reconstruction.
+
+**Source reference:** Admissibility Wiki public lifecycle doctrine  
+**Source visibility:** public  
+**Formalism page:** [Governed Action Lifecycle](./governed-action-lifecycle.md)  
+**Current wiki state:** mirrored  
+**Non-claim:** Lifecycle placement does not itself grant authority or prove that any particular transition was admissible.
+
 ### Irreversibility-Inference Convergence Theorem
 
 **Definition:** A theorem candidate proposing that governance systems subjected to repeated admissibility optimization converge toward structures that minimize the distance between irreversible commitment and the final admissible inference while preserving reconstructability.
