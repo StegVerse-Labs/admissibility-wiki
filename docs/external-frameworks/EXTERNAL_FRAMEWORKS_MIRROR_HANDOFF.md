@@ -2,7 +2,9 @@
 
 ## Source of truth
 
-This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, replay, evidence-status, implementation-selection, automation-readiness, execution-plan, and job-materialization governance work. Preserve unrelated CI repair, deployment verification, lifecycle-formalism, inference-window, and documentation-mesh work owned by other workstreams.
+This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, replay, evidence status, implementation selection, readiness, execution-plan generation, and job-materialization governance.
+
+Preserve unrelated CI repair, deployment verification, lifecycle-formalism, inference-window, conceptual-inheritance, and documentation-mesh work owned by other workstreams.
 
 ## Current state
 
@@ -15,22 +17,22 @@ individual sourced-intake pages: 18
 benchmark mappings for promoted candidates: 18 of 18
 non-authorizing fixture definitions: 18 of 18
 priority observed-evidence queue entries: 7 of 7
-executable capture harnesses: 7 of 7
+capture harnesses: 7 of 7
 artifact-validation tooling: 7 of 7
 durable pipeline-summary tooling: 7 of 7
 automated pinned capture jobs: 1 of 7
 fresh-runner replay jobs: 1 of 7
-implementation-selection gate records: 6 of 6 remaining unpinned frameworks
-automated implementation-readiness matrix: installed and workflow-integrated
-automated fail-closed execution-plan matrix: installed and chained from readiness generation
+implementation-selection gate records: 6 of 6 unpinned frameworks
+readiness matrix: installed and workflow-integrated
+fail-closed execution-plan matrix: installed and chained
 job-materialization receipt layer: installed and aggregate-validated
-runtime jobs emitted by execution-plan automation: 0
-observed external outputs attached: pending workflow result
-fresh-runner replay outputs attached: pending workflow result
+job-materialization fixtures: blocked + approved-non-executable
+runtime jobs emitted by plan automation: 0
+observed external outputs: pending workflow evidence
 independent organization/provider replays: 0 of 18
 ```
 
-## Latest Goal 5 validation repair
+## Latest observed validation repair
 
 ```text
 Failure class: handoff_reference_omission
@@ -41,9 +43,9 @@ Receipt: receipts/goal5-observed-evidence-handoff-reference-repair-2026-07-11.js
 State: repair installed; canonical workflow confirmation pending
 ```
 
-The failure indicated that this handoff omitted validation-critical filename references. It did not indicate missing protocol or queue artifacts. The references remain preserved below.
+The failure concerned missing references in this handoff, not missing protocol or queue artifacts.
 
-## Observed evidence capture layer
+Validation-critical references:
 
 ```text
 docs/external-frameworks/observed-evidence-capture-protocol.md
@@ -51,9 +53,9 @@ docs/external-frameworks/observed-evidence-capture-queue.v0.1.json
 scripts/check_observed_evidence_capture_queue.py
 ```
 
-The queue remains `AWAITING_CAPTURE_NOT_OBSERVED_EVIDENCE` until exact source, version or commit, input, output, timestamp, execution environment, policy or configuration, authority context, freshness context, hashes, replay instructions, and limitations are attached.
+The queue remains `AWAITING_CAPTURE_NOT_OBSERVED_EVIDENCE` until exact source, version or commit, input, output, timestamp, execution environment, policy/configuration, authority context, freshness context, hashes, replay instructions, and limitations are attached.
 
-## Implementation selection, readiness, and plan automation
+## Selection, readiness, and execution-plan automation
 
 Installed:
 
@@ -64,6 +66,8 @@ scripts/generate_external_framework_automation_readiness.py
 scripts/check_external_framework_automation_readiness.py
 scripts/generate_external_framework_execution_plans.py
 scripts/check_external_framework_execution_plans.py
+reports/external-frameworks/implementation-automation-readiness.json
+reports/external-frameworks/implementation-execution-plans.json
 scripts/check_goal5_external_frameworks_all.py
 .github/workflows/validate-chain-continuation.yml
 iosnoperiod/github/workflows/validate-chain-continuation.yml
@@ -80,18 +84,7 @@ Llama Guard
 NeMo Guardrails
 ```
 
-The readiness matrix records selection state, missing required fields, framework-specific context completeness, hash evidence, version or commit evidence, command evidence, selection completeness, registry authorization, execution-job eligibility, and automation state.
-
-The canonical workflow invokes the readiness generator. Readiness generation automatically invokes the execution-plan generator before the readiness validator and complete Goal 5 aggregate scan. The aggregate checker separately validates the generated plan matrix.
-
-Generated reports:
-
-```text
-reports/external-frameworks/implementation-automation-readiness.json
-reports/external-frameworks/implementation-execution-plans.json
-```
-
-Current expected readiness state for all six:
+Expected readiness state for all six:
 
 ```text
 selection_state: selection_required
@@ -100,7 +93,7 @@ execution_job_allowed: false
 automation_state: blocked_selection_required
 ```
 
-Current expected plan state for all six:
+Expected execution-plan state for all six:
 
 ```text
 plan_state: blocked_no_execution_plan
@@ -110,24 +103,7 @@ proposed_job: null
 required_next_transition: complete_and_validate_implementation_selection
 ```
 
-## Fail-closed plan behavior
-
-For every framework the plan generator derives blockers from the readiness matrix. A blocked framework cannot emit a proposed job or request runtime execution. An eligible framework still receives no executable job; it only reaches `eligible_for_execution_job_materialization` and requires a separate governed transition.
-
-The plan validator fails if:
-
-```text
-framework identity or ordering drifts
-readiness hash does not match
-job eligibility differs from the readiness matrix
-a blocked plan lacks blockers
-a blocked plan allows job materialization
-runtime_execution_requested is true
-proposed_job is non-null
-runtime_jobs_emitted is not zero
-a plan claims authority or external consequence permission
-a separate governed materialization transition is not required
-```
+A generated plan may establish eligibility for later review. It may not create, materialize, schedule, dispatch, or execute a runtime job.
 
 ## Governed job-materialization receipt layer
 
@@ -136,61 +112,55 @@ Installed:
 ```text
 static/schemas/external-framework-job-materialization-receipt.schema.json
 tests/fixtures/external-framework-job-materialization-receipt.blocked.json
+tests/fixtures/external-framework-job-materialization-receipt.approved-non-executable.json
 scripts/check_external_framework_job_materialization_receipt.py
 receipts/external-framework-job-materialization-receipt-layer-2026-07-11.json
 scripts/check_goal5_external_frameworks_all.py
 ```
 
-The materialization receipt layer consumes readiness and execution-plan references but does not create a runtime job or runtime authority. It requires readiness and plan SHA-256 bindings, a separate authority review, a separate consequence-boundary review, and an explicit materialization decision.
+The receipt layer binds readiness and execution-plan artifacts by SHA-256 and requires distinct authority and consequence-boundary review.
 
-The current fixture remains blocked:
+### Blocked fixture
 
 ```text
-materialization_decision: BLOCKED
+materialization_state: BLOCKED_NOT_ELIGIBLE
+decision: FAIL_CLOSED
 runtime_execution_authorized: false
 runtime_job: null
-authority_review.status: MISSING
-consequence_boundary_review.status: MISSING
+authority_review.status: NOT_STARTED
+consequence_boundary_review.status: NOT_STARTED
 ```
 
-The validator rejects any receipt that:
+### Approved-but-non-executable fixture
+
+```text
+materialization_state: MATERIALIZED_NOT_EXECUTABLE
+decision: ALLOW_MATERIALIZATION_ONLY
+runtime_execution_authorized: false
+runtime_job.job_state: NON_EXECUTABLE_MATERIALIZED_DESCRIPTOR
+runtime_job.execution_endpoint: null
+runtime_job.command: null
+runtime_job.credentials_attached: false
+runtime_job.external_consequence_allowed: false
+runtime_job.required_next_transition: separate_runtime_authorization_review
+authority_review.status: PASS
+consequence_boundary_review.status: PASS
+```
+
+The validator now checks both fixtures and rejects any receipt that:
 
 ```text
 omits readiness or execution-plan hashes
-allows execution for BLOCKED, DENY, or REVIEW_REQUIRED
-contains a runtime job while execution is unauthorized
-claims that job materialization is execution authority
-claims that an eligible plan may self-materialize
+allows runtime execution inside the materialization receipt
+allows BLOCKED, DENY, or REVIEW_REQUIRED to contain a job
+permits an approved descriptor to contain an endpoint or command
+attaches credentials to a materialized descriptor
+allows external consequence
 omits separate authority or consequence-boundary review
-permits materialization to bypass a distinct governed transition
+claims an eligible plan can self-materialize
+claims materialization is runtime authority
+omits the later distinct runtime-authorization transition
 ```
-
-## Eligibility predicates
-
-Execution-job review may become eligible only when all are true:
-
-```text
-all required selection fields are present
-framework-specific context is complete
-version or commit evidence is present
-command evidence is present
-artifact, package, configuration, or model hashes are present
-selection_state is implementation_selected_hash_bound
-execution_authorized is explicitly true in the registry
-global execution_jobs_may_be_added is explicitly true
-```
-
-Eligibility still does not create or materialize a runtime job.
-
-## OPA evidence pipeline
-
-OPA remains the only pinned automated runtime path. The canonical workflow performs bounded pinned capture, same-runner replay, generated-artifact validation, artifact upload, fresh-runner replay, cross-runner comparison, durable pipeline summarization, and fresh-runner artifact upload.
-
-No successful OPA capture or replay is claimed until workflow jobs and artifacts are inspected. The available connector still does not expose push or scheduled runs for the relevant commits, so no run, job, or artifact identifier has been inferred.
-
-## Remaining framework posture
-
-Cedar, MCP, A2A, Guardrails AI, Llama Guard, and NeMo Guardrails have complete capture, validation, summary, selection-gate, readiness, blocked-plan, and blocked materialization-receipt structure. None has an exact selected implementation, version, command, hash-bound environment, provider, transport/model context, observed output, approved materialization receipt, or runtime authority.
 
 ## Evidence progression
 
@@ -201,7 +171,8 @@ fixture_ready
 -> automation_readiness_review
 -> eligible_for_execution_job_materialization
 -> governed_job_materialization_receipt
--> separate_authority_and_consequence_review
+-> materialized_non_executable_descriptor
+-> separate_runtime_authorization_review
 -> runtime_execution_authorization_if_admissible
 -> awaiting_capture
 -> captured_unverified
@@ -212,7 +183,7 @@ fixture_ready
 -> interoperability_candidate
 ```
 
-No framework may advance merely because tooling, readiness, a plan, or a receipt structure exists.
+No framework advances because tooling, readiness, a plan, a materialization receipt, or a materialized descriptor exists.
 
 ## Boundary
 
@@ -222,13 +193,14 @@ capture harness != observed evidence
 artifact validator != observed success
 pipeline summary != compatibility proof
 implementation selection != certification
-implementation selection != execution authorization
+implementation selection != execution authority
 automation readiness != execution authority
 execution plan != executable job
 execution-plan eligibility != job materialization
 job-materialization receipt != runtime execution authority
+materialized descriptor != executable job
 materialization approval != consequence authority
-job materialization != authority to cause external consequence
+runtime authorization != proof of compatibility
 policy decision != execution authority
 protocol response != standing
 tool discovery != tool-call authority
@@ -244,12 +216,12 @@ replay confirmation != execution authority
 
 ```text
 confirm the repaired Goal 5 aggregate passes in the canonical workflow
-confirm the job-materialization validator passes in the canonical aggregate
-inspect first completed OPA capture and fresh-runner replay artifacts
+confirm both materialization fixtures pass in the aggregate
+inspect the first completed OPA capture and fresh-runner replay artifacts
 record exact run, job, artifact, runtime, and receipt hashes after success
 populate one implementation-selection record from exact reproducible source evidence
-keep execution jobs blocked until every required field, hash, authorization, and consequence predicate is present
-add an approved-but-non-executable fixture to test the boundary between materialization approval and runtime authority
+keep runtime jobs blocked until all required field, hash, authority, and consequence predicates hold
+add the separate runtime-authorization receipt schema and validator
 perform replay outside the same GitHub repository/provider before stronger independence claims
 produce observed-partial reports only after exact evidence exists
 update public capture status from inspected receipts
@@ -258,10 +230,19 @@ capture public deployment/page verification receipts
 
 ## Next action
 
-Add an approved-but-non-executable job-materialization fixture and extend the validator to prove that `MATERIALIZATION_APPROVED` still requires `runtime_execution_authorized: false`, `runtime_job: null`, and a later distinct runtime-authorization transition. In parallel, inspect OPA artifacts when the workflow run becomes accessible.
+Build a separate runtime-authorization receipt schema and validator that consumes a `MATERIALIZED_NOT_EXECUTABLE` descriptor, binds the materialization receipt hash, requires current authority/delegation/policy/freshness evidence, and still emits no execution unless every commit-time predicate passes.
+
+In parallel, inspect OPA workflow artifacts when a run becomes accessible.
 
 ## Release path
 
-The repo is not ready to tag solely because capture, validation, replay, selection-gating, readiness, fail-closed execution-plan automation, and materialization-receipt validation exist. After artifact inspection, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
+The repo is not ready to tag solely because capture, validation, replay, selection-gating, readiness, execution-plan automation, and materialization-receipt validation exist. After artifact inspection, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for:
+
+```text
+StegVerse-Labs/Site
+GCAT-BCAT-Engine/Publisher
+StegVerse-Labs/admissibility-wiki
+StegVerse-Labs/stegguardian-wiki
+```
 
 The complete prior thread is not required to continue from this handoff.
