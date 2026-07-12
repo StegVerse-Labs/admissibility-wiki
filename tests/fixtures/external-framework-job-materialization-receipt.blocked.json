@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "external_framework_job_materialization_receipt",
+  "receipt_id": "ef-job-materialization-cedar-blocked-001",
+  "framework_id": "cedar-policy",
+  "source_readiness": {
+    "path": "reports/external-frameworks/implementation-automation-readiness.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "source_execution_plan": {
+    "path": "reports/external-frameworks/implementation-execution-plans.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "materialization_state": "BLOCKED_NOT_ELIGIBLE",
+  "authority_review": {
+    "status": "NOT_STARTED",
+    "reviewer_or_authority_ref": null,
+    "evidence_refs": []
+  },
+  "consequence_boundary_review": {
+    "status": "NOT_STARTED",
+    "reviewer_or_authority_ref": null,
+    "evidence_refs": []
+  },
+  "runtime_execution_authorized": false,
+  "runtime_job": null,
+  "decision": "FAIL_CLOSED",
+  "non_claims": [
+    "receipt existence does not create execution authority",
+    "plan eligibility does not materialize a runtime job",
+    "job materialization does not authorize runtime execution",
+    "validation does not establish framework compatibility"
+  ]
+}
