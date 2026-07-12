@@ -26,6 +26,7 @@ CHECKS = [
     "scripts/check_external_framework_execution_plans.py",
     "scripts/check_external_framework_job_materialization_candidates.py",
     "scripts/check_external_framework_job_materialization_receipt.py",
+    "scripts/check_external_chat_review_packets.py",
     "scripts/check_expanded_external_framework_intake.py",
     "scripts/check_external_framework_candidate_directory.py",
     "scripts/check_external_framework_family_coverage.py",
@@ -94,7 +95,7 @@ def main() -> int:
         return 1
 
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: selection_gated_plans_and_non_executable_materialization_candidates_generated")
+    print("release_readiness: selection_gated_plans_non_executable_materialization_and_external_chat_review_contracts_validated")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
