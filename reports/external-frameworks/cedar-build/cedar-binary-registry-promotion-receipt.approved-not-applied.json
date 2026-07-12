@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "cedar_binary_registry_promotion_receipt",
+  "framework_id": "cedar-policy",
+  "source_promotion_candidate": {
+    "path": "artifact://cedar-selected-binary-build/cedar-binary-registry-promotion-candidate.json",
+    "sha256": "1324a6a9b83b19c30f674c6b93de2e71b46d64ac485419f480a60c1061558468",
+    "candidate_state": "READY_FOR_REGISTRY_PROMOTION_REVIEW",
+    "binary_sha256": "96e6b0517f145875c12457f3350ad43fdc3be9f0e32c42ce813df0667fa036e1"
+  },
+  "decision": "ALLOW_REGISTRY_PROMOTION_ONLY",
+  "promotion_state": "APPROVED_NOT_APPLIED",
+  "review": {
+    "status": "PASS",
+    "reviewer_identity": "StegVerse governed build session",
+    "delegation_ref": "docs/external-frameworks/EXTERNAL_FRAMEWORKS_MIRROR_HANDOFF.md@9e60f52f01f5e981baf4fd5c55a9a5a6e199e25c",
+    "reviewed_at_utc": "2026-07-12T19:46:20Z",
+    "evidence_refs": [
+      "github-actions://StegVerse-Labs/admissibility-wiki/runs/29205883335/artifacts/8263766611",
+      "sha256:edd03d9e5334009674916586ba27045309f006435b623f38f89da2fa3cf015d1",
+      "sha256:1324a6a9b83b19c30f674c6b93de2e71b46d64ac485419f480a60c1061558468"
+    ]
+  },
+  "registry_target": {
+    "path": "docs/external-frameworks/implementation-selection-gates.v0.1.json",
+    "field": "frameworks[cedar-policy].selection.compiled_binary_sha256",
+    "expected_previous_value": null,
+    "proposed_value": "96e6b0517f145875c12457f3350ad43fdc3be9f0e32c42ce813df0667fa036e1"
+  },
+  "registry_mutation_applied": false,
+  "runtime_execution_authorized": false,
+  "external_consequence_allowed": false,
+  "required_next_transition": "apply_hash_only_registry_mutation_in_separate_governed_commit_then_emit_applied_hash_only_receipt",
+  "non_claims": [
+    "promotion approval does not create execution authority",
+    "binary hash promotion does not establish compatibility",
+    "registry mutation does not authorize runtime execution",
+    "review completion does not establish standing",
+    "artifact inspection does not authorize external consequence"
+  ]
+}
