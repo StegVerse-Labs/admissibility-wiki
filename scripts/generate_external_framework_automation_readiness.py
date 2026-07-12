@@ -44,23 +44,11 @@ def main() -> int:
         required_fields = list(record.get("required_fields", []))
         framework_specific = list(record.get("framework_specific_requirements", []))
         missing_required = [field for field in required_fields if not nonempty(selection.get(field))]
-
         supplied_specific = selection.get("framework_specific_context")
-        specific_complete = (
-            isinstance(supplied_specific, dict)
-            and all(nonempty(supplied_specific.get(field)) for field in framework_specific)
-        )
-        hashes_present = any(
-            "hash" in field.lower() and nonempty(selection.get(field)) for field in required_fields
-        )
-        version_present = any(
-            ("version" in field.lower() or "commit" in field.lower()) and nonempty(selection.get(field))
-            for field in required_fields
-        )
-        command_present = any(
-            "command" in field.lower() and nonempty(selection.get(field)) for field in required_fields
-        )
-
+        specific_complete = isinstance(supplied_specific, dict) and all(nonempty(supplied_specific.get(field)) for field in framework_specific)
+        hashes_present = any("hash" in field.lower() and nonempty(selection.get(field)) for field in required_fields)
+        version_present = any(("version" in field.lower() or "commit" in field.lower()) and nonempty(selection.get(field)) for field in required_fields)
+        command_present = any("command" in field.lower() and nonempty(selection.get(field)) for field in required_fields)
         selection_complete = (
             not missing_required
             and specific_complete
@@ -76,31 +64,32 @@ def main() -> int:
         )
         if execution_job_allowed:
             ready_count += 1
+        if execution_job_allowed:
+            automation_state = "ready_for_execution_job_review"
+        elif selection_complete:
+            automation_state = "blocked_authority_review_required"
+        else:
+            automation_state = "blocked_selection_required"
 
-        frameworks.append(
-            {
-                "framework_id": record.get("framework_id"),
-                "selection_state": record.get("selection_state"),
-                "missing_required_fields": missing_required,
-                "framework_specific_context_complete": specific_complete,
-                "hash_evidence_present": hashes_present,
-                "version_evidence_present": version_present,
-                "command_evidence_present": command_present,
-                "selection_complete": selection_complete,
-                "execution_authorized_in_registry": record.get("execution_authorized") is True,
-                "execution_job_allowed": execution_job_allowed,
-                "automation_state": "ready_for_execution_job_review" if execution_job_allowed else "blocked_selection_required",
-            }
-        )
+        frameworks.append({
+            "framework_id": record.get("framework_id"),
+            "selection_state": record.get("selection_state"),
+            "missing_required_fields": missing_required,
+            "framework_specific_context_complete": specific_complete,
+            "hash_evidence_present": hashes_present,
+            "version_evidence_present": version_present,
+            "command_evidence_present": command_present,
+            "selection_complete": selection_complete,
+            "execution_authorized_in_registry": record.get("execution_authorized") is True,
+            "execution_job_allowed": execution_job_allowed,
+            "automation_state": automation_state,
+        })
 
     result = {
         "artifact_type": "external_framework_automation_readiness_matrix",
         "schema_version": "0.1",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "source_registry": {
-            "path": str(GATES.relative_to(ROOT)),
-            "sha256": sha256(GATES),
-        },
+        "source_registry": {"path": str(GATES.relative_to(ROOT)), "sha256": sha256(GATES)},
         "github_context": {
             "run_id": os.environ.get("GITHUB_RUN_ID"),
             "run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
@@ -110,7 +99,8 @@ def main() -> int:
         "summary": {
             "framework_count": len(frameworks),
             "ready_for_execution_job_review": ready_count,
-            "blocked_selection_required": len(frameworks) - ready_count,
+            "blocked_authority_review_required": sum(1 for item in frameworks if item["automation_state"] == "blocked_authority_review_required"),
+            "blocked_selection_required": sum(1 for item in frameworks if item["automation_state"] == "blocked_selection_required"),
             "execution_jobs_may_be_added": ready_count > 0,
             "execution_plan_generation_chained": True,
         },
@@ -123,20 +113,13 @@ def main() -> int:
             "readiness_matrix_may_cause_external_consequence": False,
         },
     }
-
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-    print(
-        "IMPLEMENTATION AUTOMATION READINESS: "
-        f"{ready_count}/{len(frameworks)} ready; "
-        f"{len(frameworks) - ready_count} blocked -> {OUTPUT.relative_to(ROOT)}"
-    )
-
+    print(f"IMPLEMENTATION AUTOMATION READINESS: {ready_count}/{len(frameworks)} ready -> {OUTPUT.relative_to(ROOT)}")
     if not PLAN_GENERATOR.exists():
         print(f"missing execution plan generator: {PLAN_GENERATOR.relative_to(ROOT)}", file=sys.stderr)
         return 1
-    completed = subprocess.run([sys.executable, str(PLAN_GENERATOR)], cwd=ROOT, check=False)
-    return completed.returncode
+    return subprocess.run([sys.executable, str(PLAN_GENERATOR)], cwd=ROOT, check=False).returncode
 
 
 if __name__ == "__main__":
