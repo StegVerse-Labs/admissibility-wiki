@@ -10,8 +10,8 @@ Preserve unrelated CI repair, conceptual-inheritance, lifecycle-formalism, infer
 
 ```text
 Goal: evidence-bound external-framework intake through observed, replayable, non-authorizing interoperability evidence
-Phase: Cedar hash-only registry promotion applied; dispatch progression installed; canonical revalidation pending
-Result: LOCAL_IMPLEMENTATION_INSTALLED_CANONICAL_AND_OPA_VALIDATION_PENDING
+Phase: Cedar hash-only registry promotion applied; canonical validation passed; bounded OPA capture repair installed and awaiting successor verification
+Result: CANONICAL_VALIDATION_PASS_OPA_CAPTURE_REPAIR_PENDING
 ```
 
 ## Current state
@@ -34,8 +34,9 @@ Cedar compiled binary SHA-256 registry field: applied
 runtime execution authorized by promotion: false
 dispatch-state fixture coverage: 4 of 4
 dispatch-observation hash-chain validation: installed
+canonical validation chain: PASS on run 29208976626
 runtime jobs emitted by plan automation: 0
-OPA observed external outputs: pending successful capture
+OPA observed external outputs: pending successor verification after bounded version-probe repair
 independent organization/provider replays: 0 of 18
 ```
 
@@ -128,44 +129,45 @@ scripts/check_external_framework_runtime_dispatch_progression.py
 
 The progression validator checks canonical order, prior receipt identity and SHA-256, strictly increasing observation time, framework and transition continuity, and fail-closed authority boundaries. Fixture progression is not observed production execution and cannot initiate dispatch, attach credentials, execute a command, or create an external consequence.
 
-## Latest canonical failure and bounded repair
+## Canonical validation completion
 
 ```text
 Workflow: Validate chain continuation
-Run: 29206709456
-Commit: 397c5d376ad68a1f1cc6da5e812418a097321637
+Run: 29208976626
+Commit: 48e9eead987a77701582807e0a9b1fc6b20980a8
 Job: validate-chain-continuation
-First failing step: Enforce complete validation result
-Full-validation artifact: 8263961471
-Artifact digest: sha256:8faf83abbb222be86dcd2546da10de936c55486b25fe939ae5e7b19c1904d4aa
-Aggregate result: 33 of 34 Goal 5 checks passed
-Failure class: handoff lost required observed-evidence protocol and queue references
+Result: PASS
+Complete validation result enforcement: PASS
+Goal 5 aggregate generation and upload: PASS
+Cedar selected-binary build: PASS
+```
+
+This verifies the documented successor to `397c5d376ad68a1f1cc6da5e812418a097321637` and closes the prior handoff-reference regression. It does not establish OPA capture, replay, compatibility, execution authority, deployment, or release.
+
+## OPA capture failure and bounded repair
+
+The first post-validation OPA capture failure was confirmed in run `29208976626`:
+
+```text
+Job: capture-opa-evidence
+Failing command: python scripts/run_pinned_opa_ci_capture.py
+Pinned runtime: OPA v1.0.0 static Linux AMD64
+Failure: Error: unknown flag: --format
+Rejected invocation: opa_linux_amd64_static version --format=json
+Capture artifact ID: 8264578155
+Capture artifact digest: sha256:fc646130fcccb80779bb5a28acf18b5a0b16a6600fcdcb48b1e87adb430534cc
+Generated capture files: absent because capture exited during version probing
 ```
 
 Bounded repair:
 
 ```text
-restore exact references to:
-  docs/external-frameworks/observed-evidence-capture-protocol.md
-  docs/external-frameworks/observed-evidence-capture-queue.v0.1.json
+Commit: 1ab96f779a4cf457bdd98753a41c1648114461d3
+File: scripts/run_pinned_opa_ci_capture.py
+Change: use supported `opa version`, preserve raw version output, and fail closed unless output contains pinned version 1.0.0
 ```
 
-No validator, queue state, runtime authority, execution authority, or release boundary was changed. The repair restores documentation references required by `scripts/check_observed_evidence_capture_queue.py`.
-
-## OPA blocker
-
-Run `29205883335` produced no OPA capture or replay records. The preserved artifacts show capture validation failed because expected generated files were absent; the fresh-runner replay then failed closed because validated upstream artifacts were unavailable.
-
-```text
-capture artifact: opa-pinned-capture-replay
-artifact ID: 8263746209
-artifact digest: sha256:52254577fef3e4f9a0fc242388bedcf3fb753166bdcc486c817b43b021ca602b
-fresh-runner artifact: opa-fresh-runner-replay
-artifact ID: 8263747567
-artifact digest: sha256:19c85b972bef2775ff627c48819a088552cce24805dca5b27b2353ab5bc579c7
-```
-
-The failure occurs before a validated capture is produced. Do not claim same-environment or fresh-runner replay success until receipts exist and validate.
+The repair does not change the pinned version, checksum verification, OPA policy/input cases, output comparison, authority boundaries, workflow permissions, execution authority, release state, deployment state, or external repositories.
 
 ## Canonical integration
 
@@ -179,11 +181,11 @@ Additional active workflow created: no
 ## Next task
 
 ```text
-1. Verify the canonical Goal 5 aggregate and full validation chain on the documented successor to 397c5d376ad68a1f1cc6da5e812418a097321637.
-2. Preserve the passing full-validation and Goal 5 receipts.
-3. If canonical validation passes, inspect the next OPA capture job logs and artifacts.
-4. Apply only a bounded OPA acquisition/capture robustness repair after the first failure is confirmed.
-5. Verify same-environment replay before fresh-runner replay.
+1. Verify the canonical successor run for commit 1ab96f779a4cf457bdd98753a41c1648114461d3.
+2. Require capture-opa-evidence and generated-artifact validation to pass before advancing.
+3. Preserve the OPA capture artifact, exact hashes, environment, inputs, outputs, policy/configuration, and same-environment replay receipt.
+4. Verify same-environment replay before accepting fresh-runner replay.
+5. Inspect any remaining build-pages activation-artifact failure separately; do not weaken activation or deployment gates.
 6. Perform replay outside the same repository/provider before any stronger independence claim.
 7. Publish observed-partial reports only after exact evidence exists.
 8. Capture public deployment and downstream propagation receipts before updating destination repositories.
@@ -193,10 +195,10 @@ Additional active workflow created: no
 
 ```text
 StegVerse-Labs/admissibility-wiki
-  -> current-main canonical validation receipts
-  -> bounded OPA acquisition/capture diagnosis and repair
-  -> successful same-environment replay receipt
+  -> successor verification for bounded OPA version-probe repair
+  -> successful OPA capture artifacts and same-environment replay receipt
   -> successful fresh-runner replay receipt
+  -> build-pages activation-artifact diagnosis without gate weakening
   -> public deployment verification receipt
 
 Independent organization/provider
@@ -220,11 +222,12 @@ dispatch attempted != dispatched
 dispatched != execution observed
 execution observed != compatibility
 observation receipt != authority
+same-environment replay != independent replay
 replay confirmation != execution authority
 ```
 
-No deployment, release, tag, merge, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation claim is authorized by this handoff. No release tag is authorized solely from schema, fixture, validation, promotion, or automation installation.
+No deployment, release, tag, merge, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation claim is authorized by this handoff. No release tag is authorized solely from schema, fixture, validation, promotion, capture, or automation installation.
 
 ## Archive readiness
 
-This handoff preserves the current Cedar build evidence, hash-only promotion receipts, dispatch progression chain, canonical failure and bounded repair, OPA blockers, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
+This handoff preserves the current Cedar build evidence, hash-only promotion receipts, dispatch progression chain, canonical validation success, exact OPA capture failure, bounded version-probe repair, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
