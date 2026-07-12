@@ -4,6 +4,8 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -11,6 +13,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 READINESS = ROOT / "reports" / "external-frameworks" / "implementation-automation-readiness.json"
 OUTPUT = ROOT / "reports" / "external-frameworks" / "implementation-execution-plans.json"
+CANDIDATE_GENERATOR = ROOT / "scripts" / "generate_external_framework_job_materialization_candidates.py"
 
 
 def sha256(path: Path) -> str:
@@ -105,6 +108,19 @@ def main() -> int:
         f"{eligible}/{len(plans)} eligible; {len(plans) - eligible} blocked; "
         f"0 runtime jobs emitted -> {OUTPUT.relative_to(ROOT)}"
     )
+
+    completed = subprocess.run(
+        [sys.executable, str(CANDIDATE_GENERATOR)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    if completed.stdout:
+        print(completed.stdout.rstrip())
+    if completed.returncode != 0:
+        return completed.returncode
     return 0
 
 
