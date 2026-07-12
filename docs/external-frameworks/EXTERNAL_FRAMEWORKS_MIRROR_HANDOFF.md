@@ -17,9 +17,9 @@ non-authorizing fixture definitions: 18 of 18
 priority observed-evidence queue entries: 7 of 7
 executable capture harnesses: 7 of 7
 automated pinned capture jobs: 1 of 7
-generated capture artifact validators: 1 of 7
+generated capture artifact validation tooling: 2 of 7
 fresh-runner replay jobs: 1 of 7
-durable pipeline summary generators: 1 of 7
+durable pipeline summary generators: 2 of 7
 observed external outputs attached: pending workflow result
 fresh-runner replay outputs attached: pending workflow result
 independent organization/provider replays: 0 of 18
@@ -68,31 +68,52 @@ scripts/check_opa_observation_capture_harness.py
 its iOS workflow mirror
 ```
 
-The canonical workflow performs these bounded stages:
+The canonical workflow performs bounded pinned capture, same-runner replay, generated-artifact validation, artifact upload, fresh-runner replay, cross-runner comparison, durable pipeline summarization, and fresh-runner artifact upload.
+
+The durable OPA summary records artifact presence and hashes, capture validation, same-runner replay, fresh-runner replay, GitHub run/job/runner context, and explicit non-claims. It reports missing or incomplete artifacts rather than inferring success or failure.
+
+The fresh-runner receipt may record `replay_confirmed_independent_environment` only when every comparison matches. That label means a fresh GitHub Actions runner, not an independent implementation, organization, provider, or authority.
+
+No successful OPA capture or replay is claimed until the corresponding workflow jobs and artifacts are inspected. The available connector still does not expose push or scheduled runs for the relevant commits, so no run, job, or artifact identifier has been inferred.
+
+## Cedar evidence tooling
+
+Installed:
 
 ```text
-pinned OPA capture
--> same-runner replay and generated-artifact validation
--> artifact upload
--> fresh-runner job downloads the upstream artifact
--> independently downloads and checksum-verifies the same pinned OPA binary
--> executes allow and deny cases on a new runner
--> compares output, stdout, policy, input, and runtime-version evidence
--> writes a fresh-runner replay receipt
--> writes opa-evidence-pipeline-status.json
--> uploads opa-fresh-runner-replay
+docs/external-frameworks/capture/cedar/policy.cedar
+docs/external-frameworks/capture/cedar/request-allow.json
+docs/external-frameworks/capture/cedar/request-deny.json
+docs/external-frameworks/cedar-observation-capture-runbook.md
+scripts/capture_cedar_observation.py
+scripts/validate_cedar_capture_artifacts.py
+scripts/summarize_cedar_evidence_pipeline.py
+scripts/check_cedar_observation_capture_harness.py
 ```
 
-The durable pipeline summary records artifact presence and hashes, capture validation, same-runner replay, fresh-runner replay, GitHub run/job/runner context, and explicit non-claims. It reports missing or incomplete artifacts rather than inferring success or failure.
+The Cedar capture harness remains implementation-neutral. It requires the caller to provide:
 
-The fresh-runner receipt may record `replay_confirmed_independent_environment` only when every comparison matches. That label means a fresh GitHub Actions runner, not an independent implementation, organization, provider, or authority. The summary separately records independent implementation/provider review as `not_performed`, compatibility as `not_claimed`, standing as `not_created`, and execution authority as `not_created`.
+```text
+exact implementation identifier
+exact version command
+exact evaluation command template
+```
 
-No successful capture or replay is claimed until the corresponding workflow jobs and artifacts are inspected. The available connector still does not expose push/scheduled runs for the relevant commits, so no run, job, or artifact identifier has been inferred.
+The Cedar artifact validator requires allow and deny capture receipts, verifies exact implementation and version evidence, validates policy/request/output hashes, preserves `captured_unverified`, and writes `cedar-capture-status.json`.
+
+The Cedar pipeline summary writes `cedar-evidence-pipeline-status.json` and reports one of:
+
+```text
+artifacts_not_available
+artifacts_present_incomplete_or_unverified
+captured_unverified_validated
+```
+
+It explicitly records same-runner replay, fresh-runner replay, independent implementation/provider review, compatibility, standing, and execution authority as not performed, not claimed, or not created. No Cedar implementation has been selected or pinned, and no Cedar runtime output is claimed.
 
 ## Other priority capture harnesses
 
 ```text
-Cedar Policy: dedicated implementation-neutral harness
 Model Context Protocol: reusable command harness
 Agent2Agent Protocol: reusable command harness
 Guardrails AI: reusable command harness
@@ -127,6 +148,7 @@ same-runner replay != fresh-runner replay
 fresh-runner replay != independent implementation
 fresh-runner replay != independent provider or authority review
 pipeline summary != compatibility proof
+implementation selection != certification
 matching output != current delegation
 replay confirmation != execution authority
 ```
@@ -138,8 +160,9 @@ Destination: `StegVerse-Labs/admissibility-wiki`
 ```text
 inspect first completed OPA capture and fresh-runner replay artifacts
 record exact run, job, artifact, runtime, and receipt hashes after success
+select a reproducible Cedar implementation and version before adding a pinned job
 perform replay outside the same GitHub repository/provider before stronger independence claims
-add pinned jobs, validators, and pipeline summaries for other frameworks when reproducible runtimes are selected
+add artifact validators and pipeline summaries for MCP, A2A, Guardrails AI, Llama Guard, and NeMo Guardrails
 produce observed-partial reports only after exact evidence exists
 update public capture status from inspected receipts
 capture public deployment/page verification receipts
@@ -147,10 +170,10 @@ capture public deployment/page verification receipts
 
 ## Next action
 
-Observe the workflow triggered by the durable-summary commits. Inspect `opa-pinned-capture-replay` and `opa-fresh-runner-replay`, including `opa-evidence-pipeline-status.json`. Preserve the first as `captured_unverified` plus same-environment replay and the second only as fresh-runner replay. Do not claim independent implementation, compatibility, standing, or execution authority.
+Inspect `opa-pinned-capture-replay` and `opa-fresh-runner-replay` when their run becomes accessible. In parallel, select and document an exact Cedar implementation and version before automating Cedar execution. Do not infer execution, compatibility, standing, certification, or authority from the existence of capture tooling.
 
 ## Release path
 
-The repo is not ready to tag solely because the structural capture, replay, and status pipeline exists. After artifact inspection, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
+The repo is not ready to tag solely because structural capture, replay, validation, and status tooling exists. After artifact inspection, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
 
 The complete prior thread is not required to continue from this handoff.
