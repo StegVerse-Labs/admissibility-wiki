@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "runtime_dispatch_observation_layer_installation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "goal": "Goal 5 observed runtime-dispatch receipt activation",
+  "installed": [
+    "static/schemas/external-framework-runtime-dispatch-observation.schema.json",
+    "tests/fixtures/external-framework-runtime-dispatch-observation.not-dispatched.json",
+    "scripts/check_external_framework_runtime_dispatch_observation.py",
+    "scripts/check_goal5_external_frameworks_all.py"
+  ],
+  "supported_states": [
+    "NOT_DISPATCHED",
+    "DISPATCH_ATTEMPTED",
+    "DISPATCHED",
+    "EXECUTION_OBSERVED"
+  ],
+  "installed_fixture_state": "NOT_DISPATCHED",
+  "authority_boundary": {
+    "schema_may_dispatch": false,
+    "fixture_may_dispatch": false,
+    "validator_may_dispatch": false,
+    "aggregate_may_dispatch": false,
+    "observation_equals_authority": false,
+    "observation_equals_compatibility": false
+  },
+  "commits": {
+    "schema": "6b0f9d7e69c1f8bba81a81df10e096657caba9e1",
+    "fixture": "736269157cf48ca0d383e847a9a5e347b283177c",
+    "validator": "aa83479c2484b0a0726f97c8aca277f9b0a6b3a5",
+    "aggregate_integration": "0d4b13c0fe5f4fc9cf78a012af9aa88ec43030cb"
+  },
+  "verification_state": "INSTALLED_PENDING_CANONICAL_WORKFLOW_CONFIRMATION",
+  "manual_task_required": false,
+  "recorded_at": "2026-07-12T13:00:00Z"
+}
