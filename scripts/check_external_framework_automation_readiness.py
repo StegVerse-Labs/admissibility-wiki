@@ -26,14 +26,7 @@ def main() -> int:
     if not GENERATOR.exists():
         failures.append(f"missing generator: {GENERATOR.relative_to(ROOT)}")
     else:
-        completed = subprocess.run(
-            [sys.executable, str(GENERATOR)],
-            cwd=ROOT,
-            text=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            check=False,
-        )
+        completed = subprocess.run([sys.executable, str(GENERATOR)], cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
         if completed.stdout:
             print(completed.stdout.rstrip())
         if completed.returncode != 0:
@@ -47,7 +40,6 @@ def main() -> int:
             payload = load(OUTPUT)
         except (OSError, json.JSONDecodeError, ValueError) as exc:
             failures.append(str(exc))
-
     if not PLANS.exists():
         failures.append(f"chained execution plan output missing: {PLANS.relative_to(ROOT)}")
 
@@ -59,46 +51,53 @@ def main() -> int:
         if ids != EXPECTED:
             failures.append(f"framework order mismatch: {ids}")
 
+        selected_blocked = 0
+        selection_blocked = 0
+        allowed_count = 0
         for item in frameworks:
             if not isinstance(item, dict):
                 failures.append("framework entry must be an object")
                 continue
             framework_id = item.get("framework_id")
-            if item.get("selection_state") == "selection_required":
+            state = item.get("selection_state")
+            allowed = item.get("execution_job_allowed") is True
+            if allowed:
+                allowed_count += 1
+                for key in ["framework_specific_context_complete", "hash_evidence_present", "version_evidence_present", "command_evidence_present", "selection_complete", "execution_authorized_in_registry"]:
+                    if item.get(key) is not True:
+                        failures.append(f"{framework_id}: execution allowed without {key}")
+            elif state == "implementation_selected_hash_bound":
+                selected_blocked += 1
+                if item.get("selection_complete") is not True:
+                    failures.append(f"{framework_id}: selected state must be structurally complete")
+                if item.get("execution_authorized_in_registry") is not False:
+                    failures.append(f"{framework_id}: selected state must remain unauthorized")
+                if item.get("automation_state") != "blocked_authority_review_required":
+                    failures.append(f"{framework_id}: selected blocked state mismatch")
+            elif state == "selection_required":
+                selection_blocked += 1
                 if item.get("execution_job_allowed") is not False:
                     failures.append(f"{framework_id}: selection_required must block execution job")
                 if item.get("automation_state") != "blocked_selection_required":
                     failures.append(f"{framework_id}: blocked state mismatch")
-            if item.get("execution_job_allowed") is True:
-                required_true = [
-                    "framework_specific_context_complete",
-                    "hash_evidence_present",
-                    "version_evidence_present",
-                    "command_evidence_present",
-                    "selection_complete",
-                    "execution_authorized_in_registry",
-                ]
-                for key in required_true:
-                    if item.get(key) is not True:
-                        failures.append(f"{framework_id}: execution allowed without {key}")
+            else:
+                failures.append(f"{framework_id}: unsupported selection state {state}")
 
         summary = payload.get("summary", {})
-        allowed_count = sum(1 for item in frameworks if isinstance(item, dict) and item.get("execution_job_allowed") is True)
-        if summary.get("ready_for_execution_job_review") != allowed_count:
-            failures.append("summary ready count mismatch")
-        if summary.get("execution_jobs_may_be_added") is not (allowed_count > 0):
-            failures.append("summary execution_jobs_may_be_added mismatch")
+        expected_summary = {
+            "ready_for_execution_job_review": allowed_count,
+            "blocked_authority_review_required": selected_blocked,
+            "blocked_selection_required": selection_blocked,
+            "execution_jobs_may_be_added": allowed_count > 0,
+        }
+        for key, expected in expected_summary.items():
+            if summary.get(key) != expected:
+                failures.append(f"summary {key} mismatch")
         if summary.get("execution_plan_generation_chained") is not True:
             failures.append("execution plan generation must be chained")
 
         boundary = payload.get("authority_boundary", {})
-        for key in [
-            "automation_readiness_is_execution_authority",
-            "selection_completion_is_certification",
-            "selection_completion_is_compatibility",
-            "selection_completion_creates_standing",
-            "readiness_matrix_may_cause_external_consequence",
-        ]:
+        for key in ["automation_readiness_is_execution_authority", "selection_completion_is_certification", "selection_completion_is_compatibility", "selection_completion_creates_standing", "readiness_matrix_may_cause_external_consequence"]:
             if boundary.get(key) is not False:
                 failures.append(f"authority_boundary.{key} must be false")
 
