@@ -25,6 +25,7 @@ CHECKS = [
     "scripts/check_cedar_implementation_selection_evidence.py",
     "scripts/check_cedar_selected_binary_build_harness.py",
     "scripts/check_cedar_binary_promotion_automation.py",
+    "scripts/check_cedar_binary_registry_promotion_receipts.py",
     "scripts/check_external_framework_automation_readiness.py",
     "scripts/check_external_framework_execution_plans.py",
     "scripts/check_external_framework_job_materialization_candidates.py",
@@ -71,7 +72,7 @@ def main() -> int:
         "failed_checks": len(failures),
         "overall_status": "FAIL" if failures else "PASS",
         "results": results,
-        "authority_boundary": "This report records structural validation outcomes only and does not create external-framework certification, equivalence, standing, dispatch, execution, or consequence authority.",
+        "authority_boundary": "This report records structural validation outcomes only and does not create external-framework certification, equivalence, standing, registry-promotion, dispatch, execution, or consequence authority.",
     }, indent=2) + "\n", encoding="utf-8")
 
     print("\n" + "=" * 64)
@@ -83,7 +84,7 @@ def main() -> int:
         print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: dispatch_observation_schema_installed_not_dispatched_fixture_only")
+    print("release_readiness: cedar_binary_registry_promotion_receipt_contract_installed_hash_only_runtime_blocked")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
