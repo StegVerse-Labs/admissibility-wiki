@@ -88,7 +88,7 @@
       "next_action": "capture exact model/version, prompt template, input, generated label, taxonomy category, parameters, and hardware/runtime context"
     },
     {
-      "framework_id": "neMo-guardrails",
+      "framework_id": "nemo-guardrails",
       "framework_name": "NeMo Guardrails",
       "fixture_reference": "docs/external-frameworks/fixtures/nemo-guardrails-benchmark-fixture.v0.1.json",
       "capture_state": "awaiting_capture",
