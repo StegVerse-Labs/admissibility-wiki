@@ -1,0 +1,74 @@
+{
+  "artifact_type": "external_framework_evidence_tooling_coverage",
+  "schema_version": "0.1",
+  "generated_for_goal": "Goal 5 external-framework observatory",
+  "coverage": [
+    {
+      "framework_id": "opa",
+      "capture_harness": "scripts/capture_opa_observation.py",
+      "artifact_validator": "scripts/validate_opa_capture_artifacts.py",
+      "pipeline_summary": "scripts/summarize_opa_evidence_pipeline.py",
+      "automation_state": "pinned_capture_and_fresh_runner_replay_configured",
+      "observed_evidence_state": "pending_artifact_inspection"
+    },
+    {
+      "framework_id": "cedar-policy",
+      "capture_harness": "scripts/capture_cedar_observation.py",
+      "artifact_validator": "scripts/validate_cedar_capture_artifacts.py",
+      "pipeline_summary": "scripts/summarize_cedar_evidence_pipeline.py",
+      "automation_state": "implementation_selection_required",
+      "observed_evidence_state": "not_captured"
+    },
+    {
+      "framework_id": "mcp",
+      "capture_harness": "scripts/capture_external_command_observation.py",
+      "artifact_validator": "scripts/validate_command_capture_artifacts.py",
+      "pipeline_summary": "scripts/summarize_command_evidence_pipeline.py",
+      "manifest": "docs/external-frameworks/capture/mcp/capture-manifest.json",
+      "automation_state": "implementation_selection_required",
+      "observed_evidence_state": "not_captured"
+    },
+    {
+      "framework_id": "a2a",
+      "capture_harness": "scripts/capture_external_command_observation.py",
+      "artifact_validator": "scripts/validate_command_capture_artifacts.py",
+      "pipeline_summary": "scripts/summarize_command_evidence_pipeline.py",
+      "manifest": "docs/external-frameworks/capture/a2a/capture-manifest.json",
+      "automation_state": "implementation_selection_required",
+      "observed_evidence_state": "not_captured"
+    },
+    {
+      "framework_id": "guardrails-ai",
+      "capture_harness": "scripts/capture_external_command_observation.py",
+      "artifact_validator": "scripts/validate_command_capture_artifacts.py",
+      "pipeline_summary": "scripts/summarize_command_evidence_pipeline.py",
+      "manifest": "docs/external-frameworks/capture/guardrails-ai/capture-manifest.json",
+      "automation_state": "implementation_selection_required",
+      "observed_evidence_state": "not_captured"
+    },
+    {
+      "framework_id": "llama-guard",
+      "capture_harness": "scripts/capture_external_command_observation.py",
+      "artifact_validator": "scripts/validate_command_capture_artifacts.py",
+      "pipeline_summary": "scripts/summarize_command_evidence_pipeline.py",
+      "manifest": "docs/external-frameworks/capture/llama-guard/capture-manifest.json",
+      "automation_state": "model_digest_and_runtime_selection_required",
+      "observed_evidence_state": "not_captured"
+    },
+    {
+      "framework_id": "nemo-guardrails",
+      "capture_harness": "scripts/capture_external_command_observation.py",
+      "artifact_validator": "scripts/validate_command_capture_artifacts.py",
+      "pipeline_summary": "scripts/summarize_command_evidence_pipeline.py",
+      "manifest": "docs/external-frameworks/capture/nemo-guardrails/capture-manifest.json",
+      "automation_state": "implementation_and_configuration_selection_required",
+      "observed_evidence_state": "not_captured"
+    }
+  ],
+  "authority_boundary": {
+    "tooling_coverage_is_execution": false,
+    "artifact_validation_is_compatibility": false,
+    "pipeline_summary_creates_standing": false,
+    "tooling_configuration_creates_execution_authority": false
+  }
+}
