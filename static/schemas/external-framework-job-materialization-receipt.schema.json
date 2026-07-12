@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/external-framework-job-materialization-receipt.schema.json",
+  "title": "External Framework Job Materialization Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_type",
+    "receipt_id",
+    "framework_id",
+    "source_readiness",
+    "source_execution_plan",
+    "materialization_state",
+    "authority_review",
+    "consequence_boundary_review",
+    "runtime_execution_authorized",
+    "runtime_job",
+    "decision",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "receipt_type": {"const": "external_framework_job_materialization_receipt"},
+    "receipt_id": {"type": "string", "minLength": 1},
+    "framework_id": {"type": "string", "minLength": 1},
+    "source_readiness": {"$ref": "#/$defs/boundArtifact"},
+    "source_execution_plan": {"$ref": "#/$defs/boundArtifact"},
+    "materialization_state": {
+      "enum": [
+        "BLOCKED_NOT_ELIGIBLE",
+        "ELIGIBLE_REVIEW_REQUIRED",
+        "DENIED",
+        "MATERIALIZED_NOT_EXECUTABLE",
+        "AUTHORIZED_FOR_SEPARATE_RUNTIME_TRANSITION"
+      ]
+    },
+    "authority_review": {"$ref": "#/$defs/review"},
+    "consequence_boundary_review": {"$ref": "#/$defs/review"},
+    "runtime_execution_authorized": {"type": "boolean"},
+    "runtime_job": {"type": ["object", "null"]},
+    "decision": {"enum": ["FAIL_CLOSED", "REVIEW_REQUIRED", "DENY", "ALLOW_MATERIALIZATION_ONLY"]},
+    "non_claims": {
+      "type": "array",
+      "minItems": 4,
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"decision": {"const": "ALLOW_MATERIALIZATION_ONLY"}}},
+      "then": {
+        "properties": {
+          "materialization_state": {"const": "MATERIALIZED_NOT_EXECUTABLE"},
+          "runtime_execution_authorized": {"const": false},
+          "runtime_job": {"type": "object"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"runtime_execution_authorized": {"const": true}}},
+      "then": false
+    }
+  ],
+  "$defs": {
+    "boundArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewer_or_authority_ref", "evidence_refs"],
+      "properties": {
+        "status": {"enum": ["NOT_STARTED", "PENDING", "PASS", "DENY"]},
+        "reviewer_or_authority_ref": {"type": ["string", "null"]},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}
