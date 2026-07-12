@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "external_framework_correction_receipt",
+  "framework_id": "decisionassure",
+  "challenged_receipt_id": "external-compatibility-receipt:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "challenged_submission_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "review_decision": "UPHOLD",
+  "reviewed_fields": [
+    "authority boundary",
+    "receipt reconstruction"
+  ],
+  "supporting_evidence_references": [
+    "https://example.org/framework/specification",
+    "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  ],
+  "replacement_result": null,
+  "replacement_receipt_id": null,
+  "reviewer_reference": "reviewer:example-independent-reviewer",
+  "issued_at": "2026-07-11T00:00:00Z",
+  "boundary": {
+    "receipt_is_certification": false,
+    "receipt_is_execution_authority": false,
+    "receipt_creates_general_compatibility": false,
+    "receipt_changes_source_evidence": false
+  }
+}
