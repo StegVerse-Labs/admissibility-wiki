@@ -28,15 +28,7 @@ Repair state: installed
 Rule: allow source-blocked status tokens only when result == SOURCE_BLOCKED_FAIL_CLOSED
 ```
 
-Source-blocked reports may use the following status tokens as fail-closed evidence-status markers:
-
-```text
-SOURCE_REQUIRED
-PROVISIONAL
-MISSING
-```
-
-These tokens do not certify compatibility, grant authority, or complete validation. They only record that source evidence is unavailable or insufficient and must remain bounded by `SOURCE_BLOCKED_FAIL_CLOSED`.
+Source-blocked reports may use `SOURCE_REQUIRED`, `PROVISIONAL`, and `MISSING` only as fail-closed evidence-status markers. These tokens do not certify compatibility, grant authority, or complete validation.
 
 ## External Framework Generator Regression Repair
 
@@ -51,7 +43,7 @@ Receipt: receipts/external-framework-report-generation-repair-2026-07-11.json
 Repair state: installed; canonical workflow verification pending
 ```
 
-The generator now preserves explicitly enriched framework evidence reports while refreshing canonical identity references and mandatory fail-closed boundary fields. This repair does not certify Morrison Runtime Governance or elevate benchmark observations into execution authority.
+The generator preserves explicitly enriched framework evidence reports while refreshing canonical identity references and mandatory fail-closed boundary fields. This does not certify Morrison Runtime Governance or elevate benchmark observations into execution authority.
 
 ## Documentation Mesh Status
 
@@ -99,6 +91,10 @@ Schema: static/schemas/conceptual-inheritance-record.schema.json
 Fixtures: tests/fixtures/conceptual-inheritance-cases.json
 Claim validator: scripts/check_conceptual_inheritance_claims.py
 Activation status validator: scripts/check_conceptual_inheritance_status.py
+Publication verification: static/status/conceptual-inheritance-publication-verification.json
+Publication validator: scripts/check_conceptual_inheritance_publication.py
+Propagation plan: static/status/conceptual-inheritance-propagation-plan.json
+Propagation validator: scripts/check_conceptual_inheritance_propagation_plan.py
 Canonical integration: scripts/check_admissibility_automation_handoff.py
 Status artifact: static/status/conceptual-inheritance-provenance-status.json
 Navigation: sidebars.js
@@ -117,19 +113,34 @@ Installed activation surfaces:
 - machine-readable inheritance-state schema
 - neutral decision fixtures
 - deterministic claim validator
-- activation status artifact
-- activation status validator
+- activation status artifact and validator
+- fail-closed publication verification artifact and validator
+- queue-only downstream propagation plan and validator
 - canonical handoff validation integration
 ```
+
+## Conceptual Inheritance Propagation Posture
+
+```text
+Authority posture: QUEUE_ONLY_NO_DOWNSTREAM_MUTATION
+Site handoff reviewed: yes
+Site result: DEFER because the active handoff is dedicated to governed Ecosystem Chat activation
+Publisher handoff reviewed: yes
+Publisher result: QUEUE_AFTER_CURRENT_PRIORITY because SPE v0.5.0 wiki propagation is active and an activation workflow failure remains unresolved
+StegGuardian wiki handoff reviewed for this transition: no
+StegGuardian implementation handoff reviewed for this transition: no
+```
+
+Queued propagation is not completed propagation. A destination reference does not grant mutation authority. No downstream mirror may proceed until canonical validation, public endpoint verification, and immediate destination-handoff review are complete.
 
 Remaining checks:
 
 ```text
 - canonical workflow pass
-- public doctrine page deployment
-- public status artifact deployment
-- Publisher and Site propagation only after destination handoff review
-- StegGuardian wiki and implementation awareness after canonical validation
+- public doctrine page verification
+- public status artifact verification
+- Publisher and Site propagation after destination handoff authority permits it
+- StegGuardian wiki and implementation awareness after canonical validation and destination review
 ```
 
 ## Deployment Gate
@@ -152,9 +163,9 @@ iOS-safe workflow path references retained for continuity and migration history:
 github/workflows/deploy.yml
 github/workflows/record-latest-success.yml
 github/workflows/proposal-core-lite-target-watch.yml
+```
 
 The proposal-core-lite target watch is represented as a declared task/status artifact under the canonical workflow, not as an additional active workflow file.
-```
 
 ## Known Status Artifacts
 
@@ -177,6 +188,8 @@ static/status/repo-standards-public-deployment-verification.json
 static/status/ecosystem-documentation-endpoints.json
 static/status/cross-wiki-health-status.json
 static/status/conceptual-inheritance-provenance-status.json
+static/status/conceptual-inheritance-publication-verification.json
+static/status/conceptual-inheritance-propagation-plan.json
 ```
 
 ## Validation and Receipt Automation
@@ -200,6 +213,8 @@ python scripts/check_external_framework_reports.py
 python scripts/check_documentation_mesh_status.py
 python scripts/check_conceptual_inheritance_claims.py
 python scripts/check_conceptual_inheritance_status.py
+python scripts/check_conceptual_inheritance_publication.py
+python scripts/check_conceptual_inheritance_propagation_plan.py
 python scripts/check_admissibility_automation_handoff.py
 npm run validate
 ```
@@ -209,8 +224,10 @@ npm run validate
 ```text
 Check this file before continuing work in StegVerse-Labs/admissibility-wiki.
 Check docs/SITE_MIRROR_HANDOFF.md before Site mirror work.
+Check PUBLISHER_MIRROR_HANDOFF.md before Publisher mirror work.
 Do not create additional active GitHub Actions workflows unless repo standards explicitly change.
 Do not treat public page visibility as governance authority.
+Do not treat queued propagation as completed propagation.
 Manual task requirement: none recorded in this handoff
 ```
 
@@ -235,17 +252,19 @@ Local integration state: installed and validation-bound
 Release posture: PENDING_UPSTREAM_TAG_RELEASE
 ```
 
-The `UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR` state is an external release dependency, not a local repository defect. The current local surfaces remain governed by `PENDING_UPSTREAM_TAG_RELEASE` until a verifiable release reference is available from `StegVerse-Labs/repo-standards`.
+The external release dependency is not a local repository defect. Current local surfaces remain governed by `PENDING_UPSTREAM_TAG_RELEASE` until a verifiable `StegVerse-Labs/repo-standards` release reference is available.
 
 ## Remaining Open Check
 
 ```text
 - confirm the canonical workflow passes after the external framework generator regression repair
 - confirm the canonical workflow passes with documentation mesh validation
-- confirm the canonical workflow passes with conceptual inheritance claim and activation-status validation
+- confirm the canonical workflow passes with conceptual inheritance claim, activation-status, publication, and propagation-plan validation
 - confirm both documentation-mesh public status URLs respond after deployment
 - confirm the conceptual inheritance doctrine and status artifact respond after deployment
-- standardize the shared records in StegVerse-Labs/Site after checking SITE_MIRROR_HANDOFF.md
+- preserve Site deferral until its Ecosystem Chat handoff authorizes unrelated mirror work
+- preserve Publisher queue position until SPE propagation and the unresolved activation failure are addressed
+- review StegGuardian destination handoffs immediately before any downstream mutation
 - promote the proven multi-repo mesh validator into StegVerse-Labs/repo-standards
 ```
 
