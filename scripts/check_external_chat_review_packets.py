@@ -10,14 +10,16 @@ ROOT = Path(__file__).resolve().parents[1]
 REVIEW = ROOT / "docs/external-frameworks/examples/external-chat-cooperative-review-package.example.json"
 CORRECTION = ROOT / "docs/external-frameworks/examples/external-chat-correction-receipt.example.json"
 DELEGATION = ROOT / "docs/external-frameworks/examples/external-chat-reviewer-delegation.example.json"
+PUBLICATION = ROOT / "docs/external-frameworks/examples/external-chat-publication-transition.example.json"
 SCHEMAS = [
     ROOT / "docs/external-frameworks/schemas/external-chat-cooperative-review-package.schema.json",
     ROOT / "docs/external-frameworks/schemas/external-chat-correction-receipt.schema.json",
     ROOT / "docs/external-frameworks/schemas/external-chat-reviewer-delegation.schema.json",
+    ROOT / "docs/external-frameworks/schemas/external-chat-publication-transition.schema.json",
 ]
 RECEIPT_RE = re.compile(r"^external-compatibility-receipt:sha256:[a-f0-9]{64}$")
 HASH_RE = re.compile(r"^[a-f0-9]{64}$")
-SCOPE_RE = re.compile(r"^(field:[A-Za-z0-9_.:-]+|publication_review|\*)$")
+SCOPE_RE = re.compile(r"^(field:[A-Za-z0-9_.:-]+|package:read|publication_review|\*)$")
 
 
 def fail(message: str) -> int:
@@ -26,7 +28,7 @@ def fail(message: str) -> int:
 
 
 def main() -> int:
-    for path in [REVIEW, CORRECTION, DELEGATION, *SCHEMAS]:
+    for path in [REVIEW, CORRECTION, DELEGATION, PUBLICATION, *SCHEMAS]:
         if not path.exists():
             return fail(f"missing {path.relative_to(ROOT)}")
         json.loads(path.read_text(encoding="utf-8"))
@@ -34,6 +36,7 @@ def main() -> int:
     review = json.loads(REVIEW.read_text(encoding="utf-8"))
     correction = json.loads(CORRECTION.read_text(encoding="utf-8"))
     delegation = json.loads(DELEGATION.read_text(encoding="utf-8"))
+    publication = json.loads(PUBLICATION.read_text(encoding="utf-8"))
 
     if review.get("packet_type") != "external_framework_cooperative_review_package":
         return fail("review packet type mismatch")
@@ -82,7 +85,24 @@ def main() -> int:
     if any(value is not False for value in delegation.get("authority_boundary", {}).values()):
         return fail("reviewer delegation authority boundary must remain false")
 
-    print("EXTERNAL CHAT REVIEW PACKETS: PASS (package, correction, reviewer delegation)")
+    if publication.get("transition_type") != "external_framework_wiki_publication_transition":
+        return fail("publication transition type mismatch")
+    if publication.get("publication_executed") is not False:
+        return fail("publication transition must not execute publication")
+    if not publication.get("correction_receipt_id") or not publication.get("publisher_ref"):
+        return fail("publication transition identity references missing")
+    if not publication.get("target_path", "").startswith("docs/external-frameworks/"):
+        return fail("publication target path outside external-framework scope")
+    required_boundary = {
+        "transition_is_not_repository_write": True,
+        "transition_is_not_certification": True,
+        "transition_creates_no_standing": True,
+        "separate_repository_mutation_required": True,
+    }
+    if publication.get("boundary") != required_boundary:
+        return fail("publication transition boundary mismatch")
+
+    print("EXTERNAL CHAT REVIEW PACKETS: PASS (package, correction, reviewer delegation, publication transition)")
     return 0
 
 
