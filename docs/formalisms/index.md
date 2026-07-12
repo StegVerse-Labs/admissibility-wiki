@@ -62,6 +62,18 @@ For non-obvious StegVerse ecosystem entries, `in progress` may be used as a temp
 **Current wiki state:** validated implementation pending public deployment verification  
 **Non-claim:** A passing validator does not prove factual correctness, legal compliance, or IICT.
 
+### Conceptual Inheritance and Provenance Standing
+
+**Definition:** A governed-transition formalism that separates architectural integrity, provenance continuity, and standing for public claims about independent origin, influence, interoperability, or derivation.
+
+**Source reference:** Admissibility Wiki public formalism  
+**Source visibility:** public  
+**Formalism page:** [Conceptual Inheritance and Provenance Standing](./conceptual-inheritance-provenance.md)  
+**Schema:** `static/schemas/conceptual-inheritance-record.schema.json`  
+**Validator:** `scripts/check_conceptual_inheritance_claims.py`  
+**Current wiki state:** validated implementation pending canonical workflow and public deployment verification  
+**Non-claim:** Similarity alone does not prove derivation, and unresolved provenance does not certify independent origin or establish legal ownership, infringement, or intent.
+
 ### Governed Action Lifecycle
 
 **Definition:** A lifecycle formalism separating proposal, commit-time revalidation, bounded execution, consequence observation, recovery or accountability, and reconstruction.
