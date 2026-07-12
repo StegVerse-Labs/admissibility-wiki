@@ -13,7 +13,7 @@ MAPPING_DIR = ROOT / "docs" / "external-frameworks" / "benchmark-mappings"
 FIXTURE_DIR = ROOT / "docs" / "external-frameworks" / "fixtures"
 HANDOFF = ROOT / "docs" / "external-frameworks" / "EXTERNAL_FRAMEWORKS_MIRROR_HANDOFF.md"
 
-PRIORITY_IDS = {"opa", "cedar-policy", "mcp", "a2a", "guardrails-ai", "llama-guard", "neMo-guardrails"}
+PRIORITY_IDS = {"opa", "cedar-policy", "mcp", "a2a", "guardrails-ai", "llama-guard", "nemo-guardrails"}
 ALLOWED_STATES = {
     "awaiting_capture",
     "captured_unverified",
