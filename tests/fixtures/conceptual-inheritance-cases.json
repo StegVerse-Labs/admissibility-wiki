@@ -1,0 +1,124 @@
+{
+  "cases": [
+    {
+      "case_id": "parallel-convergence-admit",
+      "record": {
+        "transition_id": "ci-parallel-001",
+        "source_artifact_refs": [],
+        "source_concept_refs": ["public-standard:execution-controls"],
+        "exposure_event_refs": [],
+        "received_artifact_refs": [],
+        "transformation_record_refs": ["record:independent-design-log"],
+        "inheritance_state": "INDEPENDENT_PARALLEL_DEVELOPMENT",
+        "attribution_required": false,
+        "attribution_satisfied": true,
+        "independence_claim_requested": true,
+        "claim_admissibility": "ADMIT",
+        "material_exposure_established": false,
+        "direct_receipt_established": false,
+        "structural_inheritance_established": false,
+        "provenance_unresolved": false,
+        "contradiction_refs": [],
+        "evaluated_at": "2026-07-11T21:00:00Z",
+        "policy_ref": "policy:conceptual-inheritance:v1"
+      },
+      "expected_decision": "ADMIT"
+    },
+    {
+      "case_id": "acknowledged-influence-review",
+      "record": {
+        "transition_id": "ci-influence-001",
+        "source_artifact_refs": ["paper:source-formalism"],
+        "source_concept_refs": ["concept:bounded-refusal"],
+        "exposure_event_refs": ["event:public-reading"],
+        "received_artifact_refs": [],
+        "transformation_record_refs": ["record:narrow-implementation"],
+        "inheritance_state": "ACKNOWLEDGED_CONCEPTUAL_INFLUENCE",
+        "attribution_required": true,
+        "attribution_satisfied": true,
+        "independence_claim_requested": true,
+        "claim_admissibility": "REVIEW_REQUIRED",
+        "material_exposure_established": true,
+        "direct_receipt_established": false,
+        "structural_inheritance_established": false,
+        "provenance_unresolved": false,
+        "contradiction_refs": [],
+        "evaluated_at": "2026-07-11T21:01:00Z",
+        "policy_ref": "policy:conceptual-inheritance:v1"
+      },
+      "expected_decision": "REVIEW_REQUIRED"
+    },
+    {
+      "case_id": "direct-transfer-deny",
+      "record": {
+        "transition_id": "ci-transfer-001",
+        "source_artifact_refs": ["artifact:execute-refuse-proof"],
+        "source_concept_refs": ["concept:bind-time-determinism"],
+        "exposure_event_refs": ["event:direct-review"],
+        "received_artifact_refs": ["receipt:proof-transfer"],
+        "transformation_record_refs": ["record:derived-execution-surface"],
+        "inheritance_state": "DIRECT_ARTIFACT_TRANSFER",
+        "attribution_required": true,
+        "attribution_satisfied": false,
+        "independence_claim_requested": true,
+        "claim_admissibility": "DENY",
+        "material_exposure_established": true,
+        "direct_receipt_established": true,
+        "structural_inheritance_established": true,
+        "provenance_unresolved": false,
+        "contradiction_refs": ["record:prior-acknowledgment"],
+        "evaluated_at": "2026-07-11T21:02:00Z",
+        "policy_ref": "policy:conceptual-inheritance:v1"
+      },
+      "expected_decision": "DENY"
+    },
+    {
+      "case_id": "unresolved-fail-closed",
+      "record": {
+        "transition_id": "ci-unresolved-001",
+        "source_artifact_refs": [],
+        "source_concept_refs": ["concept:runtime-boundary"],
+        "exposure_event_refs": ["event:possible-public-exposure"],
+        "received_artifact_refs": [],
+        "transformation_record_refs": [],
+        "inheritance_state": "PROVENANCE_UNRESOLVED",
+        "attribution_required": false,
+        "attribution_satisfied": false,
+        "independence_claim_requested": true,
+        "claim_admissibility": "FAIL_CLOSED",
+        "material_exposure_established": false,
+        "direct_receipt_established": false,
+        "structural_inheritance_established": false,
+        "provenance_unresolved": true,
+        "contradiction_refs": [],
+        "evaluated_at": "2026-07-11T21:03:00Z",
+        "policy_ref": "policy:conceptual-inheritance:v1"
+      },
+      "expected_decision": "FAIL_CLOSED"
+    },
+    {
+      "case_id": "no-independence-claim-admit",
+      "record": {
+        "transition_id": "ci-derived-001",
+        "source_artifact_refs": ["artifact:published-schema"],
+        "source_concept_refs": ["concept:governed-transition"],
+        "exposure_event_refs": ["event:licensed-ingestion"],
+        "received_artifact_refs": ["receipt:schema-received"],
+        "transformation_record_refs": ["record:attributed-adaptation"],
+        "inheritance_state": "TRANSFORMED_DERIVATION",
+        "attribution_required": true,
+        "attribution_satisfied": true,
+        "independence_claim_requested": false,
+        "claim_admissibility": "ADMIT",
+        "material_exposure_established": true,
+        "direct_receipt_established": true,
+        "structural_inheritance_established": true,
+        "provenance_unresolved": false,
+        "contradiction_refs": [],
+        "evaluated_at": "2026-07-11T21:04:00Z",
+        "policy_ref": "policy:conceptual-inheritance:v1"
+      },
+      "expected_decision": "ADMIT"
+    }
+  ]
+}
