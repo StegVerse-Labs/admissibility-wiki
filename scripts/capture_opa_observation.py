@@ -14,6 +14,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 CAPTURE_DIR = ROOT / "docs" / "external-frameworks" / "capture" / "opa"
 DEFAULT_OUTPUT = ROOT / "reports" / "external-frameworks" / "opa-observation-capture.json"
+OPA_VERSION = "1.0.0"
 
 
 def sha256_bytes(data: bytes) -> str:
@@ -52,10 +53,17 @@ def main() -> int:
             print(f"OPA CAPTURE: BLOCKED — missing {required}", file=sys.stderr)
             return 2
 
-    version_result = run([str(opa_path), "version", "--format=json"])
+    version_result = run([str(opa_path), "version"])
     if version_result.returncode != 0:
         print(version_result.stderr, file=sys.stderr)
         return version_result.returncode
+    version_output = version_result.stdout.strip()
+    if OPA_VERSION not in version_output:
+        print(
+            f"OPA CAPTURE: BLOCKED — version mismatch expected={OPA_VERSION} output={version_output!r}",
+            file=sys.stderr,
+        )
+        return 2
 
     eval_cmd = [
         str(opa_path),
@@ -75,10 +83,7 @@ def main() -> int:
     stdout_bytes = eval_result.stdout.encode("utf-8")
     stderr_bytes = eval_result.stderr.encode("utf-8")
 
-    try:
-        version_payload: Any = json.loads(version_result.stdout)
-    except json.JSONDecodeError:
-        version_payload = {"raw": version_result.stdout}
+    version_payload: Any = {"raw": version_output, "version": OPA_VERSION}
 
     try:
         output_payload: Any = json.loads(eval_result.stdout) if eval_result.stdout else None
