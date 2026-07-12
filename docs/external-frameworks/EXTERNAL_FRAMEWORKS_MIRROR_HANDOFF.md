@@ -10,8 +10,8 @@ Preserve unrelated CI repair, conceptual-inheritance, lifecycle-formalism, infer
 
 ```text
 Goal: evidence-bound external-framework intake through observed, replayable, non-authorizing interoperability evidence
-Phase: same-environment OPA capture and replay observed passing; bounded fresh-runner version-probe repair installed
-Result: SAME_ENVIRONMENT_REPLAY_PASS_FRESH_RUNNER_REPAIR_PENDING
+Phase: fresh-runner OPA replay verified passing; bounded Pages static-render repair installed
+Result: FRESH_RUNNER_REPLAY_PASS_PAGES_REPAIR_PENDING_VERIFICATION
 ```
 
 ## Current state
@@ -31,10 +31,10 @@ Cedar hash-only registry promotion: APPLIED_HASH_ONLY
 runtime execution authorized by promotion: false
 dispatch-state fixture coverage: 4 of 4
 dispatch-observation hash-chain validation: installed
-canonical validation chain: PASS on run 29209776393
-OPA capture and same-environment replay: PASS on run 29209776393
-fresh-runner replay: bounded repair installed; successor verification pending
-build-pages activation-artifact validation: FAIL; diagnosis pending
+canonical validation chain: PASS on run 29212846956
+OPA capture and same-environment replay: PASS on run 29212846956
+fresh-runner replay: PASS on run 29212846956
+build-pages: FAIL on run 29212846956 from governed-action-lifecycle MDX static rendering; bounded repair installed
 runtime jobs emitted by plan automation: 0
 independent organization/provider replays: 0 of 18
 ```
@@ -50,7 +50,7 @@ scripts/check_goal5_external_frameworks_all.py
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
 
-The observed-evidence queue must not advance beyond the exact evidence supported by artifacts. Same-environment replay is not independent replay, compatibility, standing, execution authority, or consequence authority.
+The observed-evidence queue must not advance beyond the exact evidence supported by artifacts. Same-environment replay and fresh-runner replay within the same repository/provider are not independent implementation, organization, provider, authority, compatibility, standing, execution authority, or consequence authority.
 
 ## Cedar evidence boundary
 
@@ -70,88 +70,67 @@ execution_authorized: false
 
 The promoted hash does not establish compatibility, certification, standing, admissibility, dispatch authority, execution authority, or external consequence authority.
 
-## OPA same-environment completion
+## OPA replay completion
 
-The successor run containing both capture-path probe repairs and the regression guard completed the required upstream stage:
+The canonical successor run completed all authorized OPA stages:
 
 ```text
 Workflow: Validate chain continuation
-Run: 29209776393
-Commit: 6f05d2d28fa7d1120fece631c980598cab6a3ff8
+Run: 29212846956
+Commit: b93edf144dc60a2fe980a384b5b107ced9aee90b
 Branch: main
 Job: validate-chain-continuation
 Result: PASS
 Job: capture-opa-evidence
 Result: PASS
-Run pinned OPA capture and same-environment replay: PASS
-Validate generated OPA capture and replay artifacts: PASS
-Artifact: opa-pinned-capture-replay
-Artifact ID: 8264830147
-Artifact digest: sha256:627dd10e68fb5a5f37759236f3a836e1f61ac02d14f26238de0b5bdf8f1b5446
-```
-
-This closes the outer and nested capture-path `version --format=json` regressions. It establishes only captured, validated, same-environment replay evidence.
-
-## Fresh-runner failure and bounded repair
-
-Run `29209776393` then reached the separately authorized fresh-runner stage and failed:
-
-```text
 Job: replay-opa-fresh-runner
-Result: FAIL
-Upstream OPA artifact download: PASS
-Replay OPA on a fresh runner: FAIL
-Artifact: opa-fresh-runner-replay
-Artifact ID: 8264831760
-Artifact digest: sha256:25e833afac7b4fdeba06638bf667c184f4348ef444da7b706f0a36cc037dd789
-Confirmed compatibility defect: scripts/run_independent_opa_ci_replay.py retained `opa version --format=json`
+Result: PASS
 ```
 
-Bounded repair:
+This verifies the bounded status-schema repair and closes the observed same-provider fresh-runner replay blocker. Preserve the fresh-runner artifact, exact hashes, environment, comparison results, and limitations before any stronger claim.
 
-```text
-Commit: 186c751ac253c585315ca6ba03889f26765a8f02
-File: scripts/run_independent_opa_ci_replay.py
-Change: use supported `opa version`, require pinned version 1.0.0, preserve raw version evidence, and retain checksum, upstream-validation, comparison, and authority gates
-```
+## Pages failure and bounded repair
 
-The repair does not change the OPA version pin, binary URL, checksum verification, policy, inputs, query, comparison semantics, workflow permissions, execution authority, deployment state, release state, or any external repository.
-
-## Pages blocker
-
-Run `29209776393` also failed at:
+Run `29212846956` failed only at `build-pages` after all governance validators passed and Docusaurus reached static site generation:
 
 ```text
 Job: build-pages
 Step: Validate governance and activation artifacts
-Result: FAIL
-Build site: skipped
+Underlying command: npm run validate -> npm run build
+Failing path: /admissibility-wiki/formalisms/governed-action-lifecycle
+Failure class: Docusaurus MDX static-render ReferenceError
+Exact error: ReferenceError: t_c is not defined
+Build site: failed
 Deploy pages: skipped
 Verify public pages: skipped
 ```
 
-Treat this as a separate activation-artifact diagnosis. Do not weaken activation, deployment, public-verification, or release gates.
+The page used display-LaTeX delimiters containing MDX-interpreted identifiers and braces. The bounded repair converts those display expressions to fenced text while preserving the lifecycle meaning and all authority boundaries:
+
+```text
+Commit: e85d06703eeb1463ba15dd1fccafcb2120f17bac
+File: docs/formalisms/governed-action-lifecycle.md
+Change: replace MDX-unsafe display expressions with literal fenced text
+```
+
+The repair does not weaken activation, deployment, public-verification, release, governance, or authority gates.
 
 ## Next task
 
 ```text
-1. Verify the canonical successor run containing commit 186c751ac253c585315ca6ba03889f26765a8f02.
-2. Require replay-opa-fresh-runner to pass before recording fresh-runner replay completion.
-3. Preserve the fresh-runner artifact, exact hashes, environment, comparison results, and limitations.
-4. Inspect the build-pages failure logs and identify the first failing governance or activation validator.
-5. Apply only a bounded repository-local repair that preserves activation and deployment gates.
-6. Require a passing Pages build before any deployment or public-verification claim.
-7. Perform replay outside the same repository/provider before any stronger independence claim.
-8. Review destination handoffs before any propagation to Site, Publisher, or StegGuardian.
+1. Verify the canonical successor run containing commit e85d06703eeb1463ba15dd1fccafcb2120f17bac.
+2. Require build-pages and the Docusaurus production build to pass before recording Pages build completion.
+3. Preserve the Pages build receipt and exact workflow context.
+4. Do not deploy or claim public verification unless the workflow itself advances through those separately governed stages.
+5. Perform replay outside the same repository/provider before any stronger independence claim.
+6. Review destination handoffs before any propagation to Site, Publisher, or StegGuardian.
 ```
 
 ## Remaining modules
 
 ```text
 StegVerse-Labs/admissibility-wiki
-  -> fresh-runner OPA successor verification
-  -> fresh-runner replay receipt preservation
-  -> build-pages activation-artifact diagnosis
+  -> successor verification for commit e85d06703eeb1463ba15dd1fccafcb2120f17bac
   -> passing Pages build receipt
   -> public deployment verification receipt
 
@@ -172,7 +151,7 @@ binary hash != compatibility proof
 promotion approval != execution authority
 capture != standing
 same-environment replay != independent replay
-fresh runner != independent organization or provider
+fresh runner in same provider != independent organization or provider
 replay confirmation != execution authority
 observation receipt != authority
 Pages build != deployment authority
@@ -182,4 +161,4 @@ No deployment, release, tag, merge, external-repository mutation, runtime execut
 
 ## Archive readiness
 
-This handoff preserves current Cedar evidence, canonical validation success, same-environment OPA capture and replay success, the first observed fresh-runner failure, bounded repair commit, Pages blocker, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
+This handoff preserves current Cedar evidence, canonical validation success, same-environment and fresh-runner OPA replay success, the exact Pages static-render failure, bounded repair commit, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
