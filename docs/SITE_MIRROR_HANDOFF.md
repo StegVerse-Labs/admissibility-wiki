@@ -152,6 +152,23 @@ Decision Authority pre-merge validation: passed
 Decision Authority PR: merged
 Decision Authority integration receipt: installed
 Morrison validation table visibility: installed
+NeMo Guardrails queue/mapping identifier drift: repaired at commits 4e47f15 and 8731548
+workflow mirror line-ending false drift: repaired at commit b02eafb
+```
+
+## Latest CI repair
+
+```text
+failed_run_id: 29173265617
+failed_commit: acca209f50ab439d6dc9527f3d008e7df4751bd7
+workflow: Validate chain continuation
+job: validate-chain-continuation
+validation_summary: 29/30 checks passed
+aggregate_failures:
+  - observed evidence queue used neMo-guardrails while canonical mapping uses nemo-guardrails
+  - canonical/iOS mirror comparison treated line-ending or final-newline form as content drift
+repair_boundary: identifier consistency and exact-logical-line mirror comparison only
+release_or_deploy_authority_used: no
 ```
 
 ## External dependency blockers
@@ -184,6 +201,7 @@ release_readiness: not_ready_for_tag
 ## Remaining hardening
 
 ```text
+Verify the next main Validate chain continuation run passes the repaired queue and OPA harness checks.
 Synchronize the successful main-validation receipts into release-readiness records.
 Capture public deployment and page-verification receipts.
 Attach Morrison raw audit payloads or retain externally-blocked partial-evidence posture.
@@ -204,4 +222,4 @@ Benchmark publication, candidate intake, directory visibility, family coverage, 
 
 ## Next action
 
-Observe the workflow triggered by the candidate-directory commits. If validation passes, continue source-gated promotion of Tier 1 candidates into sourced intake records and individual pages without collapsing candidate, sourced, mapped, fixture-ready, and validated states.
+Observe the workflow triggered by commit `b02eafbdd7f79d1a538b7b986af6641af2d0a429`. If validation passes, synchronize the successful main-validation receipt and continue source-gated promotion of Tier 1 candidates into sourced intake records and individual pages without collapsing candidate, sourced, mapped, fixture-ready, and validated states.
