@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/job-materialization-candidate.schema.json",
+  "title": "External Framework Job Materialization Candidate",
+  "type": "object",
+  "required": [
+    "artifact_type",
+    "schema_version",
+    "framework_id",
+    "candidate_state",
+    "source_readiness_sha256",
+    "source_execution_plan_sha256",
+    "runtime_job_materialized",
+    "runtime_execution_requested",
+    "authority_review",
+    "consequence_boundary_review",
+    "authority_boundary"
+  ],
+  "properties": {
+    "artifact_type": {"const": "external_framework_job_materialization_candidate"},
+    "schema_version": {"const": "0.1"},
+    "framework_id": {"type": "string", "minLength": 1},
+    "candidate_state": {
+      "enum": [
+        "blocked_plan_ineligible",
+        "awaiting_authority_and_consequence_review",
+        "review_complete_non_executable"
+      ]
+    },
+    "source_readiness_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "source_execution_plan_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "runtime_job_materialized": {"const": false},
+    "runtime_execution_requested": {"const": false},
+    "materialized_job": {"type": "null"},
+    "authority_review": {
+      "type": "object",
+      "required": ["state", "reviewer_identity", "delegation_reference", "validity_window"],
+      "properties": {
+        "state": {"enum": ["not_performed", "complete_non_authorizing"]},
+        "reviewer_identity": {"type": ["string", "null"]},
+        "delegation_reference": {"type": ["string", "null"]},
+        "validity_window": {"type": ["string", "null"]}
+      }
+    },
+    "consequence_boundary_review": {
+      "type": "object",
+      "required": ["state", "target", "scope", "recoverability_profile", "rollback_or_stop_condition"],
+      "properties": {
+        "state": {"enum": ["not_performed", "complete_non_authorizing"]},
+        "target": {"type": ["string", "null"]},
+        "scope": {"type": ["string", "null"]},
+        "recoverability_profile": {"type": ["string", "null"]},
+        "rollback_or_stop_condition": {"type": ["string", "null"]}
+      }
+    },
+    "authority_boundary": {
+      "type": "object",
+      "required": [
+        "candidate_is_executable_job",
+        "candidate_is_execution_authority",
+        "candidate_may_cause_external_consequence",
+        "review_completion_materializes_job"
+      ],
+      "properties": {
+        "candidate_is_executable_job": {"const": false},
+        "candidate_is_execution_authority": {"const": false},
+        "candidate_may_cause_external_consequence": {"const": false},
+        "review_completion_materializes_job": {"const": false}
+      }
+    }
+  },
+  "additionalProperties": true
+}
