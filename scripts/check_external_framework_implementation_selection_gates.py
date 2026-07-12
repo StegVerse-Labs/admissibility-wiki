@@ -2,12 +2,15 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "docs" / "external-frameworks" / "implementation-selection-gates.v0.1.json"
+CEDAR_APPLIED_RECEIPT = ROOT / "reports" / "external-frameworks" / "cedar-build" / "cedar-binary-registry-promotion-receipt.applied-hash-only.json"
 EXPECTED_IDS = ["cedar-policy", "mcp", "a2a", "guardrails-ai", "llama-guard", "neMo-guardrails"]
+HEX64 = re.compile(r"^[0-9a-f]{64}$")
 COMMON_BOUNDARIES = [
     "implementation_selection_is_certification",
     "implementation_selection_is_compatibility",
@@ -27,6 +30,51 @@ def nonempty(value: object) -> bool:
     return True
 
 
+def load_json(path: Path) -> dict:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise ValueError(f"{path.name} must contain a JSON object")
+    return value
+
+
+def validate_cedar_hash_promotion(compiled_hash: object, failures: list[str]) -> None:
+    if compiled_hash is None:
+        return
+    if not isinstance(compiled_hash, str) or not HEX64.fullmatch(compiled_hash):
+        failures.append("cedar-policy: compiled binary hash must be lowercase sha256")
+        return
+    if not CEDAR_APPLIED_RECEIPT.exists():
+        failures.append("cedar-policy: applied hash-only promotion receipt missing")
+        return
+    try:
+        receipt = load_json(CEDAR_APPLIED_RECEIPT)
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
+        failures.append(f"cedar-policy: applied promotion receipt invalid: {exc}")
+        return
+    source = receipt.get("source_promotion_candidate", {})
+    target = receipt.get("registry_target", {})
+    expected = {
+        "receipt_type": "cedar_binary_registry_promotion_receipt",
+        "framework_id": "cedar-policy",
+        "decision": "ALLOW_REGISTRY_PROMOTION_ONLY",
+        "promotion_state": "APPLIED_HASH_ONLY",
+        "registry_mutation_applied": True,
+        "runtime_execution_authorized": False,
+        "external_consequence_allowed": False,
+    }
+    for key, value in expected.items():
+        if receipt.get(key) != value:
+            failures.append(f"cedar-policy: applied promotion receipt expected {key}={value!r}")
+    if source.get("candidate_state") != "READY_FOR_REGISTRY_PROMOTION_REVIEW":
+        failures.append("cedar-policy: applied promotion receipt requires ready candidate")
+    if source.get("binary_sha256") != compiled_hash:
+        failures.append("cedar-policy: registry hash differs from promoted binary hash")
+    if target.get("field") != "frameworks[cedar-policy].selection.compiled_binary_sha256":
+        failures.append("cedar-policy: applied promotion receipt targets wrong registry field")
+    if target.get("proposed_value") != compiled_hash:
+        failures.append("cedar-policy: applied promotion target differs from registry hash")
+
+
 def main() -> int:
     failures: list[str] = []
     if not REGISTRY.exists():
@@ -34,8 +82,8 @@ def main() -> int:
         print(f"- missing {REGISTRY.relative_to(ROOT)}")
         return 1
     try:
-        payload = json.loads(REGISTRY.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+        payload = load_json(REGISTRY)
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
         print("IMPLEMENTATION SELECTION GATES: FAIL")
         print(f"- invalid registry: {exc}")
         return 1
@@ -89,8 +137,11 @@ def main() -> int:
             evidence_path = selection.get("selection_evidence_path")
             if not isinstance(evidence_path, str) or not (ROOT / evidence_path).exists():
                 failures.append(f"{framework_id}: selection evidence path missing")
-            if selection.get("compiled_binary_sha256") is not None:
-                failures.append(f"{framework_id}: compiled binary hash must remain pending before execution")
+            compiled_hash = selection.get("compiled_binary_sha256")
+            if framework_id == "cedar-policy":
+                validate_cedar_hash_promotion(compiled_hash, failures)
+            elif compiled_hash is not None:
+                failures.append(f"{framework_id}: compiled binary hash is not authorized by a promotion receipt")
         else:
             failures.append(f"{framework_id}: unsupported selection_state {state}")
 
