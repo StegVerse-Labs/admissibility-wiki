@@ -22,6 +22,7 @@ CHECKS = [
     "scripts/check_priority_command_capture_harnesses.py",
     "scripts/check_external_framework_evidence_tooling_coverage.py",
     "scripts/check_external_framework_implementation_selection_gates.py",
+    "scripts/check_cedar_implementation_selection_evidence.py",
     "scripts/check_external_framework_automation_readiness.py",
     "scripts/check_external_framework_execution_plans.py",
     "scripts/check_external_framework_job_materialization_candidates.py",
@@ -43,7 +44,6 @@ def main() -> int:
     results: list[dict[str, object]] = []
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE CHECK")
     print("=" * 64)
-
     for check in CHECKS:
         path = ROOT / check
         print(f"\n--- RUN: {check} ---")
@@ -51,39 +51,24 @@ def main() -> int:
             output = f"MISSING: {check}"
             return_code = 127
         else:
-            completed = subprocess.run(
-                [sys.executable, str(path)],
-                cwd=ROOT,
-                text=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                check=False,
-            )
+            completed = subprocess.run([sys.executable, str(path)], cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
             return_code = completed.returncode
             output = completed.stdout.rstrip()
-
         if output:
             print(output)
         results.append({"path": check, "status": "PASS" if return_code == 0 else "FAIL", "return_code": return_code, "output": output})
 
     failures = [item for item in results if item["status"] == "FAIL"]
     REPORT.parent.mkdir(parents=True, exist_ok=True)
-    REPORT.write_text(
-        json.dumps(
-            {
-                "schema": "admissibility_wiki.goal5_external_frameworks_report.v1",
-                "total_checks": len(results),
-                "passed_checks": len(results) - len(failures),
-                "failed_checks": len(failures),
-                "overall_status": "FAIL" if failures else "PASS",
-                "results": results,
-                "authority_boundary": "This report records structural validation outcomes only and does not create external-framework certification, equivalence, standing, or execution authority.",
-            },
-            indent=2,
-        )
-        + "\n",
-        encoding="utf-8",
-    )
+    REPORT.write_text(json.dumps({
+        "schema": "admissibility_wiki.goal5_external_frameworks_report.v1",
+        "total_checks": len(results),
+        "passed_checks": len(results) - len(failures),
+        "failed_checks": len(failures),
+        "overall_status": "FAIL" if failures else "PASS",
+        "results": results,
+        "authority_boundary": "This report records structural validation outcomes only and does not create external-framework certification, equivalence, standing, or execution authority.",
+    }, indent=2) + "\n", encoding="utf-8")
 
     print("\n" + "=" * 64)
     if failures:
@@ -93,9 +78,8 @@ def main() -> int:
             print(failure["output"] or "(no validator output)")
         print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
-
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: selection_gated_plans_non_executable_materialization_and_external_chat_review_contracts_validated")
+    print("release_readiness: cedar_hash_bound_selection_installed_execution_unauthorized")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
