@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "runtime_authorization_positive_fixture_installation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "goal": "Goal 5 external-framework governance",
+  "installed": [
+    "tests/fixtures/external-framework-runtime-authorization-receipt.allowed-non-dispatched.json",
+    "static/schemas/external-framework-runtime-authorization-receipt.schema.json",
+    "scripts/check_external_framework_runtime_authorization_receipt.py"
+  ],
+  "fixture_posture": {
+    "decision": "ALLOW_RUNTIME_TRANSITION",
+    "all_commit_time_predicates": "PASS",
+    "runtime_execution_authorized": true,
+    "transition_state": "AUTHORIZED_NOT_DISPATCHED",
+    "scheduled": false,
+    "dispatched": false,
+    "execution_started": false,
+    "external_consequence_allowed": false,
+    "required_next_transition": "separate_observed_runtime_dispatch_transition"
+  },
+  "authority_boundary": {
+    "fixture_may_schedule": false,
+    "fixture_may_dispatch": false,
+    "fixture_may_execute": false,
+    "fixture_may_attach_credentials": false,
+    "fixture_may_cause_external_consequence": false,
+    "runtime_authorization_equals_observed_execution": false
+  },
+  "commits": {
+    "schema_constraint": "03b1587f60ae9e28fdb51fc311bd45a3e5104c22",
+    "positive_fixture": "85433142cef80053df05cd0773ed35281087de85",
+    "dual_fixture_validator": "96ce0acea87513fd50def8962b76287df4c75a55"
+  },
+  "verification_state": "INSTALLED_PENDING_CANONICAL_WORKFLOW_CONFIRMATION",
+  "manual_task_required": false,
+  "recorded_at": "2026-07-12T12:00:00Z"
+}
