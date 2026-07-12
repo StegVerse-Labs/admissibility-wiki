@@ -11,6 +11,8 @@
   "navigation": "sidebars.js",
   "formalism_index": "docs/formalisms/index.md",
   "status_validator": "scripts/check_conceptual_inheritance_status.py",
+  "publication_verification": "static/status/conceptual-inheritance-publication-verification.json",
+  "publication_validator": "scripts/check_conceptual_inheritance_publication.py",
   "decision_outcomes": [
     "ADMIT",
     "DENY",
@@ -22,12 +24,13 @@
     "Does not infer intent",
     "Does not convert similarity into proof of derivation",
     "Does not convert unresolved evidence into certification of independence",
-    "Keeps architectural integrity separate from provenance continuity and origin-claim standing"
+    "Keeps architectural integrity separate from provenance continuity and origin-claim standing",
+    "Does not treat pending deployment as public verification"
   ],
   "remaining_checks": [
     "canonical workflow pass",
-    "public page deployment",
-    "status endpoint deployment",
+    "public doctrine page verification",
+    "public status endpoint verification",
     "Publisher and Site propagation after destination handoff review",
     "StegGuardian wiki and implementation awareness after validation"
   ],
