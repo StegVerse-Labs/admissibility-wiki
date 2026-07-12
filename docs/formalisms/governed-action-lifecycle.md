@@ -46,17 +46,17 @@ The revalidation scope includes:
 
 The governing relationship is:
 
-\[
-ValidAt(t_0) \not\Rightarrow ValidAt(t_c)
-\]
+```text
+ValidAt(t_0) does not imply ValidAt(t_c)
+```
 
 A prior approval does not automatically survive materially changed conditions.
 
 The commit-time governance function returns:
 
-\[
-\Gamma(T_{t_c}) \rightarrow \{ALLOW, DENY, DEFER, ESCALATE\}
-\]
+```text
+Gamma(T_t_c) -> {ALLOW, DENY, DEFER, ESCALATE}
+```
 
 Only `ALLOW` permits the declared bounded execution path. `DENY`, `DEFER`, and `ESCALATE` are governed outcomes rather than operational failures.
 
@@ -66,9 +66,9 @@ An admitted action must remain inside the authority, scope, rate, consequence, a
 
 Execution success is not proof that the transition was admissible:
 
-\[
-OperationalSuccess \not\Rightarrow Admissible
-\]
+```text
+OperationalSuccess does not imply Admissible
+```
 
 The execution boundary should preserve interruption, observation, and rollback where the action class allows them.
 
@@ -94,9 +94,9 @@ Commit-time validation cannot eliminate all error. Recovery governance therefore
 
 The response set may include:
 
-\[
-\mathcal{R}=\{rollback, repair, compensate, contain, appeal, learn\}
-\]
+```text
+R = {rollback, repair, compensate, contain, appeal, learn}
+```
 
 Recovery does not retroactively make an inadmissible action legitimate. Likewise, a valid pre-commit decision does not erase obligations created by a harmful result.
 
@@ -116,9 +116,9 @@ A reconstructable record should allow an independent reviewer to derive:
 
 Reconstructability is necessary but not sufficient:
 
-\[
-Reconstructable \not\Rightarrow LegitimateAtCommit
-\]
+```text
+Reconstructable does not imply LegitimateAtCommit
+```
 
 ## 7. Responsibility Separation
 
