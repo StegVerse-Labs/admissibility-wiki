@@ -2,7 +2,7 @@
 
 ## Source of truth
 
-This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, replay, evidence-status, and implementation-selection work. Preserve unrelated CI repair, deployment verification, lifecycle-formalism, inference-window, and documentation-mesh work owned by other workstreams.
+This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, replay, evidence-status, implementation-selection, and automation-readiness work. Preserve unrelated CI repair, deployment verification, lifecycle-formalism, inference-window, and documentation-mesh work owned by other workstreams.
 
 ## Current state
 
@@ -21,59 +21,27 @@ durable pipeline-summary tooling: 7 of 7
 automated pinned capture jobs: 1 of 7
 fresh-runner replay jobs: 1 of 7
 implementation-selection gate records: 6 of 6 remaining unpinned frameworks
+automated implementation-readiness matrix: installed and workflow-integrated
 observed external outputs attached: pending workflow result
 fresh-runner replay outputs attached: pending workflow result
 independent organization/provider replays: 0 of 18
 ```
 
-## Promoted framework set
-
-```text
-Open Policy Agent
-Cedar Policy
-OSCAL
-SPIFFE/SPIRE
-W3C Verifiable Credentials
-in-toto
-SLSA
-Sigstore
-Model Context Protocol
-Agent2Agent Protocol
-OpenID Connect
-OAuth 2.0
-W3C Decentralized Identifiers
-OpenLineage
-W3C PROV
-Guardrails AI
-Llama Guard
-NeMo Guardrails
-```
-
-Each promoted framework has canonical-source capture, an individual observatory page, a benchmark applicability mapping, and a source-versioned non-authorizing fixture definition.
-
-## Evidence tooling coverage registry
-
-Installed:
-
-```text
-docs/external-frameworks/evidence-tooling-coverage.v0.1.json
-scripts/check_external_framework_evidence_tooling_coverage.py
-scripts/check_goal5_external_frameworks_all.py -> coverage validator integrated
-```
-
-The registry accounts for all seven priority frameworks and binds each to its capture harness, artifact validator, pipeline summarizer, implementation-selection state, and observed-evidence state. Shared command tooling is used for MCP, A2A, Guardrails AI, Llama Guard, and NeMo Guardrails without collapsing their framework identities or evidence records.
-
-## Implementation-selection gates
+## Automation readiness layer
 
 Installed:
 
 ```text
 docs/external-frameworks/implementation-selection-gates.v0.1.json
 scripts/check_external_framework_implementation_selection_gates.py
-scripts/check_goal5_external_frameworks_all.py -> selection-gate validator integrated
+scripts/generate_external_framework_automation_readiness.py
+scripts/check_external_framework_automation_readiness.py
+scripts/check_goal5_external_frameworks_all.py
+.github/workflows/validate-chain-continuation.yml
+iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
 
-The selection registry covers the six priority frameworks that do not yet have a pinned execution job:
+The readiness generator evaluates all six unpinned priority frameworks:
 
 ```text
 Cedar Policy
@@ -84,83 +52,70 @@ Llama Guard
 NeMo Guardrails
 ```
 
-Every record remains `selection_required` and `execution_authorized: false`. Before an execution job may be added, the record requires an exact implementation or model identity, version or commit, execution command, artifact/package/model hashes, execution environment, and framework-specific context such as transport, capability negotiation, delegation, guard configuration, model digest, tokenizer/quantization posture, or rails configuration.
-
-The aggregate validator fails if any framework is omitted, reordered, marked selected without evidence, given fewer than the required selection fields, or allowed to authorize execution.
-
-Machine-readable boundaries:
+For each framework it records:
 
 ```text
-implementation selection != certification
-implementation selection != compatibility
-implementation selection != standing
-implementation selection != execution authority
-selection gate != authority to cause external consequence
+selection state
+missing required fields
+framework-specific context completeness
+hash evidence presence
+version or commit evidence presence
+command evidence presence
+selection completeness
+registry execution authorization
+execution-job eligibility
+automation state
 ```
+
+The current expected state for all six is:
+
+```text
+selection_state: selection_required
+execution_authorized_in_registry: false
+execution_job_allowed: false
+automation_state: blocked_selection_required
+```
+
+The matrix is written to:
+
+```text
+reports/external-frameworks/implementation-automation-readiness.json
+```
+
+The canonical workflow now generates, validates, and uploads it on push, pull request, workflow dispatch, and schedule as:
+
+```text
+external-framework-automation-readiness
+```
+
+The canonical and iOS workflow copies are byte-identical after this change.
+
+## Fail-closed behavior
+
+An execution job may only become eligible when all of the following are true:
+
+```text
+all required selection fields are present
+framework-specific context is complete
+version or commit evidence is present
+command evidence is present
+artifact, package, configuration, or model hashes are present
+selection_state is implementation_selected_hash_bound
+execution_authorized is explicitly true in the registry
+global execution_jobs_may_be_added is explicitly true
+```
+
+The readiness checker fails if a `selection_required` framework permits execution or if execution is allowed while any required predicate is absent.
 
 ## OPA evidence pipeline
 
-Installed:
-
-```text
-docs/external-frameworks/capture/opa/policy.rego
-docs/external-frameworks/capture/opa/input-allow.json
-docs/external-frameworks/capture/opa/input-deny.json
-scripts/capture_opa_observation.py
-scripts/run_pinned_opa_ci_capture.py
-scripts/validate_opa_capture_artifacts.py
-scripts/run_independent_opa_ci_replay.py
-scripts/summarize_opa_evidence_pipeline.py
-scripts/check_opa_observation_capture_harness.py
-.github/workflows/validate-chain-continuation.yml
-its iOS workflow mirror
-```
-
-The canonical workflow performs bounded pinned capture, same-runner replay, generated-artifact validation, artifact upload, fresh-runner replay, cross-runner comparison, durable pipeline summarization, and fresh-runner artifact upload.
+OPA remains the only pinned automated runtime path. The canonical workflow performs bounded pinned capture, same-runner replay, generated-artifact validation, artifact upload, fresh-runner replay, cross-runner comparison, durable pipeline summarization, and fresh-runner artifact upload.
 
 No successful OPA capture or replay is claimed until the corresponding workflow jobs and artifacts are inspected. The available connector still does not expose push or scheduled runs for the relevant commits, so no run, job, or artifact identifier has been inferred.
 
-## Cedar evidence tooling
+## Remaining framework posture
 
-Installed:
-
-```text
-docs/external-frameworks/capture/cedar/policy.cedar
-docs/external-frameworks/capture/cedar/request-allow.json
-docs/external-frameworks/capture/cedar/request-deny.json
-docs/external-frameworks/cedar-observation-capture-runbook.md
-scripts/capture_cedar_observation.py
-scripts/validate_cedar_capture_artifacts.py
-scripts/summarize_cedar_evidence_pipeline.py
-scripts/check_cedar_observation_capture_harness.py
-```
-
-The Cedar harness remains implementation-neutral. No Cedar implementation has been selected or executed. The new selection gate requires exact evaluator identity, source, version/commit, version command, evaluation command template, package/artifact hash, environment, license/usage boundary, parser/evaluator identity, entity-store/schema posture, and request serialization contract before automation.
-
-## Reusable command evidence tooling
-
-Installed common components:
-
-```text
-scripts/capture_external_command_observation.py
-scripts/validate_command_capture_artifacts.py
-scripts/summarize_command_evidence_pipeline.py
-scripts/check_priority_command_capture_harnesses.py
-```
-
-Coverage:
-
-```text
-Model Context Protocol
-Agent2Agent Protocol
-Guardrails AI
-Llama Guard
-NeMo Guardrails
-```
-
-Each framework retains its own manifest under `docs/external-frameworks/capture/<framework>/capture-manifest.json`. The validator preserves exact implementation, version, command, manifest, input, output, and hash evidence while keeping every first capture at `captured_unverified`. The summary reports artifact availability and structural validation only.
-
-No client/server pair, agent implementation, guard configuration, model digest, runtime, provider, transport, authentication/delegation context, or output has been selected or observed for these five frameworks.
+Cedar, MCP, A2A, Guardrails AI, Llama Guard, and NeMo Guardrails have complete capture, validation, summary, selection-gate, and readiness-automation structure. None has an exact selected implementation, version, command, hash-bound environment, provider, transport/model context, or observed output.
 
 ## Evidence progression
 
@@ -168,6 +123,7 @@ No client/server pair, agent implementation, guard configuration, model digest, 
 fixture_ready
 -> awaiting_implementation_selection
 -> implementation_selected_hash_bound
+-> automation_readiness_review
 -> awaiting_capture
 -> captured_unverified
 -> replay_confirmed_same_environment
@@ -177,7 +133,7 @@ fixture_ready
 -> interoperability_candidate
 ```
 
-No framework may advance from implementation selection to capture merely because tooling exists.
+No framework may advance merely because tooling or automation exists.
 
 ## Boundary
 
@@ -186,29 +142,28 @@ fixture_ready != framework executed
 capture harness != observed evidence
 artifact validator != observed success
 pipeline summary != compatibility proof
+implementation selection != certification
+implementation selection != execution authorization
+automation readiness != execution authority
+readiness receipt != permission to cause external consequence
 policy decision != execution authority
 protocol response != standing
 tool discovery != tool-call authority
 task acceptance != consequence authority
 classifier result != admissibility
-same-runner replay != fresh-runner replay
 fresh-runner replay != independent implementation
 fresh-runner replay != independent provider or authority review
-implementation selection != certification
-implementation selection != execution authorization
 matching output != current delegation
 replay confirmation != execution authority
 ```
 
-## Remaining modules and destinations
-
-Destination: `StegVerse-Labs/admissibility-wiki`
+## Remaining work
 
 ```text
 inspect first completed OPA capture and fresh-runner replay artifacts
 record exact run, job, artifact, runtime, and receipt hashes after success
-populate one implementation-selection record only from exact reproducible source evidence
-keep execution_jobs_may_be_added false until every required field and hash is present
+populate one implementation-selection record from exact reproducible source evidence
+keep execution jobs blocked until every required field, hash, and authorization predicate is present
 perform replay outside the same GitHub repository/provider before stronger independence claims
 produce observed-partial reports only after exact evidence exists
 update public capture status from inspected receipts
@@ -217,10 +172,10 @@ capture public deployment/page verification receipts
 
 ## Next action
 
-Populate and validate the first exact implementation-selection record, preferably Cedar because its deterministic allow/deny fixtures already exist. Do not add a pinned Cedar execution job until the selection record contains exact implementation source, version/commit, commands, artifact hash, environment, and framework-specific context. In parallel, inspect the OPA artifacts when the run becomes accessible.
+Populate the first exact implementation-selection record, preferably Cedar because deterministic allow/deny fixtures already exist. The automated readiness matrix will remain blocked until the record contains exact implementation source, version or commit, commands, artifact hash, environment, framework-specific context, and explicit authorization predicates. In parallel, inspect OPA artifacts when the run becomes accessible.
 
 ## Release path
 
-The repo is not ready to tag solely because capture, validation, replay, pipeline-summary, and implementation-selection tooling exists. After artifact inspection, selected implementations, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
+The repo is not ready to tag solely because capture, validation, replay, selection-gating, and readiness automation exist. After artifact inspection, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
 
 The complete prior thread is not required to continue from this handoff.
