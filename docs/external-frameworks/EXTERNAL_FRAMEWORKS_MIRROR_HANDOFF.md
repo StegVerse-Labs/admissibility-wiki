@@ -24,6 +24,7 @@ fail-closed execution-plan matrix: installed
 job-materialization layer: installed
 runtime-authorization layer: installed
 runtime-dispatch observation layer: installed
+dispatch-state fixture coverage: 4 of 4
 runtime jobs emitted by plan automation: 0
 observed external outputs: pending workflow evidence
 independent organization/provider replays: 0 of 18
@@ -120,12 +121,16 @@ Installed:
 ```text
 static/schemas/external-framework-runtime-dispatch-observation.schema.json
 tests/fixtures/external-framework-runtime-dispatch-observation.not-dispatched.json
+tests/fixtures/external-framework-runtime-dispatch-observation.dispatch-attempted.json
+tests/fixtures/external-framework-runtime-dispatch-observation.dispatched.json
+tests/fixtures/external-framework-runtime-dispatch-observation.execution-observed.json
 scripts/check_external_framework_runtime_dispatch_observation.py
 receipts/external-framework-runtime-dispatch-observation-layer-2026-07-12.json
+receipts/external-framework-runtime-dispatch-state-progression-fixtures-2026-07-12.json
 scripts/check_goal5_external_frameworks_all.py
 ```
 
-Supported observation states:
+State coverage:
 
 ```text
 NOT_DISPATCHED
@@ -134,20 +139,29 @@ DISPATCHED
 EXECUTION_OBSERVED
 ```
 
-The installed fixture remains `NOT_DISPATCHED` and requires:
+State requirements:
 
 ```text
-dispatch_attempt_id: null
-dispatcher_ref: null
-transport_ref: null
-execution_started: false
-execution_completed: false
-exit_status: null
-output_ref: null
-external_consequence_observed: false
+NOT_DISPATCHED:
+  no attempt, dispatcher, transport, execution, output, exit status, or consequence
+
+DISPATCH_ATTEMPTED:
+  attempt id and dispatcher evidence required
+  no execution, output, exit status, or consequence
+
+DISPATCHED:
+  attempt id, dispatcher reference, and transport reference required
+  no execution, output, exit status, or consequence
+
+EXECUTION_OBSERVED:
+  attempt id, dispatcher reference, transport reference, execution_started=true, and output_ref required
+  completed execution additionally requires exit_status
+  fixture remains external_consequence_observed=false
 ```
 
-The validator is observational only. It cannot initiate dispatch, attach credentials, execute a command, or create an external consequence.
+The schema and validator enforce these boundaries independently. Fixture coverage must include all four states exactly once. The validator rejects state inflation, including attempted-as-dispatched, dispatched-as-executed, or execution-without-output evidence.
+
+The observation layer is descriptive only. It cannot initiate dispatch, attach credentials, execute a command, or create an external consequence.
 
 ## Boundary
 
@@ -166,6 +180,7 @@ dispatch attempted != dispatched
 dispatched != execution observed
 execution observed != compatibility
 observation receipt != authority
+fixture state progression != observed production execution
 replay confirmation != execution authority
 ```
 
@@ -178,7 +193,7 @@ iOS mirror: iosnoperiod/github/workflows/validate-chain-continuation.yml
 Additional active workflow created: no
 ```
 
-The aggregate now includes:
+The aggregate includes:
 
 ```text
 scripts/check_external_framework_job_materialization_receipt.py
@@ -192,8 +207,7 @@ Canonical workflow confirmation remains pending because the available connector 
 
 ```text
 confirm the repaired Goal 5 aggregate passes in the canonical workflow
-confirm dispatch-observation validation passes in the aggregate
-add structurally valid DISPATCH_ATTEMPTED, DISPATCHED, and EXECUTION_OBSERVED fixtures without initiating real dispatch
+confirm all four dispatch-observation fixtures pass in the aggregate
 inspect the first completed OPA capture and fresh-runner replay artifacts
 record exact run, job, artifact, runtime, and receipt hashes after success
 perform replay outside the same repository/provider before stronger independence claims
@@ -203,7 +217,9 @@ capture public deployment and downstream propagation receipts
 
 ## Next action
 
-Add state-progression fixtures for `DISPATCH_ATTEMPTED`, `DISPATCHED`, and `EXECUTION_OBSERVED`, then extend the validator to prove their evidence requirements and prevent state inflation. These fixtures must describe observations only and must not cause dispatch or execution.
+Add a dispatch-observation progression validator that checks allowed state transitions between sequential receipts, prevents regression or skipped-state claims without explicit evidence, binds each observation to the previous receipt hash, and remains incapable of dispatch or execution.
+
+In parallel, inspect OPA workflow artifacts when a run becomes accessible.
 
 ## Release path
 
