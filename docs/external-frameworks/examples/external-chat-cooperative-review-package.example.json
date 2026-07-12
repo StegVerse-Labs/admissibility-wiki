@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "packet_type": "external_framework_cooperative_review_package",
+  "framework_id": "decisionassure",
+  "framework_name": "DecisionAssure",
+  "compatibility_receipt_id": "external-compatibility-receipt:sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "submission_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "compatibility_result": "COMPATIBILITY_EVIDENCE_READY",
+  "submitter_opt_in": true,
+  "publication_requested": false,
+  "raw_submission_included": false,
+  "review_scope": [
+    "transition-table mapping",
+    "receipt reconstruction",
+    "authority boundary"
+  ],
+  "evidence_references": [
+    "https://example.org/framework/specification",
+    "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  ],
+  "contact_reference": null,
+  "boundary": {
+    "package_is_publication_authority": false,
+    "package_is_certification": false,
+    "package_creates_standing": false,
+    "review_may_change_result_without_receipt": false
+  }
+}
