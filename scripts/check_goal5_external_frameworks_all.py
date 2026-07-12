@@ -23,6 +23,7 @@ CHECKS = [
     "scripts/check_external_framework_evidence_tooling_coverage.py",
     "scripts/check_external_framework_implementation_selection_gates.py",
     "scripts/check_cedar_implementation_selection_evidence.py",
+    "scripts/check_cedar_selected_binary_build_harness.py",
     "scripts/check_external_framework_automation_readiness.py",
     "scripts/check_external_framework_execution_plans.py",
     "scripts/check_external_framework_job_materialization_candidates.py",
@@ -80,7 +81,7 @@ def main() -> int:
         print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: cedar_hash_bound_selection_installed_runtime_authorization_fail_closed")
+    print("release_readiness: cedar_selected_binary_build_and_hash_automated_runtime_execution_still_blocked")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
