@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import os
@@ -9,10 +10,9 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-CAPTURE_ROOT = ROOT / "reports" / "summary-input" / "capture"
-REPLAY_ROOT = ROOT / "reports" / "summary-input" / "fresh-runner"
-OUTPUT_DIR = ROOT / "reports" / "external-frameworks" / "opa-pipeline-summary"
-OUTPUT = OUTPUT_DIR / "opa-evidence-pipeline-status.json"
+DEFAULT_CAPTURE_ROOT = ROOT / "reports" / "summary-input" / "capture"
+DEFAULT_REPLAY_ROOT = ROOT / "reports" / "summary-input" / "fresh-runner"
+DEFAULT_OUTPUT = ROOT / "reports" / "external-frameworks" / "opa-pipeline-summary" / "opa-evidence-pipeline-status.json"
 
 
 def sha256(path: Path) -> str:
@@ -43,31 +43,46 @@ def load_json(path: Path | None) -> dict[str, Any] | None:
 def artifact_record(path: Path | None) -> dict[str, Any]:
     if path is None or not path.exists():
         return {"present": False, "path": None, "sha256": None}
-    return {
-        "present": True,
-        "path": str(path.relative_to(ROOT)),
-        "sha256": sha256(path),
-    }
+    try:
+        shown = str(path.relative_to(ROOT))
+    except ValueError:
+        shown = str(path)
+    return {"present": True, "path": shown, "sha256": sha256(path)}
 
 
 def main() -> int:
-    capture_status_path = find_json(CAPTURE_ROOT, "opa-capture-status.json")
-    same_runner_receipt_path = find_json(CAPTURE_ROOT, "opa-replay-receipt.json")
-    fresh_runner_receipt_path = find_json(REPLAY_ROOT, "opa-independent-replay-receipt.json")
+    parser = argparse.ArgumentParser(description="Summarize bounded OPA capture and replay evidence.")
+    parser.add_argument("--capture-root", default=str(DEFAULT_CAPTURE_ROOT))
+    parser.add_argument("--replay-root", default=str(DEFAULT_REPLAY_ROOT))
+    parser.add_argument("--output", default=str(DEFAULT_OUTPUT))
+    args = parser.parse_args()
+
+    capture_root = Path(args.capture_root).resolve()
+    replay_root = Path(args.replay_root).resolve()
+    output = Path(args.output).resolve()
+
+    capture_status_path = find_json(capture_root, "opa-capture-status.json")
+    same_runner_receipt_path = find_json(capture_root, "opa-replay-receipt.json")
+    fresh_runner_receipt_path = find_json(replay_root, "opa-independent-replay-receipt.json")
 
     capture_status = load_json(capture_status_path)
     same_runner_receipt = load_json(same_runner_receipt_path)
     fresh_runner_receipt = load_json(fresh_runner_receipt_path)
 
-    capture_validated = bool(capture_status and capture_status.get("validation_status") == "PASS")
+    capture_validated = bool(
+        capture_status
+        and (
+            capture_status.get("validation_status") == "PASS"
+            or capture_status.get("overall_status") == "PASS"
+        )
+    )
     same_runner_confirmed = bool(
         same_runner_receipt
         and same_runner_receipt.get("replay_state") == "replay_confirmed_same_environment"
     )
     fresh_runner_confirmed = bool(
         fresh_runner_receipt
-        and fresh_runner_receipt.get("replay_state")
-        == "replay_confirmed_independent_environment"
+        and fresh_runner_receipt.get("replay_state") == "replay_confirmed_independent_environment"
     )
 
     if fresh_runner_confirmed and capture_validated and same_runner_confirmed:
@@ -89,6 +104,7 @@ def main() -> int:
             "run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
             "sha": os.environ.get("GITHUB_SHA"),
             "workflow": os.environ.get("GITHUB_WORKFLOW"),
+            "job": os.environ.get("GITHUB_JOB"),
             "runner_name": os.environ.get("RUNNER_NAME"),
             "runner_os": os.environ.get("RUNNER_OS"),
             "runner_arch": os.environ.get("RUNNER_ARCH"),
@@ -123,9 +139,13 @@ def main() -> int:
         ],
     }
 
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
-    print(f"OPA EVIDENCE PIPELINE SUMMARY: {pipeline_state} -> {OUTPUT.relative_to(ROOT)}")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+    try:
+        shown = output.relative_to(ROOT)
+    except ValueError:
+        shown = output
+    print(f"OPA EVIDENCE PIPELINE SUMMARY: {pipeline_state} -> {shown}")
     return 0
 
 
