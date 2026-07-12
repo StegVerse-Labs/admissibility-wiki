@@ -18,6 +18,11 @@ WORKFLOW = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
 WORKFLOW_MIRROR = ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.yml"
 
 
+def normalized_workflow_text(text: str) -> str:
+    """Compare mirrored workflows by exact logical lines, ignoring only line-ending form and final newline."""
+    return "\n".join(text.splitlines())
+
+
 def main() -> int:
     failures: list[str] = []
     required_paths = [
@@ -110,7 +115,7 @@ def main() -> int:
         if phrase not in workflow:
             failures.append(f"canonical workflow missing phrase: {phrase}")
 
-    if workflow != workflow_mirror:
+    if normalized_workflow_text(workflow) != normalized_workflow_text(workflow_mirror):
         failures.append("canonical workflow and iOS workflow mirror differ")
 
     if fixture.get("framework_id") != "opa":
