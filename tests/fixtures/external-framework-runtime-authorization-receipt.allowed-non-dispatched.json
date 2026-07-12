@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "external_framework_runtime_authorization_receipt",
+  "receipt_id": "ef-runtime-auth-cedar-allowed-non-dispatched-001",
+  "framework_id": "cedar-policy",
+  "source_materialization_receipt": {
+    "path": "tests/fixtures/external-framework-job-materialization-receipt.approved-non-executable.json",
+    "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "materialized_descriptor_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+  "commit_time_evidence": {
+    "authority": {
+      "status": "PASS",
+      "reference": "evidence/runtime-authorization/cedar/authority.json",
+      "checked_at": "2026-07-12T12:00:00Z"
+    },
+    "delegation": {
+      "status": "PASS",
+      "reference": "evidence/runtime-authorization/cedar/delegation.json",
+      "checked_at": "2026-07-12T12:00:00Z"
+    },
+    "policy": {
+      "status": "PASS",
+      "reference": "evidence/runtime-authorization/cedar/policy.json",
+      "checked_at": "2026-07-12T12:00:00Z"
+    },
+    "freshness": {
+      "status": "PASS",
+      "reference": "evidence/runtime-authorization/cedar/freshness.json",
+      "checked_at": "2026-07-12T12:00:00Z"
+    },
+    "scope": {
+      "status": "PASS",
+      "reference": "evidence/runtime-authorization/cedar/scope.json",
+      "checked_at": "2026-07-12T12:00:00Z"
+    },
+    "consequence_boundary": {
+      "status": "PASS",
+      "reference": "evidence/runtime-authorization/cedar/consequence-boundary.json",
+      "checked_at": "2026-07-12T12:00:00Z"
+    },
+    "evaluated_at": "2026-07-12T12:00:00Z"
+  },
+  "decision": "ALLOW_RUNTIME_TRANSITION",
+  "runtime_execution_authorized": true,
+  "runtime_transition": {
+    "transition_id": "cedar-runtime-transition-001",
+    "transition_state": "AUTHORIZED_NOT_DISPATCHED",
+    "scheduled": false,
+    "dispatched": false,
+    "execution_started": false,
+    "execution_endpoint": null,
+    "command": null,
+    "credentials_attached": false,
+    "external_consequence_allowed": false,
+    "required_next_transition": "separate_observed_runtime_dispatch_transition"
+  },
+  "non_claims": [
+    "materialization approval does not create runtime authority",
+    "runtime authorization does not prove framework compatibility",
+    "missing commit-time evidence must fail closed",
+    "receipt validation does not cause external consequence",
+    "runtime authorization receipt does not schedule dispatch or execute a transition"
+  ]
+}
