@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse.org/schemas/external-chat-reviewer-delegation.schema.json",
+  "title": "External Chat Reviewer Delegation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "reviewer_ref",
+    "token_sha256",
+    "delegation_ref",
+    "scopes",
+    "valid_from",
+    "valid_until",
+    "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "record_type": {"const": "external_chat_reviewer_delegation"},
+    "reviewer_ref": {"type": "string", "minLength": 1, "maxLength": 256},
+    "token_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "delegation_ref": {"type": "string", "minLength": 1, "maxLength": 256},
+    "scopes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^(field:[A-Za-z0-9_.:-]+|publication_review|\\*)$"}
+    },
+    "valid_from": {"type": "string", "format": "date-time"},
+    "valid_until": {"type": "string", "format": "date-time"},
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "delegation_is_certification_authority",
+        "delegation_is_publication_authority",
+        "delegation_is_execution_authority",
+        "delegation_creates_standing"
+      ],
+      "properties": {
+        "delegation_is_certification_authority": {"const": false},
+        "delegation_is_publication_authority": {"const": false},
+        "delegation_is_execution_authority": {"const": false},
+        "delegation_creates_standing": {"const": false}
+      }
+    }
+  }
+}
