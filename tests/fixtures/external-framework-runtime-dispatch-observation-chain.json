@@ -1,0 +1,57 @@
+{
+  "schema_version": "0.1",
+  "chain_type": "external_framework_runtime_dispatch_observation_chain",
+  "framework_id": "cedar-policy",
+  "authorized_transition_id": "cedar-runtime-transition-001",
+  "hash_algorithm": "sha256-canonical-json",
+  "state_order": [
+    "NOT_DISPATCHED",
+    "DISPATCH_ATTEMPTED",
+    "DISPATCHED",
+    "EXECUTION_OBSERVED"
+  ],
+  "entries": [
+    {
+      "sequence": 0,
+      "state": "NOT_DISPATCHED",
+      "receipt_path": "tests/fixtures/external-framework-runtime-dispatch-observation.not-dispatched.json",
+      "receipt_id": "ef-runtime-dispatch-cedar-not-dispatched-001",
+      "receipt_sha256": "bb40bc4f7784c478bc152e1b4407b7db5691a0cb464226720aef11ba798a100d",
+      "previous_receipt_id": null,
+      "previous_receipt_sha256": null
+    },
+    {
+      "sequence": 1,
+      "state": "DISPATCH_ATTEMPTED",
+      "receipt_path": "tests/fixtures/external-framework-runtime-dispatch-observation.dispatch-attempted.json",
+      "receipt_id": "ef-runtime-dispatch-cedar-attempted-001",
+      "receipt_sha256": "40ceedb5ab27b18374b11cde9a4128016e6ed9d7804cf7cfd37e3127d13c96ed",
+      "previous_receipt_id": "ef-runtime-dispatch-cedar-not-dispatched-001",
+      "previous_receipt_sha256": "bb40bc4f7784c478bc152e1b4407b7db5691a0cb464226720aef11ba798a100d"
+    },
+    {
+      "sequence": 2,
+      "state": "DISPATCHED",
+      "receipt_path": "tests/fixtures/external-framework-runtime-dispatch-observation.dispatched.json",
+      "receipt_id": "ef-runtime-dispatch-cedar-dispatched-001",
+      "receipt_sha256": "c8a4c349a10873583b6a3bc068de18dfef4e57cfb511529fc048f0b572d77bcc",
+      "previous_receipt_id": "ef-runtime-dispatch-cedar-attempted-001",
+      "previous_receipt_sha256": "40ceedb5ab27b18374b11cde9a4128016e6ed9d7804cf7cfd37e3127d13c96ed"
+    },
+    {
+      "sequence": 3,
+      "state": "EXECUTION_OBSERVED",
+      "receipt_path": "tests/fixtures/external-framework-runtime-dispatch-observation.execution-observed.json",
+      "receipt_id": "ef-runtime-dispatch-cedar-execution-observed-001",
+      "receipt_sha256": "afa57caa1b8cb095644fba89849b0429deccccbf662a7341d4f72953976dced5",
+      "previous_receipt_id": "ef-runtime-dispatch-cedar-dispatched-001",
+      "previous_receipt_sha256": "c8a4c349a10873583b6a3bc068de18dfef4e57cfb511529fc048f0b572d77bcc"
+    }
+  ],
+  "authority_boundary": {
+    "chain_validation_may_initiate_dispatch": false,
+    "chain_validation_may_execute": false,
+    "chain_progression_is_observed_production_execution": false,
+    "fixture_chain_may_create_external_consequence": false
+  }
+}
