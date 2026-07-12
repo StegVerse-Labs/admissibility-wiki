@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/external-framework-runtime-dispatch-observation.schema.json",
+  "title": "External Framework Runtime Dispatch Observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_type",
+    "receipt_id",
+    "framework_id",
+    "source_runtime_authorization",
+    "authorized_transition_id",
+    "dispatch_state",
+    "observation",
+    "execution_result",
+    "observer",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "receipt_type": {"const": "external_framework_runtime_dispatch_observation"},
+    "receipt_id": {"type": "string", "minLength": 1},
+    "framework_id": {"type": "string", "minLength": 1},
+    "source_runtime_authorization": {"$ref": "#/$defs/boundArtifact"},
+    "authorized_transition_id": {"type": "string", "minLength": 1},
+    "dispatch_state": {
+      "enum": ["NOT_DISPATCHED", "DISPATCH_ATTEMPTED", "DISPATCHED", "EXECUTION_OBSERVED"]
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observed_at", "dispatch_attempt_id", "dispatcher_ref", "transport_ref", "evidence_refs"],
+      "properties": {
+        "observed_at": {"type": "string", "format": "date-time"},
+        "dispatch_attempt_id": {"type": ["string", "null"]},
+        "dispatcher_ref": {"type": ["string", "null"]},
+        "transport_ref": {"type": ["string", "null"]},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "execution_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["execution_started", "execution_completed", "exit_status", "output_ref", "external_consequence_observed"],
+      "properties": {
+        "execution_started": {"type": "boolean"},
+        "execution_completed": {"type": "boolean"},
+        "exit_status": {"type": ["integer", "string", "null"]},
+        "output_ref": {"type": ["string", "null"]},
+        "external_consequence_observed": {"type": "boolean"}
+      }
+    },
+    "observer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observer_ref", "independent_from_dispatcher"],
+      "properties": {
+        "observer_ref": {"type": "string", "minLength": 1},
+        "independent_from_dispatcher": {"type": "boolean"}
+      }
+    },
+    "non_claims": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "$defs": {
+    "boundArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}
