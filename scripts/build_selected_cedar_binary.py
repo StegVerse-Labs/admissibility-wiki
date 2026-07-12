@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "reports" / "external-frameworks" / "cedar-build"
 OUTPUT = OUTPUT_DIR / "cedar-binary-build-receipt.json"
+INSPECTOR = ROOT / "scripts" / "inspect_cedar_binary_build_receipt.py"
 REPOSITORY = "https://github.com/cedar-policy/cedar.git"
 COMMIT = "0807ec154afd7ffa14a658c9955d25bfe12770ca"
 VERSION = "4.11.0"
@@ -131,7 +132,26 @@ def main() -> int:
     }
     OUTPUT.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     print(f"CEDAR SELECTED BINARY BUILD: {receipt['overall_status']} -> {OUTPUT.relative_to(ROOT)}")
-    return 0 if not failures else 1
+
+    if failures:
+        return 1
+    if not INSPECTOR.exists():
+        print(f"CEDAR BUILD RECEIPT INSPECTION unavailable: missing {INSPECTOR.relative_to(ROOT)}", file=sys.stderr)
+        return 1
+
+    inspected = subprocess.run(
+        [sys.executable, str(INSPECTOR)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    if inspected.stdout:
+        print(inspected.stdout.rstrip())
+    if inspected.returncode != 0:
+        print("CEDAR BUILD RECEIPT INSPECTION failed", file=sys.stderr)
+    return inspected.returncode
 
 
 if __name__ == "__main__":
