@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse.org/schemas/external-chat-correction-receipt.schema.json",
+  "title": "External Chat Correction Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_type",
+    "framework_id",
+    "challenged_receipt_id",
+    "challenged_submission_sha256",
+    "review_decision",
+    "reviewed_fields",
+    "supporting_evidence_references",
+    "replacement_result",
+    "replacement_receipt_id",
+    "reviewer_reference",
+    "issued_at",
+    "boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "receipt_type": {"const": "external_framework_correction_receipt"},
+    "framework_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "challenged_receipt_id": {"type": "string", "pattern": "^external-compatibility-receipt:sha256:[a-f0-9]{64}$"},
+    "challenged_submission_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "review_decision": {"enum": ["UPHOLD", "CORRECT", "PARTIAL_CORRECTION", "INSUFFICIENT_EVIDENCE"]},
+    "reviewed_fields": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "supporting_evidence_references": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "replacement_result": {"type": ["string", "null"], "enum": ["COMPATIBILITY_EVIDENCE_READY", "PARTIAL_COMPATIBILITY_INTAKE", "FAIL_CLOSED_BOUNDARY_REVIEW", null]},
+    "replacement_receipt_id": {"type": ["string", "null"], "pattern": "^external-compatibility-receipt:sha256:[a-f0-9]{64}$"},
+    "reviewer_reference": {"type": "string", "minLength": 1},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receipt_is_certification", "receipt_is_execution_authority", "receipt_creates_general_compatibility", "receipt_changes_source_evidence"],
+      "properties": {
+        "receipt_is_certification": {"const": false},
+        "receipt_is_execution_authority": {"const": false},
+        "receipt_creates_general_compatibility": {"const": false},
+        "receipt_changes_source_evidence": {"const": false}
+      }
+    }
+  }
+}
