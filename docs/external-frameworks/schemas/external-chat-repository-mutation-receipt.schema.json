@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse.org/schemas/external-chat-repository-mutation-receipt.schema.json",
+  "title": "External Chat Repository Mutation Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["receipt_type", "schema_version", "mutation_receipt_id", "publication_transition_id", "repository_full_name", "target_path", "previous_blob_sha", "new_blob_sha", "content_sha256", "commit_sha", "actor_ref", "delegation_ref", "authority_ref", "policy_ref", "committed_at", "commit_time_revalidation", "boundary"],
+  "properties": {
+    "receipt_type": {"const": "external_framework_repository_mutation_receipt"},
+    "schema_version": {"const": "1.0.0"},
+    "mutation_receipt_id": {"type": "string", "pattern": "^external-framework-repository-mutation-receipt:hmac-sha256:[a-f0-9]{64}$"},
+    "publication_transition_id": {"type": "string", "pattern": "^external-framework-publication-transition:hmac-sha256:[a-f0-9]{64}$"},
+    "repository_full_name": {"const": "StegVerse-Labs/admissibility-wiki"},
+    "target_path": {"type": "string", "pattern": "^docs/external-frameworks/"},
+    "previous_blob_sha": {"type": ["string", "null"], "pattern": "^[a-f0-9]{40}$"},
+    "new_blob_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "content_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "commit_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "actor_ref": {"type": "string", "minLength": 1},
+    "delegation_ref": {"type": "string", "minLength": 1},
+    "authority_ref": {"type": "string", "minLength": 1},
+    "policy_ref": {"type": "string", "minLength": 1},
+    "committed_at": {"type": "string", "format": "date-time"},
+    "commit_time_revalidation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "delegation", "policy", "freshness", "repository_head", "target_blob", "publication_identity"],
+      "properties": {
+        "authority": {"const": "PASS"}, "delegation": {"const": "PASS"}, "policy": {"const": "PASS"}, "freshness": {"const": "PASS"}, "repository_head": {"const": "PASS"}, "target_blob": {"const": "PASS"}, "publication_identity": {"const": "PASS"}
+      }
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mutation_receipt_is_certification", "mutation_receipt_creates_standing", "publication_implies_general_compatibility"],
+      "properties": {
+        "mutation_receipt_is_certification": {"const": false},
+        "mutation_receipt_creates_standing": {"const": false},
+        "publication_implies_general_compatibility": {"const": false}
+      }
+    }
+  }
+}
