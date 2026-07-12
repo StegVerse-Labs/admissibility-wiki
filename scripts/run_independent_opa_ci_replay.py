@@ -21,6 +21,7 @@ TOOLS = ROOT / ".tmp" / "opa-independent-replay"
 UPSTREAM = ROOT / "reports" / "upstream-opa"
 OUTPUT = ROOT / "reports" / "external-frameworks" / "opa-independent"
 CAPTURE_SCRIPT = ROOT / "scripts" / "capture_opa_observation.py"
+SUMMARY_SCRIPT = ROOT / "scripts" / "summarize_opa_evidence_pipeline.py"
 CAPTURE_DIR = ROOT / "docs" / "external-frameworks" / "capture" / "opa"
 
 
@@ -46,6 +47,27 @@ def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def write_pipeline_summary() -> int:
+    summary_path = OUTPUT / "opa-evidence-pipeline-status.json"
+    result = run(
+        [
+            sys.executable,
+            str(SUMMARY_SCRIPT),
+            "--capture-root",
+            str(UPSTREAM),
+            "--replay-root",
+            str(OUTPUT),
+            "--output",
+            str(summary_path),
+        ]
+    )
+    if result.stdout:
+        print(result.stdout.rstrip())
+    if result.stderr:
+        print(result.stderr.rstrip(), file=sys.stderr)
+    return result.returncode
+
+
 def main() -> int:
     required_upstream = {
         "allow": UPSTREAM / "opa-allow-capture.json",
@@ -58,15 +80,21 @@ def main() -> int:
         print("OPA INDEPENDENT REPLAY: BLOCKED — missing upstream artifacts", file=sys.stderr)
         for path in missing:
             print(f"- {path}", file=sys.stderr)
+        OUTPUT.mkdir(parents=True, exist_ok=True)
+        write_pipeline_summary()
         return 2
 
     upstream_receipt = load(required_upstream["receipt"])
     upstream_status = load(required_upstream["status"])
     if upstream_receipt.get("replay_state") != "replay_confirmed_same_environment":
         print("OPA INDEPENDENT REPLAY: BLOCKED — upstream same-environment replay not confirmed", file=sys.stderr)
+        OUTPUT.mkdir(parents=True, exist_ok=True)
+        write_pipeline_summary()
         return 2
     if upstream_status.get("overall_status") != "PASS":
         print("OPA INDEPENDENT REPLAY: BLOCKED — upstream capture validation not PASS", file=sys.stderr)
+        OUTPUT.mkdir(parents=True, exist_ok=True)
+        write_pipeline_summary()
         return 2
 
     binary = TOOLS / OPA_ASSET
@@ -77,12 +105,16 @@ def main() -> int:
     actual_binary_hash = sha256(binary)
     if expected_binary_hash != actual_binary_hash:
         print("OPA INDEPENDENT REPLAY: checksum mismatch", file=sys.stderr)
+        OUTPUT.mkdir(parents=True, exist_ok=True)
+        write_pipeline_summary()
         return 1
     binary.chmod(binary.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
     version_result = run([str(binary), "version", "--format=json"])
     if version_result.returncode != 0:
         print(version_result.stderr, file=sys.stderr)
+        OUTPUT.mkdir(parents=True, exist_ok=True)
+        write_pipeline_summary()
         return version_result.returncode
 
     OUTPUT.mkdir(parents=True, exist_ok=True)
@@ -109,6 +141,7 @@ def main() -> int:
         if result.returncode != 0:
             print(result.stdout)
             print(result.stderr, file=sys.stderr)
+            write_pipeline_summary()
             return result.returncode
         independent_paths[name] = output_path
 
@@ -165,16 +198,16 @@ def main() -> int:
             "matching deterministic output does not establish compatibility or execution authority",
         ],
         "artifacts": {
-            name: {
-                "path": str(path.relative_to(ROOT)),
-                "sha256": sha256(path),
-            }
+            name: {"path": str(path.relative_to(ROOT)), "sha256": sha256(path)}
             for name, path in independent_paths.items()
         },
     }
     receipt_path = OUTPUT / "opa-independent-replay-receipt.json"
     receipt_path.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
 
+    summary_result = write_pipeline_summary()
+    if summary_result != 0:
+        return summary_result
     if not all_match:
         print(f"OPA INDEPENDENT REPLAY: MISMATCH -> {receipt_path.relative_to(ROOT)}")
         return 1
