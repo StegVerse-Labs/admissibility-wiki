@@ -1,0 +1,71 @@
+{
+  "artifact_type": "external_framework_implementation_selection_evidence",
+  "schema_version": "0.1",
+  "framework_id": "cedar-policy",
+  "selection_state": "implementation_selected_hash_bound",
+  "implementation": {
+    "identifier": "cedar-policy-cli",
+    "canonical_repository": "cedar-policy/cedar",
+    "canonical_commit": "0807ec154afd7ffa14a658c9955d25bfe12770ca",
+    "version": "4.11.0",
+    "binary_name": "cedar",
+    "build_flavor": "default features",
+    "license": "Apache-2.0"
+  },
+  "canonical_source_evidence": [
+    {
+      "path": "Cargo.toml",
+      "git_blob_sha": "01d3a1e95a15af911a8fbdaae7ee70549534cd9d",
+      "evidence": "workspace version 4.11.0, Rust 1.89, Apache-2.0, official repository"
+    },
+    {
+      "path": "cedar-policy-cli/Cargo.toml",
+      "git_blob_sha": "eb5b97e0f9311705494eb8ca5e8dd924730d670d",
+      "evidence": "official cedar-policy-cli package and cedar binary definition"
+    },
+    {
+      "path": "cedar-policy-cli/README.md",
+      "git_blob_sha": "e25da887d6d82bebc03d57a26572826bfaf55108",
+      "evidence": "official build, install, release archive, and checksum posture"
+    },
+    {
+      "path": "cedar-policy-cli/src/command/authorize.rs",
+      "git_blob_sha": "1d195ebe81b331041fb648846684578fe0ed0aca",
+      "evidence": "official authorization command implementation and ALLOW/DENY behavior"
+    }
+  ],
+  "source_evidence_bundle": {
+    "canonical_serialization": "repository@commit|ordered-path:git-blob-sha records",
+    "sha256": "65b9b71d1a112669a42263b338d9d71180ffec864d800d11668065ae9c9e7603"
+  },
+  "commands": {
+    "version_command": "./target/release/cedar --version",
+    "build_command": "cargo build --locked --release -p cedar-policy-cli",
+    "evaluation_command_template": "./target/release/cedar authorize --policies {policy} --entities {entities} --principal 'User::\"alice\"' --action 'Action::\"read\"' --resource 'Document::\"doc-001\"'"
+  },
+  "execution_environment": {
+    "runner": "ubuntu-latest",
+    "architecture": "x86_64",
+    "rust_version": "1.89",
+    "cargo_locked": true,
+    "network_required_for_dependency_resolution": true
+  },
+  "framework_specific_context": {
+    "policy parser/evaluator identity": "cedar-policy Authorizer through cedar-policy-cli authorize",
+    "entity-store or schema posture": "explicit entities JSON; no schema supplied for the initial deterministic fixture",
+    "request serialization contract": "CLI principal/action/resource arguments with exact Cedar entity UID strings"
+  },
+  "remaining_execution_blockers": [
+    "compiled binary SHA-256 has not yet been produced and inspected",
+    "authority review has not been attached",
+    "consequence-boundary review has not been attached",
+    "runtime execution remains unauthorized"
+  ],
+  "authority_boundary": {
+    "selection_is_certification": false,
+    "selection_is_compatibility": false,
+    "selection_creates_standing": false,
+    "selection_authorizes_execution": false,
+    "source_bundle_hash_is_compiled_binary_hash": false
+  }
+}
