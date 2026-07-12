@@ -27,6 +27,19 @@ fresh-runner replay outputs attached: pending workflow result
 independent organization/provider replays: 0 of 18
 ```
 
+## Latest Goal 5 validation repair
+
+```text
+Failure class: handoff_reference_omission
+Failed validator: scripts/check_observed_evidence_capture_queue.py
+Observed aggregate: GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: FAIL (1/22 failed)
+Repair commit: d6b9db1e5b92471c05759723ce4302c3eda39e97
+Receipt: receipts/goal5-observed-evidence-handoff-reference-repair-2026-07-11.json
+State: repair installed; canonical workflow confirmation pending
+```
+
+The failure did not indicate missing protocol or queue artifacts. It indicated that the source-of-truth handoff omitted two validation-critical filename references. The references were restored without changing workflow logic, authority state, evidence state, or execution authorization.
+
 ## Observed evidence capture layer
 
 Installed and required by the Goal 5 aggregate validator:
@@ -174,6 +187,7 @@ replay confirmation != execution authority
 ## Remaining work
 
 ```text
+confirm the repaired Goal 5 aggregate passes in the canonical workflow
 inspect first completed OPA capture and fresh-runner replay artifacts
 record exact run, job, artifact, runtime, and receipt hashes after success
 populate one implementation-selection record from exact reproducible source evidence
@@ -186,7 +200,7 @@ capture public deployment/page verification receipts
 
 ## Next action
 
-Populate the first exact implementation-selection record, preferably Cedar because deterministic allow/deny fixtures already exist. The automated readiness matrix will remain blocked until the record contains exact implementation source, version or commit, commands, artifact hash, environment, framework-specific context, and explicit authorization predicates. In parallel, inspect OPA artifacts when the run becomes accessible.
+Confirm the repaired Goal 5 aggregate passes. Then populate the first exact implementation-selection record, preferably Cedar because deterministic allow/deny fixtures already exist. The automated readiness matrix must remain blocked until the record contains exact implementation source, version or commit, commands, artifact hash, environment, framework-specific context, and explicit authorization predicates. In parallel, inspect OPA artifacts when the run becomes accessible.
 
 ## Release path
 
