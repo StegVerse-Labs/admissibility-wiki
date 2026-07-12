@@ -132,6 +132,38 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
 
+  replay-opa-fresh-runner:
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    runs-on: ubuntu-latest
+    needs: capture-opa-evidence
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Download upstream OPA capture artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: opa-pinned-capture-replay
+          path: reports/upstream-opa
+
+      - name: Replay OPA on a fresh runner
+        run: python scripts/run_independent_opa_ci_replay.py
+
+      - name: Upload fresh-runner OPA replay receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: opa-fresh-runner-replay
+          path: reports/external-frameworks/opa-independent
+          if-no-files-found: warn
+          retention-days: 30
+
   build-pages:
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
     runs-on: ubuntu-latest
