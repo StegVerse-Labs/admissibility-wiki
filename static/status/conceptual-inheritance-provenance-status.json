@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "goal_id": "conceptual-inheritance-provenance-standing",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "status": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION",
+  "doctrine": "docs/formalisms/conceptual-inheritance-provenance.md",
+  "schema": "static/schemas/conceptual-inheritance-record.schema.json",
+  "fixtures": "tests/fixtures/conceptual-inheritance-cases.json",
+  "validator": "scripts/check_conceptual_inheritance_claims.py",
+  "canonical_integration": "scripts/check_admissibility_automation_handoff.py",
+  "navigation": "sidebars.js",
+  "decision_outcomes": [
+    "ADMIT",
+    "DENY",
+    "FAIL_CLOSED",
+    "REVIEW_REQUIRED"
+  ],
+  "governance_boundaries": [
+    "Does not decide legal ownership or infringement",
+    "Does not infer intent",
+    "Does not convert similarity into proof of derivation",
+    "Does not convert unresolved evidence into certification of independence",
+    "Keeps architectural integrity separate from provenance continuity and origin-claim standing"
+  ],
+  "remaining_checks": [
+    "canonical workflow pass",
+    "public page deployment",
+    "status endpoint deployment",
+    "formalism index inclusion",
+    "Publisher and Site propagation after destination handoff review",
+    "StegGuardian wiki and implementation awareness after validation"
+  ],
+  "manual_task_required": false,
+  "recorded_at": "2026-07-11T00:00:00Z"
+}
