@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "cedar_binary_registry_promotion_receipt",
+  "framework_id": "cedar-policy",
+  "source_promotion_candidate": {
+    "path": "reports/external-frameworks/cedar-build/cedar-binary-registry-promotion-candidate.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "candidate_state": "BLOCKED_BUILD_RECEIPT_INVALID",
+    "binary_sha256": null
+  },
+  "decision": "FAIL_CLOSED",
+  "promotion_state": "BLOCKED_NO_VALID_CANDIDATE",
+  "review": {
+    "status": "NOT_STARTED",
+    "reviewer_identity": null,
+    "delegation_ref": null,
+    "reviewed_at_utc": null,
+    "evidence_refs": []
+  },
+  "registry_target": null,
+  "registry_mutation_applied": false,
+  "runtime_execution_authorized": false,
+  "external_consequence_allowed": false,
+  "required_next_transition": "obtain_and_inspect_valid_built_hashed_unexecuted_candidate",
+  "non_claims": [
+    "promotion receipt existence does not create execution authority",
+    "binary hash promotion does not establish compatibility",
+    "registry mutation does not authorize runtime execution",
+    "build evidence does not establish standing"
+  ]
+}
