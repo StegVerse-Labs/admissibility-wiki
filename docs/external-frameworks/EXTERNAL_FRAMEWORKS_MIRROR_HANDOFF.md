@@ -10,8 +10,8 @@ Preserve unrelated CI repair, conceptual-inheritance, lifecycle-formalism, infer
 
 ```text
 Goal: evidence-bound external-framework intake through observed, replayable, non-authorizing interoperability evidence
-Phase: Cedar hash-only registry promotion applied; canonical validation passed; nested OPA capture version-probe repair installed
-Result: CANONICAL_VALIDATION_PASS_NESTED_OPA_CAPTURE_REPAIR_PENDING
+Phase: Cedar hash-only registry promotion applied; canonical validation passed; both OPA version-probe repairs and regression guard installed
+Result: CANONICAL_VALIDATION_PASS_OPA_CAPTURE_SUCCESSOR_PENDING
 ```
 
 ## Current state
@@ -35,8 +35,11 @@ runtime execution authorized by promotion: false
 dispatch-state fixture coverage: 4 of 4
 dispatch-observation hash-chain validation: installed
 canonical validation chain: PASS on runs 29208976626 and 29209481826
+OPA outer version-probe repair: installed
+OPA nested capture version-probe repair: installed
+OPA version-probe regression guard: Goal 5 aggregate-integrated
 runtime jobs emitted by plan automation: 0
-OPA observed external outputs: pending successor verification after nested version-probe repair
+OPA observed external outputs: pending successor verification
 independent organization/provider replays: 0 of 18
 ```
 
@@ -78,7 +81,7 @@ fixture_ready
 -> interoperability_candidate
 ```
 
-No stage advances merely because tooling, a schema, fixture, plan, authorization, promotion receipt, or observation record exists.
+No stage advances merely because tooling, a schema, fixture, plan, authorization, promotion receipt, regression guard, or observation record exists.
 
 ## Cedar evidence-bound hash promotion
 
@@ -144,7 +147,7 @@ Cedar selected-binary build: PASS
 
 This preserves the canonical PASS established on run `29208976626`. It does not establish OPA capture, replay, compatibility, execution authority, deployment, or release.
 
-## OPA capture failures and bounded repairs
+## OPA capture failures, bounded repairs, and regression guard
 
 First failure and repair:
 
@@ -179,9 +182,20 @@ File: scripts/capture_opa_observation.py
 Change: use supported `opa version`, require pinned version 1.0.0, and preserve a deterministic raw-version record
 ```
 
-The repair does not change the pinned OPA version, downloaded binary, checksum verification, policy or input cases, evaluation query, output comparison, authority boundaries, workflow permissions, execution authority, release state, deployment state, or external repositories.
+Regression protection:
 
-Fresh-runner replay remains prerequisite-blocked until same-environment capture and replay pass. The remaining outer fresh-runner probe in `scripts/run_independent_opa_ci_replay.py` must be changed only after upstream same-environment evidence exists or when a successor run confirms that it is the first fresh-runner failure.
+```text
+scripts/check_opa_version_probe_compatibility.py
+receipts/opa-version-probe-regression-guard-2026-07-12.json
+Regression guard commit: 81a5a433391be0f4da15d2b4899e265f789b78de
+Goal 5 aggregate integration commit: 9bcc7e55e4b2a761793769360203300494555adf
+```
+
+The regression guard rejects reintroduction of `version --format=json`, requires plain version probes in both capture paths, requires pinned-version markers, requires fail-closed mismatch handling, and does not execute OPA or create observed evidence.
+
+The repairs and guard do not change the pinned OPA version, downloaded binary, checksum verification, policy or input cases, evaluation query, output comparison, authority boundaries, workflow permissions, execution authority, release state, deployment state, or external repositories.
+
+Fresh-runner replay remains prerequisite-blocked until same-environment capture and replay pass. Repair of `scripts/run_independent_opa_ci_replay.py` is not authorized merely because the same unsupported probe pattern might exist; advance only from an observed successor failure or a separately validated compatibility defect.
 
 ## Pages blocker
 
@@ -199,21 +213,22 @@ Additional active workflow created: no
 ## Next task
 
 ```text
-1. Verify the canonical successor run for commit a3ea2837766708053a8fc145b95bb6487177f663.
-2. Require capture-opa-evidence and generated-artifact validation to pass before advancing.
-3. Preserve the OPA capture artifact, exact hashes, environment, inputs, outputs, policy/configuration, and same-environment replay receipt.
-4. Only after same-environment PASS, inspect and repair the first fresh-runner replay failure if one remains.
-5. Inspect the build-pages activation-artifact failure separately; do not weaken activation or deployment gates.
-6. Perform replay outside the same repository/provider before any stronger independence claim.
-7. Publish observed-partial reports only after exact evidence exists.
-8. Capture public deployment and downstream propagation receipts before updating destination repositories.
+1. Verify the canonical successor run containing commit a3ea2837766708053a8fc145b95bb6487177f663 and the regression-guard integration.
+2. Require scripts/check_opa_version_probe_compatibility.py to pass in the Goal 5 aggregate.
+3. Require capture-opa-evidence and generated-artifact validation to pass before advancing.
+4. Preserve the OPA capture artifact, exact hashes, environment, inputs, outputs, policy/configuration, and same-environment replay receipt.
+5. Only after same-environment PASS, inspect and repair the first fresh-runner replay failure if one remains.
+6. Inspect the build-pages activation-artifact failure separately; do not weaken activation or deployment gates.
+7. Perform replay outside the same repository/provider before any stronger independence claim.
+8. Publish observed-partial reports only after exact evidence exists.
+9. Capture public deployment and downstream propagation receipts before updating destination repositories.
 ```
 
 ## Remaining files or modules
 
 ```text
 StegVerse-Labs/admissibility-wiki
-  -> successor verification for nested OPA version-probe repair
+  -> successor verification for both OPA version-probe repairs and regression guard
   -> successful OPA capture artifacts and same-environment replay receipt
   -> successful fresh-runner replay receipt
   -> build-pages activation-artifact diagnosis without gate weakening
@@ -242,10 +257,11 @@ execution observed != compatibility
 observation receipt != authority
 same-environment replay != independent replay
 replay confirmation != execution authority
+regression guard != capture success
 ```
 
-No deployment, release, tag, merge, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation claim is authorized by this handoff. No release tag is authorized solely from schema, fixture, validation, promotion, capture, or automation installation.
+No deployment, release, tag, merge, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation claim is authorized by this handoff. No release tag is authorized solely from schema, fixture, validation, promotion, capture, repair, or automation installation.
 
 ## Archive readiness
 
-This handoff preserves the current Cedar build evidence, hash-only promotion receipts, dispatch progression chain, canonical validation success, both exact OPA version-probe failures, bounded nested repair, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
+This handoff preserves the current Cedar build evidence, hash-only promotion receipts, dispatch progression chain, canonical validation success, both exact OPA version-probe failures, both bounded repairs, regression protection, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
