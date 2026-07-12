@@ -36,7 +36,7 @@
           "request serialization contract": "CLI principal/action/resource arguments with exact Cedar entity UID strings"
         },
         "selection_evidence_path": "docs/external-frameworks/implementation-selections/cedar-policy-cli-4.11.0.selection-evidence.json",
-        "compiled_binary_sha256": null
+        "compiled_binary_sha256": "96e6b0517f145875c12457f3350ad43fdc3be9f0e32c42ce813df0667fa036e1"
       },
       "execution_authorized": false
     },
