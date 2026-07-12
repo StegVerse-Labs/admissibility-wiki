@@ -32,6 +32,7 @@ CHECKS = [
     "scripts/check_external_framework_job_materialization_receipt.py",
     "scripts/check_external_framework_runtime_authorization_receipt.py",
     "scripts/check_external_framework_runtime_dispatch_observation.py",
+    "scripts/check_external_framework_runtime_dispatch_progression.py",
     "scripts/check_external_chat_review_packets.py",
     "scripts/check_expanded_external_framework_intake.py",
     "scripts/check_external_framework_candidate_directory.py",
@@ -84,7 +85,7 @@ def main() -> int:
         print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: cedar_binary_registry_promotion_receipt_contract_installed_hash_only_runtime_blocked")
+    print("release_readiness: dispatch_observation_progression_hash_chain_installed_no_dispatch_authority")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
