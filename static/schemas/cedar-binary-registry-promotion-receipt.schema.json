@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/cedar-binary-registry-promotion-receipt.schema.json",
+  "title": "Cedar Binary Registry Promotion Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_type",
+    "framework_id",
+    "source_promotion_candidate",
+    "decision",
+    "promotion_state",
+    "review",
+    "registry_mutation_applied",
+    "runtime_execution_authorized",
+    "external_consequence_allowed",
+    "required_next_transition",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "receipt_type": {"const": "cedar_binary_registry_promotion_receipt"},
+    "framework_id": {"const": "cedar-policy"},
+    "source_promotion_candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "candidate_state", "binary_sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "candidate_state": {"enum": ["READY_FOR_REGISTRY_PROMOTION_REVIEW", "BLOCKED_BUILD_RECEIPT_INVALID"]},
+        "binary_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "decision": {"enum": ["FAIL_CLOSED", "REVIEW_REQUIRED", "DENY", "ALLOW_REGISTRY_PROMOTION_ONLY"]},
+    "promotion_state": {"enum": ["BLOCKED_NO_VALID_CANDIDATE", "PENDING_REVIEW", "DENIED", "APPROVED_NOT_APPLIED", "APPLIED_HASH_ONLY"]},
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewer_identity", "delegation_ref", "reviewed_at_utc", "evidence_refs"],
+      "properties": {
+        "status": {"enum": ["NOT_STARTED", "PENDING", "PASS", "DENY"]},
+        "reviewer_identity": {"type": ["string", "null"]},
+        "delegation_ref": {"type": ["string", "null"]},
+        "reviewed_at_utc": {"type": ["string", "null"]},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "registry_target": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["path", "field", "expected_previous_value", "proposed_value"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "field": {"const": "frameworks[cedar-policy].selection.compiled_binary_sha256"},
+        "expected_previous_value": {"type": ["string", "null"]},
+        "proposed_value": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "registry_mutation_applied": {"type": "boolean"},
+    "runtime_execution_authorized": {"const": false},
+    "external_consequence_allowed": {"const": false},
+    "required_next_transition": {"type": "string", "minLength": 1},
+    "non_claims": {"type": "array", "minItems": 4, "items": {"type": "string"}}
+  }
+}
