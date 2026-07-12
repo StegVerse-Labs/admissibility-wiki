@@ -179,6 +179,35 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
 
+  build-selected-cedar-binary:
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    runs-on: ubuntu-latest
+    needs: validate-chain-continuation
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install pinned Rust toolchain
+        uses: dtolnay/rust-toolchain@1.89.0
+
+      - name: Build and hash selected Cedar binary without executing it
+        run: python scripts/build_selected_cedar_binary.py
+
+      - name: Upload Cedar selected-binary build receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cedar-selected-binary-build
+          path: reports/external-frameworks/cedar-build
+          if-no-files-found: warn
+          retention-days: 30
+
   build-pages:
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
     runs-on: ubuntu-latest
