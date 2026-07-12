@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "opa_version_probe_regression_guard_installation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "goal": "Goal 5 external-framework observed evidence capture",
+  "installed": [
+    "scripts/check_opa_version_probe_compatibility.py",
+    "scripts/check_goal5_external_frameworks_all.py"
+  ],
+  "protected_paths": [
+    "scripts/run_pinned_opa_ci_capture.py",
+    "scripts/capture_opa_observation.py"
+  ],
+  "protected_contract": {
+    "plain_version_probe_required": true,
+    "unsupported_format_json_probe_forbidden": true,
+    "pinned_version": "1.0.0",
+    "version_mismatch_fails_closed": true,
+    "raw_version_output_preserved": true
+  },
+  "causal_context": {
+    "initial_failed_run": "29208976626",
+    "initial_failure": "opa version --format=json unsupported by pinned OPA v1.0.0",
+    "outer_runner_repair_commit": "1ab96f779a4cf457bdd98753a41c1648114461d3",
+    "nested_capture_repair_commit": "a3ea2837766708053a8fc145b95bb6487177f663",
+    "regression_guard_commit": "81a5a433391be0f4da15d2b4899e265f789b78de",
+    "aggregate_integration_commit": "9bcc7e55e4b2a761793769360203300494555adf"
+  },
+  "authority_boundary": {
+    "validator_executes_opa": false,
+    "validator_creates_observed_evidence": false,
+    "validator_proves_capture_success": false,
+    "validator_authorizes_runtime_execution": false,
+    "validator_authorizes_release_or_deployment": false
+  },
+  "verification_state": "INSTALLED_PENDING_CANONICAL_SUCCESSOR_RUN",
+  "manual_task_required": false,
+  "recorded_at": "2026-07-12T21:45:00Z"
+}
