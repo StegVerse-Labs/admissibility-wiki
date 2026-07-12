@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "external_framework_runtime_authorization_receipt",
+  "receipt_id": "ef-runtime-auth-cedar-blocked-001",
+  "framework_id": "cedar-policy",
+  "source_materialization_receipt": {
+    "path": "tests/fixtures/external-framework-job-materialization-receipt.approved-non-executable.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "materialized_descriptor_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "commit_time_evidence": {
+    "authority": {"status": "MISSING", "reference": null, "checked_at": null},
+    "delegation": {"status": "MISSING", "reference": null, "checked_at": null},
+    "policy": {"status": "UNRESOLVED", "reference": null, "checked_at": null},
+    "freshness": {"status": "UNRESOLVED", "reference": null, "checked_at": null},
+    "scope": {"status": "UNRESOLVED", "reference": null, "checked_at": null},
+    "consequence_boundary": {"status": "UNRESOLVED", "reference": null, "checked_at": null},
+    "evaluated_at": "2026-07-12T00:00:00Z"
+  },
+  "decision": "FAIL_CLOSED",
+  "runtime_execution_authorized": false,
+  "runtime_transition": null,
+  "non_claims": [
+    "materialization approval does not create runtime authority",
+    "runtime authorization does not prove framework compatibility",
+    "missing commit-time evidence must fail closed",
+    "receipt validation does not cause external consequence"
+  ]
+}
