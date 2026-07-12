@@ -12,6 +12,8 @@ FILES = [
     ROOT / "docs" / "external-frameworks" / "capture" / "cedar" / "request-deny.json",
     ROOT / "docs" / "external-frameworks" / "cedar-observation-capture-runbook.md",
     ROOT / "scripts" / "capture_cedar_observation.py",
+    ROOT / "scripts" / "validate_cedar_capture_artifacts.py",
+    ROOT / "scripts" / "summarize_cedar_evidence_pipeline.py",
 ]
 
 
@@ -27,14 +29,20 @@ def main() -> int:
             print(f"- {failure}")
         return 1
 
-    script_path = FILES[-1]
-    script = script_path.read_text(encoding="utf-8")
-    try:
-        ast.parse(script)
-    except SyntaxError as exc:
-        failures.append(f"capture script syntax error: {exc}")
+    capture_script = FILES[4].read_text(encoding="utf-8")
+    validator = FILES[5].read_text(encoding="utf-8")
+    summary = FILES[6].read_text(encoding="utf-8")
+    for label, source in [
+        ("capture script", capture_script),
+        ("artifact validator", validator),
+        ("pipeline summary", summary),
+    ]:
+        try:
+            ast.parse(source)
+        except SyntaxError as exc:
+            failures.append(f"{label} syntax error: {exc}")
 
-    for phrase in [
+    capture_phrases = [
         '"capture_state": "captured_unverified"',
         '"cedar_decision_is_execution_authority": False',
         '"capture_is_compatibility_proof": False',
@@ -47,11 +55,36 @@ def main() -> int:
         '"version_command"',
         '"evaluate_command"',
         '"replay"',
-    ]:
-        if phrase not in script:
+    ]
+    for phrase in capture_phrases:
+        if phrase not in capture_script:
             failures.append(f"capture script missing phrase: {phrase}")
 
-    runbook = FILES[-2].read_text(encoding="utf-8")
+    validator_phrases = [
+        '"capture_state": "captured_unverified"',
+        '"same_environment_replay_state": "not_performed"',
+        '"fresh_runner_replay_state": "not_performed"',
+        '"compatibility_state": "not_claimed"',
+        '"standing_state": "not_created"',
+        '"execution_authority_state": "not_created"',
+        '"implementation_identification_is_certification": False',
+    ]
+    for phrase in validator_phrases:
+        if phrase not in validator:
+            failures.append(f"artifact validator missing phrase: {phrase}")
+
+    summary_phrases = [
+        '"pipeline_state": pipeline_state',
+        '"independent_implementation_or_provider_review": "not_performed"',
+        '"implementation_selection_is_certification": False',
+        '"matching_decisions_create_stegverse_standing": False',
+        '"No Cedar implementation is selected or pinned by this summary."',
+    ]
+    for phrase in summary_phrases:
+        if phrase not in summary:
+            failures.append(f"pipeline summary missing phrase: {phrase}")
+
+    runbook = FILES[3].read_text(encoding="utf-8")
     for phrase in [
         "Cedar PERMIT != execution authority",
         "single run != replayability",
