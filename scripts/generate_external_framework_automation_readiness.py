@@ -4,6 +4,8 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -11,6 +13,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 GATES = ROOT / "docs" / "external-frameworks" / "implementation-selection-gates.v0.1.json"
 OUTPUT = ROOT / "reports" / "external-frameworks" / "implementation-automation-readiness.json"
+PLAN_GENERATOR = ROOT / "scripts" / "generate_external_framework_execution_plans.py"
 
 
 def sha256(path: Path) -> str:
@@ -109,6 +112,7 @@ def main() -> int:
             "ready_for_execution_job_review": ready_count,
             "blocked_selection_required": len(frameworks) - ready_count,
             "execution_jobs_may_be_added": ready_count > 0,
+            "execution_plan_generation_chained": True,
         },
         "frameworks": frameworks,
         "authority_boundary": {
@@ -127,7 +131,12 @@ def main() -> int:
         f"{ready_count}/{len(frameworks)} ready; "
         f"{len(frameworks) - ready_count} blocked -> {OUTPUT.relative_to(ROOT)}"
     )
-    return 0
+
+    if not PLAN_GENERATOR.exists():
+        print(f"missing execution plan generator: {PLAN_GENERATOR.relative_to(ROOT)}", file=sys.stderr)
+        return 1
+    completed = subprocess.run([sys.executable, str(PLAN_GENERATOR)], cwd=ROOT, check=False)
+    return completed.returncode
 
 
 if __name__ == "__main__":
