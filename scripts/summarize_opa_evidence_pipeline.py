@@ -1,0 +1,133 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+ROOT = Path(__file__).resolve().parents[1]
+CAPTURE_ROOT = ROOT / "reports" / "summary-input" / "capture"
+REPLAY_ROOT = ROOT / "reports" / "summary-input" / "fresh-runner"
+OUTPUT_DIR = ROOT / "reports" / "external-frameworks" / "opa-pipeline-summary"
+OUTPUT = OUTPUT_DIR / "opa-evidence-pipeline-status.json"
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def find_json(root: Path, filename: str) -> Path | None:
+    if not root.exists():
+        return None
+    matches = sorted(root.rglob(filename))
+    return matches[0] if matches else None
+
+
+def load_json(path: Path | None) -> dict[str, Any] | None:
+    if path is None or not path.exists():
+        return None
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    return payload if isinstance(payload, dict) else None
+
+
+def artifact_record(path: Path | None) -> dict[str, Any]:
+    if path is None or not path.exists():
+        return {"present": False, "path": None, "sha256": None}
+    return {
+        "present": True,
+        "path": str(path.relative_to(ROOT)),
+        "sha256": sha256(path),
+    }
+
+
+def main() -> int:
+    capture_status_path = find_json(CAPTURE_ROOT, "opa-capture-status.json")
+    same_runner_receipt_path = find_json(CAPTURE_ROOT, "opa-replay-receipt.json")
+    fresh_runner_receipt_path = find_json(REPLAY_ROOT, "opa-independent-replay-receipt.json")
+
+    capture_status = load_json(capture_status_path)
+    same_runner_receipt = load_json(same_runner_receipt_path)
+    fresh_runner_receipt = load_json(fresh_runner_receipt_path)
+
+    capture_validated = bool(capture_status and capture_status.get("validation_status") == "PASS")
+    same_runner_confirmed = bool(
+        same_runner_receipt
+        and same_runner_receipt.get("replay_state") == "replay_confirmed_same_environment"
+    )
+    fresh_runner_confirmed = bool(
+        fresh_runner_receipt
+        and fresh_runner_receipt.get("replay_state")
+        == "replay_confirmed_independent_environment"
+    )
+
+    if fresh_runner_confirmed and capture_validated and same_runner_confirmed:
+        pipeline_state = "fresh_runner_replay_confirmed"
+    elif capture_validated and same_runner_confirmed:
+        pipeline_state = "same_runner_replay_confirmed_fresh_runner_pending"
+    elif capture_status_path or same_runner_receipt_path or fresh_runner_receipt_path:
+        pipeline_state = "artifacts_present_incomplete_or_unverified"
+    else:
+        pipeline_state = "artifacts_not_available"
+
+    receipt = {
+        "artifact_type": "external_framework_evidence_pipeline_status",
+        "schema_version": "0.1",
+        "framework_id": "opa",
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+        "github_context": {
+            "run_id": os.environ.get("GITHUB_RUN_ID"),
+            "run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
+            "sha": os.environ.get("GITHUB_SHA"),
+            "workflow": os.environ.get("GITHUB_WORKFLOW"),
+            "runner_name": os.environ.get("RUNNER_NAME"),
+            "runner_os": os.environ.get("RUNNER_OS"),
+            "runner_arch": os.environ.get("RUNNER_ARCH"),
+        },
+        "pipeline_state": pipeline_state,
+        "evidence_states": {
+            "capture_artifacts_present": capture_status_path is not None,
+            "capture_artifacts_validated": capture_validated,
+            "same_runner_replay_confirmed": same_runner_confirmed,
+            "fresh_runner_replay_confirmed": fresh_runner_confirmed,
+            "independent_implementation_or_provider_review": "not_performed",
+            "compatibility_state": "not_claimed",
+            "standing_state": "not_created",
+            "execution_authority_state": "not_created",
+        },
+        "artifacts": {
+            "capture_status": artifact_record(capture_status_path),
+            "same_runner_replay_receipt": artifact_record(same_runner_receipt_path),
+            "fresh_runner_replay_receipt": artifact_record(fresh_runner_receipt_path),
+        },
+        "authority_boundary": {
+            "pipeline_summary_is_execution_authority": False,
+            "fresh_runner_replay_is_independent_implementation": False,
+            "fresh_runner_replay_is_independent_provider_review": False,
+            "matching_outputs_create_stegverse_standing": False,
+            "matching_outputs_are_compatibility_proof": False,
+        },
+        "limitations": [
+            "A fresh GitHub Actions runner is a separate execution environment within the same repository and provider.",
+            "Missing artifacts are reported as unavailable rather than inferred as success or failure.",
+            "The summary does not create compatibility, delegation, standing, admissibility, certification, or execution authority.",
+        ],
+    }
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    OUTPUT.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+    print(f"OPA EVIDENCE PIPELINE SUMMARY: {pipeline_state} -> {OUTPUT.relative_to(ROOT)}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
