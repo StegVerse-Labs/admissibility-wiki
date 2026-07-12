@@ -51,30 +51,30 @@ A well-governed system is not one that never makes a mistake. It is one that:
 
 Let a proposed transition at time `t` be represented by:
 
-\[
+$$
 T_t = (S_t, a_t, E_t, P_t, D_t, C_t)
-\]
+$$
 
 where:
 
-- \(S_t\) is the current system state;
-- \(a_t\) is the proposed action;
-- \(E_t\) is the evidence set;
-- \(P_t\) is the applicable policy state;
-- \(D_t\) is the delegation and authority state;
-- \(C_t\) is the execution context.
+- $S_t$ is the current system state;
+- $a_t$ is the proposed action;
+- $E_t$ is the evidence set;
+- $P_t$ is the applicable policy state;
+- $D_t$ is the delegation and authority state;
+- $C_t$ is the execution context.
 
 The decision process may propose an action:
 
-\[
+$$
 a_t = \pi(E_t, P_t, D_t, C_t)
-\]
+$$
 
 but proposal is not execution authority. A separate governance function evaluates the transition:
 
-\[
+$$
 \Gamma(T_t) \rightarrow \{ALLOW, DENY, DEFER, ESCALATE\}
-\]
+$$
 
 ## 3. Distinct properties
 
@@ -90,62 +90,62 @@ The following properties must not be collapsed into a single success label:
 
 Therefore:
 
-\[
+$$
 OperationalSuccess \not\Rightarrow Admissible
-\]
+$$
 
-\[
+$$
 Reconstructable \not\Rightarrow LegitimateAtCommit
-\]
+$$
 
-\[
+$$
 ValidAt(t_0) \not\Rightarrow ValidAt(t_c)
-\]
+$$
 
 ## 4. Inference window and evidence freshness
 
-Every evidence item `i` has an observation time \(t_i\), a decay rate \(\lambda_i\), and a freshness value at commit time \(t_c\):
+Every evidence item `i` has an observation time $t_i$, a decay rate $\lambda_i$, and a freshness value at commit time $t_c$:
 
-\[
+$$
 F_i(t_c) = e^{-\lambda_i(t_c-t_i)}
-\]
+$$
 
 The weighted evidence freshness is:
 
-\[
+$$
 F_E(t_c) = \frac{\sum_i w_iF_i(t_c)}{\sum_i w_i}
-\]
+$$
 
-where \(w_i\) is the materiality weight of evidence item `i`.
+where $w_i$ is the materiality weight of evidence item `i`.
 
 An evidence item is outside its inference window when:
 
-\[
+$$
 t_c - t_i > W_i
-\]
+$$
 
-where \(W_i\) is its maximum accepted age. A material item outside its inference window is not repaired merely because an earlier decision was valid.
+where $W_i$ is its maximum accepted age. A material item outside its inference window is not repaired merely because an earlier decision was valid.
 
 ## 5. Consequence and assurance threshold
 
 Normalize the principal factors to the interval `[0,1]`:
 
-- \(I\): irreversibility;
-- \(H\): potential harm;
-- \(U\): uncertainty;
-- \(R\): recoverability.
+- $I$: irreversibility;
+- $H$: potential harm;
+- $U$: uncertainty;
+- $R$: recoverability.
 
 Define the execution threshold:
 
-\[
+$$
 \Theta = clamp(\theta_0 + \alpha I + \beta H + \gamma U + \delta(1-R), 0, 1)
-\]
+$$
 
 The canonical default coefficients for the reference validator are:
 
-\[
+$$
 \theta_0=0.30,\quad \alpha=0.20,\quad \beta=0.20,\quad \gamma=0.15,\quad \delta=0.15
-\]
+$$
 
 These coefficients are demonstrative defaults, not universal constants. Domain-specific policy may replace them, but the selected coefficients must be explicit and receipt-bound.
 
@@ -153,17 +153,17 @@ These coefficients are demonstrative defaults, not universal constants. Domain-s
 
 Normalize:
 
-- \(E\): evidence sufficiency;
-- \(F\): evidence freshness;
-- \(A\): authority validity;
-- \(P\): policy validity;
-- \(C\): contextual integrity.
+- $E$: evidence sufficiency;
+- $F$: evidence freshness;
+- $A$: authority validity;
+- $P$: policy validity;
+- $C$: contextual integrity.
 
 The canonical reference standing score is:
 
-\[
+$$
 \Sigma = 0.25E + 0.20F + 0.20A + 0.15P + 0.20C
-\]
+$$
 
 Hard failures override the aggregate score. A transition cannot be admitted when any required invariant fails, including:
 
@@ -181,29 +181,29 @@ The reference disposition is determined as follows:
 1. **DENY** when authority, policy, consent, or scope has a hard failure.
 2. **DEFER** when material evidence is stale or incomplete but can reasonably be refreshed.
 3. **ESCALATE** when standing is below threshold and the transition is high consequence, or when policy requires independent review.
-4. **ALLOW** only when all hard invariants pass and \(\Sigma \geq \Theta\).
+4. **ALLOW** only when all hard invariants pass and $\Sigma \geq \Theta$.
 
 For the reference implementation, a transition is high consequence when:
 
-\[
+$$
 max(I,H) \geq 0.75
-\]
+$$
 
 or when recoverability is:
 
-\[
+$$
 R \leq 0.25
-\]
+$$
 
 ## 8. Expected loss and error surface
 
 Expected loss may be represented as:
 
-\[
+$$
 \mathbb{E}[L] = P(error) \times Severity(error) \times Exposure(error)
-\]
+$$
 
-Governance may not reduce \(P(error)\) to zero. It can nevertheless reduce severity and exposure through:
+Governance may not reduce $P(error)$ to zero. It can nevertheless reduce severity and exposure through:
 
 - constrained authority;
 - staged commitment;
@@ -221,17 +221,17 @@ The governing systems objective is therefore not perfect prediction. It is preve
 
 The available response set is:
 
-\[
+$$
 \mathcal{R}=\{rollback, repair, compensate, contain, appeal, learn\}
-\]
+$$
 
 Required assurance rises as recoverability falls:
 
-\[
+$$
 RequiredAssurance \propto \frac{H \times I \times U}{max(R,\epsilon)}
-\]
+$$
 
-where \(\epsilon\) prevents division by zero while preserving the limiting behavior. Where recovery is effectively unavailable, autonomous authority should narrow sharply and may collapse to mandatory escalation or denial.
+where $\epsilon$ prevents division by zero while preserving the limiting behavior. Where recovery is effectively unavailable, autonomous authority should narrow sharply and may collapse to mandatory escalation or denial.
 
 Recovery follows commit-time revalidation; it does not replace it. Commit-time revalidation prevents stale justification from advancing where possible. Recovery governs the obligations that remain when an admitted action still produces error, harm, or unanticipated consequence.
 
