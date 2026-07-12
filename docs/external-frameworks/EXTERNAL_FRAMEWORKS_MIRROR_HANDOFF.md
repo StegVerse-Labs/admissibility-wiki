@@ -2,7 +2,7 @@
 
 ## Source of truth
 
-This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, replay, evidence status, implementation selection, readiness, execution-plan generation, job-materialization governance, and runtime-authorization governance.
+This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, replay, evidence status, implementation selection, readiness, execution-plan generation, job-materialization governance, runtime-authorization governance, and observed-dispatch separation.
 
 Preserve unrelated CI repair, deployment verification, lifecycle-formalism, inference-window, conceptual-inheritance, and documentation-mesh work owned by other workstreams.
 
@@ -28,7 +28,7 @@ fail-closed execution-plan matrix: installed and chained
 job-materialization receipt layer: installed and aggregate-validated
 job-materialization fixtures: blocked + approved-non-executable
 runtime-authorization receipt layer: installed and aggregate-integrated
-runtime-authorization fixtures: blocked fail-closed
+runtime-authorization fixtures: blocked fail-closed + allowed non-dispatched
 runtime jobs emitted by plan automation: 0
 observed external outputs: pending workflow evidence
 independent organization/provider replays: 0 of 18
@@ -143,8 +143,10 @@ Installed:
 ```text
 static/schemas/external-framework-runtime-authorization-receipt.schema.json
 tests/fixtures/external-framework-runtime-authorization-receipt.blocked.json
+tests/fixtures/external-framework-runtime-authorization-receipt.allowed-non-dispatched.json
 scripts/check_external_framework_runtime_authorization_receipt.py
 receipts/external-framework-runtime-authorization-receipt-layer-2026-07-12.json
+receipts/external-framework-runtime-authorization-positive-fixture-2026-07-12.json
 scripts/check_goal5_external_frameworks_all.py
 ```
 
@@ -173,7 +175,26 @@ scope.status: UNRESOLVED
 consequence_boundary.status: UNRESOLVED
 ```
 
-`ALLOW_RUNTIME_TRANSITION` is admissible only when all six commit-time predicates are `PASS`, every passing predicate has a reference and check time, runtime authorization is explicitly true, and a runtime-transition object exists. Every other decision must preserve `runtime_execution_authorized: false` and `runtime_transition: null`.
+The positive fixture proves that all predicates can pass without dispatch or execution:
+
+```text
+decision: ALLOW_RUNTIME_TRANSITION
+all six commit-time predicates: PASS
+runtime_execution_authorized: true
+runtime_transition.transition_state: AUTHORIZED_NOT_DISPATCHED
+runtime_transition.scheduled: false
+runtime_transition.dispatched: false
+runtime_transition.execution_started: false
+runtime_transition.execution_endpoint: null
+runtime_transition.command: null
+runtime_transition.credentials_attached: false
+runtime_transition.external_consequence_allowed: false
+runtime_transition.required_next_transition: separate_observed_runtime_dispatch_transition
+```
+
+`ALLOW_RUNTIME_TRANSITION` is admissible only when all six commit-time predicates are `PASS`, every passing predicate has a reference and check time, runtime authorization is explicitly true, and a constrained non-dispatched runtime-transition descriptor exists. Every other decision must preserve `runtime_execution_authorized: false` and `runtime_transition: null`.
+
+The runtime-authorization receipt does not schedule, dispatch, execute, attach credentials, identify an execution endpoint, or permit external consequence.
 
 ## Evidence progression
 
@@ -187,7 +208,8 @@ fixture_ready
 -> materialized_non_executable_descriptor
 -> separate_runtime_authorization_review
 -> commit_time_predicate_revalidation
--> runtime_execution_authorization_if_admissible
+-> authorized_not_dispatched_runtime_transition
+-> separate_observed_runtime_dispatch_transition
 -> awaiting_capture
 -> captured_unverified
 -> replay_confirmed_same_environment
@@ -197,7 +219,7 @@ fixture_ready
 -> interoperability_candidate
 ```
 
-No framework advances because tooling, readiness, a plan, a materialization receipt, a materialized descriptor, or a runtime-authorization schema exists.
+No framework advances because tooling, readiness, a plan, a materialization receipt, a materialized descriptor, a runtime-authorization schema, or an authorization descriptor exists.
 
 ## Boundary
 
@@ -215,6 +237,9 @@ job-materialization receipt != runtime execution authority
 materialized descriptor != executable job
 materialization approval != consequence authority
 runtime-authorization receipt != automatic execution
+runtime authorization != scheduling
+runtime authorization != dispatch
+runtime authorization != observed execution
 runtime authorization != proof of compatibility
 policy decision != execution authority
 protocol response != standing
@@ -231,12 +256,12 @@ replay confirmation != execution authority
 
 ```text
 confirm the repaired Goal 5 aggregate passes in the canonical workflow
-confirm both materialization fixtures and the runtime-authorization fixture pass in the aggregate
+confirm both materialization fixtures and both runtime-authorization fixtures pass in the aggregate
 inspect the first completed OPA capture and fresh-runner replay artifacts
 record exact run, job, artifact, runtime, and receipt hashes after success
 populate one implementation-selection record from exact reproducible source evidence
 keep runtime jobs blocked until all required field, hash, authority, delegation, policy, freshness, scope, and consequence predicates hold
-add a positive all-predicates-pass runtime-authorization fixture without causing execution
+add an observed runtime-dispatch receipt schema and validator without creating an actual dispatch
 perform replay outside the same GitHub repository/provider before stronger independence claims
 produce observed-partial reports only after exact evidence exists
 update public capture status from inspected receipts
@@ -245,7 +270,7 @@ capture public deployment/page verification receipts
 
 ## Next action
 
-Add a positive, non-dispatched runtime-authorization fixture that proves all commit-time predicates can pass while keeping execution as a separately observed transition. The fixture may authorize a runtime transition descriptor but must not itself schedule, dispatch, or execute it.
+Build a separate observed runtime-dispatch receipt schema and validator that consumes an `AUTHORIZED_NOT_DISPATCHED` transition descriptor, binds the runtime-authorization receipt hash, and distinguishes `NOT_DISPATCHED`, `DISPATCH_ATTEMPTED`, `DISPATCHED`, and `EXECUTION_OBSERVED` without allowing a fixture or validator to initiate dispatch.
 
 In parallel, inspect OPA workflow artifacts when a run becomes accessible.
 
