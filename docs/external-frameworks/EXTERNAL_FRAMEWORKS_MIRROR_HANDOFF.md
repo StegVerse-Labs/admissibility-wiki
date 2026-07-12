@@ -17,9 +17,9 @@ non-authorizing fixture definitions: 18 of 18
 priority observed-evidence queue entries: 7 of 7
 executable capture harnesses: 7 of 7
 automated pinned capture jobs: 1 of 7
-generated capture artifact validation tooling: 2 of 7
+generated capture artifact validation tooling: 4 of 7
 fresh-runner replay jobs: 1 of 7
-durable pipeline summary generators: 2 of 7
+durable pipeline summary tooling: 4 of 7
 observed external outputs attached: pending workflow result
 fresh-runner replay outputs attached: pending workflow result
 independent organization/provider replays: 0 of 18
@@ -91,17 +91,31 @@ scripts/summarize_cedar_evidence_pipeline.py
 scripts/check_cedar_observation_capture_harness.py
 ```
 
-The Cedar capture harness remains implementation-neutral. It requires the caller to provide:
+The Cedar harness remains implementation-neutral and requires an exact implementation identifier, version command, and evaluation command template. Its validator and summary preserve `captured_unverified` and explicitly record replay, independent implementation/provider review, compatibility, standing, and execution authority as not performed, not claimed, or not created.
+
+No Cedar implementation has been selected or pinned, and no Cedar runtime output is claimed.
+
+## MCP and A2A evidence-status tooling
+
+Installed reusable tooling:
 
 ```text
-exact implementation identifier
-exact version command
-exact evaluation command template
+scripts/capture_external_command_observation.py
+scripts/validate_command_capture_artifacts.py
+scripts/summarize_command_evidence_pipeline.py
+scripts/check_priority_command_capture_harnesses.py
 ```
 
-The Cedar artifact validator requires allow and deny capture receipts, verifies exact implementation and version evidence, validates policy/request/output hashes, preserves `captured_unverified`, and writes `cedar-capture-status.json`.
+Active manifests:
 
-The Cedar pipeline summary writes `cedar-evidence-pipeline-status.json` and reports one of:
+```text
+docs/external-frameworks/capture/mcp/capture-manifest.json
+docs/external-frameworks/capture/a2a/capture-manifest.json
+```
+
+The reusable validator accepts a framework ID, exact capture receipt, canonical manifest, and output status path. It verifies the captured implementation identifier, version command/output, execution command, manifest/input/output hashes, replay instructions, limitations, and authority non-claims. It writes an `external_framework_capture_validation_status` record while preserving `captured_unverified`.
+
+The reusable summarizer writes an `external_framework_evidence_pipeline_status` record and reports:
 
 ```text
 artifacts_not_available
@@ -109,16 +123,16 @@ artifacts_present_incomplete_or_unverified
 captured_unverified_validated
 ```
 
-It explicitly records same-runner replay, fresh-runner replay, independent implementation/provider review, compatibility, standing, and execution authority as not performed, not claimed, or not created. No Cedar implementation has been selected or pinned, and no Cedar runtime output is claimed.
+For MCP and A2A, the summary explicitly records same-runner replay, fresh-runner replay, independent implementation/provider review, compatibility, standing, and execution authority as not performed, not claimed, or not created.
 
-## Other priority capture harnesses
+No MCP client/server pair or A2A implementation has been selected, executed, or claimed compatible. Tool discovery does not create tool-call authority, and task acceptance does not create consequence authority.
+
+## Remaining priority command frameworks
 
 ```text
-Model Context Protocol: reusable command harness
-Agent2Agent Protocol: reusable command harness
-Guardrails AI: reusable command harness
-Llama Guard: reusable command harness
-NeMo Guardrails: reusable command harness
+Guardrails AI: reusable command harness; artifact validator and summary activation pending
+Llama Guard: reusable command harness; artifact validator and summary activation pending
+NeMo Guardrails: reusable command harness; artifact validator and summary activation pending
 ```
 
 ## Evidence progression
@@ -143,6 +157,8 @@ fixture_ready != framework executed
 capture harness != observed evidence
 policy decision != execution authority
 protocol response != standing
+tool discovery != tool-call authority
+task acceptance != consequence authority
 classifier result != admissibility
 same-runner replay != fresh-runner replay
 fresh-runner replay != independent implementation
@@ -161,8 +177,9 @@ Destination: `StegVerse-Labs/admissibility-wiki`
 inspect first completed OPA capture and fresh-runner replay artifacts
 record exact run, job, artifact, runtime, and receipt hashes after success
 select a reproducible Cedar implementation and version before adding a pinned job
+select explicit MCP client/server and A2A implementations before capture
+activate reusable validation and summary coverage for Guardrails AI, Llama Guard, and NeMo Guardrails
 perform replay outside the same GitHub repository/provider before stronger independence claims
-add artifact validators and pipeline summaries for MCP, A2A, Guardrails AI, Llama Guard, and NeMo Guardrails
 produce observed-partial reports only after exact evidence exists
 update public capture status from inspected receipts
 capture public deployment/page verification receipts
@@ -170,7 +187,7 @@ capture public deployment/page verification receipts
 
 ## Next action
 
-Inspect `opa-pinned-capture-replay` and `opa-fresh-runner-replay` when their run becomes accessible. In parallel, select and document an exact Cedar implementation and version before automating Cedar execution. Do not infer execution, compatibility, standing, certification, or authority from the existence of capture tooling.
+Extend reusable artifact-validation and pipeline-summary coverage to Guardrails AI, Llama Guard, and NeMo Guardrails. In parallel, inspect OPA artifacts when the run becomes accessible and select explicit Cedar, MCP, and A2A implementations before automating execution. Do not infer execution, compatibility, standing, certification, or authority from the existence of tooling.
 
 ## Release path
 
