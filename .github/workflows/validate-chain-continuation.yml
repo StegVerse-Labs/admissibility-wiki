@@ -50,6 +50,12 @@ jobs:
       - name: Generate external framework page status
         run: python scripts/generate_external_framework_page_status.py
 
+      - name: Generate implementation automation readiness matrix
+        run: python scripts/generate_external_framework_automation_readiness.py
+
+      - name: Validate implementation automation readiness matrix
+        run: python scripts/check_external_framework_automation_readiness.py
+
       - name: Scan complete validation chain
         id: full-validation-scan
         continue-on-error: true
@@ -70,6 +76,15 @@ jobs:
           name: goal5-external-frameworks-report
           path: reports/goal5_external_frameworks_report.json
           if-no-files-found: warn
+
+      - name: Upload implementation automation readiness receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-framework-automation-readiness
+          path: reports/external-frameworks/implementation-automation-readiness.json
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Upload Guardian destination report
         if: always()
