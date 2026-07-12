@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "goal5_job_materialization_receipt_layer_installation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "installed_artifacts": [
+    "static/schemas/external-framework-job-materialization-receipt.schema.json",
+    "tests/fixtures/external-framework-job-materialization-receipt.blocked.json",
+    "scripts/check_external_framework_job_materialization_receipt.py"
+  ],
+  "aggregate_integration": "scripts/check_goal5_external_frameworks_all.py",
+  "decision_boundary": {
+    "receipt_may_authorize_runtime_execution": false,
+    "materialization_may_imply_execution": false,
+    "eligible_plan_may_self_materialize": false,
+    "separate_authority_review_required": true,
+    "separate_consequence_boundary_review_required": true
+  },
+  "current_fixture_state": "BLOCKED_NOT_ELIGIBLE",
+  "current_fixture_decision": "FAIL_CLOSED",
+  "runtime_execution_authorized": false,
+  "runtime_job": null,
+  "verification_state": "INSTALLED_PENDING_CANONICAL_WORKFLOW_CONFIRMATION",
+  "non_claims": [
+    "schema installation does not create execution authority",
+    "fixture validation does not establish framework compatibility",
+    "job materialization does not authorize runtime execution",
+    "aggregate inclusion does not prove a green workflow run"
+  ]
+}
