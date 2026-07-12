@@ -10,15 +10,60 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "docs" / "external-frameworks" / "implementation-selections" / "cedar-policy-cli-4.11.0.selection-evidence.json"
 REGISTRY = ROOT / "docs" / "external-frameworks" / "implementation-selection-gates.v0.1.json"
+APPLIED_PROMOTION_RECEIPT = ROOT / "reports" / "external-frameworks" / "cedar-build" / "cedar-binary-registry-promotion-receipt.applied-hash-only.json"
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 EXPECTED_COMMIT = "0807ec154afd7ffa14a658c9955d25bfe12770ca"
 EXPECTED_VERSION = "4.11.0"
 
 
+def load_json(path: Path) -> dict:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise ValueError(f"{path.name} must contain a JSON object")
+    return value
+
+
+def validate_promoted_hash(compiled_hash: object, failures: list[str]) -> None:
+    if not isinstance(compiled_hash, str) or not HEX64.fullmatch(compiled_hash):
+        failures.append("compiled binary hash must be a lowercase sha256 after hash-only promotion")
+        return
+    if not APPLIED_PROMOTION_RECEIPT.exists():
+        failures.append("applied Cedar hash-only promotion receipt missing")
+        return
+    try:
+        receipt = load_json(APPLIED_PROMOTION_RECEIPT)
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
+        failures.append(f"applied Cedar promotion receipt invalid: {exc}")
+        return
+    source = receipt.get("source_promotion_candidate", {})
+    target = receipt.get("registry_target", {})
+    review = receipt.get("review", {})
+    if receipt.get("decision") != "ALLOW_REGISTRY_PROMOTION_ONLY":
+        failures.append("applied promotion receipt decision mismatch")
+    if receipt.get("promotion_state") != "APPLIED_HASH_ONLY":
+        failures.append("applied promotion receipt state mismatch")
+    if receipt.get("registry_mutation_applied") is not True:
+        failures.append("applied promotion receipt must record hash-only mutation")
+    if receipt.get("runtime_execution_authorized") is not False:
+        failures.append("applied promotion receipt must not authorize execution")
+    if receipt.get("external_consequence_allowed") is not False:
+        failures.append("applied promotion receipt must not allow external consequence")
+    if review.get("status") != "PASS" or not review.get("delegation_ref"):
+        failures.append("applied promotion receipt requires completed delegated review")
+    if source.get("candidate_state") != "READY_FOR_REGISTRY_PROMOTION_REVIEW":
+        failures.append("applied promotion receipt candidate was not ready")
+    if source.get("binary_sha256") != compiled_hash:
+        failures.append("registry compiled hash differs from promotion candidate")
+    if target.get("field") != "frameworks[cedar-policy].selection.compiled_binary_sha256":
+        failures.append("applied promotion receipt targets wrong registry field")
+    if target.get("proposed_value") != compiled_hash:
+        failures.append("registry compiled hash differs from applied promotion target")
+
+
 def main() -> int:
     failures: list[str] = []
-    for path in (EVIDENCE, REGISTRY):
+    for path in (EVIDENCE, REGISTRY, APPLIED_PROMOTION_RECEIPT):
         if not path.exists():
             failures.append(f"missing {path.relative_to(ROOT)}")
     if failures:
@@ -27,8 +72,14 @@ def main() -> int:
             print(f"- {failure}")
         return 1
 
-    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
-    registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
+    try:
+        evidence = load_json(EVIDENCE)
+        registry = load_json(REGISTRY)
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
+        print("CEDAR IMPLEMENTATION SELECTION EVIDENCE: FAIL")
+        print(f"- invalid evidence or registry: {exc}")
+        return 1
+
     if evidence.get("artifact_type") != "external_framework_implementation_selection_evidence":
         failures.append("artifact_type mismatch")
     if evidence.get("framework_id") != "cedar-policy":
@@ -87,8 +138,7 @@ def main() -> int:
         expected_hash = f"source-evidence-bundle-sha256:{computed}"
         if selection.get("artifact_or_package_hash") != expected_hash:
             failures.append("registry source bundle hash mismatch")
-        if selection.get("compiled_binary_sha256") is not None:
-            failures.append("compiled binary hash must remain pending")
+        validate_promoted_hash(selection.get("compiled_binary_sha256"), failures)
 
     print("CEDAR IMPLEMENTATION SELECTION EVIDENCE:", "FAIL" if failures else "PASS")
     for failure in failures:
