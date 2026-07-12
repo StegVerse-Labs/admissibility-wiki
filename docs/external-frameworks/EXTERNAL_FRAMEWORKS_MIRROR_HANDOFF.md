@@ -2,11 +2,7 @@
 
 ## Source of truth
 
-This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, and observed-evidence work. Preserve unrelated CI repair, deployment verification, and documentation-mesh work owned by other workstreams.
-
-## Current goal
-
-Progress documented external-framework candidates through explicit states without collapsing visibility, source intake, mapping, fixtures, observed behavior, replayability, compatibility, or execution authority.
+This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, and replay work. Preserve unrelated CI repair, deployment verification, lifecycle-formalism, inference-window, and documentation-mesh work owned by other workstreams.
 
 ## Current state
 
@@ -22,8 +18,10 @@ priority observed-evidence queue entries: 7 of 7
 executable capture harnesses: 7 of 7
 automated pinned capture jobs: 1 of 7
 generated capture artifact validators: 1 of 7
+fresh-runner replay jobs: 1 of 7
 observed external outputs attached: pending workflow result
-independently replayed outputs: 0 of 18
+fresh-runner replay outputs attached: pending workflow result
+independent organization/provider replays: 0 of 18
 ```
 
 ## Promoted framework set
@@ -51,77 +49,50 @@ NeMo Guardrails
 
 Each promoted framework has canonical-source capture, an individual observatory page, a benchmark applicability mapping, and a source-versioned non-authorizing fixture definition.
 
-## Observed-evidence capture structure
+## OPA evidence pipeline
 
-```text
-docs/external-frameworks/observed-evidence-capture-protocol.md
-docs/external-frameworks/observed-evidence-capture-queue.v0.1.json
-docs/external-frameworks/observed-evidence-capture-status.md
-docs/external-frameworks/command-capture-runbook.md
-scripts/check_observed_evidence_capture_queue.py
-scripts/capture_external_command_observation.py
-scripts/check_priority_command_capture_harnesses.py
-```
-
-The public status surface reports structural readiness separately from observed outputs and independent replay.
-
-## Dedicated capture harnesses
-
-### Open Policy Agent
+Installed:
 
 ```text
 docs/external-frameworks/capture/opa/policy.rego
 docs/external-frameworks/capture/opa/input-allow.json
 docs/external-frameworks/capture/opa/input-deny.json
-docs/external-frameworks/opa-observation-capture-runbook.md
 scripts/capture_opa_observation.py
 scripts/run_pinned_opa_ci_capture.py
 scripts/validate_opa_capture_artifacts.py
+scripts/run_independent_opa_ci_replay.py
 scripts/check_opa_observation_capture_harness.py
+.github/workflows/validate-chain-continuation.yml
+its iOS workflow mirror
 ```
 
-The pinned runner downloads OPA `v1.0.0` from the official GitHub release, verifies its published SHA-256 file, executes allow and deny cases twice in separate processes on the same runner, and writes capture plus replay receipts. The receipt preserves the runtime binary hash, runtime version, GitHub run/SHA context, exact commands, source artifacts, outputs, hashes, limitations, and replay comparison.
-
-The generated-artifact validator requires all four capture/replay files plus the replay receipt, confirms the `captured_unverified` and `replay_confirmed_same_environment` boundaries, checks the authority and compatibility non-claims, verifies every replay comparison, hashes each generated JSON file, and writes `opa-capture-status.json`. It explicitly records independent replay as `not_performed`, compatibility as `not_claimed`, and execution authority as `not_created`.
-
-The canonical `validate-chain-continuation.yml` contains a `capture-opa-evidence` job. It runs automatically on main push, workflow dispatch, and scheduled executions, validates generated receipts before upload, uploads `opa-pinned-capture-replay`, and does not block site deployment when an external download or capture fails. The iOS workflow mirror is logically identical and validator-enforced.
-
-No successful workflow capture is claimed until the job result and uploaded artifact are inspected. The GitHub connector currently exposes no push or scheduled workflow run for the relevant commits, so no run, job, or artifact identifier has been inferred.
-
-### Cedar Policy
+The canonical workflow now performs three bounded stages:
 
 ```text
-docs/external-frameworks/capture/cedar/policy.cedar
-docs/external-frameworks/capture/cedar/request-allow.json
-docs/external-frameworks/capture/cedar/request-deny.json
-docs/external-frameworks/cedar-observation-capture-runbook.md
-scripts/capture_cedar_observation.py
-scripts/check_cedar_observation_capture_harness.py
+pinned OPA capture
+-> same-runner replay and generated-artifact validation
+-> artifact upload
+-> fresh-runner job downloads the upstream artifact
+-> independently downloads and checksum-verifies the same pinned OPA binary
+-> executes allow and deny cases on a new runner
+-> compares output, stdout, policy, input, and runtime-version evidence
+-> uploads opa-fresh-runner-replay
 ```
 
-## Reusable command capture harnesses
+The fresh-runner receipt may record `replay_confirmed_independent_environment` only when every comparison matches. That label means a fresh GitHub Actions runner, not an independent implementation, organization, provider, or authority. Those non-claims are machine-readable in the receipt.
 
-The reusable command engine covers:
+No successful capture or replay is claimed until the corresponding workflow jobs and artifacts are inspected. The available connector still does not expose push/scheduled runs for the relevant commits, so no run, job, or artifact identifier has been inferred.
+
+## Other priority capture harnesses
 
 ```text
-Model Context Protocol
-Agent2Agent Protocol
-Guardrails AI
-Llama Guard
-NeMo Guardrails
+Cedar Policy: dedicated implementation-neutral harness
+Model Context Protocol: reusable command harness
+Agent2Agent Protocol: reusable command harness
+Guardrails AI: reusable command harness
+Llama Guard: reusable command harness
+NeMo Guardrails: reusable command harness
 ```
-
-Installed manifests:
-
-```text
-docs/external-frameworks/capture/mcp/capture-manifest.json
-docs/external-frameworks/capture/a2a/capture-manifest.json
-docs/external-frameworks/capture/guardrails-ai/capture-manifest.json
-docs/external-frameworks/capture/llama-guard/capture-manifest.json
-docs/external-frameworks/capture/nemo-guardrails/capture-manifest.json
-```
-
-The engine requires an exact implementation identifier, version command, and execution command. It passes canonical JSON on standard input and records UTC time, exact input/output, source posture, commands, exit code, SHA-256 hashes, authority context, freshness context, limitations, and replay instructions.
 
 ## Evidence progression
 
@@ -130,15 +101,13 @@ fixture_ready
 -> awaiting_capture
 -> captured_unverified
 -> replay_confirmed_same_environment
+-> replay_confirmed_independent_environment_fresh_runner
+-> independent_implementation_or_provider_review
 -> observed_partial
--> replay_ready
--> replay_confirmed_independent_environment
 -> interoperability_candidate
 ```
 
-Same-environment deterministic replay is useful evidence but is not independent replay and does not establish compatibility.
-
-No state may advance beyond `captured_unverified` without exact source/model version, timestamp, execution environment, input, output, policy/configuration, authority context, freshness context, trace reference, artifact hashes, limitations, and replay instructions.
+The fresh-runner stage does not itself establish compatibility, standing, delegation, admissibility, or execution authority.
 
 ## Boundary
 
@@ -148,36 +117,33 @@ capture harness != observed evidence
 policy decision != execution authority
 protocol response != standing
 classifier result != admissibility
-same-environment replay != independent replay
-single capture != replayability
+same-runner replay != fresh-runner replay
+fresh-runner replay != independent implementation
+fresh-runner replay != independent authority review
 matching output != current delegation
 replay confirmation != execution authority
 ```
 
-## Parallel coordination
-
-This workstream owns candidate visibility, canonical-source capture, sourced-intake promotion records, framework pages, mappings, fixtures, capture queues, capture harnesses, automated capture jobs, generated-artifact validators, and the public capture-status surface. Do not overwrite newer CI repair, workflow receipt, deployment verification, lifecycle-formalism, inference-window, or documentation-mesh state from other workstreams.
-
-## Remaining files/modules to install
+## Remaining modules and destinations
 
 Destination: `StegVerse-Labs/admissibility-wiki`
 
 ```text
-inspect the first automated OPA capture job and artifact
-record exact run, job, artifact, and receipt hashes after success
-run OPA replay in a second independent environment before observed_partial
-add automated pinned capture jobs and generated-artifact validators for other priority frameworks when reproducible runtimes are selected
-produce observed-partial compatibility reports only after exact evidence exists
-update capture queue and public status from inspected receipts
+inspect first completed OPA capture and fresh-runner replay artifacts
+record exact run, job, artifact, runtime, and receipt hashes after success
+perform replay outside the same GitHub repository/provider before stronger independence claims
+add pinned jobs and validators for other frameworks when reproducible runtimes are selected
+produce observed-partial reports only after exact evidence exists
+update public capture status from inspected receipts
 capture public deployment/page verification receipts
 ```
 
 ## Next action
 
-Observe the workflow triggered by the OPA artifact-validation commits. If the capture job succeeds, inspect and preserve the uploaded allow, deny, replay, replay-receipt, and `opa-capture-status.json` artifacts as `captured_unverified` plus `replay_confirmed_same_environment`. Do not advance to independent replay, observed compatibility, or execution authority.
+Observe the workflow triggered by the fresh-runner replay commits. Inspect `opa-pinned-capture-replay` and `opa-fresh-runner-replay`. Preserve the first as `captured_unverified` plus same-environment replay and the second only as fresh-runner replay. Do not claim independent implementation, compatibility, standing, or execution authority.
 
 ## Release path
 
-The repo is not ready to tag solely because source capture, pages, mappings, fixtures, queues, all seven priority harnesses, one automated capture job, and one generated-artifact validator exist. After observed-evidence, independent replay, and deployment review, verify pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
+The repo is not ready to tag solely because the structural capture and replay pipeline exists. After artifact inspection, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-Labs/stegguardian-wiki`.
 
 The complete prior thread is not required to continue from this handoff.
