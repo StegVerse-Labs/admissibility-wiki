@@ -2,7 +2,7 @@
 
 ## Source of truth
 
-This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, replay, evidence status, implementation selection, readiness, execution-plan generation, and job-materialization governance.
+This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, replay, evidence status, implementation selection, readiness, execution-plan generation, job-materialization governance, and runtime-authorization governance.
 
 Preserve unrelated CI repair, deployment verification, lifecycle-formalism, inference-window, conceptual-inheritance, and documentation-mesh work owned by other workstreams.
 
@@ -27,6 +27,8 @@ readiness matrix: installed and workflow-integrated
 fail-closed execution-plan matrix: installed and chained
 job-materialization receipt layer: installed and aggregate-validated
 job-materialization fixtures: blocked + approved-non-executable
+runtime-authorization receipt layer: installed and aggregate-integrated
+runtime-authorization fixtures: blocked fail-closed
 runtime jobs emitted by plan automation: 0
 observed external outputs: pending workflow evidence
 independent organization/provider replays: 0 of 18
@@ -120,18 +122,7 @@ scripts/check_goal5_external_frameworks_all.py
 
 The receipt layer binds readiness and execution-plan artifacts by SHA-256 and requires distinct authority and consequence-boundary review.
 
-### Blocked fixture
-
-```text
-materialization_state: BLOCKED_NOT_ELIGIBLE
-decision: FAIL_CLOSED
-runtime_execution_authorized: false
-runtime_job: null
-authority_review.status: NOT_STARTED
-consequence_boundary_review.status: NOT_STARTED
-```
-
-### Approved-but-non-executable fixture
+The approved descriptor remains non-executable:
 
 ```text
 materialization_state: MATERIALIZED_NOT_EXECUTABLE
@@ -143,24 +134,46 @@ runtime_job.command: null
 runtime_job.credentials_attached: false
 runtime_job.external_consequence_allowed: false
 runtime_job.required_next_transition: separate_runtime_authorization_review
-authority_review.status: PASS
-consequence_boundary_review.status: PASS
 ```
 
-The validator now checks both fixtures and rejects any receipt that:
+## Runtime-authorization receipt layer
+
+Installed:
 
 ```text
-omits readiness or execution-plan hashes
-allows runtime execution inside the materialization receipt
-allows BLOCKED, DENY, or REVIEW_REQUIRED to contain a job
-permits an approved descriptor to contain an endpoint or command
-attaches credentials to a materialized descriptor
-allows external consequence
-omits separate authority or consequence-boundary review
-claims an eligible plan can self-materialize
-claims materialization is runtime authority
-omits the later distinct runtime-authorization transition
+static/schemas/external-framework-runtime-authorization-receipt.schema.json
+tests/fixtures/external-framework-runtime-authorization-receipt.blocked.json
+scripts/check_external_framework_runtime_authorization_receipt.py
+receipts/external-framework-runtime-authorization-receipt-layer-2026-07-12.json
+scripts/check_goal5_external_frameworks_all.py
 ```
+
+The runtime-authorization receipt consumes a materialization receipt and materialized-descriptor hash. It independently evaluates commit-time predicates:
+
+```text
+authority
+delegation
+policy
+freshness
+scope
+consequence_boundary
+```
+
+The blocked fixture remains:
+
+```text
+decision: FAIL_CLOSED
+runtime_execution_authorized: false
+runtime_transition: null
+authority.status: MISSING
+delegation.status: MISSING
+policy.status: UNRESOLVED
+freshness.status: UNRESOLVED
+scope.status: UNRESOLVED
+consequence_boundary.status: UNRESOLVED
+```
+
+`ALLOW_RUNTIME_TRANSITION` is admissible only when all six commit-time predicates are `PASS`, every passing predicate has a reference and check time, runtime authorization is explicitly true, and a runtime-transition object exists. Every other decision must preserve `runtime_execution_authorized: false` and `runtime_transition: null`.
 
 ## Evidence progression
 
@@ -173,6 +186,7 @@ fixture_ready
 -> governed_job_materialization_receipt
 -> materialized_non_executable_descriptor
 -> separate_runtime_authorization_review
+-> commit_time_predicate_revalidation
 -> runtime_execution_authorization_if_admissible
 -> awaiting_capture
 -> captured_unverified
@@ -183,7 +197,7 @@ fixture_ready
 -> interoperability_candidate
 ```
 
-No framework advances because tooling, readiness, a plan, a materialization receipt, or a materialized descriptor exists.
+No framework advances because tooling, readiness, a plan, a materialization receipt, a materialized descriptor, or a runtime-authorization schema exists.
 
 ## Boundary
 
@@ -200,6 +214,7 @@ execution-plan eligibility != job materialization
 job-materialization receipt != runtime execution authority
 materialized descriptor != executable job
 materialization approval != consequence authority
+runtime-authorization receipt != automatic execution
 runtime authorization != proof of compatibility
 policy decision != execution authority
 protocol response != standing
@@ -216,12 +231,12 @@ replay confirmation != execution authority
 
 ```text
 confirm the repaired Goal 5 aggregate passes in the canonical workflow
-confirm both materialization fixtures pass in the aggregate
+confirm both materialization fixtures and the runtime-authorization fixture pass in the aggregate
 inspect the first completed OPA capture and fresh-runner replay artifacts
 record exact run, job, artifact, runtime, and receipt hashes after success
 populate one implementation-selection record from exact reproducible source evidence
-keep runtime jobs blocked until all required field, hash, authority, and consequence predicates hold
-add the separate runtime-authorization receipt schema and validator
+keep runtime jobs blocked until all required field, hash, authority, delegation, policy, freshness, scope, and consequence predicates hold
+add a positive all-predicates-pass runtime-authorization fixture without causing execution
 perform replay outside the same GitHub repository/provider before stronger independence claims
 produce observed-partial reports only after exact evidence exists
 update public capture status from inspected receipts
@@ -230,13 +245,13 @@ capture public deployment/page verification receipts
 
 ## Next action
 
-Build a separate runtime-authorization receipt schema and validator that consumes a `MATERIALIZED_NOT_EXECUTABLE` descriptor, binds the materialization receipt hash, requires current authority/delegation/policy/freshness evidence, and still emits no execution unless every commit-time predicate passes.
+Add a positive, non-dispatched runtime-authorization fixture that proves all commit-time predicates can pass while keeping execution as a separately observed transition. The fixture may authorize a runtime transition descriptor but must not itself schedule, dispatch, or execute it.
 
 In parallel, inspect OPA workflow artifacts when a run becomes accessible.
 
 ## Release path
 
-The repo is not ready to tag solely because capture, validation, replay, selection-gating, readiness, execution-plan automation, and materialization-receipt validation exist. After artifact inspection, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for:
+The repo is not ready to tag solely because capture, validation, replay, selection-gating, readiness, execution-plan automation, materialization-receipt validation, and runtime-authorization validation exist. After artifact inspection, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for:
 
 ```text
 StegVerse-Labs/Site
