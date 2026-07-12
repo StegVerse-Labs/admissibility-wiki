@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "external_framework_runtime_dispatch_observation",
+  "receipt_id": "ef-runtime-dispatch-cedar-execution-observed-001",
+  "framework_id": "cedar-policy",
+  "source_runtime_authorization": {
+    "path": "tests/fixtures/external-framework-runtime-authorization-receipt.allowed-non-dispatched.json",
+    "sha256": "6666666666666666666666666666666666666666666666666666666666666666"
+  },
+  "authorized_transition_id": "cedar-runtime-transition-001",
+  "dispatch_state": "EXECUTION_OBSERVED",
+  "observation": {
+    "observed_at": "2026-07-12T13:00:00Z",
+    "dispatch_attempt_id": "cedar-dispatch-attempt-003",
+    "dispatcher_ref": "fixtures/dispatcher/cedar-simulated-dispatcher.json",
+    "transport_ref": "fixtures/transport/cedar-simulated-transport.json",
+    "evidence_refs": [
+      "evidence/runtime-dispatch/cedar/execution-start.json",
+      "evidence/runtime-dispatch/cedar/execution-completion.json"
+    ]
+  },
+  "execution_result": {
+    "execution_started": true,
+    "execution_completed": true,
+    "exit_status": 0,
+    "output_ref": "evidence/runtime-dispatch/cedar/simulated-output.json",
+    "external_consequence_observed": false
+  },
+  "observer": {
+    "observer_ref": "StegVerse-Labs/admissibility-wiki:fixture-validator",
+    "independent_from_dispatcher": true
+  },
+  "non_claims": [
+    "observation receipt does not initiate dispatch",
+    "runtime authorization does not prove dispatch",
+    "dispatch state does not prove framework compatibility",
+    "execution observation does not create execution authority",
+    "fixture validation does not cause external consequence"
+  ]
+}
