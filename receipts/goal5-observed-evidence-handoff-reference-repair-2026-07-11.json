@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "goal5_observed_evidence_handoff_reference_repair",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "workflow": ".github/workflows/validate-chain-continuation.yml",
+  "failed_validator": "scripts/check_observed_evidence_capture_queue.py",
+  "failure_class": "handoff_reference_omission",
+  "observed_failure": {
+    "aggregate": "GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE",
+    "result": "FAIL",
+    "failed_checks": 1,
+    "total_checks": 22,
+    "missing_references": [
+      "observed-evidence-capture-protocol.md",
+      "observed-evidence-capture-queue.v0.1.json"
+    ]
+  },
+  "underlying_artifacts_present": true,
+  "repaired_path": "docs/external-frameworks/EXTERNAL_FRAMEWORKS_MIRROR_HANDOFF.md",
+  "repair_commit": "d6b9db1e5b92471c05759723ce4302c3eda39e97",
+  "repair": {
+    "restored_references": [
+      "docs/external-frameworks/observed-evidence-capture-protocol.md",
+      "docs/external-frameworks/observed-evidence-capture-queue.v0.1.json",
+      "scripts/check_observed_evidence_capture_queue.py"
+    ],
+    "workflow_changed": false,
+    "authority_changed": false,
+    "evidence_state_promoted": false
+  },
+  "verification_state": "REPAIR_INSTALLED_PENDING_CANONICAL_WORKFLOW_CONFIRMATION",
+  "non_claims": [
+    "This receipt does not claim the canonical workflow has passed.",
+    "This receipt does not promote queued fixtures into observed evidence.",
+    "This receipt does not certify any external framework.",
+    "This receipt does not authorize execution jobs."
+  ],
+  "recorded_at": "2026-07-11T23:20:00-05:00"
+}
