@@ -2,52 +2,34 @@
 
 ## Source of truth
 
-This file is the current handoff for Goal 5 external-framework source intake, mapping, fixture, capture, replay, evidence status, implementation selection, readiness, execution-plan generation, job-materialization governance, runtime-authorization governance, and observed-dispatch separation.
+This file is the current handoff for Goal 5 external-framework intake, evidence capture, implementation selection, readiness, execution planning, materialization, runtime authorization, dispatch observation, replay, and publication work.
 
-Preserve unrelated CI repair, deployment verification, lifecycle-formalism, inference-window, conceptual-inheritance, and documentation-mesh work owned by other workstreams.
+Preserve unrelated CI repair, conceptual-inheritance, lifecycle-formalism, inference-window, and documentation-mesh work owned by other workstreams.
 
 ## Current state
 
 ```text
 registered framework and crosswalk entries: 19
 candidate intake records: 42
-total visible observatory entries: 61
-sourced_intake records: 18
-individual sourced-intake pages: 18
-benchmark mappings for promoted candidates: 18 of 18
-non-authorizing fixture definitions: 18 of 18
-priority observed-evidence queue entries: 7 of 7
+visible observatory entries: 61
+sourced-intake pages: 18
+benchmark mappings: 18 of 18
+non-authorizing fixtures: 18 of 18
+priority capture queue entries: 7 of 7
 capture harnesses: 7 of 7
-artifact-validation tooling: 7 of 7
-durable pipeline-summary tooling: 7 of 7
-automated pinned capture jobs: 1 of 7
-fresh-runner replay jobs: 1 of 7
-implementation-selection gate records: 6 of 6 unpinned frameworks
-readiness matrix: installed and workflow-integrated
-fail-closed execution-plan matrix: installed and chained
-job-materialization receipt layer: installed and aggregate-validated
-job-materialization fixtures: blocked + approved-non-executable
-runtime-authorization receipt layer: installed and aggregate-integrated
-runtime-authorization fixtures: blocked fail-closed + allowed non-dispatched
+artifact validators: 7 of 7
+implementation-selection gates: installed
+readiness matrix: installed
+fail-closed execution-plan matrix: installed
+job-materialization layer: installed
+runtime-authorization layer: installed
+runtime-dispatch observation layer: installed
 runtime jobs emitted by plan automation: 0
 observed external outputs: pending workflow evidence
 independent organization/provider replays: 0 of 18
 ```
 
-## Latest observed validation repair
-
-```text
-Failure class: handoff_reference_omission
-Failed validator: scripts/check_observed_evidence_capture_queue.py
-Observed aggregate: GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: FAIL (1/22 failed)
-Repair commit: d6b9db1e5b92471c05759723ce4302c3eda39e97
-Receipt: receipts/goal5-observed-evidence-handoff-reference-repair-2026-07-11.json
-State: repair installed; canonical workflow confirmation pending
-```
-
-The failure concerned missing references in this handoff, not missing protocol or queue artifacts.
-
-Validation-critical references:
+## Validation-critical observed-evidence references
 
 ```text
 docs/external-frameworks/observed-evidence-capture-protocol.md
@@ -55,148 +37,9 @@ docs/external-frameworks/observed-evidence-capture-queue.v0.1.json
 scripts/check_observed_evidence_capture_queue.py
 ```
 
-The queue remains `AWAITING_CAPTURE_NOT_OBSERVED_EVIDENCE` until exact source, version or commit, input, output, timestamp, execution environment, policy/configuration, authority context, freshness context, hashes, replay instructions, and limitations are attached.
+The queue remains `AWAITING_CAPTURE_NOT_OBSERVED_EVIDENCE` until exact source, version or commit, input, output, timestamp, environment, policy/configuration, authority context, freshness context, hashes, replay instructions, and limitations are attached.
 
-## Selection, readiness, and execution-plan automation
-
-Installed:
-
-```text
-docs/external-frameworks/implementation-selection-gates.v0.1.json
-scripts/check_external_framework_implementation_selection_gates.py
-scripts/generate_external_framework_automation_readiness.py
-scripts/check_external_framework_automation_readiness.py
-scripts/generate_external_framework_execution_plans.py
-scripts/check_external_framework_execution_plans.py
-reports/external-frameworks/implementation-automation-readiness.json
-reports/external-frameworks/implementation-execution-plans.json
-scripts/check_goal5_external_frameworks_all.py
-.github/workflows/validate-chain-continuation.yml
-iosnoperiod/github/workflows/validate-chain-continuation.yml
-```
-
-Coverage:
-
-```text
-Cedar Policy
-Model Context Protocol
-Agent2Agent Protocol
-Guardrails AI
-Llama Guard
-NeMo Guardrails
-```
-
-Expected readiness state for all six:
-
-```text
-selection_state: selection_required
-execution_authorized_in_registry: false
-execution_job_allowed: false
-automation_state: blocked_selection_required
-```
-
-Expected execution-plan state for all six:
-
-```text
-plan_state: blocked_no_execution_plan
-job_materialization_allowed: false
-runtime_execution_requested: false
-proposed_job: null
-required_next_transition: complete_and_validate_implementation_selection
-```
-
-A generated plan may establish eligibility for later review. It may not create, materialize, schedule, dispatch, or execute a runtime job.
-
-## Governed job-materialization receipt layer
-
-Installed:
-
-```text
-static/schemas/external-framework-job-materialization-receipt.schema.json
-tests/fixtures/external-framework-job-materialization-receipt.blocked.json
-tests/fixtures/external-framework-job-materialization-receipt.approved-non-executable.json
-scripts/check_external_framework_job_materialization_receipt.py
-receipts/external-framework-job-materialization-receipt-layer-2026-07-11.json
-scripts/check_goal5_external_frameworks_all.py
-```
-
-The receipt layer binds readiness and execution-plan artifacts by SHA-256 and requires distinct authority and consequence-boundary review.
-
-The approved descriptor remains non-executable:
-
-```text
-materialization_state: MATERIALIZED_NOT_EXECUTABLE
-decision: ALLOW_MATERIALIZATION_ONLY
-runtime_execution_authorized: false
-runtime_job.job_state: NON_EXECUTABLE_MATERIALIZED_DESCRIPTOR
-runtime_job.execution_endpoint: null
-runtime_job.command: null
-runtime_job.credentials_attached: false
-runtime_job.external_consequence_allowed: false
-runtime_job.required_next_transition: separate_runtime_authorization_review
-```
-
-## Runtime-authorization receipt layer
-
-Installed:
-
-```text
-static/schemas/external-framework-runtime-authorization-receipt.schema.json
-tests/fixtures/external-framework-runtime-authorization-receipt.blocked.json
-tests/fixtures/external-framework-runtime-authorization-receipt.allowed-non-dispatched.json
-scripts/check_external_framework_runtime_authorization_receipt.py
-receipts/external-framework-runtime-authorization-receipt-layer-2026-07-12.json
-receipts/external-framework-runtime-authorization-positive-fixture-2026-07-12.json
-scripts/check_goal5_external_frameworks_all.py
-```
-
-The runtime-authorization receipt consumes a materialization receipt and materialized-descriptor hash. It independently evaluates commit-time predicates:
-
-```text
-authority
-delegation
-policy
-freshness
-scope
-consequence_boundary
-```
-
-The blocked fixture remains:
-
-```text
-decision: FAIL_CLOSED
-runtime_execution_authorized: false
-runtime_transition: null
-authority.status: MISSING
-delegation.status: MISSING
-policy.status: UNRESOLVED
-freshness.status: UNRESOLVED
-scope.status: UNRESOLVED
-consequence_boundary.status: UNRESOLVED
-```
-
-The positive fixture proves that all predicates can pass without dispatch or execution:
-
-```text
-decision: ALLOW_RUNTIME_TRANSITION
-all six commit-time predicates: PASS
-runtime_execution_authorized: true
-runtime_transition.transition_state: AUTHORIZED_NOT_DISPATCHED
-runtime_transition.scheduled: false
-runtime_transition.dispatched: false
-runtime_transition.execution_started: false
-runtime_transition.execution_endpoint: null
-runtime_transition.command: null
-runtime_transition.credentials_attached: false
-runtime_transition.external_consequence_allowed: false
-runtime_transition.required_next_transition: separate_observed_runtime_dispatch_transition
-```
-
-`ALLOW_RUNTIME_TRANSITION` is admissible only when all six commit-time predicates are `PASS`, every passing predicate has a reference and check time, runtime authorization is explicitly true, and a constrained non-dispatched runtime-transition descriptor exists. Every other decision must preserve `runtime_execution_authorized: false` and `runtime_transition: null`.
-
-The runtime-authorization receipt does not schedule, dispatch, execute, attach credentials, identify an execution endpoint, or permit external consequence.
-
-## Evidence progression
+## Governed transition chain
 
 ```text
 fixture_ready
@@ -210,6 +53,7 @@ fixture_ready
 -> commit_time_predicate_revalidation
 -> authorized_not_dispatched_runtime_transition
 -> separate_observed_runtime_dispatch_transition
+-> dispatch_observation
 -> awaiting_capture
 -> captured_unverified
 -> replay_confirmed_same_environment
@@ -219,7 +63,91 @@ fixture_ready
 -> interoperability_candidate
 ```
 
-No framework advances because tooling, readiness, a plan, a materialization receipt, a materialized descriptor, a runtime-authorization schema, or an authorization descriptor exists.
+No stage advances merely because tooling, a schema, fixture, plan, authorization, or observation record exists.
+
+## Installed selection, planning, and materialization surfaces
+
+```text
+docs/external-frameworks/implementation-selection-gates.v0.1.json
+scripts/check_external_framework_implementation_selection_gates.py
+scripts/generate_external_framework_automation_readiness.py
+scripts/check_external_framework_automation_readiness.py
+scripts/generate_external_framework_execution_plans.py
+scripts/check_external_framework_execution_plans.py
+reports/external-frameworks/implementation-automation-readiness.json
+reports/external-frameworks/implementation-execution-plans.json
+static/schemas/external-framework-job-materialization-receipt.schema.json
+tests/fixtures/external-framework-job-materialization-receipt.blocked.json
+tests/fixtures/external-framework-job-materialization-receipt.approved-non-executable.json
+scripts/check_external_framework_job_materialization_receipt.py
+```
+
+A plan may become eligible for review but may not self-materialize, schedule, dispatch, or execute.
+
+## Runtime authorization
+
+Installed:
+
+```text
+static/schemas/external-framework-runtime-authorization-receipt.schema.json
+tests/fixtures/external-framework-runtime-authorization-receipt.blocked.json
+tests/fixtures/external-framework-runtime-authorization-receipt.allowed-non-dispatched.json
+scripts/check_external_framework_runtime_authorization_receipt.py
+receipts/external-framework-runtime-authorization-receipt-layer-2026-07-12.json
+receipts/external-framework-runtime-authorization-positive-fixture-2026-07-12.json
+```
+
+The positive authorization fixture requires all commit-time predicates to pass while preserving:
+
+```text
+transition_state: AUTHORIZED_NOT_DISPATCHED
+scheduled: false
+dispatched: false
+execution_started: false
+execution_endpoint: null
+command: null
+credentials_attached: false
+external_consequence_allowed: false
+required_next_transition: separate_observed_runtime_dispatch_transition
+```
+
+Runtime authorization is not scheduling, dispatch, execution, compatibility proof, or consequence authority.
+
+## Runtime dispatch observation
+
+Installed:
+
+```text
+static/schemas/external-framework-runtime-dispatch-observation.schema.json
+tests/fixtures/external-framework-runtime-dispatch-observation.not-dispatched.json
+scripts/check_external_framework_runtime_dispatch_observation.py
+receipts/external-framework-runtime-dispatch-observation-layer-2026-07-12.json
+scripts/check_goal5_external_frameworks_all.py
+```
+
+Supported observation states:
+
+```text
+NOT_DISPATCHED
+DISPATCH_ATTEMPTED
+DISPATCHED
+EXECUTION_OBSERVED
+```
+
+The installed fixture remains `NOT_DISPATCHED` and requires:
+
+```text
+dispatch_attempt_id: null
+dispatcher_ref: null
+transport_ref: null
+execution_started: false
+execution_completed: false
+exit_status: null
+output_ref: null
+external_consequence_observed: false
+```
+
+The validator is observational only. It cannot initiate dispatch, attach credentials, execute a command, or create an external consequence.
 
 ## Boundary
 
@@ -227,62 +155,65 @@ No framework advances because tooling, readiness, a plan, a materialization rece
 fixture_ready != framework executed
 capture harness != observed evidence
 artifact validator != observed success
-pipeline summary != compatibility proof
 implementation selection != certification
-implementation selection != execution authority
-automation readiness != execution authority
+readiness != execution authority
 execution plan != executable job
-execution-plan eligibility != job materialization
-job-materialization receipt != runtime execution authority
-materialized descriptor != executable job
-materialization approval != consequence authority
-runtime-authorization receipt != automatic execution
+plan eligibility != job materialization
+materialization != runtime authority
 runtime authorization != scheduling
 runtime authorization != dispatch
-runtime authorization != observed execution
-runtime authorization != proof of compatibility
-policy decision != execution authority
-protocol response != standing
-tool discovery != tool-call authority
-task acceptance != consequence authority
-classifier result != admissibility
-fresh-runner replay != independent implementation
-fresh-runner replay != independent provider or authority review
-matching output != current delegation
+dispatch attempted != dispatched
+dispatched != execution observed
+execution observed != compatibility
+observation receipt != authority
 replay confirmation != execution authority
 ```
+
+## Canonical integration
+
+```text
+Aggregate: scripts/check_goal5_external_frameworks_all.py
+Canonical workflow: .github/workflows/validate-chain-continuation.yml
+iOS mirror: iosnoperiod/github/workflows/validate-chain-continuation.yml
+Additional active workflow created: no
+```
+
+The aggregate now includes:
+
+```text
+scripts/check_external_framework_job_materialization_receipt.py
+scripts/check_external_framework_runtime_authorization_receipt.py
+scripts/check_external_framework_runtime_dispatch_observation.py
+```
+
+Canonical workflow confirmation remains pending because the available connector has not exposed a status result for the newest commits.
 
 ## Remaining work
 
 ```text
 confirm the repaired Goal 5 aggregate passes in the canonical workflow
-confirm both materialization fixtures and both runtime-authorization fixtures pass in the aggregate
+confirm dispatch-observation validation passes in the aggregate
+add structurally valid DISPATCH_ATTEMPTED, DISPATCHED, and EXECUTION_OBSERVED fixtures without initiating real dispatch
 inspect the first completed OPA capture and fresh-runner replay artifacts
 record exact run, job, artifact, runtime, and receipt hashes after success
-populate one implementation-selection record from exact reproducible source evidence
-keep runtime jobs blocked until all required field, hash, authority, delegation, policy, freshness, scope, and consequence predicates hold
-add an observed runtime-dispatch receipt schema and validator without creating an actual dispatch
-perform replay outside the same GitHub repository/provider before stronger independence claims
-produce observed-partial reports only after exact evidence exists
-update public capture status from inspected receipts
-capture public deployment/page verification receipts
+perform replay outside the same repository/provider before stronger independence claims
+publish observed-partial reports only after exact evidence exists
+capture public deployment and downstream propagation receipts
 ```
 
 ## Next action
 
-Build a separate observed runtime-dispatch receipt schema and validator that consumes an `AUTHORIZED_NOT_DISPATCHED` transition descriptor, binds the runtime-authorization receipt hash, and distinguishes `NOT_DISPATCHED`, `DISPATCH_ATTEMPTED`, `DISPATCHED`, and `EXECUTION_OBSERVED` without allowing a fixture or validator to initiate dispatch.
-
-In parallel, inspect OPA workflow artifacts when a run becomes accessible.
+Add state-progression fixtures for `DISPATCH_ATTEMPTED`, `DISPATCHED`, and `EXECUTION_OBSERVED`, then extend the validator to prove their evidence requirements and prevent state inflation. These fixtures must describe observations only and must not cause dispatch or execution.
 
 ## Release path
 
-The repo is not ready to tag solely because capture, validation, replay, selection-gating, readiness, execution-plan automation, materialization-receipt validation, and runtime-authorization validation exist. After artifact inspection, stronger independent replay, external evidence review, and deployment verification, check pertinent updates for:
+No release tag is authorized solely from schema, fixture, validation, or automation installation. After canonical validation, artifact inspection, independent replay, and public deployment verification, check destination handoffs before updating:
 
 ```text
 StegVerse-Labs/Site
 GCAT-BCAT-Engine/Publisher
 StegVerse-Labs/admissibility-wiki
-StegVerse-Labs/stegguardian-wiki
+StegVerse-002/stegguardian-wiki
 ```
 
 The complete prior thread is not required to continue from this handoff.
