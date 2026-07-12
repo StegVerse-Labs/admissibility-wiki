@@ -28,6 +28,7 @@ CHECKS = [
     "scripts/check_cedar_binary_promotion_automation.py",
     "scripts/check_cedar_binary_registry_promotion_receipts.py",
     "scripts/check_cedar_binary_hash_registry_application.py",
+    "scripts/check_cedar_binary_provenance_reconciliation.py",
     "scripts/check_external_framework_automation_readiness.py",
     "scripts/check_external_framework_execution_plans.py",
     "scripts/check_external_framework_job_materialization_candidates.py",
@@ -87,7 +88,7 @@ def main() -> int:
         print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: opa_version_probe_compatibility_and_goal5_governance_chain_validated_without_execution_authority")
+    print("release_readiness: cedar_binary_provenance_reconciliation_and_goal5_governance_chain_validated_without_execution_authority")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
