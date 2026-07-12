@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "external_framework_runtime_dispatch_observation",
+  "receipt_id": "ef-runtime-dispatch-cedar-not-dispatched-001",
+  "framework_id": "cedar-policy",
+  "source_runtime_authorization": {
+    "path": "tests/fixtures/external-framework-runtime-authorization-receipt.allowed-non-dispatched.json",
+    "sha256": "3333333333333333333333333333333333333333333333333333333333333333"
+  },
+  "authorized_transition_id": "cedar-runtime-transition-001",
+  "dispatch_state": "NOT_DISPATCHED",
+  "observation": {
+    "observed_at": "2026-07-12T12:30:00Z",
+    "dispatch_attempt_id": null,
+    "dispatcher_ref": null,
+    "transport_ref": null,
+    "evidence_refs": [
+      "evidence/runtime-dispatch/cedar/not-dispatched-state.json"
+    ]
+  },
+  "execution_result": {
+    "execution_started": false,
+    "execution_completed": false,
+    "exit_status": null,
+    "output_ref": null,
+    "external_consequence_observed": false
+  },
+  "observer": {
+    "observer_ref": "StegVerse-Labs/admissibility-wiki:fixture-validator",
+    "independent_from_dispatcher": true
+  },
+  "non_claims": [
+    "observation receipt does not initiate dispatch",
+    "runtime authorization does not prove dispatch",
+    "dispatch state does not prove framework compatibility",
+    "execution observation does not create execution authority",
+    "fixture validation does not cause external consequence"
+  ]
+}
