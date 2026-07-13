@@ -2,16 +2,16 @@
 
 ## Source of truth
 
-This file is the current continuation source of truth for Goal 5 external-framework intake, evidence capture, implementation selection, binary build and promotion, readiness, execution planning, runtime authorization, dispatch observation, replay, Pages build verification, and publication work in `StegVerse-Labs/admissibility-wiki`.
+This file is the continuation source of truth for Goal 5 external-framework intake, evidence capture, implementation selection, binary promotion, readiness, runtime authorization, dispatch observation, replay, Pages build verification, and publication work in `StegVerse-Labs/admissibility-wiki`.
 
-Preserve unrelated CI repair, conceptual-inheritance, lifecycle-formalism, inference-window, and documentation-mesh work owned by other workstreams.
+Preserve unrelated CI repair, conceptual-inheritance, lifecycle-formalism, inference-window, External Chat, and documentation-mesh work owned by other workstreams.
 
 ## Current goal
 
 ```text
 Goal: evidence-bound external-framework intake through observed, replayable, non-authorizing interoperability evidence
-Phase: fresh-runner OPA replay verified passing; Pages repair, regression guard, fail-closed verification contract, durable build receipt, and non-mutating verification-candidate layer installed
-Result: FRESH_RUNNER_REPLAY_PASS_PAGES_CANDIDATE_PENDING_CANONICAL_EVIDENCE
+Phase: OPA same-provider replay passed; Pages repair, regression guard, durable receipt, verification candidate, and status-promotion boundary installed
+Result: PAGES_STATUS_PROMOTION_CONTRACT_PENDING_OBSERVED_CANONICAL_EVIDENCE
 ```
 
 ## Current state
@@ -34,12 +34,13 @@ dispatch-observation hash-chain validation: installed
 canonical validation chain: PASS on run 29212846956
 OPA capture and same-environment replay: PASS on run 29212846956
 fresh-runner replay: PASS on run 29212846956
-build-pages: FAIL on run 29212846956 from governed-action-lifecycle MDX static rendering
-bounded lifecycle page repair: installed at e85d06703eeb1463ba15dd1fccafcb2120f17bac
-lifecycle MDX regression guard: installed at 202cffb477b0195f914c663e449040a3296e061e
+build-pages: FAIL on run 29212846956 from governed-action-lifecycle MDX rendering
+bounded lifecycle page repair: installed
+lifecycle MDX regression guard: installed
 Pages build verification contract: installed, PENDING_CANONICAL_RUN
-Pages durable build receipt automation: installed, PENDING_CANONICAL_RUN
-Pages verification candidate generator: installed, candidate-only and non-mutating
+Pages durable build receipt automation: installed
+Pages verification candidate generator: installed, non-mutating
+Pages status-promotion receipt boundary: installed, blocked fixture only
 runtime jobs emitted by plan automation: 0
 independent organization/provider replays: 0 of 18
 ```
@@ -59,11 +60,14 @@ scripts/write_pages_build_receipt.py
 scripts/check_pages_build_receipt_automation.py
 scripts/generate_pages_build_verification_candidate.py
 scripts/check_pages_build_verification_candidate.py
+static/schemas/pages-build-status-promotion-receipt.schema.json
+tests/fixtures/pages-build-status-promotion-receipt.blocked.json
+scripts/check_pages_build_status_promotion_receipt.py
 .github/workflows/validate-chain-continuation.yml
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
 
-The observed-evidence queue must not advance beyond exact artifact evidence. Same-environment replay and fresh-runner replay within the same repository/provider are not independent implementation, organization, provider, authority, compatibility, standing, execution authority, or consequence authority.
+The observed-evidence queue must not advance beyond exact artifact evidence. Same-environment and fresh-runner replay inside the same repository/provider are not independent organization, provider, implementation, authority, compatibility, standing, execution authority, or consequence authority.
 
 ## Cedar evidence boundary
 
@@ -79,7 +83,7 @@ Registry promotion state: APPLIED_HASH_ONLY
 execution_authorized: false
 ```
 
-The promoted hash does not establish compatibility, certification, standing, admissibility, dispatch authority, execution authority, or external consequence authority.
+Hash promotion does not establish compatibility, certification, standing, admissibility, dispatch authority, execution authority, or consequence authority.
 
 ## OPA replay completion
 
@@ -87,20 +91,18 @@ The promoted hash does not establish compatibility, certification, standing, adm
 Workflow: Validate chain continuation
 Run: 29212846956
 Commit: b93edf144dc60a2fe980a384b5b107ced9aee90b
-Job: validate-chain-continuation -> PASS
-Job: capture-opa-evidence -> PASS
-Job: replay-opa-fresh-runner -> PASS
+validate-chain-continuation: PASS
+capture-opa-evidence: PASS
+replay-opa-fresh-runner: PASS
 ```
 
-This closes the observed same-provider fresh-runner replay blocker. Preserve the fresh-runner artifact, hashes, environment, comparison results, and limitations before any stronger claim.
+Preserve the fresh-runner artifact, hashes, environment, comparison results, and limitations before any stronger claim.
 
-## Pages failure, repair, and regression guard
+## Pages failure and bounded repair
 
-Run `29212846956` failed only at `build-pages` after governance validators passed and Docusaurus entered static generation:
+Run `29212846956` failed at `build-pages` after governance validation passed:
 
 ```text
-Step: Validate governance and activation artifacts
-Underlying command: npm run validate -> npm run build
 Failing path: /admissibility-wiki/formalisms/governed-action-lifecycle
 Failure class: Docusaurus MDX static-render ReferenceError
 Exact error: ReferenceError: t_c is not defined
@@ -108,145 +110,100 @@ Deploy pages: skipped
 Verify public pages: skipped
 ```
 
-Bounded repair and guard:
+Bounded repair chain:
 
 ```text
 e85d06703eeb1463ba15dd1fccafcb2120f17bac
-  -> docs/formalisms/governed-action-lifecycle.md static-render repair
+  -> governed-action-lifecycle static-render repair
 202cffb477b0195f914c663e449040a3296e061e
-  -> scripts/check-formalism-publication-artifacts.mjs regression guard
+  -> formalism publication regression guard
 7e82e84b0ae20b84ca2b842a2bf73c1645101015
-  -> installation receipt pending canonical run
+  -> regression-guard installation receipt
 ```
 
 The repair and guard do not weaken activation, deployment, public-verification, release, governance, or authority gates.
 
-## Pages build verification contract
+## Pages build evidence chain
 
-Installed:
-
-```text
-static/schemas/pages-build-verification-receipt.schema.json
-static/status/pages-build-verification.json
-scripts/check_pages_build_verification_receipt.py
-receipts/pages-build-verification-contract-2026-07-13.json
-scripts/check_goal5_external_frameworks_all.py
-```
-
-The status remains `PENDING_CANONICAL_RUN`. It cannot advance without ordered evidence:
+Installed layers:
 
 ```text
-formalism_publication_validator: PASS with evidence_ref
-Docusaurus production build: PASS with evidence_ref
-Pages artifact upload: PASS with evidence_ref
-workflow run_id and build-pages job_id
-Pages artifact_id and sha256 artifact_digest
+1. Durable build receipt
+   reports/pages-build-receipt.json
+   states: PAGES_BUILD_COMPLETE | PAGES_BUILD_FAILED_OR_INCOMPLETE
+
+2. Non-mutating verification candidate
+   reports/pages-build-verification-candidate.json
+   states: PAGES_BUILD_PASS_ARTIFACT_PENDING | FAIL_CLOSED
+
+3. Canonical verification status
+   static/status/pages-build-verification.json
+   states:
+     PENDING_CANONICAL_RUN
+     VALIDATOR_PASS_BUILD_PENDING
+     PAGES_BUILD_PASS_ARTIFACT_PENDING
+     PAGES_ARTIFACT_PRESERVED
+     FAIL_CLOSED
+
+4. Governed status-promotion receipt
+   static/schemas/pages-build-status-promotion-receipt.schema.json
+   tests/fixtures/pages-build-status-promotion-receipt.blocked.json
+   scripts/check_pages_build_status_promotion_receipt.py
 ```
 
-Allowed states are:
+A status-promotion receipt must bind the candidate SHA-256 and may return `ALLOW_STATUS_PROMOTION_ONLY` only when both are observed:
 
 ```text
-PENDING_CANONICAL_RUN
-VALIDATOR_PASS_BUILD_PENDING
-PAGES_BUILD_PASS_ARTIFACT_PENDING
-PAGES_ARTIFACT_PRESERVED
-FAIL_CLOSED
+formalism validator: PASS with evidence reference
+Pages artifact upload: PASS with run_id, job_id, artifact_id, artifact digest, and evidence reference
 ```
 
-The validator prevents a pending status from claiming workflow or artifact evidence and prevents any state from authorizing deployment, public verification, release, or downstream propagation.
-
-## Durable Pages build receipt automation
-
-Installed:
+Every other state preserves:
 
 ```text
-scripts/write_pages_build_receipt.py
-scripts/check_pages_build_receipt_automation.py
-scripts/check_full_validation_chain.py
-.github/workflows/validate-chain-continuation.yml
-iosnoperiod/github/workflows/validate-chain-continuation.yml
+canonical_status_mutation_allowed: false
+deployment_authorized: false
+public_verification_complete: false
 ```
 
-The `build-pages` job records the production-build outcome before enforcing it:
+Even an allowed status promotion authorizes only the separate mutation of the canonical status record. It does not authorize deployment, public verification, release, or downstream propagation.
+
+Installation commits:
 
 ```text
-Build step id: site-build
-Build command: npm run build
-Receipt path: reports/pages-build-receipt.json
-Artifact name: pages-build-receipt
-Success state: PAGES_BUILD_COMPLETE
-Failure state: PAGES_BUILD_FAILED_OR_INCOMPLETE
-Receipt contents: workflow context, file count, total bytes, deterministic build manifest SHA-256
+6e5448c5e35da83141d08555026e651dde5e32fe  schema
+211b4f4f3bed14a0d81999a6fb7384e15fb51b07  blocked fixture
+04305835d9a62833c884a56568a7940e9f9f7842  validator
+12a3704b16206accd2788e5418d8f2c4a6ff3cce  Goal 5 aggregate integration
+9e52289a0822292735b292f43b8f3956d89c9332  installation receipt
 ```
-
-The receipt always preserves:
-
-```text
-deployment_requested: false
-deployment_completed: false
-public_verification_completed: false
-release_authorized: false
-```
-
-A failed build therefore still produces durable evidence but cannot advance to Setup Pages, Pages artifact upload, deployment, or public verification.
-
-## Pages verification candidate layer
-
-Installed:
-
-```text
-scripts/generate_pages_build_verification_candidate.py
-scripts/check_pages_build_verification_candidate.py
-receipts/pages-build-verification-candidate-layer-2026-07-13.json
-scripts/check_goal5_external_frameworks_all.py
-```
-
-The generator consumes only:
-
-```text
-reports/pages-build-receipt.json
-```
-
-and emits only:
-
-```text
-reports/pages-build-verification-candidate.json
-```
-
-Candidate outcomes are limited to:
-
-```text
-PAGES_BUILD_PASS_ARTIFACT_PENDING
-FAIL_CLOSED
-```
-
-The candidate records workflow context, build manifest SHA-256, file count, total size, and the build-step outcome. It does not mutate `static/status/pages-build-verification.json`, execute commands, prove Pages artifact upload, authorize deployment, complete public verification, authorize release, or authorize downstream propagation.
 
 ## Next task
 
 ```text
-1. Verify the canonical successor run containing the page repair, regression guard, verification contract, durable receipt automation, and candidate validator.
-2. Require the formalism publication validator, Pages receipt automation validator, Pages candidate validator, Docusaurus production build, and Pages artifact upload to pass.
-3. Inspect the pages-build-receipt artifact and preserve run_id, job context, commit SHA, build manifest SHA-256, file count, and total bytes.
-4. Generate or inspect the verification candidate from that exact receipt.
-5. Update static/status/pages-build-verification.json only from observed run, job, artifact, and digest evidence.
-6. Preserve the Pages build artifact and exact workflow context.
-7. If a repository-local validation or rendering defect remains, apply only the next bounded mutation and revalidate.
-8. Do not deploy or claim public verification unless the workflow advances through those separately governed stages.
-9. Perform replay outside the same repository/provider before any stronger independence claim.
-10. Review destination handoffs before propagation to Site, Publisher, or StegGuardian.
+1. Verify the canonical successor run containing the repair, guard, durable receipt, candidate, and promotion validator.
+2. Require formalism publication validation, Pages receipt automation validation, candidate validation, Docusaurus production build, and Pages artifact upload to pass.
+3. Inspect pages-build-receipt and verification-candidate artifacts from the exact run.
+4. Record run_id, build-pages job_id, Pages artifact_id, artifact SHA-256, build manifest SHA-256, file count, and total bytes.
+5. Create an evidence-bound ALLOW_STATUS_PROMOTION_ONLY receipt only if every predicate passes.
+6. Apply static/status/pages-build-verification.json in a separate governed commit only after that receipt exists.
+7. Do not infer deployment or public verification from build or artifact preservation.
+8. Perform replay outside the same repository/provider before stronger independence claims.
+9. Review destination handoffs before propagation to Site, Publisher, or StegGuardian.
 ```
 
 ## Remaining modules
 
 ```text
 StegVerse-Labs/admissibility-wiki
-  -> canonical verification of repair, guard, contract, receipt automation, and candidate validator
-  -> observed Pages build verification receipt
+  -> canonical workflow verification of the Pages evidence chain
+  -> observed Pages build and artifact evidence
+  -> evidence-bound status-promotion receipt
+  -> separate canonical status mutation
   -> public deployment verification receipt
 
 Independent organization/provider
-  -> independent OPA replay or independent implementation review
+  -> independent OPA replay or implementation review
 
 StegVerse-Labs/Site
 GCAT-BCAT-Engine/Publisher
@@ -259,23 +216,18 @@ StegVerse-002/stegguardian-wiki
 ```text
 binary build != runtime execution
 binary hash != compatibility proof
-promotion approval != execution authority
 capture != standing
 same-environment replay != independent replay
 fresh runner in same provider != independent organization or provider
-replay confirmation != execution authority
-observation receipt != authority
-Pages verification contract != Pages success
-Pages build receipt != Pages deployment or public verification
 Pages verification candidate != canonical status mutation
-Pages verification candidate != Pages artifact upload
+status-promotion receipt != deployment authority
 Pages build != deployment authority
 Pages artifact != public verification
-regression guard != Pages success
+public verification != release authority
 ```
 
-No deployment, release, tag, merge, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation claim follows from these repository-local mutations. No release tag is justified solely by schema, fixture, validation, promotion, capture, replay, repair, guard, contract, receipt, candidate, or automation installation.
+No deployment, release, tag, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation follows from these repository-local contracts. No release tag is justified solely by schema, fixture, validation, promotion, capture, replay, repair, guard, receipt, candidate, or automation installation.
 
 ## Archive readiness
 
-This handoff preserves current Cedar evidence, canonical validation success, same-environment and fresh-runner OPA replay success, the exact Pages static-render failure, bounded repair, regression guard, fail-closed Pages verification contract, durable Pages build receipt automation, non-mutating verification-candidate layer, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
+This handoff preserves Cedar evidence, OPA replay evidence, the Pages failure and repair chain, durable build evidence, candidate generation, the fail-closed status-promotion boundary, authority limits, remaining modules, and ordered continuation task. Earlier conversation context is not required.
