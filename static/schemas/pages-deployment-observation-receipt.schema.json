@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/pages-deployment-observation-receipt.schema.json",
+  "title": "Pages Deployment Observation Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_type",
+    "repository",
+    "target_commit",
+    "source_status",
+    "source_artifact_binding",
+    "deployment",
+    "observation_state",
+    "public_verification_complete",
+    "release_authorized",
+    "downstream_propagation_authorized",
+    "required_next_transition",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "receipt_type": {"const": "pages_deployment_observation_receipt"},
+    "repository": {"const": "StegVerse-Labs/admissibility-wiki"},
+    "target_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "source_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "verification_state"],
+      "properties": {
+        "path": {"const": "static/status/pages-build-verification.json"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "verification_state": {"const": "PAGES_ARTIFACT_PRESERVED"}
+      }
+    },
+    "source_artifact_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "artifact_id", "artifact_digest"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "artifact_id": {"type": "integer", "minimum": 1},
+        "artifact_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    },
+    "deployment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "job_id", "environment", "page_url", "deployment_status", "evidence_ref"],
+      "properties": {
+        "run_id": {"type": "integer", "minimum": 1},
+        "job_id": {"type": "integer", "minimum": 1},
+        "environment": {"const": "github-pages"},
+        "page_url": {"type": "string", "pattern": "^https://"},
+        "deployment_status": {"enum": ["SUCCESS", "FAILURE", "UNRESOLVED"]},
+        "evidence_ref": {"type": ["string", "null"]}
+      }
+    },
+    "observation_state": {"enum": ["DEPLOYMENT_OBSERVED", "FAIL_CLOSED"]},
+    "public_verification_complete": {"const": false},
+    "release_authorized": {"const": false},
+    "downstream_propagation_authorized": {"const": false},
+    "required_next_transition": {"enum": ["separate_public_endpoint_verification", "repair_or_obtain_deployment_evidence"]},
+    "non_claims": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"observation_state": {"const": "DEPLOYMENT_OBSERVED"}}},
+      "then": {
+        "properties": {
+          "deployment": {
+            "properties": {
+              "deployment_status": {"const": "SUCCESS"},
+              "evidence_ref": {"type": "string", "minLength": 1}
+            }
+          },
+          "required_next_transition": {"const": "separate_public_endpoint_verification"}
+        }
+      },
+      "else": {"properties": {"required_next_transition": {"const": "repair_or_obtain_deployment_evidence"}}}
+    }
+  ]
+}
