@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "external_chat_activation_evidence_contract_installation",
+  "installed_at": "2026-07-13T00:00:00Z",
+  "source_repository": "StegVerse-Labs/Site",
+  "destination_repository": "StegVerse-Labs/admissibility-wiki",
+  "installed_files": [
+    "docs/external-frameworks/schemas/external-chat-activation-evidence.schema.json",
+    "docs/external-frameworks/examples/external-chat-activation-evidence.example.json",
+    "scripts/check_external_chat_activation_evidence.py"
+  ],
+  "aggregate_registration": "scripts/check_goal5_external_frameworks_all.py",
+  "accepted_results": [
+    "OBSERVED_NON_MUTATING_PUBLIC_PATHS",
+    "LOCAL_VALIDATION_NOT_CONFIRMED",
+    "LIVE_EVIDENCE_NOT_AVAILABLE",
+    "LIVE_EVIDENCE_NOT_CONFIRMED"
+  ],
+  "observed_deployment_evidence_imported": false,
+  "site_activation_confirmed": false,
+  "gateway_deployment_confirmed": false,
+  "repository_mutation_enabled": false,
+  "authority_boundary": {
+    "contract_installation_is_deployment_authority": false,
+    "contract_installation_is_repository_mutation_authority": false,
+    "contract_installation_is_publication_authority": false,
+    "contract_installation_is_certification": false,
+    "contract_installation_creates_standing": false,
+    "observed_site_artifact_required_for_observation_claim": true
+  },
+  "next_transition": "import_and_validate_exact_site_activation_evidence_artifact_after_observed_post_deployment_run"
+}
