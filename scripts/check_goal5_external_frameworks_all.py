@@ -38,6 +38,7 @@ CHECKS = [
     "scripts/check_external_framework_runtime_dispatch_progression.py",
     "scripts/check_pages_build_verification_receipt.py",
     "scripts/check_pages_build_verification_candidate.py",
+    "scripts/check_pages_build_status_promotion_receipt.py",
     "scripts/check_external_chat_review_packets.py",
     "scripts/check_external_chat_activation_evidence.py",
     "scripts/check_external_chat_activation_importer.py",
@@ -92,7 +93,7 @@ def main() -> int:
         print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: pages_build_candidate_and_external_chat_activation_evidence_import_contracts_installed_pending_observed_canonical_evidence")
+    print("release_readiness: pages_status_promotion_and_external_chat_activation_import_contracts_installed_pending_observed_canonical_evidence")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
