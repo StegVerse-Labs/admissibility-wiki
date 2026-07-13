@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/pages-build-status-promotion-receipt.schema.json",
+  "title": "Pages Build Status Promotion Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_type",
+    "repository",
+    "source_candidate",
+    "formalism_validator_evidence",
+    "pages_artifact_evidence",
+    "decision",
+    "canonical_status_mutation_allowed",
+    "deployment_authorized",
+    "public_verification_complete",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "receipt_type": {"const": "pages_build_status_promotion_receipt"},
+    "repository": {"const": "StegVerse-Labs/admissibility-wiki"},
+    "source_candidate": {"$ref": "#/$defs/boundArtifact"},
+    "formalism_validator_evidence": {"$ref": "#/$defs/evidence"},
+    "pages_artifact_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "run_id", "job_id", "artifact_id", "artifact_digest", "evidence_ref"],
+      "properties": {
+        "status": {"enum": ["PASS", "FAIL", "MISSING", "UNRESOLVED"]},
+        "run_id": {"type": ["integer", "null"]},
+        "job_id": {"type": ["integer", "null"]},
+        "artifact_id": {"type": ["integer", "null"]},
+        "artifact_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+        "evidence_ref": {"type": ["string", "null"]}
+      }
+    },
+    "decision": {"enum": ["FAIL_CLOSED", "REVIEW_REQUIRED", "ALLOW_STATUS_PROMOTION_ONLY"]},
+    "canonical_status_mutation_allowed": {"type": "boolean"},
+    "deployment_authorized": {"const": false},
+    "public_verification_complete": {"const": false},
+    "non_claims": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"decision": {"const": "ALLOW_STATUS_PROMOTION_ONLY"}}},
+      "then": {"properties": {"canonical_status_mutation_allowed": {"const": true}}},
+      "else": {"properties": {"canonical_status_mutation_allowed": {"const": false}}}
+    }
+  ],
+  "$defs": {
+    "boundArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidence_ref"],
+      "properties": {
+        "status": {"enum": ["PASS", "FAIL", "MISSING", "UNRESOLVED"]},
+        "evidence_ref": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
