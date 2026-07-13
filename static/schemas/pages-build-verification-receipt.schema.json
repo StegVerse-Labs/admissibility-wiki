@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/pages-build-verification-receipt.schema.json",
+  "title": "Pages Build Verification Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_type",
+    "repository",
+    "target_commit",
+    "verification_state",
+    "required_checks",
+    "observed_workflow",
+    "deployment_authorized",
+    "public_verification_complete",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "receipt_type": {"const": "pages_build_verification_receipt"},
+    "repository": {"const": "StegVerse-Labs/admissibility-wiki"},
+    "target_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "verification_state": {
+      "enum": [
+        "PENDING_CANONICAL_RUN",
+        "VALIDATOR_PASS_BUILD_PENDING",
+        "PAGES_BUILD_PASS_ARTIFACT_PENDING",
+        "PAGES_ARTIFACT_PRESERVED",
+        "FAIL_CLOSED"
+      ]
+    },
+    "required_checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["formalism_publication_validator", "docusaurus_production_build", "pages_artifact_upload"],
+      "properties": {
+        "formalism_publication_validator": {"$ref": "#/$defs/check"},
+        "docusaurus_production_build": {"$ref": "#/$defs/check"},
+        "pages_artifact_upload": {"$ref": "#/$defs/check"}
+      }
+    },
+    "observed_workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "job_id", "artifact_id", "artifact_digest"],
+      "properties": {
+        "run_id": {"type": ["integer", "null"]},
+        "job_id": {"type": ["integer", "null"]},
+        "artifact_id": {"type": ["integer", "null"]},
+        "artifact_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    },
+    "deployment_authorized": {"const": false},
+    "public_verification_complete": {"const": false},
+    "non_claims": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "$defs": {
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidence_ref"],
+      "properties": {
+        "status": {"enum": ["PENDING", "PASS", "FAIL"]},
+        "evidence_ref": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
