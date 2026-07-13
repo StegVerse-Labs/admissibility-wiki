@@ -23,6 +23,7 @@ CHECKS = [
     ("Validate Pages build receipt automation", "scripts/check_pages_build_receipt_automation.py"),
     ("Validate Pages build verification candidate", "scripts/check_pages_build_verification_candidate.py"),
     ("Validate Pages artifact binding receipt", "scripts/check_pages_artifact_binding_receipt.py"),
+    ("Validate Pages verification status application", "scripts/check_pages_build_verification_status_application.py"),
     ("Validate external frameworks index", "scripts/check_external_frameworks_index.py"),
     ("Validate external framework manifests", "scripts/check_external_framework_manifests.py"),
     ("Validate external framework terminology", "scripts/check_external_framework_terminology.py"),
@@ -50,10 +51,8 @@ CHECKS = [
 def main() -> int:
     results: list[dict[str, object]] = []
     failures: list[str] = []
-
     print("FULL VALIDATION CHAIN SCAN")
     print("=" * 72)
-
     for name, relative_path in CHECKS:
         path = ROOT / relative_path
         print(f"\n--- {name} ---")
@@ -62,32 +61,15 @@ def main() -> int:
             print(output)
             return_code = 127
         else:
-            completed = subprocess.run(
-                [sys.executable, str(path)],
-                cwd=ROOT,
-                text=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                check=False,
-            )
+            completed = subprocess.run([sys.executable, str(path)], cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
             return_code = completed.returncode
             output = completed.stdout.rstrip()
             if output:
                 print(output)
-
         status = "PASS" if return_code == 0 else "FAIL"
-        results.append(
-            {
-                "name": name,
-                "path": relative_path,
-                "status": status,
-                "return_code": return_code,
-                "output": output,
-            }
-        )
+        results.append({"name": name, "path": relative_path, "status": status, "return_code": return_code, "output": output})
         if return_code != 0:
             failures.append(relative_path)
-
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     report = {
         "schema": "admissibility_wiki.full_validation_chain_report.v1",
@@ -97,25 +79,17 @@ def main() -> int:
         "failed_checks": sum(1 for result in results if result["status"] == "FAIL"),
         "overall_status": "FAIL" if failures else "PASS",
         "results": results,
-        "authority_boundary": (
-            "This report records validator outcomes only. A passing scan does not grant "
-            "execution, merge, deployment, release, certification, or ecosystem authority."
-        ),
+        "authority_boundary": "This report records validator outcomes only. A passing scan does not grant execution, merge, deployment, release, certification, or ecosystem authority.",
     }
     REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-
     print("\n" + "=" * 72)
-    print(
-        f"FULL VALIDATION CHAIN: {report['overall_status']} "
-        f"({report['passed_checks']}/{report['total_checks']} passed)"
-    )
+    print(f"FULL VALIDATION CHAIN: {report['overall_status']} ({report['passed_checks']}/{report['total_checks']} passed)")
     if failures:
         print("FAILING VALIDATORS:")
         for failure in failures:
             print(f"- {failure}")
         print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
-
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
