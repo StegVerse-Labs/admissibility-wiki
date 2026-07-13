@@ -42,6 +42,7 @@ CHECKS = [
     "scripts/check_pages_artifact_binding_receipt.py",
     "scripts/check_pages_build_status_promotion_receipt.py",
     "scripts/check_pages_build_verification_status_application.py",
+    "scripts/check_pages_deployment_observation_receipt.py",
     "scripts/check_external_chat_review_packets.py",
     "scripts/check_external_chat_activation_evidence.py",
     "scripts/check_external_chat_activation_importer.py",
@@ -99,7 +100,7 @@ def main() -> int:
         "overall_status": "FAIL" if failures else "PASS",
         "external_chat_activation_sync": {"state": sync_state, "output": sync_output, "authority_effect": "NONE"},
         "results": results,
-        "authority_boundary": "This report records structural validation, bounded evidence-transfer outcomes, and non-mutating observation candidates only and does not create external-framework certification, equivalence, standing, registry-promotion, dispatch, execution, deployment, public-verification, activation, mutation, publication, or consequence authority.",
+        "authority_boundary": "This report records structural validation, bounded evidence-transfer outcomes, deployment observations, and non-mutating observation candidates only and does not create external-framework certification, equivalence, standing, registry-promotion, dispatch, execution, deployment authority, public-verification, activation, mutation, publication, release, downstream propagation, or consequence authority.",
     }, indent=2) + "\n", encoding="utf-8")
     print("\n" + "=" * 64)
     if failures:
@@ -110,7 +111,7 @@ def main() -> int:
         print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: pages_status_application_and_external_chat_activation_observation_candidate_installed_pending_observed_canonical_evidence")
+    print("release_readiness: pages_deployment_observation_boundary_installed_pending_observed_canonical_evidence")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
