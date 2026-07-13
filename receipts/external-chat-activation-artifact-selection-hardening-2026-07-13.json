@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "external_chat_activation_artifact_selection_hardening",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "source_repository": "StegVerse-Labs/Site",
+  "source_workflow": "Site Task Runner",
+  "installed_files": [
+    "scripts/acquire_external_chat_activation_evidence.py",
+    "scripts/check_external_chat_activation_sync.py"
+  ],
+  "selection_behavior": {
+    "successful_runs_sorted_newest_first": true,
+    "searches_multiple_successful_runs": true,
+    "artifact_name_requires_exact_run_id": true,
+    "artifact_name_requires_exact_run_attempt": true,
+    "payload_requires_matching_run_id": true,
+    "payload_requires_matching_run_attempt": true,
+    "payload_requires_matching_commit_sha": true,
+    "duplicate_exact_artifacts_fail_closed": true,
+    "prefix_only_selection_removed": true,
+    "latest_success_without_artifact_does_not_hide_older_exact_artifact": true
+  },
+  "current_observation": {
+    "site_handoff_declares_activation_artifact_available": false,
+    "observed_activation_artifact_imported": false,
+    "expected_no_artifact_outcome": "SKIPPED",
+    "expected_reason": "no_successful_run_has_exact_activation_evidence_artifact"
+  },
+  "authority_boundary": {
+    "hardening_is_deployment_authority": false,
+    "hardening_is_repository_mutation_authority": false,
+    "hardening_is_publication_authority": false,
+    "hardening_is_certification": false,
+    "hardening_creates_standing": false
+  },
+  "commits": {
+    "acquisition_client": "5a34522d11a777d6f1cdc8899a8f65e6bb2b5dda",
+    "regression_guard": "8d22a88363ecc4da176de15999628008fc987f82"
+  },
+  "recorded_at": "2026-07-13T05:00:00Z"
+}
