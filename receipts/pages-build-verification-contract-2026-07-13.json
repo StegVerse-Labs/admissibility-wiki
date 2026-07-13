@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "pages_build_verification_contract_installation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "installed": [
+    "static/schemas/pages-build-verification-receipt.schema.json",
+    "static/status/pages-build-verification.json",
+    "scripts/check_pages_build_verification_receipt.py",
+    "scripts/check_goal5_external_frameworks_all.py"
+  ],
+  "target_commit": "7e82e84b0ae20b84ca2b842a2bf73c1645101015",
+  "verification_state": "PENDING_CANONICAL_RUN",
+  "required_observed_evidence": [
+    "formalism publication validator PASS",
+    "Docusaurus production build PASS",
+    "Pages artifact upload PASS",
+    "workflow run and job identifiers",
+    "Pages artifact identifier and SHA-256 digest"
+  ],
+  "authority_boundary": {
+    "contract_is_pages_success": false,
+    "pages_build_is_deployment_authority": false,
+    "pages_artifact_is_public_verification": false,
+    "receipt_authorizes_release": false,
+    "receipt_authorizes_downstream_propagation": false
+  },
+  "commits": {
+    "schema": "35bd7d7d036312611486509d919c133d2a9b8339",
+    "pending_status": "388d2408086279065c723f72b35d5c72d0ac1168",
+    "validator": "a6fc3c4570b9191a9d2f236860a3d732e76143e6",
+    "aggregate_integration": "acfbfeaf689534d5ae803a484ace5c16f6aa9ff7"
+  },
+  "manual_task_required": false,
+  "recorded_at": "2026-07-13T03:15:00Z"
+}
