@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/pages-public-endpoint-verification-receipt.schema.json",
+  "title": "Pages Public Endpoint Verification Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_type",
+    "repository",
+    "source_deployment_observation",
+    "deployment_url",
+    "verification_run",
+    "required_endpoints",
+    "verification_state",
+    "release_authorized",
+    "downstream_propagation_authorized",
+    "required_next_transition",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "receipt_type": {"const": "pages_public_endpoint_verification_receipt"},
+    "repository": {"const": "StegVerse-Labs/admissibility-wiki"},
+    "source_deployment_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "deployment_state", "deployment_run_id", "deployment_job_id"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "deployment_state": {"const": "DEPLOYMENT_OBSERVED"},
+        "deployment_run_id": {"type": "integer", "minimum": 1},
+        "deployment_job_id": {"type": "integer", "minimum": 1}
+      }
+    },
+    "deployment_url": {"type": "string", "pattern": "^https://"},
+    "verification_run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "job_id", "run_attempt", "evidence_ref"],
+      "properties": {
+        "run_id": {"type": ["integer", "null"], "minimum": 1},
+        "job_id": {"type": ["integer", "null"], "minimum": 1},
+        "run_attempt": {"type": ["integer", "null"], "minimum": 1},
+        "evidence_ref": {"type": ["string", "null"]}
+      }
+    },
+    "required_endpoints": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "expected_status", "observed_status", "content_sha256", "evidence_ref"],
+        "properties": {
+          "path": {"type": "string", "pattern": "^/"},
+          "expected_status": {"const": 200},
+          "observed_status": {"type": ["integer", "null"]},
+          "content_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+          "evidence_ref": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "verification_state": {"enum": ["FAIL_CLOSED", "PUBLIC_ENDPOINTS_VERIFIED"]},
+    "release_authorized": {"const": false},
+    "downstream_propagation_authorized": {"const": false},
+    "required_next_transition": {
+      "enum": [
+        "repeat_public_endpoint_verification_from_observed_deployment",
+        "separate_release_and_destination_propagation_review"
+      ]
+    },
+    "non_claims": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}
