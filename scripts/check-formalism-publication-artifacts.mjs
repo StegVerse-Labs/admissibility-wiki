@@ -5,6 +5,8 @@ const INVENTORIES = [
   'static/formalisms/gcat-bcat-publication-artifacts.v0.1.json'
 ];
 
+const GOVERNED_ACTION_LIFECYCLE = 'docs/formalisms/governed-action-lifecycle.md';
+
 const requiredTopLevel = [
   'schema',
   'formalism_id',
@@ -55,4 +57,39 @@ for (const path of INVENTORIES) {
   }
 }
 
-console.log(`OK: formalism publication artifact inventories=${INVENTORIES.length}`);
+if (!fs.existsSync(GOVERNED_ACTION_LIFECYCLE)) {
+  fail(`missing formalism page: ${GOVERNED_ACTION_LIFECYCLE}`);
+}
+
+const lifecycle = fs.readFileSync(GOVERNED_ACTION_LIFECYCLE, 'utf8');
+const forbiddenMdxMathMarkers = [
+  /^\s*\\\[\s*$/m,
+  /^\s*\\\]\s*$/m,
+  /\\not\\Rightarrow/,
+  /\\Gamma\s*\(/,
+  /\\mathcal\s*\{R\}/
+];
+
+for (const pattern of forbiddenMdxMathMarkers) {
+  if (pattern.test(lifecycle)) {
+    fail(`${GOVERNED_ACTION_LIFECYCLE} reintroduced MDX-sensitive display math: ${pattern}`);
+  }
+}
+
+const requiredLifecycleStatements = [
+  'ValidAt(t_0) does not imply ValidAt(t_c)',
+  'Gamma(T_t_c) -> {ALLOW, DENY, DEFER, ESCALATE}',
+  'OperationalSuccess does not imply Admissible',
+  'R = {rollback, repair, compensate, contain, appeal, learn}',
+  'Reconstructable does not imply LegitimateAtCommit'
+];
+
+for (const statement of requiredLifecycleStatements) {
+  if (!lifecycle.includes(statement)) {
+    fail(`${GOVERNED_ACTION_LIFECYCLE} missing static-render-safe lifecycle statement: ${statement}`);
+  }
+}
+
+console.log(
+  `OK: formalism publication artifact inventories=${INVENTORIES.length}; governed lifecycle MDX safety=PASS`
+);
