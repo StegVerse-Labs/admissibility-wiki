@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/external-chat-activation-evidence.schema.json",
+  "title": "External Chat activation evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "generated_at",
+    "result",
+    "failure_class",
+    "repository",
+    "commit_sha",
+    "ref",
+    "event_name",
+    "workflow",
+    "workflow_run_id",
+    "workflow_run_attempt",
+    "workflow_job",
+    "pages_deployment_url",
+    "gateway_base_url",
+    "local_validation",
+    "post_deployment_live_verification",
+    "authority_boundary",
+    "evidence_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "record_type": {"const": "external_chat_activation_evidence"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "result": {
+      "enum": [
+        "OBSERVED_NON_MUTATING_PUBLIC_PATHS",
+        "LOCAL_VALIDATION_NOT_CONFIRMED",
+        "LIVE_EVIDENCE_NOT_AVAILABLE",
+        "LIVE_EVIDENCE_NOT_CONFIRMED"
+      ]
+    },
+    "failure_class": {"type": ["string", "null"]},
+    "repository": {"const": "StegVerse-Labs/Site"},
+    "commit_sha": {"type": ["string", "null"], "pattern": "^[a-f0-9]{40}$"},
+    "ref": {"type": ["string", "null"]},
+    "event_name": {"type": ["string", "null"]},
+    "workflow": {"type": ["string", "null"]},
+    "workflow_run_id": {"type": ["string", "null"]},
+    "workflow_run_attempt": {"type": ["string", "null"]},
+    "workflow_job": {"type": ["string", "null"]},
+    "pages_deployment_url": {"type": ["string", "null"]},
+    "gateway_base_url": {"type": ["string", "null"]},
+    "local_validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["present", "passed", "receipt_sha256", "status", "failed_validator", "authority_effect"],
+      "properties": {
+        "present": {"type": "boolean"},
+        "passed": {"type": "boolean"},
+        "receipt_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "status": {"type": ["string", "null"]},
+        "failed_validator": {"type": ["string", "null"]},
+        "authority_effect": {"type": ["string", "null"]}
+      }
+    },
+    "post_deployment_live_verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["present", "passed", "receipt_sha256", "result", "failure_class", "mutation_required_disabled", "observation_count"],
+      "properties": {
+        "present": {"type": "boolean"},
+        "passed": {"type": "boolean"},
+        "receipt_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "result": {"type": ["string", "null"]},
+        "failure_class": {"type": ["string", "null"]},
+        "mutation_required_disabled": {"type": ["boolean", "null"]},
+        "observation_count": {"type": ["integer", "null"], "minimum": 0}
+      }
+    },
+    "authority_boundary": {
+      "const": {
+        "evidence_is_deployment_authority": false,
+        "evidence_is_repository_mutation_authority": false,
+        "evidence_is_publication_authority": false,
+        "evidence_is_certification": false,
+        "evidence_creates_standing": false,
+        "mutation_remains_separately_authorized": true
+      }
+    },
+    "evidence_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}
