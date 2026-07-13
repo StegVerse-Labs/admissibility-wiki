@@ -10,8 +10,8 @@ Preserve unrelated CI repair, conceptual-inheritance, lifecycle-formalism, infer
 
 ```text
 Goal: evidence-bound external-framework intake through observed, replayable, non-authorizing interoperability evidence
-Phase: fresh-runner OPA replay verified passing; Pages static-render repair, regression guard, fail-closed verification contract, and durable build-receipt automation installed
-Result: FRESH_RUNNER_REPLAY_PASS_PAGES_VERIFICATION_AND_RECEIPT_PENDING_CANONICAL_EVIDENCE
+Phase: fresh-runner OPA replay verified passing; Pages repair, regression guard, fail-closed verification contract, durable build receipt, and non-mutating verification-candidate layer installed
+Result: FRESH_RUNNER_REPLAY_PASS_PAGES_CANDIDATE_PENDING_CANONICAL_EVIDENCE
 ```
 
 ## Current state
@@ -39,6 +39,7 @@ bounded lifecycle page repair: installed at e85d06703eeb1463ba15dd1fccafcb2120f1
 lifecycle MDX regression guard: installed at 202cffb477b0195f914c663e449040a3296e061e
 Pages build verification contract: installed, PENDING_CANONICAL_RUN
 Pages durable build receipt automation: installed, PENDING_CANONICAL_RUN
+Pages verification candidate generator: installed, candidate-only and non-mutating
 runtime jobs emitted by plan automation: 0
 independent organization/provider replays: 0 of 18
 ```
@@ -56,6 +57,8 @@ static/status/pages-build-verification.json
 scripts/check_pages_build_verification_receipt.py
 scripts/write_pages_build_receipt.py
 scripts/check_pages_build_receipt_automation.py
+scripts/generate_pages_build_verification_candidate.py
+scripts/check_pages_build_verification_candidate.py
 .github/workflows/validate-chain-continuation.yml
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
@@ -164,7 +167,7 @@ scripts/check_full_validation_chain.py
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
 
-The `build-pages` job now records the production-build outcome before enforcing it:
+The `build-pages` job records the production-build outcome before enforcing it:
 
 ```text
 Build step id: site-build
@@ -176,7 +179,7 @@ Failure state: PAGES_BUILD_FAILED_OR_INCOMPLETE
 Receipt contents: workflow context, file count, total bytes, deterministic build manifest SHA-256
 ```
 
-The receipt always preserves these boundaries:
+The receipt always preserves:
 
 ```text
 deployment_requested: false
@@ -185,27 +188,60 @@ public_verification_completed: false
 release_authorized: false
 ```
 
-After the receipt is uploaded, the job explicitly enforces `steps.site-build.outcome == success`. A failed build therefore still produces durable evidence but cannot advance to Setup Pages, Pages artifact upload, deployment, or public verification.
+A failed build therefore still produces durable evidence but cannot advance to Setup Pages, Pages artifact upload, deployment, or public verification.
+
+## Pages verification candidate layer
+
+Installed:
+
+```text
+scripts/generate_pages_build_verification_candidate.py
+scripts/check_pages_build_verification_candidate.py
+receipts/pages-build-verification-candidate-layer-2026-07-13.json
+scripts/check_goal5_external_frameworks_all.py
+```
+
+The generator consumes only:
+
+```text
+reports/pages-build-receipt.json
+```
+
+and emits only:
+
+```text
+reports/pages-build-verification-candidate.json
+```
+
+Candidate outcomes are limited to:
+
+```text
+PAGES_BUILD_PASS_ARTIFACT_PENDING
+FAIL_CLOSED
+```
+
+The candidate records workflow context, build manifest SHA-256, file count, total size, and the build-step outcome. It does not mutate `static/status/pages-build-verification.json`, execute commands, prove Pages artifact upload, authorize deployment, complete public verification, authorize release, or authorize downstream propagation.
 
 ## Next task
 
 ```text
-1. Verify the canonical successor run containing the page repair, regression guard, verification contract, and durable receipt automation.
-2. Require the formalism publication validator, Pages receipt automation validator, Docusaurus production build, and Pages artifact upload to pass.
+1. Verify the canonical successor run containing the page repair, regression guard, verification contract, durable receipt automation, and candidate validator.
+2. Require the formalism publication validator, Pages receipt automation validator, Pages candidate validator, Docusaurus production build, and Pages artifact upload to pass.
 3. Inspect the pages-build-receipt artifact and preserve run_id, job context, commit SHA, build manifest SHA-256, file count, and total bytes.
-4. Update static/status/pages-build-verification.json only from observed run, job, artifact, and digest evidence.
-5. Preserve the Pages build artifact and exact workflow context.
-6. If a repository-local validation or rendering defect remains, apply only the next bounded mutation and revalidate.
-7. Do not deploy or claim public verification unless the workflow advances through those separately governed stages.
-8. Perform replay outside the same repository/provider before any stronger independence claim.
-9. Review destination handoffs before propagation to Site, Publisher, or StegGuardian.
+4. Generate or inspect the verification candidate from that exact receipt.
+5. Update static/status/pages-build-verification.json only from observed run, job, artifact, and digest evidence.
+6. Preserve the Pages build artifact and exact workflow context.
+7. If a repository-local validation or rendering defect remains, apply only the next bounded mutation and revalidate.
+8. Do not deploy or claim public verification unless the workflow advances through those separately governed stages.
+9. Perform replay outside the same repository/provider before any stronger independence claim.
+10. Review destination handoffs before propagation to Site, Publisher, or StegGuardian.
 ```
 
 ## Remaining modules
 
 ```text
 StegVerse-Labs/admissibility-wiki
-  -> canonical verification of repair, guard, contract, and durable receipt automation
+  -> canonical verification of repair, guard, contract, receipt automation, and candidate validator
   -> observed Pages build verification receipt
   -> public deployment verification receipt
 
@@ -231,13 +267,15 @@ replay confirmation != execution authority
 observation receipt != authority
 Pages verification contract != Pages success
 Pages build receipt != Pages deployment or public verification
+Pages verification candidate != canonical status mutation
+Pages verification candidate != Pages artifact upload
 Pages build != deployment authority
 Pages artifact != public verification
 regression guard != Pages success
 ```
 
-No deployment, release, tag, merge, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation claim follows from these repository-local mutations. No release tag is justified solely by schema, fixture, validation, promotion, capture, replay, repair, guard, contract, receipt, or automation installation.
+No deployment, release, tag, merge, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation claim follows from these repository-local mutations. No release tag is justified solely by schema, fixture, validation, promotion, capture, replay, repair, guard, contract, receipt, candidate, or automation installation.
 
 ## Archive readiness
 
-This handoff preserves current Cedar evidence, canonical validation success, same-environment and fresh-runner OPA replay success, the exact Pages static-render failure, bounded repair, regression guard, fail-closed Pages verification contract, durable Pages build receipt automation, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
+This handoff preserves current Cedar evidence, canonical validation success, same-environment and fresh-runner OPA replay success, the exact Pages static-render failure, bounded repair, regression guard, fail-closed Pages verification contract, durable Pages build receipt automation, non-mutating verification-candidate layer, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
