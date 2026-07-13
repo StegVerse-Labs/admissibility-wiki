@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/external-chat-activation-status-promotion-receipt.schema.json",
+  "title": "External Chat Activation Status Promotion Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "receipt_type", "repository", "source_candidate", "source_evidence", "decision", "canonical_status_mutation_allowed", "target_path", "authority_boundary"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "receipt_type": {"const": "external_chat_activation_status_promotion_receipt"},
+    "repository": {"const": "StegVerse-Labs/admissibility-wiki"},
+    "source_candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "candidate_state"],
+      "properties": {
+        "path": {"const": "reports/external-chat-activation-observation-candidate.json"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "candidate_state": {"const": "OBSERVED_NON_MUTATING_PUBLIC_PATHS_CANDIDATE"}
+      }
+    },
+    "source_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "commit_sha", "workflow_run_id", "workflow_run_attempt", "evidence_sha256", "mutation_required_disabled"],
+      "properties": {
+        "repository": {"const": "StegVerse-Labs/Site"},
+        "commit_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "workflow_run_id": {"type": "string", "pattern": "^[0-9]+$"},
+        "workflow_run_attempt": {"type": "string", "pattern": "^[0-9]+$"},
+        "evidence_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "mutation_required_disabled": {"const": true}
+      }
+    },
+    "decision": {"enum": ["ALLOW_CANONICAL_STATUS_PROMOTION_ONLY", "FAIL_CLOSED"]},
+    "canonical_status_mutation_allowed": {"type": "boolean"},
+    "target_path": {"const": "static/status/external-chat-activation-observation.json"},
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["promotion_is_deployment_authority", "promotion_is_repository_mutation_authority", "promotion_is_publication_authority", "promotion_is_certification", "promotion_creates_standing", "mutation_remains_separately_authorized"],
+      "properties": {
+        "promotion_is_deployment_authority": {"const": false},
+        "promotion_is_repository_mutation_authority": {"const": false},
+        "promotion_is_publication_authority": {"const": false},
+        "promotion_is_certification": {"const": false},
+        "promotion_creates_standing": {"const": false},
+        "mutation_remains_separately_authorized": {"const": true}
+      }
+    }
+  }
+}
