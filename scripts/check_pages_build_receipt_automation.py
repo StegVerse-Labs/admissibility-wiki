@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 WRITER = ROOT / "scripts" / "write_pages_build_receipt.py"
+GENERATOR = ROOT / "scripts" / "generate_pages_build_verification_candidate.py"
 WORKFLOW = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
 MIRROR = ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.yml"
 
@@ -18,7 +19,18 @@ WRITER_MARKERS = [
     '"public_verification_completed": False',
     '"release_authorized": False',
     "pages_build_is_deployment_authority",
+    "generate_verification_candidate_then_observe_pages_artifact_upload",
+    "generate_pages_build_verification_candidate.py",
+    "candidate_return_code",
     "repair_build_failure_and_rebuild_before_deployment",
+]
+GENERATOR_MARKERS = [
+    '"artifact_type": "pages_build_verification_candidate"',
+    '"candidate_only": True',
+    '"status_mutation_performed": False',
+    '"deployment_authorized": False',
+    '"PAGES_BUILD_PASS_ARTIFACT_PENDING"',
+    '"FAIL_CLOSED"',
 ]
 WORKFLOW_MARKERS = [
     "id: site-build",
@@ -33,17 +45,21 @@ WORKFLOW_MARKERS = [
 
 def main() -> int:
     failures: list[str] = []
-    for path in (WRITER, WORKFLOW, MIRROR):
+    for path in (WRITER, GENERATOR, WORKFLOW, MIRROR):
         if not path.exists():
             failures.append(f"missing {path.relative_to(ROOT)}")
 
     writer = WRITER.read_text(encoding="utf-8") if WRITER.exists() else ""
+    generator = GENERATOR.read_text(encoding="utf-8") if GENERATOR.exists() else ""
     workflow = WORKFLOW.read_text(encoding="utf-8") if WORKFLOW.exists() else ""
     mirror = MIRROR.read_text(encoding="utf-8") if MIRROR.exists() else ""
 
     for marker in WRITER_MARKERS:
         if marker not in writer:
             failures.append(f"writer missing marker: {marker}")
+    for marker in GENERATOR_MARKERS:
+        if marker not in generator:
+            failures.append(f"generator missing marker: {marker}")
     for marker in WORKFLOW_MARKERS:
         if marker not in workflow:
             failures.append(f"workflow missing marker: {marker}")
@@ -58,6 +74,9 @@ def main() -> int:
     if min(build_index, receipt_index, upload_index, enforce_index, pages_upload_index) >= 0:
         if not (build_index < receipt_index < upload_index < enforce_index < pages_upload_index):
             failures.append("Pages receipt steps are not ordered fail-closed before Pages artifact upload")
+
+    if "static/status/pages-build-verification.json" in generator:
+        failures.append("candidate generator must not mutate canonical verification status")
 
     print("PAGES BUILD RECEIPT AUTOMATION:", "FAIL" if failures else "PASS")
     for failure in failures:
