@@ -1,0 +1,38 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "pages_deployment_observation_receipt",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "target_commit": "0000000000000000000000000000000000000000",
+  "source_status": {
+    "path": "static/status/pages-build-verification.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "verification_state": "PAGES_ARTIFACT_PRESERVED"
+  },
+  "source_artifact_binding": {
+    "path": "tests/fixtures/pages-artifact-binding-receipt.preserved.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "artifact_id": 1,
+    "artifact_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "deployment": {
+    "run_id": 1,
+    "job_id": 1,
+    "environment": "github-pages",
+    "page_url": "https://example.invalid/admissibility-wiki/",
+    "deployment_status": "UNRESOLVED",
+    "evidence_ref": null
+  },
+  "observation_state": "FAIL_CLOSED",
+  "public_verification_complete": false,
+  "release_authorized": false,
+  "downstream_propagation_authorized": false,
+  "required_next_transition": "repair_or_obtain_deployment_evidence",
+  "non_claims": [
+    "artifact preservation is not deployment evidence",
+    "deployment observation is not public endpoint verification",
+    "deployment observation is not release authority",
+    "deployment observation is not downstream propagation authority",
+    "fixture validation does not deploy Pages",
+    "unresolved deployment evidence must fail closed"
+  ]
+}
