@@ -25,7 +25,6 @@ REQUIRED_COMMAND_IDS = [
     "generate-automation-readiness",
     "validate-goal5-aggregate",
     "install-node-dependencies",
-    "validate-governance-artifacts",
     "build-docusaurus-site",
     "validate-st017-adoption",
 ]
@@ -49,6 +48,8 @@ def main() -> int:
         for command_id in REQUIRED_COMMAND_IDS:
             if command_id not in command_ids:
                 errors.append(f"profile_missing:{command_id}")
+        if "validate-governance-artifacts" in command_ids:
+            errors.append("profile_contains_duplicate_repository_drift_gate")
 
     if WORKFLOW.exists() and IOS_WORKFLOW.exists():
         if WORKFLOW.read_text(encoding="utf-8") != IOS_WORKFLOW.read_text(encoding="utf-8"):
