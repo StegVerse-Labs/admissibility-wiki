@@ -10,8 +10,8 @@ Preserve unrelated CI repair, conceptual-inheritance, lifecycle-formalism, infer
 
 ```text
 Goal: evidence-bound external-framework intake through observed, replayable, non-authorizing interoperability evidence
-Phase: fresh-runner OPA replay verified passing; Pages static-render repair and regression guard installed; fail-closed Pages build verification contract installed
-Result: FRESH_RUNNER_REPLAY_PASS_PAGES_VERIFICATION_CONTRACT_PENDING_CANONICAL_EVIDENCE
+Phase: fresh-runner OPA replay verified passing; Pages static-render repair, regression guard, fail-closed verification contract, and durable build-receipt automation installed
+Result: FRESH_RUNNER_REPLAY_PASS_PAGES_VERIFICATION_AND_RECEIPT_PENDING_CANONICAL_EVIDENCE
 ```
 
 ## Current state
@@ -38,6 +38,7 @@ build-pages: FAIL on run 29212846956 from governed-action-lifecycle MDX static r
 bounded lifecycle page repair: installed at e85d06703eeb1463ba15dd1fccafcb2120f17bac
 lifecycle MDX regression guard: installed at 202cffb477b0195f914c663e449040a3296e061e
 Pages build verification contract: installed, PENDING_CANONICAL_RUN
+Pages durable build receipt automation: installed, PENDING_CANONICAL_RUN
 runtime jobs emitted by plan automation: 0
 independent organization/provider replays: 0 of 18
 ```
@@ -53,6 +54,8 @@ scripts/check-formalism-publication-artifacts.mjs
 static/schemas/pages-build-verification-receipt.schema.json
 static/status/pages-build-verification.json
 scripts/check_pages_build_verification_receipt.py
+scripts/write_pages_build_receipt.py
+scripts/check_pages_build_receipt_automation.py
 .github/workflows/validate-chain-continuation.yml
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
@@ -149,24 +152,60 @@ FAIL_CLOSED
 
 The validator prevents a pending status from claiming workflow or artifact evidence and prevents any state from authorizing deployment, public verification, release, or downstream propagation.
 
+## Durable Pages build receipt automation
+
+Installed:
+
+```text
+scripts/write_pages_build_receipt.py
+scripts/check_pages_build_receipt_automation.py
+scripts/check_full_validation_chain.py
+.github/workflows/validate-chain-continuation.yml
+iosnoperiod/github/workflows/validate-chain-continuation.yml
+```
+
+The `build-pages` job now records the production-build outcome before enforcing it:
+
+```text
+Build step id: site-build
+Build command: npm run build
+Receipt path: reports/pages-build-receipt.json
+Artifact name: pages-build-receipt
+Success state: PAGES_BUILD_COMPLETE
+Failure state: PAGES_BUILD_FAILED_OR_INCOMPLETE
+Receipt contents: workflow context, file count, total bytes, deterministic build manifest SHA-256
+```
+
+The receipt always preserves these boundaries:
+
+```text
+deployment_requested: false
+deployment_completed: false
+public_verification_completed: false
+release_authorized: false
+```
+
+After the receipt is uploaded, the job explicitly enforces `steps.site-build.outcome == success`. A failed build therefore still produces durable evidence but cannot advance to Setup Pages, Pages artifact upload, deployment, or public verification.
+
 ## Next task
 
 ```text
-1. Verify the canonical successor run containing e85d06703eeb1463ba15dd1fccafcb2120f17bac and 202cffb477b0195f914c663e449040a3296e061e.
-2. Require the formalism publication validator, Docusaurus production build, and Pages artifact upload to pass.
-3. Update static/status/pages-build-verification.json only from observed run, job, artifact, and digest evidence.
-4. Preserve the Pages build artifact and exact workflow context.
-5. If a repository-local validation or rendering defect remains, apply only the next bounded mutation and revalidate.
-6. Do not deploy or claim public verification unless the workflow advances through those separately governed stages.
-7. Perform replay outside the same repository/provider before any stronger independence claim.
-8. Review destination handoffs before propagation to Site, Publisher, or StegGuardian.
+1. Verify the canonical successor run containing the page repair, regression guard, verification contract, and durable receipt automation.
+2. Require the formalism publication validator, Pages receipt automation validator, Docusaurus production build, and Pages artifact upload to pass.
+3. Inspect the pages-build-receipt artifact and preserve run_id, job context, commit SHA, build manifest SHA-256, file count, and total bytes.
+4. Update static/status/pages-build-verification.json only from observed run, job, artifact, and digest evidence.
+5. Preserve the Pages build artifact and exact workflow context.
+6. If a repository-local validation or rendering defect remains, apply only the next bounded mutation and revalidate.
+7. Do not deploy or claim public verification unless the workflow advances through those separately governed stages.
+8. Perform replay outside the same repository/provider before any stronger independence claim.
+9. Review destination handoffs before propagation to Site, Publisher, or StegGuardian.
 ```
 
 ## Remaining modules
 
 ```text
 StegVerse-Labs/admissibility-wiki
-  -> successor verification for e85d067 and 202cffb
+  -> canonical verification of repair, guard, contract, and durable receipt automation
   -> observed Pages build verification receipt
   -> public deployment verification receipt
 
@@ -191,13 +230,14 @@ fresh runner in same provider != independent organization or provider
 replay confirmation != execution authority
 observation receipt != authority
 Pages verification contract != Pages success
+Pages build receipt != Pages deployment or public verification
 Pages build != deployment authority
 Pages artifact != public verification
 regression guard != Pages success
 ```
 
-No deployment, release, tag, merge, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation claim follows from these repository-local mutations. No release tag is justified solely by schema, fixture, validation, promotion, capture, replay, repair, guard, contract, or automation installation.
+No deployment, release, tag, merge, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation claim follows from these repository-local mutations. No release tag is justified solely by schema, fixture, validation, promotion, capture, replay, repair, guard, contract, receipt, or automation installation.
 
 ## Archive readiness
 
-This handoff preserves current Cedar evidence, canonical validation success, same-environment and fresh-runner OPA replay success, the exact Pages static-render failure, bounded repair, regression guard, fail-closed Pages verification contract, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
+This handoff preserves current Cedar evidence, canonical validation success, same-environment and fresh-runner OPA replay success, the exact Pages static-render failure, bounded repair, regression guard, fail-closed Pages verification contract, durable Pages build receipt automation, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
