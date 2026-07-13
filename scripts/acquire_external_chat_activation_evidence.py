@@ -75,7 +75,7 @@ def boundary() -> dict[str, bool]:
     }
 
 
-def skip(reason: str, *, authenticated: bool) -> int:
+def skip(reason: str, *, authenticated: bool, inspected_runs: int = 0) -> int:
     write_report(
         {
             "schema_version": "1.0.0",
@@ -86,12 +86,45 @@ def skip(reason: str, *, authenticated: bool) -> int:
             "source_repository": f"{OWNER}/{REPO}",
             "source_workflow": WORKFLOW_NAME,
             "authenticated_request": authenticated,
+            "successful_runs_inspected": inspected_runs,
             "projection_written": False,
             "authority_boundary": boundary(),
         }
     )
     print(f"EXTERNAL CHAT ACTIVATION ACQUISITION: SKIP - {reason}")
     return 0
+
+
+def successful_candidates(runs: dict[str, Any]) -> list[dict[str, Any]]:
+    candidates = [
+        run
+        for run in runs.get("workflow_runs", [])
+        if isinstance(run, dict)
+        and run.get("name") == WORKFLOW_NAME
+        and run.get("head_branch") == "main"
+        and run.get("conclusion") == "success"
+    ]
+    return sorted(candidates, key=lambda item: int(item.get("run_number") or 0), reverse=True)
+
+
+def exact_artifact_for_run(run: dict[str, Any], auth: str | None) -> dict[str, Any] | None:
+    run_id = int(run["id"])
+    run_attempt = int(run.get("run_attempt") or 1)
+    expected_name = f"{ARTIFACT_PREFIX}{run_id}-{run_attempt}"
+    artifacts = api_json(
+        f"https://api.github.com/repos/{OWNER}/{REPO}/actions/runs/{run_id}/artifacts?per_page=100",
+        auth,
+    )
+    matches = [
+        artifact
+        for artifact in artifacts.get("artifacts", [])
+        if isinstance(artifact, dict)
+        and not artifact.get("expired")
+        and artifact.get("name") == expected_name
+    ]
+    if len(matches) > 1:
+        raise ValueError(f"multiple exact activation evidence artifacts found for run {run_id} attempt {run_attempt}")
+    return matches[0] if matches else None
 
 
 def main() -> int:
@@ -104,44 +137,45 @@ def main() -> int:
             "?branch=main&status=completed&per_page=50",
             auth,
         )
-        candidates = [
-            run
-            for run in runs.get("workflow_runs", [])
-            if isinstance(run, dict)
-            and run.get("name") == WORKFLOW_NAME
-            and run.get("head_branch") == "main"
-            and run.get("conclusion") == "success"
-        ]
+        candidates = successful_candidates(runs)
         if not candidates:
             return skip("no_successful_site_task_runner_run_found", authenticated=authenticated)
 
-        selected = max(candidates, key=lambda item: int(item.get("run_number") or 0))
+        selected: dict[str, Any] | None = None
+        artifact: dict[str, Any] | None = None
+        inspected_runs = 0
+        for candidate in candidates:
+            inspected_runs += 1
+            exact = exact_artifact_for_run(candidate, auth)
+            if exact is not None:
+                selected = candidate
+                artifact = exact
+                break
+
+        if selected is None or artifact is None:
+            return skip(
+                "no_successful_run_has_exact_activation_evidence_artifact",
+                authenticated=authenticated,
+                inspected_runs=inspected_runs,
+            )
+
         run_id = int(selected["id"])
+        run_attempt = int(selected.get("run_attempt") or 1)
         head_sha = str(selected.get("head_sha") or "")
-        artifacts = api_json(
-            f"https://api.github.com/repos/{OWNER}/{REPO}/actions/runs/{run_id}/artifacts?per_page=100",
-            auth,
-        )
-        matches = [
-            artifact
-            for artifact in artifacts.get("artifacts", [])
-            if isinstance(artifact, dict)
-            and not artifact.get("expired")
-            and str(artifact.get("name", "")).startswith(ARTIFACT_PREFIX)
-        ]
-        if not matches:
-            return skip("successful_run_has_no_activation_evidence_artifact", authenticated=authenticated)
-        artifact = max(matches, key=lambda item: int(item.get("id") or 0))
         name = str(artifact["name"])
-        match = RUN_ID_RE.match(name)
-        if not match or int(match.group(1)) != run_id:
-            raise ValueError("artifact name does not bind selected workflow run")
+        match = RUN_ID_RE.fullmatch(name)
+        if not match or int(match.group(1)) != run_id or int(match.group(2)) != run_attempt:
+            raise ValueError("artifact name does not bind selected workflow run and attempt")
 
         try:
             archive = api_bytes(str(artifact["archive_download_url"]), auth)
         except urllib.error.HTTPError as exc:
             if exc.code in {401, 403, 404} and not authenticated:
-                return skip("public_artifact_download_requires_authentication", authenticated=False)
+                return skip(
+                    "public_artifact_download_requires_authentication",
+                    authenticated=False,
+                    inspected_runs=inspected_runs,
+                )
             raise
 
         with zipfile.ZipFile(io.BytesIO(archive)) as bundle:
@@ -153,6 +187,8 @@ def main() -> int:
             raise ValueError("activation evidence artifact must contain a JSON object")
         if str(payload.get("workflow_run_id")) != str(run_id):
             raise ValueError("payload workflow_run_id does not match selected run")
+        if str(payload.get("workflow_run_attempt")) != str(run_attempt):
+            raise ValueError("payload workflow_run_attempt does not match selected run attempt")
         if payload.get("commit_sha") != head_sha:
             raise ValueError("payload commit_sha does not match selected run head_sha")
         if payload.get("repository") != f"{OWNER}/{REPO}":
@@ -169,12 +205,13 @@ def main() -> int:
                 "source_repository": f"{OWNER}/{REPO}",
                 "source_workflow": WORKFLOW_NAME,
                 "source_run_id": str(run_id),
-                "source_run_attempt": match.group(2),
+                "source_run_attempt": str(run_attempt),
                 "source_commit_sha": head_sha,
                 "artifact_id": str(artifact["id"]),
                 "artifact_name": name,
                 "artifact_expired": False,
                 "authenticated_request": authenticated,
+                "successful_runs_inspected": inspected_runs,
                 "staged_path": str(STAGING.relative_to(ROOT)),
                 "source_evidence_sha256": payload.get("evidence_sha256"),
                 "observed_result": payload.get("result"),
@@ -201,7 +238,7 @@ def main() -> int:
         print(f"EXTERNAL CHAT ACTIVATION ACQUISITION: FAIL - {exc}")
         return 1
 
-    print(f"EXTERNAL CHAT ACTIVATION ACQUISITION: PASS - run {run_id}, artifact {name}")
+    print(f"EXTERNAL CHAT ACTIVATION ACQUISITION: PASS - run {run_id} attempt {run_attempt}, artifact {name}")
     return 0
 
 
