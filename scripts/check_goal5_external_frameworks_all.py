@@ -49,6 +49,8 @@ CHECKS = [
     "scripts/check_external_chat_activation_importer.py",
     "scripts/check_external_chat_activation_sync.py",
     "scripts/check_external_chat_activation_observation_candidate.py",
+    "scripts/check_external_chat_activation_status_promotion_receipt.py",
+    "scripts/check_external_chat_activation_status_application.py",
     "scripts/check_expanded_external_framework_intake.py",
     "scripts/check_external_framework_candidate_directory.py",
     "scripts/check_external_framework_family_coverage.py",
@@ -101,7 +103,7 @@ def main() -> int:
         "overall_status": "FAIL" if failures else "PASS",
         "external_chat_activation_sync": {"state": sync_state, "output": sync_output, "authority_effect": "NONE"},
         "results": results,
-        "authority_boundary": "This report records structural validation, bounded evidence-transfer outcomes, deployment observations, public-endpoint verification contracts, and non-mutating observation candidates only and does not create external-framework certification, equivalence, standing, registry-promotion, dispatch, execution, deployment authority, release, downstream propagation, activation, mutation, publication, or consequence authority.",
+        "authority_boundary": "This report records structural validation, bounded evidence-transfer outcomes, deployment observations, public-endpoint verification contracts, non-mutating observation candidates, and canonical-status-only promotion/application boundaries. It does not create external-framework certification, equivalence, standing, registry-promotion, dispatch, execution, deployment authority, release, downstream propagation, activation authority, repository mutation, publication, or consequence authority.",
     }, indent=2) + "\n", encoding="utf-8")
     print("\n" + "=" * 64)
     if failures:
@@ -112,7 +114,7 @@ def main() -> int:
         print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: pages_public_endpoint_verification_boundary_installed_pending_observed_canonical_evidence")
+    print("release_readiness: external_chat_activation_status_promotion_boundary_installed_pending_observed_source_evidence")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
