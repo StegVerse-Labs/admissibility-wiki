@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "pages_build_verification_candidate_layer_installation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "installed": [
+    "scripts/generate_pages_build_verification_candidate.py",
+    "scripts/check_pages_build_verification_candidate.py",
+    "scripts/check_goal5_external_frameworks_all.py"
+  ],
+  "source_artifact": "reports/pages-build-receipt.json",
+  "candidate_artifact": "reports/pages-build-verification-candidate.json",
+  "candidate_states": [
+    "PAGES_BUILD_PASS_ARTIFACT_PENDING",
+    "FAIL_CLOSED"
+  ],
+  "boundary": {
+    "candidate_mutates_canonical_status": false,
+    "candidate_executes_external_commands": false,
+    "candidate_proves_pages_artifact_upload": false,
+    "candidate_authorizes_deployment": false,
+    "candidate_completes_public_verification": false,
+    "candidate_authorizes_release": false,
+    "candidate_authorizes_downstream_propagation": false
+  },
+  "commits": {
+    "generator": "941299a526c0c1c6f211c6f16056e274f9039974",
+    "validator": "8629cb89a5a1b8d28f2504b738bf480a5cbc062d",
+    "aggregate_integration": "afed5b836dc50bcf564f1ffafecb2c578eada686"
+  },
+  "verification_state": "INSTALLED_PENDING_CANONICAL_ARTIFACT_GENERATION",
+  "required_next_transition": "generate_candidate_from_observed_pages_build_receipt_then_bind_pages_artifact_id_and_digest",
+  "manual_task_required": false,
+  "recorded_at": "2026-07-13T03:30:00Z"
+}
