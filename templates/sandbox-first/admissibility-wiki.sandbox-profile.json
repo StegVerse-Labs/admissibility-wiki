@@ -1,0 +1,61 @@
+{
+  "schema": "stegverse.st017.sandbox_profile.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "commands": [
+    {
+      "id": "compile-python",
+      "command": ["python", "-m", "compileall", "scripts", "tests"],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "generate-external-framework-reports",
+      "command": ["python", "scripts/generate_external_framework_reports.py"],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "generate-external-framework-results",
+      "command": ["python", "scripts/generate_external_framework_results.py"],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "generate-page-metadata",
+      "command": ["python", "scripts/generate_external_framework_page_metadata.py"],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "generate-page-mapping",
+      "command": ["python", "scripts/generate_external_framework_page_mapping.py"],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "generate-page-status",
+      "command": ["python", "scripts/generate_external_framework_page_status.py"],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "generate-automation-readiness",
+      "command": ["python", "scripts/generate_external_framework_automation_readiness.py"],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "validate-goal5-aggregate",
+      "command": ["python", "scripts/check_goal5_external_frameworks_all.py"],
+      "timeout_seconds": 1200
+    },
+    {
+      "id": "install-node-dependencies",
+      "command": ["npm", "install", "--ignore-scripts"],
+      "timeout_seconds": 1200
+    },
+    {
+      "id": "build-docusaurus-site",
+      "command": ["npm", "run", "build"],
+      "timeout_seconds": 1800
+    },
+    {
+      "id": "validate-st017-adoption",
+      "command": ["python", "scripts/check_st017_sandbox_adoption.py", "--structural-only"],
+      "timeout_seconds": 300
+    }
+  ]
+}

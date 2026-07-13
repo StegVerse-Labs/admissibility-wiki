@@ -38,7 +38,7 @@ IICT
      between final valid inference and irreversible commitment
 ```
 
-The operational formalism can be useful and testable without IICT being proven. A passing inference-window validator is not proof of architectural convergence.
+The operational formalism can be useful and testable without IICT being proven. A passing inference-window validator does not prove IICT. It is not proof of architectural convergence.
 
 ## Pre-Commit and Post-Commit Responsibilities
 
