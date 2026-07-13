@@ -32,8 +32,16 @@ def main() -> int:
         'ARTIFACT_PREFIX = "external-chat-activation-evidence-"',
         'head_branch") == "main"',
         'conclusion") == "success"',
+        'return sorted(candidates',
+        'expected_name = f"{ARTIFACT_PREFIX}{run_id}-{run_attempt}"',
+        'artifact.get("name") == expected_name',
+        'multiple exact activation evidence artifacts found',
+        'no_successful_run_has_exact_activation_evidence_artifact',
+        'artifact name does not bind selected workflow run and attempt',
         'payload workflow_run_id does not match selected run',
+        'payload workflow_run_attempt does not match selected run attempt',
         'payload commit_sha does not match selected run head_sha',
+        'successful_runs_inspected',
         'public_artifact_download_requires_authentication',
         'projection_written": False',
         '"state": "FAIL_CLOSED"',
@@ -41,6 +49,15 @@ def main() -> int:
     for marker in required_acquire:
         if marker not in acquire:
             return fail(f"acquisition client missing marker: {marker}")
+
+    forbidden_acquire = (
+        'selected = max(candidates',
+        'str(artifact.get("name", "")).startswith(ARTIFACT_PREFIX)',
+        'successful_run_has_no_activation_evidence_artifact',
+    )
+    for marker in forbidden_acquire:
+        if marker in acquire:
+            return fail(f"acquisition client retains stale selection behavior: {marker}")
 
     required_sync = (
         'state == "FAIL_CLOSED"',
