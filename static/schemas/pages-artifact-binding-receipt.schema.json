@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/pages-artifact-binding-receipt.schema.json",
+  "title": "Pages Artifact Binding Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_type",
+    "repository",
+    "target_commit",
+    "source_candidate",
+    "observed_workflow",
+    "artifact",
+    "verification_state",
+    "canonical_status_mutation_applied",
+    "deployment_authorized",
+    "public_verification_complete",
+    "release_authorized",
+    "downstream_propagation_authorized",
+    "required_next_transition",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "receipt_type": {"const": "pages_artifact_binding_receipt"},
+    "repository": {"const": "StegVerse-Labs/admissibility-wiki"},
+    "target_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "source_candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "verification_state", "build_manifest_sha256"],
+      "properties": {
+        "path": {"const": "reports/pages-build-verification-candidate.json"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "verification_state": {"const": "PAGES_BUILD_PASS_ARTIFACT_PENDING"},
+        "build_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "observed_workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "job_id", "run_attempt"],
+      "properties": {
+        "run_id": {"type": "integer", "minimum": 1},
+        "job_id": {"type": "integer", "minimum": 1},
+        "run_attempt": {"type": "integer", "minimum": 1}
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "artifact_id", "artifact_digest", "preserved"],
+      "properties": {
+        "name": {"const": "github-pages"},
+        "artifact_id": {"type": "integer", "minimum": 1},
+        "artifact_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "preserved": {"const": true}
+      }
+    },
+    "verification_state": {"const": "PAGES_ARTIFACT_PRESERVED"},
+    "canonical_status_mutation_applied": {"const": false},
+    "deployment_authorized": {"const": false},
+    "public_verification_complete": {"const": false},
+    "release_authorized": {"const": false},
+    "downstream_propagation_authorized": {"const": false},
+    "required_next_transition": {"const": "apply_observed_pages_artifact_evidence_to_canonical_status_in_separate_governed_commit"},
+    "non_claims": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}
