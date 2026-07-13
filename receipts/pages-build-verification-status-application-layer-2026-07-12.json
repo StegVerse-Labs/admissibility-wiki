@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "pages_build_verification_status_application_layer_installation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "installed": [
+    "scripts/apply_pages_build_verification_status.py",
+    "scripts/check_pages_build_verification_status_application.py"
+  ],
+  "integrated_into": [
+    "scripts/check_full_validation_chain.py",
+    "scripts/check_goal5_external_frameworks_all.py"
+  ],
+  "permitted_mutation": "static/status/pages-build-verification.json only",
+  "permitted_target_state": "PAGES_ARTIFACT_PRESERVED",
+  "dry_run_default": true,
+  "idempotent": true,
+  "deployment_authorized": false,
+  "public_verification_complete": false,
+  "release_authorized": false,
+  "downstream_propagation_authorized": false,
+  "observed_canonical_application": false,
+  "non_claims": [
+    "installation is not validator execution",
+    "status application is not deployment authority",
+    "artifact preservation is not public verification",
+    "canonical status mutation is not release authority",
+    "status application does not authorize downstream propagation"
+  ]
+}
