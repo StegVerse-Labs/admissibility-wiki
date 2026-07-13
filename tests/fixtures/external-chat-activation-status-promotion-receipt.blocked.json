@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "external_chat_activation_status_promotion_receipt",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "source_candidate": {
+    "path": "reports/external-chat-activation-observation-candidate.json",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "candidate_state": "PENDING_SOURCE_EVIDENCE"
+  },
+  "source_evidence": {
+    "repository": "StegVerse-Labs/Site",
+    "commit_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "workflow_run_id": "0",
+    "workflow_run_attempt": "0",
+    "evidence_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "mutation_required_disabled": true
+  },
+  "decision": "FAIL_CLOSED",
+  "canonical_status_mutation_allowed": false,
+  "target_path": "static/status/external-chat-activation-observation.json",
+  "authority_boundary": {
+    "promotion_is_deployment_authority": false,
+    "promotion_is_repository_mutation_authority": false,
+    "promotion_is_publication_authority": false,
+    "promotion_is_certification": false,
+    "promotion_creates_standing": false,
+    "mutation_remains_separately_authorized": true
+  }
+}
