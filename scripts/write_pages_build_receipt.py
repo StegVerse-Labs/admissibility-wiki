@@ -4,12 +4,15 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "reports" / "pages-build-receipt.json"
 BUILD_DIR = ROOT / "build"
+CANDIDATE_GENERATOR = ROOT / "scripts" / "generate_pages_build_verification_candidate.py"
 
 
 def sha256(path: Path) -> str:
@@ -65,7 +68,7 @@ def main() -> int:
             "receipt_is_execution_authority": False,
         },
         "required_next_transition": (
-            "upload_pages_artifact_then_allow_separate_deployment_job"
+            "generate_verification_candidate_then_observe_pages_artifact_upload"
             if success
             else "repair_build_failure_and_rebuild_before_deployment"
         ),
@@ -73,7 +76,24 @@ def main() -> int:
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     print(f"PAGES BUILD RECEIPT: {receipt['build']['state']} -> {OUTPUT.relative_to(ROOT)}")
-    return 0 if success else 1
+
+    candidate_return_code = 1
+    if CANDIDATE_GENERATOR.exists():
+        completed = subprocess.run(
+            [sys.executable, str(CANDIDATE_GENERATOR)],
+            cwd=ROOT,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+        )
+        if completed.stdout:
+            print(completed.stdout.rstrip())
+        candidate_return_code = completed.returncode
+    else:
+        print(f"PAGES BUILD VERIFICATION CANDIDATE: BLOCKED — missing {CANDIDATE_GENERATOR.relative_to(ROOT)}")
+
+    return 0 if success and candidate_return_code == 0 else 1
 
 
 if __name__ == "__main__":
