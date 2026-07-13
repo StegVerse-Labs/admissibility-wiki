@@ -24,6 +24,7 @@ CHECKS = [
     ("Validate Pages build verification candidate", "scripts/check_pages_build_verification_candidate.py"),
     ("Validate Pages artifact binding receipt", "scripts/check_pages_artifact_binding_receipt.py"),
     ("Validate Pages verification status application", "scripts/check_pages_build_verification_status_application.py"),
+    ("Validate Pages deployment observation receipt", "scripts/check_pages_deployment_observation_receipt.py"),
     ("Validate external frameworks index", "scripts/check_external_frameworks_index.py"),
     ("Validate external framework manifests", "scripts/check_external_framework_manifests.py"),
     ("Validate external framework terminology", "scripts/check_external_framework_terminology.py"),
@@ -79,7 +80,7 @@ def main() -> int:
         "failed_checks": sum(1 for result in results if result["status"] == "FAIL"),
         "overall_status": "FAIL" if failures else "PASS",
         "results": results,
-        "authority_boundary": "This report records validator outcomes only. A passing scan does not grant execution, merge, deployment, release, certification, or ecosystem authority.",
+        "authority_boundary": "This report records validator outcomes only. A passing scan does not grant execution, merge, deployment authority, public verification, release, certification, downstream propagation, or ecosystem authority.",
     }
     REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print("\n" + "=" * 72)
