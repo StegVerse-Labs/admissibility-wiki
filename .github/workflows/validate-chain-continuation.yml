@@ -257,7 +257,30 @@ jobs:
         run: npm run validate
 
       - name: Build site
+        id: site-build
+        continue-on-error: true
         run: npm run build
+
+      - name: Write durable Pages build receipt
+        if: always()
+        env:
+          BUILD_OUTCOME: ${{ steps.site-build.outcome }}
+        run: python scripts/write_pages_build_receipt.py
+        continue-on-error: true
+
+      - name: Upload Pages build receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pages-build-receipt
+          path: reports/pages-build-receipt.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Enforce Pages build result
+        if: always()
+        run: |
+          test "${{ steps.site-build.outcome }}" = "success"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
