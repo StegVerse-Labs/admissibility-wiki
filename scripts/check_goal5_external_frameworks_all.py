@@ -36,6 +36,7 @@ CHECKS = [
     "scripts/check_external_framework_runtime_authorization_receipt.py",
     "scripts/check_external_framework_runtime_dispatch_observation.py",
     "scripts/check_external_framework_runtime_dispatch_progression.py",
+    "scripts/check_pages_build_verification_receipt.py",
     "scripts/check_external_chat_review_packets.py",
     "scripts/check_expanded_external_framework_intake.py",
     "scripts/check_external_framework_candidate_directory.py",
@@ -76,7 +77,7 @@ def main() -> int:
         "failed_checks": len(failures),
         "overall_status": "FAIL" if failures else "PASS",
         "results": results,
-        "authority_boundary": "This report records structural validation outcomes only and does not create external-framework certification, equivalence, standing, registry-promotion, dispatch, execution, or consequence authority.",
+        "authority_boundary": "This report records structural validation outcomes only and does not create external-framework certification, equivalence, standing, registry-promotion, dispatch, execution, deployment, public-verification, or consequence authority.",
     }, indent=2) + "\n", encoding="utf-8")
 
     print("\n" + "=" * 64)
@@ -88,7 +89,7 @@ def main() -> int:
         print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: cedar_binary_provenance_reconciliation_and_goal5_governance_chain_validated_without_execution_authority")
+    print("release_readiness: pages_build_verification_contract_installed_pending_observed_canonical_evidence")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
