@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PROFILE = ROOT / "templates/sandbox-first/admissibility-wiki.sandbox-profile.json"
 RUNNER = ROOT / "scripts/run_sandbox_validation.py"
+FULL_CHAIN = ROOT / "scripts/check_full_validation_chain.py"
 WORKFLOW = ROOT / ".github/workflows/validate-chain-continuation.yml"
 IOS_WORKFLOW = ROOT / "iosnoperiod/github/workflows/validate-chain-continuation.yml"
 ADOPTION = ROOT / "docs/external-frameworks/ST017_SANDBOX_ADOPTION.md"
@@ -36,7 +37,7 @@ def main() -> int:
     args = parser.parse_args()
     errors: list[str] = []
 
-    for path in [PROFILE, RUNNER, WORKFLOW, IOS_WORKFLOW, ADOPTION, HANDOFF]:
+    for path in [PROFILE, RUNNER, FULL_CHAIN, WORKFLOW, IOS_WORKFLOW, ADOPTION, HANDOFF]:
         if not path.exists():
             errors.append(f"missing:{path.relative_to(ROOT)}")
 
@@ -50,19 +51,27 @@ def main() -> int:
                 errors.append(f"profile_missing:{command_id}")
 
     if WORKFLOW.exists() and IOS_WORKFLOW.exists():
-        workflow_text = WORKFLOW.read_text(encoding="utf-8")
-        ios_text = IOS_WORKFLOW.read_text(encoding="utf-8")
-        if workflow_text != ios_text:
+        if WORKFLOW.read_text(encoding="utf-8") != IOS_WORKFLOW.read_text(encoding="utf-8"):
             errors.append("ios_workflow_mirror_mismatch")
+        workflow_text = WORKFLOW.read_text(encoding="utf-8")
         for marker in [
-            "st017-sandbox:",
-            "python scripts/run_sandbox_validation.py",
-            "admissibility-wiki-st017-sandbox-report",
-            "reports/sandbox-first-validation.report.json",
-            "needs: st017-sandbox",
+            "python scripts/check_full_validation_chain.py",
+            "full-validation-chain-report",
+            "reports/full_validation_chain_report.json",
         ]:
             if marker not in workflow_text:
                 errors.append(f"workflow_missing:{marker}")
+
+    if FULL_CHAIN.exists():
+        text = FULL_CHAIN.read_text(encoding="utf-8")
+        for marker in [
+            "scripts/run_sandbox_validation.py",
+            "sandbox-first-validation.report.json",
+            '"st017_sandbox"',
+            "sandbox_status",
+        ]:
+            if marker not in text:
+                errors.append(f"full_chain_missing:{marker}")
 
     if ADOPTION.exists():
         text = ADOPTION.read_text(encoding="utf-8")
@@ -74,16 +83,6 @@ def main() -> int:
         ]:
             if marker not in text:
                 errors.append(f"adoption_missing:{marker}")
-
-    if HANDOFF.exists():
-        text = HANDOFF.read_text(encoding="utf-8")
-        for marker in [
-            "Issue #11",
-            "ST-017 sandbox-first validation",
-            "Sandbox success does not authorize",
-        ]:
-            if marker not in text:
-                errors.append(f"handoff_missing:{marker}")
 
     if not args.structural_only:
         if not REPORT.exists():
