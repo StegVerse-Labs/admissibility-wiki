@@ -93,7 +93,7 @@ Therefore:
 ```text
 OperationalSuccess does not imply Admissible
 Reconstructable does not imply LegitimateAtCommit
-ValidAt(t_0) does not imply ValidAt(t_c)
+ValidAt(t_0) \not\Rightarrow ValidAt(t_c)
 ```
 
 ## 4. Inference window and evidence freshness
