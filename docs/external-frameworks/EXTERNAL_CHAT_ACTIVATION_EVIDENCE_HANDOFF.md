@@ -4,21 +4,27 @@
 
 ```text
 Goal: receive and validate exact deployment-correlated External Chat evidence from StegVerse-Labs/Site
-Phase: canonical receiving contract and fail-closed importer installed
-Result: CONTRACT_INSTALLED_OBSERVED_SITE_ARTIFACT_PENDING
+Phase: bounded cross-repository acquisition and Goal 5 synchronization installed
+Result: AUTOMATED_SYNC_INSTALLED_OBSERVED_SITE_ARTIFACT_PENDING
 ```
 
 ## Source artifact
 
-The source repository is `StegVerse-Labs/Site` and the expected artifact is:
+The source repository is `StegVerse-Labs/Site`, workflow `Site Task Runner`, and expected artifact prefix is:
 
 ```text
-reports/external-chat-activation-evidence.json
+external-chat-activation-evidence-<run_id>-<run_attempt>
+```
+
+The artifact must contain exactly one:
+
+```text
+external-chat-activation-evidence.json
 ```
 
 The record correlates local Site validation, exact commit and workflow identity, Pages deployment URL, post-deployment page and gateway observations, and mutation-disabled posture.
 
-## Installed contracts
+## Installed contracts and synchronization surfaces
 
 ```text
 docs/external-frameworks/schemas/external-chat-activation-evidence.schema.json
@@ -26,9 +32,62 @@ docs/external-frameworks/examples/external-chat-activation-evidence.example.json
 scripts/check_external_chat_activation_evidence.py
 scripts/import_external_chat_activation_evidence.py
 scripts/check_external_chat_activation_importer.py
+scripts/acquire_external_chat_activation_evidence.py
+scripts/sync_external_chat_activation_evidence.py
+scripts/check_external_chat_activation_sync.py
 receipts/external-chat-activation-evidence-contract-2026-07-13.json
+receipts/external-chat-activation-evidence-sync-2026-07-13.json
 scripts/check_goal5_external_frameworks_all.py
 ```
+
+## Acquisition selection and identity binding
+
+The acquisition client selects only a completed successful `Site Task Runner` run on `main`, then locates a non-expired artifact whose name binds the exact run ID and run attempt.
+
+It verifies:
+
+```text
+source repository = StegVerse-Labs/Site
+source workflow = Site Task Runner
+run conclusion = success
+head branch = main
+artifact name run_id = selected run_id
+payload workflow_run_id = selected run_id
+payload commit_sha = selected run head_sha
+exactly one activation-evidence JSON file exists
+```
+
+Authentication is preferred through:
+
+```text
+STEGVERSE_SITE_ARTIFACT_TOKEN
+GITHUB_TOKEN
+```
+
+For the public Site repository, the client may attempt public discovery without a token. When artifact download requires authentication, the outcome is an explicit `SKIPPED` receipt—not a successful import and not a workflow failure.
+
+## Synchronization states
+
+```text
+SKIPPED
+ACQUIRED_EXACT_ARTIFACT
+IMPORTED_EXACT_ARTIFACT
+FAIL_CLOSED
+```
+
+The synchronization orchestrator:
+
+```text
+acquires exact artifact
+-> stages source JSON
+-> invokes existing fail-closed importer
+-> verifies projected evidence hash
+-> verifies provenance run identity
+-> verifies provenance commit identity
+-> marks acquisition receipt IMPORTED_EXACT_ARTIFACT
+```
+
+Goal 5 invokes this synchronization before structural validators. A skipped acquisition remains visible in the Goal 5 report through `external_chat_activation_sync.state` and does not create false activation evidence.
 
 ## Accepted result classes
 
@@ -41,30 +100,23 @@ LIVE_EVIDENCE_NOT_CONFIRMED
 
 `OBSERVED_NON_MUTATING_PUBLIC_PATHS` is accepted only when local validation passed, the post-deployment receipt passed, and mutation was observed disabled.
 
-## Import behavior
+## Projection behavior
 
-The importer accepts a local path or HTTP(S) URL through:
-
-```text
-python scripts/import_external_chat_activation_evidence.py <source>
-STEGVERSE_EXTERNAL_CHAT_ACTIVATION_EVIDENCE_SOURCE=<source>
-```
-
-With no source configured it exits without mutation. With a source configured it fails closed unless source repository identity, record identity, authority boundary, result predicates, and evidence SHA-256 all match.
-
-A valid import atomically writes:
+A validated import atomically writes:
 
 ```text
 static/status/external-chat-activation-evidence.json
 static/status/external-chat-activation-evidence.provenance.json
 ```
 
+The acquisition and synchronization receipts remain under `reports/` and bind the source workflow, run, artifact, commit, evidence hash, observed result, and mutation-disabled posture.
+
 ## Authority boundary
 
 ```text
 contract installation != observed deployment evidence
-activation evidence != deployment authority
-activation evidence != repository mutation authority
+artifact acquisition != deployment authority
+artifact synchronization != repository mutation authority
 activation evidence != publication authority
 activation evidence != certification
 activation evidence != standing
@@ -75,14 +127,15 @@ mutation remains separately authorized
 ## Next tasks
 
 ```text
-1. Preserve the first successful Site external-chat-activation-evidence artifact with exact workflow and commit identity.
-2. Import that exact artifact through the fail-closed importer.
-3. Verify the projected evidence and provenance records through Goal 5.
-4. Require mutation_required_disabled = true before recording observed non-mutating public paths.
-5. Do not convert the imported observation into certification, compatibility standing, publication authority, or mutation authority.
-6. Perform one separately authorized disposable staging mutation only after the non-mutating public evidence is observed and preserved.
+1. Observe a successful Site Task Runner artifact containing OBSERVED_NON_MUTATING_PUBLIC_PATHS.
+2. Allow Goal 5 synchronization to acquire or explicitly skip that artifact with a machine-readable reason.
+3. Preserve the acquisition receipt, source artifact, projection, provenance, and Goal 5 report together.
+4. Require mutation_required_disabled = true before retaining the observed projection.
+5. Confirm the source run ID and commit SHA match the Site artifact metadata.
+6. Do not convert the imported observation into certification, compatibility standing, publication authority, or mutation authority.
+7. Perform one separately authorized disposable staging mutation only after non-mutating public evidence is observed and preserved.
 ```
 
 ## Sharing posture
 
-The Admissibility Wiki now has a canonical, content-bound receiving path for External Chat activation evidence. No observed Site artifact has yet been imported by this installation, and no deployment, publication, mutation, certification, or standing claim follows from the contract alone.
+The Admissibility Wiki now has a bounded automated path that discovers, identity-checks, imports, and validates the exact Site activation-evidence artifact through Goal 5. No observed Site artifact has yet been imported by this installation, and no deployment, publication, mutation, certification, or standing claim follows from synchronization tooling alone.
