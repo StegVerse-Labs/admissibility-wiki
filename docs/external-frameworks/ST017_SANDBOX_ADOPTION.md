@@ -2,7 +2,7 @@
 
 ## Scope
 
-This packet installs repository-specific isolated validation inside the existing `Validate chain continuation` workflow and its iOS mirror.
+This packet installs repository-specific isolated validation through the existing PR-visible `Validate chain continuation` workflow without changing the workflow file or its iOS mirror.
 
 ```text
 repository: StegVerse-Labs/admissibility-wiki
@@ -18,6 +18,7 @@ PUBLIC_OUTPUT: NOT_VERIFIED
 
 ```text
 proposed change
+-> existing check_full_validation_chain.py entry point
 -> isolated temporary repository copy
 -> generated external-framework prerequisites
 -> Goal 5 aggregate validation
@@ -25,11 +26,13 @@ proposed change
 -> Docusaurus build
 -> ST-017 structural validation
 -> retained sandbox report
--> existing canonical validation chain
+-> remaining canonical validation chain
 -> main-only capture, replay, build, deploy, and public-verification jobs
 ```
 
-The sandbox report is `reports/sandbox-first-validation.report.json` and is uploaded as `admissibility-wiki-st017-sandbox-report` even when a command fails.
+The exact sandbox report is written to `reports/sandbox-first-validation.report.json`. Its complete JSON payload is embedded as `st017_sandbox` in `reports/full_validation_chain_report.json`, which the existing workflow already uploads as the `full-validation-chain-report` artifact even when validation fails.
+
+This integration preserves the current workflow count and keeps `.github/workflows/validate-chain-continuation.yml` byte-identical to `iosnoperiod/github/workflows/validate-chain-continuation.yml`.
 
 ## Authority boundary
 
