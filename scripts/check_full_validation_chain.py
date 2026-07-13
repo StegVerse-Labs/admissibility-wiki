@@ -21,6 +21,7 @@ CHECKS = [
     ("Validate goal state", "scripts/check_goal_state.py"),
     ("Validate workflow manifest", "scripts/check_workflow_manifest.py"),
     ("Validate Pages build receipt automation", "scripts/check_pages_build_receipt_automation.py"),
+    ("Validate Pages build verification candidate", "scripts/check_pages_build_verification_candidate.py"),
     ("Validate external frameworks index", "scripts/check_external_frameworks_index.py"),
     ("Validate external framework manifests", "scripts/check_external_framework_manifests.py"),
     ("Validate external framework terminology", "scripts/check_external_framework_terminology.py"),
