@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "external_chat_activation_evidence_sync_installation",
+  "installed_at": "2026-07-13T00:00:00Z",
+  "source_repository": "StegVerse-Labs/Site",
+  "source_workflow": "Site Task Runner",
+  "source_artifact_prefix": "external-chat-activation-evidence-",
+  "installed_files": [
+    "scripts/acquire_external_chat_activation_evidence.py",
+    "scripts/sync_external_chat_activation_evidence.py",
+    "scripts/check_external_chat_activation_sync.py",
+    "scripts/check_goal5_external_frameworks_all.py"
+  ],
+  "acquisition_behavior": {
+    "select_completed_successful_main_run": true,
+    "bind_artifact_name_to_run_id_and_attempt": true,
+    "bind_payload_run_id_to_selected_run": true,
+    "bind_payload_commit_to_selected_head_sha": true,
+    "require_source_repository_identity": true,
+    "prefer_authenticated_request": true,
+    "allow_bounded_public_discovery_attempt": true,
+    "skip_when_public_artifact_download_requires_authentication": true,
+    "fail_closed_on_identity_or_content_drift": true
+  },
+  "projection_behavior": {
+    "projection_written_only_after_import_validation": true,
+    "projection_path": "static/status/external-chat-activation-evidence.json",
+    "provenance_path": "static/status/external-chat-activation-evidence.provenance.json",
+    "observed_site_artifact_imported_by_installation": false
+  },
+  "authority_boundary": {
+    "installation_is_deployment_authority": false,
+    "installation_is_repository_mutation_authority": false,
+    "installation_is_publication_authority": false,
+    "installation_is_certification": false,
+    "installation_creates_standing": false,
+    "artifact_import_remains_evidence_only": true
+  }
+}
