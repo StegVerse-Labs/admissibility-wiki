@@ -34,16 +34,19 @@ def token() -> str | None:
     )
 
 
-def api_json(url: str, auth: str) -> dict[str, Any]:
-    request = urllib.request.Request(
-        url,
-        headers={
-            "Accept": "application/vnd.github+json",
-            "Authorization": f"Bearer {auth}",
-            "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "StegVerse-External-Chat-Evidence-Acquirer",
-        },
-    )
+def headers(auth: str | None) -> dict[str, str]:
+    values = {
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        "User-Agent": "StegVerse-External-Chat-Evidence-Acquirer",
+    }
+    if auth:
+        values["Authorization"] = f"Bearer {auth}"
+    return values
+
+
+def api_json(url: str, auth: str | None) -> dict[str, Any]:
+    request = urllib.request.Request(url, headers=headers(auth))
     with urllib.request.urlopen(request, timeout=30) as response:
         value = json.loads(response.read().decode("utf-8"))
     if not isinstance(value, dict):
@@ -51,16 +54,8 @@ def api_json(url: str, auth: str) -> dict[str, Any]:
     return value
 
 
-def api_bytes(url: str, auth: str) -> bytes:
-    request = urllib.request.Request(
-        url,
-        headers={
-            "Accept": "application/vnd.github+json",
-            "Authorization": f"Bearer {auth}",
-            "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "StegVerse-External-Chat-Evidence-Acquirer",
-        },
-    )
+def api_bytes(url: str, auth: str | None) -> bytes:
+    request = urllib.request.Request(url, headers=headers(auth))
     with urllib.request.urlopen(request, timeout=60) as response:
         return response.read()
 
@@ -70,7 +65,17 @@ def write_report(payload: dict[str, Any]) -> None:
     REPORT.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
-def skip(reason: str) -> int:
+def boundary() -> dict[str, bool]:
+    return {
+        "acquisition_is_deployment_authority": False,
+        "acquisition_is_repository_mutation_authority": False,
+        "acquisition_is_publication_authority": False,
+        "acquisition_is_certification": False,
+        "acquisition_creates_standing": False,
+    }
+
+
+def skip(reason: str, *, authenticated: bool) -> int:
     write_report(
         {
             "schema_version": "1.0.0",
@@ -80,14 +85,9 @@ def skip(reason: str) -> int:
             "reason": reason,
             "source_repository": f"{OWNER}/{REPO}",
             "source_workflow": WORKFLOW_NAME,
+            "authenticated_request": authenticated,
             "projection_written": False,
-            "authority_boundary": {
-                "acquisition_is_deployment_authority": False,
-                "acquisition_is_repository_mutation_authority": False,
-                "acquisition_is_publication_authority": False,
-                "acquisition_is_certification": False,
-                "acquisition_creates_standing": False,
-            },
+            "authority_boundary": boundary(),
         }
     )
     print(f"EXTERNAL CHAT ACTIVATION ACQUISITION: SKIP - {reason}")
@@ -96,8 +96,7 @@ def skip(reason: str) -> int:
 
 def main() -> int:
     auth = token()
-    if not auth:
-        return skip("cross_repository_artifact_token_unavailable")
+    authenticated = auth is not None
 
     try:
         runs = api_json(
@@ -114,7 +113,7 @@ def main() -> int:
             and run.get("conclusion") == "success"
         ]
         if not candidates:
-            return skip("no_successful_site_task_runner_run_found")
+            return skip("no_successful_site_task_runner_run_found", authenticated=authenticated)
 
         selected = max(candidates, key=lambda item: int(item.get("run_number") or 0))
         run_id = int(selected["id"])
@@ -131,14 +130,20 @@ def main() -> int:
             and str(artifact.get("name", "")).startswith(ARTIFACT_PREFIX)
         ]
         if not matches:
-            return skip("successful_run_has_no_activation_evidence_artifact")
+            return skip("successful_run_has_no_activation_evidence_artifact", authenticated=authenticated)
         artifact = max(matches, key=lambda item: int(item.get("id") or 0))
         name = str(artifact["name"])
         match = RUN_ID_RE.match(name)
         if not match or int(match.group(1)) != run_id:
             raise ValueError("artifact name does not bind selected workflow run")
 
-        archive = api_bytes(str(artifact["archive_download_url"]), auth)
+        try:
+            archive = api_bytes(str(artifact["archive_download_url"]), auth)
+        except urllib.error.HTTPError as exc:
+            if exc.code in {401, 403, 404} and not authenticated:
+                return skip("public_artifact_download_requires_authentication", authenticated=False)
+            raise
+
         with zipfile.ZipFile(io.BytesIO(archive)) as bundle:
             names = [item for item in bundle.namelist() if item.endswith("external-chat-activation-evidence.json")]
             if len(names) != 1:
@@ -169,18 +174,13 @@ def main() -> int:
                 "artifact_id": str(artifact["id"]),
                 "artifact_name": name,
                 "artifact_expired": False,
+                "authenticated_request": authenticated,
                 "staged_path": str(STAGING.relative_to(ROOT)),
                 "source_evidence_sha256": payload.get("evidence_sha256"),
                 "observed_result": payload.get("result"),
                 "mutation_required_disabled": payload.get("post_deployment_live_verification", {}).get("mutation_required_disabled"),
                 "projection_written": False,
-                "authority_boundary": {
-                    "acquisition_is_deployment_authority": False,
-                    "acquisition_is_repository_mutation_authority": False,
-                    "acquisition_is_publication_authority": False,
-                    "acquisition_is_certification": False,
-                    "acquisition_creates_standing": False,
-                },
+                "authority_boundary": boundary(),
             }
         )
     except (urllib.error.HTTPError, urllib.error.URLError, KeyError, ValueError, zipfile.BadZipFile, json.JSONDecodeError) as exc:
@@ -193,14 +193,9 @@ def main() -> int:
                 "reason": str(exc),
                 "source_repository": f"{OWNER}/{REPO}",
                 "source_workflow": WORKFLOW_NAME,
+                "authenticated_request": authenticated,
                 "projection_written": False,
-                "authority_boundary": {
-                    "acquisition_is_deployment_authority": False,
-                    "acquisition_is_repository_mutation_authority": False,
-                    "acquisition_is_publication_authority": False,
-                    "acquisition_is_certification": False,
-                    "acquisition_creates_standing": False,
-                },
+                "authority_boundary": boundary(),
             }
         )
         print(f"EXTERNAL CHAT ACTIVATION ACQUISITION: FAIL - {exc}")
