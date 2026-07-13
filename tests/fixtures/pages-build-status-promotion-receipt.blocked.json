@@ -1,0 +1,33 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "pages_build_status_promotion_receipt",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "source_candidate": {
+    "path": "reports/pages-build-verification-candidate.json",
+    "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "formalism_validator_evidence": {
+    "status": "UNRESOLVED",
+    "evidence_ref": null
+  },
+  "pages_artifact_evidence": {
+    "status": "MISSING",
+    "run_id": null,
+    "job_id": null,
+    "artifact_id": null,
+    "artifact_digest": null,
+    "evidence_ref": null
+  },
+  "decision": "FAIL_CLOSED",
+  "canonical_status_mutation_allowed": false,
+  "deployment_authorized": false,
+  "public_verification_complete": false,
+  "non_claims": [
+    "verification candidate does not authorize canonical status mutation",
+    "formalism validator evidence must be observed before promotion",
+    "Pages artifact identifiers and digest must be observed before promotion",
+    "status promotion is not deployment authority",
+    "Pages artifact preservation is not public verification",
+    "fixture validation does not authorize release or downstream propagation"
+  ]
+}
