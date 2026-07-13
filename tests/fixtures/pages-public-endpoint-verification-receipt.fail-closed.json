@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "pages_public_endpoint_verification_receipt",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "source_deployment_observation": {
+    "path": "reports/pages-deployment-observation-receipt.json",
+    "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "deployment_state": "DEPLOYMENT_OBSERVED",
+    "deployment_run_id": 100,
+    "deployment_job_id": 200
+  },
+  "deployment_url": "https://stegverse-labs.github.io/admissibility-wiki/",
+  "verification_run": {
+    "run_id": null,
+    "job_id": null,
+    "run_attempt": null,
+    "evidence_ref": null
+  },
+  "required_endpoints": [
+    {"path": "/admissibility-wiki/", "expected_status": 200, "observed_status": null, "content_sha256": null, "evidence_ref": null},
+    {"path": "/admissibility-wiki/status/admissibility-wiki-status.json", "expected_status": 200, "observed_status": null, "content_sha256": null, "evidence_ref": null},
+    {"path": "/admissibility-wiki/status/ios-workflow-mirror-status.json", "expected_status": 200, "observed_status": null, "content_sha256": null, "evidence_ref": null},
+    {"path": "/admissibility-wiki/formalisms/inference-window-irreversibility-governance", "expected_status": 200, "observed_status": null, "content_sha256": null, "evidence_ref": null}
+  ],
+  "verification_state": "FAIL_CLOSED",
+  "release_authorized": false,
+  "downstream_propagation_authorized": false,
+  "required_next_transition": "repeat_public_endpoint_verification_from_observed_deployment",
+  "non_claims": [
+    "deployment observation is not public endpoint verification",
+    "a reachable root page does not verify all required routes",
+    "HTTP status without content evidence is incomplete verification",
+    "public endpoint verification is not release authority",
+    "public endpoint verification is not downstream propagation authority",
+    "fixture validation does not establish a live deployment"
+  ]
+}
