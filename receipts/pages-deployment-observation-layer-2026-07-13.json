@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "pages_deployment_observation_layer_installation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "installed_files": [
+    "static/schemas/pages-deployment-observation-receipt.schema.json",
+    "tests/fixtures/pages-deployment-observation-receipt.fail-closed.json",
+    "scripts/check_pages_deployment_observation_receipt.py",
+    "scripts/check_goal5_external_frameworks_all.py"
+  ],
+  "baseline_state": {
+    "observation_state": "FAIL_CLOSED",
+    "deployment_status": "UNRESOLVED",
+    "public_verification_complete": false,
+    "release_authorized": false,
+    "downstream_propagation_authorized": false,
+    "required_next_transition": "repair_or_obtain_deployment_evidence"
+  },
+  "evidence_requirements_for_observed_state": [
+    "canonical status is PAGES_ARTIFACT_PRESERVED",
+    "source artifact-binding receipt hash",
+    "Pages artifact id and digest",
+    "deployment run id",
+    "deployment job id",
+    "github-pages environment",
+    "https page URL",
+    "successful deployment status",
+    "non-empty deployment evidence reference"
+  ],
+  "authority_boundary": {
+    "installation_is_deployment_evidence": false,
+    "deployment_observation_is_public_verification": false,
+    "deployment_observation_is_release_authority": false,
+    "deployment_observation_is_downstream_propagation_authority": false,
+    "validator_can_deploy_pages": false
+  },
+  "commits": {
+    "schema": "2ce3784e5a8f1478906b9f19f3d4c74ba3aee222",
+    "canonical_fixture": "ce25dc988adcdfe623ad82b3f095813e59732344",
+    "validator": "c0bd08e70036d60a2e59ca251243414720219bc6",
+    "aggregate_integration": "61997a9871d07dc0d57ecf316b6c3f768a510d00",
+    "validator_hardening": "ac554bc1ab17bf028d4b0c3d1ec18ea448226f6f",
+    "duplicate_fixture_cleanup": "29027318cc3bae24c834b598b1a92dcaa1ab5fad"
+  },
+  "verification_state": "INSTALLED_PENDING_CANONICAL_WORKFLOW_EVIDENCE",
+  "recorded_at": "2026-07-13T05:15:00Z"
+}
