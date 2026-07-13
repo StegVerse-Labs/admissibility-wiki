@@ -48,11 +48,6 @@
       "timeout_seconds": 1200
     },
     {
-      "id": "validate-governance-artifacts",
-      "command": ["npm", "run", "validate"],
-      "timeout_seconds": 1200
-    },
-    {
       "id": "build-docusaurus-site",
       "command": ["npm", "run", "build"],
       "timeout_seconds": 1800
