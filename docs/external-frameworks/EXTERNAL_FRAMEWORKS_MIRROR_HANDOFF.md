@@ -2,7 +2,7 @@
 
 ## Source of truth
 
-This file is the continuation source of truth for Goal 5 external-framework intake, evidence capture, implementation selection, binary promotion, readiness, runtime authorization, dispatch observation, replay, Pages build verification, artifact preservation, and publication work in `StegVerse-Labs/admissibility-wiki`.
+This file is the continuation source of truth for Goal 5 external-framework intake, evidence capture, implementation selection, binary promotion, readiness, runtime authorization, dispatch observation, replay, Pages build verification, artifact preservation, deployment observation, and publication work in `StegVerse-Labs/admissibility-wiki`.
 
 Preserve unrelated CI repair, conceptual-inheritance, lifecycle-formalism, inference-window, External Chat, and documentation-mesh work owned by other workstreams.
 
@@ -10,8 +10,8 @@ Preserve unrelated CI repair, conceptual-inheritance, lifecycle-formalism, infer
 
 ```text
 Goal: evidence-bound external-framework intake through observed, replayable, non-authorizing interoperability evidence
-Phase: OPA same-provider replay passed; Pages repair, regression guard, durable receipt, verification candidate, artifact-binding contract, and status-promotion boundary installed
-Result: PAGES_ARTIFACT_BINDING_AND_STATUS_PROMOTION_PENDING_OBSERVED_CANONICAL_EVIDENCE
+Phase: OPA same-provider replay passed; Pages build, artifact, status-promotion, status-application, and deployment-observation boundaries installed
+Result: PAGES_DEPLOYMENT_OBSERVATION_BOUNDARY_PENDING_CANONICAL_EVIDENCE
 ```
 
 ## Current state
@@ -34,14 +34,16 @@ dispatch-observation hash-chain validation: installed
 canonical validation chain: PASS on run 29212846956
 OPA capture and same-environment replay: PASS on run 29212846956
 fresh-runner replay: PASS on run 29212846956
-build-pages: FAIL on run 29212846956 from governed-action-lifecycle MDX rendering
+build-pages on run 29212846956: FAIL from governed-action-lifecycle MDX rendering
 bounded lifecycle page repair: installed
 lifecycle MDX regression guard: installed
-Pages build verification contract: installed, PENDING_CANONICAL_RUN
+Pages build verification contract: installed
 Pages durable build receipt automation: installed
 Pages verification candidate generator: installed, non-mutating
 Pages artifact-binding receipt layer: installed, fixture-only
 Pages status-promotion receipt boundary: installed, blocked fixture only
+Pages verification-status application layer: installed
+Pages deployment-observation receipt layer: installed, FAIL_CLOSED baseline
 runtime jobs emitted by plan automation: 0
 independent organization/provider replays: 0 of 18
 ```
@@ -67,6 +69,10 @@ scripts/check_pages_artifact_binding_receipt.py
 static/schemas/pages-build-status-promotion-receipt.schema.json
 tests/fixtures/pages-build-status-promotion-receipt.blocked.json
 scripts/check_pages_build_status_promotion_receipt.py
+scripts/check_pages_build_verification_status_application.py
+static/schemas/pages-deployment-observation-receipt.schema.json
+tests/fixtures/pages-deployment-observation-receipt.fail-closed.json
+scripts/check_pages_deployment_observation_receipt.py
 .github/workflows/validate-chain-continuation.yml
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
@@ -127,104 +133,125 @@ e85d06703eeb1463ba15dd1fccafcb2120f17bac
 
 The repair and guard do not weaken activation, deployment, public-verification, release, governance, or authority gates.
 
-## Pages build evidence chain
-
-Installed layers:
+## Pages evidence progression
 
 ```text
-1. Durable build receipt
-   reports/pages-build-receipt.json
-   states: PAGES_BUILD_COMPLETE | PAGES_BUILD_FAILED_OR_INCOMPLETE
-
-2. Non-mutating verification candidate
-   reports/pages-build-verification-candidate.json
-   states: PAGES_BUILD_PASS_ARTIFACT_PENDING | FAIL_CLOSED
-
-3. Artifact-binding receipt
-   static/schemas/pages-artifact-binding-receipt.schema.json
-   tests/fixtures/pages-artifact-binding-receipt.preserved.json
-   scripts/check_pages_artifact_binding_receipt.py
-   state: PAGES_ARTIFACT_PRESERVED
-
-4. Canonical verification status
-   static/status/pages-build-verification.json
-   states:
-     PENDING_CANONICAL_RUN
-     VALIDATOR_PASS_BUILD_PENDING
-     PAGES_BUILD_PASS_ARTIFACT_PENDING
-     PAGES_ARTIFACT_PRESERVED
-     FAIL_CLOSED
-
-5. Governed status-promotion receipt
-   static/schemas/pages-build-status-promotion-receipt.schema.json
-   tests/fixtures/pages-build-status-promotion-receipt.blocked.json
-   scripts/check_pages_build_status_promotion_receipt.py
+PAGES_BUILD_COMPLETE
+-> PAGES_BUILD_PASS_ARTIFACT_PENDING
+-> PAGES_ARTIFACT_PRESERVED
+-> ALLOW_STATUS_PROMOTION_ONLY
+-> separate canonical status application
+-> PAGES_ARTIFACT_PRESERVED canonical status
+-> separate deployment observation
+-> DEPLOYMENT_OBSERVED
+-> separate public endpoint verification
 ```
 
-The artifact-binding receipt requires:
+Every arrow is a separate governed transition. No earlier state implies any later state.
+
+### Build and artifact layers
 
 ```text
-source candidate state: PAGES_BUILD_PASS_ARTIFACT_PENDING
-source candidate SHA-256
-build manifest SHA-256
-run_id
-build-pages job_id
-run_attempt
-Pages artifact_id
-Pages artifact digest: sha256:<64 hex>
-artifact preserved: true
+reports/pages-build-receipt.json
+reports/pages-build-verification-candidate.json
+static/schemas/pages-artifact-binding-receipt.schema.json
+tests/fixtures/pages-artifact-binding-receipt.preserved.json
+static/schemas/pages-build-status-promotion-receipt.schema.json
+tests/fixtures/pages-build-status-promotion-receipt.blocked.json
+static/status/pages-build-verification.json
 ```
 
-It may establish only `PAGES_ARTIFACT_PRESERVED` as a candidate evidence state. It always preserves:
+Artifact preservation requires exact run, job, attempt, artifact ID, artifact digest, candidate hash, and build-manifest hash evidence. It does not establish deployment.
+
+## Pages deployment-observation boundary
+
+Installed:
 
 ```text
-canonical_status_mutation_applied: false
-deployment_authorized: false
+static/schemas/pages-deployment-observation-receipt.schema.json
+tests/fixtures/pages-deployment-observation-receipt.fail-closed.json
+scripts/check_pages_deployment_observation_receipt.py
+receipts/pages-deployment-observation-layer-2026-07-13.json
+scripts/check_goal5_external_frameworks_all.py
+```
+
+The baseline remains:
+
+```text
+observation_state: FAIL_CLOSED
+deployment.deployment_status: UNRESOLVED
+deployment.evidence_ref: null
 public_verification_complete: false
 release_authorized: false
 downstream_propagation_authorized: false
+required_next_transition: repair_or_obtain_deployment_evidence
 ```
 
-The next transition remains a separate governed mutation of `static/status/pages-build-verification.json`. Artifact preservation is not deployment, public verification, release, or downstream-propagation authority.
-
-A status-promotion receipt must bind the candidate and observed validator/artifact evidence. `ALLOW_STATUS_PROMOTION_ONLY` may authorize only the separate canonical status mutation and no later transition.
-
-Installation commits for the artifact-binding layer:
+`DEPLOYMENT_OBSERVED` requires all of the following:
 
 ```text
-134358a323ae2a67055c62a41971dd05052a5b88  schema
-aa635199d48a13886ac01bbea7a9eb860d2dbc41  preserved fixture
-8b2e911385deddf651a1a692e3fc590b2de7a10f  validator
-4e0e4b9d3b770fb4bb3fc441de334ccf3c5b3a8e  full validation integration
-3159c04ff3bc10b6be644db8e6e6047ab354d259  Goal 5 aggregate integration
-a4e43fa154884d722e7718f4bb0110bbc192f98c  installation receipt
+canonical source status: PAGES_ARTIFACT_PRESERVED
+source status SHA-256
+source artifact-binding receipt SHA-256
+Pages artifact ID and sha256 digest
+deployment run ID
+deployment job ID
+environment: github-pages
+https page URL
+deployment_status: SUCCESS
+non-empty evidence reference
+```
+
+Even `DEPLOYMENT_OBSERVED` preserves:
+
+```text
+public_verification_complete: false
+release_authorized: false
+downstream_propagation_authorized: false
+required_next_transition: separate_public_endpoint_verification
+```
+
+The validator now checks exact field shapes, hash formats, deployment identifiers, environment, URL scheme, state-specific evidence, required non-claims, and fail-closed baseline posture.
+
+Installation and cleanup commits:
+
+```text
+2ce3784e5a8f1478906b9f19f3d4c74ba3aee222  schema
+ce25dc988adcdfe623ad82b3f095813e59732344  canonical fail-closed fixture
+c0bd08e70036d60a2e59ca251243414720219bc6  validator
+61997a9871d07dc0d57ecf316b6c3f768a510d00  aggregate integration
+ac554bc1ab17bf028d4b0c3d1ec18ea448226f6f  validator hardening
+29027318cc3bae24c834b598b1a92dcaa1ab5fad  duplicate fixture cleanup
+3c1bf655721c4a6dc66deb3fcca6e5c90b9c9e93  installation receipt
 ```
 
 ## Next task
 
 ```text
-1. Verify the canonical successor run containing the repair, guard, durable receipt, candidate, artifact-binding validator, and status-promotion validator.
-2. Require formalism publication validation, Pages receipt automation validation, candidate validation, artifact-binding validation, Docusaurus production build, and Pages artifact upload to pass.
-3. Inspect pages-build-receipt and verification-candidate artifacts from the exact run.
-4. Record run_id, build-pages job_id, run_attempt, Pages artifact_id, artifact SHA-256, build manifest SHA-256, file count, and total bytes.
-5. Create an evidence-bound PAGES_ARTIFACT_PRESERVED receipt only from those observed values.
+1. Verify the canonical successor run containing the complete Pages evidence chain and deployment-observation validator.
+2. Require formalism publication, build-receipt automation, candidate, artifact-binding, status-promotion, status-application, deployment-observation, Docusaurus build, and Pages artifact upload checks to pass.
+3. Inspect pages-build-receipt, verification-candidate, Pages artifact, and deployment job evidence from the exact run.
+4. Record run_id, build-pages job_id, run_attempt, Pages artifact_id, artifact digest, deployment job_id, page URL, build manifest SHA-256, file count, and total bytes.
+5. Create an evidence-bound PAGES_ARTIFACT_PRESERVED receipt only from observed values.
 6. Create ALLOW_STATUS_PROMOTION_ONLY only if every promotion predicate passes.
-7. Apply static/status/pages-build-verification.json in a separate governed commit only after both receipts exist.
-8. Do not infer deployment or public verification from build or artifact preservation.
-9. Perform replay outside the same repository/provider before stronger independence claims.
-10. Review destination handoffs before propagation to Site, Publisher, or StegGuardian.
+7. Apply static/status/pages-build-verification.json only through the separate status-application transition.
+8. Create DEPLOYMENT_OBSERVED only from exact successful deployment evidence.
+9. Do not infer public endpoint verification from deployment success.
+10. Perform replay outside the same repository/provider before stronger independence claims.
+11. Review destination handoffs before propagation to Site, Publisher, or StegGuardian.
 ```
 
 ## Remaining modules
 
 ```text
 StegVerse-Labs/admissibility-wiki
-  -> canonical workflow verification of the Pages evidence chain
+  -> canonical workflow verification of the complete Pages evidence chain
   -> observed Pages build and artifact evidence
   -> evidence-bound artifact-binding receipt
   -> evidence-bound status-promotion receipt
   -> separate canonical status mutation
-  -> public deployment verification receipt
+  -> observed deployment receipt
+  -> separate public endpoint verification receipt
 
 Independent organization/provider
   -> independent OPA replay or implementation review
@@ -245,15 +272,16 @@ same-environment replay != independent replay
 fresh runner in same provider != independent organization or provider
 Pages verification candidate != artifact preservation
 artifact-binding receipt != canonical status mutation
-artifact preservation != deployment authority
+artifact preservation != deployment observation
 status-promotion receipt != deployment authority
-Pages build != deployment authority
-Pages artifact != public verification
+canonical status mutation != deployment observation
+deployment job existence != deployment success
+deployment observation != public endpoint verification
 public verification != release authority
 ```
 
-No deployment, release, tag, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation follows from these repository-local contracts. No release tag is justified solely by schema, fixture, validation, promotion, capture, replay, repair, guard, receipt, candidate, artifact binding, or automation installation.
+No deployment, release, tag, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation follows from these repository-local contracts. No release tag is justified solely by schema, fixture, validation, promotion, capture, replay, repair, guard, receipt, candidate, artifact binding, status mutation, deployment-observation contract, or automation installation.
 
 ## Archive readiness
 
-This handoff preserves Cedar evidence, OPA replay evidence, the Pages failure and repair chain, durable build evidence, candidate generation, artifact-binding boundaries, status-promotion boundaries, authority limits, remaining modules, and ordered continuation task. Earlier conversation context is not required.
+This handoff preserves Cedar evidence, OPA replay evidence, the Pages failure and repair chain, durable build evidence, candidate generation, artifact-binding boundaries, status-promotion and status-application boundaries, deployment-observation boundaries, authority limits, remaining modules, and ordered continuation task. Earlier conversation context is not required.
