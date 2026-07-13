@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "pages_build_status_promotion_contract_installation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "installed": [
+    "static/schemas/pages-build-status-promotion-receipt.schema.json",
+    "tests/fixtures/pages-build-status-promotion-receipt.blocked.json",
+    "scripts/check_pages_build_status_promotion_receipt.py",
+    "scripts/check_goal5_external_frameworks_all.py"
+  ],
+  "decision_boundary": {
+    "required_candidate_hash": true,
+    "required_formalism_validator_pass": true,
+    "required_pages_run_job_artifact_ids": true,
+    "required_pages_artifact_sha256": true,
+    "status_promotion_only": true,
+    "deployment_authorized": false,
+    "public_verification_complete": false,
+    "release_authorized": false,
+    "downstream_propagation_authorized": false
+  },
+  "commits": {
+    "schema": "6e5448c5e35da83141d08555026e651dde5e32fe",
+    "blocked_fixture": "211b4f4f3bed14a0d81999a6fb7384e15fb51b07",
+    "validator": "04305835d9a62833c884a56568a7940e9f9f7842",
+    "aggregate_integration": "12a3704b16206accd2788e5418d8f2c4a6ff3cce"
+  },
+  "verification_state": "INSTALLED_PENDING_CANONICAL_WORKFLOW_CONFIRMATION",
+  "manual_task_required": false,
+  "recorded_at": "2026-07-13T04:00:00Z"
+}
