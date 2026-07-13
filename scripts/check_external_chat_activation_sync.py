@@ -7,8 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ACQUIRE = ROOT / "scripts/acquire_external_chat_activation_evidence.py"
 SYNC = ROOT / "scripts/sync_external_chat_activation_evidence.py"
 IMPORTER = ROOT / "scripts/import_external_chat_activation_evidence.py"
-WORKFLOW = ROOT / ".github/workflows/validate-chain-continuation.yml"
-IOS_WORKFLOW = ROOT / "iosnoperiod/github/workflows/validate-chain-continuation.yml"
+AGGREGATE = ROOT / "scripts/check_goal5_external_frameworks_all.py"
 
 
 def fail(message: str) -> int:
@@ -17,15 +16,14 @@ def fail(message: str) -> int:
 
 
 def main() -> int:
-    for path in (ACQUIRE, SYNC, IMPORTER, WORKFLOW, IOS_WORKFLOW):
+    for path in (ACQUIRE, SYNC, IMPORTER, AGGREGATE):
         if not path.exists():
             return fail(f"missing {path.relative_to(ROOT)}")
 
     acquire = ACQUIRE.read_text(encoding="utf-8")
     sync = SYNC.read_text(encoding="utf-8")
     importer = IMPORTER.read_text(encoding="utf-8")
-    workflow = WORKFLOW.read_text(encoding="utf-8")
-    ios_workflow = IOS_WORKFLOW.read_text(encoding="utf-8")
+    aggregate = AGGREGATE.read_text(encoding="utf-8")
 
     required_acquire = (
         'OWNER = "StegVerse-Labs"',
@@ -36,6 +34,7 @@ def main() -> int:
         'conclusion") == "success"',
         'payload workflow_run_id does not match selected run',
         'payload commit_sha does not match selected run head_sha',
+        'public_artifact_download_requires_authentication',
         'projection_written": False',
         '"state": "FAIL_CLOSED"',
     )
@@ -68,22 +67,16 @@ def main() -> int:
         if marker not in importer:
             return fail(f"importer boundary missing marker: {marker}")
 
-    workflow_markers = (
-        "Sync External Chat activation evidence",
-        "python scripts/sync_external_chat_activation_evidence.py",
-        "Upload External Chat activation evidence intake",
-        "reports/external-chat-activation-evidence-acquisition.json",
-        "static/status/external-chat-activation-evidence*.json",
-        "if: always()",
+    aggregate_markers = (
+        'SYNC_SCRIPT = "scripts/sync_external_chat_activation_evidence.py"',
+        'scripts/check_external_chat_activation_sync.py',
+        'sync_state',
+        'sync_output',
+        'external_chat_activation_sync',
     )
-    for marker in workflow_markers:
-        if marker not in workflow:
-            return fail(f"canonical workflow missing marker: {marker}")
-        if marker not in ios_workflow:
-            return fail(f"iOS workflow mirror missing marker: {marker}")
-
-    if workflow != ios_workflow:
-        return fail("canonical and iOS workflow mirror differ")
+    for marker in aggregate_markers:
+        if marker not in aggregate:
+            return fail(f"Goal 5 aggregate missing marker: {marker}")
 
     print("EXTERNAL CHAT ACTIVATION SYNC CONTRACT: PASS")
     return 0
