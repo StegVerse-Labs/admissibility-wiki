@@ -39,6 +39,7 @@ CHECKS = [
     "scripts/check_pages_build_verification_receipt.py",
     "scripts/check_pages_build_verification_candidate.py",
     "scripts/check_external_chat_review_packets.py",
+    "scripts/check_external_chat_activation_evidence.py",
     "scripts/check_expanded_external_framework_intake.py",
     "scripts/check_external_framework_candidate_directory.py",
     "scripts/check_external_framework_family_coverage.py",
@@ -78,7 +79,7 @@ def main() -> int:
         "failed_checks": len(failures),
         "overall_status": "FAIL" if failures else "PASS",
         "results": results,
-        "authority_boundary": "This report records structural validation outcomes only and does not create external-framework certification, equivalence, standing, registry-promotion, dispatch, execution, deployment, public-verification, or consequence authority.",
+        "authority_boundary": "This report records structural validation outcomes only and does not create external-framework certification, equivalence, standing, registry-promotion, dispatch, execution, deployment, public-verification, activation, mutation, publication, or consequence authority.",
     }, indent=2) + "\n", encoding="utf-8")
 
     print("\n" + "=" * 64)
@@ -90,7 +91,7 @@ def main() -> int:
         print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: pages_build_verification_candidate_contract_installed_pending_observed_canonical_evidence")
+    print("release_readiness: pages_build_verification_candidate_and_external_chat_activation_evidence_contracts_installed_pending_observed_canonical_evidence")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
