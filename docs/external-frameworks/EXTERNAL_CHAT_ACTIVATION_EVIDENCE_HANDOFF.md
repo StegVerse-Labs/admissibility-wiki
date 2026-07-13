@@ -4,13 +4,13 @@
 
 ```text
 Goal: receive and validate exact deployment-correlated External Chat evidence from StegVerse-Labs/Site
-Phase: bounded cross-repository acquisition and Goal 5 synchronization installed
-Result: AUTOMATED_SYNC_INSTALLED_OBSERVED_SITE_ARTIFACT_PENDING
+Phase: bounded acquisition and synchronization installed; exact multi-run and run-attempt artifact selection hardened
+Result: EXACT_SELECTION_INSTALLED_OBSERVED_SITE_ARTIFACT_PENDING
 ```
 
 ## Source artifact
 
-The source repository is `StegVerse-Labs/Site`, workflow `Site Task Runner`, and expected artifact prefix is:
+The source repository is `StegVerse-Labs/Site`, workflow `Site Task Runner`, and expected artifact name is exact rather than prefix-only:
 
 ```text
 external-chat-activation-evidence-<run_id>-<run_attempt>
@@ -22,7 +22,7 @@ The artifact must contain exactly one:
 external-chat-activation-evidence.json
 ```
 
-The record correlates local Site validation, exact commit and workflow identity, Pages deployment URL, post-deployment page and gateway observations, and mutation-disabled posture.
+The payload must bind the selected workflow run ID, run attempt, commit SHA, repository identity, post-deployment observations, and mutation-disabled posture.
 
 ## Installed contracts and synchronization surfaces
 
@@ -37,14 +37,21 @@ scripts/sync_external_chat_activation_evidence.py
 scripts/check_external_chat_activation_sync.py
 receipts/external-chat-activation-evidence-contract-2026-07-13.json
 receipts/external-chat-activation-evidence-sync-2026-07-13.json
+receipts/external-chat-activation-artifact-selection-hardening-2026-07-13.json
 scripts/check_goal5_external_frameworks_all.py
 ```
 
 ## Acquisition selection and identity binding
 
-The acquisition client selects only a completed successful `Site Task Runner` run on `main`, then locates a non-expired artifact whose name binds the exact run ID and run attempt.
+The acquisition client now examines completed successful `Site Task Runner` runs on `main` newest-first. It does not stop merely because the newest successful run lacks the expected artifact.
 
-It verifies:
+For each candidate run it constructs the exact expected artifact name:
+
+```text
+external-chat-activation-evidence-<selected run id>-<selected run attempt>
+```
+
+It accepts exactly one non-expired match and verifies:
 
 ```text
 source repository = StegVerse-Labs/Site
@@ -52,10 +59,23 @@ source workflow = Site Task Runner
 run conclusion = success
 head branch = main
 artifact name run_id = selected run_id
+artifact name run_attempt = selected run_attempt
 payload workflow_run_id = selected run_id
+payload workflow_run_attempt = selected run_attempt
 payload commit_sha = selected run head_sha
 exactly one activation-evidence JSON file exists
 ```
+
+The following stale behavior is prohibited:
+
+```text
+select newest successful run and stop when it lacks an artifact
+accept any artifact sharing only the expected prefix
+ignore run-attempt drift
+choose among duplicate exact artifacts
+```
+
+Duplicate exact matches, run-attempt drift, commit drift, repository drift, or malformed content fail closed.
 
 Authentication is preferred through:
 
@@ -64,7 +84,7 @@ STEGVERSE_SITE_ARTIFACT_TOKEN
 GITHUB_TOKEN
 ```
 
-For the public Site repository, the client may attempt public discovery without a token. When artifact download requires authentication, the outcome is an explicit `SKIPPED` receipt—not a successful import and not a workflow failure.
+For the public Site repository, the client may attempt public discovery without a token. When artifact download requires authentication, the result is an explicit `SKIPPED` receipt—not a successful import and not false activation evidence.
 
 ## Synchronization states
 
@@ -75,19 +95,38 @@ IMPORTED_EXACT_ARTIFACT
 FAIL_CLOSED
 ```
 
+A no-artifact result now records:
+
+```text
+reason: no_successful_run_has_exact_activation_evidence_artifact
+successful_runs_inspected: <count>
+```
+
 The synchronization orchestrator:
 
 ```text
 acquires exact artifact
 -> stages source JSON
--> invokes existing fail-closed importer
+-> invokes the fail-closed importer
 -> verifies projected evidence hash
 -> verifies provenance run identity
 -> verifies provenance commit identity
 -> marks acquisition receipt IMPORTED_EXACT_ARTIFACT
 ```
 
-Goal 5 invokes this synchronization before structural validators. A skipped acquisition remains visible in the Goal 5 report through `external_chat_activation_sync.state` and does not create false activation evidence.
+Goal 5 invokes synchronization before structural validators. A skipped acquisition remains visible through `external_chat_activation_sync.state` and does not create projection or activation claims.
+
+## Current source readiness
+
+The current `StegVerse-Labs/Site` handoff records Site validation result, receipt, and manifest generation, but does not yet declare a successful External Chat activation-evidence artifact. Therefore the expected current synchronization posture remains:
+
+```text
+state: SKIPPED
+reason: no_successful_run_has_exact_activation_evidence_artifact
+projection_written: false
+```
+
+This is a bounded observation, not proof that no future or uninspected run contains the artifact.
 
 ## Accepted result classes
 
@@ -109,12 +148,13 @@ static/status/external-chat-activation-evidence.json
 static/status/external-chat-activation-evidence.provenance.json
 ```
 
-The acquisition and synchronization receipts remain under `reports/` and bind the source workflow, run, artifact, commit, evidence hash, observed result, and mutation-disabled posture.
+The acquisition and synchronization receipts remain under `reports/` and bind source workflow, run, attempt, artifact, commit, evidence hash, observed result, and mutation-disabled posture.
 
 ## Authority boundary
 
 ```text
 contract installation != observed deployment evidence
+artifact discovery != artifact acquisition
 artifact acquisition != deployment authority
 artifact synchronization != repository mutation authority
 activation evidence != publication authority
@@ -127,15 +167,15 @@ mutation remains separately authorized
 ## Next tasks
 
 ```text
-1. Observe a successful Site Task Runner artifact containing OBSERVED_NON_MUTATING_PUBLIC_PATHS.
-2. Allow Goal 5 synchronization to acquire or explicitly skip that artifact with a machine-readable reason.
-3. Preserve the acquisition receipt, source artifact, projection, provenance, and Goal 5 report together.
-4. Require mutation_required_disabled = true before retaining the observed projection.
-5. Confirm the source run ID and commit SHA match the Site artifact metadata.
-6. Do not convert the imported observation into certification, compatibility standing, publication authority, or mutation authority.
+1. Observe a successful Site Task Runner run that emits the exact run-and-attempt-bound activation artifact.
+2. Allow Goal 5 synchronization to inspect successful runs newest-first and either import or explicitly skip.
+3. Preserve acquisition receipt, source artifact, projection, provenance, and Goal 5 report together.
+4. Require mutation_required_disabled = true before retaining OBSERVED_NON_MUTATING_PUBLIC_PATHS.
+5. Confirm source run ID, run attempt, and commit SHA match Site metadata.
+6. Do not convert imported observation into certification, compatibility standing, publication authority, or mutation authority.
 7. Perform one separately authorized disposable staging mutation only after non-mutating public evidence is observed and preserved.
 ```
 
 ## Sharing posture
 
-The Admissibility Wiki now has a bounded automated path that discovers, identity-checks, imports, and validates the exact Site activation-evidence artifact through Goal 5. No observed Site artifact has yet been imported by this installation, and no deployment, publication, mutation, certification, or standing claim follows from synchronization tooling alone.
+The Admissibility Wiki now has a bounded automated path that searches across successful Site runs, requires exact run-attempt artifact identity, imports only content-bound evidence, and fails closed on drift. No observed Site activation artifact has yet been imported, and no deployment, publication, mutation, certification, or standing claim follows from synchronization tooling alone.
