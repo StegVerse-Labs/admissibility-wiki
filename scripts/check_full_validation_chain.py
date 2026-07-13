@@ -9,6 +9,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "reports" / "full_validation_chain_report.json"
+SANDBOX_RUNNER = "scripts/run_sandbox_validation.py"
+SANDBOX_REPORT = ROOT / "reports" / "sandbox-first-validation.report.json"
 
 CHECKS = [
     ("Validate single workflow policy", "scripts/check_workflow_sprawl.py"),
@@ -51,28 +53,59 @@ CHECKS = [
 ]
 
 
+def execute(relative_path: str) -> tuple[int, str]:
+    path = ROOT / relative_path
+    if not path.exists():
+        return 127, f"missing validator: {relative_path}"
+    completed = subprocess.run(
+        [sys.executable, str(path)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    return completed.returncode, completed.stdout.rstrip()
+
+
 def main() -> int:
     results: list[dict[str, object]] = []
     failures: list[str] = []
     print("FULL VALIDATION CHAIN SCAN")
     print("=" * 72)
-    for name, relative_path in CHECKS:
-        path = ROOT / relative_path
-        print(f"\n--- {name} ---")
-        if not path.exists():
-            output = f"missing validator: {relative_path}"
-            print(output)
-            return_code = 127
-        else:
-            completed = subprocess.run([sys.executable, str(path)], cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
-            return_code = completed.returncode
-            output = completed.stdout.rstrip()
+
+    print("\n--- Execute ST-017 isolated sandbox ---")
+    sandbox_code, sandbox_output = execute(SANDBOX_RUNNER)
+    if sandbox_output:
+        print(sandbox_output)
+    sandbox_payload = None
+    if SANDBOX_REPORT.exists():
+        try:
+            sandbox_payload = json.loads(SANDBOX_REPORT.read_text(encoding="utf-8"))
+        except Exception as exc:
+            sandbox_payload = {"sandbox_status": "UNREADABLE", "error": str(exc)}
+    sandbox_status = "PASS" if sandbox_code == 0 and sandbox_payload and sandbox_payload.get("sandbox_status") == "PASS" else "FAIL"
+    results.append({
+        "name": "Execute ST-017 isolated sandbox",
+        "path": SANDBOX_RUNNER,
+        "status": sandbox_status,
+        "return_code": sandbox_code,
+        "output": sandbox_output,
+    })
+    if sandbox_status != "PASS":
+        failures.append(SANDBOX_RUNNER)
+
+    if sandbox_status == "PASS":
+        for name, relative_path in CHECKS:
+            print(f"\n--- {name} ---")
+            return_code, output = execute(relative_path)
             if output:
                 print(output)
-        status = "PASS" if return_code == 0 else "FAIL"
-        results.append({"name": name, "path": relative_path, "status": status, "return_code": return_code, "output": output})
-        if return_code != 0:
-            failures.append(relative_path)
+            status = "PASS" if return_code == 0 else "FAIL"
+            results.append({"name": name, "path": relative_path, "status": status, "return_code": return_code, "output": output})
+            if return_code != 0:
+                failures.append(relative_path)
+
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     report = {
         "schema": "admissibility_wiki.full_validation_chain_report.v1",
@@ -81,8 +114,9 @@ def main() -> int:
         "passed_checks": sum(1 for result in results if result["status"] == "PASS"),
         "failed_checks": sum(1 for result in results if result["status"] == "FAIL"),
         "overall_status": "FAIL" if failures else "PASS",
+        "st017_sandbox": sandbox_payload,
         "results": results,
-        "authority_boundary": "This report records validator outcomes only. A passing scan does not grant execution, merge, deployment authority, public verification, release, certification, downstream propagation, or ecosystem authority.",
+        "authority_boundary": "This report records isolated sandbox and validator outcomes only. A passing scan does not grant runtime execution, artifact promotion, canonical status mutation, merge, deployment authority, public verification, release, certification, downstream propagation, standing, admissibility, or ecosystem authority.",
     }
     REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print("\n" + "=" * 72)
