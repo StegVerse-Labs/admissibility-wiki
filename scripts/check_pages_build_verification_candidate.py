@@ -7,8 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 GENERATOR = ROOT / "scripts" / "generate_pages_build_verification_candidate.py"
-WORKFLOW = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
-MIRROR = ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.yml"
+BUILD_WRITER = ROOT / "scripts" / "write_pages_build_receipt.py"
 
 GENERATOR_MARKERS = [
     '"artifact_type": "pages_build_verification_candidate"',
@@ -19,24 +18,25 @@ GENERATOR_MARKERS = [
     '"FAIL_CLOSED"',
     '"candidate generation does not mutate canonical status"',
     '"observe_pages_artifact_upload_and_bind_artifact_id_and_digest"',
+    'reports" / "pages-build-receipt.json',
+    'reports" / "pages-build-verification-candidate.json',
 ]
-WORKFLOW_MARKERS = [
-    "Generate Pages build verification candidate",
-    "python scripts/generate_pages_build_verification_candidate.py",
-    "reports/pages-build-verification-candidate.json",
-    "name: pages-build-receipt",
+WRITER_MARKERS = [
+    '"artifact_type": "admissibility_wiki_pages_build_receipt"',
+    '"manifest_sha256"',
+    '"file_count"',
+    '"total_size_bytes"',
 ]
 
 
 def main() -> int:
     failures: list[str] = []
-    for path in (GENERATOR, WORKFLOW, MIRROR):
+    for path in (GENERATOR, BUILD_WRITER):
         if not path.exists():
             failures.append(f"missing {path.relative_to(ROOT)}")
 
     generator = GENERATOR.read_text(encoding="utf-8") if GENERATOR.exists() else ""
-    workflow = WORKFLOW.read_text(encoding="utf-8") if WORKFLOW.exists() else ""
-    mirror = MIRROR.read_text(encoding="utf-8") if MIRROR.exists() else ""
+    writer = BUILD_WRITER.read_text(encoding="utf-8") if BUILD_WRITER.exists() else ""
 
     if generator:
         try:
@@ -47,19 +47,14 @@ def main() -> int:
     for marker in GENERATOR_MARKERS:
         if marker not in generator:
             failures.append(f"generator missing marker: {marker}")
-    for marker in WORKFLOW_MARKERS:
-        if marker not in workflow:
-            failures.append(f"workflow missing marker: {marker}")
-    if workflow != mirror:
-        failures.append("canonical and iOS workflow mirrors differ")
+    for marker in WRITER_MARKERS:
+        if marker not in writer:
+            failures.append(f"build writer missing marker: {marker}")
 
-    write_index = workflow.find("python scripts/write_pages_build_receipt.py")
-    candidate_index = workflow.find("python scripts/generate_pages_build_verification_candidate.py")
-    upload_index = workflow.find("name: pages-build-receipt")
-    enforce_index = workflow.find("Enforce Pages build result")
-    if min(write_index, candidate_index, upload_index, enforce_index) >= 0:
-        if not (write_index < candidate_index < upload_index < enforce_index):
-            failures.append("candidate generation must occur after receipt writing and before artifact upload/enforcement")
+    if "static/status/pages-build-verification.json" in generator:
+        failures.append("candidate generator must not mutate canonical status")
+    if "subprocess" in generator or "os.system" in generator:
+        failures.append("candidate generator must not execute external commands")
 
     print("PAGES BUILD VERIFICATION CANDIDATE:", "FAIL" if failures else "PASS")
     for failure in failures:
