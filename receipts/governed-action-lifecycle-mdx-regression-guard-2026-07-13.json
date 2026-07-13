@@ -1,0 +1,52 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "governed_action_lifecycle_mdx_regression_guard",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "main",
+  "transition": {
+    "task": "verify bounded Pages static-render repair and prevent regression",
+    "capability_source": "repository transition table mutation capability",
+    "repository_local": true,
+    "destructive": false,
+    "cross_repository": false
+  },
+  "repair": {
+    "commit": "e85d06703eeb1463ba15dd1fccafcb2120f17bac",
+    "path": "docs/formalisms/governed-action-lifecycle.md",
+    "failure_class": "Docusaurus MDX static-render ReferenceError",
+    "observed_error": "ReferenceError: t_c is not defined"
+  },
+  "guard": {
+    "commit": "202cffb477b0195f914c663e449040a3296e061e",
+    "path": "scripts/check-formalism-publication-artifacts.mjs",
+    "validation_path": "npm run validate:formalism-publication-artifacts",
+    "aggregate_path": "npm run validate",
+    "forbidden_constructs": [
+      "display-math opening delimiter",
+      "display-math closing delimiter",
+      "LaTeX not-implies expression",
+      "LaTeX Gamma expression",
+      "LaTeX mathcal R expression"
+    ],
+    "required_static_statements": [
+      "ValidAt(t_0) does not imply ValidAt(t_c)",
+      "Gamma(T_t_c) -> {ALLOW, DENY, DEFER, ESCALATE}",
+      "OperationalSuccess does not imply Admissible",
+      "R = {rollback, repair, compensate, contain, appeal, learn}",
+      "Reconstructable does not imply LegitimateAtCommit"
+    ]
+  },
+  "verification_state": "INSTALLED_PENDING_CANONICAL_RUN",
+  "required_next_evidence": [
+    "formalism publication artifact validator PASS",
+    "Docusaurus production build PASS",
+    "Pages artifact upload PASS"
+  ],
+  "authority_boundary": {
+    "guard_is_pages_success": false,
+    "pages_build_is_deployment_authority": false,
+    "deployment_is_public_verification": false,
+    "receipt_creates_release_authority": false,
+    "receipt_creates_cross_repository_authority": false
+  }
+}
