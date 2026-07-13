@@ -1,0 +1,22 @@
+{
+  "receipt_type": "repository_local_automation_installation_receipt",
+  "schema_version": "0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "installed_at": "2026-07-12",
+  "transition": "pages_build_candidate_to_artifact_preservation_binding",
+  "artifacts": [
+    "static/schemas/pages-artifact-binding-receipt.schema.json",
+    "tests/fixtures/pages-artifact-binding-receipt.preserved.json",
+    "scripts/check_pages_artifact_binding_receipt.py",
+    "scripts/check_full_validation_chain.py",
+    "scripts/check_goal5_external_frameworks_all.py"
+  ],
+  "installed_state": "STRUCTURAL_CONTRACT_INSTALLED_PENDING_OBSERVED_ARTIFACT_EVIDENCE",
+  "runtime_execution_performed": false,
+  "canonical_status_mutated": false,
+  "deployment_authorized": false,
+  "public_verification_complete": false,
+  "release_authorized": false,
+  "downstream_propagation_authorized": false,
+  "authority_boundary": "The installed schema, fixture, and validators describe and validate artifact-preservation evidence only. They do not create an observed Pages artifact, mutate canonical status, deploy Pages, establish public verification, authorize release, or authorize downstream propagation."
+}
