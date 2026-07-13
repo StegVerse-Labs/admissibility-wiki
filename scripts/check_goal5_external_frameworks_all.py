@@ -41,6 +41,7 @@ CHECKS = [
     "scripts/check_pages_build_verification_candidate.py",
     "scripts/check_pages_artifact_binding_receipt.py",
     "scripts/check_pages_build_status_promotion_receipt.py",
+    "scripts/check_pages_build_verification_status_application.py",
     "scripts/check_external_chat_review_packets.py",
     "scripts/check_external_chat_activation_evidence.py",
     "scripts/check_external_chat_activation_importer.py",
@@ -61,14 +62,7 @@ def execute(path: str) -> tuple[int, str]:
     target = ROOT / path
     if not target.exists():
         return 127, f"MISSING: {path}"
-    completed = subprocess.run(
-        [sys.executable, str(target)],
-        cwd=ROOT,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
-    )
+    completed = subprocess.run([sys.executable, str(target)], cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
     return completed.returncode, completed.stdout.rstrip()
 
 
@@ -76,7 +70,6 @@ def main() -> int:
     results: list[dict[str, object]] = []
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE CHECK")
     print("=" * 64)
-
     print(f"\n--- RUN: {SYNC_SCRIPT} ---")
     sync_code, sync_output = execute(SYNC_SCRIPT)
     if sync_output:
@@ -88,55 +81,25 @@ def main() -> int:
             sync_state = json.loads(acquisition_path.read_text(encoding="utf-8")).get("state")
         except Exception:
             sync_state = "UNREADABLE"
-    results.append(
-        {
-            "path": SYNC_SCRIPT,
-            "status": "PASS" if sync_code == 0 else "FAIL",
-            "return_code": sync_code,
-            "output": sync_output,
-            "external_chat_activation_sync": True,
-            "sync_state": sync_state,
-        }
-    )
-
+    results.append({"path": SYNC_SCRIPT, "status": "PASS" if sync_code == 0 else "FAIL", "return_code": sync_code, "output": sync_output, "external_chat_activation_sync": True, "sync_state": sync_state})
     for check in CHECKS:
         print(f"\n--- RUN: {check} ---")
         return_code, output = execute(check)
         if output:
             print(output)
-        results.append(
-            {
-                "path": check,
-                "status": "PASS" if return_code == 0 else "FAIL",
-                "return_code": return_code,
-                "output": output,
-            }
-        )
-
+        results.append({"path": check, "status": "PASS" if return_code == 0 else "FAIL", "return_code": return_code, "output": output})
     failures = [item for item in results if item["status"] == "FAIL"]
     REPORT.parent.mkdir(parents=True, exist_ok=True)
-    REPORT.write_text(
-        json.dumps(
-            {
-                "schema": "admissibility_wiki.goal5_external_frameworks_report.v1",
-                "total_checks": len(results),
-                "passed_checks": len(results) - len(failures),
-                "failed_checks": len(failures),
-                "overall_status": "FAIL" if failures else "PASS",
-                "external_chat_activation_sync": {
-                    "state": sync_state,
-                    "output": sync_output,
-                    "authority_effect": "NONE",
-                },
-                "results": results,
-                "authority_boundary": "This report records structural validation and bounded evidence-transfer outcomes only and does not create external-framework certification, equivalence, standing, registry-promotion, dispatch, execution, deployment, public-verification, activation, mutation, publication, or consequence authority.",
-            },
-            indent=2,
-        )
-        + "\n",
-        encoding="utf-8",
-    )
-
+    REPORT.write_text(json.dumps({
+        "schema": "admissibility_wiki.goal5_external_frameworks_report.v1",
+        "total_checks": len(results),
+        "passed_checks": len(results) - len(failures),
+        "failed_checks": len(failures),
+        "overall_status": "FAIL" if failures else "PASS",
+        "external_chat_activation_sync": {"state": sync_state, "output": sync_output, "authority_effect": "NONE"},
+        "results": results,
+        "authority_boundary": "This report records structural validation and bounded evidence-transfer outcomes only and does not create external-framework certification, equivalence, standing, registry-promotion, dispatch, execution, deployment, public-verification, activation, mutation, publication, or consequence authority.",
+    }, indent=2) + "\n", encoding="utf-8")
     print("\n" + "=" * 64)
     if failures:
         print(f"GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: FAIL ({len(failures)}/{len(results)} failed)")
@@ -146,7 +109,7 @@ def main() -> int:
         print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
         return 1
     print("GOAL 5 EXTERNAL FRAMEWORKS AGGREGATE: PASS")
-    print("release_readiness: pages_artifact_binding_status_promotion_and_external_chat_activation_sync_installed_pending_observed_canonical_evidence")
+    print("release_readiness: pages_artifact_binding_status_application_and_external_chat_activation_sync_installed_pending_observed_canonical_evidence")
     print(f"Machine-readable report: {REPORT.relative_to(ROOT)}")
     return 0
 
