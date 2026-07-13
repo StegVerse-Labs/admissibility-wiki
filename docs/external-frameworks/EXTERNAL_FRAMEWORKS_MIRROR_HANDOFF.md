@@ -10,8 +10,8 @@ Preserve unrelated CI repair, conceptual-inheritance, lifecycle-formalism, infer
 
 ```text
 Goal: evidence-bound external-framework intake through observed, replayable, non-authorizing interoperability evidence
-Phase: fresh-runner OPA replay verified passing; bounded Pages static-render repair installed
-Result: FRESH_RUNNER_REPLAY_PASS_PAGES_REPAIR_PENDING_VERIFICATION
+Phase: fresh-runner OPA replay verified passing; Pages static-render repair and regression guard installed
+Result: FRESH_RUNNER_REPLAY_PASS_PAGES_REPAIR_GUARD_PENDING_VERIFICATION
 ```
 
 ## Current state
@@ -34,7 +34,9 @@ dispatch-observation hash-chain validation: installed
 canonical validation chain: PASS on run 29212846956
 OPA capture and same-environment replay: PASS on run 29212846956
 fresh-runner replay: PASS on run 29212846956
-build-pages: FAIL on run 29212846956 from governed-action-lifecycle MDX static rendering; bounded repair installed
+build-pages: FAIL on run 29212846956 from governed-action-lifecycle MDX static rendering
+bounded lifecycle page repair: installed at e85d06703eeb1463ba15dd1fccafcb2120f17bac
+lifecycle MDX regression guard: installed at 202cffb477b0195f914c663e449040a3296e061e
 runtime jobs emitted by plan automation: 0
 independent organization/provider replays: 0 of 18
 ```
@@ -46,6 +48,7 @@ docs/external-frameworks/observed-evidence-capture-protocol.md
 docs/external-frameworks/observed-evidence-capture-queue.v0.1.json
 scripts/check_observed_evidence_capture_queue.py
 scripts/check_goal5_external_frameworks_all.py
+scripts/check-formalism-publication-artifacts.mjs
 .github/workflows/validate-chain-continuation.yml
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
@@ -89,7 +92,7 @@ Result: PASS
 
 This verifies the bounded status-schema repair and closes the observed same-provider fresh-runner replay blocker. Preserve the fresh-runner artifact, exact hashes, environment, comparison results, and limitations before any stronger claim.
 
-## Pages failure and bounded repair
+## Pages failure, repair, and regression guard
 
 Run `29212846956` failed only at `build-pages` after all governance validators passed and Docusaurus reached static site generation:
 
@@ -105,32 +108,43 @@ Deploy pages: skipped
 Verify public pages: skipped
 ```
 
-The page used display-LaTeX delimiters containing MDX-interpreted identifiers and braces. The bounded repair converts those display expressions to fenced text while preserving the lifecycle meaning and all authority boundaries:
+The bounded page repair converts MDX-sensitive display expressions to literal fenced text while preserving lifecycle meaning and authority boundaries:
 
 ```text
 Commit: e85d06703eeb1463ba15dd1fccafcb2120f17bac
 File: docs/formalisms/governed-action-lifecycle.md
-Change: replace MDX-unsafe display expressions with literal fenced text
 ```
 
-The repair does not weaken activation, deployment, public-verification, release, governance, or authority gates.
+The repository-local transition capability also allowed installation of a focused regression guard because the pending Pages verification task required mutation and no other build blocker prevented it:
+
+```text
+Commit: 202cffb477b0195f914c663e449040a3296e061e
+File: scripts/check-formalism-publication-artifacts.mjs
+Checks:
+  - rejects reintroduction of MDX-sensitive display-math markers
+  - requires all five repaired lifecycle statements
+  - remains inside the existing npm validation chain
+```
+
+The repair and guard do not weaken activation, deployment, public-verification, release, governance, or authority gates.
 
 ## Next task
 
 ```text
-1. Verify the canonical successor run containing commit e85d06703eeb1463ba15dd1fccafcb2120f17bac.
-2. Require build-pages and the Docusaurus production build to pass before recording Pages build completion.
-3. Preserve the Pages build receipt and exact workflow context.
-4. Do not deploy or claim public verification unless the workflow itself advances through those separately governed stages.
-5. Perform replay outside the same repository/provider before any stronger independence claim.
-6. Review destination handoffs before any propagation to Site, Publisher, or StegGuardian.
+1. Verify the canonical successor run containing commits e85d06703eeb1463ba15dd1fccafcb2120f17bac and 202cffb477b0195f914c663e449040a3296e061e.
+2. Require check-formalism-publication-artifacts.mjs, build-pages, and the Docusaurus production build to pass before recording Pages build completion.
+3. Preserve the Pages build artifact or receipt and exact workflow context.
+4. If a repository-local validation or rendering defect remains, apply the next bounded mutation available through the transition table and revalidate.
+5. Do not deploy or claim public verification unless the workflow itself advances through those separately governed stages.
+6. Perform replay outside the same repository/provider before any stronger independence claim.
+7. Review destination handoffs before propagation to Site, Publisher, or StegGuardian.
 ```
 
 ## Remaining modules
 
 ```text
 StegVerse-Labs/admissibility-wiki
-  -> successor verification for commit e85d06703eeb1463ba15dd1fccafcb2120f17bac
+  -> successor verification for e85d067 and 202cffb
   -> passing Pages build receipt
   -> public deployment verification receipt
 
@@ -155,10 +169,11 @@ fresh runner in same provider != independent organization or provider
 replay confirmation != execution authority
 observation receipt != authority
 Pages build != deployment authority
+regression guard != Pages success
 ```
 
-No deployment, release, tag, merge, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation claim is authorized by this handoff. No release tag is authorized solely from schema, fixture, validation, promotion, capture, replay, repair, or automation installation.
+No deployment, release, tag, merge, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation claim follows from these repository-local build mutations. No release tag is justified solely by schema, fixture, validation, promotion, capture, replay, repair, guard, or automation installation.
 
 ## Archive readiness
 
-This handoff preserves current Cedar evidence, canonical validation success, same-environment and fresh-runner OPA replay success, the exact Pages static-render failure, bounded repair commit, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
+This handoff preserves current Cedar evidence, canonical validation success, same-environment and fresh-runner OPA replay success, the exact Pages static-render failure, bounded page repair, regression guard, authority boundaries, remaining modules, and ordered continuation task. Earlier conversation context is not required.
