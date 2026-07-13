@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.1",
+  "receipt_type": "pages_build_verification_receipt",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "target_commit": "7e82e84b0ae20b84ca2b842a2bf73c1645101015",
+  "verification_state": "PENDING_CANONICAL_RUN",
+  "required_checks": {
+    "formalism_publication_validator": {
+      "status": "PENDING",
+      "evidence_ref": null
+    },
+    "docusaurus_production_build": {
+      "status": "PENDING",
+      "evidence_ref": null
+    },
+    "pages_artifact_upload": {
+      "status": "PENDING",
+      "evidence_ref": null
+    }
+  },
+  "observed_workflow": {
+    "run_id": null,
+    "job_id": null,
+    "artifact_id": null,
+    "artifact_digest": null
+  },
+  "deployment_authorized": false,
+  "public_verification_complete": false,
+  "non_claims": [
+    "repair installation is not Pages build success",
+    "regression guard installation is not Pages build success",
+    "Pages build success is not deployment authority",
+    "Pages artifact upload is not public verification",
+    "receipt validation does not authorize release or downstream propagation"
+  ]
+}
