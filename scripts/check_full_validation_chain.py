@@ -26,6 +26,7 @@ CHECKS = [
     ("Validate Pages verification status application", "scripts/check_pages_build_verification_status_application.py"),
     ("Validate Pages deployment observation receipt", "scripts/check_pages_deployment_observation_receipt.py"),
     ("Validate Pages public endpoint verification receipt", "scripts/check_pages_public_endpoint_verification_receipt.py"),
+    ("Validate inference-window governance documentation mesh", "scripts/check_inference_window_governance_docs.py"),
     ("Validate external frameworks index", "scripts/check_external_frameworks_index.py"),
     ("Validate external framework manifests", "scripts/check_external_framework_manifests.py"),
     ("Validate external framework terminology", "scripts/check_external_framework_terminology.py"),
