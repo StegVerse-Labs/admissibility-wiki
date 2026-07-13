@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "external_chat_activation_evidence",
+  "generated_at": "2026-07-13T00:00:00+00:00",
+  "result": "OBSERVED_NON_MUTATING_PUBLIC_PATHS",
+  "failure_class": null,
+  "repository": "StegVerse-Labs/Site",
+  "commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "ref": "refs/heads/main",
+  "event_name": "workflow_run",
+  "workflow": "Site Task Runner",
+  "workflow_run_id": "29220000000",
+  "workflow_run_attempt": "1",
+  "workflow_job": "run-site-task",
+  "pages_deployment_url": "https://stegverse-labs.github.io/Site/",
+  "gateway_base_url": "https://stegverse-ecosystem-chat-gateway.onrender.com",
+  "local_validation": {
+    "present": true,
+    "passed": true,
+    "receipt_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "status": "PASSED",
+    "failed_validator": null,
+    "authority_effect": "NONE"
+  },
+  "post_deployment_live_verification": {
+    "present": true,
+    "passed": true,
+    "receipt_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "result": "PASS",
+    "failure_class": null,
+    "mutation_required_disabled": true,
+    "observation_count": 4
+  },
+  "authority_boundary": {
+    "evidence_is_deployment_authority": false,
+    "evidence_is_repository_mutation_authority": false,
+    "evidence_is_publication_authority": false,
+    "evidence_is_certification": false,
+    "evidence_creates_standing": false,
+    "mutation_remains_separately_authorized": true
+  },
+  "evidence_sha256": "f2717aae155358e932f80911d8a9b6dd7be0e027484a553d048ca2cf6418e30a"
+}
