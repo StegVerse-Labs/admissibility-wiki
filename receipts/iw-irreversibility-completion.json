@@ -1,0 +1,30 @@
+{
+  "schema": "admissible_existence.iw.destination-completion.v1",
+  "source": {
+    "repository": "Admissible-Existence/IW",
+    "commit_sha": "87fd24ea829b413373ea42381dd0b08d45b79239",
+    "canonical_markdown": "docs/irreversibility.md",
+    "publication_pdf": "docs/irreversibility.pdf"
+  },
+  "target": {
+    "repository": "StegVerse-Labs/admissibility-wiki",
+    "role": "admissibility_reference",
+    "commit_sha": "46e2f1715bdc5617c77a6b9c016b94d1e3127b4e"
+  },
+  "application": {
+    "files": [
+      {
+        "path": "docs/formalisms/negative-inference-window-and-irreversibility.md",
+        "sha256": "d3b6ff9e9a8b72d110dbb64f99ea0204a1b2de31376fa9aa86cd69f061a8bc28"
+      }
+    ],
+    "required_updates_satisfied": true,
+    "claim_boundary_preserved": true
+  },
+  "authority": false,
+  "completion_state": "complete",
+  "evidence": [
+    "destination commit 46e2f1715bdc5617c77a6b9c016b94d1e3127b4e",
+    "added negative inference window, practical irreversibility, warrant, and decision-posture reference"
+  ]
+}
