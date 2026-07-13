@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "external_chat_activation_status_promotion_authorization",
+  "authorized_at": "2026-07-13T00:00:00Z",
+  "authorized_by": "repository_owner_operator",
+  "authorization_basis": "Explicit operator instruction: Make it happen",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "authorized_decision": "ALLOW_CANONICAL_STATUS_PROMOTION_ONLY",
+  "required_candidate_state": "OBSERVED_NON_MUTATING_PUBLIC_PATHS_CANDIDATE",
+  "authorized_target_path": "static/status/external-chat-activation-observation.json",
+  "required_source_repository": "StegVerse-Labs/Site",
+  "required_mutation_posture": "mutation_required_disabled_true",
+  "authorization_effect": {
+    "canonical_observation_status_promotion_allowed_when_all_predicates_hold": true,
+    "deployment_authorized": false,
+    "repository_mutation_authorized": false,
+    "publication_authorized": false,
+    "certification_created": false,
+    "standing_created": false,
+    "external_framework_consequence_authorized": false
+  },
+  "fail_closed_on": [
+    "missing_candidate",
+    "candidate_state_mismatch",
+    "candidate_hash_drift",
+    "source_repository_drift",
+    "source_commit_drift",
+    "workflow_run_or_attempt_drift",
+    "source_evidence_hash_drift",
+    "mutation_not_observed_disabled",
+    "target_path_drift"
+  ],
+  "required_execution_order": [
+    "synchronize_exact_site_artifact",
+    "generate_observation_candidate",
+    "validate_candidate",
+    "generate_hash_bound_promotion_receipt",
+    "dry_run_status_application",
+    "apply_only_canonical_observation_status",
+    "preserve_application_receipt"
+  ]
+}
