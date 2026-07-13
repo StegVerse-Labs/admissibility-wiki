@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "canonical_activation_attempt",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "requested_at": "2026-07-13T05:15:00Z",
+  "requested_by": "governed_build_continuation",
+  "intent": "Trigger the canonical Validate chain continuation workflow against the current repository head so the complete Pages evidence, deployment-observation, public-endpoint-verification, OPA replay, Cedar, External Chat synchronization, and Goal 5 validation paths execute together.",
+  "required_jobs": [
+    "validate-chain-continuation",
+    "capture-opa-evidence",
+    "replay-opa-fresh-runner",
+    "build-selected-cedar-binary",
+    "build-pages",
+    "deploy-pages",
+    "verify-public-pages"
+  ],
+  "required_artifacts": [
+    "full-validation-chain-report",
+    "goal5-external-frameworks-report",
+    "pages-build-receipt",
+    "pages-build-verification-candidate",
+    "github-pages",
+    "public-activation-receipt"
+  ],
+  "success_boundary": {
+    "workflow_triggered_by_this_commit": true,
+    "workflow_success_claimed_by_receipt": false,
+    "pages_build_success_claimed_by_receipt": false,
+    "deployment_success_claimed_by_receipt": false,
+    "public_verification_claimed_by_receipt": false,
+    "release_authorized": false,
+    "downstream_propagation_authorized": false
+  },
+  "next_transition": "inspect_exact_run_jobs_artifacts_and_logs_then_apply_only_evidence_supported_status_changes"
+}
