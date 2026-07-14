@@ -29,6 +29,7 @@ PAGES = {
     "canonical_workflow_health_transition_history": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-transition-history.json",
     "canonical_workflow_health_transition_trend": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-transition-trend.json",
     "canonical_workflow_health_transition_trend_change_receipt": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-transition-trend-change-receipt.json",
+    "canonical_workflow_health_transition_trend_change_history": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-transition-trend-change-history.json",
     "kpt_external_framework_page": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/kpt",
     "kpt_external_framework_status": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-external-framework-intake-status.json",
 }
@@ -51,7 +52,7 @@ def main() -> int:
         results[name] = {"url": url, "reachable": ok, "http_status": status}
         if not ok: failures.append(message)
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.9",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.10",
         "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID','local')}.{os.getenv('GITHUB_RUN_ATTEMPT','0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
@@ -64,7 +65,7 @@ def main() -> int:
         "non_claims": [
             "Route reachability is bounded publication evidence only.",
             "Published verification doctrine does not grant execution authority.",
-            "Trend and trend-change reachability do not make predictive claims or grant authority.",
+            "Trend, trend-change, and trend-change-history reachability do not make predictive claims or grant authority.",
             "Failed checks remain fail-closed and create no user task."
         ]
     }
