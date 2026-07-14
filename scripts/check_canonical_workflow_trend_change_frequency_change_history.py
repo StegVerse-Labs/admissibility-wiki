@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RECONCILER = ROOT / "scripts" / "reconcile_canonical_workflow_trend_change_frequency_change_history.py"
 CURRENT = ROOT / "static" / "status" / "canonical-workflow-trend-change-frequency-change-receipt.json"
 HISTORY = ROOT / "static" / "status" / "canonical-workflow-trend-change-frequency-change-history.json"
+STABILITY = ROOT / "static" / "status" / "canonical-workflow-frequency-change-stability-summary.json"
 FIXTURE = ROOT / "reports" / "canonical-frequency-change-history-fixture.json"
 
 
@@ -77,6 +78,7 @@ def main() -> int:
     CURRENT.write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
     FIXTURE.write_text(json.dumps({"changes": [previous, duplicate]}, indent=2) + "\n", encoding="utf-8")
     HISTORY.unlink(missing_ok=True)
+    STABILITY.unlink(missing_ok=True)
 
     env = os.environ.copy()
     env["CANONICAL_TREND_CHANGE_FREQUENCY_CHANGE_HISTORY_SOURCE"] = str(FIXTURE)
@@ -94,6 +96,8 @@ def main() -> int:
             fail(completed.stdout or "reconciler exited non-zero")
         if not HISTORY.exists():
             fail("history was not generated")
+        if not STABILITY.exists():
+            fail("stability summary was not generated")
 
         payload = json.loads(HISTORY.read_text(encoding="utf-8"))
         changes = payload.get("changes", [])
@@ -136,14 +140,21 @@ def main() -> int:
         if payload.get("public_endpoint") != "/status/canonical-workflow-trend-change-frequency-change-history.json":
             fail("public endpoint mismatch")
 
+        stability = json.loads(STABILITY.read_text(encoding="utf-8"))
+        if stability.get("stability_class") != "REPEATED_CLASS_CHANGE_OBSERVED":
+            fail("stability class mismatch")
+        if stability.get("manual_tasks_required") != [] or stability.get("user_action_required") is not False:
+            fail("stability summary violates no-manual boundary")
+
         print(
             "CANONICAL WORKFLOW TREND CHANGE FREQUENCY CHANGE HISTORY: PASS - "
-            "entries=2 deduplicated=true manual_tasks=0"
+            "entries=2 stability=REPEATED_CLASS_CHANGE_OBSERVED manual_tasks=0"
         )
         return 0
     finally:
         CURRENT.unlink(missing_ok=True)
         HISTORY.unlink(missing_ok=True)
+        STABILITY.unlink(missing_ok=True)
         FIXTURE.unlink(missing_ok=True)
 
 
