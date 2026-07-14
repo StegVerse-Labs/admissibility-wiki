@@ -14,7 +14,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: admissibility-wiki-canonical
+  group: admissibility-wiki-canonical-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
