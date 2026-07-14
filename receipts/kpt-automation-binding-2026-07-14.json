@@ -1,0 +1,40 @@
+{
+  "receipt_id": "kpt-automation-binding-2026-07-14",
+  "artifact_type": "automation_binding_receipt",
+  "schema_version": "0.1",
+  "recorded_at": "2026-07-14T04:40:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "framework_id": "kpt",
+  "goal_id": "kpt-external-framework-intake-activation",
+  "source_posture": "SOURCE_BLOCKED_FAIL_CLOSED",
+  "automation": {
+    "deterministic_validator": "scripts/check_kpt_external_framework_intake.py",
+    "full_validation_chain": "scripts/check_full_validation_chain.py",
+    "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "schedule": "17 minutes after every hour",
+    "report_generator": "scripts/generate_external_framework_reports.py",
+    "build_job": "build-pages",
+    "deployment_job": "deploy-pages",
+    "public_observation_job": "verify-public-pages",
+    "no_manual_task_guard": "scripts/check-no-manual-task-assignments.mjs"
+  },
+  "manual_task_requirement": "none",
+  "manual_validation_required": false,
+  "manual_deployment_required": false,
+  "manual_publication_check_required": false,
+  "continuation": {
+    "issue": "https://github.com/StegVerse-Labs/admissibility-wiki/issues/18",
+    "owner": "repository automation",
+    "source_upgrade_trigger": "official owner-published KPT source becomes available",
+    "source_upgrade_action": "update page, manifest, registry, compatibility report, status, and provenance together, then allow the canonical workflow to validate and deploy"
+  },
+  "boundary": {
+    "automation_binding_is_validation_result": false,
+    "scheduled_execution_is_publication_proof": false,
+    "public_visibility_is_authority": false,
+    "certification_claim": false,
+    "endorsement_claim": false,
+    "execution_authority_claim": false,
+    "commit_time_authority_claim": false
+  }
+}
