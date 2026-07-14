@@ -1,8 +1,8 @@
 {
-  "schema": "admissibility_wiki.canonical_workflow_observation_automation.v0.6",
+  "schema": "admissibility_wiki.canonical_workflow_observation_automation.v0.7",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "goal": "Eliminate manual workflow observation, reconciliation, health classification, transition explanation, and transition-history maintenance while preserving fail-closed automation.",
-  "state": "AUTOMATED_HEALTH_TRANSITION_HISTORY_BOUND",
+  "goal": "Eliminate manual workflow observation, reconciliation, health classification, transition explanation, transition-history maintenance, and trend interpretation while preserving fail-closed automation.",
+  "state": "AUTOMATED_HEALTH_TRANSITION_TREND_BOUND",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "ios_safe_workflow_mirror": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
   "writer": "scripts/write_canonical_workflow_observation_receipt.py",
@@ -17,6 +17,8 @@
   "health_transition_validator": "scripts/check_canonical_workflow_health_transition_receipt.py",
   "health_transition_history_reconciler": "scripts/reconcile_canonical_workflow_health_transition_history.py",
   "health_transition_history_validator": "scripts/check_canonical_workflow_health_transition_history.py",
+  "health_transition_trend_generator": "scripts/generate_canonical_workflow_health_transition_trend.py",
+  "health_transition_trend_validator": "scripts/check_canonical_workflow_health_transition_trend.py",
   "generated_receipt": "reports/canonical-workflow-observation-receipt.json",
   "embedded_receipt": "reports/full_validation_chain_report.json#canonical_workflow_observation",
   "automation_contract_endpoint": "/status/canonical-workflow-observation-automation.json",
@@ -25,6 +27,7 @@
   "health_summary_endpoint": "/status/canonical-workflow-health-summary.json",
   "health_transition_endpoint": "/status/canonical-workflow-health-transition-receipt.json",
   "health_transition_history_endpoint": "/status/canonical-workflow-health-transition-history.json",
+  "health_transition_trend_endpoint": "/status/canonical-workflow-health-transition-trend.json",
   "publication_chain": [
     "validate-chain-continuation generates and embeds the run receipt",
     "full-validation-chain-report artifact transfers it to build-pages",
@@ -33,8 +36,9 @@
     "build-pages classifies the reconciled history into a compact workflow health summary",
     "build-pages emits a health-transition receipt from consecutive classified observations",
     "build-pages reconciles the transition receipt into bounded deduplicated transition history",
+    "build-pages derives a bounded descriptive trend summary from transition history",
     "deploy-pages publishes the site artifact",
-    "verify-public-pages checks observation, health, transition receipt, and transition-history endpoints"
+    "verify-public-pages checks observation, health, transition, transition-history, and trend endpoints"
   ],
   "history_policy": {
     "maximum_entries": 24,
@@ -59,6 +63,15 @@
     "prior_history_unavailable_result": "initialize a new bounded sequence without assigning a manual task",
     "next_reconciliation": "next repository-owned canonical workflow trigger"
   },
+  "health_transition_trend_policy": {
+    "maximum_recent_entries": 6,
+    "descriptive_only": true,
+    "predictive_claim": false,
+    "causal_claim_beyond_receipt_fields": false,
+    "classes": ["AWAITING_AUTOMATED_TRANSITION_HISTORY", "RECOVERY_OBSERVED", "STABLE_HEALTHY", "HEALTHY_OBSERVED", "UNRESOLVED_DEFERRAL", "REPEATED_FAIL_CLOSED", "STABLE_FAIL_CLOSED", "UNSTABLE_OSCILLATION", "MIXED_BOUNDED_HISTORY"],
+    "owner": "canonical build-pages job",
+    "next_evaluation": "next repository-owned canonical workflow trigger"
+  },
   "trigger_ownership": {
     "push": "repository automation",
     "pull_request": "repository automation",
@@ -75,7 +88,7 @@
   "downstream_mutation_authority_granted": false,
   "non_claims": [
     "This status proves automation contracts, not a successful future workflow run.",
-    "Public transition history records bounded workflow evidence only.",
+    "Public trend summaries are bounded and descriptive, not predictive.",
     "It does not grant merge, release, deployment, publication, execution, or downstream mutation authority.",
     "It does not convert missing external evidence into an acceptance result."
   ]
