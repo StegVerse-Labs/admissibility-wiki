@@ -143,6 +143,7 @@ The current registered framework table contains sourced pages, page candidates, 
 | [MindForge](./mindforge.md) | Historical governance review evidence intake | artifact package required | Candidate target for testing whether review evidence remains non-authorizing until SPE reconstructs current standing. |
 | [Morrison Runtime](./morrison-runtime.md) | Runtime-governance comparison target | sourced with parameterized boundary case partial | Candidate comparison target for runtime outcome, failure-state behavior, semantic-equivalence boundary testing, and preparation-vs-execution boundary testing. |
 | [CARE Runtime](./care-runtime.md) | Public runtime-governance platform candidate | official source required | Candidate crosswalk target for runtime governance, public-platform posture, and consequence-boundary language. |
+| [KPT](./kpt.md) | Runtime decision boundary before downstream consequence | official source required | Source-blocked candidate for routing explicit decision-state and trace evidence into independent StegVerse commit-time standing review without inheriting authority. |
 | [AAR](./aar.md) | Supervised AI governance and operational forensics candidate | sourced | Crosswalk target for observable-system governance and pre-execution cost governance. |
 | [ASRO](./asro.md) | Independent AI governance-state attestation | sourced | Crosswalk target for host-side measurement, edge-side witnessing, and independent verification of whether declared governance remained in force. |
 | [MITRE ATLAS](./mitre-atlas.md) | Adversarial AI threat knowledge base | sourced | Crosswalk target for tactics, techniques, mitigations, case studies, and threat-informed review posture. |
@@ -176,6 +177,7 @@ OWASP Top 10 for LLM Applications -> LLM application risk context
 DecisionAssure -> trace
 MindForge -> review
 Morrison Runtime -> pre-execution runtime verdict and audit evidence
+KPT -> source-blocked runtime decision state before downstream consequence
 Runtime Governance Benchmark Suite -> shared boundary tests
 Benchmark Mapping Rollout -> cross-framework applicability tracker
 Expanded External Framework Intake -> candidate discovery without validation claims
