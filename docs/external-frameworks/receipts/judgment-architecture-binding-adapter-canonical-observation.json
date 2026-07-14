@@ -1,0 +1,55 @@
+{
+  "artifact_type": "judgment_architecture_binding_adapter_canonical_observation_receipt",
+  "schema_version": "0.1",
+  "framework": "Judgment Architecture",
+  "goal_id": "judgment-architecture-binding-adapter-canonical-observation",
+  "observation_result": "PASS",
+  "observed_workflow": {
+    "name": "Validate chain continuation",
+    "run_id": 29338083253,
+    "run_number": 2356,
+    "job_id": 87102889042,
+    "job_name": "validate-chain-continuation",
+    "head_sha": "66d39dd1b0554365ccd56b62eaf9c03c4cf3738d",
+    "checkout_merge_sha": "73f93877d4bdf47c569409244095f1a7cbafcea6",
+    "conclusion": "success",
+    "observed_at": "2026-07-14T13:52:57Z"
+  },
+  "aggregate_evidence": {
+    "artifact_name": "goal5-external-frameworks-report",
+    "artifact_id": 8312919637,
+    "artifact_digest": "sha256:e57080231793bde43824be2b9a7b543aa8d7810697938b59a98db95d43db0cde",
+    "report_schema": "admissibility_wiki.goal5_external_frameworks_report.v1",
+    "overall_status": "PASS",
+    "total_checks": 53,
+    "passed_checks": 53,
+    "failed_checks": 0
+  },
+  "adapter_evidence": {
+    "validator": "scripts/check_judgment_architecture_binding_adapter.py",
+    "validator_status": "PASS",
+    "validator_output": "JUDGMENT ARCHITECTURE BINDING ADAPTER: PASS",
+    "status_artifact": "static/status/judgment-architecture-binding-adapter-status.json",
+    "case_count": 4,
+    "case_results": {
+      "BIND": 1,
+      "DENY": 1,
+      "FAIL_CLOSED": 2
+    }
+  },
+  "promotion_effect": {
+    "canonical_workflow_observation": "SATISFIED",
+    "mapping_state": "fixture_ready",
+    "runtime_interoperability": "NOT_ESTABLISHED",
+    "execution_authority": "NONE",
+    "creator_endorsement": "NOT_ESTABLISHED",
+    "replay_ready": false
+  },
+  "next_required_action": "Bind a stable canonical public source locator and page-level citations to the Judgment Architecture research page before replay-ready consideration.",
+  "authority_boundary": {
+    "receipt_grants_execution_authority": false,
+    "adapter_bind_result_is_runtime_authorization": false,
+    "workflow_pass_establishes_interoperability": false,
+    "framework_inclusion_is_creator_endorsement": false
+  }
+}
