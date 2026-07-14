@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -11,6 +13,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT = ROOT / "static" / "status" / "canonical-workflow-health-transition-receipt.json"
 HISTORY = ROOT / "static" / "status" / "canonical-workflow-health-transition-history.json"
+TREND_GENERATOR = ROOT / "scripts" / "generate_canonical_workflow_health_transition_trend.py"
 PUBLIC_HISTORY_URL = "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-transition-history.json"
 MAX_ENTRIES = 24
 
@@ -109,6 +112,21 @@ def main() -> int:
         "CANONICAL WORKFLOW HEALTH TRANSITION HISTORY: PASS - "
         f"entries={len(ordered)} latest={latest.get('transition_state')} prior={prior_history.get('result')} manual_tasks=0"
     )
+
+    if not TREND_GENERATOR.exists():
+        raise SystemExit("workflow health-transition trend generator is missing")
+    completed = subprocess.run(
+        [sys.executable, str(TREND_GENERATOR)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    if completed.stdout:
+        print(completed.stdout.rstrip())
+    if completed.returncode != 0:
+        raise SystemExit("workflow health-transition trend generation failed")
     return 0
 
 
