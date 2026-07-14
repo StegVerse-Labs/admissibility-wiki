@@ -7,6 +7,8 @@
   "fixtures": "tests/fixtures/ai-led-radiology-execution-cases.json",
   "validator": "scripts/check_ai_led_radiology_execution.py",
   "publication_validator": "scripts/check_ai_led_radiology_publication.py",
+  "handoff_sync_validator": "scripts/check_ai_led_radiology_handoff_sync.py",
+  "activation_handoff": "docs/AI_LED_RADIOLOGY_MIRROR_HANDOFF.md",
   "canonical_integration": "scripts/check_admissibility_automation_handoff.py",
   "generated_receipt": "reports/ai-led-radiology-execution-receipt.json",
   "public_status_url": "https://stegverse-labs.github.io/admissibility-wiki/status/ai-led-radiology-execution-status.json",
@@ -28,11 +30,13 @@
   "automation": {
     "validator_runs_via": "validate:admissibility-automation-handoff",
     "publication_gate_runs_via": "validate:admissibility-automation-handoff",
+    "handoff_sync_runs_via": "validate:admissibility-automation-handoff",
     "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
     "trigger_modes": ["push", "pull_request", "workflow_dispatch", "hourly_schedule"],
     "pages_build_gated_by_validation": true,
     "receipt_generation_automatic": true,
     "public_navigation_installed": true,
+    "handoff_sync_validation": true,
     "live_endpoint_check_enabled_by": "AI_RADIOLOGY_PUBLIC_BASE_URL"
   },
   "remaining": [
