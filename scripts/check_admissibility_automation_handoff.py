@@ -15,6 +15,7 @@ CONCEPTUAL_INHERITANCE_PUBLICATION_CHECK = ROOT / "scripts" / "check_conceptual_
 CONCEPTUAL_INHERITANCE_PROPAGATION_CHECK = ROOT / "scripts" / "check_conceptual_inheritance_propagation_plan.py"
 ORIGINAL_DRAWING_PUBLICATION_CHECK = ROOT / "scripts" / "check_original_drawing_publication.py"
 OPTIMIZATION_TARGET_BINDING_CHECK = ROOT / "scripts" / "check_optimization_target_binding_at_commit.py"
+OPTIMIZATION_TARGET_PUBLICATION_CHECK = ROOT / "scripts" / "check_optimization_target_binding_publication.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -23,6 +24,8 @@ REQUIRED = (
     "schemas/automated-transition-run-receipt.schema.json",
     "examples/automated-transition-run-receipt.json",
     "Master-Records",
+    "optimization-target-binding-at-commit",
+    "static/status/optimization-target-binding-publication-verification.json",
 )
 
 
@@ -78,6 +81,11 @@ def main() -> int:
     run_check(
         OPTIMIZATION_TARGET_BINDING_CHECK,
         "optimization target binding at commit",
+        failures,
+    )
+    run_check(
+        OPTIMIZATION_TARGET_PUBLICATION_CHECK,
+        "optimization target binding publication gate",
         failures,
     )
 
