@@ -45,6 +45,13 @@ const verificationAuthorityChecks = new Set([
   'verification_execution_authority_status_reachable'
 ]);
 
+const meshPeers = [
+  { id: 'stegverse-site', root: 'https://stegverse-labs.github.io/Site/' },
+  { id: 'admissibility-wiki', root: 'https://stegverse-labs.github.io/admissibility-wiki/' },
+  { id: 'stegguardian-wiki', root: 'https://stegverse-002.github.io/stegguardian-wiki/' },
+  { id: 'stegtalk-wiki', root: 'https://stegverse-labs.github.io/stegtalk-wiki/' }
+];
+
 async function verifyUrl(name, url) {
   if (skipNetwork) {
     return {
@@ -76,6 +83,24 @@ async function verifyUrl(name, url) {
     }
   }
   throw new Error(`${name} verification failed for ${url}: ${lastError}`);
+}
+
+async function observeUrl(url) {
+  if (skipNetwork) {
+    return { result: 'PASS', url, http_status: 200, verifier: 'deterministic local mock' };
+  }
+  try {
+    const response = await fetch(url, { redirect: 'follow' });
+    const body = await response.text();
+    return {
+      result: response.ok && body.trim() ? 'PASS' : 'SOURCE_BLOCKED_FAIL_CLOSED',
+      url,
+      http_status: response.status,
+      response_bytes: Buffer.byteLength(body)
+    };
+  } catch (error) {
+    return { result: 'SOURCE_BLOCKED_FAIL_CLOSED', url, error: String(error) };
+  }
 }
 
 const checks = Object.fromEntries(Object.entries(urls).filter(([name]) => !radiologyChecks.has(name)).map(([name, url]) => [
@@ -166,8 +191,41 @@ const verificationAuthorityActivationClosure = {
   ]
 };
 
+const meshObservations = [];
+for (const peer of meshPeers) {
+  const root = await observeUrl(peer.root);
+  const peerBase = peer.root.replace(/\/$/, '');
+  const registry = await observeUrl(`${peerBase}/status/ecosystem-documentation-endpoints.json`);
+  const health = await observeUrl(`${peerBase}/status/cross-wiki-health-status.json`);
+  meshObservations.push({ peer_id: peer.id, root, registry, health });
+}
+const completePeerCount = meshObservations.filter((item) =>
+  item.root.result === 'PASS' && item.registry.result === 'PASS' && item.health.result === 'PASS'
+).length;
+const documentationMeshClosure = {
+  schema: 'documentation_mesh_observation_closure.v1',
+  goal_id: 'documentation-mesh-live-peer-observation',
+  state: skipNetwork
+    ? 'SIMULATED_VALIDATOR_PASS'
+    : (completePeerCount === meshPeers.length ? 'WORKFLOW_OBSERVED_MESH_COMPLETE' : 'SOURCE_BLOCKED_FAIL_CLOSED'),
+  commit,
+  run_id: runId,
+  run_attempt: runAttempt,
+  observations: meshObservations,
+  peer_count: meshPeers.length,
+  complete_peer_count: completePeerCount,
+  manual_task_requirement: 'NONE',
+  user_manual_action_required: false,
+  cross_repo_authority_granted: false,
+  standing_conferred: false,
+  execution_authority_granted: false,
+  downstream_mutation_authority_granted: false,
+  handoff_reconciliation_required_for_continuation: false,
+  continuation_source: 'docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md'
+};
+
 const receipt = {
-  schema: 'admissibility_wiki_public_activation_receipt.v5',
+  schema: 'admissibility_wiki_public_activation_receipt.v6',
   receipt_id: `public-activation.workflow.${runId || 'unknown'}.${runAttempt || '0'}`,
   created_at: new Date().toISOString(),
   repository: 'StegVerse-Labs/admissibility-wiki',
@@ -179,7 +237,8 @@ const receipt = {
   checks,
   activation_closures: {
     ai_led_radiology: radiologyActivationClosure,
-    verification_execution_authority: verificationAuthorityActivationClosure
+    verification_execution_authority: verificationAuthorityActivationClosure,
+    documentation_mesh: documentationMeshClosure
   },
   linked_receipts: {
     optimization_target_publication_verification: optimizationTargetReceipt
@@ -199,9 +258,10 @@ const receipt = {
     'This receipt does not create external indexing.',
     'This receipt does not certify clinical performance or authorize medical practice.',
     'This receipt does not convert verification or certification into execution authority.',
+    'Documentation-mesh reachability does not grant cross-repository authority or standing.',
     'This receipt does not replace GitHub Pages deployment records.'
   ],
-  next_action: 'Archive this receipt and its linked verification receipts with the workflow run artifacts; use them only as bounded deployment evidence.'
+  next_action: 'Retain this uploaded receipt as bounded automated evidence. Source-blocked peer observations remain automation-owned and create no user task.'
 };
 
 fs.mkdirSync(outDir, { recursive: true });
