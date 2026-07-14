@@ -19,6 +19,7 @@ CHECKS = [
     "scripts/check_external_framework_benchmark_fixtures.py",
     "scripts/check_judgment_architecture_commitment_fixtures.py",
     "scripts/check_judgment_architecture_commit_boundary_crosswalk.py",
+    "scripts/check_judgment_architecture_binding_adapter.py",
     "scripts/check_observed_evidence_capture_queue.py",
     "scripts/check_opa_observation_capture_harness.py",
     "scripts/check_opa_version_probe_compatibility.py",
