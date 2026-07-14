@@ -1,0 +1,92 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\title{StegVerse Complete Security Architecture:\\Post-Quantum Cryptography, State-Bound Execution Authority, and Receipt-Reconstructable Governance}
+\author{Rigel Randolph\\StegVerse Labs}
+\date{2026}
+
+\newcommand{\allow}{\texttt{ALLOW}}
+\newcommand{\deny}{\texttt{DENY}}
+\newcommand{\failclosed}{\texttt{FAIL\_CLOSED}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The transition to post-quantum cryptography is necessary for protecting long-lived confidentiality, identity, and authenticity against future cryptographically relevant quantum computers. It is not sufficient for securing autonomous systems whose decisions can produce financial, digital, organizational, or physical consequence. Transport protocols can protect data between endpoints while leaving unresolved whether an action remains authorized, admissible, recoverable, and legitimate at the moment execution occurs.
+
+This paper presents the StegVerse complete-security architecture: a layered model combining post-quantum cryptographic primitives, cryptographic agility, state-bound execution authority, commit-time admissibility, separation of reasoning from execution, receipt-bound evidence, recoverability, and fail-closed execution boundaries. The architecture distinguishes communication trust from execution trust. It does not claim unconditional ``quantum proof'' security; instead, it defines a framework for quantum-resilient cryptography and execution governance under explicit assumptions.
+\end{abstract}
+
+\section{Introduction}
+Post-quantum migration replaces cryptographic assumptions vulnerable to sufficiently capable quantum computers. It does not independently solve stale authority, policy drift, compromised endpoints, invalid evidence, unsafe model output, or consequence-bound execution. StegVerse therefore composes cryptographic controls with an execution-governance boundary.
+
+\begin{center}
+\fbox{\parbox{0.8\linewidth}{\centering Secure communication does not guarantee secure execution.}}
+\end{center}
+
+\section{Threat Model}
+The architecture considers harvest-now-decrypt-later collection, future compromise of classical public-key cryptography, downgrade attacks, incomplete migration, side-channel and implementation defects, policy and delegation drift, stale evidence, replay, scope substitution, autonomous-tool escalation, and receipts that assert rather than reconstruct authority.
+
+\section{Architecture}
+The transition path is:
+
+\begin{center}
+proposal $\rightarrow$ policy $\rightarrow$ delegation $\rightarrow$ state/evidence $\rightarrow$ admissibility $\rightarrow$ capability $\rightarrow$ execution boundary $\rightarrow$ receipt.
+\end{center}
+
+Reasoning, review, verification, and certification are evidence-bearing roles. They do not silently acquire execution authority.
+
+\section{Formal Model}
+Let
+\[
+\tau=(a,x,y,s,p,d,e,t,r)
+\]
+represent an action $a$, actor $x$, target $y$, current state $s$, policy $p$, delegation $d$, evidence $e$, time context $t$, and recoverability profile $r$.
+
+Commit-time admissibility is:
+\[
+A(\tau)=P(p,a,s)\land D(d,x,a,y)\land E(e,s,t)\land R(r,a,s).
+\]
+
+A state-bound capability $c_{\tau}$ may be issued only when $A(\tau)=1$. It binds the transition identifier, actor, action, target, scope, policy and delegation digests, evidence and state digests, validity interval, recoverability profile, replay-prevention value, and cryptographic-suite identifier.
+
+\subsection{Stale-capability rejection}
+Assume the execution boundary verifies every bound canonical value immediately before consequence. If policy, delegation, evidence, state, target, scope, validity, or consumption state differs, $c_{\tau}$ is rejected.
+
+\subsection{Replay resistance}
+Assume each accepted capability contains a unique transition identifier and is atomically recorded as consumed. A consumed capability cannot authorize a second transition.
+
+\subsection{Verification non-escalation}
+Independent verification contributes evidence but does not become execution authority unless a current delegation grants that role for the specific transition.
+
+\section{Post-Quantum Integration}
+Relevant standardized primitives include ML-KEM (NIST FIPS 203), ML-DSA (NIST FIPS 204), and SLH-DSA (NIST FIPS 205). They may protect key establishment, policies, delegations, capabilities, releases, and receipts. Versioned suite identifiers, hybrid migration, downgrade prevention, rotation, compromise response, cross-implementation testing, and long-term evidence preservation are required for cryptographic agility.
+
+\section{Communication and Execution Trust}
+Communication trust includes confidentiality, integrity, peer authentication, key establishment, and channel binding. Execution trust requires current delegation, policy compatibility, evidence freshness, state compatibility, target and scope integrity, recoverability, replay protection, and a reachable refusal point. A post-quantum TLS session may provide the first while the requested action fails the second.
+
+\section{Receipt Reconstruction}
+A transition receipt should allow an independent verifier to reconstruct the proposal, actor, target, policy, delegation, evidence, state, decision, capability lifecycle, execution-boundary result, consequence, and recovery status. A receipt that merely states \allow{} is not sufficient.
+
+\section{Fail-Closed Conditions}
+The transition returns \deny{} or \failclosed{} when canonical policy or delegation cannot be resolved, evidence is stale or missing, state cannot be established, suite policy rejects an artifact, replay state is unknown, boundary integrity cannot be established, or consequence exceeds the recoverability profile.
+
+\section{Limitations}
+This architecture does not establish universal quantum-proof security, NIST certification of StegVerse, deployment of post-quantum primitives across all endpoints, constant-time behavior, secure entropy or key custody, mechanical proof of the formal properties, tamper-proof execution boundaries, or immunity to malicious policy, endpoint compromise, side channels, implementation defects, and future cryptanalysis.
+
+\section{Validation Roadmap}
+Validation proceeds through schema and fixture checks, cryptographic test vectors and cross-implementation verification, state-drift and replay fixtures, independent reconstruction from canonical inputs, and workflow-observed deployment evidence. Public reachability, verification, receipts, and certification remain distinct authority classes.
+
+\section{Conclusion}
+Quantum-resilient autonomous infrastructure must protect both communication and consequence. StegVerse combines post-quantum cryptography with state-bound execution authority, commit-time admissibility, refusal reachability, receipt reconstruction, recoverability, and cryptographic agility. The result is a bounded architecture for securing state transitions under evolving cryptographic and operational conditions.
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
