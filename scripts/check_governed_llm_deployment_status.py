@@ -36,6 +36,7 @@ PAGES = {
     "canonical_workflow_health_transition_trend_change_history": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-transition-trend-change-history.json",
     "canonical_workflow_trend_change_frequency_summary": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-trend-change-frequency-summary.json",
     "canonical_workflow_trend_change_frequency_change_receipt": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-trend-change-frequency-change-receipt.json",
+    "canonical_workflow_trend_change_frequency_change_history": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-trend-change-frequency-change-history.json",
     "kpt_external_framework_page": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/kpt",
     "kpt_external_framework_status": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-external-framework-intake-status.json",
     "kpt_source_intake_queue": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-source-intake-queue.json",
@@ -59,7 +60,7 @@ def main() -> int:
         results[name] = {"url": url, "reachable": ok, "http_status": status}
         if not ok: failures.append(message)
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.14",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.15",
         "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID','local')}.{os.getenv('GITHUB_RUN_ATTEMPT','0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
@@ -75,7 +76,7 @@ def main() -> int:
             "Published verification doctrine does not grant execution authority.",
             "Documentation-mesh reachability does not grant cross-repository authority, compatibility, standing, or synchronization permission.",
             "A reachable KPT source-intake queue does not prove source sufficiency or promote a source candidate.",
-            "Frequency, recency, and class-change reachability do not make predictive or independent causal claims.",
+            "Frequency, recency, class-change, and bounded history reachability do not make predictive or independent causal claims.",
             "Failed checks remain fail-closed and create no user task."
         ]
     }
