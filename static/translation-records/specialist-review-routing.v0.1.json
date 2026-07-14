@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.1",
+  "routing_state": "installed",
+  "authority_boundary": "Specialist routing assigns review classes and prerequisites. It does not itself perform specialist review, validate a source claim, or create acceptance authority.",
+  "review_classes": [
+    {
+      "review_class": "physics_foundations",
+      "scope": "emergent spacetime, quantum foundations, relativity, modular time, entanglement-gravity arguments",
+      "minimum_inputs": ["source locator", "source evidence record", "bibliographic record", "translation records", "mathematics crosswalk"]
+    },
+    {
+      "review_class": "mathematical_formalism",
+      "scope": "operator definitions, assumptions, derivations, domain restrictions, and claimed equivalences",
+      "minimum_inputs": ["source equations", "assumption record", "crosswalk rows", "non-claim boundary"]
+    },
+    {
+      "review_class": "admissibility_governance",
+      "scope": "Transition Table role, authority boundary, promotion requirements, and decision posture",
+      "minimum_inputs": ["translation records", "promotion policy", "evidence posture", "decision record"]
+    }
+  ],
+  "routes": [
+    {
+      "route_id": "route-lai-operational-architecture-v0-1",
+      "source_id": "external-physics-lai-operational-architecture-v0-1",
+      "bibliographic_id": "bib-lai-operational-architecture-v0-1",
+      "locator_intake_id": "locator-lai-operational-architecture-v0-1",
+      "required_review_classes": ["physics_foundations", "mathematical_formalism", "admissibility_governance"],
+      "current_gate": "SOURCE_LOCATOR_REQUIRED",
+      "current_result": "DEFER",
+      "routing_reason": "The source evidence and mappings are durable, but a stable external locator and source-complete equation context are not yet recorded.",
+      "re_evaluation_trigger": "locator verification result becomes CONFIRMED or PARTIAL with a stable retrievable source",
+      "next_evaluator": "Admissibility Wiki source-intake governance",
+      "non_claims": "This route does not imply that any specialist has reviewed or endorsed the source."
+    }
+  ]
+}
