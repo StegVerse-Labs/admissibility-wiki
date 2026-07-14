@@ -27,10 +27,10 @@ def main() -> int:
                 "receipt_id": "cancelled.1",
                 "created_at": "2026-07-14T05:00:00+00:00",
                 "job_status_observed": "cancelled",
-                "full_validation_status": null,
-                "reconstruction_status": null,
-                "reconstruction_evaluation_result": null,
-                "observation_state": "FAIL_CLOSED_OBSERVED"
+                "full_validation_status": None,
+                "reconstruction_status": None,
+                "reconstruction_evaluation_result": None,
+                "observation_state": "FAIL_CLOSED_OBSERVED",
             },
             {
                 "receipt_id": "deferred.1",
@@ -39,9 +39,9 @@ def main() -> int:
                 "full_validation_status": "PASS",
                 "reconstruction_status": "PASS",
                 "reconstruction_evaluation_result": "DEFER_NO_SUPERSESSION",
-                "observation_state": "INCOMPLETE_OBSERVATION"
-            }
-        ]
+                "observation_state": "INCOMPLETE_OBSERVATION",
+            },
+        ],
     }
     HISTORY.parent.mkdir(parents=True, exist_ok=True)
     HISTORY.write_text(json.dumps(fixture, indent=2) + "\n", encoding="utf-8")
