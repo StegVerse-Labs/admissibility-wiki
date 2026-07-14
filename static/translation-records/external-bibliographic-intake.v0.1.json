@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "record_state": "intake",
   "authority_boundary": "Bibliographic intake records identify source references for translation review. They do not validate source claims, prove equivalence, create citation sufficiency, or create commit-time authority.",
   "required_fields": [
@@ -12,6 +12,7 @@
     "access_posture",
     "evidence_posture",
     "review_posture",
+    "evidence_reference",
     "linked_external_record_ids",
     "non_claims"
   ],
@@ -19,13 +20,14 @@
     {
       "bibliographic_id": "bib-lai-operational-architecture-v0-1",
       "source_id": "external-physics-lai-operational-architecture-v0-1",
-      "source_title": "pending_source_confirmed_title",
-      "creator_or_author_posture": "Jonathan Lai named in discussion context; source-confirmed bibliographic author record pending",
-      "publication_or_source_posture": "external paper or preprint discussed from uploaded images; stable URL, DOI, arXiv ID, repository path, or citation record pending",
-      "source_locator": "pending_source_confirmed_locator",
-      "access_posture": "partial_context_available",
+      "source_title": "A Candidate Operational Architecture for Emergent Spacetime",
+      "creator_or_author_posture": "Jonathan Lai named as author in the observed public post and paper screenshots; independent bibliographic confirmation pending",
+      "publication_or_source_posture": "June 2026 version 1.0; visibly labeled candidate framework and not peer-reviewed; stable URL, DOI, arXiv ID, repository path, or publisher record pending",
+      "source_locator": "docs/evidence/external-physics/lai-operational-architecture-source-evidence.md",
+      "access_posture": "durable_public_safe_summary_from_session_screenshots",
       "evidence_posture": "partial",
       "review_posture": "proposed",
+      "evidence_reference": "ev-lai-operational-architecture-v0-1",
       "linked_external_record_ids": [
         "ext-phys-lai-admissibility-operator-v0-1",
         "ext-phys-lai-transition-operator-v0-1",
@@ -33,7 +35,7 @@
         "ext-phys-lai-emergent-geometry-v0-1",
         "ext-phys-lai-translation-failure-v0-1"
       ],
-      "non_claims": "This bibliographic record does not confirm publication status, peer review, correctness, prediction, or equivalence to StegVerse formalisms."
+      "non_claims": "This bibliographic record does not confirm an external stable locator, publication authority, peer review, correctness, prediction, or equivalence to StegVerse formalisms."
     }
   ]
 }
