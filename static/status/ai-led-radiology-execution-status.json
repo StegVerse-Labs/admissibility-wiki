@@ -1,6 +1,6 @@
 {
   "goal_id": "ai-led-radiology-execution-boundary",
-  "state": "AUTOMATED_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_VERIFICATION",
+  "state": "AUTOMATED_PENDING_OBSERVED_WORKFLOW_RESULT",
   "issue_ref": "StegVerse-Labs/admissibility-wiki#15",
   "formalism": "docs/formalisms/ai-led-radiology-execution-boundary.md",
   "schema": "static/schemas/ai-led-radiology-execution-case.schema.json",
@@ -11,6 +11,8 @@
   "activation_handoff": "docs/AI_LED_RADIOLOGY_MIRROR_HANDOFF.md",
   "canonical_integration": "scripts/check_admissibility_automation_handoff.py",
   "generated_receipt": "reports/ai-led-radiology-execution-receipt.json",
+  "public_activation_receipt": "reports/public-activation-receipt.json",
+  "public_activation_receipt_schema": "admissibility_wiki_public_activation_receipt.v4",
   "public_status_url": "https://stegverse-labs.github.io/admissibility-wiki/status/ai-led-radiology-execution-status.json",
   "public_formalism_url": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/ai-led-radiology-execution-boundary",
   "public_schema_url": "https://stegverse-labs.github.io/admissibility-wiki/schemas/ai-led-radiology-execution-case.schema.json",
@@ -37,12 +39,18 @@
     "receipt_generation_automatic": true,
     "public_navigation_installed": true,
     "handoff_sync_validation": true,
-    "live_endpoint_check_enabled_by": "AI_RADIOLOGY_PUBLIC_BASE_URL"
+    "local_publication_validation": "scripts/check_ai_led_radiology_publication.py",
+    "live_publication_evidence_writer": "scripts/write-public-activation-receipt.mjs",
+    "live_publication_checks": [
+      "ai_led_radiology_formalism_reachable",
+      "ai_led_radiology_schema_reachable",
+      "ai_led_radiology_status_reachable"
+    ],
+    "live_evidence_uploaded_by_existing_workflow": true
   },
   "remaining": [
-    "canonical automation records a passing workflow result",
-    "deployment automation supplies live publication evidence",
-    "future handoff reconciliation records verified evidence"
+    "canonical automation records a passing workflow result and uploads run-bound evidence",
+    "future handoff reconciliation may record the observed run identifiers"
   ],
   "remaining_owner": "CANONICAL_AUTOMATION_AND_FUTURE_HANDOFF_RECONCILIATION",
   "user_manual_action_required": false
