@@ -6,9 +6,35 @@ title: Denial Reachability at the Commit Boundary
 
 ## Status
 
-`PUBLIC_CONCEPTUAL_FORMALISM / NON_EXECUTION_AUTHORITY`
+`PUBLIC_CONCEPTUAL_FORMALISM / EXECUTABLE_PROOF_REFERENCE_AVAILABLE / NON_EXECUTION_AUTHORITY`
 
 This page defines a necessary condition for governable consequence-binding action. It does not itself grant execution authority, certify a runtime, or replace the proof authority of `Data-Continuation/formalism-tests`.
+
+## Executable proof reference
+
+`Data-Continuation/formalism-tests` now contains the declared task `denial_reachability_commit_boundary_tests` with five deterministic cases:
+
+```text
+REACHABLE_DENY
+UNREACHABLE_DENY
+COSMETIC_GATING
+LATE_REFUSAL
+SPLIT_BOUNDARY_INSUFFICIENCY
+```
+
+Recorded result:
+
+```text
+status: PASS
+case_count: 5
+passed_count: 5
+failed_count: 0
+report_sha256: 8c2c460e3d7ae790a4f5fc347e44f9e91615db8b1913ee98c893e3071a5fb284
+```
+
+The proof-reference receipt is stored at `receipts/denial-reachability-proof-reference.json`. The wiki records and explains the evidence; executable proof authority remains exclusively with `Data-Continuation/formalism-tests`.
+
+The deterministic fixture outcomes were matched, while an independent canonical declared-task rerun remains required to replace the recorded runtime-observation limitation. This page therefore does not claim live production certification or execution authority.
 
 ## Core rule
 
@@ -90,6 +116,8 @@ A policy or authority check remains present, but its output cannot affect execut
 ### Late refusal
 
 A deny result is produced only after consequence has bound, converting prevention into recovery or post-hoc control.
+
+The executable fixture records `execution_prevented: false` for this case so that a post-hoc refusal cannot be misrepresented as successful prevention.
 
 ### Split-boundary insufficiency
 
