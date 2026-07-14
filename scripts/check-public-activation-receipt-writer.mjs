@@ -78,7 +78,8 @@ for (const check of REQUIRED_CHECKS) {
 }
 
 const radiology = receipt.activation_closures?.ai_led_radiology;
-if (!radiology || radiology.schema !== 'ai_led_radiology_activation_closure.v1') fail('radiology closure mismatch');
+if (!radiology) fail('missing AI-led radiology activation closure');
+if (radiology.schema !== 'ai_led_radiology_activation_closure.v1') fail('radiology closure schema mismatch');
 if (radiology.state !== 'SIMULATED_VALIDATOR_PASS') fail('radiology simulated state mismatch');
 if (radiology.user_manual_action_required !== false) fail('radiology user action mismatch');
 if (radiology.execution_authority_granted !== false) fail('radiology authority mismatch');
