@@ -53,6 +53,7 @@ Public activation receipt writer: scripts/write-public-activation-receipt.mjs
 Receipt-writer validator: scripts/check-public-activation-receipt-writer.mjs
 Execution receipt generation: automatic
 Live publication evidence capture: automatic
+Activation closure evaluation: automatic
 Public activation receipt upload: automatic through the existing verify-public-pages job
 Public navigation: installed
 Manual task requirement: NONE
@@ -60,9 +61,9 @@ User manual action required: false
 Additional active workflow created: false
 ```
 
-## Run-bound live evidence
+## Run-bound live evidence and automatic closure
 
-The existing public activation receipt writer now performs retrying live checks for:
+The existing public activation receipt writer performs retrying live checks for:
 
 ```text
 ai_led_radiology_formalism_reachable
@@ -71,6 +72,25 @@ ai_led_radiology_status_reachable
 ```
 
 Each successful workflow receipt binds the checked URL, HTTP status, response size, attempt count, commit, workflow run ID, and run attempt. Local validation uses deterministic mock mode and does not require network access.
+
+The same uploaded receipt contains:
+
+```text
+activation_closures.ai_led_radiology
+schema: ai_led_radiology_activation_closure.v1
+```
+
+Completion is automatic when a non-mock receipt records:
+
+```text
+state == WORKFLOW_OBSERVED_PUBLICATION_COMPLETE
+all_required_public_routes_verified == true
+manual_task_requirement == NONE
+user_manual_action_required == false
+handoff_reconciliation_required_for_continuation == false
+```
+
+A later handoff edit may record observed run identifiers for convenience, but it is not required to complete the activation or continue work.
 
 ## Public endpoints
 
@@ -84,17 +104,16 @@ https://stegverse-labs.github.io/admissibility-wiki/status/ai-led-radiology-exec
 
 This activation does not certify clinical performance, authorize medical practice, endorse a hospital or vendor, establish regulatory compliance, or claim that any referenced institution has deployed autonomous radiology. It defines a governance distinction between assistive use and transfer of diagnostic execution authority.
 
-## Remaining automation-owned observation
+## Remaining automation-owned event
 
 ```text
-- canonical workflow records and uploads the next passing run-bound public activation receipt
-- future handoff reconciliation may record the observed workflow identifiers
+- canonical workflow emits the first non-mock WORKFLOW_OBSERVED_PUBLICATION_COMPLETE activation closure
 ```
 
-This observation does not create a user task. Canonical automation and future handoff reconciliation own it.
+This event does not create a user task. Canonical automation owns it, and the uploaded receipt itself is the durable completion evidence.
 
 ## Continuation rule
 
-Continue from this file together with `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` and `static/status/ai-led-radiology-execution-status.json`. No prior conversation is required.
+Continue from this file together with `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`, `static/status/ai-led-radiology-execution-status.json`, and the latest `public-activation-receipt` workflow artifact. No prior conversation or follow-up handoff edit is required.
 
 The complete thread is ready for archiving without any additional part of the thread being needed to continue.
