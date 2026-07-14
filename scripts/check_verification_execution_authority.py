@@ -12,6 +12,7 @@ STATUS = ROOT / "static/status/verification-execution-authority-status.json"
 SIDEBAR = ROOT / "sidebars.js"
 HANDOFF = ROOT / "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
 DEPLOYMENT_CHECK = ROOT / "scripts/check_governed_llm_deployment_status.py"
+ACTIVATION_RECEIPT_WRITER = ROOT / "scripts/write-public-activation-receipt.mjs"
 
 
 def require(condition: bool, message: str) -> None:
@@ -23,11 +24,16 @@ def main() -> None:
     require(DOC.is_file(), f"missing doctrine page: {DOC.relative_to(ROOT)}")
     require(STATUS.is_file(), f"missing status artifact: {STATUS.relative_to(ROOT)}")
     require(DEPLOYMENT_CHECK.is_file(), f"missing deployment checker: {DEPLOYMENT_CHECK.relative_to(ROOT)}")
+    require(
+        ACTIVATION_RECEIPT_WRITER.is_file(),
+        f"missing activation receipt writer: {ACTIVATION_RECEIPT_WRITER.relative_to(ROOT)}",
+    )
 
     doc = DOC.read_text(encoding="utf-8")
     sidebar = SIDEBAR.read_text(encoding="utf-8")
     handoff = HANDOFF.read_text(encoding="utf-8")
     deployment_check = DEPLOYMENT_CHECK.read_text(encoding="utf-8")
+    receipt_writer = ACTIVATION_RECEIPT_WRITER.read_text(encoding="utf-8")
     status = json.loads(STATUS.read_text(encoding="utf-8"))
 
     required_doc_phrases = (
@@ -59,6 +65,18 @@ def main() -> None:
     for marker in required_public_routes:
         require(marker in deployment_check, f"deployment checker missing publication marker: {marker}")
 
+    required_receipt_markers = (
+        "verification_execution_authority_activation_closure.v1",
+        "verification_execution_authority_doctrine_reachable",
+        "verification_execution_authority_status_reachable",
+        "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
+        "Independent verification remains evidence input and does not become execution authority.",
+        "user_manual_action_required: false",
+        "execution_authority_granted: false",
+    )
+    for marker in required_receipt_markers:
+        require(marker in receipt_writer, f"activation receipt writer missing closure marker: {marker}")
+
     require(status.get("goal_id") == "verification-vs-execution-authority", "unexpected goal_id")
     require(status.get("manual_task_requirement") == "none", "manual task requirement must remain none")
     require(status.get("user_manual_action_required") is False, "user manual action must remain false")
@@ -79,6 +97,8 @@ def main() -> None:
     require(publication.get("execution_surface") == ".github/workflows/validate-chain-continuation.yml", "unexpected publication execution surface")
     require(publication.get("job") == "verify-public-pages", "unexpected publication verification job")
     require(publication.get("checker") == "scripts/check_governed_llm_deployment_status.py", "unexpected publication checker")
+    require(publication.get("receipt_writer") == "scripts/write-public-activation-receipt.mjs", "unexpected publication receipt writer")
+    require(publication.get("receipt_artifact") == "public-activation-receipt", "unexpected publication receipt artifact")
     require(publication.get("manual_tasks_required") == [], "publication verification must not create manual tasks")
 
     print("VERIFICATION EXECUTION AUTHORITY: PASS")
