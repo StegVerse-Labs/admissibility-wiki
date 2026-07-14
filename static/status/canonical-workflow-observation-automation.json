@@ -1,25 +1,37 @@
 {
-  "schema": "admissibility_wiki.canonical_workflow_observation_automation.v0.2",
+  "schema": "admissibility_wiki.canonical_workflow_observation_automation.v0.3",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "goal": "Eliminate manual workflow-observation tasks while preserving fail-closed automation.",
-  "state": "AUTOMATED_PUBLICATION_BOUND",
+  "goal": "Eliminate manual workflow-observation and result-reconciliation tasks while preserving fail-closed automation.",
+  "state": "AUTOMATED_PUBLICATION_AND_HISTORY_BOUND",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "ios_safe_workflow_mirror": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
   "writer": "scripts/write_canonical_workflow_observation_receipt.py",
   "validator": "scripts/check_canonical_workflow_observation_receipt.py",
   "integration": "scripts/check_full_validation_chain.py",
   "publisher": "scripts/publish_canonical_workflow_observation_receipt.py",
   "publication_validator": "scripts/check_canonical_workflow_observation_publication.py",
+  "history_reconciler": "scripts/reconcile_canonical_workflow_observation_history.py",
+  "history_validator": "scripts/check_canonical_workflow_observation_history.py",
   "generated_receipt": "reports/canonical-workflow-observation-receipt.json",
   "embedded_receipt": "reports/full_validation_chain_report.json#canonical_workflow_observation",
   "automation_contract_endpoint": "/status/canonical-workflow-observation-automation.json",
   "run_bound_receipt_endpoint": "/status/canonical-workflow-observation-receipt.json",
+  "history_endpoint": "/status/canonical-workflow-observation-history.json",
   "publication_chain": [
     "validate-chain-continuation generates and embeds the run receipt",
     "full-validation-chain-report artifact transfers it to build-pages",
     "build-pages publishes the embedded receipt into static/status",
+    "build-pages reconciles the current receipt with the prior public bounded history",
     "deploy-pages publishes the site artifact",
-    "verify-public-pages checks both observation endpoints"
+    "verify-public-pages checks the automation, run-bound receipt, and history endpoints"
   ],
+  "history_policy": {
+    "maximum_entries": 24,
+    "deduplication_key": "receipt_id",
+    "ordering": "created_at ascending",
+    "prior_history_unavailable_result": "initialize a new bounded sequence without assigning a manual task",
+    "next_reconciliation": "next repository-owned canonical workflow trigger"
+  },
   "trigger_ownership": {
     "push": "repository automation",
     "pull_request": "repository automation",
@@ -39,8 +51,8 @@
   "release_authority_granted": false,
   "downstream_mutation_authority_granted": false,
   "non_claims": [
-    "This status proves an automation and publication contract, not a successful future workflow run.",
-    "Public receipt reachability records one bounded run observation only.",
+    "This status proves an automation, publication, and bounded-history contract, not a successful future workflow run.",
+    "Public receipt reachability records bounded workflow observations only.",
     "It does not grant merge, release, deployment, publication, execution, or downstream mutation authority.",
     "It does not convert missing external evidence into an acceptance result."
   ]
