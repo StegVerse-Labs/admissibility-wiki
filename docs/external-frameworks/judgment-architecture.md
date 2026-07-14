@@ -13,13 +13,17 @@ publication: Judgment Architecture: A Field Doctrine for Designing Human Judgmen
 publisher: Seedling & Star, LLC
 publication_year: 2026
 source_state: supplied primary publication observed
+public_source_locator_state: blocked_no_stable_public_locator_found
+citation_state: pending_stable_source
 intake_state: research surface
 validation_state: not validated by StegVerse
 compatibility_state: not established
 execution_authority: none
 ```
 
-This page records a bounded research intake of Orli Shull's *Judgment Architecture*. It preserves the framework's public concepts and identifies possible interoperability questions without asserting certification, endorsement, equivalence, implementation completeness, or StegVerse standing.
+This page records a bounded research intake of Orli Shull's *Judgment Architecture*. It preserves the framework's concepts as observed in the user-supplied publication and identifies possible interoperability questions without asserting certification, endorsement, equivalence, implementation completeness, or StegVerse standing.
+
+A stable canonical public locator was not found during the current source-intake search. That result does not invalidate the framework and does not establish that no public source exists. It means this page remains fail-closed at `fixture_ready` until a stable public locator or durable source artifact with citable page or section anchors is bound. The machine-readable state is recorded in `static/status/judgment-architecture-source-citation-status.json`.
 
 ## Core problem
 
@@ -143,6 +147,7 @@ This page does not claim formal compatibility with StegVerse.
 This page does not claim that Judgment Architecture and StegVerse are equivalent.
 This page does not convert a conceptual alignment into execution authority.
 This page does not establish that human commitment alone makes an action admissible.
+This page does not treat an unsuccessful public-source search as evidence against the framework.
 This page does not authorize publication beyond the evidence and source posture stated here.
 ```
 
