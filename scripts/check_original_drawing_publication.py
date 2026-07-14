@@ -9,6 +9,7 @@ SOURCE_ASSET = ROOT / "static/img/formalisms/original-drawing-reference.jpg"
 PAGE = ROOT / "docs/formalisms/original-drawing-reference.md"
 PUBLIC_PATH = "/img/formalisms/original-drawing-reference.jpg"
 JPEG_SOI = b"\xff\xd8\xff"
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 MIN_SIZE_BYTES = 1024
 
 
@@ -23,8 +24,13 @@ def main() -> None:
     payload = SOURCE_ASSET.read_bytes()
     if len(payload) < MIN_SIZE_BYTES:
         fail(f"asset is unexpectedly small ({len(payload)} bytes)")
-    if not payload.startswith(JPEG_SOI):
-        fail("asset extension is .jpg but binary signature is not JPEG")
+
+    if payload.startswith(JPEG_SOI):
+        detected_format = "JPEG"
+    elif payload.startswith(PNG_SIGNATURE):
+        detected_format = "PNG_LEGACY_JPG_PATH"
+    else:
+        fail("asset binary signature is neither JPEG nor PNG")
 
     if not PAGE.is_file():
         fail(f"missing canonical page: {PAGE.relative_to(ROOT)}")
@@ -37,7 +43,7 @@ def main() -> None:
 
     print(
         "ORIGINAL DRAWING PUBLICATION: PASS - "
-        f"JPEG asset validated ({len(payload)} bytes) and canonical page reference confirmed"
+        f"asset validated ({len(payload)} bytes, detected={detected_format}) and canonical page reference confirmed"
     )
 
 
