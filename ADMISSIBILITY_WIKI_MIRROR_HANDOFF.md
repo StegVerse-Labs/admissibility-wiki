@@ -19,61 +19,52 @@ Cross-repository mutation authority: not granted
 Release/tag authority: not granted
 ```
 
-## Canonical workflow observation automation
+## Terminal workflow-observation rollup
 
-Installed automation chain:
+The recursive derivative chain is closed by one terminal envelope:
 
 ```text
 workflow trigger
 -> full validation receipt
--> public run-bound observation receipt
--> bounded observation-history reconciliation
--> health classification and transition history
--> bounded non-predictive trend and trend-change history
--> bounded frequency-and-recency summary and comparison history
--> bounded stability summary and stability-change history
--> bounded stability-change frequency-and-recency summary
--> stability-change frequency-and-recency comparison receipt
--> bounded comparison history
+-> bounded observation, health, transition, trend, frequency, stability, comparison, and history artifacts
+-> terminal workflow-observation rollup
 -> Pages deployment
 -> automatic public endpoint verification
--> hourly re-observation
+-> hourly repository-owned re-observation
 ```
 
-Current comparison-history surfaces:
+Installed terminal surfaces:
 
 ```text
-scripts/generate_canonical_workflow_stability_change_frequency_summary.py
-scripts/check_canonical_workflow_stability_change_frequency_summary.py
-scripts/generate_canonical_workflow_stability_change_frequency_change.py
-scripts/check_canonical_workflow_stability_change_frequency_change.py
+scripts/generate_canonical_workflow_observation_rollup.py
+scripts/check_canonical_workflow_observation_rollup.py
 scripts/reconcile_canonical_workflow_stability_change_frequency_change_history.py
 scripts/check_canonical_workflow_stability_change_frequency_change_history.py
-static/status/canonical-workflow-stability-change-frequency-summary.json (generated)
-static/status/canonical-workflow-stability-change-frequency-change-receipt.json (generated)
-static/status/canonical-workflow-stability-change-frequency-change-history.json (generated)
-static/status/canonical-workflow-observation-automation.json
-scripts/check_canonical_workflow-observation-automation-status.py
+scripts/check_canonical_workflow_observation_automation_status.py
 scripts/check_governed_llm_deployment_status.py
+static/status/canonical-workflow-observation-automation.json
+static/status/canonical-workflow-observation-rollup.json (generated)
 ```
 
-Comparison-history policy:
+Terminal policy:
 
 ```text
-maximum_entries: 24
-deduplication_key: receipt_id
-ordering: generated_at ascending
-descriptive_only: true
-predictive_claim: false
-causal_claim_beyond_receipt_fields: false
-prior public history unavailable: initialize a new bounded sequence
-reconciliation_owner: canonical build-pages job
-next_reconciliation: next repository-owned canonical workflow trigger
+terminal_envelope: true
+recursive_derivative_expansion_allowed: false
+artifact_count: 17
+local_presence: PRESENT | MISSING
+completeness: COMPLETE_LOCAL_CHAIN | FAIL_CLOSED_INCOMPLETE_LOCAL_CHAIN
+public_reachability_before_deploy: NOT_OBSERVED_UNTIL_POST_DEPLOY_VERIFICATION
+semantic_reclassification_performed: false
+generation_owner: canonical build-pages job
+next_evaluation: next repository-owned canonical workflow trigger
 manual_tasks_required: []
 user_action_required: false
 ```
 
-The post-deployment verifier automatically checks the summary, comparison receipt, and bounded comparison-history endpoints. Missing or unreachable endpoints fail closed and create no user task.
+The envelope points to the latest observation, history, health, transition, trend, frequency, stability, comparison, and bounded-history artifacts. It records repository path, public endpoint, local presence, generation ownership, and pre-deployment reachability posture for each artifact. It does not reinterpret their scientific, governance, authority, or admissibility meaning.
+
+The terminal rollup is generated automatically after the final bounded comparison-history reconciliation. Missing artifacts produce `FAIL_CLOSED_INCOMPLETE_LOCAL_CHAIN`; they do not create a user or reviewer task.
 
 ## Authority boundaries
 
@@ -83,7 +74,7 @@ Data-Continuation/formalism-tests owns executable fixtures, expected outcomes, a
 Site is downstream display only
 Publisher is downstream publication/indexing only
 StegGuardian interpretation remains deferred until executable proof fixtures exist
-workflow evidence, classifications, summaries, comparisons, and histories do not grant proof, release, execution, custody, or downstream mutation authority
+workflow evidence and the terminal rollup do not grant proof, release, execution, custody, or downstream mutation authority
 ```
 
 ## Remaining files or modules and destinations
@@ -91,12 +82,11 @@ workflow evidence, classifications, summaries, comparisons, and histories do not
 ### `StegVerse-Labs/admissibility-wiki`
 
 ```text
-Replace further recursive summary-of-summary expansion with one terminal workflow-observation rollup envelope.
-The envelope must point to the latest observation, health, transition, trend, frequency, stability, comparison, and bounded-history artifacts.
-Record completeness and reachability per artifact without reclassifying their scientific or governance meaning.
-Keep manual_tasks_required: [] and user_action_required: false.
-Bind generation and validation to the existing canonical workflow; do not add a second active workflow.
-Repair only exact deterministic failures without weakening checks.
+Observe the canonical workflow result for the terminal-rollup commits.
+Use workflow-owned logs, artifacts, and validation receipts to identify exact deterministic failures.
+Repair only exact failures without weakening validation or adding another active workflow.
+Keep deployment and public-route evidence fail-closed until observed.
+Do not resume recursive summary-of-summary construction.
 Manual user task: none.
 ```
 
@@ -125,13 +115,13 @@ No tag or release is authorized until canonical validation, build, public-route 
 ## Next task
 
 ```text
-1. Build a terminal workflow-observation rollup envelope instead of another recursive derivative layer.
-2. Include pointers, artifact presence, generation ownership, and fail-closed completeness state.
-3. Bind deterministic validation and public endpoint verification to the existing canonical workflow.
-4. Continue repository-owned observation and exact fail-closed repair.
+1. Observe the canonical workflow result for the terminal-rollup chain.
+2. Inspect repository-owned failure evidence when available.
+3. Apply exact deterministic repairs only.
+4. Preserve the terminal envelope and no-recursion boundary.
 5. Do not request manual route checks, workflow triggering, receipt construction, archival, file movement, or downstream propagation from the user.
 ```
 
 ## Archive posture
 
-This handoff preserves the active goal, installed automation, decisions, ownership, blockers, authority boundaries, completed comparison-history work, remaining terminal-rollup work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
+This handoff preserves the active goal, installed terminal automation, decisions, ownership, blockers, authority boundaries, completed work, remaining workflow-observation work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
