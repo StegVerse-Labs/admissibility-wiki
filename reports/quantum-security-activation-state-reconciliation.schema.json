@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/quantum-security-activation-state-reconciliation.schema.json",
+  "title": "Quantum Security Activation State Reconciliation",
+  "type": "object",
+  "required": [
+    "schema",
+    "goal_id",
+    "repository",
+    "issue",
+    "canonical_validation_result",
+    "observer_merge_commit",
+    "pages_deployment_observed",
+    "public_routes_observed",
+    "workflow_route_receipt_observed",
+    "state"
+  ],
+  "properties": {
+    "schema": {"const": "quantum_security_activation_state_reconciliation.v1"},
+    "goal_id": {"const": "stegverse-quantum-resilient-complete-security"},
+    "repository": {"const": "StegVerse-Labs/admissibility-wiki"},
+    "issue": {"const": 20},
+    "canonical_validation_result": {"enum": ["success", "failure", "pending"]},
+    "pages_deployment_observed": {"type": "boolean"},
+    "public_routes_observed": {"type": "boolean"},
+    "workflow_route_receipt_observed": {"type": "boolean"},
+    "certification_granted": {"const": false},
+    "universal_quantum_proof_claim": {"const": false},
+    "production_cryptographic_deployment_established": {"const": false},
+    "execution_authority_granted": {"const": false},
+    "downstream_mutation_authority_granted": {"const": false}
+  },
+  "additionalProperties": true
+}
