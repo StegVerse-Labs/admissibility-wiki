@@ -53,42 +53,46 @@ workflow trigger
 -> bounded trend-change history reconciliation
 -> bounded frequency-and-recency summary
 -> frequency-and-recency class-change receipt
+-> bounded frequency-and-recency class-change history
 -> Pages deployment
 -> automatic public endpoint verification
 -> hourly re-observation
 ```
 
-Current frequency-change surfaces:
+Current frequency-change-history surfaces:
 
 ```text
 scripts/generate_canonical_workflow_trend_change_frequency_summary.py
 scripts/check_canonical_workflow_trend_change_frequency_summary.py
 scripts/generate_canonical_workflow_trend_change_frequency_change.py
 scripts/check_canonical_workflow_trend_change_frequency_change.py
+scripts/reconcile_canonical_workflow_trend_change_frequency_change_history.py
+scripts/check_canonical_workflow_trend_change_frequency_change_history.py
 static/status/canonical-workflow-trend-change-frequency-summary.json (generated)
 static/status/canonical-workflow-trend-change-frequency-change-receipt.json (generated)
+static/status/canonical-workflow-trend-change-frequency-change-history.json (generated)
 static/status/canonical-workflow-observation-automation.json
 scripts/check_canonical_workflow_observation_automation_status.py
 scripts/check_governed_llm_deployment_status.py
 ```
 
-Frequency-change policy:
+Frequency-change-history policy:
 
 ```text
-comparison: current frequency and recency classes against prior public summary
-states: CHANGED | UNCHANGED
-changed_fields: frequency_class | recency_class
+maximum_entries: 24
+deduplication_key: receipt_id
+ordering: generated_at ascending
 descriptive_only: true
 predictive_claim: false
 causal_claim_beyond_receipt_fields: false
-prior public summary unavailable: compare against AWAITING_AUTOMATED_FREQUENCY_SUMMARY
-change_owner: canonical build-pages job
-next_evaluation: next repository-owned canonical workflow trigger
+prior public history unavailable: initialize a new bounded sequence
+reconciliation_owner: canonical build-pages job
+next_reconciliation: next repository-owned canonical workflow trigger
 manual_tasks_required: []
 user_action_required: false
 ```
 
-The post-deployment verifier automatically checks both the frequency summary and frequency-change receipt endpoints. Missing or unreachable endpoints fail closed and create no user task.
+The post-deployment verifier automatically checks the frequency summary, frequency-change receipt, and frequency-change-history endpoints. Missing or unreachable endpoints fail closed and create no user task.
 
 ## Authority boundaries
 
@@ -98,7 +102,7 @@ Data-Continuation/formalism-tests owns executable fixtures, expected outcomes, a
 Site is downstream display only
 Publisher is downstream publication/indexing only
 StegGuardian interpretation remains deferred until executable proof fixtures exist
-workflow evidence, trend classes, frequency classes, and change receipts do not grant proof, release, execution, custody, or downstream mutation authority
+workflow evidence, trend classes, frequency classes, change receipts, and histories do not grant proof, release, execution, custody, or downstream mutation authority
 ```
 
 ## Remaining files or modules and destinations
@@ -106,10 +110,11 @@ workflow evidence, trend classes, frequency classes, and change receipts do not 
 ### `StegVerse-Labs/admissibility-wiki`
 
 ```text
-Add bounded history for frequency-and-recency class-change receipts.
-Deduplicate by receipt_id, order by generated_at, and retain the newest 24 entries.
-Reconcile automatically through the existing canonical build path.
-Add deterministic validation and automatic public endpoint verification.
+Derive a compact bounded stability summary from frequency-change history.
+Distinguish no observed class change, isolated class change, repeated class change, and mixed frequency/recency movement.
+Use bounded retained receipt counts only; make no predictive or causal claim beyond receipt fields.
+Bind the summary to the existing canonical build and public verification path.
+Add deterministic validation preserving manual_tasks_required: [] and user_action_required: false.
 Do not add a second active workflow.
 Repair only exact deterministic failures without weakening checks.
 Manual user task: none.
@@ -140,7 +145,7 @@ No tag or release is authorized until canonical validation, build, public-route 
 ## Next task
 
 ```text
-1. Build bounded frequency-and-recency class-change history from generated change receipts.
+1. Build a bounded descriptive stability summary from generated frequency-change history.
 2. Bind it to the existing canonical build path without adding a second active workflow.
 3. Add deterministic validation and automatic endpoint verification.
 4. Continue repository-owned observation and fail-closed repair.
@@ -149,4 +154,4 @@ No tag or release is authorized until canonical validation, build, public-route 
 
 ## Archive posture
 
-This handoff preserves the active goal, installed automation, decisions, ownership, blockers, authority boundaries, completed frequency-summary and frequency-change work, remaining work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
+This handoff preserves the active goal, installed automation, decisions, ownership, blockers, authority boundaries, completed frequency-change-history work, remaining work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
