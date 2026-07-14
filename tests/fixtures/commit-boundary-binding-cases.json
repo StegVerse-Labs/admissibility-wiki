@@ -1,0 +1,133 @@
+{
+  "schema_version": "commit_boundary_binding_cases.v1",
+  "cases": [
+    {
+      "id": "BIND_VALID_TRANSITION",
+      "expected": "BIND",
+      "record": {
+        "decision_validity": "VALID",
+        "origin": "VALID",
+        "authority": "VALID",
+        "admissibility": "ALLOW",
+        "invariants": "PRESERVED",
+        "recoverability": "PRESERVED",
+        "recoverability_margin": 0.42,
+        "minimum_margin": 0.25,
+        "evidence": "COMPLETE",
+        "candidate_replay": false
+      }
+    },
+    {
+      "id": "DENY_ORIGIN_INVALID",
+      "expected": "DENY",
+      "record": {
+        "decision_validity": "VALID",
+        "origin": "INVALID",
+        "authority": "VALID",
+        "admissibility": "ALLOW",
+        "invariants": "PRESERVED",
+        "recoverability": "PRESERVED",
+        "recoverability_margin": 0.40,
+        "minimum_margin": 0.25,
+        "evidence": "COMPLETE",
+        "candidate_replay": false
+      }
+    },
+    {
+      "id": "DENY_AUTHORITY_REVOKED",
+      "expected": "DENY",
+      "record": {
+        "decision_validity": "VALID",
+        "origin": "VALID",
+        "authority": "INVALID",
+        "admissibility": "ALLOW",
+        "invariants": "PRESERVED",
+        "recoverability": "PRESERVED",
+        "recoverability_margin": 0.39,
+        "minimum_margin": 0.25,
+        "evidence": "COMPLETE",
+        "candidate_replay": false
+      }
+    },
+    {
+      "id": "FAIL_CLOSED_EVIDENCE_STALE",
+      "expected": "FAIL_CLOSED",
+      "record": {
+        "decision_validity": "VALID",
+        "origin": "VALID",
+        "authority": "UNRESOLVED",
+        "admissibility": "ALLOW",
+        "invariants": "PRESERVED",
+        "recoverability": "PRESERVED",
+        "recoverability_margin": 0.38,
+        "minimum_margin": 0.25,
+        "evidence": "STALE",
+        "candidate_replay": false
+      }
+    },
+    {
+      "id": "DENY_STATE_DRIFT",
+      "expected": "DENY",
+      "record": {
+        "decision_validity": "VALID",
+        "origin": "VALID",
+        "authority": "VALID",
+        "admissibility": "DENY",
+        "invariants": "PRESERVED",
+        "recoverability": "PRESERVED",
+        "recoverability_margin": 0.34,
+        "minimum_margin": 0.25,
+        "evidence": "COMPLETE",
+        "candidate_replay": false
+      }
+    },
+    {
+      "id": "DENY_RECOVERABILITY_EROSION",
+      "expected": "DENY",
+      "record": {
+        "decision_validity": "VALID",
+        "origin": "VALID",
+        "authority": "VALID",
+        "admissibility": "ALLOW",
+        "invariants": "PRESERVED",
+        "recoverability": "DEGRADED",
+        "recoverability_margin": 0.12,
+        "minimum_margin": 0.25,
+        "evidence": "COMPLETE",
+        "candidate_replay": false
+      }
+    },
+    {
+      "id": "DENY_REPLAY",
+      "expected": "DENY",
+      "record": {
+        "decision_validity": "VALID",
+        "origin": "VALID",
+        "authority": "VALID",
+        "admissibility": "ALLOW",
+        "invariants": "PRESERVED",
+        "recoverability": "PRESERVED",
+        "recoverability_margin": 0.41,
+        "minimum_margin": 0.25,
+        "evidence": "COMPLETE",
+        "candidate_replay": true
+      }
+    },
+    {
+      "id": "FAIL_CLOSED_RECEIPT_INCOMPLETE",
+      "expected": "FAIL_CLOSED",
+      "record": {
+        "decision_validity": "VALID",
+        "origin": "VALID",
+        "authority": "VALID",
+        "admissibility": "ALLOW",
+        "invariants": "PRESERVED",
+        "recoverability": "PRESERVED",
+        "recoverability_margin": 0.40,
+        "minimum_margin": 0.25,
+        "evidence": "INCOMPLETE",
+        "candidate_replay": false
+      }
+    }
+  ]
+}
