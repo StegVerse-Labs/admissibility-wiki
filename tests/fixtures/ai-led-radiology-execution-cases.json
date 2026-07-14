@@ -1,0 +1,44 @@
+{
+  "cases": [
+    {
+      "case_id": "assistive-valid",
+      "record": {"case_id":"assistive-valid","operating_mode":"ASSISTIVE","patient_study_bound":true,"model_identity_verified":true,"model_version_approved":true,"approved_indication":true,"image_series_complete":true,"image_quality_acceptable":true,"out_of_distribution_clear":true,"clinical_context_available":true,"prior_study_required":false,"prior_study_available":false,"human_review_required":true,"human_review_completed":false,"independent_image_access":true,"automation_bias_risk":false,"emergency_context":false,"policy_ref":"policy:radiology-ai:v1","delegation_ref":"delegation:assistive:v1","provenance_complete":true,"requested_disposition":"ASSISTIVE_OUTPUT","decision":"ADMIT_ASSISTIVE_USE"},
+      "expected_decision": "ADMIT_ASSISTIVE_USE"
+    },
+    {
+      "case_id": "ai-first-human-review",
+      "record": {"case_id":"ai-first-human-review","operating_mode":"AI_FIRST_HUMAN_REVIEW","patient_study_bound":true,"model_identity_verified":true,"model_version_approved":true,"approved_indication":true,"image_series_complete":true,"image_quality_acceptable":true,"out_of_distribution_clear":true,"clinical_context_available":true,"prior_study_required":false,"prior_study_available":false,"human_review_required":true,"human_review_completed":true,"independent_image_access":true,"automation_bias_risk":false,"emergency_context":false,"policy_ref":"policy:radiology-ai:v1","delegation_ref":"delegation:ai-first:v1","provenance_complete":true,"requested_disposition":"HUMAN_REVIEWED_FINAL","decision":"ADMIT_AI_FIRST_WITH_MANDATORY_HUMAN_REVIEW"},
+      "expected_decision": "ADMIT_AI_FIRST_WITH_MANDATORY_HUMAN_REVIEW"
+    },
+    {
+      "case_id": "autonomous-normal-denied",
+      "record": {"case_id":"autonomous-normal-denied","operating_mode":"AUTONOMOUS_NEGATIVE_CLEARANCE","patient_study_bound":true,"model_identity_verified":true,"model_version_approved":true,"approved_indication":true,"image_series_complete":true,"image_quality_acceptable":true,"out_of_distribution_clear":true,"clinical_context_available":true,"prior_study_required":false,"prior_study_available":false,"human_review_required":false,"human_review_completed":false,"independent_image_access":false,"automation_bias_risk":false,"emergency_context":false,"policy_ref":"policy:radiology-ai:v1","delegation_ref":"delegation:none","provenance_complete":true,"requested_disposition":"AUTONOMOUS_NORMAL","decision":"DENY_AUTONOMOUS_CLEARANCE"},
+      "expected_decision": "DENY_AUTONOMOUS_CLEARANCE"
+    },
+    {
+      "case_id": "prior-required-missing",
+      "record": {"case_id":"prior-required-missing","operating_mode":"AI_FIRST_HUMAN_REVIEW","patient_study_bound":true,"model_identity_verified":true,"model_version_approved":true,"approved_indication":true,"image_series_complete":true,"image_quality_acceptable":true,"out_of_distribution_clear":true,"clinical_context_available":true,"prior_study_required":true,"prior_study_available":false,"human_review_required":true,"human_review_completed":false,"independent_image_access":true,"automation_bias_risk":false,"emergency_context":false,"policy_ref":"policy:radiology-ai:v1","delegation_ref":"delegation:ai-first:v1","provenance_complete":true,"requested_disposition":"HUMAN_REVIEWED_FINAL","decision":"REVIEW_REQUIRED"},
+      "expected_decision": "REVIEW_REQUIRED"
+    },
+    {
+      "case_id": "outside-approved-indication",
+      "record": {"case_id":"outside-approved-indication","operating_mode":"ASSISTIVE","patient_study_bound":true,"model_identity_verified":true,"model_version_approved":true,"approved_indication":false,"image_series_complete":true,"image_quality_acceptable":true,"out_of_distribution_clear":false,"clinical_context_available":true,"prior_study_required":false,"prior_study_available":false,"human_review_required":true,"human_review_completed":false,"independent_image_access":true,"automation_bias_risk":false,"emergency_context":false,"policy_ref":"policy:radiology-ai:v1","delegation_ref":"delegation:assistive:v1","provenance_complete":true,"requested_disposition":"ASSISTIVE_OUTPUT","decision":"FAIL_CLOSED"},
+      "expected_decision": "FAIL_CLOSED"
+    },
+    {
+      "case_id": "incomplete-low-quality-series",
+      "record": {"case_id":"incomplete-low-quality-series","operating_mode":"AI_FIRST_HUMAN_REVIEW","patient_study_bound":true,"model_identity_verified":true,"model_version_approved":true,"approved_indication":true,"image_series_complete":false,"image_quality_acceptable":false,"out_of_distribution_clear":true,"clinical_context_available":true,"prior_study_required":false,"prior_study_available":false,"human_review_required":true,"human_review_completed":false,"independent_image_access":true,"automation_bias_risk":false,"emergency_context":false,"policy_ref":"policy:radiology-ai:v1","delegation_ref":"delegation:ai-first:v1","provenance_complete":true,"requested_disposition":"HUMAN_REVIEWED_FINAL","decision":"FAIL_CLOSED"},
+      "expected_decision": "FAIL_CLOSED"
+    },
+    {
+      "case_id": "model-version-drift",
+      "record": {"case_id":"model-version-drift","operating_mode":"AI_FIRST_HUMAN_REVIEW","patient_study_bound":true,"model_identity_verified":true,"model_version_approved":false,"approved_indication":true,"image_series_complete":true,"image_quality_acceptable":true,"out_of_distribution_clear":true,"clinical_context_available":true,"prior_study_required":false,"prior_study_available":false,"human_review_required":true,"human_review_completed":false,"independent_image_access":true,"automation_bias_risk":false,"emergency_context":false,"policy_ref":"policy:radiology-ai:v1","delegation_ref":"delegation:ai-first:v1","provenance_complete":true,"requested_disposition":"HUMAN_REVIEWED_FINAL","decision":"FAIL_CLOSED"},
+      "expected_decision": "FAIL_CLOSED"
+    },
+    {
+      "case_id": "automation-bias-review",
+      "record": {"case_id":"automation-bias-review","operating_mode":"AI_FIRST_HUMAN_REVIEW","patient_study_bound":true,"model_identity_verified":true,"model_version_approved":true,"approved_indication":true,"image_series_complete":true,"image_quality_acceptable":true,"out_of_distribution_clear":true,"clinical_context_available":true,"prior_study_required":false,"prior_study_available":false,"human_review_required":true,"human_review_completed":true,"independent_image_access":false,"automation_bias_risk":true,"emergency_context":false,"policy_ref":"policy:radiology-ai:v1","delegation_ref":"delegation:ai-first:v1","provenance_complete":true,"requested_disposition":"HUMAN_REVIEWED_FINAL","decision":"REVIEW_REQUIRED"},
+      "expected_decision": "REVIEW_REQUIRED"
+    }
+  ]
+}
