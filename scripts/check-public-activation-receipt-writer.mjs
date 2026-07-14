@@ -15,6 +15,10 @@ const REQUIRED_CHECKS = [
   'governed_llm_site_verification_reachable',
   'governed_llm_deployment_status_reachable',
   'governed_llm_archive_handoff_reachable',
+  'optimization_target_doctrine_reachable',
+  'optimization_target_formalism_json_reachable',
+  'optimization_target_publication_status_reachable',
+  'external_translation_reconstruction_receipt_reachable',
   'generated_evaluation_results_reachable',
   'asro_external_framework_reachable'
 ];
@@ -47,7 +51,7 @@ if (result.status !== 0) {
 
 if (!fs.existsSync(OUT)) fail(`writer did not create ${OUT}`);
 const receipt = JSON.parse(fs.readFileSync(OUT, 'utf8'));
-if (receipt.schema !== 'admissibility_wiki_public_activation_receipt.v2') fail('schema mismatch');
+if (receipt.schema !== 'admissibility_wiki_public_activation_receipt.v3') fail('schema mismatch');
 if (receipt.repository !== 'StegVerse-Labs/admissibility-wiki') fail('repository mismatch');
 if (receipt.activation_state !== 'workflow_observed_guarded_public_routes') fail('activation_state mismatch');
 if (receipt.activation_target !== 'https://stegverse-labs.github.io/admissibility-wiki/') fail('activation_target mismatch');
@@ -59,6 +63,11 @@ for (const check of REQUIRED_CHECKS) {
   if (!value) fail(`missing check: ${check}`);
   if (value.status !== 'verified_by_workflow') fail(`check status mismatch: ${check}`);
   if (!value.evidence?.url) fail(`check evidence url missing: ${check}`);
+}
+
+const reconstructionUrl = receipt.linked_receipts?.external_translation_reconstruction;
+if (reconstructionUrl !== 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json') {
+  fail('external translation reconstruction receipt binding mismatch');
 }
 
 const nonClaims = receipt.non_claims || [];
