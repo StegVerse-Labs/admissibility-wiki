@@ -5,59 +5,72 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 ## Current Repo Goal
 
 ```text
-Goal: complete governed LLM / admissibility-wiki public documentation activation under the single canonical validation workflow.
-Current repo state: external-framework source-blocked vocabulary repair is installed; shared documentation mesh registry and health status are installed and validated through the canonical workflow.
-Manual task requirement: none recorded in this handoff
-No manual target-creation task is assigned in this handoff
+Goal: complete admissibility-wiki public documentation activation under the single canonical validation workflow.
+Current state: doctrine, status, validation, documentation mesh, and governed LLM surfaces are installed.
+Manual task requirement: none.
+No manual target-creation task is assigned.
 ```
 
 ## Current Activation Goal
 
+Publish and validate `https://stegverse-labs.github.io/admissibility-wiki/` as the public vocabulary and proof-path surface for transition governance, commit-time authority, receipt-bound execution, governed continuity, external-framework evaluation, and governed LLM integration.
+
+## Verification Versus Execution Authority
+
 ```text
-Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the public vocabulary, terminology convergence, proposal-review, proof-path, governed LLM demo, repo-standards integration, external-framework evaluation-standard, and documentation-mesh site.
+Goal id: verification-vs-execution-authority
+Doctrine: docs/governance/verification-vs-execution-authority.md
+Status: static/status/verification-execution-authority-status.json
+Validator: scripts/check_verification_execution_authority.py
+Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
+State: IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION
+Manual task requirement: none
+Downstream mutation authority: none granted
+```
+
+The doctrine records the Virginia 2026 IVO policy signal while preserving these boundaries:
+
+```text
+independent verification != execution authority
+certification != action-level admissibility
+system approval != permission for a specific execution
+post-event explanation != a reachable pre-consequence refusal point
+```
+
+Independent review enters the transition path as evidence and review posture. It does not silently acquire authority to commit a specific transition. High-risk execution requires a live point that can return `ALLOW`, `DENY`, or `FAIL_CLOSED` before consequence attaches.
+
+Source classification:
+
+```text
+URL: https://www.prnewswire.com/news-releases/fathom-applauds-governor-spanbergers-signing-of-landmark-ai-governance-legislation-302739994.html
+Published: 2026-04-13
+Class: organization-issued public announcement
+Permitted claim: evidence of the announced Virginia IVO study direction only
+Not established: enacted-text interpretation, operational IVO standard, implementation proof, or action-level execution authority
 ```
 
 ## External Framework Report Repair
 
 ```text
 Workflow: .github/workflows/validate-chain-continuation.yml
-Job: validate-chain-continuation
-Step: Validate external framework reports
 Validator: scripts/check_external_framework_reports.py
-Repair state: installed
-Rule: allow source-blocked status tokens only when result == SOURCE_BLOCKED_FAIL_CLOSED
+Generator repair receipt: receipts/external-framework-report-generation-repair-2026-07-11.json
+Repair state: installed; canonical verification remains observable through the single workflow
 ```
 
-Source-blocked reports may use `SOURCE_REQUIRED`, `PROVISIONAL`, and `MISSING` only as fail-closed evidence-status markers. These tokens do not certify compatibility, grant authority, or complete validation.
+Source-blocked reports may use `SOURCE_REQUIRED`, `PROVISIONAL`, and `MISSING` only as fail-closed evidence-status markers when the result is `SOURCE_BLOCKED_FAIL_CLOSED`. These tokens do not certify compatibility or grant authority.
 
-## External Framework Generator Regression Repair
-
-```text
-Observed workflow run: 29135881700
-Observed commit: 631877c2d20498452cc2b58286087ba994299c4a
-Failure class: generated_artifact_regression
-Failed step: Validate external framework reports
-Root cause: scripts/generate_external_framework_reports.py replaced the enriched Morrison compatibility report with a baseline generated report before validation.
-Repair commit: 7284f1f74a32503b49f8de8cd02eddfd65f58fc8
-Receipt: receipts/external-framework-report-generation-repair-2026-07-11.json
-Repair state: installed; canonical workflow verification pending
-```
-
-The generator preserves explicitly enriched framework evidence reports while refreshing canonical identity references and mandatory fail-closed boundary fields. This does not certify Morrison Runtime Governance or elevate benchmark observations into execution authority.
-
-## Documentation Mesh Status
+## Documentation Mesh
 
 ```text
 Endpoint registry: static/status/ecosystem-documentation-endpoints.json
 Cross-wiki health: static/status/cross-wiki-health-status.json
 Validator: scripts/check_documentation_mesh_status.py
 Canonical integration: scripts/check_admissibility_automation_handoff.py
-Public registry URL: https://stegverse-labs.github.io/admissibility-wiki/status/ecosystem-documentation-endpoints.json
-Public health URL: https://stegverse-labs.github.io/admissibility-wiki/status/cross-wiki-health-status.json
 State: pending_live_peer_checks
 ```
 
-Canonical documentation endpoints:
+Canonical endpoints:
 
 ```text
 https://stegverse-labs.github.io/Site/
@@ -66,82 +79,36 @@ https://stegverse-002.github.io/stegguardian-wiki/
 https://stegverse-labs.github.io/stegtalk-wiki/
 ```
 
-Endpoint registration and health records do not grant cross-repo authority, standing, execution authority, certification, endorsement, or admissibility.
+Endpoint visibility does not grant cross-repo authority, standing, certification, endorsement, or admissibility.
 
-## Proposal Governance Core-Lite Status
+## Proposal Governance Core-Lite
 
 ```text
-Target repository: StegVerse-Labs/proposal-governance-core-lite
-Status artifact: static/status/proposal-core-lite-target-watch-status.json
-Validation command: npm run validate:proposal-core-lite-target-watch-status
+Target: StegVerse-Labs/proposal-governance-core-lite
+Status: static/status/proposal-core-lite-target-watch-status.json
+Validation: npm run validate:proposal-core-lite-target-watch-status
 Execution surface: .github/workflows/validate-chain-continuation.yml
-Posture: declared task under the canonical workflow, not a second active workflow.
-Last observed validator result: proposal core-lite target watch status OK
-Manual task requirement: none recorded in this handoff
-No manual target-creation task is assigned in this handoff
+Posture: declared task under the canonical workflow
+Manual task requirement: none
 ```
 
-## Conceptual Inheritance Provenance Status
+## Conceptual Inheritance Provenance
 
 ```text
 Goal id: conceptual-inheritance-provenance-standing
 Doctrine: docs/formalisms/conceptual-inheritance-provenance.md
-Formalism index: docs/formalisms/index.md
 Schema: static/schemas/conceptual-inheritance-record.schema.json
 Fixtures: tests/fixtures/conceptual-inheritance-cases.json
-Claim validator: scripts/check_conceptual_inheritance_claims.py
-Activation status validator: scripts/check_conceptual_inheritance_status.py
-Publication verification: static/status/conceptual-inheritance-publication-verification.json
-Publication validator: scripts/check_conceptual_inheritance_publication.py
-Propagation plan: static/status/conceptual-inheritance-propagation-plan.json
-Propagation validator: scripts/check_conceptual_inheritance_propagation_plan.py
-Canonical integration: scripts/check_admissibility_automation_handoff.py
-Status artifact: static/status/conceptual-inheritance-provenance-status.json
-Navigation: sidebars.js
+Status: static/status/conceptual-inheritance-provenance-status.json
+Publication: static/status/conceptual-inheritance-publication-verification.json
+Propagation: static/status/conceptual-inheritance-propagation-plan.json
+Validators: scripts/check_conceptual_inheritance_*.py
 State: IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION
+Authority posture: QUEUE_ONLY_NO_DOWNSTREAM_MUTATION
 Manual task requirement: none
 ```
 
-The doctrine separates architectural integrity, provenance continuity, and origin-claim standing. It supports `ADMIT`, `DENY`, `FAIL_CLOSED`, and `REVIEW_REQUIRED` without deciding legal ownership, infringement, or intent. Similarity alone must not be converted into proof of derivation, and unresolved provenance must not be converted into certification of independence.
-
-Installed activation surfaces:
-
-```text
-- public doctrine page
-- formalism sidebar navigation
-- formalism index entry
-- machine-readable inheritance-state schema
-- neutral decision fixtures
-- deterministic claim validator
-- activation status artifact and validator
-- fail-closed publication verification artifact and validator
-- queue-only downstream propagation plan and validator
-- canonical handoff validation integration
-```
-
-## Conceptual Inheritance Propagation Posture
-
-```text
-Authority posture: QUEUE_ONLY_NO_DOWNSTREAM_MUTATION
-Site handoff reviewed: yes
-Site result: DEFER because the active handoff is dedicated to governed Ecosystem Chat activation
-Publisher handoff reviewed: yes
-Publisher result: QUEUE_AFTER_CURRENT_PRIORITY because SPE v0.5.0 wiki propagation is active and an activation workflow failure remains unresolved
-StegGuardian wiki handoff reviewed for this transition: no
-StegGuardian implementation handoff reviewed for this transition: no
-```
-
-Queued propagation is not completed propagation. A destination reference does not grant mutation authority. No downstream mirror may proceed until canonical validation, public endpoint verification, and immediate destination-handoff review are complete.
-
-Remaining checks:
-
-```text
-- canonical workflow pass
-- public doctrine page verification
-- public status artifact verification
-- Publisher and Site propagation after destination handoff authority permits it
-- StegGuardian wiki and implementation awareness after canonical validation and destination review
-```
+The doctrine separates architectural integrity, provenance continuity, and origin-claim standing. Similarity alone is not proof of derivation, and unresolved provenance is not certification of independence.
 
 ## Deployment Gate
 
@@ -150,22 +117,34 @@ Canonical active workflow: .github/workflows/validate-chain-continuation.yml
 Build job: build-pages
 Deployment job: deploy-pages
 Public verification job: verify-public-pages
-Gate posture: validation must pass before build/deploy/verify can advance.
+Gate: validation must pass before build, deploy, or public verification advances
 ```
 
-## Known Workflow Files
+Do not create additional active GitHub Actions workflows unless repo standards explicitly change.
+
+## Validation and Receipt Automation
+
+Primary commands:
 
 ```text
-Active canonical workflow:
-.github/workflows/validate-chain-continuation.yml
-
-iOS-safe workflow path references retained for continuity and migration history:
-github/workflows/deploy.yml
-github/workflows/record-latest-success.yml
-github/workflows/proposal-core-lite-target-watch.yml
+npm run validate
+python scripts/check_admissibility_automation_handoff.py
+python scripts/check_verification_execution_authority.py
+python scripts/check_documentation_mesh_status.py
+python scripts/check_external_framework_reports.py
+python scripts/check_conceptual_inheritance_claims.py
+python scripts/check_conceptual_inheritance_status.py
+python scripts/check_conceptual_inheritance_publication.py
+python scripts/check_conceptual_inheritance_propagation_plan.py
 ```
 
-The proposal-core-lite target watch is represented as a declared task/status artifact under the canonical workflow, not as an additional active workflow file.
+Expected new doctrine result:
+
+```text
+VERIFICATION EXECUTION AUTHORITY: PASS
+```
+
+The verification-authority validator is invoked by `check_admissibility_automation_handoff.py`, which is already invoked by `npm run validate`; no standalone manual validation step is required.
 
 ## Known Status Artifacts
 
@@ -181,93 +160,65 @@ static/status/workflow-evidence-watch-status.json
 static/status/publication-verification-status.json
 static/status/guardian-destination-resolution-status.json
 static/status/repo-standards-integration-status.json
-static/status/repo-standards-integration-release-update-queue.json
-static/status/repo-standards-installation-bundle-plan.json
-static/status/repo-standards-installation-validation-report.json
-static/status/repo-standards-public-deployment-verification.json
 static/status/ecosystem-documentation-endpoints.json
 static/status/cross-wiki-health-status.json
 static/status/conceptual-inheritance-provenance-status.json
 static/status/conceptual-inheritance-publication-verification.json
 static/status/conceptual-inheritance-propagation-plan.json
-```
-
-## Validation and Receipt Automation
-
-```text
-npm run validate:wiki-status
-npm run validate:activation-checklist
-npm run validate:publication-verification-status
-npm run validate:workflow-receipt-automation-status
-npm run validate:workflow-evidence-status
-npm run validate:workflow-evidence-watch-status
-npm run validate:proposal-core-lite-target-watch-status
-npm run validate:no-manual-task-assignments
-npm run validate:mirror-handoff-guard
-npm run validate:guardian-destination-resolution
-npm run validate:guardian-handoff-destinations
-npm run validate:repo-standards-integration
-python scripts/check_external_framework_expansion_policy.py
-python scripts/check_external_framework_evidence_provenance.py
-python scripts/check_external_framework_reports.py
-python scripts/check_documentation_mesh_status.py
-python scripts/check_conceptual_inheritance_claims.py
-python scripts/check_conceptual_inheritance_status.py
-python scripts/check_conceptual_inheritance_publication.py
-python scripts/check_conceptual_inheritance_propagation_plan.py
-python scripts/check_admissibility_automation_handoff.py
-npm run validate
+static/status/verification-execution-authority-status.json
 ```
 
 ## Mirror Coordination Rule
 
 ```text
-Check this file before continuing work in StegVerse-Labs/admissibility-wiki.
+Check this file before continuing admissibility-wiki work.
 Check docs/SITE_MIRROR_HANDOFF.md before Site mirror work.
 Check PUBLISHER_MIRROR_HANDOFF.md before Publisher mirror work.
-Do not create additional active GitHub Actions workflows unless repo standards explicitly change.
-Do not treat public page visibility as governance authority.
+Review StegGuardian destination handoffs immediately before any downstream mutation.
+Do not treat public visibility as governance authority.
 Do not treat queued propagation as completed propagation.
-Manual task requirement: none recorded in this handoff
+Manual task requirement: none.
 ```
 
-## Guardian Destination Status
+## Downstream Awareness and Release Rule
+
+When this repository reaches tag/release readiness, create or update durable verification tasks for pertinent propagation to:
 
 ```text
-Status artifact: static/status/guardian-destination-resolution-status.json
-Public destination repo: StegVerse-002/stegguardian-wiki
-Implementation destination repo: StegVerse-002/StegGuardian
-Public destination summary: downstream public Guardian summary after wiki validation and repo-standards tag/release
-Implementation destination summary: private Guardian implementation standing-boundary awareness after wiki validation
+StegVerse-Labs/Site
+GCAT-BCAT-Engine/Publisher
+StegVerse-Labs/admissibility-wiki
+StegVerse-002/stegguardian-wiki
 ```
 
-## Repo Standards Integration Status
+Destination mutation remains prohibited until each destination handoff grants the required scope. A queued awareness item is not a completed mirror.
+
+## Remaining Open Checks
 
 ```text
-Goal id: repo-standards-integration-and-installation-bundle-pending-release
-Integration page: docs/governance/repo-standards-integration.md
-Installation bundle page: docs/governance/repo-standards-installation-bundle.md
-Status: UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
-Local integration state: installed and validation-bound
-Release posture: PENDING_UPSTREAM_TAG_RELEASE
-```
-
-The external release dependency is not a local repository defect. Current local surfaces remain governed by `PENDING_UPSTREAM_TAG_RELEASE` until a verifiable `StegVerse-Labs/repo-standards` release reference is available.
-
-## Remaining Open Check
-
-```text
-- confirm the canonical workflow passes after the external framework generator regression repair
-- confirm the canonical workflow passes with documentation mesh validation
-- confirm the canonical workflow passes with conceptual inheritance claim, activation-status, publication, and propagation-plan validation
-- confirm both documentation-mesh public status URLs respond after deployment
-- confirm the conceptual inheritance doctrine and status artifact respond after deployment
-- preserve Site deferral until its Ecosystem Chat handoff authorizes unrelated mirror work
-- preserve Publisher queue position until SPE propagation and the unresolved activation failure are addressed
+- observe the canonical workflow result for the verification-authority integration
+- verify the doctrine page and status artifact after deployment
+- confirm documentation-mesh public endpoints after deployment
+- preserve Site deferral until its current handoff authorizes unrelated mirror work
+- preserve Publisher queue order until its current priority and activation failure are resolved
 - review StegGuardian destination handoffs immediately before any downstream mutation
-- promote the proven multi-repo mesh validator into StegVerse-Labs/repo-standards
+- promote the proven multi-repo mesh validator into StegVerse-Labs/repo-standards when upstream scope permits
+```
+
+These are durable continuation requirements, not manual assignments to this session.
+
+## Permitted Continuation Scope
+
+A successor session may:
+
+```text
+- inspect the canonical workflow and public deployment results
+- repair failures inside this repository
+- update receipts and status artifacts from observed evidence
+- refine doctrine without promoting verification into execution authority
+- queue downstream awareness without mutating destinations absent handoff authority
 ```
 
 ## Handoff Instruction
 
-Continue from this file before relying on prior chat context. The complete thread can be archived without needing additional context to continue.
+Continue from this file before relying on prior chat context. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
