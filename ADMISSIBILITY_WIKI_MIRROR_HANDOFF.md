@@ -6,7 +6,7 @@ This file is the handoff source of truth for `StegVerse-Labs/admissibility-wiki`
 
 ## Active goal
 
-Complete governed public documentation activation through the single canonical workflow while eliminating manual validation, observation, reconciliation, classification, comparison, bounded-history maintenance, publication checking, and archival tasks.
+Complete governed public documentation activation through the single canonical workflow while eliminating manual validation, observation, reconciliation, classification, comparison, bounded-history maintenance, publication checking, receipt custody, and archival tasks.
 
 ## Current repository state
 
@@ -28,6 +28,8 @@ workflow trigger
 -> full validation receipt
 -> bounded observation, health, transition, trend, frequency, stability, comparison, and history artifacts
 -> terminal workflow-observation rollup
+-> hash-bound Pages build receipt
+-> 30-day workflow artifact custody
 -> Pages deployment
 -> automatic public endpoint verification
 -> hourly repository-owned re-observation
@@ -40,10 +42,13 @@ scripts/generate_canonical_workflow_observation_rollup.py
 scripts/check_canonical_workflow_observation_rollup.py
 scripts/reconcile_canonical_workflow_stability_change_frequency_change_history.py
 scripts/check_canonical_workflow_stability_change_frequency_change_history.py
+scripts/write_pages_build_receipt.py
+scripts/check_pages_build_receipt_rollup_binding.py
 scripts/check_canonical_workflow_observation_automation_status.py
 scripts/check_governed_llm_deployment_status.py
 static/status/canonical-workflow-observation-automation.json
 static/status/canonical-workflow-observation-rollup.json (generated)
+reports/pages-build-receipt.json (generated and uploaded)
 ```
 
 Terminal policy:
@@ -66,9 +71,9 @@ The envelope points to the latest observation, history, health, transition, tren
 
 The terminal rollup is generated automatically after the final bounded comparison-history reconciliation. Missing artifacts produce `FAIL_CLOSED_INCOMPLETE_LOCAL_CHAIN`; they do not create a user or reviewer task.
 
-## Deterministic fail-closed repair
+## Deterministic fail-closed validation
 
-The terminal validator now exercises both required branches:
+The terminal validator exercises both required branches:
 
 ```text
 complete fixture chain -> COMPLETE_LOCAL_CHAIN
@@ -80,7 +85,7 @@ manual_tasks_required -> []
 user_action_required -> false
 ```
 
-The validator backs up and restores any pre-existing generated status artifacts, so the negative case does not leave repository state mutated. This closes the prior validation gap where only the complete branch was tested.
+The validator backs up and restores any pre-existing generated status artifacts, so the negative case does not leave repository state mutated.
 
 Commit:
 
@@ -88,17 +93,44 @@ Commit:
 9a5d049d4c16c927d2d5597fc5ac0f776bed1b3c
 ```
 
+## Terminal artifact custody
+
+The existing uploaded Pages build receipt now embeds a hash-bound terminal-rollup snapshot.
+
+Required receipt behavior:
+
+```text
+rollup missing -> FAIL_CLOSED_ROLLUP_MISSING
+rollup structurally invalid -> FAIL_CLOSED_ROLLUP_INVALID
+rollup terminal and no-recursion boundary valid -> ROLLUP_BOUND
+completeness required for successful build receipt -> COMPLETE_LOCAL_CHAIN
+rollup digest -> SHA-256 of generated terminal envelope
+artifact upload -> pages-build-receipt
+retention -> 30 days
+manual_tasks_required -> []
+user_action_required -> false
+```
+
+The Pages build receipt remains distinct from deployment, public verification, release, or execution authority. The rollup binding performs no semantic reclassification.
+
+Durable commits:
+
+```text
+d641170fe22464f3cc23bbf6a2b478392536aa2c
+ba9acaef0a0dc5ccb3dca450d983655656d482bf
+```
+
 ## Observation state
 
 ```text
 connected commit-status records: none exposed
-public endpoint observation from current execution environment: unavailable
+PR-linked workflow runs for latest observed commit: none exposed
 canonical workflow pass: not claimed
 Pages deployment pass: not claimed
 terminal rollup public reachability: not claimed
 ```
 
-The absence of exposed status records is not converted into a manual task. The hourly canonical workflow remains the owner of validation, deployment, and public re-observation.
+The absence of exposed status records is not converted into a manual task. The hourly canonical workflow remains the owner of validation, deployment, public re-observation, and artifact renewal.
 
 ## Authority boundaries
 
@@ -108,7 +140,7 @@ Data-Continuation/formalism-tests owns executable fixtures, expected outcomes, a
 Site is downstream display only
 Publisher is downstream publication/indexing only
 StegGuardian interpretation remains deferred until executable proof fixtures exist
-workflow evidence and the terminal rollup do not grant proof, release, execution, custody, or downstream mutation authority
+workflow evidence, terminal rollup, and Pages build receipt do not grant proof, release, execution, custody transfer, or downstream mutation authority
 ```
 
 ## Remaining files or modules and destinations
@@ -116,9 +148,9 @@ workflow evidence and the terminal rollup do not grant proof, release, execution
 ### `StegVerse-Labs/admissibility-wiki`
 
 ```text
-Observe the canonical workflow result for the terminal-rollup commits when repository-owned evidence is exposed.
-Use workflow-owned logs, artifacts, and validation receipts to identify exact deterministic failures.
-Repair only exact failures without weakening validation or adding another active workflow.
+Observe the canonical workflow result for the terminal-rollup custody commits when repository-owned evidence is exposed.
+Inspect the pages-build-receipt workflow artifact and full-validation-chain report when connector run evidence becomes available.
+Repair only exact deterministic failures without weakening validation or adding another active workflow.
 Keep deployment and public-route evidence fail-closed until observed.
 Do not resume recursive summary-of-summary construction.
 Manual user task: none.
@@ -149,13 +181,13 @@ No tag or release is authorized until canonical validation, build, public-route 
 ## Next task
 
 ```text
-1. Observe the canonical workflow result for the terminal-rollup chain when evidence is exposed.
-2. Inspect repository-owned failure evidence when available.
+1. Observe the canonical workflow result for the terminal-rollup custody chain when evidence is exposed.
+2. Inspect repository-owned workflow artifacts and logs when available.
 3. Apply exact deterministic repairs only.
-4. Preserve the terminal envelope and no-recursion boundary.
+4. Preserve the terminal envelope, no-recursion boundary, and hash-bound artifact custody.
 5. Do not request manual route checks, workflow triggering, receipt construction, archival, file movement, or downstream propagation from the user.
 ```
 
 ## Archive posture
 
-This handoff preserves the active goal, installed terminal automation, decisions, ownership, blockers, authority boundaries, completed fail-closed validator repair, remaining workflow-observation work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
+This handoff preserves the active goal, installed terminal automation, fail-closed validation, artifact custody, decisions, ownership, blockers, authority boundaries, remaining workflow-observation work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
