@@ -1,8 +1,8 @@
 {
-  "schema": "admissibility_wiki.canonical_workflow_observation_automation.v0.10",
+  "schema": "admissibility_wiki.canonical_workflow_observation_automation.v0.11",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "goal": "Eliminate manual workflow observation, reconciliation, health classification, transition explanation, bounded-history maintenance, trend interpretation, change preservation, and frequency interpretation while preserving fail-closed automation.",
-  "state": "AUTOMATED_TREND_CHANGE_FREQUENCY_BOUND",
+  "goal": "Eliminate manual workflow observation, reconciliation, health classification, transition explanation, bounded-history maintenance, trend interpretation, frequency interpretation, and frequency-class comparison while preserving fail-closed automation.",
+  "state": "AUTOMATED_TREND_CHANGE_FREQUENCY_CHANGE_BOUND",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "ios_safe_workflow_mirror": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
   "integration": "scripts/check_full_validation_chain.py",
@@ -10,6 +10,8 @@
   "health_transition_trend_change_history_validator": "scripts/check_canonical_workflow_health_transition_trend_change_history.py",
   "trend_change_frequency_generator": "scripts/generate_canonical_workflow_trend_change_frequency_summary.py",
   "trend_change_frequency_validator": "scripts/check_canonical_workflow_trend_change_frequency_summary.py",
+  "trend_change_frequency_change_generator": "scripts/generate_canonical_workflow_trend_change_frequency_change.py",
+  "trend_change_frequency_change_validator": "scripts/check_canonical_workflow_trend_change_frequency_change.py",
   "automation_contract_endpoint": "/status/canonical-workflow-observation-automation.json",
   "run_bound_receipt_endpoint": "/status/canonical-workflow-observation-receipt.json",
   "history_endpoint": "/status/canonical-workflow-observation-history.json",
@@ -20,14 +22,16 @@
   "health_transition_trend_change_endpoint": "/status/canonical-workflow-health-transition-trend-change-receipt.json",
   "health_transition_trend_change_history_endpoint": "/status/canonical-workflow-health-transition-trend-change-history.json",
   "trend_change_frequency_endpoint": "/status/canonical-workflow-trend-change-frequency-summary.json",
+  "trend_change_frequency_change_endpoint": "/status/canonical-workflow-trend-change-frequency-change-receipt.json",
   "publication_chain": [
     "validate-chain-continuation generates and embeds the run receipt",
     "full-validation-chain-report artifact transfers it to build-pages",
     "build-pages publishes and reconciles bounded observation, transition, trend, and change records",
     "build-pages reconciles the trend-change receipt into bounded deduplicated trend-change history",
     "build-pages derives a bounded descriptive frequency and recency summary from trend-change history",
+    "build-pages emits a frequency-class change receipt by comparing the current summary with the prior public summary",
     "deploy-pages publishes the site artifact",
-    "verify-public-pages checks observation, health, transition, trend, change-history, and frequency-summary endpoints"
+    "verify-public-pages checks observation, health, transition, trend, change-history, frequency-summary, and frequency-change endpoints"
   ],
   "trend_change_history_policy": {
     "maximum_entries": 24,
@@ -48,6 +52,17 @@
     "owner": "canonical build-pages job",
     "next_evaluation": "next repository-owned canonical workflow trigger"
   },
+  "trend_change_frequency_change_policy": {
+    "comparison": "current generated frequency and recency classes against prior public summary",
+    "states": ["CHANGED", "UNCHANGED"],
+    "changed_fields": ["frequency_class", "recency_class"],
+    "descriptive_only": true,
+    "predictive_claim": false,
+    "causal_claim_beyond_receipt_fields": false,
+    "prior_summary_unavailable_result": "compare against AWAITING_AUTOMATED_FREQUENCY_SUMMARY without assigning a manual task",
+    "owner": "canonical build-pages job",
+    "next_evaluation": "next repository-owned canonical workflow trigger"
+  },
   "trigger_ownership": {
     "push": "repository automation",
     "pull_request": "repository automation",
@@ -63,7 +78,7 @@
   "downstream_mutation_authority_granted": false,
   "non_claims": [
     "This status proves automation contracts, not a successful future workflow run.",
-    "Frequency and recency summaries are bounded and descriptive, not predictive or independently causal.",
+    "Frequency, recency, and their change receipts are bounded and descriptive, not predictive or independently causal.",
     "It does not grant merge, release, deployment, publication, execution, or downstream mutation authority."
   ]
 }
