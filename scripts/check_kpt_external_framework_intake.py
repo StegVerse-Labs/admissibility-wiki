@@ -9,6 +9,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 STATUS = ROOT / "static" / "status" / "kpt-external-framework-intake-status.json"
 REGISTRY = ROOT / "docs" / "external-frameworks" / "index.json"
+INDEX_PAGE = ROOT / "docs" / "external-frameworks" / "index.md"
 MANIFEST = ROOT / "docs" / "external-frameworks" / "kpt.json"
 REPORT = ROOT / "docs" / "external-frameworks" / "reports" / "kpt.compatibility.json"
 PAGE = ROOT / "docs" / "external-frameworks" / "kpt.md"
@@ -16,7 +17,17 @@ SIDEBAR = ROOT / "sidebars.js"
 RECEIPT = ROOT / "receipts" / "kpt-source-blocked-intake-2026-07-14.json"
 AUTOMATION_RECEIPT = ROOT / "receipts" / "kpt-automation-binding-2026-07-14.json"
 
-REQUIRED_FILES = [STATUS, REGISTRY, MANIFEST, REPORT, PAGE, SIDEBAR, RECEIPT, AUTOMATION_RECEIPT]
+REQUIRED_FILES = [
+    STATUS,
+    REGISTRY,
+    INDEX_PAGE,
+    MANIFEST,
+    REPORT,
+    PAGE,
+    SIDEBAR,
+    RECEIPT,
+    AUTOMATION_RECEIPT,
+]
 FALSE_BOUNDARIES = {
     "certification_claim",
     "endorsement_claim",
@@ -49,6 +60,7 @@ def main() -> int:
     receipt = load_json(RECEIPT)
     automation_receipt = load_json(AUTOMATION_RECEIPT)
     page = PAGE.read_text(encoding="utf-8")
+    index_page = INDEX_PAGE.read_text(encoding="utf-8")
     sidebar = SIDEBAR.read_text(encoding="utf-8")
 
     if status.get("framework_id") != "kpt":
@@ -123,6 +135,15 @@ def main() -> int:
     for phrase in required_page_phrases:
         if phrase not in page:
             failures.append(f"KPT page missing required boundary text: {phrase}")
+
+    required_index_phrases = [
+        "[KPT](./kpt.md)",
+        "official source required",
+        "KPT -> source-blocked runtime decision state before downstream consequence",
+    ]
+    for phrase in required_index_phrases:
+        if phrase not in index_page:
+            failures.append(f"external framework index missing KPT observatory text: {phrase}")
 
     if "'external-frameworks/kpt'" not in sidebar:
         failures.append("KPT page is missing from the External Frameworks sidebar")
