@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "reports" / "canonical-workflow-observation-receipt.json"
 FULL_REPORT = ROOT / "reports" / "full_validation_chain_report.json"
-RECONSTRUCTION = ROOT / "reports" / "external-translation-reconstruction-receipt.json"
+RECONSTRUCTION = ROOT / "reports" / "external-translation" / "reconstruction-receipt.json"
 
 
 def load_optional(path: Path) -> dict | None:
@@ -27,8 +27,9 @@ def main() -> int:
     reconstruction = load_optional(RECONSTRUCTION)
 
     full_status = full_report.get("overall_status") if isinstance(full_report, dict) else None
-    reconstruction_status = (
-        reconstruction.get("evaluation_result")
+    reconstruction_status = reconstruction.get("overall_status") if isinstance(reconstruction, dict) else None
+    supersession_result = (
+        reconstruction.get("supersession", {}).get("evaluation_result")
         if isinstance(reconstruction, dict)
         else None
     )
@@ -46,20 +47,21 @@ def main() -> int:
         "run_attempt": os.getenv("GITHUB_RUN_ATTEMPT"),
         "job_status_observed": job_status,
         "full_validation_status": full_status,
-        "reconstruction_evaluation_result": reconstruction_status,
+        "reconstruction_status": reconstruction_status,
+        "reconstruction_evaluation_result": supersession_result,
         "automation_ownership": {
             "validation": "validate-chain-continuation job",
             "receipt_generation": "scripts/write_canonical_workflow_observation_receipt.py",
-            "artifact_retention": "canonical workflow artifact upload",
+            "artifact_retention": "full-validation-chain-report artifact",
             "scheduled_reobservation": "hourly canonical workflow schedule"
         },
         "manual_tasks_required": [],
         "user_action_required": False,
         "observation_state": (
             "PASS_OBSERVED"
-            if job_status == "success" and full_status == "PASS"
+            if job_status == "success" and full_status == "PASS" and reconstruction_status == "PASS"
             else "FAIL_CLOSED_OBSERVED"
-            if job_status in {"failure", "cancelled"} or full_status == "FAIL"
+            if job_status in {"failure", "cancelled"} or full_status == "FAIL" or reconstruction_status == "FAIL"
             else "INCOMPLETE_OBSERVATION"
         ),
         "non_claims": [
