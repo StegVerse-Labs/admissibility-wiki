@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -11,6 +13,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT = ROOT / "static" / "status" / "canonical-workflow-health-transition-trend-change-receipt.json"
 HISTORY = ROOT / "static" / "status" / "canonical-workflow-health-transition-trend-change-history.json"
+FREQUENCY_GENERATOR = ROOT / "scripts" / "generate_canonical_workflow_trend_change_frequency_summary.py"
 PUBLIC_HISTORY_URL = "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-transition-trend-change-history.json"
 MAX_ENTRIES = 24
 
@@ -106,6 +109,17 @@ def main() -> int:
         "CANONICAL WORKFLOW HEALTH TRANSITION TREND CHANGE HISTORY: PASS - "
         f"entries={len(ordered)} latest={latest.get('change_state')} prior={prior_history.get('result')} manual_tasks=0"
     )
+
+    if not FREQUENCY_GENERATOR.exists():
+        raise SystemExit("workflow trend-change frequency generator is missing")
+    completed = subprocess.run(
+        [sys.executable, str(FREQUENCY_GENERATOR)], cwd=ROOT, text=True,
+        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
+    )
+    if completed.stdout:
+        print(completed.stdout.rstrip())
+    if completed.returncode != 0:
+        raise SystemExit("workflow trend-change frequency generation failed")
     return 0
 
 
