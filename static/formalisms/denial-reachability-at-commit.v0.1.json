@@ -1,0 +1,48 @@
+{
+  "schema_version": "0.1",
+  "formalism_id": "stegverse.denial-reachability-at-commit.v0.1",
+  "title": "Denial Reachability at the Commit Boundary",
+  "status": "PUBLIC_CONCEPTUAL_FORMALISM",
+  "authority_posture": "NON_EXECUTION_AUTHORITY",
+  "proof_authority": "Data-Continuation/formalism-tests",
+  "owner_repository": "StegVerse-Labs/admissibility-wiki",
+  "core_rule": "A consequence-binding transition must not be authorized unless denial remains reachable and enforceable from the current state until the authorization result controls execution.",
+  "required_predicates": [
+    "ADMISSIBLE",
+    "AUTHORITY_CURRENT",
+    "STATE_SUFFICIENT",
+    "DENIAL_REACHABLE",
+    "DENIAL_ENFORCEABLE"
+  ],
+  "failure_posture": {
+    "decision": "FAIL_CLOSED",
+    "primary_failure_class": "INHERITED_AUTHORIZATION",
+    "equivalent_classes": [
+      "FORCED_TRANSITION",
+      "MOMENTUM_CAPTURE",
+      "COSMETIC_GATING",
+      "LATE_REFUSAL",
+      "SPLIT_BOUNDARY_INSUFFICIENCY"
+    ]
+  },
+  "evidence_requirements": [
+    "consequence_binding_boundary",
+    "transition_candidate",
+    "current_state_reference",
+    "current_authority_reference",
+    "reachable_deny_path",
+    "deny_enforcement_mechanism",
+    "latest_effective_denial_time",
+    "decision_result",
+    "execution_control_receipt"
+  ],
+  "prohibited_equivalences": [
+    "monitoring_is_denial_reachability",
+    "post_hoc_rollback_is_commit_time_denial",
+    "policy_evaluation_is_enforcement",
+    "representable_deny_state_is_enforceable_denial",
+    "prior_authorization_is_current_authorization"
+  ],
+  "decision_expression": "COMMIT_PERMITTED = ADMISSIBLE && AUTHORITY_CURRENT && STATE_SUFFICIENT && DENIAL_REACHABLE && DENIAL_ENFORCEABLE",
+  "public_document": "/docs/formalisms/denial-reachability-at-commit"
+}
