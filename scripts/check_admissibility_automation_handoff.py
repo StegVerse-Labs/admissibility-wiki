@@ -17,6 +17,7 @@ ORIGINAL_DRAWING_PUBLICATION_CHECK = ROOT / "scripts" / "check_original_drawing_
 OPTIMIZATION_TARGET_BINDING_CHECK = ROOT / "scripts" / "check_optimization_target_binding_at_commit.py"
 OPTIMIZATION_TARGET_PUBLICATION_CHECK = ROOT / "scripts" / "check_optimization_target_binding_publication.py"
 AI_LED_RADIOLOGY_CHECK = ROOT / "scripts" / "check_ai_led_radiology_execution.py"
+AI_LED_RADIOLOGY_PUBLICATION_CHECK = ROOT / "scripts" / "check_ai_led_radiology_publication.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -92,6 +93,11 @@ def main() -> int:
     run_check(
         AI_LED_RADIOLOGY_CHECK,
         "AI-led radiology execution boundary",
+        failures,
+    )
+    run_check(
+        AI_LED_RADIOLOGY_PUBLICATION_CHECK,
+        "AI-led radiology publication gate",
         failures,
     )
 
