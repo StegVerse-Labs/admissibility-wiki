@@ -14,8 +14,9 @@ REPORT = ROOT / "docs" / "external-frameworks" / "reports" / "kpt.compatibility.
 PAGE = ROOT / "docs" / "external-frameworks" / "kpt.md"
 SIDEBAR = ROOT / "sidebars.js"
 RECEIPT = ROOT / "receipts" / "kpt-source-blocked-intake-2026-07-14.json"
+AUTOMATION_RECEIPT = ROOT / "receipts" / "kpt-automation-binding-2026-07-14.json"
 
-REQUIRED_FILES = [STATUS, REGISTRY, MANIFEST, REPORT, PAGE, SIDEBAR, RECEIPT]
+REQUIRED_FILES = [STATUS, REGISTRY, MANIFEST, REPORT, PAGE, SIDEBAR, RECEIPT, AUTOMATION_RECEIPT]
 FALSE_BOUNDARIES = {
     "certification_claim",
     "endorsement_claim",
@@ -46,6 +47,7 @@ def main() -> int:
     manifest = load_json(MANIFEST)
     report = load_json(REPORT)
     receipt = load_json(RECEIPT)
+    automation_receipt = load_json(AUTOMATION_RECEIPT)
     page = PAGE.read_text(encoding="utf-8")
     sidebar = SIDEBAR.read_text(encoding="utf-8")
 
@@ -55,6 +57,9 @@ def main() -> int:
         failures.append("status source posture must remain SOURCE_BLOCKED_FAIL_CLOSED")
     if status.get("manual_task_requirement") != "none":
         failures.append("status must not assign a manual task")
+    for key in ["manual_validation_required", "manual_deployment_required", "manual_publication_check_required"]:
+        if status.get(key) is not False:
+            failures.append(f"status must set {key}=false")
     if status.get("downstream_mutation_authorized") is not False:
         failures.append("status must deny downstream mutation authority")
 
@@ -97,8 +102,18 @@ def main() -> int:
 
     if receipt.get("framework_id") != "kpt":
         failures.append("receipt framework_id must be kpt")
-    if receipt.get("source_posture") != "SOURCE_BLOCKED_FAIL_CLOSED":
-        failures.append("receipt source posture mismatch")
+    if receipt.get("intake_state") != "SOURCE_BLOCKED_FAIL_CLOSED":
+        failures.append("receipt intake state mismatch")
+
+    if automation_receipt.get("framework_id") != "kpt":
+        failures.append("automation receipt framework_id must be kpt")
+    if automation_receipt.get("source_posture") != "SOURCE_BLOCKED_FAIL_CLOSED":
+        failures.append("automation receipt source posture mismatch")
+    if automation_receipt.get("manual_task_requirement") != "none":
+        failures.append("automation receipt must not assign a manual task")
+    for key in ["manual_validation_required", "manual_deployment_required", "manual_publication_check_required"]:
+        if automation_receipt.get(key) is not False:
+            failures.append(f"automation receipt must set {key}=false")
 
     required_page_phrases = [
         "A KPT decision may become evidence inside a StegVerse Commitment Candidate.",
