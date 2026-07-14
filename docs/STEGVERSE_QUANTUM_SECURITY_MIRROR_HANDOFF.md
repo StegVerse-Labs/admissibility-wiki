@@ -9,10 +9,16 @@ Publish a technically cautious, evidence-grounded architecture showing how StegV
 ## Durable ownership
 
 ```text
-Issue #20: Activate StegVerse quantum-resilient complete-security publication
-Merged PR #22: Add quantum-resilient complete-security publication sources
-Validated source head: 66d39dd1b0554365ccd56b62eaf9c03c4cf3738d
-Merge commit: 563ad7d6810de8eae3f7b884d680f29077489c37
+Issue #20: quantum-resilient publication activation — closed
+Issue #23: workflow-observed public-route evidence — open and automatically owned
+Issue #28: handoff/status reconciliation after concurrency repair
+Merged PR #22: publication sources
+Merged PR #24: quantum public-route observer
+Merged PR #26: bounded activation-status refresh
+Merged PR #27: canonical and iOS workflow concurrency isolation
+Publication merge commit: 563ad7d6810de8eae3f7b884d680f29077489c37
+Observer merge commit: fe7d9dc6de15c7a99d74aa780d80ea2a03bb81aa
+Concurrency-repair merge commit: 3a58b9e85322841a3751ba3f9a4f591c14ed0cf1
 Repository: StegVerse-Labs/admissibility-wiki
 ```
 
@@ -24,10 +30,13 @@ CURRENT_MAIN_RECONCILIATION_COMPLETE
 NAVIGATION_INTEGRATED
 LOCAL_VALIDATOR_INSTALLED
 CANONICAL_VALIDATION_CHAIN_INTEGRATED
-CANONICAL_WORKFLOW_RUN_2356_SUCCESS
-PR_22_MERGED
-BOUNDED_MERGE_RECEIPT_RECORDED
-PUBLIC_ACTIVATION_PENDING_PAGES_AND_ROUTE_OBSERVATION
+PUBLIC_ROUTE_OBSERVER_MERGED
+BOUNDED_STATUS_REFRESH_MERGED
+CANONICAL_AND_IOS_WORKFLOW_MIRRORS_SYNCHRONIZED
+CANONICAL_WORKFLOW_RUN_2438_SUCCESS
+PR_27_MERGED
+PUBLIC_ACTIVATION_PENDING_WORKFLOW_OBSERVED_PAGES_AND_ROUTES
+AUTOMATIC_OBSERVATION_OWNER_ACTIVE
 ```
 
 No manual task is assigned to the user.
@@ -56,32 +65,40 @@ docs/social/stegverse-quantum-security-carousel.md
 docs/governance/quantum-resilient-execution-security.md
 ```
 
-### Validation and status
+### Validation, observation, and status
 
 ```text
 scripts/check_quantum_resilient_security_publication.py
+scripts/check_quantum_security_public_routes.py
+scripts/check_governed_llm_deployment_status.py
+reports/quantum-security-public-route-observation.json
 static/status/quantum-resilient-security-publication-status.json
+.github/workflows/validate-chain-continuation.yml
+iosnoperiod/github/workflows/validate-chain-continuation.yml
 sidebars.js
 scripts/check_admissibility_automation_handoff.py
 ```
 
-The publication validator is invoked by the existing canonical automation handoff checker. No additional active workflow was created.
+The publication validator and route observer remain integrated into the existing canonical workflow. No additional repository workflow was created. The canonical workflow and iOS mirror now use event/ref-isolated concurrency while preserving `cancel-in-progress: false`.
 
 ## Observed activation evidence
 
 ```text
-canonical workflow: Validate chain continuation
-canonical run: 2356
-canonical result: success
-validated source head: 66d39dd1b0554365ccd56b62eaf9c03c4cf3738d
-review posture: no requested reviewers, submitted reviews, PR comments, or observed review objections
-merge result: successful
-merge commit: 563ad7d6810de8eae3f7b884d680f29077489c37
+publication canonical run: 2356
+publication canonical result: success
+observer canonical run: 2395
+observer canonical result: success
+concurrency repair canonical run: 2438
+concurrency repair canonical result: success
+review posture for PR #27: no submitted reviews, unresolved review threads, or observed objections
+concurrency repair merge result: successful
+concurrency repair merge commit: 3a58b9e85322841a3751ba3f9a4f591c14ed0cf1
 pages deployment observed: false
-public route observation complete: false
+all three quantum public routes workflow-observed: false
+workflow route receipt retained and inspected: false
 ```
 
-The merge receipt establishes repository integration only. It does not establish public route availability, certification, production deployment of cryptographic primitives, execution authority, independent-audit standing, or downstream mutation authority.
+Successful validation and merge establish repository integration and workflow reliability only. They do not establish public-route availability, certification, production deployment of cryptographic primitives, execution authority, independent-audit standing, or downstream mutation authority.
 
 ## Canonical claim boundary
 
@@ -92,46 +109,45 @@ communication trust != execution trust
 verification != execution authority
 publication != certification
 receipt != legitimacy without canonical reconstruction
+route reachability != production cryptographic deployment
 ```
 
-Post-quantum cryptography protects cryptographic operations. It does not independently establish commit-time authority, correct policy, trustworthy state, endpoint integrity, recoverability, or permission for a particular consequence.
+Post-quantum cryptography protects cryptographic operations. It does not independently establish commit-time authority, correct policy, trustworthy state, endpoint integrity, recoverability, certification, or permission for a particular consequence.
 
 ## Validation behavior
 
-The validator fails closed when:
+The publication validator fails closed when publication sources, navigation, authority boundaries, validator integration, or deterministic model evidence are missing or unsupported claims are introduced.
 
-- any V5, V6, or V7 source is absent;
-- navigation integration is absent;
-- the canonical automation checker stops invoking the publication validator;
-- required execution-authority boundaries are absent;
-- an unsupported unconditional quantum-proof claim appears;
-- manual work or downstream mutation authority is silently introduced;
-- the deterministic state-drift model does not emit `QUANTUM EXECUTION SECURITY MODEL: PASS`.
+The public-route observer fails closed when a required route is unreachable, returns an unsuccessful response, has an empty body, or the bounded receipt cannot be written.
 
-The publication validator must emit:
+Required success markers:
 
 ```text
 QUANTUM RESILIENT SECURITY PUBLICATION: PASS
+QUANTUM SECURITY PUBLIC ROUTES: PASS
 ```
 
-## Remaining work
+## Remaining automatically owned work
 
 ```text
-- observe post-merge Pages deployment;
-- observe the governance, research-paper, and carousel public routes;
-- update the status artifact and this handoff from observed deployment evidence;
-- close Issue #20 only after bounded public activation evidence is recorded;
-- inspect current Site, Publisher, StegGuardian, and repo-standards handoffs before downstream propagation.
+- observe the main-branch Pages run following merge commit 3a58b9e85322841a3751ba3f9a4f591c14ed0cf1;
+- observe the governance, research-paper, and carousel routes through the canonical post-deployment job;
+- inspect and retain reports/quantum-security-public-route-observation.json;
+- update this handoff and the status artifact only from observed workflow evidence;
+- close Issue #23 only after its stated completion event is satisfied;
+- inspect Site, Publisher, StegGuardian, and repo-standards handoffs before any downstream propagation.
 ```
+
+Issue #23 and the active automatic condition watch own all remaining observation and closure work. No user action is required.
 
 Pending deployment observation does not grant production authority, certification, execution authority, independent-audit standing, or downstream mutation authority.
 
 ## Permitted continuation scope
 
-A successor may observe Pages deployment and public routes, update evidence-bound status and receipts, close Issue #20 after bounded activation evidence, and queue downstream awareness where destination handoffs permit it.
+A successor or automatic observer may inspect the Pages workflow and route receipt, repair only demonstrated bounded failures, update evidence-bound status and handoff records, close Issue #23 after its completion conditions are satisfied, and inspect downstream handoffs before any propagation.
 
-A successor may not claim NIST certification, formal verification without evidence, universal quantum-proof security, execution authority from publication or receipts, or downstream mutation authority without checking destination handoffs.
+A successor may not claim NIST certification, formal verification without evidence, universal quantum-proof security, production deployment of named primitives, execution authority from publication or receipts, or downstream mutation authority without destination-handoff authorization.
 
 ## Archive posture
 
-Issue #20, merged PR #22, this handoff, the status artifact, and canonical validation evidence preserve all continuation context. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
+Issues #20, #23, and #28; merged PRs #22, #24, #26, and #27; this handoff; the status artifact; canonical run #2438; and the automatic condition watch preserve all continuation context and own all remaining work. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
