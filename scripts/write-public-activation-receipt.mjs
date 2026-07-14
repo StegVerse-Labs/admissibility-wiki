@@ -8,6 +8,7 @@ const baseUrl = process.env.PAGE_URL || 'https://stegverse-labs.github.io/admiss
 const commit = process.env.GITHUB_SHA || null;
 const runId = process.env.GITHUB_RUN_ID || null;
 const runAttempt = process.env.GITHUB_RUN_ATTEMPT || null;
+const skipNetwork = process.env.PUBLIC_ACTIVATION_SKIP_NETWORK === '1';
 
 const urls = {
   public_site_loads: baseUrl,
@@ -25,10 +26,52 @@ const urls = {
   optimization_target_publication_status_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json',
   external_translation_reconstruction_receipt_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json',
   generated_evaluation_results_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/evaluation-results',
-  asro_external_framework_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/asro'
+  asro_external_framework_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/asro',
+  ai_led_radiology_formalism_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/formalisms/ai-led-radiology-execution-boundary',
+  ai_led_radiology_schema_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/schemas/ai-led-radiology-execution-case.schema.json',
+  ai_led_radiology_status_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/status/ai-led-radiology-execution-status.json'
 };
 
-const checks = Object.fromEntries(Object.entries(urls).map(([name, url]) => [
+const radiologyChecks = new Set([
+  'ai_led_radiology_formalism_reachable',
+  'ai_led_radiology_schema_reachable',
+  'ai_led_radiology_status_reachable'
+]);
+
+async function verifyUrl(name, url) {
+  if (skipNetwork) {
+    return {
+      status: 'verified_by_writer_mock',
+      evidence: { url, verifier: 'deterministic local receipt-writer validation mode', http_status: 200 }
+    };
+  }
+
+  let lastError = null;
+  for (let attempt = 1; attempt <= 6; attempt += 1) {
+    try {
+      const response = await fetch(url, { redirect: 'follow' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const body = await response.text();
+      if (!body.trim()) throw new Error('empty response body');
+      return {
+        status: 'verified_by_writer',
+        evidence: {
+          url,
+          verifier: 'scripts/write-public-activation-receipt.mjs live fetch',
+          http_status: response.status,
+          response_bytes: Buffer.byteLength(body),
+          attempt
+        }
+      };
+    } catch (error) {
+      lastError = error;
+      await new Promise((resolve) => setTimeout(resolve, attempt * 2000));
+    }
+  }
+  throw new Error(`${name} verification failed for ${url}: ${lastError}`);
+}
+
+const checks = Object.fromEntries(Object.entries(urls).filter(([name]) => !radiologyChecks.has(name)).map(([name, url]) => [
   name,
   {
     status: 'verified_by_workflow',
@@ -44,6 +87,10 @@ const checks = Object.fromEntries(Object.entries(urls).map(([name, url]) => [
   }
 ]));
 
+for (const name of radiologyChecks) {
+  checks[name] = await verifyUrl(name, urls[name]);
+}
+
 let optimizationTargetReceipt = null;
 if (fs.existsSync(optimizationReceiptPath)) {
   optimizationTargetReceipt = JSON.parse(fs.readFileSync(optimizationReceiptPath, 'utf8'));
@@ -53,7 +100,7 @@ if (fs.existsSync(optimizationReceiptPath)) {
 }
 
 const receipt = {
-  schema: 'admissibility_wiki_public_activation_receipt.v3',
+  schema: 'admissibility_wiki_public_activation_receipt.v4',
   receipt_id: `public-activation.workflow.${runId || 'unknown'}.${runAttempt || '0'}`,
   created_at: new Date().toISOString(),
   repository: 'StegVerse-Labs/admissibility-wiki',
@@ -67,7 +114,8 @@ const receipt = {
     optimization_target_publication_verification: optimizationTargetReceipt
       ? optimizationReceiptPath
       : null,
-    external_translation_reconstruction: 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json'
+    external_translation_reconstruction: 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json',
+    ai_led_radiology_execution: 'reports/ai-led-radiology-execution-receipt.json'
   },
   authority_granted: false,
   release_authority_granted: false,
@@ -78,6 +126,7 @@ const receipt = {
     'This receipt does not grant publication authority.',
     'This receipt does not create provider governance.',
     'This receipt does not create external indexing.',
+    'This receipt does not certify clinical performance or authorize medical practice.',
     'This receipt does not replace GitHub Pages deployment records.'
   ],
   next_action: 'Archive this receipt and its linked verification receipts with the workflow run artifacts; use them only as bounded deployment evidence.'
