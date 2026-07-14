@@ -1,0 +1,36 @@
+{
+  "schema": "stegverse.optimization_target_binding_at_commit.status.v0.1",
+  "goal_id": "optimization-target-binding-at-commit",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION",
+  "installed_surfaces": [
+    "docs/formalisms/optimization-target-binding-at-commit.md",
+    "static/formalisms/optimization-target-binding-at-commit.v0.1.json",
+    "scripts/check_optimization_target_binding_at_commit.py",
+    "sidebars.js",
+    "scripts/check_admissibility_automation_handoff.py"
+  ],
+  "canonical_validation_path": [
+    "npm run validate:admissibility-automation-handoff",
+    "python scripts/check_admissibility_automation_handoff.py",
+    "python scripts/check_optimization_target_binding_at_commit.py"
+  ],
+  "proof_owner": "Data-Continuation/formalism-tests",
+  "downstream_posture": {
+    "StegVerse-Labs/Site": "DEFER_UNTIL_WIKI_VALIDATION_AND_DESTINATION_HANDOFF_REVIEW",
+    "GCAT-BCAT-Engine/Publisher": "QUEUE_AFTER_WIKI_PUBLIC_ROUTE_VERIFICATION",
+    "StegVerse-002/stegguardian-wiki": "DEFER_UNTIL_EXECUTABLE_PROOF_FIXTURES_EXIST"
+  },
+  "authority": {
+    "grants_execution_authority": false,
+    "grants_cross_repository_mutation_authority": false,
+    "certifies_external_systems": false
+  },
+  "remaining_evidence": [
+    "canonical workflow pass",
+    "Docusaurus build pass",
+    "public doctrine route verification",
+    "public status artifact verification",
+    "executable proof fixtures and receipts from Data-Continuation/formalism-tests"
+  ]
+}
