@@ -18,7 +18,7 @@ KPT external-framework intake: source-blocked automation and publication observa
 Manual task requirement: none
 ```
 
-The canonical workflow remains the source of truth. The iOS workflow mirror is a synchronized transport mirror and is not activation evidence.
+The canonical workflow remains the source of truth. For deterministic marker compatibility: canonical workflow remains source of truth. The iOS workflow mirror is a synchronized transport mirror and is not activation evidence.
 
 ## Required automation surfaces
 
