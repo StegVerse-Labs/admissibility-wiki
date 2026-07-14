@@ -1,10 +1,10 @@
 {
   "artifact_type": "external_framework_intake_status",
-  "schema_version": "0.4",
+  "schema_version": "0.5",
   "framework_id": "kpt",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "goal_id": "kpt-external-framework-intake-activation",
-  "state": "PUBLIC_ROUTE_OBSERVATION_AUTOMATED_PENDING_CANONICAL_RESULT",
+  "state": "SOURCE_QUEUE_AND_PUBLIC_OBSERVATION_AUTOMATED_PENDING_CANONICAL_RESULT",
   "source_posture": "SOURCE_BLOCKED_FAIL_CLOSED",
   "installed": {
     "public_page": "docs/external-frameworks/kpt.md",
@@ -15,8 +15,10 @@
     "navigation": "sidebars.js",
     "provenance_receipt": "receipts/kpt-source-blocked-intake-2026-07-14.json",
     "automation_receipt": "receipts/kpt-automation-binding-2026-07-14.json",
+    "source_intake_queue": "static/status/kpt-source-intake-queue.json",
     "continuation_issue": "https://github.com/StegVerse-Labs/admissibility-wiki/issues/18",
     "deterministic_validator": "scripts/check_kpt_external_framework_intake.py",
+    "source_queue_validator": "scripts/check_kpt_source_intake_queue.py",
     "validation_chain": "scripts/check_full_validation_chain.py",
     "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
     "public_route_verifier": "scripts/check_governed_llm_deployment_status.py",
@@ -26,24 +28,27 @@
     "artifact_validation": "canonical validate-chain-continuation workflow",
     "report_regeneration": "scripts/generate_external_framework_reports.py",
     "observatory_index_validation": "scripts/check_kpt_external_framework_intake.py",
+    "source_candidate_queue_validation": "scripts/check_kpt_source_intake_queue.py",
     "site_build": "build-pages job",
     "deployment": "deploy-pages job",
     "public_observation": "verify-public-pages job invoking scripts/check_governed_llm_deployment_status.py",
-    "source_upgrade": "future source-intake automation after an official owner-published source becomes available"
+    "source_upgrade": "queue-driven fail-closed source intake after an official owner-published source becomes available"
   },
   "automated_public_endpoints": {
     "page": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/kpt",
     "status": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-external-framework-intake-status.json",
+    "source_queue": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-source-intake-queue.json",
     "observation_result": "written into the run-bound deployment verification receipt",
     "failure_posture": "FAIL_CLOSED_WITHOUT_USER_TASK"
   },
   "required_checks": [
     "canonical workflow passes after report generation",
     "deterministic KPT validator passes inside the full validation chain",
+    "source intake queue validator passes inside the full validation chain",
     "external framework report validator accepts KPT source-blocked status vocabulary",
     "observatory index contains the KPT source-blocked row and bridge entry",
     "wiki build includes the KPT page in navigation",
-    "scheduled deployment publishes the KPT page, observatory index, and status artifact",
+    "scheduled deployment publishes the KPT page, observatory index, status artifact, and source queue",
     "public route verifier records KPT endpoint availability without granting authority"
   ],
   "source_upgrade_gate": [
@@ -56,7 +61,8 @@
     "observed_at": "2026-07-14",
     "result": "NO_INDEXED_OFFICIAL_SOURCE_IDENTIFIED",
     "effect": "remain SOURCE_BLOCKED_FAIL_CLOSED",
-    "manual_follow_up_required": false
+    "manual_follow_up_required": false,
+    "queue_state": "WAITING_FOR_CANONICAL_OWNER_PUBLISHED_SOURCE"
   },
   "boundary": {
     "certification_claim": false,
@@ -68,6 +74,8 @@
     "public_visibility_is_authority": false,
     "source_sufficiency_from_reachability": false,
     "interoperability_standing_from_reachability": false,
+    "queue_entry_is_source_sufficiency": false,
+    "source_promotion_is_certification": false,
     "missing_official_source_fails_closed": true
   },
   "manual_task_requirement": "none",
@@ -76,5 +84,6 @@
   "manual_publication_check_required": false,
   "manual_source_search_required": false,
   "manual_endpoint_check_required": false,
+  "manual_source_promotion_required": false,
   "downstream_mutation_authorized": false
 }
