@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RECONCILER = ROOT / "scripts" / "reconcile_canonical_workflow_stability_change_frequency_change_history.py"
 CURRENT = ROOT / "static" / "status" / "canonical-workflow-stability-change-frequency-change-receipt.json"
 HISTORY = ROOT / "static" / "status" / "canonical-workflow-stability-change-frequency-change-history.json"
+ROLLUP = ROOT / "static" / "status" / "canonical-workflow-observation-rollup.json"
 FIXTURE = ROOT / "reports" / "stability-change-frequency-change-history.fixture.json"
 
 
@@ -47,6 +48,7 @@ def main() -> int:
     CURRENT.write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
     FIXTURE.write_text(json.dumps({"changes": [previous, duplicate]}, indent=2) + "\n", encoding="utf-8")
     HISTORY.unlink(missing_ok=True)
+    ROLLUP.unlink(missing_ok=True)
     env = dict(os.environ)
     env["CANONICAL_STABILITY_CHANGE_FREQUENCY_CHANGE_HISTORY_SOURCE"] = str(FIXTURE)
 
@@ -59,6 +61,9 @@ def main() -> int:
             fail(completed.stdout or "reconciler exited non-zero")
         if not HISTORY.exists():
             fail("history was not generated")
+        if not ROLLUP.exists():
+            fail("terminal rollup was not generated")
+
         data = json.loads(HISTORY.read_text(encoding="utf-8"))
         changes = data.get("changes", [])
         if len(changes) != 2:
@@ -89,11 +94,29 @@ def main() -> int:
             fail("next reconciliation is not automation-owned")
         if data.get("public_endpoint") != "/status/canonical-workflow-stability-change-frequency-change-history.json":
             fail("public endpoint mismatch")
-        print("CANONICAL WORKFLOW STABILITY CHANGE FREQUENCY CHANGE HISTORY: PASS - entries=2 manual_tasks=0")
+
+        rollup = json.loads(ROLLUP.read_text(encoding="utf-8"))
+        if rollup.get("terminal_envelope") is not True:
+            fail("rollup terminal_envelope must be true")
+        if rollup.get("recursive_derivative_expansion_allowed") is not False:
+            fail("rollup recursive expansion must be disabled")
+        if rollup.get("manual_tasks_required") != [] or rollup.get("user_action_required") is not False:
+            fail("rollup violates no-manual boundary")
+        if rollup.get("completeness_state") not in {
+            "COMPLETE_LOCAL_CHAIN",
+            "FAIL_CLOSED_INCOMPLETE_LOCAL_CHAIN",
+        }:
+            fail("rollup completeness state mismatch")
+
+        print(
+            "CANONICAL WORKFLOW STABILITY CHANGE FREQUENCY CHANGE HISTORY: PASS - "
+            "entries=2 rollup=generated manual_tasks=0"
+        )
         return 0
     finally:
         CURRENT.unlink(missing_ok=True)
         HISTORY.unlink(missing_ok=True)
+        ROLLUP.unlink(missing_ok=True)
         FIXTURE.unlink(missing_ok=True)
 
 
