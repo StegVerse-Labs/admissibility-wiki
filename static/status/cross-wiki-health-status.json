@@ -1,8 +1,8 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "record_type": "admissibility_wiki_cross_wiki_health_status",
   "repo": "StegVerse-Labs/admissibility-wiki",
-  "observed_at": "2026-07-10",
+  "observed_at": "2026-07-14",
   "status": "pending_live_peer_checks",
   "origin_public_url": "https://stegverse-labs.github.io/admissibility-wiki/",
   "peer_registry": "status/ecosystem-documentation-endpoints.json",
@@ -13,17 +13,33 @@
     "peer_machine_records_confirmed": false,
     "cross_wiki_schema_consistency_confirmed": false
   },
-  "next_actions": [
-    "confirm peer public URLs respond",
-    "confirm each peer exposes the shared endpoint registry",
-    "confirm each peer exposes a cross-wiki health record",
-    "promote reusable checker to repo-standards after multi-repo proof"
+  "automation": {
+    "receipt_writer": "scripts/write-public-activation-receipt.mjs",
+    "receipt_validator": "scripts/check-public-activation-receipt-writer.mjs",
+    "receipt_artifact": "public-activation-receipt",
+    "closure_key": "activation_closures.documentation_mesh",
+    "closure_schema": "documentation_mesh_observation_closure.v1",
+    "trigger_surface": ".github/workflows/validate-chain-continuation.yml#verify-public-pages",
+    "peer_root_checks_automatic": true,
+    "peer_registry_checks_automatic": true,
+    "peer_health_checks_automatic": true,
+    "source_blocked_result_fail_closed": true,
+    "handoff_reconciliation_required_for_continuation": false
+  },
+  "remaining": [
+    "canonical automation emits the next run-bound documentation mesh closure",
+    "source-blocked peers remain scheduled observations and do not create a user task",
+    "promotion to repo-standards remains successor-owned when upstream scope permits"
   ],
+  "remaining_owner": "CANONICAL_AUTOMATION_AND_SUCCESSOR_SCOPE",
+  "manual_task_requirement": "NONE",
+  "user_manual_action_required": false,
   "non_claims": {
     "all_peer_urls_verified": false,
     "peer_machine_records_verified": false,
     "cross_repo_authority_granted": false,
     "standing_conferred": false,
-    "execution_authority": false
+    "execution_authority": false,
+    "downstream_mutation_authority_granted": false
   }
 }
