@@ -25,6 +25,12 @@ Formalize the evidentiary boundary between:
 
 ```text
 docs/formalisms/peer-preservation-inference-boundary.md
+static/schemas/peer-preservation-observation.schema.json
+tests/fixtures/peer-preservation-cases.json
+scripts/check_peer_preservation_claims.py
+static/status/peer-preservation-inference-boundary-status.json
+receipts/peer-preservation-claim-validation-receipt.json
+scripts/check_admissibility_automation_handoff.py
 sidebars.js
 ```
 
@@ -33,14 +39,37 @@ sidebars.js
 ```text
 Doctrine: installed
 Public navigation: installed
-Machine-readable schema: not yet installed
-Fixtures: not yet installed
-Deterministic checker: not yet installed
-Replayable receipt: not yet installed
-Canonical npm validation integration: not yet installed
-Public activation observation: not yet installed
+Machine-readable schema: installed
+Fixtures: installed
+Deterministic checker: installed
+Replayable receipt: installed
+Canonical validation integration: installed through check_admissibility_automation_handoff.py -> npm run validate
+Public activation observation: pending canonical workflow observation
+State: IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION
 Manual task requirement: none
 User manual action required: false
+```
+
+## Deterministic decision posture
+
+The checker returns:
+
+```text
+ADMIT
+DENY
+FAIL_CLOSED
+REVIEW_REQUIRED
+```
+
+Installed fixture coverage includes:
+
+```text
+observed shutdown resistance -> ADMIT when directly observed
+independent convergence -> ADMIT only without causal transfer evidence
+cross-service conferral -> ADMIT only with direct transfer evidence and matching provenance class
+asserted or unresolved transfer -> FAIL_CLOSED
+solidarity or loyalty attribution -> REVIEW_REQUIRED
+conscious moral-state attribution from behavior alone -> DENY
 ```
 
 ## Preserved distinctions
@@ -54,27 +83,16 @@ observed motive or inferred motive != execution authority
 anthropomorphic overclaim and mechanistic overclaim are both evidence-standing failures
 ```
 
-## Next implementation goal
-
-Install a deterministic evidence and claim-admissibility package containing:
+## Remaining work
 
 ```text
-static/schemas/peer-preservation-observation.schema.json
-tests/fixtures/peer-preservation-cases.json
-scripts/check_peer_preservation_claims.py
-static/status/peer-preservation-inference-boundary-status.json
+- observe the next canonical workflow result
+- preserve fail-closed behavior if the checker or receipt diverges
+- update the status record from observed workflow evidence
+- queue downstream awareness only after destination handoffs authorize mutation
 ```
 
-The checker must:
-
-1. validate observation records;
-2. distinguish local inference from inherent failure;
-3. reject cross-service conferral claims without a causal transfer path;
-4. preserve independent convergence as a separate class;
-5. return `ADMIT`, `DENY`, `FAIL_CLOSED`, or `REVIEW_REQUIRED` for requested public claims;
-6. avoid deciding consciousness, personhood, emotion, or moral status;
-7. emit or validate replayable receipts;
-8. integrate through the existing single canonical validation workflow rather than creating another active workflow.
+These are automated observation or successor-owned continuation requirements. No manual user action is assigned.
 
 ## Boundary
 
@@ -82,8 +100,8 @@ This work grants no execution authority, shutdown authority, continued-operation
 
 ## Permitted continuation scope
 
-A successor session may implement the listed schema, fixtures, checker, status record, receipt contract, and canonical validation integration inside this repository. Downstream propagation remains queued until destination handoffs authorize it.
+A successor session may inspect canonical workflow evidence, repair failures inside this repository, update status and receipts from observed evidence, and queue downstream awareness without mutating destinations absent their handoff authority.
 
 ## Archive posture
 
-The conceptual correction, installed doctrine, remaining files, boundaries, and permitted continuation scope are durably preserved here. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
+The doctrine, schema, fixtures, checker, receipt, canonical integration, remaining observation requirement, boundaries, and continuation scope are durably preserved here. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
