@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1",
+  "governance_state": "installed",
+  "authority_boundary": "Promotion decisions govern wiki record posture only. They do not validate source physics claims, prove formal equivalence, replace specialist review, or create execution authority.",
+  "allowed_results": [
+    "MAP",
+    "ACCEPT",
+    "DEFER",
+    "DISPUTE",
+    "ESCALATE",
+    "REFUSE",
+    "SUPERSEDE"
+  ],
+  "promotion_requirements": {
+    "MAP": [
+      "source-safe native meaning",
+      "stable internal evidence reference",
+      "explicit transition-table role",
+      "linked translation record IDs",
+      "linked mathematics crosswalk IDs when applicable",
+      "explicit source boundary",
+      "explicit non-claims"
+    ],
+    "ACCEPT": [
+      "all MAP requirements",
+      "source-confirmed bibliographic locator",
+      "sufficient evidence posture",
+      "declared reviewer authority class",
+      "decision record",
+      "no unresolved material contradiction"
+    ]
+  },
+  "decision_records": [
+    {
+      "decision_id": "decision-lai-intake-defer-v0-1",
+      "target_type": "bibliographic_and_external_translation_record_set",
+      "target_ids": [
+        "bib-lai-operational-architecture-v0-1",
+        "ext-phys-lai-admissibility-operator-v0-1",
+        "ext-phys-lai-transition-operator-v0-1",
+        "ext-phys-lai-stable-branch-v0-1",
+        "ext-phys-lai-emergent-geometry-v0-1",
+        "ext-phys-lai-translation-failure-v0-1"
+      ],
+      "reviewer_authority_class": "wiki_translation_intake_automation",
+      "policy_reference": "docs/formalisms/external-bibliographic-intake.md and docs/formalisms/external-physics-translation-records.md",
+      "evidence_references": [
+        "docs/evidence/external-physics/lai-operational-architecture-source-evidence.md",
+        "static/translation-records/external-bibliographic-intake.v0.1.json",
+        "static/translation-records/external-physics-translation-records.v0.1.json"
+      ],
+      "evidence_posture": "partial",
+      "result": "DEFER",
+      "result_reason": "A durable source-evidence summary now exists, but no stable external locator, complete paper, or independent bibliographic confirmation is recorded. The records remain proposed and may not be promoted to mapped or accepted.",
+      "resulting_review_posture": "deferred",
+      "required_next_event": "Record a stable public source locator or source-confirmed bibliographic artifact, then perform specialist review against the preserved evidence and translation mappings.",
+      "ownership": "Admissibility Wiki proposal and decision governance",
+      "non_claims": "This decision does not reject or validate the paper and does not decide any physical theory claim."
+    }
+  ]
+}
