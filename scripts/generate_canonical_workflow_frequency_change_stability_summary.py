@@ -2,12 +2,15 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HISTORY = ROOT / "static" / "status" / "canonical-workflow-trend-change-frequency-change-history.json"
 OUT = ROOT / "static" / "status" / "canonical-workflow-frequency-change-stability-summary.json"
+CHANGE_GENERATOR = ROOT / "scripts" / "generate_canonical_workflow_frequency_change_stability_change.py"
 WINDOW = 12
 
 
@@ -24,24 +27,15 @@ def main() -> int:
     changed = [item for item in recent if item.get("change_state") == "CHANGED"]
     changed_count = len(changed)
     unchanged_count = sum(1 for item in recent if item.get("change_state") == "UNCHANGED")
-    frequency_field_count = sum(
-        1 for item in recent if "frequency_class" in item.get("changed_fields", [])
-    )
-    recency_field_count = sum(
-        1 for item in recent if "recency_class" in item.get("changed_fields", [])
-    )
+    frequency_field_count = sum(1 for item in recent if "frequency_class" in item.get("changed_fields", []))
+    recency_field_count = sum(1 for item in recent if "recency_class" in item.get("changed_fields", []))
     both_fields_count = sum(
-        1
-        for item in recent
+        1 for item in recent
         if {"frequency_class", "recency_class"}.issubset(set(item.get("changed_fields", [])))
     )
     latest = recent[-1] if recent else None
     runs_since_change = next(
-        (
-            index
-            for index, item in enumerate(reversed(recent))
-            if item.get("change_state") == "CHANGED"
-        ),
+        (index for index, item in enumerate(reversed(recent)) if item.get("change_state") == "CHANGED"),
         None,
     )
 
@@ -49,10 +43,7 @@ def main() -> int:
         changed_count > 0
         and frequency_field_count > 0
         and recency_field_count > 0
-        and (
-            frequency_field_count != recency_field_count
-            or both_fields_count < changed_count
-        )
+        and (frequency_field_count != recency_field_count or both_fields_count < changed_count)
     )
 
     if not recent:
@@ -113,6 +104,17 @@ def main() -> int:
         "CANONICAL WORKFLOW FREQUENCY CHANGE STABILITY: PASS - "
         f"class={stability_class} entries={total} manual_tasks=0"
     )
+
+    if not CHANGE_GENERATOR.exists():
+        raise SystemExit("workflow frequency-change stability-change generator is missing")
+    completed = subprocess.run(
+        [sys.executable, str(CHANGE_GENERATOR)], cwd=ROOT, text=True,
+        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
+    )
+    if completed.stdout:
+        print(completed.stdout.rstrip())
+    if completed.returncode != 0:
+        raise SystemExit("workflow frequency-change stability-change generation failed")
     return 0
 
 
