@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -13,6 +14,8 @@ SANDBOX_RUNNER = "scripts/run_sandbox_validation.py"
 SANDBOX_REPORT = ROOT / "reports" / "sandbox-first-validation.report.json"
 RECONSTRUCTION_GENERATOR = "scripts/generate_external_translation_reconstruction_receipt.py"
 RECONSTRUCTION_REPORT = ROOT / "reports" / "external-translation" / "reconstruction-receipt.json"
+OBSERVATION_WRITER = ROOT / "scripts" / "write_canonical_workflow_observation_receipt.py"
+OBSERVATION_REPORT = ROOT / "reports" / "canonical-workflow-observation-receipt.json"
 
 CHECKS = [
     ("Validate single workflow policy", "scripts/check_workflow_sprawl.py"),
@@ -101,13 +104,7 @@ def main() -> int:
         print(sandbox_output)
     sandbox_payload = read_json_if_present(SANDBOX_REPORT)
     sandbox_status = "PASS" if sandbox_code == 0 and isinstance(sandbox_payload, dict) and sandbox_payload.get("sandbox_status") == "PASS" else "FAIL"
-    results.append({
-        "name": "Execute ST-017 isolated sandbox",
-        "path": SANDBOX_RUNNER,
-        "status": sandbox_status,
-        "return_code": sandbox_code,
-        "output": sandbox_output,
-    })
+    results.append({"name": "Execute ST-017 isolated sandbox", "path": SANDBOX_RUNNER, "status": sandbox_status, "return_code": sandbox_code, "output": sandbox_output})
     if sandbox_status != "PASS":
         failures.append(SANDBOX_RUNNER)
 
@@ -118,20 +115,8 @@ def main() -> int:
         if generation_output:
             print(generation_output)
         reconstruction_payload = read_json_if_present(RECONSTRUCTION_REPORT)
-        generation_status = (
-            "PASS"
-            if generation_code == 0
-            and isinstance(reconstruction_payload, dict)
-            and reconstruction_payload.get("overall_status") == "PASS"
-            else "FAIL"
-        )
-        results.append({
-            "name": "Generate external translation reconstruction receipt",
-            "path": RECONSTRUCTION_GENERATOR,
-            "status": generation_status,
-            "return_code": generation_code,
-            "output": generation_output,
-        })
+        generation_status = "PASS" if generation_code == 0 and isinstance(reconstruction_payload, dict) and reconstruction_payload.get("overall_status") == "PASS" else "FAIL"
+        results.append({"name": "Generate external translation reconstruction receipt", "path": RECONSTRUCTION_GENERATOR, "status": generation_status, "return_code": generation_code, "output": generation_output})
         if generation_status != "PASS":
             failures.append(RECONSTRUCTION_GENERATOR)
 
@@ -160,6 +145,30 @@ def main() -> int:
         "authority_boundary": "This report records isolated sandbox, generated reconstruction, and validator outcomes only. A passing scan does not grant runtime execution, artifact promotion, canonical status mutation, merge, deployment authority, public verification, release, certification, downstream propagation, standing, admissibility, or ecosystem authority.",
     }
     REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+
+    observation_payload: object | None = None
+    if OBSERVATION_WRITER.exists():
+        observation_env = os.environ.copy()
+        observation_env["CANONICAL_JOB_STATUS"] = "failure" if failures else "success"
+        observation_run = subprocess.run(
+            [sys.executable, str(OBSERVATION_WRITER)],
+            cwd=ROOT,
+            env=observation_env,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+        )
+        if observation_run.stdout:
+            print(observation_run.stdout.rstrip())
+        observation_payload = read_json_if_present(OBSERVATION_REPORT)
+        if observation_run.returncode != 0 or not isinstance(observation_payload, dict):
+            failures.append(str(OBSERVATION_WRITER.relative_to(ROOT)))
+        report["canonical_workflow_observation"] = observation_payload
+        report["overall_status"] = "FAIL" if failures else "PASS"
+        report["failed_checks"] = sum(1 for result in results if result["status"] == "FAIL") + (1 if observation_run.returncode != 0 else 0)
+        REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+
     print("\n" + "=" * 72)
     print(f"FULL VALIDATION CHAIN: {report['overall_status']} ({report['passed_checks']}/{report['total_checks']} passed)")
     if failures:
