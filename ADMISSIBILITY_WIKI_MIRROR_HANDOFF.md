@@ -6,7 +6,7 @@ This file is the handoff source of truth for `StegVerse-Labs/admissibility-wiki`
 
 ## Active goal
 
-Complete governed public documentation activation through the single canonical validation workflow while preserving proof, execution, deployment, custody, release, and cross-repository authority boundaries.
+Complete governed public documentation activation through the single canonical workflow while eliminating manual validation, observation, reconciliation, health-classification, transition-explanation, and archival tasks.
 
 ## Current repository state
 
@@ -14,176 +14,130 @@ Complete governed public documentation activation through the single canonical v
 Canonical workflow: .github/workflows/validate-chain-continuation.yml
 Canonical triggers: push, pull_request, workflow_dispatch, hourly schedule
 Public site: https://stegverse-labs.github.io/admissibility-wiki/
-Local documentation surfaces: installed
-Manual validation task requirement: none
-Manual build task requirement: none
-Manual deployment task requirement: none
-Manual optimization-target route verification requirement: none
-Manual optimization-target receipt creation requirement: none
-Canonical workflow verification: pending successor run evidence
-Docusaurus build verification: pending successor run evidence
-Public route verification: repository-managed and pending successor run evidence
+Manual user tasks required: none
 Cross-repository mutation authority: not granted
-Release/tag authority: not granted by this handoff
+Release/tag authority: not granted
 ```
 
 ## Optimization target binding at commit
 
-Installed, validation-bound, and publication-automation-bound:
+Installed, validation-bound, publication-automation-bound, and fail-closed:
 
 ```text
 docs/formalisms/optimization-target-binding-at-commit.md
 static/formalisms/optimization-target-binding-at-commit.v0.1.json
 scripts/check_optimization_target_binding_at_commit.py
-static/status/optimization-target-binding-at-commit-status.json
-static/status/optimization-target-binding-publication-verification.json
 scripts/check_optimization_target_binding_publication.py
 scripts/check_governed_llm_deployment_status.py
 scripts/write-public-activation-receipt.mjs
-scripts/check_admissibility_automation_handoff.py
-sidebars.js
 ```
 
-Durable rule:
+Durable rule: a consequence-binding transition must not be authorized unless its optimization target is explicit, current-state-bound, derived from current policy and delegation, mutation-provenance valid, evaluated with current evidence and authority, and still subject to enforceable `DENY` or `FAIL_CLOSED` before the actuator boundary.
+
+Executable fixtures and proof receipts remain owned by `Data-Continuation/formalism-tests`.
+
+## Canonical workflow observation automation
+
+Installed automation chain:
 
 ```text
-A consequence-binding transition MUST NOT be authorized unless its optimization target is explicit before execution, bound to the current transition and current state, derived from current policy and delegation, protected by valid mutation provenance, evaluated with current evidence and authority, and still subject to an enforceable DENY or FAIL_CLOSED result before the actuator boundary.
+workflow trigger
+-> full validation receipt
+-> public run-bound observation receipt
+-> bounded history reconciliation
+-> health classification
+-> health-transition receipt
+-> Pages deployment
+-> public endpoint verification
+-> hourly re-observation
 ```
 
-Current publication state:
+Durable surfaces:
 
 ```text
-IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLIC_ROUTE_VERIFICATION
+scripts/generate_canonical_workflow_health_summary.py
+scripts/check_canonical_workflow_health_summary.py
+scripts/check_canonical_workflow_health_transition_receipt.py
+static/status/canonical-workflow-observation-automation.json
+static/status/canonical-workflow-health-summary.json (generated)
+static/status/canonical-workflow-health-transition-receipt.json (generated)
+docs/CANONICAL_WORKFLOW_OBSERVATION_AUTOMATION_STATUS.md
 ```
 
-The checked-in publication-status artifact remains fail-closed and does not claim run evidence. The canonical post-deployment verifier now checks all three public routes and writes:
+The transition receipt records:
 
 ```text
-reports/optimization-target-publication-verification-receipt.json
+transition_state: CHANGED | UNCHANGED
+prior_health
+resulting_health
+prior_cause
+resulting_cause
+fail_closed_consequence
+manual_tasks_required: []
+user_action_required: false
+transition_owner: canonical build-pages job
+next_evaluation: next repository-owned canonical workflow trigger
 ```
 
-The canonical activation receipt writer consumes and links that run-specific receipt into:
-
-```text
-reports/public-activation-receipt.json
-```
-
-No person is assigned to curl routes, transcribe outcomes, or construct these receipts.
-
-## Repository-managed verification sequence
-
-```text
-1. Canonical workflow runs automatically on push, pull request, workflow dispatch, and hourly schedule.
-2. Complete Python validation scan runs and uploads its report.
-3. npm validation and Docusaurus build run only after canonical validation permits continuation.
-4. GitHub Pages deploys from the canonical workflow.
-5. verify-public-pages invokes scripts/check_governed_llm_deployment_status.py.
-6. The verifier checks the doctrine, formalism JSON, and publication-status routes.
-7. The verifier emits a PASS or FAIL_CLOSED run receipt.
-8. scripts/write-public-activation-receipt.mjs links the optimization-target receipt.
-9. The workflow uploads the public activation receipt artifact.
-```
-
-Expected public routes:
-
-```text
-https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit
-https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit.v0.1.json
-https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json
-```
+A cancelled, failed, incomplete, externally deferred, unchanged, or history-unavailable run does not create a user task.
 
 ## Authority boundaries
 
 ```text
-admissibility-wiki owns public vocabulary, governance explanation, status, and proof-path documentation
+admissibility-wiki owns vocabulary, explanation, status, and public proof-path documentation
 Data-Continuation/formalism-tests owns executable fixtures, expected outcomes, and proof receipts
-Site is a downstream mirror/display surface only
-Publisher is a downstream publication/indexing surface only
-StegGuardian interpretation is deferred until proof fixtures exist
-StegGuardian implementation mutation is not authorized
-Morrison ALLOW is not StegVerse execution authority
-Morrison BLOCK is evidence, not final StegVerse standing
-Public visibility is not admissibility
-Validation success is not deployment, release, custody, or cross-repository authority
-A workflow receipt is bounded run evidence, not proof authority
+Site is downstream display only
+Publisher is downstream publication/indexing only
+StegGuardian interpretation remains deferred until executable proof fixtures exist
+workflow evidence does not grant proof, release, execution, custody, or downstream mutation authority
 ```
 
 ## Remaining files or modules and destinations
 
-### `Data-Continuation/formalism-tests`
-
-```text
-Add explicit-target, stale-binding, unauthorized-mutation, objective-policy-divergence, and denial-unreachable fixtures.
-Add expected outcomes proving FAIL_CLOSED for any false or unreconstructable required predicate.
-Emit proof receipts consumable by admissibility-wiki without transferring proof authority.
-Ownership: destination repository automation or a session with verified repository access and current handoff authority.
-Manual user task: none assigned.
-```
-
 ### `StegVerse-Labs/admissibility-wiki`
 
 ```text
-Observe the successor canonical workflow result through durable workflow evidence.
-Repair only the next exact deterministic failure without weakening checks.
-Treat route verification and receipt generation as workflow-owned tasks.
-Converge the formalism index and formalism registry only if canonical validators expose that exact failure.
-Attach prompt-by-prompt Morrison artifacts only when source evidence becomes available.
-Manual user task: none assigned.
+Add a bounded public history of health-transition receipts.
+Deduplicate transition receipts by receipt_id.
+Order by generated_at and retain a bounded newest set.
+Reconcile automatically on each canonical build.
+Verify the transition receipt and transition-history public endpoints automatically.
+Repair only exact deterministic failures without weakening checks.
+Manual user task: none.
 ```
 
-### `StegVerse-Labs/Site`
+### `Data-Continuation/formalism-tests`
 
 ```text
-Do not mirror or index until wiki validation and public routes are verified.
-Check docs/SITE_MIRROR_HANDOFF.md immediately before any mutation.
-Manual user task: none assigned.
+Add optimization-target fixtures for explicit target, stale binding, unauthorized mutation, policy divergence, and denial unreachable.
+Add FAIL_CLOSED expected outcomes and executable proof receipts.
+Proceed only when the repository is accessible and its current *_MIRROR_HANDOFF.md authorizes the task.
+Manual user task: none.
 ```
 
-### `GCAT-BCAT-Engine/Publisher`
+### Downstream destinations
 
 ```text
-Do not publish or index until wiki evidence and proof receipts are verified.
-Check PUBLISHER_MIRROR_HANDOFF.md immediately before any mutation.
-Manual user task: none assigned.
-```
-
-### `StegVerse-002/stegguardian-wiki`
-
-```text
-Evaluate refusal-capability, target-mutation, and recoverability representation only after executable proof fixtures exist and destination handoff review authorizes work.
-Manual user task: none assigned.
-```
-
-### `StegVerse-002/StegGuardian`
-
-```text
-No implementation mutation is authorized by this handoff.
-Manual user task: none assigned.
+StegVerse-Labs/Site: defer until wiki validation/public evidence and current Site handoff authority
+GCAT-BCAT-Engine/Publisher: queue until wiki evidence, proof receipts, and current Publisher handoff authority
+StegVerse-002/stegguardian-wiki: defer until executable proof fixtures and current destination handoff authority
+StegVerse-002/StegGuardian: no implementation mutation authorized
 ```
 
 ## Release posture
 
-No tag or release is authorized until canonical workflow, build, public verification, and repository release criteria are durably confirmed. Any later release must trigger propagation-status review for:
-
-```text
-StegVerse-Labs/Site
-GCAT-BCAT-Engine/Publisher
-StegVerse-Labs/admissibility-wiki
-StegVerse-002/stegguardian-wiki
-```
-
-That review is repository/session automation work, not a manual user task.
+No tag or release is authorized until canonical validation, build, public-route verification, proof evidence, and repository release criteria are durably confirmed. A later release must automatically queue propagation-status review for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-002/stegguardian-wiki`.
 
 ## Next task
 
 ```text
-1. Observe the successor canonical validation chain through available workflow evidence.
-2. Repair the next exact deterministic failure without weakening checks.
-3. Accept the automatically emitted optimization-target publication receipt only when verification_result == PASS.
-4. Continue to Data-Continuation/formalism-tests only if that repository becomes accessible and its current *_MIRROR_HANDOFF.md authorizes the fixtures.
-5. Do not request manual route checks, receipt construction, workflow triggering, file movement, or downstream propagation from the user.
+1. Build automatic bounded health-transition history from generated transition receipts.
+2. Bind it to the existing canonical build path without adding a second active workflow.
+3. Add deterministic validation and public endpoint verification.
+4. Continue repository-owned observation and fail-closed repair.
+5. Do not request manual route checks, workflow triggering, receipt construction, archival, file movement, or downstream propagation from the user.
 ```
 
 ## Archive posture
 
-This handoff preserves the active goal, automation ownership, installed surfaces, decisions, blockers, authority boundaries, remaining work, validation requirements, permitted continuation scope, downstream restrictions, and elimination of manual user tasks. The complete thread is ready for archiving without needing additional conversation context.
+This handoff preserves the active goal, installed automation, decisions, ownership, blockers, authority boundaries, remaining work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
