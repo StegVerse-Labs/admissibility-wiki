@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/ai-led-radiology-execution-case.schema.json",
+  "title": "AI-Led Radiology Execution Case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id", "operating_mode", "patient_study_bound", "model_identity_verified",
+    "model_version_approved", "approved_indication", "image_series_complete",
+    "image_quality_acceptable", "out_of_distribution_clear", "clinical_context_available",
+    "prior_study_required", "prior_study_available", "human_review_required",
+    "human_review_completed", "independent_image_access", "policy_ref",
+    "delegation_ref", "provenance_complete", "requested_disposition", "decision"
+  ],
+  "properties": {
+    "case_id": {"type": "string", "minLength": 1},
+    "operating_mode": {"enum": ["ASSISTIVE", "AI_FIRST_HUMAN_REVIEW", "AUTONOMOUS_NEGATIVE_CLEARANCE"]},
+    "patient_study_bound": {"type": "boolean"},
+    "model_identity_verified": {"type": "boolean"},
+    "model_version_approved": {"type": "boolean"},
+    "approved_indication": {"type": "boolean"},
+    "image_series_complete": {"type": "boolean"},
+    "image_quality_acceptable": {"type": "boolean"},
+    "out_of_distribution_clear": {"type": "boolean"},
+    "clinical_context_available": {"type": "boolean"},
+    "prior_study_required": {"type": "boolean"},
+    "prior_study_available": {"type": "boolean"},
+    "human_review_required": {"type": "boolean"},
+    "human_review_completed": {"type": "boolean"},
+    "independent_image_access": {"type": "boolean"},
+    "automation_bias_risk": {"type": "boolean"},
+    "emergency_context": {"type": "boolean"},
+    "policy_ref": {"type": "string", "minLength": 1},
+    "delegation_ref": {"type": "string", "minLength": 1},
+    "provenance_complete": {"type": "boolean"},
+    "requested_disposition": {"enum": ["ASSISTIVE_OUTPUT", "HUMAN_REVIEWED_FINAL", "AUTONOMOUS_NORMAL"]},
+    "decision": {"enum": ["ADMIT_ASSISTIVE_USE", "ADMIT_AI_FIRST_WITH_MANDATORY_HUMAN_REVIEW", "REVIEW_REQUIRED", "DENY_AUTONOMOUS_CLEARANCE", "FAIL_CLOSED"]}
+  }
+}
