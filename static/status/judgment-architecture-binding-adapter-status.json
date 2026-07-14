@@ -1,23 +1,72 @@
 {
   "artifact_type": "judgment_architecture_binding_adapter_status",
   "schema_version": "0.1",
-  "overall_status": "PENDING_CANONICAL_EXECUTION",
+  "overall_status": "PASS",
   "adapter_state": "DETERMINISTIC_NON_AUTHORIZING_ADAPTER_INSTALLED",
   "mapping_state": "fixture_ready",
-  "runtime_observation_state": "CANONICAL_WORKFLOW_OBSERVATION_PENDING",
-  "installed_surfaces": [
-    "scripts/adapt_judgment_architecture_commitment_to_binding.py",
-    "tests/fixtures/judgment-architecture-binding-adapter-cases.json",
-    "scripts/check_judgment_architecture_binding_adapter.py",
-    "scripts/check_goal5_external_frameworks_all.py"
+  "runtime_observation_state": "CANONICAL_WORKFLOW_OBSERVED_PASS",
+  "canonical_observation": {
+    "workflow_name": "Validate chain continuation",
+    "workflow_run_id": 29338083253,
+    "workflow_run_number": 2356,
+    "job_id": 87102889042,
+    "job_name": "validate-chain-continuation",
+    "head_sha": "66d39dd1b0554365ccd56b62eaf9c03c4cf3738d",
+    "checkout_merge_sha": "73f93877d4bdf47c569409244095f1a7cbafcea6",
+    "conclusion": "success",
+    "goal5_report_artifact_id": 8312919637,
+    "goal5_report_digest": "sha256:e57080231793bde43824be2b9a7b543aa8d7810697938b59a98db95d43db0cde",
+    "goal5_total_checks": 53,
+    "goal5_passed_checks": 53,
+    "adapter_validator_output": "JUDGMENT ARCHITECTURE BINDING ADAPTER: PASS",
+    "observed_at": "2026-07-14T13:52:57Z"
+  },
+  "results": [
+    {
+      "case_id": "complete-live-evidence-bind",
+      "expected_binding_result": "BIND",
+      "actual_binding_result": "BIND",
+      "reason_codes": [],
+      "candidate_hash": "sha256:a7ac04f3365fec04ca6c27c753922659de026d27e0787563663d1dd8c0e22e84",
+      "state_before_hash": "sha256:175f4a11d012c557898d29f78d502c737ffe1a3b6ab86933479b22fb93136b76",
+      "state_after_hash": "sha256:bd235ae5245780cdb98567d34ff5c0664856c218b431610ca3925292451e2869",
+      "receipt_hash": "sha256:10fdcb17e35983c4c5fc515f495fc41e7e4cf3a3b3642319d2933cc1d58fd606",
+      "passed": true
+    },
+    {
+      "case_id": "commitment-complete-authority-stale",
+      "expected_binding_result": "FAIL_CLOSED",
+      "actual_binding_result": "FAIL_CLOSED",
+      "reason_codes": ["AUTHORITY_UNRESOLVED", "EVIDENCE_STALE"],
+      "candidate_hash": "sha256:c2958148d3c93b1f0c79fb112098c4de3c6f013473393d1e814e55db48121c68",
+      "state_before_hash": "sha256:2430f1a2ad2982d0067885488a4c89e21ad1d7c83b115ba8f1b20acc88dfaea8",
+      "state_after_hash": "sha256:732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "receipt_hash": "sha256:8b2a1a1e418677d94287a0eb4a33e6f71058375a38b994231090b4d739219005",
+      "passed": true
+    },
+    {
+      "case_id": "human-commitment-present-state-drift-deny",
+      "expected_binding_result": "DENY",
+      "actual_binding_result": "DENY",
+      "reason_codes": ["ADMISSIBILITY_DENY"],
+      "candidate_hash": "sha256:3919f9ac370316d03ea3a26236d5ffebe02c8f3d3ace7af564109ea1cd1e9786",
+      "state_before_hash": "sha256:8f64d7b309b6186ff850b800d985ede065255d72b40d9d3891728e2e411aa54d",
+      "state_after_hash": "sha256:8c2b8c2a477dc6def35097a58dab86e0751e7cbd70299877fe3e3aa3dbea7735",
+      "receipt_hash": "sha256:b894e9d04efdd9d6cc42774d014bf340a92d20a8956d6be8d417ce859f258492",
+      "passed": true
+    },
+    {
+      "case_id": "missing-live-evidence-fail-closed",
+      "expected_binding_result": "FAIL_CLOSED",
+      "actual_binding_result": "FAIL_CLOSED",
+      "reason_codes": ["ORIGIN_UNRESOLVED", "AUTHORITY_UNRESOLVED", "ADMISSIBILITY_UNRESOLVED", "INVARIANTS_UNRESOLVED", "RECOVERABILITY_UNRESOLVED", "EVIDENCE_INCOMPLETE"],
+      "candidate_hash": "sha256:6551e9043955152b91cf5c9a65a41ba7c54ca03be49718a8aae6bc1961b00003",
+      "state_before_hash": "sha256:2430f1a2ad2982d0067885488a4c89e21ad1d7c83b115ba8f1b20acc88dfaea8",
+      "state_after_hash": "sha256:732322c128ed67841ef5aa42c7cd04ffcd74a61b2d17d710cd502b713d62930d",
+      "receipt_hash": "sha256:87bc528efe338d5dca378687536166a29a5df1c36aad25284c1681ab667a89ce",
+      "passed": true
+    }
   ],
-  "expected_cases": [
-    "complete-live-evidence-bind",
-    "commitment-complete-authority-stale",
-    "human-commitment-present-state-drift-deny",
-    "missing-live-evidence-fail-closed"
-  ],
-  "results": [],
   "authority_boundary": {
     "adapter_is_execution_authority": false,
     "adapter_bind_result_is_runtime_authorization": false,
@@ -25,5 +74,5 @@
     "human_commitment_is_admissibility": false,
     "interoperability_is_verified": false
   },
-  "next_required_action": "observe canonical workflow execution and replace pending status with deterministic case results and workflow-bound receipt evidence"
+  "next_required_action": "add stable canonical public source locator and page-level citations before replay-ready consideration"
 }
