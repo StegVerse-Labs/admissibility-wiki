@@ -1,0 +1,69 @@
+{
+  "artifact_type": "external_framework_intake_receipt",
+  "schema_version": "0.4",
+  "framework_id": "riverbraid",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "issue": 16,
+  "pull_request": 17,
+  "recorded_at": "2026-07-13T23:30:00-05:00",
+  "updated_at": "2026-07-14T02:30:00-05:00",
+  "source_post": {
+    "author": "Michael Tilk",
+    "surface": "LinkedIn",
+    "short_links": [
+      "https://lnkd.in/gihbdGt4",
+      "https://lnkd.in/gWkTKGCy",
+      "https://lnkd.in/gvknPPQJ"
+    ],
+    "source_status": "PRIMARY_TECHNICAL_SOURCE_REQUIRED"
+  },
+  "intake_result": "SOURCE_BLOCKED_FAIL_CLOSED",
+  "decision_basis": [
+    "public announcement claims are not canonical technical evidence",
+    "pre-execution integrity verification does not establish commit-time state admissibility",
+    "current authority derivation and revocation semantics are not evidenced",
+    "denial reachability before irreversibility is not evidenced",
+    "post-denial non-execution is not reconstructable from supplied material"
+  ],
+  "required_joint_resolution": [
+    "state_admissibility",
+    "current_authority_validity",
+    "denial_reachability"
+  ],
+  "boundary": {
+    "certification_claim": false,
+    "endorsement_claim": false,
+    "interoperability_claim": false,
+    "regulatory_compliance_claim": false,
+    "execution_authority_claim": false,
+    "commit_time_authority_claim": false,
+    "source_blocked_is_incompatibility": false
+  },
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "branch_synchronization": {
+    "strategy": "atomic_git_object_reconstruction",
+    "manual_task_requirement": "none",
+    "latest_base_commit": "ae2f4d51184192c08965f9fe9c07abc7e25fe848",
+    "synchronized_head_commit": "018b1f371ceb7a1723a78a23a3a21f95f8f4c2b3",
+    "authored_commit_count": 1,
+    "workflow_topology_change": false,
+    "repeated_manual_rebase_required": false,
+    "failure_posture": "Concurrent main-branch advancement is an orchestration condition and does not authorize bypassing validation."
+  },
+  "repository_owned_retry": {
+    "manual_task_requirement": "none",
+    "owner": "StegVerse-Labs/admissibility-wiki canonical workflow",
+    "failure_posture": "A missing, cancelled, or zero-job run is not a validation result and does not authorize merge or publication.",
+    "next_transition": "The existing canonical workflow evaluates the synchronized head and owns generation, validation, build, deployment, and public verification."
+  },
+  "continuation": {
+    "owner": "StegVerse-Labs/admissibility-wiki canonical workflow",
+    "permitted_scope": [
+      "obtain canonical Riverbraid technical artifacts",
+      "generate the existing external-framework compatibility report",
+      "validate using the single canonical workflow",
+      "publish only the bounded source-blocked result until evidence permits upgrade"
+    ],
+    "completion_event": "canonical workflow passes, generated report remains correctly bounded, public artifacts are verified, and the mirror handoff is updated"
+  }
+}
