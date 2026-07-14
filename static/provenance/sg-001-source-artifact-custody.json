@@ -1,0 +1,86 @@
+{
+  "schema": "stegverse_source_artifact_custody.v1",
+  "source_geometry_id": "SG-001",
+  "title": "Original Drawing Reference",
+  "creator": "Rigel Randolph",
+  "artifact_classification": "pre_BCAT_GCAT_recoverability_geometry",
+  "original_medium": "hand_drawn_paper_artifact",
+  "current_earliest_preserved_copy_date": "2026-03-05",
+  "authority_repository": "StegVerse-Labs/admissibility-wiki",
+  "authority_page": "docs/formalisms/original-drawing-reference.md",
+  "public_rendered_asset": {
+    "path": "static/img/formalisms/original-drawing-reference.jpg",
+    "github_blob_sha": "9f038cce0c1242f5c8fb49826ad89777e8c15c96",
+    "role": "public_rendered_reference",
+    "exact_source_file_equivalence": "not_asserted"
+  },
+  "recovered_source_files": [
+    {
+      "filename": "3B444EEC-8189-406F-9763-2F6D41E7481E.jpeg",
+      "sha256": "8eb9e84e6e63832179abd987f82bec49d2377007a58e335de4920c0c872dc680",
+      "size_bytes": 258018,
+      "width_px": 707,
+      "height_px": 1536,
+      "media_type": "image/jpeg",
+      "storage_location": "ChatGPT File Library",
+      "custody_posture": "durably_uploaded_user_file; repository_binary_migration_pending"
+    },
+    {
+      "filename": "913A41D7-3800-41FA-AC29-6696F09E8471.jpeg",
+      "sha256": "a08b6b35146884118048e39d5092b6c3d3abb843464dc6456477cdb39d4c6003",
+      "size_bytes": 246761,
+      "width_px": 707,
+      "height_px": 1536,
+      "media_type": "image/jpeg",
+      "storage_location": "ChatGPT File Library",
+      "custody_posture": "durably_uploaded_user_file; repository_binary_migration_pending"
+    },
+    {
+      "filename": "41A92D10-9149-49D5-AD8B-EF44FCEFDEA3.jpeg",
+      "sha256": "70ff637c693bf455f35db0b98d99fd49adeeddb606e782fa3b1809a1783cb907",
+      "size_bytes": 427869,
+      "width_px": 468,
+      "height_px": 1536,
+      "media_type": "image/jpeg",
+      "storage_location": "ChatGPT File Library",
+      "custody_posture": "durably_uploaded_user_file; repository_binary_migration_pending"
+    },
+    {
+      "filename": "4757966F-39A5-4123-AE2F-21093D9E2139.jpeg",
+      "sha256": "46dd51e981046a12348a48d98b92c5abda5b192ddb3b0f4146972889e1a82f7c",
+      "size_bytes": 566870,
+      "width_px": 1152,
+      "height_px": 1536,
+      "media_type": "image/jpeg",
+      "storage_location": "ChatGPT File Library",
+      "custody_posture": "durably_uploaded_user_file; repository_binary_migration_pending"
+    },
+    {
+      "filename": "3CFDDDE5-59D7-4F6C-9358-D220FC7251AB.jpeg",
+      "sha256": "cab966903059c27cbf0dd37d8c01de0666e25ae61e348ecfee74602e7d2e9f84",
+      "size_bytes": 551507,
+      "width_px": 1152,
+      "height_px": 1536,
+      "media_type": "image/jpeg",
+      "storage_location": "ChatGPT File Library",
+      "custody_posture": "durably_uploaded_user_file; repository_binary_migration_pending"
+    }
+  ],
+  "retrieval_rule": {
+    "primary": "Search ChatGPT File Library by exact filename and verify SHA-256 before use.",
+    "fallback": "Use the public rendered reference only for visual orientation; do not assert exact source-file equivalence.",
+    "migration_target": "static/source-artifacts/SG-001/"
+  },
+  "remaining_task": {
+    "task": "Migrate the five exact recovered JPEG files from ChatGPT File Library into the repository source-artifact path and verify SHA-256 equality.",
+    "owner": "unassigned repository continuation task",
+    "blocking_session_archival": false,
+    "reason": "The exact files are durably retained in File Library and are fully reconstructable from this manifest without this conversation."
+  },
+  "non_claims": [
+    "This manifest does not establish the original creation date.",
+    "This manifest does not establish the earliest upload date.",
+    "This manifest does not prove derivation, priority, originality, formal correctness, or admissibility.",
+    "File presence does not grant execution authority or governance standing."
+  ]
+}
