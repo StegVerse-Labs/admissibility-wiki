@@ -8,7 +8,8 @@
     "docs/governance/current-task-sync.md",
     "docs/external-frameworks/kpt.md",
     "static/status/kpt-external-framework-intake-status.json",
-    "receipts/kpt-source-blocked-intake-2026-07-14.json"
+    "receipts/kpt-source-blocked-intake-2026-07-14.json",
+    "receipts/kpt-automation-binding-2026-07-14.json"
   ],
   "manual_task_requirement": "none",
   "allowed_phrases": [
