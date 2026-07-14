@@ -1,0 +1,39 @@
+{
+  "schema": "admissibility_wiki.external_translation_automation_status.v1",
+  "status": "AUTOMATED_FAIL_CLOSED",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "triggers": [
+    "push",
+    "pull_request",
+    "workflow_dispatch",
+    "hourly_schedule_at_minute_17"
+  ],
+  "generator": "scripts/generate_external_translation_reconstruction_receipt.py",
+  "validator_chain": [
+    "scripts/check_translation_records.py",
+    "scripts/check_mathematics_crosswalk.py",
+    "scripts/check_external_physics_translation_records.py",
+    "scripts/check_external_bibliographic_intake.py",
+    "scripts/check_external_record_promotion_governance.py",
+    "scripts/check_source_locator_and_specialist_routing.py",
+    "scripts/check_review_receipts_and_supersession.py",
+    "scripts/check_external_translation_reconstruction_receipt.py"
+  ],
+  "generated_receipt": "reports/external-translation/reconstruction-receipt.json",
+  "embedded_artifact": "reports/full_validation_chain_report.json#external_translation_reconstruction",
+  "manual_tasks_required": [],
+  "external_condition_owners": [
+    {
+      "condition": "stable source locator becomes available",
+      "owner": "Admissibility Wiki source-intake governance",
+      "current_state": "UNRESOLVED"
+    },
+    {
+      "condition": "specialist review receipts become issued",
+      "owner": "declared specialist review classes",
+      "current_state": "placeholder_fail_closed"
+    }
+  ],
+  "automatic_behavior": "Every canonical validation run regenerates the reconstruction receipt, validates all linked records, preserves the current deferred decision, and refuses supersession while locator or specialist receipt requirements are incomplete.",
+  "authority_boundary": "Automation removes manual coordination from validation and reconstruction. It does not create source evidence, specialist endorsement, physical-theory validity, record promotion, or execution authority."
+}
