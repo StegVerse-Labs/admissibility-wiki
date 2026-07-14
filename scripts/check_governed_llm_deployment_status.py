@@ -17,6 +17,8 @@ PAGES = {
     "governed_llm_archive_handoff": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-archive-handoff",
     "verification_execution_authority_doctrine": "https://stegverse-labs.github.io/admissibility-wiki/governance/verification-vs-execution-authority",
     "verification_execution_authority_status": "https://stegverse-labs.github.io/admissibility-wiki/status/verification-execution-authority-status.json",
+    "robotic_law_enforcement_doctrine": "https://stegverse-labs.github.io/admissibility-wiki/governance/robotic-law-enforcement-adoption-boundary",
+    "robotic_law_enforcement_status": "https://stegverse-labs.github.io/admissibility-wiki/status/robotic-law-enforcement-adoption-status.json",
     "documentation_mesh_site": "https://stegverse-labs.github.io/Site/",
     "documentation_mesh_admissibility_wiki": "https://stegverse-labs.github.io/admissibility-wiki/",
     "documentation_mesh_stegguardian_wiki": "https://stegverse-002.github.io/stegguardian-wiki/",
@@ -70,7 +72,7 @@ def main() -> int:
         results[name] = {"url": url, "reachable": ok, "http_status": status}
         if not ok: failures.append(message)
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.23",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.24",
         "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID','local')}.{os.getenv('GITHUB_RUN_ATTEMPT','0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
@@ -85,6 +87,7 @@ def main() -> int:
         "non_claims": [
             "Route reachability is bounded publication evidence only.",
             "Published verification doctrine does not grant execution authority.",
+            "Published robotic law-enforcement doctrine does not authorize deployment, force, procurement, certification, or statutory standing.",
             "Documentation-mesh reachability does not grant cross-repository authority, compatibility, standing, or synchronization permission.",
             "Conceptual-inheritance publication does not decide authorship, ownership, infringement, intent, derivation, or origin-claim standing.",
             "A reachable KPT source-intake queue does not prove source sufficiency or promote a source candidate.",
