@@ -19,6 +19,7 @@ VALIDATORS = [
     ROOT / "scripts" / "check_canonical_workflow_health_transition_trend_change_history.py",
     ROOT / "scripts" / "check_canonical_workflow_trend_change_frequency_summary.py",
     ROOT / "scripts" / "check_canonical_workflow_trend_change_frequency_change.py",
+    ROOT / "scripts" / "check_canonical_workflow_trend_change_frequency_change_history.py",
 ]
 REQUIRED = [
     ROOT / ".github" / "workflows" / "validate-chain-continuation.yml",
@@ -26,6 +27,7 @@ REQUIRED = [
     ROOT / "scripts" / "reconcile_canonical_workflow_health_transition_trend_change_history.py",
     ROOT / "scripts" / "generate_canonical_workflow_trend_change_frequency_summary.py",
     ROOT / "scripts" / "generate_canonical_workflow_trend_change_frequency_change.py",
+    ROOT / "scripts" / "reconcile_canonical_workflow_trend_change_frequency_change_history.py",
     ROOT / "scripts" / "check_full_validation_chain.py",
 ] + VALIDATORS
 
@@ -42,7 +44,7 @@ def main() -> int:
             fail(f"required file missing: {path.relative_to(ROOT)}")
 
     data = json.loads(STATUS.read_text(encoding="utf-8"))
-    if data.get("state") != "AUTOMATED_TREND_CHANGE_FREQUENCY_CHANGE_BOUND":
+    if data.get("state") != "AUTOMATED_TREND_CHANGE_FREQUENCY_CHANGE_HISTORY_BOUND":
         fail("state mismatch")
     if data.get("manual_tasks_required") != [] or data.get("user_action_required") is not False:
         fail("no-manual boundary violated")
@@ -50,15 +52,21 @@ def main() -> int:
         if data.get(key) is not False:
             fail(f"{key} must be false")
 
-    if data.get("trend_change_frequency_endpoint") != "/status/canonical-workflow-trend-change-frequency-summary.json":
-        fail("frequency endpoint mismatch")
-    if data.get("trend_change_frequency_change_endpoint") != "/status/canonical-workflow-trend-change-frequency-change-receipt.json":
-        fail("frequency-change endpoint mismatch")
+    expected_endpoints = {
+        "trend_change_frequency_endpoint": "/status/canonical-workflow-trend-change-frequency-summary.json",
+        "trend_change_frequency_change_endpoint": "/status/canonical-workflow-trend-change-frequency-change-receipt.json",
+        "trend_change_frequency_change_history_endpoint": "/status/canonical-workflow-trend-change-frequency-change-history.json",
+    }
+    for key, value in expected_endpoints.items():
+        if data.get(key) != value:
+            fail(f"{key} mismatch")
+
     chain = data.get("publication_chain", [])
     for phrase in (
         "build-pages derives a bounded descriptive frequency and recency summary from trend-change history",
         "build-pages emits a frequency-class change receipt by comparing the current summary with the prior public summary",
-        "verify-public-pages checks observation, health, transition, trend, change-history, frequency-summary, and frequency-change endpoints",
+        "build-pages reconciles the frequency-class change receipt into bounded deduplicated frequency-change history",
+        "verify-public-pages checks observation, health, transition, trend, change-history, frequency-summary, frequency-change, and frequency-change-history endpoints",
     ):
         if phrase not in chain:
             fail(f"publication chain missing: {phrase}")
@@ -97,6 +105,26 @@ def main() -> int:
     if change.get("next_evaluation") != "next repository-owned canonical workflow trigger":
         fail("frequency-change evaluation must remain automation-owned")
 
+    change_history = data.get("trend_change_frequency_change_history_policy", {})
+    if change_history.get("maximum_entries") != 24:
+        fail("frequency-change history maximum_entries must be 24")
+    if change_history.get("deduplication_key") != "receipt_id":
+        fail("frequency-change history deduplication key mismatch")
+    if change_history.get("ordering") != "generated_at ascending":
+        fail("frequency-change history ordering mismatch")
+    if change_history.get("descriptive_only") is not True:
+        fail("frequency-change history must remain descriptive")
+    if change_history.get("predictive_claim") is not False:
+        fail("frequency-change history predictive_claim must be false")
+    if change_history.get("causal_claim_beyond_receipt_fields") is not False:
+        fail("frequency-change history causal claim boundary mismatch")
+    if change_history.get("owner") != "canonical build-pages job":
+        fail("frequency-change history owner mismatch")
+    if "without assigning a manual task" not in change_history.get("prior_history_unavailable_result", ""):
+        fail("frequency-change history unavailable policy must remain no-manual")
+    if change_history.get("next_reconciliation") != "next repository-owned canonical workflow trigger":
+        fail("frequency-change history reconciliation must remain automation-owned")
+
     for trigger in ("push", "pull_request", "workflow_dispatch", "hourly_schedule"):
         if data.get("trigger_ownership", {}).get(trigger) != "repository automation":
             fail(f"trigger {trigger} is not automation-owned")
@@ -111,7 +139,10 @@ def main() -> int:
         if completed.returncode != 0:
             fail(f"validator failed: {validator.name}")
 
-    print("CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - manual_tasks=0 frequency_change=bounded_nonpredictive")
+    print(
+        "CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - "
+        "manual_tasks=0 frequency_change_history=bounded_nonpredictive"
+    )
     return 0
 
 
