@@ -1,0 +1,30 @@
+{
+  "schema_version": "robotic-law-enforcement-adoption-status.v1",
+  "goal_id": "robotic-law-enforcement-adoption-boundary",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "status": "LOCAL_VALIDATION_INSTALLED_PENDING_CANONICAL_VERIFICATION",
+  "doctrine": "docs/governance/robotic-law-enforcement-adoption-boundary.md",
+  "handoff": "docs/ROBOTIC_LAW_ENFORCEMENT_ADOPTION_MIRROR_HANDOFF.md",
+  "schema": "static/schemas/robotic-law-enforcement-deployment-admissibility.schema.json",
+  "fixtures": "tests/fixtures/robotic-law-enforcement-admissibility-cases.json",
+  "validator": "scripts/check_robotic_law_enforcement_admissibility.py",
+  "canonical_integration": "scripts/check_admissibility_automation_handoff.py",
+  "decision_outcomes": ["ALLOW", "DENY", "FAIL_CLOSED"],
+  "governance_boundaries": [
+    "human enforcement failure is not automatic authority for robotic replacement",
+    "reduced statistical risk is not execution authority",
+    "vendor certification is not deployment admissibility",
+    "autonomous lethal targeting and force initiation are prohibited",
+    "crisis or loss of life must not be manufactured, tolerated, prolonged, or exploited to create procurement demand",
+    "publication and validation do not authorize deployment",
+    "downstream mutation requires destination mirror handoff authority"
+  ],
+  "remaining_checks": [
+    "canonical workflow verification",
+    "public navigation and route verification",
+    "public activation receipt closure"
+  ],
+  "manual_task_required": false,
+  "downstream_mutation_authority": false,
+  "recorded_at": "2026-07-14T00:00:00Z"
+}
