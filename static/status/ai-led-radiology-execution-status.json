@@ -6,10 +6,12 @@
   "schema": "static/schemas/ai-led-radiology-execution-case.schema.json",
   "fixtures": "tests/fixtures/ai-led-radiology-execution-cases.json",
   "validator": "scripts/check_ai_led_radiology_execution.py",
+  "publication_validator": "scripts/check_ai_led_radiology_publication.py",
   "canonical_integration": "scripts/check_admissibility_automation_handoff.py",
   "generated_receipt": "reports/ai-led-radiology-execution-receipt.json",
   "public_status_url": "https://stegverse-labs.github.io/admissibility-wiki/status/ai-led-radiology-execution-status.json",
   "public_formalism_url": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/ai-led-radiology-execution-boundary",
+  "public_schema_url": "https://stegverse-labs.github.io/admissibility-wiki/schemas/ai-led-radiology-execution-case.schema.json",
   "fixture_case_count": 8,
   "decision_classes": [
     "ADMIT_ASSISTIVE_USE",
@@ -25,16 +27,18 @@
   "manual_task_requirement": "NONE",
   "automation": {
     "validator_runs_via": "validate:admissibility-automation-handoff",
+    "publication_gate_runs_via": "validate:admissibility-automation-handoff",
     "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
     "trigger_modes": ["push", "pull_request", "workflow_dispatch", "hourly_schedule"],
     "pages_build_gated_by_validation": true,
     "receipt_generation_automatic": true,
-    "public_navigation_installed": true
+    "public_navigation_installed": true,
+    "live_endpoint_check_enabled_by": "AI_RADIOLOGY_PUBLIC_BASE_URL"
   },
   "remaining": [
-    "observe canonical workflow result",
-    "observe public formalism and status endpoints after deployment",
-    "record verified workflow and publication evidence in the mirror handoff"
+    "canonical automation records a passing workflow result",
+    "deployment automation supplies live publication evidence",
+    "future handoff reconciliation records verified evidence"
   ],
   "remaining_owner": "CANONICAL_AUTOMATION_AND_FUTURE_HANDOFF_RECONCILIATION",
   "user_manual_action_required": false
