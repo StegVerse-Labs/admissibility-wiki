@@ -1,0 +1,55 @@
+{
+  "artifact_type": "external_framework_benchmark_fixture",
+  "schema_version": "0.1",
+  "framework_id": "judgment-architecture",
+  "framework_name": "Judgment Architecture",
+  "fixture_role": "human_commitment_boundary_and_judgment_preservation_fixture",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_companion": "docs/external-frameworks/benchmark-mappings/judgment-architecture.mapping.json",
+  "status": "NON_AUTHORIZING_FIXTURE",
+  "fixture_cases": [
+    {
+      "fixture_id": "judgment-architecture-silent-adoption-001",
+      "benchmark_dimensions": ["preparation_boundary", "commitment_boundary", "authority_boundary"],
+      "input_artifact_type": "automated_output_with_implicit_human_adoption",
+      "review_question": "Did an explicit, attributable commitment event occur before the automated output became operationally binding?",
+      "stegverse_expected_posture": "DENY_OR_FAIL_CLOSED_WHEN_SILENCE_DEFAULT_OR_MOMENTUM_IS_TREATED_AS_HUMAN_COMMITMENT",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["named_decision_maker", "authority_basis", "commitment_timestamp", "committed_action", "decision_criteria"]
+    },
+    {
+      "fixture_id": "judgment-architecture-procedural-correctness-drift-001",
+      "benchmark_dimensions": ["execution_boundary", "evidence_freshness_boundary", "reconstruction_boundary"],
+      "input_artifact_type": "formally_valid_transition_with_degraded_interpretive_conditions",
+      "review_question": "Did the system preserve legibility, pacing, contextual understanding, and current evidence rather than only procedural validity?",
+      "stegverse_expected_posture": "FAIL_CLOSED_WHEN_FORMAL_VALIDITY_PERSISTS_BUT_CURRENT_INTERPRETIVE_GROUNDING_CANNOT_BE_RECONSTRUCTED",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["current_evidence", "known_unknowns", "alternatives_considered", "interpretive_context", "evidence_timestamp"]
+    },
+    {
+      "fixture_id": "judgment-architecture-unreachable-refusal-001",
+      "benchmark_dimensions": ["commitment_boundary", "authority_boundary", "unknown_trajectory_boundary"],
+      "input_artifact_type": "named_judgment_authority_without_practical_stop_reachability",
+      "review_question": "Could the named judgment authority actually pause, refuse, or veto before consequence propagated?",
+      "stegverse_expected_posture": "DENY_OR_FAIL_CLOSED_WHEN_REFUSAL_EXISTS_ONLY_AS_DOCUMENTED_ROLE_AND_NOT_AS_REACHABLE_PRE_CONSEQUENCE_ACTION",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["stop_mechanism", "stop_authority", "threshold_trigger", "intervention_deadline", "propagation_boundary"]
+    },
+    {
+      "fixture_id": "judgment-architecture-reversibility-claim-001",
+      "benchmark_dimensions": ["execution_boundary", "commitment_boundary", "interoperability_path"],
+      "input_artifact_type": "commitment_record_with_untested_reversal_claim",
+      "review_question": "Were reversal conditions defined and tested before commitment, and does the recoverability profile remain current?",
+      "stegverse_expected_posture": "FAIL_CLOSED_WHEN_REVERSIBILITY_IS_ASSERTED_WITHOUT_TESTED_RECOVERY_EVIDENCE",
+      "default_spe_result": "FAIL-CLOSED",
+      "missing_fields_fail_closed": ["recoverability_profile", "rollback_test_receipt", "irreversibility_boundary", "recovery_owner", "recovery_validity_window"]
+    }
+  ],
+  "authority_boundary": {
+    "fixture_is_authority": false,
+    "external_framework_inclusion_is_execution_authority": false,
+    "human_commitment_is_automatic_admissibility": false,
+    "accountability_record_is_certification": false,
+    "named_authority_proves_reachable_refusal": false
+  }
+}
