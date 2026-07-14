@@ -24,28 +24,57 @@ recoverability preservation
 execution evidence
 ```
 
-The governing event is the `binding of consequence`: the point at which a proposed mutation becomes real and downstream consequence attaches.
+The governed event is the `binding of consequence`: the point at which a proposed mutation becomes real and downstream consequence attaches.
+
+## Current state
+
+```text
+State: IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_VERIFICATION
+Manual task requirement: none
+User manual action required: false
+Downstream mutation authority: none granted
+Canonical workflow: .github/workflows/validate-chain-continuation.yml
+```
 
 ## Installed work
 
 ```text
-Doctrine: docs/formalisms/commit-boundary-binding-predicate.md
-Commit: c16579532539cdfc180d8f8025348c1adb1d1378
-State: DOCTRINE_INSTALLED_IMPLEMENTATION_PENDING
-Manual task requirement: none
-User manual action required: false
-Downstream mutation authority: none granted
+Doctrine:
+  docs/formalisms/commit-boundary-binding-predicate.md
+  commit c16579532539cdfc180d8f8025348c1adb1d1378
+
+Goal handoff:
+  docs/COMMIT_BOUNDARY_BINDING_MIRROR_HANDOFF.md
+  initial commit 06a155e50aa9bed888f7d1f9e02b55589effde27
+
+Schema:
+  static/schemas/commit-boundary-binding-record.schema.json
+  commit 3c3445443d187663057ac49f69e8bed7cab5001d
+
+Fixtures:
+  tests/fixtures/commit-boundary-binding-cases.json
+  commit f92d9337e740830ff4d33f12fb6b5c2eee0ce659
+
+Deterministic checker:
+  scripts/check_commit_boundary_binding.py
+  commit 9ef4d11d9706f739c47df2f4c10e11db285c8522
+
+Status artifact:
+  static/status/commit-boundary-binding-status.json
+  commit 8589cf8cb0d645bc4547d6dc06925de1ae00998a
+
+Proof receipt:
+  receipts/commit-boundary-binding-proof-receipt.json
+  commit 32b2cd48d6318ab12e3779e13286f298ce10db07
+
+Canonical validation-chain integration:
+  scripts/check_admissibility_automation_handoff.py
+  commit 448faece5b0e7741b33f04fcacd6ea1b0b9e7647
+
+Public documentation navigation:
+  sidebars.js
+  commit 3e1d956378e2d689c7eb26b308d856fa50f99053
 ```
-
-The doctrine establishes:
-
-- admissibility is redetermined at transition and cannot be inherited from an earlier decision;
-- origin validation is independent from authority validation;
-- authority must be re-derived against live state and the specific requested mutation;
-- a transition binds only when origin, authority, admissibility, invariants, recoverability, and evidence all pass;
-- unresolved or stale evidence returns `FAIL_CLOSED`;
-- receipts must support independent reconstruction and do not create authority merely by existing;
-- external framework similarity remains a claim until implementation evidence is independently inspected.
 
 ## Canonical binding predicate
 
@@ -61,58 +90,39 @@ BIND(u_t, x_t) iff
 
 Any missing, invalid, contradictory, stale, or unresolved required component yields `DENY` or `FAIL_CLOSED`; it never yields `BIND`.
 
-## Provenance of the synthesis
-
-The doctrine was refined through public discussion around execution-boundary governance. External comments helped sharpen distinctions among:
-
-- decision validity and transition validity;
-- state integrity and commit authority;
-- fail-stop enforcement and pre-consequence refusal;
-- invariant preservation and recoverability margin;
-- proposal validation and governing the binding of consequence.
-
-These discussions are observation evidence and conceptual input only. They do not establish external implementation equivalence, endorsement, interoperability, certification, or authority.
-
-## Remaining implementation files
-
-Destination: `StegVerse-Labs/admissibility-wiki`
+## Installed deterministic cases
 
 ```text
-static/schemas/commit-boundary-binding-record.schema.json
-static/status/commit-boundary-binding-status.json
-tests/fixtures/commit-boundary-binding-cases.json
-scripts/check_commit_boundary_binding.py
-receipts/commit-boundary-binding-proof-receipt.json
+BIND_VALID_TRANSITION -> BIND
+DENY_ORIGIN_INVALID -> DENY
+DENY_AUTHORITY_REVOKED -> DENY
+FAIL_CLOSED_EVIDENCE_STALE -> FAIL_CLOSED
+DENY_STATE_DRIFT -> DENY
+DENY_RECOVERABILITY_EROSION -> DENY
+DENY_REPLAY -> DENY
+FAIL_CLOSED_RECEIPT_INCOMPLETE -> FAIL_CLOSED
 ```
 
-Optional public integration after local deterministic validation:
+Fixture digest:
 
 ```text
-sidebars.js
-package.json validation command
-scripts/check_admissibility_automation_handoff.py
-docs/formalisms index surface
-public activation receipt closure
+sha256:271e1c1c64df182076e2db1114d466a60e7dca06922457182a81e579a2f1c3e4
 ```
 
-No new active workflow is authorized. Integration must use `.github/workflows/validate-chain-continuation.yml` through the existing `npm run validate` chain.
+The checker independently evaluates each fixture, compares the result with the committed proof receipt, verifies the status digest, and fails closed on missing files, unresolved controls, stale evidence, replay, invalid origin, invalid authority, state drift, invariant failure, or recoverability-margin erosion.
 
-## Required fixtures
+## Governance decisions preserved
 
-The deterministic suite must include at least:
-
-1. `BIND` — valid origin, live authority, admissible state, preserved invariants and recoverability, complete evidence;
-2. `DENY_ORIGIN_INVALID` — authorized identity exists but the actual causal origin does not bind to the candidate;
-3. `DENY_AUTHORITY_REVOKED` — decision was valid at `t0`, authority is revoked before commit;
-4. `FAIL_CLOSED_EVIDENCE_STALE` — required authority or consent evidence is stale or unresolved;
-5. `DENY_STATE_DRIFT` — original decision remains coherent but the live state makes the transition inadmissible;
-6. `DENY_RECOVERABILITY_EROSION` — invariants remain technically satisfied but viable recovery options fall below the required margin;
-7. `DENY_REPLAY` — a previously valid candidate or receipt is replayed under changed state;
-8. `FAIL_CLOSED_RECEIPT_INCOMPLETE` — result cannot be independently reconstructed.
+- admissibility is redetermined at transition and cannot be inherited from an earlier decision;
+- origin validation is independent from authority validation;
+- authority must be re-derived against live state and the specific requested mutation;
+- a valid authorized identity does not prove the actual causal origin of a transition;
+- a transition binds only when origin, authority, admissibility, invariants, recoverability, and evidence all pass;
+- unresolved or stale evidence returns `FAIL_CLOSED`;
+- receipts support reconstruction but do not create execution authority merely by existing;
+- conceptual similarity with an external framework does not establish implementation equivalence.
 
 ## External-framework comparison boundary
-
-Claims that another framework operates at commit, re-derives authority, preserves invariants, maintains recoverability margin, or emits deterministic receipts must be recorded as `CLAIMED` until supported by inspectable artifacts and repeatable tests.
 
 Permitted classifications:
 
@@ -124,18 +134,59 @@ INDEPENDENTLY_REPRODUCED
 INTEROPERABILITY_VERIFIED
 ```
 
-No classification above `CLAIMED_CONCEPTUAL_ALIGNMENT` may be inferred from a social-media description alone.
+No classification above `CLAIMED_CONCEPTUAL_ALIGNMENT` may be inferred from a social-media description alone. Claims involving PFC or any other external framework remain observation evidence until inspectable artifacts and repeatable tests establish a stronger classification.
+
+## Validation posture
+
+The checker is invoked by `scripts/check_admissibility_automation_handoff.py`, which is already invoked by `npm run validate` under the single canonical workflow. No second workflow or manual command surface was created.
+
+The latest commit had no combined status available when observed. Therefore:
+
+```text
+local deterministic implementation: installed
+canonical workflow verification: pending observation
+public build/deployment verification: pending observation
+publication receipt closure: not yet claimed
+```
+
+Repository-wide workflow failures observed on 2026-07-14 may be unrelated to this goal and must be diagnosed from the actual failing job logs before attribution. Do not infer that this implementation passed or caused those failures without run-bound evidence.
+
+## Remaining work
+
+Destination: `StegVerse-Labs/admissibility-wiki`
+
+```text
+1. Observe the canonical workflow run containing commit 3e1d956378e2d689c7eb26b308d856fa50f99053 or a successor commit.
+2. Inspect the failing job and logs if validation or build fails.
+3. Repair only evidence-grounded failures inside this repository.
+4. Record the successful workflow run, public route, and publication evidence here.
+5. Optionally add an explicit npm alias for the checker only if needed; canonical integration already exists through the automation-handoff validator.
+6. Add a public activation receipt closure only after the route and proof artifacts are observed in the deployed build.
+```
+
+## Downstream awareness
+
+At tag or release readiness, create or update durable verification tasks for pertinent propagation to:
+
+```text
+StegVerse-Labs/Site
+GCAT-BCAT-Engine/Publisher
+StegVerse-Labs/admissibility-wiki
+StegVerse-002/stegguardian-wiki
+StegVerse-Labs/repo-standards
+```
+
+Destination mutation remains prohibited until each destination handoff grants scope.
 
 ## Permitted continuation scope
 
 A successor session may:
 
-- create the schema, status artifact, fixtures, deterministic checker, and receipt;
-- integrate the checker into the existing validation chain;
-- add the public doctrine to existing documentation navigation;
-- generate deterministic evidence for the required positive and negative cases;
-- record external frameworks without asserting equivalence beyond available evidence;
-- update this handoff with commit SHAs, validation results, and the next non-colliding goal.
+- inspect canonical workflow, build, deployment, and artifact evidence;
+- repair failures inside this repository;
+- update status and receipt artifacts from observed evidence;
+- add public publication closure after successful deployment verification;
+- record external frameworks without asserting equivalence beyond available evidence.
 
 A successor session may not:
 
@@ -146,15 +197,14 @@ A successor session may not:
 
 ## Completion event
 
-This goal reaches implementation completion when:
+This goal reaches activation completion when:
 
-1. all listed required files are installed;
-2. positive and negative fixtures pass deterministically;
-3. the checker is invoked by `npm run validate` through the canonical workflow chain;
-4. a replayable receipt is generated and validated;
-5. the public documentation route is included in the existing documentation surface;
-6. this handoff records the verified workflow run and publication evidence.
+1. the canonical workflow passes with the checker in its `npm run validate` path;
+2. the Docusaurus build includes the formalism route;
+3. public deployment is verified;
+4. the proof receipt and status artifact are reachable or included in the validated public artifact as intended;
+5. this handoff records run-bound verification evidence.
 
 ## Continuation instruction
 
-Continue by creating the machine-readable schema and fixtures before writing the checker. Preserve the independent axes of origin, authority, admissibility, invariants, recoverability, and evidence; do not collapse them into a single boolean prior to receipt generation.
+Continue with workflow observation and evidence-grounded repair. Preserve the independent axes of origin, authority, admissibility, invariants, recoverability, and evidence; do not collapse them into a single boolean before receipt generation.
