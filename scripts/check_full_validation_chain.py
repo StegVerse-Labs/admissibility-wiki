@@ -41,6 +41,7 @@ CHECKS = [
     ("Validate external framework page status", "scripts/check_external_framework_page_status.py"),
     ("Validate external framework expansion policy", "scripts/check_external_framework_expansion_policy.py"),
     ("Validate external framework evidence provenance", "scripts/check_external_framework_evidence_provenance.py"),
+    ("Validate KPT external framework intake", "scripts/check_kpt_external_framework_intake.py"),
     ("Validate Goal 5 external framework benchmark chain", "scripts/check_goal5_external_frameworks_all.py"),
     ("Validate ASRO commitment candidate", "scripts/check_asro_commitment_candidate.py"),
     ("Validate governed LLM public pages", "scripts/check_governed_llm_pages.py"),
