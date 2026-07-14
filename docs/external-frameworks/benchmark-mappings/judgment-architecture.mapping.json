@@ -1,0 +1,56 @@
+{
+  "artifact_type": "external_framework_benchmark_mapping",
+  "schema_version": "0.1",
+  "framework_id": "judgment-architecture",
+  "framework_role": "human judgment preservation and commitment-boundary design doctrine",
+  "source_status": "supplied_primary_publication_observed",
+  "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
+  "mapping_state": "fixture_ready",
+  "benchmark_dimensions": {
+    "execution_boundary": {
+      "state": "applicable",
+      "summary": "The Execution Plane requires action to remain inside an explicitly bounded domain; bounded execution does not itself establish authority or admissibility."
+    },
+    "preparation_boundary": {
+      "state": "applicable",
+      "summary": "Earn and Grow preserve advisory accumulation, comparison, simulation, and review before irreversible commitment."
+    },
+    "commitment_boundary": {
+      "state": "fixture_ready",
+      "summary": "Decision Commitment is a discrete transition from revisable advisory output to authority-bearing action with contemporaneous accountability evidence."
+    },
+    "semantic_equivalence_boundary": {
+      "state": "adapter_required",
+      "summary": "Judgment, commitment, accountability, refusal, and reversibility terms require explicit crosswalks before comparison with StegVerse transition states."
+    },
+    "unknown_trajectory_boundary": {
+      "state": "applicable",
+      "summary": "When thresholds, authority, ownership, or reversibility are unclear, the framework defaults toward pause, escalation, or no rather than silent continuation."
+    },
+    "authority_boundary": {
+      "state": "applicable",
+      "summary": "Judgment Authority must be named and practically able to slow, reframe, refuse, or veto; framework inclusion grants no StegVerse authority."
+    },
+    "evidence_freshness_boundary": {
+      "state": "mapped_partial",
+      "summary": "The Accountability Ledger requires evidence at the moment of commitment, but a complete machine-readable freshness model remains to be specified."
+    },
+    "reconstruction_boundary": {
+      "state": "mapped_partial",
+      "summary": "The ledger supports reconstruction of framing, alternatives, criteria, authority, and ownership, while reconstruction alone cannot restore lost judgment capacity."
+    },
+    "interoperability_path": {
+      "state": "fixture_ready",
+      "summary": "Judgment Architecture can enter StegVerse as a non-authorizing doctrine and fixture family for commitment legibility, practical refusal reachability, pacing, and recoverability review."
+    }
+  },
+  "non_claims": {
+    "is_certification": false,
+    "is_endorsement": false,
+    "is_execution_authority": false,
+    "is_formal_equivalence": false,
+    "human_commitment_alone_is_admissibility": false,
+    "accountability_ledger_is_current_standing_proof": false
+  },
+  "next_required_action": "attach stable source locators and page-level citations, then execute the commitment-boundary fixtures against a machine-readable Decision Commitment Record candidate"
+}
