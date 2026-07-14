@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -11,6 +13,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT = ROOT / "static" / "status" / "canonical-workflow-health-transition-trend.json"
 OUT = ROOT / "static" / "status" / "canonical-workflow-health-transition-trend-change-receipt.json"
+HISTORY_RECONCILER = ROOT / "scripts" / "reconcile_canonical_workflow_health_transition_trend_change_history.py"
 PUBLIC_TREND_URL = "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-transition-trend.json"
 
 
@@ -81,8 +84,8 @@ def main() -> int:
             "This receipt records a change between bounded descriptive trend classes only.",
             "An unchanged trend is recorded to preserve continuity.",
             "A recovery or stable trend class does not predict persistence.",
-            "This receipt does not grant release, deployment, execution, or downstream mutation authority."
-        ]
+            "This receipt does not grant release, deployment, execution, or downstream mutation authority.",
+        ],
     }
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -91,6 +94,17 @@ def main() -> int:
         "CANONICAL WORKFLOW HEALTH TRANSITION TREND CHANGE: PASS - "
         f"change={change_state} prior={prior_class} resulting={resulting_class} manual_tasks=0"
     )
+
+    if not HISTORY_RECONCILER.exists():
+        raise SystemExit("workflow trend-change history reconciler is missing")
+    completed = subprocess.run(
+        [sys.executable, str(HISTORY_RECONCILER)], cwd=ROOT, text=True,
+        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
+    )
+    if completed.stdout:
+        print(completed.stdout.rstrip())
+    if completed.returncode != 0:
+        raise SystemExit("workflow trend-change history reconciliation failed")
     return 0
 
 
