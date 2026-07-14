@@ -1,6 +1,6 @@
 {
   "artifact_type": "external_framework_intake_status",
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "framework_id": "kpt",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "goal_id": "kpt-external-framework-intake-activation",
@@ -11,8 +11,10 @@
     "manifest": "docs/external-frameworks/kpt.json",
     "compatibility_report": "docs/external-frameworks/reports/kpt.compatibility.json",
     "registry": "docs/external-frameworks/index.json",
+    "observatory_index": "docs/external-frameworks/index.md",
     "navigation": "sidebars.js",
     "provenance_receipt": "receipts/kpt-source-blocked-intake-2026-07-14.json",
+    "automation_receipt": "receipts/kpt-automation-binding-2026-07-14.json",
     "continuation_issue": "https://github.com/StegVerse-Labs/admissibility-wiki/issues/18",
     "deterministic_validator": "scripts/check_kpt_external_framework_intake.py",
     "validation_chain": "scripts/check_full_validation_chain.py",
@@ -22,6 +24,7 @@
   "automation_ownership": {
     "artifact_validation": "canonical validate-chain-continuation workflow",
     "report_regeneration": "scripts/generate_external_framework_reports.py",
+    "observatory_index_validation": "scripts/check_kpt_external_framework_intake.py",
     "site_build": "build-pages job",
     "deployment": "deploy-pages job",
     "public_observation": "verify-public-pages job and scheduled canonical workflow",
@@ -31,8 +34,9 @@
     "canonical workflow passes after report generation",
     "deterministic KPT validator passes inside the full validation chain",
     "external framework report validator accepts KPT source-blocked status vocabulary",
+    "observatory index contains the KPT source-blocked row and bridge entry",
     "wiki build includes the KPT page in navigation",
-    "scheduled deployment publishes the KPT page and status artifact",
+    "scheduled deployment publishes the KPT page, observatory index, and status artifact",
     "public observation records endpoint availability without granting authority"
   ],
   "source_upgrade_gate": [
@@ -41,6 +45,12 @@
     "canonical public repository or implementation source",
     "versioned decision vocabulary, API, schema, or trace format"
   ],
+  "source_discovery_observation": {
+    "observed_at": "2026-07-14",
+    "result": "NO_INDEXED_OFFICIAL_SOURCE_IDENTIFIED",
+    "effect": "remain SOURCE_BLOCKED_FAIL_CLOSED",
+    "manual_follow_up_required": false
+  },
   "boundary": {
     "certification_claim": false,
     "endorsement_claim": false,
@@ -55,5 +65,6 @@
   "manual_validation_required": false,
   "manual_deployment_required": false,
   "manual_publication_check_required": false,
+  "manual_source_search_required": false,
   "downstream_mutation_authorized": false
 }
