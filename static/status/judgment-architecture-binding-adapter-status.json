@@ -1,0 +1,29 @@
+{
+  "artifact_type": "judgment_architecture_binding_adapter_status",
+  "schema_version": "0.1",
+  "overall_status": "PENDING_CANONICAL_EXECUTION",
+  "adapter_state": "DETERMINISTIC_NON_AUTHORIZING_ADAPTER_INSTALLED",
+  "mapping_state": "fixture_ready",
+  "runtime_observation_state": "CANONICAL_WORKFLOW_OBSERVATION_PENDING",
+  "installed_surfaces": [
+    "scripts/adapt_judgment_architecture_commitment_to_binding.py",
+    "tests/fixtures/judgment-architecture-binding-adapter-cases.json",
+    "scripts/check_judgment_architecture_binding_adapter.py",
+    "scripts/check_goal5_external_frameworks_all.py"
+  ],
+  "expected_cases": [
+    "complete-live-evidence-bind",
+    "commitment-complete-authority-stale",
+    "human-commitment-present-state-drift-deny",
+    "missing-live-evidence-fail-closed"
+  ],
+  "results": [],
+  "authority_boundary": {
+    "adapter_is_execution_authority": false,
+    "adapter_bind_result_is_runtime_authorization": false,
+    "commitment_record_is_current_standing_proof": false,
+    "human_commitment_is_admissibility": false,
+    "interoperability_is_verified": false
+  },
+  "next_required_action": "observe canonical workflow execution and replace pending status with deterministic case results and workflow-bound receipt evidence"
+}
