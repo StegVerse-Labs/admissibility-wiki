@@ -2,14 +2,19 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS = ROOT / "static" / "status" / "canonical-workflow-observation-automation.json"
+PUBLICATION_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_observation_publication.py"
 REQUIRED_FILES = [
     ROOT / ".github" / "workflows" / "validate-chain-continuation.yml",
     ROOT / "scripts" / "write_canonical_workflow_observation_receipt.py",
     ROOT / "scripts" / "check_canonical_workflow_observation_receipt.py",
+    ROOT / "scripts" / "publish_canonical_workflow_observation_receipt.py",
+    PUBLICATION_VALIDATOR,
     ROOT / "scripts" / "check_full_validation_chain.py",
 ]
 
@@ -58,7 +63,20 @@ def main() -> int:
     if not any("does not grant" in claim for claim in non_claims):
         fail("authority non-claim is missing")
 
-    print("CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - manual_tasks=0 user_action=false")
+    completed = subprocess.run(
+        [sys.executable, str(PUBLICATION_VALIDATOR)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    if completed.stdout:
+        print(completed.stdout.rstrip())
+    if completed.returncode != 0:
+        fail("run-bound publication validator failed")
+
+    print("CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - manual_tasks=0 user_action=false publication=validated")
     return 0
 
 
