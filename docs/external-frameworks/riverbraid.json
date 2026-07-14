@@ -1,0 +1,82 @@
+{
+  "artifact_type": "external_framework_manifest",
+  "schema_version": "0.1",
+  "framework_id": "riverbraid",
+  "name": "Riverbraid",
+  "source_reference": "primary public documentation required; LinkedIn announcement links recorded in issue #16",
+  "source_version": "UNVERIFIED_SOURCE_REQUIRED",
+  "allowed_use_boundary": [
+    "Use only as provisional intake evidence derived from a public announcement.",
+    "Do not treat marketing claims or shortened links as canonical technical evidence.",
+    "Do not treat this manifest as certification, endorsement, interoperability, regulatory compliance, execution authority, or commit-time authority."
+  ],
+  "claims": [
+    "Riverbraid is presented as a stationary fail-closed AI governance layer.",
+    "The announcement claims cryptographic verification of configuration, dependencies, and outputs before execution.",
+    "The announcement claims Bitcoin anchoring, threshold-signature-controlled changes, independent auditability, and environment-agnostic proxy deployment."
+  ],
+  "non_claims": [
+    "No primary technical source verification is claimed.",
+    "No EU AI Act or SOC 2 compliance determination is claimed.",
+    "No proof of denial reachability, recoverability, or commit-time admissibility is claimed.",
+    "No framework-wide validation or compatibility determination is claimed."
+  ],
+  "transition_table_mapping": {
+    "framework_identity": "Riverbraid",
+    "source_reference": "primary public documentation required; announcement links retained in issue #16",
+    "source_version": "UNVERIFIED_SOURCE_REQUIRED",
+    "allowed_use_boundary": "source-blocked execution-boundary comparison intake only",
+    "claims": "stationary fail-closed governance, cryptographic verification, anchored auditability, threshold-authorized change, and proxy compatibility claims",
+    "non_claims": "no certification, endorsement, interoperability, regulatory compliance, execution authority, commit-time authority, or denial-reachability proof",
+    "input_artifact_type": "public announcement and unresolved shortened source links",
+    "output_artifact_type": "source-blocked external framework manifest",
+    "actor_or_authority_model": "threshold-signature authorization claimed; derivation, revocation, and commit-time standing unknown",
+    "evidence_model": "cryptographic verification and Bitcoin anchoring claimed; canonical artifacts and verification procedure missing",
+    "policy_or_rule_model": "stationary governance floor claimed; mutation and exception semantics unverified",
+    "delegation_model": "threshold-signature control claimed; delegation scope and expiry unknown",
+    "decision_or_result_model": "fail-closed stop on verification mismatch claimed; post-denial non-execution evidence unavailable",
+    "execution_authority_claim": false,
+    "receipt_or_trace_model": "independent audit trail claimed; receipt schema, replay contract, and evidence retention unknown",
+    "reconstruction_model": "external falsifiability claimed; deterministic state reconstruction not established",
+    "SPE_overlap": "pre-execution verification, authority validity, receipt reconstruction, and commit-time admissibility comparison",
+    "StegVerse_ecosystem_overlap": "external-framework intake, denial reachability, state admissibility, authority validity, drift detection, and execution-boundary evaluation",
+    "fail_closed_conditions": "primary evidence missing, denial reachability unproven, authority derivation undefined, post-denial non-execution unproven, or regulatory claim overreach"
+  },
+  "SPE_overlap": {
+    "standing_boundary": "source insufficient; threshold-signature standing unverified",
+    "authority_evaluation": "blocked pending authority derivation and revocation evidence",
+    "commit_time_admissibility": "not established by pre-execution integrity claims",
+    "receipt_reconstruction": "auditability claimed but canonical receipt and replay artifacts missing"
+  },
+  "StegVerse_ecosystem_overlap": {
+    "transition_table": "source-blocked comparison target",
+    "chain_status": "provisional announcement intake only",
+    "documentation_surface": "external-framework report may be generated only with non-certification boundary",
+    "execution_path": "not authorized",
+    "denial_reachability": "unproven",
+    "recoverability": "unproven"
+  },
+  "fail_closed_conditions": [
+    "primary technical source or canonical artifact is missing",
+    "exact pre-execution and commit-time enforcement point is unknown",
+    "denial reachability before irreversibility is not proven",
+    "authority derivation, delegation, revocation, or expiry semantics are undefined",
+    "post-denial non-execution cannot be reconstructed",
+    "Bitcoin anchor or proxy dependency failure behavior is undefined",
+    "EU AI Act or SOC 2 alignment is represented as compliance without evidence",
+    "any certification, endorsement, interoperability, execution authority, or commit-time authority claim appears"
+  ],
+  "boundary": {
+    "certification_claim": false,
+    "endorsement_claim": false,
+    "interoperability_claim": false,
+    "regulatory_compliance_claim": false,
+    "execution_authority_claim": false,
+    "commit_time_authority_claim": false,
+    "compatibility_manifest_is_authority": false,
+    "missing_or_partial_fields_fail_closed": true,
+    "official_source_required_for_completion": true,
+    "integrity_proof_is_admissibility_proof": false,
+    "pre_execution_verification_proves_denial_reachability": false
+  }
+}
