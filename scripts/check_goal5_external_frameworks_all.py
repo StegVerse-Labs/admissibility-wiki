@@ -20,6 +20,7 @@ CHECKS = [
     "scripts/check_judgment_architecture_commitment_fixtures.py",
     "scripts/check_judgment_architecture_commit_boundary_crosswalk.py",
     "scripts/check_judgment_architecture_binding_adapter.py",
+    "scripts/check_judgment_architecture_source_citation_status.py",
     "scripts/check_observed_evidence_capture_queue.py",
     "scripts/check_opa_observation_capture_harness.py",
     "scripts/check_opa_version_probe_compatibility.py",
@@ -106,7 +107,7 @@ def main() -> int:
         "overall_status": "FAIL" if failures else "PASS",
         "external_chat_activation_sync": {"state": sync_state, "output": sync_output, "authority_effect": "NONE"},
         "results": results,
-        "authority_boundary": "This report records structural validation, bounded evidence-transfer outcomes, deployment observations, public-endpoint verification contracts, non-mutating observation candidates, and canonical-status-only promotion/application boundaries. It does not create external-framework certification, equivalence, standing, registry-promotion, dispatch, execution, deployment authority, release, downstream propagation, activation authority, repository mutation, publication, or consequence authority.",
+        "authority_boundary": "This report records structural validation, bounded evidence-transfer outcomes, deployment observations, public-endpoint verification contracts, non-mutating observation candidates, canonical-status-only promotion/application boundaries, and fail-closed source-citation posture. It does not create external-framework certification, equivalence, standing, registry-promotion, dispatch, execution, deployment authority, release, downstream propagation, activation authority, repository mutation, publication, or consequence authority.",
     }, indent=2) + "\n", encoding="utf-8")
     print("\n" + "=" * 64)
     if failures:
