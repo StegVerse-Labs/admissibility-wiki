@@ -1,0 +1,29 @@
+{
+  "goal_id": "ai-led-radiology-execution-boundary",
+  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_INTEGRATION",
+  "issue_ref": "StegVerse-Labs/admissibility-wiki#15",
+  "formalism": "docs/formalisms/ai-led-radiology-execution-boundary.md",
+  "schema": "static/schemas/ai-led-radiology-execution-case.schema.json",
+  "fixtures": "tests/fixtures/ai-led-radiology-execution-cases.json",
+  "validator": "scripts/check_ai_led_radiology_execution.py",
+  "fixture_case_count": 8,
+  "decision_classes": [
+    "ADMIT_ASSISTIVE_USE",
+    "ADMIT_AI_FIRST_WITH_MANDATORY_HUMAN_REVIEW",
+    "REVIEW_REQUIRED",
+    "DENY_AUTONOMOUS_CLEARANCE",
+    "FAIL_CLOSED"
+  ],
+  "publication_posture": "NON_CERTIFYING_NON_ENDORSEMENT",
+  "clinical_authority": false,
+  "execution_authority": false,
+  "additional_active_workflow_created": false,
+  "remaining": [
+    "run deterministic validator",
+    "integrate validator into canonical validation surface",
+    "add formalism navigation and index entry",
+    "run canonical workflow",
+    "verify public publication",
+    "update mirror handoff with verified results"
+  ]
+}
