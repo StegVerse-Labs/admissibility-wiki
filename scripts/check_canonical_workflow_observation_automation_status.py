@@ -20,6 +20,7 @@ VALIDATORS = [
     ROOT / "scripts" / "check_canonical_workflow_trend_change_frequency_summary.py",
     ROOT / "scripts" / "check_canonical_workflow_trend_change_frequency_change.py",
     ROOT / "scripts" / "check_canonical_workflow_trend_change_frequency_change_history.py",
+    ROOT / "scripts" / "check_canonical_workflow_frequency_change_stability_summary.py",
 ]
 REQUIRED = [
     ROOT / ".github" / "workflows" / "validate-chain-continuation.yml",
@@ -28,6 +29,7 @@ REQUIRED = [
     ROOT / "scripts" / "generate_canonical_workflow_trend_change_frequency_summary.py",
     ROOT / "scripts" / "generate_canonical_workflow_trend_change_frequency_change.py",
     ROOT / "scripts" / "reconcile_canonical_workflow_trend_change_frequency_change_history.py",
+    ROOT / "scripts" / "generate_canonical_workflow_frequency_change_stability_summary.py",
     ROOT / "scripts" / "check_full_validation_chain.py",
 ] + VALIDATORS
 
@@ -44,7 +46,7 @@ def main() -> int:
             fail(f"required file missing: {path.relative_to(ROOT)}")
 
     data = json.loads(STATUS.read_text(encoding="utf-8"))
-    if data.get("state") != "AUTOMATED_TREND_CHANGE_FREQUENCY_CHANGE_HISTORY_BOUND":
+    if data.get("state") != "AUTOMATED_FREQUENCY_CHANGE_STABILITY_BOUND":
         fail("state mismatch")
     if data.get("manual_tasks_required") != [] or data.get("user_action_required") is not False:
         fail("no-manual boundary violated")
@@ -56,6 +58,7 @@ def main() -> int:
         "trend_change_frequency_endpoint": "/status/canonical-workflow-trend-change-frequency-summary.json",
         "trend_change_frequency_change_endpoint": "/status/canonical-workflow-trend-change-frequency-change-receipt.json",
         "trend_change_frequency_change_history_endpoint": "/status/canonical-workflow-trend-change-frequency-change-history.json",
+        "frequency_change_stability_endpoint": "/status/canonical-workflow-frequency-change-stability-summary.json",
     }
     for key, value in expected_endpoints.items():
         if data.get(key) != value:
@@ -66,7 +69,8 @@ def main() -> int:
         "build-pages derives a bounded descriptive frequency and recency summary from trend-change history",
         "build-pages emits a frequency-class change receipt by comparing the current summary with the prior public summary",
         "build-pages reconciles the frequency-class change receipt into bounded deduplicated frequency-change history",
-        "verify-public-pages checks observation, health, transition, trend, change-history, frequency-summary, frequency-change, and frequency-change-history endpoints",
+        "build-pages derives a bounded descriptive stability summary from frequency-change history",
+        "verify-public-pages checks observation, health, transition, trend, frequency, frequency-change-history, and stability-summary endpoints",
     ):
         if phrase not in chain:
             fail(f"publication chain missing: {phrase}")
@@ -125,6 +129,29 @@ def main() -> int:
     if change_history.get("next_reconciliation") != "next repository-owned canonical workflow trigger":
         fail("frequency-change history reconciliation must remain automation-owned")
 
+    stability = data.get("frequency_change_stability_policy", {})
+    if stability.get("maximum_recent_entries") != 12:
+        fail("stability window must be 12")
+    if stability.get("descriptive_only") is not True:
+        fail("stability summary must remain descriptive")
+    if stability.get("predictive_claim") is not False:
+        fail("stability predictive_claim must be false")
+    if stability.get("causal_claim_beyond_receipt_fields") is not False:
+        fail("stability causal claim boundary mismatch")
+    required_stability_classes = {
+        "AWAITING_AUTOMATED_FREQUENCY_CHANGE_HISTORY",
+        "NO_CLASS_CHANGE_OBSERVED",
+        "ISOLATED_CLASS_CHANGE_OBSERVED",
+        "REPEATED_CLASS_CHANGE_OBSERVED",
+        "MIXED_FREQUENCY_RECENCY_MOVEMENT",
+    }
+    if set(stability.get("classes", [])) != required_stability_classes:
+        fail("stability classes mismatch")
+    if stability.get("owner") != "canonical build-pages job":
+        fail("stability owner mismatch")
+    if stability.get("next_evaluation") != "next repository-owned canonical workflow trigger":
+        fail("stability evaluation must remain automation-owned")
+
     for trigger in ("push", "pull_request", "workflow_dispatch", "hourly_schedule"):
         if data.get("trigger_ownership", {}).get(trigger) != "repository automation":
             fail(f"trigger {trigger} is not automation-owned")
@@ -141,7 +168,7 @@ def main() -> int:
 
     print(
         "CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - "
-        "manual_tasks=0 frequency_change_history=bounded_nonpredictive"
+        "manual_tasks=0 stability=bounded_nonpredictive"
     )
     return 0
 
