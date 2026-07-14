@@ -1,10 +1,10 @@
 {
   "artifact_type": "external_framework_intake_status",
-  "schema_version": "0.3",
+  "schema_version": "0.4",
   "framework_id": "kpt",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "goal_id": "kpt-external-framework-intake-activation",
-  "state": "AUTOMATION_BOUND_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_OBSERVATION",
+  "state": "PUBLIC_ROUTE_OBSERVATION_AUTOMATED_PENDING_CANONICAL_RESULT",
   "source_posture": "SOURCE_BLOCKED_FAIL_CLOSED",
   "installed": {
     "public_page": "docs/external-frameworks/kpt.md",
@@ -19,6 +19,7 @@
     "deterministic_validator": "scripts/check_kpt_external_framework_intake.py",
     "validation_chain": "scripts/check_full_validation_chain.py",
     "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "public_route_verifier": "scripts/check_governed_llm_deployment_status.py",
     "no_manual_task_guard": "static/status/no-manual-task-guard-status.json"
   },
   "automation_ownership": {
@@ -27,8 +28,14 @@
     "observatory_index_validation": "scripts/check_kpt_external_framework_intake.py",
     "site_build": "build-pages job",
     "deployment": "deploy-pages job",
-    "public_observation": "verify-public-pages job and scheduled canonical workflow",
+    "public_observation": "verify-public-pages job invoking scripts/check_governed_llm_deployment_status.py",
     "source_upgrade": "future source-intake automation after an official owner-published source becomes available"
+  },
+  "automated_public_endpoints": {
+    "page": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/kpt",
+    "status": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-external-framework-intake-status.json",
+    "observation_result": "written into the run-bound deployment verification receipt",
+    "failure_posture": "FAIL_CLOSED_WITHOUT_USER_TASK"
   },
   "required_checks": [
     "canonical workflow passes after report generation",
@@ -37,7 +44,7 @@
     "observatory index contains the KPT source-blocked row and bridge entry",
     "wiki build includes the KPT page in navigation",
     "scheduled deployment publishes the KPT page, observatory index, and status artifact",
-    "public observation records endpoint availability without granting authority"
+    "public route verifier records KPT endpoint availability without granting authority"
   ],
   "source_upgrade_gate": [
     "official owner-published framework URL",
@@ -59,6 +66,8 @@
     "commit_time_authority_claim": false,
     "decision_equivalence_claim": false,
     "public_visibility_is_authority": false,
+    "source_sufficiency_from_reachability": false,
+    "interoperability_standing_from_reachability": false,
     "missing_official_source_fails_closed": true
   },
   "manual_task_requirement": "none",
@@ -66,5 +75,6 @@
   "manual_deployment_required": false,
   "manual_publication_check_required": false,
   "manual_source_search_required": false,
+  "manual_endpoint_check_required": false,
   "downstream_mutation_authorized": false
 }
