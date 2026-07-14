@@ -1,0 +1,63 @@
+{
+  "schema_version": "commit_boundary_binding_proof_receipt.v1",
+  "goal_id": "commit-boundary-binding-predicate",
+  "binding_result": "PASS",
+  "fixture_digest": "sha256:271e1c1c64df182076e2db1114d466a60e7dca06922457182a81e579a2f1c3e4",
+  "checker": "scripts/check_commit_boundary_binding.py",
+  "cases": [
+    {
+      "id": "BIND_VALID_TRANSITION",
+      "expected": "BIND",
+      "actual": "BIND",
+      "reason_codes": ["ALL_REQUIRED_CONTROLS_VALID"]
+    },
+    {
+      "id": "DENY_ORIGIN_INVALID",
+      "expected": "DENY",
+      "actual": "DENY",
+      "reason_codes": ["ORIGIN_INVALID"]
+    },
+    {
+      "id": "DENY_AUTHORITY_REVOKED",
+      "expected": "DENY",
+      "actual": "DENY",
+      "reason_codes": ["AUTHORITY_INVALID"]
+    },
+    {
+      "id": "FAIL_CLOSED_EVIDENCE_STALE",
+      "expected": "FAIL_CLOSED",
+      "actual": "FAIL_CLOSED",
+      "reason_codes": ["EVIDENCE_STALE"]
+    },
+    {
+      "id": "DENY_STATE_DRIFT",
+      "expected": "DENY",
+      "actual": "DENY",
+      "reason_codes": ["TRANSITION_INADMISSIBLE"]
+    },
+    {
+      "id": "DENY_RECOVERABILITY_EROSION",
+      "expected": "DENY",
+      "actual": "DENY",
+      "reason_codes": [
+        "RECOVERABILITY_NOT_PRESERVED",
+        "RECOVERABILITY_MARGIN_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "id": "DENY_REPLAY",
+      "expected": "DENY",
+      "actual": "DENY",
+      "reason_codes": ["CANDIDATE_REPLAY"]
+    },
+    {
+      "id": "FAIL_CLOSED_RECEIPT_INCOMPLETE",
+      "expected": "FAIL_CLOSED",
+      "actual": "FAIL_CLOSED",
+      "reason_codes": ["EVIDENCE_INCOMPLETE"]
+    }
+  ],
+  "authority_posture": "proof receipt does not grant execution authority",
+  "manual_task_requirement": "none",
+  "user_manual_action_required": false
+}
