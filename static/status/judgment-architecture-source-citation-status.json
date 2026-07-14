@@ -1,0 +1,40 @@
+{
+  "artifact_type": "judgment_architecture_source_citation_status",
+  "schema_version": "0.1",
+  "framework": "Judgment Architecture",
+  "publication_identity": {
+    "title": "Judgment Architecture: A Field Doctrine for Designing Human Judgment at Scale",
+    "creator": "Orli Shull",
+    "publisher": "Seedling & Star, LLC",
+    "publication_year": 2026,
+    "identity_state": "USER_SUPPLIED_PRIMARY_PUBLICATION_OBSERVED"
+  },
+  "source_locator_state": "BLOCKED_NO_STABLE_PUBLIC_LOCATOR_FOUND",
+  "citation_state": "PENDING_STABLE_SOURCE",
+  "search_observation": {
+    "observed_at": "2026-07-14",
+    "queries": [
+      "exact publication title plus creator",
+      "publisher domain plus framework title",
+      "creator plus framework title",
+      "retail catalog plus exact title and creator"
+    ],
+    "result": "NO_VERIFIABLE_PUBLIC_RESULT",
+    "interpretation": "Absence from search results is not evidence that no public source exists; it is only evidence that this intake cannot yet bind a stable locator."
+  },
+  "required_for_completion": [
+    "stable canonical public source locator",
+    "publication version or edition identity",
+    "page-level or section-level citation anchors",
+    "terminology comparison against the supplied publication"
+  ],
+  "promotion_state": "FAIL_CLOSED_AT_FIXTURE_READY",
+  "authority_boundary": {
+    "user_supplied_publication_is_public_locator": false,
+    "search_failure_invalidates_framework": false,
+    "uncited_summary_is_creator_endorsement": false,
+    "citation_intake_grants_interoperability": false,
+    "citation_intake_grants_execution_authority": false
+  },
+  "next_required_action": "Obtain or discover a stable canonical public source locator or a durable source artifact with citable page or section anchors."
+}
