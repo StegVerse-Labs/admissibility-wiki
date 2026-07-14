@@ -86,6 +86,26 @@ if (receipt.linked_receipts?.ai_led_radiology_execution !== 'reports/ai-led-radi
   fail('AI-led radiology execution receipt binding mismatch');
 }
 
+const closure = receipt.activation_closures?.ai_led_radiology;
+if (!closure) fail('missing AI-led radiology activation closure');
+if (closure.schema !== 'ai_led_radiology_activation_closure.v1') fail('radiology closure schema mismatch');
+if (closure.goal_id !== 'ai-led-radiology-execution-boundary') fail('radiology closure goal mismatch');
+if (closure.state !== 'SIMULATED_VALIDATOR_PASS') fail('radiology simulated closure state mismatch');
+if (closure.commit !== 'validator-local-sha') fail('radiology closure commit binding mismatch');
+if (closure.run_id !== 'validator-local-run') fail('radiology closure run binding mismatch');
+if (closure.all_required_public_routes_verified !== true) fail('radiology closure route verification mismatch');
+if (closure.manual_task_requirement !== 'NONE') fail('radiology closure manual task mismatch');
+if (closure.user_manual_action_required !== false) fail('radiology closure user action mismatch');
+if (closure.authority_granted !== false) fail('radiology closure authority boundary mismatch');
+if (closure.clinical_authority_granted !== false) fail('radiology closure clinical authority mismatch');
+if (closure.execution_authority_granted !== false) fail('radiology closure execution authority mismatch');
+if (closure.handoff_reconciliation_required_for_continuation !== false) {
+  fail('radiology closure incorrectly requires handoff reconciliation');
+}
+for (const check of RADIOLOGY_CHECKS) {
+  if (!closure.evidence?.[check]) fail(`radiology closure missing evidence: ${check}`);
+}
+
 const nonClaims = receipt.non_claims || [];
 if (!nonClaims.some((claim) => claim.includes('does not create provider governance'))) {
   fail('missing provider governance non-claim');
