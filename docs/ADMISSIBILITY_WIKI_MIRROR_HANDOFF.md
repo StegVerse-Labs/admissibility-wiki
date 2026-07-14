@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: complete admissibility-wiki public documentation activation under the single canonical validation workflow.
-Current state: doctrine, status, validation, documentation mesh, governed LLM surfaces, verification-authority publication automation, and durable publication closure receipt generation are installed.
+Current state: doctrine, status, validation, documentation mesh, governed LLM surfaces, verification-authority publication automation, radiology activation closure, documentation-mesh observation closure, and durable publication receipt generation are installed.
 Manual task requirement: none.
 User manual action required: false.
 No manual target-creation task is assigned.
@@ -66,7 +66,7 @@ https://stegverse-labs.github.io/admissibility-wiki/governance/verification-vs-e
 https://stegverse-labs.github.io/admissibility-wiki/status/verification-execution-authority-status.json
 ```
 
-The existing `verify-public-pages` job invokes `scripts/check_governed_llm_deployment_status.py` after deployment. Both routes are included in that checker. The checker writes route evidence, and `scripts/write-public-activation-receipt.mjs` now requires both routes to be reachable before emitting `activation_closures.verification_execution_authority` inside the already-uploaded `public-activation-receipt` artifact. Failure is fail-closed, creates no manual task, and grants no execution, certification, release, or downstream mutation authority.
+The existing `verify-public-pages` job invokes `scripts/check_governed_llm_deployment_status.py` after deployment. Both routes are included in that checker. The checker writes route evidence, and `scripts/write-public-activation-receipt.mjs` requires both routes to be reachable before emitting `activation_closures.verification_execution_authority` inside the already-uploaded `public-activation-receipt` artifact. Failure is fail-closed, creates no manual task, and grants no execution, certification, release, or downstream mutation authority.
 
 ## External Framework Report Repair
 
@@ -82,11 +82,22 @@ Source-blocked reports may use `SOURCE_REQUIRED`, `PROVISIONAL`, and `MISSING` o
 ## Documentation Mesh
 
 ```text
+Goal id: documentation-mesh-live-peer-observation
 Endpoint registry: static/status/ecosystem-documentation-endpoints.json
 Cross-wiki health: static/status/cross-wiki-health-status.json
-Validator: scripts/check_documentation_mesh_status.py
-Canonical integration: scripts/check_admissibility_automation_handoff.py
-State: pending_live_peer_checks
+Local validator: scripts/check_documentation_mesh_status.py
+Receipt writer: scripts/write-public-activation-receipt.mjs
+Receipt validator: scripts/check-public-activation-receipt-writer.mjs
+Receipt artifact: public-activation-receipt
+Receipt closure key: activation_closures.documentation_mesh
+Receipt closure schema: documentation_mesh_observation_closure.v1
+Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
+Execution surface: .github/workflows/validate-chain-continuation.yml
+Public job: verify-public-pages
+State: AUTOMATED_RUN_BOUND_OBSERVATION_PENDING_NEXT_WORKFLOW
+Manual task requirement: none
+User manual action required: false
+Handoff reconciliation required for continuation: false
 ```
 
 Canonical endpoints:
@@ -98,7 +109,15 @@ https://stegverse-002.github.io/stegguardian-wiki/
 https://stegverse-labs.github.io/stegtalk-wiki/
 ```
 
-Endpoint visibility does not grant cross-repo authority, standing, certification, endorsement, or admissibility.
+Each public workflow run now observes, for every peer:
+
+```text
+- peer root reachability
+- shared endpoint registry reachability
+- cross-wiki health record reachability
+```
+
+The receipt emits `WORKFLOW_OBSERVED_MESH_COMPLETE` only when all peer surfaces respond. Otherwise it emits `SOURCE_BLOCKED_FAIL_CLOSED` with peer-specific evidence. A source-blocked result remains a scheduled automation observation, does not fail the entire site deployment, does not create a user task, and does not grant cross-repository authority, standing, execution authority, or downstream mutation authority.
 
 ## Proposal Governance Core-Lite
 
@@ -143,12 +162,14 @@ Primary validation: npm run validate
 
 Do not create additional active GitHub Actions workflows unless repo standards explicitly change.
 
-The verification-authority local validator is invoked by `scripts/check_admissibility_automation_handoff.py`, which is already invoked by `npm run validate`. The public checker and receipt writer are already invoked by `verify-public-pages`. The resulting receipt is already uploaded as the `public-activation-receipt` artifact. No standalone or user-run validation, evidence-copy, or archival step is required.
+The verification-authority local validator and documentation-mesh validator are invoked by `scripts/check_admissibility_automation_handoff.py`, which is already invoked by `npm run validate`. The public checker and receipt writer are already invoked by `verify-public-pages`. The resulting receipt is already uploaded as the `public-activation-receipt` artifact. No standalone or user-run validation, evidence-copy, health-check, or archival step is required.
 
-Expected local result:
+Expected local results:
 
 ```text
 VERIFICATION EXECUTION AUTHORITY: PASS
+ADMISSIBILITY DOCUMENTATION MESH: PASS
+public activation receipt writer OK
 ```
 
 ## Mirror Coordination Rule
@@ -179,9 +200,8 @@ Destination mutation remains prohibited until each destination handoff grants th
 ## Remaining Open Checks
 
 ```text
-- observe the canonical workflow result for the publication closure receipt integration
-- observe the uploaded public-activation-receipt activation_closures.verification_execution_authority result
-- confirm documentation-mesh public endpoints after deployment
+- canonical automation emits the next public-activation-receipt with verification_execution_authority, ai_led_radiology, and documentation_mesh closures
+- source-blocked documentation peers remain automatically observed without creating user tasks
 - preserve Site deferral until its current handoff authorizes unrelated mirror work
 - preserve Publisher queue order until its current priority and activation failure are resolved
 - review StegGuardian destination handoffs immediately before any downstream mutation
