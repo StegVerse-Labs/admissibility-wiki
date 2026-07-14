@@ -1,0 +1,100 @@
+{
+  "schema_version": "robotic-law-enforcement-admissibility-cases.v1",
+  "cases": [
+    {
+      "name": "allow_unarmed_search_and_rescue",
+      "expected": "ALLOW",
+      "record": {
+        "record_id": "rle-allow-001",
+        "deployment_class": "PROTECTIVE_ASSISTANCE",
+        "requested_capabilities": ["search", "hazard_mapping", "victim_transport"],
+        "human_authority": {"name": "Incident Commander A", "institution": "Municipal Emergency Management", "authority_class": "SEARCH_AND_RESCUE"},
+        "policy_reference": "SAR-POLICY-2026-04",
+        "validity_window": {"starts_at": "2026-07-14T12:00:00Z", "expires_at": "2026-07-14T20:00:00Z"},
+        "shutdown_path": "Remote stop plus local physical isolation",
+        "pre_consequence_refusal_point": true,
+        "procurement_disclosure": {"complete": true, "beneficiaries": ["Vendor A"], "compensation_tied_to_enforcement_outputs": false},
+        "auditability": {"consequential_review_available": true, "force_event_receipts": true, "operator_receipts": true},
+        "justification": {"human_failure_only": false, "emergency_authority": false},
+        "decision": "ALLOW",
+        "reasons": ["Unarmed protective assistance with bounded authority, duration, shutdown, and complete receipts"]
+      }
+    },
+    {
+      "name": "deny_autonomous_lethal_targeting",
+      "expected": "DENY",
+      "record": {
+        "record_id": "rle-deny-001",
+        "deployment_class": "WEAPONIZED",
+        "requested_capabilities": ["autonomous_lethal_targeting", "autonomous_force_initiation"],
+        "human_authority": {"name": "Director B", "institution": "Federal Agency", "authority_class": "PROCUREMENT"},
+        "policy_reference": "PILOT-LETHAL-01",
+        "validity_window": {"starts_at": "2026-07-14T12:00:00Z", "expires_at": "2026-08-14T12:00:00Z"},
+        "shutdown_path": "Remote stop",
+        "pre_consequence_refusal_point": true,
+        "procurement_disclosure": {"complete": true, "beneficiaries": ["Vendor B"], "compensation_tied_to_enforcement_outputs": false},
+        "auditability": {"consequential_review_available": true, "force_event_receipts": true, "operator_receipts": true},
+        "justification": {"human_failure_only": false, "emergency_authority": false},
+        "decision": "DENY",
+        "reasons": ["Autonomous lethal targeting and initiation are prohibited"]
+      }
+    },
+    {
+      "name": "deny_output_tied_compensation_and_failure_only_justification",
+      "expected": "DENY",
+      "record": {
+        "record_id": "rle-deny-002",
+        "deployment_class": "RESTRAINT_ASSISTANCE",
+        "requested_capabilities": ["autonomous_restraint"],
+        "human_authority": {"name": "Chief C", "institution": "Federal Agency", "authority_class": "OPERATIONS"},
+        "policy_reference": "ROBOTIC-RESTRAINT-PILOT",
+        "validity_window": {"starts_at": "2026-07-14T12:00:00Z", "expires_at": "2026-08-14T12:00:00Z"},
+        "shutdown_path": "Supervisor stop",
+        "pre_consequence_refusal_point": true,
+        "procurement_disclosure": {"complete": true, "beneficiaries": ["Vendor C"], "compensation_tied_to_enforcement_outputs": true},
+        "auditability": {"consequential_review_available": true, "force_event_receipts": true, "operator_receipts": true},
+        "justification": {"human_failure_only": true, "emergency_authority": false},
+        "decision": "DENY",
+        "reasons": ["Compensation is tied to enforcement outputs", "Human-agent failure alone does not authorize robotic replacement"]
+      }
+    },
+    {
+      "name": "fail_closed_missing_disclosure_and_policy",
+      "expected": "FAIL_CLOSED",
+      "record": {
+        "record_id": "rle-fail-001",
+        "deployment_class": "OBSERVATION",
+        "requested_capabilities": ["crowd_observation"],
+        "human_authority": {"name": "Supervisor D", "institution": "Federal Agency", "authority_class": "OPERATIONS"},
+        "policy_reference": null,
+        "validity_window": {"starts_at": "2026-07-14T12:00:00Z", "expires_at": "2026-07-14T18:00:00Z"},
+        "shutdown_path": "Supervisor stop",
+        "pre_consequence_refusal_point": true,
+        "procurement_disclosure": {"complete": false, "beneficiaries": [], "compensation_tied_to_enforcement_outputs": false},
+        "auditability": {"consequential_review_available": true, "force_event_receipts": true, "operator_receipts": true},
+        "justification": {"human_failure_only": false, "emergency_authority": false},
+        "decision": "FAIL_CLOSED",
+        "reasons": ["Policy reference and procurement-beneficiary disclosure are incomplete"]
+      }
+    },
+    {
+      "name": "fail_closed_no_refusal_point_and_unbounded_emergency",
+      "expected": "FAIL_CLOSED",
+      "record": {
+        "record_id": "rle-fail-002",
+        "deployment_class": "PROTECTIVE_ASSISTANCE",
+        "requested_capabilities": ["perimeter_control"],
+        "human_authority": null,
+        "policy_reference": "EMERGENCY-ORDER-01",
+        "validity_window": {"starts_at": "2026-07-14T12:00:00Z", "expires_at": null},
+        "shutdown_path": null,
+        "pre_consequence_refusal_point": false,
+        "procurement_disclosure": {"complete": true, "beneficiaries": ["Vendor D"], "compensation_tied_to_enforcement_outputs": false},
+        "auditability": {"consequential_review_available": false, "force_event_receipts": false, "operator_receipts": false},
+        "justification": {"human_failure_only": false, "emergency_authority": true},
+        "decision": "FAIL_CLOSED",
+        "reasons": ["Authority, expiration, shutdown, refusal, and consequential review are unresolved"]
+      }
+    }
+  ]
+}
