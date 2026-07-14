@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -11,6 +13,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT = ROOT / "static" / "status" / "canonical-workflow-stability-change-frequency-summary.json"
 OUT = ROOT / "static" / "status" / "canonical-workflow-stability-change-frequency-change-receipt.json"
+HISTORY_RECONCILER = ROOT / "scripts" / "reconcile_canonical_workflow_stability_change_frequency_change_history.py"
 PUBLIC_URL = "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-stability-change-frequency-summary.json"
 
 
@@ -19,16 +22,9 @@ def load_previous() -> tuple[dict | None, dict]:
     if override:
         path = Path(override)
         if path.exists():
-            return json.loads(path.read_text(encoding="utf-8")), {
-                "source": str(path),
-                "result": "LOCAL_SOURCE_LOADED",
-            }
+            return json.loads(path.read_text(encoding="utf-8")), {"source": str(path), "result": "LOCAL_SOURCE_LOADED"}
         return None, {"source": str(path), "result": "LOCAL_SOURCE_MISSING"}
-
-    request = Request(
-        PUBLIC_URL,
-        headers={"User-Agent": "stegverse-stability-change-frequency-change-generator/1.0"},
-    )
+    request = Request(PUBLIC_URL, headers={"User-Agent": "stegverse-stability-change-frequency-change-generator/1.0"})
     try:
         with urlopen(request, timeout=20) as response:
             return json.loads(response.read().decode("utf-8")), {
@@ -37,33 +33,20 @@ def load_previous() -> tuple[dict | None, dict]:
                 "http_status": int(getattr(response, "status", None) or response.getcode()),
             }
     except HTTPError as exc:
-        return None, {
-            "source": PUBLIC_URL,
-            "result": "PUBLIC_SUMMARY_UNAVAILABLE",
-            "http_status": exc.code,
-        }
+        return None, {"source": PUBLIC_URL, "result": "PUBLIC_SUMMARY_UNAVAILABLE", "http_status": exc.code}
     except (URLError, TimeoutError, json.JSONDecodeError) as exc:
-        return None, {
-            "source": PUBLIC_URL,
-            "result": "PUBLIC_SUMMARY_UNAVAILABLE",
-            "error": str(exc),
-        }
+        return None, {"source": PUBLIC_URL, "result": "PUBLIC_SUMMARY_UNAVAILABLE", "error": str(exc)}
 
 
 def main() -> int:
     if not CURRENT.exists():
         raise SystemExit("current stability-change frequency summary is missing")
-
     current = json.loads(CURRENT.read_text(encoding="utf-8"))
     if current.get("manual_tasks_required") != [] or current.get("user_action_required") is not False:
         raise SystemExit("current stability-change frequency summary violates no-manual boundary")
     scope = current.get("evaluation_scope", {})
-    if scope.get("descriptive_only") is not True:
-        raise SystemExit("current stability-change frequency summary must remain descriptive")
-    if scope.get("predictive_claim") is not False:
-        raise SystemExit("current stability-change frequency summary must remain non-predictive")
-    if scope.get("causal_claim_beyond_receipt_fields") is not False:
-        raise SystemExit("current stability-change frequency summary exceeds causal claim boundary")
+    if scope.get("descriptive_only") is not True or scope.get("predictive_claim") is not False or scope.get("causal_claim_beyond_receipt_fields") is not False:
+        raise SystemExit("current stability-change frequency summary exceeds claim boundary")
 
     previous, prior_observation = load_previous()
     prior_frequency = (previous or {}).get("frequency_class") or "AWAITING_AUTOMATED_STABILITY_CHANGE_FREQUENCY_SUMMARY"
@@ -80,7 +63,6 @@ def main() -> int:
         changed_fields.append("recency_class")
     change_state = "CHANGED" if changed_fields else "UNCHANGED"
     latest_receipt = current.get("evidence", {}).get("latest_change_receipt_id") or "awaiting"
-
     payload = {
         "schema": "admissibility_wiki.canonical_workflow_stability_change_frequency_change_receipt.v0.1",
         "receipt_id": f"workflow-stability-change-frequency-change.{latest_receipt}",
@@ -112,13 +94,20 @@ def main() -> int:
             "This receipt grants no release, deployment, execution, or downstream mutation authority.",
         ],
     }
-
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    print(
-        "CANONICAL WORKFLOW STABILITY CHANGE FREQUENCY CHANGE: PASS - "
-        f"change={change_state} fields={len(changed_fields)} manual_tasks=0"
+    print(f"CANONICAL WORKFLOW STABILITY CHANGE FREQUENCY CHANGE: PASS - change={change_state} fields={len(changed_fields)} manual_tasks=0")
+
+    if not HISTORY_RECONCILER.exists():
+        raise SystemExit("comparison history reconciler is missing")
+    completed = subprocess.run(
+        [sys.executable, str(HISTORY_RECONCILER)], cwd=ROOT, text=True,
+        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
     )
+    if completed.stdout:
+        print(completed.stdout.rstrip())
+    if completed.returncode != 0:
+        raise SystemExit("comparison history reconciliation failed")
     return 0
 
 
