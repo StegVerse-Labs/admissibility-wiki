@@ -28,65 +28,52 @@ workflow trigger
 -> full validation receipt
 -> public run-bound observation receipt
 -> bounded observation-history reconciliation
--> health classification
--> health-transition receipt
--> bounded health-transition history reconciliation
--> bounded non-predictive trend summary
--> trend-change receipt
--> bounded trend-change history reconciliation
--> bounded frequency-and-recency summary
--> frequency-and-recency class-change receipt
--> bounded frequency-and-recency class-change history
--> bounded stability summary
--> stability-class change receipt
--> bounded stability-class change history
+-> health classification and transition history
+-> bounded non-predictive trend and trend-change history
+-> bounded frequency-and-recency summary and comparison history
+-> bounded stability summary and stability-change history
 -> bounded stability-change frequency-and-recency summary
 -> stability-change frequency-and-recency comparison receipt
+-> bounded comparison history
 -> Pages deployment
 -> automatic public endpoint verification
 -> hourly re-observation
 ```
 
-Current stability-change-frequency comparison surfaces:
+Current comparison-history surfaces:
 
 ```text
-scripts/generate_canonical_workflow_frequency_change_stability_summary.py
-scripts/check_canonical_workflow_frequency_change_stability_summary.py
-scripts/generate_canonical_workflow_frequency_change_stability_change.py
-scripts/check_canonical_workflow_frequency_change_stability_change.py
-scripts/reconcile_canonical_workflow_frequency_change_stability_change_history.py
-scripts/check_canonical_workflow_frequency_change_stability_change_history.py
 scripts/generate_canonical_workflow_stability_change_frequency_summary.py
 scripts/check_canonical_workflow_stability_change_frequency_summary.py
 scripts/generate_canonical_workflow_stability_change_frequency_change.py
 scripts/check_canonical_workflow_stability_change_frequency_change.py
-static/status/canonical-workflow-frequency-change-stability-summary.json (generated)
-static/status/canonical-workflow-frequency-change-stability-change-receipt.json (generated)
-static/status/canonical-workflow-frequency-change-stability-change-history.json (generated)
+scripts/reconcile_canonical_workflow_stability_change_frequency_change_history.py
+scripts/check_canonical_workflow_stability_change_frequency_change_history.py
 static/status/canonical-workflow-stability-change-frequency-summary.json (generated)
 static/status/canonical-workflow-stability-change-frequency-change-receipt.json (generated)
+static/status/canonical-workflow-stability-change-frequency-change-history.json (generated)
 static/status/canonical-workflow-observation-automation.json
-scripts/check_canonical_workflow_observation_automation_status.py
+scripts/check_canonical_workflow-observation-automation-status.py
 scripts/check_governed_llm_deployment_status.py
 ```
 
-Comparison policy:
+Comparison-history policy:
 
 ```text
-comparison: current generated stability-change frequency and recency classes against prior public summary
-states: CHANGED | UNCHANGED
-changed_fields: frequency_class | recency_class
+maximum_entries: 24
+deduplication_key: receipt_id
+ordering: generated_at ascending
 descriptive_only: true
 predictive_claim: false
 causal_claim_beyond_receipt_fields: false
-prior public summary unavailable: compare against AWAITING_AUTOMATED_STABILITY_CHANGE_FREQUENCY_SUMMARY
-change_owner: canonical build-pages job
-next_evaluation: next repository-owned canonical workflow trigger
+prior public history unavailable: initialize a new bounded sequence
+reconciliation_owner: canonical build-pages job
+next_reconciliation: next repository-owned canonical workflow trigger
 manual_tasks_required: []
 user_action_required: false
 ```
 
-The post-deployment verifier automatically checks the stability-change frequency summary and its comparison receipt. Missing or unreachable endpoints fail closed and create no user task.
+The post-deployment verifier automatically checks the summary, comparison receipt, and bounded comparison-history endpoints. Missing or unreachable endpoints fail closed and create no user task.
 
 ## Authority boundaries
 
@@ -96,7 +83,7 @@ Data-Continuation/formalism-tests owns executable fixtures, expected outcomes, a
 Site is downstream display only
 Publisher is downstream publication/indexing only
 StegGuardian interpretation remains deferred until executable proof fixtures exist
-workflow evidence, trend classes, frequency classes, stability classes, comparison receipts, summaries, and histories do not grant proof, release, execution, custody, or downstream mutation authority
+workflow evidence, classifications, summaries, comparisons, and histories do not grant proof, release, execution, custody, or downstream mutation authority
 ```
 
 ## Remaining files or modules and destinations
@@ -104,11 +91,11 @@ workflow evidence, trend classes, frequency classes, stability classes, comparis
 ### `StegVerse-Labs/admissibility-wiki`
 
 ```text
-Preserve bounded history for stability-change frequency-and-recency comparison receipts.
-Deduplicate by receipt_id, order by generated_at, and retain the newest 24 entries.
-Reconcile automatically through the existing canonical build path.
-Add deterministic validation and automatic public endpoint verification.
-Do not add a second active workflow.
+Replace further recursive summary-of-summary expansion with one terminal workflow-observation rollup envelope.
+The envelope must point to the latest observation, health, transition, trend, frequency, stability, comparison, and bounded-history artifacts.
+Record completeness and reachability per artifact without reclassifying their scientific or governance meaning.
+Keep manual_tasks_required: [] and user_action_required: false.
+Bind generation and validation to the existing canonical workflow; do not add a second active workflow.
 Repair only exact deterministic failures without weakening checks.
 Manual user task: none.
 ```
@@ -138,13 +125,13 @@ No tag or release is authorized until canonical validation, build, public-route 
 ## Next task
 
 ```text
-1. Build bounded history for generated stability-change frequency comparison receipts.
-2. Bind it to the existing canonical build path without adding a second active workflow.
-3. Add deterministic validation and automatic endpoint verification.
-4. Continue repository-owned observation and fail-closed repair.
+1. Build a terminal workflow-observation rollup envelope instead of another recursive derivative layer.
+2. Include pointers, artifact presence, generation ownership, and fail-closed completeness state.
+3. Bind deterministic validation and public endpoint verification to the existing canonical workflow.
+4. Continue repository-owned observation and exact fail-closed repair.
 5. Do not request manual route checks, workflow triggering, receipt construction, archival, file movement, or downstream propagation from the user.
 ```
 
 ## Archive posture
 
-This handoff preserves the active goal, installed automation, decisions, ownership, blockers, authority boundaries, completed stability-change-frequency comparison work, remaining work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
+This handoff preserves the active goal, installed automation, decisions, ownership, blockers, authority boundaries, completed comparison-history work, remaining terminal-rollup work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
