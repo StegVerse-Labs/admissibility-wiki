@@ -23,6 +23,7 @@ const urls = {
   optimization_target_doctrine_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit',
   optimization_target_formalism_json_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit.v0.1.json',
   optimization_target_publication_status_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json',
+  external_translation_reconstruction_receipt_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json',
   generated_evaluation_results_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/evaluation-results',
   asro_external_framework_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/asro'
 };
@@ -33,7 +34,10 @@ const checks = Object.fromEntries(Object.entries(urls).map(([name, url]) => [
     status: 'verified_by_workflow',
     evidence: {
       url,
-      verifier: name.startsWith('optimization_target_')
+      verifier: (
+        name.startsWith('optimization_target_') ||
+        name === 'external_translation_reconstruction_receipt_reachable'
+      )
         ? 'scripts/check_governed_llm_deployment_status.py run by verify-public-pages'
         : 'verify-public-pages job curl --fail with retries'
     }
@@ -62,7 +66,8 @@ const receipt = {
   linked_receipts: {
     optimization_target_publication_verification: optimizationTargetReceipt
       ? optimizationReceiptPath
-      : null
+      : null,
+    external_translation_reconstruction: 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json'
   },
   authority_granted: false,
   release_authority_granted: false,
@@ -75,7 +80,7 @@ const receipt = {
     'This receipt does not create external indexing.',
     'This receipt does not replace GitHub Pages deployment records.'
   ],
-  next_action: 'Archive this receipt and its linked optimization-target verification receipt with the workflow run artifacts; use them only as bounded deployment evidence.'
+  next_action: 'Archive this receipt and its linked verification receipts with the workflow run artifacts; use them only as bounded deployment evidence.'
 };
 
 fs.mkdirSync(outDir, { recursive: true });
