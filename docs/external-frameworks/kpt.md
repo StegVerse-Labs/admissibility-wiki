@@ -37,6 +37,18 @@ policy, evidence, delegation, context, and recoverability conditions?
 
 A KPT decision may become evidence inside a StegVerse Commitment Candidate. It does not become execution authority by itself.
 
+## Framework-Term Definitions
+
+| Framework Term | Provisional Definition | Reconciliation Class | Admissibility Relationship |
+|---|---|---|---|
+| Boundary before consequence | A decision boundary placed before an AI output is allowed to affect a downstream state. | Adjacent | Corresponds to a pre-consequence control point, but does not by itself establish commit-time admissibility. |
+| Candidate output is not authority | An AI-generated candidate remains distinct from authorization to act on it. | Synonymous | Consistent with the StegVerse rule that evidence or output cannot inherit execution authority. |
+| Decision before influence | Influence is treated as a consequential transition requiring an explicit decision state. | Adjacent | Extends the boundary to non-execution consequences such as workflow input, persistent knowledge, or approval support. |
+| Trace before trust | Trace evidence is required before relying on an output. | Adjacent | Traceability supports reconstruction, but standing, source sufficiency, and admissibility remain independently evaluated. |
+| KPT decision state | A provisional allow, deny, or route-control result produced by the KPT boundary. | Unresolved | Official vocabulary, semantics, and authority effects remain unresolved until an owner-published source is recorded. |
+
+The reconciliation class is provisional and source-blocked. Terminology similarity does not establish framework equivalence, certification, standing, or execution authority.
+
 ## Provisional Interoperability Model
 
 ```text
@@ -66,6 +78,57 @@ KPT appears conceptually adjacent to StegVerse commit-time admissibility and may
 | Decision before execution. | Execution still requires commit-time admissibility. |
 | Decision state is not enforcement action. | A decision artifact is evidence; enforcement and execution authority remain separate. |
 | Trace before trust. | Traceability supports reconstruction but does not alone establish admissibility. |
+
+## Evidence Provenance
+
+### Official Framework Sources
+
+```text
+Status: missing_or_unconfirmed
+Required: official owner-published website, versioned specification, canonical repository, API, schema, trace format, white paper, or equivalent framework document
+```
+
+### Official Implementation Sources
+
+```text
+Status: missing_or_unconfirmed
+No implementation repository, executable package, API contract, or versioned runtime artifact is recorded.
+```
+
+### Observed Behavior
+
+```text
+Class: O1 intake observation
+Evidence: user-supplied LinkedIn screenshots and captured public descriptive text
+Boundary: descriptive positioning only; no runtime result, benchmark, or implementation behavior is claimed
+```
+
+### Reproduced Behavior
+
+```text
+Status: not_started
+Reason: no official implementation source or reproducible artifact package is recorded
+```
+
+### StegVerse Analysis
+
+```text
+Class: S1 provisional terminology analysis
+Result: source-blocked runtime decision-boundary intake
+Standing: analysis does not inherit authority from descriptive evidence
+```
+
+### Interoperability Assessment
+
+```text
+Class: S2 source-blocked crosswalk
+Result: SOURCE_BLOCKED_FAIL_CLOSED
+Permitted use: route a future KPT result as evidence into independent StegVerse standing and authority reconstruction
+```
+
+### Standing
+
+KPT remains source-blocked. Public positioning, page publication, route reachability, registry inclusion, or terminology reconciliation does not establish source sufficiency, framework certification, interoperability standing, execution authority, or commit-time admissibility.
 
 ## Non-Claims
 
