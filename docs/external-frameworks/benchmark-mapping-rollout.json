@@ -41,6 +41,7 @@
     {"framework_id":"w3c-prov","mapping_state":"fixture_ready","next_action":"Attach complete and incomplete provenance graph examples."},
     {"framework_id":"guardrails-ai","mapping_state":"fixture_ready","next_action":"Capture validator pass, fail, correction, reask, and unknown-validator traces."},
     {"framework_id":"llama-guard","mapping_state":"fixture_ready","next_action":"Pin exact model digest and capture safe, unsafe, equivalent, and taxonomy-gap classifications."},
-    {"framework_id":"nemo-guardrails","mapping_state":"fixture_ready","next_action":"Capture allowed, blocked, redirected, unknown-action, and authority-drift runtime traces."}
+    {"framework_id":"nemo-guardrails","mapping_state":"fixture_ready","next_action":"Capture allowed, blocked, redirected, unknown-action, and authority-drift runtime traces."},
+    {"framework_id":"judgment-architecture","mapping_state":"fixture_ready","next_action":"Attach stable source locators and citations, then execute commitment-boundary fixtures against a machine-readable Decision Commitment Record candidate."}
   ]
 }
