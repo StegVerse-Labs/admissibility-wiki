@@ -10,9 +10,9 @@ Publish a technically cautious, evidence-grounded architecture showing how StegV
 
 ```text
 Issue #20: Activate StegVerse quantum-resilient complete-security publication
-Active PR #22: Add quantum-resilient complete-security publication sources
-Active branch: agent/quantum-security-v5-v7-rebased
-Superseded PR #21: divergent source branch; no longer the merge path
+Merged PR #22: Add quantum-resilient complete-security publication sources
+Validated source head: 66d39dd1b0554365ccd56b62eaf9c03c4cf3738d
+Merge commit: 563ad7d6810de8eae3f7b884d680f29077489c37
 Repository: StegVerse-Labs/admissibility-wiki
 ```
 
@@ -24,8 +24,10 @@ CURRENT_MAIN_RECONCILIATION_COMPLETE
 NAVIGATION_INTEGRATED
 LOCAL_VALIDATOR_INSTALLED
 CANONICAL_VALIDATION_CHAIN_INTEGRATED
-CANONICAL_WORKFLOW_RUN_2332_PENDING_OBSERVATION
-PUBLIC_ACTIVATION_PENDING_MERGE_AND_PAGES_OBSERVATION
+CANONICAL_WORKFLOW_RUN_2356_SUCCESS
+PR_22_MERGED
+BOUNDED_MERGE_RECEIPT_RECORDED
+PUBLIC_ACTIVATION_PENDING_PAGES_AND_ROUTE_OBSERVATION
 ```
 
 No manual task is assigned to the user.
@@ -65,6 +67,22 @@ scripts/check_admissibility_automation_handoff.py
 
 The publication validator is invoked by the existing canonical automation handoff checker. No additional active workflow was created.
 
+## Observed activation evidence
+
+```text
+canonical workflow: Validate chain continuation
+canonical run: 2356
+canonical result: success
+validated source head: 66d39dd1b0554365ccd56b62eaf9c03c4cf3738d
+review posture: no requested reviewers, submitted reviews, PR comments, or observed review objections
+merge result: successful
+merge commit: 563ad7d6810de8eae3f7b884d680f29077489c37
+pages deployment observed: false
+public route observation complete: false
+```
+
+The merge receipt establishes repository integration only. It does not establish public route availability, certification, production deployment of cryptographic primitives, execution authority, independent-audit standing, or downstream mutation authority.
+
 ## Canonical claim boundary
 
 Use `ML-KEM`, `ML-DSA`, and `SLH-DSA`, and describe the architecture as `post-quantum`, `quantum-resistant`, or `quantum-resilient` rather than universally or unconditionally quantum proof.
@@ -99,22 +117,21 @@ QUANTUM RESILIENT SECURITY PUBLICATION: PASS
 ## Remaining work
 
 ```text
-- observe the latest canonical workflow for PR #22;
-- repair any concrete validation or Docusaurus build failure on the active branch;
-- mark PR #22 ready and merge only after successful canonical validation and permissible review posture;
-- observe post-merge Pages deployment and public routes;
-- update the status artifact and emit bounded activation evidence only from observed results;
+- observe post-merge Pages deployment;
+- observe the governance, research-paper, and carousel public routes;
+- update the status artifact and this handoff from observed deployment evidence;
+- close Issue #20 only after bounded public activation evidence is recorded;
 - inspect current Site, Publisher, StegGuardian, and repo-standards handoffs before downstream propagation.
 ```
 
-Pending workflow or deployment observation does not grant production authority, certification, execution authority, independent-audit standing, or downstream mutation authority.
+Pending deployment observation does not grant production authority, certification, execution authority, independent-audit standing, or downstream mutation authority.
 
 ## Permitted continuation scope
 
-A successor may inspect and repair PR #22, update evidence-bound status and receipts, merge after successful gates, and queue downstream awareness where destination handoffs permit it.
+A successor may observe Pages deployment and public routes, update evidence-bound status and receipts, close Issue #20 after bounded activation evidence, and queue downstream awareness where destination handoffs permit it.
 
 A successor may not claim NIST certification, formal verification without evidence, universal quantum-proof security, execution authority from publication or receipts, or downstream mutation authority without checking destination handoffs.
 
 ## Archive posture
 
-Issue #20, PR #22, this handoff, the status artifact, and canonical validation integration preserve all continuation context. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
+Issue #20, merged PR #22, this handoff, the status artifact, and canonical validation evidence preserve all continuation context. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
