@@ -108,6 +108,38 @@ A governed AI system should separately record:
 
 A system may display stateful behavior without possessing execution authority. It may also produce language associated with emotion or self-report without that language establishing subjective experience.
 
+## Machine-readable declaration
+
+The operational distinction is now represented by three repository artifacts:
+
+```text
+static/governance/system-boundary-declaration.schema.v0.1.json
+static/governance/system-boundary-declaration.example.v0.1.json
+scripts/check_system_boundary_declaration.py
+```
+
+The declaration records five surfaces independently:
+
+- model;
+- orchestration;
+- session;
+- memory;
+- environment.
+
+It also records feedback paths, trajectory dependence, reconstructability, the commit boundary, and the source of any execution decision. The contract requires `model_has_execution_authority` to remain `false` and requires consciousness, personhood, and welfare claims to remain `not_evaluated`.
+
+Run:
+
+```bash
+python scripts/check_system_boundary_declaration.py
+```
+
+Expected result:
+
+```text
+SYSTEM BOUNDARY DECLARATION: PASS
+```
+
 ## Public response preserved
 
 The discussion produced the following bounded response position:
@@ -130,9 +162,9 @@ The following remain open and should not be represented as settled:
 Future work may:
 
 - compare feed-forward, recurrent, active-inference, workspace, and agentic architectures;
-- define machine-readable system-boundary declarations;
-- distinguish model state, session state, durable memory, environmental state, and authority state;
-- develop tests for causal continuity without treating them as consciousness tests;
-- connect the distinction to governed LLM manifests and receipts.
+- integrate the system-boundary declaration into governed LLM manifests and receipts;
+- add fixture cases for continuity present, continuity absent, and unreconstructable feedback;
+- map the declaration into `StegVerse-org/StegVerse-SDK` and `StegVerse-org/LLM-adapter`;
+- develop tests for causal continuity without treating them as consciousness tests.
 
 Future work must not convert this record into a claim that current models are conscious, non-conscious, persons, slaves, or welfare-bearing entities without independent evidence and an explicit claim standard.
