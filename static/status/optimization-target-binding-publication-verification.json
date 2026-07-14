@@ -7,11 +7,16 @@
     "doctrine": "docs/formalisms/optimization-target-binding-at-commit.md",
     "machine_readable_formalism": "static/formalisms/optimization-target-binding-at-commit.v0.1.json",
     "validator": "scripts/check_optimization_target_binding_at_commit.py",
+    "publication_validator": "scripts/check_optimization_target_binding_publication.py",
+    "post_deployment_verifier": "scripts/check_governed_llm_deployment_status.py",
+    "activation_receipt_writer": "scripts/write-public-activation-receipt.mjs",
+    "verification_receipt": "reports/optimization-target-publication-verification-receipt.json",
     "sidebar_registered": true,
-    "canonical_validation_bound": true
+    "canonical_validation_bound": true,
+    "post_deployment_verification_automated": true
   },
   "expected_public_routes": [
-    "https://stegverse-labs.github.io/admissibility-wiki/docs/formalisms/optimization-target-binding-at-commit",
+    "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit",
     "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit.v0.1.json",
     "https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json"
   ],
@@ -22,6 +27,14 @@
     "machine_readable_route_verified": false,
     "status_route_verified": false,
     "proof_fixture_receipt_attached": false
+  },
+  "automation": {
+    "manual_route_verification_required": false,
+    "manual_receipt_creation_required": false,
+    "trigger": "canonical workflow push, pull_request, workflow_dispatch, or hourly schedule as applicable",
+    "verification_job": "verify-public-pages",
+    "receipt_linked_into": "reports/public-activation-receipt.json",
+    "failure_behavior": "FAIL_CLOSED"
   },
   "authority": {
     "grants_execution_authority": false,
@@ -35,5 +48,5 @@
     "StegVerse-002/stegguardian-wiki": "DEFER_UNTIL_EXECUTABLE_PROOF_FIXTURES_EXIST",
     "StegVerse-002/StegGuardian": "NO_IMPLEMENTATION_MUTATION_AUTHORIZED"
   },
-  "next_event": "A canonical workflow pass plus verified public doctrine, formalism JSON, and status routes may advance publication state; executable proof authority remains external."
+  "next_event": "The canonical workflow automatically validates, builds, deploys, verifies all three routes, emits a run-specific receipt, and links it into the public activation receipt. Executable proof authority remains external."
 }
