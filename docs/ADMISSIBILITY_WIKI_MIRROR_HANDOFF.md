@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: complete admissibility-wiki public documentation activation under the single canonical validation workflow.
-Current state: doctrine, status, validation, documentation mesh, governed LLM surfaces, verification-authority publication automation, radiology activation closure, documentation-mesh observation closure, and durable publication receipt generation are installed.
+Current state: doctrine, status, validation, documentation mesh, governed LLM surfaces, verification-authority publication automation, radiology activation closure, documentation-mesh observation closure, durable publication receipt generation, and a validated ST-016 repo-standards promotion bundle are installed.
 Manual task requirement: none.
 User manual action required: false.
 No manual target-creation task is assigned.
@@ -109,7 +109,7 @@ https://stegverse-002.github.io/stegguardian-wiki/
 https://stegverse-labs.github.io/stegtalk-wiki/
 ```
 
-Each public workflow run now observes, for every peer:
+Each public workflow run observes, for every peer:
 
 ```text
 - peer root reachability
@@ -118,6 +118,25 @@ Each public workflow run now observes, for every peer:
 ```
 
 The receipt emits `WORKFLOW_OBSERVED_MESH_COMPLETE` only when all peer surfaces respond. Otherwise it emits `SOURCE_BLOCKED_FAIL_CLOSED` with peer-specific evidence. A source-blocked result remains a scheduled automation observation, does not fail the entire site deployment, does not create a user task, and does not grant cross-repository authority, standing, execution authority, or downstream mutation authority.
+
+## ST-016 Repo-Standards Promotion Bundle
+
+```text
+Goal id: documentation-mesh-standards-promotion
+Destination: StegVerse-Labs/repo-standards
+Destination handoff observed: REPO_STANDARDS_MIRROR_HANDOFF.md
+Destination active goal: RSTD-SANDBOX-FIRST-001
+Promotion posture: QUEUED_NON_COLLIDING_NO_DESTINATION_MUTATION
+Bundle: exports/repo-standards/st016/promotion-bundle.json
+Reusable closure schema: exports/repo-standards/st016/documentation-mesh-observation-closure.schema.json
+Validator: scripts/check_st016_promotion_bundle.py
+Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
+Manual copy required: false
+User manual action required: false
+Destination mutation authority: none granted
+```
+
+The bundle packages the proven run-bound peer observation contract, complete/fail-closed closure states, deterministic network-free validation posture, no-manual-task ownership, and non-authority boundaries. It remains source-complete and validation-bound while repo-standards owns active ST-017 work. Destination ingestion may occur only when that repository's handoff permits ST-016 promotion, preventing workstream collision without assigning a manual copy task.
 
 ## Proposal Governance Core-Lite
 
@@ -162,13 +181,14 @@ Primary validation: npm run validate
 
 Do not create additional active GitHub Actions workflows unless repo standards explicitly change.
 
-The verification-authority local validator and documentation-mesh validator are invoked by `scripts/check_admissibility_automation_handoff.py`, which is already invoked by `npm run validate`. The public checker and receipt writer are already invoked by `verify-public-pages`. The resulting receipt is already uploaded as the `public-activation-receipt` artifact. No standalone or user-run validation, evidence-copy, health-check, or archival step is required.
+The verification-authority local validator, documentation-mesh validator, and ST-016 promotion-bundle guard are invoked by `scripts/check_admissibility_automation_handoff.py`, which is already invoked by `npm run validate`. The public checker and receipt writer are already invoked by `verify-public-pages`. The resulting receipt is already uploaded as the `public-activation-receipt` artifact. No standalone or user-run validation, evidence-copy, health-check, promotion-copy, or archival step is required.
 
 Expected local results:
 
 ```text
 VERIFICATION EXECUTION AUTHORITY: PASS
 ADMISSIBILITY DOCUMENTATION MESH: PASS
+ST-016 PROMOTION BUNDLE: PASS
 public activation receipt writer OK
 ```
 
@@ -179,6 +199,7 @@ Check this file before continuing admissibility-wiki work.
 Check docs/SITE_MIRROR_HANDOFF.md before Site mirror work.
 Check PUBLISHER_MIRROR_HANDOFF.md before Publisher mirror work.
 Review StegGuardian destination handoffs immediately before downstream mutation.
+Review REPO_STANDARDS_MIRROR_HANDOFF.md before repo-standards mutation.
 Do not treat public visibility as governance authority.
 Do not treat queued propagation as completed propagation.
 Manual task requirement: none.
@@ -193,6 +214,7 @@ StegVerse-Labs/Site
 GCAT-BCAT-Engine/Publisher
 StegVerse-Labs/admissibility-wiki
 StegVerse-002/stegguardian-wiki
+StegVerse-Labs/repo-standards
 ```
 
 Destination mutation remains prohibited until each destination handoff grants the required scope. A queued awareness item is not a completed mirror.
@@ -205,7 +227,7 @@ Destination mutation remains prohibited until each destination handoff grants th
 - preserve Site deferral until its current handoff authorizes unrelated mirror work
 - preserve Publisher queue order until its current priority and activation failure are resolved
 - review StegGuardian destination handoffs immediately before any downstream mutation
-- promote the proven multi-repo mesh validator into StegVerse-Labs/repo-standards when upstream scope permits
+- keep the validated ST-016 promotion bundle queued until repo-standards handoff permits non-colliding ingestion
 ```
 
 These are durable automated observations or successor-owned continuation requirements, not manual assignments to the user or this conversation.
@@ -220,6 +242,7 @@ A successor session may:
 - update receipts and status artifacts from observed evidence
 - refine doctrine without promoting verification into execution authority
 - queue downstream awareness without mutating destinations absent handoff authority
+- ingest the ST-016 promotion bundle only after repo-standards handoff authority permits it
 ```
 
 ## Handoff Instruction
