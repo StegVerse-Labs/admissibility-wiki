@@ -19,23 +19,6 @@ Cross-repository mutation authority: not granted
 Release/tag authority: not granted
 ```
 
-## Optimization target binding at commit
-
-Installed, validation-bound, publication-automation-bound, and fail-closed:
-
-```text
-docs/formalisms/optimization-target-binding-at-commit.md
-static/formalisms/optimization-target-binding-at-commit.v0.1.json
-scripts/check_optimization_target_binding_at_commit.py
-scripts/check_optimization_target_binding_publication.py
-scripts/check_governed_llm_deployment_status.py
-scripts/write-public-activation-receipt.mjs
-```
-
-Durable rule: a consequence-binding transition must not be authorized unless its optimization target is explicit, current-state-bound, derived from current policy and delegation, mutation-provenance valid, evaluated with current evidence and authority, and still subject to enforceable `DENY` or `FAIL_CLOSED` before the actuator boundary.
-
-Executable fixtures and proof receipts remain owned by `Data-Continuation/formalism-tests`.
-
 ## Canonical workflow observation automation
 
 Installed automation chain:
@@ -58,12 +41,13 @@ workflow trigger
 -> stability-class change receipt
 -> bounded stability-class change history
 -> bounded stability-change frequency-and-recency summary
+-> stability-change frequency-and-recency comparison receipt
 -> Pages deployment
 -> automatic public endpoint verification
 -> hourly re-observation
 ```
 
-Current stability-change-frequency surfaces:
+Current stability-change-frequency comparison surfaces:
 
 ```text
 scripts/generate_canonical_workflow_frequency_change_stability_summary.py
@@ -74,31 +58,35 @@ scripts/reconcile_canonical_workflow_frequency_change_stability_change_history.p
 scripts/check_canonical_workflow_frequency_change_stability_change_history.py
 scripts/generate_canonical_workflow_stability_change_frequency_summary.py
 scripts/check_canonical_workflow_stability_change_frequency_summary.py
+scripts/generate_canonical_workflow_stability_change_frequency_change.py
+scripts/check_canonical_workflow_stability_change_frequency_change.py
 static/status/canonical-workflow-frequency-change-stability-summary.json (generated)
 static/status/canonical-workflow-frequency-change-stability-change-receipt.json (generated)
 static/status/canonical-workflow-frequency-change-stability-change-history.json (generated)
 static/status/canonical-workflow-stability-change-frequency-summary.json (generated)
+static/status/canonical-workflow-stability-change-frequency-change-receipt.json (generated)
 static/status/canonical-workflow-observation-automation.json
 scripts/check_canonical_workflow_observation_automation_status.py
 scripts/check_governed_llm_deployment_status.py
 ```
 
-Stability-change-frequency policy:
+Comparison policy:
 
 ```text
-maximum_recent_entries: 12
-frequency classes: awaiting, none observed, isolated, occasional, frequent
-recency classes: awaiting, current, recent, older within window, absent from window
+comparison: current generated stability-change frequency and recency classes against prior public summary
+states: CHANGED | UNCHANGED
+changed_fields: frequency_class | recency_class
 descriptive_only: true
 predictive_claim: false
 causal_claim_beyond_receipt_fields: false
-evaluation_owner: canonical build-pages job
+prior public summary unavailable: compare against AWAITING_AUTOMATED_STABILITY_CHANGE_FREQUENCY_SUMMARY
+change_owner: canonical build-pages job
 next_evaluation: next repository-owned canonical workflow trigger
 manual_tasks_required: []
 user_action_required: false
 ```
 
-The post-deployment verifier automatically checks the stability summary, stability-change receipt, stability-change-history, and stability-change-frequency endpoints. Missing or unreachable endpoints fail closed and create no user task.
+The post-deployment verifier automatically checks the stability-change frequency summary and its comparison receipt. Missing or unreachable endpoints fail closed and create no user task.
 
 ## Authority boundaries
 
@@ -108,7 +96,7 @@ Data-Continuation/formalism-tests owns executable fixtures, expected outcomes, a
 Site is downstream display only
 Publisher is downstream publication/indexing only
 StegGuardian interpretation remains deferred until executable proof fixtures exist
-workflow evidence, trend classes, frequency classes, stability classes, change receipts, summaries, and histories do not grant proof, release, execution, custody, or downstream mutation authority
+workflow evidence, trend classes, frequency classes, stability classes, comparison receipts, summaries, and histories do not grant proof, release, execution, custody, or downstream mutation authority
 ```
 
 ## Remaining files or modules and destinations
@@ -116,11 +104,10 @@ workflow evidence, trend classes, frequency classes, stability classes, change r
 ### `StegVerse-Labs/admissibility-wiki`
 
 ```text
-Compare the current stability-change frequency and recency classes with their prior public values.
-Emit a bounded CHANGED or UNCHANGED receipt preserving both class dimensions.
-Make no predictive or causal claim beyond receipt fields.
-Bind the receipt to the existing canonical build and public verification path.
-Add deterministic validation preserving manual_tasks_required: [] and user_action_required: false.
+Preserve bounded history for stability-change frequency-and-recency comparison receipts.
+Deduplicate by receipt_id, order by generated_at, and retain the newest 24 entries.
+Reconcile automatically through the existing canonical build path.
+Add deterministic validation and automatic public endpoint verification.
 Do not add a second active workflow.
 Repair only exact deterministic failures without weakening checks.
 Manual user task: none.
@@ -151,7 +138,7 @@ No tag or release is authorized until canonical validation, build, public-route 
 ## Next task
 
 ```text
-1. Build a bounded stability-change frequency-and-recency comparison receipt.
+1. Build bounded history for generated stability-change frequency comparison receipts.
 2. Bind it to the existing canonical build path without adding a second active workflow.
 3. Add deterministic validation and automatic endpoint verification.
 4. Continue repository-owned observation and fail-closed repair.
@@ -160,4 +147,4 @@ No tag or release is authorized until canonical validation, build, public-route 
 
 ## Archive posture
 
-This handoff preserves the active goal, installed automation, decisions, ownership, blockers, authority boundaries, completed stability-change-frequency work, remaining work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
+This handoff preserves the active goal, installed automation, decisions, ownership, blockers, authority boundaries, completed stability-change-frequency comparison work, remaining work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
