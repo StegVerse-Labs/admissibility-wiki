@@ -3,7 +3,8 @@
 
 The canonical verify-public-pages job runs this script after GitHub Pages deploys.
 It verifies the established governed-LLM route set, optimization-target artifacts,
-and the generated external-translation reconstruction receipt. A PASS is
+the generated external-translation reconstruction receipt, and the public
+no-manual canonical-workflow observation automation status. A PASS is
 run-specific reachability evidence only; it does not establish admissibility,
 proof authority, release authority, or downstream mutation authority.
 """
@@ -29,6 +30,7 @@ PAGES = {
     "optimization_target_formalism_json": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit.v0.1.json",
     "optimization_target_publication_status": "https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json",
     "external_translation_reconstruction_receipt": "https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json",
+    "canonical_workflow_observation_automation": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-observation-automation.json",
 }
 
 RECEIPT = Path("reports/optimization-target-publication-verification-receipt.json")
@@ -51,7 +53,7 @@ def check_url(url: str) -> tuple[bool, int | None, str]:
 
 def write_receipt(results: dict[str, dict[str, object]], passed: bool) -> None:
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.2",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.3",
         "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID', 'local')}.{os.getenv('GITHUB_RUN_ATTEMPT', '0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
@@ -60,6 +62,8 @@ def write_receipt(results: dict[str, dict[str, object]], passed: bool) -> None:
         "run_attempt": os.getenv("GITHUB_RUN_ATTEMPT"),
         "verification_result": "PASS" if passed else "FAIL_CLOSED",
         "routes": results,
+        "manual_tasks_required": [],
+        "user_action_required": False,
         "authority_granted": False,
         "proof_authority_granted": False,
         "release_authority_granted": False,
@@ -67,6 +71,8 @@ def write_receipt(results: dict[str, dict[str, object]], passed: bool) -> None:
         "non_claims": [
             "Route reachability does not prove admissibility or executable correctness.",
             "The external-translation receipt endpoint proves publication of a generated reconstruction artifact only.",
+            "The canonical-workflow observation endpoint proves publication of the automation contract only, not future run success.",
+            "A failed public check remains fail-closed and does not create a user task.",
             "This receipt does not replace canonical workflow or GitHub Pages deployment records.",
             "This receipt does not authorize Site, Publisher, Guardian, release, or custody mutation.",
         ],
