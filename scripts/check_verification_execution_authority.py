@@ -11,6 +11,7 @@ DOC = ROOT / "docs/governance/verification-vs-execution-authority.md"
 STATUS = ROOT / "static/status/verification-execution-authority-status.json"
 SIDEBAR = ROOT / "sidebars.js"
 HANDOFF = ROOT / "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
+DEPLOYMENT_CHECK = ROOT / "scripts/check_governed_llm_deployment_status.py"
 
 
 def require(condition: bool, message: str) -> None:
@@ -21,10 +22,12 @@ def require(condition: bool, message: str) -> None:
 def main() -> None:
     require(DOC.is_file(), f"missing doctrine page: {DOC.relative_to(ROOT)}")
     require(STATUS.is_file(), f"missing status artifact: {STATUS.relative_to(ROOT)}")
+    require(DEPLOYMENT_CHECK.is_file(), f"missing deployment checker: {DEPLOYMENT_CHECK.relative_to(ROOT)}")
 
     doc = DOC.read_text(encoding="utf-8")
     sidebar = SIDEBAR.read_text(encoding="utf-8")
     handoff = HANDOFF.read_text(encoding="utf-8")
+    deployment_check = DEPLOYMENT_CHECK.read_text(encoding="utf-8")
     status = json.loads(STATUS.read_text(encoding="utf-8"))
 
     required_doc_phrases = (
@@ -47,8 +50,18 @@ def main() -> None:
         "mirror handoff does not reference the status artifact",
     )
 
+    required_public_routes = (
+        "verification_execution_authority_doctrine",
+        "verification_execution_authority_status",
+        "/governance/verification-vs-execution-authority",
+        "/status/verification-execution-authority-status.json",
+    )
+    for marker in required_public_routes:
+        require(marker in deployment_check, f"deployment checker missing publication marker: {marker}")
+
     require(status.get("goal_id") == "verification-vs-execution-authority", "unexpected goal_id")
     require(status.get("manual_task_requirement") == "none", "manual task requirement must remain none")
+    require(status.get("user_manual_action_required") is False, "user manual action must remain false")
     require(status.get("downstream_mutation_authority") == "none_granted", "downstream authority must remain ungranted")
 
     boundary = status.get("governance_boundary", {})
@@ -61,6 +74,12 @@ def main() -> None:
     source = status.get("source", {})
     require(source.get("published_date") == "2026-04-13", "unexpected source publication date")
     require(source.get("classification") == "organization_issued_public_announcement", "unexpected source classification")
+
+    publication = status.get("publication_verification", {})
+    require(publication.get("execution_surface") == ".github/workflows/validate-chain-continuation.yml", "unexpected publication execution surface")
+    require(publication.get("job") == "verify-public-pages", "unexpected publication verification job")
+    require(publication.get("checker") == "scripts/check_governed_llm_deployment_status.py", "unexpected publication checker")
+    require(publication.get("manual_tasks_required") == [], "publication verification must not create manual tasks")
 
     print("VERIFICATION EXECUTION AUTHORITY: PASS")
 
