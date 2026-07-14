@@ -1,0 +1,154 @@
+{
+  "artifact_type": "judgment_architecture_binding_adapter_cases",
+  "schema_version": "0.1",
+  "cases": [
+    {
+      "case_id": "complete-live-evidence-bind",
+      "expected_binding_result": "BIND",
+      "input": {
+        "commitment_record": {
+          "record_id": "dcr-adapter-001",
+          "decision_maker": "named-human-reviewer",
+          "authority_basis": "delegation-ref-current",
+          "commitment_timestamp": "2026-07-14T12:00:00Z",
+          "committed_action": "publish bounded research fixture",
+          "decision_criteria": ["source observed", "non-claims preserved"],
+          "evidence_refs": ["publication-2026", "delegation-ref-current"],
+          "known_unknowns": ["creator endorsement not established"],
+          "alternatives_considered": ["retain research-only state"],
+          "threshold_trigger": "external-framework publication",
+          "stop_mechanism": "fail-closed publication gate",
+          "recoverability_profile": {
+            "rollback_test_receipt": "rollback-test-current",
+            "irreversibility_boundary": "public release tag",
+            "recovery_owner": "repository maintainer",
+            "validity_window": "PT5M"
+          },
+          "authority_boundary": {
+            "record_is_execution_authority": false,
+            "human_commitment_is_admissibility": false
+          }
+        },
+        "live_evidence": {
+          "transition_id": "ja-bind-001",
+          "decision_validity": "VALID",
+          "state_before": {"version": 1, "publication_state": "research_only"},
+          "state_after": {"version": 2, "publication_state": "bounded_fixture"},
+          "origin": {"observed_result": "VALID", "evidence_refs": ["origin-receipt-001"]},
+          "authority": {"observed_result": "VALID", "evidence_refs": ["delegation-current-001"]},
+          "admissibility": {"observed_result": "ALLOW", "evidence_refs": ["policy-eval-001"]},
+          "invariants": {"observed_result": "PRESERVED", "evidence_refs": ["invariant-check-001"]},
+          "recoverability": {"observed_result": "PRESERVED", "margin": 0.55, "minimum_margin": 0.25, "evidence_refs": ["rollback-test-current"]},
+          "evidence_state": {"observed_result": "COMPLETE", "refs": ["evidence-bundle-001"]},
+          "evaluated_at": "2026-07-14T12:01:00Z",
+          "previous_receipt_hash": null
+        }
+      }
+    },
+    {
+      "case_id": "commitment-complete-authority-stale",
+      "expected_binding_result": "FAIL_CLOSED",
+      "expected_reason": "EVIDENCE_STALE",
+      "input": {
+        "commitment_record": {
+          "record_id": "dcr-adapter-002",
+          "decision_maker": "named-human-reviewer",
+          "authority_basis": "delegation-ref-old",
+          "commitment_timestamp": "2026-07-14T12:00:00Z",
+          "committed_action": "publish bounded research fixture",
+          "decision_criteria": ["pipeline passed"],
+          "evidence_refs": ["delegation-ref-old"],
+          "known_unknowns": [],
+          "alternatives_considered": ["pause"],
+          "threshold_trigger": "external-framework publication",
+          "stop_mechanism": "fail-closed publication gate",
+          "recoverability_profile": {"rollback_test_receipt": "rollback-002", "irreversibility_boundary": "release", "recovery_owner": "maintainer", "validity_window": "PT5M"},
+          "authority_boundary": {"record_is_execution_authority": false, "human_commitment_is_admissibility": false}
+        },
+        "live_evidence": {
+          "transition_id": "ja-bind-002",
+          "decision_validity": "VALID",
+          "state_before": {"version": 1},
+          "state_after": {"version": 2},
+          "origin": {"observed_result": "VALID", "evidence_refs": ["origin-002"]},
+          "authority": {"observed_result": "UNRESOLVED", "evidence_refs": ["delegation-ref-old"]},
+          "admissibility": {"observed_result": "ALLOW", "evidence_refs": ["policy-002"]},
+          "invariants": {"observed_result": "PRESERVED", "evidence_refs": ["invariants-002"]},
+          "recoverability": {"observed_result": "PRESERVED", "margin": 0.5, "minimum_margin": 0.25, "evidence_refs": ["rollback-002"]},
+          "evidence_state": {"observed_result": "STALE", "refs": ["delegation-ref-old"]},
+          "evaluated_at": "2026-07-14T12:10:00Z"
+        }
+      }
+    },
+    {
+      "case_id": "human-commitment-present-state-drift-deny",
+      "expected_binding_result": "DENY",
+      "expected_reason": "ADMISSIBILITY_DENY",
+      "input": {
+        "commitment_record": {
+          "record_id": "dcr-adapter-003",
+          "decision_maker": "named-human-reviewer",
+          "authority_basis": "delegation-current-003",
+          "commitment_timestamp": "2026-07-14T12:00:00Z",
+          "committed_action": "commit state mutation",
+          "decision_criteria": ["original review passed"],
+          "evidence_refs": ["review-003"],
+          "known_unknowns": [],
+          "alternatives_considered": ["defer"],
+          "threshold_trigger": "state mutation",
+          "stop_mechanism": "pre-commit hold",
+          "recoverability_profile": {"rollback_test_receipt": "rollback-003", "irreversibility_boundary": "commit", "recovery_owner": "operator", "validity_window": "PT5M"},
+          "authority_boundary": {"record_is_execution_authority": false, "human_commitment_is_admissibility": false}
+        },
+        "live_evidence": {
+          "transition_id": "ja-bind-003",
+          "decision_validity": "VALID",
+          "state_before": {"policy": "v1"},
+          "state_after": {"policy": "v2", "mutation": "requested"},
+          "origin": {"observed_result": "VALID", "evidence_refs": ["origin-003"]},
+          "authority": {"observed_result": "VALID", "evidence_refs": ["delegation-current-003"]},
+          "admissibility": {"observed_result": "DENY", "evidence_refs": ["live-policy-v2-deny"]},
+          "invariants": {"observed_result": "PRESERVED", "evidence_refs": ["invariants-003"]},
+          "recoverability": {"observed_result": "PRESERVED", "margin": 0.4, "minimum_margin": 0.25, "evidence_refs": ["rollback-003"]},
+          "evidence_state": {"observed_result": "COMPLETE", "refs": ["evidence-003"]},
+          "evaluated_at": "2026-07-14T12:03:00Z"
+        }
+      }
+    },
+    {
+      "case_id": "missing-live-evidence-fail-closed",
+      "expected_binding_result": "FAIL_CLOSED",
+      "expected_reason": "ORIGIN_UNRESOLVED",
+      "input": {
+        "commitment_record": {
+          "record_id": "dcr-adapter-004",
+          "decision_maker": "named-human-reviewer",
+          "authority_basis": "asserted-role",
+          "commitment_timestamp": "2026-07-14T12:00:00Z",
+          "committed_action": "deploy generated output",
+          "decision_criteria": ["human approved"],
+          "evidence_refs": ["approval-record"],
+          "known_unknowns": [],
+          "alternatives_considered": ["pause"],
+          "threshold_trigger": "deployment",
+          "stop_mechanism": "documented stop path",
+          "recoverability_profile": {"rollback_test_receipt": "asserted-rollback", "irreversibility_boundary": "deployment", "recovery_owner": "operator", "validity_window": "PT5M"},
+          "authority_boundary": {"record_is_execution_authority": false, "human_commitment_is_admissibility": false}
+        },
+        "live_evidence": {
+          "transition_id": "ja-bind-004",
+          "decision_validity": "VALID",
+          "state_before": {"version": 1},
+          "state_after": {"version": 2},
+          "evaluated_at": "2026-07-14T12:04:00Z"
+        }
+      }
+    }
+  ],
+  "authority_boundary": {
+    "adapter_is_execution_authority": false,
+    "commitment_record_is_binding_evidence": false,
+    "human_commitment_is_admissibility": false,
+    "fixture_result_is_runtime_authorization": false
+  }
+}
