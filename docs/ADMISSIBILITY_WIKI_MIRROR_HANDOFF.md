@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: complete admissibility-wiki public documentation activation under the single canonical validation workflow.
-Current state: doctrine, status, validation, documentation mesh, governed LLM surfaces, and verification-authority publication automation are installed.
+Current state: doctrine, status, validation, documentation mesh, governed LLM surfaces, verification-authority publication automation, and durable publication closure receipt generation are installed.
 Manual task requirement: none.
 User manual action required: false.
 No manual target-creation task is assigned.
@@ -25,9 +25,12 @@ Status: static/status/verification-execution-authority-status.json
 Local validator: scripts/check_verification_execution_authority.py
 Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
 Public checker: scripts/check_governed_llm_deployment_status.py
+Receipt writer: scripts/write-public-activation-receipt.mjs
+Receipt artifact: public-activation-receipt
+Receipt closure key: activation_closures.verification_execution_authority
 Execution surface: .github/workflows/validate-chain-continuation.yml
 Public job: verify-public-pages
-State: IMPLEMENTED_WITH_AUTOMATED_PUBLICATION_VERIFICATION_PENDING_OBSERVATION
+State: IMPLEMENTED_WITH_AUTOMATED_PUBLICATION_CLOSURE_RECEIPT_PENDING_OBSERVATION
 Manual task requirement: none
 User manual action required: false
 Downstream mutation authority: none granted
@@ -41,6 +44,7 @@ certification != action-level admissibility
 system approval != permission for a specific execution
 post-event explanation != a reachable pre-consequence refusal point
 route reachability != authority
+publication receipt != execution authority
 ```
 
 Independent review enters the transition path as evidence and review posture. It does not silently acquire authority to commit a specific transition. High-risk execution requires a live point that can return `ALLOW`, `DENY`, or `FAIL_CLOSED` before consequence attaches.
@@ -62,7 +66,7 @@ https://stegverse-labs.github.io/admissibility-wiki/governance/verification-vs-e
 https://stegverse-labs.github.io/admissibility-wiki/status/verification-execution-authority-status.json
 ```
 
-The existing `verify-public-pages` job invokes `scripts/check_governed_llm_deployment_status.py` after deployment. Both routes are now included in that checker. Failure is `FAIL_CLOSED`; it creates no manual task and grants no authority.
+The existing `verify-public-pages` job invokes `scripts/check_governed_llm_deployment_status.py` after deployment. Both routes are included in that checker. The checker writes route evidence, and `scripts/write-public-activation-receipt.mjs` now requires both routes to be reachable before emitting `activation_closures.verification_execution_authority` inside the already-uploaded `public-activation-receipt` artifact. Failure is fail-closed, creates no manual task, and grants no execution, certification, release, or downstream mutation authority.
 
 ## External Framework Report Repair
 
@@ -139,7 +143,7 @@ Primary validation: npm run validate
 
 Do not create additional active GitHub Actions workflows unless repo standards explicitly change.
 
-The verification-authority local validator is invoked by `scripts/check_admissibility_automation_handoff.py`, which is already invoked by `npm run validate`. The public checker is already invoked by `verify-public-pages`. No standalone or user-run validation step is required.
+The verification-authority local validator is invoked by `scripts/check_admissibility_automation_handoff.py`, which is already invoked by `npm run validate`. The public checker and receipt writer are already invoked by `verify-public-pages`. The resulting receipt is already uploaded as the `public-activation-receipt` artifact. No standalone or user-run validation, evidence-copy, or archival step is required.
 
 Expected local result:
 
@@ -175,8 +179,8 @@ Destination mutation remains prohibited until each destination handoff grants th
 ## Remaining Open Checks
 
 ```text
-- observe the canonical workflow result for the verification-authority integration
-- observe the automated public-route result after deployment
+- observe the canonical workflow result for the publication closure receipt integration
+- observe the uploaded public-activation-receipt activation_closures.verification_execution_authority result
 - confirm documentation-mesh public endpoints after deployment
 - preserve Site deferral until its current handoff authorizes unrelated mirror work
 - preserve Publisher queue order until its current priority and activation failure are resolved
@@ -191,7 +195,7 @@ These are durable automated observations or successor-owned continuation require
 A successor session may:
 
 ```text
-- inspect canonical workflow and deployment evidence
+- inspect canonical workflow, deployment, and uploaded artifact evidence
 - repair failures inside this repository
 - update receipts and status artifacts from observed evidence
 - refine doctrine without promoting verification into execution authority
