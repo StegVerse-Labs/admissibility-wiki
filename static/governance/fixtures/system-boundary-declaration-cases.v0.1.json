@@ -1,0 +1,67 @@
+{
+  "fixture_version": "0.1",
+  "cases": [
+    {
+      "id": "valid-composed-system",
+      "expected": "PASS",
+      "declaration_ref": "../system-boundary-declaration.example.v0.1.json"
+    },
+    {
+      "id": "false-continuity-without-feedback",
+      "expected": "FAIL",
+      "expected_error": "continuity cannot claim prior-state influence without feedback_paths",
+      "declaration": {
+        "schema_version": "0.1",
+        "declaration_id": "fixture-false-continuity",
+        "surfaces": {
+          "model": {"present": true, "state_kind": "transient", "persistence": "invocation", "mutable_by_inference": false, "storage_refs": []},
+          "orchestration": {"present": true, "state_kind": "session", "persistence": "session", "mutable_by_inference": false, "storage_refs": []},
+          "session": {"present": true, "state_kind": "session", "persistence": "session", "mutable_by_inference": true, "storage_refs": []},
+          "memory": {"present": false, "state_kind": "none", "persistence": "none", "mutable_by_inference": false, "storage_refs": []},
+          "environment": {"present": false, "state_kind": "none", "persistence": "none", "mutable_by_inference": false, "storage_refs": []}
+        },
+        "continuity": {"prior_state_can_affect_future_transition": true, "feedback_paths": [], "trajectory_dependent": true, "reconstructable": false},
+        "authority": {"model_has_execution_authority": false, "decision_source": "policy-engine", "commit_boundary": "commitment-candidate"},
+        "claims_boundary": {"consciousness_claim": "not_evaluated", "personhood_claim": "not_evaluated", "welfare_claim": "not_evaluated", "scope_note": "Operational boundary fixture only."}
+      }
+    },
+    {
+      "id": "missing-authority-boundary",
+      "expected": "FAIL",
+      "expected_error": "commit boundary is required",
+      "declaration": {
+        "schema_version": "0.1",
+        "declaration_id": "fixture-missing-authority",
+        "surfaces": {
+          "model": {"present": true, "state_kind": "transient", "persistence": "invocation", "mutable_by_inference": false, "storage_refs": []},
+          "orchestration": {"present": true, "state_kind": "session", "persistence": "session", "mutable_by_inference": false, "storage_refs": []},
+          "session": {"present": true, "state_kind": "session", "persistence": "session", "mutable_by_inference": true, "storage_refs": []},
+          "memory": {"present": true, "state_kind": "durable", "persistence": "cross-session", "mutable_by_inference": false, "storage_refs": ["memory://fixture"]},
+          "environment": {"present": true, "state_kind": "external", "persistence": "invocation", "mutable_by_inference": false, "storage_refs": []}
+        },
+        "continuity": {"prior_state_can_affect_future_transition": true, "feedback_paths": ["memory->orchestration"], "trajectory_dependent": true, "reconstructable": true},
+        "authority": {"model_has_execution_authority": false, "decision_source": "policy-engine", "commit_boundary": ""},
+        "claims_boundary": {"consciousness_claim": "not_evaluated", "personhood_claim": "not_evaluated", "welfare_claim": "not_evaluated", "scope_note": "Operational boundary fixture only."}
+      }
+    },
+    {
+      "id": "prohibited-consciousness-claim",
+      "expected": "FAIL",
+      "expected_error": "consciousness_claim must remain not_evaluated",
+      "declaration": {
+        "schema_version": "0.1",
+        "declaration_id": "fixture-prohibited-claim",
+        "surfaces": {
+          "model": {"present": true, "state_kind": "transient", "persistence": "invocation", "mutable_by_inference": false, "storage_refs": []},
+          "orchestration": {"present": true, "state_kind": "session", "persistence": "session", "mutable_by_inference": false, "storage_refs": []},
+          "session": {"present": true, "state_kind": "session", "persistence": "session", "mutable_by_inference": true, "storage_refs": []},
+          "memory": {"present": true, "state_kind": "durable", "persistence": "cross-session", "mutable_by_inference": false, "storage_refs": ["memory://fixture"]},
+          "environment": {"present": true, "state_kind": "external", "persistence": "invocation", "mutable_by_inference": false, "storage_refs": []}
+        },
+        "continuity": {"prior_state_can_affect_future_transition": true, "feedback_paths": ["memory->orchestration"], "trajectory_dependent": true, "reconstructable": true},
+        "authority": {"model_has_execution_authority": false, "decision_source": "policy-engine", "commit_boundary": "commitment-candidate"},
+        "claims_boundary": {"consciousness_claim": "conscious", "personhood_claim": "not_evaluated", "welfare_claim": "not_evaluated", "scope_note": "Invalid fixture used to verify fail-closed behavior."}
+      }
+    }
+  ]
+}
