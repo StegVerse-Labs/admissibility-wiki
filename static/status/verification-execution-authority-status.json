@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "goal_id": "verification-vs-execution-authority",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION",
+  "doctrine_path": "docs/governance/verification-vs-execution-authority.md",
+  "source": {
+    "url": "https://www.prnewswire.com/news-releases/fathom-applauds-governor-spanbergers-signing-of-landmark-ai-governance-legislation-302739994.html",
+    "published_date": "2026-04-13",
+    "classification": "organization_issued_public_announcement",
+    "claim_scope": "evidence_of_announced_virginia_ivo_study_direction_only"
+  },
+  "governance_boundary": {
+    "verification_is_execution_authority": false,
+    "certification_grants_action_level_admissibility": false,
+    "independent_review_is_evidence_input": true,
+    "commit_time_denial_point_required_for_high_risk_execution": true,
+    "allowed_decisions": ["ALLOW", "DENY", "FAIL_CLOSED"]
+  },
+  "manual_task_requirement": "none",
+  "downstream_mutation_authority": "none_granted",
+  "validation": {
+    "validator": "scripts/check_verification_execution_authority.py",
+    "canonical_integration": "npm run validate",
+    "expected_result": "VERIFICATION EXECUTION AUTHORITY: PASS"
+  }
+}
