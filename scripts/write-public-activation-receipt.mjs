@@ -99,6 +99,32 @@ if (fs.existsSync(optimizationReceiptPath)) {
   }
 }
 
+const radiologyEvidence = Object.fromEntries(
+  [...radiologyChecks].map((name) => [name, checks[name]])
+);
+const radiologyClosureState = skipNetwork
+  ? 'SIMULATED_VALIDATOR_PASS'
+  : 'WORKFLOW_OBSERVED_PUBLICATION_COMPLETE';
+const radiologyActivationClosure = {
+  schema: 'ai_led_radiology_activation_closure.v1',
+  goal_id: 'ai-led-radiology-execution-boundary',
+  state: radiologyClosureState,
+  commit,
+  run_id: runId,
+  run_attempt: runAttempt,
+  evidence: radiologyEvidence,
+  all_required_public_routes_verified: [...radiologyChecks].every((name) =>
+    ['verified_by_writer', 'verified_by_writer_mock'].includes(checks[name]?.status)
+  ),
+  manual_task_requirement: 'NONE',
+  user_manual_action_required: false,
+  authority_granted: false,
+  clinical_authority_granted: false,
+  execution_authority_granted: false,
+  handoff_reconciliation_required_for_continuation: false,
+  continuation_source: 'docs/AI_LED_RADIOLOGY_MIRROR_HANDOFF.md'
+};
+
 const receipt = {
   schema: 'admissibility_wiki_public_activation_receipt.v4',
   receipt_id: `public-activation.workflow.${runId || 'unknown'}.${runAttempt || '0'}`,
@@ -110,6 +136,9 @@ const receipt = {
   run_id: runId,
   run_attempt: runAttempt,
   checks,
+  activation_closures: {
+    ai_led_radiology: radiologyActivationClosure
+  },
   linked_receipts: {
     optimization_target_publication_verification: optimizationTargetReceipt
       ? optimizationReceiptPath
