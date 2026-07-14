@@ -19,6 +19,7 @@ OPTIMIZATION_TARGET_PUBLICATION_CHECK = ROOT / "scripts" / "check_optimization_t
 AI_LED_RADIOLOGY_CHECK = ROOT / "scripts" / "check_ai_led_radiology_execution.py"
 AI_LED_RADIOLOGY_PUBLICATION_CHECK = ROOT / "scripts" / "check_ai_led_radiology_publication.py"
 AI_LED_RADIOLOGY_HANDOFF_SYNC_CHECK = ROOT / "scripts" / "check_ai_led_radiology_handoff_sync.py"
+VERIFICATION_EXECUTION_AUTHORITY_CHECK = ROOT / "scripts" / "check_verification_execution_authority.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -61,51 +62,16 @@ def main() -> int:
     run_check(MESH_CHECK, "documentation mesh", failures)
     run_check(RUN_RECEIPT_CHECK, "automated transition run receipt", failures)
     run_check(CONCEPTUAL_INHERITANCE_CHECK, "conceptual inheritance claims", failures)
-    run_check(
-        CONCEPTUAL_INHERITANCE_STATUS_CHECK,
-        "conceptual inheritance activation status",
-        failures,
-    )
-    run_check(
-        CONCEPTUAL_INHERITANCE_PUBLICATION_CHECK,
-        "conceptual inheritance publication gate",
-        failures,
-    )
-    run_check(
-        CONCEPTUAL_INHERITANCE_PROPAGATION_CHECK,
-        "conceptual inheritance propagation plan",
-        failures,
-    )
-    run_check(
-        ORIGINAL_DRAWING_PUBLICATION_CHECK,
-        "original drawing publication",
-        failures,
-    )
-    run_check(
-        OPTIMIZATION_TARGET_BINDING_CHECK,
-        "optimization target binding at commit",
-        failures,
-    )
-    run_check(
-        OPTIMIZATION_TARGET_PUBLICATION_CHECK,
-        "optimization target binding publication gate",
-        failures,
-    )
-    run_check(
-        AI_LED_RADIOLOGY_CHECK,
-        "AI-led radiology execution boundary",
-        failures,
-    )
-    run_check(
-        AI_LED_RADIOLOGY_PUBLICATION_CHECK,
-        "AI-led radiology publication gate",
-        failures,
-    )
-    run_check(
-        AI_LED_RADIOLOGY_HANDOFF_SYNC_CHECK,
-        "AI-led radiology handoff sync",
-        failures,
-    )
+    run_check(CONCEPTUAL_INHERITANCE_STATUS_CHECK, "conceptual inheritance activation status", failures)
+    run_check(CONCEPTUAL_INHERITANCE_PUBLICATION_CHECK, "conceptual inheritance publication gate", failures)
+    run_check(CONCEPTUAL_INHERITANCE_PROPAGATION_CHECK, "conceptual inheritance propagation plan", failures)
+    run_check(ORIGINAL_DRAWING_PUBLICATION_CHECK, "original drawing publication", failures)
+    run_check(OPTIMIZATION_TARGET_BINDING_CHECK, "optimization target binding at commit", failures)
+    run_check(OPTIMIZATION_TARGET_PUBLICATION_CHECK, "optimization target binding publication gate", failures)
+    run_check(AI_LED_RADIOLOGY_CHECK, "AI-led radiology execution boundary", failures)
+    run_check(AI_LED_RADIOLOGY_PUBLICATION_CHECK, "AI-led radiology publication gate", failures)
+    run_check(AI_LED_RADIOLOGY_HANDOFF_SYNC_CHECK, "AI-led radiology handoff sync", failures)
+    run_check(VERIFICATION_EXECUTION_AUTHORITY_CHECK, "verification versus execution authority", failures)
 
     if failures:
         print("ADMISSIBILITY AUTOMATION HANDOFF: FAIL")
