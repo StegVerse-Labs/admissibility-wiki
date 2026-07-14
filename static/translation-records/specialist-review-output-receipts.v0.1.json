@@ -1,0 +1,82 @@
+{
+  "schema_version": "0.1",
+  "record_state": "installed_fail_closed",
+  "authority_boundary": "Specialist review receipts preserve review output and reconstruction evidence. They do not create source validity, physical-theory truth, formal equivalence, or execution authority.",
+  "route_id": "route-lai-operational-architecture-v0-1",
+  "source_id": "external-physics-lai-operational-architecture-v0-1",
+  "required_review_classes": [
+    "physics_foundations",
+    "mathematical_formalism",
+    "admissibility_governance"
+  ],
+  "allowed_receipt_results": [
+    "SUPPORT",
+    "OBJECT",
+    "DEFER",
+    "INSUFFICIENT_EVIDENCE",
+    "OUT_OF_SCOPE"
+  ],
+  "receipts": [
+    {
+      "receipt_id": "review-receipt-lai-physics-foundations-v0-1",
+      "review_class": "physics_foundations",
+      "reviewer_authority_class": "unassigned_specialist",
+      "input_evidence_references": [
+        "docs/evidence/external-physics/lai-operational-architecture-source-evidence.md",
+        "static/translation-records/external-bibliographic-intake.v0.1.json",
+        "static/translation-records/external-physics-translation-records.v0.1.json"
+      ],
+      "review_result": "DEFER",
+      "review_summary": "Stable external source locator and complete source text are not yet available for physics-foundations review.",
+      "material_objections": [],
+      "required_next_evidence": [
+        "stable retrievable source locator",
+        "complete or review-sufficient source text",
+        "source-confirmed bibliography"
+      ],
+      "issued_at": null,
+      "receipt_posture": "placeholder_fail_closed",
+      "non_claims": "This placeholder is not specialist endorsement, rejection, peer review, or physics validation."
+    },
+    {
+      "receipt_id": "review-receipt-lai-mathematical-formalism-v0-1",
+      "review_class": "mathematical_formalism",
+      "reviewer_authority_class": "unassigned_specialist",
+      "input_evidence_references": [
+        "docs/evidence/external-physics/lai-operational-architecture-source-evidence.md",
+        "static/translation-records/mathematics-crosswalk.v0.1.json"
+      ],
+      "review_result": "DEFER",
+      "review_summary": "Equation-level source confirmation and complete assumptions are not yet available for mathematical-formalism review.",
+      "material_objections": [],
+      "required_next_evidence": [
+        "source-confirmed equations",
+        "declared assumptions and domains",
+        "complete citation context"
+      ],
+      "issued_at": null,
+      "receipt_posture": "placeholder_fail_closed",
+      "non_claims": "This placeholder does not validate equations, derivations, parameters, or equivalence to GCAT or BCAT mathematics."
+    },
+    {
+      "receipt_id": "review-receipt-lai-admissibility-governance-v0-1",
+      "review_class": "admissibility_governance",
+      "reviewer_authority_class": "wiki_translation_governance",
+      "input_evidence_references": [
+        "static/translation-records/external-record-promotion-governance.v0.1.json",
+        "static/translation-records/specialist-review-routing.v0.1.json"
+      ],
+      "review_result": "DEFER",
+      "review_summary": "Governance mapping remains admissible only as a proposed interoperability record while source locator and specialist reviews are incomplete.",
+      "material_objections": [],
+      "required_next_evidence": [
+        "confirmed locator outcome",
+        "completed physics-foundations receipt",
+        "completed mathematical-formalism receipt"
+      ],
+      "issued_at": null,
+      "receipt_posture": "placeholder_fail_closed",
+      "non_claims": "This governance receipt does not validate the source paper or create authority to promote, publish as accepted, or execute."
+    }
+  ]
+}
