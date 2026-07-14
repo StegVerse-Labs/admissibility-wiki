@@ -230,6 +230,9 @@ jobs:
       - name: Publish run-bound workflow observation receipt
         run: python scripts/publish_canonical_workflow_observation_receipt.py
 
+      - name: Reconcile bounded workflow observation history
+        run: python scripts/reconcile_canonical_workflow_observation_history.py
+
       - name: Generate external framework reports
         run: python scripts/generate_external_framework_reports.py
 
