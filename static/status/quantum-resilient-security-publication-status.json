@@ -1,15 +1,19 @@
 {
-  "schema": "quantum_resilient_security_publication_status.v1",
+  "schema": "quantum_resilient_security_publication_status.v2",
   "goal_id": "stegverse-quantum-resilient-complete-security",
-  "state": "ROUTE_OBSERVER_MERGED_PENDING_WORKFLOW_OBSERVED_PUBLICATION",
+  "state": "WORKFLOW_REPAIRED_PENDING_AUTOMATIC_PUBLIC_ROUTE_OBSERVATION",
   "branch": "main",
-  "issue": 20,
+  "publication_issue": 20,
   "route_observation_issue": 23,
+  "handoff_reconciliation_issue": 28,
   "publication_pull_request": 22,
   "route_observer_pull_request": 24,
+  "status_refresh_pull_request": 26,
+  "workflow_repair_pull_request": 27,
   "publication_merge_commit": "563ad7d6810de8eae3f7b884d680f29077489c37",
   "route_observer_merge_commit": "fe7d9dc6de15c7a99d74aa780d80ea2a03bb81aa",
-  "observed_at": "2026-07-14T23:11:45Z",
+  "workflow_repair_merge_commit": "3a58b9e85322841a3751ba3f9a4f591c14ed0cf1",
+  "observed_at": "2026-07-14T23:37:32Z",
   "publication": {
     "research_paper_markdown": "docs/research/stegverse-complete-security-paper.md",
     "research_paper_latex": "docs/research/stegverse-complete-security-paper.tex",
@@ -20,6 +24,7 @@
     "handoff": "docs/STEGVERSE_QUANTUM_SECURITY_MIRROR_HANDOFF.md"
   },
   "public_route_observation": {
+    "owner": "issue_23_and_automatic_condition_watch",
     "standalone_observer": "scripts/check_quantum_security_public_routes.py",
     "canonical_route_verifier": "scripts/check_governed_llm_deployment_status.py",
     "receipt": "reports/quantum-security-public-route-observation.json",
@@ -30,34 +35,48 @@
     ],
     "observer_merged": true,
     "workflow_observed_receipt_pending": true,
-    "all_required_public_routes_verified": false
+    "all_required_public_routes_verified": false,
+    "user_action_required": false
+  },
+  "workflow_reliability": {
+    "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "ios_mirror": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
+    "concurrency_group": "admissibility-wiki-canonical-${{ github.event_name }}-${{ github.ref }}",
+    "cancel_in_progress": false,
+    "canonical_and_ios_mirror_synchronized": true,
+    "validation_run": 2438,
+    "validation_result": "success",
+    "merged": true
   },
   "claim_boundary": {
     "unconditional_quantum_proof_claim": false,
     "post_quantum_cryptography_is_sufficient_for_execution_authority": false,
     "publication_grants_execution_authority": false,
     "publication_is_independent_certification": false,
+    "production_cryptographic_deployment_established": false,
     "permitted_terms": ["post-quantum", "quantum-resistant", "quantum-resilient"]
   },
   "authority_boundary": {
     "allowed_decisions": ["ALLOW", "DENY", "FAIL_CLOSED"],
     "commit_time_admissibility_required": true,
     "state_bound_execution_authority_required": true,
-    "reasoning_is_execution_authority": false
+    "reasoning_is_execution_authority": false,
+    "downstream_mutation_authority_granted": false
   },
   "validation": {
     "local_validator": "scripts/check_quantum_resilient_security_publication.py",
     "canonical_command": "npm run validate",
-    "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
     "publication_canonical_run": 2356,
     "publication_canonical_result": "success",
-    "validated_head": "66d39dd1b0554365ccd56b62eaf9c03c4cf3738d",
-    "publication_merged": true,
-    "route_observer_merged": true,
+    "observer_canonical_run": 2395,
+    "observer_canonical_result": "success",
+    "workflow_repair_canonical_run": 2438,
+    "workflow_repair_canonical_result": "success",
     "pages_deployment_observed": false,
     "public_observation_pending": true
   },
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
+  "automatic_observation_active": true,
   "downstream_mutation_authority": "none_granted"
 }
