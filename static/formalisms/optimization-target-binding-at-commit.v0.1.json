@@ -1,0 +1,55 @@
+{
+  "schema": "stegverse.optimization_target_binding_at_commit.v0.1",
+  "status": "CONCEPTUAL_FORMALISM_INSTALLED",
+  "authority": {
+    "vocabulary_owner": "StegVerse-Labs/admissibility-wiki",
+    "executable_proof_owner": "Data-Continuation/formalism-tests",
+    "grants_execution_authority": false
+  },
+  "required_fields": [
+    "transition_id",
+    "action",
+    "actor",
+    "target",
+    "current_state_reference",
+    "optimization_target",
+    "optimization_criteria",
+    "policy_reference",
+    "delegation_reference",
+    "evidence_references",
+    "validity_window",
+    "recoverability_profile",
+    "mutation_provenance",
+    "execution_boundary"
+  ],
+  "authorization_predicates": [
+    "optimization_target_explicit",
+    "optimization_target_bound_to_transition_and_current_state",
+    "optimization_target_derived_from_current_policy_and_delegation",
+    "optimization_target_mutation_provenance_valid",
+    "evidence_current",
+    "transition_admissible",
+    "denial_reachable",
+    "denial_enforceable"
+  ],
+  "failure_result": "FAIL_CLOSED",
+  "failure_classes": [
+    "IMPLICIT_OPTIMIZATION_TARGET",
+    "STALE_TARGET_BINDING",
+    "UNAUTHORIZED_TARGET_MUTATION",
+    "INHERITED_AUTHORIZATION",
+    "OBJECTIVE_POLICY_DIVERGENCE",
+    "DENIAL_UNREACHABLE"
+  ],
+  "non_claims": [
+    "No external system is certified or validated.",
+    "Framework conformance does not establish commit-time admissibility.",
+    "Visibility of an objective does not establish current authority.",
+    "This artifact does not grant execution or repository mutation authority."
+  ],
+  "downstream": {
+    "site_mirror_allowed_after_validation": true,
+    "publisher_index_allowed_after_validation": true,
+    "guardian_interpretation_deferred_until_proof_fixtures": true
+  }
+}
