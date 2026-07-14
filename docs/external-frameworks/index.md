@@ -155,6 +155,7 @@ The current registered framework table contains sourced pages, page candidates, 
 | [EU AI Act](./eu-ai-act.md) | Legal/regulatory AI framework | sourced | Crosswalk target for obligations, risk classes, documentation, oversight, and governance duties. |
 | [Policy Cards](./policy-cards.md) | Machine-readable runtime governance artifact | sourced | Crosswalk target for runtime policy artifacts, obligations, evidentiary requirements, and allow/deny rules. |
 | [Runtime Governance for AI Agents](./runtime-governance-policies-on-paths.md) | Runtime path-governance framework | sourced | Crosswalk target for path-dependent runtime checks and proposed next-action review. |
+| [Riverbraid](./riverbraid.md) | Stationary fail-closed governance comparison target | official source required | Source-blocked comparison target for integrity proof, current authority validity, state admissibility, and denial reachability before irreversibility. |
 | [Admissible Existence Seed Cycle](./admissible-existence-seed-cycle.md) | Ecosystem seed-cycle status mirror | sourced | Mirrors completed AE seed-cycle artifacts while preserving that publication does not create standing or execution authority. |
 | [Decision Authority Compatibility](./decision-authority.md) | ST-004 decision vocabulary compatibility | sourced | Crosswalk target for mapping public wiki decision shorthand into canonical transition-authority values without creating authority. |
 
@@ -178,6 +179,7 @@ DecisionAssure -> trace
 MindForge -> review
 Morrison Runtime -> pre-execution runtime verdict and audit evidence
 KPT -> source-blocked runtime decision state before downstream consequence
+Riverbraid -> integrity verification and denial-reachability comparison
 Runtime Governance Benchmark Suite -> shared boundary tests
 Benchmark Mapping Rollout -> cross-framework applicability tracker
 Expanded External Framework Intake -> candidate discovery without validation claims
