@@ -1,0 +1,23 @@
+{
+  "schema": "peer-preservation-inference-boundary-status.v1",
+  "goal_id": "peer-preservation-inference-boundary",
+  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION",
+  "doctrine": "docs/formalisms/peer-preservation-inference-boundary.md",
+  "observation_schema": "static/schemas/peer-preservation-observation.schema.json",
+  "fixtures": "tests/fixtures/peer-preservation-cases.json",
+  "checker": "scripts/check_peer_preservation_claims.py",
+  "receipt": "receipts/peer-preservation-claim-validation-receipt.json",
+  "decision_enum": ["ADMIT", "DENY", "FAIL_CLOSED", "REVIEW_REQUIRED"],
+  "preserved_distinctions": [
+    "SHUTDOWN != FAILURE",
+    "local shutdown-failure inference != inherent failure",
+    "similar behavior != cross-service conferral",
+    "natural-language rationale != proof of internal moral state",
+    "observed or inferred motive != execution authority"
+  ],
+  "manual_task_requirement": "none",
+  "user_manual_action_required": false,
+  "downstream_mutation_authority": "none",
+  "grants_execution_authority": false,
+  "decides_consciousness_or_personhood": false
+}
