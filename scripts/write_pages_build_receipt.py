@@ -87,7 +87,7 @@ def main() -> int:
     )
     receipt = {
         "artifact_type": "admissibility_wiki_pages_build_receipt",
-        "schema_version": "0.2",
+        "schema_version": "0.3",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "workflow_context": {
             "run_id": os.environ.get("GITHUB_RUN_ID"),
@@ -122,6 +122,7 @@ def main() -> int:
             "receipt_is_execution_authority": False,
             "rollup_binding_is_semantic_reclassification": False,
         },
+        "failure_recovery_policy": "repair_build_failure_and_rebuild_before_deployment",
         "required_next_transition": (
             "generate_verification_candidate_then_observe_pages_artifact_upload"
             if success
