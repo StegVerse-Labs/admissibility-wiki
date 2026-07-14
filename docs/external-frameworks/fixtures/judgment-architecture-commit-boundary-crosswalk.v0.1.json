@@ -1,0 +1,43 @@
+{
+  "artifact_type": "judgment_architecture_commit_boundary_crosswalk",
+  "schema_version": "0.1",
+  "framework_id": "judgment-architecture",
+  "source_record_schema": "static/schemas/decision-commitment-record-candidate.schema.json",
+  "target_binding_schema": "static/schemas/commit-boundary-binding-record.schema.json",
+  "classification": "DOCUMENTED_ARCHITECTURAL_ALIGNMENT",
+  "authority_effect": "NONE",
+  "field_bindings": [
+    {"source": "record_id", "target": "transition_id", "binding": "identifier_only"},
+    {"source": "decision_maker", "target": "origin.evidence_refs", "binding": "evidence_reference_required"},
+    {"source": "authority_basis", "target": "authority.evidence_refs", "binding": "current_validation_required"},
+    {"source": "evidence_refs", "target": "evidence.refs", "binding": "freshness_and_completeness_required"},
+    {"source": "decision_criteria", "target": "admissibility.evidence_refs", "binding": "criteria_do_not_self_authorize"},
+    {"source": "stop_mechanism", "target": "authority.result", "binding": "reachable_refusal_must_be_verified"},
+    {"source": "recoverability_profile.rollback_test_receipt", "target": "recoverability.evidence_refs", "binding": "test_receipt_required"},
+    {"source": "recoverability_profile.validity_window", "target": "recoverability.result", "binding": "current_window_required"}
+  ],
+  "required_independent_derivations": [
+    "candidate_hash",
+    "state_before_hash",
+    "state_after_hash",
+    "decision_validity",
+    "origin.result",
+    "authority.result",
+    "admissibility.result",
+    "invariants.result",
+    "recoverability.margin",
+    "recoverability.minimum_margin",
+    "evidence.result",
+    "binding_result",
+    "reason_codes"
+  ],
+  "non_claims": {
+    "decision_commitment_record_is_execution_authority": false,
+    "human_commitment_is_admissibility": false,
+    "field_presence_proves_current_validity": false,
+    "crosswalk_is_interoperability_verification": false,
+    "documented_alignment_is_creator_endorsement": false
+  },
+  "default_posture": "FAIL_CLOSED_UNTIL_BINDING_PREDICATE_INDEPENDENTLY_PASSES",
+  "next_required_action": "execute representative Decision Commitment Records through a deterministic adapter that derives a complete commit-boundary binding record without trusting asserted result fields"
+}
