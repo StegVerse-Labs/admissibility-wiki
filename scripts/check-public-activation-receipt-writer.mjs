@@ -62,7 +62,7 @@ if (result.status !== 0) {
 
 if (!fs.existsSync(OUT)) fail(`writer did not create ${OUT}`);
 const receipt = JSON.parse(fs.readFileSync(OUT, 'utf8'));
-if (receipt.schema !== 'admissibility_wiki_public_activation_receipt.v6') fail('schema mismatch');
+if (receipt.schema !== 'admissibility_wiki_public_activation_receipt.v7') fail('schema mismatch');
 if (receipt.repository !== 'StegVerse-Labs/admissibility-wiki') fail('repository mismatch');
 if (receipt.activation_state !== 'workflow_observed_guarded_public_routes') fail('activation_state mismatch');
 if (receipt.activation_target !== 'https://stegverse-labs.github.io/admissibility-wiki/') fail('activation_target mismatch');
@@ -89,6 +89,32 @@ if (!verification || verification.schema !== 'verification_execution_authority_a
 }
 if (verification.execution_authority_granted !== false) fail('verification execution authority mismatch');
 if (verification.certification_authority_granted !== false) fail('verification certification authority mismatch');
+
+const conceptual = receipt.activation_closures?.conceptual_inheritance;
+if (!conceptual || conceptual.schema !== 'conceptual_inheritance_publication_closure.v1') {
+  fail('conceptual inheritance closure mismatch');
+}
+if (conceptual.goal_id !== 'conceptual-inheritance-provenance-standing') fail('conceptual inheritance goal mismatch');
+if (conceptual.state !== 'WORKFLOW_OBSERVED_PUBLICATION_COMPLETE') fail('conceptual inheritance state mismatch');
+if (conceptual.all_required_public_routes_verified !== true) fail('conceptual inheritance route verification mismatch');
+for (const key of [
+  'conceptual_inheritance_doctrine',
+  'conceptual_inheritance_status',
+  'conceptual_inheritance_publication_status'
+]) {
+  if (conceptual.evidence?.[key]?.reachable !== true) fail(`conceptual inheritance evidence mismatch: ${key}`);
+}
+if (conceptual.manual_task_requirement !== 'NONE') fail('conceptual inheritance manual task mismatch');
+if (conceptual.user_manual_action_required !== false) fail('conceptual inheritance user action mismatch');
+if (conceptual.authorship_determined !== false) fail('conceptual inheritance authorship boundary mismatch');
+if (conceptual.ownership_determined !== false) fail('conceptual inheritance ownership boundary mismatch');
+if (conceptual.infringement_determined !== false) fail('conceptual inheritance infringement boundary mismatch');
+if (conceptual.derivation_determined !== false) fail('conceptual inheritance derivation boundary mismatch');
+if (conceptual.origin_claim_standing_granted !== false) fail('conceptual inheritance standing boundary mismatch');
+if (conceptual.execution_authority_granted !== false) fail('conceptual inheritance execution authority mismatch');
+if (conceptual.release_authority_granted !== false) fail('conceptual inheritance release authority mismatch');
+if (conceptual.downstream_mutation_authority_granted !== false) fail('conceptual inheritance downstream authority mismatch');
+if (conceptual.handoff_reconciliation_required_for_continuation !== false) fail('conceptual inheritance reconciliation mismatch');
 
 const mesh = receipt.activation_closures?.documentation_mesh;
 if (!mesh) fail('missing documentation mesh closure');
@@ -123,5 +149,6 @@ const nonClaims = receipt.non_claims || [];
 if (!nonClaims.some((claim) => claim.includes('does not create provider governance'))) fail('missing provider governance non-claim');
 if (!nonClaims.some((claim) => claim.includes('does not certify clinical performance'))) fail('missing clinical-performance non-claim');
 if (!nonClaims.some((claim) => claim.includes('does not grant cross-repository authority'))) fail('missing mesh authority non-claim');
+if (!nonClaims.some((claim) => claim.includes('does not decide authorship'))) fail('missing conceptual inheritance non-claim');
 
 console.log('public activation receipt writer OK');
