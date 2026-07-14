@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -11,6 +13,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT = ROOT / "static" / "status" / "canonical-workflow-observation-receipt.json"
 HISTORY = ROOT / "static" / "status" / "canonical-workflow-observation-history.json"
+HEALTH_GENERATOR = ROOT / "scripts" / "generate_canonical_workflow_health_summary.py"
 PUBLIC_HISTORY_URL = "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-observation-history.json"
 MAX_ENTRIES = 24
 
@@ -113,6 +116,21 @@ def main() -> int:
         "CANONICAL WORKFLOW OBSERVATION HISTORY: PASS - "
         f"entries={len(ordered)} latest={latest.get('observation_state')} prior={prior_observation.get('result')}"
     )
+
+    if not HEALTH_GENERATOR.exists():
+        raise SystemExit("workflow health summary generator is missing")
+    completed = subprocess.run(
+        [sys.executable, str(HEALTH_GENERATOR)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    if completed.stdout:
+        print(completed.stdout.rstrip())
+    if completed.returncode != 0:
+        raise SystemExit("workflow health summary generation failed")
     return 0
 
 
