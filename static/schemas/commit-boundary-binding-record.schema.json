@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/commit-boundary-binding-record.schema.json",
+  "title": "Commit-Boundary Binding Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "transition_id",
+    "candidate_hash",
+    "state_before_hash",
+    "state_after_hash",
+    "decision_validity",
+    "origin",
+    "authority",
+    "admissibility",
+    "invariants",
+    "recoverability",
+    "evidence",
+    "binding_result",
+    "reason_codes",
+    "evaluated_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "commit_boundary_binding_record.v1"},
+    "transition_id": {"type": "string", "minLength": 1},
+    "candidate_hash": {"$ref": "#/$defs/hash"},
+    "state_before_hash": {"$ref": "#/$defs/hash"},
+    "state_after_hash": {"$ref": "#/$defs/hash"},
+    "decision_validity": {
+      "enum": ["VALID", "INVALID", "UNRESOLVED", "NOT_EVALUATED"]
+    },
+    "origin": {"$ref": "#/$defs/controlResult"},
+    "authority": {"$ref": "#/$defs/controlResult"},
+    "admissibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "evidence_refs"],
+      "properties": {
+        "result": {"enum": ["ALLOW", "DENY", "FAIL_CLOSED"]},
+        "evidence_refs": {"$ref": "#/$defs/refs"}
+      }
+    },
+    "invariants": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "evidence_refs"],
+      "properties": {
+        "result": {"enum": ["PRESERVED", "VIOLATED", "UNRESOLVED"]},
+        "evidence_refs": {"$ref": "#/$defs/refs"}
+      }
+    },
+    "recoverability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "margin", "minimum_margin", "evidence_refs"],
+      "properties": {
+        "result": {"enum": ["PRESERVED", "DEGRADED", "LOST", "UNRESOLVED"]},
+        "margin": {"type": "number", "minimum": 0},
+        "minimum_margin": {"type": "number", "minimum": 0},
+        "evidence_refs": {"$ref": "#/$defs/refs"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "refs"],
+      "properties": {
+        "result": {"enum": ["COMPLETE", "INCOMPLETE", "UNRESOLVED", "STALE"]},
+        "refs": {"$ref": "#/$defs/refs"}
+      }
+    },
+    "binding_result": {"enum": ["BIND", "DENY", "FAIL_CLOSED"]},
+    "reason_codes": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "evaluated_at": {"type": "string", "format": "date-time"},
+    "committed_at": {"type": ["string", "null"], "format": "date-time"},
+    "previous_receipt_hash": {
+      "oneOf": [
+        {"$ref": "#/$defs/hash"},
+        {"type": "null"}
+      ]
+    },
+    "receipt_hash": {
+      "oneOf": [
+        {"$ref": "#/$defs/hash"},
+        {"type": "null"}
+      ]
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "refs": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "controlResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "evidence_refs"],
+      "properties": {
+        "result": {"enum": ["VALID", "INVALID", "UNRESOLVED"]},
+        "evidence_refs": {"$ref": "#/$defs/refs"}
+      }
+    }
+  }
+}
