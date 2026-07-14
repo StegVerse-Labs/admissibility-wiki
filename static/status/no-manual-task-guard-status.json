@@ -5,7 +5,10 @@
   "guard_script": "scripts/check-no-manual-task-assignments.mjs",
   "guarded_files": [
     "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-    "docs/governance/current-task-sync.md"
+    "docs/governance/current-task-sync.md",
+    "docs/external-frameworks/kpt.md",
+    "static/status/kpt-external-framework-intake-status.json",
+    "receipts/kpt-source-blocked-intake-2026-07-14.json"
   ],
   "manual_task_requirement": "none",
   "allowed_phrases": [
@@ -16,11 +19,15 @@
     "The next formal task is external target repo creation",
     "Create StegVerse-Labs/proposal-governance-core-lite",
     "Copy repo-seeds/proposal-governance-core-lite/* into it",
-    "Run npm run validate in the target repo"
+    "Run npm run validate in the target repo",
+    "manual validation required",
+    "manual deployment required",
+    "user must verify",
+    "user must deploy"
   ],
   "failure_posture": "fail_validation_until_manual_assignment_language_is_replaced_with_repo_owned_automation_or_bounded_pending_status",
   "non_claims": [
     "This guard does not perform the work described by automation.",
-    "This guard only prevents tracked handoff/current-sync files from assigning manual work."
+    "This guard only prevents tracked handoff, synchronization, and KPT activation files from assigning manual work."
   ]
 }
