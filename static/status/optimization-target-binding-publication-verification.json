@@ -1,0 +1,39 @@
+{
+  "schema": "stegverse.optimization_target_binding_publication_verification.v0.1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "formalism_id": "optimization-target-binding-at-commit",
+  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLIC_ROUTE_VERIFICATION",
+  "local_surfaces": {
+    "doctrine": "docs/formalisms/optimization-target-binding-at-commit.md",
+    "machine_readable_formalism": "static/formalisms/optimization-target-binding-at-commit.v0.1.json",
+    "validator": "scripts/check_optimization_target_binding_at_commit.py",
+    "sidebar_registered": true,
+    "canonical_validation_bound": true
+  },
+  "expected_public_routes": [
+    "https://stegverse-labs.github.io/admissibility-wiki/docs/formalisms/optimization-target-binding-at-commit",
+    "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit.v0.1.json",
+    "https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json"
+  ],
+  "evidence": {
+    "canonical_workflow_pass": false,
+    "docusaurus_build_pass": false,
+    "doctrine_route_verified": false,
+    "machine_readable_route_verified": false,
+    "status_route_verified": false,
+    "proof_fixture_receipt_attached": false
+  },
+  "authority": {
+    "grants_execution_authority": false,
+    "grants_cross_repository_mutation_authority": false,
+    "grants_proof_authority": false,
+    "proof_owner": "Data-Continuation/formalism-tests"
+  },
+  "downstream_posture": {
+    "StegVerse-Labs/Site": "DEFER_UNTIL_PUBLIC_ROUTE_AND_DESTINATION_HANDOFF_VERIFIED",
+    "GCAT-BCAT-Engine/Publisher": "QUEUE_UNTIL_PUBLIC_ROUTE_AND_PROOF_RECEIPT_VERIFIED",
+    "StegVerse-002/stegguardian-wiki": "DEFER_UNTIL_EXECUTABLE_PROOF_FIXTURES_EXIST",
+    "StegVerse-002/StegGuardian": "NO_IMPLEMENTATION_MUTATION_AUTHORIZED"
+  },
+  "next_event": "A canonical workflow pass plus verified public doctrine, formalism JSON, and status routes may advance publication state; executable proof authority remains external."
+}
