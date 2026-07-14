@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -11,6 +13,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT = ROOT / "static" / "status" / "canonical-workflow-trend-change-frequency-change-receipt.json"
 HISTORY = ROOT / "static" / "status" / "canonical-workflow-trend-change-frequency-change-history.json"
+STABILITY_GENERATOR = ROOT / "scripts" / "generate_canonical_workflow_frequency_change_stability_summary.py"
 PUBLIC_HISTORY_URL = "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-trend-change-frequency-change-history.json"
 MAX_ENTRIES = 24
 
@@ -143,6 +146,21 @@ def main() -> int:
         f"entries={len(ordered)} latest={latest.get('change_state')} "
         f"prior={prior_history.get('result')} manual_tasks=0"
     )
+
+    if not STABILITY_GENERATOR.exists():
+        raise SystemExit("workflow frequency-change stability generator is missing")
+    completed = subprocess.run(
+        [sys.executable, str(STABILITY_GENERATOR)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    if completed.stdout:
+        print(completed.stdout.rstrip())
+    if completed.returncode != 0:
+        raise SystemExit("workflow frequency-change stability generation failed")
     return 0
 
 
