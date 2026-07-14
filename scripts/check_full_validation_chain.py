@@ -43,6 +43,7 @@ CHECKS = [
     ("Validate review receipts and supersession", "scripts/check_review_receipts_and_supersession.py"),
     ("Validate external translation reconstruction receipt", "scripts/check_external_translation_reconstruction_receipt.py"),
     ("Validate canonical workflow observation receipt", "scripts/check_canonical_workflow_observation_receipt.py"),
+    ("Validate canonical workflow observation automation status", "scripts/check_canonical_workflow_observation_automation_status.py"),
     ("Validate external frameworks index", "scripts/check_external_frameworks_index.py"),
     ("Validate external framework manifests", "scripts/check_external_framework_manifests.py"),
     ("Validate external framework terminology", "scripts/check_external_framework_terminology.py"),
@@ -72,14 +73,7 @@ def execute(relative_path: str) -> tuple[int, str]:
     path = ROOT / relative_path
     if not path.exists():
         return 127, f"missing validator: {relative_path}"
-    completed = subprocess.run(
-        [sys.executable, str(path)],
-        cwd=ROOT,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
-    )
+    completed = subprocess.run([sys.executable, str(path)], cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
     return completed.returncode, completed.stdout.rstrip()
 
 
@@ -150,15 +144,7 @@ def main() -> int:
     if OBSERVATION_WRITER.exists():
         observation_env = os.environ.copy()
         observation_env["CANONICAL_JOB_STATUS"] = "failure" if failures else "success"
-        observation_run = subprocess.run(
-            [sys.executable, str(OBSERVATION_WRITER)],
-            cwd=ROOT,
-            env=observation_env,
-            text=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            check=False,
-        )
+        observation_run = subprocess.run([sys.executable, str(OBSERVATION_WRITER)], cwd=ROOT, env=observation_env, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
         if observation_run.stdout:
             print(observation_run.stdout.rstrip())
         observation_payload = read_json_if_present(OBSERVATION_REPORT)
