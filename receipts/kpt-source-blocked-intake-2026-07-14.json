@@ -1,0 +1,58 @@
+{
+  "receipt_id": "kpt-source-blocked-intake-2026-07-14",
+  "recorded_at": "2026-07-14T04:30:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "framework_id": "kpt",
+  "intake_state": "SOURCE_BLOCKED_FAIL_CLOSED",
+  "observed_public_identity": {
+    "name": "KPT",
+    "person": "Kristian Jõgi",
+    "public_role_text": "Founder, KPT | Runtime Decision Governance for High-Stakes AI Systems",
+    "profile_tagline": "Boundary before consequence"
+  },
+  "observed_public_description": [
+    "AI output should not become authority by default.",
+    "KPT asks whether an output is admissible for the next downstream consequence.",
+    "The public description distinguishes output, authority, decision state, enforcement action, trace, influence, and execution."
+  ],
+  "captured_evidence": [
+    {
+      "capture_type": "user-supplied screenshot",
+      "original_filename": "F2100490-F4F8-4E34-A8C4-4F7E5EADF725.png",
+      "sha256": "ee88f40f484de3b01f7a68726f3d92fef4aa15bdd9498c8c078a7b366ec251ab",
+      "content_summary": "KPT About description defining the runtime admissibility boundary and core principles."
+    },
+    {
+      "capture_type": "user-supplied screenshot",
+      "original_filename": "D5399CB2-6484-47C2-95BE-BEBCA01BC0FD.png",
+      "sha256": "20adfe3b1d8fd0ba29836faf9f937f31f9909bbb291998257754e8934d03a2f0",
+      "content_summary": "LinkedIn profile identifying Kristian Jõgi as Founder, KPT and displaying KPT branding."
+    }
+  ],
+  "installed_artifacts": [
+    "docs/external-frameworks/kpt.md",
+    "docs/external-frameworks/kpt.json",
+    "docs/external-frameworks/reports/kpt.compatibility.json",
+    "docs/external-frameworks/index.json",
+    "sidebars.js"
+  ],
+  "continuation_issue": "https://github.com/StegVerse-Labs/admissibility-wiki/issues/18",
+  "missing_for_source_upgrade": [
+    "official owner-published framework URL",
+    "versioned specification or white paper",
+    "canonical public repository or implementation source",
+    "versioned decision vocabulary, API, schema, or trace format"
+  ],
+  "permitted_claim": "KPT may be represented as a provisional upstream runtime decision boundary whose result can be routed as evidence into independent StegVerse commit-time admissibility review.",
+  "prohibited_claims": [
+    "certification",
+    "endorsement",
+    "formal collaboration",
+    "general technical compatibility",
+    "execution-authority inheritance",
+    "commit-time-authority inheritance",
+    "equivalence between KPT and StegVerse decision states"
+  ],
+  "authority_boundary": "This receipt preserves source-blocked intake provenance and the identity correction. It does not reproduce or publish the screenshot binaries, certify KPT, endorse KPT or its founder, grant execution authority, or establish commit-time standing.",
+  "verification_state": "PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_VERIFICATION"
+}
