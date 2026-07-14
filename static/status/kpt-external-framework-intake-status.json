@@ -1,10 +1,10 @@
 {
   "artifact_type": "external_framework_intake_status",
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "framework_id": "kpt",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "goal_id": "kpt-external-framework-intake-activation",
-  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_VERIFICATION",
+  "state": "AUTOMATION_BOUND_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_OBSERVATION",
   "source_posture": "SOURCE_BLOCKED_FAIL_CLOSED",
   "installed": {
     "public_page": "docs/external-frameworks/kpt.md",
@@ -13,14 +13,27 @@
     "registry": "docs/external-frameworks/index.json",
     "navigation": "sidebars.js",
     "provenance_receipt": "receipts/kpt-source-blocked-intake-2026-07-14.json",
-    "continuation_issue": "https://github.com/StegVerse-Labs/admissibility-wiki/issues/18"
+    "continuation_issue": "https://github.com/StegVerse-Labs/admissibility-wiki/issues/18",
+    "deterministic_validator": "scripts/check_kpt_external_framework_intake.py",
+    "validation_chain": "scripts/check_full_validation_chain.py",
+    "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "no_manual_task_guard": "static/status/no-manual-task-guard-status.json"
+  },
+  "automation_ownership": {
+    "artifact_validation": "canonical validate-chain-continuation workflow",
+    "report_regeneration": "scripts/generate_external_framework_reports.py",
+    "site_build": "build-pages job",
+    "deployment": "deploy-pages job",
+    "public_observation": "verify-public-pages job and scheduled canonical workflow",
+    "source_upgrade": "future source-intake automation after an official owner-published source becomes available"
   },
   "required_checks": [
     "canonical workflow passes after report generation",
+    "deterministic KPT validator passes inside the full validation chain",
     "external framework report validator accepts KPT source-blocked status vocabulary",
     "wiki build includes the KPT page in navigation",
-    "public KPT page responds after deployment",
-    "public compatibility report is available after deployment"
+    "scheduled deployment publishes the KPT page and status artifact",
+    "public observation records endpoint availability without granting authority"
   ],
   "source_upgrade_gate": [
     "official owner-published framework URL",
@@ -39,5 +52,8 @@
     "missing_official_source_fails_closed": true
   },
   "manual_task_requirement": "none",
+  "manual_validation_required": false,
+  "manual_deployment_required": false,
+  "manual_publication_check_required": false,
   "downstream_mutation_authorized": false
 }
