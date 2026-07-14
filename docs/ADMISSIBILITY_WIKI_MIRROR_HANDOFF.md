@@ -6,8 +6,9 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: complete admissibility-wiki public documentation activation under the single canonical validation workflow.
-Current state: doctrine, status, validation, documentation mesh, and governed LLM surfaces are installed.
+Current state: doctrine, status, validation, documentation mesh, governed LLM surfaces, and verification-authority publication automation are installed.
 Manual task requirement: none.
+User manual action required: false.
 No manual target-creation task is assigned.
 ```
 
@@ -21,20 +22,25 @@ Publish and validate `https://stegverse-labs.github.io/admissibility-wiki/` as t
 Goal id: verification-vs-execution-authority
 Doctrine: docs/governance/verification-vs-execution-authority.md
 Status: static/status/verification-execution-authority-status.json
-Validator: scripts/check_verification_execution_authority.py
+Local validator: scripts/check_verification_execution_authority.py
 Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
-State: IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION
+Public checker: scripts/check_governed_llm_deployment_status.py
+Execution surface: .github/workflows/validate-chain-continuation.yml
+Public job: verify-public-pages
+State: IMPLEMENTED_WITH_AUTOMATED_PUBLICATION_VERIFICATION_PENDING_OBSERVATION
 Manual task requirement: none
+User manual action required: false
 Downstream mutation authority: none granted
 ```
 
-The doctrine records the Virginia 2026 IVO policy signal while preserving these boundaries:
+Preserved governance boundaries:
 
 ```text
 independent verification != execution authority
 certification != action-level admissibility
 system approval != permission for a specific execution
 post-event explanation != a reachable pre-consequence refusal point
+route reachability != authority
 ```
 
 Independent review enters the transition path as evidence and review posture. It does not silently acquire authority to commit a specific transition. High-risk execution requires a live point that can return `ALLOW`, `DENY`, or `FAIL_CLOSED` before consequence attaches.
@@ -48,6 +54,15 @@ Class: organization-issued public announcement
 Permitted claim: evidence of the announced Virginia IVO study direction only
 Not established: enacted-text interpretation, operational IVO standard, implementation proof, or action-level execution authority
 ```
+
+Automated publication routes:
+
+```text
+https://stegverse-labs.github.io/admissibility-wiki/governance/verification-vs-execution-authority
+https://stegverse-labs.github.io/admissibility-wiki/status/verification-execution-authority-status.json
+```
+
+The existing `verify-public-pages` job invokes `scripts/check_governed_llm_deployment_status.py` after deployment. Both routes are now included in that checker. Failure is `FAIL_CLOSED`; it creates no manual task and grants no authority.
 
 ## External Framework Report Repair
 
@@ -110,62 +125,26 @@ Manual task requirement: none
 
 The doctrine separates architectural integrity, provenance continuity, and origin-claim standing. Similarity alone is not proof of derivation, and unresolved provenance is not certification of independence.
 
-## Deployment Gate
+## Deployment and Validation Gate
 
 ```text
 Canonical active workflow: .github/workflows/validate-chain-continuation.yml
+Validation job: validate-chain-continuation
 Build job: build-pages
 Deployment job: deploy-pages
 Public verification job: verify-public-pages
 Gate: validation must pass before build, deploy, or public verification advances
+Primary validation: npm run validate
 ```
 
 Do not create additional active GitHub Actions workflows unless repo standards explicitly change.
 
-## Validation and Receipt Automation
+The verification-authority local validator is invoked by `scripts/check_admissibility_automation_handoff.py`, which is already invoked by `npm run validate`. The public checker is already invoked by `verify-public-pages`. No standalone or user-run validation step is required.
 
-Primary commands:
-
-```text
-npm run validate
-python scripts/check_admissibility_automation_handoff.py
-python scripts/check_verification_execution_authority.py
-python scripts/check_documentation_mesh_status.py
-python scripts/check_external_framework_reports.py
-python scripts/check_conceptual_inheritance_claims.py
-python scripts/check_conceptual_inheritance_status.py
-python scripts/check_conceptual_inheritance_publication.py
-python scripts/check_conceptual_inheritance_propagation_plan.py
-```
-
-Expected new doctrine result:
+Expected local result:
 
 ```text
 VERIFICATION EXECUTION AUTHORITY: PASS
-```
-
-The verification-authority validator is invoked by `check_admissibility_automation_handoff.py`, which is already invoked by `npm run validate`; no standalone manual validation step is required.
-
-## Known Status Artifacts
-
-```text
-static/status/admissibility-wiki-status.json
-static/status/admissibility-wiki-activation.json
-static/status/proposal-core-lite-target-watch-status.json
-static/status/no-manual-task-guard-status.json
-static/status/mirror-handoff-guard-status.json
-static/status/workflow-receipt-automation-status.json
-static/status/workflow-evidence-status.json
-static/status/workflow-evidence-watch-status.json
-static/status/publication-verification-status.json
-static/status/guardian-destination-resolution-status.json
-static/status/repo-standards-integration-status.json
-static/status/ecosystem-documentation-endpoints.json
-static/status/cross-wiki-health-status.json
-static/status/conceptual-inheritance-provenance-status.json
-static/status/conceptual-inheritance-publication-verification.json
-static/status/conceptual-inheritance-propagation-plan.json
-static/status/verification-execution-authority-status.json
 ```
 
 ## Mirror Coordination Rule
@@ -174,7 +153,7 @@ static/status/verification-execution-authority-status.json
 Check this file before continuing admissibility-wiki work.
 Check docs/SITE_MIRROR_HANDOFF.md before Site mirror work.
 Check PUBLISHER_MIRROR_HANDOFF.md before Publisher mirror work.
-Review StegGuardian destination handoffs immediately before any downstream mutation.
+Review StegGuardian destination handoffs immediately before downstream mutation.
 Do not treat public visibility as governance authority.
 Do not treat queued propagation as completed propagation.
 Manual task requirement: none.
@@ -197,7 +176,7 @@ Destination mutation remains prohibited until each destination handoff grants th
 
 ```text
 - observe the canonical workflow result for the verification-authority integration
-- verify the doctrine page and status artifact after deployment
+- observe the automated public-route result after deployment
 - confirm documentation-mesh public endpoints after deployment
 - preserve Site deferral until its current handoff authorizes unrelated mirror work
 - preserve Publisher queue order until its current priority and activation failure are resolved
@@ -205,14 +184,14 @@ Destination mutation remains prohibited until each destination handoff grants th
 - promote the proven multi-repo mesh validator into StegVerse-Labs/repo-standards when upstream scope permits
 ```
 
-These are durable continuation requirements, not manual assignments to this session.
+These are durable automated observations or successor-owned continuation requirements, not manual assignments to the user or this conversation.
 
 ## Permitted Continuation Scope
 
 A successor session may:
 
 ```text
-- inspect the canonical workflow and public deployment results
+- inspect canonical workflow and deployment evidence
 - repair failures inside this repository
 - update receipts and status artifacts from observed evidence
 - refine doctrine without promoting verification into execution authority
