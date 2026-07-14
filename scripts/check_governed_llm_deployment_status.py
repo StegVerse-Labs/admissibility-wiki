@@ -17,6 +17,10 @@ PAGES = {
     "governed_llm_archive_handoff": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-archive-handoff",
     "verification_execution_authority_doctrine": "https://stegverse-labs.github.io/admissibility-wiki/governance/verification-vs-execution-authority",
     "verification_execution_authority_status": "https://stegverse-labs.github.io/admissibility-wiki/status/verification-execution-authority-status.json",
+    "documentation_mesh_site": "https://stegverse-labs.github.io/Site/",
+    "documentation_mesh_admissibility_wiki": "https://stegverse-labs.github.io/admissibility-wiki/",
+    "documentation_mesh_stegguardian_wiki": "https://stegverse-002.github.io/stegguardian-wiki/",
+    "documentation_mesh_stegtalk_wiki": "https://stegverse-labs.github.io/stegtalk-wiki/",
     "optimization_target_doctrine": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit",
     "optimization_target_formalism_json": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit.v0.1.json",
     "optimization_target_publication_status": "https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json",
@@ -55,7 +59,7 @@ def main() -> int:
         results[name] = {"url": url, "reachable": ok, "http_status": status}
         if not ok: failures.append(message)
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.13",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.14",
         "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID','local')}.{os.getenv('GITHUB_RUN_ATTEMPT','0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
@@ -69,6 +73,7 @@ def main() -> int:
         "non_claims": [
             "Route reachability is bounded publication evidence only.",
             "Published verification doctrine does not grant execution authority.",
+            "Documentation-mesh reachability does not grant cross-repository authority, compatibility, standing, or synchronization permission.",
             "A reachable KPT source-intake queue does not prove source sufficiency or promote a source candidate.",
             "Frequency, recency, and class-change reachability do not make predictive or independent causal claims.",
             "Failed checks remain fail-closed and create no user task."
