@@ -220,6 +220,34 @@ After validation and evidence review, prepare a tag/release candidate and verify
 
 Benchmark publication, candidate intake, directory visibility, family coverage, work packets, promotion, merge integration, release readiness, workflow integration, blocker classification, mirror-only classification, and repository tags do not create certification, endorsement, equivalence, execution authority, StegVerse standing, or external-framework validation beyond the evidence actually attached.
 
+## LLM model/system boundary record
+
+A durable doctrine record now preserves the July 2026 discussion concerning transformer-internal recurrence, external orchestration feedback, model state, deployed-system state, trajectory dependence, and causal continuity:
+
+```text
+docs/governance/llm-consciousness-model-system-boundary.md
+```
+
+Installed at commit:
+
+```text
+9f61958b1f543db16c161985c30e0b555558da40
+```
+
+This record does not classify current LLMs or deployed AI systems as conscious or non-conscious. It preserves the narrower conclusion that a transient transformer invocation and a recurrent composed execution system are different evaluation boundaries, while recurrence and state continuity remain insufficient to establish consciousness.
+
+Permitted continuation scope:
+
+```text
+Define machine-readable system-boundary declarations.
+Separate model state, session state, durable memory, environment state, and authority state.
+Develop causal-continuity tests without labeling them consciousness tests.
+Connect the distinctions to governed LLM manifests and receipts.
+Do not infer consciousness, personhood, slavery, welfare status, or execution authority from the discussion record.
+```
+
 ## Next action
 
 Observe the workflow triggered by commit `b02eafbdd7f79d1a538b7b986af6641af2d0a429`. If validation passes, synchronize the successful main-validation receipt and continue source-gated promotion of Tier 1 candidates into sourced intake records and individual pages without collapsing candidate, sourced, mapped, fixture-ready, and validated states.
+
+In parallel, the next bounded governed-LLM integration task is to define a machine-readable system-boundary declaration that records model, orchestration, memory, environment, persistence, recurrence, and authority surfaces without making a consciousness claim.
