@@ -24,6 +24,8 @@ original_drawing_reference:
   preservation_method: photographic_capture_of_original_paper_drawing
   earlier_upload_state: not_yet_located
   relationship: precursor_source_candidate
+  custody_manifest: static/provenance/sg-001-source-artifact-custody.json
+  repository_migration_issue: https://github.com/StegVerse-Labs/admissibility-wiki/issues/13
   related_entries:
     - Recoverability
     - Coherence
@@ -34,7 +36,7 @@ original_drawing_reference:
     - Admissibility
     - BCAT
     - GCAT
-  evidence_posture: preserved_photographic_copies_available_for_review
+  evidence_posture: preserved_photographic_copies_manifested_and_hash_bound
   review_posture: provenance_record_updated
   chronology_status: pre_BCAT_GCAT_precursor_artifact
   attribution_status: creator_recorded
@@ -49,6 +51,26 @@ The currently earliest preserved copies available to this record are photographs
 These photographs document a hand-drawn paper artifact created by Rigel Randolph. The drawing predates the later BCAT/GCAT formalization work and is preserved as an early recoverability, coherence, unavailable-data, and admissible-reflection geometry that contributed to the later need for formal governance formalisms.
 
 Earlier ChatGPT uploads, drafts, scans, or preservation copies may have existed, but they have not yet been located. Therefore, this page distinguishes the earliest currently preserved copy from the original creation date and from any earlier upload date.
+
+## Source Artifact Custody
+
+The five recovered JPEG files are recorded in:
+
+```text
+static/provenance/sg-001-source-artifact-custody.json
+```
+
+The custody manifest records exact filenames, SHA-256 hashes, byte sizes, image dimensions, media types, current durable storage posture, the repository migration target, and non-claim boundaries.
+
+The exact-file migration continuation task is tracked in:
+
+```text
+GitHub Issue #13 — Migrate exact SG-001 recovered JPEGs into repository custody
+```
+
+The recovered files are currently retained in ChatGPT File Library and can be retrieved by exact filename and verified against the manifest hashes. Their later migration into `static/source-artifacts/SG-001/` is a durable repository task and does not require access to the originating conversation.
+
+The public rendered image at `static/img/formalisms/original-drawing-reference.jpg` is a display reference. Exact byte equivalence between that rendered asset and any recovered source file is not asserted.
 
 ## Historical Position
 
@@ -81,6 +103,7 @@ chronology:
     source_geometry_id: SG-001
     creator: Rigel Randolph
     current_earliest_preserved_copy: "2026-03-05"
+    custody_manifest: static/provenance/sg-001-source-artifact-custody.json
     relationship: precursor_source_candidate
     status: provenance_recorded
 ```
