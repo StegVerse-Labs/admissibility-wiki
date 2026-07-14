@@ -11,6 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "reports" / "full_validation_chain_report.json"
 SANDBOX_RUNNER = "scripts/run_sandbox_validation.py"
 SANDBOX_REPORT = ROOT / "reports" / "sandbox-first-validation.report.json"
+RECONSTRUCTION_GENERATOR = "scripts/generate_external_translation_reconstruction_receipt.py"
+RECONSTRUCTION_REPORT = ROOT / "reports" / "external-translation" / "reconstruction-receipt.json"
 
 CHECKS = [
     ("Validate single workflow policy", "scripts/check_workflow_sprawl.py"),
@@ -77,6 +79,15 @@ def execute(relative_path: str) -> tuple[int, str]:
     return completed.returncode, completed.stdout.rstrip()
 
 
+def read_json_if_present(path: Path) -> object | None:
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        return {"status": "UNREADABLE", "error": str(exc)}
+
+
 def main() -> int:
     results: list[dict[str, object]] = []
     failures: list[str] = []
@@ -87,13 +98,8 @@ def main() -> int:
     sandbox_code, sandbox_output = execute(SANDBOX_RUNNER)
     if sandbox_output:
         print(sandbox_output)
-    sandbox_payload = None
-    if SANDBOX_REPORT.exists():
-        try:
-            sandbox_payload = json.loads(SANDBOX_REPORT.read_text(encoding="utf-8"))
-        except Exception as exc:
-            sandbox_payload = {"sandbox_status": "UNREADABLE", "error": str(exc)}
-    sandbox_status = "PASS" if sandbox_code == 0 and sandbox_payload and sandbox_payload.get("sandbox_status") == "PASS" else "FAIL"
+    sandbox_payload = read_json_if_present(SANDBOX_REPORT)
+    sandbox_status = "PASS" if sandbox_code == 0 and isinstance(sandbox_payload, dict) and sandbox_payload.get("sandbox_status") == "PASS" else "FAIL"
     results.append({
         "name": "Execute ST-017 isolated sandbox",
         "path": SANDBOX_RUNNER,
@@ -104,7 +110,31 @@ def main() -> int:
     if sandbox_status != "PASS":
         failures.append(SANDBOX_RUNNER)
 
+    reconstruction_payload: object | None = None
     if sandbox_status == "PASS":
+        print("\n--- Generate external translation reconstruction receipt ---")
+        generation_code, generation_output = execute(RECONSTRUCTION_GENERATOR)
+        if generation_output:
+            print(generation_output)
+        reconstruction_payload = read_json_if_present(RECONSTRUCTION_REPORT)
+        generation_status = (
+            "PASS"
+            if generation_code == 0
+            and isinstance(reconstruction_payload, dict)
+            and reconstruction_payload.get("overall_status") == "PASS"
+            else "FAIL"
+        )
+        results.append({
+            "name": "Generate external translation reconstruction receipt",
+            "path": RECONSTRUCTION_GENERATOR,
+            "status": generation_status,
+            "return_code": generation_code,
+            "output": generation_output,
+        })
+        if generation_status != "PASS":
+            failures.append(RECONSTRUCTION_GENERATOR)
+
+    if sandbox_status == "PASS" and not failures:
         for name, relative_path in CHECKS:
             print(f"\n--- {name} ---")
             return_code, output = execute(relative_path)
@@ -124,8 +154,9 @@ def main() -> int:
         "failed_checks": sum(1 for result in results if result["status"] == "FAIL"),
         "overall_status": "FAIL" if failures else "PASS",
         "st017_sandbox": sandbox_payload,
+        "external_translation_reconstruction": reconstruction_payload,
         "results": results,
-        "authority_boundary": "This report records isolated sandbox and validator outcomes only. A passing scan does not grant runtime execution, artifact promotion, canonical status mutation, merge, deployment authority, public verification, release, certification, downstream propagation, standing, admissibility, or ecosystem authority.",
+        "authority_boundary": "This report records isolated sandbox, generated reconstruction, and validator outcomes only. A passing scan does not grant runtime execution, artifact promotion, canonical status mutation, merge, deployment authority, public verification, release, certification, downstream propagation, standing, admissibility, or ecosystem authority.",
     }
     REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print("\n" + "=" * 72)
