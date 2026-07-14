@@ -14,6 +14,7 @@ HEALTH_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_health_summary.p
 TRANSITION_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_health_transition_receipt.py"
 TRANSITION_HISTORY_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_health_transition_history.py"
 TREND_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_health_transition_trend.py"
+TREND_CHANGE_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_health_transition_trend_change.py"
 REQUIRED_FILES = [
     ROOT / ".github" / "workflows" / "validate-chain-continuation.yml",
     ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.yml",
@@ -30,6 +31,8 @@ REQUIRED_FILES = [
     TRANSITION_HISTORY_VALIDATOR,
     ROOT / "scripts" / "generate_canonical_workflow_health_transition_trend.py",
     TREND_VALIDATOR,
+    ROOT / "scripts" / "generate_canonical_workflow_health_transition_trend_change.py",
+    TREND_CHANGE_VALIDATOR,
     ROOT / "scripts" / "check_full_validation_chain.py",
 ]
 
@@ -57,8 +60,8 @@ def main() -> int:
             fail(f"required automation file is missing: {path.relative_to(ROOT)}")
 
     data = json.loads(STATUS.read_text(encoding="utf-8"))
-    if data.get("state") != "AUTOMATED_HEALTH_TRANSITION_TREND_BOUND":
-        fail("state must be AUTOMATED_HEALTH_TRANSITION_TREND_BOUND")
+    if data.get("state") != "AUTOMATED_HEALTH_TRANSITION_TREND_CHANGE_BOUND":
+        fail("state must be AUTOMATED_HEALTH_TRANSITION_TREND_CHANGE_BOUND")
     for key in ("authority_granted", "release_authority_granted", "downstream_mutation_authority_granted"):
         if data.get(key) is not False:
             fail(f"{key} must be false")
@@ -73,6 +76,7 @@ def main() -> int:
         "health_transition_endpoint": "/status/canonical-workflow-health-transition-receipt.json",
         "health_transition_history_endpoint": "/status/canonical-workflow-health-transition-history.json",
         "health_transition_trend_endpoint": "/status/canonical-workflow-health-transition-trend.json",
+        "health_transition_trend_change_endpoint": "/status/canonical-workflow-health-transition-trend-change-receipt.json",
     }
     for key, value in expected_endpoints.items():
         if data.get(key) != value:
@@ -85,7 +89,8 @@ def main() -> int:
         "build-pages emits a health-transition receipt from consecutive classified observations",
         "build-pages reconciles the transition receipt into bounded deduplicated transition history",
         "build-pages derives a bounded descriptive trend summary from transition history",
-        "verify-public-pages checks observation, health, transition, transition-history, and trend endpoints",
+        "build-pages emits a trend-change receipt by comparing the current trend with the prior public trend",
+        "verify-public-pages checks observation, health, transition, transition-history, trend, and trend-change endpoints",
     ):
         if phrase not in chain:
             fail(f"publication chain missing: {phrase}")
@@ -111,9 +116,8 @@ def main() -> int:
     trend_policy = data.get("health_transition_trend_policy", {})
     if trend_policy.get("maximum_recent_entries") != 6:
         fail("trend maximum_recent_entries must be 6")
-    for key in ("descriptive_only",):
-        if trend_policy.get(key) is not True:
-            fail(f"trend {key} must be true")
+    if trend_policy.get("descriptive_only") is not True:
+        fail("trend descriptive_only must be true")
     for key in ("predictive_claim", "causal_claim_beyond_receipt_fields"):
         if trend_policy.get(key) is not False:
             fail(f"trend {key} must be false")
@@ -126,8 +130,20 @@ def main() -> int:
         fail("trend classes mismatch")
     if trend_policy.get("owner") != "canonical build-pages job":
         fail("trend owner mismatch")
-    if trend_policy.get("next_evaluation") != "next repository-owned canonical workflow trigger":
-        fail("trend evaluation must remain automation-owned")
+
+    trend_change = data.get("health_transition_trend_change_policy", {})
+    if trend_change.get("comparison") != "current generated trend against prior public trend":
+        fail("trend-change comparison mismatch")
+    if set(trend_change.get("states", [])) != {"CHANGED", "UNCHANGED"}:
+        fail("trend-change states mismatch")
+    if trend_change.get("predictive_claim") is not False:
+        fail("trend-change predictive_claim must be false")
+    if "without assigning a manual task" not in trend_change.get("prior_trend_unavailable_result", ""):
+        fail("trend-change unavailable policy must remain no-manual")
+    if trend_change.get("owner") != "canonical build-pages job":
+        fail("trend-change owner mismatch")
+    if trend_change.get("next_evaluation") != "next repository-owned canonical workflow trigger":
+        fail("trend-change evaluation must remain automation-owned")
 
     for trigger in ("push", "pull_request", "workflow_dispatch", "hourly_schedule"):
         if data.get("trigger_ownership", {}).get(trigger) != "repository automation":
@@ -143,8 +159,9 @@ def main() -> int:
     run_validator(TRANSITION_VALIDATOR, "workflow health transition validator")
     run_validator(TRANSITION_HISTORY_VALIDATOR, "workflow health transition history validator")
     run_validator(TREND_VALIDATOR, "workflow health transition trend validator")
+    run_validator(TREND_CHANGE_VALIDATOR, "workflow health transition trend-change validator")
 
-    print("CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - manual_tasks=0 transition_trend=bounded_nonpredictive")
+    print("CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - manual_tasks=0 trend_change=bounded_nonpredictive")
     return 0
 
 
