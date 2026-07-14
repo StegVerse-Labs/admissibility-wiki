@@ -15,6 +15,8 @@ PAGES = {
     "governed_llm_site_verification": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-site-verification",
     "governed_llm_deployment_status": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-deployment-status",
     "governed_llm_archive_handoff": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-archive-handoff",
+    "verification_execution_authority_doctrine": "https://stegverse-labs.github.io/admissibility-wiki/governance/verification-vs-execution-authority",
+    "verification_execution_authority_status": "https://stegverse-labs.github.io/admissibility-wiki/status/verification-execution-authority-status.json",
     "optimization_target_doctrine": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit",
     "optimization_target_formalism_json": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit.v0.1.json",
     "optimization_target_publication_status": "https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json",
@@ -49,7 +51,7 @@ def main() -> int:
         results[name] = {"url": url, "reachable": ok, "http_status": status}
         if not ok: failures.append(message)
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.8",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.9",
         "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID','local')}.{os.getenv('GITHUB_RUN_ATTEMPT','0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
@@ -58,9 +60,10 @@ def main() -> int:
         "manual_tasks_required": [], "user_action_required": False,
         "authority_granted": False, "proof_authority_granted": False, "release_authority_granted": False,
         "source_sufficiency_granted": False, "interoperability_standing_granted": False,
-        "downstream_mutation_authority_granted": False,
+        "execution_authority_granted": False, "downstream_mutation_authority_granted": False,
         "non_claims": [
             "Route reachability is bounded publication evidence only.",
+            "Published verification doctrine does not grant execution authority.",
             "Trend and trend-change reachability do not make predictive claims or grant authority.",
             "Failed checks remain fail-closed and create no user task."
         ]
