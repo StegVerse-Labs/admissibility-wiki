@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/robotic-law-enforcement-deployment-admissibility.schema.json",
+  "title": "Robotic Law-Enforcement Deployment Admissibility Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id",
+    "deployment_class",
+    "requested_capabilities",
+    "human_authority",
+    "policy_reference",
+    "validity_window",
+    "shutdown_path",
+    "pre_consequence_refusal_point",
+    "procurement_disclosure",
+    "auditability",
+    "decision",
+    "reasons"
+  ],
+  "properties": {
+    "record_id": {"type": "string", "minLength": 1},
+    "deployment_class": {
+      "type": "string",
+      "enum": ["OBSERVATION", "PROTECTIVE_ASSISTANCE", "RESTRAINT_ASSISTANCE", "WEAPONIZED"]
+    },
+    "requested_capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "human_authority": {
+      "type": ["object", "null"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "institution": {"type": "string", "minLength": 1},
+        "authority_class": {"type": "string", "minLength": 1}
+      },
+      "required": ["name", "institution", "authority_class"],
+      "additionalProperties": false
+    },
+    "policy_reference": {"type": ["string", "null"]},
+    "validity_window": {
+      "type": "object",
+      "required": ["starts_at", "expires_at"],
+      "properties": {
+        "starts_at": {"type": "string", "format": "date-time"},
+        "expires_at": {"type": ["string", "null"], "format": "date-time"}
+      },
+      "additionalProperties": false
+    },
+    "shutdown_path": {"type": ["string", "null"]},
+    "pre_consequence_refusal_point": {"type": "boolean"},
+    "procurement_disclosure": {
+      "type": "object",
+      "required": ["complete", "beneficiaries", "compensation_tied_to_enforcement_outputs"],
+      "properties": {
+        "complete": {"type": "boolean"},
+        "beneficiaries": {"type": "array", "items": {"type": "string"}},
+        "compensation_tied_to_enforcement_outputs": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "auditability": {
+      "type": "object",
+      "required": ["consequential_review_available", "force_event_receipts", "operator_receipts"],
+      "properties": {
+        "consequential_review_available": {"type": "boolean"},
+        "force_event_receipts": {"type": "boolean"},
+        "operator_receipts": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "justification": {
+      "type": "object",
+      "properties": {
+        "human_failure_only": {"type": "boolean"},
+        "emergency_authority": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "decision": {"type": "string", "enum": ["ALLOW", "DENY", "FAIL_CLOSED"]},
+    "reasons": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  }
+}
