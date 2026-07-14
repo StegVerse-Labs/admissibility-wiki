@@ -2,12 +2,15 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 HISTORY = ROOT / "static" / "status" / "canonical-workflow-health-transition-trend-change-history.json"
 OUT = ROOT / "static" / "status" / "canonical-workflow-trend-change-frequency-summary.json"
+CHANGE_GENERATOR = ROOT / "scripts" / "generate_canonical_workflow_trend_change_frequency_change.py"
 WINDOW = 12
 
 
@@ -100,6 +103,17 @@ def main() -> int:
         "CANONICAL WORKFLOW TREND CHANGE FREQUENCY: PASS - "
         f"frequency={frequency_class} recency={recency_class} entries={total} manual_tasks=0"
     )
+
+    if not CHANGE_GENERATOR.exists():
+        raise SystemExit("workflow trend-change frequency change generator is missing")
+    completed = subprocess.run(
+        [sys.executable, str(CHANGE_GENERATOR)], cwd=ROOT, text=True,
+        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
+    )
+    if completed.stdout:
+        print(completed.stdout.rstrip())
+    if completed.returncode != 0:
+        raise SystemExit("workflow trend-change frequency change generation failed")
     return 0
 
 
