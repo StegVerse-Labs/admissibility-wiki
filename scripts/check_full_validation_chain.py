@@ -39,6 +39,7 @@ CHECKS = [
     ("Validate source locator and specialist routing", "scripts/check_source_locator_and_specialist_routing.py"),
     ("Validate review receipts and supersession", "scripts/check_review_receipts_and_supersession.py"),
     ("Validate external translation reconstruction receipt", "scripts/check_external_translation_reconstruction_receipt.py"),
+    ("Validate canonical workflow observation receipt", "scripts/check_canonical_workflow_observation_receipt.py"),
     ("Validate external frameworks index", "scripts/check_external_frameworks_index.py"),
     ("Validate external framework manifests", "scripts/check_external_framework_manifests.py"),
     ("Validate external framework terminology", "scripts/check_external_framework_terminology.py"),
