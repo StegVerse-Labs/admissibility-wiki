@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RECONCILER = ROOT / "scripts" / "reconcile_canonical_workflow_health_transition_history.py"
 CURRENT = ROOT / "static" / "status" / "canonical-workflow-health-transition-receipt.json"
 HISTORY = ROOT / "static" / "status" / "canonical-workflow-health-transition-history.json"
+TREND = ROOT / "static" / "status" / "canonical-workflow-health-transition-trend.json"
 FIXTURE = ROOT / "reports" / "canonical-health-transition-history-fixture.json"
 
 
@@ -72,6 +73,7 @@ def main() -> int:
     CURRENT.parent.mkdir(parents=True, exist_ok=True)
     CURRENT.write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
     HISTORY.unlink(missing_ok=True)
+    TREND.unlink(missing_ok=True)
 
     env = os.environ.copy()
     env["CANONICAL_HEALTH_TRANSITION_HISTORY_SOURCE"] = str(FIXTURE)
@@ -89,6 +91,8 @@ def main() -> int:
             fail(completed.stdout or "reconciler exited non-zero")
         if not HISTORY.exists():
             fail("history was not generated")
+        if not TREND.exists():
+            fail("trend summary was not generated")
 
         history = json.loads(HISTORY.read_text(encoding="utf-8"))
         transitions = history.get("transitions", [])
@@ -117,11 +121,20 @@ def main() -> int:
         if history.get("public_endpoint") != "/status/canonical-workflow-health-transition-history.json":
             fail("public endpoint mismatch")
 
-        print("CANONICAL WORKFLOW HEALTH TRANSITION HISTORY: PASS - entries=2 deduplicated=1 manual_tasks=0")
+        trend = json.loads(TREND.read_text(encoding="utf-8"))
+        if trend.get("trend_class") != "RECOVERY_OBSERVED":
+            fail("reconciled history did not produce recovery trend")
+        if trend.get("manual_tasks_required") != [] or trend.get("user_action_required") is not False:
+            fail("trend violates no-manual boundary")
+        if trend.get("evaluation_scope", {}).get("predictive_claim") is not False:
+            fail("trend must remain non-predictive")
+
+        print("CANONICAL WORKFLOW HEALTH TRANSITION HISTORY: PASS - entries=2 deduplicated=1 trend=RECOVERY_OBSERVED manual_tasks=0")
         return 0
     finally:
         CURRENT.unlink(missing_ok=True)
         HISTORY.unlink(missing_ok=True)
+        TREND.unlink(missing_ok=True)
         FIXTURE.unlink(missing_ok=True)
 
 
