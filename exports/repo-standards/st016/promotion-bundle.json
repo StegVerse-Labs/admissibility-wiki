@@ -1,0 +1,44 @@
+{
+  "schema_version": "0.1.0",
+  "bundle_type": "repo_standards_promotion_bundle",
+  "standard": "ST-016",
+  "source_repository": "StegVerse-Labs/admissibility-wiki",
+  "destination_repository": "StegVerse-Labs/repo-standards",
+  "destination_handoff": "REPO_STANDARDS_MIRROR_HANDOFF.md",
+  "destination_active_goal_observed": "RSTD-SANDBOX-FIRST-001",
+  "promotion_posture": "QUEUED_NON_COLLIDING_NO_DESTINATION_MUTATION",
+  "artifacts": [
+    "exports/repo-standards/st016/documentation-mesh-observation-closure.schema.json",
+    "scripts/write-public-activation-receipt.mjs",
+    "scripts/check-public-activation-receipt-writer.mjs",
+    "scripts/check_documentation_mesh_status.py",
+    "static/status/ecosystem-documentation-endpoints.json",
+    "static/status/cross-wiki-health-status.json"
+  ],
+  "capabilities": [
+    "run-bound peer root observation",
+    "run-bound endpoint registry observation",
+    "run-bound cross-wiki health observation",
+    "WORKFLOW_OBSERVED_MESH_COMPLETE closure",
+    "SOURCE_BLOCKED_FAIL_CLOSED closure",
+    "deterministic network-free validator mode",
+    "no-manual-task ownership",
+    "non-authority boundary preservation"
+  ],
+  "acceptance": {
+    "existing_workflow_only": true,
+    "new_workflow_required": false,
+    "destination_mutation_authority_granted": false,
+    "manual_copy_required": false,
+    "user_manual_action_required": false
+  },
+  "ingestion_rule": "Destination automation may ingest only after its current handoff permits ST-016 promotion work. Until then this bundle remains a complete queued source package.",
+  "non_claims": {
+    "destination_installed": false,
+    "destination_validated": false,
+    "release_authority_granted": false,
+    "cross_repo_authority_granted": false,
+    "standing_conferred": false,
+    "execution_authority": false
+  }
+}
