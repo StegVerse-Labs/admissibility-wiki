@@ -221,6 +221,15 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Download canonical validation report
+        uses: actions/download-artifact@v4
+        with:
+          name: full-validation-chain-report
+          path: reports/upstream-full-validation
+
+      - name: Publish run-bound workflow observation receipt
+        run: python scripts/publish_canonical_workflow_observation_receipt.py
+
       - name: Generate external framework reports
         run: python scripts/generate_external_framework_reports.py
 
