@@ -1,12 +1,14 @@
 {
-  "schema": "quantum_resilient_security_publication_status.v1",
+  "schema": "quantum_resilient_security_publication_status.v2",
   "goal_id": "stegverse-quantum-resilient-complete-security",
-  "state": "MERGED_PENDING_PAGES_AND_PUBLIC_ROUTE_OBSERVATION",
+  "state": "OBSERVER_MERGED_PENDING_WORKFLOW_OBSERVED_PUBLIC_ROUTES",
   "branch": "main",
   "issue": 20,
-  "pull_request": 22,
-  "merge_commit": "563ad7d6810de8eae3f7b884d680f29077489c37",
-  "observed_at": "2026-07-14T14:45:00Z",
+  "source_pull_request": 22,
+  "observer_pull_request": 24,
+  "source_merge_commit": "563ad7d6810de8eae3f7b884d680f29077489c37",
+  "observer_merge_commit": "fe7d9dc6de15c7a99d74aa780d80ea2a03bb81aa",
+  "observed_at": "2026-07-14T18:31:19Z",
   "publication": {
     "research_paper_markdown": "docs/research/stegverse-complete-security-paper.md",
     "research_paper_latex": "docs/research/stegverse-complete-security-paper.tex",
@@ -14,31 +16,37 @@
     "governance_page": "docs/governance/quantum-resilient-execution-security.md",
     "carousel_source": "docs/social/stegverse-quantum-security-carousel.md",
     "simulation": "simulations/quantum_execution_security_model.py",
-    "handoff": "docs/STEGVERSE_QUANTUM_SECURITY_MIRROR_HANDOFF.md"
+    "handoff": "docs/STEGVERSE_QUANTUM_SECURITY_MIRROR_HANDOFF.md",
+    "public_route_observer": "scripts/check_quantum_security_public_routes.py",
+    "public_route_receipt": "reports/quantum-security-public-route-observation.json"
   },
   "claim_boundary": {
     "unconditional_quantum_proof_claim": false,
     "post_quantum_cryptography_is_sufficient_for_execution_authority": false,
     "publication_grants_execution_authority": false,
     "publication_is_independent_certification": false,
+    "production_cryptographic_deployment_established": false,
     "permitted_terms": ["post-quantum", "quantum-resistant", "quantum-resilient"]
   },
   "authority_boundary": {
     "allowed_decisions": ["ALLOW", "DENY", "FAIL_CLOSED"],
     "commit_time_admissibility_required": true,
     "state_bound_execution_authority_required": true,
-    "reasoning_is_execution_authority": false
+    "reasoning_is_execution_authority": false,
+    "downstream_mutation_authority_granted": false
   },
   "validation": {
     "local_validator": "scripts/check_quantum_resilient_security_publication.py",
+    "public_route_observer": "scripts/check_quantum_security_public_routes.py",
     "canonical_command": "npm run validate",
     "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
-    "canonical_run": 2356,
+    "canonical_run": 2395,
     "canonical_result": "success",
-    "validated_head": "66d39dd1b0554365ccd56b62eaf9c03c4cf3738d",
-    "merged": true,
+    "validated_head": "c26c57265961bc953befbd8551aa2ba4452dd881",
+    "observer_merged": true,
     "pages_deployment_observed": false,
-    "public_observation_pending": true
+    "public_observation_pending": true,
+    "receipt_observed": false
   },
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
