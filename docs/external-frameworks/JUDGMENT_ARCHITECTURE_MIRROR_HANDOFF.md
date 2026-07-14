@@ -15,9 +15,13 @@ publication: Judgment Architecture: A Field Doctrine for Designing Human Judgmen
 publisher: Seedling & Star, LLC
 publication_year: 2026
 source_posture: user-supplied primary publication observed
-public_source_locator: required before sourced promotion
+public_source_locator: not found in current public-source search
+public_source_locator_state: BLOCKED_NO_STABLE_PUBLIC_LOCATOR_FOUND
+citation_state: PENDING_STABLE_SOURCE
 creator_authorization_or_endorsement: not established
 ```
+
+The current search result is bounded evidence only: no verifiable public result was found for the exact title, creator/title, publisher/title, or retail-catalog/title combinations. This is not evidence that no public source exists and is not an adverse finding about the framework.
 
 ## Installed surfaces
 
@@ -36,7 +40,9 @@ tests/fixtures/judgment-architecture-binding-adapter-cases.json
 scripts/check_judgment_architecture_binding_adapter.py
 static/status/judgment-architecture-binding-adapter-status.json
 docs/external-frameworks/receipts/judgment-architecture-binding-adapter-canonical-observation.json
-scripts/check_goal5_external_frameworks_all.py
+static/status/judgment-architecture-source-citation-status.json
+scripts/check_judgment_architecture_source_citation_status.py
+scripts/check_goal5_external_frameworks_all.py -> all current Judgment Architecture validators integrated
 ```
 
 ## Current state
@@ -62,10 +68,14 @@ canonical_workflow_merge_sha: 73f93877d4bdf47c569409244095f1a7cbafcea6
 goal5_report: PASS 53/53
 goal5_report_artifact_id: 8312919637
 goal5_report_digest: sha256:e57080231793bde43824be2b9a7b543aa8d7810697938b59a98db95d43db0cde
-stable_public_source_citations: pending
+source_citation_status_surface: installed
+source_citation_validator: installed
+source_citation_validator_in_aggregate: installed
+stable_public_source_citations: blocked pending stable locator or durable citable artifact
+promotion_state: FAIL_CLOSED_AT_FIXTURE_READY
 runtime_interoperability: not established
 execution_authority: none
-manual_user_action_required: false
+manual_user_action_required: false unless the only available stable source is privately held
 ```
 
 ## Canonical observation result
@@ -78,9 +88,23 @@ The workflow completed successfully. Its `goal5-external-frameworks-report` arti
 JUDGMENT ARCHITECTURE BINDING ADAPTER: PASS
 ```
 
-The generated deterministic case status is now recorded at `static/status/judgment-architecture-binding-adapter-status.json`. The workflow-bound receipt is recorded at `docs/external-frameworks/receipts/judgment-architecture-binding-adapter-canonical-observation.json`.
+The generated deterministic case status is recorded at `static/status/judgment-architecture-binding-adapter-status.json`. The workflow-bound receipt is recorded at `docs/external-frameworks/receipts/judgment-architecture-binding-adapter-canonical-observation.json`.
 
 This satisfies the canonical-observation goal only. It does not establish runtime interoperability, creator endorsement, certification, execution authority, or replay readiness.
+
+## Source citation intake result
+
+The source-citation workstream now has an explicit fail-closed machine-readable state rather than an implicit missing-source condition.
+
+```text
+status: BLOCKED_NO_STABLE_PUBLIC_LOCATOR_FOUND
+citation_state: PENDING_STABLE_SOURCE
+promotion_state: FAIL_CLOSED_AT_FIXTURE_READY
+validator: scripts/check_judgment_architecture_source_citation_status.py
+aggregate_integration: installed
+```
+
+The validator requires publication identity consistency, preserved non-authority boundaries, the research page's bounded source language, and this handoff's active source requirement. A blocked source state passes structural validation only when it remains visibly pending and cannot promote beyond `fixture_ready`.
 
 ## Converged proof path
 
@@ -122,21 +146,23 @@ field presence != current validity
 documented alignment != interoperability verification
 adapter BIND fixture != runtime authorization
 workflow PASS != runtime interoperability
+unsuccessful public-source search != invalid framework
 framework inclusion != certification or endorsement
 ```
 
-## Next evidence-gated goal
+## Active evidence-gated goal
 
 ```text
 Goal id: judgment-architecture-stable-source-citation-intake
 Goal: bind a stable canonical public source locator and page-level or section-level citations to the existing research page while preserving fixture_ready and all non-endorsement boundaries.
+Current blocker: no stable publicly verifiable locator or durable citable source artifact is presently bound.
 Required outputs:
-- stable canonical public source locator
+- stable canonical public source locator or durable source artifact
 - source version or publication identity
 - page-level or section-level citations
 - terminology comparison against the supplied publication
 - page and mapping updates preserving bounded claims
-- handoff update recording citation completeness or exact blocker
+- handoff update recording citation completeness or exact remaining blocker
 ```
 
 No replay-ready or interoperability-ready promotion is permitted until stable source evidence and an explicit replay evidence package exist.
@@ -144,7 +170,7 @@ No replay-ready or interoperability-ready promotion is permitted until stable so
 ## Remaining promotion requirements
 
 ```text
-stable canonical public source locator
+stable canonical public source locator or durable source artifact
 source version or publication identity
 page-level or section-level citations
 terminology verified against the supplied publication
@@ -161,15 +187,16 @@ Do not claim formal equivalence or verified interoperability.
 Do not claim that a Decision Commitment Record grants execution authority.
 Do not claim that adapter output alone grants runtime authorization.
 Do not claim that human commitment cures stale evidence, invalid delegation, state drift, or inadmissible consequence.
+Do not treat unsuccessful public-source discovery as evidence against the framework.
 Do not promote beyond fixture_ready without stable source and replay evidence.
 ```
 
 ## Permitted continuation
 
-A successor session may add stable source citations, repair citation-validation failures inside this repository, update status and receipts from observed evidence, and prepare replay evidence while preserving all non-authority boundaries.
+A successor session may discover or ingest a stable source locator, bind page-level or section-level citations, repair citation-validation failures inside this repository, update status and receipts from observed evidence, and prepare replay evidence while preserving all non-authority boundaries.
 
 No new active workflow or downstream repository mutation is authorized.
 
 ## Archival status
 
-All workstream-specific continuity, canonical observation evidence, active ownership, remaining requirements, and permitted continuation scope are durable in this handoff and installed artifacts. The originating conversation is ready for archiving without additional thread context.
+All workstream-specific continuity, canonical observation evidence, source-search result, exact blocker, active ownership, remaining requirements, and permitted continuation scope are durable in this handoff and installed artifacts. The originating conversation is ready for archiving without additional thread context.
