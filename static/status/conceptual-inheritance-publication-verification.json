@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "goal_id": "conceptual-inheritance-provenance-standing",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "verification_state": "PENDING_LIVE_DEPLOYMENT_VERIFICATION",
@@ -15,7 +15,8 @@
   "public_targets": [
     {
       "kind": "doctrine_page",
-      "url": "https://stegverse-labs.github.io/admissibility-wiki/docs/formalisms/conceptual-inheritance-provenance",
+      "route_key": "conceptual_inheritance_doctrine",
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/conceptual-inheritance-provenance",
       "state": "PENDING",
       "http_status": null,
       "content_marker_verified": false,
@@ -23,13 +24,37 @@
     },
     {
       "kind": "status_artifact",
+      "route_key": "conceptual_inheritance_status",
       "url": "https://stegverse-labs.github.io/admissibility-wiki/status/conceptual-inheritance-provenance-status.json",
+      "state": "PENDING",
+      "http_status": null,
+      "content_marker_verified": false,
+      "verified_at": null
+    },
+    {
+      "kind": "publication_status_artifact",
+      "route_key": "conceptual_inheritance_publication_status",
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/status/conceptual-inheritance-publication-verification.json",
       "state": "PENDING",
       "http_status": null,
       "content_marker_verified": false,
       "verified_at": null
     }
   ],
+  "automation": {
+    "deployment_checker": "scripts/check_governed_llm_deployment_status.py",
+    "execution_surface": ".github/workflows/validate-chain-continuation.yml#verify-public-pages",
+    "receipt_path": "reports/optimization-target-publication-verification-receipt.json",
+    "receipt_route_keys": [
+      "conceptual_inheritance_doctrine",
+      "conceptual_inheritance_status",
+      "conceptual_inheritance_publication_status"
+    ],
+    "failure_posture": "FAIL_CLOSED",
+    "manual_tasks_required": [],
+    "user_action_required": false,
+    "handoff_reconciliation_required_for_continuation": false
+  },
   "required_content_markers": [
     "Conceptual Inheritance and Provenance Standing",
     "architectural integrity",
@@ -40,8 +65,9 @@
   "non_claims": [
     "Pending deployment is not public verification",
     "Public visibility is not execution authority",
-    "A passing publication check does not decide authorship, ownership, infringement, or intent"
+    "A passing publication check does not decide authorship, ownership, infringement, intent, derivation, or origin-claim standing"
   ],
   "manual_task_required": false,
-  "recorded_at": "2026-07-11T00:00:00Z"
+  "user_manual_action_required": false,
+  "recorded_at": "2026-07-14T00:00:00Z"
 }
