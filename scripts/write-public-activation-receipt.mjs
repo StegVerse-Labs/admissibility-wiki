@@ -21,6 +21,8 @@ const urls = {
   governed_llm_site_verification_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-site-verification',
   governed_llm_deployment_status_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-deployment-status',
   governed_llm_archive_handoff_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-archive-handoff',
+  verification_execution_authority_doctrine_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/governance/verification-vs-execution-authority',
+  verification_execution_authority_status_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/status/verification-execution-authority-status.json',
   optimization_target_doctrine_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit',
   optimization_target_formalism_json_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit.v0.1.json',
   optimization_target_publication_status_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json',
@@ -36,6 +38,11 @@ const radiologyChecks = new Set([
   'ai_led_radiology_formalism_reachable',
   'ai_led_radiology_schema_reachable',
   'ai_led_radiology_status_reachable'
+]);
+
+const verificationAuthorityChecks = new Set([
+  'verification_execution_authority_doctrine_reachable',
+  'verification_execution_authority_status_reachable'
 ]);
 
 async function verifyUrl(name, url) {
@@ -79,6 +86,7 @@ const checks = Object.fromEntries(Object.entries(urls).filter(([name]) => !radio
       url,
       verifier: (
         name.startsWith('optimization_target_') ||
+        verificationAuthorityChecks.has(name) ||
         name === 'external_translation_reconstruction_receipt_reachable'
       )
         ? 'scripts/check_governed_llm_deployment_status.py run by verify-public-pages'
@@ -95,7 +103,15 @@ let optimizationTargetReceipt = null;
 if (fs.existsSync(optimizationReceiptPath)) {
   optimizationTargetReceipt = JSON.parse(fs.readFileSync(optimizationReceiptPath, 'utf8'));
   if (optimizationTargetReceipt.verification_result !== 'PASS') {
-    throw new Error('optimization-target publication verification receipt is not PASS');
+    throw new Error('governed documentation publication verification receipt is not PASS');
+  }
+}
+
+const verificationAuthorityRoutes = optimizationTargetReceipt?.routes || {};
+for (const name of verificationAuthorityChecks) {
+  const route = verificationAuthorityRoutes[name];
+  if (!route || route.reachable !== true) {
+    throw new Error(`verification-authority route is not confirmed in publication receipt: ${name}`);
   }
 }
 
@@ -125,8 +141,33 @@ const radiologyActivationClosure = {
   continuation_source: 'docs/AI_LED_RADIOLOGY_MIRROR_HANDOFF.md'
 };
 
+const verificationAuthorityActivationClosure = {
+  schema: 'verification_execution_authority_activation_closure.v1',
+  goal_id: 'verification-vs-execution-authority',
+  state: 'WORKFLOW_OBSERVED_PUBLICATION_COMPLETE',
+  commit,
+  run_id: runId,
+  run_attempt: runAttempt,
+  evidence: Object.fromEntries(
+    [...verificationAuthorityChecks].map((name) => [name, verificationAuthorityRoutes[name]])
+  ),
+  all_required_public_routes_verified: true,
+  manual_task_requirement: 'NONE',
+  user_manual_action_required: false,
+  authority_granted: false,
+  execution_authority_granted: false,
+  certification_authority_granted: false,
+  downstream_mutation_authority_granted: false,
+  continuation_source: 'docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md',
+  non_claims: [
+    'Route reachability is bounded publication evidence only.',
+    'Independent verification remains evidence input and does not become execution authority.',
+    'Publication does not grant action-level admissibility or permission to execute.'
+  ]
+};
+
 const receipt = {
-  schema: 'admissibility_wiki_public_activation_receipt.v4',
+  schema: 'admissibility_wiki_public_activation_receipt.v5',
   receipt_id: `public-activation.workflow.${runId || 'unknown'}.${runAttempt || '0'}`,
   created_at: new Date().toISOString(),
   repository: 'StegVerse-Labs/admissibility-wiki',
@@ -137,7 +178,8 @@ const receipt = {
   run_attempt: runAttempt,
   checks,
   activation_closures: {
-    ai_led_radiology: radiologyActivationClosure
+    ai_led_radiology: radiologyActivationClosure,
+    verification_execution_authority: verificationAuthorityActivationClosure
   },
   linked_receipts: {
     optimization_target_publication_verification: optimizationTargetReceipt
@@ -156,6 +198,7 @@ const receipt = {
     'This receipt does not create provider governance.',
     'This receipt does not create external indexing.',
     'This receipt does not certify clinical performance or authorize medical practice.',
+    'This receipt does not convert verification or certification into execution authority.',
     'This receipt does not replace GitHub Pages deployment records.'
   ],
   next_action: 'Archive this receipt and its linked verification receipts with the workflow run artifacts; use them only as bounded deployment evidence.'
