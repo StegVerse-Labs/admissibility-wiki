@@ -11,7 +11,9 @@ ROOT = Path(__file__).resolve().parents[1]
 GENERATOR = ROOT / "scripts" / "generate_canonical_workflow_stability_change_frequency_change.py"
 CURRENT = ROOT / "static" / "status" / "canonical-workflow-stability-change-frequency-summary.json"
 PREVIOUS = ROOT / "reports" / "stability-change-frequency-previous.fixture.json"
+HISTORY_FIXTURE = ROOT / "reports" / "stability-change-frequency-change-history.fixture.json"
 OUT = ROOT / "static" / "status" / "canonical-workflow-stability-change-frequency-change-receipt.json"
+HISTORY = ROOT / "static" / "status" / "canonical-workflow-stability-change-frequency-change-history.json"
 
 
 def fail(message: str) -> None:
@@ -21,27 +23,23 @@ def fail(message: str) -> None:
 def main() -> int:
     CURRENT.parent.mkdir(parents=True, exist_ok=True)
     PREVIOUS.parent.mkdir(parents=True, exist_ok=True)
-    previous = {
-        "frequency_class": "ISOLATED_STABILITY_CHANGE_OBSERVED",
-        "recency_class": "RECENT_STABILITY_CHANGE",
-    }
+    previous = {"frequency_class": "ISOLATED_STABILITY_CHANGE_OBSERVED", "recency_class": "RECENT_STABILITY_CHANGE"}
     current = {
         "frequency_class": "FREQUENT_STABILITY_CHANGE_OBSERVED",
         "recency_class": "CURRENT_RECEIPT_CHANGED",
         "evidence": {"latest_change_receipt_id": "stability-change.4", "evaluated_entries": 4},
-        "evaluation_scope": {
-            "descriptive_only": True,
-            "predictive_claim": False,
-            "causal_claim_beyond_receipt_fields": False,
-        },
+        "evaluation_scope": {"descriptive_only": True, "predictive_claim": False, "causal_claim_beyond_receipt_fields": False},
         "manual_tasks_required": [],
         "user_action_required": False,
     }
     PREVIOUS.write_text(json.dumps(previous, indent=2) + "\n", encoding="utf-8")
+    HISTORY_FIXTURE.write_text(json.dumps({"changes": []}, indent=2) + "\n", encoding="utf-8")
     CURRENT.write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
     OUT.unlink(missing_ok=True)
+    HISTORY.unlink(missing_ok=True)
     env = dict(os.environ)
     env["CANONICAL_STABILITY_CHANGE_FREQUENCY_SOURCE"] = str(PREVIOUS)
+    env["CANONICAL_STABILITY_CHANGE_FREQUENCY_CHANGE_HISTORY_SOURCE"] = str(HISTORY_FIXTURE)
 
     try:
         completed = subprocess.run(
@@ -50,8 +48,8 @@ def main() -> int:
         )
         if completed.returncode != 0:
             fail(completed.stdout or "generator exited non-zero")
-        if not OUT.exists():
-            fail("change receipt was not generated")
+        if not OUT.exists() or not HISTORY.exists():
+            fail("comparison receipt or history was not generated")
         data = json.loads(OUT.read_text(encoding="utf-8"))
         if data.get("change_state") != "CHANGED":
             fail("change_state mismatch")
@@ -75,12 +73,17 @@ def main() -> int:
             fail("change owner mismatch")
         if data.get("public_endpoint") != "/status/canonical-workflow-stability-change-frequency-change-receipt.json":
             fail("public endpoint mismatch")
-        print("CANONICAL WORKFLOW STABILITY CHANGE FREQUENCY CHANGE: PASS - changed_fields=2 manual_tasks=0")
+        history = json.loads(HISTORY.read_text(encoding="utf-8"))
+        if len(history.get("changes", [])) != 1:
+            fail("comparison history integration mismatch")
+        print("CANONICAL WORKFLOW STABILITY CHANGE FREQUENCY CHANGE: PASS - changed_fields=2 history=1 manual_tasks=0")
         return 0
     finally:
         PREVIOUS.unlink(missing_ok=True)
+        HISTORY_FIXTURE.unlink(missing_ok=True)
         CURRENT.unlink(missing_ok=True)
         OUT.unlink(missing_ok=True)
+        HISTORY.unlink(missing_ok=True)
 
 
 if __name__ == "__main__":
