@@ -50,8 +50,8 @@ def main() -> int:
             fail(f"required automation file is missing: {path.relative_to(ROOT)}")
 
     data = json.loads(STATUS.read_text(encoding="utf-8"))
-    if data.get("state") != "AUTOMATED_PUBLICATION_BOUND":
-        fail("state must be AUTOMATED_PUBLICATION_BOUND")
+    if data.get("state") != "AUTOMATED_PUBLICATION_AND_HISTORY_BOUND":
+        fail("state must be AUTOMATED_PUBLICATION_AND_HISTORY_BOUND")
     if data.get("manual_tasks_required") != []:
         fail("manual_tasks_required must be empty")
     if data.get("user_action_required") is not False:
@@ -63,20 +63,37 @@ def main() -> int:
     if data.get("downstream_mutation_authority_granted") is not False:
         fail("downstream_mutation_authority_granted must be false")
 
-    if data.get("automation_contract_endpoint") != "/status/canonical-workflow-observation-automation.json":
-        fail("automation contract endpoint mismatch")
-    if data.get("run_bound_receipt_endpoint") != "/status/canonical-workflow-observation-receipt.json":
-        fail("run-bound receipt endpoint mismatch")
+    expected_endpoints = {
+        "automation_contract_endpoint": "/status/canonical-workflow-observation-automation.json",
+        "run_bound_receipt_endpoint": "/status/canonical-workflow-observation-receipt.json",
+        "history_endpoint": "/status/canonical-workflow-observation-history.json",
+    }
+    for key, value in expected_endpoints.items():
+        if data.get(key) != value:
+            fail(f"{key} mismatch")
 
     chain = data.get("publication_chain", [])
     required_phrases = [
         "full-validation-chain-report artifact transfers it to build-pages",
         "build-pages publishes the embedded receipt into static/status",
-        "verify-public-pages checks both observation endpoints",
+        "build-pages reconciles the current receipt with the prior public bounded history",
+        "verify-public-pages checks the automation, run-bound receipt, and history endpoints",
     ]
     for phrase in required_phrases:
         if phrase not in chain:
             fail(f"publication chain missing: {phrase}")
+
+    history_policy = data.get("history_policy", {})
+    if history_policy.get("maximum_entries") != 24:
+        fail("history maximum_entries must be 24")
+    if history_policy.get("deduplication_key") != "receipt_id":
+        fail("history deduplication_key must be receipt_id")
+    if history_policy.get("ordering") != "created_at ascending":
+        fail("history ordering must be created_at ascending")
+    if "without assigning a manual task" not in history_policy.get("prior_history_unavailable_result", ""):
+        fail("prior-history-unavailable policy must remain no-manual")
+    if history_policy.get("next_reconciliation") != "next repository-owned canonical workflow trigger":
+        fail("history reconciliation must remain automation-owned")
 
     states = set(data.get("observation_states", []))
     required_states = {"PASS_OBSERVED", "FAIL_CLOSED_OBSERVED", "INCOMPLETE_OBSERVATION"}
@@ -100,7 +117,10 @@ def main() -> int:
     run_validator(PUBLICATION_VALIDATOR, "run-bound publication validator")
     run_validator(HISTORY_VALIDATOR, "observation history validator")
 
-    print("CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - manual_tasks=0 user_action=false publication=bound history=reconciled")
+    print(
+        "CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - "
+        "manual_tasks=0 user_action=false publication=bound history=reconciled"
+    )
     return 0
 
 
