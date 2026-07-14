@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1",
+  "record_state": "installed",
+  "authority_boundary": "Source-locator intake verifies locator posture only. It does not validate source claims, establish peer review, prove equivalence, or create execution authority.",
+  "allowed_locator_types": ["url", "doi", "arxiv", "repository_path", "publisher_record", "citation_record"],
+  "allowed_verification_results": ["CONFIRMED", "PARTIAL", "UNRESOLVED", "CONFLICTING", "REJECTED"],
+  "records": [
+    {
+      "locator_intake_id": "locator-lai-operational-architecture-v0-1",
+      "bibliographic_id": "bib-lai-operational-architecture-v0-1",
+      "source_id": "external-physics-lai-operational-architecture-v0-1",
+      "submitted_locator": null,
+      "locator_type": null,
+      "verification_result": "UNRESOLVED",
+      "verification_reason": "No stable public URL, DOI, arXiv ID, repository path, publisher record, or citation record is currently stored.",
+      "evidence_references": [
+        "docs/evidence/external-physics/lai-operational-architecture-source-evidence.md",
+        "static/translation-records/external-bibliographic-intake.v0.1.json"
+      ],
+      "resulting_action": "ROUTE_TO_LOCATOR_ACQUISITION",
+      "review_posture": "deferred",
+      "owner": "Admissibility Wiki source-intake governance",
+      "non_claims": "This unresolved locator result does not reject or validate the source paper."
+    }
+  ]
+}
