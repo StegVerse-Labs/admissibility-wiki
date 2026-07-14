@@ -25,6 +25,7 @@ PAGES = {
     "canonical_workflow_health_summary": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-summary.json",
     "canonical_workflow_health_transition_receipt": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-transition-receipt.json",
     "canonical_workflow_health_transition_history": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-transition-history.json",
+    "canonical_workflow_health_transition_trend": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-transition-trend.json",
     "kpt_external_framework_page": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/kpt",
     "kpt_external_framework_status": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-external-framework-intake-status.json",
 }
@@ -47,7 +48,7 @@ def main() -> int:
         results[name] = {"url": url, "reachable": ok, "http_status": status}
         if not ok: failures.append(message)
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.6",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.7",
         "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID','local')}.{os.getenv('GITHUB_RUN_ATTEMPT','0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
@@ -57,7 +58,11 @@ def main() -> int:
         "authority_granted": False, "proof_authority_granted": False, "release_authority_granted": False,
         "source_sufficiency_granted": False, "interoperability_standing_granted": False,
         "downstream_mutation_authority_granted": False,
-        "non_claims": ["Route reachability is bounded publication evidence only.", "Failed checks remain fail-closed and create no user task."]
+        "non_claims": [
+            "Route reachability is bounded publication evidence only.",
+            "Trend reachability does not make a predictive claim or grant authority.",
+            "Failed checks remain fail-closed and create no user task."
+        ]
     }
     RECEIPT.parent.mkdir(parents=True, exist_ok=True); RECEIPT.write_text(json.dumps(receipt, indent=2)+"\n", encoding="utf-8")
     print(f"wrote {RECEIPT}")
