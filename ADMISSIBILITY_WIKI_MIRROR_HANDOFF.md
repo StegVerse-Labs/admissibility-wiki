@@ -6,7 +6,7 @@ This file is the handoff source of truth for `StegVerse-Labs/admissibility-wiki`
 
 ## Active goal
 
-Complete governed public documentation activation through the single canonical workflow while eliminating manual validation, observation, reconciliation, health-classification, transition-explanation, and archival tasks.
+Complete governed public documentation activation through the single canonical workflow while eliminating manual validation, observation, reconciliation, health classification, transition explanation, transition-history maintenance, and archival tasks.
 
 ## Current repository state
 
@@ -44,42 +44,46 @@ Installed automation chain:
 workflow trigger
 -> full validation receipt
 -> public run-bound observation receipt
--> bounded history reconciliation
+-> bounded observation history reconciliation
 -> health classification
 -> health-transition receipt
+-> bounded health-transition history reconciliation
 -> Pages deployment
--> public endpoint verification
+-> automatic public endpoint verification
 -> hourly re-observation
 ```
 
 Durable surfaces:
 
 ```text
+scripts/reconcile_canonical_workflow_observation_history.py
 scripts/generate_canonical_workflow_health_summary.py
 scripts/check_canonical_workflow_health_summary.py
 scripts/check_canonical_workflow_health_transition_receipt.py
+scripts/reconcile_canonical_workflow_health_transition_history.py
+scripts/check_canonical_workflow_health_transition_history.py
+scripts/check_canonical_workflow_observation_automation_status.py
 static/status/canonical-workflow-observation-automation.json
 static/status/canonical-workflow-health-summary.json (generated)
 static/status/canonical-workflow-health-transition-receipt.json (generated)
+static/status/canonical-workflow-health-transition-history.json (generated)
 docs/CANONICAL_WORKFLOW_OBSERVATION_AUTOMATION_STATUS.md
 ```
 
-The transition receipt records:
+Health-transition history policy:
 
 ```text
-transition_state: CHANGED | UNCHANGED
-prior_health
-resulting_health
-prior_cause
-resulting_cause
-fail_closed_consequence
+maximum_entries: 24
+deduplication_key: receipt_id
+ordering: generated_at ascending
+prior public history unavailable: initialize a new bounded sequence
+reconciliation_owner: canonical build-pages job
+next_reconciliation: next repository-owned canonical workflow trigger
 manual_tasks_required: []
 user_action_required: false
-transition_owner: canonical build-pages job
-next_evaluation: next repository-owned canonical workflow trigger
 ```
 
-A cancelled, failed, incomplete, externally deferred, unchanged, or history-unavailable run does not create a user task.
+The post-deployment verifier automatically checks the observation automation, observation receipt, observation history, health summary, health-transition receipt, and health-transition history endpoints. A missing or unreachable endpoint fails closed and does not create a user task.
 
 ## Authority boundaries
 
@@ -97,11 +101,10 @@ workflow evidence does not grant proof, release, execution, custody, or downstre
 ### `StegVerse-Labs/admissibility-wiki`
 
 ```text
-Add a bounded public history of health-transition receipts.
-Deduplicate transition receipts by receipt_id.
-Order by generated_at and retain a bounded newest set.
-Reconcile automatically on each canonical build.
-Verify the transition receipt and transition-history public endpoints automatically.
+Add an automatic health-transition trend summary derived from bounded transition history.
+Classify stability, recovery, repeated failure, and unresolved deferral without predictive overclaiming.
+Emit a bounded machine-readable trend receipt and verify its public endpoint automatically.
+Keep all trend evaluation repository-owned and fail-closed.
 Repair only exact deterministic failures without weakening checks.
 Manual user task: none.
 ```
@@ -131,7 +134,7 @@ No tag or release is authorized until canonical validation, build, public-route 
 ## Next task
 
 ```text
-1. Build automatic bounded health-transition history from generated transition receipts.
+1. Build an automatic bounded health-transition trend summary from generated transition history.
 2. Bind it to the existing canonical build path without adding a second active workflow.
 3. Add deterministic validation and public endpoint verification.
 4. Continue repository-owned observation and fail-closed repair.
@@ -140,4 +143,4 @@ No tag or release is authorized until canonical validation, build, public-route 
 
 ## Archive posture
 
-This handoff preserves the active goal, installed automation, decisions, ownership, blockers, authority boundaries, remaining work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
+This handoff preserves the active goal, installed automation, decisions, ownership, blockers, authority boundaries, completed transition-history work, remaining work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
