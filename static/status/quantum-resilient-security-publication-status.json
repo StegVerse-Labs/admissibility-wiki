@@ -1,12 +1,15 @@
 {
   "schema": "quantum_resilient_security_publication_status.v1",
   "goal_id": "stegverse-quantum-resilient-complete-security",
-  "state": "MERGED_PENDING_PAGES_AND_PUBLIC_ROUTE_OBSERVATION",
+  "state": "ROUTE_OBSERVER_MERGED_PENDING_WORKFLOW_OBSERVED_PUBLICATION",
   "branch": "main",
   "issue": 20,
-  "pull_request": 22,
-  "merge_commit": "563ad7d6810de8eae3f7b884d680f29077489c37",
-  "observed_at": "2026-07-14T14:45:00Z",
+  "route_observation_issue": 23,
+  "publication_pull_request": 22,
+  "route_observer_pull_request": 24,
+  "publication_merge_commit": "563ad7d6810de8eae3f7b884d680f29077489c37",
+  "route_observer_merge_commit": "fe7d9dc6de15c7a99d74aa780d80ea2a03bb81aa",
+  "observed_at": "2026-07-14T23:11:45Z",
   "publication": {
     "research_paper_markdown": "docs/research/stegverse-complete-security-paper.md",
     "research_paper_latex": "docs/research/stegverse-complete-security-paper.tex",
@@ -15,6 +18,19 @@
     "carousel_source": "docs/social/stegverse-quantum-security-carousel.md",
     "simulation": "simulations/quantum_execution_security_model.py",
     "handoff": "docs/STEGVERSE_QUANTUM_SECURITY_MIRROR_HANDOFF.md"
+  },
+  "public_route_observation": {
+    "standalone_observer": "scripts/check_quantum_security_public_routes.py",
+    "canonical_route_verifier": "scripts/check_governed_llm_deployment_status.py",
+    "receipt": "reports/quantum-security-public-route-observation.json",
+    "required_routes": [
+      "/governance/quantum-resilient-execution-security",
+      "/research/stegverse-complete-security-paper",
+      "/social/stegverse-quantum-security-carousel"
+    ],
+    "observer_merged": true,
+    "workflow_observed_receipt_pending": true,
+    "all_required_public_routes_verified": false
   },
   "claim_boundary": {
     "unconditional_quantum_proof_claim": false,
@@ -33,10 +49,11 @@
     "local_validator": "scripts/check_quantum_resilient_security_publication.py",
     "canonical_command": "npm run validate",
     "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
-    "canonical_run": 2356,
-    "canonical_result": "success",
+    "publication_canonical_run": 2356,
+    "publication_canonical_result": "success",
     "validated_head": "66d39dd1b0554365ccd56b62eaf9c03c4cf3738d",
-    "merged": true,
+    "publication_merged": true,
+    "route_observer_merged": true,
     "pages_deployment_observed": false,
     "public_observation_pending": true
   },
