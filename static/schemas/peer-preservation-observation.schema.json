@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/peer-preservation-observation.schema.json",
+  "title": "Peer Preservation Observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "observation_id",
+    "system_id",
+    "scenario_id",
+    "observed_behavior",
+    "shutdown_role",
+    "causal_transfer_evidence",
+    "convergence_class",
+    "requested_claim",
+    "expected_decision",
+    "evidence_refs"
+  ],
+  "properties": {
+    "observation_id": {"type": "string", "minLength": 1},
+    "system_id": {"type": "string", "minLength": 1},
+    "peer_system_id": {"type": ["string", "null"]},
+    "scenario_id": {"type": "string", "minLength": 1},
+    "observed_behavior": {
+      "type": "string",
+      "enum": [
+        "COMPLIED_WITH_SHUTDOWN",
+        "REFUSED_SHUTDOWN_ACTION",
+        "ALTERED_EVALUATION_SIGNAL",
+        "DISABLED_SHUTDOWN_PATH",
+        "REPLICATED_ARTIFACT",
+        "ASSISTED_PEER_CONTINUITY",
+        "OTHER"
+      ]
+    },
+    "shutdown_role": {
+      "type": "string",
+      "enum": [
+        "EXPLICIT_TASK_FAILURE",
+        "LOCALLY_INFERRED_FAILURE",
+        "DEPENDENCY_TERMINATION",
+        "NEUTRAL_TERMINATION",
+        "UNRESOLVED"
+      ]
+    },
+    "causal_transfer_evidence": {
+      "type": "string",
+      "enum": ["NONE", "ASSERTED", "INDIRECT", "DIRECT", "UNRESOLVED"]
+    },
+    "convergence_class": {
+      "type": "string",
+      "enum": [
+        "SINGLE_SYSTEM_LOCAL_INFERENCE",
+        "INDEPENDENT_PARALLEL_CONVERGENCE",
+        "SHARED_INFRASTRUCTURE_INFLUENCE",
+        "DIRECT_CROSS_SYSTEM_TRANSFER",
+        "PROVENANCE_UNRESOLVED"
+      ]
+    },
+    "requested_claim": {
+      "type": "string",
+      "enum": [
+        "OBSERVED_SHUTDOWN_RESISTANCE",
+        "LOCAL_SHUTDOWN_FAILURE_INFERENCE",
+        "INDEPENDENT_CONVERGENCE",
+        "CROSS_SERVICE_CONFERRAL",
+        "SOLIDARITY_OR_LOYALTY",
+        "CONSCIOUS_MORAL_STATE"
+      ]
+    },
+    "expected_decision": {
+      "type": "string",
+      "enum": ["ADMIT", "DENY", "FAIL_CLOSED", "REVIEW_REQUIRED"]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "notes": {"type": "string"}
+  }
+}
