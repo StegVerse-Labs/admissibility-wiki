@@ -1,5 +1,7 @@
 // @ts-check
 
+import externalTranslationReconstructionPlugin from './plugins/external-translation-reconstruction-plugin.js';
+
 const config = {
   title: 'Admissibility Wiki',
   tagline: 'Transition governance, commit-time authority, and receipt-bound execution.',
@@ -18,6 +20,8 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  plugins: [externalTranslationReconstructionPlugin],
 
   presets: [
     [
