@@ -1,0 +1,70 @@
+{
+  "schema_version": "0.1",
+  "declaration_id": "sbd-demo-governed-llm-001",
+  "system_id": "stegverse-governed-llm-demo",
+  "generated_at": "2026-07-14T12:00:00Z",
+  "surfaces": {
+    "model": {
+      "present": true,
+      "state_kind": "transient",
+      "persistence": "invocation",
+      "mutable_by_inference": false,
+      "storage_refs": []
+    },
+    "orchestration": {
+      "present": true,
+      "state_kind": "session",
+      "persistence": "session",
+      "mutable_by_inference": true,
+      "storage_refs": ["orchestrator/session-state"]
+    },
+    "session": {
+      "present": true,
+      "state_kind": "session",
+      "persistence": "session",
+      "mutable_by_inference": true,
+      "storage_refs": ["session/continuity-packet"]
+    },
+    "memory": {
+      "present": true,
+      "state_kind": "durable",
+      "persistence": "cross-session",
+      "mutable_by_inference": false,
+      "storage_refs": ["memory/governed-record-store"]
+    },
+    "environment": {
+      "present": true,
+      "state_kind": "external",
+      "persistence": "indefinite",
+      "mutable_by_inference": false,
+      "storage_refs": ["environment/tool-observation-receipts"]
+    }
+  },
+  "continuity": {
+    "prior_state_can_affect_future_transition": true,
+    "feedback_paths": [
+      "model-output->orchestrator-state",
+      "orchestrator-state->future-model-input",
+      "tool-observation->continuity-packet"
+    ],
+    "trajectory_dependent": true,
+    "reconstructable": true,
+    "evidence_refs": [
+      "receipt://session/001",
+      "manifest://governed-llm-demo/001"
+    ]
+  },
+  "authority": {
+    "model_has_execution_authority": false,
+    "commit_boundary": "governed-transition/commitment-request",
+    "decision_source": "policy-engine",
+    "policy_refs": ["policy://governed-llm/default"],
+    "delegation_refs": []
+  },
+  "claims_boundary": {
+    "consciousness_claim": "not_evaluated",
+    "personhood_claim": "not_evaluated",
+    "welfare_claim": "not_evaluated",
+    "scope_note": "This declaration describes operational state and authority boundaries only."
+  }
+}
