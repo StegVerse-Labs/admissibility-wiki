@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RECONCILER = ROOT / "scripts" / "reconcile_canonical_workflow_observation_history.py"
 CURRENT = ROOT / "static" / "status" / "canonical-workflow-observation-receipt.json"
 HISTORY = ROOT / "static" / "status" / "canonical-workflow-observation-history.json"
+HEALTH = ROOT / "static" / "status" / "canonical-workflow-health-summary.json"
 FIXTURE = ROOT / "reports" / "canonical-observation-history-fixture.json"
 
 
@@ -28,6 +29,10 @@ def main() -> int:
         "created_at": "2026-07-14T06:00:00+00:00",
         "commit": "current-sha",
         "run_id": "current-run",
+        "job_status_observed": "success",
+        "full_validation_status": "PASS",
+        "reconstruction_status": "PASS",
+        "reconstruction_evaluation_result": "DEFER_NO_SUPERSESSION",
         "observation_state": "PASS_OBSERVED",
         "manual_tasks_required": [],
         "user_action_required": False,
@@ -40,6 +45,7 @@ def main() -> int:
                 "created_at": "2026-07-14T05:00:00+00:00",
                 "commit": "previous-sha",
                 "run_id": "previous-run",
+                "job_status_observed": "cancelled",
                 "observation_state": "FAIL_CLOSED_OBSERVED",
                 "manual_tasks_required": [],
                 "user_action_required": False,
@@ -52,6 +58,7 @@ def main() -> int:
     FIXTURE.parent.mkdir(parents=True, exist_ok=True)
     FIXTURE.write_text(json.dumps(previous_payload, indent=2) + "\n", encoding="utf-8")
     HISTORY.unlink(missing_ok=True)
+    HEALTH.unlink(missing_ok=True)
 
     env = os.environ.copy()
     env["CANONICAL_OBSERVATION_HISTORY_SOURCE"] = str(FIXTURE)
@@ -69,6 +76,8 @@ def main() -> int:
             fail(completed.stdout or "reconciler exited non-zero")
         if not HISTORY.exists():
             fail("history was not generated")
+        if not HEALTH.exists():
+            fail("health summary was not generated")
 
         history = json.loads(HISTORY.read_text(encoding="utf-8"))
         observations = history.get("observations", [])
@@ -89,11 +98,18 @@ def main() -> int:
         if history.get("public_endpoint") != "/status/canonical-workflow-observation-history.json":
             fail("public endpoint mismatch")
 
-        print("CANONICAL WORKFLOW OBSERVATION HISTORY: PASS - entries=2 manual_tasks=0")
+        health = json.loads(HEALTH.read_text(encoding="utf-8"))
+        if health.get("current_health") != "HEALTHY":
+            fail("latest health classification mismatch")
+        if health.get("manual_tasks_required") != [] or health.get("user_action_required") is not False:
+            fail("health summary violates no-manual boundary")
+
+        print("CANONICAL WORKFLOW OBSERVATION HISTORY: PASS - entries=2 health=HEALTHY manual_tasks=0")
         return 0
     finally:
         CURRENT.unlink(missing_ok=True)
         HISTORY.unlink(missing_ok=True)
+        HEALTH.unlink(missing_ok=True)
         FIXTURE.unlink(missing_ok=True)
 
 
