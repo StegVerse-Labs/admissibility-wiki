@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/exports/repo-standards/st016/documentation-mesh-observation-closure.schema.json",
+  "title": "ST-016 Documentation Mesh Observation Closure",
+  "type": "object",
+  "required": [
+    "schema",
+    "goal_id",
+    "state",
+    "commit",
+    "run_id",
+    "run_attempt",
+    "peer_observations",
+    "all_required_peer_surfaces_verified",
+    "source_blocked_peers",
+    "manual_task_requirement",
+    "user_manual_action_required",
+    "cross_repo_authority_granted",
+    "standing_conferred",
+    "execution_authority_granted",
+    "handoff_reconciliation_required_for_continuation"
+  ],
+  "properties": {
+    "schema": {"const": "documentation_mesh_observation_closure.v1"},
+    "goal_id": {"const": "documentation-mesh-live-peer-observation"},
+    "state": {"enum": ["WORKFLOW_OBSERVED_MESH_COMPLETE", "SOURCE_BLOCKED_FAIL_CLOSED", "SIMULATED_VALIDATOR_PASS"]},
+    "commit": {"type": ["string", "null"]},
+    "run_id": {"type": ["string", "null"]},
+    "run_attempt": {"type": ["string", "null"]},
+    "peer_observations": {"type": "object", "minProperties": 1},
+    "all_required_peer_surfaces_verified": {"type": "boolean"},
+    "source_blocked_peers": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "manual_task_requirement": {"const": "NONE"},
+    "user_manual_action_required": {"const": false},
+    "cross_repo_authority_granted": {"const": false},
+    "standing_conferred": {"const": false},
+    "execution_authority_granted": {"const": false},
+    "handoff_reconciliation_required_for_continuation": {"const": false},
+    "continuation_source": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"state": {"const": "WORKFLOW_OBSERVED_MESH_COMPLETE"}}},
+      "then": {
+        "properties": {
+          "all_required_peer_surfaces_verified": {"const": true},
+          "source_blocked_peers": {"maxItems": 0}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"state": {"const": "SOURCE_BLOCKED_FAIL_CLOSED"}}},
+      "then": {
+        "properties": {
+          "all_required_peer_surfaces_verified": {"const": false},
+          "source_blocked_peers": {"minItems": 1}
+        }
+      }
+    }
+  ],
+  "additionalProperties": true
+}
