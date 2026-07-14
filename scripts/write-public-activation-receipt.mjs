@@ -14,7 +14,8 @@ const PRESERVED_CONTRACT_MARKERS = [
   'handoff_reconciliation_required_for_continuation: false',
   'verification_execution_authority_activation_closure.v1',
   'verification_execution_authority_doctrine_reachable',
-  'verification_execution_authority_status_reachable'
+  'verification_execution_authority_status_reachable',
+  'Independent verification remains evidence input and does not become execution authority.'
 ];
 void PRESERVED_CONTRACT_MARKERS;
 
