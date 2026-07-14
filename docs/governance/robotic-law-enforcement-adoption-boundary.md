@@ -21,6 +21,14 @@ procurement is available
   != procurement authority includes lethal authority
 ```
 
+## Human failure is not replacement authority
+
+Documented human failure can justify investigation, reform, training, accountability, or narrowly bounded assistance. It does not itself transfer public authority to an automated system, authorize autonomous coercion, or remove the requirement for current policy, consent, oversight, and a reachable refusal point.
+
+## Crisis exploitation
+
+A government or vendor must not use avoidable disorder, injury, fear, or institutional failure to manufacture necessity, accelerate procurement, weaken review, or normalize authority that would not otherwise be admissible.
+
 ## Governing concern
 
 A government must not create, tolerate, prolong, or commercially exploit avoidable disorder, injury, or loss of life to manufacture demand for automated enforcement.
