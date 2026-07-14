@@ -21,6 +21,9 @@ PAGES = {
     "documentation_mesh_admissibility_wiki": "https://stegverse-labs.github.io/admissibility-wiki/",
     "documentation_mesh_stegguardian_wiki": "https://stegverse-002.github.io/stegguardian-wiki/",
     "documentation_mesh_stegtalk_wiki": "https://stegverse-labs.github.io/stegtalk-wiki/",
+    "conceptual_inheritance_doctrine": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/conceptual-inheritance-provenance",
+    "conceptual_inheritance_status": "https://stegverse-labs.github.io/admissibility-wiki/status/conceptual-inheritance-provenance-status.json",
+    "conceptual_inheritance_publication_status": "https://stegverse-labs.github.io/admissibility-wiki/status/conceptual-inheritance-publication-verification.json",
     "optimization_target_doctrine": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit",
     "optimization_target_formalism_json": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit.v0.1.json",
     "optimization_target_publication_status": "https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json",
@@ -61,7 +64,7 @@ def main() -> int:
         results[name] = {"url": url, "reachable": ok, "http_status": status}
         if not ok: failures.append(message)
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.16",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.17",
         "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID','local')}.{os.getenv('GITHUB_RUN_ATTEMPT','0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
@@ -71,11 +74,13 @@ def main() -> int:
         "authority_granted": False, "proof_authority_granted": False, "release_authority_granted": False,
         "source_sufficiency_granted": False, "interoperability_standing_granted": False,
         "source_queue_promotion_granted": False,
+        "authorship_determination_granted": False, "origin_claim_standing_granted": False,
         "execution_authority_granted": False, "downstream_mutation_authority_granted": False,
         "non_claims": [
             "Route reachability is bounded publication evidence only.",
             "Published verification doctrine does not grant execution authority.",
             "Documentation-mesh reachability does not grant cross-repository authority, compatibility, standing, or synchronization permission.",
+            "Conceptual-inheritance publication does not decide authorship, ownership, infringement, intent, derivation, or origin-claim standing.",
             "A reachable KPT source-intake queue does not prove source sufficiency or promote a source candidate.",
             "Frequency, recency, class-change, bounded history, and stability-summary reachability do not make predictive or independent causal claims.",
             "Failed checks remain fail-closed and create no user task."
