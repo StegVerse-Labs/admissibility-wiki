@@ -74,6 +74,19 @@ For non-obvious StegVerse ecosystem entries, `in progress` may be used as a temp
 **Current wiki state:** validated implementation pending canonical workflow and public deployment verification  
 **Non-claim:** Similarity alone does not prove derivation, and unresolved provenance does not certify independent origin or establish legal ownership, infringement, or intent.
 
+### AI-Led Radiology Execution-Boundary Admissibility
+
+**Definition:** A domain-specific execution-boundary formalism for determining when AI may assist radiology, when mandatory human review is required, and when autonomous clearance must be denied or fail closed.
+
+**Source reference:** Admissibility Wiki public formalism  
+**Source visibility:** public  
+**Formalism page:** [AI-Led Radiology Execution-Boundary Admissibility](./ai-led-radiology-execution-boundary.md)  
+**Schema:** `static/schemas/ai-led-radiology-execution-case.schema.json`  
+**Validator:** `scripts/check_ai_led_radiology_execution.py`  
+**Publication validator:** `scripts/check_ai_led_radiology_publication.py`  
+**Current wiki state:** validated local implementation pending canonical workflow and public-route verification  
+**Non-claim:** The formalism does not grant clinical authority, replace qualified radiologist judgment, certify a model, or authorize autonomous diagnostic clearance.
+
 ### Governed Action Lifecycle
 
 **Definition:** A lifecycle formalism separating proposal, commit-time revalidation, bounded execution, consequence observation, recovery or accountability, and reconstruction.
