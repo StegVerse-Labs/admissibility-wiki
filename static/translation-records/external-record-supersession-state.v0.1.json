@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1",
+  "state": "NO_SUPERSESSION_FAIL_CLOSED",
+  "authority_boundary": "Supersession state records whether a prior promotion decision may be replaced. It does not validate source claims, grant acceptance, or create execution authority.",
+  "source_id": "external-physics-lai-operational-architecture-v0-1",
+  "route_id": "route-lai-operational-architecture-v0-1",
+  "current_decision_id": "decision-lai-intake-defer-v0-1",
+  "current_decision_result": "DEFER",
+  "required_conditions": {
+    "locator_verification": ["CONFIRMED", "PARTIAL_WITH_STABLE_RETRIEVABLE_SOURCE"],
+    "required_review_classes": [
+      "physics_foundations",
+      "mathematical_formalism",
+      "admissibility_governance"
+    ],
+    "receipt_posture": "issued",
+    "disallowed_receipt_results": [
+      "DEFER",
+      "INSUFFICIENT_EVIDENCE",
+      "OUT_OF_SCOPE"
+    ],
+    "required_actions": [
+      "source reconciliation",
+      "drift analysis",
+      "new promotion decision",
+      "supersession pointer preserving prior decision"
+    ]
+  },
+  "observed_conditions": {
+    "locator_verification": "UNRESOLVED",
+    "issued_receipt_count": 0,
+    "required_receipt_count": 3,
+    "placeholder_receipt_count": 3,
+    "material_objection_count": 0
+  },
+  "evaluation_result": "DEFER_NO_SUPERSESSION",
+  "result_reason": "The source locator is unresolved and all three review receipts are fail-closed placeholders rather than issued specialist outputs.",
+  "supersedes_decision_id": null,
+  "candidate_successor_decision_id": null,
+  "next_event": "A stable source locator is verified and all required specialist review receipts are issued, after which a new promotion decision may be evaluated.",
+  "ownership": "Admissibility Wiki proposal and decision governance",
+  "non_claims": "This state does not reject or validate the source and does not permit automatic acceptance from placeholder receipts."
+}
