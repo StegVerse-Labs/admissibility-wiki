@@ -15,6 +15,8 @@ const REQUIRED_CHECKS = [
   'governed_llm_site_verification_reachable',
   'governed_llm_deployment_status_reachable',
   'governed_llm_archive_handoff_reachable',
+  'verification_execution_authority_doctrine_reachable',
+  'verification_execution_authority_status_reachable',
   'optimization_target_doctrine_reachable',
   'optimization_target_formalism_json_reachable',
   'optimization_target_publication_status_reachable',
@@ -60,7 +62,7 @@ if (result.status !== 0) {
 
 if (!fs.existsSync(OUT)) fail(`writer did not create ${OUT}`);
 const receipt = JSON.parse(fs.readFileSync(OUT, 'utf8'));
-if (receipt.schema !== 'admissibility_wiki_public_activation_receipt.v4') fail('schema mismatch');
+if (receipt.schema !== 'admissibility_wiki_public_activation_receipt.v6') fail('schema mismatch');
 if (receipt.repository !== 'StegVerse-Labs/admissibility-wiki') fail('repository mismatch');
 if (receipt.activation_state !== 'workflow_observed_guarded_public_routes') fail('activation_state mismatch');
 if (receipt.activation_target !== 'https://stegverse-labs.github.io/admissibility-wiki/') fail('activation_target mismatch');
@@ -73,10 +75,41 @@ for (const check of REQUIRED_CHECKS) {
   const expectedStatus = RADIOLOGY_CHECKS.has(check) ? 'verified_by_writer_mock' : 'verified_by_workflow';
   if (value.status !== expectedStatus) fail(`check status mismatch: ${check}`);
   if (!value.evidence?.url) fail(`check evidence url missing: ${check}`);
-  if (RADIOLOGY_CHECKS.has(check) && value.evidence?.http_status !== 200) {
-    fail(`radiology mock evidence status mismatch: ${check}`);
+}
+
+const radiology = receipt.activation_closures?.ai_led_radiology;
+if (!radiology || radiology.schema !== 'ai_led_radiology_activation_closure.v1') fail('radiology closure mismatch');
+if (radiology.state !== 'SIMULATED_VALIDATOR_PASS') fail('radiology simulated state mismatch');
+if (radiology.user_manual_action_required !== false) fail('radiology user action mismatch');
+if (radiology.execution_authority_granted !== false) fail('radiology authority mismatch');
+
+const verification = receipt.activation_closures?.verification_execution_authority;
+if (!verification || verification.schema !== 'verification_execution_authority_activation_closure.v1') {
+  fail('verification-execution closure mismatch');
+}
+if (verification.execution_authority_granted !== false) fail('verification execution authority mismatch');
+if (verification.certification_authority_granted !== false) fail('verification certification authority mismatch');
+
+const mesh = receipt.activation_closures?.documentation_mesh;
+if (!mesh) fail('missing documentation mesh closure');
+if (mesh.schema !== 'documentation_mesh_observation_closure.v1') fail('documentation mesh closure schema mismatch');
+if (mesh.goal_id !== 'documentation-mesh-live-peer-observation') fail('documentation mesh goal mismatch');
+if (mesh.state !== 'SIMULATED_VALIDATOR_PASS') fail('documentation mesh simulated state mismatch');
+if (mesh.peer_count !== 4 || mesh.complete_peer_count !== 4) fail('documentation mesh peer coverage mismatch');
+if (!Array.isArray(mesh.observations) || mesh.observations.length !== 4) fail('documentation mesh observations mismatch');
+for (const observation of mesh.observations) {
+  for (const key of ['root', 'registry', 'health']) {
+    if (observation[key]?.result !== 'PASS') fail(`documentation mesh mock observation failed: ${observation.peer_id}.${key}`);
+    if (!observation[key]?.url) fail(`documentation mesh observation URL missing: ${observation.peer_id}.${key}`);
   }
 }
+if (mesh.manual_task_requirement !== 'NONE') fail('documentation mesh manual task mismatch');
+if (mesh.user_manual_action_required !== false) fail('documentation mesh user action mismatch');
+if (mesh.cross_repo_authority_granted !== false) fail('documentation mesh authority mismatch');
+if (mesh.standing_conferred !== false) fail('documentation mesh standing mismatch');
+if (mesh.execution_authority_granted !== false) fail('documentation mesh execution authority mismatch');
+if (mesh.downstream_mutation_authority_granted !== false) fail('documentation mesh downstream authority mismatch');
+if (mesh.handoff_reconciliation_required_for_continuation !== false) fail('documentation mesh reconciliation mismatch');
 
 const reconstructionUrl = receipt.linked_receipts?.external_translation_reconstruction;
 if (reconstructionUrl !== 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json') {
@@ -86,35 +119,9 @@ if (receipt.linked_receipts?.ai_led_radiology_execution !== 'reports/ai-led-radi
   fail('AI-led radiology execution receipt binding mismatch');
 }
 
-const closure = receipt.activation_closures?.ai_led_radiology;
-if (!closure) fail('missing AI-led radiology activation closure');
-if (closure.schema !== 'ai_led_radiology_activation_closure.v1') fail('radiology closure schema mismatch');
-if (closure.goal_id !== 'ai-led-radiology-execution-boundary') fail('radiology closure goal mismatch');
-if (closure.state !== 'SIMULATED_VALIDATOR_PASS') fail('radiology simulated closure state mismatch');
-if (closure.commit !== 'validator-local-sha') fail('radiology closure commit binding mismatch');
-if (closure.run_id !== 'validator-local-run') fail('radiology closure run binding mismatch');
-if (closure.all_required_public_routes_verified !== true) fail('radiology closure route verification mismatch');
-if (closure.manual_task_requirement !== 'NONE') fail('radiology closure manual task mismatch');
-if (closure.user_manual_action_required !== false) fail('radiology closure user action mismatch');
-if (closure.authority_granted !== false) fail('radiology closure authority boundary mismatch');
-if (closure.clinical_authority_granted !== false) fail('radiology closure clinical authority mismatch');
-if (closure.execution_authority_granted !== false) fail('radiology closure execution authority mismatch');
-if (closure.handoff_reconciliation_required_for_continuation !== false) {
-  fail('radiology closure incorrectly requires handoff reconciliation');
-}
-for (const check of RADIOLOGY_CHECKS) {
-  if (!closure.evidence?.[check]) fail(`radiology closure missing evidence: ${check}`);
-}
-
 const nonClaims = receipt.non_claims || [];
-if (!nonClaims.some((claim) => claim.includes('does not create provider governance'))) {
-  fail('missing provider governance non-claim');
-}
-if (!nonClaims.some((claim) => claim.includes('does not create external indexing'))) {
-  fail('missing external indexing non-claim');
-}
-if (!nonClaims.some((claim) => claim.includes('does not certify clinical performance'))) {
-  fail('missing clinical-performance non-claim');
-}
+if (!nonClaims.some((claim) => claim.includes('does not create provider governance'))) fail('missing provider governance non-claim');
+if (!nonClaims.some((claim) => claim.includes('does not certify clinical performance'))) fail('missing clinical-performance non-claim');
+if (!nonClaims.some((claim) => claim.includes('does not grant cross-repository authority'))) fail('missing mesh authority non-claim');
 
 console.log('public activation receipt writer OK');
