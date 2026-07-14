@@ -66,6 +66,40 @@ The envelope points to the latest observation, history, health, transition, tren
 
 The terminal rollup is generated automatically after the final bounded comparison-history reconciliation. Missing artifacts produce `FAIL_CLOSED_INCOMPLETE_LOCAL_CHAIN`; they do not create a user or reviewer task.
 
+## Deterministic fail-closed repair
+
+The terminal validator now exercises both required branches:
+
+```text
+complete fixture chain -> COMPLETE_LOCAL_CHAIN
+one required artifact removed -> FAIL_CLOSED_INCOMPLETE_LOCAL_CHAIN
+missing artifact identity -> stability_change_frequency_change_history
+missing_count -> 1
+present_count -> 16
+manual_tasks_required -> []
+user_action_required -> false
+```
+
+The validator backs up and restores any pre-existing generated status artifacts, so the negative case does not leave repository state mutated. This closes the prior validation gap where only the complete branch was tested.
+
+Commit:
+
+```text
+9a5d049d4c16c927d2d5597fc5ac0f776bed1b3c
+```
+
+## Observation state
+
+```text
+connected commit-status records: none exposed
+public endpoint observation from current execution environment: unavailable
+canonical workflow pass: not claimed
+Pages deployment pass: not claimed
+terminal rollup public reachability: not claimed
+```
+
+The absence of exposed status records is not converted into a manual task. The hourly canonical workflow remains the owner of validation, deployment, and public re-observation.
+
 ## Authority boundaries
 
 ```text
@@ -82,7 +116,7 @@ workflow evidence and the terminal rollup do not grant proof, release, execution
 ### `StegVerse-Labs/admissibility-wiki`
 
 ```text
-Observe the canonical workflow result for the terminal-rollup commits.
+Observe the canonical workflow result for the terminal-rollup commits when repository-owned evidence is exposed.
 Use workflow-owned logs, artifacts, and validation receipts to identify exact deterministic failures.
 Repair only exact failures without weakening validation or adding another active workflow.
 Keep deployment and public-route evidence fail-closed until observed.
@@ -115,7 +149,7 @@ No tag or release is authorized until canonical validation, build, public-route 
 ## Next task
 
 ```text
-1. Observe the canonical workflow result for the terminal-rollup chain.
+1. Observe the canonical workflow result for the terminal-rollup chain when evidence is exposed.
 2. Inspect repository-owned failure evidence when available.
 3. Apply exact deterministic repairs only.
 4. Preserve the terminal envelope and no-recursion boundary.
@@ -124,4 +158,4 @@ No tag or release is authorized until canonical validation, build, public-route 
 
 ## Archive posture
 
-This handoff preserves the active goal, installed terminal automation, decisions, ownership, blockers, authority boundaries, completed work, remaining workflow-observation work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
+This handoff preserves the active goal, installed terminal automation, decisions, ownership, blockers, authority boundaries, completed fail-closed validator repair, remaining workflow-observation work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
