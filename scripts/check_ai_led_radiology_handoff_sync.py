@@ -12,8 +12,8 @@ ROOT_POINTER = ROOT / "ADMISSIBILITY_MIRROR_HANDOFF.md"
 REPO_HANDOFF = ROOT / "docs" / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
 ACTIVATION_HANDOFF = ROOT / "docs" / "AI_LED_RADIOLOGY_MIRROR_HANDOFF.md"
 STATUS = ROOT / "static" / "status" / "ai-led-radiology-execution-status.json"
-PUBLIC_RECEIPT_WRITER = ROOT / "scripts" / "write-public-activation-receipt.mjs"
-PUBLIC_RECEIPT_WRITER_CHECK = ROOT / "scripts" / "check-public-activation-receipt-writer.mjs"
+WRITER = ROOT / "scripts" / "write-public-activation-receipt.mjs"
+WRITER_CHECK = ROOT / "scripts" / "check-public-activation-receipt-writer.mjs"
 
 REQUIRED_ACTIVATION_MARKERS = (
     "Goal id: ai-led-radiology-execution-boundary",
@@ -22,21 +22,12 @@ REQUIRED_ACTIVATION_MARKERS = (
     "scripts/check_ai_led_radiology_execution.py",
     "scripts/check_ai_led_radiology_publication.py",
     "scripts/check_ai_led_radiology_handoff_sync.py",
-    "scripts/write-public-activation-receipt.mjs",
-    "scripts/check-public-activation-receipt-writer.mjs",
     "reports/ai-led-radiology-execution-receipt.json",
-    "reports/public-activation-receipt.json",
-    "Live publication evidence capture: automatic",
+    "activation_closures.ai_led_radiology",
+    "ai_led_radiology_activation_closure.v1",
+    "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
+    "handoff_reconciliation_required_for_continuation == false",
     "The complete thread is ready for archiving",
-)
-
-REQUIRED_WRITER_MARKERS = (
-    "admissibility_wiki_public_activation_receipt.v4",
-    "ai_led_radiology_formalism_reachable",
-    "ai_led_radiology_schema_reachable",
-    "ai_led_radiology_status_reachable",
-    "verified_by_writer",
-    "does not certify clinical performance",
 )
 
 REQUIRED_STATUS_VALUES = {
@@ -44,21 +35,14 @@ REQUIRED_STATUS_VALUES = {
     "manual_task_requirement": "NONE",
     "user_manual_action_required": False,
     "additional_active_workflow_created": False,
-    "public_activation_receipt_schema": "admissibility_wiki_public_activation_receipt.v4",
+    "activation_closure_schema": "ai_led_radiology_activation_closure.v1",
 }
 
 
 def main() -> int:
     failures: list[str] = []
 
-    for path in (
-        ROOT_POINTER,
-        REPO_HANDOFF,
-        ACTIVATION_HANDOFF,
-        STATUS,
-        PUBLIC_RECEIPT_WRITER,
-        PUBLIC_RECEIPT_WRITER_CHECK,
-    ):
+    for path in (ROOT_POINTER, REPO_HANDOFF, ACTIVATION_HANDOFF, STATUS, WRITER, WRITER_CHECK):
         if not path.exists():
             failures.append(f"missing {path.relative_to(ROOT)}")
 
@@ -79,11 +63,6 @@ def main() -> int:
         if marker not in activation_text:
             failures.append(f"activation handoff missing marker: {marker}")
 
-    writer_text = PUBLIC_RECEIPT_WRITER.read_text(encoding="utf-8")
-    for marker in REQUIRED_WRITER_MARKERS:
-        if marker not in writer_text:
-            failures.append(f"public receipt writer missing marker: {marker}")
-
     status = json.loads(STATUS.read_text(encoding="utf-8"))
     for key, expected in REQUIRED_STATUS_VALUES.items():
         if status.get(key) != expected:
@@ -93,26 +72,50 @@ def main() -> int:
     if not isinstance(automation, dict):
         failures.append("status automation must be an object")
     else:
-        if automation.get("receipt_generation_automatic") is not True:
-            failures.append("receipt generation is not marked automatic")
-        if automation.get("public_navigation_installed") is not True:
-            failures.append("public navigation is not marked installed")
-        if automation.get("handoff_sync_validation") is not True:
-            failures.append("handoff sync validation is not marked active")
-        if automation.get("live_evidence_uploaded_by_existing_workflow") is not True:
-            failures.append("live evidence is not marked as uploaded by the existing workflow")
-        expected_checks = {
-            "ai_led_radiology_formalism_reachable",
-            "ai_led_radiology_schema_reachable",
-            "ai_led_radiology_status_reachable",
-        }
-        actual_checks = set(automation.get("live_publication_checks", []))
-        if actual_checks != expected_checks:
-            failures.append("live publication check set is incomplete or unexpected")
+        required_true = (
+            "receipt_generation_automatic",
+            "public_navigation_installed",
+            "handoff_sync_validation",
+            "live_evidence_uploaded_by_existing_workflow",
+            "closure_evaluation_automatic",
+            "closure_embedded_in_uploaded_receipt",
+        )
+        for key in required_true:
+            if automation.get(key) is not True:
+                failures.append(f"status automation {key!r} is not true")
+        if automation.get("handoff_reconciliation_required_for_continuation") is not False:
+            failures.append("handoff reconciliation is incorrectly required for continuation")
 
-    remaining_owner = status.get("remaining_owner")
-    if remaining_owner != "CANONICAL_AUTOMATION_AND_FUTURE_HANDOFF_RECONCILIATION":
-        failures.append("remaining ownership is not assigned to canonical automation")
+    if status.get("remaining_owner") != "CANONICAL_AUTOMATION":
+        failures.append("remaining ownership is not assigned exclusively to canonical automation")
+
+    completion_rule = status.get("completion_rule", "")
+    for marker in (
+        "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
+        "all_required_public_routes_verified == true",
+        "without a follow-up handoff edit",
+    ):
+        if marker not in completion_rule:
+            failures.append(f"completion rule missing marker: {marker}")
+
+    writer_text = WRITER.read_text(encoding="utf-8")
+    for marker in (
+        "ai_led_radiology_activation_closure.v1",
+        "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
+        "handoff_reconciliation_required_for_continuation: false",
+        "activation_closures",
+    ):
+        if marker not in writer_text:
+            failures.append(f"receipt writer missing closure marker: {marker}")
+
+    writer_check_text = WRITER_CHECK.read_text(encoding="utf-8")
+    for marker in (
+        "missing AI-led radiology activation closure",
+        "SIMULATED_VALIDATOR_PASS",
+        "handoff_reconciliation_required_for_continuation",
+    ):
+        if marker not in writer_check_text:
+            failures.append(f"receipt writer validator missing marker: {marker}")
 
     if failures:
         print("AI-LED RADIOLOGY HANDOFF SYNC: FAIL", file=sys.stderr)
