@@ -1,8 +1,8 @@
 {
-  "schema": "admissibility_wiki.canonical_workflow_observation_automation.v0.4",
+  "schema": "admissibility_wiki.canonical_workflow_observation_automation.v0.5",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "goal": "Eliminate manual workflow observation, result reconciliation, and health-classification tasks while preserving fail-closed automation.",
-  "state": "AUTOMATED_HEALTH_RECONCILIATION_BOUND",
+  "goal": "Eliminate manual workflow observation, result reconciliation, health classification, and health-transition explanation while preserving fail-closed automation.",
+  "state": "AUTOMATED_HEALTH_TRANSITION_RECEIPTS_BOUND",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "ios_safe_workflow_mirror": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
   "writer": "scripts/write_canonical_workflow_observation_receipt.py",
@@ -14,20 +14,23 @@
   "history_validator": "scripts/check_canonical_workflow_observation_history.py",
   "health_generator": "scripts/generate_canonical_workflow_health_summary.py",
   "health_validator": "scripts/check_canonical_workflow_health_summary.py",
+  "health_transition_validator": "scripts/check_canonical_workflow_health_transition_receipt.py",
   "generated_receipt": "reports/canonical-workflow-observation-receipt.json",
   "embedded_receipt": "reports/full_validation_chain_report.json#canonical_workflow_observation",
   "automation_contract_endpoint": "/status/canonical-workflow-observation-automation.json",
   "run_bound_receipt_endpoint": "/status/canonical-workflow-observation-receipt.json",
   "history_endpoint": "/status/canonical-workflow-observation-history.json",
   "health_summary_endpoint": "/status/canonical-workflow-health-summary.json",
+  "health_transition_endpoint": "/status/canonical-workflow-health-transition-receipt.json",
   "publication_chain": [
     "validate-chain-continuation generates and embeds the run receipt",
     "full-validation-chain-report artifact transfers it to build-pages",
     "build-pages publishes the embedded receipt into static/status",
     "build-pages reconciles the current receipt with the prior public bounded history",
     "build-pages classifies the reconciled history into a compact workflow health summary",
+    "build-pages emits a health-transition receipt from consecutive classified observations",
     "deploy-pages publishes the site artifact",
-    "verify-public-pages checks the automation, run-bound receipt, history, and health endpoints"
+    "verify-public-pages checks the automation, run-bound receipt, history, health, and health-transition endpoints"
   ],
   "history_policy": {
     "maximum_entries": 24,
@@ -46,6 +49,19 @@
     "FAIL_CLOSED_OTHER",
     "AWAITING_AUTOMATED_OBSERVATION"
   ],
+  "health_transition_policy": {
+    "comparison": "latest classified observation against immediately prior classified observation",
+    "states": ["CHANGED", "UNCHANGED"],
+    "required_fields": [
+      "prior_health",
+      "resulting_health",
+      "prior_cause",
+      "resulting_cause",
+      "fail_closed_consequence"
+    ],
+    "owner": "canonical build-pages job",
+    "next_evaluation": "next repository-owned canonical workflow trigger"
+  },
   "trigger_ownership": {
     "push": "repository automation",
     "pull_request": "repository automation",
@@ -65,8 +81,8 @@
   "release_authority_granted": false,
   "downstream_mutation_authority_granted": false,
   "non_claims": [
-    "This status proves an automation, publication, bounded-history, and health-classification contract, not a successful future workflow run.",
-    "Public health classification records bounded workflow evidence only.",
+    "This status proves an automation, publication, bounded-history, health-classification, and health-transition contract, not a successful future workflow run.",
+    "Public health transition receipts record bounded workflow evidence only.",
     "It does not grant merge, release, deployment, publication, execution, or downstream mutation authority.",
     "It does not convert missing external evidence into an acceptance result."
   ]
