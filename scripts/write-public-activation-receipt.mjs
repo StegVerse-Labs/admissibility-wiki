@@ -45,6 +45,12 @@ const verificationAuthorityChecks = new Set([
   'verification_execution_authority_status_reachable'
 ]);
 
+const conceptualInheritanceChecks = new Set([
+  'conceptual_inheritance_doctrine',
+  'conceptual_inheritance_status',
+  'conceptual_inheritance_publication_status'
+]);
+
 const meshPeers = [
   { id: 'stegverse-site', root: 'https://stegverse-labs.github.io/Site/' },
   { id: 'admissibility-wiki', root: 'https://stegverse-labs.github.io/admissibility-wiki/' },
@@ -132,11 +138,17 @@ if (fs.existsSync(optimizationReceiptPath)) {
   }
 }
 
-const verificationAuthorityRoutes = optimizationTargetReceipt?.routes || {};
+const observedRoutes = optimizationTargetReceipt?.routes || {};
 for (const name of verificationAuthorityChecks) {
-  const route = verificationAuthorityRoutes[name];
+  const route = observedRoutes[name];
   if (!route || route.reachable !== true) {
     throw new Error(`verification-authority route is not confirmed in publication receipt: ${name}`);
+  }
+}
+for (const name of conceptualInheritanceChecks) {
+  const route = observedRoutes[name];
+  if (!route || route.reachable !== true) {
+    throw new Error(`conceptual-inheritance route is not confirmed in publication receipt: ${name}`);
   }
 }
 
@@ -174,7 +186,7 @@ const verificationAuthorityActivationClosure = {
   run_id: runId,
   run_attempt: runAttempt,
   evidence: Object.fromEntries(
-    [...verificationAuthorityChecks].map((name) => [name, verificationAuthorityRoutes[name]])
+    [...verificationAuthorityChecks].map((name) => [name, observedRoutes[name]])
   ),
   all_required_public_routes_verified: true,
   manual_task_requirement: 'NONE',
@@ -188,6 +200,36 @@ const verificationAuthorityActivationClosure = {
     'Route reachability is bounded publication evidence only.',
     'Independent verification remains evidence input and does not become execution authority.',
     'Publication does not grant action-level admissibility or permission to execute.'
+  ]
+};
+
+const conceptualInheritanceActivationClosure = {
+  schema: 'conceptual_inheritance_publication_closure.v1',
+  goal_id: 'conceptual-inheritance-provenance-standing',
+  state: 'WORKFLOW_OBSERVED_PUBLICATION_COMPLETE',
+  commit,
+  run_id: runId,
+  run_attempt: runAttempt,
+  evidence: Object.fromEntries(
+    [...conceptualInheritanceChecks].map((name) => [name, observedRoutes[name]])
+  ),
+  all_required_public_routes_verified: true,
+  manual_task_requirement: 'NONE',
+  user_manual_action_required: false,
+  authorship_determined: false,
+  ownership_determined: false,
+  infringement_determined: false,
+  derivation_determined: false,
+  origin_claim_standing_granted: false,
+  execution_authority_granted: false,
+  release_authority_granted: false,
+  downstream_mutation_authority_granted: false,
+  handoff_reconciliation_required_for_continuation: false,
+  continuation_source: 'docs/CONCEPTUAL_INHERITANCE_MIRROR_HANDOFF.md',
+  non_claims: [
+    'Similarity alone is not proof of derivation.',
+    'Unresolved provenance is not certification of independence.',
+    'Publication evidence does not decide authorship, ownership, infringement, intent, or origin-claim standing.'
   ]
 };
 
@@ -225,7 +267,7 @@ const documentationMeshClosure = {
 };
 
 const receipt = {
-  schema: 'admissibility_wiki_public_activation_receipt.v6',
+  schema: 'admissibility_wiki_public_activation_receipt.v7',
   receipt_id: `public-activation.workflow.${runId || 'unknown'}.${runAttempt || '0'}`,
   created_at: new Date().toISOString(),
   repository: 'StegVerse-Labs/admissibility-wiki',
@@ -238,6 +280,7 @@ const receipt = {
   activation_closures: {
     ai_led_radiology: radiologyActivationClosure,
     verification_execution_authority: verificationAuthorityActivationClosure,
+    conceptual_inheritance: conceptualInheritanceActivationClosure,
     documentation_mesh: documentationMeshClosure
   },
   linked_receipts: {
@@ -258,6 +301,7 @@ const receipt = {
     'This receipt does not create external indexing.',
     'This receipt does not certify clinical performance or authorize medical practice.',
     'This receipt does not convert verification or certification into execution authority.',
+    'This receipt does not decide authorship, ownership, infringement, derivation, or origin-claim standing.',
     'Documentation-mesh reachability does not grant cross-repository authority or standing.',
     'This receipt does not replace GitHub Pages deployment records.'
   ],
