@@ -16,6 +16,7 @@ CONCEPTUAL_INHERITANCE_PROPAGATION_CHECK = ROOT / "scripts" / "check_conceptual_
 ORIGINAL_DRAWING_PUBLICATION_CHECK = ROOT / "scripts" / "check_original_drawing_publication.py"
 OPTIMIZATION_TARGET_BINDING_CHECK = ROOT / "scripts" / "check_optimization_target_binding_at_commit.py"
 OPTIMIZATION_TARGET_PUBLICATION_CHECK = ROOT / "scripts" / "check_optimization_target_binding_publication.py"
+AI_LED_RADIOLOGY_CHECK = ROOT / "scripts" / "check_ai_led_radiology_execution.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -86,6 +87,11 @@ def main() -> int:
     run_check(
         OPTIMIZATION_TARGET_PUBLICATION_CHECK,
         "optimization target binding publication gate",
+        failures,
+    )
+    run_check(
+        AI_LED_RADIOLOGY_CHECK,
+        "AI-led radiology execution boundary",
         failures,
     )
 
