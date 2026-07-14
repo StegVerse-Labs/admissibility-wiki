@@ -21,6 +21,7 @@ AI_LED_RADIOLOGY_CHECK = ROOT / "scripts" / "check_ai_led_radiology_execution.py
 AI_LED_RADIOLOGY_PUBLICATION_CHECK = ROOT / "scripts" / "check_ai_led_radiology_publication.py"
 AI_LED_RADIOLOGY_HANDOFF_SYNC_CHECK = ROOT / "scripts" / "check_ai_led_radiology_handoff_sync.py"
 VERIFICATION_EXECUTION_AUTHORITY_CHECK = ROOT / "scripts" / "check_verification_execution_authority.py"
+COMMIT_BOUNDARY_BINDING_CHECK = ROOT / "scripts" / "check_commit_boundary_binding.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -74,6 +75,7 @@ def main() -> int:
     run_check(AI_LED_RADIOLOGY_PUBLICATION_CHECK, "AI-led radiology publication gate", failures)
     run_check(AI_LED_RADIOLOGY_HANDOFF_SYNC_CHECK, "AI-led radiology handoff sync", failures)
     run_check(VERIFICATION_EXECUTION_AUTHORITY_CHECK, "verification versus execution authority", failures)
+    run_check(COMMIT_BOUNDARY_BINDING_CHECK, "commit-boundary binding predicate", failures)
 
     if failures:
         print("ADMISSIBILITY AUTOMATION HANDOFF: FAIL")
