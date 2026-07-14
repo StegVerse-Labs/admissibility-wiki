@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 STATUS = ROOT / "static" / "status" / "canonical-workflow-observation-automation.json"
 PUBLICATION_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_observation_publication.py"
 HISTORY_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_observation_history.py"
+HEALTH_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_health_summary.py"
 REQUIRED_FILES = [
     ROOT / ".github" / "workflows" / "validate-chain-continuation.yml",
     ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.yml",
@@ -19,6 +20,8 @@ REQUIRED_FILES = [
     PUBLICATION_VALIDATOR,
     ROOT / "scripts" / "reconcile_canonical_workflow_observation_history.py",
     HISTORY_VALIDATOR,
+    ROOT / "scripts" / "generate_canonical_workflow_health_summary.py",
+    HEALTH_VALIDATOR,
     ROOT / "scripts" / "check_full_validation_chain.py",
 ]
 
@@ -50,8 +53,8 @@ def main() -> int:
             fail(f"required automation file is missing: {path.relative_to(ROOT)}")
 
     data = json.loads(STATUS.read_text(encoding="utf-8"))
-    if data.get("state") != "AUTOMATED_PUBLICATION_AND_HISTORY_BOUND":
-        fail("state must be AUTOMATED_PUBLICATION_AND_HISTORY_BOUND")
+    if data.get("state") != "AUTOMATED_HEALTH_RECONCILIATION_BOUND":
+        fail("state must be AUTOMATED_HEALTH_RECONCILIATION_BOUND")
     if data.get("manual_tasks_required") != []:
         fail("manual_tasks_required must be empty")
     if data.get("user_action_required") is not False:
@@ -67,6 +70,7 @@ def main() -> int:
         "automation_contract_endpoint": "/status/canonical-workflow-observation-automation.json",
         "run_bound_receipt_endpoint": "/status/canonical-workflow-observation-receipt.json",
         "history_endpoint": "/status/canonical-workflow-observation-history.json",
+        "health_summary_endpoint": "/status/canonical-workflow-health-summary.json",
     }
     for key, value in expected_endpoints.items():
         if data.get(key) != value:
@@ -77,7 +81,8 @@ def main() -> int:
         "full-validation-chain-report artifact transfers it to build-pages",
         "build-pages publishes the embedded receipt into static/status",
         "build-pages reconciles the current receipt with the prior public bounded history",
-        "verify-public-pages checks the automation, run-bound receipt, and history endpoints",
+        "build-pages classifies the reconciled history into a compact workflow health summary",
+        "verify-public-pages checks the automation, run-bound receipt, history, and health endpoints",
     ]
     for phrase in required_phrases:
         if phrase not in chain:
@@ -94,6 +99,19 @@ def main() -> int:
         fail("prior-history-unavailable policy must remain no-manual")
     if history_policy.get("next_reconciliation") != "next repository-owned canonical workflow trigger":
         fail("history reconciliation must remain automation-owned")
+
+    required_health_classes = {
+        "HEALTHY",
+        "TRANSIENT_CANCELLATION",
+        "VALIDATION_FAILURE",
+        "RECONSTRUCTION_FAILURE",
+        "EXTERNAL_EVIDENCE_DEFERRED",
+        "INCOMPLETE_OBSERVATION",
+        "FAIL_CLOSED_OTHER",
+        "AWAITING_AUTOMATED_OBSERVATION",
+    }
+    if set(data.get("health_classes", [])) != required_health_classes:
+        fail("health classes do not match the governed set")
 
     states = set(data.get("observation_states", []))
     required_states = {"PASS_OBSERVED", "FAIL_CLOSED_OBSERVED", "INCOMPLETE_OBSERVATION"}
@@ -116,10 +134,11 @@ def main() -> int:
 
     run_validator(PUBLICATION_VALIDATOR, "run-bound publication validator")
     run_validator(HISTORY_VALIDATOR, "observation history validator")
+    run_validator(HEALTH_VALIDATOR, "workflow health validator")
 
     print(
         "CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - "
-        "manual_tasks=0 user_action=false publication=bound history=reconciled"
+        "manual_tasks=0 publication=bound history=reconciled health=classified"
     )
     return 0
 
