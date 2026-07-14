@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 GENERATOR = ROOT / "scripts" / "generate_canonical_workflow_stability_change_frequency_summary.py"
 HISTORY = ROOT / "static" / "status" / "canonical-workflow-frequency-change-stability-change-history.json"
 OUT = ROOT / "static" / "status" / "canonical-workflow-stability-change-frequency-summary.json"
+CHANGE = ROOT / "static" / "status" / "canonical-workflow-stability-change-frequency-change-receipt.json"
 
 
 def fail(message: str) -> None:
@@ -31,6 +32,7 @@ def main() -> int:
     HISTORY.parent.mkdir(parents=True, exist_ok=True)
     HISTORY.write_text(json.dumps(fixture, indent=2) + "\n", encoding="utf-8")
     OUT.unlink(missing_ok=True)
+    CHANGE.unlink(missing_ok=True)
 
     try:
         completed = subprocess.run(
@@ -45,6 +47,8 @@ def main() -> int:
             fail(completed.stdout or "generator exited non-zero")
         if not OUT.exists():
             fail("summary was not generated")
+        if not CHANGE.exists():
+            fail("comparison receipt was not generated")
 
         data = json.loads(OUT.read_text(encoding="utf-8"))
         if data.get("frequency_class") != "FREQUENT_STABILITY_CHANGE_OBSERVED":
@@ -79,14 +83,23 @@ def main() -> int:
         if data.get("public_endpoint") != "/status/canonical-workflow-stability-change-frequency-summary.json":
             fail("public endpoint mismatch")
 
+        comparison = json.loads(CHANGE.read_text(encoding="utf-8"))
+        if comparison.get("resulting_frequency_class") != "FREQUENT_STABILITY_CHANGE_OBSERVED":
+            fail("comparison resulting frequency mismatch")
+        if comparison.get("resulting_recency_class") != "CURRENT_RECEIPT_CHANGED":
+            fail("comparison resulting recency mismatch")
+        if comparison.get("manual_tasks_required") != [] or comparison.get("user_action_required") is not False:
+            fail("comparison no-manual boundary violated")
+
         print(
             "CANONICAL WORKFLOW STABILITY CHANGE FREQUENCY: PASS - "
-            "frequency=FREQUENT_STABILITY_CHANGE_OBSERVED manual_tasks=0"
+            "frequency=FREQUENT_STABILITY_CHANGE_OBSERVED comparison=generated manual_tasks=0"
         )
         return 0
     finally:
         HISTORY.unlink(missing_ok=True)
         OUT.unlink(missing_ok=True)
+        CHANGE.unlink(missing_ok=True)
 
 
 if __name__ == "__main__":
