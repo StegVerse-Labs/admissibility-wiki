@@ -13,7 +13,8 @@ const PRESERVED_CONTRACT_MARKERS = [
   'WORKFLOW_OBSERVED_PUBLICATION_COMPLETE',
   'handoff_reconciliation_required_for_continuation: false',
   'verification_execution_authority_activation_closure.v1',
-  'verification_execution_authority_doctrine_reachable'
+  'verification_execution_authority_doctrine_reachable',
+  'verification_execution_authority_status_reachable'
 ];
 void PRESERVED_CONTRACT_MARKERS;
 
