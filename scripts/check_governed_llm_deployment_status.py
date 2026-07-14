@@ -33,6 +33,7 @@ PAGES = {
     "canonical_workflow_trend_change_frequency_summary": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-trend-change-frequency-summary.json",
     "kpt_external_framework_page": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/kpt",
     "kpt_external_framework_status": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-external-framework-intake-status.json",
+    "kpt_source_intake_queue": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-source-intake-queue.json",
 }
 RECEIPT = Path("reports/optimization-target-publication-verification-receipt.json")
 
@@ -53,7 +54,7 @@ def main() -> int:
         results[name] = {"url": url, "reachable": ok, "http_status": status}
         if not ok: failures.append(message)
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.11",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.12",
         "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID','local')}.{os.getenv('GITHUB_RUN_ATTEMPT','0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
@@ -62,10 +63,12 @@ def main() -> int:
         "manual_tasks_required": [], "user_action_required": False,
         "authority_granted": False, "proof_authority_granted": False, "release_authority_granted": False,
         "source_sufficiency_granted": False, "interoperability_standing_granted": False,
+        "source_queue_promotion_granted": False,
         "execution_authority_granted": False, "downstream_mutation_authority_granted": False,
         "non_claims": [
             "Route reachability is bounded publication evidence only.",
             "Published verification doctrine does not grant execution authority.",
+            "A reachable KPT source-intake queue does not prove source sufficiency or promote a source candidate.",
             "Trend frequency and recency reachability do not make predictive or independent causal claims.",
             "Failed checks remain fail-closed and create no user task."
         ]
