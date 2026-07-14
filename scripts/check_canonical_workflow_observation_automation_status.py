@@ -11,6 +11,7 @@ STATUS = ROOT / "static" / "status" / "canonical-workflow-observation-automation
 PUBLICATION_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_observation_publication.py"
 REQUIRED_FILES = [
     ROOT / ".github" / "workflows" / "validate-chain-continuation.yml",
+    ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.yml",
     ROOT / "scripts" / "write_canonical_workflow_observation_receipt.py",
     ROOT / "scripts" / "check_canonical_workflow_observation_receipt.py",
     ROOT / "scripts" / "publish_canonical_workflow_observation_receipt.py",
@@ -31,8 +32,8 @@ def main() -> int:
             fail(f"required automation file is missing: {path.relative_to(ROOT)}")
 
     data = json.loads(STATUS.read_text(encoding="utf-8"))
-    if data.get("state") != "AUTOMATED":
-        fail("state must be AUTOMATED")
+    if data.get("state") != "AUTOMATED_PUBLICATION_BOUND":
+        fail("state must be AUTOMATED_PUBLICATION_BOUND")
     if data.get("manual_tasks_required") != []:
         fail("manual_tasks_required must be empty")
     if data.get("user_action_required") is not False:
@@ -43,6 +44,21 @@ def main() -> int:
         fail("release_authority_granted must be false")
     if data.get("downstream_mutation_authority_granted") is not False:
         fail("downstream_mutation_authority_granted must be false")
+
+    if data.get("automation_contract_endpoint") != "/status/canonical-workflow-observation-automation.json":
+        fail("automation contract endpoint mismatch")
+    if data.get("run_bound_receipt_endpoint") != "/status/canonical-workflow-observation-receipt.json":
+        fail("run-bound receipt endpoint mismatch")
+
+    chain = data.get("publication_chain", [])
+    required_phrases = [
+        "full-validation-chain-report artifact transfers it to build-pages",
+        "build-pages publishes the embedded receipt into static/status",
+        "verify-public-pages checks both observation endpoints",
+    ]
+    for phrase in required_phrases:
+        if phrase not in chain:
+            fail(f"publication chain missing: {phrase}")
 
     states = set(data.get("observation_states", []))
     required_states = {"PASS_OBSERVED", "FAIL_CLOSED_OBSERVED", "INCOMPLETE_OBSERVATION"}
@@ -76,7 +92,7 @@ def main() -> int:
     if completed.returncode != 0:
         fail("run-bound publication validator failed")
 
-    print("CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - manual_tasks=0 user_action=false publication=validated")
+    print("CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - manual_tasks=0 user_action=false publication=bound")
     return 0
 
 
