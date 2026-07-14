@@ -1,0 +1,72 @@
+{
+  "artifact_type": "external_framework_manifest",
+  "schema_version": "0.1",
+  "framework_id": "kpt",
+  "name": "KPT",
+  "source_reference": "official public framework source URL required",
+  "source_version": "UNVERIFIED_SOURCE_REQUIRED",
+  "allowed_use_boundary": [
+    "Use only as provisional intake evidence derived from public LinkedIn positioning and captured descriptive text.",
+    "Do not treat the LinkedIn profile or captured description as a complete technical specification.",
+    "Do not treat this manifest as certification, endorsement, execution authority, or commit-time authority."
+  ],
+  "claims": [
+    "KPT is publicly positioned as a runtime decision-governance boundary before downstream consequence.",
+    "KPT states that AI output should not become authority by default.",
+    "KPT is a candidate external-framework comparison target for output progression, influence, and execution boundaries."
+  ],
+  "non_claims": [
+    "No official versioned KPT specification, repository, schema, API, or implementation source is recorded.",
+    "No framework-wide validation, certification, endorsement, or production interoperability is claimed.",
+    "A KPT decision state does not establish StegVerse execution authority or commit-time admissibility."
+  ],
+  "transition_table_mapping": {
+    "framework_identity": "KPT, publicly associated with founder Kristian Jõgi",
+    "source_reference": "official public framework source URL required",
+    "source_version": "UNVERIFIED_SOURCE_REQUIRED",
+    "allowed_use_boundary": "source-blocked runtime decision-boundary intake and terminology comparison only",
+    "claims": "candidate output progression boundary before influence, persistent knowledge, approval support, or execution",
+    "non_claims": "no official technical source verification, certification, endorsement, execution authority, or commit-time authority",
+    "input_artifact_type": "AI-generated candidate output and proposed downstream consequence",
+    "output_artifact_type": "provisional decision state, trace evidence, and controlled-route instruction",
+    "actor_or_authority_model": "unknown until official source is provided; public text distinguishes candidate output from authority",
+    "evidence_model": "traceable evidence is publicly stated; official schema and sufficiency rules are unavailable",
+    "policy_or_rule_model": "explicit boundary decision before progression; official policy representation unavailable",
+    "delegation_model": "unknown until official source is provided",
+    "decision_or_result_model": "explicit boundary decision before downstream consequence; official result vocabulary unavailable",
+    "execution_authority_claim": false,
+    "receipt_or_trace_model": "trace before trust is publicly stated; official receipt or trace format unavailable",
+    "reconstruction_model": "captured public positioning reconstructs why intake is provisional and source-blocked",
+    "SPE_overlap": "candidate decision evidence may precede independent standing and authority reconstruction",
+    "StegVerse_ecosystem_overlap": "runtime transition boundary, evidence posture, controlled downstream route, and commit-time admissibility comparison",
+    "fail_closed_conditions": "official source missing, source version missing, result vocabulary undefined, trace schema unavailable, authority inheritance, or endorsement overclaim"
+  },
+  "SPE_overlap": {
+    "standing_boundary": "KPT output cannot establish standing by itself",
+    "authority_evaluation": "must be reconstructed independently at commit time",
+    "commit_time_admissibility": "not claimed by this intake",
+    "receipt_reconstruction": "source-blocked intake state is reconstructable; runtime receipt format is unavailable"
+  },
+  "StegVerse_ecosystem_overlap": {
+    "transition_table": "provisional mapping pending official KPT source",
+    "chain_status": "source-blocked intake only",
+    "documentation_surface": "wiki reference requires official-source upgrade before technical compatibility claims",
+    "execution_path": "not authorized"
+  },
+  "fail_closed_conditions": [
+    "official public framework source is missing",
+    "official source version is missing",
+    "official decision vocabulary and trace schema are unavailable",
+    "delegation and authority semantics are undefined",
+    "any certification, endorsement, execution-authority, or commit-time-authority claim appears"
+  ],
+  "boundary": {
+    "certification_claim": false,
+    "endorsement_claim": false,
+    "execution_authority_claim": false,
+    "commit_time_authority_claim": false,
+    "compatibility_manifest_is_authority": false,
+    "missing_or_partial_fields_fail_closed": true,
+    "official_source_required_for_completion": true
+  }
+}
