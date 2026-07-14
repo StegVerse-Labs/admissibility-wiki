@@ -1,20 +1,7 @@
 #!/usr/bin/env python3
-"""Check governed documentation routes without mutating repository state.
-
-The canonical verify-public-pages job runs this script after GitHub Pages deploys.
-It verifies the established governed-LLM route set, optimization-target artifacts,
-the generated external-translation reconstruction receipt, the public workflow
-observation automation contract, the run-bound receipt, its bounded history, and
-KPT source-blocked intake publication surfaces.
-A PASS is run-specific reachability evidence only; it does not establish
-admissibility, proof authority, release authority, interoperability standing,
-source sufficiency, or downstream mutation authority.
-"""
-
+"""Check governed documentation routes without mutating repository state."""
 from __future__ import annotations
-
-import json
-import os
+import json, os
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -35,81 +22,47 @@ PAGES = {
     "canonical_workflow_observation_automation": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-observation-automation.json",
     "canonical_workflow_observation_receipt": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-observation-receipt.json",
     "canonical_workflow_observation_history": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-observation-history.json",
+    "canonical_workflow_health_summary": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-summary.json",
+    "canonical_workflow_health_transition_receipt": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-transition-receipt.json",
+    "canonical_workflow_health_transition_history": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-health-transition-history.json",
     "kpt_external_framework_page": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/kpt",
     "kpt_external_framework_status": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-external-framework-intake-status.json",
 }
-
 RECEIPT = Path("reports/optimization-target-publication-verification-receipt.json")
 
-
-def check_url(url: str) -> tuple[bool, int | None, str]:
+def check_url(url: str):
     request = Request(url, method="HEAD", headers={"User-Agent": "stegverse-admissibility-verifier/1.0"})
     try:
         with urlopen(request, timeout=20) as response:
             status = int(getattr(response, "status", None) or response.getcode())
-    except HTTPError as exc:
-        return False, exc.code, f"{url} -> HTTP {exc.code}"
-    except URLError as exc:
-        return False, None, f"{url} -> {exc.reason}"
-    except TimeoutError:
-        return False, None, f"{url} -> timeout"
-
+    except HTTPError as exc: return False, exc.code, f"{url} -> HTTP {exc.code}"
+    except URLError as exc: return False, None, f"{url} -> {exc.reason}"
+    except TimeoutError: return False, None, f"{url} -> timeout"
     return 200 <= status < 400, status, f"{url} -> HTTP {status}"
 
-
-def write_receipt(results: dict[str, dict[str, object]], passed: bool) -> None:
+def main() -> int:
+    results, failures = {}, []
+    for name, url in PAGES.items():
+        ok, status, message = check_url(url); print(message)
+        results[name] = {"url": url, "reachable": ok, "http_status": status}
+        if not ok: failures.append(message)
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.5",
-        "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID', 'local')}.{os.getenv('GITHUB_RUN_ATTEMPT', '0')}",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.6",
+        "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID','local')}.{os.getenv('GITHUB_RUN_ATTEMPT','0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
-        "commit": os.getenv("GITHUB_SHA"),
-        "run_id": os.getenv("GITHUB_RUN_ID"),
-        "run_attempt": os.getenv("GITHUB_RUN_ATTEMPT"),
-        "verification_result": "PASS" if passed else "FAIL_CLOSED",
-        "routes": results,
-        "manual_tasks_required": [],
-        "user_action_required": False,
-        "authority_granted": False,
-        "proof_authority_granted": False,
-        "release_authority_granted": False,
-        "source_sufficiency_granted": False,
-        "interoperability_standing_granted": False,
+        "commit": os.getenv("GITHUB_SHA"), "run_id": os.getenv("GITHUB_RUN_ID"), "run_attempt": os.getenv("GITHUB_RUN_ATTEMPT"),
+        "verification_result": "PASS" if not failures else "FAIL_CLOSED", "routes": results,
+        "manual_tasks_required": [], "user_action_required": False,
+        "authority_granted": False, "proof_authority_granted": False, "release_authority_granted": False,
+        "source_sufficiency_granted": False, "interoperability_standing_granted": False,
         "downstream_mutation_authority_granted": False,
-        "non_claims": [
-            "Route reachability does not prove admissibility or executable correctness.",
-            "The external-translation receipt endpoint proves publication of a generated reconstruction artifact only.",
-            "The workflow observation endpoints prove publication of bounded run evidence and its reconciliation history only.",
-            "KPT route reachability proves publication only and does not upgrade SOURCE_BLOCKED_FAIL_CLOSED status.",
-            "A failed public check remains fail-closed and does not create a user task.",
-            "This receipt does not replace canonical workflow or GitHub Pages deployment records.",
-            "This receipt does not authorize Site, Publisher, Guardian, release, or custody mutation.",
-        ],
+        "non_claims": ["Route reachability is bounded publication evidence only.", "Failed checks remain fail-closed and create no user task."]
     }
-    RECEIPT.parent.mkdir(parents=True, exist_ok=True)
-    RECEIPT.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+    RECEIPT.parent.mkdir(parents=True, exist_ok=True); RECEIPT.write_text(json.dumps(receipt, indent=2)+"\n", encoding="utf-8")
     print(f"wrote {RECEIPT}")
+    if failures:
+        print("GOVERNED DOCUMENTATION DEPLOYMENT: PENDING - public routes not fully confirmed"); return 1
+    print("GOVERNED DOCUMENTATION DEPLOYMENT: PASS - public routes reachable"); return 0
 
-
-def main() -> int:
-    results: dict[str, dict[str, object]] = {}
-    failures: list[str] = []
-    for name, url in PAGES.items():
-        ok, status, message = check_url(url)
-        print(message)
-        results[name] = {"url": url, "reachable": ok, "http_status": status}
-        if not ok:
-            failures.append(message)
-
-    passed = not failures
-    write_receipt(results, passed)
-    if not passed:
-        print("GOVERNED DOCUMENTATION DEPLOYMENT: PENDING - public routes not fully confirmed")
-        return 1
-
-    print("GOVERNED DOCUMENTATION DEPLOYMENT: PASS - public routes reachable")
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+if __name__ == "__main__": raise SystemExit(main())
