@@ -2,8 +2,8 @@
 """Check governed documentation routes without mutating repository state.
 
 The canonical verify-public-pages job runs this script after GitHub Pages deploys.
-It verifies the established governed-LLM route set plus the optimization-target
-formalism, machine-readable artifact, and publication-status artifact. A PASS is
+It verifies the established governed-LLM route set, optimization-target artifacts,
+and the generated external-translation reconstruction receipt. A PASS is
 run-specific reachability evidence only; it does not establish admissibility,
 proof authority, release authority, or downstream mutation authority.
 """
@@ -28,6 +28,7 @@ PAGES = {
     "optimization_target_doctrine": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit",
     "optimization_target_formalism_json": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit.v0.1.json",
     "optimization_target_publication_status": "https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json",
+    "external_translation_reconstruction_receipt": "https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json",
 }
 
 RECEIPT = Path("reports/optimization-target-publication-verification-receipt.json")
@@ -50,7 +51,7 @@ def check_url(url: str) -> tuple[bool, int | None, str]:
 
 def write_receipt(results: dict[str, dict[str, object]], passed: bool) -> None:
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.1",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.2",
         "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID', 'local')}.{os.getenv('GITHUB_RUN_ATTEMPT', '0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
@@ -65,6 +66,7 @@ def write_receipt(results: dict[str, dict[str, object]], passed: bool) -> None:
         "downstream_mutation_authority_granted": False,
         "non_claims": [
             "Route reachability does not prove admissibility or executable correctness.",
+            "The external-translation receipt endpoint proves publication of a generated reconstruction artifact only.",
             "This receipt does not replace canonical workflow or GitHub Pages deployment records.",
             "This receipt does not authorize Site, Publisher, Guardian, release, or custody mutation.",
         ],
