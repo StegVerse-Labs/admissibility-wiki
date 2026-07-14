@@ -1,10 +1,12 @@
 {
   "schema": "quantum_resilient_security_publication_status.v1",
   "goal_id": "stegverse-quantum-resilient-complete-security",
-  "state": "SOURCE_COMPLETE_PENDING_CANONICAL_VALIDATION_AND_PUBLIC_OBSERVATION",
-  "branch": "agent/quantum-security-v5-v7",
+  "state": "MERGED_PENDING_PAGES_AND_PUBLIC_ROUTE_OBSERVATION",
+  "branch": "main",
   "issue": 20,
-  "pull_request": 21,
+  "pull_request": 22,
+  "merge_commit": "563ad7d6810de8eae3f7b884d680f29077489c37",
+  "observed_at": "2026-07-14T14:45:00Z",
   "publication": {
     "research_paper_markdown": "docs/research/stegverse-complete-security-paper.md",
     "research_paper_latex": "docs/research/stegverse-complete-security-paper.tex",
@@ -31,6 +33,11 @@
     "local_validator": "scripts/check_quantum_resilient_security_publication.py",
     "canonical_command": "npm run validate",
     "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "canonical_run": 2356,
+    "canonical_result": "success",
+    "validated_head": "66d39dd1b0554365ccd56b62eaf9c03c4cf3738d",
+    "merged": true,
+    "pages_deployment_observed": false,
     "public_observation_pending": true
   },
   "manual_task_requirement": "none",
