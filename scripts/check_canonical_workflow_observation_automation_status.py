@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 STATUS = ROOT / "static" / "status" / "canonical-workflow-observation-automation.json"
 PUBLICATION_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_observation_publication.py"
+HISTORY_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_observation_history.py"
 REQUIRED_FILES = [
     ROOT / ".github" / "workflows" / "validate-chain-continuation.yml",
     ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.yml",
@@ -16,12 +17,29 @@ REQUIRED_FILES = [
     ROOT / "scripts" / "check_canonical_workflow_observation_receipt.py",
     ROOT / "scripts" / "publish_canonical_workflow_observation_receipt.py",
     PUBLICATION_VALIDATOR,
+    ROOT / "scripts" / "reconcile_canonical_workflow_observation_history.py",
+    HISTORY_VALIDATOR,
     ROOT / "scripts" / "check_full_validation_chain.py",
 ]
 
 
 def fail(message: str) -> None:
     raise SystemExit(f"CANONICAL WORKFLOW OBSERVATION AUTOMATION: FAIL - {message}")
+
+
+def run_validator(path: Path, label: str) -> None:
+    completed = subprocess.run(
+        [sys.executable, str(path)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    if completed.stdout:
+        print(completed.stdout.rstrip())
+    if completed.returncode != 0:
+        fail(f"{label} failed")
 
 
 def main() -> int:
@@ -79,20 +97,10 @@ def main() -> int:
     if not any("does not grant" in claim for claim in non_claims):
         fail("authority non-claim is missing")
 
-    completed = subprocess.run(
-        [sys.executable, str(PUBLICATION_VALIDATOR)],
-        cwd=ROOT,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
-    )
-    if completed.stdout:
-        print(completed.stdout.rstrip())
-    if completed.returncode != 0:
-        fail("run-bound publication validator failed")
+    run_validator(PUBLICATION_VALIDATOR, "run-bound publication validator")
+    run_validator(HISTORY_VALIDATOR, "observation history validator")
 
-    print("CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - manual_tasks=0 user_action=false publication=bound")
+    print("CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - manual_tasks=0 user_action=false publication=bound history=reconciled")
     return 0
 
 
