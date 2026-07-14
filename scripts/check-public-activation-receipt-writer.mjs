@@ -20,8 +20,16 @@ const REQUIRED_CHECKS = [
   'optimization_target_publication_status_reachable',
   'external_translation_reconstruction_receipt_reachable',
   'generated_evaluation_results_reachable',
-  'asro_external_framework_reachable'
+  'asro_external_framework_reachable',
+  'ai_led_radiology_formalism_reachable',
+  'ai_led_radiology_schema_reachable',
+  'ai_led_radiology_status_reachable'
 ];
+const RADIOLOGY_CHECKS = new Set([
+  'ai_led_radiology_formalism_reachable',
+  'ai_led_radiology_schema_reachable',
+  'ai_led_radiology_status_reachable'
+]);
 
 function fail(message) {
   console.error(`FAIL: ${message}`);
@@ -39,7 +47,8 @@ const result = spawnSync(process.execPath, [WRITER], {
     PAGE_URL: 'https://stegverse-labs.github.io/admissibility-wiki/',
     GITHUB_SHA: 'validator-local-sha',
     GITHUB_RUN_ID: 'validator-local-run',
-    GITHUB_RUN_ATTEMPT: '1'
+    GITHUB_RUN_ATTEMPT: '1',
+    PUBLIC_ACTIVATION_SKIP_NETWORK: '1'
   }
 });
 
@@ -51,7 +60,7 @@ if (result.status !== 0) {
 
 if (!fs.existsSync(OUT)) fail(`writer did not create ${OUT}`);
 const receipt = JSON.parse(fs.readFileSync(OUT, 'utf8'));
-if (receipt.schema !== 'admissibility_wiki_public_activation_receipt.v3') fail('schema mismatch');
+if (receipt.schema !== 'admissibility_wiki_public_activation_receipt.v4') fail('schema mismatch');
 if (receipt.repository !== 'StegVerse-Labs/admissibility-wiki') fail('repository mismatch');
 if (receipt.activation_state !== 'workflow_observed_guarded_public_routes') fail('activation_state mismatch');
 if (receipt.activation_target !== 'https://stegverse-labs.github.io/admissibility-wiki/') fail('activation_target mismatch');
@@ -61,13 +70,20 @@ if (receipt.run_id !== 'validator-local-run') fail('run_id binding mismatch');
 for (const check of REQUIRED_CHECKS) {
   const value = receipt.checks?.[check];
   if (!value) fail(`missing check: ${check}`);
-  if (value.status !== 'verified_by_workflow') fail(`check status mismatch: ${check}`);
+  const expectedStatus = RADIOLOGY_CHECKS.has(check) ? 'verified_by_writer_mock' : 'verified_by_workflow';
+  if (value.status !== expectedStatus) fail(`check status mismatch: ${check}`);
   if (!value.evidence?.url) fail(`check evidence url missing: ${check}`);
+  if (RADIOLOGY_CHECKS.has(check) && value.evidence?.http_status !== 200) {
+    fail(`radiology mock evidence status mismatch: ${check}`);
+  }
 }
 
 const reconstructionUrl = receipt.linked_receipts?.external_translation_reconstruction;
 if (reconstructionUrl !== 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json') {
   fail('external translation reconstruction receipt binding mismatch');
+}
+if (receipt.linked_receipts?.ai_led_radiology_execution !== 'reports/ai-led-radiology-execution-receipt.json') {
+  fail('AI-led radiology execution receipt binding mismatch');
 }
 
 const nonClaims = receipt.non_claims || [];
@@ -76,6 +92,9 @@ if (!nonClaims.some((claim) => claim.includes('does not create provider governan
 }
 if (!nonClaims.some((claim) => claim.includes('does not create external indexing'))) {
   fail('missing external indexing non-claim');
+}
+if (!nonClaims.some((claim) => claim.includes('does not certify clinical performance'))) {
+  fail('missing clinical-performance non-claim');
 }
 
 console.log('public activation receipt writer OK');
