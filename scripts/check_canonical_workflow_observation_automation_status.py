@@ -23,6 +23,7 @@ VALIDATORS = [
     ROOT / "scripts" / "check_canonical_workflow_frequency_change_stability_summary.py",
     ROOT / "scripts" / "check_canonical_workflow_frequency_change_stability_change.py",
     ROOT / "scripts" / "check_canonical_workflow_frequency_change_stability_change_history.py",
+    ROOT / "scripts" / "check_canonical_workflow_stability_change_frequency_summary.py",
 ]
 REQUIRED = [
     ROOT / ".github" / "workflows" / "validate-chain-continuation.yml",
@@ -34,6 +35,7 @@ REQUIRED = [
     ROOT / "scripts" / "generate_canonical_workflow_frequency_change_stability_summary.py",
     ROOT / "scripts" / "generate_canonical_workflow_frequency_change_stability_change.py",
     ROOT / "scripts" / "reconcile_canonical_workflow_frequency_change_stability_change_history.py",
+    ROOT / "scripts" / "generate_canonical_workflow_stability_change_frequency_summary.py",
     ROOT / "scripts" / "check_full_validation_chain.py",
 ] + VALIDATORS
 
@@ -50,7 +52,7 @@ def main() -> int:
             fail(f"required file missing: {path.relative_to(ROOT)}")
 
     data = json.loads(STATUS.read_text(encoding="utf-8"))
-    if data.get("state") != "AUTOMATED_FREQUENCY_CHANGE_STABILITY_CHANGE_HISTORY_BOUND":
+    if data.get("state") != "AUTOMATED_STABILITY_CHANGE_FREQUENCY_BOUND":
         fail("state mismatch")
     if data.get("manual_tasks_required") != [] or data.get("user_action_required") is not False:
         fail("no-manual boundary violated")
@@ -65,6 +67,7 @@ def main() -> int:
         "frequency_change_stability_endpoint": "/status/canonical-workflow-frequency-change-stability-summary.json",
         "frequency_change_stability_change_endpoint": "/status/canonical-workflow-frequency-change-stability-change-receipt.json",
         "frequency_change_stability_change_history_endpoint": "/status/canonical-workflow-frequency-change-stability-change-history.json",
+        "stability_change_frequency_endpoint": "/status/canonical-workflow-stability-change-frequency-summary.json",
     }
     for key, value in expected_endpoints.items():
         if data.get(key) != value:
@@ -72,13 +75,11 @@ def main() -> int:
 
     chain = data.get("publication_chain", [])
     for phrase in (
-        "build-pages derives a bounded descriptive frequency and recency summary from trend-change history",
-        "build-pages emits a frequency-class change receipt by comparing the current summary with the prior public summary",
-        "build-pages reconciles the frequency-class change receipt into bounded deduplicated frequency-change history",
         "build-pages derives a bounded descriptive stability summary from frequency-change history",
         "build-pages emits a stability-class change receipt by comparing the current stability summary with the prior public summary",
         "build-pages reconciles the stability-class change receipt into bounded deduplicated stability-change history",
-        "verify-public-pages checks observation, health, transition, trend, frequency, frequency-change-history, stability-summary, stability-change, and stability-change-history endpoints",
+        "build-pages derives a bounded descriptive frequency and recency summary from stability-change history",
+        "verify-public-pages checks observation, health, transition, trend, frequency, stability, bounded-history, and stability-change-frequency endpoints",
     ):
         if phrase not in chain:
             fail(f"publication chain missing: {phrase}")
@@ -99,10 +100,6 @@ def main() -> int:
     }
     if set(stability.get("classes", [])) != required_stability_classes:
         fail("stability classes mismatch")
-    if stability.get("owner") != "canonical build-pages job":
-        fail("stability owner mismatch")
-    if stability.get("next_evaluation") != "next repository-owned canonical workflow trigger":
-        fail("stability evaluation must remain automation-owned")
 
     stability_change = data.get("frequency_change_stability_change_policy", {})
     if stability_change.get("comparison") != "current generated stability class against prior public stability summary":
@@ -115,10 +112,6 @@ def main() -> int:
         fail("stability-change claim boundary mismatch")
     if "without assigning a manual task" not in stability_change.get("prior_summary_unavailable_result", ""):
         fail("stability-change unavailable policy must remain no-manual")
-    if stability_change.get("owner") != "canonical build-pages job":
-        fail("stability-change owner mismatch")
-    if stability_change.get("next_evaluation") != "next repository-owned canonical workflow trigger":
-        fail("stability-change evaluation must remain automation-owned")
 
     stability_history = data.get("frequency_change_stability_change_history_policy", {})
     if stability_history.get("maximum_entries") != 24:
@@ -129,16 +122,40 @@ def main() -> int:
         fail("stability-change history ordering mismatch")
     if stability_history.get("descriptive_only") is not True:
         fail("stability-change history must remain descriptive")
-    if stability_history.get("predictive_claim") is not False:
-        fail("stability-change history predictive_claim must be false")
-    if stability_history.get("causal_claim_beyond_receipt_fields") is not False:
-        fail("stability-change history causal claim boundary mismatch")
-    if stability_history.get("owner") != "canonical build-pages job":
-        fail("stability-change history owner mismatch")
+    if stability_history.get("predictive_claim") is not False or stability_history.get("causal_claim_beyond_receipt_fields") is not False:
+        fail("stability-change history claim boundary mismatch")
     if "without assigning a manual task" not in stability_history.get("prior_history_unavailable_result", ""):
         fail("stability-change history unavailable policy must remain no-manual")
-    if stability_history.get("next_reconciliation") != "next repository-owned canonical workflow trigger":
-        fail("stability-change history reconciliation must remain automation-owned")
+
+    frequency = data.get("stability_change_frequency_policy", {})
+    if frequency.get("maximum_recent_entries") != 12:
+        fail("stability-change frequency window must be 12")
+    if frequency.get("descriptive_only") is not True:
+        fail("stability-change frequency must remain descriptive")
+    if frequency.get("predictive_claim") is not False or frequency.get("causal_claim_beyond_receipt_fields") is not False:
+        fail("stability-change frequency claim boundary mismatch")
+    required_frequency_classes = {
+        "AWAITING_AUTOMATED_STABILITY_CHANGE_HISTORY",
+        "NO_STABILITY_CHANGE_OBSERVED",
+        "ISOLATED_STABILITY_CHANGE_OBSERVED",
+        "OCCASIONAL_STABILITY_CHANGE_OBSERVED",
+        "FREQUENT_STABILITY_CHANGE_OBSERVED",
+    }
+    required_recency_classes = {
+        "AWAITING_AUTOMATED_STABILITY_CHANGE_HISTORY",
+        "CURRENT_RECEIPT_CHANGED",
+        "RECENT_STABILITY_CHANGE",
+        "OLDER_STABILITY_CHANGE_IN_WINDOW",
+        "CHANGE_NOT_IN_WINDOW",
+    }
+    if set(frequency.get("frequency_classes", [])) != required_frequency_classes:
+        fail("stability-change frequency classes mismatch")
+    if set(frequency.get("recency_classes", [])) != required_recency_classes:
+        fail("stability-change recency classes mismatch")
+    if frequency.get("owner") != "canonical build-pages job":
+        fail("stability-change frequency owner mismatch")
+    if frequency.get("next_evaluation") != "next repository-owned canonical workflow trigger":
+        fail("stability-change frequency evaluation must remain automation-owned")
 
     for trigger in ("push", "pull_request", "workflow_dispatch", "hourly_schedule"):
         if data.get("trigger_ownership", {}).get(trigger) != "repository automation":
@@ -156,7 +173,7 @@ def main() -> int:
 
     print(
         "CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - "
-        "manual_tasks=0 stability_change_history=bounded_nonpredictive"
+        "manual_tasks=0 stability_change_frequency=bounded_nonpredictive"
     )
     return 0
 
