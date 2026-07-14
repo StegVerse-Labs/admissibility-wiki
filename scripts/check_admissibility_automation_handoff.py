@@ -14,6 +14,7 @@ CONCEPTUAL_INHERITANCE_STATUS_CHECK = ROOT / "scripts" / "check_conceptual_inher
 CONCEPTUAL_INHERITANCE_PUBLICATION_CHECK = ROOT / "scripts" / "check_conceptual_inheritance_publication.py"
 CONCEPTUAL_INHERITANCE_PROPAGATION_CHECK = ROOT / "scripts" / "check_conceptual_inheritance_propagation_plan.py"
 ORIGINAL_DRAWING_PUBLICATION_CHECK = ROOT / "scripts" / "check_original_drawing_publication.py"
+OPTIMIZATION_TARGET_BINDING_CHECK = ROOT / "scripts" / "check_optimization_target_binding_at_commit.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -72,6 +73,11 @@ def main() -> int:
     run_check(
         ORIGINAL_DRAWING_PUBLICATION_CHECK,
         "original drawing publication",
+        failures,
+    )
+    run_check(
+        OPTIMIZATION_TARGET_BINDING_CHECK,
+        "optimization target binding at commit",
         failures,
     )
 
