@@ -22,7 +22,7 @@ SOURCE_COMPLETE
 NAVIGATION_INTEGRATED
 LOCAL_VALIDATOR_INSTALLED
 CANONICAL_VALIDATION_CHAIN_INTEGRATED
-CANONICAL_WORKFLOW_RUN_2284_PENDING_OBSERVATION
+LATEST_PR_HEAD_CANONICAL_WORKFLOW_PENDING_OBSERVATION
 PUBLIC_ACTIVATION_RECEIPT_PENDING_MERGE_AND_PAGES_OBSERVATION
 ```
 
@@ -130,7 +130,7 @@ QUANTUM RESILIENT SECURITY PUBLICATION: PASS
 ## Remaining work
 
 ```text
-- observe canonical workflow run 2284 for PR head validation evidence;
+- observe the canonical workflow associated with the latest PR #21 head commit;
 - repair any validation or Docusaurus build failure inside this branch;
 - update PR #21 validation evidence from observed workflow results;
 - merge only after canonical validation succeeds and review posture permits;
@@ -145,7 +145,7 @@ Pending workflow or deployment observation does not grant production authority, 
 
 A successor session may:
 
-- inspect PR #21 and workflow run evidence;
+- inspect PR #21 and latest-head workflow evidence;
 - repair failures inside this repository and branch;
 - refine technically unsupported claims;
 - update status and receipts from observed evidence;
