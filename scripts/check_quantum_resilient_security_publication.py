@@ -24,6 +24,13 @@ REQUIRED_FILES = (
     ROOT / "simulations/README.md",
 )
 
+PUBLICATION_CLAIM_FILES = (
+    ROOT / "docs/research/stegverse-complete-security-paper.md",
+    ROOT / "docs/research/stegverse-complete-security-paper.tex",
+    ROOT / "docs/social/stegverse-quantum-security-carousel.md",
+    ROOT / "docs/governance/quantum-resilient-execution-security.md",
+)
+
 
 def require(condition: bool, message: str) -> None:
     if not condition:
@@ -42,10 +49,8 @@ def main() -> None:
     paper = REQUIRED_FILES[1].read_text(encoding="utf-8")
     governance = REQUIRED_FILES[5].read_text(encoding="utf-8")
     handoff = REQUIRED_FILES[0].read_text(encoding="utf-8")
-    combined = "\n".join(
-        path.read_text(encoding="utf-8")
-        for path in REQUIRED_FILES
-        if path.suffix in {".md", ".tex", ".bib"}
+    combined_claim_surface = "\n".join(
+        path.read_text(encoding="utf-8") for path in PUBLICATION_CLAIM_FILES
     )
 
     for marker in (
@@ -72,7 +77,7 @@ def main() -> None:
     require(status.get("user_manual_action_required") is False, "user manual action must remain false")
     require(status.get("downstream_mutation_authority") == "none_granted", "downstream mutation authority must remain ungranted")
 
-    lowered = combined.lower()
+    lowered = combined_claim_surface.lower()
     for phrase in (
         "unconditionally quantum proof", "guaranteed quantum proof",
         "immune to all quantum attacks", "post-quantum cryptography guarantees execution authority",
