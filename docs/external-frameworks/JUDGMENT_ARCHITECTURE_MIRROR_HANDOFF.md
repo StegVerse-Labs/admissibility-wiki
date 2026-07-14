@@ -2,11 +2,11 @@
 
 ## Scope
 
-This file is the bounded continuation record for the Judgment Architecture external-framework research workstream inside `StegVerse-Labs/admissibility-wiki`.
+This file is the bounded continuation record for the Judgment Architecture workstream inside `StegVerse-Labs/admissibility-wiki`.
 
-The repository-wide source of truth remains `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`. This workstream must not overwrite or bypass the repository activation goal, canonical workflow, release gate, or downstream mutation boundaries.
+Repository-wide authority remains `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`. The related formal predicate is governed by `docs/COMMIT_BOUNDARY_BINDING_MIRROR_HANDOFF.md`.
 
-## Source
+## Source posture
 
 ```text
 framework: Judgment Architecture
@@ -25,8 +25,13 @@ creator_authorization_or_endorsement: not established
 docs/external-frameworks/judgment-architecture.md
 docs/external-frameworks/benchmark-mappings/judgment-architecture.mapping.json
 docs/external-frameworks/fixtures/judgment-architecture-benchmark-fixture.v0.1.json
-docs/external-frameworks/benchmark-mapping-rollout.json -> judgment-architecture entry
-sidebars.js -> external-frameworks/judgment-architecture
+static/schemas/decision-commitment-record-candidate.schema.json
+tests/fixtures/judgment-architecture-decision-commitment-record-cases.json
+scripts/check_judgment_architecture_commitment_fixtures.py
+static/status/judgment-architecture-fixture-status.json
+docs/external-frameworks/fixtures/judgment-architecture-commit-boundary-crosswalk.v0.1.json
+scripts/check_judgment_architecture_commit_boundary_crosswalk.py
+scripts/check_goal5_external_frameworks_all.py -> both validators integrated
 ```
 
 ## Current state
@@ -36,92 +41,99 @@ research_surface: installed
 navigation_visibility: installed
 machine_readable_mapping: installed
 mapping_state: fixture_ready
-fixture_cases: 4
-fixture_default: FAIL-CLOSED
-canonical_workflow_integration: inherited through existing external-framework aggregate validators
-source_citation_promotion: pending
-runtime_observation: not performed
+decision_commitment_record_candidate: installed
+deterministic_commitment_fixture_suite: installed
+commit_boundary_crosswalk: installed
+crosswalk_classification: DOCUMENTED_ARCHITECTURAL_ALIGNMENT
+crosswalk_authority_effect: NONE
+canonical_goal5_integration: installed
+canonical_workflow_observation: pending
+stable_public_source_citations: pending
+runtime_adapter_execution: not performed
 formal_compatibility: not established
 execution_authority: none
 manual_user_action_required: false
 ```
 
+## Converged proof path
+
+```text
+Judgment Architecture Decision Commitment Record candidate
+-> records human commitment conditions and contemporaneous evidence references
+-> does not grant authority or establish admissibility
+-> commit-boundary crosswalk identifies required evidence relationships
+-> independent binding predicate derives origin, authority, admissibility, invariants, recoverability, and evidence state
+-> BIND | DENY | FAIL_CLOSED
+-> consequence may attach only after independent BIND
+```
+
 ## Preserved distinctions
 
 ```text
-judgment infrastructure != individual moral quality
 candidate output != committed action
 automated generation != accountable commitment
-silence or default continuation != human adoption
+silence or momentum != human adoption
 valid transition != grounded judgment
 procedural compliance != preserved interpretive capacity
-successful execution != legitimate commitment
 named authority != reachable refusal
-accountability record != current standing proof
-human commitment alone != admissibility
+Decision Commitment Record != execution authority
+human commitment != admissibility
+field presence != current validity
+documented alignment != interoperability verification
 framework inclusion != certification or endorsement
 ```
 
-## Fixture family
+## Installed fixture families
 
-### Silent adoption
+Judgment Architecture fixtures fail closed for silent adoption, procedural-correctness drift, unreachable refusal, and untested reversibility.
 
-Fails closed when silence, default behavior, or momentum is treated as the human commitment event without a named decision-maker, authority basis, timestamp, committed action, and decision criteria.
-
-### Procedural-correctness drift
-
-Fails closed when a transition remains formally valid but current evidence, known unknowns, alternatives, interpretive context, or evidence timing cannot be reconstructed.
-
-### Unreachable refusal
-
-Fails closed when a judgment authority is named but lacks a reachable stop mechanism before consequence propagates.
-
-### Untested reversibility
-
-Fails closed when reversibility is asserted without a current recoverability profile, rollback test receipt, irreversibility boundary, recovery owner, and validity window.
+The commit-boundary binding suite independently covers valid binding, invalid origin, revoked authority, stale evidence, state drift, recoverability erosion, replay, and incomplete receipts.
 
 ## Next evidence-gated goal
 
 ```text
-Goal id: judgment-architecture-decision-commitment-record-fixture-execution
-Goal: create a non-authorizing machine-readable Decision Commitment Record candidate and execute the four fixture cases against it through deterministic local validation.
+Goal id: judgment-architecture-binding-adapter-execution
+Goal: implement a deterministic non-authorizing adapter that consumes representative Decision Commitment Record candidates and derives complete commit-boundary binding inputs without trusting asserted result fields.
 Required outputs:
-- static/schemas/decision-commitment-record-candidate.schema.json
-- tests/fixtures/judgment-architecture-decision-commitment-record-cases.json
-- scripts/check_judgment_architecture_commitment_fixtures.py
-- static/status/judgment-architecture-fixture-status.json
-- canonical validation integration through the existing single workflow
+- scripts/adapt_judgment_architecture_commitment_to_binding.py
+- tests/fixtures/judgment-architecture-binding-adapter-cases.json
+- scripts/check_judgment_architecture_binding_adapter.py
+- static/status/judgment-architecture-binding-adapter-status.json
+- observed-result receipt generated through the existing canonical validation chain
 ```
 
-## Evidence required before promotion
+The adapter must independently derive or require evidence for candidate and state hashes, origin, current authority, admissibility, invariants, recoverability margin, evidence freshness, binding result, and reason codes. Missing derivations must return `FAIL_CLOSED`.
+
+## Promotion requirements
 
 ```text
-- stable canonical public source locator
-- source version or publication identity
-- page-level or section-level citations
-- terminology verified against the supplied publication
-- deterministic fixture execution results
-- explicit observed-result receipt
-- independent review of commitment, authority, and admissibility distinctions
+stable canonical public source locator
+source version or publication identity
+page-level or section-level citations
+terminology verified against the supplied publication
+canonical workflow PASS containing both current validators
+adapter execution evidence
+explicit observed-result receipt
+independent review of commitment, authority, and admissibility distinctions
 ```
 
 ## Prohibited claims
 
 ```text
 Do not claim StegVerse certification of Judgment Architecture.
-Do not claim creator endorsement of the StegVerse crosswalk.
-Do not claim formal equivalence between the frameworks.
+Do not claim creator endorsement of the crosswalk.
+Do not claim formal equivalence or verified interoperability.
 Do not claim that a Decision Commitment Record grants execution authority.
-Do not claim that human commitment cures stale evidence, invalid delegation, or inadmissible consequence.
-Do not promote fixture-ready state to replay-ready or interoperability-ready without observed evidence.
+Do not claim that human commitment cures stale evidence, invalid delegation, state drift, or inadmissible consequence.
+Do not promote beyond fixture_ready without observed adapter and replay evidence.
 ```
 
 ## Permitted continuation
 
-A successor session may create and validate the non-authorizing Decision Commitment Record candidate, add deterministic fixture execution, integrate its validator into the existing canonical validation chain, and update this handoff from observed repository evidence.
+A successor session may implement and validate the non-authorizing adapter, generate deterministic cases and status artifacts, integrate validation through the existing Goal 5 aggregate, and update this handoff from observed evidence.
 
-No downstream repository mutation is authorized by this handoff.
+No new active workflow or downstream repository mutation is authorized.
 
 ## Archival status
 
-All conversation-specific Judgment Architecture synthesis required for continuation is durably represented by the installed page, mapping, fixture, rollout registration, and this handoff. The originating conversation is ready for archiving without additional thread context.
+All workstream-specific continuity is durable in this handoff and the installed artifacts. The originating conversation is ready for archiving without additional thread context.
