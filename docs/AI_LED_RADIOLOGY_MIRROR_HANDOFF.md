@@ -20,12 +20,15 @@ static/schemas/ai-led-radiology-execution-case.schema.json
 tests/fixtures/ai-led-radiology-execution-cases.json
 scripts/check_ai_led_radiology_execution.py
 scripts/check_ai_led_radiology_publication.py
+scripts/check_ai_led_radiology_handoff_sync.py
 static/status/ai-led-radiology-execution-status.json
 reports/ai-led-radiology-execution-receipt.json (generated automatically)
+reports/public-activation-receipt.json (generated and uploaded automatically)
+scripts/write-public-activation-receipt.mjs
+scripts/check-public-activation-receipt-writer.mjs
 sidebars.js
 docs/formalisms/index.md
 scripts/check_admissibility_automation_handoff.py
-scripts/check_ai_led_radiology_handoff_sync.py
 ```
 
 ## Decision coverage
@@ -46,12 +49,28 @@ Canonical validation seam: npm run validate:admissibility-automation-handoff
 Execution validator: scripts/check_ai_led_radiology_execution.py
 Publication validator: scripts/check_ai_led_radiology_publication.py
 Handoff sync validator: scripts/check_ai_led_radiology_handoff_sync.py
-Receipt generation: automatic
+Public activation receipt writer: scripts/write-public-activation-receipt.mjs
+Receipt-writer validator: scripts/check-public-activation-receipt-writer.mjs
+Execution receipt generation: automatic
+Live publication evidence capture: automatic
+Public activation receipt upload: automatic through the existing verify-public-pages job
 Public navigation: installed
 Manual task requirement: NONE
 User manual action required: false
 Additional active workflow created: false
 ```
+
+## Run-bound live evidence
+
+The existing public activation receipt writer now performs retrying live checks for:
+
+```text
+ai_led_radiology_formalism_reachable
+ai_led_radiology_schema_reachable
+ai_led_radiology_status_reachable
+```
+
+Each successful workflow receipt binds the checked URL, HTTP status, response size, attempt count, commit, workflow run ID, and run attempt. Local validation uses deterministic mock mode and does not require network access.
 
 ## Public endpoints
 
@@ -65,17 +84,14 @@ https://stegverse-labs.github.io/admissibility-wiki/status/ai-led-radiology-exec
 
 This activation does not certify clinical performance, authorize medical practice, endorse a hospital or vendor, establish regulatory compliance, or claim that any referenced institution has deployed autonomous radiology. It defines a governance distinction between assistive use and transfer of diagnostic execution authority.
 
-## Remaining automation-owned observations
+## Remaining automation-owned observation
 
 ```text
-- canonical workflow result
-- public formalism endpoint response
-- public schema endpoint response
-- public status endpoint response
-- durable workflow/publication evidence reconciliation
+- canonical workflow records and uploads the next passing run-bound public activation receipt
+- future handoff reconciliation may record the observed workflow identifiers
 ```
 
-These observations do not create a user task. Canonical automation and future handoff reconciliation own them.
+This observation does not create a user task. Canonical automation and future handoff reconciliation own it.
 
 ## Continuation rule
 
