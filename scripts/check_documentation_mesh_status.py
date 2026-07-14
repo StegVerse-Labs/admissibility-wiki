@@ -9,6 +9,8 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "static" / "status" / "ecosystem-documentation-endpoints.json"
 HEALTH = ROOT / "static" / "status" / "cross-wiki-health-status.json"
+WRITER = ROOT / "scripts" / "write-public-activation-receipt.mjs"
+WRITER_CHECK = ROOT / "scripts" / "check-public-activation-receipt-writer.mjs"
 EXPECTED_ENDPOINTS = {
     "stegverse-site": ("StegVerse-Labs/Site", "https://stegverse-labs.github.io/Site/"),
     "admissibility-wiki": ("StegVerse-Labs/admissibility-wiki", "https://stegverse-labs.github.io/admissibility-wiki/"),
@@ -32,6 +34,10 @@ def main() -> int:
     failures: list[str] = []
     registry = load_json(REGISTRY, failures, "endpoint registry")
     health = load_json(HEALTH, failures, "cross-wiki health status")
+
+    for path in (WRITER, WRITER_CHECK):
+        if not path.exists():
+            failures.append(f"missing automation surface: {path.relative_to(ROOT)}")
 
     if registry.get("record_type") != "stegverse_ecosystem_documentation_endpoints":
         failures.append("endpoint registry record type mismatch")
@@ -57,7 +63,7 @@ def main() -> int:
     if health.get("peer_registry") != "status/ecosystem-documentation-endpoints.json":
         failures.append("health peer registry mismatch")
     if health.get("status") != "pending_live_peer_checks":
-        failures.append("health state must remain pending until live peer checks complete")
+        failures.append("health state must remain pending until run-bound live peer checks complete")
 
     checks = health.get("checks", {})
     if checks.get("peer_urls_declared") is not True:
@@ -70,7 +76,54 @@ def main() -> int:
         "cross_wiki_schema_consistency_confirmed",
     ):
         if checks.get(key) is not False:
-            failures.append(f"{key} must remain false until verified")
+            failures.append(f"{key} must remain false until verified by run-bound evidence")
+
+    if health.get("manual_task_requirement") != "NONE":
+        failures.append("manual task requirement must be NONE")
+    if health.get("user_manual_action_required") is not False:
+        failures.append("user manual action required must be false")
+    if health.get("remaining_owner") != "CANONICAL_AUTOMATION_AND_SUCCESSOR_SCOPE":
+        failures.append("remaining ownership must be canonical automation and successor scope")
+
+    automation = health.get("automation")
+    if not isinstance(automation, dict):
+        failures.append("automation must be an object")
+    else:
+        expected = {
+            "receipt_writer": "scripts/write-public-activation-receipt.mjs",
+            "receipt_validator": "scripts/check-public-activation-receipt-writer.mjs",
+            "receipt_artifact": "public-activation-receipt",
+            "closure_key": "activation_closures.documentation_mesh",
+            "closure_schema": "documentation_mesh_observation_closure.v1",
+            "peer_root_checks_automatic": True,
+            "peer_registry_checks_automatic": True,
+            "peer_health_checks_automatic": True,
+            "source_blocked_result_fail_closed": True,
+            "handoff_reconciliation_required_for_continuation": False,
+        }
+        for key, value in expected.items():
+            if automation.get(key) != value:
+                failures.append(f"automation {key} mismatch")
+
+    non_claims = health.get("non_claims", {})
+    for key in (
+        "cross_repo_authority_granted",
+        "standing_conferred",
+        "execution_authority",
+        "downstream_mutation_authority_granted",
+    ):
+        if non_claims.get(key) is not False:
+            failures.append(f"non-claim boundary must remain false: {key}")
+
+    writer_text = WRITER.read_text(encoding="utf-8") if WRITER.exists() else ""
+    for marker in (
+        "documentation_mesh_observation_closure.v1",
+        "SOURCE_BLOCKED_FAIL_CLOSED",
+        "activation_closures",
+        "documentation_mesh",
+    ):
+        if marker not in writer_text:
+            failures.append(f"receipt writer missing documentation mesh marker: {marker}")
 
     print("ADMISSIBILITY DOCUMENTATION MESH:", "FAIL" if failures else "PASS")
     for failure in failures:
