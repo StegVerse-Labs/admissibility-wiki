@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -9,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 HISTORY = ROOT / "static" / "status" / "canonical-workflow-observation-history.json"
 SUMMARY = ROOT / "static" / "status" / "canonical-workflow-health-summary.json"
 TRANSITION = ROOT / "static" / "status" / "canonical-workflow-health-transition-receipt.json"
+TRANSITION_HISTORY_RECONCILER = ROOT / "scripts" / "reconcile_canonical_workflow_health_transition_history.py"
 AUTOMATION = ROOT / "static" / "status" / "canonical-workflow-observation-automation.json"
 
 
@@ -144,6 +147,22 @@ def main() -> int:
     SUMMARY.parent.mkdir(parents=True, exist_ok=True)
     SUMMARY.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     TRANSITION.write_text(json.dumps(transition, indent=2) + "\n", encoding="utf-8")
+
+    if not TRANSITION_HISTORY_RECONCILER.exists():
+        raise SystemExit("workflow health transition history reconciler is missing")
+    completed = subprocess.run(
+        [sys.executable, str(TRANSITION_HISTORY_RECONCILER)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    if completed.stdout:
+        print(completed.stdout.rstrip())
+    if completed.returncode != 0:
+        raise SystemExit("workflow health transition history reconciliation failed")
+
     print(
         "CANONICAL WORKFLOW HEALTH SUMMARY: PASS - "
         f"health={current_health} transition={transition_state} manual_tasks=0"
