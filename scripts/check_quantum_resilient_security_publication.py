@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 STATUS = ROOT / "static/status/quantum-resilient-security-publication-status.json"
 SIDEBAR = ROOT / "sidebars.js"
-PACKAGE = ROOT / "package.json"
+CANONICAL_CHECK = ROOT / "scripts/check_admissibility_automation_handoff.py"
 
 REQUIRED_FILES = (
     ROOT / "docs/STEGVERSE_QUANTUM_SECURITY_MIRROR_HANDOFF.md",
@@ -34,9 +34,10 @@ def main() -> None:
         require(path.is_file(), f"missing required publication file: {path.relative_to(ROOT)}")
 
     require(STATUS.is_file(), f"missing status artifact: {STATUS.relative_to(ROOT)}")
+    require(CANONICAL_CHECK.is_file(), f"missing canonical integration checker: {CANONICAL_CHECK.relative_to(ROOT)}")
     status = json.loads(STATUS.read_text(encoding="utf-8"))
     sidebar = SIDEBAR.read_text(encoding="utf-8")
-    package = json.loads(PACKAGE.read_text(encoding="utf-8"))
+    canonical_check = CANONICAL_CHECK.read_text(encoding="utf-8")
 
     paper = REQUIRED_FILES[1].read_text(encoding="utf-8")
     governance = REQUIRED_FILES[5].read_text(encoding="utf-8")
@@ -72,10 +73,8 @@ def main() -> None:
     require("governance/quantum-resilient-execution-security" in sidebar, "governance page is not present in sidebars.js")
     require("research/stegverse-complete-security-paper" in sidebar, "research paper is not present in sidebars.js")
     require("social/stegverse-quantum-security-carousel" in sidebar, "carousel source is not present in sidebars.js")
-
-    scripts = package.get("scripts", {})
-    require("validate:quantum-resilient-security-publication" in scripts, "package.json is missing the dedicated validator command")
-    require("validate:quantum-resilient-security-publication" in scripts.get("validate", ""), "dedicated validator is not integrated into npm run validate")
+    require("QUANTUM_RESILIENT_SECURITY_CHECK" in canonical_check, "validator is not declared in canonical automation handoff checker")
+    require("quantum-resilient security publication" in canonical_check, "validator is not executed by canonical automation handoff checker")
 
     claim_boundary = status.get("claim_boundary", {})
     require(claim_boundary.get("unconditional_quantum_proof_claim") is False, "unconditional quantum-proof claim must remain false")
@@ -107,7 +106,7 @@ def main() -> None:
         check=False,
     )
     require(result.returncode == 0, f"simulation failed: {result.stderr.strip() or result.stdout.strip()}")
-    require("PASS" in result.stdout, "simulation did not emit PASS")
+    require("QUANTUM EXECUTION SECURITY MODEL: PASS" in result.stdout, "simulation did not emit its deterministic PASS marker")
 
     print("QUANTUM RESILIENT SECURITY PUBLICATION: PASS")
 
