@@ -1,8 +1,8 @@
 {
-  "schema": "admissibility_wiki.canonical_workflow_observation_automation.v0.15",
+  "schema": "admissibility_wiki.canonical_workflow_observation_automation.v0.16",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "goal": "Eliminate manual workflow observation, reconciliation, classification, comparison, bounded-history maintenance, frequency interpretation, stability interpretation, stability-class comparison, and stability-change history maintenance while preserving fail-closed automation.",
-  "state": "AUTOMATED_FREQUENCY_CHANGE_STABILITY_CHANGE_HISTORY_BOUND",
+  "goal": "Eliminate manual workflow observation, reconciliation, classification, comparison, bounded-history maintenance, frequency interpretation, stability interpretation, stability-class comparison, stability-change history maintenance, and stability-change frequency interpretation while preserving fail-closed automation.",
+  "state": "AUTOMATED_STABILITY_CHANGE_FREQUENCY_BOUND",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "ios_safe_workflow_mirror": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
   "integration": "scripts/check_full_validation_chain.py",
@@ -20,6 +20,8 @@
   "frequency_change_stability_change_validator": "scripts/check_canonical_workflow_frequency_change_stability_change.py",
   "frequency_change_stability_change_history_reconciler": "scripts/reconcile_canonical_workflow_frequency_change_stability_change_history.py",
   "frequency_change_stability_change_history_validator": "scripts/check_canonical_workflow_frequency_change_stability_change_history.py",
+  "stability_change_frequency_generator": "scripts/generate_canonical_workflow_stability_change_frequency_summary.py",
+  "stability_change_frequency_validator": "scripts/check_canonical_workflow_stability_change_frequency_summary.py",
   "automation_contract_endpoint": "/status/canonical-workflow-observation-automation.json",
   "run_bound_receipt_endpoint": "/status/canonical-workflow-observation-receipt.json",
   "history_endpoint": "/status/canonical-workflow-observation-history.json",
@@ -35,6 +37,7 @@
   "frequency_change_stability_endpoint": "/status/canonical-workflow-frequency-change-stability-summary.json",
   "frequency_change_stability_change_endpoint": "/status/canonical-workflow-frequency-change-stability-change-receipt.json",
   "frequency_change_stability_change_history_endpoint": "/status/canonical-workflow-frequency-change-stability-change-history.json",
+  "stability_change_frequency_endpoint": "/status/canonical-workflow-stability-change-frequency-summary.json",
   "publication_chain": [
     "validate-chain-continuation generates and embeds the run receipt",
     "full-validation-chain-report artifact transfers it to build-pages",
@@ -46,8 +49,9 @@
     "build-pages derives a bounded descriptive stability summary from frequency-change history",
     "build-pages emits a stability-class change receipt by comparing the current stability summary with the prior public summary",
     "build-pages reconciles the stability-class change receipt into bounded deduplicated stability-change history",
+    "build-pages derives a bounded descriptive frequency and recency summary from stability-change history",
     "deploy-pages publishes the site artifact",
-    "verify-public-pages checks observation, health, transition, trend, frequency, frequency-change-history, stability-summary, stability-change, and stability-change-history endpoints"
+    "verify-public-pages checks observation, health, transition, trend, frequency, stability, bounded-history, and stability-change-frequency endpoints"
   ],
   "trend_change_history_policy": {
     "maximum_entries": 24,
@@ -120,6 +124,16 @@
     "prior_history_unavailable_result": "initialize a new bounded sequence without assigning a manual task",
     "next_reconciliation": "next repository-owned canonical workflow trigger"
   },
+  "stability_change_frequency_policy": {
+    "maximum_recent_entries": 12,
+    "descriptive_only": true,
+    "predictive_claim": false,
+    "causal_claim_beyond_receipt_fields": false,
+    "frequency_classes": ["AWAITING_AUTOMATED_STABILITY_CHANGE_HISTORY", "NO_STABILITY_CHANGE_OBSERVED", "ISOLATED_STABILITY_CHANGE_OBSERVED", "OCCASIONAL_STABILITY_CHANGE_OBSERVED", "FREQUENT_STABILITY_CHANGE_OBSERVED"],
+    "recency_classes": ["AWAITING_AUTOMATED_STABILITY_CHANGE_HISTORY", "CURRENT_RECEIPT_CHANGED", "RECENT_STABILITY_CHANGE", "OLDER_STABILITY_CHANGE_IN_WINDOW", "CHANGE_NOT_IN_WINDOW"],
+    "owner": "canonical build-pages job",
+    "next_evaluation": "next repository-owned canonical workflow trigger"
+  },
   "trigger_ownership": {
     "push": "repository automation",
     "pull_request": "repository automation",
@@ -135,7 +149,7 @@
   "downstream_mutation_authority_granted": false,
   "non_claims": [
     "This status proves automation contracts, not a successful future workflow run.",
-    "Frequency, recency, class-change, bounded history, stability summaries, stability-change receipts, and stability-change histories are descriptive, not predictive or independently causal.",
+    "All frequency, recency, stability, change, and bounded-history summaries are descriptive, not predictive or independently causal.",
     "It does not grant merge, release, deployment, publication, execution, or downstream mutation authority."
   ]
 }
