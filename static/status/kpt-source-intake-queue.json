@@ -1,0 +1,41 @@
+{
+  "artifact_type": "external_framework_source_intake_queue",
+  "schema_version": "0.1",
+  "framework_id": "kpt",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "state": "WAITING_FOR_CANONICAL_OWNER_PUBLISHED_SOURCE",
+  "current_source_posture": "SOURCE_BLOCKED_FAIL_CLOSED",
+  "accepted_candidate_classes": [
+    "official_owner_published_website",
+    "versioned_specification_or_white_paper",
+    "canonical_public_repository",
+    "versioned_api_or_schema",
+    "versioned_trace_or_receipt_format",
+    "equivalent_owner_published_framework_document"
+  ],
+  "automatic_promotion_requirements": [
+    "candidate source is owner-published or canonically attributable",
+    "source URL is durable and publicly resolvable",
+    "source version or immutable reference is recorded",
+    "framework claims and non-claims can be extracted without inference overreach",
+    "decision vocabulary and authority boundary are explicit or remain unresolved",
+    "manifest, registry, compatibility report, page, status, and receipts are updated together",
+    "canonical validation passes",
+    "public deployment and route observation pass"
+  ],
+  "promotion_result_on_success": "SOURCE_RECORDED_CROSSWALK_PROVISIONAL",
+  "promotion_result_on_failure": "SOURCE_BLOCKED_FAIL_CLOSED",
+  "queue": [],
+  "manual_task_requirement": "none",
+  "user_action_required": false,
+  "manual_source_search_required": false,
+  "downstream_mutation_authorized": false,
+  "boundary": {
+    "queue_entry_is_source_sufficiency": false,
+    "source_discovery_is_endorsement": false,
+    "source_promotion_is_certification": false,
+    "source_promotion_is_execution_authority": false,
+    "source_promotion_is_commit_time_authority": false,
+    "missing_or_ambiguous_source_fails_closed": true
+  }
+}
