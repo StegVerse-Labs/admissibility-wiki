@@ -1,8 +1,8 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "goal_id": "verification-vs-execution-authority",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION",
+  "state": "IMPLEMENTED_WITH_AUTOMATED_PUBLICATION_VERIFICATION_PENDING_OBSERVATION",
   "doctrine_path": "docs/governance/verification-vs-execution-authority.md",
   "source": {
     "url": "https://www.prnewswire.com/news-releases/fathom-applauds-governor-spanbergers-signing-of-landmark-ai-governance-legislation-302739994.html",
@@ -18,10 +18,24 @@
     "allowed_decisions": ["ALLOW", "DENY", "FAIL_CLOSED"]
   },
   "manual_task_requirement": "none",
+  "user_manual_action_required": false,
   "downstream_mutation_authority": "none_granted",
   "validation": {
     "validator": "scripts/check_verification_execution_authority.py",
     "canonical_integration": "npm run validate",
     "expected_result": "VERIFICATION EXECUTION AUTHORITY: PASS"
+  },
+  "publication_verification": {
+    "execution_surface": ".github/workflows/validate-chain-continuation.yml",
+    "job": "verify-public-pages",
+    "checker": "scripts/check_governed_llm_deployment_status.py",
+    "routes": [
+      "https://stegverse-labs.github.io/admissibility-wiki/governance/verification-vs-execution-authority",
+      "https://stegverse-labs.github.io/admissibility-wiki/status/verification-execution-authority-status.json"
+    ],
+    "failure_posture": "FAIL_CLOSED",
+    "manual_tasks_required": [],
+    "user_action_required": false,
+    "authority_granted_by_route_reachability": false
   }
 }
