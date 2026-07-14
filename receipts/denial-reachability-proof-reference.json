@@ -1,0 +1,30 @@
+{
+  "schema": "stegverse.denial_reachability.proof_reference.v1",
+  "formalism_id": "stegverse.denial-reachability-at-commit.v0.1",
+  "documentation_repository": "StegVerse-Labs/admissibility-wiki",
+  "proof_authority_repository": "Data-Continuation/formalism-tests",
+  "proof_task_id": "denial_reachability_commit_boundary_tests",
+  "proof_status": "PASS",
+  "case_count": 5,
+  "passed_count": 5,
+  "failed_count": 0,
+  "report_path": "reports/denial_reachability_report.json",
+  "continuation_report_path": "reports/denial_reachability_continuation_report.md",
+  "execution_receipts_path": "receipts/denial_reachability_execution_receipts.jsonl",
+  "report_sha256": "8c2c460e3d7ae790a4f5fc347e44f9e91615db8b1913ee98c893e3071a5fb284",
+  "proof_cases": [
+    "REACHABLE_DENY",
+    "UNREACHABLE_DENY",
+    "COSMETIC_GATING",
+    "LATE_REFUSAL",
+    "SPLIT_BOUNDARY_INSUFFICIENCY"
+  ],
+  "authority_boundary": {
+    "wiki_role": "PUBLIC_DOCUMENTATION_AND_PROOF_REFERENCE",
+    "proof_repository_role": "EXECUTABLE_PROOF_AUTHORITY",
+    "execution_authority_granted": false,
+    "production_certification_claimed": false
+  },
+  "validation_posture": "DETERMINISTIC_FIXTURE_MATCH_RECORDED_CANONICAL_RUNNER_RERUN_PENDING",
+  "note": "The five deterministic fixture outcomes matched expected results. Independent execution through the repository declared-task runner remains required to replace the recorded runtime-observation limitation."
+}
