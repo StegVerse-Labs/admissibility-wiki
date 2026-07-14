@@ -19,6 +19,9 @@ PAGES = {
     "verification_execution_authority_status": "https://stegverse-labs.github.io/admissibility-wiki/status/verification-execution-authority-status.json",
     "robotic_law_enforcement_doctrine": "https://stegverse-labs.github.io/admissibility-wiki/governance/robotic-law-enforcement-adoption-boundary",
     "robotic_law_enforcement_status": "https://stegverse-labs.github.io/admissibility-wiki/status/robotic-law-enforcement-adoption-status.json",
+    "quantum_security_governance_page": "https://stegverse-labs.github.io/admissibility-wiki/governance/quantum-resilient-execution-security",
+    "quantum_security_research_paper": "https://stegverse-labs.github.io/admissibility-wiki/research/stegverse-complete-security-paper",
+    "quantum_security_carousel_source": "https://stegverse-labs.github.io/admissibility-wiki/social/stegverse-quantum-security-carousel",
     "documentation_mesh_site": "https://stegverse-labs.github.io/Site/",
     "documentation_mesh_admissibility_wiki": "https://stegverse-labs.github.io/admissibility-wiki/",
     "documentation_mesh_stegguardian_wiki": "https://stegverse-002.github.io/stegguardian-wiki/",
@@ -54,6 +57,12 @@ PAGES = {
     "kpt_source_intake_queue": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-source-intake-queue.json",
 }
 RECEIPT = Path("reports/optimization-target-publication-verification-receipt.json")
+QUANTUM_RECEIPT = Path("reports/quantum-security-public-route-observation.json")
+QUANTUM_ROUTE_NAMES = (
+    "quantum_security_governance_page",
+    "quantum_security_research_paper",
+    "quantum_security_carousel_source",
+)
 
 def check_url(url: str):
     request = Request(url, method="HEAD", headers={"User-Agent": "stegverse-admissibility-verifier/1.0"})
@@ -72,7 +81,7 @@ def main() -> int:
         results[name] = {"url": url, "reachable": ok, "http_status": status}
         if not ok: failures.append(message)
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.24",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.25",
         "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID','local')}.{os.getenv('GITHUB_RUN_ATTEMPT','0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
@@ -88,6 +97,8 @@ def main() -> int:
             "Route reachability is bounded publication evidence only.",
             "Published verification doctrine does not grant execution authority.",
             "Published robotic law-enforcement doctrine does not authorize deployment, force, procurement, certification, or statutory standing.",
+            "Quantum-security route reachability is not certification or proof of production cryptographic deployment.",
+            "Post-quantum cryptography does not independently grant execution authority.",
             "Documentation-mesh reachability does not grant cross-repository authority, compatibility, standing, or synchronization permission.",
             "Conceptual-inheritance publication does not decide authorship, ownership, infringement, intent, derivation, or origin-claim standing.",
             "A reachable KPT source-intake queue does not prove source sufficiency or promote a source candidate.",
@@ -97,7 +108,39 @@ def main() -> int:
         ]
     }
     RECEIPT.parent.mkdir(parents=True, exist_ok=True); RECEIPT.write_text(json.dumps(receipt, indent=2)+"\n", encoding="utf-8")
+    quantum_routes = {name: results[name] for name in QUANTUM_ROUTE_NAMES}
+    quantum_pass = all(item["reachable"] for item in quantum_routes.values())
+    quantum_receipt = {
+        "schema": "quantum_security_public_route_observation.v1",
+        "goal_id": "stegverse-quantum-resilient-complete-security",
+        "state": "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE" if quantum_pass else "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED",
+        "observed_at": datetime.now(timezone.utc).isoformat(),
+        "repository": "StegVerse-Labs/admissibility-wiki",
+        "commit": os.getenv("GITHUB_SHA"),
+        "run_id": os.getenv("GITHUB_RUN_ID"),
+        "run_attempt": os.getenv("GITHUB_RUN_ATTEMPT"),
+        "routes": quantum_routes,
+        "all_required_public_routes_verified": quantum_pass,
+        "pages_deployment_observed": quantum_pass,
+        "manual_task_requirement": "NONE",
+        "user_manual_action_required": False,
+        "certification_granted": False,
+        "universal_quantum_proof_claim": False,
+        "production_cryptographic_deployment_established": False,
+        "execution_authority_granted": False,
+        "downstream_mutation_authority_granted": False,
+        "continuation_source": "docs/STEGVERSE_QUANTUM_SECURITY_MIRROR_HANDOFF.md",
+        "issues": [20, 23],
+        "non_claims": [
+            "Route reachability is bounded publication evidence only.",
+            "Publication is not certification.",
+            "Post-quantum cryptography does not independently grant execution authority.",
+            "This receipt grants no downstream mutation authority."
+        ]
+    }
+    QUANTUM_RECEIPT.write_text(json.dumps(quantum_receipt, indent=2)+"\n", encoding="utf-8")
     print(f"wrote {RECEIPT}")
+    print(f"wrote {QUANTUM_RECEIPT}")
     if failures:
         print("GOVERNED DOCUMENTATION DEPLOYMENT: PENDING - public routes not fully confirmed"); return 1
     print("GOVERNED DOCUMENTATION DEPLOYMENT: PASS - public routes reachable"); return 0
