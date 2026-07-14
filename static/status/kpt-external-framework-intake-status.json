@@ -1,0 +1,43 @@
+{
+  "artifact_type": "external_framework_intake_status",
+  "schema_version": "0.1",
+  "framework_id": "kpt",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "goal_id": "kpt-external-framework-intake-activation",
+  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_VERIFICATION",
+  "source_posture": "SOURCE_BLOCKED_FAIL_CLOSED",
+  "installed": {
+    "public_page": "docs/external-frameworks/kpt.md",
+    "manifest": "docs/external-frameworks/kpt.json",
+    "compatibility_report": "docs/external-frameworks/reports/kpt.compatibility.json",
+    "registry": "docs/external-frameworks/index.json",
+    "navigation": "sidebars.js",
+    "provenance_receipt": "receipts/kpt-source-blocked-intake-2026-07-14.json",
+    "continuation_issue": "https://github.com/StegVerse-Labs/admissibility-wiki/issues/18"
+  },
+  "required_checks": [
+    "canonical workflow passes after report generation",
+    "external framework report validator accepts KPT source-blocked status vocabulary",
+    "wiki build includes the KPT page in navigation",
+    "public KPT page responds after deployment",
+    "public compatibility report is available after deployment"
+  ],
+  "source_upgrade_gate": [
+    "official owner-published framework URL",
+    "versioned specification or white paper",
+    "canonical public repository or implementation source",
+    "versioned decision vocabulary, API, schema, or trace format"
+  ],
+  "boundary": {
+    "certification_claim": false,
+    "endorsement_claim": false,
+    "formal_collaboration_claim": false,
+    "execution_authority_claim": false,
+    "commit_time_authority_claim": false,
+    "decision_equivalence_claim": false,
+    "public_visibility_is_authority": false,
+    "missing_official_source_fails_closed": true
+  },
+  "manual_task_requirement": "none",
+  "downstream_mutation_authorized": false
+}
