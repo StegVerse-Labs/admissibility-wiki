@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "goal_id": "conceptual-inheritance-provenance-standing",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "verification_state": "PENDING_LIVE_DEPLOYMENT_VERIFICATION",
@@ -44,7 +44,13 @@
   "automation": {
     "deployment_checker": "scripts/check_governed_llm_deployment_status.py",
     "execution_surface": ".github/workflows/validate-chain-continuation.yml#verify-public-pages",
-    "receipt_path": "reports/optimization-target-publication-verification-receipt.json",
+    "route_receipt_path": "reports/optimization-target-publication-verification-receipt.json",
+    "activation_receipt_writer": "scripts/write-public-activation-receipt.mjs",
+    "activation_receipt_validator": "scripts/check-public-activation-receipt-writer.mjs",
+    "activation_receipt_path": "reports/public-activation-receipt.json",
+    "activation_receipt_artifact": "public-activation-receipt",
+    "activation_closure_key": "activation_closures.conceptual_inheritance",
+    "activation_closure_schema": "conceptual_inheritance_publication_closure.v1",
     "receipt_route_keys": [
       "conceptual_inheritance_doctrine",
       "conceptual_inheritance_status",
@@ -65,7 +71,8 @@
   "non_claims": [
     "Pending deployment is not public verification",
     "Public visibility is not execution authority",
-    "A passing publication check does not decide authorship, ownership, infringement, intent, derivation, or origin-claim standing"
+    "A passing publication check does not decide authorship, ownership, infringement, intent, derivation, or origin-claim standing",
+    "The activation closure grants no release authority or downstream mutation authority"
   ],
   "manual_task_required": false,
   "user_manual_action_required": false,
