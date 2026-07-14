@@ -1,6 +1,6 @@
 {
   "goal_id": "ai-led-radiology-execution-boundary",
-  "state": "AUTOMATED_PENDING_OBSERVED_WORKFLOW_RESULT",
+  "state": "AUTOMATED_CLOSURE_RECEIPT_READY_PENDING_OBSERVED_RUN",
   "issue_ref": "StegVerse-Labs/admissibility-wiki#15",
   "formalism": "docs/formalisms/ai-led-radiology-execution-boundary.md",
   "schema": "static/schemas/ai-led-radiology-execution-case.schema.json",
@@ -13,6 +13,8 @@
   "generated_receipt": "reports/ai-led-radiology-execution-receipt.json",
   "public_activation_receipt": "reports/public-activation-receipt.json",
   "public_activation_receipt_schema": "admissibility_wiki_public_activation_receipt.v4",
+  "activation_closure_schema": "ai_led_radiology_activation_closure.v1",
+  "activation_closure_path": "reports/public-activation-receipt.json#/activation_closures/ai_led_radiology",
   "public_status_url": "https://stegverse-labs.github.io/admissibility-wiki/status/ai-led-radiology-execution-status.json",
   "public_formalism_url": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/ai-led-radiology-execution-boundary",
   "public_schema_url": "https://stegverse-labs.github.io/admissibility-wiki/schemas/ai-led-radiology-execution-case.schema.json",
@@ -46,12 +48,15 @@
       "ai_led_radiology_schema_reachable",
       "ai_led_radiology_status_reachable"
     ],
-    "live_evidence_uploaded_by_existing_workflow": true
+    "live_evidence_uploaded_by_existing_workflow": true,
+    "closure_evaluation_automatic": true,
+    "closure_embedded_in_uploaded_receipt": true,
+    "handoff_reconciliation_required_for_continuation": false
   },
+  "completion_rule": "A non-mock public activation receipt with activation_closures.ai_led_radiology.state == WORKFLOW_OBSERVED_PUBLICATION_COMPLETE and all_required_public_routes_verified == true completes the activation without a follow-up handoff edit.",
   "remaining": [
-    "canonical automation records a passing workflow result and uploads run-bound evidence",
-    "future handoff reconciliation may record the observed run identifiers"
+    "canonical automation emits the first non-mock WORKFLOW_OBSERVED_PUBLICATION_COMPLETE closure"
   ],
-  "remaining_owner": "CANONICAL_AUTOMATION_AND_FUTURE_HANDOFF_RECONCILIATION",
+  "remaining_owner": "CANONICAL_AUTOMATION",
   "user_manual_action_required": false
 }
