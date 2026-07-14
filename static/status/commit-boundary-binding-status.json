@@ -1,0 +1,27 @@
+{
+  "schema_version": "commit_boundary_binding_status.v1",
+  "goal_id": "commit-boundary-binding-predicate",
+  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION",
+  "doctrine": "docs/formalisms/commit-boundary-binding-predicate.md",
+  "handoff": "docs/COMMIT_BOUNDARY_BINDING_MIRROR_HANDOFF.md",
+  "schema": "static/schemas/commit-boundary-binding-record.schema.json",
+  "fixtures": "tests/fixtures/commit-boundary-binding-cases.json",
+  "checker": "scripts/check_commit_boundary_binding.py",
+  "receipt": "receipts/commit-boundary-binding-proof-receipt.json",
+  "fixture_count": 8,
+  "fixture_digest": "sha256:271e1c1c64df182076e2db1114d466a60e7dca06922457182a81e579a2f1c3e4",
+  "binding_axes": [
+    "origin",
+    "authority",
+    "admissibility",
+    "invariants",
+    "recoverability",
+    "evidence"
+  ],
+  "decision_results": ["BIND", "DENY", "FAIL_CLOSED"],
+  "manual_task_requirement": "none",
+  "user_manual_action_required": false,
+  "workflow_policy": "single canonical workflow only",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "downstream_mutation_authority": "none granted"
+}
