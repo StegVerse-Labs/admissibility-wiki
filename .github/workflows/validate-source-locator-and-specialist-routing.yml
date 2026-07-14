@@ -1,0 +1,29 @@
+name: Validate Source Locator and Specialist Routing
+
+on:
+  push:
+    paths:
+      - 'static/translation-records/source-locator-intake.v0.1.json'
+      - 'static/translation-records/specialist-review-routing.v0.1.json'
+      - 'static/translation-records/external-bibliographic-intake.v0.1.json'
+      - 'docs/governance/source-locator-intake-and-specialist-routing.md'
+      - 'scripts/check_source_locator_and_specialist_routing.py'
+      - '.github/workflows/validate-source-locator-and-specialist-routing.yml'
+  pull_request:
+    paths:
+      - 'static/translation-records/source-locator-intake.v0.1.json'
+      - 'static/translation-records/specialist-review-routing.v0.1.json'
+      - 'static/translation-records/external-bibliographic-intake.v0.1.json'
+      - 'docs/governance/source-locator-intake-and-specialist-routing.md'
+      - 'scripts/check_source_locator_and_specialist_routing.py'
+      - '.github/workflows/validate-source-locator-and-specialist-routing.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-source-routing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate source locator and specialist routing
+        run: python scripts/check_source_locator_and_specialist_routing.py
