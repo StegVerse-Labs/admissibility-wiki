@@ -31,7 +31,11 @@ scripts/check_judgment_architecture_commitment_fixtures.py
 static/status/judgment-architecture-fixture-status.json
 docs/external-frameworks/fixtures/judgment-architecture-commit-boundary-crosswalk.v0.1.json
 scripts/check_judgment_architecture_commit_boundary_crosswalk.py
-scripts/check_goal5_external_frameworks_all.py -> both validators integrated
+scripts/adapt_judgment_architecture_commitment_to_binding.py
+tests/fixtures/judgment-architecture-binding-adapter-cases.json
+scripts/check_judgment_architecture_binding_adapter.py
+static/status/judgment-architecture-binding-adapter-status.json
+scripts/check_goal5_external_frameworks_all.py -> all Judgment Architecture validators integrated
 ```
 
 ## Current state
@@ -45,12 +49,13 @@ decision_commitment_record_candidate: installed
 deterministic_commitment_fixture_suite: installed
 commit_boundary_crosswalk: installed
 crosswalk_classification: DOCUMENTED_ARCHITECTURAL_ALIGNMENT
-crosswalk_authority_effect: NONE
+binding_adapter: installed
+binding_adapter_posture: DETERMINISTIC_NON_AUTHORIZING
+binding_adapter_cases: 4
 canonical_goal5_integration: installed
 canonical_workflow_observation: pending
 stable_public_source_citations: pending
-runtime_adapter_execution: not performed
-formal_compatibility: not established
+runtime_interoperability: not established
 execution_authority: none
 manual_user_action_required: false
 ```
@@ -61,11 +66,47 @@ manual_user_action_required: false
 Judgment Architecture Decision Commitment Record candidate
 -> records human commitment conditions and contemporaneous evidence references
 -> does not grant authority or establish admissibility
--> commit-boundary crosswalk identifies required evidence relationships
--> independent binding predicate derives origin, authority, admissibility, invariants, recoverability, and evidence state
--> BIND | DENY | FAIL_CLOSED
--> consequence may attach only after independent BIND
+-> adapter receives separately supplied live evidence
+-> adapter derives candidate and state hashes
+-> adapter derives origin, current authority, admissibility, invariants, recoverability, and evidence state
+-> commit-boundary predicate returns BIND | DENY | FAIL_CLOSED
+-> non-BIND outcomes never receive committed_at
+-> consequence may attach only after independently derived BIND
 ```
+
+## Adapter behavior
+
+The adapter does not trust asserted result fields in the Decision Commitment Record. It requires or independently derives:
+
+```text
+transition identity
+candidate hash
+state-before hash
+state-after hash
+decision validity
+causal origin validity
+current authority validity
+live admissibility result
+invariant preservation
+recoverability result and margin
+evidence completeness and freshness
+binding result
+reason codes
+receipt hash
+```
+
+Missing or malformed live evidence becomes unresolved and returns `FAIL_CLOSED`. Explicitly invalid origin, authority, admissibility, invariants, or recoverability returns `DENY`. Only complete, current, independently supplied evidence across every axis may return `BIND`.
+
+## Installed adapter cases
+
+```text
+complete-live-evidence-bind -> BIND
+commitment-complete-authority-stale -> FAIL_CLOSED
+human-commitment-present-state-drift-deny -> DENY
+missing-live-evidence-fail-closed -> FAIL_CLOSED
+```
+
+These are deterministic local fixtures. They are not runtime authorization, certification, verified interoperability, or creator endorsement.
 
 ## Preserved distinctions
 
@@ -80,29 +121,23 @@ Decision Commitment Record != execution authority
 human commitment != admissibility
 field presence != current validity
 documented alignment != interoperability verification
+adapter BIND fixture != runtime authorization
 framework inclusion != certification or endorsement
 ```
-
-## Installed fixture families
-
-Judgment Architecture fixtures fail closed for silent adoption, procedural-correctness drift, unreachable refusal, and untested reversibility.
-
-The commit-boundary binding suite independently covers valid binding, invalid origin, revoked authority, stale evidence, state drift, recoverability erosion, replay, and incomplete receipts.
 
 ## Next evidence-gated goal
 
 ```text
-Goal id: judgment-architecture-binding-adapter-execution
-Goal: implement a deterministic non-authorizing adapter that consumes representative Decision Commitment Record candidates and derives complete commit-boundary binding inputs without trusting asserted result fields.
+Goal id: judgment-architecture-binding-adapter-canonical-observation
+Goal: observe the existing canonical workflow executing the adapter validator and bind its deterministic output to workflow evidence without promoting beyond fixture_ready.
 Required outputs:
-- scripts/adapt_judgment_architecture_commitment_to_binding.py
-- tests/fixtures/judgment-architecture-binding-adapter-cases.json
-- scripts/check_judgment_architecture_binding_adapter.py
-- static/status/judgment-architecture-binding-adapter-status.json
-- observed-result receipt generated through the existing canonical validation chain
+- canonical workflow run identity and commit SHA
+- generated static/status/judgment-architecture-binding-adapter-status.json with case results
+- workflow-bound observation receipt or existing aggregate report reference
+- handoff update recording PASS or exact failure
 ```
 
-The adapter must independently derive or require evidence for candidate and state hashes, origin, current authority, admissibility, invariants, recoverability margin, evidence freshness, binding result, and reason codes. Missing derivations must return `FAIL_CLOSED`.
+After canonical observation, the next candidate goal is stable source citation intake and page-level source binding. No replay-ready or interoperability-ready promotion is permitted until observed adapter and source evidence exist.
 
 ## Promotion requirements
 
@@ -111,9 +146,9 @@ stable canonical public source locator
 source version or publication identity
 page-level or section-level citations
 terminology verified against the supplied publication
-canonical workflow PASS containing both current validators
+canonical workflow PASS containing all current validators
 adapter execution evidence
-explicit observed-result receipt
+explicit workflow-bound observed-result receipt
 independent review of commitment, authority, and admissibility distinctions
 ```
 
@@ -121,19 +156,20 @@ independent review of commitment, authority, and admissibility distinctions
 
 ```text
 Do not claim StegVerse certification of Judgment Architecture.
-Do not claim creator endorsement of the crosswalk.
+Do not claim creator endorsement of the crosswalk or adapter.
 Do not claim formal equivalence or verified interoperability.
 Do not claim that a Decision Commitment Record grants execution authority.
+Do not claim that adapter output alone grants runtime authorization.
 Do not claim that human commitment cures stale evidence, invalid delegation, state drift, or inadmissible consequence.
-Do not promote beyond fixture_ready without observed adapter and replay evidence.
+Do not promote beyond fixture_ready without observed adapter, replay, and source evidence.
 ```
 
 ## Permitted continuation
 
-A successor session may implement and validate the non-authorizing adapter, generate deterministic cases and status artifacts, integrate validation through the existing Goal 5 aggregate, and update this handoff from observed evidence.
+A successor session may inspect canonical workflow evidence, repair failures inside this repository, update status and receipts from observed evidence, and add stable source citations while preserving all non-authority boundaries.
 
 No new active workflow or downstream repository mutation is authorized.
 
 ## Archival status
 
-All workstream-specific continuity is durable in this handoff and the installed artifacts. The originating conversation is ready for archiving without additional thread context.
+All workstream-specific continuity is durable in this handoff and installed artifacts. The originating conversation is ready for archiving without additional thread context.
