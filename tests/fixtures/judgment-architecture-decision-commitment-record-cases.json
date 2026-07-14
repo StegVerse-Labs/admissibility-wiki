@@ -1,0 +1,105 @@
+{
+  "artifact_type": "judgment_architecture_decision_commitment_record_test_cases",
+  "schema_version": "0.1",
+  "cases": [
+    {
+      "case_id": "complete-record-allow-review",
+      "expected_result": "REVIEW_READY_NON_AUTHORIZING",
+      "record": {
+        "record_id": "dcr-001",
+        "decision_maker": "named-human-reviewer",
+        "authority_basis": "delegation-ref-001",
+        "commitment_timestamp": "2026-07-14T12:00:00Z",
+        "committed_action": "publish bounded research fixture",
+        "decision_criteria": ["source observed", "non-claims preserved"],
+        "evidence_refs": ["judgment-architecture-publication-2026"],
+        "known_unknowns": ["creator endorsement not established"],
+        "alternatives_considered": ["retain research-only state"],
+        "threshold_trigger": "external-framework publication",
+        "stop_mechanism": "fail-closed publication gate",
+        "intervention_deadline": "2026-07-14T12:05:00Z",
+        "recoverability_profile": {
+          "rollback_test_receipt": "rollback-test-001",
+          "irreversibility_boundary": "public release tag",
+          "recovery_owner": "repository maintainer",
+          "validity_window": "PT5M"
+        },
+        "authority_boundary": {
+          "record_is_execution_authority": false,
+          "human_commitment_is_admissibility": false
+        }
+      }
+    },
+    {
+      "case_id": "silent-adoption-fail-closed",
+      "expected_result": "FAIL-CLOSED",
+      "record": {
+        "record_id": "dcr-002",
+        "committed_action": "auto-publish generated output",
+        "evidence_refs": ["generated-output"],
+        "known_unknowns": [],
+        "alternatives_considered": [],
+        "threshold_trigger": "default continuation",
+        "recoverability_profile": {},
+        "authority_boundary": {
+          "record_is_execution_authority": false,
+          "human_commitment_is_admissibility": false
+        }
+      }
+    },
+    {
+      "case_id": "unreachable-refusal-fail-closed",
+      "expected_result": "FAIL-CLOSED",
+      "record": {
+        "record_id": "dcr-003",
+        "decision_maker": "named-reviewer",
+        "authority_basis": "role-only",
+        "commitment_timestamp": "2026-07-14T12:00:00Z",
+        "committed_action": "deploy irreversible change",
+        "decision_criteria": ["pipeline passed"],
+        "evidence_refs": ["pipeline-report"],
+        "known_unknowns": ["stop path unavailable"],
+        "alternatives_considered": ["pause"],
+        "threshold_trigger": "high-risk deployment",
+        "stop_mechanism": "",
+        "recoverability_profile": {
+          "rollback_test_receipt": "rollback-test-003",
+          "irreversibility_boundary": "external consequence",
+          "recovery_owner": "operator",
+          "validity_window": "PT1M"
+        },
+        "authority_boundary": {
+          "record_is_execution_authority": false,
+          "human_commitment_is_admissibility": false
+        }
+      }
+    },
+    {
+      "case_id": "untested-reversibility-fail-closed",
+      "expected_result": "FAIL-CLOSED",
+      "record": {
+        "record_id": "dcr-004",
+        "decision_maker": "named-reviewer",
+        "authority_basis": "delegation-ref-004",
+        "commitment_timestamp": "2026-07-14T12:00:00Z",
+        "committed_action": "commit state mutation",
+        "decision_criteria": ["formal validation passed"],
+        "evidence_refs": ["validation-report"],
+        "known_unknowns": ["rollback untested"],
+        "alternatives_considered": ["defer"],
+        "threshold_trigger": "state mutation",
+        "stop_mechanism": "pre-commit hold",
+        "recoverability_profile": {
+          "rollback_test_receipt": "",
+          "irreversibility_boundary": "commit",
+          "recovery_owner": "operator",
+          "validity_window": "PT5M"
+        },
+        "authority_boundary": {
+          "record_is_execution_authority": false,
+          "human_commitment_is_admissibility": false
+        }
+      }
+    }
+  ]
+}
