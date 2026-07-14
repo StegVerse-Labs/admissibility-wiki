@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
@@ -11,6 +13,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 CURRENT = ROOT / "static" / "status" / "canonical-workflow-trend-change-frequency-summary.json"
 OUT = ROOT / "static" / "status" / "canonical-workflow-trend-change-frequency-change-receipt.json"
+HISTORY_RECONCILER = ROOT / "scripts" / "reconcile_canonical_workflow_trend_change_frequency_change_history.py"
 PUBLIC_URL = "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-trend-change-frequency-summary.json"
 
 
@@ -103,6 +106,21 @@ def main() -> int:
         "CANONICAL WORKFLOW TREND CHANGE FREQUENCY CHANGE: PASS - "
         f"change={change_state} fields={len(changed_fields)} manual_tasks=0"
     )
+
+    if not HISTORY_RECONCILER.exists():
+        raise SystemExit("workflow frequency-change history reconciler is missing")
+    completed = subprocess.run(
+        [sys.executable, str(HISTORY_RECONCILER)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    if completed.stdout:
+        print(completed.stdout.rstrip())
+    if completed.returncode != 0:
+        raise SystemExit("workflow frequency-change history reconciliation failed")
     return 0
 
 
