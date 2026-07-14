@@ -26,13 +26,13 @@ VALIDATORS = [
     ROOT / "scripts" / "check_canonical_workflow_stability_change_frequency_summary.py",
     ROOT / "scripts" / "check_canonical_workflow_stability_change_frequency_change.py",
     ROOT / "scripts" / "check_canonical_workflow_stability_change_frequency_change_history.py",
+    ROOT / "scripts" / "check_canonical_workflow_observation_rollup.py",
 ]
 REQUIRED = [
     ROOT / ".github" / "workflows" / "validate-chain-continuation.yml",
     ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.yml",
-    ROOT / "scripts" / "generate_canonical_workflow_stability_change_frequency_summary.py",
-    ROOT / "scripts" / "generate_canonical_workflow_stability_change_frequency_change.py",
     ROOT / "scripts" / "reconcile_canonical_workflow_stability_change_frequency_change_history.py",
+    ROOT / "scripts" / "generate_canonical_workflow_observation_rollup.py",
     ROOT / "scripts" / "check_full_validation_chain.py",
 ] + VALIDATORS
 
@@ -49,7 +49,7 @@ def main() -> int:
             fail(f"required file missing: {path.relative_to(ROOT)}")
 
     data = json.loads(STATUS.read_text(encoding="utf-8"))
-    if data.get("state") != "AUTOMATED_STABILITY_CHANGE_FREQUENCY_CHANGE_HISTORY_BOUND":
+    if data.get("state") != "AUTOMATED_TERMINAL_OBSERVATION_ROLLUP_BOUND":
         fail("state mismatch")
     if data.get("manual_tasks_required") != [] or data.get("user_action_required") is not False:
         fail("no-manual boundary violated")
@@ -57,52 +57,39 @@ def main() -> int:
         if data.get(key) is not False:
             fail(f"{key} must be false")
 
-    expected = {
-        "stability_change_frequency_endpoint": "/status/canonical-workflow-stability-change-frequency-summary.json",
-        "stability_change_frequency_change_endpoint": "/status/canonical-workflow-stability-change-frequency-change-receipt.json",
-        "stability_change_frequency_change_history_endpoint": "/status/canonical-workflow-stability-change-frequency-change-history.json",
-    }
-    for key, value in expected.items():
-        if data.get(key) != value:
-            fail(f"{key} mismatch")
+    if data.get("terminal_rollup_endpoint") != "/status/canonical-workflow-observation-rollup.json":
+        fail("terminal rollup endpoint mismatch")
+    policy = data.get("terminal_rollup_policy", {})
+    if policy.get("terminal_envelope") is not True:
+        fail("terminal_envelope must be true")
+    if policy.get("recursive_derivative_expansion_allowed") is not False:
+        fail("recursive derivative expansion must be disabled")
+    if policy.get("artifact_count") != 17:
+        fail("terminal rollup artifact_count must be 17")
+    if set(policy.get("local_presence_states", [])) != {"PRESENT", "MISSING"}:
+        fail("local presence states mismatch")
+    if set(policy.get("completeness_states", [])) != {
+        "COMPLETE_LOCAL_CHAIN",
+        "FAIL_CLOSED_INCOMPLETE_LOCAL_CHAIN",
+    }:
+        fail("completeness states mismatch")
+    if policy.get("public_reachability_before_deploy") != "NOT_OBSERVED_UNTIL_POST_DEPLOY_VERIFICATION":
+        fail("pre-deploy reachability boundary mismatch")
+    if policy.get("semantic_reclassification_performed") is not False:
+        fail("terminal rollup must not reclassify semantic meaning")
+    if policy.get("owner") != "canonical build-pages job":
+        fail("terminal rollup owner mismatch")
+    if policy.get("next_evaluation") != "next repository-owned canonical workflow trigger":
+        fail("terminal rollup evaluation must remain automation-owned")
 
-    frequency = data.get("stability_change_frequency_policy", {})
-    if frequency.get("maximum_recent_entries") != 12:
-        fail("frequency window must be 12")
-    if frequency.get("descriptive_only") is not True or frequency.get("predictive_claim") is not False:
-        fail("frequency claim boundary mismatch")
-    if frequency.get("causal_claim_beyond_receipt_fields") is not False:
-        fail("frequency causal claim boundary mismatch")
-
-    change = data.get("stability_change_frequency_change_policy", {})
-    if set(change.get("states", [])) != {"CHANGED", "UNCHANGED"}:
-        fail("comparison states mismatch")
-    if set(change.get("changed_fields", [])) != {"frequency_class", "recency_class"}:
-        fail("comparison changed_fields mismatch")
-    if change.get("descriptive_only") is not True or change.get("predictive_claim") is not False:
-        fail("comparison claim boundary mismatch")
-    if change.get("causal_claim_beyond_receipt_fields") is not False:
-        fail("comparison causal claim boundary mismatch")
-    if "without assigning a manual task" not in change.get("prior_summary_unavailable_result", ""):
-        fail("comparison unavailable policy must remain no-manual")
-
-    history = data.get("stability_change_frequency_change_history_policy", {})
-    if history.get("maximum_entries") != 24:
-        fail("history maximum_entries must be 24")
-    if history.get("deduplication_key") != "receipt_id":
-        fail("history deduplication key mismatch")
-    if history.get("ordering") != "generated_at ascending":
-        fail("history ordering mismatch")
-    if history.get("descriptive_only") is not True or history.get("predictive_claim") is not False:
-        fail("history claim boundary mismatch")
-    if history.get("causal_claim_beyond_receipt_fields") is not False:
-        fail("history causal claim boundary mismatch")
-    if "without assigning a manual task" not in history.get("prior_history_unavailable_result", ""):
-        fail("history unavailable policy must remain no-manual")
-    if history.get("owner") != "canonical build-pages job":
-        fail("history owner mismatch")
-    if history.get("next_reconciliation") != "next repository-owned canonical workflow trigger":
-        fail("history reconciliation must remain automation-owned")
+    chain = data.get("publication_chain", [])
+    for phrase in (
+        "build-pages generates one terminal rollup envelope pointing to the latest governed artifacts",
+        "the terminal rollup records local presence, generation ownership, public endpoints, and fail-closed completeness without semantic reclassification",
+        "verify-public-pages checks the terminal rollup endpoint and the referenced public endpoint set",
+    ):
+        if phrase not in chain:
+            fail(f"publication chain missing: {phrase}")
 
     for trigger in ("push", "pull_request", "workflow_dispatch", "hourly_schedule"):
         if data.get("trigger_ownership", {}).get(trigger) != "repository automation":
@@ -120,7 +107,7 @@ def main() -> int:
 
     print(
         "CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - "
-        "manual_tasks=0 stability_change_frequency_change_history=bounded_nonpredictive"
+        "manual_tasks=0 terminal_rollup=bound recursive_expansion=false"
     )
     return 0
 
