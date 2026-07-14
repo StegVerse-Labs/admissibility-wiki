@@ -17,17 +17,7 @@ SIDEBAR = ROOT / "sidebars.js"
 RECEIPT = ROOT / "receipts" / "kpt-source-blocked-intake-2026-07-14.json"
 AUTOMATION_RECEIPT = ROOT / "receipts" / "kpt-automation-binding-2026-07-14.json"
 
-REQUIRED_FILES = [
-    STATUS,
-    REGISTRY,
-    INDEX_PAGE,
-    MANIFEST,
-    REPORT,
-    PAGE,
-    SIDEBAR,
-    RECEIPT,
-    AUTOMATION_RECEIPT,
-]
+REQUIRED_FILES = [STATUS, REGISTRY, INDEX_PAGE, MANIFEST, REPORT, PAGE, SIDEBAR, RECEIPT, AUTOMATION_RECEIPT]
 FALSE_BOUNDARIES = {
     "certification_claim",
     "endorsement_claim",
@@ -42,11 +32,9 @@ def load_json(path: Path) -> dict[str, Any]:
 
 def main() -> int:
     failures: list[str] = []
-
     for path in REQUIRED_FILES:
         if not path.exists():
             failures.append(f"missing required KPT artifact: {path.relative_to(ROOT)}")
-
     if failures:
         print("KPT EXTERNAL FRAMEWORK INTAKE: FAIL")
         for failure in failures:
@@ -69,11 +57,21 @@ def main() -> int:
         failures.append("status source posture must remain SOURCE_BLOCKED_FAIL_CLOSED")
     if status.get("manual_task_requirement") != "none":
         failures.append("status must not assign a manual task")
-    for key in ["manual_validation_required", "manual_deployment_required", "manual_publication_check_required"]:
+    for key in [
+        "manual_validation_required",
+        "manual_deployment_required",
+        "manual_publication_check_required",
+        "manual_source_search_required",
+    ]:
         if status.get(key) is not False:
             failures.append(f"status must set {key}=false")
     if status.get("downstream_mutation_authorized") is not False:
         failures.append("status must deny downstream mutation authority")
+    source_observation = status.get("source_discovery_observation", {})
+    if source_observation.get("result") != "NO_INDEXED_OFFICIAL_SOURCE_IDENTIFIED":
+        failures.append("source discovery observation must preserve the no-official-source result")
+    if source_observation.get("manual_follow_up_required") is not False:
+        failures.append("source discovery observation must not assign manual follow-up")
 
     entries = [entry for entry in registry.get("entries", []) if entry.get("framework_id") == "kpt"]
     if len(entries) != 1:
@@ -127,21 +125,19 @@ def main() -> int:
         if automation_receipt.get(key) is not False:
             failures.append(f"automation receipt must set {key}=false")
 
-    required_page_phrases = [
+    for phrase in [
         "A KPT decision may become evidence inside a StegVerse Commitment Candidate.",
         "It does not become execution authority by itself.",
         "Result: SOURCE_BLOCKED_FAIL_CLOSED",
-    ]
-    for phrase in required_page_phrases:
+    ]:
         if phrase not in page:
             failures.append(f"KPT page missing required boundary text: {phrase}")
 
-    required_index_phrases = [
+    for phrase in [
         "[KPT](./kpt.md)",
         "official source required",
         "KPT -> source-blocked runtime decision state before downstream consequence",
-    ]
-    for phrase in required_index_phrases:
+    ]:
         if phrase not in index_page:
             failures.append(f"external framework index missing KPT observatory text: {phrase}")
 
