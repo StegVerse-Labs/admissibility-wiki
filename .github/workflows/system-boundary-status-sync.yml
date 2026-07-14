@@ -1,0 +1,39 @@
+name: System Boundary Status Sync
+
+on:
+  schedule:
+    - cron: '29 * * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/sync_system_boundary_status.py'
+      - '.github/workflows/system-boundary-status-sync.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: admissibility-system-boundary-status-sync
+  cancel-in-progress: false
+
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Synchronize bounded status
+        run: python scripts/sync_system_boundary_status.py
+      - name: Commit changed status
+        run: |
+          if git diff --quiet -- static/status/system-boundary-status.v0.1.json; then
+            echo 'No status change.'
+            exit 0
+          fi
+          git config user.name 'stegverse-status-bot'
+          git config user.email 'stegverse-status-bot@users.noreply.github.com'
+          git add static/status/system-boundary-status.v0.1.json
+          git commit -m 'Synchronize system-boundary status'
+          git push
