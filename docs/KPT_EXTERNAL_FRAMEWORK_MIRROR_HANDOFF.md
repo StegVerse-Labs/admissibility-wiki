@@ -8,7 +8,7 @@ This file is the durable continuation record for the KPT external-framework inta
 
 ```text
 Goal: publish, validate, continuously observe, and source-upgrade the KPT intake through the existing canonical workflow without assigning manual validation, deployment, publication, source-search, source-promotion, or endpoint-check tasks.
-State: SOURCE_QUEUE_AND_PUBLIC_OBSERVATION_AUTOMATED_PENDING_CANONICAL_RESULT
+State: SOURCE_QUEUE_PUBLICATION_OBSERVATION_AUTOMATED_PENDING_CANONICAL_RESULT
 Source posture: SOURCE_BLOCKED_FAIL_CLOSED
 Manual task requirement: none
 ```
@@ -46,20 +46,15 @@ Public observation: verify-public-pages -> scripts/check_governed_llm_deployment
 Schedule: canonical hourly workflow schedule
 ```
 
-The public route verifier checks:
+The public route verifier checks all three KPT publication surfaces:
 
 ```text
 https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/kpt
 https://stegverse-labs.github.io/admissibility-wiki/status/kpt-external-framework-intake-status.json
-```
-
-The published source queue target is:
-
-```text
 https://stegverse-labs.github.io/admissibility-wiki/status/kpt-source-intake-queue.json
 ```
 
-The run-bound verification receipt records route reachability. Failure remains fail-closed and creates no user task.
+The run-bound verification receipt records route reachability, explicitly sets `source_queue_promotion_granted` to false, and preserves that a reachable queue does not establish source sufficiency. Failure remains fail-closed and creates no user task.
 
 ## Framework mapping boundary
 
@@ -80,8 +75,10 @@ KPT output may be routed as evidence. It does not become execution authority, co
 Queue artifact: static/status/kpt-source-intake-queue.json
 Queue state: WAITING_FOR_CANONICAL_OWNER_PUBLISHED_SOURCE
 Queue validator: scripts/check_kpt_source_intake_queue.py
+Queue publication verifier: scripts/check_governed_llm_deployment_status.py
 Manual source search required: false
 Manual source promotion required: false
+Manual queue publication check required: false
 User action required: false
 ```
 
