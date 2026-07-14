@@ -13,6 +13,7 @@ HISTORY_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_observation_his
 HEALTH_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_health_summary.py"
 TRANSITION_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_health_transition_receipt.py"
 TRANSITION_HISTORY_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_health_transition_history.py"
+TREND_VALIDATOR = ROOT / "scripts" / "check_canonical_workflow_health_transition_trend.py"
 REQUIRED_FILES = [
     ROOT / ".github" / "workflows" / "validate-chain-continuation.yml",
     ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.yml",
@@ -27,6 +28,8 @@ REQUIRED_FILES = [
     TRANSITION_VALIDATOR,
     ROOT / "scripts" / "reconcile_canonical_workflow_health_transition_history.py",
     TRANSITION_HISTORY_VALIDATOR,
+    ROOT / "scripts" / "generate_canonical_workflow_health_transition_trend.py",
+    TREND_VALIDATOR,
     ROOT / "scripts" / "check_full_validation_chain.py",
 ]
 
@@ -47,15 +50,18 @@ def run_validator(path: Path, label: str) -> None:
 
 
 def main() -> int:
-    if not STATUS.exists(): fail("public status artifact is missing")
+    if not STATUS.exists():
+        fail("public status artifact is missing")
     for path in REQUIRED_FILES:
-        if not path.exists(): fail(f"required automation file is missing: {path.relative_to(ROOT)}")
+        if not path.exists():
+            fail(f"required automation file is missing: {path.relative_to(ROOT)}")
 
     data = json.loads(STATUS.read_text(encoding="utf-8"))
-    if data.get("state") != "AUTOMATED_HEALTH_TRANSITION_HISTORY_BOUND":
-        fail("state must be AUTOMATED_HEALTH_TRANSITION_HISTORY_BOUND")
+    if data.get("state") != "AUTOMATED_HEALTH_TRANSITION_TREND_BOUND":
+        fail("state must be AUTOMATED_HEALTH_TRANSITION_TREND_BOUND")
     for key in ("authority_granted", "release_authority_granted", "downstream_mutation_authority_granted"):
-        if data.get(key) is not False: fail(f"{key} must be false")
+        if data.get(key) is not False:
+            fail(f"{key} must be false")
     if data.get("manual_tasks_required") != [] or data.get("user_action_required") is not False:
         fail("no-manual boundary violated")
 
@@ -66,9 +72,11 @@ def main() -> int:
         "health_summary_endpoint": "/status/canonical-workflow-health-summary.json",
         "health_transition_endpoint": "/status/canonical-workflow-health-transition-receipt.json",
         "health_transition_history_endpoint": "/status/canonical-workflow-health-transition-history.json",
+        "health_transition_trend_endpoint": "/status/canonical-workflow-health-transition-trend.json",
     }
     for key, value in expected_endpoints.items():
-        if data.get(key) != value: fail(f"{key} mismatch")
+        if data.get(key) != value:
+            fail(f"{key} mismatch")
 
     chain = data.get("publication_chain", [])
     for phrase in (
@@ -76,23 +84,50 @@ def main() -> int:
         "build-pages classifies the reconciled history into a compact workflow health summary",
         "build-pages emits a health-transition receipt from consecutive classified observations",
         "build-pages reconciles the transition receipt into bounded deduplicated transition history",
-        "verify-public-pages checks observation, health, transition receipt, and transition-history endpoints",
+        "build-pages derives a bounded descriptive trend summary from transition history",
+        "verify-public-pages checks observation, health, transition, transition-history, and trend endpoints",
     ):
-        if phrase not in chain: fail(f"publication chain missing: {phrase}")
+        if phrase not in chain:
+            fail(f"publication chain missing: {phrase}")
 
     history_policy = data.get("history_policy", {})
     if history_policy.get("maximum_entries") != 24 or history_policy.get("deduplication_key") != "receipt_id" or history_policy.get("ordering") != "created_at ascending":
         fail("observation history policy mismatch")
 
     transition_history = data.get("health_transition_history_policy", {})
-    if transition_history.get("maximum_entries") != 24: fail("transition history maximum_entries must be 24")
-    if transition_history.get("deduplication_key") != "receipt_id": fail("transition history deduplication key mismatch")
-    if transition_history.get("ordering") != "generated_at ascending": fail("transition history ordering mismatch")
-    if transition_history.get("owner") != "canonical build-pages job": fail("transition history owner mismatch")
+    if transition_history.get("maximum_entries") != 24:
+        fail("transition history maximum_entries must be 24")
+    if transition_history.get("deduplication_key") != "receipt_id":
+        fail("transition history deduplication key mismatch")
+    if transition_history.get("ordering") != "generated_at ascending":
+        fail("transition history ordering mismatch")
+    if transition_history.get("owner") != "canonical build-pages job":
+        fail("transition history owner mismatch")
     if "without assigning a manual task" not in transition_history.get("prior_history_unavailable_result", ""):
         fail("transition history unavailable policy must remain no-manual")
     if transition_history.get("next_reconciliation") != "next repository-owned canonical workflow trigger":
         fail("transition history reconciliation must remain automation-owned")
+
+    trend_policy = data.get("health_transition_trend_policy", {})
+    if trend_policy.get("maximum_recent_entries") != 6:
+        fail("trend maximum_recent_entries must be 6")
+    for key in ("descriptive_only",):
+        if trend_policy.get(key) is not True:
+            fail(f"trend {key} must be true")
+    for key in ("predictive_claim", "causal_claim_beyond_receipt_fields"):
+        if trend_policy.get(key) is not False:
+            fail(f"trend {key} must be false")
+    required_trends = {
+        "AWAITING_AUTOMATED_TRANSITION_HISTORY", "RECOVERY_OBSERVED", "STABLE_HEALTHY",
+        "HEALTHY_OBSERVED", "UNRESOLVED_DEFERRAL", "REPEATED_FAIL_CLOSED",
+        "STABLE_FAIL_CLOSED", "UNSTABLE_OSCILLATION", "MIXED_BOUNDED_HISTORY",
+    }
+    if set(trend_policy.get("classes", [])) != required_trends:
+        fail("trend classes mismatch")
+    if trend_policy.get("owner") != "canonical build-pages job":
+        fail("trend owner mismatch")
+    if trend_policy.get("next_evaluation") != "next repository-owned canonical workflow trigger":
+        fail("trend evaluation must remain automation-owned")
 
     for trigger in ("push", "pull_request", "workflow_dispatch", "hourly_schedule"):
         if data.get("trigger_ownership", {}).get(trigger) != "repository automation":
@@ -107,8 +142,9 @@ def main() -> int:
     run_validator(HEALTH_VALIDATOR, "workflow health validator")
     run_validator(TRANSITION_VALIDATOR, "workflow health transition validator")
     run_validator(TRANSITION_HISTORY_VALIDATOR, "workflow health transition history validator")
+    run_validator(TREND_VALIDATOR, "workflow health transition trend validator")
 
-    print("CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - manual_tasks=0 transition_history=bounded")
+    print("CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - manual_tasks=0 transition_trend=bounded_nonpredictive")
     return 0
 
 
