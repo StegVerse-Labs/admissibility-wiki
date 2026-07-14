@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 HANDOFF = ROOT / "ADMISSIBILITY_AUTOMATION_HANDOFF.md"
 MESH_CHECK = ROOT / "scripts" / "check_documentation_mesh_status.py"
+ST016_PROMOTION_CHECK = ROOT / "scripts" / "check_st016_promotion_bundle.py"
 RUN_RECEIPT_CHECK = ROOT / "scripts" / "check_automated_transition_run_receipt.py"
 CONCEPTUAL_INHERITANCE_CHECK = ROOT / "scripts" / "check_conceptual_inheritance_claims.py"
 CONCEPTUAL_INHERITANCE_STATUS_CHECK = ROOT / "scripts" / "check_conceptual_inheritance_status.py"
@@ -60,6 +61,7 @@ def main() -> int:
         failures.extend(f"missing marker: {marker}" for marker in REQUIRED if marker not in text)
 
     run_check(MESH_CHECK, "documentation mesh", failures)
+    run_check(ST016_PROMOTION_CHECK, "ST-016 promotion bundle", failures)
     run_check(RUN_RECEIPT_CHECK, "automated transition run receipt", failures)
     run_check(CONCEPTUAL_INHERITANCE_CHECK, "conceptual inheritance claims", failures)
     run_check(CONCEPTUAL_INHERITANCE_STATUS_CHECK, "conceptual inheritance activation status", failures)
