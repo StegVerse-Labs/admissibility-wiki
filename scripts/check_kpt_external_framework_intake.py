@@ -17,8 +17,12 @@ PAGE = ROOT / "docs" / "external-frameworks" / "kpt.md"
 SIDEBAR = ROOT / "sidebars.js"
 RECEIPT = ROOT / "receipts" / "kpt-source-blocked-intake-2026-07-14.json"
 AUTOMATION_RECEIPT = ROOT / "receipts" / "kpt-automation-binding-2026-07-14.json"
+DEPLOYMENT_VERIFIER = ROOT / "scripts" / "check_governed_llm_deployment_status.py"
 
-REQUIRED_FILES = [STATUS, SOURCE_QUEUE, REGISTRY, INDEX_PAGE, MANIFEST, REPORT, PAGE, SIDEBAR, RECEIPT, AUTOMATION_RECEIPT]
+REQUIRED_FILES = [
+    STATUS, SOURCE_QUEUE, REGISTRY, INDEX_PAGE, MANIFEST, REPORT, PAGE, SIDEBAR,
+    RECEIPT, AUTOMATION_RECEIPT, DEPLOYMENT_VERIFIER,
+]
 FALSE_BOUNDARIES = {
     "certification_claim",
     "endorsement_claim",
@@ -52,6 +56,7 @@ def main() -> int:
     page = PAGE.read_text(encoding="utf-8")
     index_page = INDEX_PAGE.read_text(encoding="utf-8")
     sidebar = SIDEBAR.read_text(encoding="utf-8")
+    deployment_verifier = DEPLOYMENT_VERIFIER.read_text(encoding="utf-8")
 
     if status.get("framework_id") != "kpt":
         failures.append("status framework_id must be kpt")
@@ -64,6 +69,8 @@ def main() -> int:
         "manual_deployment_required",
         "manual_publication_check_required",
         "manual_source_search_required",
+        "manual_endpoint_check_required",
+        "manual_source_promotion_required",
     ]:
         if status.get(key) is not False:
             failures.append(f"status must set {key}=false")
@@ -85,6 +92,15 @@ def main() -> int:
         failures.append("source queue must not require user action")
     if source_queue.get("manual_source_search_required") is not False:
         failures.append("source queue must not require manual source search")
+
+    public_endpoints = status.get("automated_public_endpoints", {})
+    expected_queue_url = "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-source-intake-queue.json"
+    if public_endpoints.get("source_queue") != expected_queue_url:
+        failures.append("status source queue public endpoint mismatch")
+    if expected_queue_url not in deployment_verifier:
+        failures.append("deployment verifier must observe the KPT source queue endpoint")
+    if '"source_queue_promotion_granted": False' not in deployment_verifier:
+        failures.append("deployment receipt must deny source queue promotion authority")
 
     entries = [entry for entry in registry.get("entries", []) if entry.get("framework_id") == "kpt"]
     if len(entries) != 1:
