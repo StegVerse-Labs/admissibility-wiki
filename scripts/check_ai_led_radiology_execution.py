@@ -13,6 +13,8 @@ ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / "tests" / "fixtures" / "ai-led-radiology-execution-cases.json"
 SCHEMA = ROOT / "static" / "schemas" / "ai-led-radiology-execution-case.schema.json"
 FORMALISM = ROOT / "docs" / "formalisms" / "ai-led-radiology-execution-boundary.md"
+STATUS = ROOT / "static" / "status" / "ai-led-radiology-execution-status.json"
+REPORT = ROOT / "reports" / "ai-led-radiology-execution-receipt.json"
 
 DECISIONS = {
     "ADMIT_ASSISTIVE_USE",
@@ -84,12 +86,14 @@ def validate_record(record: Dict[str, Any], case_id: str) -> List[str]:
 
 
 def main() -> int:
-    missing_files = [str(path.relative_to(ROOT)) for path in (FIXTURES, SCHEMA, FORMALISM) if not path.exists()]
+    required_paths = (FIXTURES, SCHEMA, FORMALISM, STATUS)
+    missing_files = [str(path.relative_to(ROOT)) for path in required_paths if not path.exists()]
     if missing_files:
         print("AI-led radiology validation failed: missing " + ", ".join(missing_files), file=sys.stderr)
         return 1
 
     payload = json.loads(FIXTURES.read_text(encoding="utf-8"))
+    status = json.loads(STATUS.read_text(encoding="utf-8"))
     cases = payload.get("cases")
     if not isinstance(cases, list) or not cases:
         print("AI-led radiology validation failed: fixtures require non-empty cases", file=sys.stderr)
@@ -129,20 +133,41 @@ def main() -> int:
     if missing_decisions:
         errors.append("fixture coverage missing decisions: " + ", ".join(sorted(missing_decisions)))
 
+    if status.get("fixture_case_count") != len(cases):
+        errors.append("status fixture_case_count does not match fixtures")
+    if set(status.get("decision_classes", [])) != DECISIONS:
+        errors.append("status decision_classes do not match validator decisions")
+    if status.get("additional_active_workflow_created") is not False:
+        errors.append("status must preserve single canonical workflow posture")
+    if status.get("clinical_authority") is not False or status.get("execution_authority") is not False:
+        errors.append("status must not claim clinical or execution authority")
+
+    receipt = {
+        "validator": "check_ai_led_radiology_execution.py",
+        "result": "FAIL" if errors else "PASS",
+        "case_count": len(receipts),
+        "decision_coverage": sorted(observed),
+        "fixture_sha256": canonical_hash(payload),
+        "schema_sha256": hashlib.sha256(SCHEMA.read_bytes()).hexdigest(),
+        "formalism_sha256": hashlib.sha256(FORMALISM.read_bytes()).hexdigest(),
+        "status_sha256": canonical_hash(status),
+        "receipts": receipts,
+        "authority_boundary": {
+            "clinical_authority": False,
+            "execution_authority": False,
+            "certification": False,
+        },
+    }
+    REPORT.parent.mkdir(parents=True, exist_ok=True)
+    REPORT.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
     if errors:
         print("AI-led radiology validation failed:", file=sys.stderr)
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print(json.dumps({
-        "validator": "check_ai_led_radiology_execution.py",
-        "result": "PASS",
-        "case_count": len(receipts),
-        "decision_coverage": sorted(observed),
-        "fixture_sha256": canonical_hash(payload),
-        "receipts": receipts,
-    }, indent=2, sort_keys=True))
+    print(json.dumps(receipt, indent=2, sort_keys=True))
     return 0
 
 
