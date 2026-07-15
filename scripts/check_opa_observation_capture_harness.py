@@ -11,6 +11,7 @@ SCRIPT = ROOT / "scripts" / "capture_opa_observation.py"
 PINNED_RUNNER = ROOT / "scripts" / "run_pinned_opa_ci_capture.py"
 INDEPENDENT_RUNNER = ROOT / "scripts" / "run_independent_opa_ci_replay.py"
 SUMMARY_SCRIPT = ROOT / "scripts" / "summarize_opa_evidence_pipeline.py"
+COMPATIBILITY_RUNNER = ROOT / "scripts" / "run_opa_governance_compatibility.py"
 GENERATED_VALIDATOR = ROOT / "scripts" / "validate_opa_capture_artifacts.py"
 RUNBOOK = ROOT / "docs" / "external-frameworks" / "opa-observation-capture-runbook.md"
 POLICY = ROOT / "docs" / "external-frameworks" / "capture" / "opa" / "policy.rego"
@@ -32,6 +33,7 @@ def main() -> int:
         PINNED_RUNNER,
         INDEPENDENT_RUNNER,
         SUMMARY_SCRIPT,
+        COMPATIBILITY_RUNNER,
         GENERATED_VALIDATOR,
         RUNBOOK,
         POLICY,
@@ -56,6 +58,7 @@ def main() -> int:
         "pinned runner": PINNED_RUNNER.read_text(encoding="utf-8"),
         "independent runner": INDEPENDENT_RUNNER.read_text(encoding="utf-8"),
         "pipeline summary": SUMMARY_SCRIPT.read_text(encoding="utf-8"),
+        "compatibility runner": COMPATIBILITY_RUNNER.read_text(encoding="utf-8"),
         "generated artifact validator": GENERATED_VALIDATOR.read_text(encoding="utf-8"),
     }
     for label, source in sources.items():
@@ -99,11 +102,20 @@ def main() -> int:
         ],
         "pipeline summary": [
             '"artifact_type": "external_framework_evidence_pipeline_status"',
-            '"fresh_runner_replay_confirmed"',
-            '"independent_implementation_or_provider_review": "not_performed"',
-            '"compatibility_state": "not_claimed"',
+            '"schema_version": "0.2"',
+            '"governance_compatibility_execution"',
+            '"governance_compatibility_observed"',
+            '"compatibility_state": "bounded_observed" if compatibility_observed else "not_claimed"',
             '"pipeline_summary_is_execution_authority": False',
-            '"matching_outputs_are_compatibility_proof": False',
+            '"bounded_compatibility_is_general_compatibility": False',
+            '"compatibility_receipt_grants_execution_authority": False',
+        ],
+        "compatibility runner": [
+            '"schema": "opa_stegverse_governance_compatibility_receipt.v1"',
+            '"bounded_compatibility_state": "GOVERNANCE_COMPATIBILITY_OBSERVED"',
+            '"opa_allow_is_stegverse_allow": False',
+            '"compatibility_receipt_is_execution_authority": False',
+            '"general_compatibility_claim_allowed": False',
         ],
         "generated artifact validator": [
             '"capture_state": "captured_unverified"',
