@@ -44,6 +44,19 @@ EVIDENCE_CLASSES = {
     "REPRODUCIBLE_COMPARATIVE_TEST",
 }
 
+# These classifications were established by the public evidence audit and cannot
+# be reconstructed safely from source_reference presence alone. Keeping the
+# exceptions here makes regeneration deterministic while remaining fail-closed.
+AUDITED_EVIDENCE_CLASS_OVERRIDES = {
+    "decisionassure": "MENTION_ONLY",
+    "mindforge": "MENTION_ONLY",
+    "asro": "ARTIFACT_REVIEWED",
+    "care-runtime": "MENTION_ONLY",
+    "kpt": "AUTHOR_COMMENTARY",
+    "admissible-existence-seed-cycle": "ARTIFACT_REVIEWED",
+    "decision-authority": "ARTIFACT_REVIEWED",
+}
+
 
 def read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -144,7 +157,6 @@ def evidence_gate(report: dict[str, Any]) -> dict[str, Any]:
     else:
         evidence_class = "MENTION_ONLY"
 
-    missing = []
     required = {
         "shared_test_vector": has_parameterized_case,
         "raw_output": has_raw_output,
@@ -155,9 +167,7 @@ def evidence_gate(report: dict[str, Any]) -> dict[str, Any]:
         "declared_expected_outcome": has_expected_outcome,
         "independent_reproduction": independently_reproduced,
     }
-    for field, present in required.items():
-        if not present:
-            missing.append(field)
+    missing = [field for field, present in required.items() if not present]
 
     return {
         "evidence_class": evidence_class,
@@ -166,6 +176,13 @@ def evidence_gate(report: dict[str, Any]) -> dict[str, Any]:
         "required_fields": required,
         "missing_fields": missing,
     }
+
+
+def apply_audited_evidence_class(report: dict[str, Any]) -> None:
+    framework_id = str(report.get("framework_id", ""))
+    override = AUDITED_EVIDENCE_CLASS_OVERRIDES.get(framework_id)
+    if override:
+        report["evidence_gate"]["evidence_class"] = override
 
 
 def build_base_report(entry: dict[str, Any], manifest: dict[str, Any]) -> dict[str, Any]:
@@ -207,11 +224,8 @@ def build_base_report(entry: dict[str, Any], manifest: dict[str, Any]) -> dict[s
         "next_required_action": action,
     }
     report["evidence_gate"] = evidence_gate(report)
+    apply_audited_evidence_class(report)
     return report
-
-
-def build_report(entry: dict[str, Any], manifest: dict[str, Any]) -> dict[str, Any]:
-    return build_base_report(entry, manifest)
 
 
 def preserve_enriched_report(base: dict[str, Any], existing: dict[str, Any] | None) -> dict[str, Any]:
@@ -233,6 +247,7 @@ def preserve_enriched_report(base: dict[str, Any], existing: dict[str, Any] | No
     boundary.update(base["boundary"])
     report["boundary"] = boundary
     report["evidence_gate"] = evidence_gate(report)
+    apply_audited_evidence_class(report)
     report["next_required_action"] = (
         "Attach every missing reproducibility field listed in evidence_gate.missing_fields, then complete an independent rerun before claiming comparative testing."
     )
