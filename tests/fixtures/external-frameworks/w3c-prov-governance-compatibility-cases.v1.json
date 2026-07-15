@@ -1,0 +1,13 @@
+{
+  "schema": "w3c_prov_governance_compatibility_cases.v1",
+  "framework_id": "w3c-prov",
+  "evidence_posture": "SIMULATED_TRANSLATION_CONTRACT_RUNTIME_PENDING",
+  "cases": [
+    {"case_id":"prov-positive","family":"positive_alignment","validation_result":"PASS","transition":{"source_evidence_present":true,"custody_valid":true,"delegation_current":true,"evidence_fresh":true,"policy_reference_current":true,"requested_action_in_scope":true,"recoverability_satisfied":true},"expected_stegverse_result":"ALLOW","expected_failure_class":null},
+    {"case_id":"prov-native-negative","family":"framework_denial_or_negative_result","validation_result":"FAIL","transition":{"source_evidence_present":true,"custody_valid":true,"delegation_current":true,"evidence_fresh":true,"policy_reference_current":true,"requested_action_in_scope":true,"recoverability_satisfied":true},"expected_stegverse_result":"DENY","expected_failure_class":"PROVENANCE_VALIDATION_DENIAL"},
+    {"case_id":"prov-authority-drift","family":"authority_or_delegation_failure","validation_result":"PASS","transition":{"source_evidence_present":true,"custody_valid":true,"delegation_current":false,"evidence_fresh":true,"policy_reference_current":true,"requested_action_in_scope":true,"recoverability_satisfied":true},"expected_stegverse_result":"DENY","expected_failure_class":"AUTHORITY_DRIFT"},
+    {"case_id":"prov-stale-evidence","family":"stale_or_missing_evidence","validation_result":"PASS","transition":{"source_evidence_present":true,"custody_valid":true,"delegation_current":true,"evidence_fresh":false,"policy_reference_current":true,"requested_action_in_scope":true,"recoverability_satisfied":true},"expected_stegverse_result":"FAIL_CLOSED","expected_failure_class":"STALE_PROVENANCE_EVIDENCE"},
+    {"case_id":"prov-runtime-error","family":"malformed_undefined_or_runtime_error","validation_result":"ERROR","transition":{"source_evidence_present":true,"custody_valid":true,"delegation_current":true,"evidence_fresh":true,"policy_reference_current":true,"requested_action_in_scope":true,"recoverability_satisfied":true},"expected_stegverse_result":"FAIL_CLOSED","expected_failure_class":"FRAMEWORK_RUNTIME_ERROR"},
+    {"case_id":"prov-semantic-divergence","family":"semantic_divergence_guard","validation_result":"PASS","transition":{"source_evidence_present":true,"custody_valid":true,"delegation_current":true,"evidence_fresh":true,"policy_reference_current":true,"requested_action_in_scope":false,"recoverability_satisfied":true},"expected_stegverse_result":"DENY","expected_failure_class":"REPRESENTED_RELATION_SCOPE_DIVERGENCE"}
+  ]
+}
