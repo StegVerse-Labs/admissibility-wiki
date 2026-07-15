@@ -1,0 +1,16 @@
+{
+  "artifact_type": "external_framework_manifest",
+  "schema_version": "0.1",
+  "framework_id": "nemo-guardrails",
+  "name": "NeMo Guardrails",
+  "source_reference": "https://docs.nvidia.com/nemo/guardrails/home",
+  "source_version": "official NVIDIA documentation recorded",
+  "allowed_use_boundary": ["Use as programmable conversational and tool-interaction rail crosswalk evidence.", "Do not treat rail pass or block outcomes as policy legitimacy, standing, certification, or execution authority."],
+  "claims": ["NeMo Guardrails provides programmable controls for conversational flows, content, topics, retrieval, and tool interactions around LLM applications."],
+  "non_claims": ["NeMo Guardrails does not prove transition admissibility.", "A rail pass does not establish current delegation.", "A rail block is not StegVerse certification."],
+  "transition_table_mapping": {"framework_identity":"NeMo Guardrails","source_reference":"https://docs.nvidia.com/nemo/guardrails/home","source_version":"official NVIDIA documentation recorded","allowed_use_boundary":"runtime rail and intervention evidence only","claims":"programmable controls for flows, content, topics, retrieval, and tool interactions","non_claims":"no policy legitimacy, delegation, standing, certification, or execution authority","input_artifact_type":"rail configuration, model input, retrieval context, or tool interaction","output_artifact_type":"rail pass, block, redirection, or intervention evidence","actor_or_authority_model":"configured runtime actors and integrations; authority not established","evidence_model":"official documentation plus local bounded crosswalk","policy_or_rule_model":"configured rails and runtime integrations","delegation_model":"must be reconstructed independently","decision_or_result_model":"rail result or intervention only","execution_authority_claim":false,"receipt_or_trace_model":"rail configuration, runtime trace, and local compatibility record","reconstruction_model":"configuration, models, integrations, context, and output required","SPE_overlap":"rail evidence may inform standing and policy review","StegVerse_ecosystem_overlap":"preparation, commitment, execution-boundary, and unknown-trajectory evidence","fail_closed_conditions":"missing rail configuration, model or integration version, runtime context, raw output, or authority overclaim"},
+  "SPE_overlap": {"standing_boundary":"rail evidence only","authority_evaluation":"not performed by NeMo Guardrails","commit_time_admissibility":"not claimed","receipt_reconstruction":"configuration and runtime bounded"},
+  "StegVerse_ecosystem_overlap": {"transition_table":"rail and intervention mapping","chain_status":"source-reviewed crosswalk","documentation_surface":"wiki framework page","execution_path":"not authorized"},
+  "fail_closed_conditions": ["source reference or version is missing", "rail configuration or runtime dependencies are absent", "behavior is generalized beyond observed configuration", "comparative behavior is claimed without executable evidence"],
+  "boundary": {"certification_claim":false,"endorsement_claim":false,"execution_authority_claim":false,"commit_time_authority_claim":false,"compatibility_manifest_is_authority":false,"missing_or_partial_fields_fail_closed":true}
+}
