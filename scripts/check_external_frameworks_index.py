@@ -125,17 +125,39 @@ def main() -> int:
         for entry in associations.get("entries", [])
         if entry.get("page_type") == "framework"
     }
-    union_ids = {
+    union_entries = canonical_union.get("entries", [])
+    union_all_ids = {
         entry.get("record_id")
-        for entry in canonical_union.get("entries", [])
+        for entry in union_entries
+        if isinstance(entry.get("record_id"), str)
+    }
+    union_external_ids = {
+        entry.get("record_id")
+        for entry in union_entries
         if entry.get("external_framework") is True
     }
+    union_internal_ids = {
+        entry.get("record_id")
+        for entry in union_entries
+        if entry.get("external_framework") is False
+    }
+
     if not sidebar_ids:
         failures.append("sidebar framework coverage is empty")
-    if not sidebar_ids.issubset(ids):
-        failures.append("sidebar framework IDs are not fully represented in the canonical registry")
-    if not ids.issubset(union_ids):
-        failures.append("registry framework IDs are not fully represented in the canonical union")
+    if not sidebar_ids.issubset(union_external_ids):
+        failures.append("sidebar framework IDs are not fully represented as external records in the canonical union")
+    if ids != union_all_ids:
+        failures.append("canonical registry IDs do not exactly match canonical union IDs")
+    if sidebar_ids & union_internal_ids:
+        failures.append("internal ecosystem records must not appear as framework-specific sidebar entries")
+
+    union_counts = canonical_union.get("counts", {})
+    if len(union_external_ids) != union_counts.get("external_frameworks"):
+        failures.append("canonical union external-framework count is stale")
+    if len(union_internal_ids) != union_counts.get("internal_records"):
+        failures.append("canonical union internal-record count is stale")
+    if len(union_all_ids) != union_counts.get("records"):
+        failures.append("canonical union total-record count is stale")
 
     required_index_references = [
         "External Framework Evaluation Standard",
@@ -170,9 +192,10 @@ def main() -> int:
             failures.append(f"boundary true mismatch: {key}")
 
     print("EXTERNAL FRAMEWORKS INDEX:", "FAIL" if failures else "PASS")
-    print(f"registry_entries={len(ids)}")
+    print(f"registry_records={len(ids)}")
     print(f"sidebar_frameworks={len(sidebar_ids)}")
-    print(f"canonical_union_external_records={len(union_ids)}")
+    print(f"canonical_union_external_records={len(union_external_ids)}")
+    print(f"canonical_union_internal_records={len(union_internal_ids)}")
     for failure in failures:
         print(f"- {failure}")
     return 1 if failures else 0
