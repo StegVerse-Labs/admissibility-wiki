@@ -1,0 +1,15 @@
+{
+  "schema": "oauth2_stegverse_governance_compatibility_cases.v1",
+  "framework_id": "oauth2",
+  "framework_version": "RFC 6749",
+  "evidence_posture": "SIMULATED_TRANSLATION_CONTRACT_RUNTIME_PENDING",
+  "cases": [
+    {"case_id":"oauth2-positive","family":"positive_alignment","enforcement_result":"ALLOW","transition":{"token_active":true,"audience_matches":true,"scope_covers_action":true,"delegation_current":true,"policy_reference_current":true,"evidence_fresh":true,"target_matches_scope":true,"execution_context_current":true,"recoverability_satisfied":true},"expected_stegverse_result":"ALLOW","expected_failure_class":null},
+    {"case_id":"oauth2-deny","family":"framework_denial_or_negative_result","enforcement_result":"DENY","transition":{"token_active":true,"audience_matches":true,"scope_covers_action":false,"delegation_current":true,"policy_reference_current":true,"evidence_fresh":true,"target_matches_scope":true,"execution_context_current":true,"recoverability_satisfied":true},"expected_stegverse_result":"DENY","expected_failure_class":"OAUTH_ENFORCEMENT_DENIAL"},
+    {"case_id":"oauth2-delegation-drift","family":"authority_or_delegation_failure","enforcement_result":"ALLOW","transition":{"token_active":true,"audience_matches":true,"scope_covers_action":true,"delegation_current":false,"policy_reference_current":true,"evidence_fresh":true,"target_matches_scope":true,"execution_context_current":true,"recoverability_satisfied":true},"expected_stegverse_result":"DENY","expected_failure_class":"AUTHORITY_DRIFT"},
+    {"case_id":"oauth2-stale-token","family":"stale_or_missing_evidence","enforcement_result":"ALLOW","transition":{"token_active":false,"audience_matches":true,"scope_covers_action":true,"delegation_current":true,"policy_reference_current":true,"evidence_fresh":false,"target_matches_scope":true,"execution_context_current":true,"recoverability_satisfied":true},"expected_stegverse_result":"FAIL_CLOSED","expected_failure_class":"STALE_OR_REVOKED_TOKEN_EVIDENCE"},
+    {"case_id":"oauth2-runtime-error","family":"malformed_undefined_or_runtime_error","enforcement_result":"ERROR","transition":{"token_active":false,"audience_matches":false,"scope_covers_action":false,"delegation_current":false,"policy_reference_current":false,"evidence_fresh":false,"target_matches_scope":false,"execution_context_current":false,"recoverability_satisfied":false},"expected_stegverse_result":"FAIL_CLOSED","expected_failure_class":"FRAMEWORK_RUNTIME_ERROR"},
+    {"case_id":"oauth2-scope-divergence","family":"semantic_divergence_guard","enforcement_result":"ALLOW","transition":{"token_active":true,"audience_matches":false,"scope_covers_action":true,"delegation_current":true,"policy_reference_current":true,"evidence_fresh":true,"target_matches_scope":false,"execution_context_current":true,"recoverability_satisfied":true},"expected_stegverse_result":"DENY","expected_failure_class":"TARGET_OR_AUDIENCE_DIVERGENCE"}
+  ],
+  "authority_boundary": "OAuth token acceptance contributes bounded delegation and scope evidence only; it is not universal authority, transition admissibility, or execution permission."
+}
