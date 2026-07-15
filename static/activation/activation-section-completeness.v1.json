@@ -1,0 +1,42 @@
+{
+  "schema": "admissibility_wiki_activation_section_completeness.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "classification": "COMPLETE_WITH_EXTERNAL_GATES",
+  "guide": "docs/activation/github-pages-cloudflare.md",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "configuration": "docusaurus.config.js",
+  "validator": "scripts/check_activation_section.py",
+  "public_root": "https://stegverse-labs.github.io/admissibility-wiki/",
+  "counts": {
+    "activation_guides": 1,
+    "canonical_active_workflows": 1,
+    "custom_domains": 0,
+    "manual_user_tasks": 0
+  },
+  "closed_dimensions": [
+    "GitHub.io project URL and Docusaurus base path are explicit",
+    "the single canonical workflow owns validation build deployment and public verification",
+    "the guide no longer references a separate deploy workflow",
+    "the guide no longer assigns manual deployment or rerun tasks to the user",
+    "custom-domain and CNAME posture are explicit",
+    "expected public routes and fail-closed deployment behavior are documented",
+    "workflow configuration is separated from observed workflow success",
+    "deployment and route reachability are separated from authority"
+  ],
+  "external_gates": [
+    "observed canonical validation pass for the current commit",
+    "observed Pages build and deploy success",
+    "observed public route verification",
+    "observed public activation receipt",
+    "authorized release or tag decision"
+  ],
+  "boundaries": {
+    "workflow_configuration_is_workflow_pass": false,
+    "workflow_pass_is_public_deployment": false,
+    "public_deployment_is_route_verification": false,
+    "route_verification_is_source_authority": false,
+    "publication_receipt_is_execution_authority": false
+  },
+  "workflow_observation": "PENDING_POST_REPAIR_OBSERVATION",
+  "next_action": "Observe the canonical workflow after the current validator repairs, then reconcile Pages deployment and public-route receipts without creating manual user tasks."
+}
