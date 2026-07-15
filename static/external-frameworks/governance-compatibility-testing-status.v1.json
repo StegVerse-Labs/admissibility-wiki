@@ -6,11 +6,11 @@
   "classification": "IN_PROGRESS",
   "counts": {
     "canonical_records": 38,
-    "contract_authored": 2,
+    "contract_authored": 3,
     "governance_compatibility_observed": 0,
     "fresh_runner_reproduced": 0,
     "independent_implementation_reproduced": 0,
-    "not_started": 36
+    "not_started": 35
   },
   "records": [
     {
@@ -38,11 +38,23 @@
       "stegverse_governance_compatibility_observed": false,
       "result_receipt": "reports/external-frameworks/cedar/cedar-stegverse-governance-compatibility-receipt.json",
       "next_action": "Execute the pinned Cedar binary against shared request, policy, schema, and entity fixtures; then rerun the governance translation contract using captured Cedar responses."
+    },
+    {
+      "framework_id": "spiffe-spire",
+      "state": "CONTRACT_AUTHORED_RUNTIME_PENDING",
+      "fixture": "tests/fixtures/external-frameworks/spiffe-spire-governance-compatibility-cases.v1.json",
+      "runner": "scripts/run_spiffe_spire_governance_compatibility.py",
+      "case_count": 6,
+      "native_execution_observed": false,
+      "source_reviewed": true,
+      "fresh_runner_replay_observed": false,
+      "stegverse_governance_compatibility_observed": false,
+      "result_receipt": "reports/external-frameworks/spiffe-spire/spiffe-spire-stegverse-governance-compatibility-receipt.json",
+      "next_action": "Attach a pinned SPIRE attestation, SVID issuance, trust-bundle, rotation, and verification packet, then execute and replay the identity-to-governance translation contract."
     }
   ],
   "default_unlisted_state": "NOT_STARTED",
   "next_framework_order": [
-    "spiffe-spire",
     "w3c-verifiable-credentials",
     "in-toto",
     "slsa",
@@ -63,6 +75,7 @@
     "documentation_complete_means_compatibility_tested": false,
     "native_framework_test_means_governance_compatible": false,
     "framework_allow_means_stegverse_allow": false,
+    "identity_verification_means_action_authority": false,
     "fresh_runner_replay_means_independent_implementation": false,
     "compatibility_receipt_grants_execution_authority": false,
     "general_compatibility_claim_allowed": false
