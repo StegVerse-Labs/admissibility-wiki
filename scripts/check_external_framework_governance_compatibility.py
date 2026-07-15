@@ -55,9 +55,11 @@ def main() -> None:
         fail("OPA fixture must contain six cases")
 
     union_entries = union.get("entries", [])
-    canonical_ids = {entry.get("framework_id") for entry in union_entries}
+    canonical_ids = {entry.get("record_id") for entry in union_entries if entry.get("record_id")}
     if len(canonical_ids) != 38:
         fail(f"canonical inventory count mismatch: {len(canonical_ids)}")
+    if union.get("counts", {}).get("records") != 38:
+        fail("canonical union stored record count mismatch")
 
     records = status.get("records", [])
     record_ids = {record.get("framework_id") for record in records}
