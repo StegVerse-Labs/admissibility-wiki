@@ -5,6 +5,7 @@ const STATIC_REGISTRY_PATH = 'static/external-frameworks/external-framework-regi
 const DOCS_REGISTRY_PATH = 'docs/external-frameworks/index.json';
 const ASSOCIATIONS_PATH = 'static/external-frameworks/sidebar-page-associations.v1.json';
 const ARTIFACT_BINDINGS_PATH = 'static/external-frameworks/sidebar-framework-artifact-bindings.v1.json';
+const NAVIGATION_DISPOSITIONS_PATH = 'static/external-frameworks/registry-navigation-dispositions.v1.json';
 const SIDEBARS_PATH = 'sidebars.js';
 
 const requiredTopLevel = [
@@ -27,6 +28,7 @@ const requiredRecordFields = [
   'non_claims'
 ];
 const allowedPresenceStates = new Set(['present', 'missing_explicit']);
+const allowedNavigationStates = new Set(['public_sidebar', 'non_public_explicit', 'internal_record']);
 
 function fail(message) {
   console.error(`FAIL: ${message}`);
@@ -93,10 +95,13 @@ for (const record of registry.records) {
 const docsRegistry = readJson(DOCS_REGISTRY_PATH);
 if (!Array.isArray(docsRegistry.entries)) fail('docs registry entries must be an array');
 const docsRegistryIds = new Set();
+const docsRegistryById = new Map();
 for (const record of docsRegistry.entries) {
   if (!record.framework_id) fail('docs registry record missing framework_id');
   if (docsRegistryIds.has(record.framework_id)) fail(`duplicate docs framework_id: ${record.framework_id}`);
   docsRegistryIds.add(record.framework_id);
+  docsRegistryById.set(record.framework_id, record);
+  if (!record.path || !fs.existsSync(record.path)) fail(`docs registry page missing for ${record.framework_id}: ${record.path}`);
 }
 
 const associations = readJson(ASSOCIATIONS_PATH);
@@ -193,13 +198,49 @@ for (let index = 0; index < frameworkAssociationEntries.length; index += 1) {
   }
 }
 
+const navigationDispositions = readJson(NAVIGATION_DISPOSITIONS_PATH);
+if (navigationDispositions.schema !== 'external_framework_registry_navigation_dispositions.v1') fail('unexpected navigation disposition schema');
+if (navigationDispositions.repository !== 'StegVerse-Labs/admissibility-wiki') fail('unexpected navigation disposition repository');
+if (navigationDispositions.canonical_registry !== DOCS_REGISTRY_PATH) fail('navigation disposition canonical registry mismatch');
+if (!Array.isArray(navigationDispositions.entries)) fail('navigation disposition entries must be an array');
+
+const dispositionIds = new Set();
+for (const entry of navigationDispositions.entries) {
+  if (!entry.framework_id || !entry.page_path || !entry.navigation_state || !entry.reason) {
+    fail('navigation disposition entry missing framework_id, page_path, navigation_state, or reason');
+  }
+  if (!allowedNavigationStates.has(entry.navigation_state)) fail(`invalid navigation_state for ${entry.framework_id}`);
+  if (!docsRegistryIds.has(entry.framework_id)) fail(`navigation disposition references unknown docs registry id: ${entry.framework_id}`);
+  if (frameworkIds.has(entry.framework_id)) fail(`sidebar framework must not also have a navigation disposition: ${entry.framework_id}`);
+  if (dispositionIds.has(entry.framework_id)) fail(`duplicate navigation disposition: ${entry.framework_id}`);
+  dispositionIds.add(entry.framework_id);
+  const registryRecord = docsRegistryById.get(entry.framework_id);
+  if (registryRecord.path !== entry.page_path) fail(`navigation disposition page mismatch for ${entry.framework_id}`);
+  if (!fs.existsSync(entry.page_path)) fail(`navigation disposition page missing for ${entry.framework_id}: ${entry.page_path}`);
+}
+
+for (const frameworkId of docsRegistryIds) {
+  const inSidebar = frameworkIds.has(frameworkId);
+  const dispositioned = dispositionIds.has(frameworkId);
+  if (inSidebar === dispositioned) {
+    fail(`docs registry record must be exactly one of sidebar-bound or explicitly dispositioned: ${frameworkId}`);
+  }
+}
+
+if (frameworkIds.size + dispositionIds.size !== docsRegistryIds.size) {
+  fail(`navigation coverage count mismatch: sidebar=${frameworkIds.size}, dispositions=${dispositionIds.size}, docs_registry=${docsRegistryIds.size}`);
+}
+
 console.log(`OK: ${STATIC_REGISTRY_PATH}`);
 console.log(`OK: ${ASSOCIATIONS_PATH}`);
 console.log(`OK: ${ARTIFACT_BINDINGS_PATH}`);
+console.log(`OK: ${NAVIGATION_DISPOSITIONS_PATH}`);
 console.log(`external_framework_static_registry_records=${registry.records.length}`);
 console.log(`external_framework_docs_registry_records=${docsRegistry.entries.length}`);
 console.log(`external_framework_sidebar_entries=${sidebarRoutes.length}`);
 console.log(`external_framework_sidebar_framework_pages=${frameworkPages}`);
 console.log(`external_framework_sidebar_support_pages=${supportPages}`);
+console.log(`external_framework_explicit_navigation_dispositions=${dispositionIds.size}`);
 console.log('silent_sidebar_add_remove_change_guard=ENFORCED');
 console.log('manifest_report_artifact_parity_guard=ENFORCED');
+console.log('registry_navigation_disposition_guard=ENFORCED');
