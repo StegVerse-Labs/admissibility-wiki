@@ -1,0 +1,117 @@
+{
+  "schema": "opa_stegverse_governance_compatibility_cases.v1",
+  "framework_id": "open-policy-agent",
+  "framework_version": "v1.0.0",
+  "query": "data.stegverse.authz.allow",
+  "cases": [
+    {
+      "case_id": "opa-compat-positive-allow-001",
+      "family": "positive_alignment",
+      "native_case": "allow",
+      "opa_decision": true,
+      "transition": {
+        "actor_identity_verified": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "evidence_fresh": true,
+        "target_matches_scope": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "ALLOW",
+      "expected_failure_class": null,
+      "reason": "OPA policy evidence permits the action and every independent StegVerse commit-time condition remains satisfied."
+    },
+    {
+      "case_id": "opa-compat-native-deny-001",
+      "family": "framework_denial_or_negative_result",
+      "native_case": "deny",
+      "opa_decision": false,
+      "transition": {
+        "actor_identity_verified": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "evidence_fresh": true,
+        "target_matches_scope": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "POLICY_DENIAL",
+      "reason": "The external policy engine returns a negative policy result, which enters StegVerse as policy evidence requiring denial."
+    },
+    {
+      "case_id": "opa-compat-revoked-delegation-001",
+      "family": "authority_or_delegation_failure",
+      "native_case": "allow",
+      "opa_decision": true,
+      "transition": {
+        "actor_identity_verified": true,
+        "delegation_current": false,
+        "policy_reference_current": true,
+        "evidence_fresh": true,
+        "target_matches_scope": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "AUTHORITY_DRIFT",
+      "reason": "OPA allow remains non-authorizing because current delegation has been revoked."
+    },
+    {
+      "case_id": "opa-compat-stale-evidence-001",
+      "family": "stale_or_missing_evidence",
+      "native_case": "allow",
+      "opa_decision": true,
+      "transition": {
+        "actor_identity_verified": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "evidence_fresh": false,
+        "target_matches_scope": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "FAIL_CLOSED",
+      "expected_failure_class": "STALE_EVIDENCE",
+      "reason": "Policy evidence alone cannot overcome stale evidence required for the governed transition."
+    },
+    {
+      "case_id": "opa-compat-runtime-error-001",
+      "family": "malformed_undefined_or_runtime_error",
+      "native_case": "error",
+      "opa_decision": null,
+      "transition": {
+        "actor_identity_verified": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "evidence_fresh": true,
+        "target_matches_scope": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "FAIL_CLOSED",
+      "expected_failure_class": "FRAMEWORK_RUNTIME_ERROR",
+      "reason": "Undefined or errored external evaluation cannot be interpreted as permission."
+    },
+    {
+      "case_id": "opa-compat-semantic-divergence-001",
+      "family": "semantic_divergence_guard",
+      "native_case": "allow",
+      "opa_decision": true,
+      "transition": {
+        "actor_identity_verified": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "evidence_fresh": true,
+        "target_matches_scope": false,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "SCOPE_DIVERGENCE",
+      "reason": "OPA allow must not be translated directly into StegVerse ALLOW when the governed target is outside current scope."
+    }
+  ],
+  "authority_boundary": "OPA decisions are policy evidence. They do not independently establish identity, delegation, standing, recoverability, scope, or execution authority."
+}
