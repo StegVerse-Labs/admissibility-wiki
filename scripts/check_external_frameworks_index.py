@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 INDEX_MD = ROOT / "docs" / "external-frameworks" / "index.md"
 INDEX_JSON = ROOT / "docs" / "external-frameworks" / "index.json"
 MANIFEST_SCHEMA = ROOT / "docs" / "external-frameworks" / "framework-manifest.schema.json"
+SIDEBAR_ASSOCIATIONS = ROOT / "static" / "external-frameworks" / "sidebar-page-associations.v1.json"
+CANONICAL_UNION = ROOT / "static" / "external-frameworks" / "canonical-union-inventory.v1.json"
 
 REQUIRED_ENTRY_FIELDS = [
     "framework_id",
@@ -60,7 +62,7 @@ def load_json(path: Path) -> dict[str, Any]:
 def main() -> int:
     failures: list[str] = []
 
-    for path in [INDEX_MD, INDEX_JSON, MANIFEST_SCHEMA]:
+    for path in [INDEX_MD, INDEX_JSON, MANIFEST_SCHEMA, SIDEBAR_ASSOCIATIONS, CANONICAL_UNION]:
         if not path.exists():
             failures.append(f"missing path: {path.relative_to(ROOT)}")
 
@@ -72,6 +74,8 @@ def main() -> int:
 
     data = load_json(INDEX_JSON)
     md = INDEX_MD.read_text(encoding="utf-8")
+    associations = load_json(SIDEBAR_ASSOCIATIONS)
+    canonical_union = load_json(CANONICAL_UNION)
 
     if data.get("artifact_type") != "external_framework_registry":
         failures.append("artifact type mismatch")
@@ -96,10 +100,16 @@ def main() -> int:
     entries = data.get("entries", [])
     if not entries:
         failures.append("no framework entries")
+    ids: set[str] = set()
     for entry in entries:
         for field in REQUIRED_ENTRY_FIELDS:
             if field not in entry:
                 failures.append(f"entry {entry.get('framework_id')} missing field: {field}")
+        framework_id = entry.get("framework_id")
+        if not isinstance(framework_id, str) or framework_id in ids:
+            failures.append(f"invalid or duplicate framework id: {framework_id}")
+        else:
+            ids.add(framework_id)
         path = entry.get("path")
         if isinstance(path, str) and not (ROOT / path).exists():
             failures.append(f"entry path missing: {path}")
@@ -109,9 +119,36 @@ def main() -> int:
         for claim_field in ["claims_certification", "claims_endorsement", "claims_execution_authority"]:
             if entry.get(claim_field) is not False:
                 failures.append(f"entry {entry.get('framework_id')} boundary mismatch: {claim_field}")
-        name = entry.get("name")
-        if isinstance(name, str) and name not in md:
-            failures.append(f"index markdown missing framework name: {name}")
+
+    sidebar_ids = {
+        entry.get("framework_id")
+        for entry in associations.get("entries", [])
+        if entry.get("page_type") == "framework"
+    }
+    union_ids = {
+        entry.get("record_id")
+        for entry in canonical_union.get("records", [])
+        if entry.get("external_framework") is True
+    }
+    if not sidebar_ids:
+        failures.append("sidebar framework coverage is empty")
+    if not sidebar_ids.issubset(ids):
+        failures.append("sidebar framework IDs are not fully represented in the canonical registry")
+    if not ids.issubset(union_ids):
+        failures.append("registry framework IDs are not fully represented in the canonical union")
+
+    required_index_references = [
+        "External Framework Evaluation Standard",
+        "External Framework Evaluation Results",
+        "Expanded External Framework Intake",
+        "External Framework Family Coverage",
+        "External Framework Intake Promotion Criteria",
+        "External Framework Page Template",
+        "Evidence Provenance Rollout",
+    ]
+    for reference in required_index_references:
+        if reference not in md:
+            failures.append(f"index markdown missing canonical navigation reference: {reference}")
 
     boundary = data.get("boundary", {})
     false_keys = [
@@ -133,6 +170,9 @@ def main() -> int:
             failures.append(f"boundary true mismatch: {key}")
 
     print("EXTERNAL FRAMEWORKS INDEX:", "FAIL" if failures else "PASS")
+    print(f"registry_entries={len(ids)}")
+    print(f"sidebar_frameworks={len(sidebar_ids)}")
+    print(f"canonical_union_external_records={len(union_ids)}")
     for failure in failures:
         print(f"- {failure}")
     return 1 if failures else 0
