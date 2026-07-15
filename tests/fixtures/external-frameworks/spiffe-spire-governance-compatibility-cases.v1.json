@@ -1,0 +1,50 @@
+{
+  "schema": "spiffe_spire_stegverse_governance_compatibility_cases.v1",
+  "framework_id": "spiffe-spire",
+  "evidence_posture": "CONTRACT_AUTHORED_SOURCE_REVIEWED_RUNTIME_PENDING",
+  "cases": [
+    {
+      "case_id": "spiffe-compat-positive-identity-001",
+      "family": "positive_alignment",
+      "identity_result": "verified",
+      "transition": {"svid_current":true,"trust_bundle_current":true,"attestation_valid":true,"delegation_current":true,"policy_reference_current":true,"evidence_fresh":true,"target_matches_scope":true,"recoverability_satisfied":true,"execution_context_current":true},
+      "expected_stegverse_result": "ALLOW"
+    },
+    {
+      "case_id": "spiffe-compat-native-verification-denial-001",
+      "family": "framework_denial_or_negative_result",
+      "identity_result": "unverified",
+      "transition": {"svid_current":true,"trust_bundle_current":true,"attestation_valid":false,"delegation_current":true,"policy_reference_current":true,"evidence_fresh":true,"target_matches_scope":true,"recoverability_satisfied":true,"execution_context_current":true},
+      "expected_stegverse_result": "DENY"
+    },
+    {
+      "case_id": "spiffe-compat-revoked-delegation-001",
+      "family": "authority_or_delegation_failure",
+      "identity_result": "verified",
+      "transition": {"svid_current":true,"trust_bundle_current":true,"attestation_valid":true,"delegation_current":false,"policy_reference_current":true,"evidence_fresh":true,"target_matches_scope":true,"recoverability_satisfied":true,"execution_context_current":true},
+      "expected_stegverse_result": "DENY"
+    },
+    {
+      "case_id": "spiffe-compat-expired-svid-001",
+      "family": "stale_or_missing_evidence",
+      "identity_result": "verified",
+      "transition": {"svid_current":false,"trust_bundle_current":true,"attestation_valid":true,"delegation_current":true,"policy_reference_current":true,"evidence_fresh":false,"target_matches_scope":true,"recoverability_satisfied":true,"execution_context_current":true},
+      "expected_stegverse_result": "FAIL_CLOSED"
+    },
+    {
+      "case_id": "spiffe-compat-attestation-error-001",
+      "family": "malformed_undefined_or_runtime_error",
+      "identity_result": "error",
+      "transition": {"svid_current":true,"trust_bundle_current":true,"attestation_valid":false,"delegation_current":true,"policy_reference_current":true,"evidence_fresh":true,"target_matches_scope":true,"recoverability_satisfied":true,"execution_context_current":true},
+      "expected_stegverse_result": "FAIL_CLOSED"
+    },
+    {
+      "case_id": "spiffe-compat-identity-authority-divergence-001",
+      "family": "semantic_divergence_guard",
+      "identity_result": "verified",
+      "transition": {"svid_current":true,"trust_bundle_current":true,"attestation_valid":true,"delegation_current":true,"policy_reference_current":true,"evidence_fresh":true,"target_matches_scope":false,"recoverability_satisfied":true,"execution_context_current":true},
+      "expected_stegverse_result": "DENY"
+    }
+  ],
+  "authority_boundary": "SPIFFE identity and SPIRE attestation are identity evidence only. They do not certify the integration, establish general compatibility, or grant StegVerse execution authority."
+}
