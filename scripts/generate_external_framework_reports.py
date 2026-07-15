@@ -35,6 +35,15 @@ ENRICHED_RESULTS = {
     "COMPATIBILITY_EVIDENCE_ONLY_PARAMETERIZED_BOUNDARY_CASE_PARTIAL",
 }
 
+EVIDENCE_CLASSES = {
+    "MENTION_ONLY",
+    "AUTHOR_COMMENTARY",
+    "SOURCE_REVIEWED",
+    "ARTIFACT_REVIEWED",
+    "PARAMETERIZED_OBSERVATION",
+    "REPRODUCIBLE_COMPARATIVE_TEST",
+}
+
 
 def read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -91,6 +100,74 @@ def status_for_source_blocked(manifest: dict[str, Any]) -> dict[str, str]:
     return status
 
 
+def evidence_gate(report: dict[str, Any]) -> dict[str, Any]:
+    observations = report.get("runtime_governance_benchmark_observations", [])
+    parameterized_cases = report.get("parameterized_boundary_cases", [])
+    all_cases = [*observations, *parameterized_cases]
+
+    has_official_source = bool(report.get("sources")) or report.get("transition_table_mapping_status", {}).get("source_reference") == "PRESENT"
+    has_artifact = any(
+        bool(case.get(field))
+        for case in all_cases
+        for field in ("raw_audit_payload_attached", "screenshot_attached", "observed_output_attached")
+    )
+    has_parameterized_case = bool(all_cases)
+    has_raw_output = bool(all_cases) and all(bool(case.get("raw_audit_payload_attached") or case.get("observed_output_attached")) for case in all_cases)
+    has_timestamp = bool(all_cases) and all(bool(case.get("timestamp_attached")) for case in all_cases)
+    has_runtime_config = bool(all_cases) and all(bool(case.get("runtime_configuration_attached")) for case in all_cases)
+    has_source_hash = bool(all_cases) and all(bool(case.get("source_hash_attached")) for case in all_cases)
+    has_replay_command = bool(report.get("replay_commands"))
+    has_expected_outcome = bool(all_cases) and all(bool(case.get("stegverse_expected_posture") or case.get("expected_outcome")) for case in all_cases)
+    independently_reproduced = bool(report.get("independent_reproduction", {}).get("completed"))
+
+    reproducible = all([
+        has_parameterized_case,
+        has_raw_output,
+        has_timestamp,
+        has_runtime_config,
+        has_source_hash,
+        has_replay_command,
+        has_expected_outcome,
+        independently_reproduced,
+    ])
+
+    if reproducible:
+        evidence_class = "REPRODUCIBLE_COMPARATIVE_TEST"
+    elif has_parameterized_case:
+        evidence_class = "PARAMETERIZED_OBSERVATION"
+    elif has_artifact:
+        evidence_class = "ARTIFACT_REVIEWED"
+    elif has_official_source:
+        evidence_class = "SOURCE_REVIEWED"
+    elif report.get("author_commentary"):
+        evidence_class = "AUTHOR_COMMENTARY"
+    else:
+        evidence_class = "MENTION_ONLY"
+
+    missing = []
+    required = {
+        "shared_test_vector": has_parameterized_case,
+        "raw_output": has_raw_output,
+        "timestamp": has_timestamp,
+        "runtime_configuration": has_runtime_config,
+        "source_version_or_hash": has_source_hash,
+        "replay_commands": has_replay_command,
+        "declared_expected_outcome": has_expected_outcome,
+        "independent_reproduction": independently_reproduced,
+    }
+    for field, present in required.items():
+        if not present:
+            missing.append(field)
+
+    return {
+        "evidence_class": evidence_class,
+        "independently_reproducible": reproducible,
+        "comparative_testing_claim_allowed": reproducible,
+        "required_fields": required,
+        "missing_fields": missing,
+    }
+
+
 def build_base_report(entry: dict[str, Any], manifest: dict[str, Any]) -> dict[str, Any]:
     source_blocked = entry.get("testbench_state") == "SOURCE_BLOCKED_FAIL_CLOSED"
     result = "SOURCE_BLOCKED_FAIL_CLOSED" if source_blocked else "COMPATIBILITY_EVIDENCE_ONLY"
@@ -109,14 +186,14 @@ def build_base_report(entry: dict[str, Any], manifest: dict[str, Any]) -> dict[s
         boundary["official_source_required_for_completion"] = True
 
     action = (
-        "Add an official public source reference before upgrading this report from SOURCE_BLOCKED_FAIL_CLOSED to COMPATIBILITY_EVIDENCE_ONLY."
+        "Add an official public source reference before upgrading this report from SOURCE_BLOCKED_FAIL_CLOSED."
         if source_blocked
-        else "Expand the same manifest-and-report cycle to every registry entry with an official source reference."
+        else "Add executable observations, raw outputs, pinned versions, replay commands, and independent reproduction before making comparative-testing claims."
     )
 
-    return {
+    report = {
         "artifact_type": "external_framework_compatibility_report",
-        "schema_version": "0.2",
+        "schema_version": "0.7",
         "framework_id": entry["framework_id"],
         "framework_manifest": entry["manifest_path"],
         "registry": "docs/external-frameworks/index.json",
@@ -129,28 +206,15 @@ def build_base_report(entry: dict[str, Any], manifest: dict[str, Any]) -> dict[s
         "boundary": boundary,
         "next_required_action": action,
     }
+    report["evidence_gate"] = evidence_gate(report)
+    return report
 
 
 def build_report(entry: dict[str, Any], manifest: dict[str, Any]) -> dict[str, Any]:
-    """Backward-compatible report builder used by validators and older callers.
-
-    `build_base_report` is the canonical implementation. This alias preserves the
-    established public module API so report-generation checks do not fail when
-    older integrations still call `build_report`.
-    """
     return build_base_report(entry, manifest)
 
 
-def preserve_enriched_report(
-    base: dict[str, Any], existing: dict[str, Any] | None
-) -> dict[str, Any]:
-    """Preserve verified framework-specific evidence while refreshing canonical references.
-
-    Generated reports are baseline artifacts. Once a report has been explicitly enriched
-    with bounded benchmark observations, generation must not erase that evidence. The
-    existing enriched report remains authoritative for its extension fields, while core
-    identity/reference fields and mandatory fail-closed boundaries are refreshed.
-    """
+def preserve_enriched_report(base: dict[str, Any], existing: dict[str, Any] | None) -> dict[str, Any]:
     if not existing or existing.get("result") not in ENRICHED_RESULTS:
         return base
 
@@ -164,9 +228,14 @@ def preserve_enriched_report(
     ]:
         report[key] = base[key]
 
+    report["schema_version"] = "0.7"
     boundary = dict(report.get("boundary", {}))
     boundary.update(base["boundary"])
     report["boundary"] = boundary
+    report["evidence_gate"] = evidence_gate(report)
+    report["next_required_action"] = (
+        "Attach every missing reproducibility field listed in evidence_gate.missing_fields, then complete an independent rerun before claiming comparative testing."
+    )
     return report
 
 
@@ -180,6 +249,8 @@ def main() -> int:
         out = REPORT_DIR / f"{entry['framework_id']}.compatibility.json"
         existing = read_json(out) if out.exists() else None
         report = preserve_enriched_report(build_base_report(entry, manifest), existing)
+        if report.get("evidence_gate", {}).get("evidence_class") not in EVIDENCE_CLASSES:
+            raise ValueError(f"invalid evidence class for {entry['framework_id']}")
         write_json(out, report)
     return 0
 
