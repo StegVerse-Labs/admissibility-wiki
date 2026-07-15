@@ -18,6 +18,18 @@ def fail(message: str) -> None:
     raise SystemExit(f"CANONICAL WORKFLOW OBSERVATION PUBLICATION: FAIL - {message}")
 
 
+def snapshot(path: Path) -> bytes | None:
+    return path.read_bytes() if path.exists() else None
+
+
+def restore(path: Path, prior: bytes | None) -> None:
+    if prior is None:
+        path.unlink(missing_ok=True)
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(prior)
+
+
 def main() -> int:
     if not PUBLISHER.exists():
         fail("publisher is missing")
@@ -43,6 +55,8 @@ def main() -> int:
         },
     }
 
+    prior_upstream = snapshot(UPSTREAM)
+    prior_public = snapshot(PUBLIC)
     UPSTREAM_DIR.mkdir(parents=True, exist_ok=True)
     UPSTREAM.write_text(json.dumps(fixture, indent=2) + "\n", encoding="utf-8")
     PUBLIC.unlink(missing_ok=True)
@@ -79,15 +93,16 @@ def main() -> int:
         if publication.get("user_action_required") is not False:
             fail("publication requires user action")
 
-        print("CANONICAL WORKFLOW OBSERVATION PUBLICATION: PASS - manual_tasks=0")
+        print("CANONICAL WORKFLOW OBSERVATION PUBLICATION: PASS - manual_tasks=0 preserved_run_bound_artifact=true")
         return 0
     finally:
-        UPSTREAM.unlink(missing_ok=True)
-        try:
-            UPSTREAM_DIR.rmdir()
-        except OSError:
-            pass
-        PUBLIC.unlink(missing_ok=True)
+        restore(UPSTREAM, prior_upstream)
+        restore(PUBLIC, prior_public)
+        if prior_upstream is None:
+            try:
+                UPSTREAM_DIR.rmdir()
+            except OSError:
+                pass
 
 
 if __name__ == "__main__":
