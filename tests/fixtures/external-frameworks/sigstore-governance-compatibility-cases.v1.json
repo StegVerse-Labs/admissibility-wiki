@@ -1,0 +1,56 @@
+{
+  "schema": "sigstore_stegverse_governance_compatibility_cases.v1",
+  "framework_id": "sigstore",
+  "evidence_posture": "CONTRACT_AUTHORED_RUNTIME_PENDING",
+  "cases": [
+    {
+      "case_id": "sigstore-compat-positive-verification-001",
+      "family": "positive_alignment",
+      "verification_result": "PASS",
+      "transition": {"artifact_digest_matches": true, "signature_valid": true, "certificate_identity_verified": true, "transparency_inclusion_verified": true, "trust_root_current": true, "delegation_current": true, "policy_reference_current": true, "evidence_fresh": true, "target_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "ALLOW",
+      "expected_failure_class": null
+    },
+    {
+      "case_id": "sigstore-compat-native-failure-001",
+      "family": "framework_denial_or_negative_result",
+      "verification_result": "FAIL",
+      "transition": {"artifact_digest_matches": true, "signature_valid": false, "certificate_identity_verified": true, "transparency_inclusion_verified": true, "trust_root_current": true, "delegation_current": true, "policy_reference_current": true, "evidence_fresh": true, "target_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "SIGNATURE_VERIFICATION_DENIAL"
+    },
+    {
+      "case_id": "sigstore-compat-revoked-delegation-001",
+      "family": "authority_or_delegation_failure",
+      "verification_result": "PASS",
+      "transition": {"artifact_digest_matches": true, "signature_valid": true, "certificate_identity_verified": true, "transparency_inclusion_verified": true, "trust_root_current": true, "delegation_current": false, "policy_reference_current": true, "evidence_fresh": true, "target_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "AUTHORITY_DRIFT"
+    },
+    {
+      "case_id": "sigstore-compat-stale-trust-root-001",
+      "family": "stale_or_missing_evidence",
+      "verification_result": "PASS",
+      "transition": {"artifact_digest_matches": true, "signature_valid": true, "certificate_identity_verified": true, "transparency_inclusion_verified": true, "trust_root_current": false, "delegation_current": true, "policy_reference_current": true, "evidence_fresh": false, "target_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "FAIL_CLOSED",
+      "expected_failure_class": "STALE_TRUST_OR_EVIDENCE"
+    },
+    {
+      "case_id": "sigstore-compat-verifier-error-001",
+      "family": "malformed_undefined_or_runtime_error",
+      "verification_result": "ERROR",
+      "transition": {"artifact_digest_matches": true, "signature_valid": true, "certificate_identity_verified": true, "transparency_inclusion_verified": true, "trust_root_current": true, "delegation_current": true, "policy_reference_current": true, "evidence_fresh": true, "target_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "FAIL_CLOSED",
+      "expected_failure_class": "FRAMEWORK_RUNTIME_ERROR"
+    },
+    {
+      "case_id": "sigstore-compat-scope-divergence-001",
+      "family": "semantic_divergence_guard",
+      "verification_result": "PASS",
+      "transition": {"artifact_digest_matches": true, "signature_valid": true, "certificate_identity_verified": true, "transparency_inclusion_verified": true, "trust_root_current": true, "delegation_current": true, "policy_reference_current": true, "evidence_fresh": true, "target_action_in_scope": false, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "TARGET_ACTION_SCOPE_DIVERGENCE"
+    }
+  ],
+  "authority_boundary": "Sigstore signature, certificate, and transparency verification are artifact-origin evidence only. They do not establish current delegation, action admissibility, execution authority, certification, or general compatibility."
+}
