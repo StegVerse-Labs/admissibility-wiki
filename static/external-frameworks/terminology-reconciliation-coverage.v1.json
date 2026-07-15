@@ -24,5 +24,5 @@
     {"framework_id":"openlineage","page_path":"docs/external-frameworks/openlineage.md","reconciliation_class":"adjacent","native_terms":["job","run","dataset","lineage event"],"admissibility_relationship":"Lineage events may improve reconstructability and evidence provenance but do not establish truth, legitimacy, or current authority.","authority_effect":"NONE"},
     {"framework_id":"w3c-prov","page_path":"docs/external-frameworks/w3c-prov.md","reconciliation_class":"adjacent","native_terms":["entity","activity","agent","provenance relation"],"admissibility_relationship":"Provenance representation may support reconstruction but does not prove legitimacy, permission, or commit-time standing.","authority_effect":"NONE"}
   ],
-  "boundary": "Terminology reconciliation records preserve external-native vocabulary and classify relationships only. They do not create synonymy, formal equivalence, certification, standing, admissibility, or execution authority."
+  "boundary": "Terminology reconciliation coverage does not create synonymy, formal equivalence, certification, standing, admissibility, or execution authority. It preserves external-native vocabulary and classifies relationships only."
 }
