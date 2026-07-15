@@ -8,7 +8,7 @@ title: External Framework Evidence Classification Status
 
 This page records the current evidence strength of registered external frameworks using the fail-closed classification implemented by the compatibility-report generator.
 
-A framework's inclusion, source citation, crosswalk, or author commentary does not constitute comparative testing.
+A framework's inclusion, source citation, crosswalk, screenshot, profile description, or author commentary does not constitute comparative testing.
 
 ## Evidence classes
 
@@ -58,6 +58,8 @@ Missing fields fail closed and must be displayed rather than inferred.
 | EU AI Act | `SOURCE_REVIEWED` | Yes | Legal text; no runtime implementation | No | No | No |
 | Policy Cards | `SOURCE_REVIEWED` | Yes | Paper only; schema or implementation package not attached | No | No | No |
 | Runtime Governance for AI Agents | `SOURCE_REVIEWED` | Yes | Paper only; path-policy implementation not attached | No | No | No |
+| CARE Runtime | `MENTION_ONLY` | No official public source confirmed | Screenshot-only intake | No | No | No |
+| KPT | `AUTHOR_COMMENTARY` | Public positioning only; no versioned technical source | No implementation package | No | No | No |
 
 ## Cohort findings
 
@@ -96,6 +98,32 @@ comparative_testing_claim_allowed: false
 
 Private, remembered, conversational, or unpublished results remain outside the public evidence posture.
 
+### CARE Runtime
+
+CARE Runtime is supported only by a supplied screenshot and observed terminology. No official website, repository, specification, release, paper, or authorized artifact package is confirmed.
+
+```text
+evidence_class: MENTION_ONLY
+source_status: SOURCE_BLOCKED_FAIL_CLOSED
+screenshot_is_official_source: false
+public_runtime_result_claim_allowed: false
+comparative_testing_claim_allowed: false
+```
+
+### KPT
+
+KPT has public positioning and author-attributed descriptive language, but no versioned technical framework source, repository, schema, API, white paper, or executable artifact is recorded.
+
+```text
+evidence_class: AUTHOR_COMMENTARY
+source_status: SOURCE_BLOCKED_FAIL_CLOSED
+technical_source_confirmed: false
+public_runtime_result_claim_allowed: false
+comparative_testing_claim_allowed: false
+```
+
+KPT is classified above `MENTION_ONLY` only because attributed public positioning is preserved. That positioning remains commentary and cannot establish technical compatibility, runtime behavior, or execution authority.
+
 ### Morrison Runtime
 
 The report includes bounded parameterized observations, but its own fields state that raw audit payloads, timestamps, runtime configuration, and source hashes are missing.
@@ -119,16 +147,15 @@ report evidence class <= available public artifacts
 
 ## Remaining external-framework audit queue
 
-The priority cohorts above are classified. Remaining work is durable and proceeds in sidebar order:
+Priority and source-blocked cohorts are classified. Remaining work is durable and proceeds in sidebar order:
 
 ```text
-1. source-blocked records and intake candidates
-2. policy, identity, provenance, and supply-chain framework families
-3. guardrail and agent-protocol framework families
-4. required-section compliance across every framework page
-5. generated report regeneration under schema 0.7
-6. generated page-status synchronization
-7. orphan, registry, and navigation coverage
+1. policy, identity, provenance, and supply-chain framework families
+2. guardrail and agent-protocol framework families
+3. required-section compliance across every framework page
+4. generated report regeneration under schema 0.7
+5. generated page-status synchronization
+6. orphan, registry, and navigation coverage
 ```
 
 Each remaining page must be checked for source authority, evidence provenance, observation strength, machine-readable companion, reproduction path, missing fields, non-claims, and challenge path.
