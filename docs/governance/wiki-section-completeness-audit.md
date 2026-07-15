@@ -10,57 +10,49 @@ This audit reviews each public wiki section for completeness, evidence posture, 
 
 Completeness is not measured by page count. A section is complete only when a reviewer can determine what exists, what is authoritative, what is tested, what remains unverified, and how the claims can be checked.
 
-## Review Dimensions
-
-Every section is reviewed against the same dimensions:
+## Review dimensions
 
 | Dimension | Required question |
 |---|---|
 | Scope | Does the section state what it covers and excludes? |
-| Coordinate coverage | Are all relevant repositories, interfaces, proof sources, custody layers, and external dependencies shown? |
+| Coordinate coverage | Are relevant repositories, interfaces, proof sources, custody layers, and external dependencies shown? |
 | Source authority | Is the canonical authority source named for each substantive claim? |
-| Evidence posture | Are claims separated into source, implementation, observation, reproduction, analysis, and hypothesis? |
+| Evidence posture | Are source, implementation, observation, reproduction, analysis, and hypothesis separated? |
 | Reproducibility | Can another reviewer rerun or reconstruct claimed tests? |
 | Machine-readable support | Are registries, fixtures, reports, receipts, or status artifacts available where appropriate? |
-| Status accuracy | Are draft, fixture, prepared, deployed, blocked, external, and verified states distinguishable? |
+| Status accuracy | Are scaffolded, implemented, fixture-validated, deployed, blocked, external, and operational states distinguishable? |
 | Boundary accuracy | Does the section avoid equating publication, validation, deployment, admissibility, custody, and execution? |
 | Navigation | Can a reader move from overview to evidence and back without orphaned pages? |
 | Maintenance | Is there a validator, generated registry, or explicit owner for keeping the section current? |
 
-## Completeness Classes
+## Completeness classes
 
 | Class | Meaning |
 |---|---|
 | `COMPLETE` | Required dimensions are present and bounded claims are inspectable. |
 | `COMPLETE_WITH_EXTERNAL_GATES` | Documentation is complete; live deployment, custody, proof, or other external evidence remains separately blocked. |
-| `PARTIAL` | Core content exists but one or more important coordinates, evidence classes, or verification paths are missing. |
-| `SCAFFOLD` | Structure or candidate pages exist without enough source, evidence, or operational detail for evaluation. |
+| `PARTIAL` | Core content exists but important coordinates, evidence classes, or verification paths are missing. |
+| `SCAFFOLD` | Structure exists without enough source, evidence, or operational detail for evaluation. |
 | `STALE_OR_CONFLICTING` | Content conflicts with current handoffs, implementations, or status vocabulary. |
 | `NOT_REVIEWED` | Audit has not yet been performed. |
 
-## Audit Register
+## Audit register
 
-| Section or page group | Current class | Finding | Remediation or remaining action |
+| Section or page group | Current class | Finding | Remaining action |
 |---|---|---|---|
-| Governance: Governed LLM Activation Map | `COMPLETE_WITH_EXTERNAL_GATES` | Topology includes entry surfaces, Math Solver, demo suite, applicability, runtime, SDK, formalisms, custody, deployment, and execution coordinates. | Validate links and synchronize status with Site and destination handoffs. |
-| Governance: Current Visible Updates | `COMPLETE_WITH_EXTERNAL_GATES` | Formerly stale deployment marker listed only early formalism and term-discovery work. It now reflects the current governed ecosystem, governed LLM, external-framework, audit, terminal-rollup, and fail-closed deployment posture. | Keep synchronized with the mirror handoff; do not convert expected generated paths into observed deployment claims. |
-| Governance: Validation | `COMPLETE_WITH_EXTERNAL_GATES` | Former page named deleted `.github/workflows/validate.yml`, described ontology-only scope, and assigned manual rerun steps. It now binds the canonical single workflow, aggregate chain, terminal envelope, and no-manual-task policy. | Observe repository-owned workflow evidence when exposed; repair only exact deterministic failures. |
-| Governance: Current Task Sync | `COMPLETE_WITH_EXTERNAL_GATES` | Former active goal stopped at governed ecosystem framing and did not include the completeness audit or repaired external-framework evidence posture. It now names the audit as the active goal and records current topology, evidence classes, and destinations. | Keep current audit block and next block synchronized after each review group. |
-| Governance: Mirror Handoff | `COMPLETE_WITH_EXTERNAL_GATES` | Canonical source clearly states workflow, authority boundaries, terminal rollup, artifact custody, remaining destinations, and no-manual-task continuation. | Do not overwrite with page-level status; update only when repository continuation state materially changes. |
-| Governance: Relationship Status Summary | `PARTIAL` | Accepted overlap records and equivalence boundary are clear, but the page ends with an outdated generic deployment-verification instruction and lacks machine-readable companion status on-page. | Audit proposal/decision artifacts and revise maintenance and activation language during terminology-governance review. |
-| External Frameworks: Evaluation Results | `PARTIAL` | Evidence classes are explicit and no independently reproducible comparison is claimed. Individual reports still require field-by-field review. | Audit every framework record against the reproducibility gate and demote unsupported labels automatically. |
-| External Frameworks: Framework Pages | `NOT_REVIEWED` | Many pages exist, but uniform compliance with the evaluation standard has not been confirmed. | Review sources, evidence provenance, tests, missing fields, non-claims, and machine-readable companions page by page. |
-| Governance: Governed LLM and Ecosystem Transition Pages | `IN_PROGRESS` | Core pages are present, but cross-page coordinate consistency, source ownership, and status synchronization remain to be checked. | Continue with governed ecosystem index/transitions, reconstructive search, demo, Site verification, deployment status, trust chain, return path, and capability status pages. |
-| Glossary | `NOT_REVIEWED` | Core vocabulary exists. Cross-page definition consistency is unverified. | Check canonical definitions, aliases, conflicts, examples, and authority boundaries. |
-| Formalisms | `NOT_REVIEWED` | Research, candidate formalisms, translations, and runtime governance pages coexist. | Separate theorem/proof posture, candidate formalism, translation record, and research hypothesis states. |
-| Research | `NOT_REVIEWED` | Long-form research surfaces exist. | Check citations, claim posture, relationship to canonical vocabulary, and publication status. |
-| Social | `NOT_REVIEWED` | Public communication artifacts exist. | Verify each social artifact points back to current canonical pages and does not overstate evidence. |
-| StegVerse | `NOT_REVIEWED` | Product or component overview surfaces exist. | Verify role, repository ownership, activation state, and relationship to governance authorities. |
-| Activation | `NOT_REVIEWED` | Deployment guidance exists. | Verify current workflow, Pages, DNS, route, and deployment-evidence posture against handoff. |
+| Governance overview, current status, and handoffs | `COMPLETE_WITH_EXTERNAL_GATES` | Current update, validation, task sync, and handoff pages are aligned with the single workflow and no-manual-task posture. | Observe canonical workflow and public evidence when exposed. |
+| Governed LLM and ecosystem transition pages | `COMPLETE_WITH_EXTERNAL_GATES` | Entry surfaces, Math Solver, demos, runtime, SDK, formalisms, commitment, execution, custody, reconstruction, deployment, capability states, and verification classes are now represented. | Keep states synchronized with authority-repository handoffs and add machine-readable class registries where absent. |
+| Relationship Status Summary | `PARTIAL` | Overlap and equivalence boundaries are clear; maintenance wording and machine-readable companion exposure remain incomplete. | Repair during terminology-governance review. |
+| External Frameworks: Evaluation Results | `PARTIAL` | Results are explicitly non-reproducible unless the full gate is met. Individual generated reports still require field-level evidence audit. | Audit reports and demote unsupported labels automatically. |
+| External Frameworks: Framework Pages | `NOT_REVIEWED` | Uniform compliance with the evaluation standard is unconfirmed. | Review sources, observations, tests, missing fields, non-claims, and machine-readable companions. |
+| Formalisms | `NOT_REVIEWED` | Research, candidate formalisms, translations, and proof surfaces coexist. | Separate theorem, fixture, candidate, translation, and hypothesis postures. |
+| Glossary | `NOT_REVIEWED` | Core vocabulary exists; cross-page consistency is unverified. | Check definitions, aliases, conflicts, examples, and authority boundaries. |
+| Activation | `NOT_REVIEWED` | Deployment guidance exists. | Verify workflow, Pages, routes, DNS, and deployment-evidence posture. |
+| Research, Social, and StegVerse | `NOT_REVIEWED` | Public exposition and component pages exist. | Check citations, ownership, status, and overclaim boundaries. |
 
-## Governance Overview Audit Record
+## Governance overview audit
 
-### Reviewed pages
+Reviewed:
 
 ```text
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
@@ -70,60 +62,106 @@ docs/governance/validation.md
 docs/governance/relationship-status-summary.md
 ```
 
-### Defects found
-
-```text
-current-visible-updates:
-  - stale update inventory
-  - visibility wording could be misread as deployment proof
-  - missing canonical handoff and workflow identity
-  - missing current generated and governed surfaces
-
-validation:
-  - obsolete .github/workflows/validate.yml path
-  - ontology-only description of a much broader chain
-  - manual rerun and route-check expectations
-  - no terminal-rollup or no-recursion boundary
-
-current-task-sync:
-  - superseded active assessment goal
-  - no completeness-audit ownership
-  - no repaired activation-topology summary
-  - no explicit external-framework reproducibility posture
-```
-
-### Repairs committed
+Primary repairs:
 
 ```text
 f95e21e3c6ce2aa6ac1b541d4bfc69f7b3c5849f
-  -> current-visible-updates aligned with canonical handoff
-
+  -> current visible updates aligned with the canonical handoff
 9bb95ecc3dbd31931458a2cfdf43ef2d03ab430e
-  -> validation aligned with the single canonical workflow and fail-closed chain
-
+  -> validation aligned with the canonical workflow and fail-closed chain
 5ee4f5f26808b9f53d341130ebca09341bddbd8c
-  -> current-task-sync aligned with the completeness audit and current evidence posture
+  -> current task sync aligned with the completeness audit
 ```
 
-### Governance overview conclusion
+Conclusion:
 
 ```text
 class: COMPLETE_WITH_EXTERNAL_GATES
-source and documentation coverage: complete for reviewed pages
 workflow pass: not independently observed
 Pages deployment pass: not independently observed
 public terminal-artifact reachability: not independently observed
 release/tag authority: not granted
 ```
 
-## Audit Order
+## Governed LLM and ecosystem transition audit
+
+Reviewed and remediated:
+
+```text
+governed-llm-activation-map.md
+governed-ecosystem-index.md
+governed-ecosystem-transitions.md
+governed-input-classes.md
+governed-output-classes.md
+governed-transition-map.md
+governed-llm-reconstructive-search.md
+governed-llm-demo-overview.md
+governed-llm-demo-verification.md
+governed-llm-site-verification.md
+governed-llm-deployment-status.md
+llm-free-tier-trust-chain.md
+portable-governed-return-path.md
+capability-lifecycle.md
+ecosystem-capability-status.md
+```
+
+Defects corrected:
+
+```text
+- three-repository activation map omitted entry, demo, proof, custody, and deployment coordinates
+- input and output registries exposed no evidence owner or operational posture
+- transition map skipped commitment, execution, custody, and reconstruction distinctions
+- reconstructive search omitted Site, Math Solver, demos, formalism authority, and Master-Records
+- free-tier page claimed bounded live use despite PREPARED_NOT_DEPLOYED Site posture
+- deployment verification covered too few routes and blurred local checks with deployment evidence
+- demo verification listed commands without evidence requirements or result schema
+- Site verification treated wiki page presence as the principal integration proof
+- capability status used one generic example instead of coordinate-specific states
+- lifecycle lacked scaffolded, fixture, deployed, conformance, custody, suspended, revoked, and retired states
+```
+
+Key repair commits:
+
+```text
+66ee3838eac50111651af1c1753ed89a690bb17f
+18c36f67c599d629166a2193ce1a26dec0382036
+532b115d64d0a7232cdeababb9ef7866194f7d00
+158a36c2495c76379d31ae0cdc7b274a5f117a08
+547999f6855a32913bc5a669df859ab089063acf
+44f79ea98258808e816a0451c32c3d544896a5bb
+740a00a6a342548faa7c418a91744b4afe736331
+ae6ed3d2c548e31bcef2442dbee766c3777c7159
+0698b35ea530776c4fc1c432ad14ec77b109c590
+9286d6145e85134288bdaacd7b6ec2dc42c19632
+b46e00e087957b4227dca7796f5597c9972a123e
+e6c56a850c468e1bb8e1490c9184b7d9ca5cca90
+322c23e74441b037bbe188dbf6123676d71ca476
+d723e39a3e528cf324acb15dfdbb774b322ce62a
+```
+
+Conclusion:
+
+```text
+class: COMPLETE_WITH_EXTERNAL_GATES
+documentation topology: complete for reviewed coordinates
+Site client: PREPARED_NOT_DEPLOYED
+live transport: false
+same-origin gateway: not deployed
+provider conformance: not established
+Master-Records custody: not established
+external execution: disabled or external
+aggregate operational: false
+release authorization: not granted
+```
+
+## Audit order
 
 ```text
 1. Governance overview, current status, and handoffs — COMPLETE_WITH_EXTERNAL_GATES
-2. Governed LLM and ecosystem transition pages — IN_PROGRESS
-3. External Frameworks index, standard, results, and every framework page
+2. Governed LLM and ecosystem transition pages — COMPLETE_WITH_EXTERNAL_GATES
+3. External Frameworks index, standard, results, reports, and framework pages — IN_PROGRESS
 4. Formalisms and translation records
-5. Glossary consistency
+5. Glossary consistency and terminology governance
 6. Activation and deployment pages
 7. Research, Social, and StegVerse sections
 8. Navigation, orphan detection, and machine-readable registry coverage
@@ -131,38 +169,30 @@ release/tag authority: not granted
 10. Release-readiness review
 ```
 
-## Page-Level Audit Record
+## Active next audit
 
-Each reviewed page should receive or generate a record containing:
+The active target is External Frameworks. Review order:
 
 ```text
-page identity
-section
-canonical source
-last reviewed commit
-scope stated
-status stated
-evidence classes present
-machine-readable companion
-reproduction path
-external gates
-known omissions
-conflicts
-completeness class
-required next action
+1. evaluation standard and evidence codes
+2. generated evaluation-results page
+3. machine-readable compatibility report schema and report coverage
+4. Morrison Runtime parameterized-observation claim
+5. GLM, EVIDE, DecisionAssure, and MindForge records
+6. source-blocked and sourced-only records
+7. remaining framework pages in sidebar order
+8. automatic demotion and missing-field validation
 ```
 
-## Immediate Next Audit
-
-The active review target is the governed LLM and governed ecosystem transition page group. The review must compare topology, role ownership, implementation state, proof authority, fixture status, deployment state, custody state, and external execution boundaries across all related pages.
+No external framework may be labeled as reproducibly compared unless pinned implementations, common vectors, declared expectations, raw outputs, scoring, failure behavior, replay instructions, hashes, timestamps, and independent reruns are public.
 
 ## Boundary
 
 ```text
-Completeness does not mean live activation.
-Page count does not mean coverage.
-Source citation does not mean reproduced behavior.
-Generated status does not mean verified truth.
-Public visibility does not create authority.
-Audit classification does not create release authority.
+completeness does not mean live activation
+page count does not mean coverage
+source citation does not mean reproduced behavior
+generated status does not mean verified truth
+public visibility does not create authority
+audit classification does not create release authority
 ```
