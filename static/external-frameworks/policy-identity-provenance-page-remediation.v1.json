@@ -1,0 +1,44 @@
+{
+  "schema": "external_framework_page_remediation.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "cohort": "policy_identity_provenance_supply_chain",
+  "evidence_class": "SOURCE_REVIEWED",
+  "required_sections": [
+    "Evidence posture",
+    "Published scope",
+    "Native terms",
+    "Relationship to admissibility",
+    "Observation boundary",
+    "StegVerse analysis",
+    "Commit-time interoperability contract",
+    "Failure classes",
+    "Machine-readable companions",
+    "Maintenance and challenge path",
+    "Validation completion criteria",
+    "Benchmark relevance",
+    "Non-claims",
+    "Next safe build target"
+  ],
+  "counts": {
+    "cohort_pages": 13,
+    "complete_with_external_gates": 5,
+    "partial": 8
+  },
+  "entries": [
+    {"framework_id":"open-policy-agent","page_path":"docs/external-frameworks/open-policy-agent.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"cedar-policy","page_path":"docs/external-frameworks/cedar-policy.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"oscal","page_path":"docs/external-frameworks/oscal.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"spiffe-spire","page_path":"docs/external-frameworks/spiffe-spire.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"w3c-verifiable-credentials","page_path":"docs/external-frameworks/w3c-verifiable-credentials.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"in-toto","page_path":"docs/external-frameworks/in-toto.md","completeness":"PARTIAL"},
+    {"framework_id":"slsa","page_path":"docs/external-frameworks/slsa.md","completeness":"PARTIAL"},
+    {"framework_id":"sigstore","page_path":"docs/external-frameworks/sigstore.md","completeness":"PARTIAL"},
+    {"framework_id":"openid-connect","page_path":"docs/external-frameworks/openid-connect.md","completeness":"PARTIAL"},
+    {"framework_id":"oauth2","page_path":"docs/external-frameworks/oauth2.md","completeness":"PARTIAL"},
+    {"framework_id":"w3c-did","page_path":"docs/external-frameworks/w3c-did.md","completeness":"PARTIAL"},
+    {"framework_id":"openlineage","page_path":"docs/external-frameworks/openlineage.md","completeness":"PARTIAL"},
+    {"framework_id":"w3c-prov","page_path":"docs/external-frameworks/w3c-prov.md","completeness":"PARTIAL"}
+  ],
+  "boundary": "Page completeness does not increase evidence class, establish compatibility, create standing, or grant execution authority.",
+  "next_action": "Remediate the eight remaining pages using the same required-section standard, then recalculate cohort completeness."
+}
