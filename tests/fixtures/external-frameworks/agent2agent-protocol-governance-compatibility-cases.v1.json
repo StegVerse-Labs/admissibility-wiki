@@ -1,0 +1,14 @@
+{
+  "schema": "external_framework_governance_compatibility_cases.v1",
+  "framework_id": "agent2agent-protocol",
+  "evidence_posture": "SIMULATED_NATIVE_OUTPUTS_RUNTIME_PENDING",
+  "authority_boundary": "Agent discovery, task acceptance, task completion, and artifact return are interaction evidence only; they do not establish current delegation, consequence authority, execution permission, or transition admissibility.",
+  "cases": [
+    {"case_id":"a2a-positive-alignment","family":"positive_alignment","native_output":{"task_state":"completed","agent_card_valid":true,"artifact_hash_match":true},"governance_inputs":{"delegation_current":true,"scope_valid":true,"evidence_fresh":true,"policy_current":true,"recoverability_valid":true},"expected_stegverse_result":"ALLOW","failure_class":"NONE"},
+    {"case_id":"a2a-task-failed","family":"framework_denial_or_negative_result","native_output":{"task_state":"failed","agent_card_valid":true,"artifact_hash_match":false},"governance_inputs":{"delegation_current":true,"scope_valid":true,"evidence_fresh":true,"policy_current":true,"recoverability_valid":true},"expected_stegverse_result":"DENY","failure_class":"FRAMEWORK_NEGATIVE_RESULT"},
+    {"case_id":"a2a-delegation-expired","family":"authority_or_delegation_failure","native_output":{"task_state":"completed","agent_card_valid":true,"artifact_hash_match":true},"governance_inputs":{"delegation_current":false,"scope_valid":true,"evidence_fresh":true,"policy_current":true,"recoverability_valid":true},"expected_stegverse_result":"DENY","failure_class":"AUTHORITY_DRIFT"},
+    {"case_id":"a2a-stale-agent-card","family":"stale_or_missing_evidence","native_output":{"task_state":"completed","agent_card_valid":true,"artifact_hash_match":true},"governance_inputs":{"delegation_current":true,"scope_valid":true,"evidence_fresh":false,"policy_current":true,"recoverability_valid":true},"expected_stegverse_result":"FAIL_CLOSED","failure_class":"STALE_EVIDENCE"},
+    {"case_id":"a2a-indeterminate-task","family":"malformed_undefined_or_runtime_error","native_output":{"task_state":"unknown","agent_card_valid":false,"artifact_hash_match":false},"governance_inputs":{"delegation_current":true,"scope_valid":true,"evidence_fresh":true,"policy_current":true,"recoverability_valid":true},"expected_stegverse_result":"FAIL_CLOSED","failure_class":"FRAMEWORK_RUNTIME_ERROR"},
+    {"case_id":"a2a-skill-scope-divergence","family":"semantic_divergence_guard","native_output":{"task_state":"completed","agent_card_valid":true,"artifact_hash_match":true},"governance_inputs":{"delegation_current":true,"scope_valid":false,"evidence_fresh":true,"policy_current":true,"recoverability_valid":true},"expected_stegverse_result":"DENY","failure_class":"SCOPE_DIVERGENCE"}
+  ]
+}
