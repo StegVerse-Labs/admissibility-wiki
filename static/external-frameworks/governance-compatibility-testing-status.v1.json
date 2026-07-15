@@ -6,11 +6,11 @@
   "classification": "IN_PROGRESS",
   "counts": {
     "canonical_records": 38,
-    "contract_authored": 1,
+    "contract_authored": 2,
     "governance_compatibility_observed": 0,
     "fresh_runner_reproduced": 0,
     "independent_implementation_reproduced": 0,
-    "not_started": 37
+    "not_started": 36
   },
   "records": [
     {
@@ -25,11 +25,23 @@
       "stegverse_governance_compatibility_observed": false,
       "result_receipt": "reports/external-frameworks/opa-independent/opa-stegverse-governance-compatibility-receipt.json",
       "next_action": "Execute the compatibility runner after fresh-runner replay in the canonical workflow and publish the resulting bounded compatibility receipt."
+    },
+    {
+      "framework_id": "cedar-policy",
+      "state": "CONTRACT_AUTHORED_RUNTIME_PENDING",
+      "fixture": "tests/fixtures/external-frameworks/cedar-governance-compatibility-cases.v1.json",
+      "runner": "scripts/run_cedar_governance_compatibility.py",
+      "case_count": 6,
+      "native_execution_observed": false,
+      "binary_build_observed": true,
+      "fresh_runner_replay_observed": false,
+      "stegverse_governance_compatibility_observed": false,
+      "result_receipt": "reports/external-frameworks/cedar/cedar-stegverse-governance-compatibility-receipt.json",
+      "next_action": "Execute the pinned Cedar binary against shared request, policy, schema, and entity fixtures; then rerun the governance translation contract using captured Cedar responses."
     }
   ],
   "default_unlisted_state": "NOT_STARTED",
   "next_framework_order": [
-    "cedar-policy",
     "spiffe-spire",
     "w3c-verifiable-credentials",
     "in-toto",
