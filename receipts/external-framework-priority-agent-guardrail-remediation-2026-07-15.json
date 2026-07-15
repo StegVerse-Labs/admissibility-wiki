@@ -1,0 +1,42 @@
+{
+  "schema": "external_framework_page_remediation_receipt.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "date": "2026-07-15",
+  "completed_pages": [
+    "model-context-protocol",
+    "agent2agent-protocol",
+    "guardrails-ai",
+    "llama-guard",
+    "nemo-guardrails"
+  ],
+  "completed_page_count": 5,
+  "navigated_framework_page_state": {
+    "total": 26,
+    "complete_with_external_gates": 18,
+    "pending_review_or_remediation": 8
+  },
+  "remaining_pages": [
+    "glm",
+    "evide",
+    "asro",
+    "decisionassure",
+    "mindforge",
+    "morrison-runtime",
+    "care-runtime",
+    "kpt"
+  ],
+  "evidence_boundary": {
+    "evidence_class_promoted": false,
+    "independent_reproduction_claimed": false,
+    "comparative_testing_claim_allowed": false,
+    "execution_authority_claim_allowed": false
+  },
+  "validation": {
+    "ledger": "static/external-frameworks/priority-agent-guardrail-page-remediation.v1.json",
+    "validator": "scripts/check_external_framework_priority_page_remediation.py",
+    "aggregate": "scripts/check_goal5_external_frameworks_all.py",
+    "canonical_workflow_pass_observed": false
+  },
+  "boundary": "Authored page completion improves inspectability only. It does not create framework compatibility, certification, standing, deployment, or execution authority.",
+  "next_action": "Review and remediate the eight remaining priority or source-blocked framework pages, then recalculate all navigated framework-page completeness."
+}
