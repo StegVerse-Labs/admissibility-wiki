@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+
 import json
 from pathlib import Path
 
@@ -10,7 +11,7 @@ UNION = ROOT / "static/external-frameworks/canonical-union-inventory.v1.json"
 OPA_PIPELINE = ROOT / "scripts/summarize_opa_evidence_pipeline.py"
 OPA_REPLAY = ROOT / "scripts/run_independent_opa_ci_replay.py"
 CONTRACTS = {
-    "open-policy-agent": ("opa", "open-policy-agent.md", "CONTRACT_AUTHORED"),
+    "open-policy-agent": ("opa", "open-policy-agent.md", "BOUNDED_COMPATIBILITY_OBSERVED"),
     "cedar-policy": ("cedar", "cedar-policy.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "spiffe-spire": ("spiffe-spire", "spiffe-spire.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "w3c-verifiable-credentials": ("w3c-vc", "w3c-verifiable-credentials.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
@@ -48,6 +49,7 @@ def main() -> None:
     for layer in {"native_framework_execution","semantic_translation","stegverse_commit_time_evaluation","failure_boundary_evaluation","fresh_runner_replay","page_and_machine_readable_result_publication"}:
         if layer not in set(standard.get("required_layers", [])):
             fail(f"standard missing layer: {layer}")
+
     canonical_ids = {entry.get("record_id") for entry in union.get("entries", []) if entry.get("record_id")}
     if len(canonical_ids) != 38 or union.get("counts", {}).get("records") != 38:
         fail(f"canonical inventory count mismatch: {len(canonical_ids)}")
@@ -56,6 +58,7 @@ def main() -> None:
         fail(f"authored contract set mismatch: {sorted(records)}")
     if not set(records).issubset(canonical_ids):
         fail(f"unknown framework IDs: {sorted(set(records) - canonical_ids)}")
+
     required_families = set(standard.get("required_case_families", []))
     for framework_id, (stem, page_name, state) in CONTRACTS.items():
         fixture = ROOT / "tests/fixtures/external-frameworks" / f"{stem}-governance-compatibility-cases.v1.json"
@@ -71,35 +74,52 @@ def main() -> None:
         record = records[framework_id]
         if record.get("state") != state:
             fail(f"invalid state for {framework_id}: {record.get('state')}")
-        if record.get("case_count") != 6 or record.get("stegverse_governance_compatibility_observed") is not False:
-            fail(f"invalid count or pre-claim for {framework_id}")
+        if record.get("case_count") != 6:
+            fail(f"invalid case count for {framework_id}")
+        expected_observed = framework_id == "open-policy-agent"
+        if record.get("stegverse_governance_compatibility_observed") is not expected_observed:
+            fail(f"invalid compatibility observation state for {framework_id}")
         for case in cases:
             if case.get("expected_stegverse_result") not in {"ALLOW","DENY","ESCALATE","FAIL_CLOSED"}:
                 fail(f"invalid expected result: {framework_id}/{case.get('case_id')}")
+
     opa_text = (OPA_PIPELINE.read_text(encoding="utf-8") if OPA_PIPELINE.exists() else "") + (OPA_REPLAY.read_text(encoding="utf-8") if OPA_REPLAY.exists() else "")
     for marker in ("run_opa_governance_compatibility.py","opa-stegverse-governance-compatibility-receipt.json","governance_compatibility_observed","compatibility_receipt_grants_execution_authority"):
         if marker not in opa_text:
             fail(f"OPA execution binding missing marker: {marker}")
-    if records["open-policy-agent"].get("native_execution_observed") is not True or records["open-policy-agent"].get("fresh_runner_replay_observed") is not True:
-        fail("OPA execution and fresh-runner replay must remain observed")
+
+    opa = records["open-policy-agent"]
+    if not all(opa.get(key) is True for key in ("native_execution_observed","same_environment_replay_observed","fresh_runner_replay_observed","stegverse_governance_compatibility_observed")):
+        fail("OPA bounded execution, replay, and compatibility observations must remain recorded")
+    observed = opa.get("observed_evidence", {})
+    if observed.get("workflow_run_id") != "29455057960" or observed.get("commit") != "618a57fb618cd29c90264eb1cab5f4d6814a55f6":
+        fail("OPA observation must remain bound to the directly inspected workflow evidence")
+    if observed.get("total_cases") != 6 or observed.get("matching_cases") != 6 or observed.get("bounded_compatibility_state") != "GOVERNANCE_COMPATIBILITY_OBSERVED":
+        fail("OPA bounded receipt summary mismatch")
+    if observed.get("independent_implementation_or_provider_review") is not False:
+        fail("OPA must not claim independent implementation or provider review")
+
     if records["cedar-policy"].get("binary_build_observed") is not True or records["cedar-policy"].get("native_execution_observed") is not False:
         fail("Cedar must remain build-observed and runtime-unobserved")
     for framework_id in ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol","guardrails-ai"):
         if records[framework_id].get("source_reviewed") is not True or records[framework_id].get("native_execution_observed") is not False:
             fail(f"{framework_id} must remain source-reviewed and runtime-unobserved")
-    expected_counts = {"canonical_records":38,"contract_authored":16,"governance_compatibility_observed":0,"fresh_runner_reproduced":0,"independent_implementation_reproduced":0,"not_started":22}
+
+    expected_counts = {"canonical_records":38,"contract_authored":16,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":22}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
+
     joined = json.dumps(standard).lower() + json.dumps(status).lower()
     for phrase in ["does not certify","execution authority","general compatibility","policy evidence","identity verification","credential verification","provenance verification","signature verification","authentication","token acceptance","did control","control evidence","lineage visibility","provenance representation","tool discovery","task completion","validator pass"]:
         if phrase not in joined:
             fail(f"missing boundary phrase: {phrase}")
+
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
     print("contracts_authored=16")
-    print("compatibility_observed=0")
-    print("opa_execution_binding=installed_pending_observation")
+    print("compatibility_observed=1")
+    print("opa_bounded_compatibility=observed_run_29455057960")
     for framework_id in CONTRACTS:
         print(f"{framework_id}_case_families=6")
 
