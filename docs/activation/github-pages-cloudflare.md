@@ -4,78 +4,108 @@ title: GitHub Pages Activation
 
 # GitHub Pages Activation
 
-This runbook activates the Admissibility Wiki at the GitHub.io project URL.
+This runbook describes automated activation of the Admissibility Wiki at the GitHub.io project URL.
 
 ```text
 https://stegverse-labs.github.io/admissibility-wiki/
 ```
 
-## Done State
+## Authority and ownership boundary
 
-Activation is complete when:
+```text
+Canonical active workflow: .github/workflows/validate-chain-continuation.yml
+Validation job: validate-chain-continuation
+Build job: build-pages
+Deployment job: deploy-pages
+Public verification job: verify-public-pages
+Manual task requirement: none
+User manual action required: false
+```
 
-- GitHub Pages is set to deploy from GitHub Actions;
-- the deploy workflow completes successfully;
-- the public page loads at `https://stegverse-labs.github.io/admissibility-wiki/`;
+The workflow owns validation, build, deployment, public-route observation, and publication-receipt generation. Documentation does not grant release authority, execution authority, or permission to bypass the validation gate.
+
+## Done state
+
+Activation is complete only when observed workflow evidence establishes that:
+
+- the canonical validation job passed;
+- the Pages build completed from the validated commit;
+- the Pages deployment completed successfully;
+- the public root loads at `https://stegverse-labs.github.io/admissibility-wiki/`;
 - the Docusaurus landing page loads without a 404;
 - internal wiki routes load under `/admissibility-wiki/`;
 - the ontology JSON is reachable under the GitHub.io project URL;
-- proposal, decision, replay, and evidence examples are reachable under the GitHub.io project URL.
+- proposal, decision, replay, evidence, and status examples are reachable;
+- the public activation receipt records the bounded result.
 
-## Current Domain Policy
+A configured workflow, successful local build, or reachable root alone is not sufficient to establish the complete done state.
+
+## Current domain policy
 
 Custom domains are not configured for this wiki.
 
 ```text
 custom_domain: not_configured
-static/CNAME: removed
+static/CNAME: absent
+cloudflare_dependency: none
 ```
 
-Do not add a CNAME file or Cloudflare DNS requirement unless the activation goal explicitly changes back to a custom domain.
+Do not add a CNAME file or Cloudflare DNS requirement unless a later governed activation decision changes the public target.
 
-## GitHub Pages Settings
+## GitHub Pages configuration
 
-In the repository:
+The repository is configured for GitHub Pages project hosting through the canonical Actions workflow.
 
 ```text
-Settings → Pages
-Source: GitHub Actions
+Pages source: GitHub Actions
 Custom domain: blank
-Enforce HTTPS: enabled by default for github.io
+HTTPS: github.io managed
 ```
 
-## Docusaurus Settings
+Repository settings are an external GitHub control surface. A prose assertion that the setting is correct is not deployment evidence; the workflow and public verification receipts remain the observable evidence path.
 
-The Docusaurus config should use GitHub Pages project hosting values:
+## Docusaurus settings
+
+The checked-in Docusaurus configuration uses:
 
 ```text
 url: https://stegverse-labs.github.io
 baseUrl: /admissibility-wiki/
 organizationName: StegVerse-Labs
 projectName: admissibility-wiki
+onBrokenLinks: throw
 ```
 
-## Repo Files Supporting Activation
-
-The repo should include:
+Canonical configuration source:
 
 ```text
 docusaurus.config.js
-.github/workflows/deploy.yml
-static/img/favicon.svg
 ```
 
-The repo should not include:
+## Repository files supporting activation
+
+Required source surfaces include:
+
+```text
+docusaurus.config.js
+.github/workflows/validate-chain-continuation.yml
+sidebars.js
+static/img/favicon.svg
+scripts/check_governed_llm_deployment_status.py
+scripts/write-public-activation-receipt.mjs
+```
+
+The repository must not contain:
 
 ```text
 static/CNAME
 ```
 
-Note: paths that normally begin with a leading dot are shown without the leading dot in this display rule only.
+Paths beginning with a leading dot are shown normally here because this page is a repository runbook, not an iOS bootstrap mirror.
 
-## Expected Published Paths
+## Expected published paths
 
-After deployment, these paths should be reachable:
+After a successful canonical deployment and public verification, these paths are expected to be reachable:
 
 ```text
 https://stegverse-labs.github.io/admissibility-wiki/
@@ -86,36 +116,41 @@ https://stegverse-labs.github.io/admissibility-wiki/ontology/admissibility-vocab
 https://stegverse-labs.github.io/admissibility-wiki/status/admissibility-wiki-status.json
 ```
 
-## Troubleshooting GitHub.io 404
+Route reachability proves only that a bounded public surface responded. It does not establish source authority, proof authority, current admissibility, custody, or execution authority.
 
-If `https://stegverse-labs.github.io/admissibility-wiki/` returns 404:
+## Failure handling
 
-1. Confirm the repository is public or GitHub Pages is available for the repository visibility level.
-2. Confirm `Settings → Pages → Source` is set to `GitHub Actions`.
-3. Confirm the deploy workflow has completed successfully after the latest commit.
-4. Confirm the workflow deploy step used `actions/deploy-pages`.
-5. Confirm `docusaurus.config.js` has `baseUrl: '/admissibility-wiki/'`.
-6. Confirm `static/CNAME` does not exist.
-7. Confirm the Pages deployment URL in the Actions output matches the GitHub.io project URL.
-8. If the workflow has not run since the config change, run the deploy workflow manually.
+If validation fails, the workflow must fail closed before build and deployment. The first deterministic failure should be repaired from the uploaded `full-validation-chain-report` artifact.
 
-## Troubleshooting Build Failures
+If build fails, inspect the workflow-owned Docusaurus build output for broken links, missing pages, invalid sidebar entries, or invalid generated artifacts.
 
-If the workflow fails:
+If deployment or public verification fails, preserve the failed observation in the workflow and public activation receipt. Do not replace the automated evidence path with a manual user task.
 
-1. Open the failed Actions run.
-2. Check the `Install dependencies` step.
-3. Check the `Build site` step.
-4. Confirm `npm run build` is available in `package.json`.
-5. Confirm Docusaurus did not report broken links.
-6. Confirm sidebar entries point to real docs.
-7. Confirm static JSON and TXT files are valid or intentionally plain static assets.
+```text
+validation failure -> build skipped
+build failure -> deployment skipped
+deployment failure -> public verification blocked or fail-closed
+public-route failure -> no completed activation claim
+```
 
-## Current Activation Posture
+## Current activation posture
 
 ```text
 repository_config: github_io_project_url
+canonical_workflow: .github/workflows/validate-chain-continuation.yml
 custom_domain: not_configured
-cname_file: removed
-remaining_dependency: GitHub Pages settings and successful Actions deployment
+cname_file: absent
+manual_task_required: false
+activation_claim: requires observed workflow, deployment, route, and receipt evidence
+```
+
+## Non-claims
+
+```text
+workflow configuration != workflow pass
+workflow pass != public deployment
+public deployment != route verification
+route verification != source authority
+publication receipt != execution authority
+queued propagation != completed propagation
 ```
