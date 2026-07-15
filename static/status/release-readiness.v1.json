@@ -1,0 +1,51 @@
+{
+  "schema": "admissibility_wiki_release_readiness.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "classification": "VALIDATION_COMPLETE_BUILD_DEPLOY_PENDING",
+  "observed_evidence": {
+    "canonical_workflow_run_id": "29442878606",
+    "commit": "4071f1f9a1d2f4aaf28ca73ce8315877ae5a1c99",
+    "validate_chain_continuation": "PASS_OBSERVED",
+    "full_validation_scan": "PASS_OBSERVED",
+    "opa_capture": "PASS_OBSERVED",
+    "opa_fresh_runner_replay": "PASS_OBSERVED",
+    "cedar_selected_binary_build": "PASS_OBSERVED",
+    "build_pages": "FAIL_CLOSED_OBSERVED",
+    "deploy_pages": "NOT_RUN",
+    "verify_public_pages": "NOT_RUN"
+  },
+  "installed_repairs_after_observation": [
+    "scripts/check_canonical_workflow_observation_publication.py preserves pre-existing run-bound artifacts",
+    "scripts/check_canonical_workflow_observation_history.py preserves pre-existing run-bound artifacts",
+    "scripts/check_navigation_coverage.py classifies every Markdown page and fails on missing sidebar targets"
+  ],
+  "release_gates": {
+    "canonical_validation_pass_observed": true,
+    "pages_build_pass_observed_after_latest_repairs": false,
+    "pages_deployment_pass_observed_after_latest_repairs": false,
+    "public_route_verification_pass_observed_after_latest_repairs": false,
+    "public_activation_receipt_observed_after_latest_repairs": false,
+    "downstream_handoff_authority_observed": false,
+    "tag_or_release_authority_granted": false
+  },
+  "propagation_posture": {
+    "StegVerse-Labs/Site": "QUEUED_NO_MUTATION_AUTHORITY",
+    "GCAT-BCAT-Engine/Publisher": "QUEUED_NO_MUTATION_AUTHORITY",
+    "StegVerse-002/stegguardian-wiki": "QUEUED_NO_MUTATION_AUTHORITY",
+    "StegVerse-Labs/repo-standards": "QUEUED_NO_MUTATION_AUTHORITY"
+  },
+  "manual_tasks_required": [],
+  "user_action_required": false,
+  "authority_granted": false,
+  "release_authority_granted": false,
+  "deployment_authority_granted": false,
+  "downstream_mutation_authority_granted": false,
+  "non_claims": [
+    "A canonical validation pass is not a Pages build pass.",
+    "A Pages build pass is not a deployment observation.",
+    "Deployment is not public-route verification.",
+    "Public-route verification is not source, proof, release, execution, or downstream mutation authority.",
+    "Installed repairs are not observed success until a subsequent canonical workflow records them."
+  ],
+  "next_action": "Observe the canonical workflow after the artifact-preservation and navigation-coverage repairs; promote readiness only from run-bound build, deploy, public verification, and activation-receipt evidence."
+}
