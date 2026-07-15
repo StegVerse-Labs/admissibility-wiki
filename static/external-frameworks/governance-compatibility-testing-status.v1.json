@@ -1,0 +1,60 @@
+{
+  "schema": "external_framework_governance_compatibility_testing_status.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "standard": "static/external-frameworks/compatibility-testing-standard.v1.json",
+  "canonical_inventory": "static/external-frameworks/canonical-union-inventory.v1.json",
+  "classification": "IN_PROGRESS",
+  "counts": {
+    "canonical_records": 38,
+    "contract_authored": 1,
+    "governance_compatibility_observed": 0,
+    "fresh_runner_reproduced": 0,
+    "independent_implementation_reproduced": 0,
+    "not_started": 37
+  },
+  "records": [
+    {
+      "framework_id": "open-policy-agent",
+      "state": "CONTRACT_AUTHORED",
+      "fixture": "tests/fixtures/external-frameworks/opa-governance-compatibility-cases.v1.json",
+      "runner": "scripts/run_opa_governance_compatibility.py",
+      "case_count": 6,
+      "native_execution_observed": true,
+      "same_environment_replay_observed": true,
+      "fresh_runner_replay_observed": true,
+      "stegverse_governance_compatibility_observed": false,
+      "result_receipt": "reports/external-frameworks/opa-independent/opa-stegverse-governance-compatibility-receipt.json",
+      "next_action": "Execute the compatibility runner after fresh-runner replay in the canonical workflow and publish the resulting bounded compatibility receipt."
+    }
+  ],
+  "default_unlisted_state": "NOT_STARTED",
+  "next_framework_order": [
+    "cedar-policy",
+    "spiffe-spire",
+    "w3c-verifiable-credentials",
+    "in-toto",
+    "slsa",
+    "sigstore",
+    "openid-connect",
+    "oauth2",
+    "w3c-did",
+    "oscal",
+    "openlineage",
+    "w3c-prov",
+    "model-context-protocol",
+    "agent2agent-protocol",
+    "guardrails-ai",
+    "llama-guard",
+    "nemo-guardrails"
+  ],
+  "boundaries": {
+    "documentation_complete_means_compatibility_tested": false,
+    "native_framework_test_means_governance_compatible": false,
+    "framework_allow_means_stegverse_allow": false,
+    "fresh_runner_replay_means_independent_implementation": false,
+    "compatibility_receipt_grants_execution_authority": false,
+    "general_compatibility_claim_allowed": false
+  },
+  "manual_tasks_required": [],
+  "user_action_required": false
+}
