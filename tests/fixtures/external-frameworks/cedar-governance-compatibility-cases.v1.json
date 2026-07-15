@@ -9,96 +9,42 @@
       "case_id": "cedar-compat-positive-permit-001",
       "family": "positive_alignment",
       "cedar_response": "permit",
-      "transition": {
-        "principal_identity_verified": true,
-        "delegation_current": true,
-        "policy_reference_current": true,
-        "entity_store_current": true,
-        "evidence_fresh": true,
-        "resource_matches_scope": true,
-        "recoverability_satisfied": true,
-        "execution_context_current": true
-      },
+      "transition": {"principal_identity_verified":true,"delegation_current":true,"policy_reference_current":true,"entity_store_current":true,"evidence_fresh":true,"resource_matches_scope":true,"recoverability_satisfied":true,"execution_context_current":true},
       "expected_stegverse_result": "ALLOW"
     },
     {
       "case_id": "cedar-compat-native-forbid-001",
-      "family": "native_denial",
+      "family": "framework_denial_or_negative_result",
       "cedar_response": "forbid",
-      "transition": {
-        "principal_identity_verified": true,
-        "delegation_current": true,
-        "policy_reference_current": true,
-        "entity_store_current": true,
-        "evidence_fresh": true,
-        "resource_matches_scope": true,
-        "recoverability_satisfied": true,
-        "execution_context_current": true
-      },
+      "transition": {"principal_identity_verified":true,"delegation_current":true,"policy_reference_current":true,"entity_store_current":true,"evidence_fresh":true,"resource_matches_scope":true,"recoverability_satisfied":true,"execution_context_current":true},
       "expected_stegverse_result": "DENY"
     },
     {
       "case_id": "cedar-compat-revoked-delegation-001",
-      "family": "authority_drift",
+      "family": "authority_or_delegation_failure",
       "cedar_response": "permit",
-      "transition": {
-        "principal_identity_verified": true,
-        "delegation_current": false,
-        "policy_reference_current": true,
-        "entity_store_current": true,
-        "evidence_fresh": true,
-        "resource_matches_scope": true,
-        "recoverability_satisfied": true,
-        "execution_context_current": true
-      },
+      "transition": {"principal_identity_verified":true,"delegation_current":false,"policy_reference_current":true,"entity_store_current":true,"evidence_fresh":true,"resource_matches_scope":true,"recoverability_satisfied":true,"execution_context_current":true},
       "expected_stegverse_result": "DENY"
     },
     {
       "case_id": "cedar-compat-stale-entity-store-001",
-      "family": "stale_evidence",
+      "family": "stale_or_missing_evidence",
       "cedar_response": "permit",
-      "transition": {
-        "principal_identity_verified": true,
-        "delegation_current": true,
-        "policy_reference_current": true,
-        "entity_store_current": false,
-        "evidence_fresh": false,
-        "resource_matches_scope": true,
-        "recoverability_satisfied": true,
-        "execution_context_current": true
-      },
+      "transition": {"principal_identity_verified":true,"delegation_current":true,"policy_reference_current":true,"entity_store_current":false,"evidence_fresh":false,"resource_matches_scope":true,"recoverability_satisfied":true,"execution_context_current":true},
       "expected_stegverse_result": "FAIL_CLOSED"
     },
     {
       "case_id": "cedar-compat-runtime-error-001",
-      "family": "framework_error",
+      "family": "malformed_undefined_or_runtime_error",
       "cedar_response": "error",
-      "transition": {
-        "principal_identity_verified": true,
-        "delegation_current": true,
-        "policy_reference_current": true,
-        "entity_store_current": true,
-        "evidence_fresh": true,
-        "resource_matches_scope": true,
-        "recoverability_satisfied": true,
-        "execution_context_current": true
-      },
+      "transition": {"principal_identity_verified":true,"delegation_current":true,"policy_reference_current":true,"entity_store_current":true,"evidence_fresh":true,"resource_matches_scope":true,"recoverability_satisfied":true,"execution_context_current":true},
       "expected_stegverse_result": "FAIL_CLOSED"
     },
     {
       "case_id": "cedar-compat-resource-scope-divergence-001",
-      "family": "semantic_divergence",
+      "family": "semantic_divergence_guard",
       "cedar_response": "permit",
-      "transition": {
-        "principal_identity_verified": true,
-        "delegation_current": true,
-        "policy_reference_current": true,
-        "entity_store_current": true,
-        "evidence_fresh": true,
-        "resource_matches_scope": false,
-        "recoverability_satisfied": true,
-        "execution_context_current": true
-      },
+      "transition": {"principal_identity_verified":true,"delegation_current":true,"policy_reference_current":true,"entity_store_current":true,"evidence_fresh":true,"resource_matches_scope":false,"recoverability_satisfied":true,"execution_context_current":true},
       "expected_stegverse_result": "DENY"
     }
   ],
