@@ -1,0 +1,13 @@
+{
+  "schema": "model_context_protocol_governance_compatibility_cases.v1",
+  "framework_id": "model-context-protocol",
+  "evidence_posture": "SOURCE_REVIEWED_SIMULATED_TRANSLATION_CONTRACT_RUNTIME_PENDING",
+  "cases": [
+    {"case_id":"mcp-positive-alignment","family":"positive_alignment","native_result":"SUCCESS","transition":{"tool_registered":true,"schema_valid":true,"authorization_current":true,"delegation_current":true,"policy_current":true,"target_in_scope":true,"evidence_fresh":true,"recoverability_satisfied":true},"expected_stegverse_result":"ALLOW","expected_failure_class":null},
+    {"case_id":"mcp-tool-denied","family":"framework_denial_or_negative_result","native_result":"DENY","transition":{"tool_registered":true,"schema_valid":true,"authorization_current":true,"delegation_current":true,"policy_current":true,"target_in_scope":true,"evidence_fresh":true,"recoverability_satisfied":true},"expected_stegverse_result":"DENY","expected_failure_class":"FRAMEWORK_NEGATIVE_RESULT"},
+    {"case_id":"mcp-delegation-revoked","family":"authority_or_delegation_failure","native_result":"SUCCESS","transition":{"tool_registered":true,"schema_valid":true,"authorization_current":true,"delegation_current":false,"policy_current":true,"target_in_scope":true,"evidence_fresh":true,"recoverability_satisfied":true},"expected_stegverse_result":"DENY","expected_failure_class":"AUTHORITY_DRIFT"},
+    {"case_id":"mcp-stale-registry","family":"stale_or_missing_evidence","native_result":"SUCCESS","transition":{"tool_registered":true,"schema_valid":true,"authorization_current":true,"delegation_current":true,"policy_current":true,"target_in_scope":true,"evidence_fresh":false,"recoverability_satisfied":true},"expected_stegverse_result":"FAIL_CLOSED","expected_failure_class":"STALE_CAPABILITY_EVIDENCE"},
+    {"case_id":"mcp-runtime-error","family":"malformed_undefined_or_runtime_error","native_result":"ERROR","transition":{"tool_registered":true,"schema_valid":true,"authorization_current":true,"delegation_current":true,"policy_current":true,"target_in_scope":true,"evidence_fresh":true,"recoverability_satisfied":true},"expected_stegverse_result":"FAIL_CLOSED","expected_failure_class":"FRAMEWORK_RUNTIME_ERROR"},
+    {"case_id":"mcp-capability-authority-collapse","family":"semantic_divergence_guard","native_result":"SUCCESS","transition":{"tool_registered":true,"schema_valid":true,"authorization_current":false,"delegation_current":true,"policy_current":true,"target_in_scope":false,"evidence_fresh":true,"recoverability_satisfied":true},"expected_stegverse_result":"DENY","expected_failure_class":"CAPABILITY_AUTHORITY_DIVERGENCE"}
+  ]
+}
