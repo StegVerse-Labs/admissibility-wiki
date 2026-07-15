@@ -11,11 +11,11 @@
     "status_and_source": ["Status", "Source", "Citation Status", "Observed Public Positioning"],
     "evidence_posture": ["Evidence Provenance", "Historical Local Observation Boundary", "Current Result"],
     "native_definition": ["Definition", "Definition For This Wiki", "Framework-Term Definitions"],
-    "admissibility_relationship": ["Relationship To Admissibility", "Three-Part Boundary", "Cooperative Governance Model", "Required Boundary"],
+    "admissibility_relationship": ["Relationship To Admissibility", "Three-Part Boundary", "Cooperative Governance Model", "Required Boundary", "Provisional Interoperability Model", "Core Distinctions"],
     "authority_boundary": ["Execution Authority Boundary", "Source Boundary", "Non-Claims", "Prohibited Claims"],
     "interoperability_or_fixture": ["Commit-Time Interoperability Contract", "Commitment Candidate Fixture", "Commitment Candidate Use", "Minimum Interoperability Artifact", "Crosswalk Targets"],
-    "challenge_or_maintenance": ["Challenge Path", "Next Safe Build Target"],
-    "standing_boundary": ["Mandatory Footer", "Standing", "AE Reflection Metadata"]
+    "challenge_or_maintenance": ["Challenge Path", "Next Safe Build Target", "Source Sufficiency Boundary"],
+    "standing_boundary": ["Mandatory Footer", "Standing", "AE Reflection Metadata", "Current Result"]
   },
   "entries": [
     {"framework_id":"glm","page_path":"docs/external-frameworks/glm.md","evidence_class":"SOURCE_REVIEWED","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
@@ -34,5 +34,5 @@
     "report_directory": "docs/external-frameworks/reports"
   },
   "boundary": "Semantic page completeness does not promote evidence class, certify compatibility, create standing, or grant execution authority.",
-  "next_action": "Validate all 26 navigated framework pages as authored-complete with external evidence gates, then recalculate the External Frameworks section audit."
+  "next_action": "Preserve this eight-page cohort as semantically complete while source-blocked and reproduction gates remain independently visible."
 }
