@@ -61,11 +61,69 @@ Missing fields fail closed and must be displayed rather than inferred.
 | CARE Runtime | `MENTION_ONLY` | No official public source confirmed | Screenshot-only intake | No | No | No |
 | KPT | `AUTHOR_COMMENTARY` | Public positioning only; no versioned technical source | No implementation package | No | No | No |
 
+## Policy, identity, provenance, and supply-chain family
+
+All reviewed pages in this family currently qualify as `SOURCE_REVIEWED` only. They expose official sources and bounded StegVerse relationships, but no attached StegVerse execution run, common test vector, raw output, replay procedure, or independent reproduction.
+
+| Framework | Evidence class | Native contribution | Current page completeness |
+|---|---|---|---|
+| Open Policy Agent | `SOURCE_REVIEWED` | Structured policy evaluation and policy-decision artifacts. | `PARTIAL` |
+| Cedar Policy | `SOURCE_REVIEWED` | Principal-action-resource-context authorization evaluation. | `PARTIAL` |
+| OSCAL | `SOURCE_REVIEWED` | Machine-readable controls, profiles, implementations, assessments, and results. | `PARTIAL` |
+| SPIFFE/SPIRE | `SOURCE_REVIEWED` | Workload identity, attestation, and short-lived credentials. | `PARTIAL` |
+| W3C Verifiable Credentials | `SOURCE_REVIEWED` | Issuer-holder-verifier credential and presentation model. | `PARTIAL` |
+| in-toto | `SOURCE_REVIEWED` | Supply-chain layouts and signed link metadata. | `PARTIAL` |
+| SLSA | `SOURCE_REVIEWED` | Supply-chain provenance, build requirements, and assurance levels. | `PARTIAL` |
+| Sigstore | `SOURCE_REVIEWED` | Identity-bound signing, verification, and transparency evidence. | `PARTIAL` |
+| OpenID Connect | `SOURCE_REVIEWED` | Authentication and interoperable identity claims. | `PARTIAL` |
+| OAuth 2.0 | `SOURCE_REVIEWED` | Delegated and scoped resource access. | `PARTIAL` |
+| W3C Decentralized Identifiers | `SOURCE_REVIEWED` | Identifier documents, verification methods, services, and controller relationships. | `PARTIAL` |
+| OpenLineage | `SOURCE_REVIEWED` | Dataset, job, and run lineage metadata. | `PARTIAL` |
+| W3C PROV | `SOURCE_REVIEWED` | Entity, activity, agent, derivation, and attribution provenance model. | `PARTIAL` |
+
+### Family-level finding
+
+The pages correctly preserve these boundaries:
+
+```text
+policy decision != execution authority
+authentication != delegation
+identity != authority
+token validity != transition admissibility
+credential verification != current standing
+attestation != admissibility
+provenance != legitimacy
+lineage != truth
+supply-chain conformance != runtime authority
+```
+
+However, the pages are generally 25–31 lines long and do not yet satisfy the full framework-page standard. Most omit:
+
+```text
+explicit missing-field matrix
+machine-readable companion link
+version or snapshot status beyond a source URL
+reproduction or mapping-fixture path
+challenge path
+page-specific maintenance owner
+current generated report classification
+next bounded build target
+```
+
+Therefore:
+
+```text
+evidence classification: SOURCE_REVIEWED
+section completeness: PARTIAL
+comparative testing claim allowed: false
+execution authority claim allowed: false
+```
+
 ## Cohort findings
 
 ### Source-reviewed crosswalks
 
-GLM, EVIDE, AAR, MITRE ATLAS, OWASP Top 10 for LLM Applications, NIST AI RMF, ISO/IEC 42001, the EU AI Act, Policy Cards, and Runtime Governance for AI Agents have public source material and StegVerse crosswalks. Their pages do not attach sufficient implementation, observed-output, replay, or independent-reproduction evidence to support stronger classifications.
+GLM, EVIDE, AAR, MITRE ATLAS, OWASP Top 10 for LLM Applications, NIST AI RMF, ISO/IEC 42001, the EU AI Act, Policy Cards, Runtime Governance for AI Agents, and the policy/identity/provenance/supply-chain family have public source material and StegVerse crosswalks. Their pages do not attach sufficient implementation, observed-output, replay, or independent-reproduction evidence to support stronger classifications.
 
 ```text
 evidence_class: SOURCE_REVIEWED
@@ -147,15 +205,14 @@ report evidence class <= available public artifacts
 
 ## Remaining external-framework audit queue
 
-Priority and source-blocked cohorts are classified. Remaining work is durable and proceeds in sidebar order:
+Priority, source-blocked, policy, identity, provenance, and supply-chain cohorts are classified. Remaining work proceeds in sidebar order:
 
 ```text
-1. policy, identity, provenance, and supply-chain framework families
-2. guardrail and agent-protocol framework families
-3. required-section compliance across every framework page
-4. generated report regeneration under schema 0.7
-5. generated page-status synchronization
-6. orphan, registry, and navigation coverage
+1. guardrail and agent-protocol framework families
+2. required-section remediation across every framework page
+3. generated report regeneration under schema 0.7
+4. generated page-status synchronization
+5. orphan, registry, and navigation coverage
 ```
 
 Each remaining page must be checked for source authority, evidence provenance, observation strength, machine-readable companion, reproduction path, missing fields, non-claims, and challenge path.
