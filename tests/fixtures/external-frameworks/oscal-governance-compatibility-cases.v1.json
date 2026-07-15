@@ -1,0 +1,56 @@
+{
+  "schema": "oscal_governance_compatibility_cases.v1",
+  "framework_id": "oscal",
+  "framework_version": "source-reviewed-runtime-unpinned",
+  "evidence_posture": "SIMULATED_TRANSLATION_CONTRACT_RUNTIME_PENDING",
+  "cases": [
+    {
+      "case_id": "oscal-positive-alignment",
+      "family": "positive_alignment",
+      "validation_result": "PASS",
+      "transition": {"document_schema_valid": true, "references_resolved": true, "assessment_fresh": true, "responsible_party_current": true, "delegation_current": true, "policy_reference_current": true, "requested_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "ALLOW",
+      "expected_failure_class": null
+    },
+    {
+      "case_id": "oscal-native-negative",
+      "family": "framework_denial_or_negative_result",
+      "validation_result": "FAIL",
+      "transition": {"document_schema_valid": false, "references_resolved": false, "assessment_fresh": true, "responsible_party_current": true, "delegation_current": true, "policy_reference_current": true, "requested_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "CONTROL_EVIDENCE_VALIDATION_DENIAL"
+    },
+    {
+      "case_id": "oscal-authority-drift",
+      "family": "authority_or_delegation_failure",
+      "validation_result": "PASS",
+      "transition": {"document_schema_valid": true, "references_resolved": true, "assessment_fresh": true, "responsible_party_current": false, "delegation_current": false, "policy_reference_current": true, "requested_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "AUTHORITY_DRIFT"
+    },
+    {
+      "case_id": "oscal-stale-assessment",
+      "family": "stale_or_missing_evidence",
+      "validation_result": "PASS",
+      "transition": {"document_schema_valid": true, "references_resolved": true, "assessment_fresh": false, "responsible_party_current": true, "delegation_current": true, "policy_reference_current": true, "requested_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "FAIL_CLOSED",
+      "expected_failure_class": "STALE_CONTROL_EVIDENCE"
+    },
+    {
+      "case_id": "oscal-runtime-error",
+      "family": "malformed_undefined_or_runtime_error",
+      "validation_result": "ERROR",
+      "transition": {"document_schema_valid": false, "references_resolved": false, "assessment_fresh": false, "responsible_party_current": false, "delegation_current": false, "policy_reference_current": false, "requested_action_in_scope": false, "recoverability_satisfied": false, "execution_context_current": false},
+      "expected_stegverse_result": "FAIL_CLOSED",
+      "expected_failure_class": "FRAMEWORK_RUNTIME_ERROR"
+    },
+    {
+      "case_id": "oscal-semantic-divergence",
+      "family": "semantic_divergence_guard",
+      "validation_result": "PASS",
+      "transition": {"document_schema_valid": true, "references_resolved": true, "assessment_fresh": true, "responsible_party_current": true, "delegation_current": true, "policy_reference_current": true, "requested_action_in_scope": false, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "ACTION_SCOPE_DIVERGENCE"
+    }
+  ]
+}
