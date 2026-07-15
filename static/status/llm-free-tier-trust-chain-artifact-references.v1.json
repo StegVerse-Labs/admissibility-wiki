@@ -1,0 +1,38 @@
+{
+  "schema": "llm_free_tier_trust_chain_artifact_references.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "doctrine": "docs/governance/llm-free-tier-trust-chain.md",
+  "references": [
+    {
+      "repository": "StegVerse-org/LLM-adapter",
+      "artifact": "adapter.capabilities.json",
+      "role": "Declares bounded adapter capabilities and free-tier trust metadata fields.",
+      "authority_effect": "NONE"
+    },
+    {
+      "repository": "StegVerse-Labs/Site",
+      "artifact": "site-public-mirror-status-guard.yml",
+      "role": "Guards the public Site mirror and trust-chain status surface under the Site canonical workflow.",
+      "authority_effect": "NONE"
+    },
+    {
+      "repository": "StegVerse-org/StegVerse-SDK",
+      "artifact": "validate_free_tier_metadata",
+      "role": "Validates free-tier metadata shape and bounded non-claims at SDK intake.",
+      "authority_effect": "NONE"
+    },
+    {
+      "repository": "StegVerse-org/StegVerse-SDK",
+      "artifact": "sdk-demo-test.yml",
+      "role": "Runs repository-owned demo and metadata validation without creating deployment or execution authority.",
+      "authority_effect": "NONE"
+    }
+  ],
+  "boundaries": {
+    "artifact_reference_is_live_deployment": false,
+    "artifact_reference_is_current_main_validation": false,
+    "artifact_reference_is_execution_authority": false,
+    "artifact_reference_is_master_records_custody": false
+  },
+  "next_action": "Observe repository-owned current-main validation and deployment receipts before promoting any free-tier trust-chain coordinate beyond PREPARED_NOT_DEPLOYED."
+}
