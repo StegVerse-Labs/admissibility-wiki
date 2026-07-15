@@ -1,0 +1,38 @@
+{
+  "schema": "external_framework_legacy_priority_page_remediation.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "cohort": "legacy_priority_runtime_and_intake",
+  "counts": {
+    "cohort_pages": 8,
+    "complete_with_external_gates": 8,
+    "partial": 0
+  },
+  "semantic_requirements": {
+    "status_and_source": ["Status", "Source", "Citation Status", "Observed Public Positioning"],
+    "evidence_posture": ["Evidence Provenance", "Historical Local Observation Boundary", "Current Result"],
+    "native_definition": ["Definition", "Definition For This Wiki", "Framework-Term Definitions"],
+    "admissibility_relationship": ["Relationship To Admissibility", "Three-Part Boundary", "Cooperative Governance Model", "Required Boundary"],
+    "authority_boundary": ["Execution Authority Boundary", "Source Boundary", "Non-Claims", "Prohibited Claims"],
+    "interoperability_or_fixture": ["Commit-Time Interoperability Contract", "Commitment Candidate Fixture", "Commitment Candidate Use", "Minimum Interoperability Artifact", "Crosswalk Targets"],
+    "challenge_or_maintenance": ["Challenge Path", "Next Safe Build Target"],
+    "standing_boundary": ["Mandatory Footer", "Standing", "AE Reflection Metadata"]
+  },
+  "entries": [
+    {"framework_id":"glm","page_path":"docs/external-frameworks/glm.md","evidence_class":"SOURCE_REVIEWED","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"evide","page_path":"docs/external-frameworks/evide.md","evidence_class":"SOURCE_REVIEWED","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"asro","page_path":"docs/external-frameworks/asro.md","evidence_class":"ARTIFACT_REVIEWED","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"decisionassure","page_path":"docs/external-frameworks/decisionassure.md","evidence_class":"MENTION_ONLY","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"mindforge","page_path":"docs/external-frameworks/mindforge.md","evidence_class":"MENTION_ONLY","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"morrison-runtime","page_path":"docs/external-frameworks/morrison-runtime.md","evidence_class":"PARAMETERIZED_OBSERVATION","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"care-runtime","page_path":"docs/external-frameworks/care-runtime.md","evidence_class":"MENTION_ONLY","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"kpt","page_path":"docs/external-frameworks/kpt.md","evidence_class":"AUTHOR_COMMENTARY","completeness":"COMPLETE_WITH_EXTERNAL_GATES"}
+  ],
+  "machine_readable_companions": {
+    "canonical_registry": "docs/external-frameworks/index.json",
+    "canonical_union": "static/external-frameworks/canonical-union-inventory.v1.json",
+    "artifact_bindings": "static/external-frameworks/sidebar-framework-artifact-bindings.v1.json",
+    "report_directory": "docs/external-frameworks/reports"
+  },
+  "boundary": "Semantic page completeness does not promote evidence class, certify compatibility, create standing, or grant execution authority.",
+  "next_action": "Validate all 26 navigated framework pages as authored-complete with external evidence gates, then recalculate the External Frameworks section audit."
+}
