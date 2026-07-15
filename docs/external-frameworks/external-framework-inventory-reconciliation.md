@@ -14,6 +14,7 @@ A cohort count is not the repository-wide framework count, and a record stored i
 
 ```text
 machine-readable docs registry entries: 20
+machine-readable static registry entries: 11
 framework-specific pages in the External Frameworks sidebar: 26
 support, audit, intake, benchmark, and governance pages in the sidebar: 24
 total External Frameworks sidebar pages: 50
@@ -30,41 +31,75 @@ Admissible Existence Seed Cycle
 Decision Authority Compatibility
 ```
 
-## Bidirectional sidebar association contract
+## Sidebar association enforcement
 
-Every page in the `External Frameworks` sidebar is now represented in:
+Every page in the External Frameworks sidebar is represented in:
 
 ```text
 static/external-frameworks/sidebar-page-associations.v1.json
 ```
 
-Each association identifies:
+The association artifact preserves sidebar order and classifies each page as either a framework page or a support page. Framework pages receive a stable framework ID. Support pages receive a stable association ID.
+
+The validator compares the sidebar and association artifact bidirectionally. A one-sided addition, removal, reordering, path change, page deletion, duplicate ID, or registry-state change fails validation.
+
+## Framework artifact binding enforcement
+
+Every framework-specific sidebar page is also represented in:
 
 ```text
-sidebar route
-page path
-page type: support | framework
-stable framework_id or support association_id
-docs-registry presence state
-static-registry presence state
+static/external-frameworks/sidebar-framework-artifact-bindings.v1.json
 ```
 
-The existing validator invoked by `npm run validate:external-frameworks` now compares the sidebar and association artifact in both directions and in order.
-
-It fails when:
+Each binding records:
 
 ```text
-- a sidebar page is added without an association;
-- an associated page is removed from the sidebar;
-- sidebar order and association order diverge;
-- an associated page file is missing;
-- a framework_id is duplicated;
-- registry presence differs from the declared state;
-- a missing registry binding is not explicitly declared;
-- stored page counts are stale.
+framework_id
+page_path
+manifest_path
+manifest_state
+report_path
+report_state
+evidence_class_source
+page_completeness_source
 ```
 
-Current known registry gaps are represented as `missing_explicit`. That state permits the existing migration gap to remain visible while preventing silent drift. When a missing registry entry is added, its association must change to `present` in the same change or validation fails.
+Current artifact coverage:
+
+```text
+framework pages: 26
+manifest and report present: 8
+manifest and report missing_explicit: 18
+undeclared manifest/report states: 0
+```
+
+The eight currently artifact-bound framework pages are:
+
+```text
+GLM
+EVIDE
+ASRO
+DecisionAssure
+MindForge
+Morrison Runtime
+CARE Runtime
+KPT
+```
+
+The remaining 18 sidebar framework pages have explicit `missing_explicit` manifest and report states. If a manifest or report is added without changing its binding state to `present`, validation fails. If a bound manifest or report is removed while still declared `present`, validation also fails.
+
+This makes the relationship bidirectional:
+
+```text
+sidebar framework page
+        <-> page association
+        <-> docs registry
+        <-> static registry
+        <-> manifest
+        <-> compatibility report
+        <-> evidence-class source
+        <-> page-completeness source
+```
 
 ## Registry-only records
 
@@ -112,7 +147,7 @@ Llama Guard
 NeMo Guardrails
 ```
 
-Sidebar visibility does not guarantee registry inclusion, manifest coverage, generated report coverage, or validator coverage. The association artifact now makes each gap explicit and validation-bound.
+Sidebar visibility does not guarantee registry inclusion, manifest coverage, generated report coverage, or validator coverage.
 
 ## Shared records
 
@@ -143,28 +178,6 @@ The final nine-record closure is recorded in:
 
 ```text
 docs/external-frameworks/inventory-record-type-and-evidence-closure.md
-```
-
-The seven remaining external records classify as `SOURCE_REVIEWED`:
-
-```text
-Agent Governance Playbook
-KILLSWITCH.md / Emergency Stop Convention
-Model Context Protocol
-Agent2Agent Protocol
-Guardrails AI
-Llama Guard
-NeMo Guardrails
-```
-
-The two internal records are not external frameworks:
-
-```text
-Admissible Existence Seed Cycle
-  -> INTERNAL_ECOSYSTEM_STATUS_MIRROR
-
-Decision Authority Compatibility
-  -> INTERNAL_ECOSYSTEM_COMPATIBILITY_CROSSWALK
 ```
 
 ## Reconciliation requirements
@@ -204,29 +217,17 @@ support and audit pages
 
 The phrase `external frameworks total` must not be used without identifying the inventory and excluding internal records.
 
-## Current audit implication
-
-The prior 13-framework figure described only one audited family. It did not describe the repository-wide inventory.
-
-The corrected present counts are:
-
-```text
-36 actual external-framework or external-convention records
-2 internal ecosystem records
-38 total distinct inventory records
-50 total External Frameworks sidebar pages including support pages
-```
-
 ## Next actions
 
 ```text
 1. Add missing registry entries for all 18 sidebar-only external frameworks.
-2. Add missing sidebar coverage or explicit non-public status for registry-only records.
-3. Add record_type and external_framework fields to every registry entry.
-4. Generate one inventory artifact from the union of registry, manifests, reports, and sidebar paths.
-5. Extend validation from registry presence to one-to-one manifest and report coverage.
-6. Recalculate section completion against 36 external records plus 2 internal records.
-7. Remediate PARTIAL framework pages to the required-section standard.
+2. Add missing manifests and compatibility reports for those 18 framework pages.
+3. Add missing sidebar coverage or explicit non-public status for registry-only records.
+4. Add record_type and external_framework fields to every registry entry.
+5. Generate one inventory artifact from the union of registries, manifests, reports, and sidebar paths.
+6. Validate one-to-one record_id, page, manifest, report, and navigation coverage.
+7. Recalculate section completion against 36 external records plus 2 internal records.
+8. Remediate PARTIAL framework pages to the required-section standard.
 ```
 
 ## Boundary
@@ -237,6 +238,6 @@ registry count != public page count
 sidebar count != machine-readable coverage
 inventory record != external framework
 page visibility != evidence completeness
+manifest/report presence != compatibility
 registry inclusion != certification or execution authority
-association parity != compatibility or standing
 ```
