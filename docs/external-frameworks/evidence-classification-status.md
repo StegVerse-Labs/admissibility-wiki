@@ -6,11 +6,17 @@ title: External Framework Evidence Classification Status
 
 ## Purpose
 
-This page records the current evidence strength of registered external frameworks using the fail-closed classification implemented by the compatibility-report generator.
+This page records the current public evidence strength and authored-page completeness of the External Frameworks inventory. Evidence strength and page completeness are independent dimensions.
 
-A framework's inclusion, source citation, crosswalk, screenshot, profile description, or author commentary does not constitute comparative testing.
+```text
+complete documentation != reproduced behavior
+source review != implementation test
+artifact review != independent reproduction
+parameterized observation != comparative testing
+publication != standing or execution authority
+```
 
-## Evidence classes
+## Evidence Classes
 
 ```text
 MENTION_ONLY
@@ -23,9 +29,9 @@ REPRODUCIBLE_COMPARATIVE_TEST
 
 Only `REPRODUCIBLE_COMPARATIVE_TEST` permits an independently reproducible comparative-result claim.
 
-## Reproducibility gate
+## Reproducibility Gate
 
-All of the following must be public and inspectable:
+All eight fields must be public and inspectable:
 
 ```text
 shared test vector
@@ -38,52 +44,58 @@ declared expected outcome
 independent reproduction result
 ```
 
-Missing fields fail closed and must be displayed rather than inferred.
+Missing fields fail closed and remain visible in the schema-0.7 compatibility report.
 
-## Audited priority cohorts
+## Current Evidence Exceptions
 
-| Framework | Current evidence class | Public source | Implementation or artifact package | Parameterized observation | Independent reproduction | Comparative claim allowed |
-|---|---|---:|---:|---:|---:|---:|
-| GLM | `SOURCE_REVIEWED` | Yes | Not attached | No | No | No |
-| EVIDE | `SOURCE_REVIEWED` | Yes | Not attached | No | No | No |
-| DecisionAssure | `MENTION_ONLY` | No public canonical source attached | Required | No public result | No | No |
-| MindForge | `MENTION_ONLY` | No public canonical source attached | Required | No public result | No | No |
-| Morrison Runtime | `PARAMETERIZED_OBSERVATION` | Yes | Public surface and repository references | Yes, bounded cases | No | No |
-| ASRO | `ARTIFACT_REVIEWED` | Yes | Repository reference and non-authorizing fixture | No reproduced run | No | No |
-| AAR | `SOURCE_REVIEWED` | Yes | Not attached | No | No | No |
-| MITRE ATLAS | `SOURCE_REVIEWED` | Yes | External knowledge base | Not applicable as runtime result | No | No |
-| OWASP Top 10 for LLM Applications | `SOURCE_REVIEWED` | Yes | External guidance; no implementation package attached | No | No | No |
-| NIST AI RMF | `SOURCE_REVIEWED` | Yes | Voluntary guidance; no runtime implementation | No | No | No |
-| ISO/IEC 42001 | `SOURCE_REVIEWED` | Yes | Management-system standard; no runtime implementation | No | No | No |
-| EU AI Act | `SOURCE_REVIEWED` | Yes | Legal text; no runtime implementation | No | No | No |
-| Policy Cards | `SOURCE_REVIEWED` | Yes | Paper only; schema or implementation package not attached | No | No | No |
-| Runtime Governance for AI Agents | `SOURCE_REVIEWED` | Yes | Paper only; path-policy implementation not attached | No | No | No |
-| CARE Runtime | `MENTION_ONLY` | No official public source confirmed | Screenshot-only intake | No | No | No |
-| KPT | `AUTHOR_COMMENTARY` | Public positioning only; no versioned technical source | No implementation package | No | No | No |
+| Framework | Evidence class | Reason for exception |
+|---|---|---|
+| DecisionAssure | `MENTION_ONLY` | No public canonical source or authorized artifact package attached. |
+| MindForge | `MENTION_ONLY` | No public canonical source or authorized artifact package attached. |
+| CARE Runtime | `MENTION_ONLY` | Screenshot-only intake; no confirmed official technical source. |
+| KPT | `AUTHOR_COMMENTARY` | Attributed public positioning exists, but no versioned technical source or executable artifact is recorded. |
+| ASRO | `ARTIFACT_REVIEWED` | Public source and a non-authorizing fixture exist, but no reproduced run. |
+| Morrison Runtime | `PARAMETERIZED_OBSERVATION` | Bounded observations exist; raw payload, timestamps, runtime configuration, source hashes, replay commands, and independent reproduction remain incomplete. |
+| Admissible Existence Seed Cycle | `ARTIFACT_REVIEWED` | Internal ecosystem status mirror, not an external framework. |
+| Decision Authority Compatibility | `ARTIFACT_REVIEWED` | Internal ecosystem compatibility crosswalk, not an external framework. |
 
-## Policy, identity, provenance, and supply-chain family
+All other currently classified external-framework records remain `SOURCE_REVIEWED` unless their machine-readable report states a weaker fail-closed posture.
 
-All reviewed pages in this family currently qualify as `SOURCE_REVIEWED` only. They expose official sources and bounded StegVerse relationships, but no attached StegVerse execution run, common test vector, raw output, replay procedure, or independent reproduction.
+## Policy, Identity, Provenance, and Supply-Chain Cohort
 
-| Framework | Evidence class | Native contribution | Current page completeness |
-|---|---|---|---|
-| Open Policy Agent | `SOURCE_REVIEWED` | Structured policy evaluation and policy-decision artifacts. | `PARTIAL` |
-| Cedar Policy | `SOURCE_REVIEWED` | Principal-action-resource-context authorization evaluation. | `PARTIAL` |
-| OSCAL | `SOURCE_REVIEWED` | Machine-readable controls, profiles, implementations, assessments, and results. | `PARTIAL` |
-| SPIFFE/SPIRE | `SOURCE_REVIEWED` | Workload identity, attestation, and short-lived credentials. | `PARTIAL` |
-| W3C Verifiable Credentials | `SOURCE_REVIEWED` | Issuer-holder-verifier credential and presentation model. | `PARTIAL` |
-| in-toto | `SOURCE_REVIEWED` | Supply-chain layouts and signed link metadata. | `PARTIAL` |
-| SLSA | `SOURCE_REVIEWED` | Supply-chain provenance, build requirements, and assurance levels. | `PARTIAL` |
-| Sigstore | `SOURCE_REVIEWED` | Identity-bound signing, verification, and transparency evidence. | `PARTIAL` |
-| OpenID Connect | `SOURCE_REVIEWED` | Authentication and interoperable identity claims. | `PARTIAL` |
-| OAuth 2.0 | `SOURCE_REVIEWED` | Delegated and scoped resource access. | `PARTIAL` |
-| W3C Decentralized Identifiers | `SOURCE_REVIEWED` | Identifier documents, verification methods, services, and controller relationships. | `PARTIAL` |
-| OpenLineage | `SOURCE_REVIEWED` | Dataset, job, and run lineage metadata. | `PARTIAL` |
-| W3C PROV | `SOURCE_REVIEWED` | Entity, activity, agent, derivation, and attribution provenance model. | `PARTIAL` |
+The following 13 pages are now `COMPLETE_WITH_EXTERNAL_GATES` at the documentation level while remaining `SOURCE_REVIEWED` at the evidence level:
 
-### Family-level finding
+| Framework | Evidence class | Page completeness |
+|---|---|---|
+| Open Policy Agent | `SOURCE_REVIEWED` | `COMPLETE_WITH_EXTERNAL_GATES` |
+| Cedar Policy | `SOURCE_REVIEWED` | `COMPLETE_WITH_EXTERNAL_GATES` |
+| OSCAL | `SOURCE_REVIEWED` | `COMPLETE_WITH_EXTERNAL_GATES` |
+| SPIFFE/SPIRE | `SOURCE_REVIEWED` | `COMPLETE_WITH_EXTERNAL_GATES` |
+| W3C Verifiable Credentials | `SOURCE_REVIEWED` | `COMPLETE_WITH_EXTERNAL_GATES` |
+| in-toto | `SOURCE_REVIEWED` | `COMPLETE_WITH_EXTERNAL_GATES` |
+| SLSA | `SOURCE_REVIEWED` | `COMPLETE_WITH_EXTERNAL_GATES` |
+| Sigstore | `SOURCE_REVIEWED` | `COMPLETE_WITH_EXTERNAL_GATES` |
+| OpenID Connect | `SOURCE_REVIEWED` | `COMPLETE_WITH_EXTERNAL_GATES` |
+| OAuth 2.0 | `SOURCE_REVIEWED` | `COMPLETE_WITH_EXTERNAL_GATES` |
+| W3C Decentralized Identifiers | `SOURCE_REVIEWED` | `COMPLETE_WITH_EXTERNAL_GATES` |
+| OpenLineage | `SOURCE_REVIEWED` | `COMPLETE_WITH_EXTERNAL_GATES` |
+| W3C PROV | `SOURCE_REVIEWED` | `COMPLETE_WITH_EXTERNAL_GATES` |
 
-The pages correctly preserve these boundaries:
+Machine-readable cohort status:
+
+```text
+static/external-frameworks/policy-identity-provenance-page-remediation.v1.json
+```
+
+Regression validator:
+
+```text
+scripts/check_external_framework_page_remediation.py
+```
+
+The validator is invoked by `scripts/check_goal5_external_frameworks_all.py`, which is already called through `npm run validate:goal5-external-frameworks` in the canonical validation chain.
+
+## Family-Level Boundary
 
 ```text
 policy decision != execution authority
@@ -97,104 +109,17 @@ lineage != truth
 supply-chain conformance != runtime authority
 ```
 
-However, the pages are generally 25–31 lines long and do not yet satisfy the full framework-page standard. Most omit:
+## Canonical Machine-Readable Surfaces
 
 ```text
-explicit missing-field matrix
-machine-readable companion link
-version or snapshot status beyond a source URL
-reproduction or mapping-fixture path
-challenge path
-page-specific maintenance owner
-current generated report classification
-next bounded build target
+docs/external-frameworks/index.json
+static/external-frameworks/canonical-union-inventory.v1.json
+static/external-frameworks/sidebar-page-associations.v1.json
+static/external-frameworks/sidebar-framework-artifact-bindings.v1.json
+docs/external-frameworks/reports/*.compatibility.json
 ```
 
-Therefore:
-
-```text
-evidence classification: SOURCE_REVIEWED
-section completeness: PARTIAL
-comparative testing claim allowed: false
-execution authority claim allowed: false
-```
-
-## Cohort findings
-
-### Source-reviewed crosswalks
-
-GLM, EVIDE, AAR, MITRE ATLAS, OWASP Top 10 for LLM Applications, NIST AI RMF, ISO/IEC 42001, the EU AI Act, Policy Cards, Runtime Governance for AI Agents, and the policy/identity/provenance/supply-chain family have public source material and StegVerse crosswalks. Their pages do not attach sufficient implementation, observed-output, replay, or independent-reproduction evidence to support stronger classifications.
-
-```text
-evidence_class: SOURCE_REVIEWED
-crosswalk_available: true
-implementation_reviewed: false unless separately stated
-reproduced: false
-comparative_testing_claim_allowed: false
-```
-
-### ASRO
-
-ASRO has a public source, repository reference, and non-authorizing Commitment Candidate fixture. The fixture supports artifact review but does not include a pinned release, raw attestation output, verifier payload, timestamped execution, replay command, or independent reproduction.
-
-```text
-evidence_class: ARTIFACT_REVIEWED
-reproduced: false
-comparative_testing_claim_allowed: false
-```
-
-### DecisionAssure and MindForge
-
-Both remain intake-only records because no public canonical source or authorized artifact package is attached to their pages.
-
-```text
-evidence_class: MENTION_ONLY
-artifact_package_required: true
-public_result_claim_allowed: false
-comparative_testing_claim_allowed: false
-```
-
-Private, remembered, conversational, or unpublished results remain outside the public evidence posture.
-
-### CARE Runtime
-
-CARE Runtime is supported only by a supplied screenshot and observed terminology. No official website, repository, specification, release, paper, or authorized artifact package is confirmed.
-
-```text
-evidence_class: MENTION_ONLY
-source_status: SOURCE_BLOCKED_FAIL_CLOSED
-screenshot_is_official_source: false
-public_runtime_result_claim_allowed: false
-comparative_testing_claim_allowed: false
-```
-
-### KPT
-
-KPT has public positioning and author-attributed descriptive language, but no versioned technical framework source, repository, schema, API, white paper, or executable artifact is recorded.
-
-```text
-evidence_class: AUTHOR_COMMENTARY
-source_status: SOURCE_BLOCKED_FAIL_CLOSED
-technical_source_confirmed: false
-public_runtime_result_claim_allowed: false
-comparative_testing_claim_allowed: false
-```
-
-KPT is classified above `MENTION_ONLY` only because attributed public positioning is preserved. That positioning remains commentary and cannot establish technical compatibility, runtime behavior, or execution authority.
-
-### Morrison Runtime
-
-The report includes bounded parameterized observations, but its own fields state that raw audit payloads, timestamps, runtime configuration, and source hashes are missing.
-
-```text
-evidence_class: PARAMETERIZED_OBSERVATION
-independently_reproducible: false
-comparative_testing_claim_allowed: false
-```
-
-The observed cases may be described only as bounded captured observations. They are not certification, general compatibility, or independently reproducible comparison results.
-
-## Publication rule
+## Publication Rule
 
 Generated results and page-status blocks must use the evidence class derived from machine-readable report fields. A narrative page must not display a stronger classification than its report.
 
@@ -203,19 +128,15 @@ page claim strength <= report evidence class
 report evidence class <= available public artifacts
 ```
 
-## Remaining external-framework audit queue
-
-Priority, source-blocked, policy, identity, provenance, and supply-chain cohorts are classified. Remaining work proceeds in sidebar order:
+## Remaining External-Framework Audit Queue
 
 ```text
-1. guardrail and agent-protocol framework families
-2. required-section remediation across every framework page
-3. generated report regeneration under schema 0.7
-4. generated page-status synchronization
-5. orphan, registry, and navigation coverage
+1. Review the remaining framework pages against the authored-page standard.
+2. Regenerate all reports and generated page-status blocks under schema 0.7 in the canonical workflow.
+3. Observe and inspect the canonical validation result and uploaded artifacts.
+4. Repair any directly observed generation, validation, build, deployment, or public-route failure.
+5. Recalculate the complete External Frameworks section audit.
 ```
-
-Each remaining page must be checked for source authority, evidence provenance, observation strength, machine-readable companion, reproduction path, missing fields, non-claims, and challenge path.
 
 ## Boundary
 
@@ -225,5 +146,6 @@ implementation evidence != observed behavior
 observed behavior != reproduced behavior
 reproduced behavior != execution authority
 crosswalk != compatibility
+page completeness != evidence promotion
 publication != standing
 ```
