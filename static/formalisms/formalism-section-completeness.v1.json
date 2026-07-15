@@ -1,0 +1,50 @@
+{
+  "schema": "admissibility_wiki_formalism_section_completeness.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "classification": "IN_PROGRESS",
+  "registry": "static/formalisms/formalism-registry.v0.1.json",
+  "record_classification": "static/formalisms/formalism-record-classification.v1.json",
+  "validator": "scripts/check-formalism-registry.mjs",
+  "counts": {
+    "registry_records": 15,
+    "artifact_classified": 15,
+    "mirrored_records": 14,
+    "intake_records": 1,
+    "theorem_candidates": 1,
+    "records_with_missing_classification": 0
+  },
+  "closed_dimensions": [
+    "every registry record has a stable formalism_id and wiki path",
+    "every registry record has an artifact class",
+    "mirror posture is separated from proof posture",
+    "validation infrastructure and executable engines are separated from proof authority",
+    "IICT remains explicitly classified as an unproven theorem candidate",
+    "private source boundaries and non-claims remain preserved"
+  ],
+  "active_blockers": [
+    {
+      "blocker_id": "FORMALISM-GCAT-REGISTRY-PAGE-DRIFT",
+      "formalism_id": "ae.GCAT-BCAT",
+      "registry_state": "intake",
+      "registry_claim": "detail page and source crosswalk pending",
+      "page_state": "source_available",
+      "page_claim": "initial public-safe canonical detail page installed",
+      "required_resolution": "Reconcile the registry state, transition relationship, evidence posture, and validation posture with the existing page and source boundary without promoting publication artifacts into source authority."
+    },
+    {
+      "blocker_id": "FORMALISM-CANONICAL-WORKFLOW-FAILURE",
+      "state": "OBSERVED_FAILED",
+      "evidence": "GitHub notification for Validate chain continuation on main at commit b88f8a8 and multiple preceding commits",
+      "required_resolution": "Inspect the canonical workflow job log or uploaded full-validation report and repair the first deterministic failure. Notification evidence alone does not identify the failing validator."
+    }
+  ],
+  "evidence_boundaries": {
+    "mirror_is_source_authority": false,
+    "baseline_fixture_is_complete_proof": false,
+    "theorem_candidate_is_proven": false,
+    "publication_artifact_is_canonical_formalism_authority": false,
+    "executable_engine_is_proof_authority": false,
+    "validation_factory_is_proof_authority": false
+  },
+  "next_action": "Resolve GCAT-BCAT registry/page drift, then inspect the observed canonical workflow failure and continue source-confirmed theorem, proof, fixture, expected-outcome, and translation-record extraction."
+}
