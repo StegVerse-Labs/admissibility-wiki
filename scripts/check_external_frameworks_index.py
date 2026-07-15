@@ -127,7 +127,7 @@ def main() -> int:
     }
     union_ids = {
         entry.get("record_id")
-        for entry in canonical_union.get("records", [])
+        for entry in canonical_union.get("entries", [])
         if entry.get("external_framework") is True
     }
     if not sidebar_ids:
