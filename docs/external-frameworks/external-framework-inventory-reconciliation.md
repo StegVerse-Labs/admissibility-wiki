@@ -13,10 +13,10 @@ A cohort count is not the repository-wide framework count, and a record stored i
 ## Current counts
 
 ```text
-machine-readable registry entries: 20
+machine-readable docs registry entries: 20
 framework-specific pages in the External Frameworks sidebar: 26
-support, audit, intake, benchmark, and governance pages in the sidebar: 22
-total External Frameworks sidebar pages: 48
+support, audit, intake, benchmark, and governance pages in the sidebar: 24
+total External Frameworks sidebar pages: 50
 distinct records across registry and sidebar: 38
 actual external-framework or external-convention records: 36
 internal ecosystem records stored in the inventory: 2
@@ -30,9 +30,45 @@ Admissible Existence Seed Cycle
 Decision Authority Compatibility
 ```
 
+## Bidirectional sidebar association contract
+
+Every page in the `External Frameworks` sidebar is now represented in:
+
+```text
+static/external-frameworks/sidebar-page-associations.v1.json
+```
+
+Each association identifies:
+
+```text
+sidebar route
+page path
+page type: support | framework
+stable framework_id or support association_id
+docs-registry presence state
+static-registry presence state
+```
+
+The existing validator invoked by `npm run validate:external-frameworks` now compares the sidebar and association artifact in both directions and in order.
+
+It fails when:
+
+```text
+- a sidebar page is added without an association;
+- an associated page is removed from the sidebar;
+- sidebar order and association order diverge;
+- an associated page file is missing;
+- a framework_id is duplicated;
+- registry presence differs from the declared state;
+- a missing registry binding is not explicitly declared;
+- stored page counts are stale.
+```
+
+Current known registry gaps are represented as `missing_explicit`. That state permits the existing migration gap to remain visible while preventing silent drift. When a missing registry entry is added, its association must change to `present` in the same change or validation fails.
+
 ## Registry-only records
 
-The following registry entries do not currently have a matching framework-specific item in the External Frameworks sidebar:
+The following docs-registry entries do not currently have a matching framework-specific item in the External Frameworks sidebar:
 
 ```text
 AAR
@@ -76,11 +112,11 @@ Llama Guard
 NeMo Guardrails
 ```
 
-Sidebar visibility does not guarantee registry inclusion, manifest coverage, generated report coverage, or validator coverage.
+Sidebar visibility does not guarantee registry inclusion, manifest coverage, generated report coverage, or validator coverage. The association artifact now makes each gap explicit and validation-bound.
 
 ## Shared records
 
-The following records are currently represented in both the registry and the framework-specific sidebar inventory:
+The following records are currently represented in both the docs registry and the framework-specific sidebar inventory:
 
 ```text
 GLM
@@ -178,7 +214,7 @@ The corrected present counts are:
 36 actual external-framework or external-convention records
 2 internal ecosystem records
 38 total distinct inventory records
-48 total External Frameworks sidebar pages including support pages
+50 total External Frameworks sidebar pages including support pages
 ```
 
 ## Next actions
@@ -188,7 +224,7 @@ The corrected present counts are:
 2. Add missing sidebar coverage or explicit non-public status for registry-only records.
 3. Add record_type and external_framework fields to every registry entry.
 4. Generate one inventory artifact from the union of registry, manifests, reports, and sidebar paths.
-5. Validate one-to-one record_id, page, manifest, report, and navigation coverage.
+5. Extend validation from registry presence to one-to-one manifest and report coverage.
 6. Recalculate section completion against 36 external records plus 2 internal records.
 7. Remediate PARTIAL framework pages to the required-section standard.
 ```
@@ -202,4 +238,5 @@ sidebar count != machine-readable coverage
 inventory record != external framework
 page visibility != evidence completeness
 registry inclusion != certification or execution authority
+association parity != compatibility or standing
 ```
