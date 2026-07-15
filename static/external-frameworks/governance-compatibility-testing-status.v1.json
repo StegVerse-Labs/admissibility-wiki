@@ -6,11 +6,11 @@
   "classification": "IN_PROGRESS",
   "counts": {
     "canonical_records": 38,
-    "contract_authored": 3,
+    "contract_authored": 4,
     "governance_compatibility_observed": 0,
     "fresh_runner_reproduced": 0,
     "independent_implementation_reproduced": 0,
-    "not_started": 35
+    "not_started": 34
   },
   "records": [
     {
@@ -24,7 +24,7 @@
       "fresh_runner_replay_observed": true,
       "stegverse_governance_compatibility_observed": false,
       "result_receipt": "reports/external-frameworks/opa-independent/opa-stegverse-governance-compatibility-receipt.json",
-      "next_action": "Execute the compatibility runner after fresh-runner replay in the canonical workflow and publish the resulting bounded compatibility receipt."
+      "next_action": "Observe the fresh-runner pipeline producing and uploading the bounded OPA-to-StegVerse governance compatibility receipt."
     },
     {
       "framework_id": "cedar-policy",
@@ -51,11 +51,23 @@
       "stegverse_governance_compatibility_observed": false,
       "result_receipt": "reports/external-frameworks/spiffe-spire/spiffe-spire-stegverse-governance-compatibility-receipt.json",
       "next_action": "Attach a pinned SPIRE attestation, SVID issuance, trust-bundle, rotation, and verification packet, then execute and replay the identity-to-governance translation contract."
+    },
+    {
+      "framework_id": "w3c-verifiable-credentials",
+      "state": "CONTRACT_AUTHORED_RUNTIME_PENDING",
+      "fixture": "tests/fixtures/external-frameworks/w3c-vc-governance-compatibility-cases.v1.json",
+      "runner": "scripts/run_w3c_vc_governance_compatibility.py",
+      "case_count": 6,
+      "native_execution_observed": false,
+      "source_reviewed": true,
+      "fresh_runner_replay_observed": false,
+      "stegverse_governance_compatibility_observed": false,
+      "result_receipt": "reports/external-frameworks/w3c-vc/w3c-vc-stegverse-governance-compatibility-receipt.json",
+      "next_action": "Attach a pinned credential, presentation, proof suite, issuer, resolver, schema, and status packet; execute verification and replay before promoting bounded compatibility."
     }
   ],
   "default_unlisted_state": "NOT_STARTED",
   "next_framework_order": [
-    "w3c-verifiable-credentials",
     "in-toto",
     "slsa",
     "sigstore",
@@ -76,6 +88,7 @@
     "native_framework_test_means_governance_compatible": false,
     "framework_allow_means_stegverse_allow": false,
     "identity_verification_means_action_authority": false,
+    "credential_verification_means_claim_truth_or_action_authority": false,
     "fresh_runner_replay_means_independent_implementation": false,
     "compatibility_receipt_grants_execution_authority": false,
     "general_compatibility_claim_allowed": false
