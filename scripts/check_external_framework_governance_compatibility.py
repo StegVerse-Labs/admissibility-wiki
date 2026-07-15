@@ -10,42 +10,13 @@ STATUS = ROOT / "static" / "external-frameworks" / "governance-compatibility-tes
 UNION = ROOT / "static" / "external-frameworks" / "canonical-union-inventory.v1.json"
 OPA_PIPELINE = ROOT / "scripts" / "summarize_opa_evidence_pipeline.py"
 CONTRACTS = {
-    "open-policy-agent": {
-        "fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "opa-governance-compatibility-cases.v1.json",
-        "runner": ROOT / "scripts" / "run_opa_governance_compatibility.py",
-        "page": ROOT / "docs" / "external-frameworks" / "open-policy-agent.md",
-        "allowed_states": {"CONTRACT_AUTHORED"},
-    },
-    "cedar-policy": {
-        "fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "cedar-governance-compatibility-cases.v1.json",
-        "runner": ROOT / "scripts" / "run_cedar_governance_compatibility.py",
-        "page": ROOT / "docs" / "external-frameworks" / "cedar-policy.md",
-        "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"},
-    },
-    "spiffe-spire": {
-        "fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "spiffe-spire-governance-compatibility-cases.v1.json",
-        "runner": ROOT / "scripts" / "run_spiffe_spire_governance_compatibility.py",
-        "page": ROOT / "docs" / "external-frameworks" / "spiffe-spire.md",
-        "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"},
-    },
-    "w3c-verifiable-credentials": {
-        "fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "w3c-vc-governance-compatibility-cases.v1.json",
-        "runner": ROOT / "scripts" / "run_w3c_vc_governance_compatibility.py",
-        "page": ROOT / "docs" / "external-frameworks" / "w3c-verifiable-credentials.md",
-        "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"},
-    },
-    "in-toto": {
-        "fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "in-toto-governance-compatibility-cases.v1.json",
-        "runner": ROOT / "scripts" / "run_in_toto_governance_compatibility.py",
-        "page": ROOT / "docs" / "external-frameworks" / "in-toto.md",
-        "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"},
-    },
-    "slsa": {
-        "fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "slsa-governance-compatibility-cases.v1.json",
-        "runner": ROOT / "scripts" / "run_slsa_governance_compatibility.py",
-        "page": ROOT / "docs" / "external-frameworks" / "slsa.md",
-        "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"},
-    },
+    "open-policy-agent": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "opa-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_opa_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "open-policy-agent.md", "allowed_states": {"CONTRACT_AUTHORED"}},
+    "cedar-policy": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "cedar-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_cedar_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "cedar-policy.md", "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"}},
+    "spiffe-spire": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "spiffe-spire-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_spiffe_spire_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "spiffe-spire.md", "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"}},
+    "w3c-verifiable-credentials": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "w3c-vc-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_w3c_vc_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "w3c-verifiable-credentials.md", "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"}},
+    "in-toto": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "in-toto-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_in_toto_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "in-toto.md", "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"}},
+    "slsa": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "slsa-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_slsa_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "slsa.md", "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"}},
+    "sigstore": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "sigstore-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_sigstore_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "sigstore.md", "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"}},
 }
 
 
@@ -112,31 +83,24 @@ def main() -> None:
         fail("OPA native execution and fresh-runner replay must remain observed")
     if records_by_id["cedar-policy"].get("binary_build_observed") is not True or records_by_id["cedar-policy"].get("native_execution_observed") is not False:
         fail("Cedar must remain build-observed and runtime-unobserved")
-    for framework_id in ("spiffe-spire", "w3c-verifiable-credentials", "in-toto", "slsa"):
+    for framework_id in ("spiffe-spire", "w3c-verifiable-credentials", "in-toto", "slsa", "sigstore"):
         record = records_by_id[framework_id]
         if record.get("source_reviewed") is not True or record.get("native_execution_observed") is not False:
             fail(f"{framework_id} must remain source-reviewed and runtime-unobserved")
 
-    expected_counts = {
-        "canonical_records": 38,
-        "contract_authored": 6,
-        "governance_compatibility_observed": 0,
-        "fresh_runner_reproduced": 0,
-        "independent_implementation_reproduced": 0,
-        "not_started": 32,
-    }
+    expected_counts = {"canonical_records": 38, "contract_authored": 7, "governance_compatibility_observed": 0, "fresh_runner_reproduced": 0, "independent_implementation_reproduced": 0, "not_started": 31}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
 
     joined = json.dumps(standard).lower() + json.dumps(status).lower()
-    for phrase in ["does not certify", "execution authority", "general compatibility", "policy evidence", "identity verification", "credential verification", "provenance verification"]:
+    for phrase in ["does not certify", "execution authority", "general compatibility", "policy evidence", "identity verification", "credential verification", "provenance verification", "signature verification"]:
         if phrase not in joined:
             fail(f"missing boundary phrase: {phrase}")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=6")
+    print("contracts_authored=7")
     print("compatibility_observed=0")
     print("opa_execution_binding=installed_pending_observation")
     for framework_id in CONTRACTS:
