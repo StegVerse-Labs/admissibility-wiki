@@ -1,0 +1,21 @@
+{
+  "schema": "external_framework_registry_navigation_dispositions.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "canonical_registry": "docs/external-frameworks/index.json",
+  "allowed_navigation_states": ["public_sidebar", "non_public_explicit", "internal_record"],
+  "entries": [
+    {"framework_id":"aar","page_path":"docs/external-frameworks/aar.md","navigation_state":"non_public_explicit","reason":"Sourced crosswalk remains accessible by direct path while sidebar placement is deferred to the next navigation-design review."},
+    {"framework_id":"mitre-atlas","page_path":"docs/external-frameworks/mitre-atlas.md","navigation_state":"non_public_explicit","reason":"Knowledge-base crosswalk remains registry-addressable while sidebar placement is deferred."},
+    {"framework_id":"owasp-top-10-llm","page_path":"docs/external-frameworks/owasp-top-10-llm.md","navigation_state":"non_public_explicit","reason":"Guidance crosswalk remains registry-addressable while sidebar placement is deferred."},
+    {"framework_id":"agent-governance-playbook","page_path":"docs/external-frameworks/agent-governance-playbook.md","navigation_state":"non_public_explicit","reason":"Playbook crosswalk remains registry-addressable while sidebar placement is deferred."},
+    {"framework_id":"emergency-stop-convention","page_path":"docs/external-frameworks/killswitch-md.md","navigation_state":"non_public_explicit","reason":"Emergency-stop convention remains registry-addressable while sidebar placement is deferred."},
+    {"framework_id":"nist-ai-rmf","page_path":"docs/external-frameworks/nist-ai-rmf.md","navigation_state":"non_public_explicit","reason":"Risk-management crosswalk remains registry-addressable while sidebar placement is deferred."},
+    {"framework_id":"iso-iec-42001","page_path":"docs/external-frameworks/iso-iec-42001.md","navigation_state":"non_public_explicit","reason":"Management-system crosswalk remains registry-addressable while sidebar placement is deferred."},
+    {"framework_id":"eu-ai-act","page_path":"docs/external-frameworks/eu-ai-act.md","navigation_state":"non_public_explicit","reason":"Legal crosswalk remains registry-addressable while sidebar placement is deferred."},
+    {"framework_id":"policy-cards","page_path":"docs/external-frameworks/policy-cards.md","navigation_state":"non_public_explicit","reason":"Policy-artifact crosswalk remains registry-addressable while sidebar placement is deferred."},
+    {"framework_id":"runtime-governance-for-ai-agents","page_path":"docs/external-frameworks/runtime-governance-policies-on-paths.md","navigation_state":"non_public_explicit","reason":"Research crosswalk remains registry-addressable while sidebar placement is deferred."},
+    {"framework_id":"admissible-existence-seed-cycle","page_path":"docs/external-frameworks/admissible-existence-seed-cycle.md","navigation_state":"internal_record","reason":"Internal ecosystem status mirror; not an external-framework sidebar item."},
+    {"framework_id":"decision-authority","page_path":"docs/external-frameworks/decision-authority.md","navigation_state":"internal_record","reason":"Internal ecosystem compatibility crosswalk; not an external-framework sidebar item."}
+  ],
+  "boundary": "Navigation disposition is inventory metadata only. It does not create standing, compatibility, certification, admissibility, or execution authority."
+}
