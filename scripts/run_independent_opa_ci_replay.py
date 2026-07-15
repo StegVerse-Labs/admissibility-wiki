@@ -22,6 +22,7 @@ UPSTREAM = ROOT / "reports" / "upstream-opa"
 OUTPUT = ROOT / "reports" / "external-frameworks" / "opa-independent"
 CAPTURE_SCRIPT = ROOT / "scripts" / "capture_opa_observation.py"
 SUMMARY_SCRIPT = ROOT / "scripts" / "summarize_opa_evidence_pipeline.py"
+COMPATIBILITY_SCRIPT = ROOT / "scripts" / "run_opa_governance_compatibility.py"
 CAPTURE_DIR = ROOT / "docs" / "external-frameworks" / "capture" / "opa"
 
 
@@ -47,6 +48,13 @@ def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def emit_result(result: subprocess.CompletedProcess[str]) -> None:
+    if result.stdout:
+        print(result.stdout.rstrip())
+    if result.stderr:
+        print(result.stderr.rstrip(), file=sys.stderr)
+
+
 def write_pipeline_summary() -> int:
     summary_path = OUTPUT / "opa-evidence-pipeline-status.json"
     result = run(
@@ -61,10 +69,13 @@ def write_pipeline_summary() -> int:
             str(summary_path),
         ]
     )
-    if result.stdout:
-        print(result.stdout.rstrip())
-    if result.stderr:
-        print(result.stderr.rstrip(), file=sys.stderr)
+    emit_result(result)
+    return result.returncode
+
+
+def run_governance_compatibility() -> int:
+    result = run([sys.executable, str(COMPATIBILITY_SCRIPT)])
+    emit_result(result)
     return result.returncode
 
 
@@ -154,8 +165,7 @@ def main() -> int:
         ]
         result = run(command)
         if result.returncode != 0:
-            print(result.stdout)
-            print(result.stderr, file=sys.stderr)
+            emit_result(result)
             write_pipeline_summary()
             return result.returncode
         independent_paths[name] = output_path
@@ -222,12 +232,18 @@ def main() -> int:
     receipt_path = OUTPUT / "opa-independent-replay-receipt.json"
     receipt_path.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
 
-    summary_result = write_pipeline_summary()
-    if summary_result != 0:
-        return summary_result
     if not all_match:
+        write_pipeline_summary()
         print(f"OPA INDEPENDENT REPLAY: MISMATCH -> {receipt_path.relative_to(ROOT)}")
         return 1
+
+    compatibility_result = run_governance_compatibility()
+    summary_result = write_pipeline_summary()
+    if compatibility_result != 0:
+        return compatibility_result
+    if summary_result != 0:
+        return summary_result
+
     print(f"OPA INDEPENDENT REPLAY: CONFIRMED_FRESH_RUNNER -> {receipt_path.relative_to(ROOT)}")
     return 0
 
