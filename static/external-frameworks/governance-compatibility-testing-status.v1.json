@@ -6,11 +6,11 @@
   "classification": "IN_PROGRESS",
   "counts": {
     "canonical_records": 38,
-    "contract_authored": 5,
+    "contract_authored": 6,
     "governance_compatibility_observed": 0,
     "fresh_runner_reproduced": 0,
     "independent_implementation_reproduced": 0,
-    "not_started": 33
+    "not_started": 32
   },
   "records": [
     {
@@ -50,6 +50,7 @@
       "source_reviewed": true,
       "fresh_runner_replay_observed": false,
       "stegverse_governance_compatibility_observed": false,
+      "translation_boundary": "SPIFFE identity verification contributes workload identity evidence only; identity verification does not establish current delegation, action authority, admissibility, or execution permission.",
       "result_receipt": "reports/external-frameworks/spiffe-spire/spiffe-spire-stegverse-governance-compatibility-receipt.json",
       "next_action": "Attach a pinned SPIRE attestation, SVID issuance, trust-bundle, rotation, and verification packet, then execute and replay the identity-to-governance translation contract."
     },
@@ -78,11 +79,23 @@
       "stegverse_governance_compatibility_observed": false,
       "result_receipt": "reports/external-frameworks/in-toto/in-toto-stegverse-governance-compatibility-receipt.json",
       "next_action": "Attach a pinned in-toto implementation, signed layout and link bundle, keys, raw verifier output, and fresh-runner replay before promoting bounded compatibility."
+    },
+    {
+      "framework_id": "slsa",
+      "state": "CONTRACT_AUTHORED_RUNTIME_PENDING",
+      "fixture": "tests/fixtures/external-frameworks/slsa-governance-compatibility-cases.v1.json",
+      "runner": "scripts/run_slsa_governance_compatibility.py",
+      "case_count": 6,
+      "native_execution_observed": false,
+      "source_reviewed": true,
+      "fresh_runner_replay_observed": false,
+      "stegverse_governance_compatibility_observed": false,
+      "result_receipt": "reports/external-frameworks/slsa/slsa-stegverse-governance-compatibility-receipt.json",
+      "next_action": "Attach a pinned SLSA-compatible provenance producer and verifier, provenance bundle, artifact digest, raw verifier output, and fresh-runner replay before promoting bounded compatibility."
     }
   ],
   "default_unlisted_state": "NOT_STARTED",
   "next_framework_order": [
-    "slsa",
     "sigstore",
     "openid-connect",
     "oauth2",
