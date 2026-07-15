@@ -32,11 +32,29 @@ REQUIRED_STATUS_KEYS = [
     "fail_closed_conditions",
 ]
 
-ALLOWED_SCHEMA_VERSIONS = {"0.2", "0.3", "0.4", "0.5", "0.6"}
+ALLOWED_SCHEMA_VERSIONS = {"0.2", "0.3", "0.4", "0.5", "0.6", "0.7"}
 ALLOWED_RESULTS = {
     "COMPATIBILITY_EVIDENCE_ONLY",
     "COMPATIBILITY_EVIDENCE_ONLY_PARAMETERIZED_BOUNDARY_CASE_PARTIAL",
     "SOURCE_BLOCKED_FAIL_CLOSED",
+}
+ALLOWED_EVIDENCE_CLASSES = {
+    "MENTION_ONLY",
+    "AUTHOR_COMMENTARY",
+    "SOURCE_REVIEWED",
+    "ARTIFACT_REVIEWED",
+    "PARAMETERIZED_OBSERVATION",
+    "REPRODUCIBLE_COMPARATIVE_TEST",
+}
+REPRODUCIBILITY_FIELDS = {
+    "shared_test_vector",
+    "raw_output",
+    "timestamp",
+    "runtime_configuration",
+    "source_version_or_hash",
+    "replay_commands",
+    "declared_expected_outcome",
+    "independent_reproduction",
 }
 ALLOWED_STATUS_VALUES = {
     "PRESENT",
@@ -64,6 +82,48 @@ def allowed_status_values_for_result(result: str | None) -> set[str]:
     if result == "SOURCE_BLOCKED_FAIL_CLOSED":
         values.update(SOURCE_BLOCKED_STATUS_VALUES)
     return values
+
+
+def check_evidence_gate(report: dict[str, Any], framework_id: str, failures: list[str]) -> None:
+    gate = report.get("evidence_gate")
+    if not isinstance(gate, dict):
+        failures.append(f"missing evidence gate: {framework_id}")
+        return
+
+    evidence_class = gate.get("evidence_class")
+    if evidence_class not in ALLOWED_EVIDENCE_CLASSES:
+        failures.append(f"invalid evidence class {evidence_class}: {framework_id}")
+
+    required_fields = gate.get("required_fields")
+    if not isinstance(required_fields, dict):
+        failures.append(f"missing evidence required-fields map: {framework_id}")
+        return
+
+    missing_required_keys = sorted(REPRODUCIBILITY_FIELDS - set(required_fields))
+    if missing_required_keys:
+        failures.append(f"missing reproducibility keys for {framework_id}: {', '.join(missing_required_keys)}")
+
+    missing_fields = gate.get("missing_fields")
+    if not isinstance(missing_fields, list):
+        failures.append(f"missing evidence missing-fields list: {framework_id}")
+        missing_fields = []
+
+    expected_missing = sorted(key for key in REPRODUCIBILITY_FIELDS if required_fields.get(key) is not True)
+    if sorted(missing_fields) != expected_missing:
+        failures.append(f"evidence missing-fields mismatch: {framework_id}")
+
+    reproducible = gate.get("independently_reproducible") is True
+    comparative_claim = gate.get("comparative_testing_claim_allowed") is True
+    all_fields_present = all(required_fields.get(key) is True for key in REPRODUCIBILITY_FIELDS)
+
+    if reproducible != all_fields_present:
+        failures.append(f"reproducibility boolean mismatch: {framework_id}")
+    if comparative_claim != reproducible:
+        failures.append(f"comparative claim mismatch: {framework_id}")
+    if evidence_class == "REPRODUCIBLE_COMPARATIVE_TEST" and not reproducible:
+        failures.append(f"reproducible class without complete gate: {framework_id}")
+    if reproducible and evidence_class != "REPRODUCIBLE_COMPARATIVE_TEST":
+        failures.append(f"complete gate not promoted to reproducible class: {framework_id}")
 
 
 def main() -> int:
@@ -116,14 +176,14 @@ def main() -> int:
                 failures.append(f"unexpected transition table status {key}={status[key]}: {framework_id}")
 
         if result != "SOURCE_BLOCKED_FAIL_CLOSED":
-            source_blocked_values = sorted(
-                {value for value in status.values() if value in SOURCE_BLOCKED_STATUS_VALUES}
-            )
+            source_blocked_values = sorted({value for value in status.values() if value in SOURCE_BLOCKED_STATUS_VALUES})
             if source_blocked_values:
                 failures.append(
                     f"source-blocked status outside SOURCE_BLOCKED_FAIL_CLOSED result: {framework_id}: "
                     + ", ".join(source_blocked_values)
                 )
+
+        check_evidence_gate(report, str(framework_id), failures)
 
         if framework_id == "morrison-runtime":
             observations = report.get("runtime_governance_benchmark_observations", [])
@@ -133,6 +193,8 @@ def main() -> int:
                     failures.append(f"missing Morrison benchmark observation: {required_id}")
             if report.get("benchmark_suite") != "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json":
                 failures.append("Morrison report missing benchmark suite reference")
+            if report.get("evidence_gate", {}).get("evidence_class") != "PARAMETERIZED_OBSERVATION":
+                failures.append("Morrison evidence must remain PARAMETERIZED_OBSERVATION until full reproducibility gate passes")
 
         for overlap_key in ["SPE_overlap_result", "StegVerse_ecosystem_overlap_result"]:
             value = report.get(overlap_key)
