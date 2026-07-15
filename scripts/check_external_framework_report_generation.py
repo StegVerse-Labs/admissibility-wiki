@@ -63,7 +63,7 @@ def main() -> int:
 
         manifest = read_json(manifest_file)
         actual = read_json(report_file)
-        base = generator.build_report(entry, manifest)
+        base = generator.build_base_report(entry, manifest)
         expected = generator.preserve_enriched_report(base, actual)
         if actual != expected:
             failures.append(f"report not reproducible: {report_file.relative_to(ROOT)}")
