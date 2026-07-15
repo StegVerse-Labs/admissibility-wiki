@@ -2,128 +2,191 @@
 
 ## Purpose
 
-This page reframes the Admissibility Wiki around the broader StegVerse claim:
+This page frames StegVerse as a governed transition ecosystem for inputs, proposed actions, desired outputs, consequence-bearing execution, and receipt-bound continuity.
+
+External frameworks are one input class. LLM outputs, human requests, repository tasks, SDK packets, Math Solver artifacts, runtime observations, memory candidates, and prior receipts are additional classes that enter the same high-level governance grammar.
+
+## Core claim
 
 ```text
-StegVerse is a governed transition ecosystem for inputs, proposed actions, desired outputs, and receipt-bound outputs.
+StegVerse governs how candidate information and proposed actions may become bounded transitions.
+It does not treat generation, display, validation, approval, execution, or recording as interchangeable states.
 ```
 
-External frameworks remain important, but they are one input class rather than the center of the system.
-
-## Core transition path
+## Complete transition path
 
 ```text
 input or request
+  -> entry surface
+  -> origin, identity and scope binding
   -> governed ingestion
   -> CGE fingerprinting
+  -> source, provenance and freshness evaluation
   -> GCAT / BCAT evaluation
   -> Transition Table standing
-  -> ALLOW / DENY / FAIL-CLOSED
+  -> candidate output or action proposal
+  -> commitment request when consequence is proposed
+  -> ALLOW / DENY / FAIL-CLOSED / QUARANTINE
+  -> disabled or separately authorized execution handoff
+  -> execution result, if any
   -> receipt_chain / STRP record
-  -> governed output
+  -> authenticated custody and reconstruction, if separately installed
 ```
 
-## Meaning
+## Ecosystem coordinates
 
-StegVerse does not merely review artifacts.
+| Coordinate group | Examples | Current relationship to this page |
+| --- | --- | --- |
+| Public entry | Ecosystem Chat, Math Solver, Governance Demo Suite, Applicability, proposal intake | Public, browser-local, fixture, or prepared entry surfaces |
+| Runtime production | LLM-adapter, core-node-runtime-demo, micro-node-runtime, external artifacts | Produces candidate packets or observations; not authority by itself |
+| Contract intake | StegVerse-SDK, manifests, intake and receipt schemas | Validates and routes artifacts without granting authority |
+| Formal evaluation | CGE, GCAT, BCAT, Transition Table, formalism-tests | Determines or proves bounded standing where executable evidence exists |
+| Commitment and execution | Commitment request, authority decision, executor handoff | Requires current standing and separately authorized consequence binding |
+| Continuity and custody | Receipts, STRP, replay, reconstruction, Master-Records | Preserves transition history; custody remains a separate authenticated event |
+| Public explanation | admissibility-wiki and Site | Explains status and topology without inheriting implementation or proof authority |
 
-StegVerse governs how artifacts become transitions.
+## Governed input classes
 
-That means the governance question is not only:
-
-```text
-What did an external framework produce?
-```
-
-The governance question becomes:
-
-```text
-Can this input, action, communication, or desired output become an admitted transition under current standing?
-```
-
-## Input classes
-
-The same transition path may govern multiple input classes:
+The registry includes:
 
 ```text
-external framework outputs
+external framework artifacts
 LLM or agent outputs
-human requests
-repo tasks
-SDK requests
-memory or KnowledgeVault entries
+human requests and corrections
+repository tasks and workflow artifacts
+SDK or API requests
+Math Solver source and mapping artifacts
+demo or applicability tester packets
 runtime observations
+memory or KnowledgeVault candidates
+external retrieval evidence
 receipt-chain continuations
 ```
 
-Each class may require different evidence, authority, boundary, privacy, or continuity constraints, but each must enter through governed transition handling before it can become consequence-bearing state.
+See [Governed Input Classes](./governed-input-classes.md) for entry coordinates, evidence ownership, and current posture.
 
-## Output classes
+## Governed output classes
 
-The same transition path also governs outputs:
+Possible bounded outputs include:
 
 ```text
-admitted response
-committed repo change
-receipt record
+informational response
+action proposal
+commitment request
+authority decision
+disabled execution handoff
+denial or fail-closed receipt
+quarantine result
+committed repository change under destination authority
+external communication under explicit authority
+memory mutation under current consent and policy
 STRP handoff
+receipt-chain continuation
 state-transition summary
-denial receipt
-fail-closed receipt
+authenticated custody record
 ```
 
-A desired output is not treated as admissible merely because a tool can produce it. It must remain governed until the point of commitment.
+See [Governed Output Classes](./governed-output-classes.md) for the required boundary at each stage.
+
+## Decision does not collapse consequence
+
+| State | What it means | What remains unproven |
+| --- | --- | --- |
+| Candidate generated | A system produced a possible result | Admissibility, authority, execution and custody |
+| Validated | Structure or contract passed a validator | Current standing and authority |
+| `ALLOW_INFORMATIONAL` | A bounded response may be returned | Authority to perform an action |
+| `ALLOW_COMMITMENT` | A proposed consequence may cross to an authorized executor | That execution occurred |
+| `DENY` | The transition is not allowed under the evaluated standing | Historical deletion or impossibility of later reconsideration |
+| `FAIL_CLOSED` | Required conditions are absent or invalid | Framework invalidity or permanent denial |
+| Executed | A separately authorized consequence occurred | Master-Records custody or current future authority |
+| Recorded | Authenticated custody and reconstruction conditions passed | Current admissibility for reuse |
 
 ## Relationship to external frameworks
 
-External frameworks are now presented as one input category:
-
 ```text
-external framework artifact -> governed ingestion -> admissibility path -> receipt-bound result
+external framework artifact
+  -> native claim and source preservation
+  -> governed ingestion
+  -> evidence classification
+  -> applicable shared test or crosswalk
+  -> commitment candidate when consequence is proposed
+  -> bounded decision and receipt
 ```
 
-This avoids over-centering the comparison surface and keeps the public claim focused on the ecosystem:
+A framework mention, source review, author comment, or compatibility report is not automatically comparative testing. Reproducible comparison requires common vectors, pinned versions, declared expectations, raw outputs, scoring, replay instructions, hashes, and independent reproduction.
+
+## Relationship to governed LLMs and reconstructive search
+
+A governed LLM participates as a reasoning and retrieval coordinate. Reconstructive search should establish what evidence state existed at an earlier time, what changed, and what remains historically reconstructable without treating the earlier result as current authority.
 
 ```text
-StegVerse can accept many kinds of inputs, evaluate transition standing, and return governed outputs with receipts.
+historically reconstructable != currently admissible
+receipt-backed != true
+replayable != reconstructable
+reconstructable != authenticated custody
 ```
 
-## Relationship to StegClaw
+## Relationship to repository work
 
-StegClaw provides the current working example of a governed tool/agent transition path:
+A repository task becomes consequence-bearing only after destination authority is established.
 
 ```text
-StegClaw task
-  -> standing envelope
-  -> ingestion candidate
-  -> outbound envelope
-  -> live integration manifest
-  -> target-side handoff
-  -> ecosystem verification
+task or patch proposal
+  -> repository handoff check
+  -> evidence and scope review
+  -> destination mutation authority
+  -> commit or fail-closed result
+  -> workflow receipt
 ```
 
-The generated StegClaw artifacts demonstrate how a tool or agent output can remain local-only, non-mutating, non-networked, and receipt-bound until admitted by target-side governance.
+A source repository cannot infer mutation authority over Site, Publisher, StegGuardian, Master-Records, or another destination merely because a propagation need is documented.
 
-## Relationship to STRP
+## Relationship to STRP and continuity
 
-STRP is the transition-record continuity layer for passing transition state between systems or entities.
-
-A governed output should carry enough final transition data for the next system to evaluate:
+STRP is a transition-record handoff layer. A useful record should preserve:
 
 ```text
-what was requested
-what was evaluated
-what was allowed or denied
-what hashes and receipts bind the transition
-what authority was or was not present
+transition identity
+origin and request
+input and evidence hashes
+policy and delegation references
+decision and validity window
+execution posture and result
+receipt chain
+custody and reconstruction posture
+```
+
+STRP transfer does not itself prove installation, acceptance, or current standing at the destination.
+
+## Current implementation posture
+
+```text
+public doctrine and registry pages: PRESENT
+fixture-first adapter and SDK paths: IMPLEMENTED IN SOURCE REPOSITORIES
+Math Solver and demo surfaces: PUBLIC CONCEPT / FIXTURE / BROWSER POSTURES
+Site live same-origin usage path: PREPARED_NOT_DEPLOYED
+live continuity-search service: EXTERNAL
+Master-Records custody: EXTERNAL
+external executor authority: EXTERNAL
+canonical workflow and Pages evidence: REPOSITORY-OWNED OBSERVATION GATES
 ```
 
 ## Boundary
 
-This page is a public framing document. It does not claim live connector installation, production mutation authority, canonical STRP admission, or external certification.
+```text
+Input registration != admissibility.
+Generation != validation.
+Validation != standing.
+Standing decision != execution.
+Execution != custody.
+Custody != current reuse authority.
+Receipt != truth.
+Public framing != proof authority.
+Queued propagation != completed downstream mutation.
+```
 
 ## Current status
 
 ```text
-GOVERNED_ECOSYSTEM_TRANSITION_FRAMING_PRESENT
+GOVERNED_ECOSYSTEM_TRANSITION_FRAMING_COMPLETE_WITH_EXTERNAL_GATES
 ```
