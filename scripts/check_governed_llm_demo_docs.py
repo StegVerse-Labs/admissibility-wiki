@@ -11,6 +11,7 @@ REQUIRED_FILES = (
     "ADMISSIBILITY_MIRROR_HANDOFF.md",
     "docs/governance/governed-llm-demo-overview.md",
     "docs/governance/governed-llm-demo-verification.md",
+    "docs/governance/governed-llm-activation-map.md",
 )
 
 REQUIRED_REFERENCES = {
@@ -24,10 +25,14 @@ REQUIRED_REFERENCES = {
         "docs/SITE_MIRROR_HANDOFF.md",
     ),
     "docs/governance/governed-llm-activation-map.md": (
-        "governed-llm-demo-overview.md",
         "fixture-first",
         "replay",
         "reconstruction",
+    ),
+    "docs/governance/governed-llm-demo-overview.md": (
+        "governed-llm-activation-map.md",
+        "fixture success != live provider governance",
+        "receipt handoff != Master-Records custody",
     ),
     "docs/governance/governed-llm-archive-handoff.md": (
         "docs/governance/governed-llm-demo-overview.md",
@@ -59,7 +64,7 @@ def main() -> int:
             print(f"GOVERNED LLM DEMO DOCS: FAIL - {failure}")
         return 1
 
-    print("GOVERNED LLM DEMO DOCS: PASS - demo pages and navigation references present")
+    print("GOVERNED LLM DEMO DOCS: PASS - demo pages and bidirectional topology references present")
     return 0
 
 
