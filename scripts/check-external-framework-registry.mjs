@@ -4,6 +4,7 @@ import fs from 'node:fs';
 const STATIC_REGISTRY_PATH = 'static/external-frameworks/external-framework-registry.v0.1.json';
 const DOCS_REGISTRY_PATH = 'docs/external-frameworks/index.json';
 const ASSOCIATIONS_PATH = 'static/external-frameworks/sidebar-page-associations.v1.json';
+const ARTIFACT_BINDINGS_PATH = 'static/external-frameworks/sidebar-framework-artifact-bindings.v1.json';
 const SIDEBARS_PATH = 'sidebars.js';
 
 const requiredTopLevel = [
@@ -50,6 +51,19 @@ function extractExternalFrameworkSidebarRoutes() {
   if (nextCategory < 0) fail('could not determine end of External Frameworks sidebar category');
   const block = text.slice(categoryStart, nextCategory);
   return [...block.matchAll(/'((?:external-frameworks)\/[^']+)'/g)].map(match => match[1]);
+}
+
+function validateDeclaredFileState(label, state, path, frameworkId) {
+  if (!allowedPresenceStates.has(state)) fail(`invalid ${label}_state for ${frameworkId}`);
+  const exists = typeof path === 'string' && path.length > 0 && fs.existsSync(path);
+  if (state === 'present') {
+    if (!path) fail(`${label} presence requires path: ${frameworkId}`);
+    if (!exists) fail(`${label} declared present but file is missing for ${frameworkId}: ${path}`);
+  }
+  if (state === 'missing_explicit') {
+    if (path && exists) fail(`${label} exists but is declared missing for ${frameworkId}: ${path}`);
+    if (path && !exists) fail(`${label} missing_explicit must use null path for ${frameworkId}`);
+  }
 }
 
 const registry = readJson(STATIC_REGISTRY_PATH);
@@ -103,6 +117,7 @@ for (let index = 0; index < sidebarRoutes.length; index += 1) {
 
 const routeIds = new Set();
 const frameworkIds = new Set();
+const frameworkAssociationEntries = [];
 let supportPages = 0;
 let frameworkPages = 0;
 for (const entry of associations.entries) {
@@ -117,6 +132,7 @@ for (const entry of associations.entries) {
   }
   if (entry.page_type !== 'framework') fail(`unsupported page_type for ${entry.sidebar_route}: ${entry.page_type}`);
   frameworkPages += 1;
+  frameworkAssociationEntries.push(entry);
   if (!entry.framework_id) fail(`framework page missing framework_id: ${entry.sidebar_route}`);
   if (frameworkIds.has(entry.framework_id)) fail(`duplicate associated framework_id: ${entry.framework_id}`);
   frameworkIds.add(entry.framework_id);
@@ -145,11 +161,45 @@ if (expectedCounts.sidebar_entries !== associations.entries.length) fail('associ
 if (expectedCounts.support_pages !== supportPages) fail('association support_pages count is stale');
 if (expectedCounts.framework_pages !== frameworkPages) fail('association framework_pages count is stale');
 
+const artifactBindings = readJson(ARTIFACT_BINDINGS_PATH);
+if (artifactBindings.schema !== 'external_framework_sidebar_artifact_bindings.v1') fail('unexpected artifact binding schema');
+if (artifactBindings.repository !== 'StegVerse-Labs/admissibility-wiki') fail('unexpected artifact binding repository');
+if (!Array.isArray(artifactBindings.entries)) fail('artifact binding entries must be an array');
+if (artifactBindings.framework_page_count !== frameworkPages) fail('artifact binding framework_page_count is stale');
+if (artifactBindings.entries.length !== frameworkAssociationEntries.length) {
+  fail(`framework association/artifact binding count mismatch: associations=${frameworkAssociationEntries.length}, bindings=${artifactBindings.entries.length}`);
+}
+
+const bindingIds = new Set();
+for (let index = 0; index < frameworkAssociationEntries.length; index += 1) {
+  const association = frameworkAssociationEntries[index];
+  const binding = artifactBindings.entries[index];
+  if (binding.framework_id !== association.framework_id) {
+    fail(`framework artifact binding order drift at index ${index}: association=${association.framework_id}, binding=${binding.framework_id}`);
+  }
+  if (bindingIds.has(binding.framework_id)) fail(`duplicate artifact binding framework_id: ${binding.framework_id}`);
+  bindingIds.add(binding.framework_id);
+  if (binding.page_path !== association.page_path) fail(`artifact binding page mismatch for ${binding.framework_id}`);
+  if (!fs.existsSync(binding.page_path)) fail(`artifact-bound page missing for ${binding.framework_id}: ${binding.page_path}`);
+
+  validateDeclaredFileState('manifest', binding.manifest_state, binding.manifest_path, binding.framework_id);
+  validateDeclaredFileState('report', binding.report_state, binding.report_path, binding.framework_id);
+
+  if (!binding.evidence_class_source || !fs.existsSync(binding.evidence_class_source)) {
+    fail(`missing evidence class source for ${binding.framework_id}`);
+  }
+  if (!binding.page_completeness_source || !fs.existsSync(binding.page_completeness_source)) {
+    fail(`missing page completeness source for ${binding.framework_id}`);
+  }
+}
+
 console.log(`OK: ${STATIC_REGISTRY_PATH}`);
 console.log(`OK: ${ASSOCIATIONS_PATH}`);
+console.log(`OK: ${ARTIFACT_BINDINGS_PATH}`);
 console.log(`external_framework_static_registry_records=${registry.records.length}`);
 console.log(`external_framework_docs_registry_records=${docsRegistry.entries.length}`);
 console.log(`external_framework_sidebar_entries=${sidebarRoutes.length}`);
 console.log(`external_framework_sidebar_framework_pages=${frameworkPages}`);
 console.log(`external_framework_sidebar_support_pages=${supportPages}`);
 console.log('silent_sidebar_add_remove_change_guard=ENFORCED');
+console.log('manifest_report_artifact_parity_guard=ENFORCED');
