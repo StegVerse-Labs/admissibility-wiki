@@ -9,6 +9,15 @@ ROOT = Path(__file__).resolve().parents[1]
 STATUS = ROOT / "static/external-frameworks/policy-identity-provenance-page-remediation.v1.json"
 
 
+def has_any_heading(text: str, aliases: list[str]) -> bool:
+    return any(f"## {alias}" in text for alias in aliases)
+
+
+def has_any_marker(text: str, markers: list[str]) -> bool:
+    lowered = text.lower()
+    return any(marker.lower() in lowered for marker in markers)
+
+
 def main() -> int:
     failures: list[str] = []
     if not STATUS.exists():
@@ -18,13 +27,15 @@ def main() -> int:
 
     data = json.loads(STATUS.read_text(encoding="utf-8"))
     entries = data.get("entries", [])
-    required_sections = data.get("required_sections", [])
+    required_groups = data.get("required_section_groups", [])
     counts = data.get("counts", {})
 
     if data.get("schema") != "external_framework_page_remediation.v1":
         failures.append("unexpected schema")
     if len(entries) != counts.get("cohort_pages"):
         failures.append("cohort page count is stale")
+    if not required_groups or not all(isinstance(group, list) and group for group in required_groups):
+        failures.append("required_section_groups must be a non-empty list of alias groups")
 
     complete = 0
     partial = 0
@@ -47,15 +58,25 @@ def main() -> int:
         text = page.read_text(encoding="utf-8")
         if completeness == "COMPLETE_WITH_EXTERNAL_GATES":
             complete += 1
-            for section in required_sections:
-                if f"## {section}" not in text:
-                    failures.append(f"missing required section for {framework_id}: {section}")
-            if "evidence_class: SOURCE_REVIEWED" not in text:
+            for aliases in required_groups:
+                if not has_any_heading(text, aliases):
+                    failures.append(
+                        f"missing required section group for {framework_id}: " + " | ".join(aliases)
+                    )
+            if not has_any_marker(text, ["evidence_class: SOURCE_REVIEWED", "Evidence class: SOURCE_REVIEWED"]):
                 failures.append(f"missing SOURCE_REVIEWED boundary: {framework_id}")
-            if "comparative_testing_claim_allowed: false" not in text:
+            if not has_any_marker(
+                text,
+                ["comparative_testing_claim_allowed: false", "Comparative testing claim allowed: false"],
+            ):
                 failures.append(f"missing comparative-claim boundary: {framework_id}")
-            if "execution_authority_claim_allowed: false" not in text:
+            if not has_any_marker(
+                text,
+                ["execution_authority_claim_allowed: false", "Execution authority claim allowed: false"],
+            ):
                 failures.append(f"missing execution-authority boundary: {framework_id}")
+            if "Publication does not create standing" not in text:
+                failures.append(f"missing publication-standing boundary: {framework_id}")
         elif completeness == "PARTIAL":
             partial += 1
         else:
@@ -67,6 +88,8 @@ def main() -> int:
         failures.append("partial count is stale")
     if complete + partial != len(entries):
         failures.append("completeness totals do not cover cohort")
+    if counts.get("partial") == 0 and complete != len(entries):
+        failures.append("closed cohort must classify every page COMPLETE_WITH_EXTERNAL_GATES")
 
     print("EXTERNAL FRAMEWORK PAGE REMEDIATION:", "FAIL" if failures else "PASS")
     print(f"cohort_pages={len(entries)}")
