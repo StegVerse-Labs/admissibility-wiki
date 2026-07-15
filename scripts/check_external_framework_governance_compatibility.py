@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 STANDARD = ROOT / "static" / "external-frameworks" / "compatibility-testing-standard.v1.json"
 STATUS = ROOT / "static" / "external-frameworks" / "governance-compatibility-testing-status.v1.json"
 UNION = ROOT / "static" / "external-frameworks" / "canonical-union-inventory.v1.json"
+OPA_PIPELINE = ROOT / "scripts" / "summarize_opa_evidence_pipeline.py"
 CONTRACTS = {
     "open-policy-agent": {
         "fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "opa-governance-compatibility-cases.v1.json",
@@ -91,6 +92,18 @@ def main() -> None:
             if case.get("expected_stegverse_result") not in {"ALLOW", "DENY", "ESCALATE", "FAIL_CLOSED"}:
                 fail(f"invalid expected result: {framework_id}/{case.get('case_id')}")
 
+    if not OPA_PIPELINE.exists():
+        fail("OPA evidence pipeline summarizer missing")
+    opa_pipeline_text = OPA_PIPELINE.read_text(encoding="utf-8")
+    for marker in (
+        "run_opa_governance_compatibility.py",
+        "opa-stegverse-governance-compatibility-receipt.json",
+        "governance_compatibility_observed",
+        "compatibility_receipt_grants_execution_authority",
+    ):
+        if marker not in opa_pipeline_text:
+            fail(f"OPA execution binding missing marker: {marker}")
+
     opa = records_by_id["open-policy-agent"]
     if opa.get("native_execution_observed") is not True or opa.get("fresh_runner_replay_observed") is not True:
         fail("OPA native execution and fresh-runner replay must remain observed")
@@ -123,6 +136,7 @@ def main() -> None:
     print("canonical_records=38")
     print("contracts_authored=3")
     print("compatibility_observed=0")
+    print("opa_execution_binding=installed_pending_observation")
     print("opa_case_families=6")
     print("cedar_case_families=6")
     print("spiffe_spire_case_families=6")
