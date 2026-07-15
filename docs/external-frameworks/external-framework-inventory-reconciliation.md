@@ -6,25 +6,45 @@ title: External Framework Inventory Reconciliation
 
 ## Purpose
 
-This page distinguishes machine-readable registry entries, framework-specific public pages, internal ecosystem records, and support/audit pages in the External Frameworks section.
+This page records the canonical relationship among external-framework records, internal ecosystem records stored in the same section, public sidebar pages, manifests, compatibility reports, and legacy compatibility indexes.
 
-A cohort count is not the repository-wide framework count, and a record stored in this section is not necessarily an external framework.
+A cohort count is not a repository-wide framework count. A record stored under `external-frameworks` is not necessarily an external framework.
+
+## Canonical inventory posture
+
+```text
+canonical registry: docs/external-frameworks/index.json
+canonical union inventory: static/external-frameworks/canonical-union-inventory.v1.json
+sidebar associations: static/external-frameworks/sidebar-page-associations.v1.json
+artifact bindings: static/external-frameworks/sidebar-framework-artifact-bindings.v1.json
+navigation dispositions: static/external-frameworks/registry-navigation-dispositions.v1.json
+legacy compatibility index: static/external-frameworks/external-framework-registry.v0.1.json
+```
+
+The docs registry and canonical union inventory define the complete 38-record scope. The older static registry remains a compatibility index and must not be treated as a second canonical inventory.
 
 ## Current counts
 
 ```text
-machine-readable docs registry entries: 38
-machine-readable static registry entries: 16
-framework-specific pages in the External Frameworks sidebar: 26
-support, audit, intake, benchmark, and governance pages in the sidebar: 24
+canonical records: 38
+actual external frameworks or conventions: 36
+internal ecosystem records: 2
+public sidebar framework pages: 26
+explicitly non-public external records: 10
+internal records excluded from framework navigation: 2
+support, audit, intake, benchmark, and governance pages: 24
 total External Frameworks sidebar pages: 50
-distinct records across registry and sidebar: 38
-actual external-framework or external-convention records: 36
-internal ecosystem records stored in the inventory: 2
-records explicitly classified or dispositioned: 38
+navigated manifests present: 26 of 26
+navigated compatibility reports present: 26 of 26
+unclassified records: 0
 ```
 
-The 38-record union remains the reconciliation scope. The correct external-framework count is 36 because `Admissible Existence Seed Cycle` and `Decision Authority Compatibility` are internal ecosystem records.
+The two internal records are:
+
+```text
+Admissible Existence Seed Cycle
+Decision Authority Compatibility
+```
 
 ## Sidebar association enforcement
 
@@ -34,7 +54,7 @@ Every page in the External Frameworks sidebar is represented in:
 static/external-frameworks/sidebar-page-associations.v1.json
 ```
 
-The validator compares the sidebar and association artifact bidirectionally. A one-sided addition, removal, reordering, path change, page deletion, duplicate ID, or registry-state change fails validation.
+The validator compares sidebar order and association order bidirectionally. A one-sided addition, removal, reordering, path change, page deletion, duplicate ID, or declared registry-state change fails validation.
 
 ## Framework artifact binding enforcement
 
@@ -57,96 +77,69 @@ evidence_class_source
 page_completeness_source
 ```
 
-Current artifact coverage:
+Current state:
 
 ```text
 framework pages: 26
 manifest and report present: 26
 manifest and report missing_explicit: 0
-undeclared manifest/report states: 0
+undeclared artifact states: 0
 ```
 
-All 26 navigated framework pages now have a manifest and schema-0.7 compatibility report. Artifact presence proves inventory consistency only. The reports remain evidence-bounded and do not create certification, compatibility, standing, admissibility, or execution authority.
+Manifest or report appearance and disappearance are both guarded. A new artifact requires its binding to change to `present`; a removed artifact requires an explicit state change and otherwise fails validation.
 
-The enforced relationship is:
+## Navigation disposition enforcement
+
+Every canonical registry entry must be exactly one of:
 
 ```text
-sidebar framework page
-        <-> page association
-        <-> docs registry
-        <-> static registry state
-        <-> manifest
-        <-> compatibility report
-        <-> evidence-class source
-        <-> page-completeness source
+public_sidebar
+non_public_explicit
+internal_record
 ```
 
-## Registry coverage
-
-All 26 framework-specific sidebar pages now have matching entries in `docs/external-frameworks/index.json`.
-
-The docs registry also retains 12 records that are not currently navigated as framework-specific sidebar pages:
+The 12 records not represented as framework-specific sidebar pages are recorded in:
 
 ```text
-AAR
-MITRE ATLAS
-OWASP Top 10 for LLM Applications
-Agent Governance Playbook
-Emergency Stop Convention
-NIST AI RMF
-ISO/IEC 42001
-EU AI Act
-Policy Cards
-Runtime Governance for AI Agents
-Admissible Existence Seed Cycle — internal record
-Decision Authority Compatibility — internal record
+static/external-frameworks/registry-navigation-dispositions.v1.json
 ```
 
-Registry presence does not guarantee public navigation coverage.
-
-## Static-registry migration gap
-
-Eight navigated framework pages are currently represented in both machine-readable registries:
+Their disposition is:
 
 ```text
-GLM
-EVIDE
-Morrison Runtime
-Model Context Protocol
-Agent2Agent Protocol
-Guardrails AI
-Llama Guard
-NeMo Guardrails
+10 external records -> non_public_explicit
+2 internal ecosystem records -> internal_record
 ```
 
-The remaining 18 navigated framework pages are complete in the docs registry, page, manifest, and report layers but still declare `static_registry_state: missing_explicit`:
+A canonical registry record may not silently disappear from navigation. It must either remain sidebar-bound or receive an explicit disposition with a reason and page path.
+
+## Canonical union inventory
+
+The normalized union inventory records, for all 38 records:
 
 ```text
-ASRO
-DecisionAssure
-MindForge
-CARE Runtime
-KPT
-Open Policy Agent
-Cedar Policy
-OSCAL
-SPIFFE/SPIRE
-W3C Verifiable Credentials
-in-toto
-SLSA
-Sigstore
-OpenID Connect
-OAuth 2.0
-W3C Decentralized Identifiers
-OpenLineage
-W3C PROV
+record_id
+record_type
+external_framework: true | false
+navigation_state
+page-path convention or explicit exception
+manifest-path convention
+compatibility-report-path convention
 ```
 
-This gap is explicit and guarded. Adding or removing a static-registry record without changing the corresponding sidebar association fails validation.
+The inventory uses conventions rather than duplicating every full path:
 
-## Evidence-classification closure
+```text
+page: docs/external-frameworks/{page_slug}.md
+manifest: docs/external-frameworks/{record_id}.json
+report: docs/external-frameworks/reports/{record_id}.compatibility.json
+```
 
-All 38 records have either an explicit external-framework evidence classification or an internal-record disposition.
+Only records whose page slug differs from the record ID declare an exception. This reduces path-copy drift.
+
+## Evidence posture
+
+All 38 records have either an external-framework evidence class or an internal-record disposition:
 
 ```text
 external records classified: 36
@@ -154,38 +147,17 @@ internal records dispositioned: 2
 unclassified records: 0
 ```
 
-## Reconciliation requirements
+Manifest and report presence does not upgrade evidence strength. Most framework records remain `SOURCE_REVIEWED`; comparative claims remain prohibited unless raw outputs, timestamps, runtime configuration, pinned source versions or hashes, replay commands, expected outcomes, and independent reproduction are all present.
 
-A complete inventory requires, for every distinct record:
-
-```text
-stable framework_id or record_id
-record_type
-external_framework: true | false
-public page path
-machine-readable manifest path
-source posture
-current evidence class or internal evidence disposition
-page completeness class
-generated report path
-sidebar/navigation state
-validator coverage
-non-claims and authority boundary
-```
-
-Missing fields must fail closed rather than causing a record to disappear from reported totals.
-
-## Next actions
+## Remaining reconciliation work
 
 ```text
-1. Add the 18 missing static-registry records for navigated framework pages.
-2. Add sidebar coverage or explicit non-public status for the 12 docs-registry-only records.
-3. Add record_type and external_framework fields to every registry entry.
-4. Generate one inventory artifact from the union of registries, manifests, reports, and sidebar paths.
-5. Validate one-to-one record_id, page, manifest, report, and navigation coverage.
-6. Recalculate section completion against 36 external records plus 2 internal records.
-7. Remediate PARTIAL framework pages to the required-section standard.
-8. Regenerate evaluation results and generated page-status blocks under schema 0.7.
+1. Validate the canonical union inventory directly against the docs registry, sidebar associations, navigation dispositions, manifests, and reports.
+2. Migrate or retire the legacy 16-record static compatibility index without creating a second canonical source.
+3. Regenerate evaluation-results and generated page-status blocks under report schema 0.7.
+4. Remediate short PARTIAL framework pages to the required-section standard.
+5. Observe the single canonical workflow and repair only directly observed failures.
+6. Recalculate full section-completeness status after generated-page synchronization.
 ```
 
 ## Boundary
@@ -197,5 +169,6 @@ sidebar count != machine-readable coverage
 inventory record != external framework
 page visibility != evidence completeness
 manifest/report presence != compatibility
+source review != reproducible comparison
 registry inclusion != certification or execution authority
 ```
