@@ -9,9 +9,20 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "static" / "glossary" / "glossary-registry.v1.json"
 INDEX = ROOT / "docs" / "glossary" / "index.md"
 
+SECTION_ALIASES = {
+    "terminology-reconciliation": {
+        "equivalent_terms": ["## Equivalent Terms", "## Relationship Classes"],
+        "related_terms": ["## Related Terms", "## Relationship Classes"],
+    }
+}
+
 
 def fail(message: str) -> None:
     raise SystemExit(f"GLOSSARY CONSISTENCY: FAIL - {message}")
+
+
+def has_any(text: str, markers: list[str]) -> bool:
+    return any(marker in text for marker in markers)
 
 
 def main() -> None:
@@ -83,10 +94,14 @@ def main() -> None:
             fail(f"page title mismatch for {term_id}")
         if "## Definition" not in text:
             fail(f"missing Definition section for {term_id}")
-        if "## Equivalent Terms" not in text:
-            fail(f"missing Equivalent Terms section for {term_id}")
-        if "## Related Terms" not in text:
-            fail(f"missing Related Terms section for {term_id}")
+
+        aliases = SECTION_ALIASES.get(term_id, {})
+        equivalent_markers = aliases.get("equivalent_terms", ["## Equivalent Terms"])
+        related_markers = aliases.get("related_terms", ["## Related Terms"])
+        if not has_any(text, equivalent_markers):
+            fail(f"missing Equivalent Terms semantic section for {term_id}")
+        if not has_any(text, related_markers):
+            fail(f"missing Related Terms semantic section for {term_id}")
         if name not in index_text:
             fail(f"index missing glossary entry: {name}")
 
