@@ -6,11 +6,11 @@
   "classification": "IN_PROGRESS",
   "counts": {
     "canonical_records": 38,
-    "contract_authored": 4,
+    "contract_authored": 5,
     "governance_compatibility_observed": 0,
     "fresh_runner_reproduced": 0,
     "independent_implementation_reproduced": 0,
-    "not_started": 34
+    "not_started": 33
   },
   "records": [
     {
@@ -65,11 +65,23 @@
       "stegverse_governance_compatibility_observed": false,
       "result_receipt": "reports/external-frameworks/w3c-vc/w3c-vc-stegverse-governance-compatibility-receipt.json",
       "next_action": "Attach a pinned credential, presentation, proof suite, issuer, resolver, schema, and status packet; execute verification and replay before promoting bounded compatibility."
+    },
+    {
+      "framework_id": "in-toto",
+      "state": "CONTRACT_AUTHORED_RUNTIME_PENDING",
+      "fixture": "tests/fixtures/external-frameworks/in-toto-governance-compatibility-cases.v1.json",
+      "runner": "scripts/run_in_toto_governance_compatibility.py",
+      "case_count": 6,
+      "native_execution_observed": false,
+      "source_reviewed": true,
+      "fresh_runner_replay_observed": false,
+      "stegverse_governance_compatibility_observed": false,
+      "result_receipt": "reports/external-frameworks/in-toto/in-toto-stegverse-governance-compatibility-receipt.json",
+      "next_action": "Attach a pinned in-toto implementation, signed layout and link bundle, keys, raw verifier output, and fresh-runner replay before promoting bounded compatibility."
     }
   ],
   "default_unlisted_state": "NOT_STARTED",
   "next_framework_order": [
-    "in-toto",
     "slsa",
     "sigstore",
     "openid-connect",
@@ -90,6 +102,7 @@
     "framework_allow_means_stegverse_allow": false,
     "identity_verification_means_action_authority": false,
     "credential_verification_means_claim_truth_or_action_authority": false,
+    "provenance_verification_means_deployment_authority": false,
     "fresh_runner_replay_means_independent_implementation": false,
     "compatibility_receipt_grants_execution_authority": false,
     "general_compatibility_claim_allowed": false
