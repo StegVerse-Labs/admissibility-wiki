@@ -27,6 +27,7 @@ PEER_PRESERVATION_CHECK = ROOT / "scripts" / "check_peer_preservation_claims.py"
 ROBOTIC_LAW_ENFORCEMENT_CHECK = ROOT / "scripts" / "check_robotic_law_enforcement_admissibility.py"
 GLOSSARY_CONSISTENCY_CHECK = ROOT / "scripts" / "check_glossary_consistency.py"
 ACTIVATION_SECTION_CHECK = ROOT / "scripts" / "check_activation_section.py"
+RESEARCH_SOCIAL_STEGVERSE_CHECK = ROOT / "scripts" / "check_research_social_stegverse_sections.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -85,6 +86,7 @@ def main() -> int:
     run_check(ROBOTIC_LAW_ENFORCEMENT_CHECK, "robotic law-enforcement deployment admissibility", failures)
     run_check(GLOSSARY_CONSISTENCY_CHECK, "glossary consistency", failures)
     run_check(ACTIVATION_SECTION_CHECK, "activation section", failures)
+    run_check(RESEARCH_SOCIAL_STEGVERSE_CHECK, "research social and StegVerse sections", failures)
 
     if failures:
         print("ADMISSIBILITY AUTOMATION HANDOFF: FAIL")
