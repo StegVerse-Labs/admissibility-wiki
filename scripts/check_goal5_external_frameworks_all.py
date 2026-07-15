@@ -15,6 +15,8 @@ CHECKS = [
     "scripts/check_morrison_runtime_benchmark_fixtures.py",
     "scripts/check_morrison_validation_table_visibility.py",
     "scripts/check_external_framework_reports.py",
+    "scripts/check_external_framework_generated_surfaces.py",
+    "scripts/check_external_framework_page_remediation.py",
     "scripts/check_external_framework_benchmark_mappings.py",
     "scripts/check_external_framework_benchmark_fixtures.py",
     "scripts/check_judgment_architecture_commitment_fixtures.py",
