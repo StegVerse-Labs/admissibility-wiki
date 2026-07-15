@@ -19,6 +19,18 @@ def fail(message: str) -> None:
     raise SystemExit(f"CANONICAL WORKFLOW OBSERVATION HISTORY: FAIL - {message}")
 
 
+def snapshot(path: Path) -> bytes | None:
+    return path.read_bytes() if path.exists() else None
+
+
+def restore(path: Path, prior: bytes | None) -> None:
+    if prior is None:
+        path.unlink(missing_ok=True)
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(prior)
+
+
 def main() -> int:
     if not RECONCILER.exists():
         fail("reconciler is missing")
@@ -53,6 +65,7 @@ def main() -> int:
         ],
     }
 
+    prior = {path: snapshot(path) for path in (CURRENT, HISTORY, HEALTH, FIXTURE)}
     CURRENT.parent.mkdir(parents=True, exist_ok=True)
     CURRENT.write_text(json.dumps(current_payload, indent=2) + "\n", encoding="utf-8")
     FIXTURE.parent.mkdir(parents=True, exist_ok=True)
@@ -104,13 +117,11 @@ def main() -> int:
         if health.get("manual_tasks_required") != [] or health.get("user_action_required") is not False:
             fail("health summary violates no-manual boundary")
 
-        print("CANONICAL WORKFLOW OBSERVATION HISTORY: PASS - entries=2 health=HEALTHY manual_tasks=0")
+        print("CANONICAL WORKFLOW OBSERVATION HISTORY: PASS - entries=2 health=HEALTHY manual_tasks=0 preserved_run_bound_artifacts=true")
         return 0
     finally:
-        CURRENT.unlink(missing_ok=True)
-        HISTORY.unlink(missing_ok=True)
-        HEALTH.unlink(missing_ok=True)
-        FIXTURE.unlink(missing_ok=True)
+        for path, content in prior.items():
+            restore(path, content)
 
 
 if __name__ == "__main__":
