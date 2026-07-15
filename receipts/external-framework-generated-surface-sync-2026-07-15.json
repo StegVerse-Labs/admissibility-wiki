@@ -1,0 +1,66 @@
+{
+  "artifact_type": "external_framework_generated_surface_sync_receipt",
+  "schema_version": "1.0",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "recorded_date": "2026-07-15",
+  "scope": {
+    "canonical_registry_records": 38,
+    "external_framework_records": 36,
+    "internal_ecosystem_records": 2,
+    "evaluation_result_rows": 38,
+    "independently_reproducible_comparative_evaluations": 0
+  },
+  "completed_changes": [
+    {
+      "commit": "a417be82df3c5cb5b1bc9cfc5cf992684f9ba1d9",
+      "artifact": "scripts/generate_external_framework_reports.py",
+      "result": "schema-0.7 regeneration preserves audited evidence-class exceptions"
+    },
+    {
+      "commit": "7cd83339b533036dd23487c7487e68986d656280",
+      "artifact": "docs/external-frameworks/evaluation-results.md",
+      "result": "committed evaluation table synchronized to all 38 canonical records"
+    },
+    {
+      "commit": "502f50af63ce632af39081a1057132bcdba53971",
+      "artifact": "scripts/generate_external_framework_page_status.py",
+      "result": "generated status exposes evidence class, reproducibility, missing gates, comparative-claim state, and next action"
+    },
+    {
+      "commit": "8003eb5dd416170d479c6e3bf9140df6a9c43467",
+      "artifact": "scripts/check_external_framework_generated_surfaces.py",
+      "result": "generated evaluation and page-status coverage checker installed"
+    }
+  ],
+  "audited_evidence_class_exceptions": {
+    "decisionassure": "MENTION_ONLY",
+    "mindforge": "MENTION_ONLY",
+    "asro": "ARTIFACT_REVIEWED",
+    "care-runtime": "MENTION_ONLY",
+    "kpt": "AUTHOR_COMMENTARY",
+    "admissible-existence-seed-cycle": "ARTIFACT_REVIEWED",
+    "decision-authority": "ARTIFACT_REVIEWED",
+    "morrison-runtime": "PARAMETERIZED_OBSERVATION"
+  },
+  "global_boundaries": {
+    "comparative_testing_claim_allowed": false,
+    "execution_authority_claim": false,
+    "certification_claim": false,
+    "endorsement_claim": false,
+    "generated_output_is_verified_truth": false
+  },
+  "remaining_work": [
+    "observe canonical workflow regeneration and validation directly",
+    "repair any generated-surface failures found in observed workflow evidence",
+    "remediate PARTIAL framework pages to the full required-section standard",
+    "recalculate the wiki section-by-section completeness audit",
+    "continue Formalisms, Glossary, Activation, Research, Social, StegVerse, navigation, and cross-repository audits"
+  ],
+  "workflow_observation": {
+    "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "direct_pass_observed_for_this_change_set": false,
+    "pass_claimed": false,
+    "manual_user_action_required": false
+  },
+  "authority_boundary": "This receipt records generated-surface synchronization only. It does not create compatibility, certification, endorsement, admissibility, standing, release authority, or execution authority."
+}
