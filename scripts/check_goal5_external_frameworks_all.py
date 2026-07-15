@@ -19,6 +19,7 @@ CHECKS = [
     "scripts/check_external_framework_page_remediation.py",
     "scripts/check_external_framework_priority_page_remediation.py",
     "scripts/check_external_framework_legacy_priority_page_remediation.py",
+    "scripts/check_all_navigated_external_framework_page_completeness.py",
     "scripts/check_external_framework_benchmark_mappings.py",
     "scripts/check_external_framework_benchmark_fixtures.py",
     "scripts/check_judgment_architecture_commitment_fixtures.py",
