@@ -23,6 +23,7 @@ CONTRACTS = {
     "openlineage": ("openlineage", "openlineage.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "w3c-prov": ("w3c-prov", "w3c-prov.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "model-context-protocol": ("model-context-protocol", "model-context-protocol.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "agent2agent-protocol": ("agent2agent-protocol", "agent2agent-protocol.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 def fail(message: str) -> None:
@@ -60,17 +61,17 @@ def main() -> None:
         if marker not in opa_text: fail(f"OPA execution binding missing marker: {marker}")
     if records["open-policy-agent"].get("native_execution_observed") is not True or records["open-policy-agent"].get("fresh_runner_replay_observed") is not True: fail("OPA execution and fresh-runner replay must remain observed")
     if records["cedar-policy"].get("binary_build_observed") is not True or records["cedar-policy"].get("native_execution_observed") is not False: fail("Cedar must remain build-observed and runtime-unobserved")
-    for framework_id in ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol"):
+    for framework_id in ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol"):
         if records[framework_id].get("source_reviewed") is not True or records[framework_id].get("native_execution_observed") is not False: fail(f"{framework_id} must remain source-reviewed and runtime-unobserved")
-    expected_counts={"canonical_records":38,"contract_authored":14,"governance_compatibility_observed":0,"fresh_runner_reproduced":0,"independent_implementation_reproduced":0,"not_started":24}
+    expected_counts={"canonical_records":38,"contract_authored":15,"governance_compatibility_observed":0,"fresh_runner_reproduced":0,"independent_implementation_reproduced":0,"not_started":23}
     for key,expected in expected_counts.items():
         if status.get("counts",{}).get(key)!=expected: fail(f"status count stale: {key}={status.get('counts',{}).get(key)} expected={expected}")
     joined=json.dumps(standard).lower()+json.dumps(status).lower()
-    for phrase in ["does not certify","execution authority","general compatibility","policy evidence","identity verification","credential verification","provenance verification","signature verification","authentication","token acceptance","did control","control evidence","lineage visibility","provenance representation","tool discovery"]:
+    for phrase in ["does not certify","execution authority","general compatibility","policy evidence","identity verification","credential verification","provenance verification","signature verification","authentication","token acceptance","did control","control evidence","lineage visibility","provenance representation","tool discovery","task completion"]:
         if phrase not in joined: fail(f"missing boundary phrase: {phrase}")
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=14")
+    print("contracts_authored=15")
     print("compatibility_observed=0")
     print("opa_execution_binding=installed_pending_observation")
     for framework_id in CONTRACTS: print(f"{framework_id}_case_families=6")
