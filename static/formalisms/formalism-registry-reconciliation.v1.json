@@ -1,0 +1,27 @@
+{
+  "schema": "admissibility_wiki_formalism_registry_reconciliation.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "base_registry": "static/formalisms/formalism-registry.v0.1.json",
+  "purpose": "Apply explicit, reviewable corrections where a versioned base-registry record has become stale relative to an installed public-safe page and confirmed source boundary.",
+  "overrides": [
+    {
+      "formalism_id": "ae.GCAT-BCAT",
+      "reason": "The base registry still says intake and pending detail page, while the installed page records the canonical source repository, source_available state, initial public-safe canonical detail page, publication family, source boundary, and pending source-confirmed proof and validation extraction.",
+      "effective_state": "crosswalked",
+      "effective_purpose": "Mirror public-safe metadata for the GCAT-BCAT formalism family and connect governance-centered and boundary-centered testing, authority class, policy reference, evidence posture, review posture, commit-time validity, receipts, publication artifacts, and external crosswalk targets without treating the wiki or Publisher as canonical source authority.",
+      "effective_transition_relationship": "initial public-safe canonical detail page and source boundary installed; publication inventory connected; mathematical, proof, validation, and reference-implementation extraction remain pending source confirmation",
+      "effective_evidence_posture": "public_safe_detail_page_available_private_source_boundary_preserved_publication_artifacts_non_authoritative",
+      "effective_validation_posture": "detail_page_and_publication_inventory_installed_pending_source_confirmed_proofs_tests_fixtures_expected_outcomes_and_reference_implementations",
+      "page_path": "docs/formalisms/governance-centered-boundary-centered-admissibility-testing.md",
+      "authority_boundary": "This override corrects mirror metadata only. It does not make the wiki or Publisher the formalism source, prove GCAT-BCAT, validate the formalism, grant execution authority, or create admissibility standing."
+    }
+  ],
+  "counts": {
+    "base_records": 15,
+    "overrides": 1,
+    "effective_intake": 0,
+    "effective_mirrored": 14,
+    "effective_crosswalked": 1
+  },
+  "next_action": "Use the effective registry state for completeness and publication audits while preserving the v0.1 base record as historical provenance."
+}
