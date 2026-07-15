@@ -8,7 +8,7 @@ title: External Framework Evidence Classification Status
 
 This page records the current evidence strength of registered external frameworks using the fail-closed classification implemented by the compatibility-report generator.
 
-A framework's inclusion, source citation, crosswalk, implementation reference, fixture, or author commentary does not by itself constitute comparative testing.
+A framework's inclusion, source citation, crosswalk, or author commentary does not constitute comparative testing.
 
 ## Evidence classes
 
@@ -40,7 +40,7 @@ independent reproduction result
 
 Missing fields fail closed and must be displayed rather than inferred.
 
-## Audited framework cohorts
+## Audited priority cohorts
 
 | Framework | Current evidence class | Public source | Implementation or artifact package | Parameterized observation | Independent reproduction | Comparative claim allowed |
 |---|---|---:|---:|---:|---:|---:|
@@ -49,55 +49,56 @@ Missing fields fail closed and must be displayed rather than inferred.
 | DecisionAssure | `MENTION_ONLY` | No public canonical source attached | Required | No public result | No | No |
 | MindForge | `MENTION_ONLY` | No public canonical source attached | Required | No public result | No | No |
 | Morrison Runtime | `PARAMETERIZED_OBSERVATION` | Yes | Public surface and repository references | Yes, bounded cases | No | No |
-| ASRO | `ARTIFACT_REVIEWED` | Yes | Public repository and non-authorizing fixture reference | No reproduced run | No | No |
+| ASRO | `ARTIFACT_REVIEWED` | Yes | Repository reference and non-authorizing fixture | No reproduced run | No | No |
 | AAR | `SOURCE_REVIEWED` | Yes | Not attached | No | No | No |
-| MITRE ATLAS | `SOURCE_REVIEWED` | Yes | External knowledge base; no test artifact attached | No | No | No |
+| MITRE ATLAS | `SOURCE_REVIEWED` | Yes | External knowledge base | Not applicable as runtime result | No | No |
+| OWASP Top 10 for LLM Applications | `SOURCE_REVIEWED` | Yes | External guidance; no implementation package attached | No | No | No |
+| NIST AI RMF | `SOURCE_REVIEWED` | Yes | Voluntary guidance; no runtime implementation | No | No | No |
+| ISO/IEC 42001 | `SOURCE_REVIEWED` | Yes | Management-system standard; no runtime implementation | No | No | No |
+| EU AI Act | `SOURCE_REVIEWED` | Yes | Legal text; no runtime implementation | No | No | No |
+| Policy Cards | `SOURCE_REVIEWED` | Yes | Paper only; schema or implementation package not attached | No | No | No |
+| Runtime Governance for AI Agents | `SOURCE_REVIEWED` | Yes | Paper only; path-policy implementation not attached | No | No | No |
 
-## Framework-specific findings
+## Cohort findings
 
-### GLM
+### Source-reviewed crosswalks
 
-Official source and vocabulary crosswalk are present. No implementation package, parser fixture, raw output, or independent reproduction is attached.
-
-```text
-evidence_class: SOURCE_REVIEWED
-comparative_testing_claim_allowed: false
-```
-
-### EVIDE
-
-Official source and reconstructability crosswalk are present. No deposited-record fixture, raw reconstruction output, or independent reproduction is attached.
+GLM, EVIDE, AAR, MITRE ATLAS, OWASP Top 10 for LLM Applications, NIST AI RMF, ISO/IEC 42001, the EU AI Act, Policy Cards, and Runtime Governance for AI Agents have public source material and StegVerse crosswalks. Their pages do not attach sufficient implementation, observed-output, replay, or independent-reproduction evidence to support stronger classifications.
 
 ```text
 evidence_class: SOURCE_REVIEWED
+crosswalk_available: true
+implementation_reviewed: false unless separately stated
+reproduced: false
 comparative_testing_claim_allowed: false
 ```
 
-### DecisionAssure
+### ASRO
 
-No public canonical source or authorized artifact package is attached to the public page.
+ASRO has a public source, repository reference, and non-authorizing Commitment Candidate fixture. The fixture supports artifact review but does not include a pinned release, raw attestation output, verifier payload, timestamped execution, replay command, or independent reproduction.
+
+```text
+evidence_class: ARTIFACT_REVIEWED
+reproduced: false
+comparative_testing_claim_allowed: false
+```
+
+### DecisionAssure and MindForge
+
+Both remain intake-only records because no public canonical source or authorized artifact package is attached to their pages.
 
 ```text
 evidence_class: MENTION_ONLY
 artifact_package_required: true
+public_result_claim_allowed: false
 comparative_testing_claim_allowed: false
 ```
 
-Private, remembered, conversational, or unpublished trace results remain outside the public evidence posture.
-
-### MindForge
-
-No public canonical source or authorized artifact package is attached.
-
-```text
-evidence_class: MENTION_ONLY
-artifact_package_required: true
-comparative_testing_claim_allowed: false
-```
+Private, remembered, conversational, or unpublished results remain outside the public evidence posture.
 
 ### Morrison Runtime
 
-Bounded parameterized observations are recorded, but raw audit payloads, timestamps, runtime configuration, source hashes, replay evidence, and independent reproduction remain absent.
+The report includes bounded parameterized observations, but its own fields state that raw audit payloads, timestamps, runtime configuration, and source hashes are missing.
 
 ```text
 evidence_class: PARAMETERIZED_OBSERVATION
@@ -105,35 +106,7 @@ independently_reproducible: false
 comparative_testing_claim_allowed: false
 ```
 
-### ASRO
-
-A public source, public repository reference, and non-authorizing Commitment Candidate fixture reference are present. This supports artifact review, but no pinned release, raw attestation output, verifier payload, timestamped run, replay command, or independent reproduction is attached.
-
-```text
-evidence_class: ARTIFACT_REVIEWED
-fixture_is_execution_authority: false
-independently_reproducible: false
-comparative_testing_claim_allowed: false
-```
-
-### AAR
-
-A public assessment source and StegVerse crosswalk are present. No implementation package, assessment schema, raw assessment output, or reproduction fixture is attached.
-
-```text
-evidence_class: SOURCE_REVIEWED
-comparative_testing_claim_allowed: false
-```
-
-### MITRE ATLAS
-
-The official knowledge-base source and threat-context crosswalk are present. No pinned technique snapshot, mapping fixture, raw output, or independent reproduction is attached.
-
-```text
-evidence_class: SOURCE_REVIEWED
-knowledge_base_reference_is_runtime_result: false
-comparative_testing_claim_allowed: false
-```
+The observed cases may be described only as bounded captured observations. They are not certification, general compatibility, or independently reproducible comparison results.
 
 ## Publication rule
 
@@ -144,18 +117,21 @@ page claim strength <= report evidence class
 report evidence class <= available public artifacts
 ```
 
-## Remaining second-cohort audit
+## Remaining external-framework audit queue
+
+The priority cohorts above are classified. Remaining work is durable and proceeds in sidebar order:
 
 ```text
-OWASP Top 10 for LLM Applications
-NIST AI RMF
-ISO/IEC 42001
-EU AI Act
-Policy Cards
-Runtime Governance for AI Agents
+1. source-blocked records and intake candidates
+2. policy, identity, provenance, and supply-chain framework families
+3. guardrail and agent-protocol framework families
+4. required-section compliance across every framework page
+5. generated report regeneration under schema 0.7
+6. generated page-status synchronization
+7. orphan, registry, and navigation coverage
 ```
 
-These are expected primarily to remain `SOURCE_REVIEWED` unless implementation, observation, or reproduction artifacts are actually attached.
+Each remaining page must be checked for source authority, evidence provenance, observation strength, machine-readable companion, reproduction path, missing fields, non-claims, and challenge path.
 
 ## Boundary
 
