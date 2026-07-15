@@ -2,230 +2,203 @@
 
 ## Status
 
-Public doctrine and implementation-status page.
-
-This page describes the StegVerse-governed LLM model, the reconstructive search layer needed to support replay and reconstruction, and the current repository split that implements the adapter and SDK contract boundaries.
-
-## Current Build State
-
 ```text
-StegVerse-org/LLM-adapter
-  -> adapter boundary complete
-
-StegVerse-org/StegVerse-SDK
-  -> governed LLM contract layer active
-
-StegVerse-Labs/admissibility-wiki
-  -> public doctrine and verification map
+page_posture: PUBLIC_DOCTRINE_WITH_FIXTURE_IMPLEMENTATION_REFERENCES
+live_continuity_search_service: NOT_VERIFIED
+live_provider_governance: NOT_CLAIMED
+master_records_custody: EXTERNAL_NOT_ESTABLISHED_BY_THIS_PAGE
+execution_authority: NOT_GRANTED
 ```
+
+This page describes the governed LLM model, the reconstructive-search requirements needed for replay and reconstruction, and the ecosystem coordinates that produce, validate, display, preserve, and potentially execute governed results.
 
 ## Purpose
 
-A StegVerse-governed LLM is not an execution authority. It is a reasoning participant inside a governed transition path.
+A StegVerse-governed LLM is a reasoning participant inside a governed transition path. It may draft, explain, compare, classify, retrieve, summarize, and propose. It may not independently authorize memory mutation, publication, repository mutation, external communication, private-data reuse, custody, or consequence-bearing execution.
 
-The model may draft, explain, compare, classify, and propose. It may not independently authorize memory mutation, publication, repository mutation, external communication, private-data reuse, or consequence-bearing execution.
-
-## Core Claim
+## Core claim
 
 ```text
-A governed LLM should not merely answer from memory.
-It should answer from an admissible evidence state and emit a reconstructable receipt.
+A governed LLM should not merely answer from model memory or present-day search.
+It should identify an admissible evidence state, preserve source and policy context,
+and emit a receipt that supports later reconstruction without converting history into current authority.
 ```
 
-## Built Runtime Shape
+## Complete coordinate map
 
-The current adapter-side runtime chain is:
+| Coordinate | Role | Current posture |
+| --- | --- | --- |
+| Ecosystem Chat | User-facing governed request and response surface | `PREPARED_NOT_DEPLOYED` for live same-origin usage path |
+| Math Solver | Governed source, mapping, instruction and result pathway | `PUBLIC_CONCEPT_AND_FIXTURE_PATH` |
+| Governance Demo Suite and Applicability | Browser-local and fixture testing surfaces | `FIXTURE_OR_BROWSER_ONLY` |
+| `StegVerse-org/LLM-adapter` | Provider, output, continuity, action, commitment and disabled-execution boundary | `IMPLEMENTED_FIXTURE_FIRST` |
+| `StegVerse-org/StegVerse-SDK` | Packet validation, intake, manifest binding and receipt handoff | `IMPLEMENTED_CONTRACT_LAYER` |
+| Runtime producers | Core-node or micro-node governed request production | `DEMO_OR_FIXTURE_COORDINATES` |
+| `Data-Continuation/formalism-tests` | Executable fixtures, expected outcomes and proof receipts | `EXTERNAL_PROOF_AUTHORITY` |
+| `master-records/orchestration` | Authenticated custody and reconstruction evidence | `EXTERNAL_GATE` |
+| Same-origin gateway, provider, search service and executor | Live network and consequence-bearing coordinates | `EXTERNAL_OR_BLOCKED_UNTIL_AUTHORIZED` |
+| Admissibility Wiki and Site | Public explanation, topology and bounded display | `PUBLIC_DOCUMENTATION` |
+
+## Runtime shape
 
 ```text
-provider request
-  -> provider response
-  -> continuity evidence
-  -> governed adapter receipt
-  -> action route
-  -> commitment request
+user or system request
+  -> entry surface
+  -> provider request envelope
+  -> provider or fixture response
+  -> source pointers and continuity evidence
+  -> freshness, supersession and conflict classification
+  -> governed session packet
+  -> informational response or action route
+  -> non-authorizing commitment request
   -> authority decision
-  -> disabled execution handoff
-  -> no side effect by default
+  -> disabled execution handoff by default
+  -> SDK validation, intake and manifest binding
+  -> receipt handoff
+  -> optional authenticated custody and reconstruction
 ```
 
-The current SDK-side contract chain is:
+No later stage may be inferred merely because an earlier stage exists.
+
+## Why reconstructive search is needed
+
+Ordinary search asks:
 
 ```text
-adapter session packet
-  -> SDK validation
-  -> SDK intake routing
-  -> SDK manifest binding
-  -> SDK receipt handoff
-```
-
-## Why Reconstructive Search Is Needed
-
-Normal search asks:
-
-```text
-What documents match this query now?
+What sources match this query now?
 ```
 
 Reconstructive search asks:
 
 ```text
-What admissible evidence state existed then?
-What changed since then?
-What evidence supersedes the prior answer?
-What can be reconstructed but not reused as current authority?
+What admissible evidence state existed at the earlier decision time?
+Which sources, policies, delegations and model versions were used?
+What has changed, expired, conflicted, been revoked, or been superseded?
+Can the prior result be reconstructed without treating it as current authority?
 ```
 
-This allows the ecosystem to reconstruct prior discussions without storing every full transcript everywhere.
+This supports questions about prior conversations or decisions without requiring every component to retain duplicate full transcripts. It does not eliminate the need for authorized payload custody where policy, consent, quarantine, litigation hold, explicit distribution, or Master-Records rules require it.
 
-## Storage-Minimizing Reconstruction
+## Storage-minimizing reconstruction record
 
-The preferred record stores:
+A bounded record may preserve:
 
 ```text
-query hash
+transition_id
+query_hash
+origin and entry surface
 retrieval source pointers
-evidence hashes
-source timestamps
-policy hash
-delegation hash
-model/provider/version reference
-output hash
-admissibility decision
-receipt chain
+source and evidence hashes
+source timestamps and freshness state
+policy and delegation references and hashes
+model, provider and version reference
+runtime configuration or fixture identity
+candidate output hash
+admissibility or authority decision
+execution posture and result, if any
+receipt and STRP references
+custody pointer and reconstruction posture
 ```
 
-It avoids duplicating full payloads unless custody, quarantine, explicit distribution, or master-record policy requires retention.
+Full payload retention should be governed separately. Hashes and pointers support integrity and location; they do not prove that a payload remains available or admissible.
 
-## Replay Versus Reconstruction
+## Replay, reconstruction, custody and reuse
 
-| Term | Meaning |
+| Term | Required distinction |
 | --- | --- |
-| Replay | Run the same query or process again and compare the result. |
-| Reconstruction | Prove what happened then, what evidence was available, what rules applied, and why the response was allowed, denied, or quarantined. |
-
-Replay may not produce identical wording because models, sources, and sampling behavior can change.
-
-Reconstruction should still prove the prior transition path.
-
-## Freshness and Reuse
-
-A prior answer may be historically reconstructable while no longer being currently admissible.
-
-The governed response path must distinguish:
+| Replay | Re-run a query or process and compare behavior. It may produce a different answer. |
+| Reconstruction | Establish what happened then, which evidence and rules applied, and why the bounded result occurred. |
+| Custody | Prove that required records were authentically installed and retained by the responsible layer. |
+| Current reuse | Re-evaluate whether historical material may be used now under current policy, consent, freshness and authority. |
 
 ```text
-current
-stale
-superseded
-revoked
-conflicted
-quarantined
-denied
+Replayable != reconstructable.
+Reconstructable != retained in authenticated custody.
+Retained history != currently admissible evidence.
 ```
 
-## Consequence Boundary
+## Evidence-state vocabulary
 
-Read-only explanation may use a fast path when the evidence state is low risk.
+A retrieved or reconstructed item should distinguish at least:
 
-Consequence-bearing action must use a strict path:
+```text
+CURRENT
+STALE
+SUPERSEDED
+REVOKED
+CONFLICTED
+QUARANTINED
+MISSING
+SOURCE_BLOCKED
+DENIED
+```
+
+The classification must identify who or what produced it, which rule set was applied, and whether it is an observation, fixture result, or authenticated status.
+
+## Consequence boundary
+
+Low-risk, read-only explanation may use a bounded informational path. Consequence-bearing actions require current commit-time standing:
 
 ```text
 publish
-commit
-send
-execute
-mutate memory
-change repository state
-create public association
+commit or merge
+send or post
+execute a tool or external request
+mutate memory or KnowledgeVault state
+change repository or infrastructure state
+create a public association
 change user-impacting state
+install or delete a master record
 ```
 
-These actions require current standing at commit time.
+A prior answer, receipt, review, approval, or reconstruction does not authorize these actions.
 
-## Repository Responsibilities
+## Public proof path
 
-| Repository | Responsibility | Current implementation state |
-| --- | --- | --- |
-| `StegVerse-Labs/admissibility-wiki` | Public doctrine and explanatory pages. | This page plus related governance documentation. |
-| `StegVerse-org/StegVerse-SDK` | Shared packet, receipt, evidence, manifest, and handoff contracts. | Governed LLM contract layer active. |
-| `StegVerse-org/LLM-adapter` | Runtime adapter that converts model output into governed response artifacts. | Adapter boundary complete. |
+A minimum evaluable proof should show:
 
-## Implementation Artifacts
+1. the request and entry surface;
+2. allowed source scope and retrieval posture;
+3. provider or fixture identity and version;
+4. source pointers, hashes and freshness state;
+5. the governed session packet;
+6. separation of informational output from proposed action;
+7. a commitment request for consequence-bearing action;
+8. the authority decision and validity window;
+9. an explicitly disabled execution handoff unless separately authorized;
+10. SDK validation, intake, manifest and receipt handling;
+11. replay and reconstruction artifacts;
+12. custody status stated separately from receipt emission.
 
-### LLM Adapter
+## Verification ownership
+
+Adapter and SDK commands are repository-local implementation checks. The wiki's canonical workflow validates documentation references and public routes. Neither creates cross-repository current-main proof by itself.
 
 ```text
-adapter.capabilities.json
-docs/ACTIVATION_STATUS.md
-docs/GOVERNED_LLM_RUNTIME.md
-scripts/smoke_governed_session.py
+StegVerse-org/LLM-adapter
+  -> adapter tests, demo replay and reconstruction
+
+StegVerse-org/StegVerse-SDK
+  -> packet, intake, manifest and receipt tests
+
+StegVerse-Labs/admissibility-wiki
+  -> documentation, navigation and bounded deployment-route checks
 ```
 
-The adapter proves the full chain through fixture and optional provider boundaries while keeping execution disabled by default.
-
-### SDK
+## Non-claims
 
 ```text
-sdk.capabilities.json
-docs/GOVERNED_LLM_SDK_ACTIVATION.md
-docs/GOVERNED_LLM_SESSION_PACKETS.md
-scripts/smoke_governed_llm_sdk.py
+No external provider is claimed to have adopted StegVerse governance.
+A receipt does not prove the truth of model output.
+A query or source hash does not prove payload availability.
+Historical reconstruction does not create current standing.
+Adapter governance does not execute side effects.
+SDK validation and manifest binding do not create authority or Master-Records custody.
+A public page or reachable route does not prove live provider, search, gateway or executor activation.
 ```
 
-The SDK validates adapter session packets, routes them, binds manifests, and produces receipt handoffs without granting authority or executing side effects.
-
-## Minimum Public Proof Path
-
-A minimum public proof path should show:
-
-1. a user query enters the LLM adapter;
-2. the adapter classifies the query and allowed sources;
-3. continuity search supplies evidence pointers;
-4. a provider or fixture produces candidate output;
-5. the adapter emits a governed session packet;
-6. high-consequence output becomes an action route, not an action;
-7. the action route becomes a non-authorizing commitment request;
-8. authority decision is captured without side effects;
-9. execution handoff remains disabled by default;
-10. SDK validates the session packet;
-11. SDK intake returns route, quarantine, reject, or fail-closed guidance;
-12. SDK binds a manifest and receipt handoff for later persistence or review.
-
-## Local Verification Commands
-
-Adapter verification:
-
-```bash
-pytest
-stegverse-llm-adapter fixtures/governed_response_fixture.json --pretty
-python scripts/smoke_governed_session.py
-```
-
-SDK verification:
-
-```bash
-pytest tests/test_governed_llm.py
-pytest tests/test_governed_llm_session.py
-pytest tests/test_governed_llm_session_intake.py
-pytest tests/test_governed_llm_manifest.py
-pytest tests/test_governed_llm_receipt.py
-python scripts/smoke_governed_llm_sdk.py
-```
-
-## Non-Claims
-
-This page does not claim that any external LLM provider has adopted StegVerse governance.
-
-This page does not claim that a model output is true merely because it has a receipt.
-
-This page does not claim that historical reconstruction creates current authority.
-
-This page does not claim that an adapter receipt grants execution authority.
-
-This page does not claim that SDK manifest binding creates master-record persistence by itself.
-
-## Working Definition
+## Working definition
 
 ```text
-A StegVerse-governed LLM is an LLM adapter path that turns user requests and model outputs into admissible, bounded, receipt-backed, reconstructable transitions while preserving a hard boundary between candidate output, authority, and side-effect execution.
+A StegVerse-governed LLM is a bounded reasoning and retrieval path that turns requests and candidate outputs into evidence-aware, receipt-backed and reconstructable transition records while preserving explicit separation among information, proposal, commitment, authority, execution, custody and current reuse.
 ```
