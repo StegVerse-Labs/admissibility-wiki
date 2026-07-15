@@ -1,0 +1,78 @@
+{
+  "schema": "external_framework_governance_compatibility_testing_standard.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "purpose": "Define compatibility testing as evidence that an external framework's native outputs can be translated into a StegVerse governed transition path without conflating framework behavior with authority, admissibility, standing, or execution permission.",
+  "required_layers": [
+    "native_framework_execution",
+    "artifact_and_version_capture",
+    "semantic_translation",
+    "stegverse_commit_time_evaluation",
+    "failure_boundary_evaluation",
+    "same_environment_replay",
+    "fresh_runner_replay",
+    "page_and_machine_readable_result_publication"
+  ],
+  "required_case_families": [
+    "positive_alignment",
+    "framework_denial_or_negative_result",
+    "authority_or_delegation_failure",
+    "stale_or_missing_evidence",
+    "malformed_undefined_or_runtime_error",
+    "semantic_divergence_guard"
+  ],
+  "required_result_fields": [
+    "framework_id",
+    "case_id",
+    "framework_version",
+    "framework_artifact_hashes",
+    "native_input",
+    "native_output",
+    "translation_mapping",
+    "stegverse_transition_input",
+    "expected_stegverse_result",
+    "observed_stegverse_result",
+    "failure_class",
+    "replay_commands",
+    "runtime_environment",
+    "timestamps",
+    "same_environment_replay",
+    "fresh_runner_replay",
+    "limitations",
+    "authority_boundary"
+  ],
+  "completion_states": [
+    "NOT_STARTED",
+    "CONTRACT_AUTHORED",
+    "NATIVE_EXECUTION_OBSERVED",
+    "TRANSLATION_VALIDATED",
+    "GOVERNANCE_COMPATIBILITY_OBSERVED",
+    "FRESH_RUNNER_REPRODUCED",
+    "INDEPENDENT_IMPLEMENTATION_REPRODUCED",
+    "SOURCE_BLOCKED_FAIL_CLOSED"
+  ],
+  "compatibility_claim_gate": {
+    "bounded_compatibility_observed_requires": [
+      "native execution observed",
+      "translation mapping validated",
+      "positive and failure cases executed",
+      "expected and observed StegVerse results match",
+      "pinned framework and artifact identities",
+      "same-environment replay",
+      "fresh-runner replay",
+      "public machine-readable receipt"
+    ],
+    "general_compatibility_claim_allowed": false,
+    "certification_claim_allowed": false,
+    "execution_authority_claim_allowed": false,
+    "standing_claim_allowed": false
+  },
+  "decision_semantics": {
+    "framework_allow_is_stegverse_allow": false,
+    "framework_deny_is_stegverse_deny": false,
+    "framework_identity_is_action_authority": false,
+    "framework_validation_is_admissibility": false,
+    "framework_provenance_is_legitimacy": false,
+    "translation_is_equivalence": false
+  },
+  "mandatory_boundary": "Compatibility testing establishes only a bounded, replayable interoperability result for declared versions, artifacts, mappings, cases, and commit-time conditions. It does not certify the external framework, grant execution authority, create standing, or establish general compatibility."
+}
