@@ -8,51 +8,15 @@
     "translation_records": 6,
     "bound_translation_records": 6,
     "unbound_translation_records": 0,
-    "target_formalisms": 7
+    "target_formalisms": 8
   },
   "entries": [
-    {
-      "translation_id": "dtg-physics-state-v0-1",
-      "target_formalism_ids": ["ae.STCM", "ae.TT"],
-      "relationship": "terminology_and_state-representation_crosswalk",
-      "proof_effect": "NONE",
-      "standing_effect": "NONE"
-    },
-    {
-      "translation_id": "dtg-physics-interaction-v0-1",
-      "target_formalism_ids": ["ae.RTG", "ae.TT"],
-      "relationship": "interaction-to-transition-driver_crosswalk",
-      "proof_effect": "NONE",
-      "standing_effect": "NONE"
-    },
-    {
-      "translation_id": "dtg-physics-horizon-v0-1",
-      "target_formalism_ids": ["ae.CHF"],
-      "relationship": "horizon-and-reconstruction-boundary_crosswalk",
-      "proof_effect": "NONE",
-      "standing_effect": "NONE"
-    },
-    {
-      "translation_id": "dtg-gcat-capacity-margin-v0-1",
-      "target_formalism_ids": ["ae.GCAT-BCAT"],
-      "relationship": "capacity-margin-to-admissibility-question_crosswalk",
-      "proof_effect": "NONE",
-      "standing_effect": "NONE"
-    },
-    {
-      "translation_id": "dtg-bcat-boundary-v0-1",
-      "target_formalism_ids": ["ae.BC", "ae.GCAT-BCAT"],
-      "relationship": "boundary-condition_crosswalk",
-      "proof_effect": "NONE",
-      "standing_effect": "NONE"
-    },
-    {
-      "translation_id": "dtg-runtime-fail-closed-v0-1",
-      "target_formalism_ids": ["ae.CTA", "ae.core-lite"],
-      "relationship": "runtime-fail-closed-to-decision-result_crosswalk",
-      "proof_effect": "NONE",
-      "standing_effect": "NONE"
-    }
+    {"translation_id":"dtg-physics-state-v0-1","target_formalism_ids":["ae.STCM","ae.TT"],"relationship":"terminology_and_state-representation_crosswalk","proof_effect":"NONE","standing_effect":"NONE"},
+    {"translation_id":"dtg-physics-interaction-v0-1","target_formalism_ids":["ae.RTG","ae.TT"],"relationship":"interaction-to-transition-driver_crosswalk","proof_effect":"NONE","standing_effect":"NONE"},
+    {"translation_id":"dtg-physics-horizon-v0-1","target_formalism_ids":["ae.CHF"],"relationship":"horizon-and-reconstruction-boundary_crosswalk","proof_effect":"NONE","standing_effect":"NONE"},
+    {"translation_id":"dtg-gcat-capacity-margin-v0-1","target_formalism_ids":["ae.GCAT-BCAT"],"relationship":"capacity-margin-to-admissibility-question_crosswalk","proof_effect":"NONE","standing_effect":"NONE"},
+    {"translation_id":"dtg-bcat-boundary-v0-1","target_formalism_ids":["ae.BC","ae.GCAT-BCAT"],"relationship":"boundary-condition_crosswalk","proof_effect":"NONE","standing_effect":"NONE"},
+    {"translation_id":"dtg-runtime-fail-closed-v0-1","target_formalism_ids":["ae.CTA","ae.core-lite"],"relationship":"runtime-fail-closed-to-decision-result_crosswalk","proof_effect":"NONE","standing_effect":"NONE"}
   ],
   "authority_boundary": "Translation bindings connect terminology and test-construction surfaces only. They do not define canonical formalisms, prove source-discipline claims, prove target formalisms, create equivalence, upgrade evidence posture, create standing, or grant execution authority.",
   "next_action": "Add source-confirmed mathematics, proof-candidate, fixture, and expected-outcome bindings while keeping translation and proof effects independently classified."
