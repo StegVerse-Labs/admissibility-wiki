@@ -1,0 +1,57 @@
+{
+  "schema": "w3c_vc_stegverse_governance_compatibility_cases.v1",
+  "framework_id": "w3c-verifiable-credentials",
+  "framework_version": "2.0",
+  "evidence_posture": "CONTRACT_AUTHORED_RUNTIME_PENDING",
+  "cases": [
+    {
+      "case_id": "vc-compat-positive-verified-001",
+      "family": "positive_alignment",
+      "verification_result": "verified",
+      "transition": {"actor_identity_correlated": true, "issuer_trusted_for_claim": true, "credential_status_current": true, "delegation_current": true, "claim_matches_scope": true, "evidence_fresh": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "ALLOW",
+      "expected_failure_class": null
+    },
+    {
+      "case_id": "vc-compat-invalid-proof-001",
+      "family": "framework_denial_or_negative_result",
+      "verification_result": "invalid",
+      "transition": {"actor_identity_correlated": true, "issuer_trusted_for_claim": true, "credential_status_current": true, "delegation_current": true, "claim_matches_scope": true, "evidence_fresh": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "CREDENTIAL_VERIFICATION_FAILED"
+    },
+    {
+      "case_id": "vc-compat-delegation-revoked-001",
+      "family": "authority_or_delegation_failure",
+      "verification_result": "verified",
+      "transition": {"actor_identity_correlated": true, "issuer_trusted_for_claim": true, "credential_status_current": true, "delegation_current": false, "claim_matches_scope": true, "evidence_fresh": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "AUTHORITY_DRIFT"
+    },
+    {
+      "case_id": "vc-compat-revoked-status-001",
+      "family": "stale_or_missing_evidence",
+      "verification_result": "verified",
+      "transition": {"actor_identity_correlated": true, "issuer_trusted_for_claim": true, "credential_status_current": false, "delegation_current": true, "claim_matches_scope": true, "evidence_fresh": false, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "FAIL_CLOSED",
+      "expected_failure_class": "STALE_OR_REVOKED_CREDENTIAL_STATUS"
+    },
+    {
+      "case_id": "vc-compat-resolver-error-001",
+      "family": "malformed_undefined_or_runtime_error",
+      "verification_result": "error",
+      "transition": {"actor_identity_correlated": true, "issuer_trusted_for_claim": true, "credential_status_current": true, "delegation_current": true, "claim_matches_scope": true, "evidence_fresh": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "FAIL_CLOSED",
+      "expected_failure_class": "VERIFIER_OR_RESOLVER_ERROR"
+    },
+    {
+      "case_id": "vc-compat-qualification-scope-divergence-001",
+      "family": "semantic_divergence_guard",
+      "verification_result": "verified",
+      "transition": {"actor_identity_correlated": true, "issuer_trusted_for_claim": true, "credential_status_current": true, "delegation_current": true, "claim_matches_scope": false, "evidence_fresh": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "CLAIM_SCOPE_DIVERGENCE"
+    }
+  ],
+  "authority_boundary": "A verified credential is claim evidence only. It does not prove claim truth, current delegation, action authority, transition admissibility, or execution permission."
+}
