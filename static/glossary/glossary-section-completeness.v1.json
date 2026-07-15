@@ -1,0 +1,42 @@
+{
+  "schema": "admissibility_wiki_glossary_section_completeness.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "classification": "COMPLETE_WITH_EXTERNAL_GATES",
+  "registry": "static/glossary/glossary-registry.v1.json",
+  "validator": "scripts/check_glossary_consistency.py",
+  "canonical_integration": "scripts/check_admissibility_automation_handoff.py -> npm run validate",
+  "counts": {
+    "public_terms": 13,
+    "registered_terms": 13,
+    "accepted_synonymous_relationships": 0,
+    "unregistered_public_terms": 0
+  },
+  "closed_dimensions": [
+    "all public glossary entries have stable term IDs and page paths",
+    "all entries expose definitions, equivalent-term posture, and related terms",
+    "identity is separated from authority class",
+    "prior approval is separated from commit-time authority",
+    "local or prior validity is separated from full admissibility",
+    "reconstructability is separated from admissibility and execution authority",
+    "terminology similarity does not create synonymy or equivalence",
+    "glossary publication does not create origin priority or source authority",
+    "glossary validation is integrated into the canonical validation chain"
+  ],
+  "external_gates": [
+    "source-confirmed first-known StegVerse references",
+    "dated original drawings or seed artifacts",
+    "reviewed contributor chronology",
+    "stable external relationship sources",
+    "accepted decision records for any future synonymous classification",
+    "post-change canonical workflow observation"
+  ],
+  "evidence_boundaries": {
+    "publication_creates_origin_priority": false,
+    "similarity_creates_synonymy": false,
+    "crosswalk_creates_equivalence": false,
+    "definition_creates_runtime_proof": false,
+    "glossary_relationship_creates_authority": false
+  },
+  "workflow_observation": "PENDING_POST_CHANGE_OBSERVATION",
+  "next_action": "Observe the glossary validator in the canonical workflow, then proceed to Activation and deployment documentation while chronology and attribution enrichment remain explicit external research gates."
+}
