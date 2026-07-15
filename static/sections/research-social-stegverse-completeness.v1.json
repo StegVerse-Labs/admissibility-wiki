@@ -1,0 +1,93 @@
+{
+  "schema": "admissibility_wiki_research_social_stegverse_completeness.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "classification": "COMPLETE_WITH_EXTERNAL_GATES",
+  "counts": {
+    "public_sidebar_pages": 4,
+    "research_pages": 2,
+    "social_pages": 1,
+    "stegverse_public_pages": 1,
+    "stegverse_explicit_non_public_pages": 5,
+    "stale_or_reconciliation_required_pages": 1
+  },
+  "public_pages": [
+    {
+      "path": "docs/research/stegverse-complete-security-paper.md",
+      "page_class": "research_architecture_draft",
+      "source_authority": "authored research architecture",
+      "claim_posture": "DRAFT_NOT_CERTIFICATION_OR_PRODUCTION_SECURITY_CLAIM",
+      "authority_effect": "NONE"
+    },
+    {
+      "path": "docs/research/terminology-overlap-research-notes.md",
+      "page_class": "source_aware_preliminary_research",
+      "source_authority": "cited external sources plus StegVerse analysis",
+      "claim_posture": "CANDIDATE_RELATIONSHIPS_ONLY",
+      "authority_effect": "NONE"
+    },
+    {
+      "path": "docs/social/stegverse-quantum-security-carousel.md",
+      "page_class": "social_derivative",
+      "source_authority": "docs/research/stegverse-complete-security-paper.md",
+      "claim_posture": "RESEARCH_ARCHITECTURE_NOT_CERTIFICATION",
+      "authority_effect": "NONE"
+    },
+    {
+      "path": "docs/stegverse/stegcore.md",
+      "page_class": "implementation_surface_overview",
+      "source_authority": "StegVerse-Labs/StegCore and repository-specific handoffs",
+      "claim_posture": "IMPLEMENTATION_SURFACE_NOT_ADMISSIBILITY_DEFINITION_OR_PROOF_AUTHORITY",
+      "authority_effect": "NONE"
+    }
+  ],
+  "explicit_non_public_pages": [
+    {
+      "path": "docs/stegverse/transition-table.md",
+      "navigation_state": "NON_PUBLIC_EXPLICIT",
+      "reason": "Specialized component page; proof authority remains external to the wiki mirror."
+    },
+    {
+      "path": "docs/stegverse/stegcge.md",
+      "navigation_state": "NON_PUBLIC_EXPLICIT",
+      "reason": "Specialized component page requiring source-repository posture before public promotion."
+    },
+    {
+      "path": "docs/stegverse/tv-tvc.md",
+      "navigation_state": "NON_PUBLIC_EXPLICIT",
+      "reason": "Specialized component relationship page requiring current source reconciliation."
+    },
+    {
+      "path": "docs/stegverse/entity-sandbox-runner-admissibility-plane.md",
+      "navigation_state": "NON_PUBLIC_EXPLICIT",
+      "reason": "Operational-status page already governed by its repository-specific validator and status artifact."
+    },
+    {
+      "path": "docs/stegverse/current-status.md",
+      "navigation_state": "NON_PUBLIC_HISTORICAL_RECONCILIATION_REQUIRED",
+      "reason": "Dated 2026-06-17 snapshot contains stage-specific current-posture claims and must not be treated as the live repository status source without reconciliation to current handoffs and receipts."
+    }
+  ],
+  "closed_dimensions": [
+    "research architecture is explicitly draft and non-certifying",
+    "terminology research remains preliminary and does not establish equivalence",
+    "social copy is traceable to the research architecture and preserves its claim boundary",
+    "StegCore is separated from the definition of admissibility and proof authority",
+    "non-public StegVerse component pages have explicit navigation dispositions",
+    "the dated current-status snapshot is explicitly prevented from silently becoming current authority"
+  ],
+  "external_gates": [
+    "source-repository verification for StegVerse component implementation claims",
+    "current handoff and receipt reconciliation before promoting hidden component pages",
+    "independent security review and implementation evidence for research architecture claims",
+    "public deployment observation after canonical build repair"
+  ],
+  "authority_boundaries": {
+    "research_draft_is_certification": false,
+    "social_derivative_is_independent_source_authority": false,
+    "wiki_component_page_is_implementation_authority": false,
+    "dated_status_snapshot_is_current_authority": false,
+    "publication_grants_execution_authority": false,
+    "section_completeness_grants_release_authority": false
+  },
+  "next_action": "Observe the repaired Pages build, then complete navigation/orphan coverage, cross-repository status reconciliation, and release-readiness review."
+}
