@@ -28,6 +28,12 @@ CONTRACTS = {
         "page": ROOT / "docs" / "external-frameworks" / "spiffe-spire.md",
         "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"},
     },
+    "w3c-verifiable-credentials": {
+        "fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "w3c-vc-governance-compatibility-cases.v1.json",
+        "runner": ROOT / "scripts" / "run_w3c_vc_governance_compatibility.py",
+        "page": ROOT / "docs" / "external-frameworks" / "w3c-verifiable-credentials.md",
+        "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"},
+    },
 }
 
 
@@ -113,33 +119,42 @@ def main() -> None:
     spiffe = records_by_id["spiffe-spire"]
     if spiffe.get("source_reviewed") is not True or spiffe.get("native_execution_observed") is not False:
         fail("SPIFFE/SPIRE must remain source-reviewed and runtime-unobserved")
+    vc = records_by_id["w3c-verifiable-credentials"]
+    if vc.get("source_reviewed") is not True or vc.get("native_execution_observed") is not False:
+        fail("W3C VC must remain source-reviewed and runtime-unobserved")
 
     counts = status.get("counts", {})
     expected_counts = {
         "canonical_records": 38,
-        "contract_authored": 3,
+        "contract_authored": 4,
         "governance_compatibility_observed": 0,
         "fresh_runner_reproduced": 0,
         "independent_implementation_reproduced": 0,
-        "not_started": 35,
+        "not_started": 34,
     }
     for key, expected in expected_counts.items():
         if counts.get(key) != expected:
             fail(f"status count stale: {key}={counts.get(key)} expected={expected}")
 
     joined = json.dumps(standard).lower() + json.dumps(status).lower()
-    for phrase in ["does not certify", "execution authority", "general compatibility", "policy evidence", "identity verification"]:
+    for phrase in [
+        "does not certify",
+        "execution authority",
+        "general compatibility",
+        "policy evidence",
+        "identity verification",
+        "credential verification",
+    ]:
         if phrase not in joined:
             fail(f"missing boundary phrase: {phrase}")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=3")
+    print("contracts_authored=4")
     print("compatibility_observed=0")
     print("opa_execution_binding=installed_pending_observation")
-    print("opa_case_families=6")
-    print("cedar_case_families=6")
-    print("spiffe_spire_case_families=6")
+    for framework_id in CONTRACTS:
+        print(f"{framework_id}_case_families=6")
 
 
 if __name__ == "__main__":
