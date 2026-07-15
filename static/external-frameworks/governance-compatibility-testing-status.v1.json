@@ -23,6 +23,7 @@
       "same_environment_replay_observed": true,
       "fresh_runner_replay_observed": true,
       "stegverse_governance_compatibility_observed": false,
+      "translation_boundary": "OPA decisions enter StegVerse as policy evidence only; identity, delegation, scope, freshness, recoverability, execution context, and consequence authority remain independently evaluated.",
       "result_receipt": "reports/external-frameworks/opa-independent/opa-stegverse-governance-compatibility-receipt.json",
       "next_action": "Observe the fresh-runner pipeline producing and uploading the bounded OPA-to-StegVerse governance compatibility receipt."
     },
