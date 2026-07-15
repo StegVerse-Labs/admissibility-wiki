@@ -2,9 +2,9 @@
 
 ## Purpose
 
-This page documents the bounded free-tier trust chain that connects the public Site display, the LLM adapter response contract, and the SDK metadata ingestion contract.
+This page documents the bounded free-tier trust contract that connects the public Site display, the LLM-adapter response contract, and the SDK metadata-ingestion contract.
 
-The purpose is to prove that the free tier is not merely a static demo while also preserving the core StegVerse boundary:
+The contract defines what a future governed free-tier interaction may expose while preserving these boundaries:
 
 ```text
 quota availability is not admissibility
@@ -12,30 +12,48 @@ receipt export is not permanent retention
 replay is not commit-time standing
 reconstruction is not commit-time standing
 upgrade does not change governance requirements
+prepared configuration is not live use
 ```
+
+## Current activation posture
+
+```text
+contract_status: PREPARED_NOT_DEPLOYED
+site_checkpoint: SITE_PREPARATION_COMPLETE_ACTIVATION_BLOCKED
+live_transport_enabled: false
+usage_api_base: null
+bounded_live_use_observed: false
+same_origin_authenticated_deployment_observed: false
+master_records_custody_observed: false
+reconstructability_pass_observed: false
+```
+
+The values below are configured contract limits and display metadata. They are not evidence that live usage is currently active.
 
 ## Cross-repository chain
 
 ```text
 StegVerse-org/LLM-adapter
-  -> emits free_tier_trust metadata
-  -> exposes adapter.capabilities.json free-tier fields
+  -> defines free_tier_trust metadata and usage-session contract fields
+  -> destination implementation installed; current-main validation and deployment evidence remain gates
 
 StegVerse-Labs/Site
-  -> displays bounded free-tier trust envelope on ecosystem-chat.html
-  -> guards the display with scripts/check_site_llm_free_tier_trust.py
-  -> includes the checker in site-public-mirror-status-guard.yml
+  -> displays the bounded free-tier trust envelope on ecosystem-chat.html
+  -> validates the display through scripts/check_site_llm_free_tier_trust.py
+  -> runs that checker through the canonical Site validation workflow
+  -> remains PREPARED_NOT_DEPLOYED with live transport disabled
 
 StegVerse-org/StegVerse-SDK
   -> validates free_tier_trust metadata shape
-  -> validates quota / receipt / replay / reconstruction non-claims
-  -> exposes validate_free_tier_metadata
-  -> verifies ingestion in sdk-demo-test.yml
+  -> validates quota, receipt, replay, reconstruction, and authority non-claims
+  -> produces contract-validation evidence without granting authority or custody
+
+master-records/orchestration
+  -> future authenticated custody destination
+  -> must provide custody and reconstructability evidence before RECORDED may be claimed
 ```
 
-## Public free-tier envelope
-
-The current public envelope is:
+## Configured free-tier envelope
 
 ```text
 governed inquiries per day: 5
@@ -45,20 +63,20 @@ replays per day: 1
 reconstruction scope: recent-session limited
 private connectors: upgrade path
 premium models: upgrade path
-static demo only: false
-bounded live use: true
+static demo only: false as a contract design
+live service currently active: false
 ```
 
-The expected trust window is:
+The trust-window values are design hypotheses, not observed user-study results:
 
 ```text
-3-10 meaningful inquiries: curiosity-level trust
-20-50 meaningful inquiries: reliance-level evaluation
+3-10 meaningful inquiries: proposed curiosity-level evaluation window
+20-50 meaningful inquiries: proposed reliance-level evaluation window
 ```
 
-## Required non-claims
+No trust conclusion should be presented as measured until the study method, event records, population, results, and reproducibility evidence are public.
 
-The chain is valid only if these remain false:
+## Required non-claims
 
 ```text
 free_tier_response_is_authority == false
@@ -69,43 +87,50 @@ receipt_export_is_permanent_retention == false
 replay_grants_commit_time_standing == false
 reconstruction_grants_commit_time_standing == false
 upgrade_changes_admissibility_requirements == false
+configured_limits_prove_live_service == false
+site_display_proves_provider_call == false
+retrieval_receipt_proves_master_records_custody == false
 ```
 
-## Verification commands
+## Activation evidence required
 
-Adapter:
+The contract may advance from prepared to live only after all of the following are observed:
 
-```bash
-python scripts/verify_goal4.py
-python scripts/verify_free_tier_quota.py
-python scripts/verify_free_tier_limits.py
-python scripts/verify_ai_entry_free_tier_metadata.py
-python scripts/verify_free_tier_capability_manifest.py
+```text
+destination current-main tests
+same-origin authenticated deployment
+sample response conformance
+retrieval receipt validation
+no browser secret surface
+Site current-main validation
+Master-Records custody
+reconstructability PASS
 ```
 
-Site:
+## Verification ownership
 
-```bash
-python scripts/check_site_llm_free_tier_trust.py
-python scripts/check_site_governed_ecosystem_mirror.py
-```
+Adapter, Site, and SDK commands remain repository-local evidence sources. This wiki does not direct the user to run them manually. Their canonical workflows own execution, artifact generation, and renewal.
 
-SDK:
+Relevant repository-local checks include:
 
-```bash
-python scripts/verify_free_tier_metadata_ingestion.py
-pytest tests/test_free_tier_metadata.py -v
+```text
+LLM-adapter: free-tier metadata, quota, limits, capability manifest, usage-session contract
+Site: scripts/check_site_llm_free_tier_trust.py and governed ecosystem mirror checks
+StegVerse-SDK: free-tier metadata ingestion and tests
 ```
 
 ## Boundary
 
-This page is documentation. It does not call live providers, issue receipts, persist records, export audit packets, replay sessions, reconstruct sessions, or grant execution authority.
+This page is documentation. It does not call live providers, issue receipts, persist records, export audit packets, replay sessions, reconstruct sessions, grant execution authority, or prove that the configured free tier is deployed.
 
 ## Downstream propagation
 
-After Site and SDK validation are green, downstream summaries should be propagated to:
+After current-main validation, authorized deployment, conformance, custody, and reconstruction evidence are verified, propagation status should be reviewed for:
 
 ```text
+StegVerse-Labs/Site
 GCAT-BCAT-Engine/Publisher
-stegguardian-wiki
+StegVerse-002/stegguardian-wiki
 ```
+
+Queued propagation is not completed propagation, and this repository has no cross-repository mutation authority.
