@@ -1,0 +1,46 @@
+{
+  "schema": "admissibility_wiki_formalism_record_classification.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "registry": "static/formalisms/formalism-registry.v0.1.json",
+  "purpose": "Separate formalism artifact class, mirror posture, proof posture, validation posture, and publication posture so wiki mirroring cannot be mistaken for theorem proof or source authority.",
+  "counts": {
+    "records": 15,
+    "mirrored": 14,
+    "intake": 1,
+    "theorem_candidates": 1,
+    "executable_or_validation_infrastructure": 2
+  },
+  "allowed_artifact_classes": [
+    "governing_formalism",
+    "theorem_candidate",
+    "continuity_model",
+    "relational_model",
+    "boundary_formalism",
+    "transition_representation",
+    "governance_model",
+    "continuity_formalism",
+    "testing_formalism_candidate",
+    "executable_engine",
+    "learning_governance_formalism",
+    "validation_infrastructure"
+  ],
+  "entries": [
+    {"formalism_id":"ae.CTA","artifact_class":"governing_formalism","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"FORMAL_PROOF_NOT_CLAIMED","validation_posture":"BASELINE_FIXTURES_ONLY","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"formalism_id":"ae.IICT","artifact_class":"theorem_candidate","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"THEOREM_CANDIDATE_UNPROVEN","validation_posture":"BASELINE_CASES_NOT_THEOREM_PROOF","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"formalism_id":"ae.STCM","artifact_class":"continuity_model","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"SOURCE_CONFIRMED_PROOF_EXTRACTION_PENDING","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"formalism_id":"ae.RTG","artifact_class":"relational_model","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"SOURCE_CONFIRMED_PROOF_EXTRACTION_PENDING","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"formalism_id":"ae.CHF","artifact_class":"boundary_formalism","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"SOURCE_CONFIRMED_PROOF_EXTRACTION_PENDING","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"formalism_id":"ae.BC","artifact_class":"boundary_formalism","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"SOURCE_CONFIRMED_PROOF_EXTRACTION_PENDING","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"formalism_id":"ae.TT","artifact_class":"transition_representation","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"NOT_INDEPENDENT_PROOF","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"formalism_id":"ae.Triad","artifact_class":"governance_model","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"SOURCE_CONFIRMED_PROOF_EXTRACTION_PENDING","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"formalism_id":"ae.continuity-handoff","artifact_class":"continuity_formalism","mirror_posture":"PUBLIC_SAFE_MIRROR_ABBREVIATION_SAFE","proof_posture":"SOURCE_CONFIRMATION_PENDING","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"formalism_id":"ae.DaCo","artifact_class":"continuity_formalism","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"SOURCE_CONFIRMED_PROOF_EXTRACTION_PENDING","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"formalism_id":"ae.DC","artifact_class":"continuity_formalism","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"SOURCE_CONFIRMED_PROOF_EXTRACTION_PENDING","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"formalism_id":"ae.GCAT-BCAT","artifact_class":"testing_formalism_candidate","mirror_posture":"INTAKE_PRIVATE_SOURCE_BOUNDARY","proof_posture":"NOT_EVALUATED","validation_posture":"DETAIL_PAGE_AND_CROSSWALK_PENDING","publication_posture":"PARTIAL"},
+    {"formalism_id":"ae.core-lite","artifact_class":"executable_engine","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"IMPLEMENTATION_IS_NOT_FORMAL_PROOF","validation_posture":"SOURCE_CONFIRMED_TESTS_AND_REFERENCE_IMPLEMENTATIONS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"formalism_id":"ae.learning-transition-governance","artifact_class":"learning_governance_formalism","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"SOURCE_CONFIRMED_PROOF_EXTRACTION_PENDING","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"formalism_id":"ae.ae-validation-factory","artifact_class":"validation_infrastructure","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"VALIDATION_INFRASTRUCTURE_IS_NOT_PROOF_AUTHORITY","validation_posture":"SOURCE_CONFIRMED_FIXTURES_EXPECTED_OUTCOMES_AND_IMPLEMENTATIONS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"}
+  ],
+  "authority_boundary": "A mirrored page, registry record, baseline fixture, executable engine, validation factory, translation, or publication surface does not create source authority, theorem proof, proof authority, execution authority, continuity standing, or admissibility standing.",
+  "next_action": "Complete the GCAT-BCAT source crosswalk, then add source-confirmed proof, fixture, expected-outcome, and translation records without promoting mirrors or baseline tests into proof claims."
+}
