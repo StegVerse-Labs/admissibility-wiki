@@ -1,11 +1,15 @@
 {
   "schema": "admissibility_wiki_formalism_section_completeness.v1",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "classification": "IN_PROGRESS",
+  "classification": "COMPLETE_WITH_EXTERNAL_GATES",
   "registry": "static/formalisms/formalism-registry.v0.1.json",
   "registry_reconciliation": "static/formalisms/formalism-registry-reconciliation.v1.json",
   "record_classification": "static/formalisms/formalism-record-classification.v1.json",
-  "validator": "scripts/check-formalism-registry.mjs",
+  "translation_bindings": "static/formalisms/formalism-translation-bindings.v1.json",
+  "validators": [
+    "scripts/check-formalism-registry.mjs",
+    "scripts/check_translation_records.py"
+  ],
   "counts": {
     "registry_records": 15,
     "artifact_classified": 15,
@@ -13,7 +17,11 @@
     "effective_crosswalked_records": 1,
     "effective_intake_records": 0,
     "theorem_candidates": 1,
-    "records_with_missing_classification": 0
+    "records_with_missing_classification": 0,
+    "translation_records": 6,
+    "bound_translation_records": 6,
+    "unbound_translation_records": 0,
+    "translation_target_formalisms": 7
   },
   "closed_dimensions": [
     "every registry record has a stable formalism_id and wiki path",
@@ -23,7 +31,10 @@
     "IICT remains explicitly classified as an unproven theorem candidate",
     "private source boundaries and non-claims remain preserved",
     "GCAT-BCAT historical registry drift is corrected through an explicit effective-state reconciliation overlay",
-    "all 15 records now have COMPLETE_WITH_EXTERNAL_GATES publication posture under effective state"
+    "all 15 records have COMPLETE_WITH_EXTERNAL_GATES publication posture under effective state",
+    "all six disciplinary translation records are bound to formalism targets",
+    "translation proof effect is NONE",
+    "translation standing effect is NONE"
   ],
   "resolved_blockers": [
     {
@@ -34,32 +45,43 @@
     {
       "blocker_id": "CANONICAL-WORKFLOW-GOAL5-THREE-FAILURES",
       "observed_run_id": "29436076177",
-      "observed_commit": "e9c152ce94f7fe5d8d1e85c3ed82542568678ed2",
-      "observed_failures": [
-        "legacy-priority KPT semantic headings",
-        "all-navigated cohort double counting",
-        "index markdown duplicate-name requirement"
-      ],
-      "resolution": "Updated the priority cohort to five records, expanded the KPT semantic-equivalence aliases, confirmed the next observed run reduced the failure set to only the index validator, and replaced duplicate-name validation with canonical registry, sidebar association, and union coverage checks.",
-      "repair_commits": [
-        "35bfc526b7d1af31bc09dd1eb468b7f672cb973b",
-        "4f11ae88aaebd89682996dc6b7a3db36da104824",
-        "76ac243f5d1d0a6f964c6a1431b078415c6dde91"
-      ],
+      "resolution": "Repaired KPT semantic aliases, removed legacy cohort double counting, and replaced duplicate-name index validation with canonical registry/sidebar/union coverage.",
+      "authority_effect": "NONE"
+    },
+    {
+      "blocker_id": "CANONICAL-WORKFLOW-INDEX-UNION-TYPE-MISMATCH",
+      "observed_run_id": "29437257948",
+      "observed_commit": "66425bf36186d7ee512b8d98ea39d810782e2fad",
+      "observed_failure": "The docs registry's 38 records included two internal ecosystem records, while the validator compared all 38 against only the union's 36 external frameworks.",
+      "resolution": "Validator now requires exact 38-record registry/union parity, validates 36 external and two internal records separately, and prohibits internal records from framework-specific sidebar placement.",
+      "repair_commit": "3a784856450e979d863e91a6832c5c1ad61701b2",
       "authority_effect": "NONE"
     }
   ],
-  "active_blockers": [
+  "external_gates": [
     {
-      "blocker_id": "FORMALISM-CANONICAL-WORKFLOW-REOBSERVATION",
+      "gate_id": "FORMALISM-CANONICAL-WORKFLOW-REOBSERVATION",
       "state": "REPAIR_INSTALLED_PENDING_OBSERVED_RERUN",
-      "evidence": "Run 29436287418 confirmed the first two repairs passed and only the legacy index-name validator remained. That validator has now been replaced at commit 76ac243f5d1d0a6f964c6a1431b078415c6dde91.",
-      "required_resolution": "Observe a subsequent canonical workflow run and inspect its uploaded full-validation report. Do not claim pass until the run is directly observed."
+      "latest_repair_commits": [
+        "3a784856450e979d863e91a6832c5c1ad61701b2",
+        "da86e24827269edf92843fc42c187190525d2855",
+        "423ed27f2607ff5a02c15f84be9aaea2f7b0691d"
+      ],
+      "required_resolution": "Observe a canonical workflow run at or after the latest repair commit and inspect its uploaded full-validation report."
+    },
+    {
+      "gate_id": "SOURCE_CONFIRMED_PROOF_AND_IMPLEMENTATION_EXTRACTION",
+      "state": "PENDING_SOURCE_AUTHORITY",
+      "required_resolution": "Continue source-confirmed theorem, proof, fixture, expected-outcome, reference-implementation, and peer-review extraction without promoting mirrors, translations, or baseline tests into proof claims."
     }
   ],
   "evidence_boundaries": {
     "mirror_is_source_authority": false,
     "crosswalk_is_source_authority": false,
+    "translation_is_source_authority": false,
+    "translation_creates_equivalence": false,
+    "translation_creates_proof": false,
+    "translation_creates_standing": false,
     "baseline_fixture_is_complete_proof": false,
     "theorem_candidate_is_proven": false,
     "publication_artifact_is_canonical_formalism_authority": false,
@@ -67,5 +89,5 @@
     "validation_factory_is_proof_authority": false,
     "repair_installed_is_workflow_pass": false
   },
-  "next_action": "Observe the repaired canonical workflow, then continue source-confirmed theorem, proof, fixture, expected-outcome, implementation, and translation-record extraction."
+  "next_action": "Observe the repaired canonical workflow, then begin the Glossary consistency and terminology-governance audit while source-authority proof and implementation gates remain separately open."
 }
