@@ -6,13 +6,21 @@ title: Current Task Sync
 
 This page prevents duplicate work across parallel StegVerse build sessions working on `StegVerse-Labs/admissibility-wiki`.
 
+## Source Of Truth Order
+
+```text
+1. docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
+2. docs/governance/current-task-sync.md
+3. docs/governance/wiki-section-completeness-audit.md
+4. exact repository files and generated evidence
+```
+
+The mirror handoff remains authoritative when this page or an older task statement conflicts with it.
+
 ## Current GitHub Pages Target
 
 ```text
 https://stegverse-labs.github.io/admissibility-wiki/
-```
-
-```text
 url: https://stegverse-labs.github.io
 baseUrl: /admissibility-wiki/
 custom_domain: not_configured
@@ -21,13 +29,31 @@ static/CNAME: removed
 
 ## Current Assessment Goal
 
-Continue the active `governed-ecosystem-transition-framing` goal until the wiki presents external frameworks as one governed input class within the broader transition ecosystem.
+Complete the wiki section-by-section completeness audit and remediate exact gaps in scope, coordinates, evidence posture, reproducibility, status language, authority boundaries, navigation, and maintenance ownership.
+
+The audit order is maintained in:
+
+```text
+docs/governance/wiki-section-completeness-audit.md
+```
+
+The current active block is:
+
+```text
+Governance overview, current status, validation, and handoff surfaces
+```
+
+The next block is:
+
+```text
+Governed LLM and governed ecosystem transition pages
+```
 
 ## Current Activation Goal
 
-Publish and validate the Admissibility Wiki as the public vocabulary, terminology convergence, proposal-review, proposal-intake, proof-path, external-framework input-class, and governed ecosystem transition framing site.
+Publish and validate the Admissibility Wiki as the public vocabulary, terminology convergence, proposal-review, proposal-intake, proof-path, external-framework input-class, governed ecosystem transition, and governed LLM topology site.
 
-Activation must remain evidence-bound. Public deployment, generated framework result pages, governed ecosystem transition pages, generated framework page-status blocks, and URL verification must be produced by repository automation before activation posture advances.
+Activation remains evidence-bound. Repository source, generated pages, workflow artifacts, deployment, public URL verification, proof receipts, and custody evidence must remain distinguishable.
 
 ## Installed Activation Structure
 
@@ -45,6 +71,9 @@ static/status/no-manual-task-guard-status.json
 static/status/mirror-handoff-guard-status.json
 static/status/governed-ecosystem-transitions-status.json
 static/status/external-framework-input-class-status.json
+static/status/canonical-workflow-observation-automation.json
+static/status/canonical-workflow-observation-rollup.json
+reports/pages-build-receipt.json
 github/workflows/validate-chain-continuation.yml
 iosnoperiod/github/workflows/validate-chain-continuation.yml
 workflow_manifest.json
@@ -58,7 +87,7 @@ docs/GOAL_STATE.json
 Only one active GitHub Actions workflow is intended to exist:
 
 ```text
-github/workflows/validate-chain-continuation.yml
+.github/workflows/validate-chain-continuation.yml
 ```
 
 The iOS-safe mirror is inert and exists only for copied path readability:
@@ -74,8 +103,6 @@ scripts/check_workflow_sprawl.py
 ```
 
 ## Governed Ecosystem Transition Framing
-
-The current governed ecosystem transition path is:
 
 ```text
 input or request
@@ -99,9 +126,53 @@ scripts/check_governed_ecosystem_transitions_status.py
 scripts/check_external_framework_input_class_status.py
 ```
 
-## Declarative External Framework Pipeline
+## Governed LLM Topology
 
-External frameworks remain supported as one governed input-class surface:
+The public activation map must include all participating coordinate classes rather than only the wiki, adapter, and SDK:
+
+```text
+entry surfaces
+-> governed request production
+-> LLM-adapter runtime boundary
+-> SDK contract and intake
+-> formalism and admissibility authority
+-> custody and reconstruction
+-> public doctrine and verification
+-> deployment and explicitly authorized execution
+```
+
+Current primary page:
+
+```text
+docs/governance/governed-llm-activation-map.md
+```
+
+## External Framework Evidence Posture
+
+External frameworks remain one governed input class. The public results surface must classify evidence strength and must not imply an independently reproducible comparison unless the full reproducibility gate is satisfied.
+
+```text
+MENTION_ONLY
+AUTHOR_COMMENTARY
+SOURCE_REVIEWED
+ARTIFACT_REVIEWED
+PARAMETERIZED_OBSERVATION
+REPRODUCIBLE_COMPARATIVE_TEST
+```
+
+Current public results surface:
+
+```text
+docs/external-frameworks/evaluation-results.md
+```
+
+Current repository claim:
+
+```text
+No independently reproducible external-framework comparative evaluation is presently claimed on that page.
+```
+
+## Declarative External Framework Pipeline
 
 ```text
 framework manifest
@@ -113,7 +184,7 @@ framework manifest
   -> public URL verification
 ```
 
-Installed generators and validators:
+Installed generators and validators include:
 
 ```text
 scripts/generate_external_framework_reports.py
@@ -128,73 +199,69 @@ scripts/check_external_framework_terminology.py
 scripts/check_external_framework_expansion_policy.py
 ```
 
-Generated publication surface:
-
-```text
-docs/external-frameworks/evaluation-results.md
-```
-
-Generated page-status blocks are compatibility evidence only and do not grant certification, endorsement, formalism adoption, admissibility proof, execution authority, or canonical STRP admission.
+Generated status or result language remains evidence only. It does not grant certification, endorsement, formalism adoption, admissibility proof, execution authority, or canonical STRP admission.
 
 ## Aggregate Validation
 
-```text
+```bash
 npm run validate
 ```
 
-The aggregate validation now includes:
+The canonical workflow owns full validation, generated artifacts, build, deployment, and public re-observation. A passing local validator is not a passing canonical chain.
 
-```text
-npm run validate:governed-ecosystem-transitions
-npm run validate:external-framework-input-class
-```
-
-## Known Public Pages
+## Known Public Coordination Pages
 
 Do not recreate these pages under alternate names:
 
 ```text
 docs/index.md
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
+docs/governance/current-visible-updates.md
 docs/governance/current-task-sync.md
-docs/governance/terminology-convergence.md
-docs/governance/proposal-lifecycle.md
-docs/governance/decision-record.md
-docs/governance/site-bridge-status.md
-docs/governance/admissibility-wiki-ai-entity.md
-docs/governance/equivalence-proposal-template.md
+docs/governance/wiki-section-completeness-audit.md
+docs/governance/validation.md
 docs/governance/governed-ecosystem-transitions.md
+docs/governance/governed-llm-activation-map.md
 docs/governance/external-frameworks-as-input-class.md
-docs/research/terminology-overlap-research-notes.md
 docs/external-frameworks/index.md
 docs/external-frameworks/evaluation-results.md
 ```
 
-## Known Remaining Installation Targets
+## Known Remaining Installation And Review Targets
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-  - public deployment verification for governed ecosystem transition and external-framework input-class pages
-  - optional generated status surface grouping all input classes
+  - complete Governance section audit
+  - audit governed LLM and ecosystem transition pages
+  - audit every external-framework page and machine-readable report
+  - audit Formalisms, Glossary, Activation, Research, Social, and StegVerse sections
+  - detect orphan pages and registry omissions
+  - reconcile cross-repository status claims
+  - observe canonical workflow and public evidence when exposed
+
+Data-Continuation/formalism-tests:
+  - add optimization-target fixtures and FAIL_CLOSED proof receipts only when its handoff authorizes work
 
 StegVerse-Labs/Site:
-  - mirror/public summary of governed ecosystem transition framing after admissibility-wiki validation
+  - mirror only after wiki evidence and the current Site handoff authorize propagation
 
 GCAT-BCAT-Engine/Publisher:
-  - publication/import awareness for governed ecosystem transition framing after admissibility-wiki validation
+  - queue publication awareness only after wiki evidence and current Publisher handoff authority
 
-stegguardian-wiki:
-  - downstream summary of governed input/output transition boundary once admissibility-wiki validation is stable
+StegVerse-002/stegguardian-wiki:
+  - defer interpretation until executable proof fixtures and destination handoff authority exist
 ```
 
 ## Current Continuation Rule
 
-1. Check `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` first.
-2. Check this file second.
-3. Verify exact repo paths before creating or replacing files.
-4. Repair the first failing validator, generated artifact drift, build issue, deploy issue, public URL verification issue, or handoff inconsistency identified by the active workflow.
-5. Do not reintroduce separate active workflows for validation, deployment, evidence watch, success recording, proposal watching, or framework result posting.
+1. Read the mirror handoff first.
+2. Continue the active completeness-audit block.
+3. Verify exact file presence and current content before creating or replacing files.
+4. Repair exact stale, incomplete, unsupported, or conflicting documentation without weakening validation.
+5. Preserve one active workflow and fail-closed evidence posture.
+6. Do not create manual route checks, workflow triggering, receipt construction, archival, file movement, or downstream propagation tasks for the user.
+7. Do not claim workflow pass, deployment pass, public reachability, custody, release, or execution authority without repository-owned evidence.
 
 ## Current Redundancy Posture
 
-This repository may be touched by more than one session. Do not assume a previously proposed next step is still missing. Verify file presence first, then continue from the missing or explicitly open item.
+This repository may be touched by more than one session. Do not assume a previously proposed next step is still missing. Verify current repository state, then continue from the first unresolved audit item or exact deterministic failure.
