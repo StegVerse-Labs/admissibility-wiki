@@ -1,0 +1,23 @@
+{
+  "schema": "admissibility_wiki_navigation_coverage_policy.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "sidebar": "sidebars.js",
+  "docs_root": "docs",
+  "classification_states": [
+    "PUBLIC_SIDEBAR",
+    "NON_PUBLIC_UNLISTED"
+  ],
+  "policy": {
+    "every_markdown_page_must_be_classified": true,
+    "sidebar_targets_must_exist": true,
+    "unlisted_pages_are_reported_not_silently_ignored": true,
+    "unlisted_page_is_not_deleted": true,
+    "unlisted_page_is_not_public_navigation": true,
+    "public_navigation_is_not_source_authority": true,
+    "navigation_visibility_is_not_execution_authority": true
+  },
+  "generated_report": "reports/navigation-coverage.json",
+  "validator": "scripts/check_navigation_coverage.py",
+  "authority_boundary": "Navigation classification records discoverability only. Sidebar inclusion, omission, or public visibility does not create source authority, proof authority, standing, admissibility, release authority, execution authority, or downstream mutation authority.",
+  "next_action": "Use the generated report to review unlisted pages for intentional non-public retention, historical status, specialist use, or future navigation promotion."
+}
