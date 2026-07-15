@@ -27,13 +27,36 @@ def block_for(entry: dict[str, Any]) -> str:
         cycle_status = report.get("cycle_status", "MISSING")
         authority = report.get("boundary", {}).get("execution_authority_claim")
         manifest = report.get("framework_manifest", entry.get("manifest_path", ""))
+        gate = report.get("evidence_gate", {})
+        evidence_class = gate.get("evidence_class", "UNCLASSIFIED_FAIL_CLOSED")
+        reproducible = bool(gate.get("independently_reproducible", False))
+        comparative_claim = bool(gate.get("comparative_testing_claim_allowed", False))
+        missing_fields = gate.get("missing_fields", [])
+        if not isinstance(missing_fields, list):
+            missing_fields = ["INVALID_MISSING_FIELDS_RECORD"]
+        next_action = report.get("next_required_action", "Inspect the compatibility report and fail closed.")
     else:
         result = "MISSING_REPORT_FAIL_CLOSED"
         cycle_status = "MISSING"
         authority = False
         manifest = entry.get("manifest_path", "")
+        evidence_class = "MENTION_ONLY"
+        reproducible = False
+        comparative_claim = False
+        missing_fields = [
+            "shared_test_vector",
+            "raw_output",
+            "timestamp",
+            "runtime_configuration",
+            "source_version_or_hash",
+            "replay_commands",
+            "declared_expected_outcome",
+            "independent_reproduction",
+        ]
+        next_action = "Create and validate the missing compatibility report before making compatibility or comparative claims."
 
     report_rel = f"./reports/{framework_id}.compatibility.json"
+    missing_text = ", ".join(missing_fields) if missing_fields else "none"
     return "\n".join([
         START,
         "",
@@ -44,9 +67,14 @@ def block_for(entry: dict[str, Any]) -> str:
         f"- Framework ID: `{framework_id}`",
         f"- Manifest: `{manifest}`",
         f"- Compatibility report: `{report_rel}`",
+        f"- Evidence class: `{evidence_class}`",
+        f"- Independently reproducible: `{reproducible}`",
+        f"- Comparative-testing claim allowed: `{comparative_claim}`",
+        f"- Missing reproducibility gates: `{missing_text}`",
         f"- Evaluation result: `{result}`",
         f"- Cycle status: `{cycle_status}`",
         f"- Execution authority claim: `{authority}`",
+        f"- Next bounded action: {next_action}",
         "- Posting source: generated compatibility report",
         "- Generated status is descriptive compatibility evidence only.",
         "",
