@@ -1,0 +1,32 @@
+{
+  "schema": "external_framework_all_navigated_page_completeness.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "counts": {
+    "navigated_framework_pages": 26,
+    "complete_with_external_gates": 26,
+    "partial": 0
+  },
+  "cohort_sources": [
+    {
+      "path": "static/external-frameworks/policy-identity-provenance-page-remediation.v1.json",
+      "page_count": 13
+    },
+    {
+      "path": "static/external-frameworks/priority-agent-guardrail-page-remediation.v1.json",
+      "page_count": 5
+    },
+    {
+      "path": "static/external-frameworks/legacy-priority-page-remediation.v1.json",
+      "page_count": 8
+    }
+  ],
+  "coverage_sources": {
+    "sidebar_associations": "static/external-frameworks/sidebar-page-associations.v1.json",
+    "artifact_bindings": "static/external-frameworks/sidebar-framework-artifact-bindings.v1.json",
+    "canonical_registry": "docs/external-frameworks/index.json",
+    "canonical_union": "static/external-frameworks/canonical-union-inventory.v1.json"
+  },
+  "evidence_boundary": "COMPLETE_WITH_EXTERNAL_GATES describes authored documentation coverage only. It does not promote evidence class, establish independent reproduction, certify compatibility, create standing, or grant execution authority.",
+  "workflow_observation": "PENDING_DIRECT_OBSERVATION",
+  "next_action": "Observe the canonical workflow, repair any directly observed failures, then recalculate the External Frameworks section class and proceed to the Formalisms audit."
+}
