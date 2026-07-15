@@ -2,19 +2,8 @@
   "schema": "external_framework_sidebar_associations.v1",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "sidebar_category": "External Frameworks",
-  "enforcement": {
-    "bidirectional_sidebar_match": true,
-    "page_existence_required": true,
-    "framework_id_unique": true,
-    "registry_presence_must_match_declared_state": true,
-    "silent_add_remove_forbidden": true,
-    "missing_registry_binding_requires_explicit_state": true
-  },
-  "counts": {
-    "sidebar_entries": 50,
-    "support_pages": 24,
-    "framework_pages": 26
-  },
+  "enforcement": {"bidirectional_sidebar_match":true,"page_existence_required":true,"framework_id_unique":true,"registry_presence_must_match_declared_state":true,"silent_add_remove_forbidden":true,"missing_registry_binding_requires_explicit_state":true},
+  "counts": {"sidebar_entries":50,"support_pages":24,"framework_pages":26},
   "entries": [
     {"sidebar_route":"external-frameworks/index","page_path":"docs/external-frameworks/index.md","page_type":"support","association_id":"index"},
     {"sidebar_route":"external-frameworks/candidate-directory","page_path":"docs/external-frameworks/candidate-directory.md","page_type":"support","association_id":"candidate-directory"},
@@ -56,16 +45,16 @@
     {"sidebar_route":"external-frameworks/in-toto","page_path":"docs/external-frameworks/in-toto.md","page_type":"framework","framework_id":"in-toto","docs_registry_state":"missing_explicit","static_registry_id":null,"static_registry_state":"missing_explicit"},
     {"sidebar_route":"external-frameworks/slsa","page_path":"docs/external-frameworks/slsa.md","page_type":"framework","framework_id":"slsa","docs_registry_state":"missing_explicit","static_registry_id":null,"static_registry_state":"missing_explicit"},
     {"sidebar_route":"external-frameworks/sigstore","page_path":"docs/external-frameworks/sigstore.md","page_type":"framework","framework_id":"sigstore","docs_registry_state":"missing_explicit","static_registry_id":null,"static_registry_state":"missing_explicit"},
-    {"sidebar_route":"external-frameworks/model-context-protocol","page_path":"docs/external-frameworks/model-context-protocol.md","page_type":"framework","framework_id":"model-context-protocol","docs_registry_state":"missing_explicit","static_registry_id":null,"static_registry_state":"missing_explicit"},
-    {"sidebar_route":"external-frameworks/agent2agent-protocol","page_path":"docs/external-frameworks/agent2agent-protocol.md","page_type":"framework","framework_id":"agent2agent-protocol","docs_registry_state":"missing_explicit","static_registry_id":null,"static_registry_state":"missing_explicit"},
+    {"sidebar_route":"external-frameworks/model-context-protocol","page_path":"docs/external-frameworks/model-context-protocol.md","page_type":"framework","framework_id":"model-context-protocol","docs_registry_state":"present","static_registry_id":"external.model-context-protocol","static_registry_state":"present"},
+    {"sidebar_route":"external-frameworks/agent2agent-protocol","page_path":"docs/external-frameworks/agent2agent-protocol.md","page_type":"framework","framework_id":"agent2agent-protocol","docs_registry_state":"present","static_registry_id":"external.agent2agent-protocol","static_registry_state":"present"},
     {"sidebar_route":"external-frameworks/openid-connect","page_path":"docs/external-frameworks/openid-connect.md","page_type":"framework","framework_id":"openid-connect","docs_registry_state":"missing_explicit","static_registry_id":null,"static_registry_state":"missing_explicit"},
     {"sidebar_route":"external-frameworks/oauth2","page_path":"docs/external-frameworks/oauth2.md","page_type":"framework","framework_id":"oauth2","docs_registry_state":"missing_explicit","static_registry_id":null,"static_registry_state":"missing_explicit"},
     {"sidebar_route":"external-frameworks/w3c-did","page_path":"docs/external-frameworks/w3c-did.md","page_type":"framework","framework_id":"w3c-did","docs_registry_state":"missing_explicit","static_registry_id":null,"static_registry_state":"missing_explicit"},
     {"sidebar_route":"external-frameworks/openlineage","page_path":"docs/external-frameworks/openlineage.md","page_type":"framework","framework_id":"openlineage","docs_registry_state":"missing_explicit","static_registry_id":null,"static_registry_state":"missing_explicit"},
     {"sidebar_route":"external-frameworks/w3c-prov","page_path":"docs/external-frameworks/w3c-prov.md","page_type":"framework","framework_id":"w3c-prov","docs_registry_state":"missing_explicit","static_registry_id":null,"static_registry_state":"missing_explicit"},
-    {"sidebar_route":"external-frameworks/guardrails-ai","page_path":"docs/external-frameworks/guardrails-ai.md","page_type":"framework","framework_id":"guardrails-ai","docs_registry_state":"missing_explicit","static_registry_id":null,"static_registry_state":"missing_explicit"},
-    {"sidebar_route":"external-frameworks/llama-guard","page_path":"docs/external-frameworks/llama-guard.md","page_type":"framework","framework_id":"llama-guard","docs_registry_state":"missing_explicit","static_registry_id":null,"static_registry_state":"missing_explicit"},
-    {"sidebar_route":"external-frameworks/nemo-guardrails","page_path":"docs/external-frameworks/nemo-guardrails.md","page_type":"framework","framework_id":"nemo-guardrails","docs_registry_state":"missing_explicit","static_registry_id":null,"static_registry_state":"missing_explicit"}
+    {"sidebar_route":"external-frameworks/guardrails-ai","page_path":"docs/external-frameworks/guardrails-ai.md","page_type":"framework","framework_id":"guardrails-ai","docs_registry_state":"present","static_registry_id":"external.guardrails-ai","static_registry_state":"present"},
+    {"sidebar_route":"external-frameworks/llama-guard","page_path":"docs/external-frameworks/llama-guard.md","page_type":"framework","framework_id":"llama-guard","docs_registry_state":"present","static_registry_id":"external.llama-guard","static_registry_state":"present"},
+    {"sidebar_route":"external-frameworks/nemo-guardrails","page_path":"docs/external-frameworks/nemo-guardrails.md","page_type":"framework","framework_id":"nemo-guardrails","docs_registry_state":"present","static_registry_id":"external.nemo-guardrails","static_registry_state":"present"}
   ],
   "boundary": "Association and registry presence do not create certification, endorsement, compatibility, admissibility, standing, or execution authority."
 }
