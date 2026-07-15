@@ -54,6 +54,28 @@ def artifact_record(path: Path | None) -> dict[str, Any]:
     return {"present": True, "path": shown, "sha256": sha256(path)}
 
 
+def capture_is_validated(status: dict[str, Any] | None) -> bool:
+    if not status:
+        return False
+    if status.get("validation_status") == "PASS" or status.get("overall_status") == "PASS":
+        return True
+    return bool(
+        status.get("capture_state") == "captured_unverified"
+        and status.get("same_environment_replay_state") == "replay_confirmed_same_environment"
+        and status.get("validation_failures") == []
+    )
+
+
+def receipt_is_observed(receipt: dict[str, Any] | None) -> bool:
+    return bool(
+        receipt
+        and receipt.get("summary", {}).get("bounded_compatibility_state") == "GOVERNANCE_COMPATIBILITY_OBSERVED"
+        and receipt.get("summary", {}).get("all_expected_results_matched") is True
+        and receipt.get("authority_boundary", {}).get("compatibility_receipt_is_execution_authority") is False
+        and receipt.get("authority_boundary", {}).get("general_compatibility_claim_allowed") is False
+    )
+
+
 def run_compatibility() -> tuple[str, str]:
     if not COMPATIBILITY_RUNNER.exists():
         return "BLOCKED_MISSING_RUNNER", "compatibility runner is missing"
@@ -87,18 +109,14 @@ def main() -> int:
     capture_status_path = find_json(capture_root, "opa-capture-status.json")
     same_runner_receipt_path = find_json(capture_root, "opa-replay-receipt.json")
     fresh_runner_receipt_path = find_json(replay_root, "opa-independent-replay-receipt.json")
+    compatibility_receipt_path = find_json(replay_root, COMPATIBILITY_RECEIPT_NAME)
 
     capture_status = load_json(capture_status_path)
     same_runner_receipt = load_json(same_runner_receipt_path)
     fresh_runner_receipt = load_json(fresh_runner_receipt_path)
+    compatibility_receipt = load_json(compatibility_receipt_path)
 
-    capture_validated = bool(
-        capture_status
-        and (
-            capture_status.get("validation_status") == "PASS"
-            or capture_status.get("overall_status") == "PASS"
-        )
-    )
+    capture_validated = capture_is_validated(capture_status)
     same_runner_confirmed = bool(
         same_runner_receipt
         and same_runner_receipt.get("replay_state") == "replay_confirmed_same_environment"
@@ -110,18 +128,16 @@ def main() -> int:
 
     compatibility_execution_state = "NOT_RUN"
     compatibility_output = ""
-    if fresh_runner_confirmed and capture_validated and same_runner_confirmed:
-        compatibility_execution_state, compatibility_output = run_compatibility()
+    compatibility_observed = receipt_is_observed(compatibility_receipt)
 
-    compatibility_receipt_path = find_json(replay_root, COMPATIBILITY_RECEIPT_NAME)
-    compatibility_receipt = load_json(compatibility_receipt_path)
-    compatibility_observed = bool(
-        compatibility_execution_state == "OBSERVED"
-        and compatibility_receipt
-        and compatibility_receipt.get("summary", {}).get("bounded_compatibility_state")
-        == "GOVERNANCE_COMPATIBILITY_OBSERVED"
-        and compatibility_receipt.get("summary", {}).get("all_expected_results_matched") is True
-    )
+    if compatibility_observed:
+        compatibility_execution_state = "OBSERVED"
+        compatibility_output = "existing bounded compatibility receipt validated"
+    elif fresh_runner_confirmed and capture_validated and same_runner_confirmed:
+        compatibility_execution_state, compatibility_output = run_compatibility()
+        compatibility_receipt_path = find_json(replay_root, COMPATIBILITY_RECEIPT_NAME)
+        compatibility_receipt = load_json(compatibility_receipt_path)
+        compatibility_observed = compatibility_execution_state == "OBSERVED" and receipt_is_observed(compatibility_receipt)
 
     if fresh_runner_confirmed and capture_validated and same_runner_confirmed and compatibility_observed:
         pipeline_state = "governance_compatibility_observed"
@@ -136,7 +152,7 @@ def main() -> int:
 
     receipt = {
         "artifact_type": "external_framework_evidence_pipeline_status",
-        "schema_version": "0.2",
+        "schema_version": "0.3",
         "framework_id": "opa",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "github_context": {
