@@ -4,6 +4,7 @@ import { spawnSync } from 'node:child_process';
 
 const WRITER = 'scripts/write-public-activation-receipt.mjs';
 const OUT = 'reports/public-activation-receipt.json';
+const OPTIMIZATION_RECEIPT = 'reports/optimization-target-publication-verification-receipt.json';
 const REQUIRED_CHECKS = [
   'public_site_loads',
   'status_json_reachable',
@@ -32,6 +33,13 @@ const RADIOLOGY_CHECKS = new Set([
   'ai_led_radiology_schema_reachable',
   'ai_led_radiology_status_reachable'
 ]);
+const UPSTREAM_ROUTE_NAMES = [
+  'verification_execution_authority_doctrine_reachable',
+  'verification_execution_authority_status_reachable',
+  'conceptual_inheritance_doctrine',
+  'conceptual_inheritance_status',
+  'conceptual_inheritance_publication_status'
+];
 
 function fail(message) {
   console.error(`FAIL: ${message}`);
@@ -40,7 +48,18 @@ function fail(message) {
 
 if (!fs.existsSync(WRITER)) fail(`missing writer: ${WRITER}`);
 
+fs.mkdirSync('reports', { recursive: true });
 fs.rmSync(OUT, { force: true });
+fs.writeFileSync(OPTIMIZATION_RECEIPT, JSON.stringify({
+  schema: 'optimization_target_publication_verification_receipt.test.v1',
+  verification_result: 'PASS',
+  routes: Object.fromEntries(UPSTREAM_ROUTE_NAMES.map((name) => [name, {
+    reachable: true,
+    url: `https://stegverse-labs.github.io/admissibility-wiki/mock/${name}`,
+    verifier: 'deterministic local receipt-writer validation mode'
+  }]))
+}, null, 2) + '\n');
+
 const result = spawnSync(process.execPath, [WRITER], {
   stdio: 'pipe',
   encoding: 'utf8',
@@ -138,12 +157,21 @@ if (mesh.execution_authority_granted !== false) fail('documentation mesh executi
 if (mesh.downstream_mutation_authority_granted !== false) fail('documentation mesh downstream authority mismatch');
 if (mesh.handoff_reconciliation_required_for_continuation !== false) fail('documentation mesh reconciliation mismatch');
 
+const quantum = receipt.activation_closures?.quantum_security;
+if (!quantum || quantum.schema !== 'quantum_security_public_route_observation.v1') fail('quantum-security closure mismatch');
+if (quantum.state !== 'SIMULATED_VALIDATOR_PASS') fail('quantum-security simulated state mismatch');
+if (quantum.execution_authority_granted !== false) fail('quantum-security authority mismatch');
+if (quantum.downstream_mutation_authority_granted !== false) fail('quantum-security downstream authority mismatch');
+
 const reconstructionUrl = receipt.linked_receipts?.external_translation_reconstruction;
 if (reconstructionUrl !== 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json') {
   fail('external translation reconstruction receipt binding mismatch');
 }
 if (receipt.linked_receipts?.ai_led_radiology_execution !== 'reports/ai-led-radiology-execution-receipt.json') {
   fail('AI-led radiology execution receipt binding mismatch');
+}
+if (receipt.linked_receipts?.quantum_security_public_route_observation !== 'reports/quantum-security-public-route-observation.json') {
+  fail('quantum-security receipt binding mismatch');
 }
 
 const nonClaims = receipt.non_claims || [];
@@ -152,4 +180,5 @@ if (!nonClaims.some((claim) => claim.includes('does not certify clinical perform
 if (!nonClaims.some((claim) => claim.includes('does not grant cross-repository authority'))) fail('missing mesh authority non-claim');
 if (!nonClaims.some((claim) => claim.includes('does not decide authorship'))) fail('missing conceptual inheritance non-claim');
 
+fs.rmSync(OPTIMIZATION_RECEIPT, { force: true });
 console.log('public activation receipt writer OK');
