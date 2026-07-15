@@ -19,25 +19,17 @@
     ["Next safe build target", "Next Safe Build Target"]
   ],
   "counts": {
-    "cohort_pages": 13,
+    "cohort_pages": 5,
     "complete_with_external_gates": 5,
-    "partial_or_pending_review": 8
+    "partial_or_pending_review": 0
   },
   "entries": [
     {"framework_id":"model-context-protocol","page_path":"docs/external-frameworks/model-context-protocol.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
     {"framework_id":"agent2agent-protocol","page_path":"docs/external-frameworks/agent2agent-protocol.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
     {"framework_id":"guardrails-ai","page_path":"docs/external-frameworks/guardrails-ai.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
     {"framework_id":"llama-guard","page_path":"docs/external-frameworks/llama-guard.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
-    {"framework_id":"nemo-guardrails","page_path":"docs/external-frameworks/nemo-guardrails.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
-    {"framework_id":"glm","page_path":"docs/external-frameworks/glm.md","completeness":"PENDING_REVIEW"},
-    {"framework_id":"evide","page_path":"docs/external-frameworks/evide.md","completeness":"PENDING_REVIEW"},
-    {"framework_id":"asro","page_path":"docs/external-frameworks/asro.md","completeness":"PENDING_REVIEW"},
-    {"framework_id":"decisionassure","page_path":"docs/external-frameworks/decisionassure.md","completeness":"PENDING_REVIEW"},
-    {"framework_id":"mindforge","page_path":"docs/external-frameworks/mindforge.md","completeness":"PENDING_REVIEW"},
-    {"framework_id":"morrison-runtime","page_path":"docs/external-frameworks/morrison-runtime.md","completeness":"PENDING_REVIEW"},
-    {"framework_id":"care-runtime","page_path":"docs/external-frameworks/care-runtime.md","completeness":"PENDING_REVIEW"},
-    {"framework_id":"kpt","page_path":"docs/external-frameworks/kpt.md","completeness":"PENDING_REVIEW"}
+    {"framework_id":"nemo-guardrails","page_path":"docs/external-frameworks/nemo-guardrails.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"}
   ],
   "boundary": "Page completeness does not increase evidence class, establish compatibility, create standing, or grant execution authority.",
-  "next_action": "Review and remediate the eight remaining priority or source-blocked framework pages, then recalculate all 26 navigated framework pages."
+  "next_action": "Preserve this five-page cohort as complete and use the separate legacy-priority ledger for GLM, EVIDE, ASRO, DecisionAssure, MindForge, Morrison Runtime, CARE Runtime, and KPT."
 }
