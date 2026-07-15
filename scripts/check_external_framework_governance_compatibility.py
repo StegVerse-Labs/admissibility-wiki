@@ -10,13 +10,14 @@ STATUS = ROOT / "static" / "external-frameworks" / "governance-compatibility-tes
 UNION = ROOT / "static" / "external-frameworks" / "canonical-union-inventory.v1.json"
 OPA_PIPELINE = ROOT / "scripts" / "summarize_opa_evidence_pipeline.py"
 CONTRACTS = {
-    "open-policy-agent": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "opa-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_opa_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "open-policy-agent.md", "allowed_states": {"CONTRACT_AUTHORED"}},
-    "cedar-policy": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "cedar-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_cedar_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "cedar-policy.md", "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"}},
-    "spiffe-spire": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "spiffe-spire-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_spiffe_spire_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "spiffe-spire.md", "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"}},
-    "w3c-verifiable-credentials": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "w3c-vc-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_w3c_vc_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "w3c-verifiable-credentials.md", "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"}},
-    "in-toto": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "in-toto-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_in_toto_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "in-toto.md", "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"}},
-    "slsa": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "slsa-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_slsa_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "slsa.md", "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"}},
-    "sigstore": {"fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "sigstore-governance-compatibility-cases.v1.json", "runner": ROOT / "scripts" / "run_sigstore_governance_compatibility.py", "page": ROOT / "docs" / "external-frameworks" / "sigstore.md", "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"}},
+    "open-policy-agent": ("opa", "open-policy-agent.md", "CONTRACT_AUTHORED"),
+    "cedar-policy": ("cedar", "cedar-policy.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "spiffe-spire": ("spiffe-spire", "spiffe-spire.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "w3c-verifiable-credentials": ("w3c-vc", "w3c-verifiable-credentials.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "in-toto": ("in-toto", "in-toto.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "slsa": ("slsa", "slsa.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "sigstore": ("sigstore", "sigstore.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "openid-connect": ("openid-connect", "openid-connect.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 
@@ -45,62 +46,60 @@ def main() -> None:
     if len(canonical_ids) != 38 or union.get("counts", {}).get("records") != 38:
         fail(f"canonical inventory count mismatch: {len(canonical_ids)}")
 
-    records = status.get("records", [])
-    records_by_id = {record.get("framework_id"): record for record in records}
+    records_by_id = {record.get("framework_id"): record for record in status.get("records", [])}
     if set(records_by_id) != set(CONTRACTS):
         fail(f"authored contract set mismatch: {sorted(records_by_id)}")
     if not set(records_by_id).issubset(canonical_ids):
-        fail(f"status references unknown framework IDs: {sorted(set(records_by_id) - canonical_ids)}")
+        fail(f"unknown framework IDs: {sorted(set(records_by_id) - canonical_ids)}")
 
     required_families = set(standard.get("required_case_families", []))
-    for framework_id, contract in CONTRACTS.items():
-        fixture = load(contract["fixture"])
-        if not contract["runner"].exists() or not contract["page"].exists():
+    for framework_id, (stem, page_name, expected_state) in CONTRACTS.items():
+        fixture = ROOT / "tests" / "fixtures" / "external-frameworks" / f"{stem}-governance-compatibility-cases.v1.json"
+        runner = ROOT / "scripts" / f"run_{stem.replace('-', '_')}_governance_compatibility.py"
+        page = ROOT / "docs" / "external-frameworks" / page_name
+        data = load(fixture)
+        if not runner.exists() or not page.exists():
             fail(f"missing runner or page for {framework_id}")
-        cases = fixture.get("cases", [])
+        cases = data.get("cases", [])
         families = {case.get("family") for case in cases}
         if len(cases) != 6 or families != required_families:
             fail(f"case contract mismatch for {framework_id}: count={len(cases)} families={sorted(families)}")
         record = records_by_id[framework_id]
-        if record.get("state") not in contract["allowed_states"]:
+        if record.get("state") != expected_state:
             fail(f"invalid state for {framework_id}: {record.get('state')}")
-        if record.get("case_count") != 6:
-            fail(f"case_count stale for {framework_id}")
-        if record.get("stegverse_governance_compatibility_observed") is not False:
-            fail(f"compatibility may not be pre-claimed for {framework_id}")
+        if record.get("case_count") != 6 or record.get("stegverse_governance_compatibility_observed") is not False:
+            fail(f"invalid count or pre-claim for {framework_id}")
         for case in cases:
             if case.get("expected_stegverse_result") not in {"ALLOW", "DENY", "ESCALATE", "FAIL_CLOSED"}:
                 fail(f"invalid expected result: {framework_id}/{case.get('case_id')}")
 
-    if not OPA_PIPELINE.exists():
-        fail("OPA evidence pipeline summarizer missing")
-    opa_pipeline_text = OPA_PIPELINE.read_text(encoding="utf-8")
+    opa_text = OPA_PIPELINE.read_text(encoding="utf-8") if OPA_PIPELINE.exists() else ""
     for marker in ("run_opa_governance_compatibility.py", "opa-stegverse-governance-compatibility-receipt.json", "governance_compatibility_observed", "compatibility_receipt_grants_execution_authority"):
-        if marker not in opa_pipeline_text:
+        if marker not in opa_text:
             fail(f"OPA execution binding missing marker: {marker}")
 
     if records_by_id["open-policy-agent"].get("native_execution_observed") is not True or records_by_id["open-policy-agent"].get("fresh_runner_replay_observed") is not True:
-        fail("OPA native execution and fresh-runner replay must remain observed")
+        fail("OPA execution and fresh-runner replay must remain observed")
     if records_by_id["cedar-policy"].get("binary_build_observed") is not True or records_by_id["cedar-policy"].get("native_execution_observed") is not False:
         fail("Cedar must remain build-observed and runtime-unobserved")
-    for framework_id in ("spiffe-spire", "w3c-verifiable-credentials", "in-toto", "slsa", "sigstore"):
+    for framework_id in ("spiffe-spire", "w3c-verifiable-credentials", "in-toto", "slsa", "sigstore", "openid-connect"):
         record = records_by_id[framework_id]
         if record.get("source_reviewed") is not True or record.get("native_execution_observed") is not False:
             fail(f"{framework_id} must remain source-reviewed and runtime-unobserved")
 
-    expected_counts = {"canonical_records": 38, "contract_authored": 7, "governance_compatibility_observed": 0, "fresh_runner_reproduced": 0, "independent_implementation_reproduced": 0, "not_started": 31}
+    expected_counts = {"canonical_records":38,"contract_authored":8,"governance_compatibility_observed":0,"fresh_runner_reproduced":0,"independent_implementation_reproduced":0,"not_started":30}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
 
     joined = json.dumps(standard).lower() + json.dumps(status).lower()
-    for phrase in ["does not certify", "execution authority", "general compatibility", "policy evidence", "identity verification", "credential verification", "provenance verification", "signature verification"]:
+    for phrase in ["does not certify", "execution authority", "general compatibility", "policy evidence", "identity verification", "credential verification", "provenance verification", "signature verification", "authentication"]:
         if phrase not in joined:
             fail(f"missing boundary phrase: {phrase}")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=7")
+    print("contracts_authored=8")
     print("compatibility_observed=0")
     print("opa_execution_binding=installed_pending_observation")
     for framework_id in CONTRACTS:
