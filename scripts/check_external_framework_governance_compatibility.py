@@ -21,6 +21,7 @@ CONTRACTS = {
     "oauth2": ("oauth2", "oauth2.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "w3c-did": ("w3c-did", "w3c-did.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "oscal": ("oscal", "oscal.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "openlineage": ("openlineage", "openlineage.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 
@@ -79,20 +80,20 @@ def main() -> None:
         fail("OPA execution and fresh-runner replay must remain observed")
     if records["cedar-policy"].get("binary_build_observed") is not True or records["cedar-policy"].get("native_execution_observed") is not False:
         fail("Cedar must remain build-observed and runtime-unobserved")
-    for framework_id in ("spiffe-spire", "w3c-verifiable-credentials", "in-toto", "slsa", "sigstore", "openid-connect", "oauth2", "w3c-did", "oscal"):
+    for framework_id in ("spiffe-spire", "w3c-verifiable-credentials", "in-toto", "slsa", "sigstore", "openid-connect", "oauth2", "w3c-did", "oscal", "openlineage"):
         if records[framework_id].get("source_reviewed") is not True or records[framework_id].get("native_execution_observed") is not False:
             fail(f"{framework_id} must remain source-reviewed and runtime-unobserved")
-    expected_counts = {"canonical_records": 38, "contract_authored": 11, "governance_compatibility_observed": 0, "fresh_runner_reproduced": 0, "independent_implementation_reproduced": 0, "not_started": 27}
+    expected_counts = {"canonical_records": 38, "contract_authored": 12, "governance_compatibility_observed": 0, "fresh_runner_reproduced": 0, "independent_implementation_reproduced": 0, "not_started": 26}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
     joined = json.dumps(standard).lower() + json.dumps(status).lower()
-    for phrase in ["does not certify", "execution authority", "general compatibility", "policy evidence", "identity verification", "credential verification", "provenance verification", "signature verification", "authentication", "token acceptance", "did control", "control evidence"]:
+    for phrase in ["does not certify", "execution authority", "general compatibility", "policy evidence", "identity verification", "credential verification", "provenance verification", "signature verification", "authentication", "token acceptance", "did control", "control evidence", "lineage visibility"]:
         if phrase not in joined:
             fail(f"missing boundary phrase: {phrase}")
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=11")
+    print("contracts_authored=12")
     print("compatibility_observed=0")
     print("opa_execution_binding=installed_pending_observation")
     for framework_id in CONTRACTS:
