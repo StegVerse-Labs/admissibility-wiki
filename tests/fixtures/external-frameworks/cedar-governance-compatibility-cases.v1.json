@@ -1,0 +1,106 @@
+{
+  "schema": "cedar_stegverse_governance_compatibility_cases.v1",
+  "framework_id": "cedar-policy",
+  "framework_version": "4.11.0",
+  "pinned_commit": "0807ec154afd7ffa14a658c9955d25bfe12770ca",
+  "evidence_posture": "CONTRACT_AUTHORED_BINARY_BUILT_HASHED_UNEXECUTED",
+  "cases": [
+    {
+      "case_id": "cedar-compat-positive-permit-001",
+      "family": "positive_alignment",
+      "cedar_response": "permit",
+      "transition": {
+        "principal_identity_verified": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "entity_store_current": true,
+        "evidence_fresh": true,
+        "resource_matches_scope": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "ALLOW"
+    },
+    {
+      "case_id": "cedar-compat-native-forbid-001",
+      "family": "native_denial",
+      "cedar_response": "forbid",
+      "transition": {
+        "principal_identity_verified": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "entity_store_current": true,
+        "evidence_fresh": true,
+        "resource_matches_scope": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "DENY"
+    },
+    {
+      "case_id": "cedar-compat-revoked-delegation-001",
+      "family": "authority_drift",
+      "cedar_response": "permit",
+      "transition": {
+        "principal_identity_verified": true,
+        "delegation_current": false,
+        "policy_reference_current": true,
+        "entity_store_current": true,
+        "evidence_fresh": true,
+        "resource_matches_scope": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "DENY"
+    },
+    {
+      "case_id": "cedar-compat-stale-entity-store-001",
+      "family": "stale_evidence",
+      "cedar_response": "permit",
+      "transition": {
+        "principal_identity_verified": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "entity_store_current": false,
+        "evidence_fresh": false,
+        "resource_matches_scope": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "FAIL_CLOSED"
+    },
+    {
+      "case_id": "cedar-compat-runtime-error-001",
+      "family": "framework_error",
+      "cedar_response": "error",
+      "transition": {
+        "principal_identity_verified": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "entity_store_current": true,
+        "evidence_fresh": true,
+        "resource_matches_scope": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "FAIL_CLOSED"
+    },
+    {
+      "case_id": "cedar-compat-resource-scope-divergence-001",
+      "family": "semantic_divergence",
+      "cedar_response": "permit",
+      "transition": {
+        "principal_identity_verified": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "entity_store_current": true,
+        "evidence_fresh": true,
+        "resource_matches_scope": false,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "DENY"
+    }
+  ],
+  "authority_boundary": "Cedar permit or forbid is authorization evidence only. This fixture does not certify Cedar, establish general compatibility, or grant StegVerse execution authority."
+}
