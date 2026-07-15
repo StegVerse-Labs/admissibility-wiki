@@ -1,0 +1,116 @@
+{
+  "schema": "in_toto_stegverse_governance_compatibility_cases.v1",
+  "framework_id": "in-toto",
+  "evidence_posture": "CONTRACT_AUTHORED_RUNTIME_PENDING",
+  "cases": [
+    {
+      "case_id": "in-toto-positive-layout-conformance-001",
+      "family": "positive_alignment",
+      "verification_result": "PASS",
+      "transition": {
+        "artifact_digest_matches": true,
+        "layout_current": true,
+        "functionary_signatures_valid": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "target_action_in_scope": true,
+        "evidence_fresh": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "ALLOW",
+      "expected_failure_class": null
+    },
+    {
+      "case_id": "in-toto-layout-verification-failed-001",
+      "family": "framework_denial_or_negative_result",
+      "verification_result": "FAIL",
+      "transition": {
+        "artifact_digest_matches": true,
+        "layout_current": true,
+        "functionary_signatures_valid": false,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "target_action_in_scope": true,
+        "evidence_fresh": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "PROVENANCE_VERIFICATION_DENIAL"
+    },
+    {
+      "case_id": "in-toto-delegation-revoked-001",
+      "family": "authority_or_delegation_failure",
+      "verification_result": "PASS",
+      "transition": {
+        "artifact_digest_matches": true,
+        "layout_current": true,
+        "functionary_signatures_valid": true,
+        "delegation_current": false,
+        "policy_reference_current": true,
+        "target_action_in_scope": true,
+        "evidence_fresh": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "AUTHORITY_DRIFT"
+    },
+    {
+      "case_id": "in-toto-stale-layout-or-links-001",
+      "family": "stale_or_missing_evidence",
+      "verification_result": "PASS",
+      "transition": {
+        "artifact_digest_matches": true,
+        "layout_current": false,
+        "functionary_signatures_valid": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "target_action_in_scope": true,
+        "evidence_fresh": false,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "FAIL_CLOSED",
+      "expected_failure_class": "STALE_PROVENANCE_EVIDENCE"
+    },
+    {
+      "case_id": "in-toto-verifier-error-001",
+      "family": "malformed_undefined_or_runtime_error",
+      "verification_result": "ERROR",
+      "transition": {
+        "artifact_digest_matches": true,
+        "layout_current": true,
+        "functionary_signatures_valid": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "target_action_in_scope": true,
+        "evidence_fresh": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "FAIL_CLOSED",
+      "expected_failure_class": "FRAMEWORK_RUNTIME_ERROR"
+    },
+    {
+      "case_id": "in-toto-deployment-scope-divergence-001",
+      "family": "semantic_divergence_guard",
+      "verification_result": "PASS",
+      "transition": {
+        "artifact_digest_matches": true,
+        "layout_current": true,
+        "functionary_signatures_valid": true,
+        "delegation_current": true,
+        "policy_reference_current": true,
+        "target_action_in_scope": false,
+        "evidence_fresh": true,
+        "recoverability_satisfied": true,
+        "execution_context_current": true
+      },
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "TARGET_ACTION_SCOPE_DIVERGENCE"
+    }
+  ],
+  "authority_boundary": "Verified in-toto layout and link provenance enters StegVerse as provenance evidence only. It does not authorize deployment, establish current delegation, create standing, certify the artifact, or prove general compatibility."
+}
