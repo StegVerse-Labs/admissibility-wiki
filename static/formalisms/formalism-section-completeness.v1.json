@@ -3,13 +3,15 @@
   "repository": "StegVerse-Labs/admissibility-wiki",
   "classification": "IN_PROGRESS",
   "registry": "static/formalisms/formalism-registry.v0.1.json",
+  "registry_reconciliation": "static/formalisms/formalism-registry-reconciliation.v1.json",
   "record_classification": "static/formalisms/formalism-record-classification.v1.json",
   "validator": "scripts/check-formalism-registry.mjs",
   "counts": {
     "registry_records": 15,
     "artifact_classified": 15,
-    "mirrored_records": 14,
-    "intake_records": 1,
+    "effective_mirrored_records": 14,
+    "effective_crosswalked_records": 1,
+    "effective_intake_records": 0,
     "theorem_candidates": 1,
     "records_with_missing_classification": 0
   },
@@ -19,32 +21,33 @@
     "mirror posture is separated from proof posture",
     "validation infrastructure and executable engines are separated from proof authority",
     "IICT remains explicitly classified as an unproven theorem candidate",
-    "private source boundaries and non-claims remain preserved"
+    "private source boundaries and non-claims remain preserved",
+    "GCAT-BCAT historical registry drift is corrected through an explicit effective-state reconciliation overlay",
+    "all 15 records now have COMPLETE_WITH_EXTERNAL_GATES publication posture under effective state"
+  ],
+  "resolved_blockers": [
+    {
+      "blocker_id": "FORMALISM-GCAT-REGISTRY-PAGE-DRIFT",
+      "resolution": "Installed formalism-registry-reconciliation.v1.json, changed the effective GCAT-BCAT state to crosswalked, synchronized classification posture, and updated the validator to compute effective state while preserving the v0.1 base record as provenance.",
+      "authority_effect": "NONE"
+    }
   ],
   "active_blockers": [
     {
-      "blocker_id": "FORMALISM-GCAT-REGISTRY-PAGE-DRIFT",
-      "formalism_id": "ae.GCAT-BCAT",
-      "registry_state": "intake",
-      "registry_claim": "detail page and source crosswalk pending",
-      "page_state": "source_available",
-      "page_claim": "initial public-safe canonical detail page installed",
-      "required_resolution": "Reconcile the registry state, transition relationship, evidence posture, and validation posture with the existing page and source boundary without promoting publication artifacts into source authority."
-    },
-    {
       "blocker_id": "FORMALISM-CANONICAL-WORKFLOW-FAILURE",
       "state": "OBSERVED_FAILED",
-      "evidence": "GitHub notification for Validate chain continuation on main at commit b88f8a8 and multiple preceding commits",
-      "required_resolution": "Inspect the canonical workflow job log or uploaded full-validation report and repair the first deterministic failure. Notification evidence alone does not identify the failing validator."
+      "evidence": "GitHub notifications report Validate chain continuation failures on recent main-branch commits.",
+      "required_resolution": "Inspect the newest canonical workflow job log or uploaded full-validation report and repair the first deterministic failure. Notification evidence alone does not identify the failing validator."
     }
   ],
   "evidence_boundaries": {
     "mirror_is_source_authority": false,
+    "crosswalk_is_source_authority": false,
     "baseline_fixture_is_complete_proof": false,
     "theorem_candidate_is_proven": false,
     "publication_artifact_is_canonical_formalism_authority": false,
     "executable_engine_is_proof_authority": false,
     "validation_factory_is_proof_authority": false
   },
-  "next_action": "Resolve GCAT-BCAT registry/page drift, then inspect the observed canonical workflow failure and continue source-confirmed theorem, proof, fixture, expected-outcome, and translation-record extraction."
+  "next_action": "Inspect and repair the observed canonical workflow failure, then continue source-confirmed theorem, proof, fixture, expected-outcome, implementation, and translation-record extraction."
 }
