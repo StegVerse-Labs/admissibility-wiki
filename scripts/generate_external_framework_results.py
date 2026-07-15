@@ -18,6 +18,7 @@ def read_json(path: Path) -> dict[str, Any]:
 def main() -> int:
     registry = read_json(REGISTRY)
     rows: list[str] = []
+    reproducible_count = 0
     for entry in registry.get("entries", []):
         framework_id = entry.get("framework_id")
         name = entry.get("name")
@@ -28,13 +29,24 @@ def main() -> int:
             result = report.get("result", "MISSING")
             cycle = report.get("cycle_status", "MISSING")
             authority = report.get("boundary", {}).get("execution_authority_claim")
+            gate = report.get("evidence_gate", {})
+            evidence_class = gate.get("evidence_class", "UNCLASSIFIED_FAIL_CLOSED")
+            reproducible = bool(gate.get("independently_reproducible", False))
+            missing_count = len(gate.get("missing_fields", []))
+            if reproducible:
+                reproducible_count += 1
         else:
             result = "MISSING_REPORT_FAIL_CLOSED"
             cycle = "MISSING"
             authority = None
+            evidence_class = "MENTION_ONLY"
+            reproducible = False
+            missing_count = 8
         page_link = page.replace("docs/external-frameworks/", "./")
         report_link = f"./reports/{framework_id}.compatibility.json"
-        rows.append(f"| [{name}]({page_link}) | `{result}` | `{cycle}` | `{authority}` | [report]({report_link}) |")
+        rows.append(
+            f"| [{name}]({page_link}) | `{evidence_class}` | `{reproducible}` | `{missing_count}` | `{result}` | `{cycle}` | `{authority}` | [report]({report_link}) |"
+        )
 
     content = "\n".join([
         "---",
@@ -45,13 +57,36 @@ def main() -> int:
         "",
         "This page is generated from machine-readable compatibility reports.",
         "",
-        "A listed result is compatibility evidence only. It is not certification, endorsement, formalism adoption, admissibility proof, or execution authority.",
+        "No external framework may be described as comparatively tested unless its report reaches `REPRODUCIBLE_COMPARATIVE_TEST` and records shared vectors, pinned source identity, raw outputs, runtime configuration, declared expected outcomes, replay commands, timestamps, hashes, and an independent rerun.",
         "",
-        "When an external framework is evaluated, the generated compatibility report is the posting source for this page.",
+        f"Current independently reproducible comparative evaluations: **{reproducible_count}**.",
         "",
-        "| Framework | Result | Cycle Status | Execution Authority Claim | Report |",
-        "|---|---|---|---|---|",
+        "A listed result is evidence only. It is not certification, endorsement, formalism adoption, admissibility proof, execution authority, or a ranking of framework value.",
+        "",
+        "Evidence classes, from weakest to strongest:",
+        "",
+        "```text",
+        "MENTION_ONLY",
+        "AUTHOR_COMMENTARY",
+        "SOURCE_REVIEWED",
+        "ARTIFACT_REVIEWED",
+        "PARAMETERIZED_OBSERVATION",
+        "REPRODUCIBLE_COMPARATIVE_TEST",
+        "```",
+        "",
+        "| Framework | Evidence Class | Independently Reproducible | Missing Gate Fields | Result | Cycle Status | Execution Authority Claim | Report |",
+        "|---|---|---:|---:|---|---|---|---|",
         *rows,
+        "",
+        "## Boundary",
+        "",
+        "```text",
+        "source review != implementation test",
+        "artifact review != independent reproduction",
+        "parameterized observation != comparative testing",
+        "framework commentary != test result",
+        "compatibility evidence != execution authority",
+        "```",
         "",
     ])
     OUT.write_text(content, encoding="utf-8")
