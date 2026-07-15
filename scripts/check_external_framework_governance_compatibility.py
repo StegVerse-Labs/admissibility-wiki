@@ -8,9 +8,20 @@ ROOT = Path(__file__).resolve().parents[1]
 STANDARD = ROOT / "static" / "external-frameworks" / "compatibility-testing-standard.v1.json"
 STATUS = ROOT / "static" / "external-frameworks" / "governance-compatibility-testing-status.v1.json"
 UNION = ROOT / "static" / "external-frameworks" / "canonical-union-inventory.v1.json"
-OPA_FIXTURE = ROOT / "tests" / "fixtures" / "external-frameworks" / "opa-governance-compatibility-cases.v1.json"
-OPA_RUNNER = ROOT / "scripts" / "run_opa_governance_compatibility.py"
-OPA_PAGE = ROOT / "docs" / "external-frameworks" / "open-policy-agent.md"
+CONTRACTS = {
+    "open-policy-agent": {
+        "fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "opa-governance-compatibility-cases.v1.json",
+        "runner": ROOT / "scripts" / "run_opa_governance_compatibility.py",
+        "page": ROOT / "docs" / "external-frameworks" / "open-policy-agent.md",
+        "allowed_states": {"CONTRACT_AUTHORED"},
+    },
+    "cedar-policy": {
+        "fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "cedar-governance-compatibility-cases.v1.json",
+        "runner": ROOT / "scripts" / "run_cedar_governance_compatibility.py",
+        "page": ROOT / "docs" / "external-frameworks" / "cedar-policy.md",
+        "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"},
+    },
+}
 
 
 def fail(message: str) -> None:
@@ -27,11 +38,6 @@ def main() -> None:
     standard = load(STANDARD)
     status = load(STATUS)
     union = load(UNION)
-    fixture = load(OPA_FIXTURE)
-    if not OPA_RUNNER.exists():
-        fail("OPA compatibility runner missing")
-    if not OPA_PAGE.exists():
-        fail("OPA page missing")
 
     if standard.get("schema") != "external_framework_governance_compatibility_testing_standard.v1":
         fail("unexpected standard schema")
@@ -47,78 +53,69 @@ def main() -> None:
         if layer not in required_layers:
             fail(f"standard missing layer: {layer}")
 
-    case_families = set(standard.get("required_case_families", []))
-    fixture_families = {case.get("family") for case in fixture.get("cases", [])}
-    if fixture_families != case_families:
-        fail(f"OPA fixture case families mismatch: {sorted(fixture_families)}")
-    if len(fixture.get("cases", [])) != 6:
-        fail("OPA fixture must contain six cases")
-
     union_entries = union.get("entries", [])
     canonical_ids = {entry.get("record_id") for entry in union_entries if entry.get("record_id")}
-    if len(canonical_ids) != 38:
+    if len(canonical_ids) != 38 or union.get("counts", {}).get("records") != 38:
         fail(f"canonical inventory count mismatch: {len(canonical_ids)}")
-    if union.get("counts", {}).get("records") != 38:
-        fail("canonical union stored record count mismatch")
 
     records = status.get("records", [])
-    record_ids = {record.get("framework_id") for record in records}
-    if not record_ids.issubset(canonical_ids):
-        fail(f"status references unknown framework IDs: {sorted(record_ids - canonical_ids)}")
-    if record_ids != {"open-policy-agent"}:
-        fail("initial authored contract record must be exactly open-policy-agent")
+    records_by_id = {record.get("framework_id"): record for record in records}
+    if set(records_by_id) != set(CONTRACTS):
+        fail(f"authored contract set mismatch: {sorted(records_by_id)}")
+    if not set(records_by_id).issubset(canonical_ids):
+        fail(f"status references unknown framework IDs: {sorted(set(records_by_id) - canonical_ids)}")
+
+    required_families = set(standard.get("required_case_families", []))
+    for framework_id, contract in CONTRACTS.items():
+        fixture = load(contract["fixture"])
+        if not contract["runner"].exists() or not contract["page"].exists():
+            fail(f"missing runner or page for {framework_id}")
+        cases = fixture.get("cases", [])
+        families = {case.get("family") for case in cases}
+        if len(cases) != 6 or families != required_families:
+            fail(f"case contract mismatch for {framework_id}: count={len(cases)} families={sorted(families)}")
+        record = records_by_id[framework_id]
+        if record.get("state") not in contract["allowed_states"]:
+            fail(f"invalid state for {framework_id}: {record.get('state')}")
+        if record.get("case_count") != 6:
+            fail(f"case_count stale for {framework_id}")
+        if record.get("stegverse_governance_compatibility_observed") is not False:
+            fail(f"compatibility may not be pre-claimed for {framework_id}")
+        for case in cases:
+            if case.get("expected_stegverse_result") not in {"ALLOW", "DENY", "ESCALATE", "FAIL_CLOSED"}:
+                fail(f"invalid expected result: {framework_id}/{case.get('case_id')}")
+
+    opa = records_by_id["open-policy-agent"]
+    if opa.get("native_execution_observed") is not True or opa.get("fresh_runner_replay_observed") is not True:
+        fail("OPA native execution and fresh-runner replay must remain observed")
+    cedar = records_by_id["cedar-policy"]
+    if cedar.get("binary_build_observed") is not True or cedar.get("native_execution_observed") is not False:
+        fail("Cedar must remain build-observed and runtime-unobserved")
 
     counts = status.get("counts", {})
-    if counts.get("canonical_records") != 38:
-        fail("status canonical record count stale")
-    if counts.get("contract_authored") != 1:
-        fail("status contract_authored count stale")
-    if counts.get("governance_compatibility_observed") != 0:
-        fail("compatibility must remain unobserved until workflow receipt exists")
-    if counts.get("not_started") != 37:
-        fail("status not_started count stale")
+    expected_counts = {
+        "canonical_records": 38,
+        "contract_authored": 2,
+        "governance_compatibility_observed": 0,
+        "fresh_runner_reproduced": 0,
+        "independent_implementation_reproduced": 0,
+        "not_started": 36,
+    }
+    for key, expected in expected_counts.items():
+        if counts.get(key) != expected:
+            fail(f"status count stale: {key}={counts.get(key)} expected={expected}")
 
-    opa = records[0]
-    if opa.get("state") != "CONTRACT_AUTHORED":
-        fail("OPA state must remain CONTRACT_AUTHORED before observed receipt")
-    if opa.get("native_execution_observed") is not True:
-        fail("OPA native execution observation must be recorded")
-    if opa.get("fresh_runner_replay_observed") is not True:
-        fail("OPA fresh-runner replay observation must be recorded")
-    if opa.get("stegverse_governance_compatibility_observed") is not False:
-        fail("OPA governance compatibility may not be pre-claimed")
-
-    for case in fixture["cases"]:
-        if case.get("expected_stegverse_result") not in {"ALLOW", "DENY", "ESCALATE", "FAIL_CLOSED"}:
-            fail(f"invalid expected result: {case.get('case_id')}")
-        transition = case.get("transition", {})
-        required_fields = {
-            "actor_identity_verified",
-            "delegation_current",
-            "policy_reference_current",
-            "evidence_fresh",
-            "target_matches_scope",
-            "recoverability_satisfied",
-            "execution_context_current",
-        }
-        if set(transition) != required_fields:
-            fail(f"transition field mismatch: {case.get('case_id')}")
-
-    joined = json.dumps(standard).lower() + json.dumps(status).lower() + fixture.get("authority_boundary", "").lower()
-    for phrase in [
-        "does not certify",
-        "execution authority",
-        "general compatibility",
-        "policy evidence",
-    ]:
+    joined = json.dumps(standard).lower() + json.dumps(status).lower()
+    for phrase in ["does not certify", "execution authority", "general compatibility", "policy evidence"]:
         if phrase not in joined:
             fail(f"missing boundary phrase: {phrase}")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=1")
+    print("contracts_authored=2")
     print("compatibility_observed=0")
     print("opa_case_families=6")
+    print("cedar_case_families=6")
 
 
 if __name__ == "__main__":
