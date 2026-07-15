@@ -41,9 +41,9 @@ Completeness is not measured by page count. A section is complete only when a re
 | Section or page group | Current class | Finding | Remaining action |
 |---|---|---|---|
 | Governance overview, current status, and handoffs | `COMPLETE_WITH_EXTERNAL_GATES` | Current update, validation, task sync, and handoff pages are aligned with the single workflow and no-manual-task posture. | Observe canonical workflow and public evidence when exposed. |
-| Governed LLM and ecosystem transition pages | `COMPLETE_WITH_EXTERNAL_GATES` | Entry surfaces, Math Solver, demos, runtime, SDK, formalisms, commitment, execution, custody, reconstruction, deployment, capability states, and verification classes are now represented. | Keep states synchronized with authority-repository handoffs and add machine-readable class registries where absent. |
+| Governed LLM and ecosystem transition pages | `COMPLETE_WITH_EXTERNAL_GATES` | Entry surfaces, Math Solver, demos, runtime, SDK, formalisms, commitment, execution, custody, reconstruction, deployment, capability states, and verification classes are represented. | Keep states synchronized with authority-repository handoffs and add machine-readable class registries where absent. |
 | Relationship Status Summary | `PARTIAL` | Overlap and equivalence boundaries are clear; maintenance wording and machine-readable companion exposure remain incomplete. | Repair during terminology-governance review. |
-| External Frameworks: Evaluation Results | `PARTIAL` | Results are explicitly non-reproducible unless the full gate is met. Individual generated reports still require field-level evidence audit. | Audit reports and demote unsupported labels automatically. |
+| External Frameworks: Evaluation Results and Report Generation | `IN_PROGRESS` | Evidence classes and reproducibility gates are now generated and validator-enforced. Existing reports must be regenerated and framework-specific evidence reviewed. | Observe canonical regeneration; audit GLM, EVIDE, DecisionAssure, MindForge, Morrison, sourced-only, and source-blocked records. |
 | External Frameworks: Framework Pages | `NOT_REVIEWED` | Uniform compliance with the evaluation standard is unconfirmed. | Review sources, observations, tests, missing fields, non-claims, and machine-readable companions. |
 | Formalisms | `NOT_REVIEWED` | Research, candidate formalisms, translations, and proof surfaces coexist. | Separate theorem, fixture, candidate, translation, and hypothesis postures. |
 | Glossary | `NOT_REVIEWED` | Core vocabulary exists; cross-page consistency is unverified. | Check definitions, aliases, conflicts, examples, and authority boundaries. |
@@ -120,25 +120,6 @@ Defects corrected:
 - lifecycle lacked scaffolded, fixture, deployed, conformance, custody, suspended, revoked, and retired states
 ```
 
-Key repair commits:
-
-```text
-66ee3838eac50111651af1c1753ed89a690bb17f
-18c36f67c599d629166a2193ce1a26dec0382036
-532b115d64d0a7232cdeababb9ef7866194f7d00
-158a36c2495c76379d31ae0cdc7b274a5f117a08
-547999f6855a32913bc5a669df859ab089063acf
-44f79ea98258808e816a0451c32c3d544896a5bb
-740a00a6a342548faa7c418a91744b4afe736331
-ae6ed3d2c548e31bcef2442dbee766c3777c7159
-0698b35ea530776c4fc1c432ad14ec77b109c590
-9286d6145e85134288bdaacd7b6ec2dc42c19632
-b46e00e087957b4227dca7796f5597c9972a123e
-e6c56a850c468e1bb8e1490c9184b7d9ca5cca90
-322c23e74441b037bbe188dbf6123676d71ca476
-d723e39a3e528cf324acb15dfdbb774b322ce62a
-```
-
 Conclusion:
 
 ```text
@@ -152,6 +133,60 @@ Master-Records custody: not established
 external execution: disabled or external
 aggregate operational: false
 release authorization: not granted
+```
+
+## External Frameworks evidence-gate audit
+
+The generated compatibility-report pipeline formerly promoted every sourced manifest to a generic compatibility result without requiring executable observations, raw outputs, pinned versions, replay commands, or independent reproduction.
+
+Repairs:
+
+```text
+1c4b2e14f7f67d8ac017511672de633e909afa2b
+  -> report generator adds evidence classes, reproducibility field map, missing-field list, comparative-claim gate, and schema 0.7
+
+cdf16332c07d6e1c2da55bf56a70573e8a11d63e
+  -> results generator exposes evidence class, independently reproducible status, missing gate count, and current reproducible total
+
+9996b440c3716086f5f821179e5c8f3ccf1cbfdb
+  -> validator enforces evidence classes, gate consistency, fail-closed missing fields, and Morrison parameterized-only posture
+```
+
+Generated evidence classes:
+
+```text
+MENTION_ONLY
+AUTHOR_COMMENTARY
+SOURCE_REVIEWED
+ARTIFACT_REVIEWED
+PARAMETERIZED_OBSERVATION
+REPRODUCIBLE_COMPARATIVE_TEST
+```
+
+A report may reach `REPRODUCIBLE_COMPARATIVE_TEST` only when all are true:
+
+```text
+shared_test_vector
+raw_output
+timestamp
+runtime_configuration
+source_version_or_hash
+replay_commands
+declared_expected_outcome
+independent_reproduction
+```
+
+Current Morrison posture remains bounded:
+
+```text
+evidence_class: PARAMETERIZED_OBSERVATION
+raw audit payloads: missing
+timestamps: missing
+runtime configuration: missing
+source hashes: missing
+replay commands: missing
+independent reproduction: missing
+comparative testing claim allowed: false
 ```
 
 ## Audit order
@@ -171,20 +206,20 @@ release authorization: not granted
 
 ## Active next audit
 
-The active target is External Frameworks. Review order:
+Continue External Frameworks in this order:
 
 ```text
-1. evaluation standard and evidence codes
-2. generated evaluation-results page
-3. machine-readable compatibility report schema and report coverage
-4. Morrison Runtime parameterized-observation claim
-5. GLM, EVIDE, DecisionAssure, and MindForge records
-6. source-blocked and sourced-only records
-7. remaining framework pages in sidebar order
-8. automatic demotion and missing-field validation
+1. regenerate all reports under schema 0.7 through the canonical workflow
+2. verify generated evaluation-results evidence classes and zero unsupported comparative claims
+3. audit GLM and EVIDE source-only versus artifact-backed evidence
+4. audit DecisionAssure and MindForge authorized artifact-package status
+5. audit Morrison observations field by field
+6. audit source-blocked and sourced-only records
+7. review every framework page against the required-page-section standard
+8. verify generated page-status blocks use the same evidence class
 ```
 
-No external framework may be labeled as reproducibly compared unless pinned implementations, common vectors, declared expectations, raw outputs, scoring, failure behavior, replay instructions, hashes, timestamps, and independent reruns are public.
+No external framework may be labeled as reproducibly compared unless pinned implementations, common vectors, declared expectations, raw outputs, scoring or deterministic classification, failure behavior, replay instructions, hashes, timestamps, and independent reruns are public.
 
 ## Boundary
 
