@@ -1,0 +1,29 @@
+{
+  "schema": "admissibility_wiki_glossary_registry.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "index": "docs/glossary/index.md",
+  "purpose": "Provide exact glossary coverage, stable term identifiers, relationship governance, and prohibited conflations for the public admissibility vocabulary.",
+  "relationship_classes": ["synonymous", "adjacent", "new", "unresolved"],
+  "counts": {"terms": 13, "active": 13, "synonymous_relationships": 0},
+  "terms": [
+    {"term_id":"admissibility","name":"Admissibility","path":"docs/glossary/admissibility.md","term_class":"governance_property","required_markers":["moment the transition binds","standing at commit time"],"prohibited_conflations":["approval","visibility","technical possibility","continuity"]},
+    {"term_id":"transition","name":"Transition","path":"docs/glossary/transition.md","term_class":"state_change","required_markers":["## Definition"],"prohibited_conflations":["execution authority","admissibility"]},
+    {"term_id":"authority-class","name":"Authority Class","path":"docs/glossary/authority-class.md","term_class":"standing_category","required_markers":["Authority class is not the same as identity","what kind of governed action"],"prohibited_conflations":["identity","credential","role"]},
+    {"term_id":"policy-reference","name":"Policy Reference","path":"docs/glossary/policy-reference.md","term_class":"governing_rule_reference","required_markers":["## Definition"],"prohibited_conflations":["policy compliance","execution authority"]},
+    {"term_id":"evidence-posture","name":"Evidence Posture","path":"docs/glossary/evidence-posture.md","term_class":"evidence_state","required_markers":["## Definition"],"prohibited_conflations":["truth","authority","admissibility"]},
+    {"term_id":"review-posture","name":"Review Posture","path":"docs/glossary/review-posture.md","term_class":"review_state","required_markers":["## Definition"],"prohibited_conflations":["approval","execution authority","current standing"]},
+    {"term_id":"drift","name":"Drift","path":"docs/glossary/drift.md","term_class":"state_divergence","required_markers":["## Definition"],"prohibited_conflations":["automatic invalidity","automatic admissibility"]},
+    {"term_id":"commit-time-authority","name":"Commit-Time Authority","path":"docs/glossary/commit-time-authority.md","term_class":"binding_moment_authority","required_markers":["Approval is not continuity","Execution is not admissibility","moment a transition binds"],"prohibited_conflations":["prior approval","identity","policy decision"]},
+    {"term_id":"commit-time-validity","name":"Commit-Time Validity","path":"docs/glossary/commit-time-validity.md","term_class":"binding_moment_validity","required_markers":["remains valid at the moment","full authority, policy, evidence"],"prohibited_conflations":["proposal-time validity","local validation","admissibility"]},
+    {"term_id":"receipt-bound-execution","name":"Receipt-Bound Execution","path":"docs/glossary/receipt-bound-execution.md","term_class":"execution_evidence_binding","required_markers":["## Definition"],"prohibited_conflations":["receipt creates authority","receipt proves admissibility"]},
+    {"term_id":"governance-boundary","name":"Governance Boundary","path":"docs/glossary/governance-boundary.md","term_class":"governance_scope_boundary","required_markers":["## Definition"],"prohibited_conflations":["technical boundary","execution authority"]},
+    {"term_id":"reconstructability","name":"Reconstructability","path":"docs/glossary/reconstructability.md","term_class":"post_event_recovery_property","required_markers":["## Definition"],"prohibited_conflations":["replayability","admissibility","execution authority"]},
+    {"term_id":"terminology-reconciliation","name":"Terminology Reconciliation","path":"docs/glossary/terminology-reconciliation.md","term_class":"relationship_governance","required_markers":["synonymous","adjacent","new","unresolved"],"prohibited_conflations":["similarity means synonymy","relationship inherits authority","crosswalk means equivalence"]}
+  ],
+  "global_non_claims": [
+    "Glossary publication does not create source authority or term-origin priority.",
+    "A relationship record does not create equivalence, standing, certification, admissibility, or execution authority.",
+    "Definition consistency does not prove implementation or runtime behavior."
+  ],
+  "next_action": "Validate all 13 pages, replace stale in-progress index posture with governed completeness, and preserve unresolved chronology or attribution as explicit fields rather than semantic ambiguity."
+}
