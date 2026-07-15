@@ -21,6 +21,12 @@ CONTRACTS = {
         "page": ROOT / "docs" / "external-frameworks" / "cedar-policy.md",
         "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"},
     },
+    "spiffe-spire": {
+        "fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "spiffe-spire-governance-compatibility-cases.v1.json",
+        "runner": ROOT / "scripts" / "run_spiffe_spire_governance_compatibility.py",
+        "page": ROOT / "docs" / "external-frameworks" / "spiffe-spire.md",
+        "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"},
+    },
 }
 
 
@@ -91,31 +97,35 @@ def main() -> None:
     cedar = records_by_id["cedar-policy"]
     if cedar.get("binary_build_observed") is not True or cedar.get("native_execution_observed") is not False:
         fail("Cedar must remain build-observed and runtime-unobserved")
+    spiffe = records_by_id["spiffe-spire"]
+    if spiffe.get("source_reviewed") is not True or spiffe.get("native_execution_observed") is not False:
+        fail("SPIFFE/SPIRE must remain source-reviewed and runtime-unobserved")
 
     counts = status.get("counts", {})
     expected_counts = {
         "canonical_records": 38,
-        "contract_authored": 2,
+        "contract_authored": 3,
         "governance_compatibility_observed": 0,
         "fresh_runner_reproduced": 0,
         "independent_implementation_reproduced": 0,
-        "not_started": 36,
+        "not_started": 35,
     }
     for key, expected in expected_counts.items():
         if counts.get(key) != expected:
             fail(f"status count stale: {key}={counts.get(key)} expected={expected}")
 
     joined = json.dumps(standard).lower() + json.dumps(status).lower()
-    for phrase in ["does not certify", "execution authority", "general compatibility", "policy evidence"]:
+    for phrase in ["does not certify", "execution authority", "general compatibility", "policy evidence", "identity verification"]:
         if phrase not in joined:
             fail(f"missing boundary phrase: {phrase}")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=2")
+    print("contracts_authored=3")
     print("compatibility_observed=0")
     print("opa_case_families=6")
     print("cedar_case_families=6")
+    print("spiffe_spire_case_families=6")
 
 
 if __name__ == "__main__":
