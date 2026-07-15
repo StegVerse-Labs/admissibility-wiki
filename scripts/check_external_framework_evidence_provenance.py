@@ -10,8 +10,9 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs" / "external-frameworks"
 REGISTRY = DOCS / "index.json"
 ROLLOUT = DOCS / "evidence-provenance-rollout.json"
+SUPPLEMENT = ROOT / "static" / "external-frameworks" / "evidence-provenance-rollout-supplement.v1.json"
 
-REQUIRED_STANDARD_FILES = [DOCS / "evaluation-standard.md", DOCS / "failure-class-catalog.md", DOCS / "external-framework-template.md", DOCS / "EXPANSION_POLICY.json", DOCS / "evidence-provenance-rollout.md", ROLLOUT]
+REQUIRED_STANDARD_FILES = [DOCS / "evaluation-standard.md", DOCS / "failure-class-catalog.md", DOCS / "external-framework-template.md", DOCS / "EXPANSION_POLICY.json", DOCS / "evidence-provenance-rollout.md", ROLLOUT, SUPPLEMENT]
 REQUIRED_INDEX_LINKS = ["./evaluation-standard.md", "./failure-class-catalog.md", "./external-framework-template.md", "./evidence-provenance-rollout.md"]
 REQUIRED_STANDARD_TERMS = ["Evidence Provenance", "Claim Traceability Rule", "Comparative Fairness Rule", "Observed Behavior Rule", "Required Runtime Result Artifact Set", "Machine-Readable Companion Requirement"]
 REQUIRED_FAILURE_CLASSES = ["FC-001", "Semantic Equivalence Divergence", "FC-007", "Fail-Open Runtime Error", "FC-012", "Evidence Class Confusion"]
@@ -79,6 +80,7 @@ def main() -> int:
     template = read(DOCS / "external-framework-template.md")
     rollout_page = read(DOCS / "evidence-provenance-rollout.md")
     rollout = load_json(ROLLOUT)
+    supplement = load_json(SUPPLEMENT)
     registry = load_json(REGISTRY)
 
     for link in REQUIRED_INDEX_LINKS:
@@ -106,16 +108,23 @@ def main() -> int:
         failures.append("rollout artifact_type mismatch")
     if rollout.get("schema_version") != "0.1":
         failures.append("rollout schema_version mismatch")
+    if supplement.get("schema") != "external_framework_evidence_provenance_rollout_supplement.v1":
+        failures.append("supplement schema mismatch")
+    if supplement.get("base_rollout") != "docs/external-frameworks/evidence-provenance-rollout.json":
+        failures.append("supplement base rollout reference mismatch")
 
     registry_ids = [entry.get("framework_id") for entry in registry.get("entries", [])]
-    rollout_ids = [entry.get("framework_id") for entry in rollout.get("entries", [])]
+    base_entries = rollout.get("entries", [])
+    supplemental_entries = supplement.get("entries", [])
+    all_entries = [*base_entries, *supplemental_entries]
+    rollout_ids = [entry.get("framework_id") for entry in all_entries]
     if len(rollout_ids) != len(set(rollout_ids)):
-        failures.append("rollout contains duplicate framework_id entries")
+        failures.append("combined rollout contains duplicate framework_id entries")
     for framework_id in sorted(set(registry_ids) - set(rollout_ids)):
         failures.append(f"registry framework missing from rollout: {framework_id}")
     for framework_id in sorted(set(rollout_ids) - set(registry_ids)):
         failures.append(f"rollout framework not found in registry: {framework_id}")
-    for entry in rollout.get("entries", []):
+    for entry in all_entries:
         framework_id = entry.get("framework_id", "UNKNOWN")
         for field in REQUIRED_ROLLOUT_ENTRY_FIELDS:
             if field not in entry:
@@ -123,6 +132,11 @@ def main() -> int:
         page = entry.get("page")
         if isinstance(page, str) and page.startswith("docs/external-frameworks/") and not (ROOT / page).exists():
             failures.append(f"rollout entry {framework_id} page does not exist: {page}")
+    if supplement.get("counts", {}).get("records") != len(supplemental_entries):
+        failures.append("supplement records count is stale")
+    if "does not certify compatibility" not in supplement.get("boundary", ""):
+        failures.append("supplement boundary must prohibit compatibility certification")
+
     for batch_id in ["batch_1", "batch_2", "batch_3", "batch_4"]:
         if rollout.get("batch_status", {}).get(batch_id) != "PAGE_PROVENANCE_SECTIONS_INSTALLED":
             failures.append(f"rollout {batch_id} status must be PAGE_PROVENANCE_SECTIONS_INSTALLED")
@@ -136,6 +150,9 @@ def main() -> int:
             failures.append("Morrison page still contains unsupported historical public result table")
 
     print("EXTERNAL FRAMEWORK EVIDENCE PROVENANCE:", "FAIL" if failures else "PASS")
+    print(f"base_rollout_records={len(base_entries)}")
+    print(f"supplemental_rollout_records={len(supplemental_entries)}")
+    print(f"combined_rollout_records={len(all_entries)}")
     for failure in failures:
         print(f"- {failure}")
     return 1 if failures else 0
