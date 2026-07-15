@@ -152,7 +152,7 @@ def main() -> int:
 
     receipt = {
         "artifact_type": "external_framework_evidence_pipeline_status",
-        "schema_version": "0.3",
+        "schema_version": "0.2",
         "framework_id": "opa",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "github_context": {
