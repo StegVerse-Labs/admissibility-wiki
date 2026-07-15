@@ -1,0 +1,57 @@
+{
+  "schema": "slsa_stegverse_governance_compatibility_cases.v1",
+  "framework_id": "slsa",
+  "framework_version": "v1.2",
+  "evidence_posture": "CONTRACT_AUTHORED_RUNTIME_PENDING",
+  "cases": [
+    {
+      "case_id": "slsa-compat-positive-provenance-001",
+      "family": "positive_alignment",
+      "verification_result": "PASS",
+      "transition": {"artifact_digest_matches": true, "provenance_complete": true, "builder_identity_verified": true, "delegation_current": true, "policy_reference_current": true, "evidence_fresh": true, "target_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "ALLOW",
+      "expected_failure_class": null
+    },
+    {
+      "case_id": "slsa-compat-native-failure-001",
+      "family": "framework_denial_or_negative_result",
+      "verification_result": "FAIL",
+      "transition": {"artifact_digest_matches": true, "provenance_complete": true, "builder_identity_verified": true, "delegation_current": true, "policy_reference_current": true, "evidence_fresh": true, "target_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "PROVENANCE_VERIFICATION_DENIAL"
+    },
+    {
+      "case_id": "slsa-compat-revoked-deployer-001",
+      "family": "authority_or_delegation_failure",
+      "verification_result": "PASS",
+      "transition": {"artifact_digest_matches": true, "provenance_complete": true, "builder_identity_verified": true, "delegation_current": false, "policy_reference_current": true, "evidence_fresh": true, "target_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "AUTHORITY_DRIFT"
+    },
+    {
+      "case_id": "slsa-compat-stale-provenance-001",
+      "family": "stale_or_missing_evidence",
+      "verification_result": "PASS",
+      "transition": {"artifact_digest_matches": true, "provenance_complete": false, "builder_identity_verified": true, "delegation_current": true, "policy_reference_current": true, "evidence_fresh": false, "target_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "FAIL_CLOSED",
+      "expected_failure_class": "STALE_OR_INCOMPLETE_PROVENANCE"
+    },
+    {
+      "case_id": "slsa-compat-verifier-error-001",
+      "family": "malformed_undefined_or_runtime_error",
+      "verification_result": "ERROR",
+      "transition": {"artifact_digest_matches": true, "provenance_complete": true, "builder_identity_verified": true, "delegation_current": true, "policy_reference_current": true, "evidence_fresh": true, "target_action_in_scope": true, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "FAIL_CLOSED",
+      "expected_failure_class": "FRAMEWORK_RUNTIME_ERROR"
+    },
+    {
+      "case_id": "slsa-compat-deployment-scope-divergence-001",
+      "family": "semantic_divergence_guard",
+      "verification_result": "PASS",
+      "transition": {"artifact_digest_matches": true, "provenance_complete": true, "builder_identity_verified": true, "delegation_current": true, "policy_reference_current": true, "evidence_fresh": true, "target_action_in_scope": false, "recoverability_satisfied": true, "execution_context_current": true},
+      "expected_stegverse_result": "DENY",
+      "expected_failure_class": "TARGET_ACTION_SCOPE_DIVERGENCE"
+    }
+  ],
+  "authority_boundary": "SLSA provenance verification is supply-chain evidence only. It does not establish current deployment authority, action-level admissibility, certification, or general compatibility."
+}
