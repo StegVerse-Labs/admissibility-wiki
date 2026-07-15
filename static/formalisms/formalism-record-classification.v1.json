@@ -2,11 +2,13 @@
   "schema": "admissibility_wiki_formalism_record_classification.v1",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "registry": "static/formalisms/formalism-registry.v0.1.json",
-  "purpose": "Separate formalism artifact class, mirror posture, proof posture, validation posture, and publication posture so wiki mirroring cannot be mistaken for theorem proof or source authority.",
+  "registry_reconciliation": "static/formalisms/formalism-registry-reconciliation.v1.json",
+  "purpose": "Separate formalism artifact class, effective mirror posture, proof posture, validation posture, and publication posture so wiki mirroring cannot be mistaken for theorem proof or source authority.",
   "counts": {
     "records": 15,
-    "mirrored": 14,
-    "intake": 1,
+    "effective_mirrored": 14,
+    "effective_crosswalked": 1,
+    "effective_intake": 0,
     "theorem_candidates": 1,
     "executable_or_validation_infrastructure": 2
   },
@@ -36,11 +38,11 @@
     {"formalism_id":"ae.continuity-handoff","artifact_class":"continuity_formalism","mirror_posture":"PUBLIC_SAFE_MIRROR_ABBREVIATION_SAFE","proof_posture":"SOURCE_CONFIRMATION_PENDING","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
     {"formalism_id":"ae.DaCo","artifact_class":"continuity_formalism","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"SOURCE_CONFIRMED_PROOF_EXTRACTION_PENDING","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
     {"formalism_id":"ae.DC","artifact_class":"continuity_formalism","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"SOURCE_CONFIRMED_PROOF_EXTRACTION_PENDING","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
-    {"formalism_id":"ae.GCAT-BCAT","artifact_class":"testing_formalism_candidate","mirror_posture":"INTAKE_PRIVATE_SOURCE_BOUNDARY","proof_posture":"NOT_EVALUATED","validation_posture":"DETAIL_PAGE_AND_CROSSWALK_PENDING","publication_posture":"PARTIAL"},
+    {"formalism_id":"ae.GCAT-BCAT","artifact_class":"testing_formalism_candidate","mirror_posture":"PUBLIC_SAFE_CROSSWALK_PRIVATE_SOURCE_BOUNDARY","proof_posture":"SOURCE_CONFIRMED_PROOF_EXTRACTION_PENDING","validation_posture":"DETAIL_PAGE_AND_PUBLICATION_INVENTORY_INSTALLED_TESTS_FIXTURES_EXPECTED_OUTCOMES_AND_IMPLEMENTATIONS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
     {"formalism_id":"ae.core-lite","artifact_class":"executable_engine","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"IMPLEMENTATION_IS_NOT_FORMAL_PROOF","validation_posture":"SOURCE_CONFIRMED_TESTS_AND_REFERENCE_IMPLEMENTATIONS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
     {"formalism_id":"ae.learning-transition-governance","artifact_class":"learning_governance_formalism","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"SOURCE_CONFIRMED_PROOF_EXTRACTION_PENDING","validation_posture":"SOURCE_CONFIRMED_TESTS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"},
     {"formalism_id":"ae.ae-validation-factory","artifact_class":"validation_infrastructure","mirror_posture":"PUBLIC_SAFE_MIRROR","proof_posture":"VALIDATION_INFRASTRUCTURE_IS_NOT_PROOF_AUTHORITY","validation_posture":"SOURCE_CONFIRMED_FIXTURES_EXPECTED_OUTCOMES_AND_IMPLEMENTATIONS_PENDING","publication_posture":"COMPLETE_WITH_EXTERNAL_GATES"}
   ],
-  "authority_boundary": "A mirrored page, registry record, baseline fixture, executable engine, validation factory, translation, or publication surface does not create source authority, theorem proof, proof authority, execution authority, continuity standing, or admissibility standing.",
-  "next_action": "Complete the GCAT-BCAT source crosswalk, then add source-confirmed proof, fixture, expected-outcome, and translation records without promoting mirrors or baseline tests into proof claims."
+  "authority_boundary": "A mirrored or crosswalked page, registry record, baseline fixture, executable engine, validation factory, translation, or publication surface does not create source authority, theorem proof, proof authority, execution authority, continuity standing, or admissibility standing.",
+  "next_action": "Add source-confirmed proof, fixture, expected-outcome, implementation, and translation records without promoting mirrors, crosswalks, publication artifacts, or baseline tests into proof claims."
 }
