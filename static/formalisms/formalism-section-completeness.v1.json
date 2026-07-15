@@ -30,14 +30,31 @@
       "blocker_id": "FORMALISM-GCAT-REGISTRY-PAGE-DRIFT",
       "resolution": "Installed formalism-registry-reconciliation.v1.json, changed the effective GCAT-BCAT state to crosswalked, synchronized classification posture, and updated the validator to compute effective state while preserving the v0.1 base record as provenance.",
       "authority_effect": "NONE"
+    },
+    {
+      "blocker_id": "CANONICAL-WORKFLOW-GOAL5-THREE-FAILURES",
+      "observed_run_id": "29436076177",
+      "observed_commit": "e9c152ce94f7fe5d8d1e85c3ed82542568678ed2",
+      "observed_failures": [
+        "legacy-priority KPT semantic headings",
+        "all-navigated cohort double counting",
+        "index markdown duplicate-name requirement"
+      ],
+      "resolution": "Updated the priority cohort to five records, expanded the KPT semantic-equivalence aliases, confirmed the next observed run reduced the failure set to only the index validator, and replaced duplicate-name validation with canonical registry, sidebar association, and union coverage checks.",
+      "repair_commits": [
+        "35bfc526b7d1af31bc09dd1eb468b7f672cb973b",
+        "4f11ae88aaebd89682996dc6b7a3db36da104824",
+        "76ac243f5d1d0a6f964c6a1431b078415c6dde91"
+      ],
+      "authority_effect": "NONE"
     }
   ],
   "active_blockers": [
     {
-      "blocker_id": "FORMALISM-CANONICAL-WORKFLOW-FAILURE",
-      "state": "OBSERVED_FAILED",
-      "evidence": "GitHub notifications report Validate chain continuation failures on recent main-branch commits.",
-      "required_resolution": "Inspect the newest canonical workflow job log or uploaded full-validation report and repair the first deterministic failure. Notification evidence alone does not identify the failing validator."
+      "blocker_id": "FORMALISM-CANONICAL-WORKFLOW-REOBSERVATION",
+      "state": "REPAIR_INSTALLED_PENDING_OBSERVED_RERUN",
+      "evidence": "Run 29436287418 confirmed the first two repairs passed and only the legacy index-name validator remained. That validator has now been replaced at commit 76ac243f5d1d0a6f964c6a1431b078415c6dde91.",
+      "required_resolution": "Observe a subsequent canonical workflow run and inspect its uploaded full-validation report. Do not claim pass until the run is directly observed."
     }
   ],
   "evidence_boundaries": {
@@ -47,7 +64,8 @@
     "theorem_candidate_is_proven": false,
     "publication_artifact_is_canonical_formalism_authority": false,
     "executable_engine_is_proof_authority": false,
-    "validation_factory_is_proof_authority": false
+    "validation_factory_is_proof_authority": false,
+    "repair_installed_is_workflow_pass": false
   },
-  "next_action": "Inspect and repair the observed canonical workflow failure, then continue source-confirmed theorem, proof, fixture, expected-outcome, implementation, and translation-record extraction."
+  "next_action": "Observe the repaired canonical workflow, then continue source-confirmed theorem, proof, fixture, expected-outcome, implementation, and translation-record extraction."
 }
