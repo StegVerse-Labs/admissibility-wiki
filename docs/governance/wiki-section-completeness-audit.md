@@ -38,14 +38,19 @@ Every section is reviewed against the same dimensions:
 | `STALE_OR_CONFLICTING` | Content conflicts with current handoffs, implementations, or status vocabulary. |
 | `NOT_REVIEWED` | Audit has not yet been performed. |
 
-## Initial Audit Register
+## Audit Register
 
-| Section | Initial class | Finding | Required remediation |
+| Section or page group | Current class | Finding | Remediation or remaining action |
 |---|---|---|---|
-| Governance: Governed LLM Activation Map | `COMPLETE_WITH_EXTERNAL_GATES` | Topology now includes entry surfaces, Math Solver, demo suite, applicability, runtime, SDK, formalisms, custody, deployment, and execution coordinates. | Validate links and keep state synchronized with Site and destination handoffs. |
-| External Frameworks: Evaluation Results | `PARTIAL` | Evidence classes are now explicit and no independently reproducible comparison is claimed. Individual reports still require field-by-field review. | Audit every framework record against the reproducibility gate and demote unsupported labels automatically. |
+| Governance: Governed LLM Activation Map | `COMPLETE_WITH_EXTERNAL_GATES` | Topology includes entry surfaces, Math Solver, demo suite, applicability, runtime, SDK, formalisms, custody, deployment, and execution coordinates. | Validate links and synchronize status with Site and destination handoffs. |
+| Governance: Current Visible Updates | `COMPLETE_WITH_EXTERNAL_GATES` | Formerly stale deployment marker listed only early formalism and term-discovery work. It now reflects the current governed ecosystem, governed LLM, external-framework, audit, terminal-rollup, and fail-closed deployment posture. | Keep synchronized with the mirror handoff; do not convert expected generated paths into observed deployment claims. |
+| Governance: Validation | `COMPLETE_WITH_EXTERNAL_GATES` | Former page named deleted `.github/workflows/validate.yml`, described ontology-only scope, and assigned manual rerun steps. It now binds the canonical single workflow, aggregate chain, terminal envelope, and no-manual-task policy. | Observe repository-owned workflow evidence when exposed; repair only exact deterministic failures. |
+| Governance: Current Task Sync | `COMPLETE_WITH_EXTERNAL_GATES` | Former active goal stopped at governed ecosystem framing and did not include the completeness audit or repaired external-framework evidence posture. It now names the audit as the active goal and records current topology, evidence classes, and destinations. | Keep current audit block and next block synchronized after each review group. |
+| Governance: Mirror Handoff | `COMPLETE_WITH_EXTERNAL_GATES` | Canonical source clearly states workflow, authority boundaries, terminal rollup, artifact custody, remaining destinations, and no-manual-task continuation. | Do not overwrite with page-level status; update only when repository continuation state materially changes. |
+| Governance: Relationship Status Summary | `PARTIAL` | Accepted overlap records and equivalence boundary are clear, but the page ends with an outdated generic deployment-verification instruction and lacks machine-readable companion status on-page. | Audit proposal/decision artifacts and revise maintenance and activation language during terminology-governance review. |
+| External Frameworks: Evaluation Results | `PARTIAL` | Evidence classes are explicit and no independently reproducible comparison is claimed. Individual reports still require field-by-field review. | Audit every framework record against the reproducibility gate and demote unsupported labels automatically. |
 | External Frameworks: Framework Pages | `NOT_REVIEWED` | Many pages exist, but uniform compliance with the evaluation standard has not been confirmed. | Review sources, evidence provenance, tests, missing fields, non-claims, and machine-readable companions page by page. |
-| Governance | `NOT_REVIEWED` | Large section with mixed doctrine, implementation status, handoffs, and operational pages. | Audit in sidebar order, beginning with current-visible updates and handoff/status surfaces. |
+| Governance: Governed LLM and Ecosystem Transition Pages | `IN_PROGRESS` | Core pages are present, but cross-page coordinate consistency, source ownership, and status synchronization remain to be checked. | Continue with governed ecosystem index/transitions, reconstructive search, demo, Site verification, deployment status, trust chain, return path, and capability status pages. |
 | Glossary | `NOT_REVIEWED` | Core vocabulary exists. Cross-page definition consistency is unverified. | Check canonical definitions, aliases, conflicts, examples, and authority boundaries. |
 | Formalisms | `NOT_REVIEWED` | Research, candidate formalisms, translations, and runtime governance pages coexist. | Separate theorem/proof posture, candidate formalism, translation record, and research hypothesis states. |
 | Research | `NOT_REVIEWED` | Long-form research surfaces exist. | Check citations, claim posture, relationship to canonical vocabulary, and publication status. |
@@ -53,11 +58,69 @@ Every section is reviewed against the same dimensions:
 | StegVerse | `NOT_REVIEWED` | Product or component overview surfaces exist. | Verify role, repository ownership, activation state, and relationship to governance authorities. |
 | Activation | `NOT_REVIEWED` | Deployment guidance exists. | Verify current workflow, Pages, DNS, route, and deployment-evidence posture against handoff. |
 
+## Governance Overview Audit Record
+
+### Reviewed pages
+
+```text
+docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
+docs/governance/current-visible-updates.md
+docs/governance/current-task-sync.md
+docs/governance/validation.md
+docs/governance/relationship-status-summary.md
+```
+
+### Defects found
+
+```text
+current-visible-updates:
+  - stale update inventory
+  - visibility wording could be misread as deployment proof
+  - missing canonical handoff and workflow identity
+  - missing current generated and governed surfaces
+
+validation:
+  - obsolete .github/workflows/validate.yml path
+  - ontology-only description of a much broader chain
+  - manual rerun and route-check expectations
+  - no terminal-rollup or no-recursion boundary
+
+current-task-sync:
+  - superseded active assessment goal
+  - no completeness-audit ownership
+  - no repaired activation-topology summary
+  - no explicit external-framework reproducibility posture
+```
+
+### Repairs committed
+
+```text
+f95e21e3c6ce2aa6ac1b541d4bfc69f7b3c5849f
+  -> current-visible-updates aligned with canonical handoff
+
+9bb95ecc3dbd31931458a2cfdf43ef2d03ab430e
+  -> validation aligned with the single canonical workflow and fail-closed chain
+
+5ee4f5f26808b9f53d341130ebca09341bddbd8c
+  -> current-task-sync aligned with the completeness audit and current evidence posture
+```
+
+### Governance overview conclusion
+
+```text
+class: COMPLETE_WITH_EXTERNAL_GATES
+source and documentation coverage: complete for reviewed pages
+workflow pass: not independently observed
+Pages deployment pass: not independently observed
+public terminal-artifact reachability: not independently observed
+release/tag authority: not granted
+```
+
 ## Audit Order
 
 ```text
-1. Governance overview, current status, and handoffs
-2. Governed LLM and ecosystem transition pages
+1. Governance overview, current status, and handoffs — COMPLETE_WITH_EXTERNAL_GATES
+2. Governed LLM and ecosystem transition pages — IN_PROGRESS
 3. External Frameworks index, standard, results, and every framework page
 4. Formalisms and translation records
 5. Glossary consistency
@@ -91,7 +154,7 @@ required next action
 
 ## Immediate Next Audit
 
-The next review target is the Governance section in sidebar order. The review must identify incomplete coordinate maps, unsupported completion claims, missing machine-readable companions, stale status language, and pages that blur source authority with public explanation.
+The active review target is the governed LLM and governed ecosystem transition page group. The review must compare topology, role ownership, implementation state, proof authority, fixture status, deployment state, custody state, and external execution boundaries across all related pages.
 
 ## Boundary
 
