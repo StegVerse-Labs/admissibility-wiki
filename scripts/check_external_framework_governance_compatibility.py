@@ -34,6 +34,12 @@ CONTRACTS = {
         "page": ROOT / "docs" / "external-frameworks" / "w3c-verifiable-credentials.md",
         "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"},
     },
+    "in-toto": {
+        "fixture": ROOT / "tests" / "fixtures" / "external-frameworks" / "in-toto-governance-compatibility-cases.v1.json",
+        "runner": ROOT / "scripts" / "run_in_toto_governance_compatibility.py",
+        "page": ROOT / "docs" / "external-frameworks" / "in-toto.md",
+        "allowed_states": {"CONTRACT_AUTHORED_RUNTIME_PENDING"},
+    },
 }
 
 
@@ -51,23 +57,14 @@ def main() -> None:
     standard = load(STANDARD)
     status = load(STATUS)
     union = load(UNION)
-
     if standard.get("schema") != "external_framework_governance_compatibility_testing_standard.v1":
         fail("unexpected standard schema")
     required_layers = set(standard.get("required_layers", []))
-    for layer in {
-        "native_framework_execution",
-        "semantic_translation",
-        "stegverse_commit_time_evaluation",
-        "failure_boundary_evaluation",
-        "fresh_runner_replay",
-        "page_and_machine_readable_result_publication",
-    }:
+    for layer in {"native_framework_execution", "semantic_translation", "stegverse_commit_time_evaluation", "failure_boundary_evaluation", "fresh_runner_replay", "page_and_machine_readable_result_publication"}:
         if layer not in required_layers:
             fail(f"standard missing layer: {layer}")
 
-    union_entries = union.get("entries", [])
-    canonical_ids = {entry.get("record_id") for entry in union_entries if entry.get("record_id")}
+    canonical_ids = {entry.get("record_id") for entry in union.get("entries", []) if entry.get("record_id")}
     if len(canonical_ids) != 38 or union.get("counts", {}).get("records") != 38:
         fail(f"canonical inventory count mismatch: {len(canonical_ids)}")
 
@@ -101,56 +98,39 @@ def main() -> None:
     if not OPA_PIPELINE.exists():
         fail("OPA evidence pipeline summarizer missing")
     opa_pipeline_text = OPA_PIPELINE.read_text(encoding="utf-8")
-    for marker in (
-        "run_opa_governance_compatibility.py",
-        "opa-stegverse-governance-compatibility-receipt.json",
-        "governance_compatibility_observed",
-        "compatibility_receipt_grants_execution_authority",
-    ):
+    for marker in ("run_opa_governance_compatibility.py", "opa-stegverse-governance-compatibility-receipt.json", "governance_compatibility_observed", "compatibility_receipt_grants_execution_authority"):
         if marker not in opa_pipeline_text:
             fail(f"OPA execution binding missing marker: {marker}")
 
-    opa = records_by_id["open-policy-agent"]
-    if opa.get("native_execution_observed") is not True or opa.get("fresh_runner_replay_observed") is not True:
+    if records_by_id["open-policy-agent"].get("native_execution_observed") is not True or records_by_id["open-policy-agent"].get("fresh_runner_replay_observed") is not True:
         fail("OPA native execution and fresh-runner replay must remain observed")
-    cedar = records_by_id["cedar-policy"]
-    if cedar.get("binary_build_observed") is not True or cedar.get("native_execution_observed") is not False:
+    if records_by_id["cedar-policy"].get("binary_build_observed") is not True or records_by_id["cedar-policy"].get("native_execution_observed") is not False:
         fail("Cedar must remain build-observed and runtime-unobserved")
-    spiffe = records_by_id["spiffe-spire"]
-    if spiffe.get("source_reviewed") is not True or spiffe.get("native_execution_observed") is not False:
-        fail("SPIFFE/SPIRE must remain source-reviewed and runtime-unobserved")
-    vc = records_by_id["w3c-verifiable-credentials"]
-    if vc.get("source_reviewed") is not True or vc.get("native_execution_observed") is not False:
-        fail("W3C VC must remain source-reviewed and runtime-unobserved")
+    for framework_id in ("spiffe-spire", "w3c-verifiable-credentials", "in-toto"):
+        record = records_by_id[framework_id]
+        if record.get("source_reviewed") is not True or record.get("native_execution_observed") is not False:
+            fail(f"{framework_id} must remain source-reviewed and runtime-unobserved")
 
-    counts = status.get("counts", {})
     expected_counts = {
         "canonical_records": 38,
-        "contract_authored": 4,
+        "contract_authored": 5,
         "governance_compatibility_observed": 0,
         "fresh_runner_reproduced": 0,
         "independent_implementation_reproduced": 0,
-        "not_started": 34,
+        "not_started": 33,
     }
     for key, expected in expected_counts.items():
-        if counts.get(key) != expected:
-            fail(f"status count stale: {key}={counts.get(key)} expected={expected}")
+        if status.get("counts", {}).get(key) != expected:
+            fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
 
     joined = json.dumps(standard).lower() + json.dumps(status).lower()
-    for phrase in [
-        "does not certify",
-        "execution authority",
-        "general compatibility",
-        "policy evidence",
-        "identity verification",
-        "credential verification",
-    ]:
+    for phrase in ["does not certify", "execution authority", "general compatibility", "policy evidence", "identity verification", "credential verification", "provenance verification"]:
         if phrase not in joined:
             fail(f"missing boundary phrase: {phrase}")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=4")
+    print("contracts_authored=5")
     print("compatibility_observed=0")
     print("opa_execution_binding=installed_pending_observation")
     for framework_id in CONTRACTS:
