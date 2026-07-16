@@ -34,6 +34,7 @@ CONTRACTS = {
     "asro": ("asro", "asro.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "decisionassure": ("decisionassure", "decisionassure.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "mindforge": ("mindforge", "mindforge.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "morrison-runtime": ("morrison-runtime", "morrison-runtime.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 
@@ -53,9 +54,9 @@ def main() -> None:
     union = load(UNION)
     if standard.get("schema") != "external_framework_governance_compatibility_testing_standard.v1":
         fail("unexpected standard schema")
-    for layer in {"native_framework_execution","semantic_translation","stegverse_commit_time_evaluation","failure_boundary_evaluation","fresh_runner_replay","page_and_machine_readable_result_publication"}:
-        if layer not in set(standard.get("required_layers", [])):
-            fail(f"standard missing layer: {layer}")
+    required_layers = {"native_framework_execution","semantic_translation","stegverse_commit_time_evaluation","failure_boundary_evaluation","fresh_runner_replay","page_and_machine_readable_result_publication"}
+    if not required_layers.issubset(set(standard.get("required_layers", []))):
+        fail("standard required layers incomplete")
 
     canonical_ids = {entry.get("record_id") for entry in union.get("entries", []) if entry.get("record_id")}
     if len(canonical_ids) != 38 or union.get("counts", {}).get("records") != 38:
@@ -79,10 +80,8 @@ def main() -> None:
         if len(cases) != 6 or families != required_families:
             fail(f"case contract mismatch for {framework_id}: count={len(cases)} families={sorted(families)}")
         record = records[framework_id]
-        if record.get("state") != state:
-            fail(f"invalid state for {framework_id}: {record.get('state')}")
-        if record.get("case_count") != 6:
-            fail(f"invalid case count for {framework_id}")
+        if record.get("state") != state or record.get("case_count") != 6:
+            fail(f"invalid state or case count for {framework_id}")
         expected_observed = framework_id == "open-policy-agent"
         if record.get("stegverse_governance_compatibility_observed") is not expected_observed:
             fail(f"invalid compatibility observation state for {framework_id}")
@@ -108,27 +107,31 @@ def main() -> None:
 
     if records["cedar-policy"].get("binary_build_observed") is not True or records["cedar-policy"].get("native_execution_observed") is not False:
         fail("Cedar must remain build-observed and runtime-unobserved")
-    for framework_id in ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol","guardrails-ai","llama-guard","nemo-guardrails","glm","evide","asro"):
+    sourced = ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol","guardrails-ai","llama-guard","nemo-guardrails","glm","evide","asro","morrison-runtime")
+    for framework_id in sourced:
         if records[framework_id].get("source_reviewed") is not True or records[framework_id].get("native_execution_observed") is not False:
             fail(f"{framework_id} must remain source-reviewed and runtime-unobserved")
     for framework_id in ("decisionassure", "mindforge"):
         record = records[framework_id]
         if record.get("source_reviewed") is not False or record.get("artifact_package_required") is not True or record.get("native_execution_observed") is not False:
             fail(f"{framework_id} must remain artifact-package-required and runtime-unobserved")
+    if records["morrison-runtime"].get("bounded_historical_observation_only") is not True:
+        fail("Morrison Runtime must preserve bounded historical-observation posture")
 
-    expected_counts = {"canonical_records":38,"contract_authored":23,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":15}
+    expected_counts = {"canonical_records":38,"contract_authored":24,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":14}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
 
     joined = json.dumps(standard).lower() + json.dumps(status).lower()
-    for phrase in ["does not certify","execution authority","general compatibility","policy evidence","identity verification","credential verification","provenance verification","signature verification","authentication","token acceptance","did control","control evidence","lineage visibility","provenance representation","tool discovery","task completion","validator pass","safe classification","rail pass","manifest validity","post-event","operational assurance","trace validity","historical review"]:
+    phrases = ["does not certify","execution authority","general compatibility","policy evidence","identity verification","credential verification","provenance verification","signature verification","authentication","token acceptance","did control","control evidence","lineage visibility","provenance representation","tool discovery","task completion","validator pass","safe classification","rail pass","manifest validity","post-event","operational assurance","trace validity","historical review","runtime verdict"]
+    for phrase in phrases:
         if phrase not in joined:
             fail(f"missing boundary phrase: {phrase}")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=23")
+    print("contracts_authored=24")
     print("compatibility_observed=1")
     print("opa_bounded_compatibility=observed_run_29455057960")
     for framework_id in CONTRACTS:
