@@ -1,0 +1,17 @@
+{
+  "schema": "stegverse.ecosystem_chat.downstream_projection.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "generated_at": "2026-07-16T00:00:00+00:00",
+  "state": "ACTIVATION_EVIDENCE_PENDING",
+  "source_repository": "StegVerse-Labs/Site",
+  "source_state_sha256": null,
+  "source_packet_sha256": null,
+  "manual_user_action_required": false,
+  "authority_boundary": {
+    "projection_is_activation_authority": false,
+    "projection_is_release_authority": false,
+    "projection_is_publication_authority": false,
+    "projection_is_custody": false
+  },
+  "projection_sha256": "9fd3f1a058bf5b95a6bf5e3b5acb045cd04947bf92bc0e6d8a5945c93d229680"
+}
