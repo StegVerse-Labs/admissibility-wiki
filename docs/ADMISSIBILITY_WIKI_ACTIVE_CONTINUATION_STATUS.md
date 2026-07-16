@@ -17,7 +17,7 @@ user manual action required: false
 
 ## Latest directly observed stable results
 
-Workflow run `29462013262`, commit `6dad9e90487dee9c6f6e0b7537068d0aa371bf51`:
+Workflow run `29464286265`, commit `5ba799e36930d56a3abf4cd89d7032582f31428c`:
 
 ```text
 validate-chain-continuation: success
@@ -39,18 +39,42 @@ present count: 17
 missing count: 0
 ```
 
-Therefore missing run-bound publication artifacts are no longer the active blocker. The remaining blocker is inside the build-stage `npm run validate` execution before the separate Docusaurus site-build step.
+Therefore missing run-bound publication artifacts are no longer the active blocker.
 
-## Installed Pages diagnostics
+## Exact Pages diagnostic and repair
 
-Commit `5ba799e36930d56a3abf4cd89d7032582f31428c` extends the existing `pages-build-receipt` path to rerun the exact build-stage validation after failure and record a bounded diagnostic output tail. This does not weaken the fail-closed gate, create another workflow, or grant deployment, release, or execution authority.
+The bounded diagnostic added by commit `5ba799e36930d56a3abf4cd89d7032582f31428c` executed successfully in workflow run `29464286265` and identified the exact failure:
+
+```text
+command: npm run validate
+exit_code: 1
+failing validator: scripts/check-external-framework-registry.mjs
+failure: sidebar/association count mismatch: sidebar=52, associations=50
+```
+
+The mismatch was caused by two support routes present in `sidebars.js` but absent from `static/external-frameworks/sidebar-page-associations.v1.json`:
+
+```text
+external-frameworks/governance-compatibility-testing
+external-frameworks/opa-governance-compatibility-test
+```
+
+Commit `f8d0cdb93e3de9d1b251dce2f513a2f931c60863` added both support associations and updated the association counts to:
+
+```text
+sidebar entries: 52
+support pages: 26
+framework pages: 26
+```
+
+No framework route, framework artifact binding, public/non-public disposition, or authority boundary was removed or relaxed.
 
 Next action:
 
 ```text
-inspect the first pages-build-receipt produced after commit 5ba799e36930d56a3abf4cd89d7032582f31428c
-identify the exact failing validator or build command
-repair only that failure
+inspect the first canonical workflow run containing commit f8d0cdb93e3de9d1b251dce2f513a2f931c60863 or later
+confirm external-framework registry parity passes
+repair only the next exact failure if build-pages remains blocked
 observe build-pages, deploy-pages, and verify-public-pages directly
 ```
 
@@ -139,5 +163,5 @@ no Site, Publisher, StegGuardian, or repo-standards mutation is authorized by th
 
 This record makes the latest technical state durable. The active session remains non-archive-ready until either:
 
-1. the successor Pages diagnostic is inspected and the exact blocker is repaired or durably handed off; and
+1. the successor workflow result after `f8d0cdb93e3de9d1b251dce2f513a2f931c60863` is inspected and the next Pages state is repaired or durably handed off; and
 2. `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` is reconciled with this active continuation status.
