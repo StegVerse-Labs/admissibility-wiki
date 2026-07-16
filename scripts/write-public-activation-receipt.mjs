@@ -3,8 +3,6 @@ import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
 // Static compatibility markers required by repository publication validators.
-// Runtime behavior remains owned by the preserved base writer plus the bounded
-// quantum-evidence embedding below.
 const PRESERVED_CONTRACT_MARKERS = [
   'documentation_mesh_observation_closure.v1',
   'SOURCE_BLOCKED_FAIL_CLOSED',
@@ -20,11 +18,55 @@ const PRESERVED_CONTRACT_MARKERS = [
 ];
 void PRESERVED_CONTRACT_MARKERS;
 
-await import('./write-public-activation-receipt-base.mjs');
-
 const publicReceiptPath = 'reports/public-activation-receipt.json';
 const quantumReceiptPath = 'reports/quantum-security-public-route-observation.json';
 const skipNetwork = process.env.PUBLIC_ACTIVATION_SKIP_NETWORK === '1';
+let baseWriterError = null;
+
+try {
+  await import('./write-public-activation-receipt-base.mjs');
+} catch (error) {
+  baseWriterError = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
+  fs.mkdirSync('reports', { recursive: true });
+  fs.writeFileSync(publicReceiptPath, JSON.stringify({
+    schema: 'admissibility_wiki_public_activation_receipt.v7',
+    receipt_id: `public-activation.workflow.${process.env.GITHUB_RUN_ID || 'unknown'}.${process.env.GITHUB_RUN_ATTEMPT || '0'}`,
+    created_at: new Date().toISOString(),
+    repository: 'StegVerse-Labs/admissibility-wiki',
+    activation_target: 'https://stegverse-labs.github.io/admissibility-wiki/',
+    activation_state: 'SOURCE_BLOCKED_FAIL_CLOSED',
+    commit: process.env.GITHUB_SHA || null,
+    run_id: process.env.GITHUB_RUN_ID || null,
+    run_attempt: process.env.GITHUB_RUN_ATTEMPT || null,
+    checks: {},
+    activation_closures: {
+      base_writer: {
+        schema: 'public_activation_base_writer_failure.v1',
+        state: 'SOURCE_BLOCKED_FAIL_CLOSED',
+        error: baseWriterError,
+        evidence_preserved: true,
+        manual_task_requirement: 'NONE',
+        user_manual_action_required: false,
+        authority_granted: false,
+        execution_authority_granted: false,
+        release_authority_granted: false,
+        downstream_mutation_authority_granted: false
+      }
+    },
+    linked_receipts: {},
+    authority_granted: false,
+    release_authority_granted: false,
+    downstream_mutation_authority_granted: false,
+    publication_complete: false,
+    manual_tasks_required: [],
+    user_manual_action_required: false,
+    non_claims: [
+      'A preserved base-writer failure receipt is not publication-complete evidence.',
+      'Receipt custody does not grant execution, release, certification, or downstream mutation authority.'
+    ]
+  }, null, 2) + '\n');
+  console.error(`base public-activation writer failed; preserving fail-closed receipt: ${baseWriterError}`);
+}
 
 if (!fs.existsSync(publicReceiptPath)) {
   throw new Error(`base writer did not create ${publicReceiptPath}`);
@@ -96,7 +138,29 @@ if (fs.existsSync(quantumReceiptPath)) {
     ]
   };
 } else {
-  throw new Error(`missing workflow-generated ${quantumReceiptPath}`);
+  quantumReceipt = {
+    schema: 'quantum_security_public_route_observation.v1',
+    goal_id: 'stegverse-quantum-resilient-complete-security',
+    state: 'SOURCE_BLOCKED_FAIL_CLOSED',
+    observed_at: new Date().toISOString(),
+    repository: 'StegVerse-Labs/admissibility-wiki',
+    commit: process.env.GITHUB_SHA || null,
+    run_id: process.env.GITHUB_RUN_ID || null,
+    run_attempt: process.env.GITHUB_RUN_ATTEMPT || null,
+    routes: {},
+    all_required_public_routes_verified: false,
+    pages_deployment_observed: false,
+    observer_exit_code: observationExitCode,
+    receipt_preserved_despite_source_block: true,
+    manual_task_requirement: 'NONE',
+    user_manual_action_required: false,
+    certification_granted: false,
+    universal_quantum_proof_claim: false,
+    production_cryptographic_deployment_established: false,
+    execution_authority_granted: false,
+    downstream_mutation_authority_granted: false,
+    continuation_source: 'docs/STEGVERSE_QUANTUM_SECURITY_MIRROR_HANDOFF.md'
+  };
 }
 
 publicReceipt.activation_closures = {
@@ -105,16 +169,17 @@ publicReceipt.activation_closures = {
 };
 publicReceipt.linked_receipts = {
   ...(publicReceipt.linked_receipts || {}),
-  quantum_security_public_route_observation: quantumReceiptPath
+  quantum_security_public_route_observation: fs.existsSync(quantumReceiptPath) ? quantumReceiptPath : null
 };
 publicReceipt.manual_tasks_required = [];
 publicReceipt.user_manual_action_required = false;
 publicReceipt.publication_complete =
+  baseWriterError === null &&
   publicReceipt.publication_complete === true &&
   quantumReceipt.all_required_public_routes_verified === true;
 
 fs.writeFileSync(publicReceiptPath, JSON.stringify(publicReceipt, null, 2) + '\n');
-console.log(`embedded ${quantumReceiptPath} into ${publicReceiptPath}`);
-if (quantumReceipt.all_required_public_routes_verified !== true) {
-  console.log('quantum-security closure preserved as source-blocked fail-closed evidence');
+console.log(`embedded bounded quantum-security closure into ${publicReceiptPath}`);
+if (baseWriterError || quantumReceipt.all_required_public_routes_verified !== true) {
+  console.log('public activation receipt preserved with source-blocked fail-closed closure');
 }
