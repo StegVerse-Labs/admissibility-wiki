@@ -29,6 +29,7 @@ CONTRACTS = {
     "guardrails-ai": ("guardrails-ai", "guardrails-ai.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "llama-guard": ("llama-guard", "llama-guard.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "nemo-guardrails": ("nemo-guardrails", "nemo-guardrails.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "glm": ("glm", "glm.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 
@@ -103,23 +104,23 @@ def main() -> None:
 
     if records["cedar-policy"].get("binary_build_observed") is not True or records["cedar-policy"].get("native_execution_observed") is not False:
         fail("Cedar must remain build-observed and runtime-unobserved")
-    for framework_id in ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol","guardrails-ai","llama-guard","nemo-guardrails"):
+    for framework_id in ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol","guardrails-ai","llama-guard","nemo-guardrails","glm"):
         if records[framework_id].get("source_reviewed") is not True or records[framework_id].get("native_execution_observed") is not False:
             fail(f"{framework_id} must remain source-reviewed and runtime-unobserved")
 
-    expected_counts = {"canonical_records":38,"contract_authored":18,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":20}
+    expected_counts = {"canonical_records":38,"contract_authored":19,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":19}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
 
     joined = json.dumps(standard).lower() + json.dumps(status).lower()
-    for phrase in ["does not certify","execution authority","general compatibility","policy evidence","identity verification","credential verification","provenance verification","signature verification","authentication","token acceptance","did control","control evidence","lineage visibility","provenance representation","tool discovery","task completion","validator pass","safe classification","rail pass"]:
+    for phrase in ["does not certify","execution authority","general compatibility","policy evidence","identity verification","credential verification","provenance verification","signature verification","authentication","token acceptance","did control","control evidence","lineage visibility","provenance representation","tool discovery","task completion","validator pass","safe classification","rail pass","manifest validity"]:
         if phrase not in joined:
             fail(f"missing boundary phrase: {phrase}")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=18")
+    print("contracts_authored=19")
     print("compatibility_observed=1")
     print("opa_bounded_compatibility=observed_run_29455057960")
     for framework_id in CONTRACTS:
