@@ -32,6 +32,7 @@ CONTRACTS = {
     "glm": ("glm", "glm.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "evide": ("evide", "evide.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "asro": ("asro", "asro.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "decisionassure": ("decisionassure", "decisionassure.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 
@@ -109,20 +110,23 @@ def main() -> None:
     for framework_id in ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol","guardrails-ai","llama-guard","nemo-guardrails","glm","evide","asro"):
         if records[framework_id].get("source_reviewed") is not True or records[framework_id].get("native_execution_observed") is not False:
             fail(f"{framework_id} must remain source-reviewed and runtime-unobserved")
+    decisionassure = records["decisionassure"]
+    if decisionassure.get("source_reviewed") is not False or decisionassure.get("artifact_package_required") is not True or decisionassure.get("native_execution_observed") is not False:
+        fail("DecisionAssure must remain artifact-package-required and runtime-unobserved")
 
-    expected_counts = {"canonical_records":38,"contract_authored":21,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":17}
+    expected_counts = {"canonical_records":38,"contract_authored":22,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":16}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
 
     joined = json.dumps(standard).lower() + json.dumps(status).lower()
-    for phrase in ["does not certify","execution authority","general compatibility","policy evidence","identity verification","credential verification","provenance verification","signature verification","authentication","token acceptance","did control","control evidence","lineage visibility","provenance representation","tool discovery","task completion","validator pass","safe classification","rail pass","manifest validity","post-event","operational assurance"]:
+    for phrase in ["does not certify","execution authority","general compatibility","policy evidence","identity verification","credential verification","provenance verification","signature verification","authentication","token acceptance","did control","control evidence","lineage visibility","provenance representation","tool discovery","task completion","validator pass","safe classification","rail pass","manifest validity","post-event","operational assurance","trace validity"]:
         if phrase not in joined:
             fail(f"missing boundary phrase: {phrase}")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=21")
+    print("contracts_authored=22")
     print("compatibility_observed=1")
     print("opa_bounded_compatibility=observed_run_29455057960")
     for framework_id in CONTRACTS:
