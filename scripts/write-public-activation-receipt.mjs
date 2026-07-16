@@ -163,13 +163,18 @@ if (fs.existsSync(quantumReceiptPath)) {
   };
 }
 
+// Every bounded observation, including validator simulations and source-blocked
+// fallbacks, is materialized at the canonical linked-receipt path.
+fs.mkdirSync('reports', { recursive: true });
+fs.writeFileSync(quantumReceiptPath, JSON.stringify(quantumReceipt, null, 2) + '\n');
+
 publicReceipt.activation_closures = {
   ...(publicReceipt.activation_closures || {}),
   quantum_security: quantumReceipt
 };
 publicReceipt.linked_receipts = {
   ...(publicReceipt.linked_receipts || {}),
-  quantum_security_public_route_observation: fs.existsSync(quantumReceiptPath) ? quantumReceiptPath : null
+  quantum_security_public_route_observation: quantumReceiptPath
 };
 publicReceipt.manual_tasks_required = [];
 publicReceipt.user_manual_action_required = false;
