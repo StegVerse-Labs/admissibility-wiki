@@ -1,0 +1,53 @@
+{
+  "schema": "admissibility_wiki.session_adjacent_goals_status.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "recorded_at": "2026-07-16",
+  "latest_observed_workflow": {
+    "run_id": "29469309802",
+    "commit": "2533cc340e6107a8d8cfcf868ca910f3b358271a",
+    "primary_validation": "SUCCESS",
+    "opa_capture": "SUCCESS",
+    "opa_fresh_runner_replay": "SUCCESS",
+    "cedar_selected_binary_build": "SUCCESS",
+    "build_pages": "FAILURE",
+    "deploy_pages": "SKIPPED",
+    "verify_public_pages": "SKIPPED",
+    "terminal_rollup": {"state":"ROLLUP_BOUND","completeness":"COMPLETE_LOCAL_CHAIN","present":17,"missing":0}
+  },
+  "latest_exact_failure": {
+    "validator": "scripts/check_governed_ecosystem_index_status.py",
+    "missing_requirements": [
+      "## Destination resolution",
+      "StegVerse-002/StegGuardian",
+      "static/status/guardian-destination-resolution-status.json"
+    ],
+    "repair_commit": "f950eb9beccc2d88386d8bf0edb6a4140c02e690",
+    "repair_state": "INSTALLED_PENDING_SUCCESSOR_OBSERVATION",
+    "authority_boundary": "destination resolution does not activate a destination or grant cross-repository mutation authority"
+  },
+  "compatibility_program": {
+    "canonical_records": 38,
+    "canonically_bound_contracts": 19,
+    "bounded_compatibility_observed": 1,
+    "independent_implementation_reproduced": 0,
+    "evide": {
+      "state": "AUTHORED_ARTIFACTS_PENDING_CANONICAL_BINDING",
+      "fixture_commit": "7f3c5f1853aac87673ff8874a88a045ff067c288",
+      "evaluator_commit": "fea546102d18e435a3b692b56a6999253dfbe22f",
+      "procedure_commit": "51bc54fe93e0a6caa0c26067d8fa2bbb4274f52d",
+      "required_atomic_updates": [
+        "static/external-frameworks/governance-compatibility-testing-status.v1.json",
+        "scripts/check_external_framework_governance_compatibility.py"
+      ],
+      "boundary": "post-event reconstructability evidence does not retroactively create commit-time standing, admissibility, or execution authority"
+    }
+  },
+  "remaining_adjacent_repo_local_goals": [
+    "observe the first canonical run containing f950eb9 or later and repair only the next exact Pages blocker if present",
+    "bind EVIDE atomically as contract 20 of 38",
+    "reconcile docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md with the active continuation state"
+  ],
+  "archive_ready": false,
+  "manual_tasks_required": [],
+  "user_action_required": false
+}
