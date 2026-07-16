@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
+import { spawnSync } from 'node:child_process';
 
 // Static compatibility markers required by repository publication validators.
 // Runtime behavior remains owned by the preserved base writer plus the bounded
@@ -31,6 +32,19 @@ if (!fs.existsSync(publicReceiptPath)) {
 
 const publicReceipt = JSON.parse(fs.readFileSync(publicReceiptPath, 'utf8'));
 let quantumReceipt;
+
+if (!fs.existsSync(quantumReceiptPath) && !skipNetwork) {
+  const observation = spawnSync(
+    process.env.PYTHON || 'python3',
+    ['scripts/check_quantum_security_public_routes.py'],
+    { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }
+  );
+  if (observation.stdout) process.stdout.write(observation.stdout);
+  if (observation.stderr) process.stderr.write(observation.stderr);
+  if (observation.status !== 0) {
+    throw new Error(`quantum-security public route observation failed with exit code ${observation.status}`);
+  }
+}
 
 if (fs.existsSync(quantumReceiptPath)) {
   quantumReceipt = JSON.parse(fs.readFileSync(quantumReceiptPath, 'utf8'));
