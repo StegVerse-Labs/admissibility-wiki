@@ -32,6 +32,7 @@ if (!fs.existsSync(publicReceiptPath)) {
 
 const publicReceipt = JSON.parse(fs.readFileSync(publicReceiptPath, 'utf8'));
 let quantumReceipt;
+let observationExitCode = null;
 
 if (!fs.existsSync(quantumReceiptPath) && !skipNetwork) {
   const observation = spawnSync(
@@ -39,18 +40,22 @@ if (!fs.existsSync(quantumReceiptPath) && !skipNetwork) {
     ['scripts/check_quantum_security_public_routes.py'],
     { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }
   );
+  observationExitCode = observation.status;
   if (observation.stdout) process.stdout.write(observation.stdout);
   if (observation.stderr) process.stderr.write(observation.stderr);
-  if (observation.status !== 0) {
-    throw new Error(`quantum-security public route observation failed with exit code ${observation.status}`);
-  }
 }
 
 if (fs.existsSync(quantumReceiptPath)) {
   quantumReceipt = JSON.parse(fs.readFileSync(quantumReceiptPath, 'utf8'));
-  if (quantumReceipt.all_required_public_routes_verified !== true) {
-    throw new Error('quantum-security route observation is not PASS');
+  if (quantumReceipt.schema !== 'quantum_security_public_route_observation.v1') {
+    throw new Error('quantum-security route observation schema mismatch');
   }
+  if (typeof quantumReceipt.all_required_public_routes_verified !== 'boolean') {
+    throw new Error('quantum-security route observation lacks bounded completion state');
+  }
+  quantumReceipt.observer_exit_code = observationExitCode;
+  quantumReceipt.receipt_preserved_despite_source_block =
+    quantumReceipt.all_required_public_routes_verified !== true;
 } else if (skipNetwork) {
   const urls = {
     quantum_security_governance_page: 'https://stegverse-labs.github.io/admissibility-wiki/governance/quantum-resilient-execution-security',
@@ -104,6 +109,12 @@ publicReceipt.linked_receipts = {
 };
 publicReceipt.manual_tasks_required = [];
 publicReceipt.user_manual_action_required = false;
+publicReceipt.publication_complete =
+  publicReceipt.publication_complete === true &&
+  quantumReceipt.all_required_public_routes_verified === true;
 
 fs.writeFileSync(publicReceiptPath, JSON.stringify(publicReceipt, null, 2) + '\n');
 console.log(`embedded ${quantumReceiptPath} into ${publicReceiptPath}`);
+if (quantumReceipt.all_required_public_routes_verified !== true) {
+  console.log('quantum-security closure preserved as source-blocked fail-closed evidence');
+}
