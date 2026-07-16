@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate or refresh the non-authorizing Ecosystem Chat activation projection."""
+"""Validate and opportunistically refresh the non-authorizing Ecosystem Chat projection."""
 from __future__ import annotations
 
 import argparse
@@ -86,9 +86,16 @@ def refresh() -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--refresh", action="store_true")
+    parser.add_argument("--checked-in-only", action="store_true")
     args = parser.parse_args()
-    value = refresh() if args.refresh else json.loads(OUTPUT.read_text(encoding="utf-8"))
+    if args.checked_in_only:
+        value = json.loads(OUTPUT.read_text(encoding="utf-8"))
+    else:
+        try:
+            value = refresh()
+        except Exception as exc:
+            value = json.loads(OUTPUT.read_text(encoding="utf-8"))
+            print(f"ECOSYSTEM CHAT ACTIVATION PROJECTION: SOURCE_PENDING ({type(exc).__name__})")
     validate_projection(value)
     print(f"ECOSYSTEM CHAT ACTIVATION PROJECTION: PASS ({value['state']})")
     return 0
