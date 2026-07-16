@@ -105,6 +105,18 @@ StegVerse-Labs/repo-standards
 
 Downstream awareness is not completed propagation. Each destination handoff must authorize mutation before updates are applied.
 
+## Destination resolution
+
+Guardian destinations are split by role and visibility:
+
+```text
+canonical public Guardian documentation destination: StegVerse-002/stegguardian-wiki
+canonical private Guardian implementation destination: StegVerse-002/StegGuardian
+resolution evidence: static/status/guardian-destination-resolution-status.json
+```
+
+The public wiki is the documentation and proof-path surface. The private repository is the implementation destination. This resolution records where future authorized work belongs; it does not activate either destination, prove current deployment, transfer standing, or grant cross-repository mutation authority.
+
 ## Status vocabulary
 
 | Status | Meaning |
@@ -129,6 +141,7 @@ Deployment != admissibility.
 Receipt emission != custody.
 Public visibility != proof authority.
 Handoff awareness != destination mutation authority.
+Destination resolution != destination activation.
 ```
 
 ## Current status
