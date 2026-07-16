@@ -1,0 +1,52 @@
+{
+  "schema": "admissibility_wiki_zero_manual_task_continuation.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "recorded_at": "2026-07-16",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "primary_validation": "npm run validate",
+  "manual_tasks_required": [],
+  "user_action_required": false,
+  "activation": {
+    "latest_directly_observed_run": "29525161699",
+    "observed_commit": "633f3ff8ad1ebc4d2394093d1971f468f9555a4a",
+    "validate_chain_continuation": "success",
+    "capture_opa_evidence": "success",
+    "replay_opa_fresh_runner": "success",
+    "build_selected_cedar_binary": "success",
+    "build_pages": "failed_at_local_public_activation_receipt_writer_contract",
+    "diagnostic_npm_validate": "success",
+    "diagnostic_docusaurus_build": "success",
+    "deploy_pages": "skipped",
+    "verify_public_pages": "skipped",
+    "exact_repair_commit": "cd27f0b438447ef4d6822d126ced10d756f96541",
+    "repair": "Materialize every live, simulated, or source-blocked quantum observation at reports/quantum-security-public-route-observation.json and preserve the canonical linked-receipt path.",
+    "successor_observation_pending": true
+  },
+  "external_framework_compatibility": {
+    "canonical_records": 38,
+    "contracts_authored": 24,
+    "governance_compatibility_observed": 1,
+    "fresh_runner_reproduced": 1,
+    "independent_implementation_reproduced": 0,
+    "not_started": 14,
+    "latest_bound_framework": "morrison-runtime",
+    "ledger_commit": "313f8198606dc5f7d3e1bb304c8ff5eae1b552a1",
+    "validator_commit": "ca7e89e4116b0abf84f0772370b2506bc1357a13",
+    "next_framework": "care-runtime"
+  },
+  "authority_boundary": {
+    "public_visibility_is_governance_authority": false,
+    "receipt_is_execution_authority": false,
+    "runtime_verdict_is_stegverse_authority": false,
+    "historical_observation_is_runtime_reproduction": false,
+    "compatibility_contract_is_general_certification": false,
+    "downstream_mutation_authority_granted": false,
+    "release_authority_granted": false
+  },
+  "next_automated_actions": [
+    "Inspect the first canonical workflow run containing cd27f0b438447ef4d6822d126ced10d756f96541 or later.",
+    "Repair only the next exact repository-local blocker if the workflow remains incomplete.",
+    "Author and atomically bind the care-runtime compatibility contract as 25/38.",
+    "Reconcile docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md after activation and contract state are directly observed."
+  ]
+}
