@@ -16,6 +16,18 @@ def fail(message: str) -> None:
     raise SystemExit(f"CANONICAL WORKFLOW HEALTH TRANSITION TREND: FAIL - {message}")
 
 
+def snapshot(path: Path) -> bytes | None:
+    return path.read_bytes() if path.exists() else None
+
+
+def restore(path: Path, prior: bytes | None) -> None:
+    if prior is None:
+        path.unlink(missing_ok=True)
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(prior)
+
+
 def transition(receipt_id: str, generated_at: str, prior: str, resulting: str) -> dict:
     return {
         "receipt_id": receipt_id,
@@ -64,6 +76,8 @@ def run_case(name: str, transitions: list[dict], expected: str) -> None:
 def main() -> int:
     if not GENERATOR.exists():
         fail("generator is missing")
+    prior_history = snapshot(HISTORY)
+    prior_out = snapshot(OUT)
     try:
         run_case(
             "recovery",
@@ -82,11 +96,11 @@ def main() -> int:
             [transition("defer.1", "2026-07-14T06:00:00+00:00", "AWAITING_AUTOMATED_OBSERVATION", "EXTERNAL_EVIDENCE_DEFERRED")],
             "UNRESOLVED_DEFERRAL",
         )
-        print("CANONICAL WORKFLOW HEALTH TRANSITION TREND: PASS - cases=3 manual_tasks=0 predictive_claim=false")
+        print("CANONICAL WORKFLOW HEALTH TRANSITION TREND: PASS - cases=3 manual_tasks=0 predictive_claim=false preserved_run_bound_artifacts=true")
         return 0
     finally:
-        HISTORY.unlink(missing_ok=True)
-        OUT.unlink(missing_ok=True)
+        restore(HISTORY, prior_history)
+        restore(OUT, prior_out)
 
 
 if __name__ == "__main__":
