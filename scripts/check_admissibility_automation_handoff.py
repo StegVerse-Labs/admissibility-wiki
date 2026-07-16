@@ -30,6 +30,7 @@ ACTIVATION_SECTION_CHECK = ROOT / "scripts" / "check_activation_section.py"
 RESEARCH_SOCIAL_STEGVERSE_CHECK = ROOT / "scripts" / "check_research_social_stegverse_sections.py"
 NAVIGATION_COVERAGE_CHECK = ROOT / "scripts" / "check_navigation_coverage.py"
 RELEASE_READINESS_CHECK = ROOT / "scripts" / "check_release_readiness.py"
+ECOSYSTEM_CHAT_ACTIVATION_CHECK = ROOT / "scripts" / "check_ecosystem_chat_activation_projection.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -90,6 +91,7 @@ def main() -> int:
     run_check(ACTIVATION_SECTION_CHECK, "activation section", failures)
     run_check(RESEARCH_SOCIAL_STEGVERSE_CHECK, "research social and StegVerse sections", failures)
     run_check(NAVIGATION_COVERAGE_CHECK, "navigation and orphan coverage", failures)
+    run_check(ECOSYSTEM_CHAT_ACTIVATION_CHECK, "Ecosystem Chat activation projection", failures)
     run_check(RELEASE_READINESS_CHECK, "release readiness", failures)
 
     if failures:
