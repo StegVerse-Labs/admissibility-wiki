@@ -4,9 +4,9 @@ Repository: `StegVerse-Labs/admissibility-wiki`
 
 ## Purpose
 
-This addendum records guard, evidence, destination-resolution, and release-gated integration files installed after `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` was last updated.
+This addendum records guard, evidence, destination-resolution, release-gated integration, activation, and compatibility continuation installed after `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` was last updated.
 
-The root handoff remains the task source of truth. This addendum is its governed continuity supplement for validators that explicitly bind both files.
+The root handoff remains the task source of truth. This addendum is its governed continuity supplement for validators and successor sessions that explicitly bind both files.
 
 ## Installed guard files
 
@@ -50,6 +50,54 @@ release authority: none granted
 
 The integration and installation-bundle surfaces are present locally, but upstream tag and release evidence remain outside the current connector observation. `UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR` is a fail-closed continuity state, not evidence that a tag exists, that a release is approved, or that installation may proceed.
 
+## Public activation observation
+
+Workflow run `29506125634`, commit `a5ea74d4b15a9ca4c29be611bb4562bef35c8bfd`, directly observed:
+
+```text
+validate-chain-continuation: success
+build-pages: success
+deploy-pages: success
+capture-opa-evidence: success
+replay-opa-fresh-runner: success
+build-selected-cedar-binary: success
+verify-public-pages: failure only at Write public activation receipt
+all preceding public-route verification steps: success
+```
+
+Activation-receipt custody repairs:
+
+```text
+97b0f5e1e37269a66cbef2dd4fed11a85980e16d
+- preserve source-blocked quantum observation inside the receipt instead of losing the receipt
+
+9a2cbd7ffe812de145b18019579c394623cd2b32
+- preserve source-blocked radiology observations inside a fail-closed closure instead of aborting receipt generation
+```
+
+The next exact action is to inspect the first canonical workflow run containing `9a2cbd7ffe812de145b18019579c394623cd2b32`. A successful receipt upload establishes bounded public activation evidence only. A source-blocked closure remains automation-owned and grants no certification, standing, release, execution, clinical, or downstream mutation authority.
+
+## External-framework compatibility continuation
+
+```text
+canonical records: 38
+canonically bound contracts: 21
+governance compatibility directly observed: 1
+fresh-runner reproduced: 1
+independent implementation/provider reproduction: 0
+next framework: decisionassure
+```
+
+DecisionAssure authored artifacts are present:
+
+```text
+tests/fixtures/external-frameworks/decisionassure-governance-compatibility-cases.v1.json
+scripts/run_decisionassure_governance_compatibility.py
+docs/external-frameworks/decisionassure-governance-compatibility-procedure.md
+```
+
+DecisionAssure remains authored but not yet atomically bound into `static/external-frameworks/governance-compatibility-testing-status.v1.json` and `scripts/check_external_framework_governance_compatibility.py`. Do not claim contract 22/38 until both files are updated together and canonical validation observes the result. Trace validity, causal continuity, drift detection, corruption detection, or a framework-native decision remains evidence only and does not establish current standing, delegation, admissibility, or execution authority.
+
 ## Aggregate validation
 
 The guard and workflow-evidence validators are wired into aggregate validation through:
@@ -72,7 +120,7 @@ docs/governance/current-task-sync.md
 
 This addendum does not replace the root handoff.
 
-It exists only to close the documentation loop for installed guard, evidence, destination-resolution, and release-gated integration status without reassigning manual work.
+It exists only to close the documentation loop for installed guard, evidence, destination-resolution, release-gated integration, activation, and compatibility continuation without reassigning manual work.
 
 Pending workflow evidence must not advance activation posture by itself.
 
