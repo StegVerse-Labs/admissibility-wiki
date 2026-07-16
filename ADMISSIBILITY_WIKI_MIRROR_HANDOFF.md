@@ -132,6 +132,24 @@ terminal rollup public reachability: not claimed
 
 The absence of exposed status records is not converted into a manual task. The hourly canonical workflow remains the owner of validation, deployment, public re-observation, and artifact renewal.
 
+## Admissible automated-transition catalogue
+
+```text
+transition_id: automation.github-handoff-watch.hourly.v1
+lifecycle_state: ACTIVE_BOOTSTRAP_ORCHESTRATION
+authority_source: current *_MIRROR_HANDOFF.md
+trigger: hourly canonical workflow observation
+trigger_does_not_select_task: true
+admissibility_result: ALLOW | DENY | FAIL_CLOSED
+commit_time_validity_required_before_mutation: true
+run_specific_receipt_required: true
+cross_repository_authority_inferred: false
+release_deploy_merge_or_ecosystem_authority_inferred: false
+manual_user_task: none
+```
+
+The triggering email, workflow result, schedule, or manual request does not determine the task. The current handoff, policy and delegation references, evidence, scope, execution context, recoverability posture, and commit-time validity determine whether a proposed action is allowed. Catalogue presence and an `ALLOW` receipt do not create authority beyond the bounded transition recorded in that run-specific receipt.
+
 ## Authority boundaries
 
 ```text
