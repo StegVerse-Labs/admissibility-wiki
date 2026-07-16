@@ -2,12 +2,15 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-STATUS = ROOT / "static" / "status" / "canonical-workflow-observation-automation.json"
+STATUS_DIR = ROOT / "static" / "status"
+STATUS = STATUS_DIR / "canonical-workflow-observation-automation.json"
 VALIDATORS = [
     ROOT / "scripts" / "check_canonical_workflow_observation_publication.py",
     ROOT / "scripts" / "check_canonical_workflow_observation_history.py",
@@ -39,6 +42,21 @@ REQUIRED = [
 
 def fail(message: str) -> None:
     raise SystemExit(f"CANONICAL WORKFLOW OBSERVATION AUTOMATION: FAIL - {message}")
+
+
+def snapshot_status_directory(snapshot_root: Path) -> None:
+    if STATUS_DIR.exists():
+        shutil.copytree(STATUS_DIR, snapshot_root / "status")
+
+
+def restore_status_directory(snapshot_root: Path) -> None:
+    prior = snapshot_root / "status"
+    if STATUS_DIR.exists():
+        shutil.rmtree(STATUS_DIR)
+    if prior.exists():
+        shutil.copytree(prior, STATUS_DIR)
+    else:
+        STATUS_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def main() -> int:
@@ -96,10 +114,16 @@ def main() -> int:
             fail(f"trigger {trigger} is not automation-owned")
 
     for validator in VALIDATORS:
-        completed = subprocess.run(
-            [sys.executable, str(validator)], cwd=ROOT, text=True,
-            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
-        )
+        with tempfile.TemporaryDirectory(prefix="canonical-observation-validator-") as tmp:
+            snapshot_root = Path(tmp)
+            snapshot_status_directory(snapshot_root)
+            try:
+                completed = subprocess.run(
+                    [sys.executable, str(validator)], cwd=ROOT, text=True,
+                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
+                )
+            finally:
+                restore_status_directory(snapshot_root)
         if completed.stdout:
             print(completed.stdout.rstrip())
         if completed.returncode != 0:
@@ -107,7 +131,7 @@ def main() -> int:
 
     print(
         "CANONICAL WORKFLOW OBSERVATION AUTOMATION: PASS - "
-        "manual_tasks=0 terminal_rollup=bound recursive_expansion=false"
+        "manual_tasks=0 terminal_rollup=bound recursive_expansion=false validators_isolated=true"
     )
     return 0
 
