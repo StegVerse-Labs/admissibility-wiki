@@ -67,6 +67,62 @@ def load_rollup_binding() -> dict:
     }
 
 
+def capture_failed_validation() -> dict:
+    """Re-run the exact build-stage validation command after failure and retain bounded evidence."""
+    try:
+        completed = subprocess.run(
+            ["npm", "run", "validate"],
+            cwd=ROOT,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+            timeout=240,
+        )
+        lines = (completed.stdout or "").splitlines()
+        failure_lines = [
+            line for line in lines
+            if any(marker in line for marker in ("FAIL", "Error:", "ERROR", "npm error", "ELIFECYCLE"))
+        ]
+        return {
+            "command": "npm run validate",
+            "executed": True,
+            "exit_code": completed.returncode,
+            "failure_markers": failure_lines[-40:],
+            "output_tail": lines[-160:],
+            "output_truncated": len(lines) > 160,
+            "diagnostic_only": True,
+            "authority_granted": False,
+        }
+    except subprocess.TimeoutExpired as exc:
+        partial = exc.stdout or ""
+        if isinstance(partial, bytes):
+            partial = partial.decode("utf-8", errors="replace")
+        lines = partial.splitlines()
+        return {
+            "command": "npm run validate",
+            "executed": True,
+            "exit_code": None,
+            "timed_out": True,
+            "failure_markers": ["VALIDATION_DIAGNOSTIC_TIMEOUT"],
+            "output_tail": lines[-160:],
+            "output_truncated": len(lines) > 160,
+            "diagnostic_only": True,
+            "authority_granted": False,
+        }
+    except OSError as exc:
+        return {
+            "command": "npm run validate",
+            "executed": False,
+            "exit_code": None,
+            "failure_markers": [f"VALIDATION_DIAGNOSTIC_EXECUTION_ERROR: {exc}"],
+            "output_tail": [],
+            "output_truncated": False,
+            "diagnostic_only": True,
+            "authority_granted": False,
+        }
+
+
 def main() -> int:
     build_outcome = os.environ.get("BUILD_OUTCOME", "unknown").strip().lower()
     build_present = BUILD_DIR.is_dir()
@@ -85,9 +141,10 @@ def main() -> int:
         and rollup_binding.get("state") == "ROLLUP_BOUND"
         and rollup_binding.get("completeness_state") == "COMPLETE_LOCAL_CHAIN"
     )
+    failed_validation_diagnostic = None if success else capture_failed_validation()
     receipt = {
         "artifact_type": "admissibility_wiki_pages_build_receipt",
-        "schema_version": "0.3",
+        "schema_version": "0.4",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "workflow_context": {
             "run_id": os.environ.get("GITHUB_RUN_ID"),
@@ -108,6 +165,7 @@ def main() -> int:
             "total_size_bytes": sum(path.stat().st_size for path in files),
             "manifest_sha256": manifest_sha256,
         },
+        "failed_validation_diagnostic": failed_validation_diagnostic,
         "terminal_rollup_binding": rollup_binding,
         "deployment_requested": False,
         "deployment_completed": False,
@@ -121,6 +179,7 @@ def main() -> int:
             "pages_build_is_release_authority": False,
             "receipt_is_execution_authority": False,
             "rollup_binding_is_semantic_reclassification": False,
+            "diagnostic_rerun_grants_authority": False,
         },
         "failure_recovery_policy": "repair_build_failure_and_rebuild_before_deployment",
         "required_next_transition": (
@@ -135,6 +194,12 @@ def main() -> int:
         f"PAGES BUILD RECEIPT: {receipt['build']['state']} "
         f"rollup={rollup_binding.get('state')} -> {OUTPUT.relative_to(ROOT)}"
     )
+    if failed_validation_diagnostic:
+        print(
+            "PAGES BUILD DIAGNOSTIC: "
+            f"exit_code={failed_validation_diagnostic.get('exit_code')} "
+            f"markers={len(failed_validation_diagnostic.get('failure_markers', []))}"
+        )
 
     candidate_return_code = 1
     if CANDIDATE_GENERATOR.exists():
