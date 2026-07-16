@@ -9,6 +9,7 @@ PAGE = ROOT / "docs" / "governance" / "repo-standards-integration.md"
 BUNDLE_PAGE = ROOT / "docs" / "governance" / "repo-standards-installation-bundle.md"
 SIDEBAR = ROOT / "sidebars.js"
 HANDOFF = ROOT / "docs" / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
+HANDOFF_ADDENDUM = ROOT / "docs" / "MIRROR_HANDOFF_GUARD_ADDENDUM.md"
 STATUS = ROOT / "static" / "status" / "repo-standards-integration-status.json"
 QUEUE = ROOT / "static" / "status" / "repo-standards-integration-release-update-queue.json"
 BUNDLE_PLAN = ROOT / "static" / "status" / "repo-standards-installation-bundle-plan.json"
@@ -180,11 +181,17 @@ def main() -> int:
     bundle_page = require_file(BUNDLE_PAGE)
     sidebar = require_file(SIDEBAR)
     handoff = require_file(HANDOFF)
+    handoff_addendum = require_file(HANDOFF_ADDENDUM)
+    combined_handoff = handoff + "\n" + handoff_addendum
 
     require_snippets("page", page, REQUIRED_PAGE_SNIPPETS)
     require_snippets("bundle page", bundle_page, REQUIRED_BUNDLE_PAGE_SNIPPETS)
     require_snippets("sidebar", sidebar, REQUIRED_SIDEBAR_SNIPPETS)
-    require_snippets("handoff", handoff, REQUIRED_HANDOFF_SNIPPETS)
+    require_snippets("handoff continuity record", combined_handoff, REQUIRED_HANDOFF_SNIPPETS)
+    if "release authority: none granted" not in handoff_addendum:
+        raise SystemExit("REPO STANDARDS INTEGRATION: FAIL - handoff addendum missing release non-authority boundary")
+    if "destination mutation authority: none granted" not in handoff_addendum:
+        raise SystemExit("REPO STANDARDS INTEGRATION: FAIL - handoff addendum missing destination mutation non-authority boundary")
     require_status()
     require_queue()
     require_bundle_plan()
