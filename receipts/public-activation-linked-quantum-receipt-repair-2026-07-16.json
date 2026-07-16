@@ -1,0 +1,36 @@
+{
+  "schema": "admissibility_wiki.public_activation_linked_quantum_receipt_repair.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "observed_workflow_run": {
+    "run_id": "29524566513",
+    "commit": "f08c231a9f27a2d974a8ad07e96ec310388b152c",
+    "validate_chain_continuation": "success",
+    "capture_opa_evidence": "success",
+    "replay_opa_fresh_runner": "success",
+    "build_selected_cedar_binary": "success",
+    "build_pages": "failure",
+    "exact_failed_step": "Validate public activation receipt writer",
+    "deploy_pages": "skipped",
+    "verify_public_pages": "skipped"
+  },
+  "diagnosis": {
+    "state": "LOCAL_RECEIPT_WRITER_CONTRACT_REGRESSION",
+    "cause": "A synthesized quantum-security closure was embedded but not materialized at reports/quantum-security-public-route-observation.json, causing the canonical linked-receipt invariant to fail.",
+    "unrelated_validation_rerun_exit_code": 0,
+    "site_build_diagnostic": "success"
+  },
+  "repair": {
+    "commit": "cd27f0b438447ef4d6822d126ced10d756f96541",
+    "writer": "scripts/write-public-activation-receipt.mjs",
+    "behavior": "Materialize every bounded quantum observation at the canonical receipt path before embedding and preserve the canonical linked-receipt path for live, validator, and source-blocked modes.",
+    "successor_workflow_observed": false
+  },
+  "authority_boundary": {
+    "receipt_materialization_is_publication_authority": false,
+    "receipt_materialization_is_execution_authority": false,
+    "source_blocked_observation_is_publication_complete": false,
+    "downstream_mutation_authority_granted": false
+  },
+  "manual_tasks_required": [],
+  "user_action_required": false
+}
