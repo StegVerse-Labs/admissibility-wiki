@@ -16,6 +16,18 @@ def fail(message: str) -> None:
     raise SystemExit(f"CANONICAL WORKFLOW HEALTH SUMMARY: FAIL - {message}")
 
 
+def snapshot(path: Path) -> bytes | None:
+    return path.read_bytes() if path.exists() else None
+
+
+def restore(path: Path, prior: bytes | None) -> None:
+    if prior is None:
+        path.unlink(missing_ok=True)
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(prior)
+
+
 def main() -> int:
     if not GENERATOR.exists():
         fail("generator is missing")
@@ -43,6 +55,7 @@ def main() -> int:
             },
         ],
     }
+    prior = {path: snapshot(path) for path in (HISTORY, SUMMARY)}
     HISTORY.parent.mkdir(parents=True, exist_ok=True)
     HISTORY.write_text(json.dumps(fixture, indent=2) + "\n", encoding="utf-8")
     SUMMARY.unlink(missing_ok=True)
@@ -78,11 +91,11 @@ def main() -> int:
         if "next repository-owned trigger" not in summary.get("automation_response", {}).get("TRANSIENT_CANCELLATION", ""):
             fail("cancellation response is not automation-owned")
 
-        print("CANONICAL WORKFLOW HEALTH SUMMARY: PASS - classifications=2 manual_tasks=0")
+        print("CANONICAL WORKFLOW HEALTH SUMMARY: PASS - classifications=2 manual_tasks=0 preserved_run_bound_artifacts=true")
         return 0
     finally:
-        HISTORY.unlink(missing_ok=True)
-        SUMMARY.unlink(missing_ok=True)
+        for path, content in prior.items():
+            restore(path, content)
 
 
 if __name__ == "__main__":
