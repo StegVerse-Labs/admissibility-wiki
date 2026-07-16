@@ -14,11 +14,26 @@ The active goal-specific handoff for AI-led radiology execution-boundary activat
 docs/AI_LED_RADIOLOGY_MIRROR_HANDOFF.md
 ```
 
+The active goal-specific handoff for Ecosystem Chat activation projection is:
+
+```text
+docs/ECOSYSTEM_CHAT_ACTIVATION_MIRROR_HANDOFF.md
+```
+
+Correct downstream mapping:
+
+```text
+StegVerse-Labs/admissibility-wiki
+StegVerse-002/stegguardian-wiki
+```
+
+`StegVerse-Labs/Sit` does not exist and is not a destination. `StegVerse-Labs/Site` is the existing Site source repository.
+
 This root file is retained only as a continuity pointer for sessions or tools that first search the repository root for `*_MIRROR_HANDOFF.md`.
 
 ## Current priority
 
-Continue from the overall docs handoff, then use the goal-specific radiology handoff for Issue #15 and its automation-owned continuation state. Do not rely on prior chat context.
+Continue from the overall docs handoff, then use the applicable goal-specific handoff. Do not rely on prior chat context.
 
 ## Boundary
 
@@ -26,4 +41,4 @@ This pointer does not claim production authority, release status, execution auth
 
 ## Archive posture
 
-The root pointer exists so the complete thread can be archived without losing either the overall repository handoff or the current AI-led radiology activation handoff.
+The root pointer exists so the complete thread can be archived without losing the overall repository handoff or any active goal-specific handoff.
