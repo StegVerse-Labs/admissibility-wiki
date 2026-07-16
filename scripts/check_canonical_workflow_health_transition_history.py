@@ -19,6 +19,18 @@ def fail(message: str) -> None:
     raise SystemExit(f"CANONICAL WORKFLOW HEALTH TRANSITION HISTORY: FAIL - {message}")
 
 
+def snapshot(path: Path) -> bytes | None:
+    return path.read_bytes() if path.exists() else None
+
+
+def restore(path: Path, prior: bytes | None) -> None:
+    if prior is None:
+        path.unlink(missing_ok=True)
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(prior)
+
+
 def transition(receipt_id: str, generated_at: str, prior: str, resulting: str) -> dict:
     return {
         "schema": "admissibility_wiki.canonical_workflow_health_transition_receipt.v0.1",
@@ -65,6 +77,7 @@ def main() -> int:
         "TRANSIENT_CANCELLATION",
         "HEALTHY",
     )
+    prior = {path: snapshot(path) for path in (CURRENT, HISTORY, TREND, FIXTURE)}
     FIXTURE.parent.mkdir(parents=True, exist_ok=True)
     FIXTURE.write_text(
         json.dumps({"transitions": [previous, duplicate_old]}, indent=2) + "\n",
@@ -129,13 +142,11 @@ def main() -> int:
         if trend.get("evaluation_scope", {}).get("predictive_claim") is not False:
             fail("trend must remain non-predictive")
 
-        print("CANONICAL WORKFLOW HEALTH TRANSITION HISTORY: PASS - entries=2 deduplicated=1 trend=RECOVERY_OBSERVED manual_tasks=0")
+        print("CANONICAL WORKFLOW HEALTH TRANSITION HISTORY: PASS - entries=2 deduplicated=1 trend=RECOVERY_OBSERVED manual_tasks=0 preserved_run_bound_artifacts=true")
         return 0
     finally:
-        CURRENT.unlink(missing_ok=True)
-        HISTORY.unlink(missing_ok=True)
-        TREND.unlink(missing_ok=True)
-        FIXTURE.unlink(missing_ok=True)
+        for path, content in prior.items():
+            restore(path, content)
 
 
 if __name__ == "__main__":
