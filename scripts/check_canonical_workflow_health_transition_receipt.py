@@ -17,6 +17,18 @@ def fail(message: str) -> None:
     raise SystemExit(f"CANONICAL WORKFLOW HEALTH TRANSITION: FAIL - {message}")
 
 
+def snapshot(path: Path) -> bytes | None:
+    return path.read_bytes() if path.exists() else None
+
+
+def restore(path: Path, prior: bytes | None) -> None:
+    if prior is None:
+        path.unlink(missing_ok=True)
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(prior)
+
+
 def main() -> int:
     fixture = {
         "schema": "admissibility_wiki.canonical_workflow_observation_history.v0.1",
@@ -41,6 +53,7 @@ def main() -> int:
             },
         ],
     }
+    prior = {path: snapshot(path) for path in (HISTORY, SUMMARY, TRANSITION)}
     HISTORY.parent.mkdir(parents=True, exist_ok=True)
     HISTORY.write_text(json.dumps(fixture, indent=2) + "\n", encoding="utf-8")
     SUMMARY.unlink(missing_ok=True)
@@ -80,12 +93,11 @@ def main() -> int:
         if receipt.get("public_endpoint") != "/status/canonical-workflow-health-transition-receipt.json":
             fail("public endpoint mismatch")
 
-        print("CANONICAL WORKFLOW HEALTH TRANSITION: PASS - changed=true manual_tasks=0")
+        print("CANONICAL WORKFLOW HEALTH TRANSITION: PASS - changed=true manual_tasks=0 preserved_run_bound_artifacts=true")
         return 0
     finally:
-        HISTORY.unlink(missing_ok=True)
-        SUMMARY.unlink(missing_ok=True)
-        TRANSITION.unlink(missing_ok=True)
+        for path, content in prior.items():
+            restore(path, content)
 
 
 if __name__ == "__main__":
