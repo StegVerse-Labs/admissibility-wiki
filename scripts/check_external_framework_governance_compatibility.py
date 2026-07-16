@@ -117,6 +117,8 @@ def main() -> None:
             fail(f"{framework_id} must remain artifact-package-required and runtime-unobserved")
     if records["morrison-runtime"].get("bounded_historical_observation_only") is not True:
         fail("Morrison Runtime must preserve bounded historical-observation posture")
+    if status.get("boundaries", {}).get("runtime_verdict_means_action_authority") is not False:
+        fail("Morrison Runtime verdict boundary must remain explicitly non-authorizing")
 
     expected_counts = {"canonical_records":38,"contract_authored":24,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":14}
     for key, expected in expected_counts.items():
@@ -124,7 +126,7 @@ def main() -> None:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
 
     joined = json.dumps(standard).lower() + json.dumps(status).lower()
-    phrases = ["does not certify","execution authority","general compatibility","policy evidence","identity verification","credential verification","provenance verification","signature verification","authentication","token acceptance","did control","control evidence","lineage visibility","provenance representation","tool discovery","task completion","validator pass","safe classification","rail pass","manifest validity","post-event","operational assurance","trace validity","historical review","runtime verdict"]
+    phrases = ["does not certify","execution authority","general compatibility","policy evidence","identity verification","credential verification","provenance verification","signature verification","authentication","token acceptance","did control","control evidence","lineage visibility","provenance representation","tool discovery","task completion","validator pass","safe classification","rail pass","manifest validity","post-event","operational assurance","trace validity","historical review"]
     for phrase in phrases:
         if phrase not in joined:
             fail(f"missing boundary phrase: {phrase}")
