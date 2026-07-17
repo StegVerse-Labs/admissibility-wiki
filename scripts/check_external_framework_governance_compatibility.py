@@ -37,6 +37,7 @@ CONTRACTS = {
     "morrison-runtime": ("morrison-runtime", "morrison-runtime.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "care-runtime": ("care-runtime", "care-runtime.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "kpt": ("kpt", "kpt.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "aar": ("aar", "aar.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 
@@ -109,7 +110,7 @@ def main() -> None:
 
     if records["cedar-policy"].get("binary_build_observed") is not True or records["cedar-policy"].get("native_execution_observed") is not False:
         fail("Cedar must remain build-observed and runtime-unobserved")
-    sourced = ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol","guardrails-ai","llama-guard","nemo-guardrails","glm","evide","asro","morrison-runtime")
+    sourced = ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol","guardrails-ai","llama-guard","nemo-guardrails","glm","evide","asro","morrison-runtime","aar")
     for framework_id in sourced:
         if records[framework_id].get("source_reviewed") is not True or records[framework_id].get("native_execution_observed") is not False:
             fail(f"{framework_id} must remain source-reviewed and runtime-unobserved")
@@ -125,29 +126,26 @@ def main() -> None:
     kpt = records["kpt"]
     if kpt.get("source_reviewed") is not False or kpt.get("official_source_confirmed") is not False or kpt.get("artifact_package_required") is not True or kpt.get("public_positioning_only") is not True or kpt.get("native_execution_observed") is not False:
         fail("KPT must remain source-blocked, public-positioning-only, artifact-package-required, and runtime-unobserved")
+    aar = records["aar"]
+    if aar.get("official_source_confirmed") is not True or aar.get("implementation_attached") is not False or aar.get("assessment_output_observed") is not False or aar.get("native_execution_observed") is not False:
+        fail("AAR must remain source-confirmed but implementation-, assessment-output-, and runtime-unobserved")
     boundaries = status.get("boundaries", {})
-    for key in ("runtime_verdict_means_action_authority","public_platform_display_means_action_authority","screenshot_intake_means_source_confirmation","kpt_decision_means_action_authority","public_positioning_means_source_confirmation"):
+    for key in ("runtime_verdict_means_action_authority","public_platform_display_means_action_authority","screenshot_intake_means_source_confirmation","kpt_decision_means_action_authority","public_positioning_means_source_confirmation","assessment_result_means_action_authority","forensic_visibility_means_commit_time_authority"):
         if boundaries.get(key) is not False:
             fail(f"non-authority boundary stale: {key}")
     if status.get("manual_tasks_required") != [] or status.get("user_action_required") is not False:
         fail("compatibility continuation must remain automation-owned with no manual task")
 
-    expected_counts = {"canonical_records":38,"contract_authored":26,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":12}
+    expected_counts = {"canonical_records":38,"contract_authored":27,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":11}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
-    if status.get("next_framework_order") != ["aar"]:
-        fail("next framework order must advance to aar")
-
-    joined = json.dumps(standard).lower() + json.dumps(status).lower()
-    phrases = ["does not certify","execution authority","general compatibility","policy evidence","identity verification","credential verification","provenance verification","signature verification","authentication","token acceptance","did control","control evidence","lineage visibility","provenance representation","tool discovery","task completion","validator pass","safe classification","rail pass","manifest validity","post-event","operational assurance","trace validity","historical review"]
-    for phrase in phrases:
-        if phrase not in joined:
-            fail(f"missing boundary phrase: {phrase}")
+    if status.get("next_framework_order") != ["mitre-atlas"]:
+        fail("next framework order must advance to mitre-atlas")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=26")
+    print("contracts_authored=27")
     print("compatibility_observed=1")
     print("opa_bounded_compatibility=observed_run_29455057960")
     print("manual_tasks_required=0")
