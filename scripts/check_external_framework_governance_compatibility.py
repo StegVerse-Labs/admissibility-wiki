@@ -36,6 +36,7 @@ CONTRACTS = {
     "mindforge": ("mindforge", "mindforge.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "morrison-runtime": ("morrison-runtime", "morrison-runtime.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "care-runtime": ("care-runtime", "care-runtime.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "kpt": ("kpt", "kpt.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 
@@ -121,19 +122,22 @@ def main() -> None:
     care = records["care-runtime"]
     if care.get("source_reviewed") is not False or care.get("official_source_confirmed") is not False or care.get("artifact_package_required") is not True or care.get("screenshot_only_intake") is not True or care.get("native_execution_observed") is not False:
         fail("CARE Runtime must remain source-blocked, screenshot-only, artifact-package-required, and runtime-unobserved")
+    kpt = records["kpt"]
+    if kpt.get("source_reviewed") is not False or kpt.get("official_source_confirmed") is not False or kpt.get("artifact_package_required") is not True or kpt.get("public_positioning_only") is not True or kpt.get("native_execution_observed") is not False:
+        fail("KPT must remain source-blocked, public-positioning-only, artifact-package-required, and runtime-unobserved")
     boundaries = status.get("boundaries", {})
-    for key in ("runtime_verdict_means_action_authority","public_platform_display_means_action_authority","screenshot_intake_means_source_confirmation"):
+    for key in ("runtime_verdict_means_action_authority","public_platform_display_means_action_authority","screenshot_intake_means_source_confirmation","kpt_decision_means_action_authority","public_positioning_means_source_confirmation"):
         if boundaries.get(key) is not False:
             fail(f"non-authority boundary stale: {key}")
     if status.get("manual_tasks_required") != [] or status.get("user_action_required") is not False:
         fail("compatibility continuation must remain automation-owned with no manual task")
 
-    expected_counts = {"canonical_records":38,"contract_authored":25,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":13}
+    expected_counts = {"canonical_records":38,"contract_authored":26,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":12}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
-    if status.get("next_framework_order") != ["certify-runtime"]:
-        fail("next framework order must advance to certify-runtime")
+    if status.get("next_framework_order") != ["aar"]:
+        fail("next framework order must advance to aar")
 
     joined = json.dumps(standard).lower() + json.dumps(status).lower()
     phrases = ["does not certify","execution authority","general compatibility","policy evidence","identity verification","credential verification","provenance verification","signature verification","authentication","token acceptance","did control","control evidence","lineage visibility","provenance representation","tool discovery","task completion","validator pass","safe classification","rail pass","manifest validity","post-event","operational assurance","trace validity","historical review"]
@@ -143,7 +147,7 @@ def main() -> None:
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=25")
+    print("contracts_authored=26")
     print("compatibility_observed=1")
     print("opa_bounded_compatibility=observed_run_29455057960")
     print("manual_tasks_required=0")
