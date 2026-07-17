@@ -42,6 +42,7 @@ CONTRACTS = {
     "owasp-top-10-llm": ("owasp-top-10-llm", "owasp-top-10-llm.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "agent-governance-playbook": ("agent-governance-playbook", "agent-governance-playbook.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "emergency-stop-convention": ("emergency-stop-convention", "killswitch-md.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "nist-ai-rmf": ("nist-ai-rmf", "nist-ai-rmf.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 
@@ -110,7 +111,7 @@ def main() -> None:
 
     if records["cedar-policy"].get("binary_build_observed") is not True or records["cedar-policy"].get("native_execution_observed") is not False:
         fail("Cedar must remain build-observed and runtime-unobserved")
-    sourced = ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol","guardrails-ai","llama-guard","nemo-guardrails","glm","evide","asro","morrison-runtime","aar","mitre-atlas","owasp-top-10-llm","agent-governance-playbook","emergency-stop-convention")
+    sourced = ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol","guardrails-ai","llama-guard","nemo-guardrails","glm","evide","asro","morrison-runtime","aar","mitre-atlas","owasp-top-10-llm","agent-governance-playbook","emergency-stop-convention","nist-ai-rmf")
     for framework_id in sourced:
         if records[framework_id].get("source_reviewed") is not True or records[framework_id].get("native_execution_observed") is not False:
             fail(f"{framework_id} must remain source-reviewed and runtime-unobserved")
@@ -128,7 +129,10 @@ def main() -> None:
         fail("KPT posture stale")
     stop = records["emergency-stop-convention"]
     if stop.get("official_source_confirmed") is not True or stop.get("external_convention") is not True or stop.get("example_artifact_attached") is not False or stop.get("stop_behavior_observed") is not False or stop.get("independent_reproduction_observed") is not False:
-        fail("Emergency Stop Convention must remain source-confirmed, convention-only, artifact-unattached, behavior-unobserved, and unreproduced")
+        fail("Emergency Stop Convention posture stale")
+    nist = records["nist-ai-rmf"]
+    if nist.get("official_source_confirmed") is not True or nist.get("external_guidance") is not True or nist.get("runtime_result_applicable") is not False or nist.get("profile_mapping_observed") is not False or nist.get("native_execution_observed") is not False:
+        fail("NIST AI RMF must remain source-confirmed, guidance-only, profile-mapping-unobserved, and runtime-unobserved")
 
     required_false = (
         "runtime_verdict_means_action_authority","public_platform_display_means_action_authority","screenshot_intake_means_source_confirmation",
@@ -136,6 +140,7 @@ def main() -> None:
         "forensic_visibility_means_commit_time_authority","threat_classification_means_action_authority","mitigation_mapping_means_commit_time_admissibility",
         "risk_classification_means_action_authority","security_guidance_means_commit_time_admissibility","playbook_alignment_means_action_authority",
         "continuation_recommendation_means_commit_time_admissibility","emergency_stop_signal_means_action_authority","stop_convention_means_current_standing",
+        "risk_management_alignment_means_action_authority","trustworthiness_profile_means_commit_time_admissibility",
     )
     boundaries = status.get("boundaries", {})
     for key in required_false:
@@ -144,16 +149,16 @@ def main() -> None:
     if status.get("manual_tasks_required") != [] or status.get("user_action_required") is not False:
         fail("compatibility continuation must remain automation-owned with no manual task")
 
-    expected_counts = {"canonical_records":38,"contract_authored":31,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":7}
+    expected_counts = {"canonical_records":38,"contract_authored":32,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":6}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
-    if status.get("next_framework_order") != ["nist-ai-rmf"]:
-        fail("next framework order must advance to nist-ai-rmf")
+    if status.get("next_framework_order") != ["iso-iec-42001"]:
+        fail("next framework order must advance to iso-iec-42001")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=31")
+    print("contracts_authored=32")
     print("compatibility_observed=1")
     print("opa_bounded_compatibility=observed_run_29455057960")
     print("manual_tasks_required=0")
