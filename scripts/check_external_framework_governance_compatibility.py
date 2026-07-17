@@ -38,6 +38,7 @@ CONTRACTS = {
     "care-runtime": ("care-runtime", "care-runtime.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "kpt": ("kpt", "kpt.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "aar": ("aar", "aar.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "mitre-atlas": ("mitre-atlas", "mitre-atlas.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 
@@ -110,7 +111,7 @@ def main() -> None:
 
     if records["cedar-policy"].get("binary_build_observed") is not True or records["cedar-policy"].get("native_execution_observed") is not False:
         fail("Cedar must remain build-observed and runtime-unobserved")
-    sourced = ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol","guardrails-ai","llama-guard","nemo-guardrails","glm","evide","asro","morrison-runtime","aar")
+    sourced = ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol","guardrails-ai","llama-guard","nemo-guardrails","glm","evide","asro","morrison-runtime","aar","mitre-atlas")
     for framework_id in sourced:
         if records[framework_id].get("source_reviewed") is not True or records[framework_id].get("native_execution_observed") is not False:
             fail(f"{framework_id} must remain source-reviewed and runtime-unobserved")
@@ -129,23 +130,26 @@ def main() -> None:
     aar = records["aar"]
     if aar.get("official_source_confirmed") is not True or aar.get("implementation_attached") is not False or aar.get("assessment_output_observed") is not False or aar.get("native_execution_observed") is not False:
         fail("AAR must remain source-confirmed but implementation-, assessment-output-, and runtime-unobserved")
+    atlas = records["mitre-atlas"]
+    if atlas.get("official_source_confirmed") is not True or atlas.get("external_knowledge_base") is not True or atlas.get("runtime_result_applicable") is not False or atlas.get("technique_mapping_observed") is not False or atlas.get("native_execution_observed") is not False:
+        fail("MITRE ATLAS must remain source-confirmed, knowledge-base-only, mapping-unobserved, and runtime-unobserved")
     boundaries = status.get("boundaries", {})
-    for key in ("runtime_verdict_means_action_authority","public_platform_display_means_action_authority","screenshot_intake_means_source_confirmation","kpt_decision_means_action_authority","public_positioning_means_source_confirmation","assessment_result_means_action_authority","forensic_visibility_means_commit_time_authority"):
+    for key in ("runtime_verdict_means_action_authority","public_platform_display_means_action_authority","screenshot_intake_means_source_confirmation","kpt_decision_means_action_authority","public_positioning_means_source_confirmation","assessment_result_means_action_authority","forensic_visibility_means_commit_time_authority","threat_classification_means_action_authority","mitigation_mapping_means_commit_time_admissibility"):
         if boundaries.get(key) is not False:
             fail(f"non-authority boundary stale: {key}")
     if status.get("manual_tasks_required") != [] or status.get("user_action_required") is not False:
         fail("compatibility continuation must remain automation-owned with no manual task")
 
-    expected_counts = {"canonical_records":38,"contract_authored":27,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":11}
+    expected_counts = {"canonical_records":38,"contract_authored":28,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":10}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
-    if status.get("next_framework_order") != ["mitre-atlas"]:
-        fail("next framework order must advance to mitre-atlas")
+    if status.get("next_framework_order") != ["owasp-top-10-llm"]:
+        fail("next framework order must advance to owasp-top-10-llm")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=27")
+    print("contracts_authored=28")
     print("compatibility_observed=1")
     print("opa_bounded_compatibility=observed_run_29455057960")
     print("manual_tasks_required=0")
