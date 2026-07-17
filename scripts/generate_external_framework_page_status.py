@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "docs" / "external-frameworks" / "index.json"
 REPORT_DIR = ROOT / "docs" / "external-frameworks" / "reports"
 ANALYSIS_BOUNDARY = ROOT / "scripts" / "generate_external_framework_page_analysis_boundary.py"
+ECOSYSTEM_CHAT_IMPORTER = ROOT / "scripts" / "import_publisher_ecosystem_chat_activation.py"
 START = "<!-- GENERATED:EXTERNAL_FRAMEWORK_EVALUATION_STATUS:START -->"
 END = "<!-- GENERATED:EXTERNAL_FRAMEWORK_EVALUATION_STATUS:END -->"
 
@@ -104,6 +105,8 @@ def insert_block(text: str, block: str) -> str:
 
 
 def main() -> int:
+    if ECOSYSTEM_CHAT_IMPORTER.exists():
+        subprocess.run(["python", str(ECOSYSTEM_CHAT_IMPORTER)], check=True)
     registry = read_json(REGISTRY)
     for entry in registry.get("entries", []):
         path = ROOT / entry["path"]
