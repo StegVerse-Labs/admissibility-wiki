@@ -23,10 +23,18 @@ SOURCE_URL = os.getenv(
 TIMEOUT = float(os.getenv("STEGVERSE_PUBLISHER_STATUS_FETCH_TIMEOUT_SECONDS", "20"))
 
 
+def canonical_hash(payload: dict[str, Any]) -> str:
+    material = dict(payload)
+    material.pop("status_sha256", None)
+    return hashlib.sha256(
+        json.dumps(material, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    ).hexdigest()
+
+
 def fetch() -> tuple[dict[str, Any], str]:
     outbound = request.Request(
         SOURCE_URL,
-        headers={"Accept": "application/json", "User-Agent": "StegVerse-Admissibility-Wiki-Activation-Importer/1.0"},
+        headers={"Accept": "application/json", "User-Agent": "StegVerse-Admissibility-Wiki-Activation-Importer/1.1"},
     )
     with request.urlopen(outbound, timeout=TIMEOUT) as response:
         raw = response.read()
@@ -40,6 +48,10 @@ def validate(source: dict[str, Any]) -> list[str]:
     failures: list[str] = []
     if source.get("schema") != "stegverse.publisher.ecosystem_chat_activation_status.v1":
         failures.append("schema_mismatch")
+    if not isinstance(source.get("status_sha256"), str):
+        failures.append("status_digest_missing")
+    elif source.get("status_sha256") != canonical_hash(source):
+        failures.append("status_digest_mismatch")
     for key in ("publication_authorized", "release_authorized", "custody_recorded", "execution_authorized"):
         if source.get(key) is not False:
             failures.append(f"authority_boundary_invalid:{key}")
@@ -61,6 +73,7 @@ def write(status: str, reason: str, source: dict[str, Any] | None = None, source
         "source_repository": "GCAT-BCAT-Engine/Publisher",
         "source_url": SOURCE_URL,
         "source_sha256": source_sha256,
+        "publisher_status_sha256": source.get("status_sha256") if source else None,
         "publisher_status": source.get("status") if source else None,
         "publisher_activation_complete": source.get("activation_complete") if source else False,
         "verified_activation_projection": verified and status == "VERIFIED_PUBLISHER_ACTIVATION_IMPORTED",
