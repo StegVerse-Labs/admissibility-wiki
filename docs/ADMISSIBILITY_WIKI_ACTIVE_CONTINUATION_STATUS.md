@@ -42,7 +42,7 @@ OPA remains the only bounded-observed compatibility result: workflow run `294550
 
 ## Latest directly inspected run
 
-Workflow run `29657887528`, commit `b5f720f742608d0e5452deba4bcff545fe8b27be`, directly observed:
+Workflow run `29662825151`, commit `ab50eb309e747cba5c5eba573bd8221647d8f361`, directly observed:
 
 ```text
 validate-chain-continuation: success
@@ -54,9 +54,18 @@ deploy-pages: skipped
 verify-public-pages: skipped
 ```
 
-The uploaded Pages receipt isolated the failure to `scripts/check_admissibility_wiki_mirror_handoff_guardian_destinations.py`. The required continuity statements for `StegVerse-002/stegguardian-wiki`, `StegVerse-002/StegGuardian`, their distinct downstream actions, and the no-mutation/no-activation authority boundaries were restored in commit `b76abb8a55887744bf03225d0e4b4936edb0e875`.
+The uploaded Pages receipt isolated the failure to `scripts/check_repo_standards_integration.py`. The required release-gated continuity markers were restored in commit `abd6dca36c3812141eed82e36f1a3b69a91f3e13`:
 
-No workflow notification or commit-associated run for `b76abb8` was directly observable at reconciliation time. This is pending observation, not evidence of failure.
+```text
+repo-standards-integration-and-installation-bundle-pending-release
+docs/governance/repo-standards-integration.md
+docs/governance/repo-standards-installation-bundle.md
+UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
+release authority: none granted
+destination mutation authority: none granted
+```
+
+No workflow notification or commit-associated canonical run for `abd6dca` was directly observable at reconciliation time. This is pending observation, not evidence of failure.
 
 ## Public activation state
 
@@ -87,14 +96,15 @@ decision vocabulary mapping != action authority
 approval value != transition admissibility
 destination mutation authority: none granted
 activation authority: none granted
+release authority: none granted
 ```
 
-The public Guardian documentation destination and private Guardian implementation destination remain distinct. Destination handoffs must independently authorize any mutation.
+The public Guardian documentation destination and private Guardian implementation destination remain distinct. Destination handoffs must independently authorize any mutation. The repo-standards integration remains release-gated and may not be treated as installed, released, or deployment-authorized until upstream evidence is observed.
 
 ## Remaining automation-owned continuation
 
 ```text
-1. observe the first canonical workflow run containing b76abb8 or later
+1. observe the first canonical workflow run containing abd6dca or later
 2. repair only the exact next directly observed failure, if any
 3. observe build-pages, deploy-pages, and verify-public-pages
 4. inspect the uploaded public-activation-receipt and closure states
