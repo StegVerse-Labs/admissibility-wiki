@@ -55,19 +55,21 @@ execution authority granted: false
 
 ## Latest directly inspected workflow evidence
 
-Workflow run `29654307955` checked out ledger commit `2978540cdd65c3e6cc5bbfea01088ad43c95e423`, before paired validator commit `28afcc2f82ff6c47ce46351f909f04ba63d8af01`.
+Workflow run `29654392756`, commit `8db83d1f884ac656f916887a0eb45b14ba45b72e`, is the first directly observed successor containing the completed 38/38 validator state.
 
 ```text
-validate-chain-continuation: failed at enforcement
-build-selected-cedar-binary: skipped
-capture-opa-evidence: skipped
-replay-opa-fresh-runner: skipped
-build-pages: skipped
+validate-chain-continuation: success
+build-selected-cedar-binary: success
+capture-opa-evidence: success
+replay-opa-fresh-runner: success
+build-pages: failed at Validate governance and activation artifacts
 deploy-pages: skipped
 verify-public-pages: skipped
 ```
 
-This is the expected ledger-before-validator intermediate state, not evidence of a successor failure. The first run containing `28afcc2` or later remains pending observation.
+The durable Pages receipt isolated the failure to `scripts/check-mirror-handoff-guard.mjs`: the prior addendum reconciliation omitted mandatory guard phrases. This addendum restores those phrases. No unrelated validation, OPA, Cedar, deployment, or public-route defect was observed in that run.
+
+Pending workflow evidence must not advance activation posture by itself.
 
 ## Public activation observation
 
@@ -100,11 +102,11 @@ No Site, Publisher, StegGuardian, repo-standards, release, activation, or execut
 ## Remaining automation-owned checks
 
 ```text
-- inspect the first canonical workflow run containing 28afcc2 or later
+- inspect the first canonical workflow run containing this guard restoration or later
 - repair only an exact newly observed blocker
 - observe build-pages, deploy-pages, and verify-public-pages
 - inspect the uploaded public-activation-receipt and its closure states
 - reconcile the stale root handoff or preserve this addendum as the authoritative newer supplement
 ```
 
-Manual task requirement: none.
+Manual task requirement: none recorded in this handoff.
