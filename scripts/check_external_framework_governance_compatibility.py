@@ -48,6 +48,7 @@ CONTRACTS = {
     "eu-ai-act": ("eu-ai-act", "eu-ai-act.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "policy-cards": ("policy-cards", "policy-cards.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "runtime-governance-for-ai-agents": ("runtime-governance-for-ai-agents", "runtime-governance-policies-on-paths.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "admissible-existence-seed-cycle": ("admissible-existence-seed-cycle", "admissible-existence-seed-cycle.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 
@@ -114,11 +115,11 @@ def main() -> None:
             fail(f"{framework_id} artifact posture stale")
     if records["morrison-runtime"].get("bounded_historical_observation_only") is not True or records["care-runtime"].get("screenshot_only_intake") is not True or records["kpt"].get("public_positioning_only") is not True:
         fail("bounded source posture stale")
-    runtime = records["runtime-governance-for-ai-agents"]
-    if runtime.get("official_source_confirmed") is not True or runtime.get("paper_source") is not True or runtime.get("implementation_attached") is not False or runtime.get("runtime_path_observed") is not False or runtime.get("independent_reproduction_observed") is not False or runtime.get("native_execution_observed") is not False:
-        fail("Runtime Governance for AI Agents posture stale")
+    seed = records["admissible-existence-seed-cycle"]
+    if seed.get("internal_ecosystem_record") is not True or seed.get("internal_status_mirror") is not True or seed.get("seed_cycle_artifacts_present") is not True or seed.get("reconstruction_receipt_observed") is not False or seed.get("independent_reconstruction_observed") is not False or seed.get("native_execution_observed") is not False:
+        fail("Admissible-Existence Seed Cycle posture stale")
     required_false = (
-        "runtime_verdict_means_action_authority","public_platform_display_means_action_authority","screenshot_intake_means_source_confirmation","kpt_decision_means_action_authority","public_positioning_means_source_confirmation","assessment_result_means_action_authority","forensic_visibility_means_commit_time_authority","threat_classification_means_action_authority","mitigation_mapping_means_commit_time_admissibility","risk_classification_means_action_authority","security_guidance_means_commit_time_admissibility","playbook_alignment_means_action_authority","continuation_recommendation_means_commit_time_admissibility","emergency_stop_signal_means_action_authority","stop_convention_means_current_standing","risk_management_alignment_means_action_authority","trustworthiness_profile_means_commit_time_admissibility","management_system_conformity_means_action_authority","certification_evidence_means_commit_time_admissibility","regulatory_classification_means_action_authority","legal_applicability_means_commit_time_admissibility","policy_card_declaration_means_action_authority","policy_rule_means_commit_time_admissibility","runtime_path_score_means_action_authority","runtime_recommendation_means_commit_time_admissibility",
+        "runtime_verdict_means_action_authority","public_platform_display_means_action_authority","screenshot_intake_means_source_confirmation","kpt_decision_means_action_authority","public_positioning_means_source_confirmation","assessment_result_means_action_authority","forensic_visibility_means_commit_time_authority","threat_classification_means_action_authority","mitigation_mapping_means_commit_time_admissibility","risk_classification_means_action_authority","security_guidance_means_commit_time_admissibility","playbook_alignment_means_action_authority","continuation_recommendation_means_commit_time_admissibility","emergency_stop_signal_means_action_authority","stop_convention_means_current_standing","risk_management_alignment_means_action_authority","trustworthiness_profile_means_commit_time_admissibility","management_system_conformity_means_action_authority","certification_evidence_means_commit_time_admissibility","regulatory_classification_means_action_authority","legal_applicability_means_commit_time_admissibility","policy_card_declaration_means_action_authority","policy_rule_means_commit_time_admissibility","runtime_path_score_means_action_authority","runtime_recommendation_means_commit_time_admissibility","seed_cycle_completion_means_action_authority","internal_artifact_presence_means_current_standing",
     )
     boundaries = status.get("boundaries", {})
     for key in required_false:
@@ -126,15 +127,15 @@ def main() -> None:
             fail(f"non-authority boundary stale: {key}")
     if status.get("manual_tasks_required") != [] or status.get("user_action_required") is not False:
         fail("compatibility continuation must remain automation-owned with no manual task")
-    expected_counts = {"canonical_records":38,"contract_authored":36,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":2}
+    expected_counts = {"canonical_records":38,"contract_authored":37,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":1}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}")
-    if status.get("next_framework_order") != ["admissible-existence-seed-cycle"]:
-        fail("next framework order must advance to admissible-existence-seed-cycle")
+    if status.get("next_framework_order") != ["decision-authority"]:
+        fail("next framework order must advance to decision-authority")
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=36")
+    print("contracts_authored=37")
     print("compatibility_observed=1")
     print("opa_bounded_compatibility=observed_run_29455057960")
     print("manual_tasks_required=0")
