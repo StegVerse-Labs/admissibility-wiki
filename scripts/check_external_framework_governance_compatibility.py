@@ -49,6 +49,7 @@ CONTRACTS = {
     "policy-cards": ("policy-cards", "policy-cards.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "runtime-governance-for-ai-agents": ("runtime-governance-for-ai-agents", "runtime-governance-policies-on-paths.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "admissible-existence-seed-cycle": ("admissible-existence-seed-cycle", "admissible-existence-seed-cycle.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "decision-authority": ("decision-authority", "decision-authority.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 
@@ -66,7 +67,7 @@ def main() -> None:
     standard, status, union = load(STANDARD), load(STATUS), load(UNION)
     if standard.get("schema") != "external_framework_governance_compatibility_testing_standard.v1":
         fail("unexpected standard schema")
-    required_layers = {"native_framework_execution","semantic_translation","stegverse_commit_time_evaluation","failure_boundary_evaluation","fresh_runner_replay","page_and_machine_readable_result_publication"}
+    required_layers = {"native_framework_execution", "semantic_translation", "stegverse_commit_time_evaluation", "failure_boundary_evaluation", "fresh_runner_replay", "page_and_machine_readable_result_publication"}
     if not required_layers.issubset(set(standard.get("required_layers", []))):
         fail("standard required layers incomplete")
     canonical_ids = {entry.get("record_id") for entry in union.get("entries", []) if entry.get("record_id")}
@@ -78,35 +79,34 @@ def main() -> None:
         record = dict(defaults)
         record.update(raw)
         records[record.get("framework_id")] = record
-    if set(records) != set(CONTRACTS) or not set(records).issubset(canonical_ids):
-        fail(f"authored contract set mismatch: {sorted(records)}")
+    if set(records) != set(CONTRACTS) or set(records) != canonical_ids:
+        fail(f"complete authored contract set mismatch: {sorted(records)}")
     required_families = set(standard.get("required_case_families", []))
     for framework_id, (stem, page_name, state) in CONTRACTS.items():
         fixture = ROOT / "tests/fixtures/external-frameworks" / f"{stem}-governance-compatibility-cases.v1.json"
         runner = ROOT / "scripts" / f"run_{stem.replace('-', '_')}_governance_compatibility.py"
         page = ROOT / "docs/external-frameworks" / page_name
-        data = load(fixture)
-        cases = data.get("cases", [])
-        if not runner.exists() or not page.exists() or len(cases) != 6 or {case.get('family') for case in cases} != required_families:
+        cases = load(fixture).get("cases", [])
+        if not runner.exists() or not page.exists() or len(cases) != 6 or {case.get("family") for case in cases} != required_families:
             fail(f"contract artifacts incomplete for {framework_id}")
         record = records[framework_id]
         if record.get("state") != state or record.get("case_count") != 6:
             fail(f"invalid state or case count for {framework_id}")
         if record.get("stegverse_governance_compatibility_observed") is not (framework_id == "open-policy-agent"):
             fail(f"invalid compatibility observation state for {framework_id}")
-        if any(case.get("expected_stegverse_result") not in {"ALLOW","DENY","ESCALATE","FAIL_CLOSED"} for case in cases):
+        if any(case.get("expected_stegverse_result") not in {"ALLOW", "DENY", "ESCALATE", "FAIL_CLOSED"} for case in cases):
             fail(f"invalid expected result in {framework_id}")
     opa_text = (OPA_PIPELINE.read_text(encoding="utf-8") if OPA_PIPELINE.exists() else "") + (OPA_REPLAY.read_text(encoding="utf-8") if OPA_REPLAY.exists() else "")
-    for marker in ("run_opa_governance_compatibility.py","opa-stegverse-governance-compatibility-receipt.json","governance_compatibility_observed","compatibility_receipt_grants_execution_authority"):
+    for marker in ("run_opa_governance_compatibility.py", "opa-stegverse-governance-compatibility-receipt.json", "governance_compatibility_observed", "compatibility_receipt_grants_execution_authority"):
         if marker not in opa_text:
             fail(f"OPA execution binding missing marker: {marker}")
     opa = records["open-policy-agent"]
     observed = opa.get("observed_evidence", {})
-    if not all(opa.get(key) is True for key in ("native_execution_observed","same_environment_replay_observed","fresh_runner_replay_observed","stegverse_governance_compatibility_observed")) or observed.get("workflow_run_id") != "29455057960" or observed.get("commit") != "618a57fb618cd29c90264eb1cab5f4d6814a55f6" or observed.get("matching_cases") != 6 or observed.get("independent_implementation_or_provider_review") is not False:
+    if not all(opa.get(key) is True for key in ("native_execution_observed", "same_environment_replay_observed", "fresh_runner_replay_observed", "stegverse_governance_compatibility_observed")) or observed.get("workflow_run_id") != "29455057960" or observed.get("commit") != "618a57fb618cd29c90264eb1cab5f4d6814a55f6" or observed.get("matching_cases") != 6 or observed.get("independent_implementation_or_provider_review") is not False:
         fail("OPA evidence binding mismatch")
     if records["cedar-policy"].get("binary_build_observed") is not True or records["cedar-policy"].get("native_execution_observed") is not False:
         fail("Cedar posture stale")
-    sourced = tuple(set(CONTRACTS) - {"open-policy-agent","cedar-policy","decisionassure","mindforge","care-runtime","kpt"})
+    sourced = tuple(set(CONTRACTS) - {"open-policy-agent", "cedar-policy", "decisionassure", "mindforge", "care-runtime", "kpt"})
     for framework_id in sourced:
         if records[framework_id].get("source_reviewed") is not True or records[framework_id].get("native_execution_observed") is not False:
             fail(f"{framework_id} source/runtime posture stale")
@@ -116,10 +116,13 @@ def main() -> None:
     if records["morrison-runtime"].get("bounded_historical_observation_only") is not True or records["care-runtime"].get("screenshot_only_intake") is not True or records["kpt"].get("public_positioning_only") is not True:
         fail("bounded source posture stale")
     seed = records["admissible-existence-seed-cycle"]
-    if seed.get("internal_ecosystem_record") is not True or seed.get("internal_status_mirror") is not True or seed.get("seed_cycle_artifacts_present") is not True or seed.get("reconstruction_receipt_observed") is not False or seed.get("independent_reconstruction_observed") is not False or seed.get("native_execution_observed") is not False:
+    if seed.get("internal_ecosystem_record") is not True or seed.get("internal_status_mirror") is not True or seed.get("seed_cycle_artifacts_present") is not True or seed.get("reconstruction_receipt_observed") is not False or seed.get("independent_reconstruction_observed") is not False:
         fail("Admissible-Existence Seed Cycle posture stale")
+    authority = records["decision-authority"]
+    if authority.get("internal_ecosystem_record") is not True or authority.get("internal_vocabulary_crosswalk") is not True or authority.get("canonical_schema_reference_present") is not True or authority.get("runtime_authority_observed") is not False or authority.get("downstream_adoption_observed") is not False or authority.get("native_execution_observed") is not False:
+        fail("Decision Authority posture stale")
     required_false = (
-        "runtime_verdict_means_action_authority","public_platform_display_means_action_authority","screenshot_intake_means_source_confirmation","kpt_decision_means_action_authority","public_positioning_means_source_confirmation","assessment_result_means_action_authority","forensic_visibility_means_commit_time_authority","threat_classification_means_action_authority","mitigation_mapping_means_commit_time_admissibility","risk_classification_means_action_authority","security_guidance_means_commit_time_admissibility","playbook_alignment_means_action_authority","continuation_recommendation_means_commit_time_admissibility","emergency_stop_signal_means_action_authority","stop_convention_means_current_standing","risk_management_alignment_means_action_authority","trustworthiness_profile_means_commit_time_admissibility","management_system_conformity_means_action_authority","certification_evidence_means_commit_time_admissibility","regulatory_classification_means_action_authority","legal_applicability_means_commit_time_admissibility","policy_card_declaration_means_action_authority","policy_rule_means_commit_time_admissibility","runtime_path_score_means_action_authority","runtime_recommendation_means_commit_time_admissibility","seed_cycle_completion_means_action_authority","internal_artifact_presence_means_current_standing",
+        "runtime_verdict_means_action_authority", "public_platform_display_means_action_authority", "screenshot_intake_means_source_confirmation", "kpt_decision_means_action_authority", "public_positioning_means_source_confirmation", "assessment_result_means_action_authority", "forensic_visibility_means_commit_time_authority", "threat_classification_means_action_authority", "mitigation_mapping_means_commit_time_admissibility", "risk_classification_means_action_authority", "security_guidance_means_commit_time_admissibility", "playbook_alignment_means_action_authority", "continuation_recommendation_means_commit_time_admissibility", "emergency_stop_signal_means_action_authority", "stop_convention_means_current_standing", "risk_management_alignment_means_action_authority", "trustworthiness_profile_means_commit_time_admissibility", "management_system_conformity_means_action_authority", "certification_evidence_means_commit_time_admissibility", "regulatory_classification_means_action_authority", "legal_applicability_means_commit_time_admissibility", "policy_card_declaration_means_action_authority", "policy_rule_means_commit_time_admissibility", "runtime_path_score_means_action_authority", "runtime_recommendation_means_commit_time_admissibility", "seed_cycle_completion_means_action_authority", "internal_artifact_presence_means_current_standing", "decision_vocabulary_mapping_means_action_authority", "approval_value_means_transition_admissibility",
     )
     boundaries = status.get("boundaries", {})
     for key in required_false:
@@ -127,15 +130,17 @@ def main() -> None:
             fail(f"non-authority boundary stale: {key}")
     if status.get("manual_tasks_required") != [] or status.get("user_action_required") is not False:
         fail("compatibility continuation must remain automation-owned with no manual task")
-    expected_counts = {"canonical_records":38,"contract_authored":37,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":1}
+    expected_counts = {"canonical_records": 38, "contract_authored": 38, "governance_compatibility_observed": 1, "fresh_runner_reproduced": 1, "independent_implementation_reproduced": 0, "not_started": 0}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}")
-    if status.get("next_framework_order") != ["decision-authority"]:
-        fail("next framework order must advance to decision-authority")
+    if status.get("classification") != "CONTRACT_INVENTORY_COMPLETE_RUNTIME_OBSERVATION_PARTIAL":
+        fail("complete inventory classification missing")
+    if status.get("next_framework_order") != []:
+        fail("next framework order must be empty after complete contract coverage")
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=37")
+    print("contracts_authored=38")
     print("compatibility_observed=1")
     print("opa_bounded_compatibility=observed_run_29455057960")
     print("manual_tasks_required=0")
