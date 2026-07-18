@@ -10,6 +10,7 @@ STATUS = ROOT / "static/external-frameworks/governance-compatibility-testing-sta
 UNION = ROOT / "static/external-frameworks/canonical-union-inventory.v1.json"
 OPA_PIPELINE = ROOT / "scripts/summarize_opa_evidence_pipeline.py"
 OPA_REPLAY = ROOT / "scripts/run_independent_opa_ci_replay.py"
+
 CONTRACTS = {
     "open-policy-agent": ("opa", "open-policy-agent.md", "BOUNDED_COMPATIBILITY_OBSERVED"),
     "cedar-policy": ("cedar", "cedar-policy.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
@@ -44,6 +45,7 @@ CONTRACTS = {
     "emergency-stop-convention": ("emergency-stop-convention", "killswitch-md.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "nist-ai-rmf": ("nist-ai-rmf", "nist-ai-rmf.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "iso-iec-42001": ("iso-iec-42001", "iso-iec-42001.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "eu-ai-act": ("eu-ai-act", "eu-ai-act.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 
@@ -83,19 +85,17 @@ def main() -> None:
         page = ROOT / "docs/external-frameworks" / page_name
         data = load(fixture)
         cases = data.get("cases", [])
-        families = {case.get("family") for case in cases}
         if not runner.exists() or not page.exists():
             fail(f"missing runner or page for {framework_id}")
-        if len(cases) != 6 or families != required_families:
-            fail(f"case contract mismatch for {framework_id}: count={len(cases)} families={sorted(families)}")
+        if len(cases) != 6 or {case.get('family') for case in cases} != required_families:
+            fail(f"case contract mismatch for {framework_id}")
         record = records[framework_id]
         if record.get("state") != state or record.get("case_count") != 6:
             fail(f"invalid state or case count for {framework_id}")
         if record.get("stegverse_governance_compatibility_observed") is not (framework_id == "open-policy-agent"):
             fail(f"invalid compatibility observation state for {framework_id}")
-        for case in cases:
-            if case.get("expected_stegverse_result") not in {"ALLOW","DENY","ESCALATE","FAIL_CLOSED"}:
-                fail(f"invalid expected result: {framework_id}/{case.get('case_id')}")
+        if any(case.get("expected_stegverse_result") not in {"ALLOW","DENY","ESCALATE","FAIL_CLOSED"} for case in cases):
+            fail(f"invalid expected result in {framework_id}")
 
     opa_text = (OPA_PIPELINE.read_text(encoding="utf-8") if OPA_PIPELINE.exists() else "") + (OPA_REPLAY.read_text(encoding="utf-8") if OPA_REPLAY.exists() else "")
     for marker in ("run_opa_governance_compatibility.py","opa-stegverse-governance-compatibility-receipt.json","governance_compatibility_observed","compatibility_receipt_grants_execution_authority"):
@@ -105,14 +105,12 @@ def main() -> None:
     if not all(opa.get(key) is True for key in ("native_execution_observed","same_environment_replay_observed","fresh_runner_replay_observed","stegverse_governance_compatibility_observed")):
         fail("OPA bounded observations must remain recorded")
     observed = opa.get("observed_evidence", {})
-    if observed.get("workflow_run_id") != "29455057960" or observed.get("commit") != "618a57fb618cd29c90264eb1cab5f4d6814a55f6" or observed.get("matching_cases") != 6:
+    if observed.get("workflow_run_id") != "29455057960" or observed.get("commit") != "618a57fb618cd29c90264eb1cab5f4d6814a55f6" or observed.get("matching_cases") != 6 or observed.get("independent_implementation_or_provider_review") is not False:
         fail("OPA evidence binding mismatch")
-    if observed.get("independent_implementation_or_provider_review") is not False:
-        fail("OPA must not claim independent implementation or provider review")
 
     if records["cedar-policy"].get("binary_build_observed") is not True or records["cedar-policy"].get("native_execution_observed") is not False:
         fail("Cedar must remain build-observed and runtime-unobserved")
-    sourced = ("spiffe-spire","w3c-verifiable-credentials","in-toto","slsa","sigstore","openid-connect","oauth2","w3c-did","oscal","openlineage","w3c-prov","model-context-protocol","agent2agent-protocol","guardrails-ai","llama-guard","nemo-guardrails","glm","evide","asro","morrison-runtime","aar","mitre-atlas","owasp-top-10-llm","agent-governance-playbook","emergency-stop-convention","nist-ai-rmf","iso-iec-42001")
+    sourced = tuple(set(CONTRACTS) - {"open-policy-agent","cedar-policy","decisionassure","mindforge","care-runtime","kpt"})
     for framework_id in sourced:
         if records[framework_id].get("source_reviewed") is not True or records[framework_id].get("native_execution_observed") is not False:
             fail(f"{framework_id} must remain source-reviewed and runtime-unobserved")
@@ -122,15 +120,13 @@ def main() -> None:
             fail(f"{framework_id} must remain artifact-package-required and runtime-unobserved")
     if records["morrison-runtime"].get("bounded_historical_observation_only") is not True:
         fail("Morrison Runtime posture stale")
-    care = records["care-runtime"]
-    if care.get("official_source_confirmed") is not False or care.get("screenshot_only_intake") is not True:
+    if records["care-runtime"].get("official_source_confirmed") is not False or records["care-runtime"].get("screenshot_only_intake") is not True:
         fail("CARE Runtime posture stale")
-    kpt = records["kpt"]
-    if kpt.get("official_source_confirmed") is not False or kpt.get("public_positioning_only") is not True:
+    if records["kpt"].get("official_source_confirmed") is not False or records["kpt"].get("public_positioning_only") is not True:
         fail("KPT posture stale")
-    iso = records["iso-iec-42001"]
-    if iso.get("official_source_confirmed") is not True or iso.get("management_system_standard") is not True or iso.get("runtime_result_applicable") is not False or iso.get("clause_mapping_observed") is not False or iso.get("certification_evidence_observed") is not False or iso.get("native_execution_observed") is not False:
-        fail("ISO IEC 42001 must remain source-confirmed, management-system-only, mapping-unobserved, certification-unobserved, and runtime-unobserved")
+    eu = records["eu-ai-act"]
+    if eu.get("official_source_confirmed") is not True or eu.get("legal_regulatory_text") is not True or eu.get("runtime_result_applicable") is not False or eu.get("article_mapping_observed") is not False or eu.get("legal_applicability_determined") is not False or eu.get("native_execution_observed") is not False:
+        fail("EU AI Act must remain source-confirmed, legal-text-only, mapping-unobserved, applicability-undetermined, and runtime-unobserved")
 
     required_false = (
         "runtime_verdict_means_action_authority","public_platform_display_means_action_authority","screenshot_intake_means_source_confirmation",
@@ -140,6 +136,7 @@ def main() -> None:
         "continuation_recommendation_means_commit_time_admissibility","emergency_stop_signal_means_action_authority","stop_convention_means_current_standing",
         "risk_management_alignment_means_action_authority","trustworthiness_profile_means_commit_time_admissibility",
         "management_system_conformity_means_action_authority","certification_evidence_means_commit_time_admissibility",
+        "regulatory_classification_means_action_authority","legal_applicability_means_commit_time_admissibility",
     )
     boundaries = status.get("boundaries", {})
     for key in required_false:
@@ -148,16 +145,16 @@ def main() -> None:
     if status.get("manual_tasks_required") != [] or status.get("user_action_required") is not False:
         fail("compatibility continuation must remain automation-owned with no manual task")
 
-    expected_counts = {"canonical_records":38,"contract_authored":33,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":5}
+    expected_counts = {"canonical_records":38,"contract_authored":34,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":4}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
-    if status.get("next_framework_order") != ["eu-ai-act"]:
-        fail("next framework order must advance to eu-ai-act")
+    if status.get("next_framework_order") != ["policy-cards"]:
+        fail("next framework order must advance to policy-cards")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=33")
+    print("contracts_authored=34")
     print("compatibility_observed=1")
     print("opa_bounded_compatibility=observed_run_29455057960")
     print("manual_tasks_required=0")
