@@ -46,6 +46,7 @@ CONTRACTS = {
     "nist-ai-rmf": ("nist-ai-rmf", "nist-ai-rmf.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "iso-iec-42001": ("iso-iec-42001", "iso-iec-42001.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "eu-ai-act": ("eu-ai-act", "eu-ai-act.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "policy-cards": ("policy-cards", "policy-cards.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
 
 
@@ -72,7 +73,13 @@ def main() -> None:
     canonical_ids = {entry.get("record_id") for entry in union.get("entries", []) if entry.get("record_id")}
     if len(canonical_ids) != 38 or union.get("counts", {}).get("records") != 38:
         fail(f"canonical inventory count mismatch: {len(canonical_ids)}")
-    records = {record.get("framework_id"): record for record in status.get("records", [])}
+    defaults = status.get("record_defaults", {})
+    expanded = []
+    for raw in status.get("records", []):
+        record = dict(defaults)
+        record.update(raw)
+        expanded.append(record)
+    records = {record.get("framework_id"): record for record in expanded}
     if set(records) != set(CONTRACTS):
         fail(f"authored contract set mismatch: {sorted(records)}")
     if not set(records).issubset(canonical_ids):
@@ -124,9 +131,9 @@ def main() -> None:
         fail("CARE Runtime posture stale")
     if records["kpt"].get("official_source_confirmed") is not False or records["kpt"].get("public_positioning_only") is not True:
         fail("KPT posture stale")
-    eu = records["eu-ai-act"]
-    if eu.get("official_source_confirmed") is not True or eu.get("legal_regulatory_text") is not True or eu.get("runtime_result_applicable") is not False or eu.get("article_mapping_observed") is not False or eu.get("legal_applicability_determined") is not False or eu.get("native_execution_observed") is not False:
-        fail("EU AI Act must remain source-confirmed, legal-text-only, mapping-unobserved, applicability-undetermined, and runtime-unobserved")
+    cards = records["policy-cards"]
+    if cards.get("official_source_confirmed") is not True or cards.get("paper_source") is not True or cards.get("implementation_attached") is not False or cards.get("policy_card_artifact_observed") is not False or cards.get("independent_reproduction_observed") is not False or cards.get("native_execution_observed") is not False:
+        fail("Policy Cards must remain source-confirmed, paper-only, implementation-unattached, artifact-unobserved, unreproduced, and runtime-unobserved")
 
     required_false = (
         "runtime_verdict_means_action_authority","public_platform_display_means_action_authority","screenshot_intake_means_source_confirmation",
@@ -137,6 +144,7 @@ def main() -> None:
         "risk_management_alignment_means_action_authority","trustworthiness_profile_means_commit_time_admissibility",
         "management_system_conformity_means_action_authority","certification_evidence_means_commit_time_admissibility",
         "regulatory_classification_means_action_authority","legal_applicability_means_commit_time_admissibility",
+        "policy_card_declaration_means_action_authority","policy_rule_means_commit_time_admissibility",
     )
     boundaries = status.get("boundaries", {})
     for key in required_false:
@@ -145,16 +153,16 @@ def main() -> None:
     if status.get("manual_tasks_required") != [] or status.get("user_action_required") is not False:
         fail("compatibility continuation must remain automation-owned with no manual task")
 
-    expected_counts = {"canonical_records":38,"contract_authored":34,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":4}
+    expected_counts = {"canonical_records":38,"contract_authored":35,"governance_compatibility_observed":1,"fresh_runner_reproduced":1,"independent_implementation_reproduced":0,"not_started":3}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}={status.get('counts', {}).get(key)} expected={expected}")
-    if status.get("next_framework_order") != ["policy-cards"]:
-        fail("next framework order must advance to policy-cards")
+    if status.get("next_framework_order") != ["runtime-governance-for-ai-agents"]:
+        fail("next framework order must advance to runtime-governance-for-ai-agents")
 
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
     print("canonical_records=38")
-    print("contracts_authored=34")
+    print("contracts_authored=35")
     print("compatibility_observed=1")
     print("opa_bounded_compatibility=observed_run_29455057960")
     print("manual_tasks_required=0")
