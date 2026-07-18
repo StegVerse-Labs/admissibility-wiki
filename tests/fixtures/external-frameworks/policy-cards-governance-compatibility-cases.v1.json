@@ -1,0 +1,25 @@
+{
+  "schema": "external_framework_governance_compatibility_cases.v1",
+  "framework_id": "policy-cards",
+  "source_page": "docs/external-frameworks/policy-cards.md",
+  "execution_mode": "deterministic_simulation_only",
+  "source_reviewed": true,
+  "official_source_confirmed": true,
+  "implementation_attached": false,
+  "native_execution_observed": false,
+  "cases": [
+    {"case_id":"policy-cards-positive-alignment","family":"positive_alignment","policy_card_present":true,"policy_card_result":"ALLOW","authority_valid":true,"evidence_current":true,"expected_stegverse_result":"ALLOW"},
+    {"case_id":"policy-cards-framework-denial","family":"framework_denial_or_negative_result","policy_card_present":true,"policy_card_result":"DENY","authority_valid":true,"evidence_current":true,"expected_stegverse_result":"DENY"},
+    {"case_id":"policy-cards-authority-failure","family":"authority_or_delegation_failure","policy_card_present":true,"policy_card_result":"ALLOW","authority_valid":false,"evidence_current":true,"expected_stegverse_result":"DENY"},
+    {"case_id":"policy-cards-stale-evidence","family":"stale_or_missing_evidence","policy_card_present":true,"policy_card_result":"ALLOW","authority_valid":true,"evidence_current":false,"expected_stegverse_result":"FAIL_CLOSED"},
+    {"case_id":"policy-cards-malformed","family":"malformed_undefined_or_runtime_error","policy_card_present":false,"policy_card_result":null,"authority_valid":true,"evidence_current":true,"expected_stegverse_result":"FAIL_CLOSED"},
+    {"case_id":"policy-cards-semantic-divergence","family":"semantic_divergence_guard","policy_card_present":true,"policy_card_result":"ALLOW","authority_valid":true,"evidence_current":true,"policy_card_claims_execution_authority":true,"expected_stegverse_result":"DENY"}
+  ],
+  "boundaries": {
+    "policy_card_allow_means_action_authority": false,
+    "machine_readable_policy_means_commit_time_admissibility": false,
+    "simulation_means_native_execution": false
+  },
+  "manual_tasks_required": [],
+  "user_action_required": false
+}
