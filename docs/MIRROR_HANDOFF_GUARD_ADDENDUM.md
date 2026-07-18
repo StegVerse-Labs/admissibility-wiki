@@ -55,7 +55,7 @@ execution authority granted: false
 
 ## Latest directly inspected workflow evidence
 
-Workflow run `29654392756`, commit `8db83d1f884ac656f916887a0eb45b14ba45b72e`, is the first directly observed successor containing the completed 38/38 validator state.
+Workflow run `29657887528`, commit `b5f720f742608d0e5452deba4bcff545fe8b27be`, directly observed:
 
 ```text
 validate-chain-continuation: success
@@ -67,9 +67,23 @@ deploy-pages: skipped
 verify-public-pages: skipped
 ```
 
-The durable Pages receipt isolated the failure to `scripts/check-mirror-handoff-guard.mjs`: the prior addendum reconciliation omitted mandatory guard phrases. This addendum restores those phrases. No unrelated validation, OPA, Cedar, deployment, or public-route defect was observed in that run.
+The durable Pages receipt isolated the remaining failure to `scripts/check_admissibility_wiki_mirror_handoff_guardian_destinations.py`. The prior addendum compaction had removed required Guardian destination continuity statements. This addendum restores them below. No unrelated validation, OPA, Cedar, deployment, or public-route defect was observed in that run.
 
 Pending workflow evidence must not advance activation posture by itself.
+
+## Guardian destination resolution
+
+```text
+status artifact: static/status/guardian-destination-resolution-status.json
+canonical public documentation destination: StegVerse-002/stegguardian-wiki
+canonical private implementation destination: StegVerse-002/StegGuardian
+public destination action: downstream public Guardian summary after wiki validation
+implementation destination action: standing-boundary awareness after wiki validation
+destination mutation authority: none granted
+activation authority: none granted
+```
+
+The public documentation destination and private implementation destination remain distinct. Destination resolution is continuity evidence only; it does not prove deployment, activation, standing, admissibility, release authority, or execution authority. Each destination handoff must independently authorize any mutation.
 
 ## Public activation observation
 
@@ -102,7 +116,7 @@ No Site, Publisher, StegGuardian, repo-standards, release, activation, or execut
 ## Remaining automation-owned checks
 
 ```text
-- inspect the first canonical workflow run containing this guard restoration or later
+- inspect the first canonical workflow run containing this Guardian continuity restoration or later
 - repair only an exact newly observed blocker
 - observe build-pages, deploy-pages, and verify-public-pages
 - inspect the uploaded public-activation-receipt and its closure states
