@@ -55,7 +55,7 @@ execution authority granted: false
 
 ## Latest directly inspected workflow evidence
 
-Workflow run `29657887528`, commit `b5f720f742608d0e5452deba4bcff545fe8b27be`, directly observed:
+Workflow run `29662825151`, commit `ab50eb309e747cba5c5eba573bd8221647d8f361`, directly observed:
 
 ```text
 validate-chain-continuation: success
@@ -67,9 +67,7 @@ deploy-pages: skipped
 verify-public-pages: skipped
 ```
 
-The durable Pages receipt isolated the remaining failure to `scripts/check_admissibility_wiki_mirror_handoff_guardian_destinations.py`. The prior addendum compaction had removed required Guardian destination continuity statements. This addendum restores them below. No unrelated validation, OPA, Cedar, deployment, or public-route defect was observed in that run.
-
-Pending workflow evidence must not advance activation posture by itself.
+The durable Pages receipt isolated the remaining failure to `scripts/check_repo_standards_integration.py`. Aggregate validation, OPA evidence, fresh-runner replay, Cedar build, Guardian destination continuity, and mirror-handoff guards passed. Pending workflow evidence must not advance activation posture by itself.
 
 ## Guardian destination resolution
 
@@ -84,6 +82,20 @@ activation authority: none granted
 ```
 
 The public documentation destination and private implementation destination remain distinct. Destination resolution is continuity evidence only; it does not prove deployment, activation, standing, admissibility, release authority, or execution authority. Each destination handoff must independently authorize any mutation.
+
+## Repo standards integration release gate
+
+```text
+goal: repo-standards-integration-and-installation-bundle-pending-release
+integration page: docs/governance/repo-standards-integration.md
+installation bundle page: docs/governance/repo-standards-installation-bundle.md
+release state: UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR
+source repository: StegVerse-Labs/repo-standards
+destination mutation authority: none granted
+release authority: none granted
+```
+
+The integration and installation-bundle surfaces are present locally, but upstream tag and release evidence remain outside the current connector observation. `UPSTREAM_TAG_RELEASE_PENDING_OUTSIDE_CONNECTOR` is fail-closed continuity evidence, not proof that a tag exists, a release is approved, or installation may proceed.
 
 ## Public activation observation
 
@@ -116,7 +128,7 @@ No Site, Publisher, StegGuardian, repo-standards, release, activation, or execut
 ## Remaining automation-owned checks
 
 ```text
-- inspect the first canonical workflow run containing this Guardian continuity restoration or later
+- inspect the first canonical workflow run containing this repo-standards continuity restoration or later
 - repair only an exact newly observed blocker
 - observe build-pages, deploy-pages, and verify-public-pages
 - inspect the uploaded public-activation-receipt and its closure states
