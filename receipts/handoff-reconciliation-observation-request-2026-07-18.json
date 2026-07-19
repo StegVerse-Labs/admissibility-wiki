@@ -1,0 +1,31 @@
+{
+  "schema": "handoff_reconciliation_observation_request.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "primary_validation": "npm run validate",
+  "contract_inventory": {
+    "canonical_records": 38,
+    "contracts_authored": 38,
+    "not_started": 0
+  },
+  "latest_observed_run": {
+    "run_id": "29662825151",
+    "commit": "ab50eb309e747cba5c5eba573bd8221647d8f361",
+    "validation": "success",
+    "build_pages": "failure",
+    "exact_blocker": "repo-standards handoff continuity markers"
+  },
+  "installed_repairs": [
+    "abd6dca36c3812141eed82e36f1a3b69a91f3e13",
+    "6d29b9ed3a5d38309d807f4637fc0d3fc8975356"
+  ],
+  "requested_observation": [
+    "build-pages",
+    "deploy-pages",
+    "verify-public-pages",
+    "public-activation-receipt"
+  ],
+  "manual_tasks_required": [],
+  "user_action_required": false,
+  "authority_granted": false
+}
