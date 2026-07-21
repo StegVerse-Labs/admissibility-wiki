@@ -35,6 +35,8 @@ PAGES = {
     "discovery_governance_doctrine": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/discovery-governance-minimum-handoff",
     "discovery_governance_schema": "https://stegverse-labs.github.io/admissibility-wiki/schemas/discovery-governance-handoff.schema.json",
     "discovery_governance_status": "https://stegverse-labs.github.io/admissibility-wiki/status/discovery-governance-handoff-status.json",
+    "discovery_governance_example": "https://stegverse-labs.github.io/admissibility-wiki/examples/discovery-governance-handoff.example.json",
+    "discovery_governance_publication_receipt_schema": "https://stegverse-labs.github.io/admissibility-wiki/schemas/discovery-governance-publication-receipt.schema.json",
     "external_translation_reconstruction_receipt": "https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json",
     "canonical_workflow_observation_automation": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-observation-automation.json",
     "canonical_workflow_observation_receipt": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-observation-receipt.json",
@@ -71,6 +73,8 @@ DISCOVERY_ROUTE_NAMES = (
     "discovery_governance_doctrine",
     "discovery_governance_schema",
     "discovery_governance_status",
+    "discovery_governance_example",
+    "discovery_governance_publication_receipt_schema",
 )
 
 def check_url(url: str):
@@ -90,7 +94,7 @@ def main() -> int:
         results[name] = {"url": url, "reachable": ok, "http_status": status}
         if not ok: failures.append(message)
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.26",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.27",
         "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID','local')}.{os.getenv('GITHUB_RUN_ATTEMPT','0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
