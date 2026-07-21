@@ -6,12 +6,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEPLOYMENT_CHECKER = ROOT / "scripts" / "check_governed_llm_deployment_status.py"
+PUBLIC_RECEIPT_WRITER = ROOT / "scripts" / "write-public-activation-receipt.mjs"
 STATUS = ROOT / "static" / "status" / "discovery-governance-handoff-status.json"
 DOCTRINE = ROOT / "docs" / "formalisms" / "discovery-governance-minimum-handoff.md"
 SCHEMA = ROOT / "static" / "schemas" / "discovery-governance-handoff.schema.json"
 HANDOFF = ROOT / "docs" / "DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md"
 
-REQUIRED_MARKERS = (
+DEPLOYMENT_MARKERS = (
     '"discovery_governance_doctrine"',
     '"discovery_governance_schema"',
     '"discovery_governance_status"',
@@ -26,17 +27,34 @@ REQUIRED_MARKERS = (
     'downstream_mutation_authority_granted',
 )
 
+WRITER_MARKERS = (
+    "const discoveryReceiptPath = 'reports/discovery-governance-publication-receipt.json'",
+    "discovery_governance: discoveryReceipt",
+    "discovery_governance_publication_receipt: discoveryReceiptPath",
+    "discoveryReceipt.all_required_public_routes_verified === true",
+    "A discovery handoff does not grant consent, standing, authority, admissibility, commitment, execution permission, certification, or endorsement.",
+)
+
+
+def require_markers(path: Path, markers: tuple[str, ...], label: str, failures: list[str]) -> None:
+    if not path.exists():
+        failures.append(f"missing {path.relative_to(ROOT)}")
+        return
+    text = path.read_text(encoding="utf-8")
+    for marker in markers:
+        if marker not in text:
+            failures.append(f"{label} missing marker: {marker}")
+
 
 def main() -> int:
     failures: list[str] = []
-    for path in (DEPLOYMENT_CHECKER, STATUS, DOCTRINE, SCHEMA, HANDOFF):
+    for path in (STATUS, DOCTRINE, SCHEMA, HANDOFF):
         if not path.exists():
             failures.append(f"missing {path.relative_to(ROOT)}")
-    if DEPLOYMENT_CHECKER.exists():
-        text = DEPLOYMENT_CHECKER.read_text(encoding="utf-8")
-        for marker in REQUIRED_MARKERS:
-            if marker not in text:
-                failures.append(f"deployment checker missing marker: {marker}")
+
+    require_markers(DEPLOYMENT_CHECKER, DEPLOYMENT_MARKERS, "deployment checker", failures)
+    require_markers(PUBLIC_RECEIPT_WRITER, WRITER_MARKERS, "public receipt writer", failures)
+
     if STATUS.exists():
         status = json.loads(STATUS.read_text(encoding="utf-8"))
         if status.get("goal_id") != "discovery-governance-minimum-handoff":
@@ -48,6 +66,7 @@ def main() -> int:
             failures.append("implementation equivalence must remain false")
         if observation.get("interoperability_verified") is not False:
             failures.append("interoperability verification must remain false")
+
     if failures:
         print("DISCOVERY GOVERNANCE PUBLICATION: FAIL")
         for failure in failures:
