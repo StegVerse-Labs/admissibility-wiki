@@ -32,6 +32,9 @@ PAGES = {
     "optimization_target_doctrine": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit",
     "optimization_target_formalism_json": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit.v0.1.json",
     "optimization_target_publication_status": "https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json",
+    "discovery_governance_doctrine": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/discovery-governance-minimum-handoff",
+    "discovery_governance_schema": "https://stegverse-labs.github.io/admissibility-wiki/schemas/discovery-governance-handoff.schema.json",
+    "discovery_governance_status": "https://stegverse-labs.github.io/admissibility-wiki/status/discovery-governance-handoff-status.json",
     "external_translation_reconstruction_receipt": "https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json",
     "canonical_workflow_observation_automation": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-observation-automation.json",
     "canonical_workflow_observation_receipt": "https://stegverse-labs.github.io/admissibility-wiki/status/canonical-workflow-observation-receipt.json",
@@ -58,10 +61,16 @@ PAGES = {
 }
 RECEIPT = Path("reports/optimization-target-publication-verification-receipt.json")
 QUANTUM_RECEIPT = Path("reports/quantum-security-public-route-observation.json")
+DISCOVERY_RECEIPT = Path("reports/discovery-governance-publication-receipt.json")
 QUANTUM_ROUTE_NAMES = (
     "quantum_security_governance_page",
     "quantum_security_research_paper",
     "quantum_security_carousel_source",
+)
+DISCOVERY_ROUTE_NAMES = (
+    "discovery_governance_doctrine",
+    "discovery_governance_schema",
+    "discovery_governance_status",
 )
 
 def check_url(url: str):
@@ -81,7 +90,7 @@ def main() -> int:
         results[name] = {"url": url, "reachable": ok, "http_status": status}
         if not ok: failures.append(message)
     receipt = {
-        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.25",
+        "schema": "stegverse.optimization_target_publication_verification_receipt.v0.26",
         "receipt_id": f"optimization-target-publication.workflow.{os.getenv('GITHUB_RUN_ID','local')}.{os.getenv('GITHUB_RUN_ATTEMPT','0')}",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "repository": "StegVerse-Labs/admissibility-wiki",
@@ -101,6 +110,7 @@ def main() -> int:
             "Post-quantum cryptography does not independently grant execution authority.",
             "Documentation-mesh reachability does not grant cross-repository authority, compatibility, standing, or synchronization permission.",
             "Conceptual-inheritance publication does not decide authorship, ownership, infringement, intent, derivation, or origin-claim standing.",
+            "Discovery-handoff publication does not grant consent, standing, authority, admissibility, commitment, execution permission, certification, or endorsement.",
             "A reachable KPT source-intake queue does not prove source sufficiency or promote a source candidate.",
             "The terminal rollup reports pointers, presence, ownership, and completeness without semantic reclassification.",
             "All summaries, comparisons, and bounded-history reachability remains descriptive and does not make predictive or independent causal claims.",
@@ -115,32 +125,46 @@ def main() -> int:
         "goal_id": "stegverse-quantum-resilient-complete-security",
         "state": "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE" if quantum_pass else "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED",
         "observed_at": datetime.now(timezone.utc).isoformat(),
-        "repository": "StegVerse-Labs/admissibility-wiki",
-        "commit": os.getenv("GITHUB_SHA"),
-        "run_id": os.getenv("GITHUB_RUN_ID"),
-        "run_attempt": os.getenv("GITHUB_RUN_ATTEMPT"),
-        "routes": quantum_routes,
-        "all_required_public_routes_verified": quantum_pass,
-        "pages_deployment_observed": quantum_pass,
-        "manual_task_requirement": "NONE",
-        "user_manual_action_required": False,
-        "certification_granted": False,
-        "universal_quantum_proof_claim": False,
-        "production_cryptographic_deployment_established": False,
-        "execution_authority_granted": False,
-        "downstream_mutation_authority_granted": False,
-        "continuation_source": "docs/STEGVERSE_QUANTUM_SECURITY_MIRROR_HANDOFF.md",
-        "issues": [20, 23],
-        "non_claims": [
-            "Route reachability is bounded publication evidence only.",
-            "Publication is not certification.",
-            "Post-quantum cryptography does not independently grant execution authority.",
-            "This receipt grants no downstream mutation authority."
-        ]
+        "repository": "StegVerse-Labs/admissibility-wiki", "commit": os.getenv("GITHUB_SHA"),
+        "run_id": os.getenv("GITHUB_RUN_ID"), "run_attempt": os.getenv("GITHUB_RUN_ATTEMPT"),
+        "routes": quantum_routes, "all_required_public_routes_verified": quantum_pass,
+        "pages_deployment_observed": quantum_pass, "manual_task_requirement": "NONE",
+        "user_manual_action_required": False, "certification_granted": False,
+        "universal_quantum_proof_claim": False, "production_cryptographic_deployment_established": False,
+        "execution_authority_granted": False, "downstream_mutation_authority_granted": False,
+        "continuation_source": "docs/STEGVERSE_QUANTUM_SECURITY_MIRROR_HANDOFF.md", "issues": [20, 23],
+        "non_claims": ["Route reachability is bounded publication evidence only.", "Publication is not certification.", "Post-quantum cryptography does not independently grant execution authority.", "This receipt grants no downstream mutation authority."]
     }
     QUANTUM_RECEIPT.write_text(json.dumps(quantum_receipt, indent=2)+"\n", encoding="utf-8")
+    discovery_routes = {name: results[name] for name in DISCOVERY_ROUTE_NAMES}
+    discovery_pass = all(item["reachable"] for item in discovery_routes.values())
+    discovery_receipt = {
+        "schema": "discovery_governance_publication_receipt.v1",
+        "goal_id": "discovery-governance-minimum-handoff",
+        "state": "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE" if discovery_pass else "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED",
+        "observed_at": datetime.now(timezone.utc).isoformat(),
+        "repository": "StegVerse-Labs/admissibility-wiki", "commit": os.getenv("GITHUB_SHA"),
+        "run_id": os.getenv("GITHUB_RUN_ID"), "run_attempt": os.getenv("GITHUB_RUN_ATTEMPT"),
+        "routes": discovery_routes, "all_required_public_routes_verified": discovery_pass,
+        "pages_deployment_observed": discovery_pass,
+        "architectural_alignment_classification": "DOCUMENTED_ARCHITECTURAL_ALIGNMENT",
+        "implementation_equivalence_established": False, "interoperability_verified": False,
+        "consent_granted": False, "standing_granted": False, "authority_granted": False,
+        "admissibility_granted": False, "commitment_granted": False,
+        "execution_permission_granted": False, "certification_granted": False,
+        "endorsement_granted": False, "downstream_mutation_authority_granted": False,
+        "manual_task_requirement": "NONE", "user_manual_action_required": False,
+        "continuation_source": "docs/DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md",
+        "non_claims": [
+            "A reachable discovery handoff is publication evidence only.",
+            "The discovery handoff does not grant consent, standing, authority, admissibility, commitment, execution permission, certification, or endorsement.",
+            "Conectrr architectural alignment does not establish implementation equivalence or verified interoperability."
+        ]
+    }
+    DISCOVERY_RECEIPT.write_text(json.dumps(discovery_receipt, indent=2)+"\n", encoding="utf-8")
     print(f"wrote {RECEIPT}")
     print(f"wrote {QUANTUM_RECEIPT}")
+    print(f"wrote {DISCOVERY_RECEIPT}")
     if failures:
         print("GOVERNED DOCUMENTATION DEPLOYMENT: PENDING - public routes not fully confirmed"); return 1
     print("GOVERNED DOCUMENTATION DEPLOYMENT: PASS - public routes reachable"); return 0
