@@ -17,7 +17,7 @@ Build a deterministic, public, replayable boundary contract that allows discover
 ## Current state
 
 ```text
-State: SOURCE_COMPLETE_WITH_REPLAYABLE_PROOF_AND_AUTOMATED_PUBLICATION_CLOSURE_PENDING_CANONICAL_OBSERVATION
+State: SOURCE_COMPLETE_WITH_CANONICALLY_VALIDATED_REPLAYABLE_PROOF_PENDING_WORKFLOW_OBSERVATION
 Manual task requirement: none
 User manual action required: false
 Downstream mutation authority: none granted
@@ -45,11 +45,19 @@ Deterministic fixtures:
 Deterministic checker and proof receipt writer:
   scripts/check_discovery_governance_handoff.py
   receipt: reports/discovery-governance-handoff-proof-receipt.json
-  replay receipt commit 02a7963d5337395172802b6b41f95f4450b77881
+  receipt-writer commit 02a7963d5337395172802b6b41f95f4450b77881
 
 Proof receipt schema:
   static/schemas/discovery-governance-handoff-proof-receipt.schema.json
   commit fa603c9b4c1b571d0202f9736053e1728a431cc4
+
+Independent proof receipt validator:
+  scripts/check_discovery_governance_proof_receipt.py
+  commit 742eb33709222e2e7599c91f9f02cfefe04d51c9
+
+Canonical proof validation integration:
+  scripts/check_admissibility_automation_handoff.py
+  commit 36f09012e99f320b60ae17efe9fdf3886aeb0577
 
 Publication receipt schema:
   static/schemas/discovery-governance-publication-receipt.schema.json
@@ -61,7 +69,7 @@ Public worked example:
 
 Status:
   static/status/discovery-governance-handoff-status.json
-  replay status commit 76c6b7f38ffead0a2ec9a106564c927317173a98
+  canonical-proof-validation commit 9496a4a5b5137fee780e1a07e87079b4d9a33dbd
 
 Public navigation:
   sidebars.js
@@ -75,10 +83,6 @@ Public route observer and receipt generator:
 Publication contract validator:
   scripts/check_discovery_governance_publication.py
   latest contract commit eb6117a2b3407baa15ee2f8cf0847e917ca9e5ee
-
-Canonical validation integration:
-  scripts/check_admissibility_automation_handoff.py
-  commit 8863bfb39ec330f513457c2bbb903c9c5a48fc8d
 
 Public activation receipt embedding:
   scripts/write-public-activation-receipt.mjs
@@ -94,20 +98,17 @@ DENY_FALSE_CONSENT_ASSERTION -> DENY
 FAIL_CLOSED_MISSING_PROVENANCE -> FAIL_CLOSED
 ```
 
-The checker now writes a run-bound proof receipt containing:
+The proof-receipt validator independently reruns the checker and rejects closure unless:
 
 ```text
-fixture SHA-256
-per-case expected result
-per-case actual result
-match state
-four-outcome coverage
-overall PASS or FAIL_CLOSED
-failure reasons
-GitHub commit, run id, and run attempt when available
+fixture SHA-256 matches current fixtures
+all four outcomes are present
+all expected and actual outcomes match
+overall_result is PASS
+all authority-bearing fields remain false
 ```
 
-A passing receipt establishes deterministic checker behavior only. It grants no consent, standing, authority, admissibility, commitment, execution permission, certification, endorsement, interoperability standing, release authority, or downstream mutation authority.
+A passing proof receipt establishes deterministic checker behavior only. It grants no consent, standing, authority, admissibility, commitment, execution permission, certification, endorsement, interoperability standing, release authority, or downstream mutation authority.
 
 ## Public proof surface
 
@@ -172,9 +173,9 @@ It does not establish production integration, implementation equivalence, intero
 Destination: `StegVerse-Labs/admissibility-wiki`
 
 ```text
-1. Observe the canonical workflow run containing commit 76c6b7f38ffead0a2ec9a106564c927317173a98 or a successor.
+1. Observe the canonical workflow run containing commit 9496a4a5b5137fee780e1a07e87079b4d9a33dbd or a successor.
 2. Inspect and repair only evidence-grounded validation or Docusaurus build failures.
-3. Confirm the generated proof receipt is present in the canonical validation environment.
+3. Confirm the proof receipt validator passes inside canonical validation.
 4. Verify all five public routes after deployment.
 5. Retrieve the public-activation-receipt artifact and confirm activation_closures.discovery_governance.
 6. Record run id, run attempt, commit, route statuses, proof receipt digest, and closure state here.
@@ -200,8 +201,8 @@ No destination mutation is authorized by this handoff. Each destination handoff 
 
 This goal reaches activation completion when:
 
-1. the canonical workflow passes with both discovery-governance validators in `npm run validate`;
-2. the proof receipt records all four expected outcomes and a fixture digest;
+1. the canonical workflow passes with the handoff, proof-receipt, and publication validators in `npm run validate`;
+2. the proof receipt records all four expected outcomes and the current fixture digest;
 3. the public documentation build includes the formalism route;
 4. the schemas, worked example, and status artifacts are included in the deployed surface;
 5. the public route observer emits `WORKFLOW_OBSERVED_PUBLICATION_COMPLETE` across all five routes;
