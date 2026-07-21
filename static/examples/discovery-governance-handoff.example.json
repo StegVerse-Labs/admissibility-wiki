@@ -1,0 +1,71 @@
+{
+  "schema_version": "discovery_governance_handoff.v1",
+  "handoff_id": "h-public-example-001",
+  "recommendation_id": "r-public-example-001",
+  "discovery_system": {
+    "name": "Conectrr-compatible discovery example",
+    "version": "example-v1"
+  },
+  "opportunity": {
+    "type": "collaboration",
+    "description": "Potential collaboration concerning runtime governance research"
+  },
+  "declared_context": [
+    "participant-a publicly seeks collaborators working on runtime governance"
+  ],
+  "inferred_context": [
+    {
+      "value": "participant-b may have relevant implementation experience",
+      "basis": "public project descriptions and topic overlap"
+    }
+  ],
+  "provenance": [
+    "source:participant-a-public-profile",
+    "source:participant-b-public-project"
+  ],
+  "confidence_basis": "declared intent plus bounded public-topic overlap",
+  "participants": [
+    "participant-a",
+    "participant-b"
+  ],
+  "prerequisites": [
+    "identity verification",
+    "scope confirmation",
+    "participant consent"
+  ],
+  "boundaries": [
+    "no introduction occurs automatically",
+    "no participant consent is inferred",
+    "no execution authority is granted"
+  ],
+  "unresolved_assumptions": [
+    "participant-b current availability is unknown"
+  ],
+  "proposed_action": "submit the candidate match for governed participant review",
+  "destination_layer": "governed-coordination",
+  "required_consent": [
+    "participant-a",
+    "participant-b"
+  ],
+  "required_authority": [
+    "introduction-authority"
+  ],
+  "evidence_refs": [
+    "evidence:participant-a-profile-snapshot",
+    "evidence:participant-b-project-snapshot"
+  ],
+  "non_authority_declaration": [
+    "CONSENT",
+    "STANDING",
+    "AUTHORITY",
+    "ADMISSIBILITY",
+    "COMMITMENT",
+    "EXECUTION_PERMISSION",
+    "CERTIFICATION",
+    "ENDORSEMENT"
+  ],
+  "generated_at": "2026-07-21T18:00:00Z",
+  "expires_at": "2026-08-21T18:00:00Z",
+  "asserted_outcome": "REVIEW_REQUIRED",
+  "authority_assertions": []
+}
