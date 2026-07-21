@@ -2,13 +2,26 @@
   "schema_version": "discovery_governance_handoff_status.v1",
   "goal_id": "discovery-governance-minimum-handoff",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_VERIFICATION",
+  "state": "SOURCE_COMPLETE_WITH_AUTOMATED_PUBLICATION_CLOSURE_PENDING_CANONICAL_OBSERVATION",
   "doctrine": "docs/formalisms/discovery-governance-minimum-handoff.md",
   "schema": "static/schemas/discovery-governance-handoff.schema.json",
+  "publication_receipt_schema": "static/schemas/discovery-governance-publication-receipt.schema.json",
+  "public_example": "static/examples/discovery-governance-handoff.example.json",
   "fixtures": "tests/fixtures/discovery-governance-handoff-cases.json",
   "checker": "scripts/check_discovery_governance_handoff.py",
+  "publication_checker": "scripts/check_discovery_governance_publication.py",
+  "public_route_observer": "scripts/check_governed_llm_deployment_status.py",
+  "publication_receipt": "reports/discovery-governance-publication-receipt.json",
+  "public_activation_closure": "activation_closures.discovery_governance",
   "canonical_integration": "scripts/check_admissibility_automation_handoff.py",
   "outcomes": ["HANDOFF_READY", "REVIEW_REQUIRED", "DENY", "FAIL_CLOSED"],
+  "public_routes": [
+    "/formalisms/discovery-governance-minimum-handoff",
+    "/schemas/discovery-governance-handoff.schema.json",
+    "/status/discovery-governance-handoff-status.json",
+    "/examples/discovery-governance-handoff.example.json",
+    "/schemas/discovery-governance-publication-receipt.schema.json"
+  ],
   "external_observation": {
     "system": "Conectrr",
     "classification": "DOCUMENTED_ARCHITECTURAL_ALIGNMENT",
@@ -18,5 +31,5 @@
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
   "downstream_mutation_authority": "none granted",
-  "updated_at": "2026-07-21T18:38:00Z"
+  "updated_at": "2026-07-21T20:00:00Z"
 }
