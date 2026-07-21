@@ -10,12 +10,16 @@ PUBLIC_RECEIPT_WRITER = ROOT / "scripts" / "write-public-activation-receipt.mjs"
 STATUS = ROOT / "static" / "status" / "discovery-governance-handoff-status.json"
 DOCTRINE = ROOT / "docs" / "formalisms" / "discovery-governance-minimum-handoff.md"
 SCHEMA = ROOT / "static" / "schemas" / "discovery-governance-handoff.schema.json"
+PUBLICATION_SCHEMA = ROOT / "static" / "schemas" / "discovery-governance-publication-receipt.schema.json"
+EXAMPLE = ROOT / "static" / "examples" / "discovery-governance-handoff.example.json"
 HANDOFF = ROOT / "docs" / "DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md"
 
 DEPLOYMENT_MARKERS = (
     '"discovery_governance_doctrine"',
     '"discovery_governance_schema"',
     '"discovery_governance_status"',
+    '"discovery_governance_example"',
+    '"discovery_governance_publication_receipt_schema"',
     'discovery-governance-publication-receipt.json',
     'discovery_governance_publication_receipt.v1',
     'DOCUMENTED_ARCHITECTURAL_ALIGNMENT',
@@ -35,6 +39,11 @@ WRITER_MARKERS = (
     "A discovery handoff does not grant consent, standing, authority, admissibility, commitment, execution permission, certification, or endorsement.",
 )
 
+REQUIRED_NON_AUTHORITY = {
+    "CONSENT", "STANDING", "AUTHORITY", "ADMISSIBILITY", "COMMITMENT",
+    "EXECUTION_PERMISSION", "CERTIFICATION", "ENDORSEMENT",
+}
+
 
 def require_markers(path: Path, markers: tuple[str, ...], label: str, failures: list[str]) -> None:
     if not path.exists():
@@ -48,7 +57,7 @@ def require_markers(path: Path, markers: tuple[str, ...], label: str, failures: 
 
 def main() -> int:
     failures: list[str] = []
-    for path in (STATUS, DOCTRINE, SCHEMA, HANDOFF):
+    for path in (STATUS, DOCTRINE, SCHEMA, PUBLICATION_SCHEMA, EXAMPLE, HANDOFF):
         if not path.exists():
             failures.append(f"missing {path.relative_to(ROOT)}")
 
@@ -66,6 +75,33 @@ def main() -> int:
             failures.append("implementation equivalence must remain false")
         if observation.get("interoperability_verified") is not False:
             failures.append("interoperability verification must remain false")
+
+    if EXAMPLE.exists():
+        example = json.loads(EXAMPLE.read_text(encoding="utf-8"))
+        if example.get("schema_version") != "discovery_governance_handoff.v1":
+            failures.append("public example schema_version mismatch")
+        if example.get("asserted_outcome") != "REVIEW_REQUIRED":
+            failures.append("public example must preserve REVIEW_REQUIRED posture")
+        if example.get("authority_assertions") != []:
+            failures.append("public example must contain no authority assertions")
+        declarations = set(example.get("non_authority_declaration", []))
+        if not REQUIRED_NON_AUTHORITY.issubset(declarations):
+            failures.append("public example lacks complete non-authority declaration")
+        if not example.get("unresolved_assumptions"):
+            failures.append("public REVIEW_REQUIRED example must identify unresolved assumptions")
+
+    if PUBLICATION_SCHEMA.exists():
+        schema = json.loads(PUBLICATION_SCHEMA.read_text(encoding="utf-8"))
+        props = schema.get("properties", {})
+        for field in (
+            "implementation_equivalence_established", "interoperability_verified",
+            "consent_granted", "standing_granted", "authority_granted",
+            "admissibility_granted", "commitment_granted",
+            "execution_permission_granted", "certification_granted",
+            "endorsement_granted", "downstream_mutation_authority_granted",
+        ):
+            if props.get(field, {}).get("const") is not False:
+                failures.append(f"publication schema must force {field}=false")
 
     if failures:
         print("DISCOVERY GOVERNANCE PUBLICATION: FAIL")
