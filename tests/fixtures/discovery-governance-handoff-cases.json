@@ -1,0 +1,87 @@
+{
+  "schema_version": "discovery_governance_handoff_fixture_set.v1",
+  "cases": [
+    {
+      "case_id": "READY_COMPLETE_NON_AUTHORITY_HANDOFF",
+      "expected": "HANDOFF_READY",
+      "record": {
+        "schema_version": "discovery_governance_handoff.v1",
+        "handoff_id": "h-ready-001",
+        "recommendation_id": "r-001",
+        "discovery_system": {"name": "Conectrr-compatible discovery fixture", "version": "test-v1"},
+        "opportunity": {"type": "collaboration", "description": "Potential research collaboration"},
+        "declared_context": ["participant seeks governance research collaborators"],
+        "inferred_context": [{"value": "topic overlap", "basis": "shared public keywords"}],
+        "provenance": ["source:public-profile-a", "source:public-project-b"],
+        "confidence_basis": "declared intent plus topic overlap",
+        "participants": ["participant-a", "participant-b"],
+        "prerequisites": ["identity verification", "scope agreement"],
+        "boundaries": ["no contact without participant action", "no execution authority"],
+        "unresolved_assumptions": [],
+        "proposed_action": "request downstream review before introduction",
+        "destination_layer": "governed-coordination",
+        "required_consent": ["participant-a", "participant-b"],
+        "required_authority": ["introduction-authority"],
+        "evidence_refs": ["evidence:profile-a", "evidence:project-b"],
+        "non_authority_declaration": ["CONSENT", "STANDING", "AUTHORITY", "ADMISSIBILITY", "COMMITMENT", "EXECUTION_PERMISSION", "CERTIFICATION", "ENDORSEMENT"],
+        "generated_at": "2026-07-21T18:00:00Z",
+        "expires_at": "2026-08-21T18:00:00Z",
+        "authority_assertions": []
+      }
+    },
+    {
+      "case_id": "REVIEW_UNRESOLVED_INFERENCE",
+      "expected": "REVIEW_REQUIRED",
+      "record": {
+        "schema_version": "discovery_governance_handoff.v1",
+        "handoff_id": "h-review-001", "recommendation_id": "r-002",
+        "discovery_system": {"name": "Discovery fixture", "version": "test-v1"},
+        "opportunity": {"type": "resource", "description": "Potential dataset access"},
+        "declared_context": ["research need"],
+        "inferred_context": [{"value": "likely eligibility", "basis": "incomplete public criteria"}],
+        "provenance": ["source:dataset-page"], "confidence_basis": "partial criteria match",
+        "participants": ["requester", "resource-owner"], "prerequisites": ["eligibility review"],
+        "boundaries": ["no access granted"], "unresolved_assumptions": ["eligibility remains unverified"],
+        "proposed_action": "submit for eligibility review", "destination_layer": "governed-coordination",
+        "required_consent": ["resource-owner"], "required_authority": ["access-grant-authority"],
+        "evidence_refs": ["evidence:dataset-page"],
+        "non_authority_declaration": ["CONSENT", "STANDING", "AUTHORITY", "ADMISSIBILITY", "COMMITMENT", "EXECUTION_PERMISSION", "CERTIFICATION", "ENDORSEMENT"],
+        "generated_at": "2026-07-21T18:00:00Z", "expires_at": "2026-08-21T18:00:00Z",
+        "authority_assertions": []
+      }
+    },
+    {
+      "case_id": "DENY_FALSE_CONSENT_ASSERTION",
+      "expected": "DENY",
+      "record": {
+        "schema_version": "discovery_governance_handoff.v1", "handoff_id": "h-deny-001", "recommendation_id": "r-003",
+        "discovery_system": {"name": "Discovery fixture", "version": "test-v1"},
+        "opportunity": {"type": "introduction", "description": "Proposed introduction"},
+        "declared_context": ["interest"], "inferred_context": [], "provenance": ["source:a"],
+        "confidence_basis": "declared interest", "participants": ["a", "b"], "prerequisites": [],
+        "boundaries": ["downstream review required"], "unresolved_assumptions": [],
+        "proposed_action": "introduce participants", "destination_layer": "governed-coordination",
+        "required_consent": ["a", "b"], "required_authority": ["introduction-authority"],
+        "evidence_refs": ["evidence:a"],
+        "non_authority_declaration": ["CONSENT", "STANDING", "AUTHORITY", "ADMISSIBILITY", "COMMITMENT", "EXECUTION_PERMISSION", "CERTIFICATION", "ENDORSEMENT"],
+        "generated_at": "2026-07-21T18:00:00Z", "expires_at": "2026-08-21T18:00:00Z",
+        "authority_assertions": ["CONSENT"]
+      }
+    },
+    {
+      "case_id": "FAIL_CLOSED_MISSING_PROVENANCE",
+      "expected": "FAIL_CLOSED",
+      "record": {
+        "schema_version": "discovery_governance_handoff.v1", "handoff_id": "h-fail-001", "recommendation_id": "r-004",
+        "discovery_system": {"name": "Discovery fixture", "version": "test-v1"},
+        "opportunity": {"type": "resource", "description": "Unproven resource match"},
+        "declared_context": [], "inferred_context": [], "provenance": [], "confidence_basis": "unknown",
+        "participants": ["a"], "prerequisites": [], "boundaries": ["no authority"], "unresolved_assumptions": [],
+        "proposed_action": "review", "destination_layer": "governed-coordination", "required_consent": [],
+        "required_authority": [], "evidence_refs": ["evidence:unknown"],
+        "non_authority_declaration": ["CONSENT", "STANDING", "AUTHORITY", "ADMISSIBILITY", "COMMITMENT", "EXECUTION_PERMISSION", "CERTIFICATION", "ENDORSEMENT"],
+        "generated_at": "2026-07-21T18:00:00Z", "expires_at": "2026-08-21T18:00:00Z", "authority_assertions": []
+      }
+    }
+  ]
+}
