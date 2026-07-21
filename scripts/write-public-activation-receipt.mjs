@@ -14,12 +14,16 @@ const PRESERVED_CONTRACT_MARKERS = [
   'verification_execution_authority_activation_closure.v1',
   'verification_execution_authority_doctrine_reachable',
   'verification_execution_authority_status_reachable',
-  'Independent verification remains evidence input and does not become execution authority.'
+  'Independent verification remains evidence input and does not become execution authority.',
+  'discovery_governance_publication_receipt.v1',
+  'discovery_governance',
+  'A discovery handoff does not grant consent, standing, authority, admissibility, commitment, execution permission, certification, or endorsement.'
 ];
 void PRESERVED_CONTRACT_MARKERS;
 
 const publicReceiptPath = 'reports/public-activation-receipt.json';
 const quantumReceiptPath = 'reports/quantum-security-public-route-observation.json';
+const discoveryReceiptPath = 'reports/discovery-governance-publication-receipt.json';
 const skipNetwork = process.env.PUBLIC_ACTIVATION_SKIP_NETWORK === '1';
 let baseWriterError = null;
 
@@ -163,28 +167,82 @@ if (fs.existsSync(quantumReceiptPath)) {
   };
 }
 
+let discoveryReceipt;
+if (fs.existsSync(discoveryReceiptPath)) {
+  discoveryReceipt = JSON.parse(fs.readFileSync(discoveryReceiptPath, 'utf8'));
+  if (discoveryReceipt.schema !== 'discovery_governance_publication_receipt.v1') {
+    throw new Error('discovery-governance publication receipt schema mismatch');
+  }
+  if (typeof discoveryReceipt.all_required_public_routes_verified !== 'boolean') {
+    throw new Error('discovery-governance publication receipt lacks bounded completion state');
+  }
+} else {
+  discoveryReceipt = {
+    schema: 'discovery_governance_publication_receipt.v1',
+    goal_id: 'discovery-governance-minimum-handoff',
+    state: 'SOURCE_BLOCKED_FAIL_CLOSED',
+    observed_at: new Date().toISOString(),
+    repository: 'StegVerse-Labs/admissibility-wiki',
+    commit: process.env.GITHUB_SHA || null,
+    run_id: process.env.GITHUB_RUN_ID || null,
+    run_attempt: process.env.GITHUB_RUN_ATTEMPT || null,
+    routes: {},
+    all_required_public_routes_verified: false,
+    pages_deployment_observed: false,
+    receipt_preserved_despite_source_block: true,
+    architectural_alignment_classification: 'DOCUMENTED_ARCHITECTURAL_ALIGNMENT',
+    implementation_equivalence_established: false,
+    interoperability_verified: false,
+    consent_granted: false,
+    standing_granted: false,
+    authority_granted: false,
+    admissibility_granted: false,
+    commitment_granted: false,
+    execution_permission_granted: false,
+    certification_granted: false,
+    endorsement_granted: false,
+    downstream_mutation_authority_granted: false,
+    manual_task_requirement: 'NONE',
+    user_manual_action_required: false,
+    continuation_source: 'docs/DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md',
+    non_claims: [
+      'A discovery handoff does not grant consent, standing, authority, admissibility, commitment, execution permission, certification, or endorsement.',
+      'Conectrr architectural alignment does not establish implementation equivalence or verified interoperability.'
+    ]
+  };
+}
+
 // Every bounded observation, including validator simulations and source-blocked
 // fallbacks, is materialized at the canonical linked-receipt path.
 fs.mkdirSync('reports', { recursive: true });
 fs.writeFileSync(quantumReceiptPath, JSON.stringify(quantumReceipt, null, 2) + '\n');
+fs.writeFileSync(discoveryReceiptPath, JSON.stringify(discoveryReceipt, null, 2) + '\n');
 
 publicReceipt.activation_closures = {
   ...(publicReceipt.activation_closures || {}),
-  quantum_security: quantumReceipt
+  quantum_security: quantumReceipt,
+  discovery_governance: discoveryReceipt
 };
 publicReceipt.linked_receipts = {
   ...(publicReceipt.linked_receipts || {}),
-  quantum_security_public_route_observation: quantumReceiptPath
+  quantum_security_public_route_observation: quantumReceiptPath,
+  discovery_governance_publication_receipt: discoveryReceiptPath
 };
 publicReceipt.manual_tasks_required = [];
 publicReceipt.user_manual_action_required = false;
 publicReceipt.publication_complete =
   baseWriterError === null &&
   publicReceipt.publication_complete === true &&
-  quantumReceipt.all_required_public_routes_verified === true;
+  quantumReceipt.all_required_public_routes_verified === true &&
+  discoveryReceipt.all_required_public_routes_verified === true;
 
 fs.writeFileSync(publicReceiptPath, JSON.stringify(publicReceipt, null, 2) + '\n');
 console.log(`embedded bounded quantum-security closure into ${publicReceiptPath}`);
-if (baseWriterError || quantumReceipt.all_required_public_routes_verified !== true) {
+console.log(`embedded bounded discovery-governance closure into ${publicReceiptPath}`);
+if (
+  baseWriterError ||
+  quantumReceipt.all_required_public_routes_verified !== true ||
+  discoveryReceipt.all_required_public_routes_verified !== true
+) {
   console.log('public activation receipt preserved with source-blocked fail-closed closure');
 }
