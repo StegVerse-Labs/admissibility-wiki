@@ -26,6 +26,7 @@ QUANTUM_SECURITY_PUBLICATION_CHECK = ROOT / "scripts" / "check_quantum_resilient
 PEER_PRESERVATION_CHECK = ROOT / "scripts" / "check_peer_preservation_claims.py"
 ROBOTIC_LAW_ENFORCEMENT_CHECK = ROOT / "scripts" / "check_robotic_law_enforcement_admissibility.py"
 DISCOVERY_GOVERNANCE_HANDOFF_CHECK = ROOT / "scripts" / "check_discovery_governance_handoff.py"
+DISCOVERY_GOVERNANCE_PUBLICATION_CHECK = ROOT / "scripts" / "check_discovery_governance_publication.py"
 GLOSSARY_CONSISTENCY_CHECK = ROOT / "scripts" / "check_glossary_consistency.py"
 ACTIVATION_SECTION_CHECK = ROOT / "scripts" / "check_activation_section.py"
 RESEARCH_SOCIAL_STEGVERSE_CHECK = ROOT / "scripts" / "check_research_social_stegverse_sections.py"
@@ -85,6 +86,7 @@ def main() -> int:
     run_check(PEER_PRESERVATION_CHECK, "peer-preservation inference boundary", failures)
     run_check(ROBOTIC_LAW_ENFORCEMENT_CHECK, "robotic law-enforcement deployment admissibility", failures)
     run_check(DISCOVERY_GOVERNANCE_HANDOFF_CHECK, "discovery-to-governance minimum handoff", failures)
+    run_check(DISCOVERY_GOVERNANCE_PUBLICATION_CHECK, "discovery-to-governance publication contract", failures)
     run_check(GLOSSARY_CONSISTENCY_CHECK, "glossary consistency", failures)
     run_check(ACTIVATION_SECTION_CHECK, "activation section", failures)
     run_check(RESEARCH_SOCIAL_STEGVERSE_CHECK, "research social and StegVerse sections", failures)
