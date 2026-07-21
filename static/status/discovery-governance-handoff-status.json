@@ -2,19 +2,28 @@
   "schema_version": "discovery_governance_handoff_status.v1",
   "goal_id": "discovery-governance-minimum-handoff",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "state": "SOURCE_COMPLETE_WITH_AUTOMATED_PUBLICATION_CLOSURE_PENDING_CANONICAL_OBSERVATION",
+  "state": "SOURCE_COMPLETE_WITH_REPLAYABLE_PROOF_AND_AUTOMATED_PUBLICATION_CLOSURE_PENDING_CANONICAL_OBSERVATION",
   "doctrine": "docs/formalisms/discovery-governance-minimum-handoff.md",
   "schema": "static/schemas/discovery-governance-handoff.schema.json",
+  "proof_receipt_schema": "static/schemas/discovery-governance-handoff-proof-receipt.schema.json",
   "publication_receipt_schema": "static/schemas/discovery-governance-publication-receipt.schema.json",
   "public_example": "static/examples/discovery-governance-handoff.example.json",
   "fixtures": "tests/fixtures/discovery-governance-handoff-cases.json",
   "checker": "scripts/check_discovery_governance_handoff.py",
+  "proof_receipt": "reports/discovery-governance-handoff-proof-receipt.json",
   "publication_checker": "scripts/check_discovery_governance_publication.py",
   "public_route_observer": "scripts/check_governed_llm_deployment_status.py",
   "publication_receipt": "reports/discovery-governance-publication-receipt.json",
   "public_activation_closure": "activation_closures.discovery_governance",
   "canonical_integration": "scripts/check_admissibility_automation_handoff.py",
   "outcomes": ["HANDOFF_READY", "REVIEW_REQUIRED", "DENY", "FAIL_CLOSED"],
+  "proof_properties": [
+    "fixture_sha256",
+    "per-case expected and actual outcomes",
+    "four-outcome coverage",
+    "fail-closed result preservation",
+    "run and commit binding when executed in GitHub Actions"
+  ],
   "public_routes": [
     "/formalisms/discovery-governance-minimum-handoff",
     "/schemas/discovery-governance-handoff.schema.json",
@@ -31,5 +40,5 @@
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
   "downstream_mutation_authority": "none granted",
-  "updated_at": "2026-07-21T20:00:00Z"
+  "updated_at": "2026-07-21T20:24:00Z"
 }
