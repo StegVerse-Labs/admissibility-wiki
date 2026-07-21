@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/discovery-governance-publication-receipt.schema.json",
+  "title": "Discovery Governance Publication Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "goal_id", "state", "observed_at", "repository", "commit",
+    "run_id", "run_attempt", "routes", "all_required_public_routes_verified",
+    "pages_deployment_observed", "architectural_alignment_classification",
+    "implementation_equivalence_established", "interoperability_verified",
+    "consent_granted", "standing_granted", "authority_granted",
+    "admissibility_granted", "commitment_granted",
+    "execution_permission_granted", "certification_granted",
+    "endorsement_granted", "downstream_mutation_authority_granted",
+    "manual_task_requirement", "user_manual_action_required",
+    "continuation_source", "non_claims"
+  ],
+  "properties": {
+    "schema": {"const": "discovery_governance_publication_receipt.v1"},
+    "goal_id": {"const": "discovery-governance-minimum-handoff"},
+    "state": {"enum": ["WORKFLOW_OBSERVED_PUBLICATION_COMPLETE", "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED", "SOURCE_BLOCKED_FAIL_CLOSED"]},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "repository": {"const": "StegVerse-Labs/admissibility-wiki"},
+    "commit": {"type": ["string", "null"]},
+    "run_id": {"type": ["string", "null"]},
+    "run_attempt": {"type": ["string", "null"]},
+    "routes": {
+      "type": "object",
+      "required": [
+        "discovery_governance_doctrine",
+        "discovery_governance_schema",
+        "discovery_governance_status",
+        "discovery_governance_example",
+        "discovery_governance_publication_receipt_schema"
+      ],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["url", "reachable", "http_status"],
+        "properties": {
+          "url": {"type": "string", "format": "uri"},
+          "reachable": {"type": "boolean"},
+          "http_status": {"type": ["integer", "null"]}
+        }
+      }
+    },
+    "all_required_public_routes_verified": {"type": "boolean"},
+    "pages_deployment_observed": {"type": "boolean"},
+    "architectural_alignment_classification": {"const": "DOCUMENTED_ARCHITECTURAL_ALIGNMENT"},
+    "implementation_equivalence_established": {"const": false},
+    "interoperability_verified": {"const": false},
+    "consent_granted": {"const": false},
+    "standing_granted": {"const": false},
+    "authority_granted": {"const": false},
+    "admissibility_granted": {"const": false},
+    "commitment_granted": {"const": false},
+    "execution_permission_granted": {"const": false},
+    "certification_granted": {"const": false},
+    "endorsement_granted": {"const": false},
+    "downstream_mutation_authority_granted": {"const": false},
+    "manual_task_requirement": {"const": "NONE"},
+    "user_manual_action_required": {"const": false},
+    "continuation_source": {"const": "docs/DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md"},
+    "non_claims": {"type": "array", "minItems": 3, "items": {"type": "string", "minLength": 1}}
+  }
+}
