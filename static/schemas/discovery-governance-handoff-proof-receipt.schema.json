@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/discovery-governance-handoff-proof-receipt.schema.json",
+  "title": "Discovery Governance Handoff Proof Receipt",
+  "type": "object",
+  "required": ["schema", "goal_id", "repository", "fixture_sha256", "results", "overall_result"],
+  "properties": {
+    "schema": {"const": "discovery_governance_handoff_proof_receipt.v1"},
+    "goal_id": {"const": "discovery-governance-minimum-handoff"},
+    "repository": {"const": "StegVerse-Labs/admissibility-wiki"},
+    "fixture_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "results": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["case_id", "expected", "actual", "matched"],
+        "properties": {
+          "case_id": {"type": "string"},
+          "expected": {"enum": ["HANDOFF_READY", "REVIEW_REQUIRED", "DENY", "FAIL_CLOSED"]},
+          "actual": {"enum": ["HANDOFF_READY", "REVIEW_REQUIRED", "DENY", "FAIL_CLOSED"]},
+          "matched": {"type": "boolean"}
+        }
+      }
+    },
+    "overall_result": {"enum": ["PASS", "FAIL_CLOSED"]},
+    "consent_granted": {"const": false},
+    "standing_granted": {"const": false},
+    "authority_granted": {"const": false},
+    "admissibility_granted": {"const": false},
+    "commitment_granted": {"const": false},
+    "execution_permission_granted": {"const": false},
+    "certification_granted": {"const": false},
+    "endorsement_granted": {"const": false},
+    "interoperability_verified": {"const": false},
+    "downstream_mutation_authority_granted": {"const": false}
+  }
+}
