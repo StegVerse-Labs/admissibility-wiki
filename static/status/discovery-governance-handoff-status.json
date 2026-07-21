@@ -1,0 +1,22 @@
+{
+  "schema_version": "discovery_governance_handoff_status.v1",
+  "goal_id": "discovery-governance-minimum-handoff",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_VERIFICATION",
+  "doctrine": "docs/formalisms/discovery-governance-minimum-handoff.md",
+  "schema": "static/schemas/discovery-governance-handoff.schema.json",
+  "fixtures": "tests/fixtures/discovery-governance-handoff-cases.json",
+  "checker": "scripts/check_discovery_governance_handoff.py",
+  "canonical_integration": "scripts/check_admissibility_automation_handoff.py",
+  "outcomes": ["HANDOFF_READY", "REVIEW_REQUIRED", "DENY", "FAIL_CLOSED"],
+  "external_observation": {
+    "system": "Conectrr",
+    "classification": "DOCUMENTED_ARCHITECTURAL_ALIGNMENT",
+    "implementation_equivalence": false,
+    "interoperability_verified": false
+  },
+  "manual_task_requirement": "none",
+  "user_manual_action_required": false,
+  "downstream_mutation_authority": "none granted",
+  "updated_at": "2026-07-21T18:38:00Z"
+}
