@@ -25,6 +25,7 @@ COMMIT_BOUNDARY_BINDING_CHECK = ROOT / "scripts" / "check_commit_boundary_bindin
 QUANTUM_SECURITY_PUBLICATION_CHECK = ROOT / "scripts" / "check_quantum_resilient_security_publication.py"
 PEER_PRESERVATION_CHECK = ROOT / "scripts" / "check_peer_preservation_claims.py"
 ROBOTIC_LAW_ENFORCEMENT_CHECK = ROOT / "scripts" / "check_robotic_law_enforcement_admissibility.py"
+DISCOVERY_GOVERNANCE_HANDOFF_CHECK = ROOT / "scripts" / "check_discovery_governance_handoff.py"
 GLOSSARY_CONSISTENCY_CHECK = ROOT / "scripts" / "check_glossary_consistency.py"
 ACTIVATION_SECTION_CHECK = ROOT / "scripts" / "check_activation_section.py"
 RESEARCH_SOCIAL_STEGVERSE_CHECK = ROOT / "scripts" / "check_research_social_stegverse_sections.py"
@@ -49,12 +50,8 @@ def run_check(path: Path, label: str, failures: list[str]) -> None:
         failures.append(f"missing {path.relative_to(ROOT)}")
         return
     result = subprocess.run(
-        [sys.executable, str(path)],
-        cwd=ROOT,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
+        [sys.executable, str(path)], cwd=ROOT, text=True,
+        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
     )
     print(result.stdout.rstrip())
     if result.returncode != 0:
@@ -87,6 +84,7 @@ def main() -> int:
     run_check(QUANTUM_SECURITY_PUBLICATION_CHECK, "quantum-resilient security publication", failures)
     run_check(PEER_PRESERVATION_CHECK, "peer-preservation inference boundary", failures)
     run_check(ROBOTIC_LAW_ENFORCEMENT_CHECK, "robotic law-enforcement deployment admissibility", failures)
+    run_check(DISCOVERY_GOVERNANCE_HANDOFF_CHECK, "discovery-to-governance minimum handoff", failures)
     run_check(GLOSSARY_CONSISTENCY_CHECK, "glossary consistency", failures)
     run_check(ACTIVATION_SECTION_CHECK, "activation section", failures)
     run_check(RESEARCH_SOCIAL_STEGVERSE_CHECK, "research social and StegVerse sections", failures)
