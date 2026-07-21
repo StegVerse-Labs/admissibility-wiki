@@ -2,7 +2,7 @@
   "schema_version": "discovery_governance_handoff_status.v1",
   "goal_id": "discovery-governance-minimum-handoff",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "state": "SOURCE_COMPLETE_WITH_REPLAYABLE_PROOF_AND_AUTOMATED_PUBLICATION_CLOSURE_PENDING_CANONICAL_OBSERVATION",
+  "state": "SOURCE_COMPLETE_WITH_CANONICALLY_VALIDATED_REPLAYABLE_PROOF_PENDING_WORKFLOW_OBSERVATION",
   "doctrine": "docs/formalisms/discovery-governance-minimum-handoff.md",
   "schema": "static/schemas/discovery-governance-handoff.schema.json",
   "proof_receipt_schema": "static/schemas/discovery-governance-handoff-proof-receipt.schema.json",
@@ -11,6 +11,7 @@
   "fixtures": "tests/fixtures/discovery-governance-handoff-cases.json",
   "checker": "scripts/check_discovery_governance_handoff.py",
   "proof_receipt": "reports/discovery-governance-handoff-proof-receipt.json",
+  "proof_receipt_validator": "scripts/check_discovery_governance_proof_receipt.py",
   "publication_checker": "scripts/check_discovery_governance_publication.py",
   "public_route_observer": "scripts/check_governed_llm_deployment_status.py",
   "publication_receipt": "reports/discovery-governance-publication-receipt.json",
@@ -22,7 +23,8 @@
     "per-case expected and actual outcomes",
     "four-outcome coverage",
     "fail-closed result preservation",
-    "run and commit binding when executed in GitHub Actions"
+    "run and commit binding when executed in GitHub Actions",
+    "independent receipt regeneration and invariant validation inside canonical validation"
   ],
   "public_routes": [
     "/formalisms/discovery-governance-minimum-handoff",
@@ -40,5 +42,5 @@
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
   "downstream_mutation_authority": "none granted",
-  "updated_at": "2026-07-21T20:24:00Z"
+  "updated_at": "2026-07-21T20:42:00Z"
 }
