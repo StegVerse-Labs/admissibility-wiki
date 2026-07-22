@@ -9,11 +9,13 @@ DEPLOYMENT_CHECKER = ROOT / "scripts" / "check_governed_llm_deployment_status.py
 PUBLIC_RECEIPT_WRITER = ROOT / "scripts" / "write-public-activation-receipt.mjs"
 PUBLIC_RECEIPT_WRITER_TEST = ROOT / "scripts" / "check-public-activation-receipt-writer.mjs"
 ACTIVATION_CLOSURE_CHECKER = ROOT / "scripts" / "check_discovery_governance_activation_closure.py"
+ACTIVATION_EVIDENCE_WRITER = ROOT / "scripts" / "write_discovery_governance_activation_evidence.py"
 CANONICAL_WORKFLOW = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
 STATUS = ROOT / "static" / "status" / "discovery-governance-handoff-status.json"
 DOCTRINE = ROOT / "docs" / "formalisms" / "discovery-governance-minimum-handoff.md"
 SCHEMA = ROOT / "static" / "schemas" / "discovery-governance-handoff.schema.json"
 PUBLICATION_SCHEMA = ROOT / "static" / "schemas" / "discovery-governance-publication-receipt.schema.json"
+ACTIVATION_EVIDENCE_SCHEMA = ROOT / "static" / "schemas" / "discovery-governance-activation-evidence-receipt.schema.json"
 EXAMPLE = ROOT / "static" / "examples" / "discovery-governance-handoff.example.json"
 HANDOFF = ROOT / "docs" / "DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md"
 
@@ -52,9 +54,24 @@ ACTIVATION_CLOSURE_MARKERS = (
     'DISCOVERY GOVERNANCE ACTIVATION CLOSURE: PASS',
 )
 
+ACTIVATION_EVIDENCE_MARKERS = (
+    'discovery_governance_activation_evidence_receipt.v1',
+    'ACTIVATION_EVIDENCE_COMPLETE',
+    'canonical validation/build/deploy dependency chain not asserted by workflow',
+    'standalone publication receipt differs from embedded closure',
+    'receipt repository/run identity mismatch',
+    'release_authority_granted',
+    'downstream_mutation_authority_granted',
+)
+
 WORKFLOW_MARKERS = (
     "name: discovery-governance-proof-receipt",
     "reports/discovery-governance-handoff-proof-receipt.json",
+    "Download discovery governance proof receipt",
+    "Verify discovery governance activation closure",
+    "Write discovery governance activation evidence receipt",
+    "DISCOVERY_WORKFLOW_DEPENDENCIES_SATISFIED: 'true'",
+    "reports/discovery-governance-activation-evidence-receipt.json",
     "reports/discovery-governance-publication-receipt.json",
     "name: public-activation-receipt",
     "if-no-files-found: error",
@@ -78,7 +95,10 @@ def require_markers(path: Path, markers: tuple[str, ...], label: str, failures: 
 
 def main() -> int:
     failures: list[str] = []
-    for path in (STATUS, DOCTRINE, SCHEMA, PUBLICATION_SCHEMA, EXAMPLE, HANDOFF):
+    for path in (
+        STATUS, DOCTRINE, SCHEMA, PUBLICATION_SCHEMA,
+        ACTIVATION_EVIDENCE_SCHEMA, EXAMPLE, HANDOFF,
+    ):
         if not path.exists():
             failures.append(f"missing {path.relative_to(ROOT)}")
 
@@ -86,6 +106,7 @@ def main() -> int:
     require_markers(PUBLIC_RECEIPT_WRITER, WRITER_MARKERS, "public receipt writer", failures)
     require_markers(PUBLIC_RECEIPT_WRITER_TEST, WRITER_TEST_MARKERS, "public receipt writer test", failures)
     require_markers(ACTIVATION_CLOSURE_CHECKER, ACTIVATION_CLOSURE_MARKERS, "activation closure checker", failures)
+    require_markers(ACTIVATION_EVIDENCE_WRITER, ACTIVATION_EVIDENCE_MARKERS, "activation evidence writer", failures)
     require_markers(CANONICAL_WORKFLOW, WORKFLOW_MARKERS, "canonical workflow", failures)
 
     if STATUS.exists():
@@ -126,6 +147,20 @@ def main() -> int:
         ):
             if props.get(field, {}).get("const") is not False:
                 failures.append(f"publication schema must force {field}=false")
+
+    if ACTIVATION_EVIDENCE_SCHEMA.exists():
+        schema = json.loads(ACTIVATION_EVIDENCE_SCHEMA.read_text(encoding="utf-8"))
+        props = schema.get("properties", {})
+        for field in (
+            "consent_granted", "standing_granted", "authority_granted",
+            "admissibility_granted", "commitment_granted",
+            "execution_permission_granted", "certification_granted",
+            "endorsement_granted", "interoperability_verified",
+            "release_authority_granted", "downstream_mutation_authority_granted",
+            "user_manual_action_required",
+        ):
+            if props.get(field, {}).get("const") is not False:
+                failures.append(f"activation evidence schema must force {field}=false")
 
     if failures:
         print("DISCOVERY GOVERNANCE PUBLICATION: FAIL")
