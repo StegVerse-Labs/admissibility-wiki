@@ -2,7 +2,7 @@
   "schema_version": "discovery_governance_handoff_status.v1",
   "goal_id": "discovery-governance-minimum-handoff",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "state": "SOURCE_COMPLETE_WITH_EXPLICIT_CANONICAL_COMPLETION_CRITERIA_PENDING_WORKFLOW_OBSERVATION",
+  "state": "SOURCE_COMPLETE_WITH_CANONICAL_RUNTIME_VALIDATION_PENDING_WORKFLOW_OBSERVATION",
   "doctrine": "docs/formalisms/discovery-governance-minimum-handoff.md",
   "schema": "static/schemas/discovery-governance-handoff.schema.json",
   "proof_receipt_schema": "static/schemas/discovery-governance-handoff-proof-receipt.schema.json",
@@ -17,6 +17,7 @@
   "activation_closure_checker": "scripts/check_discovery_governance_activation_closure.py",
   "activation_evidence_writer": "scripts/write_discovery_governance_activation_evidence.py",
   "activation_evidence_contract_checker": "scripts/check_discovery_governance_activation_evidence_contract.py",
+  "activation_evidence_runtime_checker": "scripts/check_discovery_governance_activation_evidence_runtime.py",
   "activation_evidence_receipt": "reports/discovery-governance-activation-evidence-receipt.json",
   "goal_completion_field": "goal_completion_observed",
   "completion_criteria_field": "completion_criteria",
@@ -57,6 +58,11 @@
     "input_sha256_digests_present",
     "authority_boundary_preserved"
   ],
+  "runtime_validation_cases": [
+    "complete valid evidence set must produce ACTIVATION_EVIDENCE_COMPLETE and goal_completion_observed=true",
+    "single failed public route must produce ACTIVATION_EVIDENCE_FAIL_CLOSED and goal_completion_observed=false",
+    "runtime validation must restore pre-existing report files after execution"
+  ],
   "proof_properties": [
     "fixture_sha256",
     "per-case expected and actual outcomes",
@@ -72,7 +78,8 @@
     "canonical validation, Pages build, deployment, proof, publication, and embedded closure are summarized in one run-bound activation evidence receipt",
     "receipt SHA-256 digests preserve the exact proof, publication, and public activation inputs",
     "activation evidence writer, schema, workflow bindings, paths, states, and all false authority constants are enforced inside canonical validation",
-    "goal completion is an explicit boolean derived from every named completion criterion rather than inferred from state text alone"
+    "goal completion is an explicit boolean derived from every named completion criterion rather than inferred from state text alone",
+    "canonical runtime validation executes both complete and failed-route evidence sets and verifies fail-closed behavior"
   ],
   "public_routes": [
     "/formalisms/discovery-governance-minimum-handoff",
@@ -90,5 +97,5 @@
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
   "downstream_mutation_authority": "none granted",
-  "updated_at": "2026-07-22T18:00:00Z"
+  "updated_at": "2026-07-22T18:20:00Z"
 }
