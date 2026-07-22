@@ -91,6 +91,12 @@ def main() -> int:
     print(f"SANDBOX: {sandbox_status}")
     for result in results:
         print(f"{result['id']}: {result['status']}")
+        if result["status"] == "FAIL":
+            print("--- failing command ---")
+            print(" ".join(result["command"]))
+            print("--- failing output ---")
+            print(result["output"] or "(no validator output)")
+            print("--- end failing output ---")
     print(f"report: {REPORT.relative_to(ROOT)}")
     return 0 if sandbox_status == "PASS" else 1
 
