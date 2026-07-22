@@ -2,7 +2,7 @@
   "schema_version": "discovery_governance_handoff_status.v1",
   "goal_id": "discovery-governance-minimum-handoff",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "state": "SOURCE_COMPLETE_WITH_CANONICAL_ARTIFACT_CUSTODY_PENDING_WORKFLOW_OBSERVATION",
+  "state": "SOURCE_COMPLETE_WITH_ACTIVATION_CLOSURE_INTEGRITY_VALIDATION_PENDING_WORKFLOW_OBSERVATION",
   "doctrine": "docs/formalisms/discovery-governance-minimum-handoff.md",
   "schema": "static/schemas/discovery-governance-handoff.schema.json",
   "proof_receipt_schema": "static/schemas/discovery-governance-handoff-proof-receipt.schema.json",
@@ -13,6 +13,8 @@
   "proof_receipt": "reports/discovery-governance-handoff-proof-receipt.json",
   "proof_receipt_validator": "scripts/check_discovery_governance_proof_receipt.py",
   "publication_checker": "scripts/check_discovery_governance_publication.py",
+  "activation_closure_checker": "scripts/check_discovery_governance_activation_closure.py",
+  "public_receipt_writer_test": "scripts/check-public-activation-receipt-writer.mjs",
   "public_route_observer": "scripts/check_governed_llm_deployment_status.py",
   "publication_receipt": "reports/discovery-governance-publication-receipt.json",
   "public_activation_closure": "activation_closures.discovery_governance",
@@ -41,7 +43,11 @@
     "fail-closed result preservation",
     "run and commit binding when executed in GitHub Actions",
     "independent receipt regeneration and invariant validation inside canonical validation",
-    "durable workflow artifact custody for proof and publication receipts"
+    "durable workflow artifact custody for proof and publication receipts",
+    "exact equality between standalone publication receipt and embedded activation closure",
+    "route aggregate consistency with per-route HTTP evidence",
+    "run, commit, repository, and attempt identity consistency across receipts",
+    "publication_complete cannot bypass discovery route failure"
   ],
   "public_routes": [
     "/formalisms/discovery-governance-minimum-handoff",
@@ -59,5 +65,5 @@
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
   "downstream_mutation_authority": "none granted",
-  "updated_at": "2026-07-21T21:05:00Z"
+  "updated_at": "2026-07-22T16:00:00Z"
 }
