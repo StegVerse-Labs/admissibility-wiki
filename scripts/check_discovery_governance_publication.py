@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEPLOYMENT_CHECKER = ROOT / "scripts" / "check_governed_llm_deployment_status.py"
 PUBLIC_RECEIPT_WRITER = ROOT / "scripts" / "write-public-activation-receipt.mjs"
+CANONICAL_WORKFLOW = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
 STATUS = ROOT / "static" / "status" / "discovery-governance-handoff-status.json"
 DOCTRINE = ROOT / "docs" / "formalisms" / "discovery-governance-minimum-handoff.md"
 SCHEMA = ROOT / "static" / "schemas" / "discovery-governance-handoff.schema.json"
@@ -15,20 +16,14 @@ EXAMPLE = ROOT / "static" / "examples" / "discovery-governance-handoff.example.j
 HANDOFF = ROOT / "docs" / "DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md"
 
 DEPLOYMENT_MARKERS = (
-    '"discovery_governance_doctrine"',
-    '"discovery_governance_schema"',
-    '"discovery_governance_status"',
-    '"discovery_governance_example"',
+    '"discovery_governance_doctrine"', '"discovery_governance_schema"',
+    '"discovery_governance_status"', '"discovery_governance_example"',
     '"discovery_governance_publication_receipt_schema"',
     'discovery-governance-publication-receipt.json',
     'discovery_governance_publication_receipt.v1',
-    'DOCUMENTED_ARCHITECTURAL_ALIGNMENT',
-    'implementation_equivalence_established',
-    'interoperability_verified',
-    'consent_granted',
-    'admissibility_granted',
-    'execution_permission_granted',
-    'downstream_mutation_authority_granted',
+    'DOCUMENTED_ARCHITECTURAL_ALIGNMENT', 'implementation_equivalence_established',
+    'interoperability_verified', 'consent_granted', 'admissibility_granted',
+    'execution_permission_granted', 'downstream_mutation_authority_granted',
 )
 
 WRITER_MARKERS = (
@@ -37,6 +32,14 @@ WRITER_MARKERS = (
     "discovery_governance_publication_receipt: discoveryReceiptPath",
     "discoveryReceipt.all_required_public_routes_verified === true",
     "A discovery handoff does not grant consent, standing, authority, admissibility, commitment, execution permission, certification, or endorsement.",
+)
+
+WORKFLOW_MARKERS = (
+    "name: discovery-governance-proof-receipt",
+    "reports/discovery-governance-handoff-proof-receipt.json",
+    "reports/discovery-governance-publication-receipt.json",
+    "name: public-activation-receipt",
+    "if-no-files-found: error",
 )
 
 REQUIRED_NON_AUTHORITY = {
@@ -63,6 +66,7 @@ def main() -> int:
 
     require_markers(DEPLOYMENT_CHECKER, DEPLOYMENT_MARKERS, "deployment checker", failures)
     require_markers(PUBLIC_RECEIPT_WRITER, WRITER_MARKERS, "public receipt writer", failures)
+    require_markers(CANONICAL_WORKFLOW, WORKFLOW_MARKERS, "canonical workflow", failures)
 
     if STATUS.exists():
         status = json.loads(STATUS.read_text(encoding="utf-8"))
