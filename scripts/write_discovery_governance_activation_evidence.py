@@ -4,11 +4,13 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PROOF = ROOT / "reports" / "discovery-governance-handoff-proof-receipt.json"
+DOWNLOADED_PROOF = ROOT / "discovery-governance-handoff-proof-receipt.json"
 PUBLICATION = ROOT / "reports" / "discovery-governance-publication-receipt.json"
 PUBLIC_ACTIVATION = ROOT / "reports" / "public-activation-receipt.json"
 OUT = ROOT / "reports" / "discovery-governance-activation-evidence-receipt.json"
@@ -48,6 +50,10 @@ def sha256(path: Path) -> str:
 def main() -> int:
     failures: list[str] = []
     proof = publication = public_activation = None
+
+    if not PROOF.exists() and DOWNLOADED_PROOF.exists():
+        PROOF.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(DOWNLOADED_PROOF, PROOF)
 
     try:
         proof = load(PROOF)
