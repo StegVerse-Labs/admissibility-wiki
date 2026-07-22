@@ -17,7 +17,7 @@ Build a deterministic, public, replayable boundary contract that allows discover
 ## Current state
 
 ```text
-State: SOURCE_COMPLETE_WITH_ACTIVATION_CLOSURE_INTEGRITY_VALIDATION_PENDING_WORKFLOW_OBSERVATION
+State: SOURCE_COMPLETE_WITH_RUN_BOUND_ACTIVATION_EVIDENCE_PENDING_WORKFLOW_OBSERVATION
 Manual task requirement: none
 User manual action required: false
 Downstream mutation authority: none granted
@@ -26,6 +26,7 @@ Public job: verify-public-pages
 Proof artifact: discovery-governance-proof-receipt
 Public artifact: public-activation-receipt
 Closure key: activation_closures.discovery_governance
+Final evidence receipt: reports/discovery-governance-activation-evidence-receipt.json
 ```
 
 ## Installed work
@@ -79,7 +80,7 @@ Public activation receipt embedding:
 
 Canonical artifact custody:
   .github/workflows/validate-chain-continuation.yml
-  commit 61a6a173dad8ae11f00474808f5b6a48fcecc133
+  initial custody commit 61a6a173dad8ae11f00474808f5b6a48fcecc133
 
 Activation closure integrity verifier:
   scripts/check_discovery_governance_activation_closure.py
@@ -89,13 +90,26 @@ Public writer deterministic closure test:
   scripts/check-public-activation-receipt-writer.mjs
   commit a275de2a32b004285d20b924dad18367d438d7ed
 
+Run-bound activation evidence writer:
+  scripts/write_discovery_governance_activation_evidence.py
+  initial commit 12d2b58eddaf36689be1780bac322ea711e1c346
+  artifact normalization commit 9832aab694867002b5b4f5695594fd14fb568484
+
+Activation evidence receipt schema:
+  static/schemas/discovery-governance-activation-evidence-receipt.schema.json
+  commit e77ef3d14fe18ce7d25805468ba6d3737e325d20
+
+Canonical run binding and artifact upload:
+  .github/workflows/validate-chain-continuation.yml
+  commit b24847af1563fe34fb52f936c95f5f07a2984ce0
+
 Publication contract drift validation:
   scripts/check_discovery_governance_publication.py
-  commit 1b17ccc4d862568da93041e4d443a69c13626aa2
+  activation-evidence contract commit f3203e432f46ccc739a88cce4afd6663c6685536
 
 Status:
   static/status/discovery-governance-handoff-status.json
-  commit e8b3ae236c54e751d61f79a416b4963b49cb84e7
+  run-bound evidence commit 6cdf2fe52abb5af3b76c93c9aed26f062e9bc9ab
 ```
 
 ## Deterministic outcomes
@@ -109,9 +123,40 @@ FAIL_CLOSED_MISSING_PROVENANCE -> FAIL_CLOSED
 
 The proof validator independently reruns the checker and rejects closure unless the fixture digest matches, all four outcomes are present, expected and actual outcomes agree, the result is `PASS`, and all authority-bearing fields remain false.
 
-## Activation closure integrity
+## Run-bound activation evidence
 
-The standalone publication receipt and its embedded closure are now independently checkable after the public writer runs.
+The canonical `verify-public-pages` job now downloads the proof artifact from the validation job, verifies the deployed route set, writes the public activation receipt, checks exact activation-closure integrity, and then writes:
+
+```text
+reports/discovery-governance-activation-evidence-receipt.json
+```
+
+The receipt reaches `ACTIVATION_EVIDENCE_COMPLETE` only when:
+
+```text
+1. the canonical validation -> build -> deploy dependency chain has completed;
+2. the proof receipt is PASS and preserves all four deterministic outcomes;
+3. all five discovery-governance public routes are reachable with 2xx or 3xx status;
+4. the publication receipt reports WORKFLOW_OBSERVED_PUBLICATION_COMPLETE;
+5. Pages deployment observation is true;
+6. the standalone publication receipt exactly equals activation_closures.discovery_governance;
+7. public-activation publication_complete is true;
+8. repository, commit, run id, and run attempt agree across receipts;
+9. SHA-256 digests are recorded for the proof, publication, and public activation receipts;
+10. every authority-bearing field remains false.
+```
+
+The evidence receipt is uploaded in the existing `public-activation-receipt` artifact alongside:
+
+```text
+reports/public-activation-receipt.json
+reports/discovery-governance-publication-receipt.json
+reports/discovery-governance-activation-evidence-receipt.json
+```
+
+A missing, malformed, inconsistent, or incomplete input produces `ACTIVATION_EVIDENCE_FAIL_CLOSED`. It creates no user task and grants no execution, release, or downstream mutation authority.
+
+## Activation closure integrity
 
 ```text
 standalone receipt:
@@ -125,20 +170,7 @@ linked receipt:
   linked_receipts.discovery_governance_publication_receipt
 ```
 
-`scripts/check_discovery_governance_activation_closure.py` rejects closure unless:
-
-```text
-1. the standalone receipt and embedded closure are exactly equal;
-2. all five required routes are present;
-3. route aggregate state agrees with each route's reachable flag and HTTP status;
-4. closure state agrees with route evidence;
-5. pages deployment observation agrees with route evidence;
-6. repository, commit, run id, and run attempt agree across receipts;
-7. every authority-bearing field remains false;
-8. public publication_complete cannot remain true when discovery route evidence fails.
-```
-
-The deterministic public writer test now creates a bounded five-route discovery receipt, runs the public writer, and verifies exact closure equality, linked-receipt custody, route status, and all non-authority fields.
+`scripts/check_discovery_governance_activation_closure.py` rejects closure unless the standalone and embedded receipts are exactly equal, route aggregation agrees with per-route HTTP evidence, deployment and closure states agree with route evidence, run identity matches, every authority field remains false, and `publication_complete` cannot bypass discovery-route failure.
 
 ## Canonical artifact custody
 
@@ -152,6 +184,7 @@ artifact: public-activation-receipt
 paths:
   reports/public-activation-receipt.json
   reports/discovery-governance-publication-receipt.json
+  reports/discovery-governance-activation-evidence-receipt.json
 if-no-files-found: error
 ```
 
@@ -186,6 +219,7 @@ EXECUTION_PERMISSION
 CERTIFICATION
 ENDORSEMENT
 INTEROPERABILITY_STANDING
+RELEASE_AUTHORITY
 DOWNSTREAM_MUTATION_AUTHORITY
 ```
 
@@ -196,14 +230,14 @@ The Conectrr correspondence remains classified only as `DOCUMENTED_ARCHITECTURAL
 Destination: `StegVerse-Labs/admissibility-wiki`
 
 ```text
-1. Observe the canonical workflow run containing commit e8b3ae236c54e751d61f79a416b4963b49cb84e7 or a successor.
+1. Observe the canonical workflow run containing commit 6cdf2fe52abb5af3b76c93c9aed26f062e9bc9ab or a successor.
 2. Inspect and repair only evidence-grounded validation or Docusaurus build failures.
-3. Confirm handoff, proof, publication, and public writer validators pass.
+3. Confirm handoff, proof, publication, writer, closure-integrity, and activation-evidence validators pass.
 4. Retrieve discovery-governance-proof-receipt and verify its digest and PASS state.
 5. Verify all five public routes after deployment.
-6. Retrieve public-activation-receipt and confirm exact equality between the standalone discovery receipt and activation_closures.discovery_governance.
-7. Run the activation closure integrity verifier against retrieved receipts.
-8. Record run id, attempt, commit, artifact ids, route statuses, digest, and closure state here.
+6. Retrieve public-activation-receipt and confirm all three receipt files are present.
+7. Confirm discovery-governance-activation-evidence-receipt reports ACTIVATION_EVIDENCE_COMPLETE with matching run identity and non-null SHA-256 digests.
+8. Record run id, attempt, commit, artifact ids, route statuses, digests, and closure state here.
 9. Claim activation completion only after all run-bound evidence passes.
 ```
 
@@ -226,16 +260,16 @@ No destination mutation is authorized by this handoff. Each destination handoff 
 
 This goal reaches activation completion when:
 
-1. canonical validation passes with handoff, proof, publication, and writer validators;
+1. canonical validation passes with handoff, proof, publication, writer, closure-integrity, and activation-evidence contracts;
 2. the proof artifact verifies all four outcomes and the current fixture digest;
 3. the Pages build and deployment succeed;
 4. all five public routes are reachable;
-5. the public activation artifact contains both receipts;
+5. the public activation artifact contains all three receipts;
 6. the standalone and embedded discovery receipts are exactly equal;
 7. `activation_closures.discovery_governance` reports workflow-observed publication completion;
-8. identity and route aggregation checks pass across receipts;
+8. the activation evidence receipt reports `ACTIVATION_EVIDENCE_COMPLETE` with matching run identity and exact input digests;
 9. run-bound evidence is recorded here;
-10. no discovery artifact is represented as consent, authority, admissibility, commitment, execution permission, certification, endorsement, or interoperability proof.
+10. no discovery artifact is represented as consent, authority, admissibility, commitment, execution permission, certification, endorsement, interoperability proof, release authority, or downstream mutation authority.
 
 ## Continuation instruction
 
