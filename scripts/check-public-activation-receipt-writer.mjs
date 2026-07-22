@@ -5,6 +5,14 @@ import { spawnSync } from 'node:child_process';
 const WRITER = 'scripts/write-public-activation-receipt.mjs';
 const OUT = 'reports/public-activation-receipt.json';
 const OPTIMIZATION_RECEIPT = 'reports/optimization-target-publication-verification-receipt.json';
+const DISCOVERY_RECEIPT = 'reports/discovery-governance-publication-receipt.json';
+const DISCOVERY_ROUTES = [
+  'discovery_governance_doctrine',
+  'discovery_governance_schema',
+  'discovery_governance_status',
+  'discovery_governance_example',
+  'discovery_governance_publication_receipt_schema'
+];
 const REQUIRED_CHECKS = [
   'public_site_loads',
   'status_json_reachable',
@@ -59,6 +67,38 @@ fs.writeFileSync(OPTIMIZATION_RECEIPT, JSON.stringify({
     verifier: 'deterministic local receipt-writer validation mode'
   }]))
 }, null, 2) + '\n');
+fs.writeFileSync(DISCOVERY_RECEIPT, JSON.stringify({
+  schema: 'discovery_governance_publication_receipt.v1',
+  goal_id: 'discovery-governance-minimum-handoff',
+  state: 'WORKFLOW_OBSERVED_PUBLICATION_COMPLETE',
+  observed_at: new Date().toISOString(),
+  repository: 'StegVerse-Labs/admissibility-wiki',
+  commit: 'validator-local-sha',
+  run_id: 'validator-local-run',
+  run_attempt: '1',
+  routes: Object.fromEntries(DISCOVERY_ROUTES.map((name) => [name, {
+    url: `https://stegverse-labs.github.io/admissibility-wiki/mock/${name}`,
+    reachable: true,
+    http_status: 200
+  }])),
+  all_required_public_routes_verified: true,
+  pages_deployment_observed: true,
+  architectural_alignment_classification: 'DOCUMENTED_ARCHITECTURAL_ALIGNMENT',
+  implementation_equivalence_established: false,
+  interoperability_verified: false,
+  consent_granted: false,
+  standing_granted: false,
+  authority_granted: false,
+  admissibility_granted: false,
+  commitment_granted: false,
+  execution_permission_granted: false,
+  certification_granted: false,
+  endorsement_granted: false,
+  downstream_mutation_authority_granted: false,
+  manual_task_requirement: 'NONE',
+  user_manual_action_required: false,
+  continuation_source: 'docs/DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md'
+}, null, 2) + '\n');
 
 const result = spawnSync(process.execPath, [WRITER], {
   stdio: 'pipe',
@@ -104,37 +144,23 @@ if (radiology.user_manual_action_required !== false) fail('radiology user action
 if (radiology.execution_authority_granted !== false) fail('radiology authority mismatch');
 
 const verification = receipt.activation_closures?.verification_execution_authority;
-if (!verification || verification.schema !== 'verification_execution_authority_activation_closure.v1') {
-  fail('verification-execution closure mismatch');
-}
+if (!verification || verification.schema !== 'verification_execution_authority_activation_closure.v1') fail('verification-execution closure mismatch');
 if (verification.execution_authority_granted !== false) fail('verification execution authority mismatch');
 if (verification.certification_authority_granted !== false) fail('verification certification authority mismatch');
 
 const conceptual = receipt.activation_closures?.conceptual_inheritance;
-if (!conceptual || conceptual.schema !== 'conceptual_inheritance_publication_closure.v1') {
-  fail('conceptual inheritance closure mismatch');
-}
+if (!conceptual || conceptual.schema !== 'conceptual_inheritance_publication_closure.v1') fail('conceptual inheritance closure mismatch');
 if (conceptual.goal_id !== 'conceptual-inheritance-provenance-standing') fail('conceptual inheritance goal mismatch');
 if (conceptual.state !== 'WORKFLOW_OBSERVED_PUBLICATION_COMPLETE') fail('conceptual inheritance state mismatch');
 if (conceptual.all_required_public_routes_verified !== true) fail('conceptual inheritance route verification mismatch');
-for (const key of [
-  'conceptual_inheritance_doctrine',
-  'conceptual_inheritance_status',
-  'conceptual_inheritance_publication_status'
-]) {
+for (const key of ['conceptual_inheritance_doctrine', 'conceptual_inheritance_status', 'conceptual_inheritance_publication_status']) {
   if (conceptual.evidence?.[key]?.reachable !== true) fail(`conceptual inheritance evidence mismatch: ${key}`);
 }
 if (conceptual.manual_task_requirement !== 'NONE') fail('conceptual inheritance manual task mismatch');
 if (conceptual.user_manual_action_required !== false) fail('conceptual inheritance user action mismatch');
-if (conceptual.authorship_determined !== false) fail('conceptual inheritance authorship boundary mismatch');
-if (conceptual.ownership_determined !== false) fail('conceptual inheritance ownership boundary mismatch');
-if (conceptual.infringement_determined !== false) fail('conceptual inheritance infringement boundary mismatch');
-if (conceptual.derivation_determined !== false) fail('conceptual inheritance derivation boundary mismatch');
-if (conceptual.origin_claim_standing_granted !== false) fail('conceptual inheritance standing boundary mismatch');
-if (conceptual.execution_authority_granted !== false) fail('conceptual inheritance execution authority mismatch');
-if (conceptual.release_authority_granted !== false) fail('conceptual inheritance release authority mismatch');
-if (conceptual.downstream_mutation_authority_granted !== false) fail('conceptual inheritance downstream authority mismatch');
-if (conceptual.handoff_reconciliation_required_for_continuation !== false) fail('conceptual inheritance reconciliation mismatch');
+for (const key of ['authorship_determined', 'ownership_determined', 'infringement_determined', 'derivation_determined', 'origin_claim_standing_granted', 'execution_authority_granted', 'release_authority_granted', 'downstream_mutation_authority_granted', 'handoff_reconciliation_required_for_continuation']) {
+  if (conceptual[key] !== false) fail(`conceptual inheritance boundary mismatch: ${key}`);
+}
 
 const mesh = receipt.activation_closures?.documentation_mesh;
 if (!mesh) fail('missing documentation mesh closure');
@@ -149,13 +175,10 @@ for (const observation of mesh.observations) {
     if (!observation[key]?.url) fail(`documentation mesh observation URL missing: ${observation.peer_id}.${key}`);
   }
 }
+for (const key of ['user_manual_action_required', 'cross_repo_authority_granted', 'standing_conferred', 'execution_authority_granted', 'downstream_mutation_authority_granted', 'handoff_reconciliation_required_for_continuation']) {
+  if (mesh[key] !== false) fail(`documentation mesh boundary mismatch: ${key}`);
+}
 if (mesh.manual_task_requirement !== 'NONE') fail('documentation mesh manual task mismatch');
-if (mesh.user_manual_action_required !== false) fail('documentation mesh user action mismatch');
-if (mesh.cross_repo_authority_granted !== false) fail('documentation mesh authority mismatch');
-if (mesh.standing_conferred !== false) fail('documentation mesh standing mismatch');
-if (mesh.execution_authority_granted !== false) fail('documentation mesh execution authority mismatch');
-if (mesh.downstream_mutation_authority_granted !== false) fail('documentation mesh downstream authority mismatch');
-if (mesh.handoff_reconciliation_required_for_continuation !== false) fail('documentation mesh reconciliation mismatch');
 
 const quantum = receipt.activation_closures?.quantum_security;
 if (!quantum || quantum.schema !== 'quantum_security_public_route_observation.v1') fail('quantum-security closure mismatch');
@@ -163,16 +186,25 @@ if (quantum.state !== 'SIMULATED_VALIDATOR_PASS') fail('quantum-security simulat
 if (quantum.execution_authority_granted !== false) fail('quantum-security authority mismatch');
 if (quantum.downstream_mutation_authority_granted !== false) fail('quantum-security downstream authority mismatch');
 
+const discovery = receipt.activation_closures?.discovery_governance;
+if (!discovery || discovery.schema !== 'discovery_governance_publication_receipt.v1') fail('discovery-governance closure mismatch');
+if (discovery.goal_id !== 'discovery-governance-minimum-handoff') fail('discovery-governance goal mismatch');
+if (discovery.state !== 'WORKFLOW_OBSERVED_PUBLICATION_COMPLETE') fail('discovery-governance state mismatch');
+if (discovery.all_required_public_routes_verified !== true) fail('discovery-governance route verification mismatch');
+for (const route of DISCOVERY_ROUTES) {
+  if (discovery.routes?.[route]?.reachable !== true) fail(`discovery-governance route mismatch: ${route}`);
+  if (discovery.routes?.[route]?.http_status !== 200) fail(`discovery-governance HTTP status mismatch: ${route}`);
+}
+for (const key of ['implementation_equivalence_established', 'interoperability_verified', 'consent_granted', 'standing_granted', 'authority_granted', 'admissibility_granted', 'commitment_granted', 'execution_permission_granted', 'certification_granted', 'endorsement_granted', 'downstream_mutation_authority_granted']) {
+  if (discovery[key] !== false) fail(`discovery-governance boundary mismatch: ${key}`);
+}
+if (JSON.stringify(discovery) !== JSON.stringify(JSON.parse(fs.readFileSync(DISCOVERY_RECEIPT, 'utf8')))) fail('embedded discovery closure differs from standalone receipt');
+if (receipt.linked_receipts?.discovery_governance_publication_receipt !== DISCOVERY_RECEIPT) fail('discovery-governance receipt binding mismatch');
+
 const reconstructionUrl = receipt.linked_receipts?.external_translation_reconstruction;
-if (reconstructionUrl !== 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json') {
-  fail('external translation reconstruction receipt binding mismatch');
-}
-if (receipt.linked_receipts?.ai_led_radiology_execution !== 'reports/ai-led-radiology-execution-receipt.json') {
-  fail('AI-led radiology execution receipt binding mismatch');
-}
-if (receipt.linked_receipts?.quantum_security_public_route_observation !== 'reports/quantum-security-public-route-observation.json') {
-  fail('quantum-security receipt binding mismatch');
-}
+if (reconstructionUrl !== 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json') fail('external translation reconstruction receipt binding mismatch');
+if (receipt.linked_receipts?.ai_led_radiology_execution !== 'reports/ai-led-radiology-execution-receipt.json') fail('AI-led radiology execution receipt binding mismatch');
+if (receipt.linked_receipts?.quantum_security_public_route_observation !== 'reports/quantum-security-public-route-observation.json') fail('quantum-security receipt binding mismatch');
 
 const nonClaims = receipt.non_claims || [];
 if (!nonClaims.some((claim) => claim.includes('does not create provider governance'))) fail('missing provider governance non-claim');
@@ -181,4 +213,5 @@ if (!nonClaims.some((claim) => claim.includes('does not grant cross-repository a
 if (!nonClaims.some((claim) => claim.includes('does not decide authorship'))) fail('missing conceptual inheritance non-claim');
 
 fs.rmSync(OPTIMIZATION_RECEIPT, { force: true });
+fs.rmSync(DISCOVERY_RECEIPT, { force: true });
 console.log('public activation receipt writer OK');
