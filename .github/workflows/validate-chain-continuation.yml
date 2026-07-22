@@ -333,10 +333,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      - name: Download discovery governance proof receipt
+        uses: actions/download-artifact@v4
+        with:
+          name: discovery-governance-proof-receipt
+          path: .
 
       - name: Verify deployed site root
         run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "${{ needs.deploy-pages.outputs.page_url }}"
@@ -388,6 +399,14 @@ jobs:
           PAGE_URL: ${{ needs.deploy-pages.outputs.page_url }}
         run: node scripts/write-public-activation-receipt.mjs
 
+      - name: Verify discovery governance activation closure
+        run: python scripts/check_discovery_governance_activation_closure.py
+
+      - name: Write discovery governance activation evidence receipt
+        env:
+          DISCOVERY_WORKFLOW_DEPENDENCIES_SATISFIED: 'true'
+        run: python scripts/write_discovery_governance_activation_evidence.py
+
       - name: Upload public activation receipt
         uses: actions/upload-artifact@v4
         with:
@@ -395,5 +414,6 @@ jobs:
           path: |
             reports/public-activation-receipt.json
             reports/discovery-governance-publication-receipt.json
+            reports/discovery-governance-activation-evidence-receipt.json
           if-no-files-found: error
           retention-days: 30
