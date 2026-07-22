@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "external-framework-evaluations",
+  "status": "PUBLIC_SOURCE_INGESTION_ACTIVE",
+  "frameworks": [
+    {
+      "framework_id": "stegverse",
+      "name": "StegVerse",
+      "record_path": "stegverse.json",
+      "self_declaration_status": "PENDING_FREEZE",
+      "external_source_status": "NATIVE",
+      "live_test_status": "NOT_TESTED"
+    },
+    {
+      "framework_id": "ta-14",
+      "name": "TA-14 Admissible Execution Architecture",
+      "record_path": "ta-14.json",
+      "self_declaration_status": "PUBLIC_SOURCES_OBSERVED_NOT_OWNER_CONFIRMED",
+      "external_source_status": "PUBLIC_SITE_OBSERVED",
+      "live_test_status": "NOT_TESTED"
+    }
+  ],
+  "authority": {
+    "comparison": false,
+    "admissibility": false,
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "parentage": false
+  },
+  "updated_at": "2026-07-22T12:10:00Z"
+}
