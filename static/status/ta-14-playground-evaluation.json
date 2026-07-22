@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "external_framework_test_environment_observation",
+  "record_id": "ta14-playground-environment-qualification-2026-07-22",
+  "framework_id": "ta-14",
+  "environment": {
+    "environment_id": "ta14-playground",
+    "environment_class": "SELF_SERVICE_TESTING_ENVIRONMENT",
+    "access": "OFFERED",
+    "host_framework": "ta-14",
+    "proposed_framework_under_test": "stegverse"
+  },
+  "qualification": {
+    "result": "FAIL",
+    "failure_class": "INTERFACE_SIZING_AND_READABILITY_INCOMPATIBILITY",
+    "summary": "Displayed values did not meet the tester's required sizing and readability constraints, preventing usable operation of the proposed self-service environment.",
+    "route_construction": "NOT_STARTED",
+    "stegverse_execution": "NOT_TESTED",
+    "ta14_architectural_capability": "NOT_EVALUATED",
+    "remediation_condition": "The display must support the tester's required sizing and readability before architectural testing can proceed."
+  },
+  "reciprocal_scope": {
+    "ta14_evaluation_of_stegverse": "DECLINED_UNDER_PROPOSED_MODEL",
+    "reciprocal_architectural_testing": "DECLINED_UNDER_PROPOSED_MODEL",
+    "reason_recorded": "TA-14 described evaluation and reciprocal review as separate services requiring separate scope rather than participation in the proposed reciprocal model.",
+    "playground_substituted_for_reciprocal_review": true
+  },
+  "evidence_posture": {
+    "source_class": "DIRECT_PARTICIPANT_INTERACTION_AND_TEST_ATTEMPT",
+    "public_permalink": null,
+    "independent_verification": false,
+    "limitations": [
+      "This result concerns environment qualification, not TA-14 architectural capability.",
+      "The result does not establish parentage, containment, completeness, superiority, or failure of the underlying framework.",
+      "The declined reciprocal scope is recorded separately from Playground access."
+    ]
+  },
+  "authority": {
+    "admissibility": false,
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "parentage": false
+  },
+  "recorded_on": "2026-07-22"
+}
