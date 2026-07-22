@@ -2,7 +2,7 @@
   "schema_version": "discovery_governance_handoff_status.v1",
   "goal_id": "discovery-governance-minimum-handoff",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "state": "SOURCE_COMPLETE_WITH_CANONICALLY_VALIDATED_RUN_BOUND_ACTIVATION_EVIDENCE_PENDING_WORKFLOW_OBSERVATION",
+  "state": "SOURCE_COMPLETE_WITH_EXPLICIT_CANONICAL_COMPLETION_CRITERIA_PENDING_WORKFLOW_OBSERVATION",
   "doctrine": "docs/formalisms/discovery-governance-minimum-handoff.md",
   "schema": "static/schemas/discovery-governance-handoff.schema.json",
   "proof_receipt_schema": "static/schemas/discovery-governance-handoff-proof-receipt.schema.json",
@@ -18,6 +18,8 @@
   "activation_evidence_writer": "scripts/write_discovery_governance_activation_evidence.py",
   "activation_evidence_contract_checker": "scripts/check_discovery_governance_activation_evidence_contract.py",
   "activation_evidence_receipt": "reports/discovery-governance-activation-evidence-receipt.json",
+  "goal_completion_field": "goal_completion_observed",
+  "completion_criteria_field": "completion_criteria",
   "public_receipt_writer_test": "scripts/check-public-activation-receipt-writer.mjs",
   "public_route_observer": "scripts/check_governed_llm_deployment_status.py",
   "publication_receipt": "reports/discovery-governance-publication-receipt.json",
@@ -41,6 +43,20 @@
     }
   },
   "outcomes": ["HANDOFF_READY", "REVIEW_REQUIRED", "DENY", "FAIL_CLOSED"],
+  "completion_criteria": [
+    "canonical_dependency_chain_observed",
+    "proof_receipt_pass",
+    "four_outcomes_preserved",
+    "all_five_public_routes_verified",
+    "publication_state_complete",
+    "pages_deployment_observed",
+    "standalone_embedded_closure_exact_match",
+    "linked_publication_receipt_bound",
+    "public_activation_publication_complete",
+    "receipt_run_identity_match",
+    "input_sha256_digests_present",
+    "authority_boundary_preserved"
+  ],
   "proof_properties": [
     "fixture_sha256",
     "per-case expected and actual outcomes",
@@ -55,7 +71,8 @@
     "publication_complete cannot bypass discovery route failure",
     "canonical validation, Pages build, deployment, proof, publication, and embedded closure are summarized in one run-bound activation evidence receipt",
     "receipt SHA-256 digests preserve the exact proof, publication, and public activation inputs",
-    "activation evidence writer, schema, workflow bindings, paths, states, and all false authority constants are enforced inside canonical validation"
+    "activation evidence writer, schema, workflow bindings, paths, states, and all false authority constants are enforced inside canonical validation",
+    "goal completion is an explicit boolean derived from every named completion criterion rather than inferred from state text alone"
   ],
   "public_routes": [
     "/formalisms/discovery-governance-minimum-handoff",
@@ -73,5 +90,5 @@
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
   "downstream_mutation_authority": "none granted",
-  "updated_at": "2026-07-22T17:25:00Z"
+  "updated_at": "2026-07-22T18:00:00Z"
 }
