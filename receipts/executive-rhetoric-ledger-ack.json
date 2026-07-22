@@ -1,22 +1,22 @@
 {
-  "acknowledgment_id": "ACK-ADMISSIBILITY-BC915F288745CBB58287",
+  "acknowledgment_id": "ACK-ADMISSIBILITY-A92D53ADA93C7C4C6BDA",
   "authority": {
     "owned_by_destination": true,
     "source_may_self_acknowledge": false
   },
-  "destination_commit": "9f1bfcb7d686abdccb6f9df926f693eb5a0ca4fb",
+  "destination_commit": "66402ba3e99f99da5a843a4c9079092b09d19a56",
   "destination_repository": "StegVerse-Labs/admissibility-wiki",
   "source_publication": {
     "path": "publication/compendium.json",
     "repository": "StegVerse-Labs/Executive_Rhetoric_Ledger",
-    "sha256": "bc915f288745cbb582871384a5895fabdf26e311a725112d720d120afee58d09"
+    "sha256": "a92d53ada93c7c4c6bdaf1351c22dc17dc3f51dd075231553fb9bae3c5ac438c"
   },
   "status": "acknowledged",
   "target_path": "data/executive-rhetoric-ledger/compendium.json",
   "validation": {
     "content_hash_matches": true,
     "destination_checks_passed": true,
-    "validated_at": "2026-07-20T07:20:00Z",
-    "validator": "admissibility-destination-owned-sync"
+    "validated_at": "2026-07-22T16:04:41Z",
+    "validator": "admissibility-destination-workflow"
   }
 }
