@@ -72,17 +72,22 @@ def main() -> int:
     if not dependencies:
         failures.append("canonical validation/build/deploy dependency chain not asserted by workflow")
 
+    proof_pass = False
+    four_outcomes_preserved = False
     if proof is not None:
         if proof.get("schema") != "discovery_governance_handoff_proof_receipt.v1":
             failures.append("proof receipt schema mismatch")
-        if proof.get("overall_result") != "PASS":
-            failures.append("proof receipt is not PASS")
         results = proof.get("results", [])
         observed = {item.get("actual") for item in results if item.get("matched") is True}
         required = {"HANDOFF_READY", "REVIEW_REQUIRED", "DENY", "FAIL_CLOSED"}
-        if not required.issubset(observed):
+        four_outcomes_preserved = required.issubset(observed)
+        proof_pass = proof.get("overall_result") == "PASS" and four_outcomes_preserved
+        if proof.get("overall_result") != "PASS":
+            failures.append("proof receipt is not PASS")
+        if not four_outcomes_preserved:
             failures.append("proof receipt does not preserve all four deterministic outcomes")
 
+    route_pass = publication_state_complete = pages_deployment_observed = authority_boundary_preserved = False
     if publication is not None:
         if publication.get("schema") != "discovery_governance_publication_receipt.v1":
             failures.append("publication receipt schema mismatch")
@@ -97,32 +102,57 @@ def main() -> int:
         ) if set(routes) == REQUIRED_ROUTES else False
         if publication.get("all_required_public_routes_verified") is not route_pass:
             failures.append("publication route aggregate mismatch")
-        if publication.get("state") != "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE":
+        publication_state_complete = publication.get("state") == "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE"
+        pages_deployment_observed = publication.get("pages_deployment_observed") is True
+        authority_boundary_preserved = all(publication.get(field) is False for field in FALSE_FIELDS)
+        if not publication_state_complete:
             failures.append("publication receipt is not workflow-observed complete")
-        if publication.get("pages_deployment_observed") is not True:
+        if not pages_deployment_observed:
             failures.append("Pages deployment was not observed")
         for field in FALSE_FIELDS:
             if publication.get(field) is not False:
                 failures.append(f"publication receipt must preserve {field}=false")
 
     embedded = None
+    exact_closure_match = linked_receipt_bound = public_publication_complete = False
     if public_activation is not None:
         embedded = public_activation.get("activation_closures", {}).get("discovery_governance")
         if embedded is None:
             failures.append("public activation receipt lacks discovery closure")
-        if publication is not None and embedded != publication:
+        exact_closure_match = publication is not None and embedded == publication
+        if publication is not None and not exact_closure_match:
             failures.append("standalone publication receipt differs from embedded closure")
-        if public_activation.get("linked_receipts", {}).get("discovery_governance_publication_receipt") != "reports/discovery-governance-publication-receipt.json":
+        linked_receipt_bound = public_activation.get("linked_receipts", {}).get("discovery_governance_publication_receipt") == "reports/discovery-governance-publication-receipt.json"
+        if not linked_receipt_bound:
             failures.append("linked publication receipt path mismatch")
-        if public_activation.get("publication_complete") is not True:
+        public_publication_complete = public_activation.get("publication_complete") is True
+        if not public_publication_complete:
             failures.append("public activation receipt is not publication_complete")
 
-    identities = []
-    for payload in (proof, publication, public_activation):
-        if payload is not None:
-            identities.append((payload.get("repository"), payload.get("commit"), payload.get("run_id"), payload.get("run_attempt")))
-    if identities and len(set(identities)) != 1:
+    identities = [
+        (payload.get("repository"), payload.get("commit"), payload.get("run_id"), payload.get("run_attempt"))
+        for payload in (proof, publication, public_activation) if payload is not None
+    ]
+    identity_match = len(identities) == 3 and len(set(identities)) == 1
+    if identities and not identity_match:
         failures.append("receipt repository/run identity mismatch")
+
+    input_digests_present = PROOF.exists() and PUBLICATION.exists() and PUBLIC_ACTIVATION.exists()
+    completion_criteria = {
+        "canonical_dependency_chain_observed": dependencies,
+        "proof_receipt_pass": proof_pass,
+        "four_outcomes_preserved": four_outcomes_preserved,
+        "all_five_public_routes_verified": route_pass,
+        "publication_state_complete": publication_state_complete,
+        "pages_deployment_observed": pages_deployment_observed,
+        "standalone_embedded_closure_exact_match": exact_closure_match,
+        "linked_publication_receipt_bound": linked_receipt_bound,
+        "public_activation_publication_complete": public_publication_complete,
+        "receipt_run_identity_match": identity_match,
+        "input_sha256_digests_present": input_digests_present,
+        "authority_boundary_preserved": authority_boundary_preserved,
+    }
+    goal_completion_observed = not failures and all(completion_criteria.values())
 
     receipt = {
         "schema": "discovery_governance_activation_evidence_receipt.v1",
@@ -132,7 +162,9 @@ def main() -> int:
         "commit": os.getenv("GITHUB_SHA"),
         "run_id": os.getenv("GITHUB_RUN_ID"),
         "run_attempt": os.getenv("GITHUB_RUN_ATTEMPT"),
-        "state": "ACTIVATION_EVIDENCE_COMPLETE" if not failures else "ACTIVATION_EVIDENCE_FAIL_CLOSED",
+        "state": "ACTIVATION_EVIDENCE_COMPLETE" if goal_completion_observed else "ACTIVATION_EVIDENCE_FAIL_CLOSED",
+        "goal_completion_observed": goal_completion_observed,
+        "completion_criteria": completion_criteria,
         "canonical_dependency_chain_observed": dependencies,
         "proof_receipt": {
             "path": str(PROOF.relative_to(ROOT)),
@@ -149,7 +181,7 @@ def main() -> int:
             "path": str(PUBLIC_ACTIVATION.relative_to(ROOT)),
             "sha256": sha256(PUBLIC_ACTIVATION) if PUBLIC_ACTIVATION.exists() else None,
             "publication_complete": public_activation.get("publication_complete") if public_activation else False,
-            "embedded_closure_exact_match": publication is not None and embedded == publication,
+            "embedded_closure_exact_match": exact_closure_match,
         },
         "failures": failures,
         "consent_granted": False,
@@ -169,9 +201,11 @@ def main() -> int:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)}: {receipt['state']}")
+    for criterion, passed in completion_criteria.items():
+        print(f"- {criterion}: {'PASS' if passed else 'FAIL'}")
     for failure in failures:
         print(f"- {failure}")
-    return 0 if not failures else 1
+    return 0 if goal_completion_observed else 1
 
 
 if __name__ == "__main__":
