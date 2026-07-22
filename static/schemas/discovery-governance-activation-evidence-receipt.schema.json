@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/discovery-governance-activation-evidence-receipt.schema.json",
+  "title": "Discovery Governance Activation Evidence Receipt",
+  "type": "object",
+  "required": [
+    "schema",
+    "goal_id",
+    "repository",
+    "state",
+    "canonical_dependency_chain_observed",
+    "proof_receipt",
+    "publication_receipt",
+    "public_activation_receipt",
+    "failures"
+  ],
+  "properties": {
+    "schema": {"const": "discovery_governance_activation_evidence_receipt.v1"},
+    "goal_id": {"const": "discovery-governance-minimum-handoff"},
+    "repository": {"const": "StegVerse-Labs/admissibility-wiki"},
+    "state": {"enum": ["ACTIVATION_EVIDENCE_COMPLETE", "ACTIVATION_EVIDENCE_FAIL_CLOSED"]},
+    "canonical_dependency_chain_observed": {"type": "boolean"},
+    "proof_receipt": {
+      "type": "object",
+      "required": ["path", "sha256", "overall_result"],
+      "properties": {
+        "path": {"const": "reports/discovery-governance-handoff-proof-receipt.json"},
+        "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "overall_result": {"enum": ["PASS", "FAIL_CLOSED", null]}
+      }
+    },
+    "publication_receipt": {
+      "type": "object",
+      "required": ["path", "sha256", "state", "all_required_public_routes_verified"],
+      "properties": {
+        "path": {"const": "reports/discovery-governance-publication-receipt.json"},
+        "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "state": {"enum": ["WORKFLOW_OBSERVED_PUBLICATION_COMPLETE", "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED", "SOURCE_BLOCKED_FAIL_CLOSED", null]},
+        "all_required_public_routes_verified": {"type": "boolean"}
+      }
+    },
+    "public_activation_receipt": {
+      "type": "object",
+      "required": ["path", "sha256", "publication_complete", "embedded_closure_exact_match"],
+      "properties": {
+        "path": {"const": "reports/public-activation-receipt.json"},
+        "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "publication_complete": {"type": "boolean"},
+        "embedded_closure_exact_match": {"type": "boolean"}
+      }
+    },
+    "failures": {"type": "array", "items": {"type": "string"}},
+    "consent_granted": {"const": false},
+    "standing_granted": {"const": false},
+    "authority_granted": {"const": false},
+    "admissibility_granted": {"const": false},
+    "commitment_granted": {"const": false},
+    "execution_permission_granted": {"const": false},
+    "certification_granted": {"const": false},
+    "endorsement_granted": {"const": false},
+    "interoperability_verified": {"const": false},
+    "release_authority_granted": {"const": false},
+    "downstream_mutation_authority_granted": {"const": false},
+    "user_manual_action_required": {"const": false}
+  }
+}
