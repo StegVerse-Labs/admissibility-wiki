@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0.0",
+  "evaluation_id": "eval-ta14-public-source-2026-07-22",
+  "framework": {
+    "framework_id": "ta-14",
+    "name": "TA-14 Admissible Execution Architecture",
+    "canonical_url": "https://sites.google.com/view/ta-14-admissible-execution-arc/",
+    "version": null,
+    "owner": "Greggory Don Butler"
+  },
+  "self_declaration": {
+    "claim_id": "ta14-public-self-declaration-2026-07-22",
+    "source": "SELF",
+    "scope": [
+      "proof-bound execution governance",
+      "consequence-bearing systems",
+      "AI and autonomous systems",
+      "buildings and HVACD/R",
+      "environmental and atmospheric integrity",
+      "healthcare",
+      "finance and insurance",
+      "public and institutional systems"
+    ],
+    "functions": [
+      "govern reality before reliance",
+      "preserve records and continuity",
+      "determine admissibility before consequence",
+      "bind authority and scope",
+      "govern commit and execution",
+      "record outcome and accountability",
+      "fail closed when admissibility is absent"
+    ],
+    "dependencies": [
+      "captured reality",
+      "preserved record",
+      "continuity and chain of custody",
+      "evidence sufficiency",
+      "defined authority and scope",
+      "execution boundary",
+      "outcome recording"
+    ],
+    "limitations": [
+      "public materials reviewed do not expose a complete machine-readable protocol",
+      "public materials reviewed do not expose a reproducible live test package",
+      "public materials reviewed do not expose implementation code for the full claimed route",
+      "public materials reviewed do not independently establish asserted parentage or originality",
+      "public materials reviewed do not establish legal ownership or patent scope"
+    ],
+    "exclusions": [
+      "no independent certification inferred",
+      "no legal conclusion inferred",
+      "no implementation completeness inferred",
+      "no universal applicability inferred"
+    ],
+    "evidence_refs": [
+      "src-ta14-eight-stages",
+      "src-ta14-execution-boundary",
+      "src-ta14-why-different",
+      "src-ta14-public-chronology",
+      "src-ta14-rights-boundary"
+    ],
+    "confidence": 0.9,
+    "uncertainty": [
+      "whether additional non-indexed technical artifacts exist",
+      "whether the public site accurately reflects current implementation state",
+      "whether a private Playground exposes stronger machine-readable evidence"
+    ]
+  },
+  "determinations": [
+    {
+      "claim_id": "stegverse-det-ta14-boundary-2026-07-22",
+      "source": "EVALUATOR",
+      "scope": [
+        "publicly documented consequence-governance architecture",
+        "broad cross-domain doctrine",
+        "execution-boundary and fail-closed governance claims",
+        "chronology and parent-architecture claims"
+      ],
+      "functions": [
+        "describe an eight-stage consequence chain",
+        "require evidentiary sufficiency before execution",
+        "distinguish permission from admissibility",
+        "assert continuity and outcome accountability",
+        "publish chronology and rights-reservation claims"
+      ],
+      "dependencies": [
+        "framework-defined evidence thresholds",
+        "continuity assertions",
+        "authority assertions",
+        "publicly documented but not yet machine-replayed route"
+      ],
+      "limitations": [
+        "current public observation establishes doctrine and claims, not complete executable behavior",
+        "no public deterministic test fixture was located in the reviewed sources",
+        "no public canonical event schema was located in the reviewed sources",
+        "no public replay bundle was located in the reviewed sources",
+        "no public cross-framework boundary reconstruction result was located"
+      ],
+      "exclusions": [
+        "this determination does not deny existence of private implementations",
+        "this determination does not decide patent validity or ownership",
+        "this determination does not certify StegVerse superiority"
+      ],
+      "evidence_refs": [
+        "src-ta14-eight-stages",
+        "src-ta14-execution-boundary",
+        "src-ta14-why-different",
+        "src-ta14-public-chronology",
+        "src-ta14-rights-boundary"
+      ],
+      "confidence": 0.82,
+      "uncertainty": [
+        "private Playground capabilities not observed",
+        "private Registry and governed-record formats not observed",
+        "implementation-to-doctrine correspondence not yet tested"
+      ],
+      "determination_id": "det-stegverse-ta14-public-001",
+      "evaluator_id": "stegverse",
+      "observation_class": "RECONSTRUCTED",
+      "parentage_claim": "INCONCLUSIVE"
+    }
+  ],
+  "test_runs": [],
+  "disputes": [
+    {
+      "dispute_id": "disp-ta14-parent-architecture-001",
+      "claim_refs": [
+        "ta14-public-self-declaration-2026-07-22",
+        "stegverse-det-ta14-boundary-2026-07-22"
+      ],
+      "status": "OPEN",
+      "summary": "TA-14 publicly claims parent-architecture status. Current public-source review confirms the claim exists but does not independently establish containment of external frameworks.",
+      "evidence_refs": [
+        "src-ta14-why-different",
+        "src-ta14-public-chronology",
+        "src-ta14-rights-boundary"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "src-ta14-eight-stages",
+      "url": "https://sites.google.com/view/ta-14-admissible-execution-arc/the-eight-stages-of-ta-14",
+      "source_class": "owner-controlled public site",
+      "supports": ["eight-stage chain", "full-route claim", "admissibility-before-execution doctrine"]
+    },
+    {
+      "source_id": "src-ta14-execution-boundary",
+      "url": "https://sites.google.com/view/ta-14-admissible-execution-arc/the-execution-boundary",
+      "source_class": "owner-controlled public site",
+      "supports": ["execution boundary", "fail-closed requirement", "authority and evidence checks"]
+    },
+    {
+      "source_id": "src-ta14-why-different",
+      "url": "https://sites.google.com/view/ta-14-admissible-execution-arc/why-ta-14-is-different",
+      "source_class": "owner-controlled public site",
+      "supports": ["parent-architecture claim", "permission-versus-admissibility distinction", "full-architecture claim"]
+    },
+    {
+      "source_id": "src-ta14-public-chronology",
+      "url": "https://sites.google.com/view/ta-14-admissible-execution-arc/ta-14-public-chronology",
+      "source_class": "owner-controlled public site",
+      "supports": ["chronology claim", "cross-domain applications", "origin claim"]
+    },
+    {
+      "source_id": "src-ta14-rights-boundary",
+      "url": "https://sites.google.com/view/ta-14-admissible-execution-arc/the-rights-reservation-and-public-boundary-notice",
+      "source_class": "owner-controlled public site",
+      "supports": ["rights reservation", "protected architecture claim", "commercial review claim"]
+    }
+  ],
+  "publication": {
+    "published_at": "2026-07-22T12:15:00Z",
+    "record_hash": "PENDING_CANONICAL_HASH",
+    "projection_authority": "NONE",
+    "custody_ref": null,
+    "reconstruction_status": "PARTIAL"
+  }
+}
