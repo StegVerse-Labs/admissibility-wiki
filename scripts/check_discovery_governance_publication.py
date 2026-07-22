@@ -7,6 +7,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEPLOYMENT_CHECKER = ROOT / "scripts" / "check_governed_llm_deployment_status.py"
 PUBLIC_RECEIPT_WRITER = ROOT / "scripts" / "write-public-activation-receipt.mjs"
+PUBLIC_RECEIPT_WRITER_TEST = ROOT / "scripts" / "check-public-activation-receipt-writer.mjs"
+ACTIVATION_CLOSURE_CHECKER = ROOT / "scripts" / "check_discovery_governance_activation_closure.py"
 CANONICAL_WORKFLOW = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
 STATUS = ROOT / "static" / "status" / "discovery-governance-handoff-status.json"
 DOCTRINE = ROOT / "docs" / "formalisms" / "discovery-governance-minimum-handoff.md"
@@ -32,6 +34,22 @@ WRITER_MARKERS = (
     "discovery_governance_publication_receipt: discoveryReceiptPath",
     "discoveryReceipt.all_required_public_routes_verified === true",
     "A discovery handoff does not grant consent, standing, authority, admissibility, commitment, execution permission, certification, or endorsement.",
+)
+
+WRITER_TEST_MARKERS = (
+    "const DISCOVERY_RECEIPT = 'reports/discovery-governance-publication-receipt.json'",
+    "const DISCOVERY_ROUTES = [",
+    "embedded discovery closure differs from standalone receipt",
+    "discovery-governance receipt binding mismatch",
+    "discovery-governance boundary mismatch",
+)
+
+ACTIVATION_CLOSURE_MARKERS = (
+    'embedded discovery closure does not exactly match standalone receipt',
+    'bounded route verification state does not match individual route evidence',
+    'public and discovery receipt {field} mismatch',
+    'public publication_complete cannot be true when discovery routes fail',
+    'DISCOVERY GOVERNANCE ACTIVATION CLOSURE: PASS',
 )
 
 WORKFLOW_MARKERS = (
@@ -66,6 +84,8 @@ def main() -> int:
 
     require_markers(DEPLOYMENT_CHECKER, DEPLOYMENT_MARKERS, "deployment checker", failures)
     require_markers(PUBLIC_RECEIPT_WRITER, WRITER_MARKERS, "public receipt writer", failures)
+    require_markers(PUBLIC_RECEIPT_WRITER_TEST, WRITER_TEST_MARKERS, "public receipt writer test", failures)
+    require_markers(ACTIVATION_CLOSURE_CHECKER, ACTIVATION_CLOSURE_MARKERS, "activation closure checker", failures)
     require_markers(CANONICAL_WORKFLOW, WORKFLOW_MARKERS, "canonical workflow", failures)
 
     if STATUS.exists():
