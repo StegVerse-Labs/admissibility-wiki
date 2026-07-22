@@ -69,6 +69,15 @@ jobs:
           path: reports/full_validation_chain_report.json
           if-no-files-found: error
 
+      - name: Upload discovery governance proof receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: discovery-governance-proof-receipt
+          path: reports/discovery-governance-handoff-proof-receipt.json
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Upload Goal 5 validation report
         if: always()
         uses: actions/upload-artifact@v4
@@ -383,5 +392,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: public-activation-receipt
-          path: reports/public-activation-receipt.json
+          path: |
+            reports/public-activation-receipt.json
+            reports/discovery-governance-publication-receipt.json
           if-no-files-found: error
+          retention-days: 30
