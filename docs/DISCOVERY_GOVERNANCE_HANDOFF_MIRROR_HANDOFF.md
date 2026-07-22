@@ -17,7 +17,7 @@ Build a deterministic, public, replayable boundary contract that allows discover
 ## Current state
 
 ```text
-State: SOURCE_COMPLETE_WITH_CANONICAL_ARTIFACT_CUSTODY_PENDING_WORKFLOW_OBSERVATION
+State: SOURCE_COMPLETE_WITH_ACTIVATION_CLOSURE_INTEGRITY_VALIDATION_PENDING_WORKFLOW_OBSERVATION
 Manual task requirement: none
 User manual action required: false
 Downstream mutation authority: none granted
@@ -71,11 +71,7 @@ Publication receipt schema:
 Public route observer:
   scripts/check_governed_llm_deployment_status.py
   reports/discovery-governance-publication-receipt.json
-  latest route-set commit ced7d2a1a8d12750ae85fb9272510875542716cb
-
-Publication validator:
-  scripts/check_discovery_governance_publication.py
-  workflow-custody validation commit 720b04600eb2ea3c1171e79058fa4a62d8685555
+  commit ced7d2a1a8d12750ae85fb9272510875542716cb
 
 Public activation receipt embedding:
   scripts/write-public-activation-receipt.mjs
@@ -85,9 +81,21 @@ Canonical artifact custody:
   .github/workflows/validate-chain-continuation.yml
   commit 61a6a173dad8ae11f00474808f5b6a48fcecc133
 
+Activation closure integrity verifier:
+  scripts/check_discovery_governance_activation_closure.py
+  commit 8808b63f6a945354f537a81fd6e088a8a5e6dcbc
+
+Public writer deterministic closure test:
+  scripts/check-public-activation-receipt-writer.mjs
+  commit a275de2a32b004285d20b924dad18367d438d7ed
+
+Publication contract drift validation:
+  scripts/check_discovery_governance_publication.py
+  commit 1b17ccc4d862568da93041e4d443a69c13626aa2
+
 Status:
   static/status/discovery-governance-handoff-status.json
-  artifact-custody commit 4a05ad5a5a7f6b902cb4eeee43bb076e65462e91
+  commit e8b3ae236c54e751d61f79a416b4963b49cb84e7
 ```
 
 ## Deterministic outcomes
@@ -101,29 +109,55 @@ FAIL_CLOSED_MISSING_PROVENANCE -> FAIL_CLOSED
 
 The proof validator independently reruns the checker and rejects closure unless the fixture digest matches, all four outcomes are present, expected and actual outcomes agree, the result is `PASS`, and all authority-bearing fields remain false.
 
-## Canonical artifact custody
+## Activation closure integrity
 
-The canonical workflow now uploads the local proof as:
+The standalone publication receipt and its embedded closure are now independently checkable after the public writer runs.
+
+```text
+standalone receipt:
+  reports/discovery-governance-publication-receipt.json
+
+embedded closure:
+  reports/public-activation-receipt.json
+  activation_closures.discovery_governance
+
+linked receipt:
+  linked_receipts.discovery_governance_publication_receipt
+```
+
+`scripts/check_discovery_governance_activation_closure.py` rejects closure unless:
+
+```text
+1. the standalone receipt and embedded closure are exactly equal;
+2. all five required routes are present;
+3. route aggregate state agrees with each route's reachable flag and HTTP status;
+4. closure state agrees with route evidence;
+5. pages deployment observation agrees with route evidence;
+6. repository, commit, run id, and run attempt agree across receipts;
+7. every authority-bearing field remains false;
+8. public publication_complete cannot remain true when discovery route evidence fails.
+```
+
+The deterministic public writer test now creates a bounded five-route discovery receipt, runs the public writer, and verifies exact closure equality, linked-receipt custody, route status, and all non-authority fields.
+
+## Canonical artifact custody
 
 ```text
 artifact: discovery-governance-proof-receipt
 path: reports/discovery-governance-handoff-proof-receipt.json
 if-no-files-found: error
 retention-days: 30
+
+artifact: public-activation-receipt
+paths:
+  reports/public-activation-receipt.json
+  reports/discovery-governance-publication-receipt.json
+if-no-files-found: error
 ```
 
-The existing public activation artifact now includes both:
-
-```text
-reports/public-activation-receipt.json
-reports/discovery-governance-publication-receipt.json
-```
-
-The publication validator checks these workflow markers so removal or drift fails canonical validation. Artifact presence provides durable evidence custody; it does not grant authority or prove that a workflow passed until a specific run is observed.
+Artifact custody preserves evidence. It does not prove a workflow passed until a specific run is observed.
 
 ## Public proof surface
-
-The public observer requires:
 
 ```text
 /formalisms/discovery-governance-minimum-handoff
@@ -133,8 +167,6 @@ The public observer requires:
 /schemas/discovery-governance-publication-receipt.schema.json
 ```
 
-It emits `reports/discovery-governance-publication-receipt.json`, which is embedded at `activation_closures.discovery_governance` in the public activation receipt.
-
 ## Preserved boundary
 
 ```text
@@ -142,7 +174,7 @@ A discovery handoff preserves the evidence needed to evaluate a possible transit
 it does not authorize, admit, commit, or execute that transition.
 ```
 
-All doctrine, schemas, fixtures, examples, receipts, and workflow artifacts explicitly withhold:
+All doctrine, schemas, fixtures, examples, receipts, closure checks, and workflow artifacts explicitly withhold:
 
 ```text
 CONSENT
@@ -164,14 +196,15 @@ The Conectrr correspondence remains classified only as `DOCUMENTED_ARCHITECTURAL
 Destination: `StegVerse-Labs/admissibility-wiki`
 
 ```text
-1. Observe the canonical workflow run containing commit 4a05ad5a5a7f6b902cb4eeee43bb076e65462e91 or a successor.
+1. Observe the canonical workflow run containing commit e8b3ae236c54e751d61f79a416b4963b49cb84e7 or a successor.
 2. Inspect and repair only evidence-grounded validation or Docusaurus build failures.
-3. Confirm all three discovery validators pass in canonical validation.
-4. Retrieve discovery-governance-proof-receipt and verify its fixture digest and PASS state.
+3. Confirm handoff, proof, publication, and public writer validators pass.
+4. Retrieve discovery-governance-proof-receipt and verify its digest and PASS state.
 5. Verify all five public routes after deployment.
-6. Retrieve public-activation-receipt and confirm both receipt files and activation_closures.discovery_governance.
-7. Record run id, attempt, commit, artifact ids, route statuses, digest, and closure state here.
-8. Claim activation completion only after all run-bound evidence passes.
+6. Retrieve public-activation-receipt and confirm exact equality between the standalone discovery receipt and activation_closures.discovery_governance.
+7. Run the activation closure integrity verifier against retrieved receipts.
+8. Record run id, attempt, commit, artifact ids, route statuses, digest, and closure state here.
+9. Claim activation completion only after all run-bound evidence passes.
 ```
 
 Absence of an exposed combined status or pull-request workflow run is not evidence of failure or success.
@@ -193,14 +226,16 @@ No destination mutation is authorized by this handoff. Each destination handoff 
 
 This goal reaches activation completion when:
 
-1. canonical validation passes with handoff, proof, and publication validators;
-2. the proof artifact is uploaded and verifies all four outcomes and current fixture digest;
+1. canonical validation passes with handoff, proof, publication, and writer validators;
+2. the proof artifact verifies all four outcomes and the current fixture digest;
 3. the Pages build and deployment succeed;
 4. all five public routes are reachable;
 5. the public activation artifact contains both receipts;
-6. `activation_closures.discovery_governance` reports workflow-observed publication completion;
-7. run-bound evidence is recorded here;
-8. no discovery artifact is represented as consent, authority, admissibility, commitment, execution permission, certification, endorsement, or interoperability proof.
+6. the standalone and embedded discovery receipts are exactly equal;
+7. `activation_closures.discovery_governance` reports workflow-observed publication completion;
+8. identity and route aggregation checks pass across receipts;
+9. run-bound evidence is recorded here;
+10. no discovery artifact is represented as consent, authority, admissibility, commitment, execution permission, certification, endorsement, or interoperability proof.
 
 ## Continuation instruction
 
