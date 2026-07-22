@@ -28,6 +28,7 @@ ROBOTIC_LAW_ENFORCEMENT_CHECK = ROOT / "scripts" / "check_robotic_law_enforcemen
 DISCOVERY_GOVERNANCE_HANDOFF_CHECK = ROOT / "scripts" / "check_discovery_governance_handoff.py"
 DISCOVERY_GOVERNANCE_PROOF_RECEIPT_CHECK = ROOT / "scripts" / "check_discovery_governance_proof_receipt.py"
 DISCOVERY_GOVERNANCE_PUBLICATION_CHECK = ROOT / "scripts" / "check_discovery_governance_publication.py"
+DISCOVERY_GOVERNANCE_ACTIVATION_EVIDENCE_CONTRACT_CHECK = ROOT / "scripts" / "check_discovery_governance_activation_evidence_contract.py"
 GLOSSARY_CONSISTENCY_CHECK = ROOT / "scripts" / "check_glossary_consistency.py"
 ACTIVATION_SECTION_CHECK = ROOT / "scripts" / "check_activation_section.py"
 RESEARCH_SOCIAL_STEGVERSE_CHECK = ROOT / "scripts" / "check_research_social_stegverse_sections.py"
@@ -89,6 +90,7 @@ def main() -> int:
     run_check(DISCOVERY_GOVERNANCE_HANDOFF_CHECK, "discovery-to-governance minimum handoff", failures)
     run_check(DISCOVERY_GOVERNANCE_PROOF_RECEIPT_CHECK, "discovery-to-governance proof receipt", failures)
     run_check(DISCOVERY_GOVERNANCE_PUBLICATION_CHECK, "discovery-to-governance publication contract", failures)
+    run_check(DISCOVERY_GOVERNANCE_ACTIVATION_EVIDENCE_CONTRACT_CHECK, "discovery-to-governance activation evidence contract", failures)
     run_check(GLOSSARY_CONSISTENCY_CHECK, "glossary consistency", failures)
     run_check(ACTIVATION_SECTION_CHECK, "activation section", failures)
     run_check(RESEARCH_SOCIAL_STEGVERSE_CHECK, "research social and StegVerse sections", failures)
