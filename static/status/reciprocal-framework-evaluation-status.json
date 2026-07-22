@@ -1,0 +1,58 @@
+{
+  "schema": "reciprocal_framework_evaluation_status.v1",
+  "goal_id": "reciprocal-architectural-evaluation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "state": "DOCTRINE_AND_SCHEMA_INSTALLED_LIVE_TEST_PENDING",
+  "public_display": {
+    "primary": "admissibility-wiki",
+    "interactive_mirror": "StegVerse-Labs/Site",
+    "publisher_projection": "PENDING_DESTINATION_HANDOFF_REVIEW",
+    "guardian_projection": "PENDING_DESTINATION_HANDOFF_REVIEW"
+  },
+  "test_models": [
+    "NEUTRAL_PUBLIC",
+    "RECIPROCAL_ARCHITECTURAL"
+  ],
+  "registered_frameworks": [
+    {
+      "framework_id": "stegverse",
+      "self_declaration": "PENDING_FREEZE",
+      "external_determinations": "PENDING",
+      "live_test": "NOT_TESTED"
+    },
+    {
+      "framework_id": "ta-14",
+      "self_declaration": "PENDING_EXTERNAL_SUBMISSION",
+      "stegverse_determination": "PENDING",
+      "live_test": "NOT_TESTED"
+    }
+  ],
+  "installed": {
+    "wiki_doctrine": "docs/external-frameworks/reciprocal-architectural-evaluation.md",
+    "schema": "static/schemas/reciprocal-framework-evaluation.schema.json",
+    "handoff": "docs/RECIPROCAL_EVALUATION_MIRROR_HANDOFF.md"
+  },
+  "remaining": [
+    "freeze StegVerse self-declaration",
+    "receive or reconstruct TA-14 self-declaration with source references",
+    "create framework-specific machine-readable records",
+    "publish frozen shared test cases",
+    "capture live JSONL event streams",
+    "validate schema, symmetry, references, replay, and reconstruction",
+    "integrate public-route verification into the canonical workflow",
+    "mirror validated records to StegVerse-Labs/Site",
+    "review Publisher and StegGuardian handoffs before downstream projection"
+  ],
+  "authority": {
+    "comparison": false,
+    "admissibility": false,
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "parentage": false,
+    "downstream_mutation": false
+  },
+  "manual_task_requirement": "none",
+  "user_manual_action_required": false,
+  "updated_at": "2026-07-22T00:00:00Z"
+}
