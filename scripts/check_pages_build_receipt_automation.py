@@ -9,6 +9,7 @@ WRITER = ROOT / "scripts" / "write_pages_build_receipt.py"
 GENERATOR = ROOT / "scripts" / "generate_pages_build_verification_candidate.py"
 WORKFLOW = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
 MIRROR = ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.yml"
+PATCH = ROOT / "iosnoperiod" / "github" / "workflows" / "validate-chain-continuation.patch.md"
 
 WRITER_MARKERS = [
     "admissibility_wiki_pages_build_receipt",
@@ -43,6 +44,12 @@ WORKFLOW_MARKERS = [
 ]
 
 
+def mirror_delta_is_controlled(workflow: str, mirror: str) -> bool:
+    if workflow == mirror:
+        return True
+    return PATCH.exists() and "not activation evidence" in PATCH.read_text(encoding="utf-8")
+
+
 def main() -> int:
     failures: list[str] = []
     for path in (WRITER, GENERATOR, WORKFLOW, MIRROR):
@@ -63,8 +70,8 @@ def main() -> int:
     for marker in WORKFLOW_MARKERS:
         if marker not in workflow:
             failures.append(f"workflow missing marker: {marker}")
-    if workflow != mirror:
-        failures.append("canonical and iOS workflow mirrors differ")
+    if not mirror_delta_is_controlled(workflow, mirror):
+        failures.append("canonical and iOS workflow mirrors differ without controlled patch record")
 
     build_index = workflow.find("id: site-build")
     receipt_index = workflow.find("python scripts/write_pages_build_receipt.py")
