@@ -23,7 +23,7 @@ The wiki is the primary display for framework declarations, evaluator determinat
 ```text
 Goal id: reciprocal-architectural-evaluation
 Goal: publish machine-testable framework pages for StegVerse, TA-14, ASRO, and additional participating frameworks, then execute neutral and reciprocal public tests without inherited hierarchy.
-State: ASRO_BOUNDED_COMPARISON_PACKET_INSTALLED_VALIDATION_INTEGRATED_LIVE_TEST_PENDING
+State: ASRO_FRAMEWORK_RECORD_AND_EXPECTED_RESULTS_INSTALLED_TEST_CASE_FREEZE_NEXT
 Manual user action required: false
 Authority granted: none
 ```
@@ -32,15 +32,21 @@ Authority granted: none
 
 ```text
 docs/external-frameworks/reciprocal-architectural-evaluation.md
+docs/external-frameworks/asro.md
 static/schemas/reciprocal-framework-evaluation.schema.json
 static/status/reciprocal-framework-evaluation-status.json
-docs/RECIPROCAL_EVALUATION_MIRROR_HANDOFF.md
+static/data/framework-evaluations/index.json
+static/data/framework-evaluations/asro.json
 static/data/framework-evaluations/asro/stegverse-companion-layer-declaration.json
 static/data/framework-evaluations/asro/asro-author-provided-bounded-representative-object.json
 static/data/framework-evaluations/asro/reviewer-profile.json
 static/data/framework-evaluations/asro/correspondence-manifest.json
+static/data/framework-evaluations/asro/expected-results.json
 scripts/check_asro_bounded_comparison.py
+docs/RECIPROCAL_EVALUATION_MIRROR_HANDOFF.md
 ```
+
+The ASRO framework record, registry entry, expected-results fixture, public page, and validation guard are installed. The validator is integrated through `scripts/check_admissibility_automation_handoff.py` and therefore the canonical `npm run validate` path.
 
 Site-side precursor files already exist:
 
@@ -90,18 +96,25 @@ content hashes and publication timestamp
 Destination `StegVerse-Labs/admissibility-wiki`:
 
 ```text
-static/data/framework-evaluations/index.json ASRO registry entry
-static/data/framework-evaluations/asro.json framework-level record
-static/data/framework-evaluations/asro/expected-results.json
-static/data/framework-evaluations/test-cases/<test_case_id>.json
-static/data/framework-evaluations/runs/<run_id>.jsonl
-docs/external-frameworks/asro.md
+static/data/framework-evaluations/test-cases/asro-declared-reference-membership-v1.json
+static/data/framework-evaluations/runs/asro-declared-reference-membership-v1-stegverse-run-001.jsonl
 scripts/check_reciprocal_framework_evaluations.py
 scripts/check_reciprocal_boundary_symmetry.py
 scripts/check_reciprocal_evaluation_replay.py
 ```
 
-Navigation and canonical validation integration must follow the existing single-workflow rule in `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`. Do not create another active workflow. `scripts/check_asro_bounded_comparison.py` is integrated through `scripts/check_admissibility_automation_handoff.py` and therefore the canonical `npm run validate` path.
+Next implementation objective:
+
+```text
+freeze the bounded test package
+-> issue stable test_case_id
+-> bind all input artifact hashes
+-> define pass, fail-closed, and unresolved outcomes
+-> emit first deterministic JSONL event stream
+-> validate replay and independent reconstruction
+```
+
+Navigation and canonical validation integration must follow the existing single-workflow rule in `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`. Do not create another active workflow.
 
 ## Test sequence
 
@@ -145,7 +158,7 @@ No framework is assigned parent status by the schema, display order, evaluator i
 ## Remaining destinations
 
 ```text
-StegVerse-Labs/admissibility-wiki — ASRO framework record, expected fixtures, documentation page, navigation, live test records
+StegVerse-Labs/admissibility-wiki — frozen ASRO test case, first JSONL run, reciprocal validators, replay and reconstruction evidence
 StegVerse-Labs/Site — synchronized interactive mirror after wiki records validate
 GCAT-BCAT-Engine/Publisher — publication projection after handoff review
 StegVerse-002/stegguardian-wiki — guardian interpretation after handoff review
@@ -154,4 +167,4 @@ master-records/orchestration — custody and reconstruction integration when aut
 
 ## Archive posture
 
-This handoff, the repository-wide handoff, the wiki doctrine, schema, status artifact, ASRO bounded comparison packet, validator integration, and Site precursor files preserve all current continuation information. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
+This handoff, the repository-wide handoff, the wiki doctrine, schema, status artifact, ASRO framework record, registry entry, expected-results fixture, public page, bounded comparison packet, validator integration, and Site precursor files preserve all current continuation information. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
