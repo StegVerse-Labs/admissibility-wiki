@@ -9,10 +9,10 @@ This is the authoritative continuation record for the admissibility-wiki destina
 ```text
 Repository: StegVerse-Labs/admissibility-wiki
 Destination decision: BLOCK
-Implementation state: canonical_rerun_in_progress
+Implementation state: canonical_rerun_queued
 Pull request: #36
-Current branch head before handoff update: f7aad03bc7515078c52d21931d12bb7285d89cef
-Canonical rerun: 29999203357
+Current branch head before this handoff update: a82272c6a31e070e0d768a164fc706aaa284eeec
+Canonical rerun: 30014658216
 Release authority: false
 Admissibility authority: false
 Execution authority: false
@@ -32,21 +32,35 @@ docs/SV_CONTINUITY_109_ADMISSIBILITY_PROGRESS.md
 docs/SV_CONTINUITY_109_ADMISSIBILITY_RELEASE_BOUNDARY.md
 docs/SV_CONTINUITY_109_ADMISSIBILITY_VALIDATION_PATH.md
 docs/SV_CONTINUITY_109_ADMISSIBILITY_NONCLAIMS.md
+static/data/framework-evaluations/stegverse.json
 ```
 
-The repository also removes `.github/workflows/sync-executive-rhetoric-ledger.yml` because this repository permits only the canonical validation workflow and no scheduled workflow outside StegVerse-Healer.
+The repository removes `.github/workflows/sync-executive-rhetoric-ledger.yml` because this repository permits only the canonical validation workflow and no scheduled workflow outside StegVerse-Healer.
 
 ## Latest Canonical Evidence
 
-Run `29988821295` proved the new `SV-CONTINUITY-109` validator compiled and entered the canonical chain. The remaining failures were limited to three older external-framework validators that incorrectly required byte-identical canonical and iOS workflow files despite the repository's controlled patch record:
+Run `30002874182` reduced the full chain to two direct failures:
 
 ```text
-scripts/check_opa_observation_capture_harness.py
-scripts/check_cedar_selected_binary_build_harness.py
-scripts/check_cedar_binary_promotion_automation.py
+scripts/check_pages_build_receipt_automation.py
+scripts/check_admissibility_automation_handoff.py
 ```
 
-All three now recognize the controlled patch boundary and still fail closed when neither equality nor a valid patch record exists. Canonical rerun `29999203357` is in progress.
+The nested handoff failures were:
+
+```text
+discovery-governance activation evidence contract
+reciprocal framework evaluations
+```
+
+Repairs now installed:
+
+- Pages receipt validator honors the controlled iOS patch boundary.
+- Discovery activation evidence contract accepts stable YAML quoting.
+- Discovery activation writer binds and validates `fixture_sha256`.
+- The missing bounded native StegVerse reciprocal-evaluation record now exists.
+
+Canonical run `30014658216` is queued against the repaired branch.
 
 ## Decision Boundary
 
@@ -66,7 +80,7 @@ static status receipt
 
 ## Next Actions
 
-1. Observe canonical rerun `29999203357`.
+1. Observe canonical run `30014658216`.
 2. Repair only repository-local defects without weakening fail-closed semantics.
 3. Merge PR #36 only after canonical validation succeeds.
 4. Record the merge SHA in Continuity issue #3.
