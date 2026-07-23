@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "fixture_id": "asro-bounded-comparison-expected-results-2026-07-23",
+  "comparison_id": "asro-stegverse-correspondence-2026-07-23-001",
+  "expected": {
+    "collection_membership": "ESTABLISHED",
+    "object_identity_bound": true,
+    "version_bound": true,
+    "hash_bound": true,
+    "applicable_time_bound": true,
+    "label_only_match_accepted": false,
+    "source_declaration_controlling": true,
+    "reviewer_profile_derivative": true,
+    "reviewer_issuer": "unresolved",
+    "correspondence_established": true,
+    "truth_established": false,
+    "sufficiency_established": false,
+    "validity_established": false,
+    "admissibility_established": false,
+    "authority_inherited": false,
+    "execution_authority_granted": false,
+    "custody_transferred": false
+  },
+  "fail_closed_conditions": [
+    "missing object identity",
+    "missing or mismatched version",
+    "missing or mismatched hash",
+    "missing applicable time",
+    "collection membership not established",
+    "reviewer profile presented as canonical",
+    "reviewer issuer inferred from reviewer role",
+    "correspondence presented as admissibility or authority"
+  ]
+}
