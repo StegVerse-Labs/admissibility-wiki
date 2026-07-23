@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "reviewer_profile",
+  "review_profile_id": "review-profile-asro-stegverse-2026-07-23-001",
+  "issuer": "unresolved",
+  "issuer_status": "UNRESOLVED_UNTIL_ACCOUNTABLE_REVIEWER_DESIGNATED",
+  "role": "external_reviewer_comparison_surface",
+  "identity": null,
+  "authority_basis": null,
+  "methodology_ref": "bounded-comparison-methodology-2026-07-23",
+  "methodology_version": "1.0.0",
+  "provenance": {
+    "source_declaration_id": "sv-cl-asro-2026-07-23-001",
+    "derivation_status": "DERIVATIVE",
+    "may_modify_source_meaning": false
+  },
+  "authority": {
+    "review": false,
+    "certification": false,
+    "admissibility": false,
+    "execution": false,
+    "custody": false
+  },
+  "sha256": "9294c41f43004a2450fab45bd0b9303d9a272eafba09a16a0afcd967cb8e334d"
+}
