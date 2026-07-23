@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "registry_id": "external-framework-evaluations",
-  "status": "BOUNDED_COMPARISON_PACKET_ACTIVE",
+  "status": "DETERMINISTIC_BOUNDED_COMPARISON_ACTIVE",
   "frameworks": [
     {
       "framework_id": "stegverse",
@@ -28,7 +28,7 @@
       "canonical_schema_status": "NOT_ASSERTED",
       "comparison_packet_status": "INSTALLED",
       "reviewer_issuer_status": "UNRESOLVED",
-      "live_test_status": "NOT_TESTED"
+      "live_test_status": "STEGVERSE_RUN_PASS_EXTERNAL_NOT_TESTED"
     }
   ],
   "authority": {
@@ -39,5 +39,5 @@
     "custody": false,
     "parentage": false
   },
-  "updated_at": "2026-07-23T00:00:00Z"
+  "updated_at": "2026-07-23T00:00:04Z"
 }
