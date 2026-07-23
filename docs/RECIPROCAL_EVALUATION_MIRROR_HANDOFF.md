@@ -22,8 +22,8 @@ The wiki is the primary display for framework declarations, evaluator determinat
 
 ```text
 Goal id: reciprocal-architectural-evaluation
-Goal: publish machine-testable framework pages for StegVerse, TA-14, and additional participating frameworks, then execute neutral and reciprocal public tests without inherited hierarchy.
-State: DOCTRINE_AND_SCHEMA_INSTALLED_LIVE_TEST_PENDING
+Goal: publish machine-testable framework pages for StegVerse, TA-14, ASRO, and additional participating frameworks, then execute neutral and reciprocal public tests without inherited hierarchy.
+State: ASRO_BOUNDED_COMPARISON_PACKET_INSTALLED_VALIDATION_INTEGRATED_LIVE_TEST_PENDING
 Manual user action required: false
 Authority granted: none
 ```
@@ -35,6 +35,11 @@ docs/external-frameworks/reciprocal-architectural-evaluation.md
 static/schemas/reciprocal-framework-evaluation.schema.json
 static/status/reciprocal-framework-evaluation-status.json
 docs/RECIPROCAL_EVALUATION_MIRROR_HANDOFF.md
+static/data/framework-evaluations/asro/stegverse-companion-layer-declaration.json
+static/data/framework-evaluations/asro/asro-author-provided-bounded-representative-object.json
+static/data/framework-evaluations/asro/reviewer-profile.json
+static/data/framework-evaluations/asro/correspondence-manifest.json
+scripts/check_asro_bounded_comparison.py
 ```
 
 Site-side precursor files already exist:
@@ -44,6 +49,20 @@ StegVerse-Labs/Site/framework-evaluations.html
 StegVerse-Labs/Site/docs/RECIPROCAL_ARCHITECTURAL_EVALUATION.md
 StegVerse-Labs/Site/data/schemas/framework-evaluation.schema.json
 StegVerse-Labs/Site/data/framework-evaluations/index.json
+```
+
+## ASRO bounded comparison contract
+
+```text
+ASRO object classification: ASRO-author-provided bounded representative object
+ASRO object canonical status: non-canonical
+Released ASRO-native schema status: false
+StegVerse Companion Layer declaration: controlling source declaration
+Reviewer-side profile: derivative
+Reviewer issuer: unresolved until an accountable reviewer is designated
+Reference test: object identity + version + hash + applicable time + explicit collection membership
+Label equality alone: insufficient
+Correspondence result: no truth, sufficiency, validity, admissibility, authority, execution, or custody inheritance
 ```
 
 ## Required framework deliverables
@@ -71,17 +90,18 @@ content hashes and publication timestamp
 Destination `StegVerse-Labs/admissibility-wiki`:
 
 ```text
-static/data/framework-evaluations/index.json
-static/data/framework-evaluations/stegverse.json
-static/data/framework-evaluations/ta-14.json
+static/data/framework-evaluations/index.json ASRO registry entry
+static/data/framework-evaluations/asro.json framework-level record
+static/data/framework-evaluations/asro/expected-results.json
 static/data/framework-evaluations/test-cases/<test_case_id>.json
 static/data/framework-evaluations/runs/<run_id>.jsonl
+docs/external-frameworks/asro.md
 scripts/check_reciprocal_framework_evaluations.py
 scripts/check_reciprocal_boundary_symmetry.py
 scripts/check_reciprocal_evaluation_replay.py
 ```
 
-Navigation and canonical validation integration must follow the existing single-workflow rule in `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`. Do not create another active workflow.
+Navigation and canonical validation integration must follow the existing single-workflow rule in `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`. Do not create another active workflow. `scripts/check_asro_bounded_comparison.py` is integrated through `scripts/check_admissibility_automation_handoff.py` and therefore the canonical `npm run validate` path.
 
 ## Test sequence
 
@@ -113,6 +133,11 @@ execution success != architectural completeness
 private execution != public verification
 page publication != custody
 reconstruction PASS != execution authority
+correspondence != truth
+correspondence != sufficiency
+correspondence != validity
+correspondence != authority inheritance
+reviewer role != accountable issuer
 ```
 
 No framework is assigned parent status by the schema, display order, evaluator identity, or test environment.
@@ -120,7 +145,7 @@ No framework is assigned parent status by the schema, display order, evaluator i
 ## Remaining destinations
 
 ```text
-StegVerse-Labs/admissibility-wiki — framework records, validators, navigation, canonical workflow integration
+StegVerse-Labs/admissibility-wiki — ASRO framework record, expected fixtures, documentation page, navigation, live test records
 StegVerse-Labs/Site — synchronized interactive mirror after wiki records validate
 GCAT-BCAT-Engine/Publisher — publication projection after handoff review
 StegVerse-002/stegguardian-wiki — guardian interpretation after handoff review
@@ -129,4 +154,4 @@ master-records/orchestration — custody and reconstruction integration when aut
 
 ## Archive posture
 
-This handoff, the repository-wide handoff, the wiki doctrine, schema, status artifact, and Site precursor files preserve all current continuation information. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
+This handoff, the repository-wide handoff, the wiki doctrine, schema, status artifact, ASRO bounded comparison packet, validator integration, and Site precursor files preserve all current continuation information. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
