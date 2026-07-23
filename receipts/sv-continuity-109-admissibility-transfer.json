@@ -1,0 +1,22 @@
+{
+  "receipt_id": "sv-continuity-109-admissibility-transfer-001",
+  "protocol_id": "SV-CONTINUITY-109",
+  "source_repository": "StegVerse-Labs/Continuity",
+  "source_merge": "a217b63df95f6ac39adf6f1b6c4748aea8cb6312",
+  "stegcore_merge": "8378cbbc6f9d80ee94c69af312835d118ac46bfa",
+  "destination_repository": "StegVerse-Labs/admissibility-wiki",
+  "destination_handoff": "docs/SV_CONTINUITY_109_ADMISSIBILITY_MIRROR_HANDOFF.md",
+  "destination_receipt": "static/status/sv-continuity-109-admissibility-verification.json",
+  "destination_validator": "scripts/check_sv_continuity_109_admissibility.py",
+  "governance_commit_observed": "c07b7c6146e0abac7db6fa15a5a0aa7bf23811f6",
+  "decision": "BLOCK",
+  "authority": {
+    "admissibility": false,
+    "execution": false,
+    "release": false,
+    "publication": false,
+    "certification": false,
+    "deployment": false,
+    "receipt_minting": false
+  }
+}

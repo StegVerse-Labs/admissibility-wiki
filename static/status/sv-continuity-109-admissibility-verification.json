@@ -1,0 +1,27 @@
+{
+  "receipt_id": "sv-continuity-109-admissibility-verification-001",
+  "protocol_id": "SV-CONTINUITY-109",
+  "destination": "StegVerse-Labs/admissibility-wiki",
+  "checks": {
+    "schemas_and_evaluator_resolve": true,
+    "reconstructability_distinct_from_recreatability": true,
+    "continuity_receipt_is_evidence_not_authority": true,
+    "verification_surplus_not_partial_credit": true,
+    "external_ai_returns_non_authoritative": true,
+    "governance_freshness_current_at_intake": true,
+    "site_and_downstream_evidence_complete": false
+  },
+  "decision": "BLOCK",
+  "reasons": [
+    "Doctrine and admissibility boundary are verified.",
+    "Site and downstream destination evidence are incomplete."
+  ],
+  "authority": {
+    "admissibility": false,
+    "execution": false,
+    "release": false,
+    "publication": false,
+    "certification": false,
+    "receipt_minting": false
+  }
+}

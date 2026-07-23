@@ -11,45 +11,29 @@ WORKFLOW = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
 HANDOFF = ROOT / "docs" / "DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md"
 
 COMPLETION_CRITERIA = (
-    'canonical_dependency_chain_observed',
-    'proof_receipt_pass',
-    'four_outcomes_preserved',
-    'all_five_public_routes_verified',
-    'publication_state_complete',
-    'pages_deployment_observed',
-    'standalone_embedded_closure_exact_match',
-    'linked_publication_receipt_bound',
-    'public_activation_publication_complete',
-    'receipt_run_identity_match',
-    'input_sha256_digests_present',
-    'authority_boundary_preserved',
+    'canonical_dependency_chain_observed', 'proof_receipt_pass',
+    'four_outcomes_preserved', 'all_five_public_routes_verified',
+    'publication_state_complete', 'pages_deployment_observed',
+    'standalone_embedded_closure_exact_match', 'linked_publication_receipt_bound',
+    'public_activation_publication_complete', 'receipt_run_identity_match',
+    'input_sha256_digests_present', 'authority_boundary_preserved',
 )
-
 WRITER_MARKERS = (
     'discovery_governance_activation_evidence_receipt.v1',
-    'ACTIVATION_EVIDENCE_COMPLETE',
-    'ACTIVATION_EVIDENCE_FAIL_CLOSED',
+    'ACTIVATION_EVIDENCE_COMPLETE', 'ACTIVATION_EVIDENCE_FAIL_CLOSED',
     'DISCOVERY_WORKFLOW_DEPENDENCIES_SATISFIED',
     'canonical validation/build/deploy dependency chain not asserted by workflow',
     'standalone publication receipt differs from embedded closure',
-    'receipt repository/run identity mismatch',
-    'goal_completion_observed',
-    'completion_criteria',
-    'all(completion_criteria.values())',
-    'fixture_sha256',
-    'all_required_public_routes_verified',
-    'publication_complete',
+    'receipt repository/run identity mismatch', 'goal_completion_observed',
+    'completion_criteria', 'all(completion_criteria.values())',
+    'fixture_sha256', 'all_required_public_routes_verified', 'publication_complete',
 )
-
 WORKFLOW_MARKERS = (
-    'DISCOVERY_WORKFLOW_DEPENDENCIES_SATISFIED: "true"',
     'python scripts/check_discovery_governance_activation_closure.py',
     'python scripts/write_discovery_governance_activation_evidence.py',
     'reports/discovery-governance-activation-evidence-receipt.json',
-    'name: public-activation-receipt',
-    'if-no-files-found: error',
+    'name: public-activation-receipt', 'if-no-files-found: error',
 )
-
 FALSE_FIELDS = (
     'consent_granted', 'standing_granted', 'authority_granted',
     'admissibility_granted', 'commitment_granted',
@@ -74,7 +58,14 @@ def main() -> int:
     failures: list[str] = []
     require_markers(WRITER, WRITER_MARKERS, "activation evidence writer", failures)
     require_markers(WORKFLOW, WORKFLOW_MARKERS, "canonical workflow", failures)
-
+    if WORKFLOW.exists():
+        workflow_text = WORKFLOW.read_text(encoding="utf-8")
+        accepted = (
+            'DISCOVERY_WORKFLOW_DEPENDENCIES_SATISFIED: "true"',
+            "DISCOVERY_WORKFLOW_DEPENDENCIES_SATISFIED: 'true'",
+        )
+        if not any(marker in workflow_text for marker in accepted):
+            failures.append("canonical workflow missing dependency-satisfied environment assertion")
     if not SCHEMA.exists():
         failures.append(f"missing {SCHEMA.relative_to(ROOT)}")
     else:
@@ -82,22 +73,18 @@ def main() -> int:
         properties = schema.get("properties", {})
         required = set(schema.get("required", []))
         for field in (
-            'schema', 'goal_id', 'repository', 'state',
-            'goal_completion_observed', 'completion_criteria',
-            'canonical_dependency_chain_observed', 'proof_receipt',
-            'publication_receipt', 'public_activation_receipt', 'failures',
+            'schema', 'goal_id', 'repository', 'state', 'goal_completion_observed',
+            'completion_criteria', 'canonical_dependency_chain_observed',
+            'proof_receipt', 'publication_receipt', 'public_activation_receipt', 'failures',
         ):
             if field not in required:
                 failures.append(f"activation evidence schema must require {field}")
         if properties.get('schema', {}).get('const') != 'discovery_governance_activation_evidence_receipt.v1':
             failures.append('activation evidence schema identifier mismatch')
-        if set(properties.get('state', {}).get('enum', [])) != {
-            'ACTIVATION_EVIDENCE_COMPLETE', 'ACTIVATION_EVIDENCE_FAIL_CLOSED'
-        }:
+        if set(properties.get('state', {}).get('enum', [])) != {'ACTIVATION_EVIDENCE_COMPLETE', 'ACTIVATION_EVIDENCE_FAIL_CLOSED'}:
             failures.append('activation evidence schema state enum mismatch')
         if properties.get('goal_completion_observed', {}).get('type') != 'boolean':
             failures.append('goal completion observation must be boolean')
-
         criteria = properties.get('completion_criteria', {})
         if criteria.get('additionalProperties') is not False:
             failures.append('completion criteria must reject undeclared properties')
@@ -108,11 +95,9 @@ def main() -> int:
                 failures.append(f"completion criteria must require {criterion}")
             if criteria_properties.get(criterion, {}).get('type') != 'boolean':
                 failures.append(f"completion criterion {criterion} must be boolean")
-
         for field in FALSE_FIELDS:
             if properties.get(field, {}).get('const') is not False:
                 failures.append(f"activation evidence schema must force {field}=false")
-
         proof = properties.get('proof_receipt', {}).get('properties', {})
         publication = properties.get('publication_receipt', {}).get('properties', {})
         public_activation = properties.get('public_activation_receipt', {}).get('properties', {})
@@ -122,10 +107,8 @@ def main() -> int:
             failures.append('publication receipt path contract mismatch')
         if public_activation.get('path', {}).get('const') != 'reports/public-activation-receipt.json':
             failures.append('public activation receipt path contract mismatch')
-
     if not HANDOFF.exists():
         failures.append(f"missing {HANDOFF.relative_to(ROOT)}")
-
     if failures:
         print('DISCOVERY GOVERNANCE ACTIVATION EVIDENCE CONTRACT: FAIL')
         for failure in failures:
