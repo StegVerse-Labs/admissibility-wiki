@@ -74,6 +74,7 @@ def main() -> int:
 
     proof_pass = False
     four_outcomes_preserved = False
+    fixture_sha256 = None
     if proof is not None:
         if proof.get("schema") != "discovery_governance_handoff_proof_receipt.v1":
             failures.append("proof receipt schema mismatch")
@@ -82,10 +83,13 @@ def main() -> int:
         required = {"HANDOFF_READY", "REVIEW_REQUIRED", "DENY", "FAIL_CLOSED"}
         four_outcomes_preserved = required.issubset(observed)
         proof_pass = proof.get("overall_result") == "PASS" and four_outcomes_preserved
+        fixture_sha256 = proof.get("fixture_sha256")
         if proof.get("overall_result") != "PASS":
             failures.append("proof receipt is not PASS")
         if not four_outcomes_preserved:
             failures.append("proof receipt does not preserve all four deterministic outcomes")
+        if not isinstance(fixture_sha256, str) or len(fixture_sha256) != 64:
+            failures.append("proof receipt fixture_sha256 missing or invalid")
 
     route_pass = publication_state_complete = pages_deployment_observed = authority_boundary_preserved = False
     if publication is not None:
@@ -169,6 +173,7 @@ def main() -> int:
         "proof_receipt": {
             "path": str(PROOF.relative_to(ROOT)),
             "sha256": sha256(PROOF) if PROOF.exists() else None,
+            "fixture_sha256": fixture_sha256,
             "overall_result": proof.get("overall_result") if proof else None,
         },
         "publication_receipt": {
