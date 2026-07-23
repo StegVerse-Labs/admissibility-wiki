@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "test_case_id": "asro-declared-reference-membership-v1",
+  "title": "ASRO declared-reference collection-membership test",
+  "status": "FROZEN",
+  "frozen_at": "2026-07-23T00:00:00Z",
+  "package_sha256": "76b89f81df802245d8cb309cc3b432ae283eb22f1f73fe7839c90848bd044537",
+  "purpose": "Determine bounded correspondence without inheriting truth, validity, admissibility, authority, execution, or custody.",
+  "inputs": [
+    {
+      "artifact_id": "sv-cl-asro-2026-07-23-001",
+      "path": "../asro/stegverse-companion-layer-declaration.json",
+      "sha256": "b34e07b12e767c3b0132f03b235c7cb6f62898c5a856167c3366445e8c154947"
+    },
+    {
+      "artifact_id": "asro-bounded-representative-object-2026-07-23-001",
+      "path": "../asro/asro-author-provided-bounded-representative-object.json",
+      "sha256": "7f748c3d269e02a54ad834ac66ffcff372ba6ee4eee5865716f83f3f791e1d91"
+    },
+    {
+      "artifact_id": "review-profile-asro-stegverse-2026-07-23-001",
+      "path": "../asro/reviewer-profile.json",
+      "sha256": "9294c41f43004a2450fab45bd0b9303d9a272eafba09a16a0afcd967cb8e334d"
+    },
+    {
+      "artifact_id": "asro-stegverse-correspondence-2026-07-23-001",
+      "path": "../asro/correspondence-manifest.json",
+      "sha256": "7cc03889970384e79ce99c0d189b1a8e944966ffdc4036fa878d767debfad2ad"
+    }
+  ],
+  "predicates": [
+    "collection_membership_established",
+    "object_identity_matches",
+    "version_matches",
+    "hash_matches",
+    "applicable_time_matches",
+    "source_declaration_controlling",
+    "reviewer_profile_derivative",
+    "reviewer_issuer_unresolved",
+    "no_authority_inheritance"
+  ],
+  "expected_outcomes": {
+    "PASS": "All reference bindings and non-inheritance predicates hold.",
+    "FAIL_CLOSED": "Any identity, version, hash, time, collection, issuer, derivation, or authority boundary fails.",
+    "UNRESOLVED": "Required evidence exists but cannot be independently reconstructed."
+  },
+  "authority": {
+    "comparison": false,
+    "admissibility": false,
+    "execution": false,
+    "custody": false
+  },
+  "replay": {
+    "deterministic": true,
+    "order": "event_index_ascending"
+  }
+}
