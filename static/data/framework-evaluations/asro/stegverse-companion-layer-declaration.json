@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "stegverse_companion_layer_declaration",
+  "declaration_id": "sv-cl-asro-2026-07-23-001",
+  "framework_id": "stegverse",
+  "terminology_owner": "StegVerse",
+  "canonical_status": "CONTROLLING_SOURCE_DECLARATION",
+  "scope": [
+    "transition-state admissibility",
+    "commit-time authority reconstruction",
+    "evidence-bound execution posture",
+    "continuity, replay, and reconstruction",
+    "bounded external-framework correspondence"
+  ],
+  "functions": [
+    "declare StegVerse boundaries in StegVerse terminology",
+    "separate observation, correspondence, admissibility, authority, and execution",
+    "bind claims and references to stable identities, versions, hashes, and applicable time",
+    "preserve reviewer profiles as derivative records",
+    "fail closed when accountable issuer or reference correspondence is unresolved"
+  ],
+  "non_inheritance": [
+    "correspondence does not establish truth",
+    "correspondence does not establish sufficiency",
+    "correspondence does not establish validity",
+    "correspondence does not establish admissibility",
+    "correspondence does not establish authority inheritance",
+    "review publication does not transfer canonical custody"
+  ],
+  "authority": {
+    "self_declaration": true,
+    "external_review": false,
+    "certification": false,
+    "execution": false,
+    "custody": false
+  },
+  "effective_time": "2026-07-23T00:00:00Z",
+  "supersedes": null,
+  "sha256": "b34e07b12e767c3b0132f03b235c7cb6f62898c5a856167c3366445e8c154947"
+}
