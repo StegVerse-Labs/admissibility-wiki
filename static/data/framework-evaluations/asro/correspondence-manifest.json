@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "correspondence_manifest",
+  "manifest_id": "asro-stegverse-correspondence-2026-07-23-001",
+  "collection_membership": {
+    "collection_id": "asro-bounded-comparison-inputs-2026-07",
+    "declared_reference": {
+      "object_id": "asro-bounded-representative-object-2026-07-23-001",
+      "version": "0.1.0",
+      "sha256": "7f748c3d269e02a54ad834ac66ffcff372ba6ee4eee5865716f83f3f791e1d91",
+      "applicable_time": {
+        "valid_from": "2026-07-23T00:00:00Z",
+        "valid_until": null
+      }
+    },
+    "membership_result": "ESTABLISHED",
+    "label_only_match_sufficient": false
+  },
+  "source_declaration": {
+    "declaration_id": "sv-cl-asro-2026-07-23-001",
+    "sha256": "b34e07b12e767c3b0132f03b235c7cb6f62898c5a856167c3366445e8c154947",
+    "canonical_status": "CONTROLLING_SOURCE_DECLARATION"
+  },
+  "reviewer_profile": {
+    "review_profile_id": "review-profile-asro-stegverse-2026-07-23-001",
+    "sha256": "9294c41f43004a2450fab45bd0b9303d9a272eafba09a16a0afcd967cb8e334d",
+    "issuer": "unresolved",
+    "derivation_status": "DERIVATIVE"
+  },
+  "determination": {
+    "correspondence_established": true,
+    "truth_established": false,
+    "sufficiency_established": false,
+    "validity_established": false,
+    "admissibility_established": false,
+    "authority_inherited": false
+  },
+  "sha256": "7cc03889970384e79ce99c0d189b1a8e944966ffdc4036fa878d767debfad2ad"
+}
