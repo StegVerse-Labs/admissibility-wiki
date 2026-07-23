@@ -18,6 +18,7 @@
   "activation_evidence_writer": "scripts/write_discovery_governance_activation_evidence.py",
   "activation_evidence_contract_checker": "scripts/check_discovery_governance_activation_evidence_contract.py",
   "activation_evidence_runtime_checker": "scripts/check_discovery_governance_activation_evidence_runtime.py",
+  "handoff_sync_checker": "scripts/check_discovery_governance_handoff_sync.py",
   "activation_evidence_receipt": "reports/discovery-governance-activation-evidence-receipt.json",
   "goal_completion_field": "goal_completion_observed",
   "completion_criteria_field": "completion_criteria",
@@ -27,6 +28,8 @@
   "public_activation_closure": "activation_closures.discovery_governance",
   "canonical_integration": "scripts/check_admissibility_automation_handoff.py",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "authoritative_handoff": "docs/DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md",
+  "authoritative_handoff_reconciliation_commit": "d388ac8c91a60f4c39d3d800f8b4853279db2770",
   "workflow_artifacts": {
     "proof": {
       "name": "discovery-governance-proof-receipt",
@@ -63,6 +66,14 @@
     "single failed public route must produce ACTIVATION_EVIDENCE_FAIL_CLOSED and goal_completion_observed=false",
     "runtime validation must restore pre-existing report files after execution"
   ],
+  "handoff_sync_properties": [
+    "status and authoritative handoff state must match",
+    "all twelve completion criteria must appear in both status and handoff",
+    "runtime validator binding must remain present",
+    "manual user action must remain false",
+    "downstream mutation authority must remain none granted",
+    "archive-ready language is rejected while run-bound evidence remains pending"
+  ],
   "proof_properties": [
     "fixture_sha256",
     "per-case expected and actual outcomes",
@@ -79,7 +90,8 @@
     "receipt SHA-256 digests preserve the exact proof, publication, and public activation inputs",
     "activation evidence writer, schema, workflow bindings, paths, states, and all false authority constants are enforced inside canonical validation",
     "goal completion is an explicit boolean derived from every named completion criterion rather than inferred from state text alone",
-    "canonical runtime validation executes both complete and failed-route evidence sets and verifies fail-closed behavior"
+    "canonical runtime validation executes both complete and failed-route evidence sets and verifies fail-closed behavior",
+    "authoritative handoff and public status are canonically synchronized and stale archive-ready claims are rejected"
   ],
   "public_routes": [
     "/formalisms/discovery-governance-minimum-handoff",
@@ -97,5 +109,5 @@
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
   "downstream_mutation_authority": "none granted",
-  "updated_at": "2026-07-22T18:20:00Z"
+  "updated_at": "2026-07-22T18:45:00Z"
 }
