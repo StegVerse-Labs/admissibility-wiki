@@ -30,6 +30,7 @@ DISCOVERY_GOVERNANCE_PROOF_RECEIPT_CHECK = ROOT / "scripts" / "check_discovery_g
 DISCOVERY_GOVERNANCE_PUBLICATION_CHECK = ROOT / "scripts" / "check_discovery_governance_publication.py"
 DISCOVERY_GOVERNANCE_ACTIVATION_EVIDENCE_CONTRACT_CHECK = ROOT / "scripts" / "check_discovery_governance_activation_evidence_contract.py"
 DISCOVERY_GOVERNANCE_ACTIVATION_EVIDENCE_RUNTIME_CHECK = ROOT / "scripts" / "check_discovery_governance_activation_evidence_runtime.py"
+DISCOVERY_GOVERNANCE_HANDOFF_SYNC_CHECK = ROOT / "scripts" / "check_discovery_governance_handoff_sync.py"
 GLOSSARY_CONSISTENCY_CHECK = ROOT / "scripts" / "check_glossary_consistency.py"
 ACTIVATION_SECTION_CHECK = ROOT / "scripts" / "check_activation_section.py"
 RESEARCH_SOCIAL_STEGVERSE_CHECK = ROOT / "scripts" / "check_research_social_stegverse_sections.py"
@@ -93,6 +94,7 @@ def main() -> int:
     run_check(DISCOVERY_GOVERNANCE_PUBLICATION_CHECK, "discovery-to-governance publication contract", failures)
     run_check(DISCOVERY_GOVERNANCE_ACTIVATION_EVIDENCE_CONTRACT_CHECK, "discovery-to-governance activation evidence contract", failures)
     run_check(DISCOVERY_GOVERNANCE_ACTIVATION_EVIDENCE_RUNTIME_CHECK, "discovery-to-governance activation evidence runtime", failures)
+    run_check(DISCOVERY_GOVERNANCE_HANDOFF_SYNC_CHECK, "discovery-to-governance handoff synchronization", failures)
     run_check(GLOSSARY_CONSISTENCY_CHECK, "glossary consistency", failures)
     run_check(ACTIVATION_SECTION_CHECK, "activation section", failures)
     run_check(RESEARCH_SOCIAL_STEGVERSE_CHECK, "research social and StegVerse sections", failures)
