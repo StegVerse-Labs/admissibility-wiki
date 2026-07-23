@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "registry_id": "external-framework-evaluations",
-  "status": "PUBLIC_SOURCE_INGESTION_ACTIVE",
+  "status": "BOUNDED_COMPARISON_PACKET_ACTIVE",
   "frameworks": [
     {
       "framework_id": "stegverse",
@@ -18,6 +18,17 @@
       "self_declaration_status": "PUBLIC_SOURCES_OBSERVED_NOT_OWNER_CONFIRMED",
       "external_source_status": "PUBLIC_SITE_OBSERVED",
       "live_test_status": "NOT_TESTED"
+    },
+    {
+      "framework_id": "asro",
+      "name": "ASRO bounded comparison surface",
+      "record_path": "asro.json",
+      "self_declaration_status": "AUTHOR_PROVIDED_BOUNDED_REPRESENTATIVE_OBJECT",
+      "external_source_status": "PUBLIC_SOURCE_AND_REPOSITORY_OBSERVED",
+      "canonical_schema_status": "NOT_ASSERTED",
+      "comparison_packet_status": "INSTALLED",
+      "reviewer_issuer_status": "UNRESOLVED",
+      "live_test_status": "NOT_TESTED"
     }
   ],
   "authority": {
@@ -28,5 +39,5 @@
     "custody": false,
     "parentage": false
   },
-  "updated_at": "2026-07-22T12:10:00Z"
+  "updated_at": "2026-07-23T00:00:00Z"
 }
