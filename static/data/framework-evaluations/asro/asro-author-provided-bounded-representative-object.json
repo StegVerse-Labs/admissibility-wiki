@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "asro_author_provided_bounded_representative_object",
+  "object_id": "asro-bounded-representative-object-2026-07-23-001",
+  "provider_side": "ASRO",
+  "provider": "James Aull",
+  "classification": "ASRO_AUTHOR_PROVIDED_BOUNDED_REPRESENTATIVE_OBJECT",
+  "canonical_status": "NON_CANONICAL",
+  "released_asro_native_schema": false,
+  "purpose": "bounded comparison exercise only",
+  "collection_id": "asro-bounded-comparison-inputs-2026-07",
+  "version": "0.1.0",
+  "applicable_time": {
+    "valid_from": "2026-07-23T00:00:00Z",
+    "valid_until": null
+  },
+  "assertions": [
+    "the object was supplied from the ASRO side for this exercise",
+    "the object is representative rather than canonical",
+    "the object is not asserted to be an existing released ASRO-native schema"
+  ],
+  "authority": {
+    "comparison_input": true,
+    "canonical_asro_schema": false,
+    "admissibility": false,
+    "execution": false
+  },
+  "sha256": "7f748c3d269e02a54ad834ac66ffcff372ba6ee4eee5865716f83f3f791e1d91"
+}
