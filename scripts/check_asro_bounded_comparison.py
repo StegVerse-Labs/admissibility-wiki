@@ -45,14 +45,7 @@ def main() -> int:
         failures.append("label-only matching must be rejected")
 
     determination = manifest.get("determination", {})
-    forbidden = (
-        "truth_established",
-        "sufficiency_established",
-        "validity_established",
-        "admissibility_established",
-        "authority_inherited",
-    )
-    for field in forbidden:
+    for field in ("truth_established", "sufficiency_established", "validity_established", "admissibility_established", "authority_inherited"):
         if determination.get(field) is not False:
             failures.append(f"correspondence improperly establishes {field}")
 
@@ -62,23 +55,17 @@ def main() -> int:
     for field in ("object_identity_bound", "version_bound", "hash_bound", "applicable_time_bound"):
         if expected_result.get(field) is not True:
             failures.append(f"expected fixture must require {field}")
-    for field in (
-        "label_only_match_accepted",
-        "truth_established",
-        "sufficiency_established",
-        "validity_established",
-        "admissibility_established",
-        "authority_inherited",
-        "execution_authority_granted",
-        "custody_transferred",
-    ):
+    for field in ("label_only_match_accepted", "truth_established", "sufficiency_established", "validity_established", "admissibility_established", "authority_inherited", "execution_authority_granted", "custody_transferred"):
         if expected_result.get(field) is not False:
             failures.append(f"expected fixture must reject {field}")
 
     if framework.get("framework", {}).get("framework_id") != "asro":
         failures.append("ASRO framework record missing framework_id")
-    if framework.get("test_runs") != []:
-        failures.append("ASRO framework record must remain NOT_TESTED until execution records exist")
+    runs = framework.get("test_runs", [])
+    if len(runs) != 1 or runs[0].get("result") != "PASS":
+        failures.append("ASRO framework record must contain exactly one passing StegVerse run")
+    elif runs[0].get("admissibility") not in (None, "NOT_EVALUATED"):
+        failures.append("ASRO bounded run must not establish admissibility")
     if framework.get("publication", {}).get("projection_authority") != "NONE":
         failures.append("ASRO framework projection authority must remain NONE")
 
@@ -91,15 +78,10 @@ def main() -> int:
             failures.append("registry must not assert a canonical ASRO schema")
         if entry.get("reviewer_issuer_status") != "UNRESOLVED":
             failures.append("registry reviewer issuer must remain unresolved")
-        if entry.get("live_test_status") != "NOT_TESTED":
-            failures.append("registry live test must remain NOT_TESTED")
+        if entry.get("live_test_status") != "STEGVERSE_RUN_PASS_EXTERNAL_NOT_TESTED":
+            failures.append("registry must distinguish StegVerse run PASS from external ASRO execution")
 
-    for marker in (
-        "correspondence != admissibility",
-        "correspondence != authority inheritance",
-        "issuer: unresolved",
-        "ASRO-author-provided bounded representative object",
-    ):
+    for marker in ("correspondence != admissibility", "correspondence != authority inheritance", "issuer: unresolved", "ASRO-author-provided bounded representative object"):
         if marker not in doc_text:
             failures.append(f"ASRO documentation missing marker: {marker}")
 
