@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0.0",
+  "evaluation_id": "eval-stegverse-native-boundary-2026-07-23",
+  "framework": {
+    "framework_id": "stegverse",
+    "name": "StegVerse",
+    "canonical_url": "https://github.com/StegVerse-Labs",
+    "version": null,
+    "owner": "StegVerse-Labs"
+  },
+  "self_declaration": {
+    "claim_id": "stegverse-native-self-declaration-2026-07-23",
+    "source": "SELF",
+    "scope": [
+      "continuity and recreatability",
+      "transition admissibility",
+      "governed records",
+      "cross-repository verification"
+    ],
+    "functions": [
+      "preserve authoritative and effective state distinctions",
+      "retain unknowns and unresolved conditions",
+      "separate evidence from authority",
+      "fail closed before consequence",
+      "support deterministic replay and reconstruction"
+    ],
+    "dependencies": [
+      "canonical repository records",
+      "validated receipts",
+      "current policy and Governance references",
+      "destination-owned verification"
+    ],
+    "limitations": [
+      "self-declaration is not independent certification",
+      "repository implementation does not itself establish live activation",
+      "projection and observation do not grant execution authority"
+    ],
+    "exclusions": [
+      "no universal superiority claim",
+      "no external framework containment claim",
+      "no release authority inferred"
+    ],
+    "evidence_refs": [
+      "StegVerse-Labs/Continuity@a217b63df95f6ac39adf6f1b6c4748aea8cb6312",
+      "StegVerse-Labs/StegCore@8378cbbc6f9d80ee94c69af312835d118ac46bfa"
+    ],
+    "confidence": 0.95,
+    "uncertainty": [
+      "live Site activation remains incomplete",
+      "downstream verified ingestion remains incomplete"
+    ]
+  },
+  "determinations": [],
+  "test_runs": [],
+  "disputes": [],
+  "sources": [],
+  "publication": {
+    "published_at": "2026-07-23T00:00:00Z",
+    "record_hash": "PENDING_CANONICAL_HASH",
+    "projection_authority": "NONE",
+    "custody_ref": null,
+    "reconstruction_status": "SELF_DECLARED_PENDING_FREEZE"
+  }
+}
