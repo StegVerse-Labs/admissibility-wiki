@@ -41,6 +41,7 @@ ASRO_BOUNDED_COMPARISON_CHECK = ROOT / "scripts" / "check_asro_bounded_compariso
 RECIPROCAL_FRAMEWORK_CHECK = ROOT / "scripts" / "check_reciprocal_framework_evaluations.py"
 RECIPROCAL_SYMMETRY_CHECK = ROOT / "scripts" / "check_reciprocal_boundary_symmetry.py"
 RECIPROCAL_REPLAY_CHECK = ROOT / "scripts" / "check_reciprocal_evaluation_replay.py"
+SV_CONTINUITY_109_CHECK = ROOT / "scripts" / "check_sv_continuity_109_admissibility.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -109,6 +110,7 @@ def main() -> int:
         (RECIPROCAL_FRAMEWORK_CHECK, "reciprocal framework evaluations"),
         (RECIPROCAL_SYMMETRY_CHECK, "reciprocal boundary symmetry"),
         (RECIPROCAL_REPLAY_CHECK, "reciprocal evaluation replay"),
+        (SV_CONTINUITY_109_CHECK, "SV-CONTINUITY-109 admissibility verification"),
         (RELEASE_READINESS_CHECK, "release readiness"),
     )
     for path, label in checks:
