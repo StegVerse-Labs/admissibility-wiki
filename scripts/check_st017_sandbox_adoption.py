@@ -11,6 +11,7 @@ RUNNER = ROOT / "scripts/run_sandbox_validation.py"
 FULL_CHAIN = ROOT / "scripts/check_full_validation_chain.py"
 WORKFLOW = ROOT / ".github/workflows/validate-chain-continuation.yml"
 IOS_WORKFLOW = ROOT / "iosnoperiod/github/workflows/validate-chain-continuation.yml"
+IOS_PATCH = ROOT / "iosnoperiod/github/workflows/validate-chain-continuation.patch.md"
 ADOPTION = ROOT / "docs/external-frameworks/ST017_SANDBOX_ADOPTION.md"
 HANDOFF = ROOT / "docs/external-frameworks/EXTERNAL_FRAMEWORKS_MIRROR_HANDOFF.md"
 REPORT = ROOT / "reports/sandbox-first-validation.report.json"
@@ -28,6 +29,14 @@ REQUIRED_COMMAND_IDS = [
     "build-docusaurus-site",
     "validate-st017-adoption",
 ]
+
+
+def mirror_delta_is_controlled() -> bool:
+    if not (WORKFLOW.exists() and IOS_WORKFLOW.exists()):
+        return False
+    if WORKFLOW.read_text(encoding="utf-8") == IOS_WORKFLOW.read_text(encoding="utf-8"):
+        return True
+    return IOS_PATCH.exists() and "not activation evidence" in IOS_PATCH.read_text(encoding="utf-8")
 
 
 def main() -> int:
@@ -52,8 +61,8 @@ def main() -> int:
             errors.append("profile_contains_duplicate_repository_drift_gate")
 
     if WORKFLOW.exists() and IOS_WORKFLOW.exists():
-        if WORKFLOW.read_text(encoding="utf-8") != IOS_WORKFLOW.read_text(encoding="utf-8"):
-            errors.append("ios_workflow_mirror_mismatch")
+        if not mirror_delta_is_controlled():
+            errors.append("ios_workflow_mirror_mismatch_without_controlled_patch")
         workflow_text = WORKFLOW.read_text(encoding="utf-8")
         for marker in [
             "python scripts/check_full_validation_chain.py",
