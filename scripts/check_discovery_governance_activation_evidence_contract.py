@@ -42,7 +42,6 @@ WRITER_MARKERS = (
 )
 
 WORKFLOW_MARKERS = (
-    'DISCOVERY_WORKFLOW_DEPENDENCIES_SATISFIED: "true"',
     'python scripts/check_discovery_governance_activation_closure.py',
     'python scripts/write_discovery_governance_activation_evidence.py',
     'reports/discovery-governance-activation-evidence-receipt.json',
@@ -74,6 +73,15 @@ def main() -> int:
     failures: list[str] = []
     require_markers(WRITER, WRITER_MARKERS, "activation evidence writer", failures)
     require_markers(WORKFLOW, WORKFLOW_MARKERS, "canonical workflow", failures)
+
+    if WORKFLOW.exists():
+        workflow_text = WORKFLOW.read_text(encoding="utf-8")
+        accepted_dependency_markers = (
+            'DISCOVERY_WORKFLOW_DEPENDENCIES_SATISFIED: "true"',
+            "DISCOVERY_WORKFLOW_DEPENDENCIES_SATISFIED: 'true'",
+        )
+        if not any(marker in workflow_text for marker in accepted_dependency_markers):
+            failures.append("canonical workflow missing dependency-satisfied environment assertion")
 
     if not SCHEMA.exists():
         failures.append(f"missing {SCHEMA.relative_to(ROOT)}")
