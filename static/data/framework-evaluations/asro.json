@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0.0",
+  "evaluation_id": "eval-asro-bounded-comparison-2026-07-23",
+  "framework": {
+    "framework_id": "asro",
+    "name": "ASRO bounded comparison surface",
+    "canonical_url": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/asro",
+    "version": null,
+    "owner": "James Aull"
+  },
+  "self_declaration": {
+    "claim_id": "asro-author-provided-bounded-object-2026-07-23",
+    "source": "SELF",
+    "scope": [
+      "bounded evidence-preservation and integrity comparison",
+      "declared-reference correspondence review"
+    ],
+    "functions": [
+      "supply a bounded representative object for comparison",
+      "support evidence-reference correspondence review"
+    ],
+    "dependencies": [
+      "ASRO-author-provided bounded representative object",
+      "explicit collection-membership semantics",
+      "object identity, version, hash, and applicable time"
+    ],
+    "limitations": [
+      "the supplied object is non-canonical",
+      "the supplied object is not asserted to be an existing released ASRO-native schema",
+      "the bounded object does not establish ASRO implementation completeness",
+      "the bounded comparison does not establish admissibility or execution authority"
+    ],
+    "exclusions": [
+      "no canonical ASRO schema inferred",
+      "no truth or sufficiency inferred",
+      "no validity or admissibility inferred",
+      "no authority inheritance inferred",
+      "no public interoperability certification inferred"
+    ],
+    "evidence_refs": [
+      "asro-bounded-representative-object-2026-07-23-001",
+      "asro-stegverse-correspondence-2026-07-23-001"
+    ],
+    "confidence": 0.96,
+    "uncertainty": [
+      "whether ASRO will later issue a canonical native schema",
+      "which accountable reviewer will eventually issue the reviewer-side record"
+    ]
+  },
+  "determinations": [
+    {
+      "claim_id": "stegverse-det-asro-bounded-correspondence-2026-07-23",
+      "source": "EVALUATOR",
+      "scope": [
+        "bounded correspondence between the ASRO-provided object and the StegVerse Companion Layer declaration"
+      ],
+      "functions": [
+        "test declared-reference presence using collection membership",
+        "bind the reference to object identity, version, hash, and applicable time",
+        "preserve the StegVerse declaration as controlling and the reviewer profile as derivative"
+      ],
+      "dependencies": [
+        "sv-cl-asro-2026-07-23-001",
+        "asro-bounded-representative-object-2026-07-23-001",
+        "review-profile-asro-stegverse-2026-07-23-001",
+        "asro-stegverse-correspondence-2026-07-23-001"
+      ],
+      "limitations": [
+        "correspondence is not truth",
+        "correspondence is not sufficiency",
+        "correspondence is not validity",
+        "correspondence is not admissibility",
+        "correspondence does not transfer authority"
+      ],
+      "exclusions": [
+        "no ASRO canonical-schema claim",
+        "no external certification",
+        "no execution authority",
+        "no custody transfer"
+      ],
+      "evidence_refs": [
+        "sv-cl-asro-2026-07-23-001",
+        "asro-bounded-representative-object-2026-07-23-001",
+        "review-profile-asro-stegverse-2026-07-23-001",
+        "asro-stegverse-correspondence-2026-07-23-001"
+      ],
+      "confidence": 0.95,
+      "uncertainty": [
+        "reviewer issuer remains unresolved",
+        "live reciprocal execution has not yet occurred"
+      ],
+      "determination_id": "det-stegverse-asro-bounded-001",
+      "evaluator_id": "stegverse",
+      "observation_class": "DERIVED",
+      "parentage_claim": "NOT_CLAIMED"
+    }
+  ],
+  "test_runs": [],
+  "disputes": [],
+  "sources": [
+    {
+      "source_id": "src-asro-bounded-object",
+      "path": "asro/asro-author-provided-bounded-representative-object.json",
+      "source_class": "ASRO-author-provided bounded representative object"
+    },
+    {
+      "source_id": "src-stegverse-companion-layer",
+      "path": "asro/stegverse-companion-layer-declaration.json",
+      "source_class": "StegVerse canonical source declaration"
+    },
+    {
+      "source_id": "src-asro-review-profile",
+      "path": "asro/reviewer-profile.json",
+      "source_class": "derivative reviewer-side profile"
+    },
+    {
+      "source_id": "src-asro-correspondence",
+      "path": "asro/correspondence-manifest.json",
+      "source_class": "bounded correspondence determination"
+    }
+  ],
+  "publication": {
+    "published_at": "2026-07-23T00:00:00Z",
+    "record_hash": "PENDING_CANONICAL_HASH",
+    "projection_authority": "NONE",
+    "custody_ref": null,
+    "reconstruction_status": "PARTIAL"
+  }
+}
