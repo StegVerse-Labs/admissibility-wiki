@@ -38,6 +38,7 @@ NAVIGATION_COVERAGE_CHECK = ROOT / "scripts" / "check_navigation_coverage.py"
 RELEASE_READINESS_CHECK = ROOT / "scripts" / "check_release_readiness.py"
 ECOSYSTEM_CHAT_ACTIVATION_CHECK = ROOT / "scripts" / "check_ecosystem_chat_activation_projection.py"
 ASRO_BOUNDED_COMPARISON_CHECK = ROOT / "scripts" / "check_asro_bounded_comparison.py"
+SV_CONTINUITY_109_CHECK = ROOT / "scripts" / "check_sv_continuity_109_admissibility.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -72,37 +73,42 @@ def main() -> int:
         text = HANDOFF.read_text(encoding="utf-8")
         failures.extend(f"missing marker: {marker}" for marker in REQUIRED if marker not in text)
 
-    run_check(MESH_CHECK, "documentation mesh", failures)
-    run_check(ST016_PROMOTION_CHECK, "ST-016 promotion bundle", failures)
-    run_check(RUN_RECEIPT_CHECK, "automated transition run receipt", failures)
-    run_check(CONCEPTUAL_INHERITANCE_CHECK, "conceptual inheritance claims", failures)
-    run_check(CONCEPTUAL_INHERITANCE_STATUS_CHECK, "conceptual inheritance activation status", failures)
-    run_check(CONCEPTUAL_INHERITANCE_PUBLICATION_CHECK, "conceptual inheritance publication gate", failures)
-    run_check(CONCEPTUAL_INHERITANCE_PROPAGATION_CHECK, "conceptual inheritance propagation plan", failures)
-    run_check(ORIGINAL_DRAWING_PUBLICATION_CHECK, "original drawing publication", failures)
-    run_check(OPTIMIZATION_TARGET_BINDING_CHECK, "optimization target binding at commit", failures)
-    run_check(OPTIMIZATION_TARGET_PUBLICATION_CHECK, "optimization target binding publication gate", failures)
-    run_check(AI_LED_RADIOLOGY_CHECK, "AI-led radiology execution boundary", failures)
-    run_check(AI_LED_RADIOLOGY_PUBLICATION_CHECK, "AI-led radiology publication gate", failures)
-    run_check(AI_LED_RADIOLOGY_HANDOFF_SYNC_CHECK, "AI-led radiology handoff sync", failures)
-    run_check(VERIFICATION_EXECUTION_AUTHORITY_CHECK, "verification versus execution authority", failures)
-    run_check(COMMIT_BOUNDARY_BINDING_CHECK, "commit-boundary binding predicate", failures)
-    run_check(QUANTUM_SECURITY_PUBLICATION_CHECK, "quantum-resilient security publication", failures)
-    run_check(PEER_PRESERVATION_CHECK, "peer-preservation inference boundary", failures)
-    run_check(ROBOTIC_LAW_ENFORCEMENT_CHECK, "robotic law-enforcement deployment admissibility", failures)
-    run_check(DISCOVERY_GOVERNANCE_HANDOFF_CHECK, "discovery-to-governance minimum handoff", failures)
-    run_check(DISCOVERY_GOVERNANCE_PROOF_RECEIPT_CHECK, "discovery-to-governance proof receipt", failures)
-    run_check(DISCOVERY_GOVERNANCE_PUBLICATION_CHECK, "discovery-to-governance publication contract", failures)
-    run_check(DISCOVERY_GOVERNANCE_ACTIVATION_EVIDENCE_CONTRACT_CHECK, "discovery-to-governance activation evidence contract", failures)
-    run_check(DISCOVERY_GOVERNANCE_ACTIVATION_EVIDENCE_RUNTIME_CHECK, "discovery-to-governance activation evidence runtime", failures)
-    run_check(DISCOVERY_GOVERNANCE_HANDOFF_SYNC_CHECK, "discovery-to-governance handoff synchronization", failures)
-    run_check(GLOSSARY_CONSISTENCY_CHECK, "glossary consistency", failures)
-    run_check(ACTIVATION_SECTION_CHECK, "activation section", failures)
-    run_check(RESEARCH_SOCIAL_STEGVERSE_CHECK, "research social and StegVerse sections", failures)
-    run_check(NAVIGATION_COVERAGE_CHECK, "navigation and orphan coverage", failures)
-    run_check(ECOSYSTEM_CHAT_ACTIVATION_CHECK, "Ecosystem Chat activation projection", failures)
-    run_check(ASRO_BOUNDED_COMPARISON_CHECK, "ASRO bounded comparison", failures)
-    run_check(RELEASE_READINESS_CHECK, "release readiness", failures)
+    checks = (
+        (MESH_CHECK, "documentation mesh"),
+        (ST016_PROMOTION_CHECK, "ST-016 promotion bundle"),
+        (RUN_RECEIPT_CHECK, "automated transition run receipt"),
+        (CONCEPTUAL_INHERITANCE_CHECK, "conceptual inheritance claims"),
+        (CONCEPTUAL_INHERITANCE_STATUS_CHECK, "conceptual inheritance activation status"),
+        (CONCEPTUAL_INHERITANCE_PUBLICATION_CHECK, "conceptual inheritance publication gate"),
+        (CONCEPTUAL_INHERITANCE_PROPAGATION_CHECK, "conceptual inheritance propagation plan"),
+        (ORIGINAL_DRAWING_PUBLICATION_CHECK, "original drawing publication"),
+        (OPTIMIZATION_TARGET_BINDING_CHECK, "optimization target binding at commit"),
+        (OPTIMIZATION_TARGET_PUBLICATION_CHECK, "optimization target binding publication gate"),
+        (AI_LED_RADIOLOGY_CHECK, "AI-led radiology execution boundary"),
+        (AI_LED_RADIOLOGY_PUBLICATION_CHECK, "AI-led radiology publication gate"),
+        (AI_LED_RADIOLOGY_HANDOFF_SYNC_CHECK, "AI-led radiology handoff sync"),
+        (VERIFICATION_EXECUTION_AUTHORITY_CHECK, "verification versus execution authority"),
+        (COMMIT_BOUNDARY_BINDING_CHECK, "commit-boundary binding predicate"),
+        (QUANTUM_SECURITY_PUBLICATION_CHECK, "quantum-resilient security publication"),
+        (PEER_PRESERVATION_CHECK, "peer-preservation inference boundary"),
+        (ROBOTIC_LAW_ENFORCEMENT_CHECK, "robotic law-enforcement deployment admissibility"),
+        (DISCOVERY_GOVERNANCE_HANDOFF_CHECK, "discovery-to-governance minimum handoff"),
+        (DISCOVERY_GOVERNANCE_PROOF_RECEIPT_CHECK, "discovery-to-governance proof receipt"),
+        (DISCOVERY_GOVERNANCE_PUBLICATION_CHECK, "discovery-to-governance publication contract"),
+        (DISCOVERY_GOVERNANCE_ACTIVATION_EVIDENCE_CONTRACT_CHECK, "discovery-to-governance activation evidence contract"),
+        (DISCOVERY_GOVERNANCE_ACTIVATION_EVIDENCE_RUNTIME_CHECK, "discovery-to-governance activation evidence runtime"),
+        (DISCOVERY_GOVERNANCE_HANDOFF_SYNC_CHECK, "discovery-to-governance handoff synchronization"),
+        (GLOSSARY_CONSISTENCY_CHECK, "glossary consistency"),
+        (ACTIVATION_SECTION_CHECK, "activation section"),
+        (RESEARCH_SOCIAL_STEGVERSE_CHECK, "research social and StegVerse sections"),
+        (NAVIGATION_COVERAGE_CHECK, "navigation and orphan coverage"),
+        (ECOSYSTEM_CHAT_ACTIVATION_CHECK, "Ecosystem Chat activation projection"),
+        (ASRO_BOUNDED_COMPARISON_CHECK, "ASRO bounded comparison"),
+        (SV_CONTINUITY_109_CHECK, "SV-CONTINUITY-109 admissibility verification"),
+        (RELEASE_READINESS_CHECK, "release readiness"),
+    )
+    for path, label in checks:
+        run_check(path, label, failures)
 
     if failures:
         print("ADMISSIBILITY AUTOMATION HANDOFF: FAIL")
