@@ -38,6 +38,7 @@ NAVIGATION_COVERAGE_CHECK = ROOT / "scripts" / "check_navigation_coverage.py"
 RELEASE_READINESS_CHECK = ROOT / "scripts" / "check_release_readiness.py"
 ECOSYSTEM_CHAT_ACTIVATION_CHECK = ROOT / "scripts" / "check_ecosystem_chat_activation_projection.py"
 ASRO_BOUNDED_COMPARISON_CHECK = ROOT / "scripts" / "check_asro_bounded_comparison.py"
+ASRO_BOUNDED_COMPARISON_RECEIPT_CHECK = ROOT / "scripts" / "check_asro_bounded_comparison_receipt.py"
 RECIPROCAL_FRAMEWORK_CHECK = ROOT / "scripts" / "check_reciprocal_framework_evaluations.py"
 RECIPROCAL_SYMMETRY_CHECK = ROOT / "scripts" / "check_reciprocal_boundary_symmetry.py"
 RECIPROCAL_REPLAY_CHECK = ROOT / "scripts" / "check_reciprocal_evaluation_replay.py"
@@ -107,6 +108,7 @@ def main() -> int:
         (NAVIGATION_COVERAGE_CHECK, "navigation and orphan coverage"),
         (ECOSYSTEM_CHAT_ACTIVATION_CHECK, "Ecosystem Chat activation projection"),
         (ASRO_BOUNDED_COMPARISON_CHECK, "ASRO bounded comparison"),
+        (ASRO_BOUNDED_COMPARISON_RECEIPT_CHECK, "ASRO bounded comparison receipt"),
         (RECIPROCAL_FRAMEWORK_CHECK, "reciprocal framework evaluations"),
         (RECIPROCAL_SYMMETRY_CHECK, "reciprocal boundary symmetry"),
         (RECIPROCAL_REPLAY_CHECK, "reciprocal evaluation replay"),
