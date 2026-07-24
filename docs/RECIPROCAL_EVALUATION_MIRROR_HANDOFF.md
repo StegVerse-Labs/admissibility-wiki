@@ -16,24 +16,20 @@ Guardian projection: StegVerse-002/stegguardian-wiki, only after destination han
 Canonical custody and reconstruction: external to the display layers
 ```
 
-The wiki is the primary display for framework declarations, evaluator determinations, live results, evidence posture, disputes, confidence, uncertainty, replay, and reconstruction status. The Site may provide synchronized interactive views of the same records but must not become a separate source of truth.
-
 ## Current goal
 
 ```text
 Goal id: reciprocal-architectural-evaluation
 Goal: publish machine-testable framework pages for StegVerse, TA-14, ASRO, and additional participating frameworks, then execute neutral and reciprocal public tests without inherited hierarchy.
-State: ASRO_FRAMEWORK_RECORD_AND_EXPECTED_RESULTS_INSTALLED_TEST_CASE_FREEZE_NEXT
+State: ASRO_STEGVERSE_RUN_REPLAY_RECONSTRUCTION_AND_RECEIPT_INSTALLED_CANONICAL_WORKFLOW_OBSERVATION_NEXT
 Manual user action required: false
 Authority granted: none
 ```
 
-## Installed files
+## Installed ASRO comparison surface
 
 ```text
-docs/external-frameworks/reciprocal-architectural-evaluation.md
 docs/external-frameworks/asro.md
-static/schemas/reciprocal-framework-evaluation.schema.json
 static/status/reciprocal-framework-evaluation-status.json
 static/data/framework-evaluations/index.json
 static/data/framework-evaluations/asro.json
@@ -42,20 +38,35 @@ static/data/framework-evaluations/asro/asro-author-provided-bounded-representati
 static/data/framework-evaluations/asro/reviewer-profile.json
 static/data/framework-evaluations/asro/correspondence-manifest.json
 static/data/framework-evaluations/asro/expected-results.json
+static/data/framework-evaluations/test-cases/asro-declared-reference-membership-v1.json
+static/data/framework-evaluations/runs/asro-declared-reference-membership-v1-stegverse-run-001.jsonl
+receipts/asro-bounded-comparison-run-001.json
 scripts/check_asro_bounded_comparison.py
-docs/RECIPROCAL_EVALUATION_MIRROR_HANDOFF.md
+scripts/check_asro_bounded_comparison_receipt.py
+scripts/check_reciprocal_framework_evaluations.py
+scripts/check_reciprocal_boundary_symmetry.py
+scripts/check_reciprocal_evaluation_replay.py
+scripts/check_admissibility_automation_handoff.py
 ```
 
-The ASRO framework record, registry entry, expected-results fixture, public page, and validation guard are installed. The validator is integrated through `scripts/check_admissibility_automation_handoff.py` and therefore the canonical `npm run validate` path.
+The ASRO bounded test, deterministic StegVerse event stream, replay, reconstruction, bounded non-authoritative receipt, public evidence page, status artifact, and canonical validation integration are installed.
 
-Site-side precursor files already exist:
+## Current results
 
 ```text
-StegVerse-Labs/Site/framework-evaluations.html
-StegVerse-Labs/Site/docs/RECIPROCAL_ARCHITECTURAL_EVALUATION.md
-StegVerse-Labs/Site/data/schemas/framework-evaluation.schema.json
-StegVerse-Labs/Site/data/framework-evaluations/index.json
+StegVerse bounded run: PASS
+Correspondence: ESTABLISHED
+Replay: PASS
+Reconstruction: PASS
+Admissibility: NOT_EVALUATED
+Authority: NONE
+Execution: NONE
+Custody: NONE
+External ASRO-native execution: NOT_TESTED
+Reviewer issuer: unresolved
 ```
+
+The StegVerse run must not be represented as an external ASRO-native execution.
 
 ## ASRO bounded comparison contract
 
@@ -71,67 +82,26 @@ Label equality alone: insufficient
 Correspondence result: no truth, sufficiency, validity, admissibility, authority, execution, or custody inheritance
 ```
 
-## Required framework deliverables
-
-Every participating framework requires:
+## Remaining local work
 
 ```text
-self-declaration
-StegVerse determination
-TA-14 determination
-additional evaluator determinations
-frozen shared test case
-live execution JSONL
-artifact and evidence references
-receipts and signatures
-replay result
-reconstruction result
-dispute records
-confidence and uncertainty
-content hashes and publication timestamp
+observe the canonical workflow result for the installed validators and receipt
+repair any failure inside StegVerse-Labs/admissibility-wiki
+record workflow evidence without converting validation into execution authority
+preserve external ASRO execution as NOT_TESTED unless independently supplied and executed
 ```
 
-## Required next files
+No second active workflow may be created. Validation remains routed through the existing canonical workflow and `npm run validate` chain.
 
-Destination `StegVerse-Labs/admissibility-wiki`:
-
-```text
-static/data/framework-evaluations/test-cases/asro-declared-reference-membership-v1.json
-static/data/framework-evaluations/runs/asro-declared-reference-membership-v1-stegverse-run-001.jsonl
-scripts/check_reciprocal_framework_evaluations.py
-scripts/check_reciprocal_boundary_symmetry.py
-scripts/check_reciprocal_evaluation_replay.py
-```
-
-Next implementation objective:
+## Downstream sequence
 
 ```text
-freeze the bounded test package
--> issue stable test_case_id
--> bind all input artifact hashes
--> define pass, fail-closed, and unresolved outcomes
--> emit first deterministic JSONL event stream
--> validate replay and independent reconstruction
-```
-
-Navigation and canonical validation integration must follow the existing single-workflow rule in `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`. Do not create another active workflow.
-
-## Test sequence
-
-```text
-publish criteria
--> freeze framework self-declarations
--> hash shared test package
--> issue stable test_case_id
--> each evaluator maps each framework
--> each system executes the same input
--> capture canonical event streams
--> validate schemas and references
--> publish all determinations on each framework page
--> replay and reconstruct
--> preserve disagreements
--> emit bounded non-authoritative receipts
--> mirror validated records to Site
+1. Validate locally and observe canonical workflow evidence.
+2. Check StegVerse-Labs/Site/docs/SITE_MIRROR_HANDOFF.md immediately before Site mutation.
+3. Prepare a synchronized Site projection only when destination scope permits it.
+4. Check Publisher handoff before GCAT-BCAT-Engine/Publisher mutation.
+5. Check StegGuardian destination handoffs before guardian projection.
+6. Integrate custody and independent reconstruction with master-records/orchestration only when authorized.
 ```
 
 ## Authority boundaries
@@ -151,20 +121,33 @@ correspondence != sufficiency
 correspondence != validity
 correspondence != authority inheritance
 reviewer role != accountable issuer
+StegVerse run != external ASRO-native run
+repository receipt != certification
 ```
-
-No framework is assigned parent status by the schema, display order, evaluator identity, or test environment.
 
 ## Remaining destinations
 
 ```text
-StegVerse-Labs/admissibility-wiki — frozen ASRO test case, first JSONL run, reciprocal validators, replay and reconstruction evidence
-StegVerse-Labs/Site — synchronized interactive mirror after wiki records validate
-GCAT-BCAT-Engine/Publisher — publication projection after handoff review
-StegVerse-002/stegguardian-wiki — guardian interpretation after handoff review
-master-records/orchestration — custody and reconstruction integration when authorized
+StegVerse-Labs/admissibility-wiki — canonical workflow observation and failure repair if required
+StegVerse-Labs/Site — synchronized interactive mirror after SITE_MIRROR_HANDOFF review
+GCAT-BCAT-Engine/Publisher — publication projection after destination handoff review
+StegVerse-002/stegguardian-wiki — guardian interpretation after destination handoff review
+master-records/orchestration — custody and independent reconstruction integration when authorized
+```
+
+## Release posture
+
+The reciprocal ASRO workstream is locally feature-complete for the StegVerse bounded run but is not yet tagged as a completed reciprocal external evaluation. Release claims must retain `external ASRO-native execution: NOT_TESTED` and `reviewer issuer: unresolved` until evidence changes those states.
+
+When repository-level tag/release readiness is reached, create or update durable propagation-verification tasks for:
+
+```text
+StegVerse-Labs/Site
+GCAT-BCAT-Engine/Publisher
+StegVerse-Labs/admissibility-wiki
+StegVerse-002/stegguardian-wiki
 ```
 
 ## Archive posture
 
-This handoff, the repository-wide handoff, the wiki doctrine, schema, status artifact, ASRO framework record, registry entry, expected-results fixture, public page, bounded comparison packet, validator integration, and Site precursor files preserve all current continuation information. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
+This handoff, the repository-wide handoff, the public ASRO page, status artifact, framework record, frozen test case, deterministic run, receipt, validators, and canonical validation integration preserve all current continuation information. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
