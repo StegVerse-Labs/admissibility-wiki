@@ -1,0 +1,66 @@
+{
+  "schema": "asro_reciprocal_site_projection_bundle.v1",
+  "bundle_id": "asro-reciprocal-site-projection-2026-07-23-001",
+  "source_repository": "StegVerse-Labs/admissibility-wiki",
+  "destination_repository": "StegVerse-Labs/Site",
+  "state": "QUEUED_NON_COLLIDING_NO_DESTINATION_MUTATION",
+  "destination_handoff_review": {
+    "path": "docs/SITE_MIRROR_HANDOFF.md",
+    "observed_state": "ACTIVATION_PENDING_AUTHORIZED_REAL_PROVIDER_AND_PERSISTENT_ENDPOINT",
+    "observed_priority": "Ecosystem Chat activation and synchronized governed-event rendering",
+    "projection_authorized_now": false,
+    "reason": "The current Site handoff does not assign reciprocal-framework mirroring as the next executable Site task."
+  },
+  "source_artifacts": [
+    {
+      "source_path": "docs/external-frameworks/asro.md",
+      "proposed_destination_path": "docs/framework-evaluations/asro.md",
+      "projection_class": "HUMAN_READABLE"
+    },
+    {
+      "source_path": "static/status/reciprocal-framework-evaluation-status.json",
+      "proposed_destination_path": "data/framework-evaluations/reciprocal-framework-evaluation-status.json",
+      "projection_class": "STATUS"
+    },
+    {
+      "source_path": "static/data/framework-evaluations/asro.json",
+      "proposed_destination_path": "data/framework-evaluations/asro.json",
+      "projection_class": "FRAMEWORK_RECORD"
+    },
+    {
+      "source_path": "static/data/framework-evaluations/test-cases/asro-declared-reference-membership-v1.json",
+      "proposed_destination_path": "data/framework-evaluations/test-cases/asro-declared-reference-membership-v1.json",
+      "projection_class": "FROZEN_TEST_CASE"
+    },
+    {
+      "source_path": "static/data/framework-evaluations/runs/asro-declared-reference-membership-v1-stegverse-run-001.jsonl",
+      "proposed_destination_path": "data/framework-evaluations/runs/asro-declared-reference-membership-v1-stegverse-run-001.jsonl",
+      "projection_class": "GOVERNED_EVENT_STREAM"
+    },
+    {
+      "source_path": "receipts/asro-bounded-comparison-run-001.json",
+      "proposed_destination_path": "data/framework-evaluations/receipts/asro-bounded-comparison-run-001.json",
+      "projection_class": "NON_AUTHORITATIVE_RECEIPT"
+    }
+  ],
+  "required_destination_behavior": [
+    "render from the projected records without becoming a separate source of truth",
+    "correlate visible claims and governed records using stable identifiers",
+    "preserve external ASRO-native execution as NOT_TESTED",
+    "preserve reviewer issuer as unresolved",
+    "preserve correspondence, replay, reconstruction, admissibility, authority, execution, and custody as separate results"
+  ],
+  "authority": {
+    "destination_mutation": false,
+    "publication": false,
+    "admissibility": false,
+    "execution": false,
+    "custody": false,
+    "certification": false,
+    "interoperability": false
+  },
+  "ingestion_condition": "Re-read docs/SITE_MIRROR_HANDOFF.md immediately before destination mutation and proceed only when its active scope permits this non-colliding projection.",
+  "manual_task_requirement": "NONE",
+  "user_manual_action_required": false,
+  "created_at": "2026-07-23T00:00:07Z"
+}
