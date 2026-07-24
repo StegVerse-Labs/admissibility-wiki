@@ -18,6 +18,7 @@ OBSERVATION_WRITER = ROOT / "scripts" / "write_canonical_workflow_observation_re
 OBSERVATION_REPORT = ROOT / "reports" / "canonical-workflow-observation-receipt.json"
 
 CHECKS = [
+    ("Validate canonical orchestration contract", "scripts/check_canonical_orchestration_contract.py"),
     ("Validate single workflow policy", "scripts/check_workflow_sprawl.py"),
     ("Validate chain continuation", "scripts/check_chain_status_continuation.py"),
     ("Validate continuation bundle", "scripts/check_continuation_bundle.py"),
