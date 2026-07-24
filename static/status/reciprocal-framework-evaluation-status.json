@@ -2,7 +2,7 @@
   "schema": "reciprocal_framework_evaluation_status.v1",
   "goal_id": "reciprocal-architectural-evaluation",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "state": "ASRO_STEGVERSE_RUN_REPLAY_RECONSTRUCTION_AND_RECEIPT_INSTALLED_EXTERNAL_EXECUTION_PENDING",
+  "state": "ASRO_STEGVERSE_BOUNDED_PUBLICATION_OBSERVATION_AUTOMATED_EXTERNAL_EXECUTION_PENDING",
   "public_display": {
     "primary": "admissibility-wiki",
     "interactive_mirror": "StegVerse-Labs/Site",
@@ -36,6 +36,7 @@
       "replay": "PASS",
       "reconstruction": "PASS",
       "receipt": "INSTALLED_NON_AUTHORITATIVE",
+      "public_route_observation": "AUTOMATED_PENDING_NEXT_CANONICAL_WORKFLOW",
       "reviewer_issuer": "UNRESOLVED"
     }
   ],
@@ -49,6 +50,10 @@
     "run": "static/data/framework-evaluations/runs/asro-declared-reference-membership-v1-stegverse-run-001.jsonl",
     "receipt": "receipts/asro-bounded-comparison-run-001.json",
     "receipt_validator": "scripts/check_asro_bounded_comparison_receipt.py",
+    "publication_status": "static/status/asro-reciprocal-publication-verification.json",
+    "publication_contract_validator": "scripts/check_asro_reciprocal_publication_verification.py",
+    "public_route_checker": "scripts/check_governed_llm_deployment_status.py",
+    "workflow_report": "reports/asro-reciprocal-public-route-observation.json",
     "handoff": "docs/RECIPROCAL_EVALUATION_MIRROR_HANDOFF.md"
   },
   "results": {
@@ -61,10 +66,10 @@
     "custody": "NONE"
   },
   "remaining": [
-    "observe canonical workflow validation for the installed ASRO test and receipt",
+    "observe the next canonical workflow public-route report and repair any source-repository failure",
     "receive an accountable reviewer designation or preserve reviewer issuer as unresolved",
     "receive and execute an external ASRO-native test package before claiming reciprocal external execution",
-    "mirror validated records to StegVerse-Labs/Site after destination handoff review",
+    "keep the Site projection queued while the current Site handoff prioritizes Ecosystem Chat activation",
     "review Publisher and StegGuardian handoffs before downstream projection",
     "integrate custody and independent reconstruction with master-records/orchestration when authorized"
   ],
@@ -75,9 +80,10 @@
     "execution": false,
     "custody": false,
     "parentage": false,
+    "interoperability": false,
     "downstream_mutation": false
   },
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
-  "updated_at": "2026-07-23T00:00:05Z"
+  "updated_at": "2026-07-23T00:00:06Z"
 }
