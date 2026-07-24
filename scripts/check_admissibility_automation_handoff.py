@@ -40,6 +40,7 @@ ECOSYSTEM_CHAT_ACTIVATION_CHECK = ROOT / "scripts" / "check_ecosystem_chat_activ
 ASRO_BOUNDED_COMPARISON_CHECK = ROOT / "scripts" / "check_asro_bounded_comparison.py"
 ASRO_BOUNDED_COMPARISON_RECEIPT_CHECK = ROOT / "scripts" / "check_asro_bounded_comparison_receipt.py"
 ASRO_PUBLICATION_VERIFICATION_CHECK = ROOT / "scripts" / "check_asro_reciprocal_publication_verification.py"
+ASRO_SITE_PROJECTION_BUNDLE_CHECK = ROOT / "scripts" / "check_asro_site_projection_bundle.py"
 RECIPROCAL_FRAMEWORK_CHECK = ROOT / "scripts" / "check_reciprocal_framework_evaluations.py"
 RECIPROCAL_SYMMETRY_CHECK = ROOT / "scripts" / "check_reciprocal_boundary_symmetry.py"
 RECIPROCAL_REPLAY_CHECK = ROOT / "scripts" / "check_reciprocal_evaluation_replay.py"
@@ -111,6 +112,7 @@ def main() -> int:
         (ASRO_BOUNDED_COMPARISON_CHECK, "ASRO bounded comparison"),
         (ASRO_BOUNDED_COMPARISON_RECEIPT_CHECK, "ASRO bounded comparison receipt"),
         (ASRO_PUBLICATION_VERIFICATION_CHECK, "ASRO reciprocal publication verification"),
+        (ASRO_SITE_PROJECTION_BUNDLE_CHECK, "ASRO Site projection bundle"),
         (RECIPROCAL_FRAMEWORK_CHECK, "reciprocal framework evaluations"),
         (RECIPROCAL_SYMMETRY_CHECK, "reciprocal boundary symmetry"),
         (RECIPROCAL_REPLAY_CHECK, "reciprocal evaluation replay"),
