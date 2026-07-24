@@ -2,10 +2,10 @@ name: Validate chain continuation
 
 on:
   push:
+    branches:
+      - main
   pull_request:
   workflow_dispatch:
-  schedule:
-    - cron: '17 * * * *'
 
 permissions:
   contents: read
@@ -14,8 +14,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: admissibility-wiki-canonical-${{ github.event_name }}-${{ github.ref }}
-  cancel-in-progress: false
+  group: admissibility-wiki-canonical-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate-chain-continuation:
@@ -127,7 +127,7 @@ jobs:
           PY
 
   capture-opa-evidence:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     needs: validate-chain-continuation
     continue-on-error: true
@@ -157,7 +157,7 @@ jobs:
           retention-days: 30
 
   replay-opa-fresh-runner:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     needs: capture-opa-evidence
     continue-on-error: true
@@ -189,7 +189,7 @@ jobs:
           retention-days: 30
 
   build-selected-cedar-binary:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     needs: validate-chain-continuation
     continue-on-error: true
@@ -218,7 +218,7 @@ jobs:
           retention-days: 30
 
   build-pages:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     needs: validate-chain-continuation
     steps:
@@ -312,7 +312,7 @@ jobs:
           path: build
 
   deploy-pages:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -326,7 +326,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
   verify-public-pages:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     needs: deploy-pages
     steps:
