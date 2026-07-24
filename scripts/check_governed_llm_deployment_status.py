@@ -60,10 +60,16 @@ PAGES = {
     "kpt_external_framework_page": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/kpt",
     "kpt_external_framework_status": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-external-framework-intake-status.json",
     "kpt_source_intake_queue": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-source-intake-queue.json",
+    "asro_external_framework_page": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/asro",
+    "asro_reciprocal_status": "https://stegverse-labs.github.io/admissibility-wiki/status/reciprocal-framework-evaluation-status.json",
+    "asro_framework_record": "https://stegverse-labs.github.io/admissibility-wiki/data/framework-evaluations/asro.json",
+    "asro_test_case": "https://stegverse-labs.github.io/admissibility-wiki/data/framework-evaluations/test-cases/asro-declared-reference-membership-v1.json",
+    "asro_stegverse_run": "https://stegverse-labs.github.io/admissibility-wiki/data/framework-evaluations/runs/asro-declared-reference-membership-v1-stegverse-run-001.jsonl",
 }
 RECEIPT = Path("reports/optimization-target-publication-verification-receipt.json")
 QUANTUM_RECEIPT = Path("reports/quantum-security-public-route-observation.json")
 DISCOVERY_RECEIPT = Path("reports/discovery-governance-publication-receipt.json")
+ASRO_RECEIPT = Path("reports/asro-reciprocal-public-route-observation.json")
 QUANTUM_ROUTE_NAMES = (
     "quantum_security_governance_page",
     "quantum_security_research_paper",
@@ -75,6 +81,13 @@ DISCOVERY_ROUTE_NAMES = (
     "discovery_governance_status",
     "discovery_governance_example",
     "discovery_governance_publication_receipt_schema",
+)
+ASRO_ROUTE_NAMES = (
+    "asro_external_framework_page",
+    "asro_reciprocal_status",
+    "asro_framework_record",
+    "asro_test_case",
+    "asro_stegverse_run",
 )
 
 def check_url(url: str):
@@ -116,6 +129,7 @@ def main() -> int:
             "Conceptual-inheritance publication does not decide authorship, ownership, infringement, intent, derivation, or origin-claim standing.",
             "Discovery-handoff publication does not grant consent, standing, authority, admissibility, commitment, execution permission, certification, or endorsement.",
             "A reachable KPT source-intake queue does not prove source sufficiency or promote a source candidate.",
+            "A reachable ASRO bounded-comparison surface does not establish external ASRO-native execution, reviewer issuance, admissibility, authority, certification, custody, or interoperability.",
             "The terminal rollup reports pointers, presence, ownership, and completeness without semantic reclassification.",
             "All summaries, comparisons, and bounded-history reachability remains descriptive and does not make predictive or independent causal claims.",
             "Failed checks remain fail-closed and create no user task."
@@ -166,9 +180,49 @@ def main() -> int:
         ]
     }
     DISCOVERY_RECEIPT.write_text(json.dumps(discovery_receipt, indent=2)+"\n", encoding="utf-8")
+    asro_routes = {name: results[name] for name in ASRO_ROUTE_NAMES}
+    asro_pass = all(item["reachable"] for item in asro_routes.values())
+    asro_receipt = {
+        "schema": "asro_reciprocal_public_route_observation.v1",
+        "goal_id": "reciprocal-architectural-evaluation",
+        "state": "WORKFLOW_OBSERVED_STEGVERSE_BOUNDED_PUBLICATION_COMPLETE" if asro_pass else "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED",
+        "observed_at": datetime.now(timezone.utc).isoformat(),
+        "repository": "StegVerse-Labs/admissibility-wiki",
+        "commit": os.getenv("GITHUB_SHA"),
+        "run_id": os.getenv("GITHUB_RUN_ID"),
+        "run_attempt": os.getenv("GITHUB_RUN_ATTEMPT"),
+        "routes": asro_routes,
+        "all_required_public_routes_verified": asro_pass,
+        "pages_deployment_observed": asro_pass,
+        "stegverse_bounded_run": "PASS",
+        "correspondence": "ESTABLISHED",
+        "replay": "PASS",
+        "reconstruction": "PASS",
+        "external_asro_native_execution": "NOT_TESTED",
+        "reviewer_issuer": "unresolved",
+        "admissibility_granted": False,
+        "authority_granted": False,
+        "execution_authority_granted": False,
+        "certification_granted": False,
+        "custody_granted": False,
+        "interoperability_verified": False,
+        "downstream_mutation_authority_granted": False,
+        "manual_task_requirement": "NONE",
+        "user_manual_action_required": False,
+        "continuation_source": "docs/RECIPROCAL_EVALUATION_MIRROR_HANDOFF.md",
+        "non_claims": [
+            "Public route reachability is bounded publication evidence only.",
+            "The StegVerse bounded run is not an external ASRO-native execution.",
+            "Correspondence does not establish truth, sufficiency, validity, admissibility, authority, execution, custody, certification, or interoperability.",
+            "Reviewer role does not resolve accountable issuer identity.",
+            "This observation grants no downstream mutation authority."
+        ]
+    }
+    ASRO_RECEIPT.write_text(json.dumps(asro_receipt, indent=2)+"\n", encoding="utf-8")
     print(f"wrote {RECEIPT}")
     print(f"wrote {QUANTUM_RECEIPT}")
     print(f"wrote {DISCOVERY_RECEIPT}")
+    print(f"wrote {ASRO_RECEIPT}")
     if failures:
         print("GOVERNED DOCUMENTATION DEPLOYMENT: PENDING - public routes not fully confirmed"); return 1
     print("GOVERNED DOCUMENTATION DEPLOYMENT: PASS - public routes reachable"); return 0
