@@ -1,0 +1,34 @@
+{
+  "schema": "bounded_non_authoritative_comparison_receipt.v1",
+  "receipt_id": "receipt-asro-bounded-comparison-run-001",
+  "issued_at": "2026-07-23T00:00:05Z",
+  "issuer": "StegVerse-Labs/admissibility-wiki",
+  "run_id": "asro-declared-reference-membership-v1-stegverse-run-001",
+  "test_case_id": "asro-declared-reference-membership-v1",
+  "test_package_sha256": "76b89f81df802245d8cb309cc3b432ae283eb22f1f73fe7839c90848bd044537",
+  "run_artifact": "static/data/framework-evaluations/runs/asro-declared-reference-membership-v1-stegverse-run-001.jsonl",
+  "result": {
+    "correspondence": "ESTABLISHED",
+    "replay": "PASS",
+    "reconstruction": "PASS",
+    "admissibility": "NOT_EVALUATED",
+    "authority": "NONE",
+    "execution": "NONE",
+    "custody": "NONE"
+  },
+  "bounded_non_claims": {
+    "external_asro_execution_observed": false,
+    "canonical_asro_schema_established": false,
+    "truth_established": false,
+    "sufficiency_established": false,
+    "validity_established": false,
+    "admissibility_established": false,
+    "authority_inherited": false,
+    "execution_authority_granted": false,
+    "custody_transferred": false
+  },
+  "reviewer_issuer": "unresolved",
+  "projection_authority": "NONE",
+  "signature_status": "UNSIGNED_REPOSITORY_RECEIPT",
+  "receipt_hash": "PENDING_CANONICAL_HASH"
+}
