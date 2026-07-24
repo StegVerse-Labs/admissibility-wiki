@@ -1,0 +1,41 @@
+{
+  "schema": "asro_reciprocal_publication_verification.v1",
+  "goal_id": "reciprocal-architectural-evaluation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "state": "AUTOMATED_PUBLIC_ROUTE_OBSERVATION_PENDING_NEXT_CANONICAL_WORKFLOW",
+  "required_routes": [
+    "external-frameworks/asro",
+    "status/reciprocal-framework-evaluation-status.json",
+    "data/framework-evaluations/asro.json",
+    "data/framework-evaluations/test-cases/asro-declared-reference-membership-v1.json",
+    "data/framework-evaluations/runs/asro-declared-reference-membership-v1-stegverse-run-001.jsonl"
+  ],
+  "workflow_observation": {
+    "checker": "scripts/check_governed_llm_deployment_status.py",
+    "report": "reports/asro-reciprocal-public-route-observation.json",
+    "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "job": "verify-public-pages",
+    "manual_task_requirement": "NONE",
+    "user_manual_action_required": false
+  },
+  "bounded_result": {
+    "stegverse_bounded_run": "PASS",
+    "correspondence": "ESTABLISHED",
+    "replay": "PASS",
+    "reconstruction": "PASS",
+    "external_asro_native_execution": "NOT_TESTED",
+    "reviewer_issuer": "unresolved"
+  },
+  "authority": {
+    "comparison": false,
+    "admissibility": false,
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "interoperability": false,
+    "downstream_mutation": false
+  },
+  "failure_posture": "FAIL_CLOSED_NO_USER_TASK",
+  "continuation_source": "docs/RECIPROCAL_EVALUATION_MIRROR_HANDOFF.md",
+  "updated_at": "2026-07-23T00:00:00Z"
+}
