@@ -2,7 +2,7 @@
   "schema": "reciprocal_framework_evaluation_status.v1",
   "goal_id": "reciprocal-architectural-evaluation",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "state": "DOCTRINE_AND_SCHEMA_INSTALLED_LIVE_TEST_PENDING",
+  "state": "ASRO_STEGVERSE_RUN_REPLAY_RECONSTRUCTION_AND_RECEIPT_INSTALLED_EXTERNAL_EXECUTION_PENDING",
   "public_display": {
     "primary": "admissibility-wiki",
     "interactive_mirror": "StegVerse-Labs/Site",
@@ -16,32 +16,57 @@
   "registered_frameworks": [
     {
       "framework_id": "stegverse",
-      "self_declaration": "PENDING_FREEZE",
+      "self_declaration": "BOUNDED_COMPANION_LAYER_DECLARATION_FROZEN_FOR_ASRO_TEST",
       "external_determinations": "PENDING",
-      "live_test": "NOT_TESTED"
+      "live_test": "STEGVERSE_RUN_PASS"
     },
     {
       "framework_id": "ta-14",
-      "self_declaration": "PENDING_EXTERNAL_SUBMISSION",
-      "stegverse_determination": "PENDING",
+      "self_declaration": "PUBLIC_SOURCES_OBSERVED_NOT_OWNER_CONFIRMED",
+      "stegverse_determination": "INSTALLED",
       "live_test": "NOT_TESTED"
+    },
+    {
+      "framework_id": "asro",
+      "self_declaration": "AUTHOR_PROVIDED_BOUNDED_REPRESENTATIVE_OBJECT",
+      "canonical_schema": "NOT_ASSERTED",
+      "stegverse_determination": "INSTALLED",
+      "stegverse_run": "PASS",
+      "external_asro_run": "NOT_TESTED",
+      "replay": "PASS",
+      "reconstruction": "PASS",
+      "receipt": "INSTALLED_NON_AUTHORITATIVE",
+      "reviewer_issuer": "UNRESOLVED"
     }
   ],
   "installed": {
     "wiki_doctrine": "docs/external-frameworks/reciprocal-architectural-evaluation.md",
+    "asro_page": "docs/external-frameworks/asro.md",
     "schema": "static/schemas/reciprocal-framework-evaluation.schema.json",
+    "registry": "static/data/framework-evaluations/index.json",
+    "asro_framework_record": "static/data/framework-evaluations/asro.json",
+    "test_case": "static/data/framework-evaluations/test-cases/asro-declared-reference-membership-v1.json",
+    "run": "static/data/framework-evaluations/runs/asro-declared-reference-membership-v1-stegverse-run-001.jsonl",
+    "receipt": "receipts/asro-bounded-comparison-run-001.json",
+    "receipt_validator": "scripts/check_asro_bounded_comparison_receipt.py",
     "handoff": "docs/RECIPROCAL_EVALUATION_MIRROR_HANDOFF.md"
   },
+  "results": {
+    "correspondence": "ESTABLISHED",
+    "replay": "PASS",
+    "reconstruction": "PASS",
+    "admissibility": "NOT_EVALUATED",
+    "authority": "NONE",
+    "execution": "NONE",
+    "custody": "NONE"
+  },
   "remaining": [
-    "freeze StegVerse self-declaration",
-    "receive or reconstruct TA-14 self-declaration with source references",
-    "create framework-specific machine-readable records",
-    "publish frozen shared test cases",
-    "capture live JSONL event streams",
-    "validate schema, symmetry, references, replay, and reconstruction",
-    "integrate public-route verification into the canonical workflow",
-    "mirror validated records to StegVerse-Labs/Site",
-    "review Publisher and StegGuardian handoffs before downstream projection"
+    "observe canonical workflow validation for the installed ASRO test and receipt",
+    "receive an accountable reviewer designation or preserve reviewer issuer as unresolved",
+    "receive and execute an external ASRO-native test package before claiming reciprocal external execution",
+    "mirror validated records to StegVerse-Labs/Site after destination handoff review",
+    "review Publisher and StegGuardian handoffs before downstream projection",
+    "integrate custody and independent reconstruction with master-records/orchestration when authorized"
   ],
   "authority": {
     "comparison": false,
@@ -54,5 +79,5 @@
   },
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
-  "updated_at": "2026-07-22T00:00:00Z"
+  "updated_at": "2026-07-23T00:00:05Z"
 }
