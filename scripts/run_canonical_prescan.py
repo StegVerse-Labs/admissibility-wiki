@@ -2,6 +2,7 @@
 """Run canonical pre-scan generators and validators without hiding later failures."""
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import subprocess
@@ -28,6 +29,40 @@ COMMANDS = [
 ]
 
 
+def canonical_command_inventory() -> list[dict[str, object]]:
+    return [{"id": command_id, "command": command} for command_id, command in COMMANDS]
+
+
+def inventory_sha256(inventory: list[dict[str, object]]) -> str:
+    encoded = json.dumps(inventory, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def workflow_run_context() -> dict[str, object]:
+    return {
+        "github_actions": os.environ.get("GITHUB_ACTIONS") == "true",
+        "repository": os.environ.get("GITHUB_REPOSITORY"),
+        "workflow": os.environ.get("GITHUB_WORKFLOW"),
+        "workflow_ref": os.environ.get("GITHUB_WORKFLOW_REF"),
+        "run_id": os.environ.get("GITHUB_RUN_ID"),
+        "run_number": os.environ.get("GITHUB_RUN_NUMBER"),
+        "run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
+        "event_name": os.environ.get("GITHUB_EVENT_NAME"),
+        "ref": os.environ.get("GITHUB_REF"),
+        "ref_name": os.environ.get("GITHUB_REF_NAME"),
+        "sha": os.environ.get("GITHUB_SHA"),
+        "actor": os.environ.get("GITHUB_ACTOR"),
+        "server_url": os.environ.get("GITHUB_SERVER_URL"),
+        "run_url": (
+            f"{os.environ.get('GITHUB_SERVER_URL')}/{os.environ.get('GITHUB_REPOSITORY')}/actions/runs/{os.environ.get('GITHUB_RUN_ID')}"
+            if os.environ.get("GITHUB_SERVER_URL")
+            and os.environ.get("GITHUB_REPOSITORY")
+            and os.environ.get("GITHUB_RUN_ID")
+            else None
+        ),
+    }
+
+
 def append_summary(report: dict[str, object]) -> None:
     summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
     if not summary_path:
@@ -38,6 +73,7 @@ def append_summary(report: dict[str, object]) -> None:
         "",
         f"**Result:** `{report['overall_status']}`  ",
         f"**Commands:** {report['passed_commands']}/{report['total_commands']} passed; {report['failed_commands']} failed",
+        f"**Inventory SHA-256:** `{report['command_inventory_sha256']}`",
         "",
         "| Command | Status | Exit | Duration |",
         "|---|---:|---:|---:|",
@@ -67,6 +103,7 @@ def append_summary(report: dict[str, object]) -> None:
 def main() -> int:
     started = time.time()
     results: list[dict[str, object]] = []
+    inventory = canonical_command_inventory()
     for command_id, command in COMMANDS:
         command_started = time.time()
         completed = subprocess.run(
@@ -104,13 +141,17 @@ def main() -> int:
         "passed_commands": len(results) - failed,
         "failed_commands": failed,
         "duration_seconds": round(time.time() - started, 3),
+        "command_inventory": inventory,
+        "command_inventory_sha256": inventory_sha256(inventory),
+        "workflow_run_context": workflow_run_context(),
         "results": results,
-        "authority_boundary": "This diagnostic pre-scan receipt grants no deployment, execution, certification, release, admissibility, standing, publication, or downstream mutation authority.",
+        "authority_boundary": "This diagnostic pre-scan receipt records command outcomes and workflow-run context only. It grants no deployment, execution, certification, release, admissibility, standing, publication, or downstream mutation authority.",
     }
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     append_summary(report)
     print(f"CANONICAL PRE-SCAN: {report['overall_status']}")
+    print(f"inventory sha256: {report['command_inventory_sha256']}")
     print(f"report: {REPORT.relative_to(ROOT)}")
     return 1 if failed else 0
 
