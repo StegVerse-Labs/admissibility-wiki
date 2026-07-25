@@ -29,35 +29,23 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Validate inference-window governance cases
-        run: python scripts/validate_inference_window_governance.py
+      - name: Run canonical pre-scan
+        id: canonical-prescan
+        continue-on-error: true
+        run: python scripts/run_canonical_prescan.py
 
-      - name: Test inference-window governance validator
-        run: python -m unittest tests.test_inference_window_governance
-
-      - name: Generate external framework reports
-        run: python scripts/generate_external_framework_reports.py
-
-      - name: Generate external framework evaluation results
-        run: python scripts/generate_external_framework_results.py
-
-      - name: Generate external framework page metadata
-        run: python scripts/generate_external_framework_page_metadata.py
-
-      - name: Generate external framework page mapping
-        run: python scripts/generate_external_framework_page_mapping.py
-
-      - name: Generate external framework page status
-        run: python scripts/generate_external_framework_page_status.py
-
-      - name: Generate implementation automation readiness matrix
-        run: python scripts/generate_external_framework_automation_readiness.py
-
-      - name: Validate implementation automation readiness matrix
-        run: python scripts/check_external_framework_automation_readiness.py
+      - name: Upload canonical pre-scan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: canonical-prescan-report
+          path: reports/canonical-prescan-report.json
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Scan complete validation chain
         id: full-validation-scan
+        if: always()
         continue-on-error: true
         run: python scripts/check_full_validation_chain.py
 
@@ -103,26 +91,38 @@ jobs:
           path: reports/guardian_destination_status.json
           if-no-files-found: warn
 
-      - name: Enforce complete validation result
+      - name: Enforce canonical validation result
         if: always()
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
-          path = Path('reports/full_validation_chain_report.json')
-          if not path.exists():
-              raise SystemExit('full validation report was not produced')
-          report = json.loads(path.read_text(encoding='utf-8'))
+          prescan_path = Path('reports/canonical-prescan-report.json')
+          full_path = Path('reports/full_validation_chain_report.json')
+          missing = [str(path) for path in (prescan_path, full_path) if not path.exists()]
+          if missing:
+              raise SystemExit(f"required validation reports were not produced: {', '.join(missing)}")
+
+          prescan = json.loads(prescan_path.read_text(encoding='utf-8'))
+          report = json.loads(full_path.read_text(encoding='utf-8'))
+          print(
+              f"Pre-scan summary: {prescan['passed_commands']}/{prescan['total_commands']} passed; "
+              f"{prescan['failed_commands']} failed"
+          )
           print(
               f"Validation summary: {report['passed_checks']}/{report['total_checks']} passed; "
-              f"{report['failed_checks']} failed"
+              f"{report['failed_checks']} failed; {report.get('skipped_checks', 0)} skipped"
           )
+          for result in prescan['results']:
+              if result['status'] == 'FAIL':
+                  print(f"\nPRE-SCAN FAIL: {result['id']}")
+                  print(result.get('output') or '(no command output)')
           for result in report['results']:
               if result['status'] == 'FAIL':
                   print(f"\nFAIL: {result['path']}")
                   print(result.get('output') or '(no validator output)')
-          if report['overall_status'] != 'PASS':
+          if prescan['overall_status'] != 'PASS' or report['overall_status'] != 'PASS':
               raise SystemExit(1)
           PY
 
