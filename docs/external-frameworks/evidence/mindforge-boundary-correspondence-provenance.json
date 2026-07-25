@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "private_correspondence_provenance",
+  "framework": "MindForge",
+  "public_source_status": "not_authorized_for_publication",
+  "captured_date_range": {"start": "2026-06-24", "end": "2026-06-26"},
+  "recorded_at": "2026-07-25",
+  "boundary": {
+    "historical_evidence_role": "reconstructable historical governance evidence",
+    "commitment_candidate_role": "non-authorizing proposed crossing",
+    "standing_engine_role": "fresh commit-time standing reconstruction",
+    "standing_engine": "SPE",
+    "outcomes": ["ALLOW", "DENY", "FAIL-CLOSED"]
+  },
+  "invariant": {
+    "commitment_candidate_authorizes": false,
+    "inherits_review_authority": false,
+    "implies_standing": false,
+    "historical_evidence_becomes_authority": false,
+    "fresh_commit_time_rebinding_required": true
+  },
+  "required_current_dimensions": ["actor", "target", "action", "scope", "policy", "delegation", "evidence_state", "execution_context", "validity_window", "recoverability_profile"],
+  "failure_vectors": ["expired_delegation", "changed_target_scope", "stale_evidence", "changed_policy_version", "degraded_recoverability", "actor_substitution_between_review_and_commit"],
+  "source_capture_hashes": [
+    "sha256:699af94cadba3f9861613b11d764ce12e0449573f290fbd0287530dabf1aeb93",
+    "sha256:35217d7e6e040a1f5eea353e1b12ea447e49b9a189cad6b6834a7858a1298246",
+    "sha256:4007705621c9526cb0fb8f7fe7867342bd7b7390c5ad49ade1eef9cb76f9f8e6",
+    "sha256:bbdf0d82f31e04b1349685694cb9ca45be3c00c6e1bc559c01a37e206334e771",
+    "sha256:75ecbb1d29a86cb60aca85313d461edf3be51f8ab877849689514aa3c3f6eefe",
+    "sha256:1c5006bdcfa1a8e79feac2f745469bf3f7dcc076d00c2b94c08c3ede06fc96fa",
+    "sha256:57af075cbcadf5c37ceac624489599971585cba683fa23ab050deac1704364f9"
+  ],
+  "promotion_gate": {
+    "mindforge_page_may_be_marked_sourced": false,
+    "required": ["authorized public source", "authorized artifact package", "repository or specification", "or jointly approved technical note"]
+  },
+  "non_claims": ["MindForge certification", "general compatibility", "participant publication authorization", "execution authority", "StegVerse standing"]
+}
