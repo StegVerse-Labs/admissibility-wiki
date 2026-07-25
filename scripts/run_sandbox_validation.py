@@ -60,7 +60,6 @@ def main() -> int:
             })
             if status == "FAIL":
                 sandbox_status = "FAIL"
-                break
 
     report = {
         "schema": "stegverse.st017.sandbox_validation.v1",
@@ -72,6 +71,7 @@ def main() -> int:
         "commands_total": len(profile["commands"]),
         "commands_executed": len(results),
         "commands_passed": sum(result["status"] == "PASS" for result in results),
+        "commands_failed": sum(result["status"] == "FAIL" for result in results),
         "duration_seconds": round(time.time() - started, 3),
         "results": results,
         "authority": {
