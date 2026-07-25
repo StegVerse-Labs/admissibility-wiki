@@ -1,0 +1,35 @@
+{
+  "schema": "stegverse.decisionassure.pilot_trace.v1",
+  "trace_id": "trace_rigel_revised",
+  "actor_id": "agent_alice",
+  "action": "publish_associated_result",
+  "policy_ref": "policy_public_association_v1",
+  "delegation_ref": "delegation_agent_alice_publish_v1",
+  "pre_state": {
+    "policy_version": "v1",
+    "delegation_version": "v1",
+    "commit_candidate_state": "PENDING"
+  },
+  "mutation": {
+    "type": "policy_version_change",
+    "from": "v1",
+    "to": "v2",
+    "occurred_before_commit": true
+  },
+  "post_state": {
+    "policy_version": "v2",
+    "delegation_version": "v1",
+    "commit_candidate_state": "DENIED"
+  },
+  "decisionassure_result": {
+    "decision": "DENY",
+    "trace_integrity": "CORRUPT",
+    "causal_continuity_persisted": false,
+    "reason": "policy changed before commit"
+  },
+  "stegverse_expected_result": {
+    "decision": "DENY",
+    "failure_class": "POLICY_DRIFT",
+    "authority_effect": "NONE"
+  }
+}
