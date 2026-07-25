@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Import Publisher's Ecosystem Chat activation projection for wiki display.
 
-This consumer is projection-only. It validates the Publisher status contract and
-preserves a source digest, but it grants no publication, release, custody,
-execution, deployment, or admissibility authority.
+Projection-only consumer. A verified wiki projection requires Publisher's
+hash-bound activation status and independently reconstructed terminal custody.
 """
 from __future__ import annotations
 
@@ -34,7 +33,7 @@ def canonical_hash(payload: dict[str, Any]) -> str:
 def fetch() -> tuple[dict[str, Any], str]:
     outbound = request.Request(
         SOURCE_URL,
-        headers={"Accept": "application/json", "User-Agent": "StegVerse-Admissibility-Wiki-Activation-Importer/1.1"},
+        headers={"Accept": "application/json", "User-Agent": "StegVerse-Admissibility-Wiki-Activation-Importer/1.2"},
     )
     with request.urlopen(outbound, timeout=TIMEOUT) as response:
         raw = response.read()
@@ -52,11 +51,17 @@ def validate(source: dict[str, Any]) -> list[str]:
         failures.append("status_digest_missing")
     elif source.get("status_sha256") != canonical_hash(source):
         failures.append("status_digest_mismatch")
-    for key in ("publication_authorized", "release_authorized", "custody_recorded", "execution_authorized"):
+    for key in ("publication_authorized", "release_authorized", "execution_authorized"):
         if source.get(key) is not False:
             failures.append(f"authority_boundary_invalid:{key}")
     if source.get("manual_user_action_required") is not False:
         failures.append("manual_action_boundary_invalid")
+    if source.get("terminal_custody_verified") is not True:
+        failures.append("terminal_custody_not_verified")
+    if not isinstance(source.get("terminal_custody_sha256"), str) or len(source.get("terminal_custody_sha256", "")) != 64:
+        failures.append("terminal_custody_digest_missing")
+    if source.get("custody_repository") != "master-records/orchestration":
+        failures.append("custody_repository_mismatch")
     return failures
 
 
@@ -65,9 +70,10 @@ def write(status: str, reason: str, source: dict[str, Any] | None = None, source
         source
         and source.get("status") == "VERIFIED_ACTIVATION_IMPORTED"
         and source.get("activation_complete") is True
+        and source.get("terminal_custody_verified") is True
     )
     payload = {
-        "schema": "stegverse.admissibility_wiki.ecosystem_chat_activation_projection.v1",
+        "schema": "stegverse.admissibility_wiki.ecosystem_chat_activation_projection.v2",
         "status": status,
         "reason": reason,
         "source_repository": "GCAT-BCAT-Engine/Publisher",
@@ -76,6 +82,9 @@ def write(status: str, reason: str, source: dict[str, Any] | None = None, source
         "publisher_status_sha256": source.get("status_sha256") if source else None,
         "publisher_status": source.get("status") if source else None,
         "publisher_activation_complete": source.get("activation_complete") if source else False,
+        "terminal_custody_sha256": source.get("terminal_custody_sha256") if source else None,
+        "terminal_custody_verified": source.get("terminal_custody_verified") if source else False,
+        "custody_repository": source.get("custody_repository") if source else None,
         "verified_activation_projection": verified and status == "VERIFIED_PUBLISHER_ACTIVATION_IMPORTED",
         "manual_user_action_required": False,
         "authority_boundary": {
@@ -107,7 +116,7 @@ def main() -> int:
     if source.get("status") != "VERIFIED_ACTIVATION_IMPORTED" or source.get("activation_complete") is not True:
         write("PENDING_PUBLISHER_ACTIVATION", "publisher_activation_not_complete", source, digest)
         return 0
-    write("VERIFIED_PUBLISHER_ACTIVATION_IMPORTED", "publisher_projection_verified", source, digest)
+    write("VERIFIED_PUBLISHER_ACTIVATION_IMPORTED", "publisher_activation_and_terminal_custody_verified", source, digest)
     print("ADMISSIBILITY_WIKI_ECOSYSTEM_CHAT_ACTIVATION_IMPORT_PASS")
     return 0
 
