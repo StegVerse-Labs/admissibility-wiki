@@ -14,7 +14,7 @@ REQUIRED_DOC_MARKERS = (
     "Replayability",
     "Reconstructability",
     "Full reality reformulation",
-    "claim everything the evidence can carry",
+    "Every conclusion remains bounded by the evidence surface",
 )
 
 EXPECTED_LEVELS = {
