@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "goal_id": "visibility-vs-authority",
+  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION",
+  "doctrine": "docs/governance/visibility-vs-authority.md",
+  "invariants": {
+    "public_visibility_is_authority": false,
+    "acknowledgement_is_endorsement": false,
+    "acknowledgement_is_attribution": false,
+    "acknowledgement_is_public_association": false,
+    "reconstruction_is_authorization": false
+  },
+  "implemented_chain": [
+    "StegVerse-org/StegVerse-SDK",
+    "GCAT-BCAT-Engine/Publisher",
+    "StegVerse-Labs/Site",
+    "master-records/orchestration"
+  ],
+  "authority_posture": "DOCUMENTATION_ONLY_NO_DOWNSTREAM_MUTATION",
+  "manual_user_action_required": false
+}

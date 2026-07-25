@@ -30,10 +30,14 @@ def canonical_hash(payload: dict[str, Any]) -> str:
     ).hexdigest()
 
 
+def valid_digest(value: object) -> bool:
+    return isinstance(value, str) and len(value) == 64 and all(ch in "0123456789abcdef" for ch in value)
+
+
 def fetch() -> tuple[dict[str, Any], str]:
     outbound = request.Request(
         SOURCE_URL,
-        headers={"Accept": "application/json", "User-Agent": "StegVerse-Admissibility-Wiki-Activation-Importer/1.2"},
+        headers={"Accept": "application/json", "User-Agent": "StegVerse-Admissibility-Wiki-Activation-Importer/1.3"},
     )
     with request.urlopen(outbound, timeout=TIMEOUT) as response:
         raw = response.read()
@@ -45,7 +49,7 @@ def fetch() -> tuple[dict[str, Any], str]:
 
 def validate(source: dict[str, Any]) -> list[str]:
     failures: list[str] = []
-    if source.get("schema") != "stegverse.publisher.ecosystem_chat_activation_status.v1":
+    if source.get("schema") != "stegverse.publisher.ecosystem_chat_activation_status.v2":
         failures.append("schema_mismatch")
     if not isinstance(source.get("status_sha256"), str):
         failures.append("status_digest_missing")
@@ -56,12 +60,20 @@ def validate(source: dict[str, Any]) -> list[str]:
             failures.append(f"authority_boundary_invalid:{key}")
     if source.get("manual_user_action_required") is not False:
         failures.append("manual_action_boundary_invalid")
-    if source.get("terminal_custody_verified") is not True:
-        failures.append("terminal_custody_not_verified")
-    if not isinstance(source.get("terminal_custody_sha256"), str) or len(source.get("terminal_custody_sha256", "")) != 64:
-        failures.append("terminal_custody_digest_missing")
-    if source.get("custody_repository") != "master-records/orchestration":
-        failures.append("custody_repository_mismatch")
+
+    verified_claim = source.get("status") == "VERIFIED_ACTIVATION_IMPORTED" or source.get("activation_complete") is True
+    if verified_claim:
+        if source.get("terminal_custody_verified") is not True:
+            failures.append("terminal_custody_not_verified")
+        if not valid_digest(source.get("terminal_custody_sha256")):
+            failures.append("terminal_custody_digest_missing")
+        if source.get("custody_repository") != "master-records/orchestration":
+            failures.append("custody_repository_mismatch")
+    else:
+        if source.get("terminal_custody_verified") not in (False, None):
+            failures.append("pending_terminal_custody_boundary_invalid")
+        if source.get("terminal_custody_sha256") not in (None, ""):
+            failures.append("pending_terminal_custody_digest_must_be_empty")
     return failures
 
 

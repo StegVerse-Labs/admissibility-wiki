@@ -28,7 +28,7 @@ Public repository: `https://github.com/magicianzcardstockllc/asro`
 
 The public source is treated as the canonical public source supplied for ASRO framing. The repository is treated as the public artifact source for the ASRO release-candidate materials described by the source site.
 
-## Evidence provenance
+## Evidence Provenance
 
 | Evidence Class | Current Evidence | Status | Missing Fields |
 |---|---|---|---|
@@ -37,7 +37,7 @@ The public source is treated as the canonical public source supplied for ASRO fr
 | Observed Behavior | StegVerse bounded collection-membership run is recorded. | stegverse_run_pass | External ASRO-native run remains absent. |
 | Reproduced Behavior | Deterministic replay and reconstruction pass from the frozen package and JSONL stream. | pass | Independent external reproduction remains pending. |
 | StegVerse Analysis | Governance-state attestation is mapped to admissibility primitives without authority inheritance. | installed | External reviewer determination remains pending. |
-| Bounded Comparison | Frozen test case, deterministic JSONL execution, replay, reconstruction, and bounded receipt are installed. | pass | External reciprocal execution. |
+| Interoperability Assessment | Bounded correspondence and collection-membership checks are installed. | provisional_non_authorizing | External ASRO-native execution and reciprocal verification remain pending. |
 | Standing | Sourced provisional and bounded. | provisional | Accountable reviewer designation and external execution evidence. |
 
 Evidence classification:
@@ -47,6 +47,7 @@ F1: ASRO public source URL and framework-native public framing.
 F2: ASRO public repository reference.
 V1: ASRO non-authorizing Commitment Candidate fixture reference.
 S1: StegVerse interpretation of ASRO as governance-state attestation evidence.
+S2: StegVerse bounded interoperability interpretation; derivative, provisional, and non-authorizing.
 B1: ASRO-author-provided bounded representative object; non-canonical.
 B2: StegVerse Companion Layer declaration; controlling for StegVerse terminology.
 B3: reviewer-side profile; derivative with issuer unresolved.
@@ -61,7 +62,7 @@ ASRO, the AI Systems Reliability Operator, is treated in this wiki as an externa
 
 ASRO is not treated as an admissibility engine, safety certification, legal-compliance guarantor, or output-quality evaluator.
 
-## Framework-term definitions
+## Framework-Term Definitions
 
 | Native ASRO Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
 |---|---|---|---|
@@ -72,13 +73,19 @@ ASRO is not treated as an admissibility engine, safety certification, legal-comp
 | Governance state | Declared policies, tools, constraints, configuration, or rules under which a system claims to operate. | adjacent | Related to Policy Reference, Governance Boundary, and Commit-Time Validity. |
 | Selective attestation | Attesting enough to preserve plausible compliance while hiding governance-relevant change. | adjacent | Related to drift, evidence incompleteness, and FAIL-CLOSED posture. |
 
-## Relationship to admissibility
+## Relationship To Admissibility
 
 ASRO is listed as a crosswalk target for governance-state attestation and independent witnessing. Admissibility review remains separate and asks whether a proposed transition may bind consequence at commit time.
 
 ASRO evidence may support a Commitment Candidate. Those records remain evidence. They do not become execution authority.
 
-## Commitment Candidate fixture
+## Interoperability Assessment
+
+The installed interoperability assessment is bounded to declared-reference collection membership, deterministic replay, and reconstruction of the frozen StegVerse comparison package. It does not establish native ASRO compatibility, reciprocal execution, certification, endorsement, or authority inheritance.
+
+External ASRO-native execution remains `NOT_TESTED`. Any stronger interoperability claim remains fail-closed until the external implementation, version, runtime configuration, raw output, accountable issuer, and independent reproduction are bound to reviewable evidence.
+
+## Commitment Candidate Fixture
 
 ```text
 docs/external-frameworks/asro-commitment-candidate.json
@@ -86,7 +93,7 @@ docs/external-frameworks/asro-commitment-candidate.json
 
 The fixture routes ASRO governance-state evidence into StegVerse review without converting attestation into authority. Its default posture is `FAIL-CLOSED` unless current policy, delegation, evidence, context, and recoverability are independently reconstructed at the commit boundary.
 
-## Bounded comparison packet
+## Bounded Comparison Packet
 
 ```text
 static/data/framework-evaluations/asro/stegverse-companion-layer-declaration.json
@@ -101,7 +108,7 @@ The ASRO-side object is an **ASRO-author-provided bounded representative object*
 
 The StegVerse Companion Layer declaration remains controlling. The reviewer-side profile is derivative and may not modify source meaning.
 
-## Installed test, run, and receipt
+## Installed Test, Run, and Receipt
 
 ```text
 Test case:
@@ -139,7 +146,7 @@ custody: NONE
 
 This is a StegVerse execution of the bounded comparison. It is not represented as an external ASRO-native execution.
 
-## Reference and collection-membership rule
+## Reference and Collection-Membership Rule
 
 Declared-reference presence does not reduce to label equality. The comparison must establish explicit collection membership and bind:
 
@@ -153,7 +160,7 @@ collection identity
 
 A nominal label match without these bindings is unresolved and fails closed.
 
-## Reviewer and issuer separation
+## Reviewer and Issuer Separation
 
 `external_reviewer_comparison_surface` identifies a role. It does not identify an accountable issuer.
 
@@ -163,7 +170,7 @@ issuer: unresolved
 
 Any eventual reviewer record must separately carry role, identity, authority basis, methodology/version, and provenance.
 
-## Correspondence boundary
+## Correspondence Boundary
 
 ```text
 correspondence != truth
@@ -179,7 +186,7 @@ reconstruction PASS != execution authority
 
 ASRO remains an evidence-preservation and integrity review surface. StegVerse alone issues any StegVerse admissibility result through its own governed transition process.
 
-## Three-part boundary
+## Three-Part Boundary
 
 ```text
 ASRO asks: Was the system operating under the governance state it claimed?
@@ -187,7 +194,7 @@ Admissibility asks: May this transition bind consequence at commit time?
 EVIDE asks: What evidence remains after the event?
 ```
 
-## Non-claims
+## Non-Claims
 
 ```text
 ASRO is not a StegVerse canonical formalism.
@@ -200,14 +207,14 @@ The StegVerse bounded run is not an external ASRO-native run.
 The unsigned repository receipt is not certification or custody.
 ```
 
-## Challenge path
+## Challenge Path
 
 A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
 
-## Mandatory footer
+## Mandatory Footer
 
 This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing reconstructable from referenced evidence, authority, and admissibility conditions.
 
-## Next safe build target
+## Next Safe Build Target
 
 Observe the canonical workflow validation result, preserve external execution as `NOT_TESTED`, then review `SITE_MIRROR_HANDOFF.md` before preparing any synchronized Site projection.
