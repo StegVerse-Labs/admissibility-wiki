@@ -1,0 +1,14 @@
+{
+  "schema": "stegverse.canonical_delegations.v1",
+  "delegations": [
+    {
+      "delegation_id": "delegation_agent_alice_publish_v1",
+      "actor_id": "agent_alice",
+      "version": "v1",
+      "status": "CURRENT",
+      "actions": ["publish_associated_result"],
+      "scope": "pilot_only",
+      "authority_effect": "NONE_OUTSIDE_PILOT"
+    }
+  ]
+}
