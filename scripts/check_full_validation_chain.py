@@ -90,6 +90,61 @@ def read_json_if_present(path: Path) -> object | None:
         return {"status": "UNREADABLE", "error": str(exc)}
 
 
+def append_actions_summary(report: dict[str, object]) -> None:
+    summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not summary_path:
+        return
+
+    results = report.get("results", [])
+    lines = [
+        "## Complete validation chain",
+        "",
+        f"**Result:** `{report.get('overall_status')}`  ",
+        f"**Checks:** {report.get('passed_checks')}/{report.get('total_checks')} passed; "
+        f"{report.get('failed_checks')} failed; {report.get('skipped_checks')} skipped",
+        "",
+        "| Validator | Status | Exit | Path |",
+        "|---|---:|---:|---|",
+    ]
+
+    if isinstance(results, list):
+        for result in results:
+            if not isinstance(result, dict):
+                continue
+            lines.append(
+                f"| {result.get('name')} | `{result.get('status')}` | "
+                f"`{result.get('return_code')}` | `{result.get('path')}` |"
+            )
+
+        failures = [result for result in results if isinstance(result, dict) and result.get("status") == "FAIL"]
+        if failures:
+            lines.extend(["", "### Validator failure details", ""])
+            for failure in failures:
+                output = str(failure.get("output") or "(no validator output)")[-4000:]
+                lines.extend([
+                    f"#### `{failure.get('path')}`",
+                    "",
+                    "```text",
+                    output,
+                    "```",
+                    "",
+                ])
+
+    with Path(summary_path).open("a", encoding="utf-8") as handle:
+        handle.write("\n".join(lines) + "\n")
+
+
+def emit_actions_annotations(results: list[dict[str, object]]) -> None:
+    if not os.environ.get("GITHUB_ACTIONS"):
+        return
+    for result in results:
+        if result.get("status") != "FAIL":
+            continue
+        path = str(result.get("path") or "unknown-validator")
+        output = str(result.get("output") or "no validator output").replace("\r", " ").replace("\n", "%0A")[-2000:]
+        print(f"::error title=Validation failure ({path})::{output}")
+
+
 def main() -> int:
     results: list[dict[str, object]] = []
     failures: list[str] = []
@@ -171,6 +226,9 @@ def main() -> int:
         report["overall_status"] = "FAIL" if failures else "PASS"
         report["failed_checks"] = sum(1 for result in results if result["status"] == "FAIL") + (1 if observation_run.returncode != 0 else 0)
         REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+
+    append_actions_summary(report)
+    emit_actions_annotations(results)
 
     print("\n" + "=" * 72)
     print(
