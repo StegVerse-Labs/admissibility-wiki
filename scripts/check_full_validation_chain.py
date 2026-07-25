@@ -117,17 +117,29 @@ def main() -> int:
         results.append({"name": "Generate external translation reconstruction receipt", "path": RECONSTRUCTION_GENERATOR, "status": generation_status, "return_code": generation_code, "output": generation_output})
         if generation_status != "PASS":
             failures.append(RECONSTRUCTION_GENERATOR)
+    else:
+        print("\n--- Reconstruction generation skipped: sandbox failed ---")
+        results.append({
+            "name": "Generate external translation reconstruction receipt",
+            "path": RECONSTRUCTION_GENERATOR,
+            "status": "SKIPPED_DEPENDENCY_FAILED",
+            "return_code": None,
+            "output": "ST-017 sandbox failed; reconstruction generation was not executed.",
+        })
 
-    if sandbox_status == "PASS" and not failures:
-        for name, relative_path in CHECKS:
-            print(f"\n--- {name} ---")
-            return_code, output = execute(relative_path)
-            if output:
-                print(output)
-            status = "PASS" if return_code == 0 else "FAIL"
-            results.append({"name": name, "path": relative_path, "status": status, "return_code": return_code, "output": output})
-            if return_code != 0:
-                failures.append(relative_path)
+    # Diagnostic completeness is independent of overall success. Run every
+    # validator even when the sandbox fails so one broken prerequisite cannot
+    # hide unrelated repository defects. Any failure still keeps the complete
+    # chain fail-closed.
+    for name, relative_path in CHECKS:
+        print(f"\n--- {name} ---")
+        return_code, output = execute(relative_path)
+        if output:
+            print(output)
+        status = "PASS" if return_code == 0 else "FAIL"
+        results.append({"name": name, "path": relative_path, "status": status, "return_code": return_code, "output": output})
+        if return_code != 0:
+            failures.append(relative_path)
 
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     report = {
@@ -136,11 +148,12 @@ def main() -> int:
         "total_checks": len(results),
         "passed_checks": sum(1 for result in results if result["status"] == "PASS"),
         "failed_checks": sum(1 for result in results if result["status"] == "FAIL"),
+        "skipped_checks": sum(1 for result in results if str(result["status"]).startswith("SKIPPED_")),
         "overall_status": "FAIL" if failures else "PASS",
         "st017_sandbox": sandbox_payload,
         "external_translation_reconstruction": reconstruction_payload,
         "results": results,
-        "authority_boundary": "This report records isolated sandbox, generated reconstruction, and validator outcomes only. A passing scan does not grant runtime execution, artifact promotion, canonical status mutation, merge, deployment authority, public verification, release, certification, downstream propagation, standing, admissibility, or ecosystem authority.",
+        "authority_boundary": "This report records isolated sandbox, generated reconstruction, and validator outcomes only. Diagnostic continuation after failure does not weaken fail-closed enforcement. A passing scan does not grant runtime execution, artifact promotion, canonical status mutation, merge, deployment authority, public verification, release, certification, downstream propagation, standing, admissibility, or ecosystem authority.",
     }
     REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 
@@ -160,7 +173,11 @@ def main() -> int:
         REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 
     print("\n" + "=" * 72)
-    print(f"FULL VALIDATION CHAIN: {report['overall_status']} ({report['passed_checks']}/{report['total_checks']} passed)")
+    print(
+        f"FULL VALIDATION CHAIN: {report['overall_status']} "
+        f"({report['passed_checks']}/{report['total_checks']} passed; "
+        f"{report['failed_checks']} failed; {report['skipped_checks']} skipped)"
+    )
     if failures:
         print("FAILING VALIDATORS:")
         for failure in failures:
