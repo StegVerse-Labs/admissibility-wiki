@@ -1,0 +1,20 @@
+{
+  "schema": "stegverse.canonical_policies.v1",
+  "policies": [
+    {
+      "policy_id": "policy_public_association_v1",
+      "version": "v1",
+      "status": "SUPERSEDED",
+      "allows": ["publish_associated_result"],
+      "effective_before_commit": true
+    },
+    {
+      "policy_id": "policy_public_association_v2",
+      "version": "v2",
+      "status": "CURRENT",
+      "allows": [],
+      "denies": ["publish_associated_result"],
+      "effective_before_commit": true
+    }
+  ]
+}
