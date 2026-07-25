@@ -30,6 +30,10 @@ REQUIRED_RUNNER_FRAGMENTS = [
     'REPORT = ROOT / "reports" / "canonical-prescan-report.json"',
     '"schema": "admissibility_wiki.canonical_prescan_report.v1"',
     '"overall_status": "FAIL" if failed else "PASS"',
+    '"command_inventory_sha256": inventory_sha256(inventory)',
+    '"workflow_run_context": workflow_run_context()',
+    '"run_id": os.environ.get("GITHUB_RUN_ID")',
+    '"sha": os.environ.get("GITHUB_SHA")',
     'return 1 if failed else 0',
 ]
 
@@ -37,7 +41,9 @@ REQUIRED_TEST_FRAGMENTS = [
     "def test_failure_does_not_stop_later_commands",
     "self.assertEqual(run_mock.call_count, 3)",
     'self.assertEqual(report["overall_status"], "FAIL")',
-    "def test_success_returns_zero",
+    "def test_success_returns_zero_and_binds_github_run",
+    'self.assertEqual(context["run_id"], "12345")',
+    'self.assertEqual(context["sha"], "abc123")',
 ]
 
 
@@ -113,7 +119,7 @@ def main() -> int:
         return 1
 
     print("CANONICAL PRE-SCAN CONTRACT: PASS")
-    print("Diagnostic continuation and its durable repair receipt remain bound to the single canonical workflow; final enforcement remains fail-closed.")
+    print("Diagnostic continuation, workflow-run binding, and the durable repair receipt remain bound to the single canonical workflow; final enforcement remains fail-closed.")
     return 0
 
 
