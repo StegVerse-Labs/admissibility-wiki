@@ -2,6 +2,7 @@
 """Validate the single-workflow canonical pre-scan diagnostic contract."""
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -9,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
 RUNNER = ROOT / "scripts" / "run_canonical_prescan.py"
 TEST = ROOT / "tests" / "test_canonical_prescan.py"
+RECEIPT = ROOT / "receipts" / "canonical-prescan-diagnostic-repair-2026-07-25.json"
 
 REQUIRED_WORKFLOW_FRAGMENTS = [
     "- name: Run canonical pre-scan",
@@ -52,6 +54,43 @@ def require_fragments(label: str, text: str, fragments: list[str]) -> None:
         raise AssertionError(f"{label} is missing required contract fragments:\n{formatted}")
 
 
+def require_receipt() -> None:
+    text = require_file(RECEIPT)
+    try:
+        receipt = json.loads(text)
+    except json.JSONDecodeError as exc:
+        raise AssertionError(f"repair receipt is not valid JSON: {exc}") from exc
+
+    expected = {
+        "schema": "admissibility_wiki.canonical_prescan_diagnostic_repair_receipt.v1",
+        "issue": 38,
+        "state": "IMPLEMENTED_PENDING_RUN_BOUND_ARTIFACT_OBSERVATION",
+        "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+        "runner": "scripts/run_canonical_prescan.py",
+        "contract_validator": "scripts/check_canonical_prescan_contract.py",
+        "regression_test": "tests/test_canonical_prescan.py",
+        "full_chain_validator": "scripts/check_full_validation_chain.py",
+        "manual_task_required": False,
+        "user_manual_action_required": False,
+    }
+    mismatches = [
+        f"{key}: expected {value!r}, found {receipt.get(key)!r}"
+        for key, value in expected.items()
+        if receipt.get(key) != value
+    ]
+    enforcement = receipt.get("enforcement")
+    if not isinstance(enforcement, dict) or not all(enforcement.get(key) is True for key in (
+        "prescan_continues_after_individual_failure",
+        "full_scan_runs_after_prescan_failure",
+        "final_result_fails_when_prescan_fails",
+        "final_result_fails_when_full_scan_fails",
+        "single_active_workflow_required",
+    )):
+        mismatches.append("enforcement contract is incomplete or not fail-closed")
+    if mismatches:
+        raise AssertionError("repair receipt contract mismatch:\n" + "\n".join(f"- {item}" for item in mismatches))
+
+
 def main() -> int:
     try:
         workflow = require_file(WORKFLOW)
@@ -60,6 +99,7 @@ def main() -> int:
         require_fragments("canonical workflow", workflow, REQUIRED_WORKFLOW_FRAGMENTS)
         require_fragments("canonical pre-scan runner", runner, REQUIRED_RUNNER_FRAGMENTS)
         require_fragments("canonical pre-scan regression test", test, REQUIRED_TEST_FRAGMENTS)
+        require_receipt()
 
         workflow_files = list((ROOT / ".github" / "workflows").glob("*.yml")) + list(
             (ROOT / ".github" / "workflows").glob("*.yaml")
@@ -73,7 +113,7 @@ def main() -> int:
         return 1
 
     print("CANONICAL PRE-SCAN CONTRACT: PASS")
-    print("Diagnostic continuation is bound to the single canonical workflow; final enforcement remains fail-closed.")
+    print("Diagnostic continuation and its durable repair receipt remain bound to the single canonical workflow; final enforcement remains fail-closed.")
     return 0
 
 
