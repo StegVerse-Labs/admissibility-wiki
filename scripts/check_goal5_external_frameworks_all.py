@@ -23,6 +23,7 @@ CHECKS = [
     "scripts/check_external_framework_governance_compatibility.py",
     "scripts/check_external_framework_benchmark_mappings.py",
     "scripts/check_external_framework_benchmark_fixtures.py",
+    "scripts/check_mindforge_commit_time_boundary.py",
     "scripts/check_judgment_architecture_commitment_fixtures.py",
     "scripts/check_judgment_architecture_commit_boundary_crosswalk.py",
     "scripts/check_judgment_architecture_binding_adapter.py",
