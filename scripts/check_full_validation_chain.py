@@ -19,6 +19,7 @@ OBSERVATION_REPORT = ROOT / "reports" / "canonical-workflow-observation-receipt.
 
 CHECKS = [
     ("Validate canonical orchestration contract", "scripts/check_canonical_orchestration_contract.py"),
+    ("Validate custody-bound activation projection", "scripts/check_activation_projection_orchestration_contract.py"),
     ("Validate single workflow policy", "scripts/check_workflow_sprawl.py"),
     ("Validate chain continuation", "scripts/check_chain_status_continuation.py"),
     ("Validate continuation bundle", "scripts/check_continuation_bundle.py"),
@@ -31,7 +32,7 @@ CHECKS = [
     ("Validate Pages build receipt automation", "scripts/check_pages_build_receipt_automation.py"),
     ("Validate Pages build verification candidate", "scripts/check_pages_build_verification_candidate.py"),
     ("Validate Pages artifact binding receipt", "scripts/check_pages_artifact_binding_receipt.py"),
-    ("Validate Pages verification status application", "scripts/check_pages_build_verification_status_application.py"),
+    ("Validate Pages build verification status application", "scripts/check_pages_build_verification_status_application.py"),
     ("Validate Pages deployment observation receipt", "scripts/check_pages_deployment_observation_receipt.py"),
     ("Validate Pages public endpoint verification receipt", "scripts/check_pages_public_endpoint_verification_receipt.py"),
     ("Validate inference-window governance documentation mesh", "scripts/check_inference_window_governance_docs.py"),
