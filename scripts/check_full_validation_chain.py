@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "reports" / "full_validation_chain_report.json"
+PRESCAN_REPORT = ROOT / "reports" / "canonical-prescan-report.json"
 SANDBOX_RUNNER = "scripts/run_sandbox_validation.py"
 SANDBOX_REPORT = ROOT / "reports" / "sandbox-first-validation.report.json"
 RECONSTRUCTION_GENERATOR = "scripts/generate_external_translation_reconstruction_receipt.py"
@@ -152,6 +153,32 @@ def main() -> int:
     print("FULL VALIDATION CHAIN SCAN")
     print("=" * 72)
 
+    print("\n--- Bind canonical pre-scan evidence ---")
+    prescan_payload = read_json_if_present(PRESCAN_REPORT)
+    prescan_status = (
+        "PASS"
+        if isinstance(prescan_payload, dict)
+        and prescan_payload.get("schema") == "admissibility_wiki.canonical_prescan_report.v1"
+        and prescan_payload.get("overall_status") == "PASS"
+        else "FAIL"
+    )
+    prescan_output = (
+        f"{prescan_payload.get('passed_commands')}/{prescan_payload.get('total_commands')} commands passed; "
+        f"{prescan_payload.get('failed_commands')} failed"
+        if isinstance(prescan_payload, dict)
+        else "canonical pre-scan report missing or unreadable"
+    )
+    results.append({
+        "name": "Bind canonical pre-scan evidence",
+        "path": str(PRESCAN_REPORT.relative_to(ROOT)),
+        "status": prescan_status,
+        "return_code": 0 if prescan_status == "PASS" else 1,
+        "output": prescan_output,
+    })
+    print(prescan_output)
+    if prescan_status != "PASS":
+        failures.append(str(PRESCAN_REPORT.relative_to(ROOT)))
+
     print("\n--- Execute ST-017 isolated sandbox ---")
     sandbox_code, sandbox_output = execute(SANDBOX_RUNNER)
     if sandbox_output:
@@ -183,6 +210,10 @@ def main() -> int:
             "output": "ST-017 sandbox failed; reconstruction generation was not executed.",
         })
 
+    # Diagnostic completeness is independent of overall success. Run every
+    # validator even when the pre-scan or sandbox fails so one broken
+    # prerequisite cannot hide unrelated repository defects. Any failure still
+    # keeps the complete chain fail-closed.
     for name, relative_path in CHECKS:
         print(f"\n--- {name} ---")
         return_code, output = execute(relative_path)
@@ -202,10 +233,11 @@ def main() -> int:
         "failed_checks": sum(1 for result in results if result["status"] == "FAIL"),
         "skipped_checks": sum(1 for result in results if str(result["status"]).startswith("SKIPPED_")),
         "overall_status": "FAIL" if failures else "PASS",
+        "canonical_prescan": prescan_payload,
         "st017_sandbox": sandbox_payload,
         "external_translation_reconstruction": reconstruction_payload,
         "results": results,
-        "authority_boundary": "This report records isolated sandbox, generated reconstruction, and validator outcomes only. Diagnostic continuation after failure does not weaken fail-closed enforcement. A passing scan does not grant runtime execution, artifact promotion, canonical status mutation, merge, deployment authority, public verification, release, certification, downstream propagation, standing, admissibility, or ecosystem authority.",
+        "authority_boundary": "This report records canonical pre-scan evidence, isolated sandbox, generated reconstruction, and validator outcomes only. Diagnostic continuation after failure does not weaken fail-closed enforcement. A passing scan does not grant runtime execution, artifact promotion, canonical status mutation, merge, deployment authority, public verification, release, certification, downstream propagation, standing, admissibility, or ecosystem authority.",
     }
     REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 
