@@ -19,6 +19,7 @@ OBSERVATION_REPORT = ROOT / "reports" / "canonical-workflow-observation-receipt.
 
 CHECKS = [
     ("Validate canonical orchestration contract", "scripts/check_canonical_orchestration_contract.py"),
+    ("Validate canonical pre-scan contract", "scripts/check_canonical_prescan_contract.py"),
     ("Validate custody-bound activation projection", "scripts/check_activation_projection_orchestration_contract.py"),
     ("Validate revised DecisionAssure pilot package", "docs/external-frameworks/decisionassure-pilot/verifier_rigel_revised.py"),
     ("Validate single workflow policy", "scripts/check_workflow_sprawl.py"),
@@ -182,10 +183,6 @@ def main() -> int:
             "output": "ST-017 sandbox failed; reconstruction generation was not executed.",
         })
 
-    # Diagnostic completeness is independent of overall success. Run every
-    # validator even when the sandbox fails so one broken prerequisite cannot
-    # hide unrelated repository defects. Any failure still keeps the complete
-    # chain fail-closed.
     for name, relative_path in CHECKS:
         print(f"\n--- {name} ---")
         return_code, output = execute(relative_path)
