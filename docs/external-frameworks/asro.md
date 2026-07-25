@@ -37,7 +37,7 @@ The public source is treated as the canonical public source supplied for ASRO fr
 | Observed Behavior | StegVerse bounded collection-membership run is recorded. | stegverse_run_pass | External ASRO-native run remains absent. |
 | Reproduced Behavior | Deterministic replay and reconstruction pass from the frozen package and JSONL stream. | pass | Independent external reproduction remains pending. |
 | StegVerse Analysis | Governance-state attestation is mapped to admissibility primitives without authority inheritance. | installed | External reviewer determination remains pending. |
-| Bounded Comparison | Frozen test case, deterministic JSONL execution, replay, reconstruction, and bounded receipt are installed. | pass | External reciprocal execution. |
+| Interoperability Assessment | Bounded correspondence and collection-membership checks are installed. | provisional_non_authorizing | External ASRO-native execution and reciprocal verification remain pending. |
 | Standing | Sourced provisional and bounded. | provisional | Accountable reviewer designation and external execution evidence. |
 
 Evidence classification:
@@ -47,6 +47,7 @@ F1: ASRO public source URL and framework-native public framing.
 F2: ASRO public repository reference.
 V1: ASRO non-authorizing Commitment Candidate fixture reference.
 S1: StegVerse interpretation of ASRO as governance-state attestation evidence.
+S2: StegVerse bounded interoperability interpretation; derivative, provisional, and non-authorizing.
 B1: ASRO-author-provided bounded representative object; non-canonical.
 B2: StegVerse Companion Layer declaration; controlling for StegVerse terminology.
 B3: reviewer-side profile; derivative with issuer unresolved.
@@ -77,6 +78,12 @@ ASRO is not treated as an admissibility engine, safety certification, legal-comp
 ASRO is listed as a crosswalk target for governance-state attestation and independent witnessing. Admissibility review remains separate and asks whether a proposed transition may bind consequence at commit time.
 
 ASRO evidence may support a Commitment Candidate. Those records remain evidence. They do not become execution authority.
+
+## Interoperability Assessment
+
+The installed interoperability assessment is bounded to declared-reference collection membership, deterministic replay, and reconstruction of the frozen StegVerse comparison package. It does not establish native ASRO compatibility, reciprocal execution, certification, endorsement, or authority inheritance.
+
+External ASRO-native execution remains `NOT_TESTED`. Any stronger interoperability claim remains fail-closed until the external implementation, version, runtime configuration, raw output, accountable issuer, and independent reproduction are bound to reviewable evidence.
 
 ## Commitment Candidate Fixture
 
