@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -18,6 +19,64 @@ REPORT = ROOT / "reports/sandbox-first-validation.report.json"
 def ignore(_directory: str, names: list[str]) -> set[str]:
     excluded = {".git", "node_modules", "build", ".docusaurus", "__pycache__", ".pytest_cache"}
     return {name for name in names if name in excluded}
+
+
+def append_actions_summary(report: dict[str, object]) -> None:
+    """Publish a compact, durable failure summary in the GitHub Actions run UI."""
+    summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not summary_path:
+        return
+
+    results = report.get("results", [])
+    lines = [
+        "## ST-017 sandbox validation",
+        "",
+        f"**Result:** `{report.get('sandbox_status')}`  ",
+        f"**Commands:** {report.get('commands_passed')}/{report.get('commands_total')} passed; "
+        f"{report.get('commands_failed')} failed",
+        "",
+        "| Command | Status | Exit | Duration |",
+        "|---|---:|---:|---:|",
+    ]
+
+    for result in results if isinstance(results, list) else []:
+        if not isinstance(result, dict):
+            continue
+        lines.append(
+            f"| `{result.get('id')}` | `{result.get('status')}` | "
+            f"`{result.get('return_code')}` | `{result.get('duration_seconds')}s` |"
+        )
+
+    failures = [item for item in results if isinstance(item, dict) and item.get("status") == "FAIL"] if isinstance(results, list) else []
+    if failures:
+        lines.extend(["", "### Failure details", ""])
+        for failure in failures:
+            output = str(failure.get("output") or "(no validator output)")[-4000:]
+            lines.extend([
+                f"#### `{failure.get('id')}`",
+                "",
+                f"Command: `{' '.join(str(part) for part in failure.get('command', []))}`",
+                "",
+                "```text",
+                output,
+                "```",
+                "",
+            ])
+
+    with Path(summary_path).open("a", encoding="utf-8") as handle:
+        handle.write("\n".join(lines) + "\n")
+
+
+def emit_actions_annotations(results: list[dict[str, object]]) -> None:
+    """Emit one searchable Actions annotation per failed sandbox command."""
+    if not os.environ.get("GITHUB_ACTIONS"):
+        return
+    for result in results:
+        if result.get("status") != "FAIL":
+            continue
+        command_id = str(result.get("id") or "unknown-command")
+        output = str(result.get("output") or "no validator output").replace("\r", " ").replace("\n", "%0A")[-2000:]
+        print(f"::error title=ST-017 sandbox failure ({command_id})::{output}")
 
 
 def main() -> int:
@@ -66,7 +125,7 @@ def main() -> int:
         "repository": profile["repository"],
         "profile": str(PROFILE.relative_to(ROOT)),
         "sandbox_status": sandbox_status,
-        "github_actions_status": "NOT_OBSERVED",
+        "github_actions_status": "OBSERVABLE_IN_STEP_SUMMARY" if os.environ.get("GITHUB_ACTIONS") else "NOT_OBSERVED",
         "public_output_status": "NOT_VERIFIED",
         "commands_total": len(profile["commands"]),
         "commands_executed": len(results),
@@ -88,6 +147,9 @@ def main() -> int:
     }
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    append_actions_summary(report)
+    emit_actions_annotations(results)
+
     print(f"SANDBOX: {sandbox_status}")
     for result in results:
         print(f"{result['id']}: {result['status']}")
