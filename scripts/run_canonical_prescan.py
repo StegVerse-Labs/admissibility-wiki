@@ -23,6 +23,8 @@ COMMANDS = [
     ("generate-external-framework-page-status", [sys.executable, "scripts/generate_external_framework_page_status.py"]),
     ("generate-external-framework-automation-readiness", [sys.executable, "scripts/generate_external_framework_automation_readiness.py"]),
     ("validate-external-framework-automation-readiness", [sys.executable, "scripts/check_external_framework_automation_readiness.py"]),
+    ("validate-canonical-prescan-contract", [sys.executable, "scripts/check_canonical_prescan_contract.py"]),
+    ("test-canonical-prescan", [sys.executable, "-m", "unittest", "tests.test_canonical_prescan"]),
 ]
 
 
