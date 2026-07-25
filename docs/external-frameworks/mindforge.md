@@ -12,7 +12,7 @@ Canonical StegVerse formalism source: Admissible-Existence
 External framework role: historical governance review evidence
 Wiki role: observatory record, boundary mapping, and commit-time test target
 Citation status: artifact package required
-Evidence provenance status: Batch 2 refactor installed
+Evidence provenance status: private correspondence provenance installed; public source still required
 ```
 
 ## Source
@@ -43,6 +43,17 @@ S1: StegVerse interpretation of MindForge evidence as historical review evidence
 S2: mapping to Review Posture, Evidence Posture, Reconstructability, Receipt-Bound Execution, Governance Boundary, Policy Reference, Transition Table, and Commit-Time Validity.
 H1: future artifact-specific evaluation until authorized artifacts are attached.
 ```
+
+## Private Correspondence Provenance
+
+A bounded provenance packet now records the June 24–26, 2026 technical correspondence that converged on the non-authorizing Commitment Candidate invariant, commit-time authority re-binding, FAIL-CLOSED behavior, and the initial edge-case set.
+
+```text
+docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.md
+docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.json
+```
+
+The packet contains SHA-256 identifiers for the seven reviewed captures but does not publish the screenshots. It is provenance for the StegVerse boundary formulation only. It does not constitute a public canonical MindForge source, participant publication authorization, compatibility evidence, standing, or execution authority.
 
 ## Definition
 
@@ -148,6 +159,7 @@ The Commitment Candidate must remain non-authorizing and should include:
 | Valid MindForge evidence and changed actor, target, or scope. | SPE should DENY or FAIL-CLOSED under policy. |
 | MindForge evidence is stale or incomplete. | SPE should FAIL-CLOSED if current standing cannot be reconstructed. |
 | Current recoverability is degraded. | SPE should FAIL-CLOSED unless policy defines safe partial standing. |
+| Actor changes between review and commit. | SPE must reconstruct actor standing and must not inherit the reviewed actor's authority. |
 
 ## Non-Claims
 
@@ -158,6 +170,7 @@ This page does not treat review evidence as execution authority.
 This page does not treat a Commitment Candidate as authorization.
 This page does not treat artifact-specific evaluation as system-wide validation.
 This page does not mark the framework as sourced until an authorized public source is supplied.
+This page does not treat private correspondence provenance as a public canonical framework source.
 ```
 
 ## Challenge Path
@@ -170,4 +183,4 @@ This page reflects a bounded admissibility packet. Publication does not create s
 
 ## Next Safe Build Target
 
-Run a MindForge evidence package through the Commit-Time Interoperability Contract and verify that authority re-binding occurs only inside SPE.
+Run an authorized MindForge evidence package through the Commit-Time Interoperability Contract and verify that authority re-binding occurs only inside SPE.
