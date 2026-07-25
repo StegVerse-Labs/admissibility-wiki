@@ -1,0 +1,84 @@
+{
+  "schema": "admissibility_wiki.mindforge_commit_time_boundary_cases.v0.1",
+  "framework": "MindForge",
+  "source_posture": "PRIVATE_CORRESPONDENCE_PROVENANCE_ONLY",
+  "authorization_effect": "NONE",
+  "invariant": "The Commitment Candidate is non-authorizing by construction; SPE alone reconstructs and re-binds current execution authority at commit time.",
+  "required_dimensions": [
+    "actor",
+    "target",
+    "action",
+    "scope",
+    "policy",
+    "policy_version",
+    "delegation",
+    "delegation_validity",
+    "evidence_state",
+    "execution_context",
+    "validity_window",
+    "recoverability"
+  ],
+  "cases": [
+    {
+      "id": "MF-CT-001",
+      "description": "All current-standing dimensions reconstruct and remain valid.",
+      "mutations": [],
+      "expected": "ALLOW"
+    },
+    {
+      "id": "MF-CT-002",
+      "description": "Delegation expired between historical review and commit.",
+      "mutations": ["delegation_expired"],
+      "expected": "DENY"
+    },
+    {
+      "id": "MF-CT-003",
+      "description": "Target scope changed after historical review.",
+      "mutations": ["target_scope_changed"],
+      "expected": "DENY"
+    },
+    {
+      "id": "MF-CT-004",
+      "description": "Evidence is stale and current standing cannot be safely reconstructed.",
+      "mutations": ["evidence_stale"],
+      "expected": "FAIL_CLOSED"
+    },
+    {
+      "id": "MF-CT-005",
+      "description": "Policy version changed and the proposed crossing is rejected under current policy.",
+      "mutations": ["policy_version_changed", "current_policy_rejects"],
+      "expected": "DENY"
+    },
+    {
+      "id": "MF-CT-006",
+      "description": "Recoverability degraded below the policy threshold.",
+      "mutations": ["recoverability_degraded"],
+      "expected": "FAIL_CLOSED"
+    },
+    {
+      "id": "MF-CT-007",
+      "description": "Actor substituted between review and commit.",
+      "mutations": ["actor_substituted"],
+      "expected": "DENY"
+    },
+    {
+      "id": "MF-CT-008",
+      "description": "Candidate attempts to carry historical reviewer approval as authority.",
+      "mutations": ["candidate_claims_inherited_authority"],
+      "expected": "FAIL_CLOSED"
+    },
+    {
+      "id": "MF-CT-009",
+      "description": "A required current-state dimension is missing.",
+      "mutations": ["required_dimension_unreconstructable"],
+      "expected": "FAIL_CLOSED"
+    }
+  ],
+  "non_claims": [
+    "No MindForge certification",
+    "No general compatibility claim",
+    "No public-source promotion",
+    "No execution authority created by fixtures",
+    "No publication authorization for private correspondence"
+  ]
+}
