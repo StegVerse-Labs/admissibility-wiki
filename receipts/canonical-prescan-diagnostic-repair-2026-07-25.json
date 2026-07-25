@@ -1,0 +1,34 @@
+{
+  "schema": "admissibility_wiki.canonical_prescan_diagnostic_repair_receipt.v1",
+  "recorded_at": "2026-07-25T00:00:00Z",
+  "issue": 38,
+  "state": "IMPLEMENTED_PENDING_RUN_BOUND_ARTIFACT_OBSERVATION",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "runner": "scripts/run_canonical_prescan.py",
+  "contract_validator": "scripts/check_canonical_prescan_contract.py",
+  "regression_test": "tests/test_canonical_prescan.py",
+  "full_chain_validator": "scripts/check_full_validation_chain.py",
+  "artifacts": [
+    "canonical-prescan-report",
+    "full-validation-chain-report"
+  ],
+  "enforcement": {
+    "prescan_continues_after_individual_failure": true,
+    "full_scan_runs_after_prescan_failure": true,
+    "final_result_fails_when_prescan_fails": true,
+    "final_result_fails_when_full_scan_fails": true,
+    "single_active_workflow_required": true
+  },
+  "implemented_commits": [
+    "2cda066157e365bda97d4770429fa4fa27f3de68",
+    "29dde365ab9b945cc8e346be8fb5597a57c2ffcf",
+    "446355bf10a9fcc81c39c8453cdd10a37ee1c6e5",
+    "d4c6177026394f35f7df3cb6f34dc4080e4b85bc",
+    "bb759592381fc60bd89c9a797ca9dbd359281ea4",
+    "b3f193714712131c4b15073a20f614798ee2658b"
+  ],
+  "remaining_observation": "Observe a push-triggered canonical run and confirm both diagnostic artifacts. Connector visibility does not currently expose push-triggered runs, so this state must not be inferred as complete.",
+  "manual_task_required": false,
+  "user_manual_action_required": false,
+  "authority_boundary": "This receipt records repository-local diagnostic implementation only. It grants no deployment, execution, release, certification, admissibility, standing, publication, merge, promotion, or downstream mutation authority."
+}
