@@ -8,7 +8,7 @@
   "work_state": "BLOCKED_BUT_OBSERVED",
   "system_health": "HEALTHY_DECLARED_DEPENDENCY_BLOCK",
   "heartbeat_mode": "TRANSITION_DRIVEN_HEALTH_RELATIVE",
-  "repository_heartbeat": 4,
+  "repository_heartbeat": 5,
   "ecosystem_heartbeat_observed": 1,
   "time_role": "WATCHDOG_ONLY",
   "active_independent_workloads": [
@@ -74,6 +74,30 @@
         "public_route_verified": false,
         "authority_inferred": false
       }
+    },
+    {
+      "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-004",
+      "workload": "Declare and validate the governed relationship-transition publication candidate",
+      "execution_class": "PARALLEL_SAFE",
+      "state": "COMPLETE_AWAITING_POST_DEPLOY_OBSERVATION",
+      "installed_paths": [
+        "static/status/governed-relationship-transition-publication-candidate.json",
+        "scripts/check_governed_relationship_publication_candidate.py",
+        "scripts/check_governed_llm_pages.py"
+      ],
+      "commits": [
+        "2471bd5ffa0ab9980aaec855307e9523373a7e47",
+        "69936d7deb88252482c8f0b7717ffe0c33f24c96",
+        "4573250a3fc6103ca2dd691af0fe69725e5fc77c"
+      ],
+      "observation": {
+        "candidate_routes_declared": true,
+        "canonical_validation_bound": true,
+        "pages_deployment_observed": false,
+        "public_reachability_observed": false,
+        "manual_tasks_required": [],
+        "authority_inferred": false
+      }
     }
   ],
   "dependency_blocked_workloads": [
@@ -123,7 +147,7 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "GOVERNED_RELATIONSHIP_VALIDATOR_BOUND_TO_CANONICAL_PATH",
+    "event_type": "GOVERNED_RELATIONSHIP_PUBLICATION_CANDIDATE_BOUND",
     "progress_effect": true,
     "authority_effect": false
   },
