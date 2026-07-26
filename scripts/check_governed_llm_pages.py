@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify governed public pages, contracts, and validation are present."""
+"""Verify governed LLM public pages, contracts, and validation are present."""
 
 from __future__ import annotations
 
@@ -25,6 +25,8 @@ REQUIRED_FILES = (
     "static/governance/governed-relationship-transition.schema.v0.1.json",
     "static/governance/governed-relationship-transition.example.v0.1.json",
     "scripts/check_governed_relationship_transitions.py",
+    "static/status/governed-relationship-transition-publication-candidate.json",
+    "scripts/check_governed_relationship_publication_candidate.py",
 )
 REQUIRED_REFERENCES = {
     "sidebars.js": (
@@ -55,16 +57,24 @@ REQUIRED_REFERENCES = {
         "check_governed_relationship_transitions.py",
     ),
 }
-CHECKERS = (
-    (
-        "system-boundary contract",
-        "scripts/check_system_boundary_declaration.py",
-    ),
-    (
-        "governed relationship transitions",
-        "scripts/check_governed_relationship_transitions.py",
-    ),
-)
+
+
+def run_checker(relative_path: str, failure_label: str) -> int:
+    checker = ROOT / relative_path
+    result = subprocess.run(
+        [sys.executable, str(checker)],
+        cwd=ROOT,
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if result.stdout:
+        print(result.stdout.rstrip())
+    if result.stderr:
+        print(result.stderr.rstrip(), file=sys.stderr)
+    if result.returncode != 0:
+        print(f"GOVERNED LLM PAGES: FAIL - {failure_label}")
+    return result.returncode
 
 
 def main() -> int:
@@ -85,29 +95,25 @@ def main() -> int:
 
     if missing:
         for item in missing:
-            print("GOVERNED PUBLIC PAGES: FAIL - {}".format(item))
+            print("GOVERNED LLM PAGES: FAIL - {}".format(item))
         return 1
 
-    for label, relative_path in CHECKERS:
-        checker = ROOT / relative_path
-        result = subprocess.run(
-            [sys.executable, str(checker)],
-            cwd=ROOT,
-            check=False,
-            text=True,
-            capture_output=True,
-        )
-        if result.stdout:
-            print(result.stdout.rstrip())
-        if result.stderr:
-            print(result.stderr.rstrip(), file=sys.stderr)
-        if result.returncode != 0:
-            print("GOVERNED PUBLIC PAGES: FAIL - {} validation failed".format(label))
-            return result.returncode
+    checks = (
+        ("scripts/check_system_boundary_declaration.py", "system-boundary contract validation failed"),
+        ("scripts/check_governed_relationship_transitions.py", "relationship-transition validation failed"),
+        (
+            "scripts/check_governed_relationship_publication_candidate.py",
+            "relationship-transition publication candidate validation failed",
+        ),
+    )
+    for relative_path, failure_label in checks:
+        return_code = run_checker(relative_path, failure_label)
+        if return_code != 0:
+            return return_code
 
     print(
-        "GOVERNED PUBLIC PAGES: PASS - docs, contracts, fixtures, references, "
-        "and relationship-transition validation present"
+        "GOVERNED LLM PAGES: PASS - docs, contracts, fixtures, publication candidates, "
+        "and references present"
     )
     return 0
 
