@@ -1,0 +1,46 @@
+{
+  "schema": "stegverse.external-framework.promotion-gate.v1",
+  "framework_id": "morrison-runtime",
+  "provider": "Resurrection Tech",
+  "state": "WAITING_FOR_CANONICAL_PROOF",
+  "upstream_repository": "Data-Continuation/formalism-tests",
+  "upstream_issue": 5,
+  "local_issue": 39,
+  "upstream_required_artifacts": [
+    "reports/morrison_runtime_commit_time_scope_report.json",
+    "reports/morrison_runtime_commit_time_scope_artifact_verification.json",
+    "receipts/morrison_runtime_commit_time_scope_execution_receipts.jsonl",
+    "receipts/morrison_runtime_commit_time_scope_canonical_run_request.json"
+  ],
+  "promotion_requirements": {
+    "canonical_repository_or_ci_execution": true,
+    "both_declared_tasks_pass": true,
+    "report_matches_committed_baseline": true,
+    "receipts_match_committed_set": true,
+    "artifact_verification_status": "PASS",
+    "durable_commit_and_execution_identity": true,
+    "authority_posture": "EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY",
+    "source_provenance_complete_or_explicitly_bounded": true,
+    "wiki_validation_pass": true,
+    "public_route_verification_observed": true
+  },
+  "blocked_promotions": [
+    "verified_bounded_comparative_evidence",
+    "compatibility_report_proof_promotion",
+    "site_mirror",
+    "publisher_indexing",
+    "stegguardian_interpretation"
+  ],
+  "non_claims": [
+    "No Morrison Runtime certification is created.",
+    "No Resurrection Tech endorsement is inferred.",
+    "No Morrison ALLOW or BLOCK becomes StegVerse execution authority.",
+    "No default full fresh-state reconstruction capability is inferred.",
+    "No downstream destination may infer proof from this pending gate."
+  ],
+  "next_transition": {
+    "trigger": "Durable upstream canonical execution evidence becomes available.",
+    "action": "Evaluate exact artifact equivalence and update the compatibility report under issue 39.",
+    "failure_behavior": "FAIL_CLOSED_NO_PROMOTION"
+  }
+}
