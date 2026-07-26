@@ -8,7 +8,7 @@
   "work_state": "BLOCKED_BUT_OBSERVED",
   "system_health": "HEALTHY_DECLARED_DEPENDENCY_BLOCK",
   "heartbeat_mode": "TRANSITION_DRIVEN_HEALTH_RELATIVE",
-  "repository_heartbeat": 6,
+  "repository_heartbeat": 7,
   "ecosystem_heartbeat_observed": 1,
   "time_role": "WATCHDOG_ONLY",
   "active_independent_workloads": [
@@ -134,6 +134,20 @@
         "manual_tasks_required": [],
         "authority_inferred": false
       }
+    },
+    {
+      "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-005",
+      "workload": "Synchronize governed relationship transition handoff and remaining activation path",
+      "execution_class": "PARALLEL_SAFE",
+      "state": "COMPLETE",
+      "installed_paths": [
+        "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md",
+        "data/admissibility-wiki-orchestration-state.json"
+      ],
+      "commits": [
+        "8df70421502a7925472ac58d5a078a3a66adad87"
+      ],
+      "next_task": "Bind doctrine, schema, and example routes into repository-owned post-deployment observation through the existing canonical workflow only."
     }
   ],
   "dependency_blocked_workloads": [
@@ -183,7 +197,7 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "MICRO_TIMESCALE_HUMAN_RESEARCH_PACKAGE_BOUND",
+    "event_type": "GOVERNED_RELATIONSHIP_HANDOFF_SYNCHRONIZED",
     "progress_effect": true,
     "authority_effect": false
   },
