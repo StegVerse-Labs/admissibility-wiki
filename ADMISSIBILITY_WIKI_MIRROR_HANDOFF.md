@@ -4,9 +4,28 @@
 
 This file is the handoff source of truth for `StegVerse-Labs/admissibility-wiki` until superseded.
 
+## Mandatory orchestration entry
+
+Every arriving session or automation must read this handoff and `data/admissibility-wiki-orchestration-state.json` before opening a branch, changing a workflow, or claiming a workload.
+
+An incoming prompt, workflow result, scheduled trigger, or external post is a candidate workload only. It does not select the task or grant mutation, publication, release, proof, execution, or admissibility authority.
+
+Required entry sequence:
+
+```text
+1. Read ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md.
+2. Read data/admissibility-wiki-orchestration-state.json.
+3. Preserve active workload ownership and claimed paths.
+4. Continue only an admitted PARALLEL_SAFE task.
+5. Keep dependency-blocked work visible without fabricating progress.
+6. Update the handoff and orchestration state before closure.
+```
+
 ## Active goal
 
 Complete governed public documentation activation through the single canonical workflow while eliminating manual validation, observation, reconciliation, classification, comparison, bounded-history maintenance, publication checking, receipt custody, and archival tasks.
+
+The cross-repository HIL goal is also registered as a dependency-blocked downstream admissibility projection. It does not replace the canonical documentation goal and must not delay or duplicate the active HIL upload, provider-runtime, custody, Site, or Publisher owners.
 
 ## Current repository state
 
@@ -18,6 +37,38 @@ Manual user tasks required: none
 Cross-repository mutation authority: not granted
 Release/tag authority: not granted
 ```
+
+## Current live task sequence
+
+```text
+current work task sequence 0001
+state: BLOCKED_BUT_OBSERVED
+health: HEALTHY_DECLARED_DEPENDENCY_BLOCK
+heartbeat: transition-driven and health-relative
+time role: watchdog only
+```
+
+Active independent owner:
+
+```text
+PR #17: Riverbraid source-blocked admissibility intake
+owner branch: agent/add-riverbraid-intake
+state: ACTIVE_INDEPENDENT_WORKSTREAM
+```
+
+Queued dependency-blocked HIL projection:
+
+```text
+task: ingest verified Site HIL activation and Publisher propagation evidence
+execution class: DEPENDENCY_BLOCKED
+upstream owners:
+  StegVerse-Labs/Site
+  StegVerse-org/LLM-adapter issue #18 and PR #44
+  master-records/orchestration issue #2
+  GCAT-BCAT-Engine/Publisher
+```
+
+The HIL projection may begin only after authentic upstream activation, custody, reconstruction, and propagation evidence exists. No placeholder, workflow artifact, local browser record, or pending receipt may satisfy that boundary.
 
 ## Terminal workflow-observation rollup
 
@@ -132,6 +183,39 @@ terminal rollup public reachability: not claimed
 
 The absence of exposed status records is not converted into a manual task. The hourly canonical workflow remains the owner of validation, deployment, public re-observation, and artifact renewal.
 
+## HIL admissibility succession contract
+
+The first seamless HIL user experience follows this evidence sequence:
+
+```text
+Site participant upload
+-> governed real-provider response
+-> exact persistence and provider-usage record
+-> authenticated Master-Records custody
+-> reconstruction PASS
+-> immutable zero-blocker VERIFIED activation receipt
+-> Site ACTIVATION_COMPLETE
+-> Publisher VERIFIED_INGESTION_READY
+-> admissibility-wiki bounded interpretation
+-> StegGuardian downstream interpretation
+```
+
+The admissibility-wiki projection may describe and classify only the evidence actually received. It must preserve these distinctions:
+
+```text
+upload != custody
+provider response != admissibility
+persistence != custody
+custody != reconstructability
+reconstruction PASS != execution authority
+Site activation != publication authority
+Publisher ingestion readiness != admissibility
+public documentation != proof
+visibility != authority
+```
+
+No HIL page, report, status, or public proof-path statement may claim live activation until the complete upstream evidence chain is hash-bound and independently validated.
+
 ## Admissible automated-transition catalogue
 
 ```text
@@ -159,6 +243,8 @@ Site is downstream display only
 Publisher is downstream publication/indexing only
 StegGuardian interpretation remains deferred until executable proof fixtures exist
 workflow evidence, terminal rollup, and Pages build receipt do not grant proof, release, execution, custody transfer, or downstream mutation authority
+heartbeat observation does not grant progress or authority
+blocked-but-observed does not equal failed
 ```
 
 ## Remaining files or modules and destinations
@@ -166,11 +252,13 @@ workflow evidence, terminal rollup, and Pages build receipt do not grant proof, 
 ### `StegVerse-Labs/admissibility-wiki`
 
 ```text
+Preserve PR #17 ownership and do not recreate the Riverbraid intake.
 Observe the canonical workflow result for the terminal-rollup custody commits when repository-owned evidence is exposed.
 Inspect the pages-build-receipt workflow artifact and full-validation-chain report when connector run evidence becomes available.
 Repair only exact deterministic failures without weakening validation or adding another active workflow.
 Keep deployment and public-route evidence fail-closed until observed.
 Do not resume recursive summary-of-summary construction.
+When authentic HIL propagation evidence arrives, create one bounded interpretation from canonical records rather than reconstructing claims from prose.
 Manual user task: none.
 ```
 
@@ -186,9 +274,9 @@ Manual user task: none.
 ### Downstream destinations
 
 ```text
-StegVerse-Labs/Site: defer until wiki validation/public evidence and current Site handoff authority
-GCAT-BCAT-Engine/Publisher: queue until wiki evidence, proof receipts, and current Publisher handoff authority
-StegVerse-002/stegguardian-wiki: defer until executable proof fixtures and current destination handoff authority
+StegVerse-Labs/Site: upstream HIL display and activation owner
+GCAT-BCAT-Engine/Publisher: upstream HIL propagation owner
+StegVerse-002/stegguardian-wiki: defer until verified HIL evidence and current destination handoff authority
 StegVerse-002/StegGuardian: no implementation mutation authorized
 ```
 
@@ -199,13 +287,25 @@ No tag or release is authorized until canonical validation, build, public-route 
 ## Next task
 
 ```text
-1. Observe the canonical workflow result for the terminal-rollup custody chain when evidence is exposed.
-2. Inspect repository-owned workflow artifacts and logs when available.
-3. Apply exact deterministic repairs only.
-4. Preserve the terminal envelope, no-recursion boundary, and hash-bound artifact custody.
-5. Do not request manual route checks, workflow triggering, receipt construction, archival, file movement, or downstream propagation from the user.
+1. Preserve the independent PR #17 workstream.
+2. Observe the canonical workflow result for the terminal-rollup custody chain when evidence is exposed.
+3. Inspect repository-owned workflow artifacts and logs when available.
+4. Apply exact deterministic repairs only.
+5. Retain HIL projection as dependency-blocked until verified Site, custody, and Publisher evidence arrives.
+6. Preserve the terminal envelope, no-recursion boundary, and hash-bound artifact custody.
+7. Do not request manual route checks, workflow triggering, receipt construction, archival, file movement, or downstream propagation from the user.
 ```
+
+## Idle barrier
+
+The repository may close the current sequence only when all admitted work is completed or explicitly retained as a healthy declared dependency block:
+
+```text
+end of current work task sequence 0001, no tasks running
+```
+
+This statement does not grant release, publication, proof, execution, or admissibility authority.
 
 ## Archive posture
 
-This handoff preserves the active goal, installed terminal automation, fail-closed validation, artifact custody, decisions, ownership, blockers, authority boundaries, remaining workflow-observation work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
+This handoff and `data/admissibility-wiki-orchestration-state.json` preserve the active goal, installed terminal automation, fail-closed validation, artifact custody, active ownership, HIL succession, dependency blockers, authority boundaries, remaining workflow-observation work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
