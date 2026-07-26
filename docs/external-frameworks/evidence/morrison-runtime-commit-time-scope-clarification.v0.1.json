@@ -1,0 +1,57 @@
+{
+  "artifact_type": "external_framework_scope_clarification",
+  "schema_version": "0.1",
+  "framework_id": "morrison-runtime",
+  "framework_name": "Morrison Runtime Governance",
+  "provider": "Resurrection Tech",
+  "captured_date": "2026-07-25",
+  "source_class": "public_author_statement_captured_by_screenshot",
+  "source_platform": "LinkedIn",
+  "source_url": null,
+  "source_url_status": "MISSING",
+  "source_snapshot_hash": null,
+  "source_snapshot_hash_status": "MISSING",
+  "speaker": "Davarn Morrison",
+  "captured_statement": "The platform already re-evaluates before execution. Full fresh-state reconstruction and evidence binding is an additional high-assurance hardening capability that can be configured where the deployment requires it.",
+  "confirmed_properties": {
+    "second_runtime_governance_decision_before_execution": true,
+    "earlier_permit_executed_without_second_decision": false,
+    "full_fresh_state_reconstruction_is_default_for_every_deployment": false,
+    "full_fresh_state_reconstruction_is_configurable": true,
+    "evidence_binding_is_configurable": true
+  },
+  "bounded_architecture_interpretation": {
+    "default_demonstrated_property": "pre_execution_runtime_re_evaluation_under_configured_constraints",
+    "stronger_configurable_property": "full_fresh_state_reconstruction_and_evidence_binding_at_the_execution_boundary",
+    "commit_time_admissibility_equivalence": "NOT_ESTABLISHED",
+    "execution_authority_created": false,
+    "certification_created": false
+  },
+  "verdict_semantics": {
+    "ALLOW": "The proposed action may remain inside the configured runtime decision envelope; this alone does not prove reconstruction of every materially required commit-time parameter.",
+    "BLOCK": "The proposed action may reach a configured prohibited region; this alone does not prove reconstruction of every materially required commit-time parameter.",
+    "ERROR": "No safe execution permission is created; consequence-binding action should fail closed unless a separately governed fallback is authorized."
+  },
+  "unresolved_validation_questions": [
+    "Can missing materially required evidence be detected rather than treated as unchanged or absent without consequence?",
+    "Can contradictory evidence alter an existing ALLOW or BLOCK?",
+    "Can late-arriving evidence alter an existing ALLOW or BLOCK before execution?",
+    "Can previously unmodeled evidence enter the commit-time decision path?",
+    "Can the evaluator detect that relevant evidence was never requested or included?",
+    "Does the high-assurance configuration reconstruct current authority, policy, delegation, context, validity, and recoverability as well as evidence?",
+    "What latency applies when full fresh-state reconstruction and evidence binding are enabled?"
+  ],
+  "required_executable_fixtures": [
+    "allow_to_block_on_late_contradictory_evidence",
+    "block_to_allow_on_corrective_authoritative_evidence",
+    "fail_closed_on_missing_required_evidence",
+    "fail_closed_on_unknown_evidence_coverage",
+    "detect_previously_unmodeled_material_parameter",
+    "detect_stale_cached_binding",
+    "reconstruct_all_materially_required_parameters_at_commit_boundary"
+  ],
+  "evidence_posture": "CAPTURED_PUBLIC_CLARIFICATION_PENDING_DURABLE_SOURCE_PROVENANCE_AND_EXECUTABLE_REPRODUCTION",
+  "public_claim_limit": "The author clarified that ordinary pre-execution re-evaluation and configurable full fresh-state reconstruction/evidence binding are distinct capabilities. No claim is made that every deployment enables the stronger capability or that its behavior has been independently reproduced.",
+  "manual_user_tasks_required": [],
+  "user_action_required": false
+}
