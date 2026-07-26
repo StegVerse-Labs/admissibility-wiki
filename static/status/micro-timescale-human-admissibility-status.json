@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "formalism_id": "micro-timescale-human-admissibility",
+  "title": "Micro-Timescale Human Admissibility",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "doctrine_path": "docs/formalisms/micro-timescale-human-admissibility.md",
+  "model_path": "static/formalisms/micro-timescale-human-admissibility.v0.1.json",
+  "validator_path": "scripts/check_micro_timescale_human_admissibility.py",
+  "canonical_validation_binding": "scripts/check_admissibility_automation_handoff.py",
+  "public_route": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/micro-timescale-human-admissibility",
+  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLIC_ROUTE_OBSERVATION",
+  "conceptual_status": "DEVELOPED",
+  "mathematical_status": "DEVELOPED_FIRST_FORMULATION",
+  "machine_readable_status": "IMPLEMENTED",
+  "navigation_status": "IMPLEMENTED",
+  "canonical_validation_status": "BOUND_PENDING_WORKFLOW_OBSERVATION",
+  "public_route_status": "NOT_YET_OBSERVED",
+  "linkedin_link_status": "WAIT_FOR_PUBLIC_ROUTE_OBSERVATION",
+  "authority_posture": "EXPLANATORY_MODEL_NO_EXECUTION_AUTHORITY",
+  "non_claims": [
+    "A single observed interaction does not prove a universal neurocognitive mechanism.",
+    "Threshold notation does not establish measured biological constants.",
+    "Public deployment does not validate the empirical hypotheses.",
+    "A communication receipt does not prove objective truth or unrestricted authority."
+  ],
+  "downstream_awareness": [
+    {
+      "repository": "StegVerse-Labs/Site",
+      "state": "QUEUED_PENDING_DESTINATION_HANDOFF_AUTHORITY"
+    },
+    {
+      "repository": "GCAT-BCAT-Engine/Publisher",
+      "state": "QUEUED_PENDING_DESTINATION_HANDOFF_AUTHORITY"
+    },
+    {
+      "repository": "StegVerse-002/stegguardian-wiki",
+      "state": "QUEUED_PENDING_DESTINATION_HANDOFF_AUTHORITY"
+    }
+  ]
+}
