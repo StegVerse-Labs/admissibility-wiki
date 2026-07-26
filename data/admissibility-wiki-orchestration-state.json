@@ -8,7 +8,7 @@
   "work_state": "BLOCKED_BUT_OBSERVED",
   "system_health": "HEALTHY_DECLARED_DEPENDENCY_BLOCK",
   "heartbeat_mode": "TRANSITION_DRIVEN_HEALTH_RELATIVE",
-  "repository_heartbeat": 7,
+  "repository_heartbeat": 8,
   "ecosystem_heartbeat_observed": 1,
   "time_role": "WATCHDOG_ONLY",
   "active_independent_workloads": [
@@ -62,12 +62,8 @@
       "workload": "Bind governed relationship-transition validation into the canonical validation path",
       "execution_class": "PARALLEL_SAFE",
       "state": "COMPLETE_AWAITING_REPOSITORY_OBSERVATION",
-      "installed_paths": [
-        "scripts/check_governed_llm_pages.py"
-      ],
-      "commits": [
-        "c9088092b72a971b560a77311806ab3aca46b7e3"
-      ],
+      "installed_paths": ["scripts/check_governed_llm_pages.py"],
+      "commits": ["c9088092b72a971b560a77311806ab3aca46b7e3"],
       "observation": {
         "combined_commit_status_records": 0,
         "canonical_workflow_pass_claimed": false,
@@ -144,10 +140,47 @@
         "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md",
         "data/admissibility-wiki-orchestration-state.json"
       ],
-      "commits": [
-        "8df70421502a7925472ac58d5a078a3a66adad87"
+      "commits": ["8df70421502a7925472ac58d5a078a3a66adad87"]
+    },
+    {
+      "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-006",
+      "workload": "Install bounded governed relationship publication observer",
+      "execution_class": "PARALLEL_SAFE",
+      "state": "COMPLETE",
+      "installed_paths": [
+        "scripts/observe_governed_relationship_publication.py",
+        "scripts/check_governed_llm_pages.py"
       ],
-      "next_task": "Bind doctrine, schema, and example routes into repository-owned post-deployment observation through the existing canonical workflow only."
+      "commits": [
+        "46c80ca4fced0ed5f00ed46600b8e66257cb346b",
+        "e175939ba6805e38469ba1d182054d55f7afc884"
+      ]
+    },
+    {
+      "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-007",
+      "workload": "Invoke and preserve governed relationship publication observation through canonical public activation custody",
+      "execution_class": "PARALLEL_SAFE",
+      "state": "COMPLETE_AWAITING_REPOSITORY_OBSERVATION",
+      "installed_paths": [
+        "scripts/write-public-activation-receipt.mjs",
+        "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md",
+        "data/admissibility-wiki-orchestration-state.json"
+      ],
+      "commits": [
+        "d015a897b718061485830619a2b05cd912cf2281",
+        "15ac9bdae63fa295e90e7d1ff05be254b6442386"
+      ],
+      "observation": {
+        "observer_invoked_post_deploy": true,
+        "receipt_embedded_in_public_activation_receipt": true,
+        "existing_artifact_custody_path_reused": true,
+        "canonical_workflow_pass_claimed": false,
+        "pages_deployment_observed": false,
+        "public_reachability_observed": false,
+        "manual_tasks_required": [],
+        "authority_inferred": false
+      },
+      "next_task": "Observe authentic canonical workflow and uploaded public-activation receipt evidence; apply exact deterministic repairs only."
     }
   ],
   "dependency_blocked_workloads": [
@@ -197,7 +230,7 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "GOVERNED_RELATIONSHIP_HANDOFF_SYNCHRONIZED",
+    "event_type": "GOVERNED_RELATIONSHIP_PUBLICATION_OBSERVATION_BOUND_TO_CANONICAL_CUSTODY",
     "progress_effect": true,
     "authority_effect": false
   },
