@@ -1,0 +1,42 @@
+{
+  "schema": "stegverse.morrison-runtime.canonical-promotion-input.v1",
+  "upstream": {
+    "repository": "Data-Continuation/formalism-tests",
+    "issue": 5,
+    "suite_id": "morrison-runtime-commit-time-scope-v0.1",
+    "commit_sha": "REQUIRED_AFTER_CANONICAL_RUN",
+    "execution_surface": "REQUIRED_AFTER_CANONICAL_RUN",
+    "run_url": null,
+    "task_results": {
+      "morrison_runtime_commit_time_scope_tests": "PENDING",
+      "verify_morrison_runtime_commit_time_scope_artifacts": "PENDING"
+    },
+    "artifact_hashes": {
+      "report_sha256": "PENDING",
+      "receipts_sha256": "PENDING",
+      "verification_sha256": "PENDING"
+    },
+    "artifact_equivalence": {
+      "report": false,
+      "receipts": false,
+      "expected_outcomes": false
+    },
+    "canonical_status": "PENDING_CANONICAL_EXECUTION"
+  },
+  "promotion_gate": {
+    "all_upstream_tasks_pass": false,
+    "all_artifacts_equivalent": false,
+    "source_provenance_bound": true,
+    "authority_posture_preserved": true,
+    "eligible_for_compatibility_report_update": false
+  },
+  "required_authority_posture": "EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY",
+  "prohibited_promotions": [
+    "CERTIFIED_COMPATIBLE",
+    "STEGVERSE_EXECUTION_AUTHORITY",
+    "FULL_FRESH_STATE_RECONSTRUCTION_BY_DEFAULT",
+    "PRODUCTION_VALIDATION",
+    "ENDORSEMENT"
+  ],
+  "next_owner": "StegVerse-Labs/admissibility-wiki#39"
+}
