@@ -10,6 +10,7 @@ TEMPLATE = ROOT / "docs" / "external-frameworks" / "evidence" / "morrison-runtim
 PROMOTION_GATE = ROOT / "docs" / "external-frameworks" / "evidence" / "morrison-runtime-promotion-gate.v0.1.json"
 ORCHESTRATION = ROOT / "docs" / "external-frameworks" / "evidence" / "morrison-runtime-orchestration-status.v0.1.json"
 BINDING = ROOT / "docs" / "external-frameworks" / "evidence" / "morrison-runtime-formalism-tests-binding.v0.1.json"
+PUBLIC_STATUS = ROOT / "static" / "status" / "morrison-runtime-promotion-status.json"
 
 AUTHORITY = "EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY"
 PROHIBITED = {
@@ -93,6 +94,33 @@ def check_template(data: dict, failures: list[str]) -> str:
     return "INVALID"
 
 
+def check_public_status(data: dict, mode: str, failures: list[str]) -> None:
+    if data.get("authority_posture") != AUTHORITY:
+        failures.append("public status authority posture changed")
+    if set(data.get("prohibited_claims", [])) != PROHIBITED:
+        failures.append("public status prohibited claim set changed")
+    if data.get("fail_closed") is not True:
+        failures.append("public status must remain fail-closed")
+    boundary = data.get("boundary", {})
+    if boundary.get("runtime_re_evaluation_equals_full_reconstruction") is not False:
+        failures.append("public status conflates runtime re-evaluation with full reconstruction")
+
+    if mode == "PENDING_FAIL_CLOSED":
+        if data.get("state") != "PENDING_CANONICAL_EXECUTION":
+            failures.append("pending public status state mismatch")
+        blocked = (
+            "canonical_execution_verified",
+            "artifact_equivalence_verified",
+            "compatibility_report_update_eligible",
+            "public_promotion_eligible",
+            "downstream_propagation_eligible",
+        )
+        if any(data.get(key) is not False for key in blocked):
+            failures.append("pending public status contains premature eligibility")
+        if data.get("required_next_transition") != "CANONICAL_EXECUTION_EVIDENCE_ATTACHED":
+            failures.append("pending public status next transition changed")
+
+
 def main() -> int:
     failures: list[str] = []
     try:
@@ -100,11 +128,15 @@ def main() -> int:
         load(PROMOTION_GATE)
         load(ORCHESTRATION)
         load(BINDING)
+        public_status = load(PUBLIC_STATUS)
     except ValueError as exc:
         failures.append(str(exc))
         template = {}
+        public_status = {}
 
     mode = check_template(template, failures) if template else "INVALID"
+    if public_status:
+        check_public_status(public_status, mode, failures)
 
     if failures:
         print("MORRISON RUNTIME PROMOTION GATE: FAIL")
