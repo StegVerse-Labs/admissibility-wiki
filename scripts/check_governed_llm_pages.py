@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify governed LLM public pages, contracts, and validation are present."""
+"""Verify governed public pages, contracts, and validation are present."""
 
 from __future__ import annotations
 
@@ -21,6 +21,10 @@ REQUIRED_FILES = (
     "static/governance/system-boundary-declaration.example.v0.1.json",
     "static/governance/fixtures/system-boundary-declaration-cases.v0.1.json",
     "scripts/check_system_boundary_declaration.py",
+    "docs/governance/governed-relationship-transitions.md",
+    "static/governance/governed-relationship-transition.schema.v0.1.json",
+    "static/governance/governed-relationship-transition.example.v0.1.json",
+    "scripts/check_governed_relationship_transitions.py",
 )
 REQUIRED_REFERENCES = {
     "sidebars.js": (
@@ -29,6 +33,7 @@ REQUIRED_REFERENCES = {
         "governance/governed-llm-site-verification",
         "governance/governed-llm-deployment-status",
         "governance/governed-llm-archive-handoff",
+        "governance/governed-relationship-transitions",
     ),
     "docusaurus.config.js": (
         "/governance/governed-llm-activation-map",
@@ -37,13 +42,29 @@ REQUIRED_REFERENCES = {
     "README.md": (
         "docs/governance/governed-llm-reconstructive-search.md",
         "docs/governance/governed-llm-activation-map.md",
+        "docs/governance/governed-relationship-transitions.md",
     ),
     "docs/governance/llm-consciousness-model-system-boundary.md": (
         "system-boundary-declaration.schema.v0.1.json",
         "system-boundary-declaration.example.v0.1.json",
         "check_system_boundary_declaration.py",
     ),
+    "docs/governance/governed-relationship-transitions.md": (
+        "governed-relationship-transition.schema.v0.1.json",
+        "governed-relationship-transition.example.v0.1.json",
+        "check_governed_relationship_transitions.py",
+    ),
 }
+CHECKERS = (
+    (
+        "system-boundary contract",
+        "scripts/check_system_boundary_declaration.py",
+    ),
+    (
+        "governed relationship transitions",
+        "scripts/check_governed_relationship_transitions.py",
+    ),
+)
 
 
 def main() -> int:
@@ -64,26 +85,30 @@ def main() -> int:
 
     if missing:
         for item in missing:
-            print("GOVERNED LLM PAGES: FAIL - {}".format(item))
+            print("GOVERNED PUBLIC PAGES: FAIL - {}".format(item))
         return 1
 
-    checker = ROOT / "scripts/check_system_boundary_declaration.py"
-    result = subprocess.run(
-        [sys.executable, str(checker)],
-        cwd=ROOT,
-        check=False,
-        text=True,
-        capture_output=True,
-    )
-    if result.stdout:
-        print(result.stdout.rstrip())
-    if result.stderr:
-        print(result.stderr.rstrip(), file=sys.stderr)
-    if result.returncode != 0:
-        print("GOVERNED LLM PAGES: FAIL - system-boundary contract validation failed")
-        return result.returncode
+    for label, relative_path in CHECKERS:
+        checker = ROOT / relative_path
+        result = subprocess.run(
+            [sys.executable, str(checker)],
+            cwd=ROOT,
+            check=False,
+            text=True,
+            capture_output=True,
+        )
+        if result.stdout:
+            print(result.stdout.rstrip())
+        if result.stderr:
+            print(result.stderr.rstrip(), file=sys.stderr)
+        if result.returncode != 0:
+            print("GOVERNED PUBLIC PAGES: FAIL - {} validation failed".format(label))
+            return result.returncode
 
-    print("GOVERNED LLM PAGES: PASS - docs, contracts, fixtures, and references present")
+    print(
+        "GOVERNED PUBLIC PAGES: PASS - docs, contracts, fixtures, references, "
+        "and relationship-transition validation present"
+    )
     return 0
 
 
