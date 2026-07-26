@@ -9,17 +9,20 @@
     "run_url": null,
     "task_results": {
       "morrison_runtime_commit_time_scope_tests": "PENDING",
-      "verify_morrison_runtime_commit_time_scope_artifacts": "PENDING"
+      "verify_morrison_runtime_commit_time_scope_artifacts": "PENDING",
+      "check_morrison_runtime_canonical_evidence_gate": "PENDING"
     },
     "artifact_hashes": {
       "report_sha256": "PENDING",
       "receipts_sha256": "PENDING",
-      "verification_sha256": "PENDING"
+      "verification_sha256": "PENDING",
+      "canonical_evidence_gate_sha256": "PENDING"
     },
     "artifact_equivalence": {
       "report": false,
       "receipts": false,
-      "expected_outcomes": false
+      "expected_outcomes": false,
+      "canonical_evidence_gate": false
     },
     "canonical_status": "PENDING_CANONICAL_EXECUTION"
   },
