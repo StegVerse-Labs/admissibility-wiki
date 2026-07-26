@@ -5,7 +5,7 @@
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
   "task_sequence": 1,
   "task_sequence_label": "current work task sequence 0001",
-  "work_state": "BLOCKED_BUT_OBSERVED",
+  "work_state": "PARALLEL_SAFE_WORK_ACTIVE",
   "system_health": "HEALTHY_DECLARED_DEPENDENCY_BLOCK",
   "heartbeat_mode": "TRANSITION_DRIVEN_HEALTH_RELATIVE",
   "repository_heartbeat": 1,
@@ -19,6 +19,20 @@
       "workload": "Riverbraid source-blocked admissibility intake",
       "execution_class": "INDEPENDENT_ACTIVE",
       "state": "OPEN",
+      "duplicate_work_prohibited": true
+    },
+    {
+      "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-001",
+      "owner": "current-session",
+      "workload": "Install governed relationship transition doctrine",
+      "claimed_paths": [
+        "docs/governance/governed-relationship-transitions.md",
+        "README.md",
+        "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+        "data/admissibility-wiki-orchestration-state.json"
+      ],
+      "execution_class": "PARALLEL_SAFE",
+      "state": "ACTIVE",
       "duplicate_work_prohibited": true
     }
   ],
@@ -69,8 +83,8 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "HIL_SUCCESSION_REGISTERED",
-    "progress_effect": true,
+    "event_type": "PARALLEL_SAFE_DOCTRINE_WORK_REGISTERED",
+    "progress_effect": false,
     "authority_effect": false
   },
   "idle_terminal_statement": "end of current work task sequence 0001, no tasks running"
