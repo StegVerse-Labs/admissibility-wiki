@@ -136,8 +136,11 @@ if example is not None:
         if authority.get(field) is not False:
             errors.append(f"observation example {field} must be false")
 
-if not SIDEBAR.exists() or "formalisms/micro-timescale-human-admissibility" not in SIDEBAR.read_text(encoding="utf-8"):
+sidebar_text = SIDEBAR.read_text(encoding="utf-8") if SIDEBAR.exists() else ""
+if "formalisms/micro-timescale-human-admissibility" not in sidebar_text:
     errors.append("formalism is not present in sidebars.js")
+if "research/micro-timescale-human-admissibility-observation-protocol" not in sidebar_text:
+    errors.append("observation protocol is not present in Research navigation")
 
 if not CANONICAL_CHECK.exists() or "MICRO_TIMESCALE_HUMAN_ADMISSIBILITY_CHECK" not in CANONICAL_CHECK.read_text(encoding="utf-8"):
     errors.append("formalism validator is not bound into canonical validation")
