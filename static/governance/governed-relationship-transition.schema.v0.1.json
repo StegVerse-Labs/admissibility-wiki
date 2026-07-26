@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-relationship-transition.schema.v0.1.json",
+  "title": "Governed Relationship Transition Record",
+  "description": "A commit-time record distinguishing historical persistence and reconstructable continuity from present relationship legitimacy and admissibility.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "relationship_id",
+    "transition_id",
+    "prior_state_ref",
+    "proposed_state_ref",
+    "purpose_ref",
+    "authority_refs",
+    "delegation_refs",
+    "evidence_refs",
+    "invariant_results",
+    "reality_correspondence",
+    "recoverability",
+    "commit_time_validity",
+    "admissibility_result",
+    "decision_receipt_ref"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "relationship_id": {"type": "string", "minLength": 1},
+    "transition_id": {"type": "string", "minLength": 1},
+    "prior_state_ref": {"type": "string", "minLength": 1},
+    "proposed_state_ref": {"type": "string", "minLength": 1},
+    "purpose_ref": {"type": "string", "minLength": 1},
+    "authority_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "delegation_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "invariant_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["invariant_ref", "result"],
+        "properties": {
+          "invariant_ref": {"type": "string", "minLength": 1},
+          "result": {"enum": ["PASS", "FAIL", "UNRESOLVED"]},
+          "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    },
+    "reality_correspondence": {"enum": ["SUPPORTED", "DIVERGED", "UNRESOLVED"]},
+    "recoverability": {"enum": ["RECOVERABLE", "DEGRADED", "UNRECOVERABLE"]},
+    "commit_time_validity": {"enum": ["VALID", "INVALID", "UNRESOLVED"]},
+    "admissibility_result": {"enum": ["ALLOW", "DENY", "FAIL_CLOSED"]},
+    "decision_receipt_ref": {"type": "string", "minLength": 1}
+  }
+}
