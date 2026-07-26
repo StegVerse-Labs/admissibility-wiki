@@ -5,10 +5,10 @@
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
   "task_sequence": 1,
   "task_sequence_label": "current work task sequence 0001",
-  "work_state": "PARALLEL_SAFE_WORK_ACTIVE",
+  "work_state": "BLOCKED_BUT_OBSERVED",
   "system_health": "HEALTHY_DECLARED_DEPENDENCY_BLOCK",
   "heartbeat_mode": "TRANSITION_DRIVEN_HEALTH_RELATIVE",
-  "repository_heartbeat": 1,
+  "repository_heartbeat": 2,
   "ecosystem_heartbeat_observed": 1,
   "time_role": "WATCHDOG_ONLY",
   "active_independent_workloads": [
@@ -20,20 +20,22 @@
       "execution_class": "INDEPENDENT_ACTIVE",
       "state": "OPEN",
       "duplicate_work_prohibited": true
-    },
+    }
+  ],
+  "completed_workloads": [
     {
       "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-001",
-      "owner": "current-session",
       "workload": "Install governed relationship transition doctrine",
-      "claimed_paths": [
-        "docs/governance/governed-relationship-transitions.md",
-        "README.md",
-        "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-        "data/admissibility-wiki-orchestration-state.json"
-      ],
       "execution_class": "PARALLEL_SAFE",
-      "state": "ACTIVE",
-      "duplicate_work_prohibited": true
+      "state": "COMPLETE",
+      "installed_paths": [
+        "docs/governance/governed-relationship-transitions.md",
+        "README.md"
+      ],
+      "commits": [
+        "e424d06ae5c21e12ea4bbafc03718e5d81c3268a",
+        "d3ae4a0505bb0df8768cd24cd653e91f10eb9e16"
+      ]
     }
   ],
   "dependency_blocked_workloads": [
@@ -83,8 +85,8 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "PARALLEL_SAFE_DOCTRINE_WORK_REGISTERED",
-    "progress_effect": false,
+    "event_type": "GOVERNED_RELATIONSHIP_DOCTRINE_INSTALLED",
+    "progress_effect": true,
     "authority_effect": false
   },
   "idle_terminal_statement": "end of current work task sequence 0001, no tasks running"
