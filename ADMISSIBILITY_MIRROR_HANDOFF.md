@@ -20,6 +20,12 @@ The active goal-specific handoff for Ecosystem Chat activation projection is:
 docs/ECOSYSTEM_CHAT_ACTIVATION_MIRROR_HANDOFF.md
 ```
 
+The active goal-specific handoff for Morrison Runtime commit-time scope proof promotion is:
+
+```text
+docs/MORRISON_RUNTIME_PROMOTION_HANDOFF.md
+```
+
 Correct downstream mapping:
 
 ```text
