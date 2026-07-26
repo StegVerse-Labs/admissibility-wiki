@@ -20,22 +20,22 @@ PROHIBITED = {
     "PRODUCTION_VALIDATION",
     "ENDORSEMENT",
 }
-EXPECTED_TASKS = {
+TASKS = {
     "morrison_runtime_commit_time_scope_tests",
     "verify_morrison_runtime_commit_time_scope_artifacts",
     "check_morrison_runtime_canonical_evidence_gate",
 }
-EXPECTED_HASHES = {
+HASHES = {
     "report_sha256",
     "receipts_sha256",
     "verification_sha256",
-    "canonical_evidence_gate_sha256",
+    "canonical_gate_sha256",
 }
-EXPECTED_EQUIVALENCE = {
+EQUIVALENCE = {
     "report",
     "receipts",
     "expected_outcomes",
-    "canonical_evidence_gate",
+    "canonical_gate",
 }
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
@@ -68,19 +68,19 @@ def check_template(data: dict, failures: list[str]) -> str:
     hashes = upstream.get("artifact_hashes", {})
     equivalence = upstream.get("artifact_equivalence", {})
 
-    if set(task_results) != EXPECTED_TASKS:
-        failures.append("canonical promotion input must contain exactly the three declared Morrison tasks")
-    if set(hashes) != EXPECTED_HASHES:
-        failures.append("canonical promotion input must contain exactly four required artifact hashes")
-    if set(equivalence) != EXPECTED_EQUIVALENCE:
-        failures.append("canonical promotion input must contain the complete equivalence predicate set")
+    if set(task_results) != TASKS:
+        failures.append("promotion input task set does not match canonical proof contract")
+    if set(hashes) != HASHES:
+        failures.append("promotion input artifact hash set does not match canonical proof contract")
+    if set(equivalence) != EQUIVALENCE:
+        failures.append("promotion input equivalence set does not match canonical proof contract")
 
     if status == "PENDING_CANONICAL_EXECUTION":
         if any(value != "PENDING" for value in task_results.values()):
             failures.append("pending task results must remain explicitly PENDING")
         if any(value != "PENDING" for value in hashes.values()):
             failures.append("pending artifact hashes must remain PENDING")
-        if any(value is not False for value in equivalence.values()):
+        if any(equivalence.values()):
             failures.append("pending artifact equivalence must remain false")
         if gate.get("all_upstream_tasks_pass") is not False:
             failures.append("pending gate cannot claim upstream task pass")
@@ -93,12 +93,12 @@ def check_template(data: dict, failures: list[str]) -> str:
     if status == "VERIFIED_CANONICAL_RUN":
         if not SHA40.fullmatch(str(upstream.get("commit_sha", ""))):
             failures.append("verified input requires a 40-character commit SHA")
-        if any(value != "PASS" for value in task_results.values()):
+        if set(task_results.values()) != {"PASS"} or len(task_results) != len(TASKS):
             failures.append("verified input requires all three declared tasks to PASS")
-        if not all(SHA256.fullmatch(str(value)) for value in hashes.values()):
-            failures.append("verified input requires four valid SHA-256 artifact hashes")
-        if any(value is not True for value in equivalence.values()):
-            failures.append("verified input requires all four artifact equivalence checks true")
+        if len(hashes) != len(HASHES) or not all(SHA256.fullmatch(str(value)) for value in hashes.values()):
+            failures.append("verified input requires four SHA-256 artifact hashes")
+        if set(equivalence.values()) != {True}:
+            failures.append("verified input requires all artifact equivalence checks true")
         required_true = (
             "all_upstream_tasks_pass",
             "all_artifacts_equivalent",
@@ -114,7 +114,7 @@ def check_template(data: dict, failures: list[str]) -> str:
     return "INVALID"
 
 
-def check_public_status(data: dict, mode: str, failures: list[str]) -> None:
+def check_public_status(data: dict, template: dict, mode: str, failures: list[str]) -> None:
     if data.get("authority_posture") != AUTHORITY:
         failures.append("public status authority posture changed")
     if set(data.get("prohibited_claims", [])) != PROHIBITED:
@@ -124,6 +124,14 @@ def check_public_status(data: dict, mode: str, failures: list[str]) -> None:
     boundary = data.get("boundary", {})
     if boundary.get("runtime_re_evaluation_equals_full_reconstruction") is not False:
         failures.append("public status conflates runtime re-evaluation with full reconstruction")
+
+    upstream = template.get("upstream", {})
+    if data.get("required_task_results") != upstream.get("task_results"):
+        failures.append("public status task results diverge from promotion input")
+    if data.get("required_artifact_hashes") != upstream.get("artifact_hashes"):
+        failures.append("public status artifact hashes diverge from promotion input")
+    if data.get("required_equivalence") != upstream.get("artifact_equivalence"):
+        failures.append("public status equivalence fields diverge from promotion input")
 
     if mode == "PENDING_FAIL_CLOSED":
         if data.get("state") != "PENDING_CANONICAL_EXECUTION":
@@ -156,7 +164,7 @@ def main() -> int:
 
     mode = check_template(template, failures) if template else "INVALID"
     if public_status:
-        check_public_status(public_status, mode, failures)
+        check_public_status(public_status, template, mode, failures)
 
     if failures:
         print("MORRISON RUNTIME PROMOTION GATE: FAIL")
