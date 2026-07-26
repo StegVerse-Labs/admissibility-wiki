@@ -1,0 +1,29 @@
+{
+  "schema": "stegverse.external-framework-promotion-status.v1",
+  "framework": "Morrison Runtime Governance",
+  "comparison_id": "morrison-runtime-commit-time-scope-v0.1",
+  "state": "PENDING_CANONICAL_EXECUTION",
+  "upstream_repository": "Data-Continuation/formalism-tests",
+  "upstream_issue": 5,
+  "promotion_issue": 39,
+  "canonical_execution_verified": false,
+  "artifact_equivalence_verified": false,
+  "compatibility_report_update_eligible": false,
+  "public_promotion_eligible": false,
+  "downstream_propagation_eligible": false,
+  "authority_posture": "EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY",
+  "boundary": {
+    "default_runtime_behavior": "SECOND_PRE_EXECUTION_GOVERNANCE_DECISION",
+    "full_fresh_state_reconstruction": "SEPARATELY_CONFIGURABLE_HIGH_ASSURANCE_CAPABILITY",
+    "runtime_re_evaluation_equals_full_reconstruction": false
+  },
+  "required_next_transition": "CANONICAL_EXECUTION_EVIDENCE_ATTACHED",
+  "fail_closed": true,
+  "prohibited_claims": [
+    "CERTIFIED_COMPATIBLE",
+    "STEGVERSE_EXECUTION_AUTHORITY",
+    "FULL_FRESH_STATE_RECONSTRUCTION_BY_DEFAULT",
+    "PRODUCTION_VALIDATION",
+    "ENDORSEMENT"
+  ]
+}
