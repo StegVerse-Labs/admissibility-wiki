@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "state_type": "admissibility_wiki_orchestration_state",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+  "task_sequence": 1,
+  "task_sequence_label": "current work task sequence 0001",
+  "work_state": "BLOCKED_BUT_OBSERVED",
+  "system_health": "HEALTHY_DECLARED_DEPENDENCY_BLOCK",
+  "heartbeat_mode": "TRANSITION_DRIVEN_HEALTH_RELATIVE",
+  "repository_heartbeat": 1,
+  "ecosystem_heartbeat_observed": 1,
+  "time_role": "WATCHDOG_ONLY",
+  "active_independent_workloads": [
+    {
+      "task_id": "ADMISSIBILITY-RIVERBRAID-001",
+      "owner": "pull/17",
+      "branch": "agent/add-riverbraid-intake",
+      "workload": "Riverbraid source-blocked admissibility intake",
+      "execution_class": "INDEPENDENT_ACTIVE",
+      "state": "OPEN",
+      "duplicate_work_prohibited": true
+    }
+  ],
+  "dependency_blocked_workloads": [
+    {
+      "task_id": "ADMISSIBILITY-HIL-001",
+      "workload": "Ingest and interpret verified HIL activation propagation",
+      "execution_class": "DEPENDENCY_BLOCKED",
+      "state": "BLOCKED_BUT_OBSERVED",
+      "required_upstream_evidence": [
+        "completed Site participant upload evidence",
+        "authorized real-provider response",
+        "durable provider-usage persistence",
+        "authenticated Master-Records custody receipt",
+        "reconstructability_pass=true",
+        "immutable zero-blocker VERIFIED activation receipt",
+        "Site ACTIVATION_COMPLETE",
+        "Publisher VERIFIED_INGESTION_READY"
+      ],
+      "upstream_owners": [
+        "StegVerse-Labs/Site",
+        "StegVerse-org/LLM-adapter issue #18",
+        "StegVerse-org/LLM-adapter PR #44",
+        "master-records/orchestration issue #2",
+        "GCAT-BCAT-Engine/Publisher"
+      ]
+    }
+  ],
+  "policy": {
+    "handoff_is_source_of_truth": true,
+    "incoming_request_is_candidate_workload": true,
+    "one_active_owner_per_workload": true,
+    "duplicate_workloads_fail_closed": true,
+    "canonical_workflow_remains_single": true,
+    "recursive_derivative_expansion_allowed": false,
+    "blocked_but_observed_is_not_failed": true,
+    "watchdog_does_not_imply_progress": true,
+    "admissibility_projection_requires_verified_upstream_evidence": true,
+    "manual_user_tasks_required": false
+  },
+  "authority": {
+    "execution": false,
+    "publication": false,
+    "release": false,
+    "custody": false,
+    "proof": false,
+    "admissibility": false,
+    "cross_repository_mutation": false
+  },
+  "last_transition": {
+    "event_type": "HIL_SUCCESSION_REGISTERED",
+    "progress_effect": true,
+    "authority_effect": false
+  },
+  "idle_terminal_statement": "end of current work task sequence 0001, no tasks running"
+}
