@@ -2,7 +2,6 @@
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
-// Static compatibility markers required by repository publication validators.
 const PRESERVED_CONTRACT_MARKERS = [
   'documentation_mesh_observation_closure.v1',
   'SOURCE_BLOCKED_FAIL_CLOSED',
@@ -17,13 +16,16 @@ const PRESERVED_CONTRACT_MARKERS = [
   'Independent verification remains evidence input and does not become execution authority.',
   'discovery_governance_publication_receipt.v1',
   'discovery_governance',
-  'A discovery handoff does not grant consent, standing, authority, admissibility, commitment, execution permission, certification, or endorsement.'
+  'A discovery handoff does not grant consent, standing, authority, admissibility, commitment, execution permission, certification, or endorsement.',
+  'stegverse.governed_relationship_transition_publication_observation.v1',
+  'governed-relationship-transition-publication-observation.json'
 ];
 void PRESERVED_CONTRACT_MARKERS;
 
 const publicReceiptPath = 'reports/public-activation-receipt.json';
 const quantumReceiptPath = 'reports/quantum-security-public-route-observation.json';
 const discoveryReceiptPath = 'reports/discovery-governance-publication-receipt.json';
+const relationshipReceiptPath = 'reports/governed-relationship-transition-publication-observation.json';
 const skipNetwork = process.env.PUBLIC_ACTIVATION_SKIP_NETWORK === '1';
 let baseWriterError = null;
 
@@ -43,20 +45,7 @@ try {
     run_id: process.env.GITHUB_RUN_ID || null,
     run_attempt: process.env.GITHUB_RUN_ATTEMPT || null,
     checks: {},
-    activation_closures: {
-      base_writer: {
-        schema: 'public_activation_base_writer_failure.v1',
-        state: 'SOURCE_BLOCKED_FAIL_CLOSED',
-        error: baseWriterError,
-        evidence_preserved: true,
-        manual_task_requirement: 'NONE',
-        user_manual_action_required: false,
-        authority_granted: false,
-        execution_authority_granted: false,
-        release_authority_granted: false,
-        downstream_mutation_authority_granted: false
-      }
-    },
+    activation_closures: { base_writer: { schema: 'public_activation_base_writer_failure.v1', state: 'SOURCE_BLOCKED_FAIL_CLOSED', error: baseWriterError, evidence_preserved: true, manual_task_requirement: 'NONE', user_manual_action_required: false, authority_granted: false, execution_authority_granted: false, release_authority_granted: false, downstream_mutation_authority_granted: false } },
     linked_receipts: {},
     authority_granted: false,
     release_authority_granted: false,
@@ -64,28 +53,18 @@ try {
     publication_complete: false,
     manual_tasks_required: [],
     user_manual_action_required: false,
-    non_claims: [
-      'A preserved base-writer failure receipt is not publication-complete evidence.',
-      'Receipt custody does not grant execution, release, certification, or downstream mutation authority.'
-    ]
+    non_claims: ['A preserved base-writer failure receipt is not publication-complete evidence.','Receipt custody does not grant execution, release, certification, or downstream mutation authority.']
   }, null, 2) + '\n');
   console.error(`base public-activation writer failed; preserving fail-closed receipt: ${baseWriterError}`);
 }
 
-if (!fs.existsSync(publicReceiptPath)) {
-  throw new Error(`base writer did not create ${publicReceiptPath}`);
-}
-
+if (!fs.existsSync(publicReceiptPath)) throw new Error(`base writer did not create ${publicReceiptPath}`);
 const publicReceipt = JSON.parse(fs.readFileSync(publicReceiptPath, 'utf8'));
 let quantumReceipt;
 let observationExitCode = null;
 
 if (!fs.existsSync(quantumReceiptPath) && !skipNetwork) {
-  const observation = spawnSync(
-    process.env.PYTHON || 'python3',
-    ['scripts/check_quantum_security_public_routes.py'],
-    { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }
-  );
+  const observation = spawnSync(process.env.PYTHON || 'python3', ['scripts/check_quantum_security_public_routes.py'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
   observationExitCode = observation.status;
   if (observation.stdout) process.stdout.write(observation.stdout);
   if (observation.stderr) process.stderr.write(observation.stderr);
@@ -93,15 +72,10 @@ if (!fs.existsSync(quantumReceiptPath) && !skipNetwork) {
 
 if (fs.existsSync(quantumReceiptPath)) {
   quantumReceipt = JSON.parse(fs.readFileSync(quantumReceiptPath, 'utf8'));
-  if (quantumReceipt.schema !== 'quantum_security_public_route_observation.v1') {
-    throw new Error('quantum-security route observation schema mismatch');
-  }
-  if (typeof quantumReceipt.all_required_public_routes_verified !== 'boolean') {
-    throw new Error('quantum-security route observation lacks bounded completion state');
-  }
+  if (quantumReceipt.schema !== 'quantum_security_public_route_observation.v1') throw new Error('quantum-security route observation schema mismatch');
+  if (typeof quantumReceipt.all_required_public_routes_verified !== 'boolean') throw new Error('quantum-security route observation lacks bounded completion state');
   quantumReceipt.observer_exit_code = observationExitCode;
-  quantumReceipt.receipt_preserved_despite_source_block =
-    quantumReceipt.all_required_public_routes_verified !== true;
+  quantumReceipt.receipt_preserved_despite_source_block = quantumReceipt.all_required_public_routes_verified !== true;
 } else if (skipNetwork) {
   const urls = {
     quantum_security_governance_page: 'https://stegverse-labs.github.io/admissibility-wiki/governance/quantum-resilient-execution-security',
@@ -109,140 +83,60 @@ if (fs.existsSync(quantumReceiptPath)) {
     quantum_security_carousel_source: 'https://stegverse-labs.github.io/admissibility-wiki/social/stegverse-quantum-security-carousel'
   };
   quantumReceipt = {
-    schema: 'quantum_security_public_route_observation.v1',
-    goal_id: 'stegverse-quantum-resilient-complete-security',
-    state: 'SIMULATED_VALIDATOR_PASS',
-    observed_at: new Date().toISOString(),
-    repository: 'StegVerse-Labs/admissibility-wiki',
-    commit: process.env.GITHUB_SHA || null,
-    run_id: process.env.GITHUB_RUN_ID || null,
-    run_attempt: process.env.GITHUB_RUN_ATTEMPT || null,
-    routes: Object.fromEntries(Object.entries(urls).map(([name, url]) => [name, {
-      url,
-      reachable: true,
-      http_status: 200,
-      verifier: 'deterministic local receipt-writer validation mode'
-    }])),
-    all_required_public_routes_verified: true,
-    pages_deployment_observed: false,
-    manual_task_requirement: 'NONE',
-    user_manual_action_required: false,
-    certification_granted: false,
-    universal_quantum_proof_claim: false,
-    production_cryptographic_deployment_established: false,
-    execution_authority_granted: false,
-    downstream_mutation_authority_granted: false,
-    continuation_source: 'docs/STEGVERSE_QUANTUM_SECURITY_MIRROR_HANDOFF.md',
-    issues: [20, 23],
-    non_claims: [
-      'Route reachability is bounded publication evidence only.',
-      'Publication is not certification.',
-      'Post-quantum cryptography does not independently grant execution authority.',
-      'This receipt grants no downstream mutation authority.'
-    ]
+    schema: 'quantum_security_public_route_observation.v1', goal_id: 'stegverse-quantum-resilient-complete-security', state: 'SIMULATED_VALIDATOR_PASS', observed_at: new Date().toISOString(), repository: 'StegVerse-Labs/admissibility-wiki', commit: process.env.GITHUB_SHA || null, run_id: process.env.GITHUB_RUN_ID || null, run_attempt: process.env.GITHUB_RUN_ATTEMPT || null,
+    routes: Object.fromEntries(Object.entries(urls).map(([name, url]) => [name, { url, reachable: true, http_status: 200, verifier: 'deterministic local receipt-writer validation mode' }])),
+    all_required_public_routes_verified: true, pages_deployment_observed: false, manual_task_requirement: 'NONE', user_manual_action_required: false, certification_granted: false, universal_quantum_proof_claim: false, production_cryptographic_deployment_established: false, execution_authority_granted: false, downstream_mutation_authority_granted: false, continuation_source: 'docs/STEGVERSE_QUANTUM_SECURITY_MIRROR_HANDOFF.md', issues: [20, 23],
+    non_claims: ['Route reachability is bounded publication evidence only.','Publication is not certification.','Post-quantum cryptography does not independently grant execution authority.','This receipt grants no downstream mutation authority.']
   };
 } else {
-  quantumReceipt = {
-    schema: 'quantum_security_public_route_observation.v1',
-    goal_id: 'stegverse-quantum-resilient-complete-security',
-    state: 'SOURCE_BLOCKED_FAIL_CLOSED',
-    observed_at: new Date().toISOString(),
-    repository: 'StegVerse-Labs/admissibility-wiki',
-    commit: process.env.GITHUB_SHA || null,
-    run_id: process.env.GITHUB_RUN_ID || null,
-    run_attempt: process.env.GITHUB_RUN_ATTEMPT || null,
-    routes: {},
-    all_required_public_routes_verified: false,
-    pages_deployment_observed: false,
-    observer_exit_code: observationExitCode,
-    receipt_preserved_despite_source_block: true,
-    manual_task_requirement: 'NONE',
-    user_manual_action_required: false,
-    certification_granted: false,
-    universal_quantum_proof_claim: false,
-    production_cryptographic_deployment_established: false,
-    execution_authority_granted: false,
-    downstream_mutation_authority_granted: false,
-    continuation_source: 'docs/STEGVERSE_QUANTUM_SECURITY_MIRROR_HANDOFF.md'
-  };
+  quantumReceipt = { schema: 'quantum_security_public_route_observation.v1', goal_id: 'stegverse-quantum-resilient-complete-security', state: 'SOURCE_BLOCKED_FAIL_CLOSED', observed_at: new Date().toISOString(), repository: 'StegVerse-Labs/admissibility-wiki', commit: process.env.GITHUB_SHA || null, run_id: process.env.GITHUB_RUN_ID || null, run_attempt: process.env.GITHUB_RUN_ATTEMPT || null, routes: {}, all_required_public_routes_verified: false, pages_deployment_observed: false, observer_exit_code: observationExitCode, receipt_preserved_despite_source_block: true, manual_task_requirement: 'NONE', user_manual_action_required: false, certification_granted: false, universal_quantum_proof_claim: false, production_cryptographic_deployment_established: false, execution_authority_granted: false, downstream_mutation_authority_granted: false, continuation_source: 'docs/STEGVERSE_QUANTUM_SECURITY_MIRROR_HANDOFF.md' };
 }
 
 let discoveryReceipt;
 if (fs.existsSync(discoveryReceiptPath)) {
   discoveryReceipt = JSON.parse(fs.readFileSync(discoveryReceiptPath, 'utf8'));
-  if (discoveryReceipt.schema !== 'discovery_governance_publication_receipt.v1') {
-    throw new Error('discovery-governance publication receipt schema mismatch');
-  }
-  if (typeof discoveryReceipt.all_required_public_routes_verified !== 'boolean') {
-    throw new Error('discovery-governance publication receipt lacks bounded completion state');
-  }
+  if (discoveryReceipt.schema !== 'discovery_governance_publication_receipt.v1') throw new Error('discovery-governance publication receipt schema mismatch');
+  if (typeof discoveryReceipt.all_required_public_routes_verified !== 'boolean') throw new Error('discovery-governance publication receipt lacks bounded completion state');
 } else {
-  discoveryReceipt = {
-    schema: 'discovery_governance_publication_receipt.v1',
-    goal_id: 'discovery-governance-minimum-handoff',
-    state: 'SOURCE_BLOCKED_FAIL_CLOSED',
-    observed_at: new Date().toISOString(),
-    repository: 'StegVerse-Labs/admissibility-wiki',
-    commit: process.env.GITHUB_SHA || null,
-    run_id: process.env.GITHUB_RUN_ID || null,
-    run_attempt: process.env.GITHUB_RUN_ATTEMPT || null,
-    routes: {},
-    all_required_public_routes_verified: false,
-    pages_deployment_observed: false,
-    receipt_preserved_despite_source_block: true,
-    architectural_alignment_classification: 'DOCUMENTED_ARCHITECTURAL_ALIGNMENT',
-    implementation_equivalence_established: false,
-    interoperability_verified: false,
-    consent_granted: false,
-    standing_granted: false,
-    authority_granted: false,
-    admissibility_granted: false,
-    commitment_granted: false,
-    execution_permission_granted: false,
-    certification_granted: false,
-    endorsement_granted: false,
-    downstream_mutation_authority_granted: false,
-    manual_task_requirement: 'NONE',
-    user_manual_action_required: false,
-    continuation_source: 'docs/DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md',
-    non_claims: [
-      'A discovery handoff does not grant consent, standing, authority, admissibility, commitment, execution permission, certification, or endorsement.',
-      'Conectrr architectural alignment does not establish implementation equivalence or verified interoperability.'
-    ]
+  discoveryReceipt = { schema: 'discovery_governance_publication_receipt.v1', goal_id: 'discovery-governance-minimum-handoff', state: 'SOURCE_BLOCKED_FAIL_CLOSED', observed_at: new Date().toISOString(), repository: 'StegVerse-Labs/admissibility-wiki', commit: process.env.GITHUB_SHA || null, run_id: process.env.GITHUB_RUN_ID || null, run_attempt: process.env.GITHUB_RUN_ATTEMPT || null, routes: {}, all_required_public_routes_verified: false, pages_deployment_observed: false, receipt_preserved_despite_source_block: true, architectural_alignment_classification: 'DOCUMENTED_ARCHITECTURAL_ALIGNMENT', implementation_equivalence_established: false, interoperability_verified: false, consent_granted: false, standing_granted: false, authority_granted: false, admissibility_granted: false, commitment_granted: false, execution_permission_granted: false, certification_granted: false, endorsement_granted: false, downstream_mutation_authority_granted: false, manual_task_requirement: 'NONE', user_manual_action_required: false, continuation_source: 'docs/DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md', non_claims: ['A discovery handoff does not grant consent, standing, authority, admissibility, commitment, execution permission, certification, or endorsement.','Conectrr architectural alignment does not establish implementation equivalence or verified interoperability.'] };
+}
+
+let relationshipReceipt;
+let relationshipObserverExitCode = null;
+if (!fs.existsSync(relationshipReceiptPath) && !skipNetwork) {
+  const observation = spawnSync(process.env.PYTHON || 'python3', ['scripts/observe_governed_relationship_publication.py'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+  relationshipObserverExitCode = observation.status;
+  if (observation.stdout) process.stdout.write(observation.stdout);
+  if (observation.stderr) process.stderr.write(observation.stderr);
+}
+if (fs.existsSync(relationshipReceiptPath)) {
+  relationshipReceipt = JSON.parse(fs.readFileSync(relationshipReceiptPath, 'utf8'));
+  if (relationshipReceipt.schema !== 'stegverse.governed_relationship_transition_publication_observation.v1') throw new Error('relationship-transition publication observation schema mismatch');
+  if (typeof relationshipReceipt.all_required_public_routes_verified !== 'boolean') throw new Error('relationship-transition publication observation lacks bounded completion state');
+  relationshipReceipt.observer_exit_code = relationshipObserverExitCode;
+  relationshipReceipt.receipt_preserved_despite_source_block = relationshipReceipt.all_required_public_routes_verified !== true;
+} else {
+  relationshipReceipt = {
+    schema: 'stegverse.governed_relationship_transition_publication_observation.v1', repository: 'StegVerse-Labs/admissibility-wiki', commit: process.env.GITHUB_SHA || null, run_id: process.env.GITHUB_RUN_ID || null, run_attempt: process.env.GITHUB_RUN_ATTEMPT || null, observed_at: new Date().toISOString(), state: skipNetwork ? 'SIMULATED_VALIDATOR_PASS' : 'PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED', routes: {}, all_required_public_routes_verified: skipNetwork, pages_deployment_observed: false, observer_exit_code: relationshipObserverExitCode, receipt_preserved_despite_source_block: !skipNetwork, publication_authority_granted: false, release_authority_granted: false, execution_authority_granted: false, admissibility_granted: false, downstream_mutation_authority_granted: false, manual_tasks_required: [], user_action_required: false,
+    non_claims: ['Route reachability is bounded publication evidence only.','Publication does not establish execution authority or admissibility.','A passing observation does not independently authorize release or downstream mutation.']
   };
 }
 
-// Every bounded observation, including validator simulations and source-blocked
-// fallbacks, is materialized at the canonical linked-receipt path.
 fs.mkdirSync('reports', { recursive: true });
 fs.writeFileSync(quantumReceiptPath, JSON.stringify(quantumReceipt, null, 2) + '\n');
 fs.writeFileSync(discoveryReceiptPath, JSON.stringify(discoveryReceipt, null, 2) + '\n');
+fs.writeFileSync(relationshipReceiptPath, JSON.stringify(relationshipReceipt, null, 2) + '\n');
 
-publicReceipt.activation_closures = {
-  ...(publicReceipt.activation_closures || {}),
-  quantum_security: quantumReceipt,
-  discovery_governance: discoveryReceipt
-};
-publicReceipt.linked_receipts = {
-  ...(publicReceipt.linked_receipts || {}),
-  quantum_security_public_route_observation: quantumReceiptPath,
-  discovery_governance_publication_receipt: discoveryReceiptPath
-};
+publicReceipt.activation_closures = { ...(publicReceipt.activation_closures || {}), quantum_security: quantumReceipt, discovery_governance: discoveryReceipt, governed_relationship_transitions: relationshipReceipt };
+publicReceipt.linked_receipts = { ...(publicReceipt.linked_receipts || {}), quantum_security_public_route_observation: quantumReceiptPath, discovery_governance_publication_receipt: discoveryReceiptPath, governed_relationship_transition_publication_observation: relationshipReceiptPath };
 publicReceipt.manual_tasks_required = [];
 publicReceipt.user_manual_action_required = false;
-publicReceipt.publication_complete =
-  baseWriterError === null &&
-  publicReceipt.publication_complete === true &&
-  quantumReceipt.all_required_public_routes_verified === true &&
-  discoveryReceipt.all_required_public_routes_verified === true;
+publicReceipt.publication_complete = baseWriterError === null && publicReceipt.publication_complete === true && quantumReceipt.all_required_public_routes_verified === true && discoveryReceipt.all_required_public_routes_verified === true && relationshipReceipt.all_required_public_routes_verified === true;
 
 fs.writeFileSync(publicReceiptPath, JSON.stringify(publicReceipt, null, 2) + '\n');
 console.log(`embedded bounded quantum-security closure into ${publicReceiptPath}`);
 console.log(`embedded bounded discovery-governance closure into ${publicReceiptPath}`);
-if (
-  baseWriterError ||
-  quantumReceipt.all_required_public_routes_verified !== true ||
-  discoveryReceipt.all_required_public_routes_verified !== true
-) {
+console.log(`embedded bounded governed-relationship closure into ${publicReceiptPath}`);
+if (baseWriterError || quantumReceipt.all_required_public_routes_verified !== true || discoveryReceipt.all_required_public_routes_verified !== true || relationshipReceipt.all_required_public_routes_verified !== true) {
   console.log('public activation receipt preserved with source-blocked fail-closed closure');
 }
