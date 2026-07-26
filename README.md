@@ -153,6 +153,18 @@ The current StegVerse interpretation separates:
 
 This matters because emotional state, intuition, trust, relational coherence, and boundary recoverability can affect whether a proposed transition should ever become admissible.
 
+## Governed Relationship Transitions
+
+A relationship may persist, remain coherent, and preserve continuity while no longer being legitimate or admissible.
+
+The doctrine page is:
+
+```text
+docs/governance/governed-relationship-transitions.md
+```
+
+The page distinguishes governed architectural relationships from the governed transition determinations required to decide whether those relationships may legitimately continue at the commit-time boundary.
+
 ## Disciplinary Translation Groundwork
 
 The current translation-groundwork section is:
