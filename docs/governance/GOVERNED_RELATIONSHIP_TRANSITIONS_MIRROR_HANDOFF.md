@@ -4,7 +4,7 @@
 
 This handoff governs the bounded relationship-transition documentation and publication work in `StegVerse-Labs/admissibility-wiki` until superseded.
 
-It is subordinate to the repository-wide `ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` and `data/admissibility-wiki-orchestration-state.json`. Where scopes overlap, the repository-wide authority and active workload ownership prevail.
+It is subordinate to the repository-wide `ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` and `data/admissibility-wiki-orchestration-state.json`. Where scopes overlap, repository-wide authority and active workload ownership prevail.
 
 ## Active goal
 
@@ -19,9 +19,12 @@ static/governance/governed-relationship-transition.example.v0.1.json
 scripts/check_governed_relationship_transitions.py
 static/status/governed-relationship-transition-publication-candidate.json
 scripts/check_governed_relationship_publication_candidate.py
+scripts/observe_governed_relationship_publication.py
+docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md
 sidebars.js
 README.md
 scripts/check_governed_llm_pages.py
+scripts/write-public-activation-receipt.mjs
 ```
 
 ## Core doctrine
@@ -36,7 +39,7 @@ compiled relationship != authorized continuation
 
 A governed relationship must be capable of refusing its own continuation when authority, evidence, purpose, invariants, consent, correspondence, or recoverability no longer support commitment.
 
-## Canonical validation state
+## Canonical validation and observation state
 
 ```text
 doctrine installed: true
@@ -46,6 +49,10 @@ fail-closed validator installed: true
 navigation installed: true
 publication candidate installed: true
 canonical checker binding installed: true
+post-deployment observer installed: true
+observer invoked by canonical public-activation writer: true
+observer receipt embedded in public-activation receipt: true
+observer receipt included in existing public-activation artifact custody: true
 canonical workflow pass observed: false
 Pages deployment observed: false
 public route reachability observed: false
@@ -57,7 +64,15 @@ The publication candidate remains:
 CANDIDATE_AWAITING_POST_DEPLOY_OBSERVATION
 ```
 
-No local file, commit, candidate record, or canonical-checker registration may be reclassified as deployed publication evidence.
+The observer writes:
+
+```text
+reports/governed-relationship-transition-publication-observation.json
+```
+
+The canonical public-activation writer invokes the observer after deployment, preserves fail-closed evidence when a route is unavailable, embeds the bounded observation under `activation_closures.governed_relationship_transitions`, and links the receipt from the uploaded `reports/public-activation-receipt.json` artifact.
+
+No local file, commit, candidate record, canonical-checker registration, or unobserved receipt may be reclassified as deployed publication evidence.
 
 ## Required public routes
 
@@ -80,7 +95,7 @@ cross-repository mutation authority: not granted
 manual user task: none
 ```
 
-Route reachability, when observed, will establish bounded publication evidence only. It will not establish that any specific relationship transition is admissible, authorized, executable, legitimate, or independently proven.
+Route reachability, when observed, establishes bounded publication evidence only. It does not establish that any specific relationship transition is admissible, authorized, executable, legitimate, or independently proven.
 
 ## Active ownership exclusions
 
@@ -93,11 +108,11 @@ Do not begin the dependency-blocked HIL interpretation until verified Site activ
 ### `StegVerse-Labs/admissibility-wiki`
 
 ```text
-Bind the three required routes into repository-owned post-deployment observation.
-Write a run-bound relationship-transition publication observation receipt.
-Upload that receipt through the existing canonical workflow artifact path.
-Preserve fail-closed state when any required route is unavailable.
-Observe canonical validation, Pages build, deployment, and public-route evidence.
+Observe the next repository-owned canonical validation and Pages deployment run.
+Inspect the uploaded public-activation receipt and embedded governed-relationship closure when connector evidence is exposed.
+Preserve FAIL_CLOSED when any doctrine, schema, or example route is unavailable.
+Do not infer publication completion from commits or local validator success.
+Apply only exact deterministic repairs from authentic workflow evidence.
 Update this handoff and repository orchestration state from authentic workflow evidence only.
 ```
 
@@ -121,9 +136,9 @@ After release qualification, queue a propagation-status review for `StegVerse-La
 ## Next admissible task
 
 ```text
-Add bounded post-deployment observation for the doctrine, schema, and example routes through the existing canonical workflow only.
+Observe the repository-owned canonical workflow result and inspect the embedded relationship-transition publication closure when authentic run evidence becomes available.
 ```
 
 ## Archive posture
 
-This handoff contains the complete relationship-transition package state, authority boundaries, remaining activation work, downstream review destinations, and next admissible task. The complete thread is ready for archiving without needing additional conversation context.
+This handoff contains the complete relationship-transition package state, canonical observation and custody path, authority boundaries, remaining activation work, downstream review destinations, and next admissible task. The complete thread is ready for archiving without needing additional conversation context.
