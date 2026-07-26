@@ -1,0 +1,45 @@
+{
+  "artifact_type": "external_framework_proof_orchestration_status",
+  "schema_version": "0.1",
+  "framework_id": "morrison-runtime",
+  "provider": "Resurrection Tech",
+  "current_state": "WAITING_FOR_UPSTREAM_CANONICAL_EXECUTION",
+  "upstream": {
+    "repository": "Data-Continuation/formalism-tests",
+    "issue": 5,
+    "status_receipt": "receipts/morrison_runtime_commit_time_scope_orchestration_status.json",
+    "status_receipt_commit": "ea55048a6f9009e01c33fbdf60bf992fa3faba16",
+    "required_tasks": [
+      "morrison_runtime_commit_time_scope_tests",
+      "verify_morrison_runtime_commit_time_scope_artifacts"
+    ]
+  },
+  "local_promotion_owner": {
+    "repository": "StegVerse-Labs/admissibility-wiki",
+    "issue": 39
+  },
+  "local_installed_gates": [
+    "docs/external-frameworks/evidence/morrison-runtime-commit-time-scope-clarification.v0.1.json",
+    "docs/external-frameworks/evidence/morrison-runtime-formalism-tests-binding.v0.1.json",
+    "docs/external-frameworks/evidence/morrison-runtime-promotion-gate.v0.1.json"
+  ],
+  "promotion_actions_after_upstream_pass": [
+    "bind canonical commit and execution surface",
+    "bind report and receipt hashes",
+    "promote executable status to verified bounded comparative evidence",
+    "update Morrison documentation pages",
+    "run canonical wiki validation",
+    "verify the public route",
+    "review downstream handoffs"
+  ],
+  "blocked_actions": [
+    "claim framework certification",
+    "claim StegVerse execution authority from a Morrison verdict",
+    "claim full fresh-state reconstruction is universally enabled",
+    "mirror to Site before wiki validation and route verification",
+    "publish through Publisher before proof and wiki receipts exist",
+    "propagate to stegguardian-wiki before authority language is reviewed"
+  ],
+  "authority_posture": "EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY",
+  "fail_closed": true
+}
