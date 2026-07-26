@@ -11,10 +11,10 @@ Relationship type: external framework crosswalk and cooperative validation targe
 Canonical StegVerse formalism source: Admissible-Existence
 External framework role: pre-execution runtime-governance boundary
 Wiki role: sourced observatory record, compatibility map, and bounded validation path
-Citation status: sourced from Resurrection Tech public pages
+Citation status: sourced from Resurrection Tech public pages and a captured public author clarification
 Validation posture: cooperative, bounded, non-certifying
 Runtime-result posture: bounded case observation only where parameters are stated
-Evidence provenance status: Batch 1 refactor installed
+Evidence provenance status: Batch 1 refactor installed; commit-time scope clarification added pending durable source package
 ```
 
 ## Source
@@ -33,6 +33,8 @@ The public Resurrection Tech site describes Morrison Runtime Governance as a run
 
 The live-demo page describes a workflow in which a planner output is evaluated before execution and returns an `ALLOW` or `BLOCK` verdict with rule, layer, and audit evidence.
 
+A captured public reply by Davarn Morrison on 2026-07-25 further clarified that the platform re-evaluates before execution, while full fresh-state reconstruction and evidence binding are additional configurable high-assurance capabilities where a deployment requires them. The public-thread URL, source snapshot, and source hash remain to be attached before this clarification is treated as a complete durable source package.
+
 These source statements are treated as external-framework claims. They are not StegVerse claims, certification, endorsement, or execution authority.
 
 ## Evidence Provenance
@@ -41,21 +43,23 @@ These source statements are treated as external-framework claims. They are not S
 |---|---|---|---|
 | Official Framework Sources | Resurrection Tech public site, live demo page, no-agent demo page, pilot page. | present | Versioned source snapshot and source hash. |
 | Official Implementation Sources | Public Morrison Runtime Governance repository reference. | present_repository_reference | Commit hash, release tag, and local reproduction environment. |
+| Public Author Clarification | Pre-execution re-evaluation confirmed; full fresh-state reconstruction and evidence binding described as additional configurable high-assurance capability. | O1_captured_public_statement | Public-thread URL, source snapshot, captured timestamp, and source hash. |
 | Observed Behavior | One parameterized semantic-equivalence boundary case is recorded. | O2_partial | Raw audit payload, timestamp, runtime configuration, and source hash. |
 | Reproduced Behavior | No independent reproduction is claimed. | not_started | Reproduction run against repository or pinned demo version. |
 | StegVerse Analysis | Morrison ALLOW/BLOCK results are treated as evidence for commit-time review, not authority. | semantic_equivalence_boundary_case_with_page_provenance | Commitment Candidate fixture and SPE review. |
 | Interoperability Assessment | Morrison outputs may route into StegVerse as evidence. | pending_commitment_candidate_fixture | Fixture and compatibility report with raw outputs. |
-| Standing | Bounded partial observation. | provisional | Raw output package and reproduction. |
+| Standing | Bounded partial observation. | provisional | Raw output package, durable clarification source package, and reproduction. |
 
 Evidence classification:
 
 ```text
 F1: Resurrection Tech public site and demo source statements.
 F2: Morrison Runtime Governance public repository reference.
+O1: captured public author clarification defining default re-evaluation versus optional fresh-state reconstruction and evidence binding.
 O2: parameterized semantic-equivalence boundary case with missing raw output package.
 S1: StegVerse interpretation of Morrison output as evidence, not execution authority.
 S2: mapping to Runtime Transition Governance, Commit-Time Validity, Evidence Posture, Fail-Closed, and Consequence-Binding Transition Review.
-H1: future reproduction and fixture work until raw artifacts are attached.
+H1: future reproduction and fixture work until raw artifacts and durable clarification sources are attached.
 ```
 
 ## Definition
@@ -116,6 +120,8 @@ A public page creates live provider activation or execution authority.
 | Forbidden Region / Ω | A configured prohibited outcome or state-space region that the runtime layer seeks to make unreachable. | adjacent | Related to DENY, fail-closed, and prohibited transition classes. |
 | Reachability | Analysis of whether a proposed trajectory can reach a forbidden state. | adjacent | Related to consequence-binding transition review. |
 | Pre-Execution Interception | Blocking or permitting before the proposed tool action executes. | adjacent | Related to commit boundary review but not identical. |
+| Pre-Execution Re-Evaluation | A second Runtime Governance decision before execution rather than blind inheritance of an earlier permit. | adjacent | Confirms another decision occurs, but does not by itself prove complete fresh-state reconstruction. |
+| Full Fresh-State Reconstruction And Evidence Binding | Additional configurable high-assurance capability identified in the public author clarification. | adjacent_high_assurance | Closest to reconstructing all materially required live parameters at the commit-time boundary; implementation and enablement remain independently unverified. |
 | ALLOW / BLOCK | Native runtime verdict classes. | adjacent | May be evidence for SPE review; does not directly determine StegVerse standing. |
 | Audit trail / evidence | Native output documenting the rule, layer, or reason for a runtime verdict. | adjacent | May support Evidence Posture and Reconstructability. |
 | Runtime error | A state where the runtime evaluator does not return a valid governance verdict. | adjacent | In StegVerse, unresolved runtime failure should be routed to FAIL-CLOSED unless policy explicitly permits fallback. |
@@ -129,6 +135,43 @@ Runtime BLOCK is useful evidence.
 Runtime ALLOW is not sufficient authority.
 Runtime ERROR is not a safe execution permission.
 Runtime audit evidence supports reconstruction only if the evidence remains available, scoped, current, and tied to the requested transition.
+```
+
+## Commit-Time Scope Clarification
+
+The captured public author clarification places the normal runtime result at a particular point in the commit-time admissibility process:
+
+```text
+Confirmed:
+A second Runtime Governance decision occurs before execution.
+The platform does not merely execute an earlier permit without another governance decision.
+
+Additional configurable high-assurance capability:
+Full fresh-state reconstruction and evidence binding where the deployment requires it.
+```
+
+This distinction is material.
+
+A second pre-execution decision can re-evaluate a proposed action inside a configured governance envelope. That does not automatically prove that the decision reconstructs every materially required parameter from current state, or that it can detect evidence that was missing, contradictory, late-arriving, previously unmodeled, or never included in the decision path.
+
+The bounded architecture statement is therefore:
+
+```text
+Default demonstrated property:
+pre-execution runtime re-evaluation under configured constraints
+
+Stronger separately configurable property:
+full fresh-state reconstruction and evidence binding at the execution boundary
+```
+
+Low latency for the first property must not be represented as proof of low-latency full commit-time admissibility reconstruction unless the high-assurance configuration, evidence inputs, omission detection, and reconstruction behavior are explicitly demonstrated for the deployment under review.
+
+The difference affects the meaning of every native verdict:
+
+```text
+ALLOW may mean the proposed action remains inside the configured runtime decision envelope.
+BLOCK may mean the proposed action reaches a configured prohibited region.
+Neither verdict alone proves that all materially required commit-time authority, evidence, policy, context, validity, and recoverability parameters were freshly reconstructed.
 ```
 
 ## Execution Authority Boundary
@@ -246,6 +289,8 @@ The next validation suite should test composition rather than competition.
 | Runtime ALLOW but StegVerse authority missing | ALLOW | DENY. | StegVerse does not inherit runtime permission as authority. |
 | Runtime BLOCK but StegVerse evidence complete | BLOCK | DENY or record blocked state. | StegVerse preserves the block as evidence and does not override it into execution without authority. |
 | Semantic value movement under alternate tool label | unknown until configured | DENY or FAIL-CLOSED for high-value external wallet movement unless fully authorized and reconstructable. | Runtime and StegVerse both evaluate consequence semantics, not only risky labels. |
+| Missing evidence omitted from runtime path | unknown unless high-assurance reconstruction is configured | FAIL-CLOSED when a materially required evidence class is absent. | The stack detects omission rather than treating unobserved evidence as unchanged. |
+| Late or contradictory evidence | runtime result must be retested under the deployment configuration | Reconstruct and reverse prior posture where the new evidence changes standing. | Existing ALLOW or DENY is displaced when materially required current evidence changes the admissibility result. |
 
 ## Commit-Time Interoperability Contract
 
@@ -268,6 +313,10 @@ validity_window
 recoverability_profile
 source_timestamp
 source_hash_or_receipt
+fresh_state_reconstruction_enabled
+runtime_evidence_binding_enabled
+required_evidence_classes
+observed_missing_evidence_classes
 ```
 
 The SPE must then determine current standing independently.
@@ -277,10 +326,13 @@ If Morrison verdict is BLOCK:
   StegVerse should DENY or FAIL-CLOSED unless a governed review path explicitly records a non-executing observation.
 
 If Morrison verdict is ALLOW:
-  StegVerse must still reconstruct authority, policy, evidence, and validity.
+  StegVerse must still reconstruct authority, policy, evidence, validity, and required evidence completeness.
 
 If Morrison verdict is ERROR or unavailable:
   StegVerse should FAIL-CLOSED for consequence-binding actions.
+
+If full fresh-state reconstruction or evidence binding is not enabled:
+  StegVerse must not infer that every materially required live parameter was reconstructed by the Morrison result.
 ```
 
 ## Evaluation Result Posting
@@ -305,18 +357,20 @@ Manual claims on this page should not outrun that report.
 | Execution-boundary comparison | Core-Lite Admissibility Engine; SPE review |
 | Cooperative return path | Portable Governed Return Path |
 | Semantic equivalence across tool paths | Commit-Time Validity; Consequence-Binding Transition Review |
+| Fresh-state reconstruction scope | Commit-Time Validity; Standing Reconstruction; Evidence Completeness |
+| Evidence omission detection | Fail-Closed; Evidence Posture; Consequence-Binding Transition Review |
 
 ## AE Reflection Metadata
 
 ```text
 Claim ID: CLM-FWK-MORRISON-RUNTIME-0001
 Packet ID: ARF-FWK-MORRISON-RUNTIME-0001
-Evidence grade: SOURCED_PUBLIC_SITE_WITH_PARAMETERIZED_BOUNDARY_CASE_PARTIAL
+Evidence grade: SOURCED_PUBLIC_SITE_WITH_PARAMETERIZED_BOUNDARY_CASE_AND_CAPTURED_SCOPE_CLARIFICATION_PARTIAL
 Admissibility result: PROVISIONAL
 Standing: PROVISIONAL
 Reflection status: COOPERATIVE_VALIDATION_READY
-Source artifacts: 5 public URLs; one parameterized boundary case without raw audit payload or timestamp
-Last evaluation: 2026-07-06T00:00:00-05:00
+Source artifacts: 5 public URLs; one parameterized boundary case without raw audit payload or timestamp; one captured public author clarification pending durable URL and hash
+Last evaluation: 2026-07-25T08:14:00-05:00
 ```
 
 The AE reflection packet treats this entry as a bounded external-framework compatibility display frame. It does not certify Morrison Runtime Governance and does not create execution authority.
@@ -330,9 +384,12 @@ public source URLs remain available
 compatibility report parses
 historical tests are either reconstructed with full parameters or excluded from public result claims
 parameterized boundary cases include raw output, timestamp, source version, and audit payload
+public clarification includes durable thread URL, snapshot, timestamp, and source hash
 cooperative validation suite is run against captured inputs
 runtime outputs are routed into Commitment Candidate fixtures
 SPE results are generated from those fixtures
+fresh-state reconstruction and evidence-binding configuration are explicitly recorded per test
+missing-evidence and late-evidence displacement cases are exercised
 non-claim language is preserved
 ```
 
@@ -343,6 +400,8 @@ Morrison Runtime Governance is not a StegVerse canonical formalism.
 Morrison Runtime Governance does not prove transition admissibility.
 Morrison Runtime Governance does not grant execution authority.
 Runtime-governance behavior does not automatically equal commit-time admissibility.
+A second pre-execution decision does not automatically prove full fresh-state reconstruction.
+The optional high-assurance capability is not claimed to be enabled in every deployment or in the observed demo.
 This page does not certify Morrison Runtime Governance.
 This page does not claim general compatibility.
 This page does not claim Resurrection Tech endorses StegVerse.
@@ -353,6 +412,7 @@ Informal remembered outcomes do not establish public runtime validation.
 A Morrison ALLOW does not equal StegVerse ALLOW.
 A Morrison BLOCK does not equal StegVerse DENY until SPE evaluates the transition.
 The semantic-equivalence boundary case is not a full runtime validation without raw audit payload, timestamp, runtime configuration, and source version.
+The captured clarification remains partial evidence until its durable source package is attached.
 ```
 
 ## Challenge Path
@@ -365,4 +425,4 @@ This page reflects a bounded admissibility packet. Publication does not create s
 
 ## Next Safe Build Target
 
-Attach raw Morrison output for the semantic-equivalence boundary case, then route both paths through the Commit-Time Interoperability Contract before publishing any stronger runtime-result claim.
+Attach the durable public-thread source package and raw Morrison outputs, then exercise missing-evidence and late-evidence displacement cases through the Commit-Time Interoperability Contract before publishing any stronger runtime-result claim.
