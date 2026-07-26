@@ -1,0 +1,111 @@
+{
+  "schema_version": "0.1.0",
+  "model_id": "micro-timescale-human-admissibility",
+  "title": "Micro-Timescale Human Admissibility",
+  "status": "CONCEPTUAL_MODEL_PUBLIC_DRAFT",
+  "claim": "Human conversation can implement a continuously evaluated admissibility gate at the shortest practical human-human interaction timescale.",
+  "states": [
+    "EMITTED",
+    "RECEIVED",
+    "RECOGNIZED",
+    "INTERPRETED",
+    "ADMISSIBLE",
+    "COMMITTED"
+  ],
+  "non_equivalences": [
+    "EMITTED != RECEIVED",
+    "RECEIVED != RECOGNIZED",
+    "RECOGNIZED != INTERPRETED",
+    "INTERPRETED != ADMISSIBLE",
+    "ADMISSIBLE != COMMITTED"
+  ],
+  "variables": {
+    "I": "speaker intended referent or communicative goal",
+    "u_n": "candidate utterance at repair step n",
+    "x_n": "shared interaction context",
+    "r_n": "listener reconstructed referent",
+    "f_n": "listener feedback observable by speaker",
+    "q_n": "listener confidence that reconstructed referent matches intent",
+    "qhat_n": "speaker estimate of listener reconstruction confidence",
+    "tau_A": "admissibility threshold",
+    "tau_C": "commitment threshold"
+  },
+  "equations": {
+    "listener_reconstruction": "r_n = R(u_n, x_n)",
+    "listener_confidence": "q_n = P(r_n = I | u_n, x_n, E_1:n)",
+    "admissibility": "A_n = 1 iff q_n >= tau_A",
+    "speaker_gate_estimate": "qhat_n = S(f_n, x_n, E_1:n)",
+    "candidate_update": "u_(n+1) = u_n + Delta(I, u_n, f_n, x_n)",
+    "evidence_accumulation": "E_n = E_(n-1) union {u_n, f_n, x_n}",
+    "admissibility_crossing_time": "t_A = inf{t : q(t) >= tau_A}",
+    "mutually_observable_crossing_time": "t_M = inf{t : q(t) >= tau_A and qhat(t) >= tau_A}",
+    "commitment_time": "t_C = inf{t >= t_M : q(t) >= tau_C and a(t) != 0}"
+  },
+  "gate_question": "Has the intended referent been reconstructed with sufficient current evidence and standing for consequential response to begin?",
+  "loop": [
+    "intent",
+    "candidate_vocalization",
+    "listener_reconstruction",
+    "listener_feedback",
+    "speaker_gate_state_estimation",
+    "candidate_correction",
+    "admissibility_crossing",
+    "consequential_response"
+  ],
+  "receipt": {
+    "type": "socially_observable_state_transition",
+    "signals": [
+      "gaze",
+      "facial_expression",
+      "posture",
+      "response_latency",
+      "vocal_cadence",
+      "referent_consistent_action"
+    ],
+    "boundary": "receipt of understanding is not proof of objective truth or unrestricted authority"
+  },
+  "failure_classes": [
+    "FALSE_POSITIVE_ADMISSION",
+    "FALSE_NEGATIVE_REPAIR",
+    "PREMATURE_COMMITMENT",
+    "STALLED_REPAIR",
+    "CONTEXT_COLLAPSE",
+    "FEEDBACK_OPACITY",
+    "PURPOSE_INVERSION"
+  ],
+  "research_hypotheses": [
+    {
+      "id": "H1",
+      "name": "incremental_correction",
+      "claim": "Successive child utterances in unresolved interactions show non-random acoustic variation correlated with caregiver feedback."
+    },
+    {
+      "id": "H2",
+      "name": "feedback_sensitive_termination",
+      "claim": "Repetition terminates more strongly after referent-consistent caregiver action than after generic acknowledgment."
+    },
+    {
+      "id": "H3",
+      "name": "evidence_accumulation",
+      "claim": "Listener accuracy depends on prior attempts and not only on the final utterance."
+    },
+    {
+      "id": "H4",
+      "name": "mutual_observability",
+      "claim": "Speaker termination is predicted by visible and prosodic evidence of listener understanding."
+    },
+    {
+      "id": "H5",
+      "name": "timescale_compression",
+      "claim": "Development preserves the repair loop while shifting it from overt repetition toward faster substitution, prosodic adjustment, and internal prediction."
+    }
+  ],
+  "authority_boundaries": [
+    "conceptual model != empirical proof",
+    "listener response != execution authority",
+    "understanding confidence != objective identity",
+    "admissibility crossing != guaranteed semantic truth",
+    "public display != governed activation"
+  ],
+  "source_doctrine": "/formalisms/micro-timescale-human-admissibility"
+}
