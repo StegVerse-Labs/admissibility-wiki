@@ -1,0 +1,130 @@
+{
+  "schema_version": "0.1.0",
+  "episode_id": "illustrative-episode-001",
+  "protocol_version": "0.1",
+  "recording_reference": null,
+  "privacy_posture": {
+    "derived_record_only": true,
+    "direct_identifiers_removed": true,
+    "publication_authorized": false,
+    "notes": [
+      "Synthetic example derived from the public conceptual model.",
+      "This record is not empirical evidence and does not represent a published child recording."
+    ]
+  },
+  "events": [
+    {
+      "event_id": "evt-000",
+      "sequence": 0,
+      "event_type": "EPISODE_START",
+      "start_ms": 0,
+      "end_ms": 0,
+      "candidate_id": null,
+      "state_label": "UNRESOLVED",
+      "observations": ["Speaker has a stable intended referent; listener interpretation is unresolved."],
+      "coder_confidence": 0.8,
+      "uncertainty": ["Internal speaker intent cannot be directly observed."]
+    },
+    {
+      "event_id": "evt-001",
+      "sequence": 1,
+      "event_type": "CANDIDATE_SIGNAL",
+      "start_ms": 120,
+      "end_ms": 420,
+      "candidate_id": "candidate-01",
+      "state_label": "EMITTED",
+      "observations": ["First vocal candidate emitted."],
+      "coder_confidence": 0.95,
+      "uncertainty": []
+    },
+    {
+      "event_id": "evt-002",
+      "sequence": 2,
+      "event_type": "LISTENER_FEEDBACK",
+      "start_ms": 470,
+      "end_ms": 760,
+      "candidate_id": "candidate-01",
+      "state_label": "INTERPRETED",
+      "observations": ["Listener orients toward speaker but begins no referent-consistent action."],
+      "coder_confidence": 0.72,
+      "uncertainty": ["Listener may have partial recognition without correct reconstruction."]
+    },
+    {
+      "event_id": "evt-003",
+      "sequence": 3,
+      "event_type": "SPEAKER_REPAIR_OR_HOLD",
+      "start_ms": 810,
+      "end_ms": 1090,
+      "candidate_id": "candidate-02",
+      "state_label": "RECOGNIZED",
+      "observations": ["Speaker changes articulation and repeats the candidate."],
+      "coder_confidence": 0.9,
+      "uncertainty": []
+    },
+    {
+      "event_id": "evt-004",
+      "sequence": 4,
+      "event_type": "ADMISSIBILITY_CROSSING_CANDIDATE",
+      "start_ms": 1160,
+      "end_ms": 1390,
+      "candidate_id": "candidate-02",
+      "state_label": "ADMISSIBLE_CANDIDATE",
+      "observations": ["Listener displays referent-consistent gaze and begins the expected response."],
+      "coder_confidence": 0.83,
+      "uncertainty": ["This remains a candidate crossing until speaker-side detection is coded."]
+    },
+    {
+      "event_id": "evt-005",
+      "sequence": 5,
+      "event_type": "MUTUALLY_OBSERVABLE_CANDIDATE",
+      "start_ms": 1410,
+      "end_ms": 1510,
+      "candidate_id": "candidate-02",
+      "state_label": "MUTUALLY_OBSERVABLE_CANDIDATE",
+      "observations": ["Speaker stops repairing immediately after listener feedback becomes referent-consistent."],
+      "coder_confidence": 0.8,
+      "uncertainty": ["Termination alone does not prove understanding; it is interpreted with listener action."]
+    },
+    {
+      "event_id": "evt-006",
+      "sequence": 6,
+      "event_type": "COMMITMENT_ONSET",
+      "start_ms": 1510,
+      "end_ms": 1760,
+      "candidate_id": "candidate-02",
+      "state_label": "COMMITTED",
+      "observations": ["Listener begins a consequential response consistent with the reconstructed referent."],
+      "coder_confidence": 0.88,
+      "uncertainty": []
+    },
+    {
+      "event_id": "evt-007",
+      "sequence": 7,
+      "event_type": "EPISODE_END",
+      "start_ms": 1800,
+      "end_ms": 1800,
+      "candidate_id": null,
+      "state_label": "COMMITTED",
+      "observations": ["Repair loop terminates after mutually observable convergence."],
+      "coder_confidence": 0.9,
+      "uncertainty": []
+    }
+  ],
+  "episode_result": "CONVERGED",
+  "candidate_crossing_event_id": "evt-004",
+  "commitment_event_id": "evt-006",
+  "failure_classes": [],
+  "coder_records": [
+    {
+      "coder_id": "synthetic-coder-a",
+      "independent": true,
+      "notes": ["Illustrative coding only; no empirical claim."]
+    }
+  ],
+  "authority": {
+    "recording_authority_granted": false,
+    "research_authority_granted": false,
+    "publication_authority_granted": false,
+    "execution_authority_granted": false
+  }
+}
