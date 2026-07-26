@@ -1,0 +1,23 @@
+{
+  "schema": "stegverse.governed_relationship_transition_publication_candidate.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "doctrine_route": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-relationship-transitions",
+  "schema_route": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-relationship-transition.schema.v0.1.json",
+  "example_route": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-relationship-transition.example.v0.1.json",
+  "verification_state": "CANDIDATE_AWAITING_POST_DEPLOY_OBSERVATION",
+  "canonical_validation_bound": true,
+  "public_reachability_observed": false,
+  "pages_deployment_observed": false,
+  "publication_authority_granted": false,
+  "release_authority_granted": false,
+  "execution_authority_granted": false,
+  "admissibility_granted": false,
+  "downstream_mutation_authority_granted": false,
+  "manual_tasks_required": [],
+  "user_action_required": false,
+  "non_claims": [
+    "A publication candidate is not evidence that a route is reachable.",
+    "Canonical validation does not establish Pages deployment or public observation.",
+    "Published doctrine and schemas do not independently grant execution or admissibility authority."
+  ]
+}
