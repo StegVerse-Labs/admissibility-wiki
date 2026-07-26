@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1.0",
+  "relationship_id": "rel.example.v1",
+  "transition_id": "transition.example.2026-07-26.001",
+  "prior_state_ref": "state.example.12",
+  "proposed_state_ref": "state.example.13",
+  "purpose_ref": "constitution.relationship-purpose.v1",
+  "authority_refs": ["authority.example.current.v2"],
+  "delegation_refs": ["delegation.example.operator.v3"],
+  "evidence_refs": ["evidence.example.reality-snapshot.2026-07-26"],
+  "invariant_results": [
+    {
+      "invariant_ref": "invariant.relationship.non-coercion.v1",
+      "result": "PASS",
+      "evidence_refs": ["evidence.example.participant-consent.2026-07-26"]
+    },
+    {
+      "invariant_ref": "invariant.relationship.purpose-correspondence.v1",
+      "result": "UNRESOLVED",
+      "evidence_refs": ["evidence.example.reality-snapshot.2026-07-26"]
+    }
+  ],
+  "reality_correspondence": "UNRESOLVED",
+  "recoverability": "RECOVERABLE",
+  "commit_time_validity": "UNRESOLVED",
+  "admissibility_result": "FAIL_CLOSED",
+  "decision_receipt_ref": "receipt.example.relationship-transition.001"
+}
