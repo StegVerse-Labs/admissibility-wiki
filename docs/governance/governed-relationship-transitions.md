@@ -99,6 +99,16 @@ A minimal relationship-transition record should contain:
 
 The record must distinguish evidence of historical persistence from evidence supporting current authority and admissibility.
 
+Machine-readable artifacts:
+
+```text
+static/governance/governed-relationship-transition.schema.v0.1.json
+static/governance/governed-relationship-transition.example.v0.1.json
+scripts/check_governed_relationship_transitions.py
+```
+
+The example intentionally records unresolved commit-time validity as `FAIL_CLOSED`; unresolved standing is not converted into permission.
+
 ## Architectural implication
 
 A compiled architectural view can show governed nodes, edges, objects, policies, and runtime bindings. The underlying registry must also preserve the transition records that explain why each relationship was allowed to continue, was modified, was suspended, or was refused.
