@@ -20,6 +20,23 @@ PROHIBITED = {
     "PRODUCTION_VALIDATION",
     "ENDORSEMENT",
 }
+EXPECTED_TASKS = {
+    "morrison_runtime_commit_time_scope_tests",
+    "verify_morrison_runtime_commit_time_scope_artifacts",
+    "check_morrison_runtime_canonical_evidence_gate",
+}
+EXPECTED_HASHES = {
+    "report_sha256",
+    "receipts_sha256",
+    "verification_sha256",
+    "canonical_evidence_gate_sha256",
+}
+EXPECTED_EQUIVALENCE = {
+    "report",
+    "receipts",
+    "expected_outcomes",
+    "canonical_evidence_gate",
+}
 SHA40 = re.compile(r"^[0-9a-f]{40}$")
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
@@ -47,18 +64,23 @@ def check_template(data: dict, failures: list[str]) -> str:
     upstream = data.get("upstream", {})
     gate = data.get("promotion_gate", {})
     status = upstream.get("canonical_status")
+    task_results = upstream.get("task_results", {})
+    hashes = upstream.get("artifact_hashes", {})
+    equivalence = upstream.get("artifact_equivalence", {})
+
+    if set(task_results) != EXPECTED_TASKS:
+        failures.append("canonical promotion input must contain exactly the three declared Morrison tasks")
+    if set(hashes) != EXPECTED_HASHES:
+        failures.append("canonical promotion input must contain exactly four required artifact hashes")
+    if set(equivalence) != EXPECTED_EQUIVALENCE:
+        failures.append("canonical promotion input must contain the complete equivalence predicate set")
 
     if status == "PENDING_CANONICAL_EXECUTION":
-        expected_pending = {
-            "morrison_runtime_commit_time_scope_tests": "PENDING",
-            "verify_morrison_runtime_commit_time_scope_artifacts": "PENDING",
-        }
-        if upstream.get("task_results") != expected_pending:
+        if any(value != "PENDING" for value in task_results.values()):
             failures.append("pending task results must remain explicitly PENDING")
-        hashes = upstream.get("artifact_hashes", {})
         if any(value != "PENDING" for value in hashes.values()):
             failures.append("pending artifact hashes must remain PENDING")
-        if any(upstream.get("artifact_equivalence", {}).values()):
+        if any(value is not False for value in equivalence.values()):
             failures.append("pending artifact equivalence must remain false")
         if gate.get("all_upstream_tasks_pass") is not False:
             failures.append("pending gate cannot claim upstream task pass")
@@ -71,14 +93,12 @@ def check_template(data: dict, failures: list[str]) -> str:
     if status == "VERIFIED_CANONICAL_RUN":
         if not SHA40.fullmatch(str(upstream.get("commit_sha", ""))):
             failures.append("verified input requires a 40-character commit SHA")
-        task_results = upstream.get("task_results", {})
-        if set(task_results.values()) != {"PASS"} or len(task_results) != 2:
-            failures.append("verified input requires both declared tasks to PASS")
-        hashes = upstream.get("artifact_hashes", {})
-        if len(hashes) != 3 or not all(SHA256.fullmatch(str(value)) for value in hashes.values()):
-            failures.append("verified input requires three SHA-256 artifact hashes")
-        if set(upstream.get("artifact_equivalence", {}).values()) != {True}:
-            failures.append("verified input requires all artifact equivalence checks true")
+        if any(value != "PASS" for value in task_results.values()):
+            failures.append("verified input requires all three declared tasks to PASS")
+        if not all(SHA256.fullmatch(str(value)) for value in hashes.values()):
+            failures.append("verified input requires four valid SHA-256 artifact hashes")
+        if any(value is not True for value in equivalence.values()):
+            failures.append("verified input requires all four artifact equivalence checks true")
         required_true = (
             "all_upstream_tasks_pass",
             "all_artifacts_equivalent",
