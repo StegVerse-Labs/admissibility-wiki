@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/micro-timescale-human-admissibility-observation.schema.json",
+  "title": "Micro-Timescale Human Admissibility Observation",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "episode_id",
+    "protocol_version",
+    "privacy_posture",
+    "events",
+    "episode_result",
+    "authority"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "episode_id": {"type": "string", "minLength": 1},
+    "protocol_version": {"const": "0.1"},
+    "recording_reference": {"type": ["string", "null"]},
+    "privacy_posture": {
+      "type": "object",
+      "required": ["derived_record_only", "direct_identifiers_removed", "publication_authorized"],
+      "properties": {
+        "derived_record_only": {"type": "boolean"},
+        "direct_identifiers_removed": {"type": "boolean"},
+        "publication_authorized": {"type": "boolean"},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "events": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["event_id", "sequence", "event_type", "start_ms", "end_ms", "observations"],
+        "properties": {
+          "event_id": {"type": "string", "minLength": 1},
+          "sequence": {"type": "integer", "minimum": 0},
+          "event_type": {
+            "enum": [
+              "EPISODE_START",
+              "CANDIDATE_SIGNAL",
+              "LISTENER_FEEDBACK",
+              "SPEAKER_REPAIR_OR_HOLD",
+              "ADMISSIBILITY_CROSSING_CANDIDATE",
+              "MUTUALLY_OBSERVABLE_CANDIDATE",
+              "COMMITMENT_ONSET",
+              "EPISODE_END"
+            ]
+          },
+          "start_ms": {"type": "number", "minimum": 0},
+          "end_ms": {"type": "number", "minimum": 0},
+          "candidate_id": {"type": ["string", "null"]},
+          "state_label": {
+            "type": ["string", "null"],
+            "enum": [
+              null,
+              "EMITTED",
+              "RECEIVED",
+              "RECOGNIZED",
+              "INTERPRETED",
+              "ADMISSIBLE_CANDIDATE",
+              "MUTUALLY_OBSERVABLE_CANDIDATE",
+              "COMMITTED",
+              "ABANDONED",
+              "UNRESOLVED"
+            ]
+          },
+          "observations": {"type": "array", "items": {"type": "string"}},
+          "coder_confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+          "uncertainty": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "episode_result": {
+      "enum": ["CONVERGED", "ABANDONED", "SUBSTITUTED", "UNRESOLVED", "EXCLUDED"]
+    },
+    "candidate_crossing_event_id": {"type": ["string", "null"]},
+    "commitment_event_id": {"type": ["string", "null"]},
+    "failure_classes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "FALSE_POSITIVE_ADMISSION",
+          "FALSE_NEGATIVE_REPAIR",
+          "PREMATURE_COMMITMENT",
+          "STALLED_REPAIR",
+          "CONTEXT_COLLAPSE",
+          "FEEDBACK_OPACITY",
+          "PURPOSE_INVERSION"
+        ]
+      }
+    },
+    "coder_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["coder_id", "independent", "notes"],
+        "properties": {
+          "coder_id": {"type": "string"},
+          "independent": {"type": "boolean"},
+          "notes": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "recording_authority_granted",
+        "research_authority_granted",
+        "publication_authority_granted",
+        "execution_authority_granted"
+      ],
+      "properties": {
+        "recording_authority_granted": {"const": false},
+        "research_authority_granted": {"const": false},
+        "publication_authority_granted": {"const": false},
+        "execution_authority_granted": {"const": false}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
