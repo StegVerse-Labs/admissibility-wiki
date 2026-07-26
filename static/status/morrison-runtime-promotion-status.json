@@ -11,6 +11,23 @@
   "compatibility_report_update_eligible": false,
   "public_promotion_eligible": false,
   "downstream_propagation_eligible": false,
+  "required_task_results": {
+    "morrison_runtime_commit_time_scope_tests": "PENDING",
+    "verify_morrison_runtime_commit_time_scope_artifacts": "PENDING",
+    "check_morrison_runtime_canonical_evidence_gate": "PENDING"
+  },
+  "required_artifact_hashes": {
+    "report_sha256": "PENDING",
+    "receipts_sha256": "PENDING",
+    "verification_sha256": "PENDING",
+    "canonical_gate_sha256": "PENDING"
+  },
+  "required_equivalence": {
+    "report": false,
+    "receipts": false,
+    "expected_outcomes": false,
+    "canonical_gate": false
+  },
   "authority_posture": "EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY",
   "boundary": {
     "default_runtime_behavior": "SECOND_PRE_EXECUTION_GOVERNANCE_DECISION",
