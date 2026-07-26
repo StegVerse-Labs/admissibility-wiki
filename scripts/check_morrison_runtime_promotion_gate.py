@@ -147,6 +147,29 @@ def check_public_status(data: dict, template: dict, mode: str, failures: list[st
             failures.append("pending public status contains premature eligibility")
         if data.get("required_next_transition") != "CANONICAL_EXECUTION_EVIDENCE_ATTACHED":
             failures.append("pending public status next transition changed")
+        return
+
+    if mode == "VERIFIED_BOUNDED_PROMOTION_ELIGIBLE":
+        if data.get("state") != "VERIFIED_BOUNDED_COMPARATIVE_EVIDENCE":
+            failures.append("verified public status state mismatch")
+        required_true = (
+            "canonical_execution_verified",
+            "artifact_equivalence_verified",
+            "compatibility_report_update_eligible",
+        )
+        if any(data.get(key) is not True for key in required_true):
+            failures.append("verified public status omits required bounded eligibility")
+        still_blocked = (
+            "public_promotion_eligible",
+            "downstream_propagation_eligible",
+        )
+        if any(data.get(key) is not False for key in still_blocked):
+            failures.append("verified evidence cannot bypass wiki and public-route validation")
+        if data.get("required_next_transition") != "WIKI_VALIDATED_AND_PUBLIC_ROUTE_VERIFIED":
+            failures.append("verified public status next transition changed")
+        return
+
+    failures.append(f"public status cannot be evaluated for mode: {mode}")
 
 
 def main() -> int:
