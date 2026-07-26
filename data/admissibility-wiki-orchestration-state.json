@@ -8,7 +8,7 @@
   "work_state": "BLOCKED_BUT_OBSERVED",
   "system_health": "HEALTHY_DECLARED_DEPENDENCY_BLOCK",
   "heartbeat_mode": "TRANSITION_DRIVEN_HEALTH_RELATIVE",
-  "repository_heartbeat": 3,
+  "repository_heartbeat": 4,
   "ecosystem_heartbeat_observed": 1,
   "time_role": "WATCHDOG_ONLY",
   "active_independent_workloads": [
@@ -56,6 +56,24 @@
         "622d0859737b3188e23351cb55856079080f77ca",
         "3ab0b891020029a04226b33b76e06ddbc495031a"
       ]
+    },
+    {
+      "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-003",
+      "workload": "Bind governed relationship-transition validation into the canonical validation path",
+      "execution_class": "PARALLEL_SAFE",
+      "state": "COMPLETE_AWAITING_REPOSITORY_OBSERVATION",
+      "installed_paths": [
+        "scripts/check_governed_llm_pages.py"
+      ],
+      "commits": [
+        "c9088092b72a971b560a77311806ab3aca46b7e3"
+      ],
+      "observation": {
+        "combined_commit_status_records": 0,
+        "canonical_workflow_pass_claimed": false,
+        "public_route_verified": false,
+        "authority_inferred": false
+      }
     }
   ],
   "dependency_blocked_workloads": [
@@ -105,7 +123,7 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "GOVERNED_RELATIONSHIP_VALIDATION_ASSETS_INSTALLED",
+    "event_type": "GOVERNED_RELATIONSHIP_VALIDATOR_BOUND_TO_CANONICAL_PATH",
     "progress_effect": true,
     "authority_effect": false
   },
