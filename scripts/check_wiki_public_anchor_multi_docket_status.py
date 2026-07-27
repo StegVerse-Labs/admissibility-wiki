@@ -2,12 +2,16 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS = ROOT / "static" / "status" / "wiki-public-anchor-multi-docket-status.json"
 HANDOFF = ROOT / "docs" / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
 SELF_REVIEW = ROOT / "static" / "data" / "governed-framework-reviews" / "stegverse-public-anchor.self-review.v1.json"
+MANIFEST_CHECK = ROOT / "scripts" / "check_public_anchor_reconstruction_manifest.py"
+PUBLIC_ROUTE_CHECK = ROOT / "scripts" / "check_wiki_public_anchor_public_routes.py"
 
 
 def require(condition: bool, message: str, failures: list[str]) -> None:
@@ -26,6 +30,23 @@ def load(path: Path, failures: list[str]) -> dict:
         return {}
     require(isinstance(value, dict), f"{path.relative_to(ROOT)} must contain an object", failures)
     return value if isinstance(value, dict) else {}
+
+
+def run_check(path: Path, label: str, failures: list[str]) -> None:
+    if not path.exists():
+        failures.append(f"missing {path.relative_to(ROOT)}")
+        return
+    result = subprocess.run(
+        [sys.executable, str(path)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    print(result.stdout.rstrip())
+    if result.returncode != 0:
+        failures.append(f"{label} validation failed")
 
 
 def main() -> int:
@@ -64,13 +85,16 @@ def main() -> int:
     require(self_review.get("verified_capabilities") == [], "self-review must have no verified capabilities", failures)
     require("THREE_DOCKETS_IMPLEMENTED_PENDING_CANONICAL_VALIDATION" in handoff, "handoff missing three-docket state", failures)
 
+    run_check(MANIFEST_CHECK, "public-anchor reconstruction manifest", failures)
+    run_check(PUBLIC_ROUTE_CHECK, "public-anchor route observation receipt", failures)
+
     if failures:
         print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: FAIL")
         for failure in failures:
             print(f"- {failure}")
         return 1
 
-    print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS - TA-14, ASRO, and reciprocal StegVerse self-review remain bounded and pending canonical observation")
+    print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS - three dockets, frozen reconstruction manifest, and bounded route receipt remain aligned")
     return 0
 
 
