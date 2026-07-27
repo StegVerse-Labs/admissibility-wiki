@@ -1,0 +1,33 @@
+{
+  "schema_version": "wiki-public-anchor-reference-docket-status.v1",
+  "goal_id": "wiki-public-anchor-reference-docket",
+  "updated_at": "2026-07-27T07:10:00Z",
+  "state": "REFERENCE_DOCKET_AND_REVIEW_GOVERNANCE_OBJECTS_IMPLEMENTED_PENDING_CANONICAL_VALIDATION",
+  "reference_review_id": "review-ta14-reference-docket-2026-07-27",
+  "reference_docket_route": "/external-frameworks/ta-14-public-review-docket",
+  "record_route": "/data/governed-framework-reviews/ta-14.reference-docket.v1.json",
+  "reconstruction_submission_schema_route": "/schemas/framework-reconstruction-submission.schema.json",
+  "correction_receipt_schema_route": "/schemas/framework-review-correction-receipt.schema.json",
+  "validation": {
+    "local_structural_validation": "INSTALLED_PENDING_WORKFLOW",
+    "canonical_workflow": "PENDING_OBSERVATION",
+    "public_route_observation": "PENDING"
+  },
+  "reference_boundary": {
+    "current_standing": "PUBLICLY_UNRESOLVED",
+    "reconstruction_status": "PARTIAL",
+    "verified_capabilities": 0,
+    "live_discriminating_test": "NOT_RUN"
+  },
+  "authority_boundary": {
+    "certification_granted": false,
+    "execution_authority_granted": false,
+    "government_recognition_claimed": false,
+    "publication_is_truth": false
+  },
+  "next_targets": [
+    "observe canonical validation and public deployment",
+    "convert second external framework into governed-framework-review.v1 docket",
+    "create reciprocal StegVerse self-review docket"
+  ]
+}
