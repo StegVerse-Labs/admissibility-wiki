@@ -5,8 +5,8 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 ## Current Repo Goal
 
 ```text
-Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, and public determinations.
-Current state: public-anchor doctrine, governed-framework-review v1 schema, TA-14 and ASRO governed public review dockets, reconstruction-submission schema, correction-receipt schema, examples, validators, and public status record are installed.
+Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, public determinations, and reciprocal self-review.
+Current state: public-anchor doctrine, governed-framework-review v1 schema, TA-14 and ASRO governed public review dockets, reciprocal StegVerse public-anchor self-review, reconstruction-submission schema, correction-receipt schema, examples, validators, and public status records are installed.
 Manual task requirement: none.
 User manual action required: false.
 ```
@@ -14,20 +14,23 @@ User manual action required: false.
 ## Current Activation Goal
 
 ```text
-Goal id: wiki-public-anchor-multi-docket-activation
+Goal id: wiki-public-anchor-reciprocal-self-review-activation
 Doctrine: docs/governance/wiki-public-anchor.md
-Reference docket: docs/external-frameworks/ta-14-public-review-docket.md
-Second docket: docs/external-frameworks/asro-public-review-docket.md
-Reference records:
+External dockets:
+- docs/external-frameworks/ta-14-public-review-docket.md
+- docs/external-frameworks/asro-public-review-docket.md
+Self-review docket: docs/stegverse/public-anchor-self-review-docket.md
+Machine-readable records:
 - static/data/governed-framework-reviews/ta-14.reference-docket.v1.json
 - static/data/governed-framework-reviews/asro.reference-docket.v1.json
+- static/data/governed-framework-reviews/stegverse-public-anchor.self-review.v1.json
 Validators:
 - scripts/check_governed_framework_review_reference.py
 - scripts/check_asro_governed_review_docket.py
-Public status: static/status/wiki-public-anchor-reference-docket-status.json
+- scripts/check_stegverse_public_anchor_self_review.py
 Canonical integration: docket validators -> scripts/check_admissibility_automation_handoff.py -> npm run validate
-State: TWO_GOVERNED_PUBLIC_REVIEW_DOCKETS_IMPLEMENTED_PENDING_CANONICAL_VALIDATION
-Authority posture: public review and reconstruction infrastructure; no certification or execution authority created
+State: TWO_EXTERNAL_DOCKETS_AND_RECIPROCAL_SELF_REVIEW_IMPLEMENTED_PENDING_CANONICAL_VALIDATION
+Authority posture: public review and reconstruction infrastructure; no certification, government recognition, or execution authority created
 ```
 
 ## Review Governance Objects
@@ -59,18 +62,19 @@ reconstruction submission != automatic standing change
 correction != historical erasure
 correspondence != authority inheritance
 replay PASS != external execution
+self-publication != correctness
+internal validator PASS != independent reconstruction
+repository ownership != reviewer standing
 ```
 
 No determination possesses standing merely because StegVerse published it. Standing exists only to the extent that evidence, historical state, test method, decision rule, uncertainty, and challenge path can be independently inspected and reconstructed.
 
-StegVerse frameworks must be reviewed under standards equal to or stricter than those applied to external frameworks.
+StegVerse frameworks and review systems must be reviewed under standards equal to or stricter than those applied to external frameworks.
 
 ## TA-14 Reference Boundary
 
 ```text
 Review id: review-ta14-reference-docket-2026-07-27
-Framework version binding: public-materials-unversioned-2026-07-26
-Relevant time T: 2026-07-26T23:45:00Z
 Current standing: PUBLICLY_UNRESOLVED
 Reconstruction status: PARTIAL
 Challenge status: OPEN
@@ -80,7 +84,7 @@ Certification granted: false
 Execution authority granted: false
 ```
 
-The docket must preserve:
+The TA-14 docket preserves:
 
 ```text
 route admissibility != actor standing
@@ -94,8 +98,6 @@ PUBLICLY_UNRESOLVED != absent, failed, or disproven
 
 ```text
 Review id: review-asro-reference-docket-2026-07-27
-Framework version binding: public-materials-and-bounded-package-2026-07-27
-Relevant time T: 2026-07-27T08:20:00Z
 Current standing: PROVISIONAL
 Reconstruction status: PARTIAL
 Challenge status: OPEN
@@ -109,34 +111,37 @@ Certification granted: false
 Execution authority granted: false
 ```
 
+The ASRO docket preserves that a successful StegVerse bounded run is not an external ASRO-native execution. Correspondence, replay, and reconstruction remain evidence; they do not grant admissibility, authority, custody, certification, endorsement, or native interoperability.
+
+## Reciprocal StegVerse Self-Review Boundary
+
+```text
+Review id: review-stegverse-public-anchor-self-2026-07-27
+Subject: StegVerse Admissibility Wiki public-anchor review system
+Current standing: PROVISIONAL
+Reconstruction status: PARTIAL
+Challenge status: OPEN
+Verified capabilities: none
+Internal structural validation: PASS
+Independent reciprocal reconstruction: NOT_RUN
+Neutral reviewer standing: NOT_ESTABLISHED
+Government recognition: NOT_ESTABLISHED
+Certification authority: NOT_ESTABLISHED
+Execution authority granted: false
+```
+
 Installed files:
 
 ```text
-Page: docs/external-frameworks/asro-public-review-docket.md
-Record: static/data/governed-framework-reviews/asro.reference-docket.v1.json
-Validator: scripts/check_asro_governed_review_docket.py
-Navigation: external-frameworks/asro-public-review-docket
+Page: docs/stegverse/public-anchor-self-review-docket.md
+Record: static/data/governed-framework-reviews/stegverse-public-anchor.self-review.v1.json
+Validator: scripts/check_stegverse_public_anchor_self_review.py
+Navigation: stegverse/public-anchor-self-review-docket
 Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
-State: ASRO_SECOND_DOCKET_IMPLEMENTED_PENDING_CANONICAL_VALIDATION
+State: RECIPROCAL_SELF_REVIEW_IMPLEMENTED_PENDING_CANONICAL_VALIDATION
 ```
 
-The ASRO docket must preserve that the successful bounded run is a StegVerse comparison execution rather than an external ASRO-native run. Correspondence, replay, and reconstruction remain evidence; they do not grant admissibility, authority, custody, certification, endorsement, or native interoperability.
-
-DecisionAssure remains an intake record until a public source or authorized artifact package is attached. It is not the next docket candidate despite prior pilot discussion because the repository page currently records zero attached canonical public artifacts.
-
-## Next Docket Goal
-
-```text
-Goal: reciprocal StegVerse self-review docket
-Requirement: apply standards equal to or stricter than those used for TA-14 and ASRO
-Candidate subject: StegCore or the public-anchor review system itself
-Required boundaries:
-- self-publication does not establish correctness
-- internal validator PASS does not establish independent reconstruction
-- architecture ownership does not grant reviewer standing
-- execution capability must remain separate from certification and review authority
-- conflicts, dissent, correction, and supersession must be public
-```
+The self-review discloses that StegVerse is the system designer, repository owner, determination issuer, validator author, publication operator, and review subject. Publication of the self-review is not independent validation.
 
 ## Deployment and Validation Gate
 
@@ -164,12 +169,12 @@ Do not treat queued propagation as completed propagation.
 ## Remaining Open Checks
 
 ```text
-- observe canonical validation after TA-14 and ASRO docket installation
-- observe public deployment of both docket pages and machine-readable records
-- update the public-anchor status from one reference docket to multi-docket status after canonical evidence exists
-- create reciprocal StegVerse self-review under equal or stricter rules
+- observe canonical validation after reciprocal self-review installation
+- observe public deployment of TA-14, ASRO, and StegVerse self-review pages and machine-readable records
+- create multi-docket public activation status and route-observation receipt
+- obtain or invite an independent reconstruction of the public-anchor system
 - add signed or hashed correction and reconstruction receipts when canonical custody support is available
-- preserve unresolved and non-claim language where evidence is incomplete
+- preserve unresolved, conflict, dissent, and non-claim language where evidence is incomplete
 - queue Site, Publisher, and StegGuardian awareness only after destination handoffs authorize mutation
 ```
 
@@ -177,8 +182,10 @@ Do not treat queued propagation as completed propagation.
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-- reciprocal StegVerse self-review docket and validator
-- multi-docket public activation status and route-observation receipt
+- static/status/wiki-public-anchor-multi-docket-status.json
+- scripts/check_wiki_public_anchor_public_routes.py
+- durable multi-docket public-route observation receipt
+- independent reconstruction submission for the StegVerse self-review
 - canonical hash/signature receipts for reconstruction and correction objects
 
 StegVerse-Labs/Site:
