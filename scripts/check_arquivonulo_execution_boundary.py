@@ -40,7 +40,7 @@ def main() -> None:
     publication = json.loads(read(PUBLICATION_TEMPLATE))
 
     for token in (
-        "valid proof != continuing admissibility",
+        "valid_proof(t) != continuing_admissibility(t)",
         "interdiction != pre-consequence prevention",
         "anchored state != current reality",
         "S5 Execution",
