@@ -53,6 +53,7 @@ TA14_STANDING_RECONSTRUCTION_CHECK = ROOT / "scripts" / "check_ta14_standing_rec
 ARQUIVONULO_EXECUTION_BOUNDARY_CHECK = ROOT / "scripts" / "check_arquivonulo_execution_boundary.py"
 STANDING_DETERMINATION_RECEIPT_CHECK = ROOT / "scripts" / "check_standing_determination_receipt.py"
 MINDFORGE_SOURCE_LOCATION_CHECK = ROOT / "scripts" / "check_mindforge_source_location_registry.py"
+MINDFORGE_ATTRIBUTION_AUTHORIZATION_CHECK = ROOT / "scripts" / "check_mindforge_publication_attribution_authorization.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -140,6 +141,7 @@ def main() -> int:
         (ARQUIVONULO_EXECUTION_BOUNDARY_CHECK, "ArquivoNulo execution-boundary evaluation"),
         (STANDING_DETERMINATION_RECEIPT_CHECK, "MindForge standing determination receipt"),
         (MINDFORGE_SOURCE_LOCATION_CHECK, "MindForge source-location alignment"),
+        (MINDFORGE_ATTRIBUTION_AUTHORIZATION_CHECK, "MindForge publication attribution authorization"),
         (RELEASE_READINESS_CHECK, "release readiness"),
     )
     for path, label in checks:
