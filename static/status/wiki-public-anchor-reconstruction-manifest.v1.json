@@ -1,0 +1,87 @@
+{
+  "schema_version": "wiki-public-anchor-reconstruction-manifest.v1",
+  "manifest_id": "wiki-public-anchor-three-docket-freeze-2026-07-27",
+  "created_at": "2026-07-27T10:15:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "freeze_posture": "BLOB_BOUND_PENDING_CANONICAL_COMMIT_AND_DEPLOYMENT_OBSERVATION",
+  "artifacts": [
+    {
+      "path": "docs/governance/wiki-public-anchor.md",
+      "git_blob_sha": "8e60cf62c48cc352f117d41fb4633b7630981997",
+      "class": "DOCTRINE"
+    },
+    {
+      "path": "docs/external-frameworks/ta-14-public-review-docket.md",
+      "git_blob_sha": null,
+      "class": "PUBLIC_DOCKET"
+    },
+    {
+      "path": "docs/external-frameworks/asro-public-review-docket.md",
+      "git_blob_sha": null,
+      "class": "PUBLIC_DOCKET"
+    },
+    {
+      "path": "docs/stegverse/public-anchor-self-review-docket.md",
+      "git_blob_sha": "045fc99dc7aa18d889f5458b2c99277f7df25b3c",
+      "class": "RECIPROCAL_SELF_REVIEW"
+    },
+    {
+      "path": "static/data/governed-framework-reviews/ta-14.reference-docket.v1.json",
+      "git_blob_sha": "c4511bab63e18daf6a08f80ffb1885e08f7bc067",
+      "class": "MACHINE_READABLE_DOCKET"
+    },
+    {
+      "path": "static/data/governed-framework-reviews/asro.reference-docket.v1.json",
+      "git_blob_sha": "6cc900410ec9fc402d9b272feccaf37d285eee36",
+      "class": "MACHINE_READABLE_DOCKET"
+    },
+    {
+      "path": "static/data/governed-framework-reviews/stegverse-public-anchor.self-review.v1.json",
+      "git_blob_sha": "d72a95b8d0b2220147b3f9e06699394e1722b5ab",
+      "class": "MACHINE_READABLE_SELF_REVIEW"
+    },
+    {
+      "path": "static/schemas/framework-reconstruction-submission.schema.json",
+      "git_blob_sha": null,
+      "class": "RECONSTRUCTION_SCHEMA"
+    },
+    {
+      "path": "static/schemas/framework-review-correction-receipt.schema.json",
+      "git_blob_sha": null,
+      "class": "CORRECTION_SCHEMA"
+    },
+    {
+      "path": "static/status/wiki-public-anchor-multi-docket-status.json",
+      "git_blob_sha": "9b4bf4f89d71cf98266ab908177aa2defef6fedd",
+      "class": "STATUS"
+    }
+  ],
+  "routes": [
+    "/governance/wiki-public-anchor",
+    "/external-frameworks/ta-14-public-review-docket",
+    "/external-frameworks/asro-public-review-docket",
+    "/stegverse/public-anchor-self-review-docket"
+  ],
+  "validation": {
+    "primary_command": "npm run validate",
+    "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "canonical_commit_sha": null,
+    "canonical_validation_observed": false,
+    "deployment_observed": false,
+    "public_routes_observed": false
+  },
+  "authority_boundary": {
+    "manifest_freeze_establishes_truth": false,
+    "route_reachability_establishes_truth": false,
+    "internal_validation_establishes_independence": false,
+    "certification_granted": false,
+    "execution_authority_granted": false
+  },
+  "next_actions": [
+    "Resolve remaining artifact blob SHAs.",
+    "Bind the canonical commit after repository integration.",
+    "Observe canonical npm validation and deployment.",
+    "Issue a durable public-route observation receipt.",
+    "Attach an accountable independent reconstruction submission."
+  ]
+}
