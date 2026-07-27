@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "evidence_id": "arquivonulo-publication-verification",
+  "framework_id": "arquivonulo",
+  "status": "TEMPLATE_NOT_OBSERVED",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "commit_sha": null,
+  "workflow": {
+    "name": "validate-chain-continuation",
+    "run_id": null,
+    "run_url": null,
+    "conclusion": null,
+    "validation_job_conclusion": null,
+    "build_job_conclusion": null,
+    "deployment_job_conclusion": null,
+    "public_verification_job_conclusion": null
+  },
+  "routes": [
+    {
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/arquivonulo",
+      "expected_content_type": "text/html",
+      "observed_status_code": null,
+      "observed_content_type": null,
+      "required_markers": [
+        "ArquivoNulo",
+        "PUBLICLY_UNRESOLVED",
+        "valid proof != continuing admissibility"
+      ],
+      "markers_observed": null,
+      "observed_at": null
+    },
+    {
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/data/framework-evaluations/arquivonulo.json",
+      "expected_content_type": "application/json",
+      "observed_status_code": null,
+      "observed_content_type": null,
+      "required_json_values": {
+        "framework_id": "arquivonulo",
+        "execution_boundary.status": "PUBLICLY_UNRESOLVED",
+        "continuing_admissibility.status": "PUBLICLY_UNRESOLVED"
+      },
+      "values_observed": null,
+      "observed_at": null
+    },
+    {
+      "url": "https://stegverse-labs.github.io/admissibility-wiki/status/arquivonulo-execution-boundary-status.json",
+      "expected_content_type": "application/json",
+      "observed_status_code": null,
+      "observed_content_type": null,
+      "required_json_values": {
+        "goal_id": "arquivonulo-execution-boundary-evaluation",
+        "framework_id": "arquivonulo"
+      },
+      "values_observed": null,
+      "observed_at": null
+    }
+  ],
+  "closure": {
+    "canonical_validation_observed": false,
+    "public_deployment_observed": false,
+    "activation_receipt_closed": false
+  },
+  "authority_boundary": {
+    "publication_evidence_is_execution_authority": false,
+    "certification_granted": false,
+    "endorsement_granted": false,
+    "custody_granted": false,
+    "integration_claimed": false
+  }
+}
