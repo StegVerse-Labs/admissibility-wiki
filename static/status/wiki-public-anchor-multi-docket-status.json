@@ -1,0 +1,51 @@
+{
+  "schema_version": "wiki-public-anchor-multi-docket-status.v1",
+  "status_id": "wiki-public-anchor-multi-docket-2026-07-27",
+  "generated_at": "2026-07-27T09:40:00Z",
+  "state": "THREE_DOCKETS_IMPLEMENTED_PENDING_CANONICAL_VALIDATION",
+  "dockets": [
+    {
+      "review_id": "review-ta14-reference-docket-2026-07-27",
+      "subject": "TA-14",
+      "standing": "PUBLICLY_UNRESOLVED",
+      "reconstruction_status": "PARTIAL",
+      "verified_capabilities": 0,
+      "route": "/external-frameworks/ta-14-public-review-docket"
+    },
+    {
+      "review_id": "review-asro-reference-docket-2026-07-27",
+      "subject": "ASRO",
+      "standing": "PROVISIONAL",
+      "reconstruction_status": "PARTIAL",
+      "verified_capabilities": 0,
+      "route": "/external-frameworks/asro-public-review-docket"
+    },
+    {
+      "review_id": "review-stegverse-public-anchor-self-2026-07-27",
+      "subject": "StegVerse public-anchor review system",
+      "standing": "PROVISIONAL",
+      "reconstruction_status": "PARTIAL",
+      "verified_capabilities": 0,
+      "route": "/stegverse/public-anchor-self-review-docket"
+    }
+  ],
+  "review_governance": {
+    "reconstruction_submission_schema": "/schemas/framework-reconstruction-submission.schema.json",
+    "correction_receipt_schema": "/schemas/framework-review-correction-receipt.schema.json",
+    "automatic_standing_change": false,
+    "silent_history_rewrite": false
+  },
+  "validation": {
+    "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "primary_command": "npm run validate",
+    "workflow_observation": "PENDING",
+    "public_route_observation": "PENDING"
+  },
+  "authority_boundary": {
+    "certification_granted": false,
+    "execution_authority_granted": false,
+    "government_recognition_claimed": false,
+    "internal_validation_establishes_substantive_truth": false,
+    "self_review_establishes_independence": false
+  }
+}
