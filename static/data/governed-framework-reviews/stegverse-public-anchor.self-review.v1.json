@@ -1,0 +1,185 @@
+{
+  "schema_version": "governed-framework-review.v1",
+  "review_id": "review-stegverse-public-anchor-self-2026-07-27",
+  "framework": {
+    "id": "stegverse-public-anchor",
+    "name": "StegVerse Admissibility Wiki Public-Anchor Review System",
+    "version": "repository-state-2026-07-27",
+    "canonical_source": "https://github.com/StegVerse-Labs/admissibility-wiki"
+  },
+  "review_time": "2026-07-27T09:10:00Z",
+  "relevant_time_t": "2026-07-27T09:10:00Z",
+  "declared_capabilities": [
+    {
+      "id": "public-anchor-governed-review-records",
+      "description": "Represent governed framework reviews with declarations, evidence, tests, determinations, challenges, reconstructions, corrections, supersession, standing, and public verification instructions.",
+      "status": "DECLARED",
+      "scope": "Admissibility Wiki public-anchor doctrine and governed-framework-review.v1 schema.",
+      "evidence_refs": ["public-anchor-doctrine", "governed-review-schema"]
+    },
+    {
+      "id": "public-anchor-correction-and-reconstruction-intake",
+      "description": "Accept structured reconstruction submissions and correction receipts without automatically granting standing or authority.",
+      "status": "DECLARED",
+      "scope": "Published schemas and examples.",
+      "evidence_refs": ["reconstruction-schema", "correction-schema"]
+    }
+  ],
+  "observed_capabilities": [
+    {
+      "id": "public-anchor-multi-docket-representation",
+      "description": "The repository contains governed TA-14 and ASRO review dockets with machine-readable records and validators.",
+      "status": "OBSERVED",
+      "scope": "Repository presence and internal structural validation only.",
+      "evidence_refs": ["ta14-docket-record", "asro-docket-record", "ta14-validator", "asro-validator"]
+    },
+    {
+      "id": "public-anchor-non-authority-boundaries",
+      "description": "Published doctrine and docket records preserve distinctions between publication, truth, certification, standing, and execution authority.",
+      "status": "OBSERVED",
+      "scope": "Textual and machine-readable repository artifacts.",
+      "evidence_refs": ["public-anchor-doctrine", "ta14-docket-page", "asro-docket-page"]
+    }
+  ],
+  "verified_capabilities": [],
+  "unsupported_claims": [
+    "Independent external reconstruction is not established.",
+    "Neutral reviewer standing is not established.",
+    "Government recognition or certification authority is not established.",
+    "Internal validator success does not establish substantive correctness.",
+    "Repository ownership does not establish immunity from challenge or conflict-free review."
+  ],
+  "evidence_refs": [
+    {
+      "id": "public-anchor-doctrine",
+      "class": "IMPLEMENTATION",
+      "locator": "/governance/wiki-public-anchor",
+      "hash": null,
+      "timestamp": "2026-07-27T09:10:00Z",
+      "access": "PUBLIC"
+    },
+    {
+      "id": "governed-review-schema",
+      "class": "IMPLEMENTATION",
+      "locator": "/schemas/governed-framework-review.schema.json",
+      "hash": null,
+      "timestamp": "2026-07-27T09:10:00Z",
+      "access": "PUBLIC"
+    },
+    {
+      "id": "reconstruction-schema",
+      "class": "IMPLEMENTATION",
+      "locator": "/schemas/framework-reconstruction-submission.schema.json",
+      "hash": null,
+      "timestamp": "2026-07-27T09:10:00Z",
+      "access": "PUBLIC"
+    },
+    {
+      "id": "correction-schema",
+      "class": "IMPLEMENTATION",
+      "locator": "/schemas/framework-review-correction-receipt.schema.json",
+      "hash": null,
+      "timestamp": "2026-07-27T09:10:00Z",
+      "access": "PUBLIC"
+    },
+    {
+      "id": "ta14-docket-record",
+      "class": "ANALYSIS",
+      "locator": "/data/governed-framework-reviews/ta-14.reference-docket.v1.json",
+      "hash": null,
+      "timestamp": "2026-07-27T09:10:00Z",
+      "access": "PUBLIC"
+    },
+    {
+      "id": "asro-docket-record",
+      "class": "ANALYSIS",
+      "locator": "/data/governed-framework-reviews/asro.reference-docket.v1.json",
+      "hash": null,
+      "timestamp": "2026-07-27T09:10:00Z",
+      "access": "PUBLIC"
+    },
+    {
+      "id": "ta14-docket-page",
+      "class": "ANALYSIS",
+      "locator": "/external-frameworks/ta-14-public-review-docket",
+      "hash": null,
+      "timestamp": "2026-07-27T09:10:00Z",
+      "access": "PUBLIC"
+    },
+    {
+      "id": "asro-docket-page",
+      "class": "ANALYSIS",
+      "locator": "/external-frameworks/asro-public-review-docket",
+      "hash": null,
+      "timestamp": "2026-07-27T09:10:00Z",
+      "access": "PUBLIC"
+    },
+    {
+      "id": "ta14-validator",
+      "class": "IMPLEMENTATION",
+      "locator": "scripts/check_governed_framework_review_reference.py",
+      "hash": null,
+      "timestamp": "2026-07-27T09:10:00Z",
+      "access": "PUBLIC"
+    },
+    {
+      "id": "asro-validator",
+      "class": "IMPLEMENTATION",
+      "locator": "scripts/check_asro_governed_review_docket.py",
+      "hash": null,
+      "timestamp": "2026-07-27T09:10:00Z",
+      "access": "PUBLIC"
+    }
+  ],
+  "test_results": [
+    {
+      "test_id": "public-anchor-internal-structural-validation-v1",
+      "profile": "Internal schema, marker, route, and boundary validation",
+      "result": "PASS",
+      "input_hash": null,
+      "output_hash": null,
+      "evidence_refs": ["governed-review-schema", "ta14-validator", "asro-validator"],
+      "notes": "Internal structural validation does not establish independent reconstruction or substantive correctness."
+    },
+    {
+      "test_id": "public-anchor-independent-reciprocal-reconstruction-v1",
+      "profile": "Independent reconstruction of TA-14 and ASRO docket standing from frozen evidence",
+      "result": "NOT_RUN",
+      "input_hash": null,
+      "output_hash": null,
+      "evidence_refs": ["ta14-docket-record", "asro-docket-record"],
+      "notes": "No independent external reviewer result is attached."
+    }
+  ],
+  "determinations": [
+    {
+      "id": "det-stegverse-public-anchor-self-001",
+      "issuer": "StegVerse-Labs/admissibility-wiki",
+      "result": "The public-anchor system is provisionally established as a structured public documentation and bounded-review mechanism. Repository artifacts demonstrate internal representation and validation of governed dockets, reconstruction submissions, correction receipts, and non-authority boundaries. Independent reviewer standing, substantive correctness, neutral reconstruction, government recognition, and certification authority are not established.",
+      "basis_refs": ["public-anchor-doctrine", "governed-review-schema", "reconstruction-schema", "correction-schema", "ta14-docket-record", "asro-docket-record"],
+      "issued_at": "2026-07-27T09:10:00Z",
+      "uncertainty": [
+        "The issuer is also the system designer, repository owner, validator author, and publication operator.",
+        "No independent external reconstruction has been observed.",
+        "No neutral reviewer-standing determination exists.",
+        "No government recognition or certification authority is established.",
+        "No canonical hash or signature receipt is bound to the complete self-review package."
+      ]
+    }
+  ],
+  "framework_responses": [],
+  "independent_reconstructions": [],
+  "corrections": [],
+  "supersedes": null,
+  "superseded_by": null,
+  "challenge_status": "OPEN",
+  "reconstruction_status": "PARTIAL",
+  "current_standing": "PROVISIONAL",
+  "limitations": [
+    "The self-review is issued by the system under review.",
+    "Internal validators establish structural agreement only.",
+    "No independent external reconstruction is attached.",
+    "Publication creates no certification, execution authority, government recognition, or immunity from challenge."
+  ],
+  "public_verification_instructions": "Freeze the referenced repository artifacts and relevant commit, reconstruct TA-14 and ASRO standing from evidence without treating StegVerse determinations as authoritative, disclose reviewer conflicts, preserve divergent results, and submit any correction or supersession request through the published review-governance objects."
+}
