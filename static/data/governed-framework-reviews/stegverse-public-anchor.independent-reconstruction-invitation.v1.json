@@ -1,0 +1,51 @@
+{
+  "schema_version": "independent-reconstruction-invitation.v1",
+  "invitation_id": "stegverse-public-anchor-independent-reconstruction-2026-07-27",
+  "review_id": "review-stegverse-public-anchor-self-2026-07-27",
+  "subject": "StegVerse Admissibility Wiki public-anchor review system",
+  "status": "OPEN_NO_ACCOUNTABLE_REVIEWER_ASSIGNED",
+  "frozen_manifest": "/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json",
+  "frozen_commit": "b69fb68c197566e9bf35a2d10611432e4c530f21",
+  "submission_schema": "/schemas/framework-reconstruction-submission.schema.json",
+  "requested_review": {
+    "minimum_scope": [
+      "inspect the frozen doctrine, schemas, dockets, status records, validators, and routes",
+      "distinguish structural validation from substantive correctness",
+      "reconstruct each docket standing from its evidence, tests, uncertainty, and challenge state",
+      "evaluate whether the self-review adequately discloses conflicts of role and authority",
+      "record every divergence without overwriting the source records"
+    ],
+    "required_outputs": [
+      "completed framework-reconstruction-submission.v1 object",
+      "reviewer identity and reviewer type",
+      "declared conflicts",
+      "method description",
+      "artifact references",
+      "difference summary",
+      "missing evidence list",
+      "signed receipt or stable public artifact reference when available"
+    ],
+    "permitted_results": ["REPRODUCED", "PARTIAL", "DIVERGENT", "BLOCKED"]
+  },
+  "reviewer_requirements": {
+    "accountable_identity_required": true,
+    "declared_conflicts_required": true,
+    "method_required": true,
+    "artifact_refs_required": true,
+    "independence_claim_requires_basis": true,
+    "anonymous_unattributed_result_changes_standing": false
+  },
+  "current_state": {
+    "independent_reconstruction_status": "NOT_RUN",
+    "neutral_reviewer_standing": "NOT_ESTABLISHED",
+    "automatic_standing_change": false,
+    "current_docket_standing": "PROVISIONAL"
+  },
+  "authority_boundary": {
+    "invitation_grants_reviewer_standing": false,
+    "submission_automatically_changes_standing": false,
+    "reconstruction_is_certification": false,
+    "reconstruction_grants_execution_authority": false,
+    "publication_establishes_government_recognition": false
+  }
+}
