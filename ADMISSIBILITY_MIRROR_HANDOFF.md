@@ -26,6 +26,12 @@ The active goal-specific handoff for Morrison Runtime commit-time scope proof pr
 docs/MORRISON_RUNTIME_PROMOTION_HANDOFF.md
 ```
 
+The active goal-specific handoff for MindForge commit-time boundary activation is:
+
+```text
+docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md
+```
+
 Correct downstream mapping:
 
 ```text
