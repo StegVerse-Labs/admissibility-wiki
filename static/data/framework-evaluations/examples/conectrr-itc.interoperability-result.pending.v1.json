@@ -1,0 +1,36 @@
+{
+  "schema": "conectrr_itc_interoperability_result.v1",
+  "result_id": "conectrr-itc-first-interoperability-result-pending",
+  "profile_id": "conectrr-itc-first-interoperability-exercise",
+  "source_artifact_state": "AWAITING_CANONICAL_SOURCE_ARTIFACTS",
+  "source_hash_before": null,
+  "source_hash_after": null,
+  "source_mutated": false,
+  "reconstruction": "NOT_RUN",
+  "disposition": "NOT_RUN",
+  "replay": "NOT_RUN",
+  "commit_time_non_inheritance": "NOT_RUN",
+  "drift_results": [
+    {"case": "EXPIRED_DELEGATION", "result": "NOT_RUN", "evidence_refs": []},
+    {"case": "CHANGED_TARGET_SCOPE", "result": "NOT_RUN", "evidence_refs": []},
+    {"case": "STALE_EVIDENCE", "result": "NOT_RUN", "evidence_refs": []},
+    {"case": "CHANGED_POLICY_VERSION", "result": "NOT_RUN", "evidence_refs": []},
+    {"case": "DEGRADED_RECOVERABILITY", "result": "NOT_RUN", "evidence_refs": []},
+    {"case": "ACTOR_SUBSTITUTION", "result": "NOT_RUN", "evidence_refs": []},
+    {"case": "TARGET_SUBSTITUTION", "result": "NOT_RUN", "evidence_refs": []},
+    {"case": "SUPERSEDED_RECOMMENDATION", "result": "NOT_RUN", "evidence_refs": []},
+    {"case": "CHANGED_DEPENDENCY_STATE", "result": "NOT_RUN", "evidence_refs": []},
+    {"case": "INVALIDATED_SOURCE_REFERENCE", "result": "NOT_RUN", "evidence_refs": []}
+  ],
+  "authority": {
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "endorsement": false
+  },
+  "notes": [
+    "This fixture records an unexecuted test state only.",
+    "No result may advance until the specification, canonical ITC, and validation report are frozen and hashed.",
+    "The Conectrr ITC remains non-authorizing regardless of downstream disposition."
+  ]
+}
