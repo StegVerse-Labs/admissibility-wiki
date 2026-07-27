@@ -6,7 +6,7 @@ This file is the current source of truth for continuing `StegVerse-Labs/admissib
 
 ```text
 Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, public determinations, and reciprocal self-review.
-Current state: three governed dockets, reciprocal StegVerse self-review, frozen reconstruction boundary, reconstruction invitation, bounded external-framework intakes, a canonically bound Conectrr ITC pre-execution package, and a deterministic synthetic capability smoke test are installed.
+Current state: three governed dockets, reciprocal StegVerse self-review, frozen reconstruction boundary, reconstruction invitation, bounded external-framework intakes, a canonically bound Conectrr ITC pre-execution package, a deterministic synthetic capability smoke test, and a preserved reciprocal Conectrr methodology acknowledgment are installed.
 Manual task requirement: none.
 User manual action required: false.
 ```
@@ -15,7 +15,7 @@ User manual action required: false.
 
 ```text
 Goal id: wiki-public-anchor-independent-reconstruction-activation
-State: CONECTRR_SYNTHETIC_CAPABILITY_READY_FOR_CANONICAL_EXECUTION_PENDING_WORKFLOW_OBSERVATION_AND_EXTERNAL_SOURCE_ARTIFACTS
+State: CONECTRR_RECIPROCAL_METHODOLOGY_ACKNOWLEDGED_SYNTHETIC_CAPABILITY_READY_FOR_CANONICAL_EXECUTION_PENDING_WORKFLOW_OBSERVATION_AND_EXTERNAL_SOURCE_ARTIFACTS
 Authority posture: public review and reconstruction infrastructure only; no certification, government recognition, custody, endorsement, or execution authority created.
 ```
 
@@ -67,6 +67,9 @@ DISAGREE != source invalidation
 DEFER != failure
 Commitment Candidate != execution authority
 synthetic PASS != external validation
+methodology acknowledgment != implementation proof
+methodology acknowledgment != independent reconstruction
+methodology acknowledgment != execution authority
 ```
 
 ## Docket Boundaries
@@ -83,6 +86,8 @@ No docket grants certification or execution authority.
 
 ```text
 Framework record: docs/external-frameworks/conectrr-itc-interoperability-intake.md
+Reciprocal acknowledgment record: docs/external-frameworks/conectrr-itc-reciprocal-methodology-acknowledgment-2026-07-27.md
+Reciprocal acknowledgment data: static/data/framework-evaluations/examples/conectrr-itc.reciprocal-methodology-acknowledgment.v1.json
 Machine-readable intake: static/data/framework-evaluations/conectrr-itc.json
 Test profile: static/data/framework-evaluations/examples/conectrr-itc.interoperability-test-profile.v1.json
 Pending result: static/data/framework-evaluations/examples/conectrr-itc.interoperability-result.pending.v1.json
@@ -101,6 +106,8 @@ Binding state: BOUND_THROUGH_CANONICAL_AGGREGATE
 Disposition fixture state: BOUND_INTO_INTEROPERABILITY_VALIDATOR
 Immutable-source hash receipt state: BOUND_INTO_INTEROPERABILITY_VALIDATOR
 Synthetic capability state: READY_FOR_CANONICAL_EXECUTION
+Reciprocal methodology state: MUTUALLY_ACKNOWLEDGED
+Technical validation effect of acknowledgment: NONE
 Workflow observation: NOT_OBSERVED_FOR_LATEST_COMMIT
 Source-package state: AWAITING_CANONICAL_SOURCE_ARTIFACTS
 Specification: OFFERED_NOT_RECEIVED
@@ -148,6 +155,8 @@ synthetic three-artifact package
 ```
 
 The synthetic capability fixture and validator permit immediate testing of the complete local evidence machinery without misrepresenting test data as Conectrr-provided evidence. The smoke test computes deterministic SHA-256 values, confirms replay stability, exercises all three dispositions, checks all ten drift vectors, verifies excluded authority semantics, and holds certification, execution, custody, and endorsement false. It is canonically bound through `scripts/check_admissibility_automation_handoff.py`.
+
+The reciprocal methodology acknowledgment preserves mutual recognition of responsibility separation, non-collapsing divergent findings, evidence-constrained v1.1 development, and a non-subsuming review relationship. It does not alter technical validation, standing, custody, certification, or execution authority.
 
 ## Deployment and Validation Gate
 
