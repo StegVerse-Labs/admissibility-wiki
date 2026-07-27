@@ -13,6 +13,9 @@
   "attribution_authorization_record": "static/status/mindforge-publication-attribution-authorization.json",
   "attribution_authorization_state": "PENDING_REVIEWER_RESPONSE",
   "attribution_publication_permitted": false,
+  "publication_verification_checker": "scripts/check_mindforge_publication_verification.py",
+  "publication_verification_template": "docs/external-frameworks/evidence/mindforge-publication-verification.template.json",
+  "publication_verification_state": "TEMPLATE_NOT_OBSERVED",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "last_observed_run_id": 30244212970,
   "last_observed_commit": "947c6a7b7ecac0544377223139cd30685240d7a1",
@@ -20,6 +23,7 @@
   "repository_chain_result": "FAIL_CLOSED_UNRELATED_GATES",
   "public_build_result": "SKIPPED_BY_REPOSITORY_GATE",
   "public_deployment_result": "SKIPPED_BY_REPOSITORY_GATE",
+  "public_route_verification_result": "NOT_OBSERVED",
   "candidate_authorizing": false,
   "allow_is_execution_command": false,
   "implementation_endorsed": false,
@@ -31,10 +35,10 @@
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
   "remaining": [
-    "observe source-location and attribution-authorization checkers in a successor canonical run",
+    "observe source-location, attribution-authorization, and publication-verification checkers in a successor canonical run",
     "receive an explicit reviewer response before publishing reviewer attribution",
     "observe repository-wide canonical workflow success after unrelated gates are repaired",
-    "observe public deployment and route reachability",
+    "populate publication verification evidence from a successful workflow and route observation",
     "record run-bound publication closure"
   ]
 }
