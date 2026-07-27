@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+STATUS = ROOT / "static" / "status" / "wiki-public-anchor-multi-docket-status.json"
+HANDOFF = ROOT / "docs" / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
+SELF_REVIEW = ROOT / "static" / "data" / "governed-framework-reviews" / "stegverse-public-anchor.self-review.v1.json"
+
+
+def require(condition: bool, message: str, failures: list[str]) -> None:
+    if not condition:
+        failures.append(message)
+
+
+def load(path: Path, failures: list[str]) -> dict:
+    if not path.exists():
+        failures.append(f"missing {path.relative_to(ROOT)}")
+        return {}
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        failures.append(f"invalid JSON in {path.relative_to(ROOT)}: {exc}")
+        return {}
+    require(isinstance(value, dict), f"{path.relative_to(ROOT)} must contain an object", failures)
+    return value if isinstance(value, dict) else {}
+
+
+def main() -> int:
+    failures: list[str] = []
+    status = load(STATUS, failures)
+    self_review = load(SELF_REVIEW, failures)
+    handoff = HANDOFF.read_text(encoding="utf-8") if HANDOFF.exists() else ""
+
+    require(status.get("schema_version") == "wiki-public-anchor-multi-docket-status.v1", "status schema version mismatch", failures)
+    require(status.get("state") == "THREE_DOCKETS_IMPLEMENTED_PENDING_CANONICAL_VALIDATION", "multi-docket state mismatch", failures)
+
+    dockets = status.get("dockets", [])
+    require(isinstance(dockets, list) and len(dockets) == 3, "status must list exactly three current dockets", failures)
+    ids = {item.get("review_id") for item in dockets if isinstance(item, dict)}
+    require("review-ta14-reference-docket-2026-07-27" in ids, "TA-14 docket missing", failures)
+    require("review-asro-reference-docket-2026-07-27" in ids, "ASRO docket missing", failures)
+    require("review-stegverse-public-anchor-self-2026-07-27" in ids, "StegVerse self-review docket missing", failures)
+
+    for item in dockets if isinstance(dockets, list) else []:
+        if not isinstance(item, dict):
+            continue
+        require(item.get("verified_capabilities") == 0, f"{item.get('review_id')} must not claim verified capabilities", failures)
+        require(item.get("reconstruction_status") == "PARTIAL", f"{item.get('review_id')} reconstruction must remain PARTIAL", failures)
+
+    boundary = status.get("authority_boundary", {})
+    for key in (
+        "certification_granted",
+        "execution_authority_granted",
+        "government_recognition_claimed",
+        "internal_validation_establishes_substantive_truth",
+        "self_review_establishes_independence",
+    ):
+        require(boundary.get(key) is False, f"authority boundary {key} must be false", failures)
+
+    require(self_review.get("current_standing") == "PROVISIONAL", "self-review must remain PROVISIONAL", failures)
+    require(self_review.get("verified_capabilities") == [], "self-review must have no verified capabilities", failures)
+    require("THREE_DOCKETS_IMPLEMENTED_PENDING_CANONICAL_VALIDATION" in handoff, "handoff missing three-docket state", failures)
+
+    if failures:
+        print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: FAIL")
+        for failure in failures:
+            print(f"- {failure}")
+        return 1
+
+    print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS - TA-14, ASRO, and reciprocal StegVerse self-review remain bounded and pending canonical observation")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
