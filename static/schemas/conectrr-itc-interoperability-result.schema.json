@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse.org/schemas/conectrr-itc-interoperability-result.schema.json",
+  "title": "Conectrr ITC Interoperability Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "result_id",
+    "profile_id",
+    "source_artifact_state",
+    "source_hash_before",
+    "source_hash_after",
+    "source_mutated",
+    "reconstruction",
+    "disposition",
+    "replay",
+    "commit_time_non_inheritance",
+    "authority"
+  ],
+  "properties": {
+    "schema": {"const": "conectrr_itc_interoperability_result.v1"},
+    "result_id": {"type": "string", "minLength": 1},
+    "profile_id": {"const": "conectrr-itc-first-interoperability-exercise"},
+    "source_artifact_state": {
+      "enum": ["AWAITING_CANONICAL_SOURCE_ARTIFACTS", "FROZEN", "INVALID", "SUPERSEDED"]
+    },
+    "source_hash_before": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "source_hash_after": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "source_mutated": {"const": false},
+    "reconstruction": {
+      "enum": ["NOT_RUN", "RECONSTRUCTION_PASS", "RECONSTRUCTION_PARTIAL", "RECONSTRUCTION_FAIL", "INSUFFICIENT_RECORD"]
+    },
+    "disposition": {"enum": ["NOT_RUN", "AGREE", "DISAGREE", "DEFER"]},
+    "replay": {"enum": ["NOT_RUN", "PASS", "FAIL", "PARTIAL"]},
+    "commit_time_non_inheritance": {
+      "enum": ["NOT_RUN", "PASS", "FAIL", "FAIL_CLOSED"]
+    },
+    "drift_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["case", "result"],
+        "properties": {
+          "case": {
+            "enum": [
+              "EXPIRED_DELEGATION",
+              "CHANGED_TARGET_SCOPE",
+              "STALE_EVIDENCE",
+              "CHANGED_POLICY_VERSION",
+              "DEGRADED_RECOVERABILITY",
+              "ACTOR_SUBSTITUTION",
+              "TARGET_SUBSTITUTION",
+              "SUPERSEDED_RECOMMENDATION",
+              "CHANGED_DEPENDENCY_STATE",
+              "INVALIDATED_SOURCE_REFERENCE"
+            ]
+          },
+          "result": {"enum": ["NOT_RUN", "ALLOW", "DENY", "FAIL_CLOSED", "DEFER"]},
+          "evidence_refs": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["certification", "execution", "custody", "endorsement"],
+      "properties": {
+        "certification": {"const": false},
+        "execution": {"const": false},
+        "custody": {"const": false},
+        "endorsement": {"const": false}
+      }
+    },
+    "notes": {"type": "array", "items": {"type": "string"}}
+  }
+}
