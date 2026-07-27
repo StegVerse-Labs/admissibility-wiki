@@ -1,12 +1,18 @@
 {
   "schema": "conectrr_itc_synthetic_capability_status.v1",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "state": "READY_FOR_CANONICAL_EXECUTION",
+  "state": "LOCAL_EXECUTION_PASS_PENDING_CANONICAL_OBSERVATION",
   "fixture": "static/data/framework-evaluations/examples/conectrr-itc.synthetic-capability-test.v1.json",
   "validator": "scripts/check_conectrr_itc_synthetic_capability.py",
+  "local_execution_receipt": "static/status/conectrr-itc-synthetic-local-execution-receipt.v1.json",
+  "local_execution_receipt_validator": "scripts/check_conectrr_itc_synthetic_local_execution_receipt.py",
   "aggregate_validator": "scripts/check_admissibility_automation_handoff.py",
   "canonical_validation": "npm run validate",
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "local_execution_result": "PASS",
+  "canonical_workflow_observed": false,
+  "canonical_result": "NOT_YET_OBSERVED",
+  "synthetic_source_hash": "216b7596ce5f675884edfd973a126df283450d799c7a680a68eb3d45b6a99f50",
   "capabilities_exercised": [
     "complete synthetic three-artifact source package",
     "canonical JSON hashing",
@@ -28,7 +34,7 @@
     "endorsement": false
   },
   "non_claims": [
-    "READY_FOR_CANONICAL_EXECUTION is not an observed workflow PASS",
+    "a bounded local PASS is not an observed canonical workflow PASS",
     "synthetic capability testing is not Conectrr interoperability",
     "synthetic artifacts do not substitute for Conectrr source artifacts",
     "a successful smoke test does not establish independent reviewer standing",
