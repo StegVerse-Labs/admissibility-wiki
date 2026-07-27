@@ -1,0 +1,32 @@
+{
+  "schema_version": "framework-review-correction-receipt.v1",
+  "receipt_id": "correction-ta14-example-2026-07-27",
+  "review_id": "review-ta14-reference-docket-2026-07-27",
+  "issued_at": "2026-07-27T07:05:00Z",
+  "issuer": "StegVerse Governed Review Ecosystem",
+  "reason": "Illustrative correction receipt demonstrating append-only correction mechanics. This example does not alter the current TA-14 determination.",
+  "trigger_refs": [
+    "reconstruction-ta14-example-2026-07-27"
+  ],
+  "changes": [
+    {
+      "field": "limitations[example]",
+      "before": "example prior wording",
+      "after": "example corrected wording",
+      "basis_refs": [
+        "reconstruction-ta14-example-2026-07-27"
+      ]
+    }
+  ],
+  "prior_record_ref": "/data/governed-framework-reviews/ta-14.reference-docket.v1.json",
+  "corrected_record_ref": "/data/governed-framework-reviews/ta-14.reference-docket.v1.json",
+  "supersedes_receipt": null,
+  "standing_effect": "NONE",
+  "dissent_preserved": true,
+  "signature_or_receipt_ref": null,
+  "authority_boundary": {
+    "correction_is_public_record": true,
+    "certification_granted": false,
+    "execution_authority_granted": false
+  }
+}
