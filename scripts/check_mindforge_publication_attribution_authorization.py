@@ -18,21 +18,6 @@ EXPECTED_STATEMENT = (
     "execution-authority determination."
 )
 
-VALID_STATES = {
-    "PENDING_REVIEWER_RESPONSE",
-    "CONDITIONAL_APPROVAL_PENDING_CONDITION_CAPTURE",
-    "AUTHORIZED_EXACT",
-    "AUTHORIZED_MODIFIED",
-    "REJECTED",
-}
-VALID_RESPONSE_STATES = {
-    "NOT_RECEIVED",
-    "CONDITIONAL_APPROVAL_INCOMPLETE",
-    "APPROVED_EXACT",
-    "APPROVED_MODIFIED",
-    "REJECTED",
-}
-
 
 def fail(message: str) -> int:
     print(f"MINDFORGE ATTRIBUTION AUTHORIZATION: FAIL: {message}")
@@ -51,23 +36,41 @@ def main() -> int:
     except Exception as exc:
         return fail(f"authorization evidence unreadable: {exc}")
 
-    if record.get("schema_version") != "mindforge_publication_attribution_authorization.v1":
-        return fail("unexpected schema version")
-    if response.get("schema_version") != "mindforge_reviewer_attribution_response.v1":
+    if record.get("schema_version") != "mindforge_publication_attribution_authorization.v2":
+        return fail("unexpected authorization schema version")
+    if response.get("schema_version") != "mindforge_reviewer_attribution_response.v2":
         return fail("unexpected reviewer-response schema version")
+    if intake.get("schema_version") != "0.2.0":
+        return fail("unexpected review-intake schema version")
     if record.get("goal_id") != "mindforge-commit-time-boundary-activation":
         return fail("goal_id mismatch")
     if response.get("goal_id") != record.get("goal_id"):
         return fail("reviewer response goal_id mismatch")
-    if record.get("requested_statement") != EXPECTED_STATEMENT or response.get("requested_statement") != EXPECTED_STATEMENT:
+    if record.get("requested_statement") != EXPECTED_STATEMENT:
         return fail("requested attribution statement drift")
+    if response.get("requested_statement") != EXPECTED_STATEMENT:
+        return fail("response requested statement drift")
+    if intake.get("reviewer_approved_public_description") != EXPECTED_STATEMENT:
+        return fail("intake approved statement drift")
 
-    state = record.get("authorization_state")
-    response_state = response.get("response_state")
-    if state not in VALID_STATES:
-        return fail(f"invalid authorization state: {state}")
-    if response_state not in VALID_RESPONSE_STATES:
-        return fail(f"invalid reviewer response state: {response_state}")
+    if record.get("authorization_state") != "AUTHORIZED_EXACT_WITH_BOUNDARIES":
+        return fail("authorization must remain exact-with-boundaries")
+    if response.get("response_state") != "APPROVED_EXACT_WITH_BOUNDARIES":
+        return fail("response must remain exact-with-boundaries")
+    if record.get("publication_permitted") is not True or response.get("publication_permitted") is not True:
+        return fail("exact approved description must remain publishable")
+    if record.get("authorized_statement") != EXPECTED_STATEMENT:
+        return fail("authorized statement mismatch")
+    if response.get("approved_statement") != EXPECTED_STATEMENT:
+        return fail("response approved statement mismatch")
+    if response.get("authorization_effect") != "EXACT_DESCRIPTION_ONLY":
+        return fail("authorization effect must remain exact-description only")
+    if not record.get("authorized_at") or not response.get("received_at"):
+        return fail("authorization and response timestamps required")
+
+    intake_ref = str(INTAKE.relative_to(ROOT))
+    if record.get("evidence_reference") != intake_ref or response.get("evidence_reference") != intake_ref:
+        return fail("evidence reference mismatch")
 
     for source, label in ((record, "authorization record"), (response, "reviewer response")):
         for field in (
@@ -77,76 +80,61 @@ def main() -> int:
             if source.get(field) is not False:
                 return fail(f"{label} {field} must remain false")
 
-    permitted = record.get("publication_permitted")
-    authorized_statement = record.get("authorized_statement")
-    authorized_at = record.get("authorized_at")
-    evidence_reference = record.get("evidence_reference")
-    intake_ref = str(INTAKE.relative_to(ROOT))
+    for field in (
+        "no_scope_expansion", "private_correspondence_publication_permitted",
+        "screenshot_publication_permitted", "unpublished_draft_publication_permitted",
+        "stronger_attribution_requires_separate_approval", "stegverse_endorsed",
+        "spe_implementation_readiness_validated",
+    ):
+        expected = {
+            "no_scope_expansion": True,
+            "private_correspondence_publication_permitted": False,
+            "screenshot_publication_permitted": False,
+            "unpublished_draft_publication_permitted": False,
+            "stronger_attribution_requires_separate_approval": True,
+            "stegverse_endorsed": False,
+            "spe_implementation_readiness_validated": False,
+        }[field]
+        if record.get(field) is not expected:
+            return fail(f"authorization boundary mismatch: {field}")
 
-    if state == "PENDING_REVIEWER_RESPONSE":
-        if permitted is not False or response_state != "NOT_RECEIVED":
-            return fail("pending state must remain non-publishable with no response")
-        if any(record.get(field) is not None for field in ("authorized_statement", "authorized_at", "evidence_reference")):
-            return fail("pending authorization must not contain approval evidence")
-    elif state == "CONDITIONAL_APPROVAL_PENDING_CONDITION_CAPTURE":
-        if permitted is not False:
-            return fail("conditional approval must remain non-publishable")
-        if authorized_statement != EXPECTED_STATEMENT:
-            return fail("conditional approved statement mismatch")
-        if authorized_at is not None:
-            return fail("conditional approval must not claim final authorization time")
-        if evidence_reference != intake_ref:
-            return fail("conditional approval evidence reference mismatch")
-        if response_state != "CONDITIONAL_APPROVAL_INCOMPLETE":
-            return fail("conditional authorization requires incomplete conditional response state")
-        if response.get("approved_statement") != EXPECTED_STATEMENT:
-            return fail("conditional response statement mismatch")
-        if response.get("authorization_effect") != "FAIL_CLOSED_PENDING_CONDITION_CAPTURE":
-            return fail("conditional response must fail closed")
-        if response.get("publication_permitted") is not False:
-            return fail("conditional response must not permit publication")
-        conditions = intake.get("publication_conditions", {})
-        if conditions.get("verbatim_capture_complete") is not False or conditions.get("gate") != "FAIL_CLOSED_UNTIL_COMPLETE":
-            return fail("conditional intake must remain fail-closed until verbatim condition capture")
-    elif state == "AUTHORIZED_EXACT":
-        if permitted is not True or authorized_statement != EXPECTED_STATEMENT:
-            return fail("exact authorization mismatch")
-        if not authorized_at or not evidence_reference or response_state != "APPROVED_EXACT":
-            return fail("exact authorization requires complete response evidence")
-    elif state == "AUTHORIZED_MODIFIED":
-        if permitted is not True or not isinstance(authorized_statement, str) or not authorized_statement.strip():
-            return fail("modified authorization mismatch")
-        if not authorized_at or not evidence_reference or response_state != "APPROVED_MODIFIED":
-            return fail("modified authorization requires complete response evidence")
-        if response.get("approved_statement") != authorized_statement:
-            return fail("modified approved statements must match")
-    elif state == "REJECTED":
-        if permitted is not False or not evidence_reference or response_state != "REJECTED":
-            return fail("rejected authorization evidence mismatch")
+    boundaries = response.get("publication_boundaries", {})
+    required_true = (
+        "no_scope_expansion", "no_stegverse_endorsement", "no_spe_readiness_claim",
+        "no_mindforge_compatibility_claim", "no_certification_claim",
+        "no_execution_authority_claim", "no_private_correspondence_quote",
+        "no_screenshot_publication", "no_unpublished_draft_publication",
+        "no_stronger_attribution_without_separate_approval",
+    )
+    for field in required_true:
+        if boundaries.get(field) is not True:
+            return fail(f"reviewer response boundary missing: {field}")
+    if response.get("reviewer_response_text_publicly_recorded") is not False:
+        return fail("private response text must not be publicly recorded")
 
-    if response_state != "NOT_RECEIVED":
-        if not response.get("evidence_reference") or not response.get("response_channel"):
-            return fail("observed response requires evidence reference and response channel")
-        if response.get("evidence_reference") != evidence_reference:
-            return fail("authorization and response evidence references must match")
-        if response.get("publication_permitted") is not permitted:
-            return fail("authorization and response publication flags must match")
+    conditions = intake.get("publication_conditions", {})
+    if conditions.get("normalized_capture_complete") is not True:
+        return fail("normalized publication boundaries must be complete")
+    if conditions.get("private_verbatim_text_publication_permitted") is not False:
+        return fail("private condition text must remain non-public")
+    if conditions.get("gate") != "SATISFIED_FOR_EXACT_APPROVED_DESCRIPTION_ONLY":
+        return fail("intake gate must remain exact-description only")
 
     registry_text = REGISTRY.read_text(encoding="utf-8").lower()
-    handoff_text = HANDOFF.read_text(encoding="utf-8")
+    handoff_text = HANDOFF.read_text(encoding="utf-8").lower()
     for marker in (
-        "not an official mindforge specification", "publication authority",
-        "external canonical mindforge source", "mindforge-reviewer-attribution-response.template.json",
-        "alane-zhang-boundary-semantics-review-intake.json",
+        "not an official mindforge specification",
+        "private correspondence",
+        "stronger claim",
+        "exact approved",
     ):
-        if marker not in registry_text:
-            return fail(f"source registry missing marker: {marker}")
-    if "Public statement boundary" not in handoff_text:
-        return fail("handoff missing public statement boundary")
+        if marker not in registry_text and marker not in handoff_text:
+            return fail(f"public boundary marker missing: {marker}")
 
     print(
         "MINDFORGE ATTRIBUTION AUTHORIZATION: PASS "
-        f"state={state} response_state={response_state} publication_permitted={str(permitted).lower()}"
+        "state=AUTHORIZED_EXACT_WITH_BOUNDARIES publication_permitted=true "
+        "private_correspondence_publication=false"
     )
     return 0
 
