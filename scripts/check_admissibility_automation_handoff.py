@@ -50,6 +50,7 @@ MICRO_TIMESCALE_HUMAN_ADMISSIBILITY_CHECK = ROOT / "scripts" / "check_micro_time
 MORRISON_RUNTIME_PROMOTION_GATE_CHECK = ROOT / "scripts" / "check_morrison_runtime_promotion_gate.py"
 MORRISON_RUNTIME_DOWNSTREAM_PROPAGATION_CHECK = ROOT / "scripts" / "check_morrison_runtime_downstream_propagation.py"
 TA14_STANDING_RECONSTRUCTION_CHECK = ROOT / "scripts" / "check_ta14_standing_reconstruction.py"
+ARQUIVONULO_EXECUTION_BOUNDARY_CHECK = ROOT / "scripts" / "check_arquivonulo_execution_boundary.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -134,6 +135,7 @@ def main() -> int:
         (MORRISON_RUNTIME_PROMOTION_GATE_CHECK, "Morrison Runtime promotion gate"),
         (MORRISON_RUNTIME_DOWNSTREAM_PROPAGATION_CHECK, "Morrison Runtime downstream propagation review"),
         (TA14_STANDING_RECONSTRUCTION_CHECK, "TA-14 continuous actor-standing reconstruction"),
+        (ARQUIVONULO_EXECUTION_BOUNDARY_CHECK, "ArquivoNulo execution-boundary evaluation"),
         (RELEASE_READINESS_CHECK, "release readiness"),
     )
     for path, label in checks:
