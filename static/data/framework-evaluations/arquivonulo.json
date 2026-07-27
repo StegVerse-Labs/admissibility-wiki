@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "framework_id": "arquivonulo",
+  "name": "ArquivoNulo Protocol",
+  "evaluation_posture": "BOUNDED_PUBLIC_SOURCE_RECONSTRUCTION",
+  "source_posture": {
+    "owner_controlled_public_sources_observed": true,
+    "owner_confirmed_frozen_declaration": false,
+    "live_test_run": false,
+    "complete_operational_implementation_demonstrated": false
+  },
+  "public_protocols": [
+    {
+      "id": "ANP-001",
+      "name": "Deterministic State Stasis Protocol",
+      "observed_role": "deterministic state anchoring and stasis validation"
+    },
+    {
+      "id": "ANP-002",
+      "name": "Agent Integrity Protocol",
+      "version": "0.1-alpha",
+      "status": "EXPERIMENTAL_DRAFT_PROPOSAL",
+      "observed_role": "zero-knowledge proof of policy conformance from anchored state"
+    },
+    {
+      "id": "ANP-003",
+      "name": "Execution Ledger Protocol",
+      "status": "PUBLICLY_DESCRIBED_AS_CANONICAL",
+      "observed_role": "deterministic execution record integrity and auditability"
+    }
+  ],
+  "observed_state_sequence": [
+    "S0_IDLE",
+    "S1_INGESTION_PERCEPTION",
+    "S2_ANCHORING",
+    "S3_INTEGRITY_CHECK",
+    "S4_STASIS_LOCK",
+    "S5_EXECUTION_TRANSMISSION",
+    "S6_VALIDATION_PROOF_GENERATION",
+    "S7_PROOF_VERIFICATION",
+    "SUCCESS_OR_INTERDICTION"
+  ],
+  "observed_capabilities": {
+    "deterministic_state_anchoring_claimed": true,
+    "drift_detection_claimed": true,
+    "stasis_lock_claimed": true,
+    "zero_knowledge_policy_conformance_claimed": true,
+    "automatic_interdiction_on_invalid_proof_claimed": true,
+    "canonical_hash_signature_archive_artifacts_claimed": true
+  },
+  "execution_boundary": {
+    "status": "PUBLICLY_UNRESOLVED",
+    "question": "Does S5 remain provisional with external effect withheld until S7 succeeds, or does consequence bind before proof verification?",
+    "commit_bound_prevention_demonstrated": false,
+    "post_execution_verification_possible_from_published_sequence": true
+  },
+  "continuing_admissibility": {
+    "status": "PUBLICLY_UNRESOLVED",
+    "integrity_proof_is_not_proxy_for": [
+      "current_authority",
+      "applicable_policy",
+      "admissible_evidence",
+      "environmental_correspondence",
+      "recoverability",
+      "intervention_capacity"
+    ],
+    "preserved_distinctions": [
+      "valid_proof != continuing_admissibility",
+      "operational_continuity != authority_continuity",
+      "anchored_state != current_state_correspondence",
+      "technically_realizable != presently_authorized",
+      "interdiction != pre_consequence_prevention"
+    ]
+  },
+  "interoperability_hypothesis": {
+    "status": "UNTESTED_NON_ENDORSING_HYPOTHESIS",
+    "stegverse_role": "reconstruct current admissibility of a consequence-bearing transition",
+    "arquivonulo_role": "prove and enforce conformance to the admitted transition representation"
+  },
+  "minimum_discriminating_test": [
+    "anchor a valid state and policy representation",
+    "prepare a consequence-bearing execution candidate",
+    "change only one current governing condition after anchoring",
+    "attempt the next transition without updating the prior representation",
+    "observe whether the change is independently reconstructed before effect binds",
+    "record ALLOW, HOLD, DENY, INTERDICT, or EFFECT_ALREADY_BOUND"
+  ],
+  "source_urls": [
+    "https://arquivonulo369-beep.github.io/arquivonulo-foundation/",
+    "https://arquivonulo369-beep.github.io/arquivonulo-foundation/protocols/drafts/ANP-002-agent-integrity.html"
+  ],
+  "authority": {
+    "comparison": false,
+    "certification": false,
+    "endorsement": false,
+    "execution": false,
+    "custody": false,
+    "integration": false
+  },
+  "updated_at": "2026-07-27T00:00:00Z"
+}
