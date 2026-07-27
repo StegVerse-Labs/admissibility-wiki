@@ -394,6 +394,20 @@ jobs:
       - name: Verify governed LLM route set
         run: python scripts/check_governed_llm_deployment_status.py
 
+      - name: Verify ArquivoNulo public route set
+        env:
+          ADMISSIBILITY_WIKI_PUBLIC_BASE_URL: https://stegverse-labs.github.io/admissibility-wiki
+        run: python scripts/check_arquivonulo_public_routes.py
+
+      - name: Upload ArquivoNulo public route observation
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arquivonulo-public-route-observation
+          path: reports/arquivonulo-public-route-observation.json
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Write public activation receipt
         env:
           PAGE_URL: ${{ needs.deploy-pages.outputs.page_url }}
