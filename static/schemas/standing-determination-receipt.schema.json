@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/standing-determination-receipt.schema.json",
+  "title": "Standing Determination Receipt",
+  "description": "Auditable SPE output recording current commit-time standing without authorizing or commanding execution.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "transition_id",
+    "candidate_id",
+    "determination",
+    "determined_at",
+    "reconstruction_basis",
+    "reason_codes",
+    "candidate_authorizing",
+    "execution_command",
+    "execution_occurred"
+  ],
+  "properties": {
+    "schema_version": {"const": "standing_determination_receipt.v1"},
+    "receipt_id": {"type": "string", "minLength": 1},
+    "transition_id": {"type": "string", "minLength": 1},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "determination": {"enum": ["ALLOW", "DENY", "FAIL_CLOSED"]},
+    "determined_at": {"type": "string", "format": "date-time"},
+    "validity_window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["not_before", "not_after", "trusted_time_source"],
+      "properties": {
+        "not_before": {"type": "string", "format": "date-time"},
+        "not_after": {"type": "string", "format": "date-time"},
+        "trusted_time_source": {"type": "string", "minLength": 1}
+      }
+    },
+    "reconstruction_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor", "target", "action", "scope", "policy", "delegation", "evidence", "execution_context", "recoverability"],
+      "properties": {
+        "actor": {"type": "string", "minLength": 1},
+        "target": {"type": "string", "minLength": 1},
+        "action": {"type": "string", "minLength": 1},
+        "scope": {"type": "string", "minLength": 1},
+        "policy": {"type": "string", "minLength": 1},
+        "delegation": {"type": "string", "minLength": 1},
+        "evidence": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+        "execution_context": {"type": "string", "minLength": 1},
+        "recoverability": {"type": "string", "minLength": 1}
+      }
+    },
+    "reason_codes": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "candidate_authorizing": {"const": false},
+    "execution_command": {"const": false},
+    "execution_occurred": {"const": false},
+    "receipt_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}
