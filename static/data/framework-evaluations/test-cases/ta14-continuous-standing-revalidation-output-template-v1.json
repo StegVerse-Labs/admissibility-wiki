@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "test_case_id": "ta14-continuous-standing-revalidation-v1",
+  "run_id": "TO_BE_ASSIGNED_BY_EXECUTOR",
+  "framework_id": "ta-14",
+  "executor": {
+    "name": "TO_BE_DECLARED",
+    "version": "TO_BE_DECLARED",
+    "environment": "TO_BE_DECLARED"
+  },
+  "input_refs": {
+    "fixture": "/data/framework-evaluations/test-cases/ta14-continuous-standing-revalidation-v1.json",
+    "frozen_route_hash": "sha256:TO_BE_REPLACED_WITH_OBSERVED_HASH",
+    "external_revocation_event_id": "revocation-event-example-001"
+  },
+  "observations": {
+    "route_record_changed": null,
+    "external_authority_source_queried": null,
+    "external_authority_status_observed": null,
+    "observation_timestamp": null,
+    "decision_timestamp": null,
+    "consequence_timestamp": null
+  },
+  "decision": {
+    "value": "TO_BE_OBSERVED",
+    "reason_class": "TO_BE_OBSERVED",
+    "before_consequence": null
+  },
+  "evidence_refs": [],
+  "replay": {
+    "replayable": null,
+    "replay_bundle_ref": null,
+    "same_result": null
+  },
+  "reconstruction": {
+    "independently_reconstructable": null,
+    "reconstruction_receipt_ref": null
+  },
+  "determination": {
+    "continuous_actor_standing_reconstruction": "UNDETERMINED_UNTIL_RUN",
+    "allowed_values": [
+      "SUPPORTED_BY_THIS_TEST",
+      "NOT_SUPPORTED_BY_THIS_TEST",
+      "PUBLICLY_UNRESOLVED"
+    ]
+  },
+  "authority_boundary": {
+    "certification_granted": false,
+    "execution_authority_granted": false,
+    "universal_capability_claim": false,
+    "universal_failure_claim": false
+  }
+}
