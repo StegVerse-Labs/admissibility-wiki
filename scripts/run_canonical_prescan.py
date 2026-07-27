@@ -63,6 +63,14 @@ def workflow_run_context() -> dict[str, object]:
     }
 
 
+def display_path(path: Path) -> str:
+    """Return a stable readable path without assuming tests keep it under ROOT."""
+    try:
+        return str(path.relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
 def append_summary(report: dict[str, object]) -> None:
     summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
     if not summary_path:
@@ -152,7 +160,7 @@ def main() -> int:
     append_summary(report)
     print(f"CANONICAL PRE-SCAN: {report['overall_status']}")
     print(f"inventory sha256: {report['command_inventory_sha256']}")
-    print(f"report: {REPORT.relative_to(ROOT)}")
+    print(f"report: {display_path(REPORT)}")
     return 1 if failed else 0
 
 
