@@ -20,6 +20,9 @@ REQUIRED_FILES = (
     "scripts/check_standing_determination_receipt.py",
     "static/status/mindforge-boundary-review-status.json",
     "receipts/mindforge-boundary-review-receipt.json",
+    "static/status/mindforge-publication-attribution-authorization.json",
+    "scripts/check_mindforge_publication_attribution_authorization.py",
+    "scripts/check_mindforge_source_location_registry.py",
     "docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md",
     "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
     "ADMISSIBILITY_MIRROR_HANDOFF.md",
@@ -29,9 +32,11 @@ REGISTRY_MARKERS = (
     "External canonical MindForge source: NOT ATTACHED",
     "Private correspondence: provenance evidence only",
     "StegVerse doctrine: discussion-derived interpretation",
+    "Reviewer attribution authorization: explicit response required; silence creates no authorization",
     "nine-case reconstruction of the original private boundary discussion",
     "ten-case StegVerse conformance suite",
     "Neither becomes an official MindForge specification",
+    "Publication attribution remains prohibited",
     "No downstream location becomes an independent editorial or canonical MindForge source",
 )
 
@@ -94,7 +99,7 @@ def main() -> int:
     print(
         "MINDFORGE SOURCE LOCATION ALIGNMENT: PASS "
         f"({len(REQUIRED_FILES)} locations; canonical_external_source=NOT_ATTACHED; "
-        "downstream_editorial_authority=NONE)"
+        "downstream_editorial_authority=NONE; attribution_authorization=EXPLICIT_ONLY)"
     )
     return 0
 
