@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, public determinations, and reciprocal self-review.
-Current state: three governed dockets, reciprocal StegVerse self-review, review-governance schemas, frozen reconstruction manifest, bounded route-observation receipt, validators, navigation, multi-docket status, and bounded external-framework intake records are installed.
+Current state: three governed dockets, reciprocal StegVerse self-review, review-governance schemas, frozen reconstruction manifest, bounded route-observation receipt, validators, navigation, multi-docket status, and bounded external-framework intake records including One World AI Limited and Conectrr ITC are installed.
 Manual task requirement: none.
 User manual action required: false.
 ```
@@ -170,6 +170,27 @@ Execution authority: false
 
 Do not promote One World AI into a governed public review docket until a repository, paper, frozen declaration, executable artifact, or commit-bound trace is available.
 
+### Conectrr Intent Transition Contract
+
+```text
+Framework record: docs/external-frameworks/conectrr-itc-interoperability-intake.md
+Machine-readable record: static/data/framework-evaluations/conectrr-itc.json
+Test profile: static/data/framework-evaluations/examples/conectrr-itc.interoperability-test-profile.v1.json
+Source posture: founder-authored direct correspondence supplied as screenshots
+Implementation claim: first ITC implementation complete in current Conectrr MVP
+Declared boundary: discovery-layer-only, non-authorizing, unknown fields preserved empty
+Specification: OFFERED_NOT_RECEIVED
+Canonical generated ITC: OFFERED_NOT_RECEIVED
+Internal validation report: OFFERED_NOT_RECEIVED
+Live interoperability test: NOT_RUN
+Replay: NOT_RUN
+Independent reconstruction: NOT_RUN
+Certification: false
+Execution authority: false
+```
+
+The bounded path is `Conectrr discovery output -> immutable ITC -> independent reconstruction -> AGREE / DISAGREE / DEFER -> non-authorizing Commitment Candidate -> fresh SPE standing determination`. The source ITC must not inherit consent, authority, admissibility, governance, commitment, execution, or outcome state.
+
 ## Deployment and Validation Gate
 
 ```text
@@ -194,6 +215,8 @@ Required work:
 - bind canonical hashes or signatures when Publisher or Master Records custody is authorized
 - preserve divergent findings, conflicts, dissent, corrections, and supersession
 - obtain stronger One World AI technical evidence before docket promotion
+- receive and freeze the Conectrr ITC specification, canonical generated ITC, and internal validation report
+- run Conectrr source-integrity, semantic-boundary, reconstruction, disagreement, deferral, replay, and commit-time non-inheritance checks
 ```
 
 ## Mirror Coordination
@@ -217,6 +240,13 @@ StegVerse-Labs/admissibility-wiki:
 - canonical hash/signature receipts for reconstruction and correction objects
 - canonical workflow-backed update to the route-observation receipt
 - One World AI technical source artifact or explicit owner-confirmed frozen declaration
+- Conectrr ITC Specification v1.0 Draft frozen source artifact
+- canonical Conectrr-generated ITC frozen source artifact
+- Conectrr internal validation report frozen source artifact
+- Conectrr immutable-source receipt and validator
+- Conectrr independent reconstruction and replay receipts
+- Conectrr AGREE / DISAGREE / DEFER result fixture
+- Conectrr commit-time authority non-inheritance edge-case results
 
 StegVerse-Labs/Site:
 - public-anchor discovery and comparison projection, pending SITE_MIRROR_HANDOFF authority
@@ -230,7 +260,7 @@ StegVerse-002/stegguardian-wiki:
 
 ## Permitted Continuation Scope
 
-A successor session may validate and repair the three-docket system, maintain or supersede reconstruction manifests, update route-observation receipts from canonical evidence, preserve challenges and corrections, maintain bounded framework records, and queue downstream awareness without unauthorized destination mutation.
+A successor session may validate and repair the three-docket system, maintain or supersede reconstruction manifests, update route-observation receipts from canonical evidence, preserve challenges and corrections, maintain bounded framework records, prepare Conectrr ITC interoperability fixtures, and queue downstream awareness without unauthorized destination mutation.
 
 ## Handoff Instruction
 
