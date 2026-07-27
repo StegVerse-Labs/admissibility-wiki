@@ -2,22 +2,45 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_BASE = ROOT / "static" / "data" / "framework-evaluations"
 BASE = REGISTRY_BASE / "asro"
 DOC = ROOT / "docs" / "external-frameworks" / "asro.md"
+DERIVATIVE = BASE / "stegverse-generated-bounded-metadata-derivative.json"
+DEPRECATED_ALIAS = BASE / "asro-author-provided-bounded-representative-object.json"
+DEPENDENT_VALIDATORS = [
+    ROOT / "scripts" / "check_asro_provenance_correction.py",
+    ROOT / "scripts" / "check_asro_comparison_governance.py",
+]
 
 
 def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def run_validator(path: Path) -> tuple[int, str]:
+    if not path.exists():
+        return 127, f"missing validator: {path.relative_to(ROOT)}"
+    result = subprocess.run(
+        [sys.executable, str(path)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    return result.returncode, result.stdout.rstrip()
+
+
 def main() -> int:
     failures: list[str] = []
     declaration = load(BASE / "stegverse-companion-layer-declaration.json")
-    representative = load(BASE / "asro-author-provided-bounded-representative-object.json")
+    derivative = load(DERIVATIVE)
+    deprecated_alias = load(DEPRECATED_ALIAS)
     reviewer = load(BASE / "reviewer-profile.json")
     manifest = load(BASE / "correspondence-manifest.json")
     expected = load(BASE / "expected-results.json")
@@ -27,10 +50,30 @@ def main() -> int:
 
     if declaration.get("canonical_status") != "CONTROLLING_SOURCE_DECLARATION":
         failures.append("StegVerse declaration is not controlling")
-    if representative.get("canonical_status") != "NON_CANONICAL":
-        failures.append("ASRO representative object must remain non-canonical")
-    if representative.get("released_asro_native_schema") is not False:
-        failures.append("representative object must not be presented as a released ASRO-native schema")
+
+    if derivative.get("artifact_type") != "stegverse_generated_bounded_metadata_derivative":
+        failures.append("public comparison object must be classified as a StegVerse-generated derivative")
+    if derivative.get("creator") != "StegVerse Labs":
+        failures.append("public derivative creator must be StegVerse Labs")
+    source = derivative.get("source_provenance", {})
+    if source.get("source_provider") != "James Aull / ASRO":
+        failures.append("underlying source provider attribution is missing")
+    if source.get("source_example_publicly_reproduced") is not False:
+        failures.append("underlying source example must not be represented as publicly reproduced")
+    if source.get("source_input_content_hash") is not None:
+        failures.append("source-input hash must remain unset until mutually bound")
+    if source.get("source_linkage_status") != "UNRESOLVED":
+        failures.append("source linkage must remain unresolved until mutually approved")
+    if derivative.get("canonical_status") != "NON_CANONICAL":
+        failures.append("StegVerse derivative must remain non-canonical")
+    if derivative.get("released_asro_native_schema") is not False:
+        failures.append("derivative must not be presented as a released ASRO-native schema")
+
+    if deprecated_alias.get("status") != "DEPRECATED_PROVENANCE_ALIAS":
+        failures.append("historical misleading path must remain a deprecated provenance alias")
+    if deprecated_alias.get("replacement_path") != str(DERIVATIVE.relative_to(ROOT)):
+        failures.append("deprecated alias must point to the corrected derivative")
+
     if reviewer.get("issuer") != "unresolved":
         failures.append("reviewer issuer must remain unresolved until designation")
     if reviewer.get("provenance", {}).get("derivation_status") != "DERIVATIVE":
@@ -85,12 +128,20 @@ def main() -> int:
         if marker not in doc_text:
             failures.append(f"ASRO documentation missing marker: {marker}")
 
+    for validator in DEPENDENT_VALIDATORS:
+        code, output = run_validator(validator)
+        if output:
+            print(output)
+        if code != 0:
+            failures.append(f"dependent validator failed: {validator.relative_to(ROOT)}")
+
     if failures:
         print("ASRO BOUNDED COMPARISON: FAIL")
         for failure in failures:
             print(f"- {failure}")
         return 1
     print("ASRO BOUNDED COMPARISON: PASS")
+    print("Source/derivative provenance, owner declaration, contributor protocol, and append-only ledger remain fail-closed.")
     return 0
 
 
