@@ -32,7 +32,7 @@ const sidebars = {
     },
     {type: 'category', label: 'Research', items: ['research/micro-timescale-human-admissibility-observation-protocol','research/stegverse-complete-security-paper','research/terminology-overlap-research-notes']},
     {type: 'category', label: 'Social', items: ['social/stegverse-quantum-security-carousel']},
-    {type: 'category', label: 'StegVerse', items: ['stegverse/stegcore']},
+    {type: 'category', label: 'StegVerse', items: ['stegverse/stegcore','stegverse/public-anchor-self-review-docket']},
   ],
 };
 
