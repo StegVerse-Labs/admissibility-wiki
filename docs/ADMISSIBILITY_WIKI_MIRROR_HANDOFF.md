@@ -6,7 +6,7 @@ This file is the current source of truth for continuing `StegVerse-Labs/admissib
 
 ```text
 Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, public determinations, and reciprocal self-review.
-Current state: three governed dockets, reciprocal StegVerse self-review, frozen reconstruction boundary, reconstruction invitation, bounded external-framework intakes, and a canonically bound Conectrr ITC package with source-package, disposition, and immutable-source hash-receipt fixtures validated through the canonical aggregate.
+Current state: three governed dockets, reciprocal StegVerse self-review, frozen reconstruction boundary, reconstruction invitation, bounded external-framework intakes, a canonically bound Conectrr ITC pre-execution package, and a deterministic synthetic capability smoke test are installed.
 Manual task requirement: none.
 User manual action required: false.
 ```
@@ -15,7 +15,7 @@ User manual action required: false.
 
 ```text
 Goal id: wiki-public-anchor-independent-reconstruction-activation
-State: CONECTRR_PRE_EXECUTION_RECEIPT_CHAIN_CANONICALLY_VALIDATED_PENDING_WORKFLOW_OBSERVATION_AND_SOURCE_ARTIFACTS
+State: CONECTRR_SYNTHETIC_CAPABILITY_READY_FOR_CANONICAL_EXECUTION_PENDING_WORKFLOW_OBSERVATION_AND_EXTERNAL_SOURCE_ARTIFACTS
 Authority posture: public review and reconstruction infrastructure only; no certification, government recognition, custody, endorsement, or execution authority created.
 ```
 
@@ -66,6 +66,7 @@ AGREE != permission
 DISAGREE != source invalidation
 DEFER != failure
 Commitment Candidate != execution authority
+synthetic PASS != external validation
 ```
 
 ## Docket Boundaries
@@ -88,6 +89,9 @@ Pending result: static/data/framework-evaluations/examples/conectrr-itc.interope
 Pending source receipt: static/data/framework-evaluations/examples/conectrr-itc.source-package-receipt.pending.v1.json
 Disposition fixtures: static/data/framework-evaluations/examples/conectrr-itc.disposition-fixtures.v1.json
 Immutable-source hash receipt template: static/data/framework-evaluations/examples/conectrr-itc.immutable-source-hash-receipt.template.v1.json
+Synthetic capability fixture: static/data/framework-evaluations/examples/conectrr-itc.synthetic-capability-test.v1.json
+Synthetic capability validator: scripts/check_conectrr_itc_synthetic_capability.py
+Synthetic capability status: static/status/conectrr-itc-synthetic-capability-status.json
 Boundary validator: scripts/check_conectrr_itc_interoperability.py
 Canonical binding status: static/status/conectrr-itc-canonical-validation-binding-status.json
 Aggregate validator: scripts/check_admissibility_automation_handoff.py
@@ -96,21 +100,21 @@ Canonical workflow: .github/workflows/validate-chain-continuation.yml
 Binding state: BOUND_THROUGH_CANONICAL_AGGREGATE
 Disposition fixture state: BOUND_INTO_INTEROPERABILITY_VALIDATOR
 Immutable-source hash receipt state: BOUND_INTO_INTEROPERABILITY_VALIDATOR
+Synthetic capability state: READY_FOR_CANONICAL_EXECUTION
 Workflow observation: NOT_OBSERVED_FOR_LATEST_COMMIT
-Observed validator commit: 7faaedc59a471fa1c1d9da6c18f8ad0056cfc5db
-Workflow runs observed: 0
 Source-package state: AWAITING_CANONICAL_SOURCE_ARTIFACTS
 Specification: OFFERED_NOT_RECEIVED
 Canonical generated ITC: OFFERED_NOT_RECEIVED
 Internal validation report: OFFERED_NOT_RECEIVED
-Live interoperability test: NOT_RUN
-Replay: NOT_RUN
-Independent reconstruction: NOT_RUN
+Live external interoperability test: NOT_RUN
+Synthetic smoke test: READY_NOT_YET_OBSERVED
+Replay: NOT_RUN_EXTERNALLY
+Independent reconstruction: NOT_RUN_EXTERNALLY
 Certification: false
 Execution authority: false
 ```
 
-Bounded path:
+Bounded external path:
 
 ```text
 Conectrr discovery output
@@ -127,9 +131,23 @@ Conectrr discovery output
 -> ALLOW / DENY / FAIL-CLOSED
 ```
 
-The validator now binds and verifies the immutable-source hash receipt template. While the three-artifact source package is absent, the template must remain unexecuted, all paths, hashes, timestamps, actors, and run identifiers must remain empty, testing must remain unauthorized, and every precondition must remain false. A future executed receipt must use lowercase SHA-256 values, record the canonical path and capture identities, compute `hashes_match` from the exact pre/post comparison, and fail if the canonical ITC changed. Executed interoperability results must use the same hashes recorded by that receipt.
+Synthetic readiness path:
 
-The validator also enforces exactly one `AGREE`, `DISAGREE`, and `DEFER` fixture; stable fixture identities; source-package correlation; immutable source posture; all ten drift vectors; and no inherited certification, execution, custody, or endorsement authority.
+```text
+synthetic three-artifact package
+-> deterministic canonical JSON hashing
+-> immutable pre/post comparison
+-> deterministic replay comparison
+-> AGREE / DISAGREE / DEFER coverage
+-> all ten drift vectors represented
+-> prohibited authority semantics verified
+-> zero authority inheritance
+-> canonical aggregate
+-> npm run validate
+-> canonical workflow observation
+```
+
+The synthetic capability fixture and validator permit immediate testing of the complete local evidence machinery without misrepresenting test data as Conectrr-provided evidence. The smoke test computes deterministic SHA-256 values, confirms replay stability, exercises all three dispositions, checks all ten drift vectors, verifies excluded authority semantics, and holds certification, execution, custody, and endorsement false. It is canonically bound through `scripts/check_admissibility_automation_handoff.py`.
 
 ## Deployment and Validation Gate
 
@@ -142,17 +160,15 @@ Deployment job: deploy-pages
 Public verification job: verify-public-pages
 ```
 
-No workflow run was returned for validator commit `7faaedc59a471fa1c1d9da6c18f8ad0056cfc5db`. Do not convert this absence into a PASS or FAIL claim.
-
-Do not create another active workflow unless repository standards change.
+No observed workflow execution may be converted into a PASS or FAIL claim without canonical evidence. Do not create another active workflow unless repository standards change.
 
 ## Next Goal
 
 ```text
-Goal: accountable independent reconstruction and canonical custody binding
+Goal: execute and observe the synthetic capability test, then replace synthetic inputs with accountable external evidence
 Required work:
-- observe canonical validation and public deployment for the latest package commit
-- retain the first canonical PASS or first-failure evidence without rewriting history
+- observe canonical execution of the synthetic capability smoke test
+- retain first canonical PASS or first-failure evidence without rewriting history
 - update workflow and route-observation receipts only from canonical evidence
 - receive and freeze the Conectrr ITC specification, canonical generated ITC, and internal validation report
 - convert the pending source-package receipt only when all three artifacts are present
@@ -169,7 +185,8 @@ Required work:
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-- canonical workflow PASS or retained first-failure receipt
+- canonical synthetic smoke-test PASS or retained first-failure receipt
+- canonical workflow observation receipt
 - Conectrr ITC Specification v1.0 Draft frozen source artifact
 - canonical Conectrr-generated ITC frozen source artifact
 - Conectrr internal validation report frozen source artifact
@@ -206,7 +223,7 @@ Queued propagation is not completed propagation. Destination mutation remains pr
 
 ## Permitted Continuation Scope
 
-A successor session may validate and repair the canonically integrated reconstruction and Conectrr packages, update workflow-observation receipts from canonical evidence, maintain or supersede reconstruction manifests, preserve challenges and corrections, prepare source-ingestion and executed-result fixtures, and queue downstream awareness without unauthorized destination mutation.
+A successor session may execute, observe, validate, and repair the synthetic capability path; validate and repair the external Conectrr package; update workflow-observation receipts from canonical evidence; maintain or supersede reconstruction manifests; preserve challenges and corrections; prepare source-ingestion and executed-result fixtures; and queue downstream awareness without unauthorized destination mutation.
 
 ## Handoff Instruction
 
