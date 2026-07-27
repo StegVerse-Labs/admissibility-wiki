@@ -21,6 +21,7 @@ REQUIRED_FILES = (
     "static/status/mindforge-boundary-review-status.json",
     "receipts/mindforge-boundary-review-receipt.json",
     "static/status/mindforge-publication-attribution-authorization.json",
+    "docs/external-frameworks/evidence/mindforge-reviewer-attribution-response.template.json",
     "scripts/check_mindforge_publication_attribution_authorization.py",
     "docs/external-frameworks/evidence/mindforge-publication-verification.template.json",
     "scripts/check_mindforge_publication_verification.py",
@@ -35,12 +36,12 @@ REGISTRY_MARKERS = (
     "Private correspondence: provenance evidence only",
     "StegVerse doctrine: discussion-derived interpretation",
     "Reviewer attribution authorization: explicit response required; silence creates no authorization",
+    "Reviewer response evidence: verbatim response plus channel, timestamp, and evidence reference",
     "Publication verification: successful workflow, build, deployment, and route evidence required",
     "nine-case reconstruction of the original private boundary discussion",
     "ten-case StegVerse conformance suite",
     "Neither becomes an official MindForge specification",
     "Publication attribution remains prohibited",
-    "Publication activation remains unverified",
     "No downstream location becomes an independent editorial or canonical MindForge source",
 )
 
@@ -52,6 +53,7 @@ HANDOFF_MARKERS = (
     "repository-wide validation: FAIL_CLOSED_OBSERVED",
     "A passing goal-local checker does not override the repository-wide fail-closed gate",
     "mindforge-publication-verification.template.json",
+    "mindforge-reviewer-attribution-response.template.json",
 )
 
 
@@ -105,7 +107,7 @@ def main() -> int:
         "MINDFORGE SOURCE LOCATION ALIGNMENT: PASS "
         f"({len(REQUIRED_FILES)} locations; canonical_external_source=NOT_ATTACHED; "
         "downstream_editorial_authority=NONE; attribution_authorization=EXPLICIT_ONLY; "
-        "publication_verification=RUN_BOUND_ONLY)"
+        "reviewer_response=VERBATIM_EVIDENCE_REQUIRED; publication_verification=RUN_BOUND_ONLY)"
     )
     return 0
 
