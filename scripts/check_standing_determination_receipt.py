@@ -176,11 +176,15 @@ def main() -> int:
         "ALLOW",
         "DENY",
         "FAIL-CLOSED",
-        "does not authorize execution",
+        "not an execution command",
     ):
         if marker not in contract_text:
             failures.append(f"contract missing marker: {marker}")
-    for marker in ("discussion-derived", "does not certify MindForge", "execution authority"):
+    for marker in (
+        "provenance for the StegVerse boundary formulation only",
+        "does not certify MindForge",
+        "execution authority",
+    ):
         if marker not in mindforge_text:
             failures.append(f"MindForge page missing marker: {marker}")
 
