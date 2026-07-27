@@ -3,12 +3,14 @@
   "receipt_id": "receipt-asro-bounded-comparison-run-001",
   "issued_at": "2026-07-23T00:00:05Z",
   "issuer": "StegVerse-Labs/admissibility-wiki",
+  "status": "PROVISIONAL_SUPERSEDED_PENDING_CORRECTED_RUN",
   "run_id": "asro-declared-reference-membership-v1-stegverse-run-001",
   "test_case_id": "asro-declared-reference-membership-v1",
-  "test_package_sha256": "76b89f81df802245d8cb309cc3b432ae283eb22f1f73fe7839c90848bd044537",
+  "historical_test_package_sha256": "76b89f81df802245d8cb309cc3b432ae283eb22f1f73fe7839c90848bd044537",
+  "current_test_package_sha256": null,
   "run_artifact": "static/data/framework-evaluations/runs/asro-declared-reference-membership-v1-stegverse-run-001.jsonl",
-  "result": {
-    "correspondence": "ESTABLISHED",
+  "historical_result": {
+    "correspondence": "ESTABLISHED_FOR_THEN-DECLARED_PUBLIC_ARTIFACT",
     "replay": "PASS",
     "reconstruction": "PASS",
     "admissibility": "NOT_EVALUATED",
@@ -16,19 +18,36 @@
     "execution": "NONE",
     "custody": "NONE"
   },
+  "current_effect": {
+    "correspondence": "UNRESOLVED_PENDING_CORRECTED_RUN_AND_RECOMPUTED_INTEGRITY",
+    "external_asro_native_execution": "NOT_TESTED",
+    "reviewer_issuer": "unresolved"
+  },
+  "provenance_correction": {
+    "required": true,
+    "reason": "The public JSON used in the historical run is a StegVerse-generated metadata derivative, not the original bounded source JSON supplied by James Aull / ASRO™.",
+    "correction_record": "docs/external-frameworks/asro-provenance-correction-2026-07-26.md",
+    "historical_run_preserved": true,
+    "corrected_run_required": true
+  },
   "bounded_non_claims": {
     "external_asro_execution_observed": false,
     "canonical_asro_schema_established": false,
+    "original_source_json_hashed": false,
+    "original_source_correspondence_established": false,
     "truth_established": false,
     "sufficiency_established": false,
     "validity_established": false,
     "admissibility_established": false,
     "authority_inherited": false,
     "execution_authority_granted": false,
-    "custody_transferred": false
+    "custody_transferred": false,
+    "certification_issued": false,
+    "joint_issuance_claimed": false
   },
   "reviewer_issuer": "unresolved",
   "projection_authority": "NONE",
   "signature_status": "UNSIGNED_REPOSITORY_RECEIPT",
-  "receipt_hash": "PENDING_CANONICAL_HASH"
+  "receipt_hash": null,
+  "finalization_status": "UNFINALIZED_PENDING_CORRECTED_PACKAGE_HASH_AND_RUN"
 }
