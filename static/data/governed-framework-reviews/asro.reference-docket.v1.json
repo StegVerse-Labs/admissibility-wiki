@@ -1,0 +1,145 @@
+{
+  "schema_version": "governed-framework-review.v1",
+  "review_id": "review-asro-reference-docket-2026-07-27",
+  "framework": {
+    "id": "asro",
+    "name": "AI Systems Reliability Operator",
+    "version": "public-materials-and-bounded-package-2026-07-27",
+    "canonical_source": "https://aisystemsreliability.org/"
+  },
+  "review_time": "2026-07-27T08:20:00Z",
+  "relevant_time_t": "2026-07-27T08:20:00Z",
+  "declared_capabilities": [
+    {
+      "id": "asro-governance-state-attestation",
+      "description": "Attest whether an AI system remained within its declared governance state over time.",
+      "status": "DECLARED",
+      "scope": "Public ASRO framing and repository materials.",
+      "evidence_refs": ["asro-official-site", "asro-public-repository"]
+    }
+  ],
+  "observed_capabilities": [
+    {
+      "id": "asro-bounded-reference-membership",
+      "description": "A frozen StegVerse comparison package can evaluate declared-reference collection membership and preserve a deterministic event stream.",
+      "status": "OBSERVED",
+      "scope": "StegVerse bounded comparison only; not an ASRO-native execution.",
+      "evidence_refs": ["asro-test-fixture", "asro-stegverse-event-stream", "asro-bounded-receipt"]
+    },
+    {
+      "id": "asro-bounded-replay-reconstruction",
+      "description": "The frozen StegVerse package replayed and reconstructed successfully.",
+      "status": "OBSERVED",
+      "scope": "Replay and reconstruction of the StegVerse comparison package.",
+      "evidence_refs": ["asro-stegverse-event-stream", "asro-bounded-receipt"]
+    }
+  ],
+  "verified_capabilities": [],
+  "unsupported_claims": [
+    "External ASRO-native execution is not established.",
+    "Native interoperability is not established.",
+    "The reviewer role does not identify an accountable issuer.",
+    "Correspondence does not establish admissibility, authority, custody, certification, or execution permission."
+  ],
+  "evidence_refs": [
+    {
+      "id": "asro-official-site",
+      "class": "OFFICIAL_SOURCE",
+      "locator": "https://aisystemsreliability.org/",
+      "hash": null,
+      "timestamp": null,
+      "access": "PUBLIC"
+    },
+    {
+      "id": "asro-public-repository",
+      "class": "IMPLEMENTATION",
+      "locator": "https://github.com/magicianzcardstockllc/asro",
+      "hash": null,
+      "timestamp": null,
+      "access": "PUBLIC"
+    },
+    {
+      "id": "asro-test-fixture",
+      "class": "ANALYSIS",
+      "locator": "/data/framework-evaluations/test-cases/asro-declared-reference-membership-v1.json",
+      "hash": null,
+      "timestamp": "2026-07-27T08:20:00Z",
+      "access": "PUBLIC"
+    },
+    {
+      "id": "asro-stegverse-event-stream",
+      "class": "OBSERVED_BEHAVIOR",
+      "locator": "/data/framework-evaluations/runs/asro-declared-reference-membership-v1-stegverse-run-001.jsonl",
+      "hash": null,
+      "timestamp": "2026-07-27T08:20:00Z",
+      "access": "PUBLIC"
+    },
+    {
+      "id": "asro-bounded-receipt",
+      "class": "RECEIPT",
+      "locator": "/receipts/asro-bounded-comparison-run-001.json",
+      "hash": null,
+      "timestamp": "2026-07-27T08:20:00Z",
+      "access": "PUBLIC"
+    }
+  ],
+  "test_results": [
+    {
+      "test_id": "asro-declared-reference-membership-v1",
+      "profile": "StegVerse bounded declared-reference collection-membership comparison",
+      "result": "PASS",
+      "input_hash": null,
+      "output_hash": null,
+      "evidence_refs": ["asro-test-fixture", "asro-stegverse-event-stream", "asro-bounded-receipt"],
+      "notes": "This is a StegVerse bounded run, not an external ASRO-native execution."
+    },
+    {
+      "test_id": "asro-native-execution-v1",
+      "profile": "External ASRO-native execution under a frozen version and runtime configuration",
+      "result": "NOT_RUN",
+      "input_hash": null,
+      "output_hash": null,
+      "evidence_refs": ["asro-official-site", "asro-public-repository"],
+      "notes": "External ASRO-native execution remains unobserved."
+    }
+  ],
+  "determinations": [
+    {
+      "id": "det-asro-reference-docket-001",
+      "issuer": "StegVerse-Labs/admissibility-wiki",
+      "result": "ASRO is provisionally mapped as an external governance-state attestation and evidence surface. The StegVerse bounded comparison demonstrates correspondence, replay, and reconstruction only within the frozen comparison package. External ASRO-native execution and accountable reviewer issuance remain unresolved.",
+      "basis_refs": ["asro-official-site", "asro-public-repository", "asro-test-fixture", "asro-stegverse-event-stream", "asro-bounded-receipt"],
+      "issued_at": "2026-07-27T08:20:00Z",
+      "uncertainty": [
+        "No versioned external source snapshot or source hash is bound.",
+        "No external ASRO-native runtime output is present.",
+        "The accountable reviewer issuer remains unresolved.",
+        "Independent external reproduction has not been observed."
+      ]
+    }
+  ],
+  "framework_responses": [],
+  "independent_reconstructions": [
+    {
+      "id": "reconstruction-asro-stegverse-bounded-001",
+      "reviewer": "StegVerse-Labs/admissibility-wiki",
+      "performed_at": "2026-07-27T08:20:00Z",
+      "result": "PARTIAL",
+      "difference_summary": "The frozen StegVerse comparison package reproduced its own declared-reference membership result; native ASRO behavior was not reconstructed.",
+      "artifact_refs": ["asro-test-fixture", "asro-stegverse-event-stream", "asro-bounded-receipt"]
+    }
+  ],
+  "corrections": [],
+  "supersedes": null,
+  "superseded_by": null,
+  "challenge_status": "OPEN",
+  "reconstruction_status": "PARTIAL",
+  "current_standing": "PROVISIONAL",
+  "limitations": [
+    "The bounded representative object is non-canonical.",
+    "The run was executed by StegVerse rather than an external ASRO-native implementation.",
+    "Replay and reconstruction do not create execution authority.",
+    "No certification, endorsement, custody, or native interoperability is established."
+  ],
+  "public_verification_instructions": "Inspect the source and repository references, then replay the frozen test case against the published JSONL event stream and receipt. Treat external ASRO-native execution as NOT_RUN and preserve authority as NONE."
+}
