@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/governed-framework-review.schema.json",
+  "title": "Governed Framework Review Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "review_id",
+    "framework",
+    "review_time",
+    "declared_capabilities",
+    "observed_capabilities",
+    "verified_capabilities",
+    "evidence_refs",
+    "test_results",
+    "determinations",
+    "challenge_status",
+    "reconstruction_status",
+    "current_standing"
+  ],
+  "properties": {
+    "schema_version": {"const": "governed-framework-review.v1"},
+    "review_id": {"type": "string", "minLength": 1},
+    "framework": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "version"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$"},
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "canonical_source": {"type": ["string", "null"]}
+      }
+    },
+    "review_time": {"type": "string", "format": "date-time"},
+    "relevant_time_t": {"type": ["string", "null"], "format": "date-time"},
+    "declared_capabilities": {"type": "array", "items": {"$ref": "#/$defs/capability"}},
+    "observed_capabilities": {"type": "array", "items": {"$ref": "#/$defs/capability"}},
+    "verified_capabilities": {"type": "array", "items": {"$ref": "#/$defs/capability"}},
+    "unsupported_claims": {"type": "array", "items": {"type": "string"}, "default": []},
+    "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "test_results": {"type": "array", "items": {"$ref": "#/$defs/testResult"}},
+    "determinations": {"type": "array", "items": {"$ref": "#/$defs/determination"}},
+    "framework_responses": {"type": "array", "items": {"$ref": "#/$defs/response"}, "default": []},
+    "independent_reconstructions": {"type": "array", "items": {"$ref": "#/$defs/reconstruction"}, "default": []},
+    "corrections": {"type": "array", "items": {"$ref": "#/$defs/correction"}, "default": []},
+    "supersedes": {"type": ["string", "null"]},
+    "superseded_by": {"type": ["string", "null"]},
+    "challenge_status": {"enum": ["OPEN", "UNCHALLENGED", "CHALLENGED", "RESOLVED", "CLOSED_WITH_DISSENT"]},
+    "reconstruction_status": {"enum": ["NOT_ATTEMPTED", "PARTIAL", "REPRODUCED", "DIVERGENT", "BLOCKED_BY_EVIDENCE"]},
+    "current_standing": {"enum": ["INTAKE", "PROVISIONAL", "PARTIALLY_VERIFIED", "VERIFIED_WITHIN_SCOPE", "CONTRADICTED", "PUBLICLY_UNRESOLVED", "SUPERSEDED", "WITHDRAWN", "REVOKED"]},
+    "limitations": {"type": "array", "items": {"type": "string"}, "default": []},
+    "public_verification_instructions": {"type": ["string", "null"]}
+  },
+  "$defs": {
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description", "status"],
+      "properties": {
+        "id": {"type": "string"},
+        "description": {"type": "string"},
+        "status": {"enum": ["DECLARED", "OBSERVED", "VERIFIED", "PARTIAL", "CONTRADICTED", "UNRESOLVED"]},
+        "scope": {"type": ["string", "null"]},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}, "default": []}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "class", "locator", "access"],
+      "properties": {
+        "id": {"type": "string"},
+        "class": {"enum": ["OFFICIAL_SOURCE", "IMPLEMENTATION", "OBSERVED_BEHAVIOR", "REPRODUCED_BEHAVIOR", "CORRESPONDENCE", "ANALYSIS", "RECEIPT", "OTHER"]},
+        "locator": {"type": "string"},
+        "hash": {"type": ["string", "null"]},
+        "timestamp": {"type": ["string", "null"], "format": "date-time"},
+        "access": {"enum": ["PUBLIC", "AUTHORIZED", "DERIVED_PROOF", "WITHHELD"]}
+      }
+    },
+    "testResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["test_id", "profile", "result", "evidence_refs"],
+      "properties": {
+        "test_id": {"type": "string"},
+        "profile": {"type": "string"},
+        "result": {"enum": ["PASS", "FAIL", "PARTIAL", "ERROR", "NOT_RUN", "INCONCLUSIVE"]},
+        "input_hash": {"type": ["string", "null"]},
+        "output_hash": {"type": ["string", "null"]},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": ["string", "null"]}
+      }
+    },
+    "determination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "issuer", "result", "basis_refs", "issued_at"],
+      "properties": {
+        "id": {"type": "string"},
+        "issuer": {"type": "string"},
+        "result": {"type": "string"},
+        "basis_refs": {"type": "array", "items": {"type": "string"}},
+        "issued_at": {"type": "string", "format": "date-time"},
+        "uncertainty": {"type": "array", "items": {"type": "string"}, "default": []}
+      }
+    },
+    "response": {
+      "type": "object",
+      "required": ["id", "source", "received_at", "summary"],
+      "properties": {
+        "id": {"type": "string"},
+        "source": {"type": "string"},
+        "received_at": {"type": "string", "format": "date-time"},
+        "summary": {"type": "string"},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}, "default": []}
+      }
+    },
+    "reconstruction": {
+      "type": "object",
+      "required": ["id", "reviewer", "performed_at", "result"],
+      "properties": {
+        "id": {"type": "string"},
+        "reviewer": {"type": "string"},
+        "performed_at": {"type": "string", "format": "date-time"},
+        "result": {"enum": ["REPRODUCED", "PARTIAL", "DIVERGENT", "BLOCKED"]},
+        "difference_summary": {"type": ["string", "null"]},
+        "artifact_refs": {"type": "array", "items": {"type": "string"}, "default": []}
+      }
+    },
+    "correction": {
+      "type": "object",
+      "required": ["id", "issued_at", "reason", "changes"],
+      "properties": {
+        "id": {"type": "string"},
+        "issued_at": {"type": "string", "format": "date-time"},
+        "reason": {"type": "string"},
+        "changes": {"type": "array", "items": {"type": "string"}},
+        "receipt_ref": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
