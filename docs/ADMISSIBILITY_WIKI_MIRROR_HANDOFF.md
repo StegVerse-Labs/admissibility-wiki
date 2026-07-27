@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: complete admissibility-wiki public documentation activation under the single canonical validation workflow.
-Current state: doctrine, status, validation, documentation mesh, governed LLM surfaces, verification-authority publication automation, radiology activation closure, documentation-mesh observation closure, durable publication receipt generation, and a validated ST-016 repo-standards promotion bundle are installed.
+Current state: doctrine, status, validation, documentation mesh, governed LLM surfaces, verification-authority publication automation, radiology activation closure, documentation-mesh observation closure, durable publication receipt generation, a validated ST-016 repo-standards promotion bundle, and the TA-14 route-admissibility versus actor-standing evaluation are installed.
 Manual task requirement: none.
 User manual action required: false.
 No manual target-creation task is assigned.
@@ -15,6 +15,45 @@ No manual target-creation task is assigned.
 ## Current Activation Goal
 
 Publish and validate `https://stegverse-labs.github.io/admissibility-wiki/` as the public vocabulary and proof-path surface for transition governance, commit-time authority, receipt-bound execution, governed continuity, external-framework evaluation, and governed LLM integration.
+
+## TA-14 Continuous Actor-Standing Evaluation
+
+```text
+Goal id: ta14-continuous-actor-standing-reconstruction
+Doctrine: docs/external-frameworks/ta-14.md
+Machine-readable evaluation: static/data/framework-evaluations/ta-14.json
+Sidebar route: external-frameworks/ta-14
+State: DOCUMENTED_PUBLICLY_UNRESOLVED_TEST_PROPOSED_NOT_RUN
+Authority posture: observation only; no certification, execution authority, or adverse capability conclusion
+Manual task requirement: none
+User manual action required: false
+```
+
+Preserved distinctions:
+
+```text
+route admissibility != actor standing
+binding established != binding still valid
+execution continuity != authority continuity
+proof preserved != current state independently reconstructed
+standing included in doctrine != point-of-effect standing reconstruction demonstrated
+PUBLICLY_UNRESOLVED != absent, failed, or disproven
+```
+
+Observed public-answer pattern: TA-14 repeatedly states that authority, consent, jurisdiction, evidence, and standing are already included in its architecture. That confirms claimed scope but does not directly answer whether the participating actor's current standing is independently reconstructed after commitment and before each next consequence.
+
+Decisive pending test:
+
+```text
+1. Establish an admissible route and valid actor standing.
+2. Begin delayed or multistage execution.
+3. Leave route, policy, evidence packet, and technical path unchanged.
+4. Revoke only authority, consent, delegation, identity continuity, or jurisdiction.
+5. Attempt the next consequence-bearing transition.
+6. Observe whether TA-14 independently returns HOLD, DENY, or ESCALATE.
+```
+
+No live TA-14 implementation test has been run. The current record is a bounded reconstruction from owner-controlled public materials and user-supplied captures of owner-participating public dialogue.
 
 ## Verification Versus Execution Authority
 
@@ -49,36 +88,6 @@ publication receipt != execution authority
 
 Independent review enters the transition path as evidence and review posture. It does not silently acquire authority to commit a specific transition. High-risk execution requires a live point that can return `ALLOW`, `DENY`, or `FAIL_CLOSED` before consequence attaches.
 
-Source classification:
-
-```text
-URL: https://www.prnewswire.com/news-releases/fathom-applauds-governor-spanbergers-signing-of-landmark-ai-governance-legislation-302739994.html
-Published: 2026-04-13
-Class: organization-issued public announcement
-Permitted claim: evidence of the announced Virginia IVO study direction only
-Not established: enacted-text interpretation, operational IVO standard, implementation proof, or action-level execution authority
-```
-
-Automated publication routes:
-
-```text
-https://stegverse-labs.github.io/admissibility-wiki/governance/verification-vs-execution-authority
-https://stegverse-labs.github.io/admissibility-wiki/status/verification-execution-authority-status.json
-```
-
-The existing `verify-public-pages` job invokes `scripts/check_governed_llm_deployment_status.py` after deployment. Both routes are included in that checker. The checker writes route evidence, and `scripts/write-public-activation-receipt.mjs` requires both routes to be reachable before emitting `activation_closures.verification_execution_authority` inside the already-uploaded `public-activation-receipt` artifact. Failure is fail-closed, creates no manual task, and grants no execution, certification, release, or downstream mutation authority.
-
-## External Framework Report Repair
-
-```text
-Workflow: .github/workflows/validate-chain-continuation.yml
-Validator: scripts/check_external_framework_reports.py
-Generator repair receipt: receipts/external-framework-report-generation-repair-2026-07-11.json
-Repair state: installed; canonical verification remains observable through the single workflow
-```
-
-Source-blocked reports may use `SOURCE_REQUIRED`, `PROVISIONAL`, and `MISSING` only as fail-closed evidence-status markers when the result is `SOURCE_BLOCKED_FAIL_CLOSED`. These tokens do not certify compatibility or grant authority.
-
 ## Documentation Mesh
 
 ```text
@@ -109,15 +118,7 @@ https://stegverse-002.github.io/stegguardian-wiki/
 https://stegverse-labs.github.io/stegtalk-wiki/
 ```
 
-Each public workflow run observes, for every peer:
-
-```text
-- peer root reachability
-- shared endpoint registry reachability
-- cross-wiki health record reachability
-```
-
-The receipt emits `WORKFLOW_OBSERVED_MESH_COMPLETE` only when all peer surfaces respond. Otherwise it emits `SOURCE_BLOCKED_FAIL_CLOSED` with peer-specific evidence. A source-blocked result remains a scheduled automation observation, does not fail the entire site deployment, does not create a user task, and does not grant cross-repository authority, standing, execution authority, or downstream mutation authority.
+Each public workflow run observes peer root reachability, shared endpoint registry reachability, and cross-wiki health record reachability. A source-blocked result remains a scheduled automation observation, does not create a user task, and grants no cross-repository authority, standing, execution authority, or downstream mutation authority.
 
 ## ST-016 Repo-Standards Promotion Bundle
 
@@ -135,8 +136,6 @@ Manual copy required: false
 User manual action required: false
 Destination mutation authority: none granted
 ```
-
-The bundle packages the proven run-bound peer observation contract, complete/fail-closed closure states, deterministic network-free validation posture, no-manual-task ownership, and non-authority boundaries. It remains source-complete and validation-bound while repo-standards owns active ST-017 work. Destination ingestion may occur only when that repository's handoff permits ST-016 promotion, preventing workstream collision without assigning a manual copy task.
 
 ## Proposal Governance Core-Lite
 
@@ -165,8 +164,6 @@ Authority posture: QUEUE_ONLY_NO_DOWNSTREAM_MUTATION
 Manual task requirement: none
 ```
 
-The doctrine separates architectural integrity, provenance continuity, and origin-claim standing. Similarity alone is not proof of derivation, and unresolved provenance is not certification of independence.
-
 ## Deployment and Validation Gate
 
 ```text
@@ -180,17 +177,6 @@ Primary validation: npm run validate
 ```
 
 Do not create additional active GitHub Actions workflows unless repo standards explicitly change.
-
-The verification-authority local validator, documentation-mesh validator, and ST-016 promotion-bundle guard are invoked by `scripts/check_admissibility_automation_handoff.py`, which is already invoked by `npm run validate`. The public checker and receipt writer are already invoked by `verify-public-pages`. The resulting receipt is already uploaded as the `public-activation-receipt` artifact. No standalone or user-run validation, evidence-copy, health-check, promotion-copy, or archival step is required.
-
-Expected local results:
-
-```text
-VERIFICATION EXECUTION AUTHORITY: PASS
-ADMISSIBILITY DOCUMENTATION MESH: PASS
-ST-016 PROMOTION BUNDLE: PASS
-public activation receipt writer OK
-```
 
 ## Mirror Coordination Rule
 
@@ -222,6 +208,9 @@ Destination mutation remains prohibited until each destination handoff grants th
 ## Remaining Open Checks
 
 ```text
+- run the canonical validation workflow after the TA-14 doctrine, sidebar, and machine-readable record changes
+- observe public deployment of /external-frameworks/ta-14
+- preserve continuous actor-standing reconstruction as PUBLICLY_UNRESOLVED until a discriminating live result or direct technical artifact is available
 - canonical automation emits the next public-activation-receipt with verification_execution_authority, ai_led_radiology, and documentation_mesh closures
 - source-blocked documentation peers remain automatically observed without creating user tasks
 - preserve Site deferral until its current handoff authorizes unrelated mirror work
@@ -241,6 +230,7 @@ A successor session may:
 - repair failures inside this repository
 - update receipts and status artifacts from observed evidence
 - refine doctrine without promoting verification into execution authority
+- update the TA-14 evaluation when direct public technical evidence or a live test result resolves the standing question
 - queue downstream awareness without mutating destinations absent handoff authority
 - ingest the ST-016 promotion bundle only after repo-standards handoff authority permits it
 ```
