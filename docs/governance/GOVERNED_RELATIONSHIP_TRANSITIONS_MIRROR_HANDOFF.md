@@ -20,6 +20,7 @@ scripts/check_governed_relationship_transitions.py
 static/status/governed-relationship-transition-publication-candidate.json
 scripts/check_governed_relationship_publication_candidate.py
 scripts/observe_governed_relationship_publication.py
+scripts/check-public-activation-receipt-writer.mjs
 docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md
 sidebars.js
 README.md
@@ -53,6 +54,8 @@ post-deployment observer installed: true
 observer invoked by canonical public-activation writer: true
 observer receipt embedded in public-activation receipt: true
 observer receipt included in existing public-activation artifact custody: true
+standalone/embedded receipt equivalence validation installed: true
+authority-field preservation validation installed: true
 canonical workflow pass observed: false
 Pages deployment observed: false
 public route reachability observed: false
@@ -72,7 +75,9 @@ reports/governed-relationship-transition-publication-observation.json
 
 The canonical public-activation writer invokes the observer after deployment, preserves fail-closed evidence when a route is unavailable, embeds the bounded observation under `activation_closures.governed_relationship_transitions`, and links the receipt from the uploaded `reports/public-activation-receipt.json` artifact.
 
-No local file, commit, candidate record, canonical-checker registration, or unobserved receipt may be reclassified as deployed publication evidence.
+`scripts/check-public-activation-receipt-writer.mjs` deterministically verifies that the standalone receipt is created, embedded without divergence, linked at the canonical path, and retains false publication, release, execution, admissibility, and downstream-mutation authority fields during simulated validation.
+
+No local file, commit, candidate record, canonical-checker registration, simulated validator result, or unobserved receipt may be reclassified as deployed publication evidence.
 
 ## Required public routes
 
@@ -141,4 +146,4 @@ Observe the repository-owned canonical workflow result and inspect the embedded 
 
 ## Archive posture
 
-This handoff contains the complete relationship-transition package state, canonical observation and custody path, authority boundaries, remaining activation work, downstream review destinations, and next admissible task. The complete thread is ready for archiving without needing additional conversation context.
+This handoff contains the complete relationship-transition package state, canonical observation and custody path, deterministic receipt-equivalence validation, authority boundaries, remaining activation work, downstream review destinations, and next admissible task. The complete thread is ready for archiving without needing additional conversation context.
