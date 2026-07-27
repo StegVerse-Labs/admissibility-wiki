@@ -8,7 +8,7 @@
   "work_state": "BLOCKED_BUT_OBSERVED",
   "system_health": "HEALTHY_DECLARED_DEPENDENCY_BLOCK",
   "heartbeat_mode": "TRANSITION_DRIVEN_HEALTH_RELATIVE",
-  "repository_heartbeat": 9,
+  "repository_heartbeat": 10,
   "ecosystem_heartbeat_observed": 1,
   "time_role": "WATCHDOG_ONLY",
   "active_independent_workloads": [
@@ -28,34 +28,16 @@
       "workload": "Install governed relationship transition doctrine",
       "execution_class": "PARALLEL_SAFE",
       "state": "COMPLETE",
-      "installed_paths": [
-        "docs/governance/governed-relationship-transitions.md",
-        "README.md"
-      ],
-      "commits": [
-        "e424d06ae5c21e12ea4bbafc03718e5d81c3268a",
-        "d3ae4a0505bb0df8768cd24cd653e91f10eb9e16"
-      ]
+      "installed_paths": ["docs/governance/governed-relationship-transitions.md", "README.md"],
+      "commits": ["e424d06ae5c21e12ea4bbafc03718e5d81c3268a", "d3ae4a0505bb0df8768cd24cd653e91f10eb9e16"]
     },
     {
       "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-002",
       "workload": "Bind governed relationship transitions to navigation and machine-readable validation assets",
       "execution_class": "PARALLEL_SAFE",
       "state": "COMPLETE",
-      "installed_paths": [
-        "docs/governance/governed-relationship-transitions.md",
-        "sidebars.js",
-        "static/governance/governed-relationship-transition.schema.v0.1.json",
-        "static/governance/governed-relationship-transition.example.v0.1.json",
-        "scripts/check_governed_relationship_transitions.py"
-      ],
-      "commits": [
-        "093954918bd5fe86eb8af674911ddc7bedc5dcc6",
-        "1bfd3c8f8061d5391fec7e0977ea6550d763d93d",
-        "53fd5958b8f0a95cbd79986924330a15ec08da57",
-        "622d0859737b3188e23351cb55856079080f77ca",
-        "3ab0b891020029a04226b33b76e06ddbc495031a"
-      ]
+      "installed_paths": ["docs/governance/governed-relationship-transitions.md", "sidebars.js", "static/governance/governed-relationship-transition.schema.v0.1.json", "static/governance/governed-relationship-transition.example.v0.1.json", "scripts/check_governed_relationship_transitions.py"],
+      "commits": ["093954918bd5fe86eb8af674911ddc7bedc5dcc6", "1bfd3c8f8061d5391fec7e0977ea6550d763d93d", "53fd5958b8f0a95cbd79986924330a15ec08da57", "622d0859737b3188e23351cb55856079080f77ca", "3ab0b891020029a04226b33b76e06ddbc495031a"]
     },
     {
       "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-003",
@@ -64,82 +46,32 @@
       "state": "COMPLETE_AWAITING_REPOSITORY_OBSERVATION",
       "installed_paths": ["scripts/check_governed_llm_pages.py"],
       "commits": ["c9088092b72a971b560a77311806ab3aca46b7e3"],
-      "observation": {
-        "combined_commit_status_records": 0,
-        "canonical_workflow_pass_claimed": false,
-        "public_route_verified": false,
-        "authority_inferred": false
-      }
+      "observation": {"combined_commit_status_records": 0, "canonical_workflow_pass_claimed": false, "public_route_verified": false, "authority_inferred": false}
     },
     {
       "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-004",
       "workload": "Declare and validate the governed relationship-transition publication candidate",
       "execution_class": "PARALLEL_SAFE",
       "state": "COMPLETE_AWAITING_POST_DEPLOY_OBSERVATION",
-      "installed_paths": [
-        "static/status/governed-relationship-transition-publication-candidate.json",
-        "scripts/check_governed_relationship_publication_candidate.py",
-        "scripts/check_governed_llm_pages.py"
-      ],
-      "commits": [
-        "2471bd5ffa0ab9980aaec855307e9523373a7e47",
-        "69936d7deb88252482c8f0b7717ffe0c33f24c96",
-        "4573250a3fc6103ca2dd691af0fe69725e5fc77c"
-      ],
-      "observation": {
-        "candidate_routes_declared": true,
-        "canonical_validation_bound": true,
-        "pages_deployment_observed": false,
-        "public_reachability_observed": false,
-        "manual_tasks_required": [],
-        "authority_inferred": false
-      }
+      "installed_paths": ["static/status/governed-relationship-transition-publication-candidate.json", "scripts/check_governed_relationship_publication_candidate.py", "scripts/check_governed_llm_pages.py"],
+      "commits": ["2471bd5ffa0ab9980aaec855307e9523373a7e47", "69936d7deb88252482c8f0b7717ffe0c33f24c96", "4573250a3fc6103ca2dd691af0fe69725e5fc77c"],
+      "observation": {"candidate_routes_declared": true, "canonical_validation_bound": true, "pages_deployment_observed": false, "public_reachability_observed": false, "manual_tasks_required": [], "authority_inferred": false}
     },
     {
       "task_id": "ADMISSIBILITY-MICRO-HUMAN-001",
       "workload": "Install and validate the micro-timescale human admissibility research package",
       "execution_class": "PARALLEL_SAFE",
       "state": "COMPLETE_AWAITING_REPOSITORY_OBSERVATION",
-      "installed_paths": [
-        "docs/formalisms/micro-timescale-human-admissibility.md",
-        "static/formalisms/micro-timescale-human-admissibility.v0.1.json",
-        "docs/research/micro-timescale-human-admissibility-observation-protocol.md",
-        "static/schemas/micro-timescale-human-admissibility-observation.schema.json",
-        "static/examples/micro-timescale-human-admissibility-observation.example.json",
-        "static/status/micro-timescale-human-admissibility-status.json",
-        "scripts/check_micro_timescale_human_admissibility.py"
-      ],
-      "commits": [
-        "d73484bd5c982ded50141d545787cbf68af4117f",
-        "d852dd60db39806ee8238a0abd9f81042260bd13",
-        "e8f2e36d18e2f0aa289457245e08a22e6e6e9c66",
-        "8879b32f3b53e66e40bf56c771fab19f78122331",
-        "35a644a1aabb901ee6a4afc8affb51c8b3a74450",
-        "75ecd4d13d1f1628a2e7f1146b7cdd32ad564679",
-        "78945e2222c95359fee93c147f199715d679d13d",
-        "725813fe5b244a960ec13cb76e5b9277627a87ce",
-        "98df7dca82ef2aa93d42c3078992997aeffe2fb1"
-      ],
-      "observation": {
-        "canonical_validation_bound": true,
-        "synthetic_example_only": true,
-        "empirical_evidence_claimed": false,
-        "pages_deployment_observed": false,
-        "public_reachability_observed": false,
-        "linkedin_link_status": "WAIT_FOR_PUBLIC_ROUTE_OBSERVATION",
-        "manual_tasks_required": [],
-        "authority_inferred": false
-      }
+      "installed_paths": ["docs/formalisms/micro-timescale-human-admissibility.md", "static/formalisms/micro-timescale-human-admissibility.v0.1.json", "docs/research/micro-timescale-human-admissibility-observation-protocol.md", "static/schemas/micro-timescale-human-admissibility-observation.schema.json", "static/examples/micro-timescale-human-admissibility-observation.example.json", "static/status/micro-timescale-human-admissibility-status.json", "scripts/check_micro_timescale_human_admissibility.py"],
+      "commits": ["d73484bd5c982ded50141d545787cbf68af4117f", "d852dd60db39806ee8238a0abd9f81042260bd13", "e8f2e36d18e2f0aa289457245e08a22e6e6e9c66", "8879b32f3b53e66e40bf56c771fab19f78122331", "35a644a1aabb901ee6a4afc8affb51c8b3a74450", "75ecd4d13d1f1628a2e7f1146b7cdd32ad564679", "78945e2222c95359fee93c147f199715d679d13d", "725813fe5b244a960ec13cb76e5b9277627a87ce", "98df7dca82ef2aa93d42c3078992997aeffe2fb1"],
+      "observation": {"canonical_validation_bound": true, "synthetic_example_only": true, "empirical_evidence_claimed": false, "pages_deployment_observed": false, "public_reachability_observed": false, "linkedin_link_status": "WAIT_FOR_PUBLIC_ROUTE_OBSERVATION", "manual_tasks_required": [], "authority_inferred": false}
     },
     {
       "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-005",
       "workload": "Synchronize governed relationship transition handoff and remaining activation path",
       "execution_class": "PARALLEL_SAFE",
       "state": "COMPLETE",
-      "installed_paths": [
-        "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md",
-        "data/admissibility-wiki-orchestration-state.json"
-      ],
+      "installed_paths": ["docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md", "data/admissibility-wiki-orchestration-state.json"],
       "commits": ["8df70421502a7925472ac58d5a078a3a66adad87"]
     },
     {
@@ -147,75 +79,36 @@
       "workload": "Install bounded governed relationship publication observer",
       "execution_class": "PARALLEL_SAFE",
       "state": "COMPLETE",
-      "installed_paths": [
-        "scripts/observe_governed_relationship_publication.py",
-        "scripts/check_governed_llm_pages.py"
-      ],
-      "commits": [
-        "46c80ca4fced0ed5f00ed46600b8e66257cb346b",
-        "e175939ba6805e38469ba1d182054d55f7afc884"
-      ]
+      "installed_paths": ["scripts/observe_governed_relationship_publication.py", "scripts/check_governed_llm_pages.py"],
+      "commits": ["46c80ca4fced0ed5f00ed46600b8e66257cb346b", "e175939ba6805e38469ba1d182054d55f7afc884"]
     },
     {
       "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-007",
       "workload": "Invoke and preserve governed relationship publication observation through canonical public activation custody",
       "execution_class": "PARALLEL_SAFE",
       "state": "COMPLETE_AWAITING_REPOSITORY_OBSERVATION",
-      "installed_paths": [
-        "scripts/write-public-activation-receipt.mjs",
-        "scripts/check-public-activation-receipt-writer.mjs",
-        "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md",
-        "data/admissibility-wiki-orchestration-state.json"
-      ],
-      "commits": [
-        "d015a897b718061485830619a2b05cd912cf2281",
-        "15ac9bdae63fa295e90e7d1ff05be254b6442386",
-        "0011214ab285684dd0ac4dc66b17dc7de43bf616",
-        "611bbe168c33189247dde6b8ff292a324f3e4b2f"
-      ],
-      "observation": {
-        "observer_invoked_post_deploy": true,
-        "receipt_embedded_in_public_activation_receipt": true,
-        "existing_artifact_custody_path_reused": true,
-        "standalone_embedded_equivalence_validation": true,
-        "canonical_workflow_pass_claimed": false,
-        "pages_deployment_observed": false,
-        "public_reachability_observed": false,
-        "manual_tasks_required": [],
-        "authority_inferred": false
-      }
+      "installed_paths": ["scripts/write-public-activation-receipt.mjs", "scripts/check-public-activation-receipt-writer.mjs", "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md", "data/admissibility-wiki-orchestration-state.json"],
+      "commits": ["d015a897b718061485830619a2b05cd912cf2281", "15ac9bdae63fa295e90e7d1ff05be254b6442386", "0011214ab285684dd0ac4dc66b17dc7de43bf616", "611bbe168c33189247dde6b8ff292a324f3e4b2f"],
+      "observation": {"observer_invoked_post_deploy": true, "receipt_embedded_in_public_activation_receipt": true, "existing_artifact_custody_path_reused": true, "standalone_embedded_equivalence_validation": true, "canonical_workflow_pass_claimed": false, "pages_deployment_observed": false, "public_reachability_observed": false, "manual_tasks_required": [], "authority_inferred": false}
     },
     {
       "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-008",
       "workload": "Install and bind governed relationship publication observation schema validation",
       "execution_class": "PARALLEL_SAFE",
       "state": "COMPLETE_AWAITING_REPOSITORY_OBSERVATION",
-      "installed_paths": [
-        "static/schemas/governed-relationship-transition-publication-observation.schema.json",
-        "scripts/check_governed_relationship_publication_observation_schema.py",
-        "scripts/check_governed_llm_pages.py",
-        "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md"
-      ],
-      "commits": [
-        "1e70b5a286c7a2f54138e1c316e6b3778b26d9d6",
-        "3f5697b78bde2d83fe04ec0743cd51a0bb0ed9c0",
-        "792166e6c7f107935e9bc3514e9725c8051778b2",
-        "11751e138551acc5ea2aa136f4b294a40b2a1acd"
-      ],
-      "observation": {
-        "schema_installed": true,
-        "observer_writer_schema_agreement_bound": true,
-        "workflow_complete_state_requires_all_routes": true,
-        "fail_closed_state_requires_unverified_result": true,
-        "simulated_state_forbids_deployment_claim": true,
-        "authority_fields_const_false": true,
-        "canonical_workflow_pass_claimed": false,
-        "pages_deployment_observed": false,
-        "public_reachability_observed": false,
-        "manual_tasks_required": [],
-        "authority_inferred": false
-      },
-      "next_task": "Observe authentic canonical workflow and uploaded public-activation receipt evidence; apply exact deterministic repairs only."
+      "installed_paths": ["static/schemas/governed-relationship-transition-publication-observation.schema.json", "scripts/check_governed_relationship_publication_observation_schema.py", "scripts/check_governed_llm_pages.py", "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md"],
+      "commits": ["1e70b5a286c7a2f54138e1c316e6b3778b26d9d6", "3f5697b78bde2d83fe04ec0743cd51a0bb0ed9c0", "792166e6c7f107935e9bc3514e9725c8051778b2", "11751e138551acc5ea2aa136f4b294a40b2a1acd"],
+      "observation": {"schema_installed": true, "observer_writer_schema_agreement_bound": true, "workflow_complete_state_requires_all_routes": true, "fail_closed_state_requires_unverified_result": true, "simulated_state_forbids_deployment_claim": true, "authority_fields_const_false": true, "canonical_workflow_pass_claimed": false, "pages_deployment_observed": false, "public_reachability_observed": false, "manual_tasks_required": [], "authority_inferred": false}
+    },
+    {
+      "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-009",
+      "workload": "Bind governed relationship publication observation to canonical artifact custody",
+      "execution_class": "PARALLEL_SAFE",
+      "state": "COMPLETE_AWAITING_REPOSITORY_OBSERVATION",
+      "installed_paths": ["scripts/check_governed_relationship_publication_custody_binding.py", "scripts/check_governed_llm_pages.py", "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md", "data/admissibility-wiki-orchestration-state.json"],
+      "commits": ["767f5fbebb77014ea08c7b7f756c36ac6c5929f8", "d1d20fae488278a4c478c4951ff9b8fc831d0045", "284c3d8f13c037e7c5cdde926e039470e103881f"],
+      "observation": {"canonical_writer_invocation_bound": true, "existing_artifact_upload_bound": true, "retention_days": 30, "standalone_receipt_bound": true, "embedded_closure_bound": true, "linked_receipt_key_bound": true, "authority_fields_const_false": true, "canonical_workflow_pass_claimed": false, "pages_deployment_observed": false, "artifact_production_observed": false, "public_reachability_observed": false, "manual_tasks_required": [], "authority_inferred": false},
+      "next_task": "Observe authentic canonical workflow and artifact evidence; apply exact deterministic repairs only."
     }
   ],
   "dependency_blocked_workloads": [
@@ -224,23 +117,8 @@
       "workload": "Ingest and interpret verified HIL activation propagation",
       "execution_class": "DEPENDENCY_BLOCKED",
       "state": "BLOCKED_BUT_OBSERVED",
-      "required_upstream_evidence": [
-        "completed Site participant upload evidence",
-        "authorized real-provider response",
-        "durable provider-usage persistence",
-        "authenticated Master-Records custody receipt",
-        "reconstructability_pass=true",
-        "immutable zero-blocker VERIFIED activation receipt",
-        "Site ACTIVATION_COMPLETE",
-        "Publisher VERIFIED_INGESTION_READY"
-      ],
-      "upstream_owners": [
-        "StegVerse-Labs/Site",
-        "StegVerse-org/LLM-adapter issue #18",
-        "StegVerse-org/LLM-adapter PR #44",
-        "master-records/orchestration issue #2",
-        "GCAT-BCAT-Engine/Publisher"
-      ]
+      "required_upstream_evidence": ["completed Site participant upload evidence", "authorized real-provider response", "durable provider-usage persistence", "authenticated Master-Records custody receipt", "reconstructability_pass=true", "immutable zero-blocker VERIFIED activation receipt", "Site ACTIVATION_COMPLETE", "Publisher VERIFIED_INGESTION_READY"],
+      "upstream_owners": ["StegVerse-Labs/Site", "StegVerse-org/LLM-adapter issue #18", "StegVerse-org/LLM-adapter PR #44", "master-records/orchestration issue #2", "GCAT-BCAT-Engine/Publisher"]
     }
   ],
   "policy": {
@@ -255,19 +133,7 @@
     "admissibility_projection_requires_verified_upstream_evidence": true,
     "manual_user_tasks_required": false
   },
-  "authority": {
-    "execution": false,
-    "publication": false,
-    "release": false,
-    "custody": false,
-    "proof": false,
-    "admissibility": false,
-    "cross_repository_mutation": false
-  },
-  "last_transition": {
-    "event_type": "GOVERNED_RELATIONSHIP_PUBLICATION_OBSERVATION_SCHEMA_BOUND",
-    "progress_effect": true,
-    "authority_effect": false
-  },
+  "authority": {"execution": false, "publication": false, "release": false, "custody": false, "proof": false, "admissibility": false, "cross_repository_mutation": false},
+  "last_transition": {"event_type": "GOVERNED_RELATIONSHIP_PUBLICATION_CUSTODY_BINDING_RECORDED", "progress_effect": true, "authority_effect": false},
   "idle_terminal_statement": "end of current work task sequence 0001, no tasks running"
 }
