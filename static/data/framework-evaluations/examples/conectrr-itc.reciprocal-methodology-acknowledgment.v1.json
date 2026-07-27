@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "conectrr-itc-reciprocal-methodology-acknowledgment-2026-07-27",
+  "framework_id": "conectrr-itc",
+  "record_type": "founder_correspondence_acknowledgment",
+  "captured_date": "2026-07-27",
+  "source_medium": "direct_linkedin_correspondence_screenshots",
+  "source_artifact_posture": "captured_not_canonically_custodied",
+  "acknowledgments": {
+    "responsibility_separation": true,
+    "discovery_remains_non_authorizing": true,
+    "downstream_reconstruction_responsibility": true,
+    "downstream_governance_responsibility": true,
+    "downstream_authorization_responsibility": true,
+    "downstream_execution_responsibility": true,
+    "divergent_findings_remain_visible": true,
+    "methodology_is_material_outcome": true,
+    "v1_1_evidence_constrained_after_v1_0_closure": true,
+    "reciprocal_non_subsuming_review_model": true
+  },
+  "disposition": {
+    "reciprocal_review_model": "MUTUALLY_ACKNOWLEDGED",
+    "technical_validation_result": "UNCHANGED",
+    "source_package": "OFFERED_NOT_RECEIVED",
+    "bounded_v1_0_evaluation": "OPEN",
+    "v1_1_development_posture": "DEFERRED_PENDING_V1_0_EVIDENCE",
+    "live_interoperability_test": "NOT_RUN",
+    "independent_reconstruction": "NOT_RUN_EXTERNALLY"
+  },
+  "authority": {
+    "certification": false,
+    "endorsement": false,
+    "custody": false,
+    "execution_authority": false,
+    "government_recognition": false
+  },
+  "required_external_artifacts": [
+    "ITC Specification v1.0 Draft",
+    "canonical ITC generated from an actual Conectrr recommendation",
+    "Conectrr internal validation report"
+  ],
+  "non_equivalence_rules": [
+    "methodology acknowledgment != implementation proof",
+    "methodology acknowledgment != schema conformance",
+    "methodology acknowledgment != semantic correctness",
+    "methodology acknowledgment != independent reconstruction",
+    "methodology acknowledgment != replay PASS",
+    "methodology acknowledgment != execution authority"
+  ]
+}
