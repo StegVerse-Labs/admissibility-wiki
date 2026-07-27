@@ -48,6 +48,7 @@ RECIPROCAL_REPLAY_CHECK = ROOT / "scripts" / "check_reciprocal_evaluation_replay
 SV_CONTINUITY_109_CHECK = ROOT / "scripts" / "check_sv_continuity_109_admissibility.py"
 MICRO_TIMESCALE_HUMAN_ADMISSIBILITY_CHECK = ROOT / "scripts" / "check_micro_timescale_human_admissibility.py"
 MORRISON_RUNTIME_PROMOTION_GATE_CHECK = ROOT / "scripts" / "check_morrison_runtime_promotion_gate.py"
+MORRISON_RUNTIME_DOWNSTREAM_PROPAGATION_CHECK = ROOT / "scripts" / "check_morrison_runtime_downstream_propagation.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -123,6 +124,7 @@ def main() -> int:
         (SV_CONTINUITY_109_CHECK, "SV-CONTINUITY-109 admissibility verification"),
         (MICRO_TIMESCALE_HUMAN_ADMISSIBILITY_CHECK, "micro-timescale human admissibility"),
         (MORRISON_RUNTIME_PROMOTION_GATE_CHECK, "Morrison Runtime promotion gate"),
+        (MORRISON_RUNTIME_DOWNSTREAM_PROPAGATION_CHECK, "Morrison Runtime downstream propagation review"),
         (RELEASE_READINESS_CHECK, "release readiness"),
     )
     for path, label in checks:
