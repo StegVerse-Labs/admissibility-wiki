@@ -1,0 +1,45 @@
+{
+  "schema": "stegverse.morrison-runtime.public-route-verification.v1",
+  "framework": "Morrison Runtime Governance",
+  "comparison_id": "morrison-runtime-commit-time-scope-v0.1",
+  "source_state_required": "VERIFIED_BOUNDED_COMPARATIVE_EVIDENCE",
+  "verification_targets": {
+    "wiki_page": {
+      "path": "docs/external-frameworks/morrison-runtime.md",
+      "rendered_url": "PENDING",
+      "reachable": false,
+      "content_matches_verified_evidence": false,
+      "authority_boundary_visible": false,
+      "runtime_re_evaluation_distinction_visible": false
+    },
+    "public_status": {
+      "path": "static/status/morrison-runtime-promotion-status.json",
+      "rendered_url": "PENDING",
+      "reachable": false,
+      "state_matches_verified_evidence": false,
+      "prohibited_claims_preserved": false
+    }
+  },
+  "verification_evidence": {
+    "verification_commit_sha": "PENDING",
+    "verified_at": "PENDING",
+    "route_check_receipt_sha256": "PENDING",
+    "content_check_receipt_sha256": "PENDING"
+  },
+  "promotion_decision": {
+    "wiki_validated": false,
+    "public_route_verified": false,
+    "eligible_for_public_promotion": false,
+    "eligible_for_downstream_propagation_review": false
+  },
+  "required_next_transition": "WIKI_VALIDATED_AND_PUBLIC_ROUTE_VERIFIED",
+  "authority_posture": "EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY",
+  "fail_closed": true,
+  "prohibited_promotions": [
+    "CERTIFIED_COMPATIBLE",
+    "STEGVERSE_EXECUTION_AUTHORITY",
+    "FULL_FRESH_STATE_RECONSTRUCTION_BY_DEFAULT",
+    "PRODUCTION_VALIDATION",
+    "ENDORSEMENT"
+  ]
+}
