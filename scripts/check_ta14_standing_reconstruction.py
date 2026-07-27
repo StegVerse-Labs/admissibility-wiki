@@ -64,7 +64,7 @@ def main() -> None:
     )
 
     require(status.get("continuous_actor_standing_reconstruction") == "PUBLICLY_UNRESOLVED", "status must remain PUBLICLY_UNRESOLVED")
-    require(status.get("standing_revocation_fixture") == "PROPOSED_NOT_RUN", "fixture must remain PROPOSED_NOT_RUN")
+    require(status.get("standing_revocation_fixture") == "FROZEN_PROPOSED_NOT_RUN", "fixture must remain frozen and unrun")
     require(status.get("authority_boundary", {}).get("activation_authority_granted") is False, "status must deny activation authority")
     require(status.get("authority_boundary", {}).get("adverse_capability_conclusion") is False, "status must not infer adverse capability")
 
@@ -110,6 +110,8 @@ def main() -> None:
         "/external-frameworks/ta-14",
         "/external-frameworks/ta-14-registry-public-record-assessment",
         "/status/ta-14-standing-reconstruction-status.json",
+        "/data/framework-evaluations/test-cases/ta14-continuous-standing-revalidation-v1.json",
+        "/data/framework-evaluations/test-cases/ta14-continuous-standing-revalidation-output-template-v1.json",
     }
     require(required_routes.issubset(set(status.get("public_routes", []))), "status record is missing one or more public routes")
 
