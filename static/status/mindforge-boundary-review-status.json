@@ -11,6 +11,8 @@
   "source_location_registry": "docs/external-frameworks/evidence/mindforge-source-location-registry.md",
   "attribution_authorization_checker": "scripts/check_mindforge_publication_attribution_authorization.py",
   "attribution_authorization_record": "static/status/mindforge-publication-attribution-authorization.json",
+  "reviewer_response_evidence_template": "docs/external-frameworks/evidence/mindforge-reviewer-attribution-response.template.json",
+  "reviewer_response_state": "NOT_RECEIVED",
   "attribution_authorization_state": "PENDING_REVIEWER_RESPONSE",
   "attribution_publication_permitted": false,
   "publication_verification_checker": "scripts/check_mindforge_publication_verification.py",
@@ -36,7 +38,8 @@
   "user_manual_action_required": false,
   "remaining": [
     "observe source-location, attribution-authorization, and publication-verification checkers in a successor canonical run",
-    "receive an explicit reviewer response before publishing reviewer attribution",
+    "capture any explicit reviewer response verbatim with channel, timestamp, and evidence reference",
+    "synchronize authorization state only when reviewer response evidence is complete",
     "observe repository-wide canonical workflow success after unrelated gates are repaired",
     "populate publication verification evidence from a successful workflow and route observation",
     "record run-bound publication closure"
