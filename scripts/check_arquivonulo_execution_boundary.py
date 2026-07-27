@@ -13,6 +13,7 @@ INDEX = ROOT / "static" / "data" / "framework-evaluations" / "index.json"
 STATUS = ROOT / "static" / "status" / "arquivonulo-execution-boundary-status.json"
 FIXTURE = ROOT / "docs" / "external-frameworks" / "fixtures" / "arquivonulo-continuing-admissibility-test.v0.1.json"
 PUBLICATION_TEMPLATE = ROOT / "docs" / "external-frameworks" / "evidence" / "arquivonulo-publication-verification.template.json"
+PUBLIC_ROUTE_CHECK = ROOT / "scripts" / "check_arquivonulo_public_routes.py"
 SIDEBAR = ROOT / "sidebars.js"
 HANDOFF = ROOT / "docs" / "ARQUIVONULO_MIRROR_HANDOFF.md"
 
@@ -31,6 +32,7 @@ def main() -> None:
     doc = read(DOC)
     sidebar = read(SIDEBAR)
     handoff = read(HANDOFF)
+    public_route_check = read(PUBLIC_ROUTE_CHECK)
     evaluation = json.loads(read(EVALUATION))
     index = json.loads(read(INDEX))
     status = json.loads(read(STATUS))
@@ -47,12 +49,21 @@ def main() -> None:
     ):
         require(token in doc, f"doctrine missing token: {token}")
 
+    for token in (
+        "reports/arquivonulo-public-route-observation.json",
+        "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
+        "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED",
+        "Publication verifies route availability and bounded content only",
+    ):
+        require(token in public_route_check, f"public route checker missing token: {token}")
+
     require("external-frameworks/arquivonulo" in sidebar, "ArquivoNulo route is not exposed in the sidebar")
     for token in (
         "arquivonulo-execution-boundary-evaluation",
         "static/status/arquivonulo-execution-boundary-status.json",
         "arquivonulo-continuing-admissibility-test.v0.1.json",
         "arquivonulo-publication-verification.template.json",
+        "scripts/check_arquivonulo_public_routes.py",
     ):
         require(token in handoff, f"goal-specific handoff missing token: {token}")
 
@@ -90,6 +101,7 @@ def main() -> None:
 
     require(status.get("goal_id") == "arquivonulo-execution-boundary-evaluation", "status goal_id is incorrect")
     require(status.get("state") == "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_OBSERVATION", "status state is incorrect")
+    require(status.get("public_route_checker_path") == "scripts/check_arquivonulo_public_routes.py", "status public route checker path is incorrect")
     require(status.get("test_posture", {}).get("fixture_status") == "PROPOSED_NOT_RUN", "status fixture must remain PROPOSED_NOT_RUN")
     observation = status.get("workflow_observation", {})
     require(observation.get("canonical_validation_observed") is False, "canonical validation may not be claimed without evidence")
@@ -132,7 +144,7 @@ def main() -> None:
     for key in ("publication_evidence_is_execution_authority", "certification_granted", "endorsement_granted", "custody_granted", "integration_claimed"):
         require(publication_authority.get(key) is False, f"publication authority_boundary.{key} must remain false")
 
-    print("ARQUIVONULO EXECUTION BOUNDARY: PASS - doctrine, evaluation, registry, status, fixture, publication template, navigation, and handoff agree")
+    print("ARQUIVONULO EXECUTION BOUNDARY: PASS - doctrine, evaluation, registry, status, fixture, publication template, public route checker, navigation, and handoff agree")
 
 
 if __name__ == "__main__":
