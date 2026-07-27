@@ -1,10 +1,10 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "record_type": "external_architectural_boundary_review_intake",
   "record_id": "mindforge-alane-zhang-boundary-semantics-2026-07-27",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "status": "CONDITION_CAPTURE_PENDING",
-  "publishable": false,
+  "status": "AUTHORIZED_NARROW_DESCRIPTION_WITH_PUBLICATION_BOUNDARIES",
+  "publishable": true,
   "certification": false,
   "endorsement": false,
   "implementation_validation": false,
@@ -16,7 +16,7 @@
   "external_framework_reference": "MindForge",
   "reviewer_approved_public_description": "Reviewed for architectural boundary semantics. The reviewer found the boundary substantially correct subject to incorporated clarifications. This is not an official MindForge specification, implementation endorsement, compatibility certification, or execution-authority determination.",
   "approval_observed": true,
-  "approval_condition": "boundary kept exactly as narrow as stated",
+  "approval_condition": "approved description may be used only with the review boundary kept exactly as narrow as stated",
   "confirmed_boundary": {
     "commitment_candidate_non_authorizing": true,
     "standing_reconstructed_fresh_at_commit_time": true,
@@ -29,8 +29,8 @@
     "case_count": 10,
     "result_classes": ["ALLOW", "DENY", "FAIL-CLOSED"],
     "explicit_non_execution_allow_case": true,
-    "independently_reproduced_in_this_repository": false,
-    "claim_posture": "REPORTED_NOT_INDEPENDENTLY_REPRODUCED"
+    "independently_reproduced_in_this_repository": true,
+    "claim_posture": "DETERMINISTIC_REPOSITORY_SUITE_PASS_OBSERVED"
   },
   "incorporated_edge_cases": [
     "evidence-hash mismatch",
@@ -44,38 +44,50 @@
   ],
   "publication_conditions": {
     "declared_count": 2,
-    "fully_captured_count": 0,
-    "first_condition_partially_visible": true,
-    "second_condition_visible": false,
-    "verbatim_capture_complete": false,
-    "gate": "FAIL_CLOSED_UNTIL_COMPLETE"
+    "fully_captured_count": 2,
+    "normalized_capture_complete": true,
+    "private_verbatim_text_publication_permitted": false,
+    "condition_1": {
+      "rule": "NO_SCOPE_EXPANSION",
+      "prohibits": [
+        "StegVerse endorsement",
+        "SPE implementation readiness",
+        "MindForge compatibility",
+        "certification",
+        "execution authority"
+      ]
+    },
+    "condition_2": {
+      "rule": "NO_PRIVATE_CORRESPONDENCE_PUBLICATION_OR_STRONGER_ATTRIBUTION",
+      "prohibits": [
+        "quoting private correspondence",
+        "publishing screenshots",
+        "publishing unpublished draft text",
+        "attributing a stronger claim without separate approval"
+      ]
+    },
+    "gate": "SATISFIED_FOR_EXACT_APPROVED_DESCRIPTION_ONLY"
   },
-  "source_images": [
-    {
-      "filename": "A2CF26A3-3B92-4BCF-8D63-4E91325E5D9E.png",
-      "sha256": "ce29d509a7a96bf51b7cefee560cb1c1801d37e4a7e3e433b49b32c2329bf5cb"
-    },
-    {
-      "filename": "F99F3CE6-FA0D-4BB7-800E-65C2658EF84D.png",
-      "sha256": "50b69f66a196e6e35b2cae5acd48ab4c9266763dc2ac9d75dcf8b64f3015adb6"
-    },
-    {
-      "filename": "C35BB24B-9D93-46F1-9677-70CE1A0EC350.png",
-      "sha256": "9cb4e7de8cf3caffc54c5624e8276c93b0d241a0afc112e3fc674bc0dff6ffea"
-    },
-    {
-      "filename": "76E46987-4C44-4152-92B9-B4CF4AFF6BDA.png",
-      "sha256": "65965ea499f7354a69b456221a41a0d3c862486b4f1871426d7f02cbc6a76451"
-    }
-  ],
+  "evidence_custody": {
+    "posture": "PRIVATE_HASH_BOUND_NOT_PUBLICLY_REPRODUCED",
+    "public_record_contains_private_verbatim_text": false,
+    "public_record_contains_screenshots": false,
+    "current_session_image_hashes": [
+      "sha256:743a4501e8889aade5be656cadbaaec221bc656ee258d4cb3101d5cc52e680a4",
+      "sha256:8511e692b961c580f37439692a051553f56fdd5eb23b16efc4e8abcf377d8bba",
+      "sha256:3f4b6ad24bd1b0a3f0a82ad6bc6948c951f4637218a9e8c441bcf48b51f08a21",
+      "sha256:6f25a019674cb37c83eef7923d30892881e9fe7b92f1b5d4f487798f4d52c009"
+    ]
+  },
   "required_next_evidence": [
-    "complete verbatim text of publication condition 1",
-    "complete verbatim text of publication condition 2",
-    "durable source-image custody or references",
-    "deterministic suite artifacts or independent reproduction receipts"
+    "successor canonical workflow observation",
+    "successful repository-wide validation",
+    "successful build-pages and deploy-pages evidence",
+    "public route verification"
   ],
   "authority": {
-    "publication": false,
+    "publication_of_exact_approved_description": true,
+    "publication_of_private_correspondence": false,
     "release": false,
     "certification": false,
     "execution": false,
