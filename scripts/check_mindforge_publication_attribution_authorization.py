@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS = ROOT / "static" / "status" / "mindforge-publication-attribution-authorization.json"
+RESPONSE = ROOT / "docs" / "external-frameworks" / "evidence" / "mindforge-reviewer-attribution-response.template.json"
 HANDOFF = ROOT / "docs" / "MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md"
 REGISTRY = ROOT / "docs" / "external-frameworks" / "evidence" / "mindforge-source-location-registry.md"
 
@@ -23,6 +24,13 @@ VALID_STATES = {
     "REJECTED",
 }
 
+VALID_RESPONSE_STATES = {
+    "NOT_RECEIVED",
+    "APPROVED_EXACT",
+    "APPROVED_MODIFIED",
+    "REJECTED",
+}
+
 
 def fail(message: str) -> int:
     print(f"MINDFORGE ATTRIBUTION AUTHORIZATION: FAIL: {message}")
@@ -30,34 +38,45 @@ def fail(message: str) -> int:
 
 
 def main() -> int:
-    for path in (STATUS, HANDOFF, REGISTRY):
+    for path in (STATUS, RESPONSE, HANDOFF, REGISTRY):
         if not path.exists():
             return fail(f"missing required file: {path.relative_to(ROOT)}")
 
     try:
         record = json.loads(STATUS.read_text(encoding="utf-8"))
+        response = json.loads(RESPONSE.read_text(encoding="utf-8"))
     except Exception as exc:
-        return fail(f"authorization record unreadable: {exc}")
+        return fail(f"authorization evidence unreadable: {exc}")
 
     if record.get("schema_version") != "mindforge_publication_attribution_authorization.v1":
         return fail("unexpected schema version")
+    if response.get("schema_version") != "mindforge_reviewer_attribution_response.v1":
+        return fail("unexpected reviewer-response schema version")
     if record.get("goal_id") != "mindforge-commit-time-boundary-activation":
         return fail("goal_id mismatch")
+    if response.get("goal_id") != record.get("goal_id"):
+        return fail("reviewer response goal_id mismatch")
     if record.get("requested_statement") != EXPECTED_STATEMENT:
         return fail("requested attribution statement drift")
+    if response.get("requested_statement") != EXPECTED_STATEMENT:
+        return fail("reviewer response requested statement drift")
 
     state = record.get("authorization_state")
+    response_state = response.get("response_state")
     if state not in VALID_STATES:
         return fail(f"invalid authorization state: {state}")
+    if response_state not in VALID_RESPONSE_STATES:
+        return fail(f"invalid reviewer response state: {response_state}")
 
-    for field in (
-        "official_mindforge_specification",
-        "implementation_endorsed",
-        "compatibility_certified",
-        "execution_authority_granted",
-    ):
-        if record.get(field) is not False:
-            return fail(f"{field} must remain false")
+    for source, label in ((record, "authorization record"), (response, "reviewer response")):
+        for field in (
+            "official_mindforge_specification",
+            "implementation_endorsed",
+            "compatibility_certified",
+            "execution_authority_granted",
+        ):
+            if source.get(field) is not False:
+                return fail(f"{label} {field} must remain false")
 
     permitted = record.get("publication_permitted")
     authorized_statement = record.get("authorized_statement")
@@ -69,6 +88,19 @@ def main() -> int:
             return fail("pending authorization must not permit publication")
         if any(value is not None for value in (authorized_statement, authorized_at, evidence_reference)):
             return fail("pending authorization must not contain approval evidence")
+        if response_state != "NOT_RECEIVED":
+            return fail("pending authorization requires reviewer response state NOT_RECEIVED")
+        if response.get("authorization_effect") != "NONE" or response.get("publication_permitted") is not False:
+            return fail("unreceived response must create no authorization effect")
+        for field in (
+            "received_at",
+            "evidence_reference",
+            "response_channel",
+            "reviewer_response_text",
+            "approved_statement",
+        ):
+            if response.get(field) is not None:
+                return fail(f"unreceived response must leave {field} null")
     elif state == "AUTHORIZED_EXACT":
         if permitted is not True:
             return fail("exact authorization must permit publication")
@@ -76,6 +108,8 @@ def main() -> int:
             return fail("exact authorization statement mismatch")
         if not authorized_at or not evidence_reference:
             return fail("exact authorization requires timestamp and evidence reference")
+        if response_state != "APPROVED_EXACT":
+            return fail("exact authorization requires APPROVED_EXACT reviewer response")
     elif state == "AUTHORIZED_MODIFIED":
         if permitted is not True:
             return fail("modified authorization must permit publication")
@@ -83,11 +117,30 @@ def main() -> int:
             return fail("modified authorization requires approved statement")
         if not authorized_at or not evidence_reference:
             return fail("modified authorization requires timestamp and evidence reference")
+        if response_state != "APPROVED_MODIFIED":
+            return fail("modified authorization requires APPROVED_MODIFIED reviewer response")
     elif state == "REJECTED":
         if permitted is not False:
             return fail("rejected authorization must not permit publication")
         if not evidence_reference:
             return fail("rejection requires evidence reference")
+        if response_state != "REJECTED":
+            return fail("rejected authorization requires REJECTED reviewer response")
+
+    if response_state != "NOT_RECEIVED":
+        for field in ("received_at", "evidence_reference", "response_channel", "reviewer_response_text"):
+            if not response.get(field):
+                return fail(f"received reviewer response requires {field}")
+        if response.get("evidence_reference") != evidence_reference:
+            return fail("authorization and reviewer response evidence references must match")
+        if response.get("publication_permitted") is not permitted:
+            return fail("authorization and reviewer response publication flags must match")
+        if state == "AUTHORIZED_EXACT" and response.get("approved_statement") != EXPECTED_STATEMENT:
+            return fail("exact approval response statement mismatch")
+        if state == "AUTHORIZED_MODIFIED" and response.get("approved_statement") != authorized_statement:
+            return fail("modified approval statements must match")
+        if state == "REJECTED" and response.get("approved_statement") is not None:
+            return fail("rejected response must not contain approved statement")
 
     registry_text = REGISTRY.read_text(encoding="utf-8")
     handoff_text = HANDOFF.read_text(encoding="utf-8")
@@ -95,6 +148,7 @@ def main() -> int:
         "not an official MindForge specification",
         "publication authority",
         "external canonical MindForge source",
+        "mindforge-reviewer-attribution-response.template.json",
     ):
         if marker.lower() not in registry_text.lower():
             return fail(f"source registry missing marker: {marker}")
@@ -105,7 +159,8 @@ def main() -> int:
 
     print(
         "MINDFORGE ATTRIBUTION AUTHORIZATION: PASS "
-        f"state={state} publication_permitted={str(permitted).lower()}"
+        f"state={state} response_state={response_state} "
+        f"publication_permitted={str(permitted).lower()}"
     )
     return 0
 
