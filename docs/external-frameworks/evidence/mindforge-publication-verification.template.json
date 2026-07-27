@@ -42,8 +42,9 @@
       "evidence_reference": null
     }
   ],
-  "attribution_authorization_state": "PENDING_REVIEWER_RESPONSE",
+  "attribution_authorization_state": "AUTHORIZED_EXACT_WITH_BOUNDARIES",
   "reviewer_attribution_published": false,
+  "private_correspondence_published": false,
   "activation_receipt_closed": false,
   "authority_boundary": {
     "publication_creates_framework_standing": false,
