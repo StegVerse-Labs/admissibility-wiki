@@ -1,0 +1,84 @@
+{
+  "schema_version": "0.1.0",
+  "record_type": "external_architectural_boundary_review_intake",
+  "record_id": "mindforge-alane-zhang-boundary-semantics-2026-07-27",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "status": "CONDITION_CAPTURE_PENDING",
+  "publishable": false,
+  "certification": false,
+  "endorsement": false,
+  "implementation_validation": false,
+  "compatibility_certification": false,
+  "execution_authority_determination": false,
+  "review_scope": "architectural boundary semantics only",
+  "reviewer_display_name": "Alane Zhang",
+  "reviewed_formulation_owner": "StegVerse",
+  "external_framework_reference": "MindForge",
+  "reviewer_approved_public_description": "Reviewed for architectural boundary semantics. The reviewer found the boundary substantially correct subject to incorporated clarifications. This is not an official MindForge specification, implementation endorsement, compatibility certification, or execution-authority determination.",
+  "approval_observed": true,
+  "approval_condition": "boundary kept exactly as narrow as stated",
+  "confirmed_boundary": {
+    "commitment_candidate_non_authorizing": true,
+    "standing_reconstructed_fresh_at_commit_time": true,
+    "allow_is_admissibility_not_execution": true,
+    "deny_means_reconstructable_standing_rejects_transition": true,
+    "fail_closed_when_current_state_cannot_be_safely_established": true,
+    "standing_determination_receipt_distinct_from_candidate_and_execution_boundary": true
+  },
+  "reported_suite": {
+    "case_count": 10,
+    "result_classes": ["ALLOW", "DENY", "FAIL-CLOSED"],
+    "explicit_non_execution_allow_case": true,
+    "independently_reproduced_in_this_repository": false,
+    "claim_posture": "REPORTED_NOT_INDEPENDENTLY_REPRODUCED"
+  },
+  "incorporated_edge_cases": [
+    "evidence-hash mismatch",
+    "missing historical artifacts",
+    "policy-version ambiguity",
+    "partial delegation revocation",
+    "unavailable trusted time",
+    "target-identity ambiguity",
+    "action-semantic drift",
+    "loss of recovery path"
+  ],
+  "publication_conditions": {
+    "declared_count": 2,
+    "fully_captured_count": 0,
+    "first_condition_partially_visible": true,
+    "second_condition_visible": false,
+    "verbatim_capture_complete": false,
+    "gate": "FAIL_CLOSED_UNTIL_COMPLETE"
+  },
+  "source_images": [
+    {
+      "filename": "A2CF26A3-3B92-4BCF-8D63-4E91325E5D9E.png",
+      "sha256": "ce29d509a7a96bf51b7cefee560cb1c1801d37e4a7e3e433b49b32c2329bf5cb"
+    },
+    {
+      "filename": "F99F3CE6-FA0D-4BB7-800E-65C2658EF84D.png",
+      "sha256": "50b69f66a196e6e35b2cae5acd48ab4c9266763dc2ac9d75dcf8b64f3015adb6"
+    },
+    {
+      "filename": "C35BB24B-9D93-46F1-9677-70CE1A0EC350.png",
+      "sha256": "9cb4e7de8cf3caffc54c5624e8276c93b0d241a0afc112e3fc674bc0dff6ffea"
+    },
+    {
+      "filename": "76E46987-4C44-4152-92B9-B4CF4AFF6BDA.png",
+      "sha256": "65965ea499f7354a69b456221a41a0d3c862486b4f1871426d7f02cbc6a76451"
+    }
+  ],
+  "required_next_evidence": [
+    "complete verbatim text of publication condition 1",
+    "complete verbatim text of publication condition 2",
+    "durable source-image custody or references",
+    "deterministic suite artifacts or independent reproduction receipts"
+  ],
+  "authority": {
+    "publication": false,
+    "release": false,
+    "certification": false,
+    "execution": false,
+    "cross_repository_mutation": false
+  }
+}
