@@ -8,6 +8,7 @@
   "fixture_path": "docs/external-frameworks/fixtures/arquivonulo-continuing-admissibility-test.v0.1.json",
   "publication_evidence_template_path": "docs/external-frameworks/evidence/arquivonulo-publication-verification.template.json",
   "validator_path": "scripts/check_arquivonulo_execution_boundary.py",
+  "public_route_checker_path": "scripts/check_arquivonulo_public_routes.py",
   "public_routes": [
     "/external-frameworks/arquivonulo",
     "/data/framework-evaluations/arquivonulo.json",
@@ -28,13 +29,16 @@
     "template_status": "TEMPLATE_NOT_OBSERVED",
     "template_populated": false,
     "workflow_evidence_observed": false,
-    "route_evidence_observed": false
+    "route_evidence_observed": false,
+    "route_checker_installed": true,
+    "route_checker_bound_to_local_validator": true,
+    "route_checker_bound_to_verify_public_pages": false
   },
   "workflow_observation": {
     "canonical_validation_observed": false,
     "public_deployment_observed": false,
     "activation_receipt_closed": false,
-    "latest_checked_commit": "b8abd89ec461f99219ca5e4151d90c2a6de516e7",
+    "latest_checked_commit": "a5cdc4ad0f2f1d65db588e5ede1e3d5eabf9aa15",
     "matching_workflow_runs_found": 0,
     "combined_status_entries_found": 0
   },
@@ -47,5 +51,5 @@
     "integration_claimed": false,
     "adverse_capability_conclusion": false
   },
-  "updated_at": "2026-07-27T07:30:00Z"
+  "updated_at": "2026-07-27T07:45:00Z"
 }
