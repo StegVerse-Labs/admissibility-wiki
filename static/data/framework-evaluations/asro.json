@@ -1,41 +1,66 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "evaluation_id": "eval-asro-bounded-comparison-2026-07-23",
+  "status": "PROVISIONAL_CORRECTION_IN_PROGRESS",
+  "publication_class": "UNILATERAL_STEGVERSE_ANALYSIS",
+  "bilateral_seam_comparison_record_issued": false,
   "framework": {
     "framework_id": "asro",
     "name": "ASRO bounded comparison surface",
     "canonical_url": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/asro",
-    "version": null,
-    "owner": "James Aull"
+    "source_version_status": "PARTIAL_CURRENT_OBSERVATION_HISTORICAL_UNRESOLVED",
+    "owner": "James Aull / ASRO™"
   },
-  "self_declaration": {
-    "claim_id": "asro-author-provided-bounded-object-2026-07-23",
-    "source": "SELF",
-    "scope": ["bounded evidence-preservation and integrity comparison", "declared-reference correspondence review"],
-    "functions": ["supply a bounded representative object for comparison", "support evidence-reference correspondence review"],
-    "dependencies": ["ASRO-author-provided bounded representative object", "explicit collection-membership semantics", "object identity, version, hash, and applicable time"],
-    "limitations": ["the supplied object is non-canonical", "the supplied object is not asserted to be an existing released ASRO-native schema", "the bounded object does not establish ASRO implementation completeness", "the bounded comparison does not establish admissibility or execution authority"],
-    "exclusions": ["no canonical ASRO schema inferred", "no truth or sufficiency inferred", "no validity or admissibility inferred", "no authority inheritance inferred", "no public interoperability certification inferred"],
-    "evidence_refs": ["asro-bounded-representative-object-2026-07-23-001", "asro-stegverse-correspondence-2026-07-23-001"],
-    "confidence": 0.96,
-    "uncertainty": ["whether ASRO will later issue a canonical native schema", "which accountable reviewer will eventually issue the reviewer-side record"]
+  "source_provenance": {
+    "historical_2026_07_23_observation": {
+      "repository": "https://github.com/magicianzcardstockllc/asro",
+      "commit_sha": null,
+      "source_path": null,
+      "artifact_hash": null,
+      "status": "UNRESOLVED_NO_RETROACTIVE_SUBSTITUTION"
+    },
+    "current_2026_07_26_observation": {
+      "record": "asro/public-source-observation-2026-07-26.json",
+      "commit_sha": "46f8fd2f8f35668b2b27fcbdb4e24e06b58513a2",
+      "source_path": "README.md",
+      "git_blob_sha": "164920eb86bb1ad27c869142f03db149342d5984",
+      "declared_version": "ASRO v1.0 Release Candidate",
+      "content_sha256": null
+    }
+  },
+  "source_contribution": {
+    "classification": "ASRO_AUTHOR_PROVIDED_BOUNDED_NONCANONICAL_SOURCE_EXAMPLE",
+    "provider": "James Aull / ASRO™",
+    "publicly_reproduced": false,
+    "content_hash_recorded": false,
+    "source_linkage_status": "UNRESOLVED_PENDING_MUTUALLY_APPROVED_SOURCE_INPUT_REFERENCE_OR_HASH"
+  },
+  "public_derivative": {
+    "artifact_id": "asro-bounded-representative-metadata-derivative-2026-07-23-001",
+    "path": "asro/stegverse-generated-bounded-metadata-derivative.json",
+    "creator": "StegVerse Labs",
+    "classification": "STEGVERSE_GENERATED_BOUNDED_DERIVATIVE",
+    "canonical_status": "NON_CANONICAL",
+    "released_asro_native_schema": false,
+    "sha256": "c281e494f838be061af13f64273b9cf96b4ee68b7e4b423691ff91e472d5c92b"
   },
   "determinations": [
     {
-      "claim_id": "stegverse-det-asro-bounded-correspondence-2026-07-23",
+      "determination_id": "det-stegverse-asro-bounded-001-historical",
+      "status": "PRESERVED_HISTORICAL_PROVISIONAL",
       "source": "EVALUATOR",
-      "scope": ["bounded correspondence between the ASRO-provided object and the StegVerse Companion Layer declaration"],
-      "functions": ["test declared-reference presence using collection membership", "bind the reference to object identity, version, hash, and applicable time", "preserve the StegVerse declaration as controlling and the reviewer profile as derivative"],
-      "dependencies": ["sv-cl-asro-2026-07-23-001", "asro-bounded-representative-object-2026-07-23-001", "review-profile-asro-stegverse-2026-07-23-001", "asro-stegverse-correspondence-2026-07-23-001"],
-      "limitations": ["correspondence is not truth", "correspondence is not sufficiency", "correspondence is not validity", "correspondence is not admissibility", "correspondence does not transfer authority"],
-      "exclusions": ["no ASRO canonical-schema claim", "no external certification", "no execution authority", "no custody transfer"],
-      "evidence_refs": ["sv-cl-asro-2026-07-23-001", "asro-bounded-representative-object-2026-07-23-001", "review-profile-asro-stegverse-2026-07-23-001", "asro-stegverse-correspondence-2026-07-23-001"],
-      "confidence": 0.95,
-      "uncertainty": ["reviewer issuer remains unresolved", "external ASRO execution has not been represented"],
-      "determination_id": "det-stegverse-asro-bounded-001",
       "evaluator_id": "stegverse",
-      "observation_class": "DERIVED",
-      "parentage_claim": "NOT_CLAIMED"
+      "scope": [
+        "historical bounded correspondence against the artifact then declared",
+        "preservation of non-authority boundaries"
+      ],
+      "limitations": [
+        "original source JSON was not publicly reproduced or content-hashed",
+        "public derivative was previously misclassified",
+        "corrected package integrity has not yet been recomputed",
+        "correspondence is not truth, sufficiency, validity, admissibility, or authority"
+      ],
+      "current_effect": "SUPERSEDED_PENDING_CORRECTED_RUN"
     }
   ],
   "test_runs": [
@@ -45,31 +70,78 @@
       "executor_id": "stegverse",
       "started_at": "2026-07-23T00:00:01Z",
       "completed_at": "2026-07-23T00:00:04Z",
-      "result": "PASS",
+      "result": "HISTORICAL_PASS_SUPERSEDED_PENDING_CORRECTED_RUN",
       "input_hash": "76b89f81df802245d8cb309cc3b432ae283eb22f1f73fe7839c90848bd044537",
+      "input_hash_status": "HISTORICAL_SUPERSEDED",
       "output_hash": null,
-      "event_refs": ["evt-asro-run-001-inputs", "evt-asro-run-001-membership", "evt-asro-run-001-boundaries", "evt-asro-run-001-result"],
-      "evidence_refs": ["asro-stegverse-correspondence-2026-07-23-001"],
-      "artifact_refs": ["runs/asro-declared-reference-membership-v1-stegverse-run-001.jsonl"],
-      "receipt_refs": [],
-      "replay_status": "PASS",
-      "reconstruction_status": "PASS",
-      "confidence": 1.0,
-      "uncertainty": ["external ASRO execution not represented", "reviewer issuer unresolved"]
+      "replay_status": "HISTORICAL_PASS",
+      "reconstruction_status": "HISTORICAL_PASS",
+      "admissibility": "NOT_EVALUATED",
+      "external_asro_native_execution": "NOT_TESTED",
+      "reviewer_issuer": "unresolved",
+      "current_authority": "NONE"
     }
   ],
-  "disputes": [],
+  "correction_state": {
+    "manifest": "PROVISIONAL_CORRECTION_IN_PROGRESS",
+    "test_fixture": "PROVISIONAL_CORRECTION_IN_PROGRESS",
+    "receipt": "PROVISIONAL_SUPERSEDED_PENDING_CORRECTED_RUN",
+    "corrected_run_required": true,
+    "corrected_package_sha256": null,
+    "corrected_receipt_hash": null
+  },
   "sources": [
-    {"source_id": "src-asro-bounded-object", "path": "asro/asro-author-provided-bounded-representative-object.json", "source_class": "ASRO-author-provided bounded representative object"},
-    {"source_id": "src-stegverse-companion-layer", "path": "asro/stegverse-companion-layer-declaration.json", "source_class": "StegVerse canonical source declaration"},
-    {"source_id": "src-asro-review-profile", "path": "asro/reviewer-profile.json", "source_class": "derivative reviewer-side profile"},
-    {"source_id": "src-asro-correspondence", "path": "asro/correspondence-manifest.json", "source_class": "bounded correspondence determination"}
+    {
+      "source_id": "src-asro-private-bounded-example",
+      "path": null,
+      "source_class": "ASRO-author-provided bounded noncanonical source example",
+      "publicly_reproduced": false,
+      "hash": null
+    },
+    {
+      "source_id": "src-stegverse-public-metadata-derivative",
+      "path": "asro/stegverse-generated-bounded-metadata-derivative.json",
+      "source_class": "StegVerse-generated bounded metadata derivative"
+    },
+    {
+      "source_id": "src-asro-current-public-observation",
+      "path": "asro/public-source-observation-2026-07-26.json",
+      "source_class": "current public ASRO source observation"
+    },
+    {
+      "source_id": "src-stegverse-companion-layer",
+      "path": "asro/stegverse-companion-layer-declaration.json",
+      "source_class": "StegVerse controlling source declaration"
+    },
+    {
+      "source_id": "src-asro-review-profile",
+      "path": "asro/reviewer-profile.json",
+      "source_class": "derivative reviewer-side profile"
+    },
+    {
+      "source_id": "src-asro-correspondence",
+      "path": "asro/correspondence-manifest.json",
+      "source_class": "provisional corrected correspondence manifest"
+    }
   ],
   "publication": {
     "published_at": "2026-07-23T00:00:00Z",
-    "record_hash": "PENDING_CANONICAL_HASH",
+    "record_hash": null,
+    "record_hash_status": "PENDING_CORRECTED_PACKAGE",
     "projection_authority": "NONE",
     "custody_ref": null,
-    "reconstruction_status": "PASS"
+    "reconstruction_status": "PENDING_CORRECTED_RUN",
+    "exact_language_bilateral_authorization": false,
+    "main_site_projection_authorized_by_asro": false
+  },
+  "authority_boundary": {
+    "partnership": false,
+    "integration": false,
+    "endorsement": false,
+    "certification": false,
+    "joint_issuance": false,
+    "admissibility": false,
+    "execution_authority": false,
+    "authority_inheritance": false
   }
 }
