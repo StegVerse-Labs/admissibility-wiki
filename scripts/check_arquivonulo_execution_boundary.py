@@ -12,6 +12,7 @@ EVALUATION = ROOT / "static" / "data" / "framework-evaluations" / "arquivonulo.j
 INDEX = ROOT / "static" / "data" / "framework-evaluations" / "index.json"
 STATUS = ROOT / "static" / "status" / "arquivonulo-execution-boundary-status.json"
 FIXTURE = ROOT / "docs" / "external-frameworks" / "fixtures" / "arquivonulo-continuing-admissibility-test.v0.1.json"
+PUBLICATION_TEMPLATE = ROOT / "docs" / "external-frameworks" / "evidence" / "arquivonulo-publication-verification.template.json"
 SIDEBAR = ROOT / "sidebars.js"
 HANDOFF = ROOT / "docs" / "ARQUIVONULO_MIRROR_HANDOFF.md"
 
@@ -34,6 +35,7 @@ def main() -> None:
     index = json.loads(read(INDEX))
     status = json.loads(read(STATUS))
     fixture = json.loads(read(FIXTURE))
+    publication = json.loads(read(PUBLICATION_TEMPLATE))
 
     for token in (
         "valid proof != continuing admissibility",
@@ -50,6 +52,7 @@ def main() -> None:
         "arquivonulo-execution-boundary-evaluation",
         "static/status/arquivonulo-execution-boundary-status.json",
         "arquivonulo-continuing-admissibility-test.v0.1.json",
+        "arquivonulo-publication-verification.template.json",
     ):
         require(token in handoff, f"goal-specific handoff missing token: {token}")
 
@@ -110,7 +113,26 @@ def main() -> None:
     for key in ("certification", "endorsement", "execution", "custody", "adverse_capability_conclusion"):
         require(fixture.get("authority", {}).get(key) is False, f"fixture authority.{key} must remain false")
 
-    print("ARQUIVONULO EXECUTION BOUNDARY: PASS - doctrine, evaluation, registry, status, fixture, navigation, and handoff agree")
+    require(publication.get("evidence_id") == "arquivonulo-publication-verification", "publication template evidence_id is incorrect")
+    require(publication.get("status") == "TEMPLATE_NOT_OBSERVED", "publication template must remain unobserved until populated from evidence")
+    require(publication.get("commit_sha") is None, "publication template commit_sha must remain null before observation")
+    routes = publication.get("routes", [])
+    require(len(routes) == 3, "publication template must contain three public routes")
+    urls = {item.get("url") for item in routes}
+    required_urls = {
+        "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/arquivonulo",
+        "https://stegverse-labs.github.io/admissibility-wiki/data/framework-evaluations/arquivonulo.json",
+        "https://stegverse-labs.github.io/admissibility-wiki/status/arquivonulo-execution-boundary-status.json",
+    }
+    require(required_urls == urls, "publication template routes are incomplete or unexpected")
+    closure = publication.get("closure", {})
+    for key in ("canonical_validation_observed", "public_deployment_observed", "activation_receipt_closed"):
+        require(closure.get(key) is False, f"publication closure.{key} must remain false before evidence")
+    publication_authority = publication.get("authority_boundary", {})
+    for key in ("publication_evidence_is_execution_authority", "certification_granted", "endorsement_granted", "custody_granted", "integration_claimed"):
+        require(publication_authority.get(key) is False, f"publication authority_boundary.{key} must remain false")
+
+    print("ARQUIVONULO EXECUTION BOUNDARY: PASS - doctrine, evaluation, registry, status, fixture, publication template, navigation, and handoff agree")
 
 
 if __name__ == "__main__":
