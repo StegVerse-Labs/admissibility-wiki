@@ -49,6 +49,7 @@ SV_CONTINUITY_109_CHECK = ROOT / "scripts" / "check_sv_continuity_109_admissibil
 MICRO_TIMESCALE_HUMAN_ADMISSIBILITY_CHECK = ROOT / "scripts" / "check_micro_timescale_human_admissibility.py"
 MORRISON_RUNTIME_PROMOTION_GATE_CHECK = ROOT / "scripts" / "check_morrison_runtime_promotion_gate.py"
 MORRISON_RUNTIME_DOWNSTREAM_PROPAGATION_CHECK = ROOT / "scripts" / "check_morrison_runtime_downstream_propagation.py"
+TA14_STANDING_RECONSTRUCTION_CHECK = ROOT / "scripts" / "check_ta14_standing_reconstruction.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -132,6 +133,7 @@ def main() -> int:
         (MICRO_TIMESCALE_HUMAN_ADMISSIBILITY_CHECK, "micro-timescale human admissibility"),
         (MORRISON_RUNTIME_PROMOTION_GATE_CHECK, "Morrison Runtime promotion gate"),
         (MORRISON_RUNTIME_DOWNSTREAM_PROPAGATION_CHECK, "Morrison Runtime downstream propagation review"),
+        (TA14_STANDING_RECONSTRUCTION_CHECK, "TA-14 continuous actor-standing reconstruction"),
         (RELEASE_READINESS_CHECK, "release readiness"),
     )
     for path, label in checks:
