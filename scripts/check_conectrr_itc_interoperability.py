@@ -4,12 +4,14 @@
 This validator intentionally accepts the pre-execution pending state. It fails if
 that state asserts completed testing, source mutation, authority inheritance,
 partial receipt of the required three-artifact source package, a false claim of
-canonical workflow observation, or invalid AGREE / DISAGREE / DEFER fixtures.
+canonical workflow observation, invalid AGREE / DISAGREE / DEFER fixtures, or
+an invalid immutable-source hash receipt.
 """
 
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -19,6 +21,7 @@ PROFILE_PATH = ROOT / "static/data/framework-evaluations/examples/conectrr-itc.i
 RESULT_PATH = ROOT / "static/data/framework-evaluations/examples/conectrr-itc.interoperability-result.pending.v1.json"
 SOURCE_RECEIPT_PATH = ROOT / "static/data/framework-evaluations/examples/conectrr-itc.source-package-receipt.pending.v1.json"
 DISPOSITION_FIXTURES_PATH = ROOT / "static/data/framework-evaluations/examples/conectrr-itc.disposition-fixtures.v1.json"
+IMMUTABLE_HASH_RECEIPT_PATH = ROOT / "static/data/framework-evaluations/examples/conectrr-itc.immutable-source-hash-receipt.template.v1.json"
 SCHEMA_PATH = ROOT / "static/schemas/conectrr-itc-interoperability-result.schema.json"
 INTAKE_PATH = ROOT / "docs/external-frameworks/conectrr-itc-interoperability-intake.md"
 RECORD_PATH = ROOT / "static/data/framework-evaluations/conectrr-itc.json"
@@ -54,6 +57,7 @@ EXPECTED_DISPOSITIONS = {
     "DEFER": "conectrr-itc-defer",
 }
 SOURCE_KEYS = ("specification", "canonical_itc", "validation_report")
+SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
 def fail(message: str) -> None:
@@ -112,6 +116,8 @@ def validate_source_receipt(receipt: dict[str, Any], profile: dict[str, Any]) ->
         if received:
             if not item.get("path") or not item.get("sha256") or not item.get("media_type"):
                 fail(f"received artifact requires path, sha256, and media_type: {key}")
+            if not SHA256_RE.fullmatch(str(item.get("sha256"))):
+                fail(f"received artifact requires lowercase SHA-256: {key}")
         else:
             for field in ("path", "sha256", "media_type"):
                 if item.get(field) is not None:
@@ -204,6 +210,93 @@ def validate_disposition_fixtures(fixtures_doc: dict[str, Any], profile: dict[st
             fail(f"disposition fixture missing non-claim marker: {marker}")
 
 
+def validate_immutable_hash_receipt(receipt: dict[str, Any], profile: dict[str, Any], source_complete: bool) -> None:
+    if receipt.get("schema") != "conectrr_itc_immutable_source_hash_receipt.v1":
+        fail("unexpected immutable-source hash receipt schema")
+    if receipt.get("profile_id") != profile.get("profile_id"):
+        fail("immutable-source hash receipt/profile id mismatch")
+    if receipt.get("hash_algorithm") != "sha256":
+        fail("immutable-source hash receipt must use sha256")
+    if receipt.get("source_mutated") is not False:
+        fail("immutable-source hash receipt must keep source_mutated=false")
+    require_false_authority(receipt.get("authority"), "immutable-source hash receipt")
+
+    preconditions = receipt.get("preconditions")
+    if not isinstance(preconditions, dict):
+        fail("immutable-source hash receipt preconditions object is required")
+    required_preconditions = {
+        "complete_source_package_received",
+        "specification_hash_bound",
+        "canonical_itc_hash_bound",
+        "validation_report_hash_bound",
+        "independent_reviewer_assigned",
+    }
+    if set(preconditions) != required_preconditions:
+        fail("immutable-source hash receipt precondition set drift")
+
+    if not source_complete:
+        if receipt.get("state") != "TEMPLATE_NOT_EXECUTED":
+            fail("pending source package requires TEMPLATE_NOT_EXECUTED hash receipt")
+        for field in (
+            "canonical_itc_path",
+            "source_hash_before",
+            "source_hash_after",
+            "hashes_match",
+            "captured_before_at",
+            "captured_after_at",
+            "captured_by",
+            "test_run_id",
+        ):
+            if receipt.get(field) is not None:
+                fail(f"unexecuted hash receipt cannot assert {field}")
+        if receipt.get("testing_authorized") is not False:
+            fail("unexecuted hash receipt cannot authorize testing")
+        if any(value is not False for value in preconditions.values()):
+            fail("unexecuted hash receipt preconditions must all remain false")
+    else:
+        if receipt.get("state") not in {"READY_FOR_PRE_TEST_CAPTURE", "EXECUTED"}:
+            fail("complete source package requires a ready or executed hash receipt")
+        if receipt.get("testing_authorized") is not True:
+            fail("complete source package hash receipt must authorize bounded testing")
+        for key in (
+            "complete_source_package_received",
+            "specification_hash_bound",
+            "canonical_itc_hash_bound",
+            "validation_report_hash_bound",
+        ):
+            if preconditions.get(key) is not True:
+                fail(f"complete source package requires hash receipt precondition: {key}")
+        if receipt.get("state") == "EXECUTED":
+            for field in ("canonical_itc_path", "captured_before_at", "captured_after_at", "captured_by", "test_run_id"):
+                if not receipt.get(field):
+                    fail(f"executed hash receipt requires {field}")
+            before = receipt.get("source_hash_before")
+            after = receipt.get("source_hash_after")
+            if not isinstance(before, str) or not SHA256_RE.fullmatch(before):
+                fail("executed hash receipt requires lowercase SHA-256 source_hash_before")
+            if not isinstance(after, str) or not SHA256_RE.fullmatch(after):
+                fail("executed hash receipt requires lowercase SHA-256 source_hash_after")
+            if receipt.get("hashes_match") is not (before == after):
+                fail("hashes_match must equal exact pre/post hash comparison")
+            if before != after:
+                fail("canonical ITC changed during the bounded interoperability test")
+
+    non_claims = receipt.get("non_claims")
+    if not isinstance(non_claims, list):
+        fail("immutable-source hash receipt non_claims array is required")
+    joined = "\n".join(str(item) for item in non_claims)
+    for marker in (
+        "not an executed hash receipt",
+        "source immutability during the bounded test only",
+        "do not establish semantic correctness",
+        "do not establish reviewer standing",
+        "do not grant certification or execution authority",
+        "complete source package is required",
+    ):
+        if marker not in joined:
+            fail(f"immutable-source hash receipt missing non-claim marker: {marker}")
+
+
 def main() -> None:
     for path in (SCHEMA_PATH, INTAKE_PATH, RECORD_PATH, AGGREGATE_PATH, PACKAGE_PATH):
         if not path.is_file():
@@ -213,6 +306,7 @@ def main() -> None:
     result = load_json(RESULT_PATH)
     source_receipt = load_json(SOURCE_RECEIPT_PATH)
     disposition_fixtures = load_json(DISPOSITION_FIXTURES_PATH)
+    immutable_hash_receipt = load_json(IMMUTABLE_HASH_RECEIPT_PATH)
     binding = load_json(BINDING_STATUS_PATH)
 
     if profile.get("schema") != "conectrr_itc_interoperability_test_profile.v1":
@@ -225,6 +319,7 @@ def main() -> None:
     received_states = validate_source_receipt(source_receipt, profile)
     source_complete = all(received_states)
     validate_disposition_fixtures(disposition_fixtures, profile, source_complete)
+    validate_immutable_hash_receipt(immutable_hash_receipt, profile, source_complete)
 
     check_ids = {
         item.get("check_id")
@@ -279,6 +374,10 @@ def main() -> None:
         after = result.get("source_hash_after")
         if not before or before != after:
             fail("executed result requires identical pre/post immutable source hashes")
+        if immutable_hash_receipt.get("state") != "EXECUTED":
+            fail("executed result requires an executed immutable-source hash receipt")
+        if before != immutable_hash_receipt.get("source_hash_before") or after != immutable_hash_receipt.get("source_hash_after"):
+            fail("executed result hashes must match the immutable-source hash receipt")
 
     if binding.get("schema") != "conectrr_itc_canonical_validation_binding_status.v1":
         fail("unexpected canonical validation binding status schema")
@@ -286,6 +385,10 @@ def main() -> None:
         fail("canonical validation binding repository mismatch")
     if binding.get("binding_state") != "BOUND_THROUGH_CANONICAL_AGGREGATE":
         fail("Conectrr validator must remain bound through the canonical aggregate")
+    if binding.get("immutable_source_hash_receipt_state") != "BOUND_INTO_INTEROPERABILITY_VALIDATOR":
+        fail("immutable-source hash receipt must remain bound into the interoperability validator")
+    if binding.get("immutable_source_hash_receipt") != str(IMMUTABLE_HASH_RECEIPT_PATH.relative_to(ROOT)):
+        fail("canonical binding status points to the wrong immutable-source hash receipt")
     require_false_authority(binding.get("authority"), "binding status")
 
     aggregate_text = AGGREGATE_PATH.read_text(encoding="utf-8")
@@ -326,11 +429,13 @@ def main() -> None:
     print(f"OK: {RESULT_PATH.relative_to(ROOT)}")
     print(f"OK: {SOURCE_RECEIPT_PATH.relative_to(ROOT)}")
     print(f"OK: {DISPOSITION_FIXTURES_PATH.relative_to(ROOT)}")
+    print(f"OK: {IMMUTABLE_HASH_RECEIPT_PATH.relative_to(ROOT)}")
     print(f"OK: {SCHEMA_PATH.relative_to(ROOT)}")
     print(f"OK: {BINDING_STATUS_PATH.relative_to(ROOT)}")
     print(f"conectrr_itc_source_package={source_receipt.get('state')}")
     print("conectrr_itc_dispositions=AGREE,DISAGREE,DEFER")
     print("conectrr_itc_disposition_fixtures=BOUND")
+    print("conectrr_itc_immutable_source_hash_receipt=BOUND")
     print("conectrr_itc_canonical_binding=BOUND_THROUGH_CANONICAL_AGGREGATE")
     print(f"conectrr_itc_workflow_observation={workflow_state}")
     print("conectrr_itc_authority_effect=NONE")
