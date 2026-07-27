@@ -1,0 +1,25 @@
+{
+  "schema": "conectrr_itc_canonical_capability_request.v1",
+  "request_id": "conectrr-itc-canonical-capability-2026-07-27",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "requested_path": "canonical_pull_request_validation",
+  "requested_checks": [
+    "scripts/check_conectrr_itc_interoperability.py",
+    "scripts/check_conectrr_itc_synthetic_capability.py",
+    "scripts/check_conectrr_itc_reciprocal_methodology_acknowledgment.py",
+    "scripts/check_admissibility_automation_handoff.py"
+  ],
+  "expected_evidence": [
+    "canonical-prescan-report",
+    "full-validation-chain-report"
+  ],
+  "source_package_posture": "SYNTHETIC_ONLY_EXTERNAL_ARTIFACTS_NOT_RECEIVED",
+  "claims": {
+    "external_interoperability": false,
+    "independent_reconstruction": false,
+    "certification": false,
+    "execution_authority": false
+  },
+  "success_condition": "canonical workflow returns an observed result without converting synthetic evidence into external validation",
+  "failure_condition": "retain exact failing check and output without rewriting prior non-observation evidence"
+}
