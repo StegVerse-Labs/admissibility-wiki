@@ -22,6 +22,8 @@ REQUIRED_FILES = (
     "receipts/mindforge-boundary-review-receipt.json",
     "static/status/mindforge-publication-attribution-authorization.json",
     "scripts/check_mindforge_publication_attribution_authorization.py",
+    "docs/external-frameworks/evidence/mindforge-publication-verification.template.json",
+    "scripts/check_mindforge_publication_verification.py",
     "scripts/check_mindforge_source_location_registry.py",
     "docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md",
     "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
@@ -33,10 +35,12 @@ REGISTRY_MARKERS = (
     "Private correspondence: provenance evidence only",
     "StegVerse doctrine: discussion-derived interpretation",
     "Reviewer attribution authorization: explicit response required; silence creates no authorization",
+    "Publication verification: successful workflow, build, deployment, and route evidence required",
     "nine-case reconstruction of the original private boundary discussion",
     "ten-case StegVerse conformance suite",
     "Neither becomes an official MindForge specification",
     "Publication attribution remains prohibited",
+    "Publication activation remains unverified",
     "No downstream location becomes an independent editorial or canonical MindForge source",
 )
 
@@ -47,6 +51,7 @@ HANDOFF_MARKERS = (
     "STANDING DETERMINATION RECEIPT: PASS",
     "repository-wide validation: FAIL_CLOSED_OBSERVED",
     "A passing goal-local checker does not override the repository-wide fail-closed gate",
+    "mindforge-publication-verification.template.json",
 )
 
 
@@ -99,7 +104,8 @@ def main() -> int:
     print(
         "MINDFORGE SOURCE LOCATION ALIGNMENT: PASS "
         f"({len(REQUIRED_FILES)} locations; canonical_external_source=NOT_ATTACHED; "
-        "downstream_editorial_authority=NONE; attribution_authorization=EXPLICIT_ONLY)"
+        "downstream_editorial_authority=NONE; attribution_authorization=EXPLICIT_ONLY; "
+        "publication_verification=RUN_BOUND_ONLY)"
     )
     return 0
 
