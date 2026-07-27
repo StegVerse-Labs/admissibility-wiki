@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, public determinations, and reciprocal self-review.
-Current state: three governed dockets, reciprocal StegVerse self-review, review-governance schemas, frozen reconstruction manifest, route-observation receipt, accountable reconstruction invitation, bounded external-framework intakes, and a canonically bound Conectrr ITC interoperability package are installed.
+Current state: three governed dockets, reciprocal StegVerse self-review, review-governance schemas, frozen reconstruction manifest, route-observation receipt, accountable reconstruction invitation, bounded external-framework intakes, and a canonically bound Conectrr ITC interoperability package with an explicit source-package receipt are installed.
 Manual task requirement: none.
 User manual action required: false.
 ```
@@ -15,7 +15,7 @@ User manual action required: false.
 
 ```text
 Goal id: wiki-public-anchor-independent-reconstruction-activation
-State: CONECTRR_CANONICAL_BINDING_VERIFIED_PENDING_WORKFLOW_OBSERVATION_AND_SOURCE_ARTIFACTS
+State: CONECTRR_SOURCE_RECEIPT_AND_CANONICAL_BINDING_VERIFIED_PENDING_WORKFLOW_OBSERVATION_AND_SOURCE_ARTIFACTS
 Authority posture: public review and reconstruction infrastructure only; no certification, government recognition, custody, endorsement, or execution authority created.
 ```
 
@@ -72,6 +72,7 @@ interoperability disposition != execution authority
 invitation != reviewer standing
 anonymous result != accountable reconstruction
 canonical binding != observed workflow execution
+complete source receipt != execution authority
 ```
 
 ## Docket Boundaries
@@ -92,6 +93,7 @@ Machine-readable intake: static/data/framework-evaluations/conectrr-itc.json
 Test profile: static/data/framework-evaluations/examples/conectrr-itc.interoperability-test-profile.v1.json
 Result schema: static/schemas/conectrr-itc-interoperability-result.schema.json
 Pending result fixture: static/data/framework-evaluations/examples/conectrr-itc.interoperability-result.pending.v1.json
+Pending source-package receipt: static/data/framework-evaluations/examples/conectrr-itc.source-package-receipt.pending.v1.json
 Boundary validator: scripts/check_conectrr_itc_interoperability.py
 Canonical binding status: static/status/conectrr-itc-canonical-validation-binding-status.json
 Aggregate validator: scripts/check_admissibility_automation_handoff.py
@@ -99,8 +101,9 @@ Canonical validation: npm run validate
 Canonical workflow: .github/workflows/validate-chain-continuation.yml
 Binding state: BOUND_THROUGH_CANONICAL_AGGREGATE
 Workflow observation: NOT_OBSERVED_FOR_LATEST_COMMIT
-Observed commit: ada000b4bf757738802390ee24b0e095ac3c03e7
+Observed commit: f71498451a8db7864f0364ab3d61cd6f37deefa9
 Workflow runs observed: 0
+Source-package state: AWAITING_CANONICAL_SOURCE_ARTIFACTS
 Specification: OFFERED_NOT_RECEIVED
 Canonical generated ITC: OFFERED_NOT_RECEIVED
 Internal validation report: OFFERED_NOT_RECEIVED
@@ -124,7 +127,7 @@ Conectrr discovery output
 -> ALLOW / DENY / FAIL-CLOSED
 ```
 
-The Conectrr validator now verifies its own canonical aggregate binding, confirms `npm run validate` invokes that aggregate, validates the binding-status receipt, rejects false workflow-observation claims, preserves all ten drift vectors, requires immutable pre/post source hashes for executed results, and holds all authority flags false.
+The validator verifies canonical aggregate binding, confirms `npm run validate` invokes that aggregate, validates the binding-status receipt, validates the source-package receipt against the test profile, rejects partial receipt, rejects hashes or paths before receipt, requires all three artifacts before testing authorization, preserves all ten drift vectors, requires immutable pre/post source hashes for executed results, and holds all authority flags false.
 
 ## Deployment and Validation Gate
 
@@ -147,7 +150,8 @@ Required work:
 - observe canonical validation and public deployment for the latest Conectrr package commit
 - update workflow and route-observation receipts only from canonical evidence
 - receive and freeze the Conectrr ITC specification, canonical generated ITC, and internal validation report
-- replace the pending fixture with hash-bound executed receipts without mutating the canonical ITC
+- convert the pending source-package receipt to a complete hash-bound receipt only when all three artifacts are present
+- replace the pending result fixture with hash-bound executed receipts without mutating the canonical ITC
 - run source-integrity, semantic-boundary, reconstruction, disagreement, deferral, replay, and commit-time non-inheritance checks
 - ingest the first accountable independent reconstruction submission
 - bind canonical hashes or signatures when Publisher or Master Records custody is authorized
@@ -163,7 +167,8 @@ StegVerse-Labs/admissibility-wiki:
 - Conectrr ITC Specification v1.0 Draft frozen source artifact
 - canonical Conectrr-generated ITC frozen source artifact
 - Conectrr internal validation report frozen source artifact
-- immutable-source hash receipt
+- completed source-package receipt with hashes and media types
+- immutable-source pre/post hash receipt
 - executed independent reconstruction and replay receipts
 - executed AGREE / DISAGREE / DEFER result
 - commit-time authority non-inheritance edge-case results
