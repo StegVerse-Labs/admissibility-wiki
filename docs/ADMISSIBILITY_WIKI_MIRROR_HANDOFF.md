@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, and public determinations.
-Current state: the public-anchor constitutional doctrine and governed-framework-review v1 schema are installed and exposed in navigation. Existing external-framework pages, evaluation standards, evidence classifications, tests, and receipts provide the starting corpus.
+Current state: the public-anchor constitutional doctrine, governed-framework-review v1 schema, first TA-14 governed public review docket, machine-readable reference record, public reconstruction instructions, and canonical TA-14 validation integration are installed.
 Manual task requirement: none.
 User manual action required: false.
 No manual target-creation task is assigned.
@@ -18,13 +18,15 @@ No manual target-creation task is assigned.
 Goal id: wiki-public-anchor-reference-docket
 Doctrine: docs/governance/wiki-public-anchor.md
 Schema: static/schemas/governed-framework-review.schema.json
-Reference page source: docs/external-frameworks/external-framework-template.md
-Target: convert one existing external-framework review into the first complete governed public review docket.
-State: DOCTRINE_AND_SCHEMA_INSTALLED_REFERENCE_DOCKET_PENDING
-Authority posture: public review and reconstruction infrastructure; no execution authority created
+Reference docket page: docs/external-frameworks/ta-14-public-review-docket.md
+Reference docket record: static/data/governed-framework-reviews/ta-14.reference-docket.v1.json
+Reference validator: scripts/check_governed_framework_review_reference.py
+Canonical integration: scripts/check_ta14_standing_reconstruction.py -> scripts/check_admissibility_automation_handoff.py -> npm run validate
+State: REFERENCE_DOCKET_IMPLEMENTED_PENDING_CANONICAL_VALIDATION
+Authority posture: public review and reconstruction infrastructure; no certification or execution authority created
 ```
 
-The reference docket must contain:
+The reference docket contains:
 
 ```text
 framework-native declaration
@@ -35,7 +37,7 @@ version and time-T binding
 parameterized test history
 bounded determination
 framework response and dispute history
-independent reconstruction results
+independent reconstruction status
 corrections and supersession history
 current standing
 machine-readable review record
@@ -50,15 +52,46 @@ visibility != authority
 certification != execution authority
 current state != historical state at time T
 StegVerse determination != immunity from reciprocal review
+structural schema conformance != substantive correctness
 ```
 
 No determination possesses standing merely because StegVerse published it. Standing exists only to the extent that the evidence, historical state, test method, decision rule, uncertainty, and challenge path can be independently inspected and reconstructed.
 
 StegVerse frameworks must be reviewed under standards equal to or stricter than those applied to external frameworks.
 
+## TA-14 Reference Docket Boundary
+
+```text
+Review id: review-ta14-reference-docket-2026-07-27
+Framework version binding: public-materials-unversioned-2026-07-26
+Relevant time T: 2026-07-26T23:45:00Z
+Current standing: PUBLICLY_UNRESOLVED
+Reconstruction status: PARTIAL
+Challenge status: OPEN
+Verified capabilities: none
+Live discriminating test: NOT_RUN
+Certification granted: false
+Execution authority granted: false
+```
+
+The TA-14 docket is the first reference public docket because the repository already contained a bounded declaration, source registry, StegVerse determination, open disputes, framework responses, frozen test fixture, and explicit non-claim language.
+
+The docket must continue to preserve:
+
+```text
+route admissibility != actor standing
+binding established != binding still valid
+execution continuity != authority continuity
+proof preserved != current state independently reconstructed
+standing included in doctrine != point-of-effect standing reconstruction demonstrated
+PUBLICLY_UNRESOLVED != absent, failed, or disproven
+```
+
+No live TA-14 implementation test has been run. The current record is a bounded reconstruction from owner-controlled public materials and user-supplied captures of owner-participating public dialogue.
+
 ## Existing Activation Base
 
-The repository already includes:
+The repository includes:
 
 ```text
 external-framework evaluation standard
@@ -74,32 +107,6 @@ publication receipts and cross-wiki observation status
 ```
 
 These assets are to be converged into the public-anchor docket model rather than replaced by a disconnected certification portal.
-
-## TA-14 Continuous Actor-Standing Evaluation
-
-```text
-Goal id: ta14-continuous-actor-standing-reconstruction
-Doctrine: docs/external-frameworks/ta-14.md
-Machine-readable evaluation: static/data/framework-evaluations/ta-14.json
-Sidebar route: external-frameworks/ta-14
-State: DOCUMENTED_PUBLICLY_UNRESOLVED_TEST_PROPOSED_NOT_RUN
-Authority posture: observation only; no certification, execution authority, or adverse capability conclusion
-Manual task requirement: none
-User manual action required: false
-```
-
-Preserved distinctions:
-
-```text
-route admissibility != actor standing
-binding established != binding still valid
-execution continuity != authority continuity
-proof preserved != current state independently reconstructed
-standing included in doctrine != point-of-effect standing reconstruction demonstrated
-PUBLICLY_UNRESOLVED != absent, failed, or disproven
-```
-
-No live TA-14 implementation test has been run. The current record is a bounded reconstruction from owner-controlled public materials and user-supplied captures of owner-participating public dialogue.
 
 ## Verification Versus Execution Authority
 
@@ -159,14 +166,36 @@ Destination mutation remains prohibited until each destination handoff grants th
 ## Remaining Open Checks
 
 ```text
-- select the first reference external-framework docket using the strongest available evidence and test record
-- create its governed-framework-review.v1 machine-readable record
-- add a schema validator and integrate it into npm run validate without adding a second active workflow
-- render the reference docket page from or against the machine-readable record
-- publish public verification instructions and a reconstruction packet
+- run or observe the canonical validation workflow after the reference docket installation
+- observe public deployment of /external-frameworks/ta-14-public-review-docket
+- add a durable public status or publication receipt for the reference docket after canonical evidence exists
+- define the standard external reconstruction submission object and correction receipt object
+- convert the next strongest external-framework page to the governed-framework-review.v1 model
+- build reciprocal StegVerse self-review under equal or stricter rules
 - preserve unresolved and non-claim language where evidence is incomplete
-- observe the next canonical workflow and public deployment
 - queue Site, Publisher, and StegGuardian awareness only after their handoffs authorize mutation
+```
+
+## Known Remaining Files and Destinations
+
+```text
+StegVerse-Labs/admissibility-wiki:
+- static/schemas/framework-reconstruction-submission.schema.json
+- static/schemas/framework-review-correction-receipt.schema.json
+- static/status/wiki-public-anchor-reference-docket-status.json
+- scripts/check_framework_reconstruction_submission.py
+- scripts/check_framework_review_correction_receipt.py
+- second governed-framework-review.v1 docket
+- reciprocal StegVerse self-review docket
+
+StegVerse-Labs/Site:
+- public-anchor discovery and comparison projection, pending SITE_MIRROR_HANDOFF authority
+
+GCAT-BCAT-Engine/Publisher:
+- canonical docket packaging, signature, publication receipt, and supersession projection, pending PUBLISHER_MIRROR_HANDOFF authority
+
+StegVerse-002/stegguardian-wiki:
+- reviewer standing, conflicts, challenge, appeal, and correction governance projection, pending destination handoff authority
 ```
 
 ## Permitted Continuation Scope
@@ -174,8 +203,9 @@ Destination mutation remains prohibited until each destination handoff grants th
 A successor session may:
 
 ```text
-- build and validate the first governed public review docket
-- add local schema validation under the canonical validation command
+- validate and repair the first governed public review docket
+- add reconstruction-submission and correction-receipt schemas and validators
+- create the next governed public review docket from direct evidence and existing tests
 - refine public-anchor doctrine without promoting review into execution authority
 - update existing framework records when direct evidence, tests, or framework responses support the change
 - preserve corrections, dissent, and supersession as durable public records
