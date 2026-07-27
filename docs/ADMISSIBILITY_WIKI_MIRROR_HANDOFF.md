@@ -19,6 +19,19 @@ State: CONECTRR_RECIPROCAL_METHODOLOGY_ACKNOWLEDGED_SYNTHETIC_CAPABILITY_READY_F
 Authority posture: public review and reconstruction infrastructure only; no certification, government recognition, custody, endorsement, or execution authority created.
 ```
 
+## Verification Versus Execution Authority Binding
+
+```text
+Doctrine: docs/governance/verification-vs-execution-authority.md
+Status artifact: static/status/verification-execution-authority-status.json
+Canonical deployment checker: scripts/check_governed_llm_deployment_status.py
+Canonical activation receipt writer: scripts/write-public-activation-receipt.mjs
+Boundary: independent verification != execution authority
+Execution authority granted: false
+Certification authority granted: false
+Manual task requirement: none
+```
+
 ## Frozen Public-Anchor Boundary
 
 ```text
