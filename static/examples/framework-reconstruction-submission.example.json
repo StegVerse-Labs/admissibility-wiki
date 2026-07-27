@@ -1,0 +1,33 @@
+{
+  "schema_version": "framework-reconstruction-submission.v1",
+  "submission_id": "reconstruction-ta14-example-001",
+  "review_id": "review-ta14-reference-docket-2026-07-27",
+  "reviewer": {
+    "id": "independent-reviewer-example",
+    "type": "PERSON",
+    "declared_conflicts": []
+  },
+  "performed_at": "2026-07-27T08:00:00Z",
+  "relevant_time_t": "2026-07-26T23:45:00Z",
+  "result": "PARTIAL",
+  "method": "Reconstruct the public docket from the published review record, cited public sources, frozen standing-revalidation fixture, and public non-claim boundaries.",
+  "input_refs": [
+    "/data/governed-framework-reviews/ta-14.reference-docket.v1.json",
+    "/data/framework-evaluations/test-cases/ta14-continuous-standing-revalidation-v1.json"
+  ],
+  "artifact_refs": [
+    "artifact:reconstruction-notes-example-001"
+  ],
+  "difference_summary": "The declared route and public-record claims were reconstructed; continuous actor-standing behavior remains unresolved because no live canonical output exists.",
+  "missing_evidence": [
+    "TA-14 canonical live run output for the standing-revocation fixture",
+    "point-of-effect current-authority observation receipt"
+  ],
+  "claimed_determination_effect": "NONE",
+  "signature_or_receipt_ref": null,
+  "authority_boundary": {
+    "certification_granted": false,
+    "execution_authority_granted": false,
+    "automatic_standing_change": false
+  }
+}
