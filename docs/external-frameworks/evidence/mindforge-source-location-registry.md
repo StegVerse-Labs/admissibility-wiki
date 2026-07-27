@@ -2,9 +2,9 @@
 
 ## Purpose
 
-This registry aligns every MindForge-related source, derivative, validator, receipt, authorization record, and public route used by `StegVerse-Labs/admissibility-wiki`.
+This registry aligns every MindForge-related source, derivative, validator, receipt, authorization record, publication-verification artifact, and public route used by `StegVerse-Labs/admissibility-wiki`.
 
-It does not designate StegVerse as the canonical source for MindForge. It separates source provenance from StegVerse interpretation, deterministic evaluation, reviewer-attribution authorization, and public display.
+It does not designate StegVerse as the canonical source for MindForge. It separates source provenance from StegVerse interpretation, deterministic evaluation, reviewer-attribution authorization, publication verification, and public display.
 
 ## Authority classes
 
@@ -15,6 +15,7 @@ StegVerse doctrine: discussion-derived interpretation
 StegVerse fixtures: deterministic conformance tests
 StegVerse receipts/status: local evaluation records
 Reviewer attribution authorization: explicit response required; silence creates no authorization
+Publication verification: successful workflow, build, deployment, and route evidence required
 Admissibility Wiki Pages: public vocabulary and proof-path display
 Site / Publisher / StegGuardian: downstream mirrors only when separately authorized
 ```
@@ -30,12 +31,14 @@ Site / Publisher / StegGuardian: downstream mirrors only when separately authori
 | Discussion reconstruction fixtures | `docs/external-frameworks/fixtures/mindforge-commit-time-boundary-cases.v0.1.json` | Repository artifact. | Reconstructs the reviewed boundary semantics; source posture remains private-correspondence provenance only. |
 | Discussion reconstruction validator | `scripts/check_mindforge_commit_time_boundary.py` | Not a public framework source. | Verifies provenance posture and the original nine-case discussion matrix. |
 | Standing Determination Receipt schema | `static/schemas/standing-determination-receipt.schema.json` | `https://stegverse-labs.github.io/admissibility-wiki/schemas/standing-determination-receipt.schema.json` after successful deployment. | General StegVerse receipt schema; not MindForge-owned. |
-| Commit-time conformance fixtures | `tests/fixtures/standing-determination-cases.json` | Repository test artifact. | Ten deterministic StegVerse cases implementing Alane Zhang's clarifications. |
+| Commit-time conformance fixtures | `tests/fixtures/standing-determination-cases.json` | Repository test artifact. | Ten deterministic StegVerse cases implementing the review clarifications. |
 | Commit-time conformance validator | `scripts/check_standing_determination_receipt.py` | Not a public framework source. | Independently evaluates `ALLOW`, `DENY`, and `FAIL_CLOSED` semantics. |
 | Boundary-review status | `static/status/mindforge-boundary-review-status.json` | `https://stegverse-labs.github.io/admissibility-wiki/status/mindforge-boundary-review-status.json` after successful deployment. | Local activation status; creates no external standing. |
 | Boundary-review receipt | `receipts/mindforge-boundary-review-receipt.json` | Repository proof artifact unless included in a validated public artifact. | Records boundary-semantics review only; no endorsement, certification, compatibility, or authority. |
-| Attribution authorization record | `static/status/mindforge-publication-attribution-authorization.json` | Repository/public status artifact only after successful deployment. | Records pending, authorized, modified, or rejected reviewer attribution language; pending state prohibits publication attribution. |
-| Attribution authorization validator | `scripts/check_mindforge_publication_attribution_authorization.py` | Not a public framework source. | Enforces explicit authorization, evidence reference, and non-endorsement boundaries. |
+| Attribution authorization record | `static/status/mindforge-publication-attribution-authorization.json` | Repository/public status artifact only after successful deployment. | Pending state prohibits public reviewer attribution. |
+| Attribution authorization validator | `scripts/check_mindforge_publication_attribution_authorization.py` | Not a public framework source. | Enforces explicit authorization and evidence. |
+| Publication verification template | `docs/external-frameworks/evidence/mindforge-publication-verification.template.json` | Repository evidence contract. | Must be populated only from successful workflow, build, deployment, and route observations. |
+| Publication verification validator | `scripts/check_mindforge_publication_verification.py` | Not a public framework source. | Prevents activation claims without run-bound route evidence and preserves attribution boundaries. |
 | Source-location alignment validator | `scripts/check_mindforge_source_location_registry.py` | Not a public framework source. | Fails closed on missing or drifted source roles and authority classes. |
 | Goal handoff | `docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md` | Repository continuation artifact. | Current task and continuation source of truth beneath the overall wiki handoff. |
 | Overall repository handoff | `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` | Repository continuation artifact. | Governs repository-wide continuation and downstream mutation limits. |
@@ -63,12 +66,12 @@ The requested narrow public statement is:
 
 > Reviewed for architectural boundary semantics. The reviewer found the boundary substantially correct subject to incorporated clarifications. This is not an official MindForge specification, implementation endorsement, compatibility certification, or execution-authority determination.
 
-Publication attribution remains prohibited while `static/status/mindforge-publication-attribution-authorization.json` is `PENDING_REVIEWER_RESPONSE`. Silence, delay, or non-response does not create authorization. A modified approved statement must be recorded exactly as authorized with a timestamp and evidence reference.
+Publication attribution remains prohibited while `static/status/mindforge-publication-attribution-authorization.json` is `PENDING_REVIEWER_RESPONSE`. Publication activation remains unverified while `docs/external-frameworks/evidence/mindforge-publication-verification.template.json` is `TEMPLATE_NOT_OBSERVED`.
 
 ## Downstream alignment
 
 ```text
-StegVerse-Labs/admissibility-wiki -> vocabulary, doctrine, evaluation, receipts, authorization state, and proof-path display
+StegVerse-Labs/admissibility-wiki -> vocabulary, doctrine, evaluation, receipts, authorization state, publication verification, and proof-path display
 StegVerse-Labs/Site -> public mirror/display only when its current handoff permits propagation
 GCAT-BCAT-Engine/Publisher -> governed publication transport only when its current handoff permits ingestion
 StegVerse-002/stegguardian-wiki -> downstream governance mirror only when its current handoff permits propagation
