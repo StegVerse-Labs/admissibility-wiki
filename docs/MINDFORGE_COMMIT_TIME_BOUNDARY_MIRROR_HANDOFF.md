@@ -10,6 +10,12 @@ Overall repository authority remains governed by:
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 ```
 
+Aligned source locations are governed by:
+
+```text
+docs/external-frameworks/evidence/mindforge-source-location-registry.md
+```
+
 ## Goal
 
 Publish a bounded, deterministic proof path showing that:
@@ -25,11 +31,13 @@ Execution boundary -> separate consequence-binding decision
 ## Current state
 
 ```text
-State: IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_VERIFICATION
+State: IMPLEMENTED_CANONICAL_CHECK_PASSED_REPOSITORY_CHAIN_FAILED_UNRELATED_GATES
 Manual task requirement: none
 User manual action required: false
 Downstream mutation authority: none granted
 Canonical workflow: .github/workflows/validate-chain-continuation.yml
+Canonical run: 30244212970
+Observed commit: 947c6a7b7ecac0544377223139cd30685240d7a1
 Review disposition: SUBSTANTIALLY_CORRECT_WITH_CLARIFICATIONS
 Review scope: BOUNDARY_SEMANTICS_ONLY
 ```
@@ -37,19 +45,28 @@ Review scope: BOUNDARY_SEMANTICS_ONLY
 ## Installed work
 
 ```text
+Source-location registry:
+  docs/external-frameworks/evidence/mindforge-source-location-registry.md
+
 Contract doctrine:
   docs/external-frameworks/commit-time-interoperability-contract.md
 
 Framework intake:
   docs/external-frameworks/mindforge.md
 
+Private-discussion reconstruction fixture:
+  docs/external-frameworks/fixtures/mindforge-commit-time-boundary-cases.v0.1.json
+
+Private-discussion reconstruction validator:
+  scripts/check_mindforge_commit_time_boundary.py
+
 Receipt schema:
   static/schemas/standing-determination-receipt.schema.json
 
-Deterministic fixtures:
+Generalized deterministic fixtures:
   tests/fixtures/standing-determination-cases.json
 
-Deterministic checker:
+Generalized deterministic checker:
   scripts/check_standing_determination_receipt.py
 
 Activation status:
@@ -60,6 +77,20 @@ Boundary review proof receipt:
 
 Canonical validation-chain integration:
   scripts/check_admissibility_automation_handoff.py
+```
+
+## Fixture distinction
+
+```text
+docs/external-frameworks/fixtures/mindforge-commit-time-boundary-cases.v0.1.json
+  -> nine-case reconstruction of the original private boundary discussion
+  -> source posture: PRIVATE_CORRESPONDENCE_PROVENANCE_ONLY
+  -> creates no publication authority or official MindForge standing
+
+tests/fixtures/standing-determination-cases.json
+  -> ten-case generalized StegVerse conformance suite
+  -> incorporates the later review clarifications
+  -> creates no official MindForge specification, endorsement, or certification
 ```
 
 ## Deterministic cases
@@ -93,33 +124,57 @@ sha256:805c7eab128d7dbad872240064de4587737f0eed9aab11fa1af6935a9b9ece9e
 - `ALLOW` is an admissibility determination, not an execution command;
 - the Standing Determination Receipt is auditable but non-executing;
 - MindForge references remain bounded discussion-derived semantics, not an official specification, certification, endorsement, compatibility claim, or implementation statement;
-- private correspondence provenance does not constitute public publication authorization or a canonical MindForge source.
+- private correspondence provenance does not constitute public publication authorization or a canonical MindForge source;
+- the Admissibility Wiki is the StegVerse vocabulary, doctrine, evaluation, and proof-path location, not the canonical source for MindForge;
+- Site, Publisher, and StegGuardian remain downstream mirrors or transport surfaces only when their own handoffs authorize propagation.
 
-## Validation posture
+## Canonical run evidence
 
-The standing-determination checker is invoked by `scripts/check_admissibility_automation_handoff.py`, which is already invoked under `npm run validate` by the single canonical workflow. No second workflow was created.
+Canonical workflow run `30244212970` evaluated commit `947c6a7b7ecac0544377223139cd30685240d7a1`.
 
-At the time of this update, no combined status was available for the latest implementation commit. Therefore:
+Observed MindForge result:
 
 ```text
-local deterministic implementation: installed
-canonical workflow verification: pending observation
-public build/deployment verification: pending observation
-publication receipt closure: not yet claimed
+STANDING DETERMINATION RECEIPT: PASS
+10 cases
+ALLOW=2
+DENY=1
+FAIL_CLOSED=7
 ```
+
+The repository-wide canonical validation job still failed because other active gates failed. The observed failures were ASRO bounded-comparison and receipt alignment, reciprocal-framework records, micro-timescale human admissibility, Morrison Runtime promotion, and ArquivoNulo execution-boundary checks. The MindForge standing-determination checker was not among the failing checks.
+
+Therefore:
+
+```text
+MindForge local deterministic implementation: PASS observed in canonical run
+repository-wide validation: FAIL_CLOSED_OBSERVED
+build-pages: skipped
+public deployment: skipped
+public route verification: skipped
+MindForge publication activation: not yet complete
+```
+
+A passing goal-local checker does not override the repository-wide fail-closed gate.
 
 ## Remaining work
 
 Destination: `StegVerse-Labs/admissibility-wiki`
 
 ```text
-1. Observe the canonical workflow run containing commit d7760ea09fa564e16b6ba7361386720d8bcc56a8 or a successor commit.
-2. Inspect failing job logs if validation or build fails.
-3. Repair only evidence-grounded failures inside this repository.
+1. Preserve the aligned source-location registry.
+2. Allow repository-wide evidence-grounded repairs to clear the unrelated failing gates.
+3. Observe a successor canonical workflow in which the repository validation passes.
 4. Verify the public MindForge and Commit-Time Interoperability Contract routes.
-5. Record successful run, deployment, and route evidence here.
-6. Update activation status from IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION only after run-bound evidence exists.
+5. Record successful build, deployment, and route evidence here.
+6. Promote the activation status only after run-bound public evidence exists.
 ```
+
+## Public statement boundary
+
+The permitted narrow statement is:
+
+> Reviewed for architectural boundary semantics. The reviewer found the boundary substantially correct subject to incorporated clarifications. This is not an official MindForge specification, implementation endorsement, compatibility certification, or execution-authority determination.
 
 ## Downstream awareness
 
@@ -132,7 +187,7 @@ StegVerse-Labs/admissibility-wiki
 StegVerse-002/stegguardian-wiki
 ```
 
-Destination mutation remains prohibited until each destination handoff grants scope.
+Destination mutation remains prohibited until each destination handoff grants scope. No downstream destination becomes an independent editorial or canonical MindForge source.
 
 ## Completion event
 
@@ -146,4 +201,4 @@ This goal reaches activation completion when:
 
 ## Continuation instruction
 
-Continue with canonical workflow observation and evidence-grounded repair. Preserve the distinction among historical evidence, proposed crossing, current standing, auditable receipt, and execution. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
+Continue with repository-wide evidence-grounded repair and subsequent public-route observation. Preserve the distinction among external source, private provenance, StegVerse interpretation, proposed crossing, current standing, auditable receipt, and execution. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
