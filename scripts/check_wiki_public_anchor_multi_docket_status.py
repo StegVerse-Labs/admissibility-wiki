@@ -12,6 +12,7 @@ HANDOFF = ROOT / "docs" / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
 SELF_REVIEW = ROOT / "static" / "data" / "governed-framework-reviews" / "stegverse-public-anchor.self-review.v1.json"
 MANIFEST_CHECK = ROOT / "scripts" / "check_public_anchor_reconstruction_manifest.py"
 PUBLIC_ROUTE_CHECK = ROOT / "scripts" / "check_wiki_public_anchor_public_routes.py"
+INDEPENDENT_RECONSTRUCTION_INVITATION_CHECK = ROOT / "scripts" / "check_public_anchor_independent_reconstruction_invitation.py"
 
 
 def require(condition: bool, message: str, failures: list[str]) -> None:
@@ -83,10 +84,11 @@ def main() -> int:
 
     require(self_review.get("current_standing") == "PROVISIONAL", "self-review must remain PROVISIONAL", failures)
     require(self_review.get("verified_capabilities") == [], "self-review must have no verified capabilities", failures)
-    require("THREE_DOCKETS_IMPLEMENTED_PENDING_CANONICAL_VALIDATION" in handoff, "handoff missing three-docket state", failures)
+    require("RECONSTRUCTION_MANIFEST_AND_ROUTE_RECEIPT_IMPLEMENTED_PENDING_CANONICAL_OBSERVATION" in handoff, "handoff missing current reconstruction activation state", failures)
 
     run_check(MANIFEST_CHECK, "public-anchor reconstruction manifest", failures)
     run_check(PUBLIC_ROUTE_CHECK, "public-anchor route observation receipt", failures)
+    run_check(INDEPENDENT_RECONSTRUCTION_INVITATION_CHECK, "independent reconstruction invitation", failures)
 
     if failures:
         print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: FAIL")
@@ -94,7 +96,7 @@ def main() -> int:
             print(f"- {failure}")
         return 1
 
-    print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS - three dockets, frozen reconstruction manifest, and bounded route receipt remain aligned")
+    print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS - three dockets, frozen reconstruction manifest, bounded route receipt, and accountable reconstruction invitation remain aligned")
     return 0
 
 
