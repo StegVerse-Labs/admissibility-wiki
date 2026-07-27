@@ -1,0 +1,41 @@
+{
+  "schema": "stegverse.morrison-runtime.downstream-propagation-review.v1",
+  "framework": "Morrison Runtime Governance",
+  "comparison_id": "morrison-runtime-commit-time-scope-v0.1",
+  "source_state_required": "WIKI_VALIDATED_AND_PUBLIC_ROUTE_VERIFIED",
+  "review_state": "PENDING_DOWNSTREAM_PROPAGATION_REVIEW",
+  "authority_posture": "EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY",
+  "eligible_targets": {
+    "compatibility_report": false,
+    "external_framework_index": false,
+    "site_mirror": false,
+    "release_snapshot": false
+  },
+  "required_reviews": {
+    "claim_scope_preserved": false,
+    "source_and_route_receipts_bound": false,
+    "no_execution_authority_inferred": false,
+    "no_certification_or_endorsement_inferred": false,
+    "runtime_re_evaluation_distinction_preserved": false,
+    "rollback_path_defined": false
+  },
+  "review_evidence": {
+    "public_route_receipt_sha256": "PENDING",
+    "propagation_review_receipt_sha256": "PENDING",
+    "target_diff_manifest_sha256": "PENDING"
+  },
+  "decision": {
+    "approved_for_bounded_downstream_propagation": false,
+    "approved_targets": [],
+    "activation_authority_granted": false
+  },
+  "required_next_transition": "BOUNDED_DOWNSTREAM_PROPAGATION_APPROVED",
+  "fail_closed": true,
+  "prohibited_promotions": [
+    "CERTIFIED_COMPATIBLE",
+    "STEGVERSE_EXECUTION_AUTHORITY",
+    "FULL_FRESH_STATE_RECONSTRUCTION_BY_DEFAULT",
+    "PRODUCTION_VALIDATION",
+    "ENDORSEMENT"
+  ]
+}
