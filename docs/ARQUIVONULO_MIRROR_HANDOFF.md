@@ -11,6 +11,7 @@ Status: static/status/arquivonulo-execution-boundary-status.json
 Neutral fixture: docs/external-frameworks/fixtures/arquivonulo-continuing-admissibility-test.v0.1.json
 Publication evidence template: docs/external-frameworks/evidence/arquivonulo-publication-verification.template.json
 Validator: scripts/check_arquivonulo_execution_boundary.py
+Public route checker: scripts/check_arquivonulo_public_routes.py
 Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
 Sidebar route: external-frameworks/arquivonulo
 State: IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_OBSERVATION
@@ -100,6 +101,23 @@ Required routes:
 
 The contract requires workflow conclusions, route status codes and content types, required page or JSON markers, observation timestamps, and the exact commit SHA. Unobserved fields remain null or false. Publication evidence does not grant execution authority, certification, endorsement, custody, or integration standing.
 
+## Fail-closed route observation
+
+The installed route checker evaluates the three required public routes and writes:
+
+```text
+reports/arquivonulo-public-route-observation.json
+```
+
+Its bounded result classes are:
+
+```text
+WORKFLOW_OBSERVED_PUBLICATION_COMPLETE
+PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED
+```
+
+The checker is now enforced structurally by the ArquivoNulo validator. It is not yet invoked by the `verify-public-pages` workflow job, so no deployed-route observation is claimed.
+
 ## Installed validation chain
 
 ```text
@@ -111,7 +129,8 @@ The contract requires workflow conclusions, route status codes and content types
 - status record exists
 - neutral fixture exists
 - publication evidence template exists
-- ArquivoNulo validator checks doctrine, evaluation, registry, status, fixture, publication template, navigation, and handoff
+- fail-closed public route checker exists
+- ArquivoNulo validator checks doctrine, evaluation, registry, status, fixture, publication template, route checker, navigation, and handoff
 - canonical admissibility automation invokes the validator
 ```
 
@@ -122,6 +141,9 @@ canonical validation observed: false
 public deployment observed: false
 activation receipt closed: false
 matching workflow runs found at last observation: 0
+route checker installed: true
+route checker bound to local validator: true
+route checker bound to verify-public-pages: false
 ```
 
 Absence of an observed run is not recorded as success or failure.
@@ -130,6 +152,7 @@ Absence of an observed run is not recorded as success or failure.
 
 ```text
 Destination: StegVerse-Labs/admissibility-wiki
+- bind scripts/check_arquivonulo_public_routes.py into the existing verify-public-pages job
 - canonical workflow run observation
 - public deployment observation for /external-frameworks/arquivonulo
 - populate durable publication evidence from observed workflow and route results
@@ -148,6 +171,7 @@ Downstream awareness only; no mutation authority granted:
 A successor session may:
 
 ```text
+- bind the installed route checker into the canonical verify-public-pages job without creating another workflow
 - inspect canonical workflow and deployment evidence
 - repair failures inside admissibility-wiki
 - populate the publication evidence template only from observed evidence
