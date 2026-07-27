@@ -31,6 +31,7 @@ REQUIRED_FILES = (
     "scripts/observe_governed_relationship_publication.py",
     "static/schemas/governed-relationship-transition-publication-observation.schema.json",
     "scripts/check_governed_relationship_publication_observation_schema.py",
+    "scripts/check_governed_relationship_publication_custody_binding.py",
 )
 REQUIRED_REFERENCES = {
     "sidebars.js": (
@@ -117,6 +118,10 @@ def main() -> int:
             "scripts/check_governed_relationship_publication_observation_schema.py",
             "relationship-transition publication observation schema validation failed",
         ),
+        (
+            "scripts/check_governed_relationship_publication_custody_binding.py",
+            "relationship-transition publication custody binding validation failed",
+        ),
     )
     for relative_path, failure_label in checks:
         return_code = run_checker(relative_path, failure_label)
@@ -125,7 +130,7 @@ def main() -> int:
 
     print(
         "GOVERNED LLM PAGES: PASS - docs, contracts, fixtures, publication candidates, "
-        "observation schemas, observation surfaces, and references present"
+        "observation schemas, observation surfaces, custody bindings, and references present"
     )
     return 0
 
