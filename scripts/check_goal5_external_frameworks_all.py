@@ -14,6 +14,8 @@ CHECKS = [
     "scripts/check_runtime_governance_benchmark_suite.py",
     "scripts/check_morrison_runtime_benchmark_fixtures.py",
     "scripts/check_morrison_validation_table_visibility.py",
+    "scripts/check_morrison_runtime_promotion_gate.py",
+    "scripts/check_morrison_runtime_downstream_propagation.py",
     "scripts/check_external_framework_reports.py",
     "scripts/check_external_framework_generated_surfaces.py",
     "scripts/check_external_framework_page_remediation.py",
