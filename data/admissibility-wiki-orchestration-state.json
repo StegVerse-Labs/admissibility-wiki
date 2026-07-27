@@ -8,7 +8,7 @@
   "work_state": "BLOCKED_BUT_OBSERVED",
   "system_health": "HEALTHY_DECLARED_DEPENDENCY_BLOCK",
   "heartbeat_mode": "TRANSITION_DRIVEN_HEALTH_RELATIVE",
-  "repository_heartbeat": 8,
+  "repository_heartbeat": 9,
   "ecosystem_heartbeat_observed": 1,
   "time_role": "WATCHDOG_ONLY",
   "active_independent_workloads": [
@@ -163,17 +163,52 @@
       "state": "COMPLETE_AWAITING_REPOSITORY_OBSERVATION",
       "installed_paths": [
         "scripts/write-public-activation-receipt.mjs",
+        "scripts/check-public-activation-receipt-writer.mjs",
         "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md",
         "data/admissibility-wiki-orchestration-state.json"
       ],
       "commits": [
         "d015a897b718061485830619a2b05cd912cf2281",
-        "15ac9bdae63fa295e90e7d1ff05be254b6442386"
+        "15ac9bdae63fa295e90e7d1ff05be254b6442386",
+        "0011214ab285684dd0ac4dc66b17dc7de43bf616",
+        "611bbe168c33189247dde6b8ff292a324f3e4b2f"
       ],
       "observation": {
         "observer_invoked_post_deploy": true,
         "receipt_embedded_in_public_activation_receipt": true,
         "existing_artifact_custody_path_reused": true,
+        "standalone_embedded_equivalence_validation": true,
+        "canonical_workflow_pass_claimed": false,
+        "pages_deployment_observed": false,
+        "public_reachability_observed": false,
+        "manual_tasks_required": [],
+        "authority_inferred": false
+      }
+    },
+    {
+      "task_id": "ADMISSIBILITY-RELATIONSHIP-TRANSITIONS-008",
+      "workload": "Install and bind governed relationship publication observation schema validation",
+      "execution_class": "PARALLEL_SAFE",
+      "state": "COMPLETE_AWAITING_REPOSITORY_OBSERVATION",
+      "installed_paths": [
+        "static/schemas/governed-relationship-transition-publication-observation.schema.json",
+        "scripts/check_governed_relationship_publication_observation_schema.py",
+        "scripts/check_governed_llm_pages.py",
+        "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md"
+      ],
+      "commits": [
+        "1e70b5a286c7a2f54138e1c316e6b3778b26d9d6",
+        "3f5697b78bde2d83fe04ec0743cd51a0bb0ed9c0",
+        "792166e6c7f107935e9bc3514e9725c8051778b2",
+        "11751e138551acc5ea2aa136f4b294a40b2a1acd"
+      ],
+      "observation": {
+        "schema_installed": true,
+        "observer_writer_schema_agreement_bound": true,
+        "workflow_complete_state_requires_all_routes": true,
+        "fail_closed_state_requires_unverified_result": true,
+        "simulated_state_forbids_deployment_claim": true,
+        "authority_fields_const_false": true,
         "canonical_workflow_pass_claimed": false,
         "pages_deployment_observed": false,
         "public_reachability_observed": false,
@@ -230,7 +265,7 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "GOVERNED_RELATIONSHIP_PUBLICATION_OBSERVATION_BOUND_TO_CANONICAL_CUSTODY",
+    "event_type": "GOVERNED_RELATIONSHIP_PUBLICATION_OBSERVATION_SCHEMA_BOUND",
     "progress_effect": true,
     "authority_effect": false
   },
