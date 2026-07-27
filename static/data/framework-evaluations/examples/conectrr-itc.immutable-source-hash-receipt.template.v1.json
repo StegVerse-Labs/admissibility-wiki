@@ -1,0 +1,37 @@
+{
+  "schema": "conectrr_itc_immutable_source_hash_receipt.v1",
+  "profile_id": "conectrr-itc-first-interoperability-exercise",
+  "state": "TEMPLATE_NOT_EXECUTED",
+  "canonical_itc_path": null,
+  "hash_algorithm": "sha256",
+  "source_hash_before": null,
+  "source_hash_after": null,
+  "hashes_match": null,
+  "source_mutated": false,
+  "captured_before_at": null,
+  "captured_after_at": null,
+  "captured_by": null,
+  "test_run_id": null,
+  "testing_authorized": false,
+  "preconditions": {
+    "complete_source_package_received": false,
+    "specification_hash_bound": false,
+    "canonical_itc_hash_bound": false,
+    "validation_report_hash_bound": false,
+    "independent_reviewer_assigned": false
+  },
+  "authority": {
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "endorsement": false
+  },
+  "non_claims": [
+    "this template is not an executed hash receipt",
+    "matching hashes establish source immutability during the bounded test only",
+    "matching hashes do not establish semantic correctness",
+    "matching hashes do not establish reviewer standing",
+    "matching hashes do not grant certification or execution authority",
+    "a complete source package is required before testing may begin"
+  ]
+}
