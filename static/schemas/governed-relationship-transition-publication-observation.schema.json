@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/schemas/governed-relationship-transition-publication-observation.schema.json",
+  "title": "Governed Relationship Transition Publication Observation",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema",
+    "repository",
+    "observed_at",
+    "state",
+    "routes",
+    "all_required_public_routes_verified",
+    "pages_deployment_observed",
+    "publication_authority_granted",
+    "release_authority_granted",
+    "execution_authority_granted",
+    "admissibility_granted",
+    "downstream_mutation_authority_granted",
+    "manual_tasks_required",
+    "user_action_required",
+    "non_claims"
+  ],
+  "properties": {
+    "schema": {
+      "const": "stegverse.governed_relationship_transition_publication_observation.v1"
+    },
+    "repository": {
+      "const": "StegVerse-Labs/admissibility-wiki"
+    },
+    "commit": {
+      "type": ["string", "null"]
+    },
+    "run_id": {
+      "type": ["string", "null"]
+    },
+    "run_attempt": {
+      "type": ["string", "null"]
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "state": {
+      "enum": [
+        "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
+        "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED",
+        "SIMULATED_VALIDATOR_PASS"
+      ]
+    },
+    "routes": {
+      "type": "object",
+      "properties": {
+        "doctrine": { "$ref": "#/$defs/routeObservation" },
+        "schema": { "$ref": "#/$defs/routeObservation" },
+        "example": { "$ref": "#/$defs/routeObservation" }
+      },
+      "additionalProperties": false
+    },
+    "all_required_public_routes_verified": {
+      "type": "boolean"
+    },
+    "pages_deployment_observed": {
+      "type": "boolean"
+    },
+    "observer_exit_code": {
+      "type": ["integer", "null"]
+    },
+    "receipt_preserved_despite_source_block": {
+      "type": "boolean"
+    },
+    "publication_authority_granted": { "const": false },
+    "release_authority_granted": { "const": false },
+    "execution_authority_granted": { "const": false },
+    "admissibility_granted": { "const": false },
+    "downstream_mutation_authority_granted": { "const": false },
+    "manual_tasks_required": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "user_action_required": { "const": false },
+    "non_claims": {
+      "type": "array",
+      "minItems": 3,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "state": { "const": "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE" }
+        },
+        "required": ["state"]
+      },
+      "then": {
+        "properties": {
+          "all_required_public_routes_verified": { "const": true },
+          "pages_deployment_observed": { "const": true },
+          "routes": {
+            "required": ["doctrine", "schema", "example"]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": { "const": "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED" }
+        },
+        "required": ["state"]
+      },
+      "then": {
+        "properties": {
+          "all_required_public_routes_verified": { "const": false }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": { "const": "SIMULATED_VALIDATOR_PASS" }
+        },
+        "required": ["state"]
+      },
+      "then": {
+        "properties": {
+          "pages_deployment_observed": { "const": false }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "routeObservation": {
+      "type": "object",
+      "required": ["url", "reachable", "http_status"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "pattern": "^https://stegverse-labs\\.github\\.io/admissibility-wiki/"
+        },
+        "reachable": { "type": "boolean" },
+        "http_status": {
+          "type": ["integer", "null"],
+          "minimum": 100,
+          "maximum": 599
+        },
+        "error": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  }
+}
