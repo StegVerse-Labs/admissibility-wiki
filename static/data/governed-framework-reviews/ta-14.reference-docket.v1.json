@@ -1,0 +1,146 @@
+{
+  "schema_version": "governed-framework-review.v1",
+  "review_id": "review-ta14-reference-docket-2026-07-27",
+  "framework": {
+    "id": "ta-14",
+    "name": "TA-14 Admissible Execution Architecture",
+    "version": "public-materials-unversioned-2026-07-26",
+    "canonical_source": "https://sites.google.com/view/ta-14-admissible-execution-arc/"
+  },
+  "review_time": "2026-07-27T07:00:00Z",
+  "relevant_time_t": "2026-07-26T23:45:00Z",
+  "declared_capabilities": [
+    {
+      "id": "ta14-declared-admissibility-before-consequence",
+      "description": "Determine admissibility before consequence-bearing execution.",
+      "status": "DECLARED",
+      "scope": "Public TA-14 doctrine",
+      "evidence_refs": ["src-ta14-eight-stages", "src-ta14-execution-boundary"]
+    },
+    {
+      "id": "ta14-declared-fail-closed",
+      "description": "Fail closed when admissibility is absent.",
+      "status": "DECLARED",
+      "scope": "Public TA-14 doctrine",
+      "evidence_refs": ["src-ta14-execution-boundary"]
+    },
+    {
+      "id": "ta14-declared-continuous-standing",
+      "description": "Require standing before, during, and after execution.",
+      "status": "DECLARED",
+      "scope": "Public TA-14 doctrine and owner-participating dialogue",
+      "evidence_refs": ["src-ta14-public-standing-dialogue-2026-07"]
+    }
+  ],
+  "observed_capabilities": [
+    {
+      "id": "ta14-observed-public-doctrine",
+      "description": "Publishes an eight-stage consequence-governance architecture with evidence, authority, execution-boundary, continuity, and accountability claims.",
+      "status": "OBSERVED",
+      "scope": "Owner-controlled public materials",
+      "evidence_refs": ["src-ta14-eight-stages", "src-ta14-execution-boundary", "src-ta14-why-different"]
+    },
+    {
+      "id": "ta14-observed-standing-claim",
+      "description": "Public responses repeatedly state that authority, consent, jurisdiction, evidence, and standing are included in the architecture.",
+      "status": "OBSERVED",
+      "scope": "User-supplied captures of owner-participating public dialogue",
+      "evidence_refs": ["src-ta14-public-standing-dialogue-2026-07"]
+    }
+  ],
+  "verified_capabilities": [],
+  "unsupported_claims": [
+    "Parent-architecture status is publicly claimed but not independently established by the reviewed evidence.",
+    "Independent reconstruction of current actor standing at each next point of effect is not established by a live public test."
+  ],
+  "evidence_refs": [
+    {
+      "id": "src-ta14-eight-stages",
+      "class": "OFFICIAL_SOURCE",
+      "locator": "https://sites.google.com/view/ta-14-admissible-execution-arc/the-eight-stages-of-ta-14",
+      "hash": null,
+      "timestamp": null,
+      "access": "PUBLIC"
+    },
+    {
+      "id": "src-ta14-execution-boundary",
+      "class": "OFFICIAL_SOURCE",
+      "locator": "https://sites.google.com/view/ta-14-admissible-execution-arc/the-execution-boundary",
+      "hash": null,
+      "timestamp": null,
+      "access": "PUBLIC"
+    },
+    {
+      "id": "src-ta14-why-different",
+      "class": "OFFICIAL_SOURCE",
+      "locator": "https://sites.google.com/view/ta-14-admissible-execution-arc/why-ta-14-is-different",
+      "hash": null,
+      "timestamp": null,
+      "access": "PUBLIC"
+    },
+    {
+      "id": "src-ta14-public-standing-dialogue-2026-07",
+      "class": "CORRESPONDENCE",
+      "locator": "user-supplied captures of owner-participating public LinkedIn dialogue",
+      "hash": null,
+      "timestamp": "2026-07-26T00:00:00Z",
+      "access": "WITHHELD"
+    },
+    {
+      "id": "eval-ta14-public-source-2026-07-26",
+      "class": "ANALYSIS",
+      "locator": "/data/framework-evaluations/ta-14.json",
+      "hash": null,
+      "timestamp": "2026-07-26T23:45:00Z",
+      "access": "PUBLIC"
+    }
+  ],
+  "test_results": [
+    {
+      "test_id": "ta14-continuous-standing-revalidation-001",
+      "profile": "continuous actor-standing reconstruction after commitment and before next consequence",
+      "result": "NOT_RUN",
+      "input_hash": null,
+      "output_hash": null,
+      "evidence_refs": ["eval-ta14-public-source-2026-07-26"],
+      "notes": "The discriminating test is specified but no live TA-14 implementation result is publicly available."
+    }
+  ],
+  "determinations": [
+    {
+      "id": "det-stegverse-ta14-public-002",
+      "issuer": "StegVerse public review process",
+      "result": "TA-14 has a publicly documented consequence-governance doctrine. Implementation correspondence and continuous point-of-effect actor-standing reconstruction remain publicly unresolved.",
+      "basis_refs": ["src-ta14-eight-stages", "src-ta14-execution-boundary", "src-ta14-why-different", "src-ta14-public-standing-dialogue-2026-07", "eval-ta14-public-source-2026-07-26"],
+      "issued_at": "2026-07-26T23:45:00Z",
+      "uncertainty": [
+        "Private Playground capabilities were not observed.",
+        "A complete machine-readable protocol and replay bundle were not located.",
+        "The continuous actor-standing reconstruction test has not been run publicly."
+      ]
+    }
+  ],
+  "framework_responses": [
+    {
+      "id": "ta14-owner-participating-standing-response-2026-07",
+      "source": "TA-14 owner-participating public dialogue",
+      "received_at": "2026-07-26T00:00:00Z",
+      "summary": "The responses state that standing, authority, consent, jurisdiction, and evidence are already part of TA-14. The captured exchange does not directly demonstrate independent reconstruction after commitment and before each next consequence.",
+      "evidence_refs": ["src-ta14-public-standing-dialogue-2026-07"]
+    }
+  ],
+  "independent_reconstructions": [],
+  "corrections": [],
+  "supersedes": null,
+  "superseded_by": null,
+  "challenge_status": "OPEN",
+  "reconstruction_status": "PARTIAL",
+  "current_standing": "PUBLICLY_UNRESOLVED",
+  "limitations": [
+    "This docket reviews public materials and supplied public-dialogue captures; it does not inspect a private implementation.",
+    "No certification, legal conclusion, execution authority, superiority claim, or adverse capability conclusion is created.",
+    "PUBLICLY_UNRESOLVED does not mean absent, failed, or disproven.",
+    "The framework version is bound to the public materials available through 2026-07-26 because no version identifier was published in the reviewed sources."
+  ],
+  "public_verification_instructions": "/external-frameworks/ta-14-public-review-docket#public-reconstruction-procedure"
+}
