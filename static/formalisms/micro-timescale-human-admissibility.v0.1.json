@@ -1,9 +1,22 @@
 {
   "schema_version": "0.1.0",
+  "formalism_id": "micro-timescale-human-admissibility",
   "model_id": "micro-timescale-human-admissibility",
   "title": "Micro-Timescale Human Admissibility",
   "status": "CONCEPTUAL_MODEL_PUBLIC_DRAFT",
   "claim": "Human conversation can implement a continuously evaluated admissibility gate at the shortest practical human-human interaction timescale.",
+  "state_model": {
+    "ordered_states": [
+      "EMITTED",
+      "RECEIVED",
+      "RECOGNIZED",
+      "INTERPRETED",
+      "ADMISSIBLE",
+      "COMMITTED"
+    ],
+    "non_collapsing": true,
+    "commitment_requires_prior_admissibility": true
+  },
   "states": [
     "EMITTED",
     "RECEIVED",
