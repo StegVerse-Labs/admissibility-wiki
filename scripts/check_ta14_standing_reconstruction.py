@@ -15,6 +15,7 @@ REFERENCE_DOCKET_PAGE = ROOT / "docs" / "external-frameworks" / "ta-14-public-re
 REFERENCE_DOCKET_RECORD = ROOT / "static" / "data" / "governed-framework-reviews" / "ta-14.reference-docket.v1.json"
 REFERENCE_DOCKET_SCHEMA = ROOT / "static" / "schemas" / "governed-framework-review.schema.json"
 REFERENCE_DOCKET_CHECK = ROOT / "scripts" / "check_governed_framework_review_reference.py"
+PUBLIC_ROUTE_CHECK = ROOT / "scripts" / "check_ta14_public_routes.py"
 STATUS = ROOT / "static" / "status" / "ta-14-standing-reconstruction-status.json"
 EVALUATION = ROOT / "static" / "data" / "framework-evaluations" / "ta-14.json"
 FIXTURE = ROOT / "static" / "data" / "framework-evaluations" / "test-cases" / "ta14-continuous-standing-revalidation-v1.json"
@@ -37,6 +38,7 @@ def main() -> None:
     doc = read(DOC)
     assessment = read(ASSESSMENT)
     reference_docket_page = read(REFERENCE_DOCKET_PAGE)
+    public_route_check = read(PUBLIC_ROUTE_CHECK)
     sidebar = read(SIDEBAR)
     handoff = read(HANDOFF)
 
@@ -71,6 +73,14 @@ def main() -> None:
     ):
         require(token in reference_docket_page, f"reference docket page missing token: {token}")
 
+    for token in (
+        "reports/ta14-public-route-observation.json",
+        "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
+        "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED",
+        "Publication does not establish that TA-14 independently reconstructs current actor standing.",
+    ):
+        require(token in public_route_check, f"public route checker missing token: {token}")
+
     require(
         "external-frameworks/ta-14-registry-public-record-assessment" in sidebar,
         "registry assessment is not exposed in the sidebar",
@@ -90,6 +100,7 @@ def main() -> None:
 
     require(status.get("continuous_actor_standing_reconstruction") == "PUBLICLY_UNRESOLVED", "status must remain PUBLICLY_UNRESOLVED")
     require(status.get("standing_revocation_fixture") == "FROZEN_PROPOSED_NOT_RUN", "fixture must remain frozen and unrun")
+    require(status.get("validation", {}).get("public_route_observation") == "PENDING", "public route observation must remain pending until workflow evidence exists")
     require(status.get("authority_boundary", {}).get("activation_authority_granted") is False, "status must deny activation authority")
     require(status.get("authority_boundary", {}).get("adverse_capability_conclusion") is False, "status must not infer adverse capability")
 
@@ -162,7 +173,7 @@ def main() -> None:
     }
     require(required_routes.issubset(set(status.get("public_routes", []))), "status record is missing one or more public routes")
 
-    print("TA-14 STANDING RECONSTRUCTION: PASS - doctrine, assessment, reference docket, schema, status, evaluation, frozen fixture, output template, navigation, and handoff agree")
+    print("TA-14 STANDING RECONSTRUCTION: PASS - doctrine, assessment, reference docket, schema, status, evaluation, frozen fixture, output template, public route checker, navigation, and handoff agree")
 
 
 if __name__ == "__main__":
