@@ -3,7 +3,7 @@
   "test_id": "conectrr-itc-synthetic-capability-smoke-test",
   "execution_class": "BOUNDED_LOCAL_NONCANONICAL",
   "result": "PASS",
-  "executed_at": "2026-07-27T20:00:00Z",
+  "executed_at": "2026-07-27T20:15:52.859000Z",
   "runner": "OpenAI ChatGPT isolated Python execution environment",
   "validator": "scripts/check_conectrr_itc_synthetic_capability.py",
   "fixture": "static/data/framework-evaluations/examples/conectrr-itc.synthetic-capability-test.v1.json",
