@@ -4,7 +4,7 @@
 
 This registry aligns every MindForge-related source, derivative, validator, receipt, authorization record, reviewer-response record, publication-verification contract, and public route used by `StegVerse-Labs/admissibility-wiki`.
 
-It does not designate StegVerse as the canonical source for MindForge. It separates source provenance from StegVerse interpretation, deterministic evaluation, reviewer-attribution authorization, response evidence, and public display.
+It does not designate StegVerse as the canonical source for MindForge. It separates source provenance from StegVerse interpretation, deterministic evaluation, conditional reviewer approval, attribution authorization, response evidence, and public display.
 
 ## Authority classes
 
@@ -14,8 +14,9 @@ Private correspondence: provenance evidence only
 StegVerse doctrine: discussion-derived interpretation
 StegVerse fixtures: deterministic conformance tests
 StegVerse receipts/status: local evaluation records
-Reviewer attribution authorization: explicit response required; silence creates no authorization
-Reviewer response evidence: verbatim response plus channel, timestamp, and evidence reference
+Conditional review intake: approval observed, conditions incomplete, fail closed
+Reviewer attribution authorization: explicit complete conditions required
+Reviewer response evidence: preserve what is observed; do not invent missing verbatim text
 Publication verification: successful workflow, build, deployment, and route evidence required
 Admissibility Wiki Pages: public vocabulary and proof-path display
 Site / Publisher / StegGuardian: downstream mirrors only when separately authorized
@@ -23,48 +24,54 @@ Site / Publisher / StegGuardian: downstream mirrors only when separately authori
 
 ## Aligned locations
 
-| Class | Repository location | Public location | Standing |
-|---|---|---|---|
-| MindForge framework intake | `docs/external-frameworks/mindforge.md` | `https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/mindforge` | StegVerse intake and interpretation; not an official MindForge source. |
-| Commit-time interoperability doctrine | `docs/external-frameworks/commit-time-interoperability-contract.md` | `https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/commit-time-interoperability-contract` | StegVerse doctrine derived from the reviewed boundary discussion. |
-| Private-correspondence provenance narrative | `docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.md` | Not a public MindForge source; publication remains governed by its own authorization posture. | Provenance for formulation only. |
-| Private-correspondence provenance record | `docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.json` | Repository artifact only unless separately authorized. | Hash-bound provenance; no framework standing or publication authority. |
-| Discussion reconstruction fixtures | `docs/external-frameworks/fixtures/mindforge-commit-time-boundary-cases.v0.1.json` | Repository artifact. | Reconstructs reviewed boundary semantics; private-correspondence provenance only. |
-| Discussion reconstruction validator | `scripts/check_mindforge_commit_time_boundary.py` | Not a public framework source. | Verifies provenance posture and original nine-case discussion matrix. |
-| Standing Determination Receipt schema | `static/schemas/standing-determination-receipt.schema.json` | `/schemas/standing-determination-receipt.schema.json` after successful deployment. | General StegVerse receipt schema; not MindForge-owned. |
-| Commit-time conformance fixtures | `tests/fixtures/standing-determination-cases.json` | Repository test artifact. | Ten deterministic StegVerse cases implementing review clarifications. |
-| Commit-time conformance validator | `scripts/check_standing_determination_receipt.py` | Not a public framework source. | Evaluates `ALLOW`, `DENY`, and `FAIL_CLOSED`. |
-| Boundary-review status | `static/status/mindforge-boundary-review-status.json` | `/status/mindforge-boundary-review-status.json` after successful deployment. | Local activation status; creates no external standing. |
-| Boundary-review receipt | `receipts/mindforge-boundary-review-receipt.json` | Repository proof artifact unless included in a validated public artifact. | Boundary-semantics review only; no endorsement, certification, compatibility, or authority. |
-| Attribution authorization record | `static/status/mindforge-publication-attribution-authorization.json` | Status artifact only after successful deployment. | Pending state prohibits reviewer attribution. |
-| Reviewer response evidence template | `docs/external-frameworks/evidence/mindforge-reviewer-attribution-response.template.json` | Repository evidence artifact only. | Captures an explicit response verbatim with timestamp, channel, evidence reference, and exact approved language. |
-| Attribution authorization validator | `scripts/check_mindforge_publication_attribution_authorization.py` | Not a public framework source. | Requires authorization state to match explicit response evidence. |
-| Publication-verification template | `docs/external-frameworks/evidence/mindforge-publication-verification.template.json` | Repository evidence artifact. | Requires workflow, build, deployment, and route observations. |
-| Publication-verification validator | `scripts/check_mindforge_publication_verification.py` | Not a public framework source. | Prevents public activation without run-bound evidence. |
-| Source-location alignment validator | `scripts/check_mindforge_source_location_registry.py` | Not a public framework source. | Fails closed on missing or drifted source roles. |
-| Goal handoff | `docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md` | Repository continuation artifact. | Goal-specific source of truth. |
-| Overall repository handoff | `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` | Repository continuation artifact. | Repository-wide continuation authority. |
-| Root handoff pointer | `ADMISSIBILITY_MIRROR_HANDOFF.md` | Repository continuity pointer. | Points to overall and goal-specific handoffs. |
+| Class | Repository location | Standing |
+|---|---|---|
+| MindForge framework intake | `docs/external-frameworks/mindforge.md` | StegVerse intake and interpretation; not an official MindForge source. |
+| Commit-time interoperability doctrine | `docs/external-frameworks/commit-time-interoperability-contract.md` | StegVerse doctrine derived from reviewed boundary discussion. |
+| Private-correspondence provenance narrative | `docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.md` | Provenance for formulation only. |
+| Private-correspondence provenance record | `docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.json` | Hash-bound provenance; no publication authority. |
+| Conditional reviewer intake | `data/external-reviews/mindforge/alane-zhang-boundary-semantics-review-intake.json` | Records narrow approval observation and incomplete two-condition capture; non-publishable. |
+| Conditional reviewer intake validator | `scripts/check_mindforge_review_intake.py` | Enforces fail-closed condition capture and cross-record alignment. |
+| Discussion reconstruction fixtures | `docs/external-frameworks/fixtures/mindforge-commit-time-boundary-cases.v0.1.json` | Original nine-case private-discussion reconstruction. |
+| Discussion reconstruction validator | `scripts/check_mindforge_commit_time_boundary.py` | Verifies original discussion matrix and provenance posture. |
+| Standing Determination Receipt schema | `static/schemas/standing-determination-receipt.schema.json` | General StegVerse receipt schema; not MindForge-owned. |
+| Commit-time conformance fixtures | `tests/fixtures/standing-determination-cases.json` | Ten-case generalized StegVerse conformance suite. |
+| Commit-time conformance validator | `scripts/check_standing_determination_receipt.py` | Evaluates `ALLOW`, `DENY`, and `FAIL_CLOSED`. |
+| Boundary-review status | `static/status/mindforge-boundary-review-status.json` | Local activation status; creates no external standing. |
+| Boundary-review receipt | `receipts/mindforge-boundary-review-receipt.json` | Boundary-semantics review only; no certification or authority. |
+| Attribution authorization record | `static/status/mindforge-publication-attribution-authorization.json` | Conditional approval pending complete condition capture; publication prohibited. |
+| Reviewer response evidence | `docs/external-frameworks/evidence/mindforge-reviewer-attribution-response.template.json` | Records observed conditional approval without fabricating missing verbatim conditions. |
+| Attribution authorization validator | `scripts/check_mindforge_publication_attribution_authorization.py` | Requires authorization, response, and intake evidence to agree. |
+| Publication-verification template | `docs/external-frameworks/evidence/mindforge-publication-verification.template.json` | Requires workflow, build, deployment, and route evidence. |
+| Publication-verification validator | `scripts/check_mindforge_publication_verification.py` | Prevents public activation without run-bound evidence. |
+| Source-location alignment validator | `scripts/check_mindforge_source_location_registry.py` | Fails closed on missing or drifted source roles. |
+| Goal handoff | `docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md` | Goal-specific continuation source of truth. |
+| Overall repository handoff | `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` | Repository-wide continuation authority. |
+| Root handoff pointer | `ADMISSIBILITY_MIRROR_HANDOFF.md` | Points to overall and goal-specific handoffs. |
 
 ## Fixture distinction
 
 ```text
 docs/external-frameworks/fixtures/mindforge-commit-time-boundary-cases.v0.1.json
   -> nine-case reconstruction of the original private boundary discussion
-  -> validated by scripts/check_mindforge_commit_time_boundary.py
 
 tests/fixtures/standing-determination-cases.json
-  -> ten-case StegVerse conformance suite incorporating later review clarifications
-  -> validated by scripts/check_standing_determination_receipt.py
+  -> ten-case generalized StegVerse conformance suite
 ```
 
-The first preserves what was discussed. The second tests the generalized implementation. Neither becomes an official MindForge specification.
+Neither becomes an official MindForge specification.
 
-## Attribution and response boundary
+## Attribution and condition boundary
 
-Publication attribution remains prohibited while `static/status/mindforge-publication-attribution-authorization.json` is `PENDING_REVIEWER_RESPONSE`.
+The narrow statement has an observed conditional approval, but two publication conditions are not captured verbatim. Therefore:
 
-Any explicit response must first be captured in `docs/external-frameworks/evidence/mindforge-reviewer-attribution-response.template.json`. The response text must be preserved verbatim. Approval may not be inferred from silence, delay, reactions, continued discussion, or a response that does not clearly authorize wording.
+```text
+authorization_state = CONDITIONAL_APPROVAL_PENDING_CONDITION_CAPTURE
+publication_permitted = false
+condition_gate = FAIL_CLOSED_UNTIL_COMPLETE
+```
+
+The missing condition text must not be reconstructed, paraphrased as verbatim, or inferred. Publication attribution remains prohibited until both conditions, durable evidence references, and final authorization timing are complete.
 
 ## Downstream alignment
 
