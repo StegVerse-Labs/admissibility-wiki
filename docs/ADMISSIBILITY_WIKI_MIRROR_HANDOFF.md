@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, public determinations, and reciprocal self-review.
-Current state: public-anchor doctrine, governed-framework-review v1 schema, TA-14 and ASRO governed public review dockets, reciprocal StegVerse public-anchor self-review, reconstruction-submission schema, correction-receipt schema, examples, validators, and public status records are installed.
+Current state: public-anchor doctrine, governed-framework-review v1 schema, TA-14 and ASRO governed public review dockets, reciprocal StegVerse public-anchor self-review, reconstruction-submission schema, correction-receipt schema, examples, validators, navigation, and multi-docket public status are installed.
 Manual task requirement: none.
 User manual action required: false.
 ```
@@ -14,22 +14,24 @@ User manual action required: false.
 ## Current Activation Goal
 
 ```text
-Goal id: wiki-public-anchor-reciprocal-self-review-activation
+Goal id: wiki-public-anchor-three-docket-activation
 Doctrine: docs/governance/wiki-public-anchor.md
 External dockets:
 - docs/external-frameworks/ta-14-public-review-docket.md
 - docs/external-frameworks/asro-public-review-docket.md
-Self-review docket: docs/stegverse/public-anchor-self-review-docket.md
-Machine-readable records:
+Reciprocal self-review: docs/stegverse/public-anchor-self-review-docket.md
+Records:
 - static/data/governed-framework-reviews/ta-14.reference-docket.v1.json
 - static/data/governed-framework-reviews/asro.reference-docket.v1.json
 - static/data/governed-framework-reviews/stegverse-public-anchor.self-review.v1.json
+Status: static/status/wiki-public-anchor-multi-docket-status.json
 Validators:
 - scripts/check_governed_framework_review_reference.py
 - scripts/check_asro_governed_review_docket.py
 - scripts/check_stegverse_public_anchor_self_review.py
-Canonical integration: docket validators -> scripts/check_admissibility_automation_handoff.py -> npm run validate
-State: TWO_EXTERNAL_DOCKETS_AND_RECIPROCAL_SELF_REVIEW_IMPLEMENTED_PENDING_CANONICAL_VALIDATION
+- scripts/check_wiki_public_anchor_multi_docket_status.py
+Canonical integration: docket and status validators -> scripts/check_admissibility_automation_handoff.py -> npm run validate
+State: THREE_DOCKETS_IMPLEMENTED_PENDING_CANONICAL_VALIDATION
 Authority posture: public review and reconstruction infrastructure; no certification, government recognition, or execution authority created
 ```
 
@@ -45,9 +47,9 @@ Correction validator: scripts/check_framework_review_correction_receipt.py
 State marker: REVIEW_GOVERNANCE_OBJECTS_IMPLEMENTED
 ```
 
-A reconstruction submission is evidence entering the review process. It does not automatically change standing, grant certification, or create execution authority.
+A reconstruction submission is evidence entering review. It does not automatically change standing, grant certification, or create execution authority.
 
-A correction receipt is append-only. It must identify the prior record, corrected record, evidence basis, standing effect, and whether dissent was preserved. Correction must not silently erase the original determination.
+A correction receipt is append-only. It preserves the prior record, corrected record, evidence basis, standing effect, dissent, and supersession history.
 
 ## Constitutional Rules
 
@@ -67,86 +69,67 @@ internal validator PASS != independent reconstruction
 repository ownership != reviewer standing
 ```
 
-No determination possesses standing merely because StegVerse published it. Standing exists only to the extent that evidence, historical state, test method, decision rule, uncertainty, and challenge path can be independently inspected and reconstructed.
+No determination possesses standing merely because StegVerse published it. StegVerse frameworks and review systems must be reviewed under standards equal to or stricter than those applied to external frameworks.
 
-StegVerse frameworks and review systems must be reviewed under standards equal to or stricter than those applied to external frameworks.
+## Docket Boundaries
 
-## TA-14 Reference Boundary
+### TA-14
 
 ```text
 Review id: review-ta14-reference-docket-2026-07-27
-Current standing: PUBLICLY_UNRESOLVED
-Reconstruction status: PARTIAL
-Challenge status: OPEN
+Standing: PUBLICLY_UNRESOLVED
+Reconstruction: PARTIAL
+Challenge: OPEN
 Verified capabilities: none
 Live discriminating test: NOT_RUN
-Certification granted: false
-Execution authority granted: false
+Certification: false
+Execution authority: false
 ```
 
-The TA-14 docket preserves:
+Preserve route admissibility versus actor standing, prior binding versus current validity, execution continuity versus authority continuity, and PUBLICLY_UNRESOLVED versus absent or failed.
 
-```text
-route admissibility != actor standing
-binding established != binding still valid
-execution continuity != authority continuity
-proof preserved != current state independently reconstructed
-PUBLICLY_UNRESOLVED != absent, failed, or disproven
-```
-
-## ASRO Second Docket Boundary
+### ASRO
 
 ```text
 Review id: review-asro-reference-docket-2026-07-27
-Current standing: PROVISIONAL
-Reconstruction status: PARTIAL
-Challenge status: OPEN
+Standing: PROVISIONAL
+Reconstruction: PARTIAL
+Challenge: OPEN
 Verified capabilities: none
 StegVerse bounded run: PASS
 Replay: PASS
-Reconstruction of frozen package: PASS
+Frozen-package reconstruction: PASS
 External ASRO-native execution: NOT_RUN
 Reviewer issuer: unresolved
-Certification granted: false
-Execution authority granted: false
+Certification: false
+Execution authority: false
 ```
 
-The ASRO docket preserves that a successful StegVerse bounded run is not an external ASRO-native execution. Correspondence, replay, and reconstruction remain evidence; they do not grant admissibility, authority, custody, certification, endorsement, or native interoperability.
+The successful run is a StegVerse bounded comparison, not an ASRO-native execution. Correspondence and replay do not grant authority, custody, certification, endorsement, or native interoperability.
 
-## Reciprocal StegVerse Self-Review Boundary
+### Reciprocal StegVerse Self-Review
 
 ```text
 Review id: review-stegverse-public-anchor-self-2026-07-27
 Subject: StegVerse Admissibility Wiki public-anchor review system
-Current standing: PROVISIONAL
-Reconstruction status: PARTIAL
-Challenge status: OPEN
+Standing: PROVISIONAL
+Reconstruction: PARTIAL
+Challenge: OPEN
 Verified capabilities: none
 Internal structural validation: PASS
 Independent reciprocal reconstruction: NOT_RUN
 Neutral reviewer standing: NOT_ESTABLISHED
 Government recognition: NOT_ESTABLISHED
 Certification authority: NOT_ESTABLISHED
-Execution authority granted: false
+Execution authority: false
 ```
 
-Installed files:
-
-```text
-Page: docs/stegverse/public-anchor-self-review-docket.md
-Record: static/data/governed-framework-reviews/stegverse-public-anchor.self-review.v1.json
-Validator: scripts/check_stegverse_public_anchor_self_review.py
-Navigation: stegverse/public-anchor-self-review-docket
-Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
-State: RECIPROCAL_SELF_REVIEW_IMPLEMENTED_PENDING_CANONICAL_VALIDATION
-```
-
-The self-review discloses that StegVerse is the system designer, repository owner, determination issuer, validator author, publication operator, and review subject. Publication of the self-review is not independent validation.
+StegVerse is the system designer, repository owner, determination issuer, validator author, publication operator, and review subject. That conflict is disclosed and remains unresolved until independent reconstruction occurs.
 
 ## Deployment and Validation Gate
 
 ```text
-Canonical active workflow: .github/workflows/validate-chain-continuation.yml
+Canonical workflow: .github/workflows/validate-chain-continuation.yml
 Validation job: validate-chain-continuation
 Build job: build-pages
 Deployment job: deploy-pages
@@ -154,49 +137,56 @@ Public verification job: verify-public-pages
 Primary validation: npm run validate
 ```
 
-Do not create additional active GitHub Actions workflows unless repo standards explicitly change.
+Do not create another active workflow unless repo standards change.
 
-## Mirror Coordination Rule
-
-```text
-Check this file before continuing admissibility-wiki work.
-Check docs/SITE_MIRROR_HANDOFF.md before Site mirror work.
-Check PUBLISHER_MIRROR_HANDOFF.md before Publisher mirror work.
-Review StegGuardian destination handoffs before downstream mutation.
-Do not treat queued propagation as completed propagation.
-```
-
-## Remaining Open Checks
+## Next Goal
 
 ```text
-- observe canonical validation after reciprocal self-review installation
-- observe public deployment of TA-14, ASRO, and StegVerse self-review pages and machine-readable records
-- create multi-docket public activation status and route-observation receipt
-- obtain or invite an independent reconstruction of the public-anchor system
-- add signed or hashed correction and reconstruction receipts when canonical custody support is available
-- preserve unresolved, conflict, dissent, and non-claim language where evidence is incomplete
-- queue Site, Publisher, and StegGuardian awareness only after destination handoffs authorize mutation
+Goal: independently consumable reconstruction packet and public route-observation receipt
+Required work:
+- observe canonical validation and deployment for all three dockets
+- freeze doctrine, schemas, records, validators, routes, and commit in a reconstruction manifest
+- add a route-observation receipt without treating reachability as truth
+- bind canonical hashes or signatures when Publisher or Master Records custody is authorized
+- invite or ingest an accountable independent reconstruction result
 ```
+
+## Mirror Coordination
+
+Before downstream mutation, check:
+
+```text
+docs/SITE_MIRROR_HANDOFF.md
+PUBLISHER_MIRROR_HANDOFF.md
+StegGuardian destination handoff
+REPO_STANDARDS_MIRROR_HANDOFF.md when applicable
+```
+
+Queued propagation is not completed propagation. Destination mutation remains prohibited until the destination handoff grants scope.
 
 ## Known Remaining Files and Destinations
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-- static/status/wiki-public-anchor-multi-docket-status.json
+- frozen public-anchor reconstruction manifest
 - scripts/check_wiki_public_anchor_public_routes.py
 - durable multi-docket public-route observation receipt
-- independent reconstruction submission for the StegVerse self-review
+- first accountable independent reconstruction submission
 - canonical hash/signature receipts for reconstruction and correction objects
 
 StegVerse-Labs/Site:
 - public-anchor discovery and comparison projection, pending SITE_MIRROR_HANDOFF authority
 
 GCAT-BCAT-Engine/Publisher:
-- canonical docket packaging, signature, publication receipt, and supersession projection, pending PUBLISHER_MIRROR_HANDOFF authority
+- canonical docket packaging, signatures, publication receipts, and supersession projection, pending PUBLISHER_MIRROR_HANDOFF authority
 
 StegVerse-002/stegguardian-wiki:
-- reviewer standing, conflicts, challenge, appeal, and correction governance projection, pending destination handoff authority
+- reviewer standing, conflicts, challenge, appeal, dissent, and correction governance projection, pending destination handoff authority
 ```
+
+## Permitted Continuation Scope
+
+A successor session may validate and repair the three-docket system, create reconstruction manifests and route-observation receipts, preserve challenges and corrections, and queue downstream awareness without unauthorized destination mutation.
 
 ## Handoff Instruction
 
