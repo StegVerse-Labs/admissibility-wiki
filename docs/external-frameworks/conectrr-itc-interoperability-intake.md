@@ -14,6 +14,7 @@ Artifact posture: implementation and internal validation claimed; canonical arti
 Declared artifact: Intent Transition Contract (ITC) Specification v1.0 Draft
 Generated record: canonical ITC from an actual Conectrr recommendation, offered but not yet reviewed
 Validation report: offered but not yet reviewed
+Reciprocal methodology acknowledgment: MUTUALLY_ACKNOWLEDGED
 Live interoperability test: NOT_RUN
 Replay: NOT_RUN
 Independent reconstruction: NOT_RUN
@@ -37,6 +38,25 @@ Conectrr discovery output
 ```
 
 This is the correct posture for an upstream discovery artifact. The ITC may preserve what Conectrr observed or recommended, but it must not acquire downstream authority merely because another system can consume it.
+
+## Reciprocal methodology acknowledgment
+
+The subsequent correspondence records mutual acknowledgment that Conectrr may remain bounded to discovery, downstream frameworks remain responsible for reconstruction and authority-bearing decisions, divergent findings must remain visible, and ITC v1.1 should be shaped only after the bounded v1.0 comparison closes from evidence.
+
+Canonical acknowledgment record:
+
+```text
+docs/external-frameworks/conectrr-itc-reciprocal-methodology-acknowledgment-2026-07-27.md
+```
+
+This correspondence changes the methodology record but does not change the technical validation result.
+
+```text
+reciprocal methodology acknowledged != interoperability PASS
+professional agreement != implementation proof
+agreement on boundary != independent reconstruction
+agreement on process != execution authority
+```
 
 ## Initial StegVerse determination
 
@@ -247,6 +267,10 @@ REVIEWED
 - declaration that unknown MVP fields remain empty rather than inferred
 - declaration that internal boundary validation passed
 - offer to provide the specification, canonical generated ITC, and validation report
+- reciprocal acknowledgment of responsibility separation
+- reciprocal acknowledgment that agreements, disagreements, scope differences, and evidence gaps remain visible
+- reciprocal acknowledgment that the review methodology is a tangible outcome
+- reciprocal acknowledgment that v1.1 should be evidence-constrained after bounded v1.0 closure
 
 NOT YET REVIEWED OR RECEIVED
 - ITC Specification v1.0 Draft
