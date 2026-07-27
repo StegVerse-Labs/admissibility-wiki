@@ -1,0 +1,32 @@
+{
+  "schema_version": "framework-review-correction-receipt.v1",
+  "receipt_id": "correction-ta14-example-001",
+  "review_id": "review-ta14-reference-docket-2026-07-27",
+  "issued_at": "2026-07-27T08:05:00Z",
+  "issuer": "StegVerse-Labs/admissibility-wiki",
+  "reason": "Example non-dispositive correction preserving the original determination and unresolved standing.",
+  "trigger_refs": [
+    "reconstruction-ta14-example-001"
+  ],
+  "changes": [
+    {
+      "field": "limitations[0]",
+      "before": "No live TA-14 implementation test has been run.",
+      "after": "No live TA-14 implementation test had been observed at the bound review time.",
+      "basis_refs": [
+        "reconstruction-ta14-example-001"
+      ]
+    }
+  ],
+  "prior_record_ref": "/data/governed-framework-reviews/ta-14.reference-docket.v1.json#before-example-correction",
+  "corrected_record_ref": "/data/governed-framework-reviews/ta-14.reference-docket.v1.json#after-example-correction",
+  "supersedes_receipt": null,
+  "standing_effect": "NONE",
+  "dissent_preserved": true,
+  "signature_or_receipt_ref": null,
+  "authority_boundary": {
+    "correction_is_public_record": true,
+    "certification_granted": false,
+    "execution_authority_granted": false
+  }
+}
