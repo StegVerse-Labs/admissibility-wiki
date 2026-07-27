@@ -8,13 +8,13 @@
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "binding_state": "BOUND_THROUGH_CANONICAL_AGGREGATE",
   "workflow_observation_state": "NOT_OBSERVED_FOR_LATEST_COMMIT",
-  "observed_commit": "a726884923558643a8526975e832eaeb5df87b42",
+  "observed_commit": "7faaedc59a471fa1c1d9da6c18f8ad0056cfc5db",
   "workflow_runs_observed": 0,
   "source_package_state": "AWAITING_CANONICAL_SOURCE_ARTIFACTS",
   "source_package_receipt": "static/data/framework-evaluations/examples/conectrr-itc.source-package-receipt.pending.v1.json",
   "disposition_fixture_state": "BOUND_INTO_INTEROPERABILITY_VALIDATOR",
   "disposition_fixtures": "static/data/framework-evaluations/examples/conectrr-itc.disposition-fixtures.v1.json",
-  "immutable_source_hash_receipt_state": "TEMPLATE_INSTALLED_NOT_EXECUTED",
+  "immutable_source_hash_receipt_state": "BOUND_INTO_INTEROPERABILITY_VALIDATOR",
   "immutable_source_hash_receipt": "static/data/framework-evaluations/examples/conectrr-itc.immutable-source-hash-receipt.template.v1.json",
   "allowed_dispositions": [
     "AGREE",
@@ -35,6 +35,7 @@
     "source receipt does not create custody or testing authority",
     "an immutable-source hash template is not an executed receipt",
     "matching hashes establish only bounded source immutability during the test",
+    "matching hashes do not establish semantic correctness or reviewer standing",
     "AGREE does not create permission",
     "DISAGREE does not invalidate the canonical source",
     "DEFER is not failure"
