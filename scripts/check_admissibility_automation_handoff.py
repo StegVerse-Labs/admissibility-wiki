@@ -43,6 +43,7 @@ ASRO_BOUNDED_COMPARISON_RECEIPT_CHECK = ROOT / "scripts" / "check_asro_bounded_c
 ASRO_PUBLICATION_VERIFICATION_CHECK = ROOT / "scripts" / "check_asro_reciprocal_publication_verification.py"
 ASRO_SITE_PROJECTION_BUNDLE_CHECK = ROOT / "scripts" / "check_asro_site_projection_bundle.py"
 ASRO_GOVERNED_REVIEW_DOCKET_CHECK = ROOT / "scripts" / "check_asro_governed_review_docket.py"
+STEGVERSE_PUBLIC_ANCHOR_SELF_REVIEW_CHECK = ROOT / "scripts" / "check_stegverse_public_anchor_self_review.py"
 RECIPROCAL_FRAMEWORK_CHECK = ROOT / "scripts" / "check_reciprocal_framework_evaluations.py"
 RECIPROCAL_SYMMETRY_CHECK = ROOT / "scripts" / "check_reciprocal_boundary_symmetry.py"
 RECIPROCAL_REPLAY_CHECK = ROOT / "scripts" / "check_reciprocal_evaluation_replay.py"
@@ -133,6 +134,7 @@ def main() -> int:
         (ASRO_PUBLICATION_VERIFICATION_CHECK, "ASRO reciprocal publication verification"),
         (ASRO_SITE_PROJECTION_BUNDLE_CHECK, "ASRO Site projection bundle"),
         (ASRO_GOVERNED_REVIEW_DOCKET_CHECK, "ASRO governed public review docket"),
+        (STEGVERSE_PUBLIC_ANCHOR_SELF_REVIEW_CHECK, "StegVerse public-anchor self-review"),
         (RECIPROCAL_FRAMEWORK_CHECK, "reciprocal framework evaluations"),
         (RECIPROCAL_SYMMETRY_CHECK, "reciprocal boundary symmetry"),
         (RECIPROCAL_REPLAY_CHECK, "reciprocal evaluation replay"),
