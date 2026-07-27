@@ -39,6 +39,17 @@
       "execution_boundary_status": "PUBLICLY_UNRESOLVED",
       "continuing_admissibility_status": "PUBLICLY_UNRESOLVED",
       "live_test_status": "NOT_TESTED"
+    },
+    {
+      "framework_id": "one-world-ai-limited",
+      "name": "One World AI Limited",
+      "record_path": "one-world-ai-limited.json",
+      "self_declaration_status": "FOUNDER_AUTHORED_PUBLIC_POST_OBSERVED_NOT_FROZEN",
+      "external_source_status": "USER_SUPPLIED_PUBLIC_POST_SCREENSHOTS",
+      "proposal_execution_separation_status": "SUPPORTED_BY_PUBLIC_DESCRIPTION",
+      "independent_authority_standing_status": "PUBLICLY_UNRESOLVED",
+      "policy_evolution_separation_status": "PUBLICLY_UNRESOLVED",
+      "live_test_status": "NOT_TESTED"
     }
   ],
   "authority": {
