@@ -6,7 +6,7 @@ This file is the current source of truth for continuing `StegVerse-Labs/admissib
 
 ```text
 Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, public determinations, and reciprocal self-review.
-Current state: three governed dockets, reciprocal StegVerse self-review, review-governance schemas, frozen reconstruction manifest, route-observation receipt, accountable reconstruction invitation, bounded external-framework intakes, and a canonically bound Conectrr ITC interoperability package with source-package and disposition fixtures are installed.
+Current state: three governed dockets, reciprocal StegVerse self-review, review-governance schemas, frozen reconstruction manifest, route-observation receipt, accountable reconstruction invitation, bounded external-framework intakes, and a canonically bound Conectrr ITC interoperability package with validated source-package and AGREE / DISAGREE / DEFER fixtures are installed.
 Manual task requirement: none.
 User manual action required: false.
 ```
@@ -15,7 +15,7 @@ User manual action required: false.
 
 ```text
 Goal id: wiki-public-anchor-independent-reconstruction-activation
-State: CONECTRR_SOURCE_RECEIPT_BINDING_AND_DISPOSITION_FIXTURES_IMPLEMENTED_PENDING_WORKFLOW_OBSERVATION_AND_SOURCE_ARTIFACTS
+State: CONECTRR_SOURCE_AND_DISPOSITION_FIXTURES_CANONICALLY_VALIDATED_PENDING_WORKFLOW_OBSERVATION_AND_SOURCE_ARTIFACTS
 Authority posture: public review and reconstruction infrastructure only; no certification, government recognition, custody, endorsement, or execution authority created.
 ```
 
@@ -91,7 +91,10 @@ Aggregate validator: scripts/check_admissibility_automation_handoff.py
 Canonical validation: npm run validate
 Canonical workflow: .github/workflows/validate-chain-continuation.yml
 Binding state: BOUND_THROUGH_CANONICAL_AGGREGATE
+Disposition fixture state: BOUND_INTO_INTEROPERABILITY_VALIDATOR
 Workflow observation: NOT_OBSERVED_FOR_LATEST_COMMIT
+Observed commit: a726884923558643a8526975e832eaeb5df87b42
+Workflow runs observed: 0
 Source-package state: AWAITING_CANONICAL_SOURCE_ARTIFACTS
 Specification: OFFERED_NOT_RECEIVED
 Canonical generated ITC: OFFERED_NOT_RECEIVED
@@ -116,9 +119,7 @@ Conectrr discovery output
 -> ALLOW / DENY / FAIL-CLOSED
 ```
 
-The disposition fixture set reserves all three legitimate downstream outcomes without asserting that any test has run. Every fixture keeps source mutation prohibited, source hashes empty while artifacts are absent, Commitment Candidate creation false, SPE determination `NOT_RUN`, and all authority flags false.
-
-The existing validator verifies canonical aggregate binding, source-package completeness, partial-receipt rejection, immutable-source requirements, all ten drift vectors, pending-result restrictions, and zero authority inheritance. The disposition fixture set must be bound into validation before executed results replace it.
+The validator now enforces exactly one pending fixture for each of `AGREE`, `DISAGREE`, and `DEFER`; stable fixture identities; profile correlation; source-package state correlation; non-empty reasons; no source hash before receipt; no execution or reconstruction before complete source receipt; no Commitment Candidate creation; no SPE determination; no source mutation; and no authority inheritance. The fixture non-claims preserve that agreement is not permission, disagreement does not invalidate the source, and deferral is not failure.
 
 ## Deployment and Validation Gate
 
@@ -138,8 +139,7 @@ Do not create another active workflow unless repository standards change.
 ```text
 Goal: accountable independent reconstruction and canonical custody binding
 Required work:
-- bind the Conectrr AGREE / DISAGREE / DEFER fixture set into the existing Conectrr validator
-- observe canonical validation and public deployment for the latest package commit
+- observe canonical validation and public deployment for the latest Conectrr package commit
 - update workflow and route-observation receipts only from canonical evidence
 - receive and freeze the Conectrr ITC specification, canonical generated ITC, and internal validation report
 - convert the pending source-package receipt only when all three artifacts are present
@@ -155,7 +155,6 @@ Required work:
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-- disposition-fixture validation binding
 - canonical workflow PASS or retained first-failure receipt
 - Conectrr ITC Specification v1.0 Draft frozen source artifact
 - canonical Conectrr-generated ITC frozen source artifact
@@ -193,7 +192,7 @@ Queued propagation is not completed propagation. Destination mutation remains pr
 
 ## Permitted Continuation Scope
 
-A successor session may bind and validate the Conectrr disposition fixtures, repair the canonically integrated reconstruction and Conectrr packages, update workflow-observation receipts from canonical evidence, maintain or supersede reconstruction manifests, preserve challenges and corrections, prepare source-ingestion and executed-result fixtures, and queue downstream awareness without unauthorized destination mutation.
+A successor session may validate and repair the canonically integrated reconstruction and Conectrr packages, update workflow-observation receipts from canonical evidence, maintain or supersede reconstruction manifests, preserve challenges and corrections, prepare source-ingestion and executed-result fixtures, and queue downstream awareness without unauthorized destination mutation.
 
 ## Handoff Instruction
 
