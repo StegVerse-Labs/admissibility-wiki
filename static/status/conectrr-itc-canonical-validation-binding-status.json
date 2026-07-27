@@ -1,0 +1,26 @@
+{
+  "schema": "conectrr_itc_canonical_validation_binding_status.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "validator": "scripts/check_conectrr_itc_interoperability.py",
+  "aggregate_validator": "scripts/check_admissibility_automation_handoff.py",
+  "package_script": "validate:admissibility-automation-handoff",
+  "canonical_validation": "npm run validate",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "binding_state": "BOUND_THROUGH_CANONICAL_AGGREGATE",
+  "workflow_observation_state": "NOT_OBSERVED_FOR_LATEST_COMMIT",
+  "observed_commit": "bfb950c055dab44300594bb3c93c8680f9ec311e",
+  "workflow_runs_observed": 0,
+  "source_package_state": "AWAITING_CANONICAL_SOURCE_ARTIFACTS",
+  "authority": {
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "endorsement": false
+  },
+  "non_claims": [
+    "aggregate binding does not prove a successful workflow run",
+    "validator pass does not prove Conectrr interoperability",
+    "workflow execution does not grant execution authority",
+    "pending source artifacts are not failed artifacts"
+  ]
+}
