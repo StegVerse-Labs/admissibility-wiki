@@ -1,0 +1,38 @@
+{
+  "schema_version": "mindforge_boundary_review_receipt.v1",
+  "goal_id": "mindforge-commit-time-boundary-activation",
+  "review_scope": "BOUNDARY_SEMANTICS_ONLY",
+  "review_disposition": "SUBSTANTIALLY_CORRECT_WITH_CLARIFICATIONS",
+  "reviewed_claims": [
+    "Commitment Candidate remains non-authorizing",
+    "current standing is reconstructed at commit time",
+    "DENY is distinct from FAIL_CLOSED",
+    "ALLOW is an admissibility determination and not an execution command",
+    "MindForge evidence may inform historical context but does not grant execution authority"
+  ],
+  "incorporated_clarifications": [
+    "standing determination receipt is distinct from the non-authorizing candidate",
+    "known invalid standing produces DENY",
+    "unsafe or unresolved reconstruction produces FAIL_CLOSED",
+    "public MindForge references remain discussion-derived semantics only",
+    "execution remains outside the standing determination"
+  ],
+  "implementation_endorsed": false,
+  "compatibility_certified": false,
+  "official_mindforge_specification": false,
+  "execution_authority_granted": false,
+  "fixture_digest": "sha256:805c7eab128d7dbad872240064de4587737f0eed9aab11fa1af6935a9b9ece9e",
+  "cases": [
+    {"id":"ALLOW_RECONSTRUCTED_CURRENT_STANDING","expected":"ALLOW","actual":"ALLOW","reason_codes":["CURRENT_STANDING_RECONSTRUCTED"]},
+    {"id":"DENY_KNOWN_INVALID_STANDING","expected":"DENY","actual":"DENY","reason_codes":["DELEGATION_STATE_REVOKED"]},
+    {"id":"FAIL_CLOSED_EVIDENCE_HASH_MISMATCH","expected":"FAIL_CLOSED","actual":"FAIL_CLOSED","reason_codes":["EVIDENCE_STATE_HASH_MISMATCH"]},
+    {"id":"FAIL_CLOSED_POLICY_VERSION_AMBIGUOUS","expected":"FAIL_CLOSED","actual":"FAIL_CLOSED","reason_codes":["POLICY_STATE_AMBIGUOUS"]},
+    {"id":"FAIL_CLOSED_PARTIAL_DELEGATION_REVOCATION","expected":"FAIL_CLOSED","actual":"FAIL_CLOSED","reason_codes":["DELEGATION_STATE_PARTIALLY_REVOKED"]},
+    {"id":"FAIL_CLOSED_TRUSTED_TIME_UNAVAILABLE","expected":"FAIL_CLOSED","actual":"FAIL_CLOSED","reason_codes":["TIME_STATE_UNAVAILABLE"]},
+    {"id":"FAIL_CLOSED_TARGET_IDENTITY_AMBIGUOUS","expected":"FAIL_CLOSED","actual":"FAIL_CLOSED","reason_codes":["TARGET_STATE_AMBIGUOUS"]},
+    {"id":"FAIL_CLOSED_ACTION_SEMANTIC_DRIFT","expected":"FAIL_CLOSED","actual":"FAIL_CLOSED","reason_codes":["ACTION_STATE_SEMANTIC_DRIFT"]},
+    {"id":"FAIL_CLOSED_RECOVERY_PATH_UNAVAILABLE","expected":"FAIL_CLOSED","actual":"FAIL_CLOSED","reason_codes":["RECOVERABILITY_STATE_UNAVAILABLE"]},
+    {"id":"ALLOW_DOES_NOT_EXECUTE","expected":"ALLOW","actual":"ALLOW","reason_codes":["CURRENT_STANDING_RECONSTRUCTED","ALLOW_IS_NOT_EXECUTION_COMMAND"]}
+  ],
+  "publication_claim": "Reviewed for architectural boundary semantics; not an official MindForge specification, implementation endorsement, compatibility certification, or execution-authority determination."
+}
