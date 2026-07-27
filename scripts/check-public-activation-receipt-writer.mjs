@@ -6,6 +6,7 @@ const WRITER = 'scripts/write-public-activation-receipt.mjs';
 const OUT = 'reports/public-activation-receipt.json';
 const OPTIMIZATION_RECEIPT = 'reports/optimization-target-publication-verification-receipt.json';
 const DISCOVERY_RECEIPT = 'reports/discovery-governance-publication-receipt.json';
+const RELATIONSHIP_RECEIPT = 'reports/governed-relationship-transition-publication-observation.json';
 const DISCOVERY_ROUTES = [
   'discovery_governance_doctrine',
   'discovery_governance_schema',
@@ -58,6 +59,7 @@ if (!fs.existsSync(WRITER)) fail(`missing writer: ${WRITER}`);
 
 fs.mkdirSync('reports', { recursive: true });
 fs.rmSync(OUT, { force: true });
+fs.rmSync(RELATIONSHIP_RECEIPT, { force: true });
 fs.writeFileSync(OPTIMIZATION_RECEIPT, JSON.stringify({
   schema: 'optimization_target_publication_verification_receipt.test.v1',
   verification_result: 'PASS',
@@ -201,6 +203,22 @@ for (const key of ['implementation_equivalence_established', 'interoperability_v
 if (JSON.stringify(discovery) !== JSON.stringify(JSON.parse(fs.readFileSync(DISCOVERY_RECEIPT, 'utf8')))) fail('embedded discovery closure differs from standalone receipt');
 if (receipt.linked_receipts?.discovery_governance_publication_receipt !== DISCOVERY_RECEIPT) fail('discovery-governance receipt binding mismatch');
 
+if (!fs.existsSync(RELATIONSHIP_RECEIPT)) fail('relationship-transition standalone receipt missing');
+const relationshipStandalone = JSON.parse(fs.readFileSync(RELATIONSHIP_RECEIPT, 'utf8'));
+const relationship = receipt.activation_closures?.governed_relationship_transitions;
+if (!relationship) fail('missing governed relationship transition activation closure');
+if (relationship.schema !== 'stegverse.governed_relationship_transition_publication_observation.v1') fail('relationship-transition closure schema mismatch');
+if (relationship.state !== 'SIMULATED_VALIDATOR_PASS') fail('relationship-transition simulated state mismatch');
+if (relationship.all_required_public_routes_verified !== true) fail('relationship-transition route verification mismatch');
+if (relationship.pages_deployment_observed !== false) fail('relationship-transition simulated deployment boundary mismatch');
+if (relationship.user_action_required !== false) fail('relationship-transition user action mismatch');
+if (!Array.isArray(relationship.manual_tasks_required) || relationship.manual_tasks_required.length !== 0) fail('relationship-transition manual task mismatch');
+for (const key of ['publication_authority_granted', 'release_authority_granted', 'execution_authority_granted', 'admissibility_granted', 'downstream_mutation_authority_granted']) {
+  if (relationship[key] !== false) fail(`relationship-transition authority boundary mismatch: ${key}`);
+}
+if (JSON.stringify(relationship) !== JSON.stringify(relationshipStandalone)) fail('embedded relationship-transition closure differs from standalone receipt');
+if (receipt.linked_receipts?.governed_relationship_transition_publication_observation !== RELATIONSHIP_RECEIPT) fail('relationship-transition receipt binding mismatch');
+
 const reconstructionUrl = receipt.linked_receipts?.external_translation_reconstruction;
 if (reconstructionUrl !== 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json') fail('external translation reconstruction receipt binding mismatch');
 if (receipt.linked_receipts?.ai_led_radiology_execution !== 'reports/ai-led-radiology-execution-receipt.json') fail('AI-led radiology execution receipt binding mismatch');
@@ -214,4 +232,5 @@ if (!nonClaims.some((claim) => claim.includes('does not decide authorship'))) fa
 
 fs.rmSync(OPTIMIZATION_RECEIPT, { force: true });
 fs.rmSync(DISCOVERY_RECEIPT, { force: true });
+fs.rmSync(RELATIONSHIP_RECEIPT, { force: true });
 console.log('public activation receipt writer OK');
