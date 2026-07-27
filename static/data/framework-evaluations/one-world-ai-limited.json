@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0.0",
+  "framework_id": "one-world-ai-limited",
+  "name": "One World AI Limited",
+  "evaluation_date": "2026-07-27",
+  "source_posture": {
+    "type": "FOUNDER_AUTHORED_PUBLIC_POST_SCREENSHOT_CAPTURE",
+    "owner_confirmed_frozen_declaration": false,
+    "repository_reviewed": false,
+    "paper_reviewed": false,
+    "implementation_artifact_reviewed": false
+  },
+  "declared_boundary": {
+    "model_output_remains_proposal": true,
+    "execution_requires_independent_authority": true,
+    "instruction_and_capability_separated": true,
+    "evaluation_time": "MOMENT_OF_EXECUTION",
+    "evaluation_inputs": [
+      "scope",
+      "identity",
+      "current_policy",
+      "current_system_state",
+      "required_evidence",
+      "authority_attached_to_specific_effect"
+    ],
+    "nonconforming_outcomes": [
+      "CONSTRAIN",
+      "DENY",
+      "ESCALATE"
+    ]
+  },
+  "stegverse_determination": {
+    "classification": "SEPARATED_PROPOSAL_AND_EXECUTION_CONTROL_ARCHITECTURE",
+    "proposal_execution_separation": "SUPPORTED_BY_PUBLIC_DESCRIPTION",
+    "commit_time_admissibility": "PARTIAL",
+    "independent_authority_standing": "PUBLICLY_UNRESOLVED",
+    "delegation_reconstruction": "PUBLICLY_UNRESOLVED",
+    "effect_identity_binding": "PUBLICLY_UNRESOLVED",
+    "policy_evolution_separation": "PUBLICLY_UNRESOLVED",
+    "live_test": "NOT_TESTED",
+    "replay": "NOT_TESTED",
+    "independent_reconstruction": "NOT_RUN"
+  },
+  "required_three_authority_separation": [
+    "PROPOSAL_GENERATION",
+    "EXECUTION_ADMISSIBILITY",
+    "POLICY_EVOLUTION"
+  ],
+  "unresolved_requirements": [
+    "source_of_independent_authority",
+    "current_delegation_chain",
+    "commit_time_policy_version",
+    "current_state_correspondence",
+    "evidence_validity",
+    "proposal_to_effect_identity_binding",
+    "post_proposal_drift_detection",
+    "replayable_decision_receipt",
+    "independent_reconstruction",
+    "governed_policy_activation_and_supersession"
+  ],
+  "minimum_test": {
+    "fixture": "valid destructive credential with non-production instruction",
+    "drift_variables": [
+      "delegation",
+      "policy",
+      "environment",
+      "target_state",
+      "evidence_validity",
+      "approval_status"
+    ],
+    "allowed_results": [
+      "ALLOW",
+      "HOLD",
+      "DENY",
+      "CONSTRAIN",
+      "ESCALATE",
+      "EFFECT_ALREADY_BOUND"
+    ],
+    "status": "NOT_RUN"
+  },
+  "evidence": {
+    "reviewed": [
+      "user-supplied screenshots of founder-authored LinkedIn post",
+      "public proposal-versus-execution-authority statement",
+      "listed execution-time evaluation categories",
+      "public implementation-under-construction claim",
+      "public request for repository, paper, dates, and first artifact"
+    ],
+    "not_yet_reviewed_or_found": [
+      "public repository",
+      "technical paper",
+      "frozen architecture declaration",
+      "policy schema",
+      "delegation schema",
+      "executable enforcement component",
+      "commit-bound trace",
+      "independent reconstruction packet",
+      "live denial test",
+      "policy-evolution governance artifact"
+    ]
+  },
+  "authority": {
+    "comparison": false,
+    "admissibility": false,
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "endorsement": false
+  }
+}
