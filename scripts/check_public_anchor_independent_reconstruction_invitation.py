@@ -8,6 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 INVITATION = ROOT / "static" / "data" / "governed-framework-reviews" / "stegverse-public-anchor.independent-reconstruction-invitation.v1.json"
 MANIFEST = ROOT / "static" / "data" / "governed-framework-reviews" / "public-anchor-reconstruction-manifest.v1.json"
 SELF_REVIEW = ROOT / "static" / "data" / "governed-framework-reviews" / "stegverse-public-anchor.self-review.v1.json"
+PAGE = ROOT / "docs" / "stegverse" / "public-anchor-independent-reconstruction.md"
+SIDEBAR = ROOT / "sidebars.js"
 
 
 def require(condition: bool, message: str) -> None:
@@ -29,6 +31,10 @@ def main() -> int:
     invitation = load(INVITATION)
     manifest = load(MANIFEST)
     self_review = load(SELF_REVIEW)
+    require(PAGE.exists(), "public invitation page missing")
+    require(SIDEBAR.exists(), "sidebar missing")
+    page = PAGE.read_text(encoding="utf-8")
+    sidebar = SIDEBAR.read_text(encoding="utf-8")
 
     require(invitation.get("schema_version") == "independent-reconstruction-invitation.v1", "schema version mismatch")
     require(invitation.get("review_id") == self_review.get("review_id"), "review id does not match self-review docket")
@@ -54,7 +60,21 @@ def main() -> int:
     for key in ("invitation_grants_reviewer_standing", "submission_automatically_changes_standing", "reconstruction_is_certification", "reconstruction_grants_execution_authority", "publication_establishes_government_recognition"):
         require(boundary.get(key) is False, f"authority boundary must remain false: {key}")
 
-    print("PUBLIC-ANCHOR INDEPENDENT RECONSTRUCTION INVITATION: PASS - invitation is accountable, bounded, and non-authorizing")
+    required_page_markers = (
+        invitation.get("invitation_id", ""),
+        invitation.get("frozen_commit", ""),
+        "OPEN_NO_ACCOUNTABLE_REVIEWER_ASSIGNED",
+        "anonymous result != standing change",
+        "reconstruction != certification",
+        "reconstruction != execution authority",
+        "DIVERGENT",
+        "BLOCKED",
+    )
+    for marker in required_page_markers:
+        require(marker and marker in page, f"public page missing marker: {marker}")
+    require("stegverse/public-anchor-independent-reconstruction" in sidebar, "public invitation route missing from sidebar")
+
+    print("PUBLIC-ANCHOR INDEPENDENT RECONSTRUCTION INVITATION: PASS - invitation, public route, accountability requirements, and non-authority boundaries are aligned")
     return 0
 
 
