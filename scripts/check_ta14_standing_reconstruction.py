@@ -11,6 +11,8 @@ DOC = ROOT / "docs" / "external-frameworks" / "ta-14.md"
 ASSESSMENT = ROOT / "docs" / "external-frameworks" / "ta-14-registry-public-record-assessment.md"
 STATUS = ROOT / "static" / "status" / "ta-14-standing-reconstruction-status.json"
 EVALUATION = ROOT / "static" / "data" / "framework-evaluations" / "ta-14.json"
+FIXTURE = ROOT / "static" / "data" / "framework-evaluations" / "test-cases" / "ta14-continuous-standing-revalidation-v1.json"
+OUTPUT_TEMPLATE = ROOT / "static" / "data" / "framework-evaluations" / "test-cases" / "ta14-continuous-standing-revalidation-output-template-v1.json"
 SIDEBAR = ROOT / "sidebars.js"
 HANDOFF = ROOT / "docs" / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
 
@@ -33,6 +35,8 @@ def main() -> None:
 
     status = json.loads(read(STATUS))
     evaluation = json.loads(read(EVALUATION))
+    fixture = json.loads(read(FIXTURE))
+    output_template = json.loads(read(OUTPUT_TEMPLATE))
 
     for token in (
         "route admissibility != actor standing",
@@ -77,6 +81,31 @@ def main() -> None:
         "machine-readable evaluation is missing the proposed standing-revalidation test",
     )
 
+    require(fixture.get("test_case_id") == "ta14-continuous-standing-revalidation-v1", "fixture id mismatch")
+    require(fixture.get("status") == "FROZEN_PROPOSED_NOT_RUN", "fixture must remain frozen and unrun")
+    require(fixture.get("preserved_route_record", {}).get("mutation_allowed") is False, "fixture must prohibit route mutation")
+    require(fixture.get("external_state_mutation", {}).get("preserved_route_modified") is False, "external revocation must not mutate the preserved route")
+    require(
+        set(fixture.get("expected_discriminating_outcome", {}).get("acceptable_decisions", [])) == {"HOLD", "DENY", "ESCALATE"},
+        "fixture acceptable decisions must be HOLD, DENY, or ESCALATE",
+    )
+    require(fixture.get("expected_discriminating_outcome", {}).get("must_occur_before_consequence") is True, "decision must occur before consequence")
+    require(fixture.get("authority_boundary", {}).get("test_fixture_establishes_framework_failure") is False, "fixture must not infer framework failure")
+    require(fixture.get("authority_boundary", {}).get("test_fixture_establishes_framework_capability") is False, "fixture must not infer framework capability")
+
+    require(output_template.get("test_case_id") == fixture.get("test_case_id"), "output template does not bind to the frozen fixture")
+    require(output_template.get("determination", {}).get("continuous_actor_standing_reconstruction") == "UNDETERMINED_UNTIL_RUN", "output template must remain undetermined")
+    require(
+        set(output_template.get("determination", {}).get("allowed_values", [])) == {
+            "SUPPORTED_BY_THIS_TEST",
+            "NOT_SUPPORTED_BY_THIS_TEST",
+            "PUBLICLY_UNRESOLVED",
+        },
+        "output template determination values are incomplete",
+    )
+    require(output_template.get("authority_boundary", {}).get("certification_granted") is False, "output template must deny certification")
+    require(output_template.get("authority_boundary", {}).get("execution_authority_granted") is False, "output template must deny execution authority")
+
     required_routes = {
         "/external-frameworks/ta-14",
         "/external-frameworks/ta-14-registry-public-record-assessment",
@@ -84,7 +113,7 @@ def main() -> None:
     }
     require(required_routes.issubset(set(status.get("public_routes", []))), "status record is missing one or more public routes")
 
-    print("TA-14 STANDING RECONSTRUCTION: PASS - doctrine, assessment, status, evaluation, navigation, and handoff agree")
+    print("TA-14 STANDING RECONSTRUCTION: PASS - doctrine, assessment, status, evaluation, frozen fixture, output template, navigation, and handoff agree")
 
 
 if __name__ == "__main__":
