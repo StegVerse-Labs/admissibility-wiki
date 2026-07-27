@@ -1,16 +1,18 @@
 {
   "schema_version": "mindforge_publication_attribution_authorization.v1",
   "goal_id": "mindforge-commit-time-boundary-activation",
-  "authorization_state": "PENDING_REVIEWER_RESPONSE",
+  "authorization_state": "CONDITIONAL_APPROVAL_PENDING_CONDITION_CAPTURE",
   "reviewer_name": "Alane Zhang",
   "requested_statement": "Reviewed for architectural boundary semantics. The reviewer found the boundary substantially correct subject to incorporated clarifications. This is not an official MindForge specification, implementation endorsement, compatibility certification, or execution-authority determination.",
-  "authorized_statement": null,
+  "authorized_statement": "Reviewed for architectural boundary semantics. The reviewer found the boundary substantially correct subject to incorporated clarifications. This is not an official MindForge specification, implementation endorsement, compatibility certification, or execution-authority determination.",
   "authorized_at": null,
-  "evidence_reference": null,
+  "evidence_reference": "data/external-reviews/mindforge/alane-zhang-boundary-semantics-review-intake.json",
+  "publication_conditions_declared": 2,
+  "publication_conditions_verbatim_capture_complete": false,
   "publication_permitted": false,
   "official_mindforge_specification": false,
   "implementation_endorsed": false,
   "compatibility_certified": false,
   "execution_authority_granted": false,
-  "notes": "This record remains pending until the reviewer expressly approves, modifies, or rejects the exact public attribution language. Silence does not constitute authorization."
+  "notes": "Conditional approval is observed for the narrow statement, but two publication conditions are not yet captured verbatim. Publication remains fail-closed until condition capture and durable evidence are complete."
 }
