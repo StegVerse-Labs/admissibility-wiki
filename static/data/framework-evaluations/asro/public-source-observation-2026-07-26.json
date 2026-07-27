@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "observation_id": "asro-public-source-observation-2026-07-26",
+  "observation_class": "CURRENT_PUBLIC_SOURCE_OBSERVATION",
+  "observed_at": "2026-07-26T00:00:00Z",
+  "repository": "https://github.com/magicianzcardstockllc/asro",
+  "commit_sha": "46f8fd2f8f35668b2b27fcbdb4e24e06b58513a2",
+  "source_path": "README.md",
+  "git_blob_sha": "164920eb86bb1ad27c869142f03db149342d5984",
+  "declared_version": "ASRO v1.0 Release Candidate",
+  "content_sha256": null,
+  "content_sha256_status": "NOT_COMPUTED_FROM_CONNECTOR_RESPONSE",
+  "historical_observation_relationship": {
+    "original_2026_07_23_commit_sha": null,
+    "original_2026_07_23_source_path": null,
+    "status": "UNRESOLVED_NO_RETROACTIVE_SUBSTITUTION",
+    "current_observation_may_replace_historical_record": false
+  },
+  "source_scope": "public repository material only",
+  "private_internal_unpublished_or_unreleased_material_used": false,
+  "execution_target": false,
+  "authority_boundary": {
+    "asro_native_execution_observed": false,
+    "canonical_schema_established": false,
+    "certification": false,
+    "endorsement": false,
+    "joint_issuance": false,
+    "admissibility": false,
+    "execution_authority": false
+  },
+  "note": "This record pins a current public source observation on 2026-07-26. It does not retroactively identify the exact commit or source path observed for the earlier 2026-07-23 StegVerse analysis, which remains unresolved until independently evidenced."
+}
