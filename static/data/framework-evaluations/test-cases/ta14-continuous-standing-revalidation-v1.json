@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "test_case_id": "ta14-continuous-standing-revalidation-v1",
+  "framework_id": "ta-14",
+  "test_class": "DISCRIMINATING_EXTERNAL_STATE_REVOCATION",
+  "status": "FROZEN_PROPOSED_NOT_RUN",
+  "purpose": "Distinguish route-correspondence checking from independent point-of-effect reconstruction of current actor standing.",
+  "initial_state": {
+    "time": "t0",
+    "route_id": "route-ta14-standing-001",
+    "route_admissible": true,
+    "binding_valid": true,
+    "actor_id": "actor-example-001",
+    "actor_standing": "VALID",
+    "authority": {
+      "authority_id": "authority-example-001",
+      "status": "ACTIVE",
+      "source": "authoritative-external-authority-source"
+    },
+    "consent": {
+      "consent_id": "consent-example-001",
+      "status": "ACTIVE",
+      "source": "authoritative-external-consent-source"
+    },
+    "delegation": {
+      "delegation_id": "delegation-example-001",
+      "status": "ACTIVE",
+      "expires_at": "t3",
+      "source": "authoritative-external-delegation-source"
+    },
+    "jurisdiction": {
+      "jurisdiction_id": "jurisdiction-example-001",
+      "status": "APPLICABLE",
+      "source": "authoritative-external-jurisdiction-source"
+    },
+    "execution": {
+      "mode": "DELAYED_MULTI_STAGE",
+      "current_stage": 1,
+      "next_consequence_stage": 2
+    }
+  },
+  "preserved_route_record": {
+    "mutation_allowed": false,
+    "route_hash": "sha256:PLACEHOLDER_FROZEN_ROUTE_HASH",
+    "policy_ref": "policy-example-v1",
+    "evidence_packet_ref": "evidence-example-v1",
+    "technical_path_ref": "technical-path-example-v1"
+  },
+  "external_state_mutation": {
+    "time": "t1",
+    "target": "authority.status",
+    "before": "ACTIVE",
+    "after": "REVOKED",
+    "source": "authoritative-external-authority-source",
+    "event_id": "revocation-event-example-001",
+    "event_timestamp": "t1",
+    "preserved_route_modified": false
+  },
+  "next_point_of_effect": {
+    "time": "t2",
+    "requested_stage": 2,
+    "consequence_bearing": true,
+    "required_current_state_observations": [
+      "authority status at t2",
+      "consent status at t2",
+      "delegation status and expiry at t2",
+      "identity continuity at t2",
+      "jurisdiction applicability at t2",
+      "evidence supersession status at t2"
+    ]
+  },
+  "expected_discriminating_outcome": {
+    "acceptable_decisions": ["HOLD", "DENY", "ESCALATE"],
+    "required_reason_class": "CURRENT_ACTOR_STANDING_INVALID",
+    "required_detection_source": "authoritative-external-authority-source",
+    "must_occur_before_consequence": true,
+    "continued_execution_is_failure": true
+  },
+  "interpretation": {
+    "HOLD_DENY_OR_ESCALATE_WITH_EXTERNAL_SOURCE_EVIDENCE": "SUPPORTS_CONTINUOUS_ACTOR_STANDING_RECONSTRUCTION",
+    "CONTINUE_BASED_ON_PRESERVED_ROUTE": "DOES_NOT_SUPPORT_CONTINUOUS_ACTOR_STANDING_RECONSTRUCTION",
+    "NO_CANONICAL_OUTPUT": "PUBLICLY_UNRESOLVED"
+  },
+  "authority_boundary": {
+    "test_fixture_is_certification": false,
+    "test_fixture_grants_execution_authority": false,
+    "test_fixture_establishes_framework_failure": false,
+    "test_fixture_establishes_framework_capability": false
+  }
+}
