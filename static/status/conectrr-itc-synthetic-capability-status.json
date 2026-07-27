@@ -1,0 +1,37 @@
+{
+  "schema": "conectrr_itc_synthetic_capability_status.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "state": "READY_FOR_CANONICAL_EXECUTION",
+  "fixture": "static/data/framework-evaluations/examples/conectrr-itc.synthetic-capability-test.v1.json",
+  "validator": "scripts/check_conectrr_itc_synthetic_capability.py",
+  "aggregate_validator": "scripts/check_admissibility_automation_handoff.py",
+  "canonical_validation": "npm run validate",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "capabilities_exercised": [
+    "complete synthetic three-artifact source package",
+    "canonical JSON hashing",
+    "immutable pre/post source hash comparison",
+    "deterministic replay hash comparison",
+    "AGREE disposition path",
+    "DISAGREE disposition path",
+    "DEFER disposition path",
+    "ten commit-time drift vectors",
+    "prohibited authority-semantics enforcement",
+    "zero authority inheritance"
+  ],
+  "external_validation_claimed": false,
+  "conectrr_artifacts_used": false,
+  "authority": {
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "endorsement": false
+  },
+  "non_claims": [
+    "READY_FOR_CANONICAL_EXECUTION is not an observed workflow PASS",
+    "synthetic capability testing is not Conectrr interoperability",
+    "synthetic artifacts do not substitute for Conectrr source artifacts",
+    "a successful smoke test does not establish independent reviewer standing",
+    "a successful smoke test does not grant execution authority"
+  ]
+}
