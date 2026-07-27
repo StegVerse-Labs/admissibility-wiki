@@ -8,9 +8,10 @@
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "binding_state": "BOUND_THROUGH_CANONICAL_AGGREGATE",
   "workflow_observation_state": "NOT_OBSERVED_FOR_LATEST_COMMIT",
-  "observed_commit": "ada000b4bf757738802390ee24b0e095ac3c03e7",
+  "observed_commit": "f71498451a8db7864f0364ab3d61cd6f37deefa9",
   "workflow_runs_observed": 0,
   "source_package_state": "AWAITING_CANONICAL_SOURCE_ARTIFACTS",
+  "source_package_receipt": "static/data/framework-evaluations/examples/conectrr-itc.source-package-receipt.pending.v1.json",
   "authority": {
     "certification": false,
     "execution": false,
@@ -21,6 +22,7 @@
     "aggregate binding does not prove a successful workflow run",
     "validator pass does not prove Conectrr interoperability",
     "workflow execution does not grant execution authority",
-    "pending source artifacts are not failed artifacts"
+    "pending source artifacts are not failed artifacts",
+    "source receipt does not create custody or testing authority"
   ]
 }
