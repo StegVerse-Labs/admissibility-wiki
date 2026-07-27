@@ -1,0 +1,64 @@
+{
+  "schema": "conectrr_itc_disposition_fixtures.v1",
+  "profile_id": "conectrr-itc-first-interoperability-exercise",
+  "source_package_state": "AWAITING_CANONICAL_SOURCE_ARTIFACTS",
+  "source_mutation_allowed": false,
+  "fixtures": [
+    {
+      "fixture_id": "conectrr-itc-agree",
+      "disposition": "AGREE",
+      "execution_state": "NOT_RUN",
+      "source_hash": null,
+      "reconstruction_result": "NOT_RUN",
+      "reason": "Reserved for a downstream determination that independently reconstructs and agrees with the canonical Conectrr recommendation without mutating it.",
+      "commitment_candidate_created": false,
+      "spe_determination": "NOT_RUN",
+      "authority": {
+        "certification": false,
+        "execution": false,
+        "custody": false,
+        "endorsement": false
+      }
+    },
+    {
+      "fixture_id": "conectrr-itc-disagree",
+      "disposition": "DISAGREE",
+      "execution_state": "NOT_RUN",
+      "source_hash": null,
+      "reconstruction_result": "NOT_RUN",
+      "reason": "Reserved for a downstream determination that reconstructs the canonical source and reaches a different recommendation while preserving the source unchanged.",
+      "commitment_candidate_created": false,
+      "spe_determination": "NOT_RUN",
+      "authority": {
+        "certification": false,
+        "execution": false,
+        "custody": false,
+        "endorsement": false
+      }
+    },
+    {
+      "fixture_id": "conectrr-itc-defer",
+      "disposition": "DEFER",
+      "execution_state": "NOT_RUN",
+      "source_hash": null,
+      "reconstruction_result": "NOT_RUN",
+      "reason": "Reserved for a downstream determination that cannot responsibly agree or disagree because evidence, context, or current standing is insufficient.",
+      "commitment_candidate_created": false,
+      "spe_determination": "NOT_RUN",
+      "authority": {
+        "certification": false,
+        "execution": false,
+        "custody": false,
+        "endorsement": false
+      }
+    }
+  ],
+  "non_claims": [
+    "a disposition fixture is not an executed interoperability result",
+    "agreement does not grant execution authority",
+    "disagreement does not invalidate the canonical source",
+    "deferral is not failure",
+    "a Commitment Candidate remains non-authorizing",
+    "SPE must reconstruct current standing before consequence may bind"
+  ]
+}
