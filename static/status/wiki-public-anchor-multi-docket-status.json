@@ -1,8 +1,8 @@
 {
   "schema_version": "wiki-public-anchor-multi-docket-status.v1",
   "status_id": "wiki-public-anchor-multi-docket-2026-07-27",
-  "generated_at": "2026-07-27T15:00:00Z",
-  "state": "THREE_DOCKETS_FROZEN_PENDING_CANONICAL_ROUTE_OBSERVATION",
+  "generated_at": "2026-07-27T15:05:00Z",
+  "state": "THREE_DOCKETS_IMPLEMENTED_PENDING_CANONICAL_VALIDATION",
   "dockets": [
     {
       "review_id": "review-ta14-reference-docket-2026-07-27",
