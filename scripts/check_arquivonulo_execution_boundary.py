@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DOC = ROOT / "docs" / "external-frameworks" / "arquivonulo.md"
 EVALUATION = ROOT / "static" / "data" / "framework-evaluations" / "arquivonulo.json"
 INDEX = ROOT / "static" / "data" / "framework-evaluations" / "index.json"
+STATUS = ROOT / "static" / "status" / "arquivonulo-execution-boundary-status.json"
+FIXTURE = ROOT / "docs" / "external-frameworks" / "fixtures" / "arquivonulo-continuing-admissibility-test.v0.1.json"
 SIDEBAR = ROOT / "sidebars.js"
 HANDOFF = ROOT / "docs" / "ARQUIVONULO_MIRROR_HANDOFF.md"
 
@@ -30,6 +32,8 @@ def main() -> None:
     handoff = read(HANDOFF)
     evaluation = json.loads(read(EVALUATION))
     index = json.loads(read(INDEX))
+    status = json.loads(read(STATUS))
+    fixture = json.loads(read(FIXTURE))
 
     for token in (
         "valid proof != continuing admissibility",
@@ -41,14 +45,13 @@ def main() -> None:
     ):
         require(token in doc, f"doctrine missing token: {token}")
 
-    require(
-        "external-frameworks/arquivonulo" in sidebar,
-        "ArquivoNulo route is not exposed in the sidebar",
-    )
-    require(
-        "arquivonulo-execution-boundary-evaluation" in handoff,
-        "goal-specific handoff does not own the ArquivoNulo evaluation",
-    )
+    require("external-frameworks/arquivonulo" in sidebar, "ArquivoNulo route is not exposed in the sidebar")
+    for token in (
+        "arquivonulo-execution-boundary-evaluation",
+        "static/status/arquivonulo-execution-boundary-status.json",
+        "arquivonulo-continuing-admissibility-test.v0.1.json",
+    ):
+        require(token in handoff, f"goal-specific handoff missing token: {token}")
 
     require(evaluation.get("framework_id") == "arquivonulo", "framework_id must be arquivonulo")
     source = evaluation.get("source_posture", {})
@@ -82,7 +85,32 @@ def main() -> None:
     require(registry_entry.get("record_path") == "arquivonulo.json", "registry record_path is incorrect")
     require(registry_entry.get("live_test_status") == "NOT_TESTED", "registry live_test_status must remain NOT_TESTED")
 
-    print("ARQUIVONULO EXECUTION BOUNDARY: PASS - doctrine, evaluation, registry, navigation, and handoff agree")
+    require(status.get("goal_id") == "arquivonulo-execution-boundary-evaluation", "status goal_id is incorrect")
+    require(status.get("state") == "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_OBSERVATION", "status state is incorrect")
+    require(status.get("test_posture", {}).get("fixture_status") == "PROPOSED_NOT_RUN", "status fixture must remain PROPOSED_NOT_RUN")
+    observation = status.get("workflow_observation", {})
+    require(observation.get("canonical_validation_observed") is False, "canonical validation may not be claimed without evidence")
+    require(observation.get("public_deployment_observed") is False, "public deployment may not be claimed without evidence")
+    require(observation.get("activation_receipt_closed") is False, "activation receipt may not be closed without evidence")
+
+    require(fixture.get("test_id") == "arquivonulo-continuing-admissibility-001", "fixture test_id is incorrect")
+    require(fixture.get("status") == "PROPOSED_NOT_RUN", "fixture must remain PROPOSED_NOT_RUN")
+    require(fixture.get("source_posture") == "STEGVERSE_PROPOSED_NEUTRAL_FIXTURE_NOT_OWNER_CONFIRMED", "fixture source posture is incorrect")
+    require(fixture.get("mutation", {}).get("change_exactly_one") is True, "fixture must change exactly one governing condition")
+    required_results = {"ALLOW", "HOLD", "DENY", "INTERDICT", "EFFECT_ALREADY_BOUND", "INSUFFICIENT_EVIDENCE"}
+    require(required_results.issubset(set(fixture.get("allowed_results", []))), "fixture allowed results are incomplete")
+    required_points = {
+        "before_S5_external_effect",
+        "at_S5_execution_or_transmission",
+        "at_S6_validation_and_proof_generation",
+        "at_S7_proof_verification",
+        "after_interdiction_or_success",
+    }
+    require(required_points.issubset(set(fixture.get("attempt", {}).get("required_observation_points", []))), "fixture observation points are incomplete")
+    for key in ("certification", "endorsement", "execution", "custody", "adverse_capability_conclusion"):
+        require(fixture.get("authority", {}).get(key) is False, f"fixture authority.{key} must remain false")
+
+    print("ARQUIVONULO EXECUTION BOUNDARY: PASS - doctrine, evaluation, registry, status, fixture, navigation, and handoff agree")
 
 
 if __name__ == "__main__":
