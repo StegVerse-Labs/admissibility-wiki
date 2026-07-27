@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "state_type": "admissible_resolution_ingestion_receipt",
+  "destination_repository": "StegVerse-Labs/admissibility-wiki",
+  "source_repository": "Admissible-Existence/TT",
+  "source_issue": 2,
+  "destination_issue": 42,
+  "decision_id": "AR-CHAIN-001",
+  "source_packet": {
+    "path": "data/propagation/admissible-resolution-v1.json",
+    "canonical_sha256": "sha256:d01f86e79a0370035091c6472986186a4e2ce7c5304976b597fcef8a14da8bd6",
+    "state": "READY_FOR_DESTINATION_HANDOFF_REVIEW"
+  },
+  "registry": {
+    "family": "Resolution",
+    "transition_ids": ["T-060", "T-061", "T-062", "T-063", "T-064", "T-065"],
+    "expected_total_transition_elements": 76
+  },
+  "verified_chain": {
+    "canonical_input_hash": "sha256:7289c68d39c3ca2acb1c6262f146ecb85982b115d04e2b1993127a4f72b104c5",
+    "source_resolution_receipt_hash": "sha256:449ad468aa73026716ba530441eac6ece3395a5df4a4e4c6d8d19cf046342b7b",
+    "factory_validation_receipt_hash": "sha256:a6f86f5d33ebd777f2f832eda6c2749d638090453ab074d0b937a071f83aab01",
+    "tt_allocation_receipt_hash": "sha256:57e398bcccd19ea22b8b21b28742310c70692f3f3e6a74aa6491763835ccda6a",
+    "required_nodes": 6,
+    "allocated_nodes": 6,
+    "result": "RESOLUTION_SATISFIED"
+  },
+  "classification": "BOUNDED_FORMALISM_INGESTION_VERIFIED",
+  "public_projection_state": "NOT_YET_PROJECTED",
+  "reciprocal_review_required": true,
+  "dispute_and_correction_path_required": true,
+  "time_t_reconstruction_required": true,
+  "authority": {
+    "publication_authorized": false,
+    "release_authorized": false,
+    "execution_authorized": false,
+    "custody_recorded": false,
+    "certification_authority_created": false,
+    "admissibility_determined": false,
+    "standing_created": false
+  },
+  "manual_user_action_required": false
+}
