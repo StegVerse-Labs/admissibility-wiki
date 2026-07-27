@@ -35,25 +35,25 @@ REQUIRED_FILES = (
 
 REGISTRY_MARKERS = (
     "External canonical MindForge source: NOT ATTACHED",
-    "Conditional review intake: approval observed, conditions incomplete, fail closed",
-    "Reviewer attribution authorization: explicit complete conditions required",
-    "Reviewer response evidence: preserve what is observed; do not invent missing verbatim text",
+    "Review attribution: exact approved description only",
+    "Private correspondence: hash-bound provenance only; not publicly quoted or reproduced",
+    "Publication boundaries: no scope expansion, private correspondence, screenshots, unpublished drafts, or stronger attribution",
     "Publication verification: successful workflow, build, deployment, and route evidence required",
     "Neither becomes an official MindForge specification",
-    "CONDITIONAL_APPROVAL_PENDING_CONDITION_CAPTURE",
-    "FAIL_CLOSED_UNTIL_COMPLETE",
+    "authorization_state = AUTHORIZED_EXACT_WITH_BOUNDARIES",
+    "private_correspondence_publication_permitted = false",
+    "stronger_attribution_requires_separate_approval = true",
     "No downstream location becomes an independent editorial or canonical MindForge source",
 )
 
 HANDOFF_MARKERS = (
-    "IMPLEMENTED_CONDITIONAL_APPROVAL_PENDING_CONDITION_CAPTURE_AND_CANONICAL_VERIFICATION",
+    "IMPLEMENTED_ATTRIBUTION_AUTHORIZED_PENDING_CANONICAL_PUBLICATION_VERIFICATION",
     "Canonical workflow: .github/workflows/validate-chain-continuation.yml",
     "Last observed run: 30244212970",
     "STANDING DETERMINATION RECEIPT: PASS",
-    "repository-wide fail-closed gate",
-    "data/external-reviews/mindforge/alane-zhang-boundary-semantics-review-intake.json",
-    "scripts/check_mindforge_review_intake.py",
-    "CONDITIONAL_APPROVAL_INCOMPLETE",
+    "AUTHORIZED_EXACT_WITH_BOUNDARIES",
+    "Private correspondence publication permitted: false",
+    "NO publication of screenshots",
     "mindforge-publication-verification.template.json",
 )
 
@@ -98,8 +98,8 @@ def main() -> int:
     print(
         "MINDFORGE SOURCE LOCATION ALIGNMENT: PASS "
         f"({len(REQUIRED_FILES)} locations; canonical_external_source=NOT_ATTACHED; "
-        "condition_capture=FAIL_CLOSED; downstream_editorial_authority=NONE; "
-        "publication_verification=RUN_BOUND_ONLY)"
+        "attribution=AUTHORIZED_EXACT_WITH_BOUNDARIES; private_correspondence_publication=PROHIBITED; "
+        "downstream_editorial_authority=NONE; publication_verification=RUN_BOUND_ONLY)"
     )
     return 0
 
