@@ -5,8 +5,8 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 ## Current Repo Goal
 
 ```text
-Goal: complete admissibility-wiki public documentation activation under the single canonical validation workflow.
-Current state: doctrine, status, validation, documentation mesh, governed LLM surfaces, verification-authority publication automation, radiology activation closure, documentation-mesh observation closure, durable publication receipt generation, a validated ST-016 repo-standards promotion bundle, and the TA-14 route-admissibility versus actor-standing evaluation are installed.
+Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, and public determinations.
+Current state: the public-anchor constitutional doctrine and governed-framework-review v1 schema are installed and exposed in navigation. Existing external-framework pages, evaluation standards, evidence classifications, tests, and receipts provide the starting corpus.
 Manual task requirement: none.
 User manual action required: false.
 No manual target-creation task is assigned.
@@ -14,7 +14,66 @@ No manual target-creation task is assigned.
 
 ## Current Activation Goal
 
-Publish and validate `https://stegverse-labs.github.io/admissibility-wiki/` as the public vocabulary and proof-path surface for transition governance, commit-time authority, receipt-bound execution, governed continuity, external-framework evaluation, and governed LLM integration.
+```text
+Goal id: wiki-public-anchor-reference-docket
+Doctrine: docs/governance/wiki-public-anchor.md
+Schema: static/schemas/governed-framework-review.schema.json
+Reference page source: docs/external-frameworks/external-framework-template.md
+Target: convert one existing external-framework review into the first complete governed public review docket.
+State: DOCTRINE_AND_SCHEMA_INSTALLED_REFERENCE_DOCKET_PENDING
+Authority posture: public review and reconstruction infrastructure; no execution authority created
+```
+
+The reference docket must contain:
+
+```text
+framework-native declaration
+StegVerse-derived boundary
+capability matrix
+evidence registry
+version and time-T binding
+parameterized test history
+bounded determination
+framework response and dispute history
+independent reconstruction results
+corrections and supersession history
+current standing
+machine-readable review record
+public verification instructions
+```
+
+## Constitutional Rules
+
+```text
+publication != truth
+visibility != authority
+certification != execution authority
+current state != historical state at time T
+StegVerse determination != immunity from reciprocal review
+```
+
+No determination possesses standing merely because StegVerse published it. Standing exists only to the extent that the evidence, historical state, test method, decision rule, uncertainty, and challenge path can be independently inspected and reconstructed.
+
+StegVerse frameworks must be reviewed under standards equal to or stricter than those applied to external frameworks.
+
+## Existing Activation Base
+
+The repository already includes:
+
+```text
+external-framework evaluation standard
+external-framework page template
+framework inventory and candidate directory
+evidence classification and provenance pages
+runtime governance benchmark suite
+parameterized compatibility testing surfaces
+public evaluation result pages
+TA-14, Morrison Runtime, DecisionAssure, GLM, EVIDE, ASRO, and other framework records
+canonical validation and deployment workflow
+publication receipts and cross-wiki observation status
+```
+
+These assets are to be converged into the public-anchor docket model rather than replaced by a disconnected certification portal.
 
 ## TA-14 Continuous Actor-Standing Evaluation
 
@@ -40,19 +99,6 @@ standing included in doctrine != point-of-effect standing reconstruction demonst
 PUBLICLY_UNRESOLVED != absent, failed, or disproven
 ```
 
-Observed public-answer pattern: TA-14 repeatedly states that authority, consent, jurisdiction, evidence, and standing are already included in its architecture. That confirms claimed scope but does not directly answer whether the participating actor's current standing is independently reconstructed after commitment and before each next consequence.
-
-Decisive pending test:
-
-```text
-1. Establish an admissible route and valid actor standing.
-2. Begin delayed or multistage execution.
-3. Leave route, policy, evidence packet, and technical path unchanged.
-4. Revoke only authority, consent, delegation, identity continuity, or jurisdiction.
-5. Attempt the next consequence-bearing transition.
-6. Observe whether TA-14 independently returns HOLD, DENY, or ESCALATE.
-```
-
 No live TA-14 implementation test has been run. The current record is a bounded reconstruction from owner-controlled public materials and user-supplied captures of owner-participating public dialogue.
 
 ## Verification Versus Execution Authority
@@ -63,106 +109,11 @@ Doctrine: docs/governance/verification-vs-execution-authority.md
 Status: static/status/verification-execution-authority-status.json
 Local validator: scripts/check_verification_execution_authority.py
 Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
-Public checker: scripts/check_governed_llm_deployment_status.py
-Receipt writer: scripts/write-public-activation-receipt.mjs
-Receipt artifact: public-activation-receipt
-Receipt closure key: activation_closures.verification_execution_authority
-Execution surface: .github/workflows/validate-chain-continuation.yml
-Public job: verify-public-pages
 State: IMPLEMENTED_WITH_AUTOMATED_PUBLICATION_CLOSURE_RECEIPT_PENDING_OBSERVATION
-Manual task requirement: none
-User manual action required: false
 Downstream mutation authority: none granted
 ```
 
-Preserved governance boundaries:
-
-```text
-independent verification != execution authority
-certification != action-level admissibility
-system approval != permission for a specific execution
-post-event explanation != a reachable pre-consequence refusal point
-route reachability != authority
-publication receipt != execution authority
-```
-
-Independent review enters the transition path as evidence and review posture. It does not silently acquire authority to commit a specific transition. High-risk execution requires a live point that can return `ALLOW`, `DENY`, or `FAIL_CLOSED` before consequence attaches.
-
-## Documentation Mesh
-
-```text
-Goal id: documentation-mesh-live-peer-observation
-Endpoint registry: static/status/ecosystem-documentation-endpoints.json
-Cross-wiki health: static/status/cross-wiki-health-status.json
-Local validator: scripts/check_documentation_mesh_status.py
-Receipt writer: scripts/write-public-activation-receipt.mjs
-Receipt validator: scripts/check-public-activation-receipt-writer.mjs
-Receipt artifact: public-activation-receipt
-Receipt closure key: activation_closures.documentation_mesh
-Receipt closure schema: documentation_mesh_observation_closure.v1
-Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
-Execution surface: .github/workflows/validate-chain-continuation.yml
-Public job: verify-public-pages
-State: AUTOMATED_RUN_BOUND_OBSERVATION_PENDING_NEXT_WORKFLOW
-Manual task requirement: none
-User manual action required: false
-Handoff reconciliation required for continuation: false
-```
-
-Canonical endpoints:
-
-```text
-https://stegverse-labs.github.io/Site/
-https://stegverse-labs.github.io/admissibility-wiki/
-https://stegverse-002.github.io/stegguardian-wiki/
-https://stegverse-labs.github.io/stegtalk-wiki/
-```
-
-Each public workflow run observes peer root reachability, shared endpoint registry reachability, and cross-wiki health record reachability. A source-blocked result remains a scheduled automation observation, does not create a user task, and grants no cross-repository authority, standing, execution authority, or downstream mutation authority.
-
-## ST-016 Repo-Standards Promotion Bundle
-
-```text
-Goal id: documentation-mesh-standards-promotion
-Destination: StegVerse-Labs/repo-standards
-Destination handoff observed: REPO_STANDARDS_MIRROR_HANDOFF.md
-Destination active goal: RSTD-SANDBOX-FIRST-001
-Promotion posture: QUEUED_NON_COLLIDING_NO_DESTINATION_MUTATION
-Bundle: exports/repo-standards/st016/promotion-bundle.json
-Reusable closure schema: exports/repo-standards/st016/documentation-mesh-observation-closure.schema.json
-Validator: scripts/check_st016_promotion_bundle.py
-Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
-Manual copy required: false
-User manual action required: false
-Destination mutation authority: none granted
-```
-
-## Proposal Governance Core-Lite
-
-```text
-Target: StegVerse-Labs/proposal-governance-core-lite
-Status: static/status/proposal-core-lite-target-watch-status.json
-Validation: npm run validate:proposal-core-lite-target-watch-status
-Execution surface: .github/workflows/validate-chain-continuation.yml
-Posture: declared task under the canonical workflow
-Manual task requirement: none
-```
-
-## Conceptual Inheritance Provenance
-
-```text
-Goal id: conceptual-inheritance-provenance-standing
-Doctrine: docs/formalisms/conceptual-inheritance-provenance.md
-Schema: static/schemas/conceptual-inheritance-record.schema.json
-Fixtures: tests/fixtures/conceptual-inheritance-cases.json
-Status: static/status/conceptual-inheritance-provenance-status.json
-Publication: static/status/conceptual-inheritance-publication-verification.json
-Propagation: static/status/conceptual-inheritance-propagation-plan.json
-Validators: scripts/check_conceptual_inheritance_*.py
-State: IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION
-Authority posture: QUEUE_ONLY_NO_DOWNSTREAM_MUTATION
-Manual task requirement: none
-```
+Independent review enters the transition path as evidence and review posture. It does not silently acquire authority to commit a specific transition.
 
 ## Deployment and Validation Gate
 
@@ -203,36 +154,32 @@ StegVerse-002/stegguardian-wiki
 StegVerse-Labs/repo-standards
 ```
 
-Destination mutation remains prohibited until each destination handoff grants the required scope. A queued awareness item is not a completed mirror.
+Destination mutation remains prohibited until each destination handoff grants the required scope.
 
 ## Remaining Open Checks
 
 ```text
-- run the canonical validation workflow after the TA-14 doctrine, sidebar, and machine-readable record changes
-- observe public deployment of /external-frameworks/ta-14
-- preserve continuous actor-standing reconstruction as PUBLICLY_UNRESOLVED until a discriminating live result or direct technical artifact is available
-- canonical automation emits the next public-activation-receipt with verification_execution_authority, ai_led_radiology, and documentation_mesh closures
-- source-blocked documentation peers remain automatically observed without creating user tasks
-- preserve Site deferral until its current handoff authorizes unrelated mirror work
-- preserve Publisher queue order until its current priority and activation failure are resolved
-- review StegGuardian destination handoffs immediately before any downstream mutation
-- keep the validated ST-016 promotion bundle queued until repo-standards handoff permits non-colliding ingestion
+- select the first reference external-framework docket using the strongest available evidence and test record
+- create its governed-framework-review.v1 machine-readable record
+- add a schema validator and integrate it into npm run validate without adding a second active workflow
+- render the reference docket page from or against the machine-readable record
+- publish public verification instructions and a reconstruction packet
+- preserve unresolved and non-claim language where evidence is incomplete
+- observe the next canonical workflow and public deployment
+- queue Site, Publisher, and StegGuardian awareness only after their handoffs authorize mutation
 ```
-
-These are durable automated observations or successor-owned continuation requirements, not manual assignments to the user or this conversation.
 
 ## Permitted Continuation Scope
 
 A successor session may:
 
 ```text
-- inspect canonical workflow, deployment, and uploaded artifact evidence
-- repair failures inside this repository
-- update receipts and status artifacts from observed evidence
-- refine doctrine without promoting verification into execution authority
-- update the TA-14 evaluation when direct public technical evidence or a live test result resolves the standing question
+- build and validate the first governed public review docket
+- add local schema validation under the canonical validation command
+- refine public-anchor doctrine without promoting review into execution authority
+- update existing framework records when direct evidence, tests, or framework responses support the change
+- preserve corrections, dissent, and supersession as durable public records
 - queue downstream awareness without mutating destinations absent handoff authority
-- ingest the ST-016 promotion bundle only after repo-standards handoff authority permits it
 ```
 
 ## Handoff Instruction
