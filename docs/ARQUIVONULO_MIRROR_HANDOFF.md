@@ -9,6 +9,7 @@ Doctrine: docs/external-frameworks/arquivonulo.md
 Machine-readable record: static/data/framework-evaluations/arquivonulo.json
 Status: static/status/arquivonulo-execution-boundary-status.json
 Neutral fixture: docs/external-frameworks/fixtures/arquivonulo-continuing-admissibility-test.v0.1.json
+Publication evidence template: docs/external-frameworks/evidence/arquivonulo-publication-verification.template.json
 Validator: scripts/check_arquivonulo_execution_boundary.py
 Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
 Sidebar route: external-frameworks/arquivonulo
@@ -83,6 +84,22 @@ EFFECT_ALREADY_BOUND -> consequence attached before prevention
 INSUFFICIENT_EVIDENCE -> preserve PUBLICLY_UNRESOLVED
 ```
 
+## Publication verification contract
+
+The installed evidence template may be populated only from observed workflow and public-route evidence.
+
+```text
+Evidence id: arquivonulo-publication-verification
+Current status: TEMPLATE_NOT_OBSERVED
+Required workflow: validate-chain-continuation
+Required routes:
+- /external-frameworks/arquivonulo
+- /data/framework-evaluations/arquivonulo.json
+- /status/arquivonulo-execution-boundary-status.json
+```
+
+The contract requires workflow conclusions, route status codes and content types, required page or JSON markers, observation timestamps, and the exact commit SHA. Unobserved fields remain null or false. Publication evidence does not grant execution authority, certification, endorsement, custody, or integration standing.
+
 ## Installed validation chain
 
 ```text
@@ -93,7 +110,8 @@ INSUFFICIENT_EVIDENCE -> preserve PUBLICLY_UNRESOLVED
 - goal-specific handoff exists
 - status record exists
 - neutral fixture exists
-- ArquivoNulo validator checks doctrine, evaluation, registry, status, fixture, navigation, and handoff
+- publication evidence template exists
+- ArquivoNulo validator checks doctrine, evaluation, registry, status, fixture, publication template, navigation, and handoff
 - canonical admissibility automation invokes the validator
 ```
 
@@ -114,6 +132,7 @@ Absence of an observed run is not recorded as success or failure.
 Destination: StegVerse-Labs/admissibility-wiki
 - canonical workflow run observation
 - public deployment observation for /external-frameworks/arquivonulo
+- populate durable publication evidence from observed workflow and route results
 - durable publication/activation receipt closure when observed
 - owner-confirmed frozen declaration or direct technical response, if later received
 - live fixture execution and evidence packet, if participation becomes available
@@ -131,6 +150,7 @@ A successor session may:
 ```text
 - inspect canonical workflow and deployment evidence
 - repair failures inside admissibility-wiki
+- populate the publication evidence template only from observed evidence
 - update publication receipts and status artifacts only from observed evidence
 - update the record when direct technical evidence resolves S5/S7 effect timing
 - execute the neutral fixture only with adequate framework input and preserved evidence
