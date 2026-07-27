@@ -2,9 +2,9 @@
 
 ## Purpose
 
-This registry aligns every MindForge-related source, derivative, validator, receipt, and public route used by `StegVerse-Labs/admissibility-wiki`.
+This registry aligns every MindForge-related source, derivative, validator, receipt, authorization record, and public route used by `StegVerse-Labs/admissibility-wiki`.
 
-It does not designate StegVerse as the canonical source for MindForge. It separates source provenance from StegVerse interpretation, deterministic evaluation, and public display.
+It does not designate StegVerse as the canonical source for MindForge. It separates source provenance from StegVerse interpretation, deterministic evaluation, reviewer-attribution authorization, and public display.
 
 ## Authority classes
 
@@ -14,6 +14,7 @@ Private correspondence: provenance evidence only
 StegVerse doctrine: discussion-derived interpretation
 StegVerse fixtures: deterministic conformance tests
 StegVerse receipts/status: local evaluation records
+Reviewer attribution authorization: explicit response required; silence creates no authorization
 Admissibility Wiki Pages: public vocabulary and proof-path display
 Site / Publisher / StegGuardian: downstream mirrors only when separately authorized
 ```
@@ -33,6 +34,9 @@ Site / Publisher / StegGuardian: downstream mirrors only when separately authori
 | Commit-time conformance validator | `scripts/check_standing_determination_receipt.py` | Not a public framework source. | Independently evaluates `ALLOW`, `DENY`, and `FAIL_CLOSED` semantics. |
 | Boundary-review status | `static/status/mindforge-boundary-review-status.json` | `https://stegverse-labs.github.io/admissibility-wiki/status/mindforge-boundary-review-status.json` after successful deployment. | Local activation status; creates no external standing. |
 | Boundary-review receipt | `receipts/mindforge-boundary-review-receipt.json` | Repository proof artifact unless included in a validated public artifact. | Records boundary-semantics review only; no endorsement, certification, compatibility, or authority. |
+| Attribution authorization record | `static/status/mindforge-publication-attribution-authorization.json` | Repository/public status artifact only after successful deployment. | Records pending, authorized, modified, or rejected reviewer attribution language; pending state prohibits publication attribution. |
+| Attribution authorization validator | `scripts/check_mindforge_publication_attribution_authorization.py` | Not a public framework source. | Enforces explicit authorization, evidence reference, and non-endorsement boundaries. |
+| Source-location alignment validator | `scripts/check_mindforge_source_location_registry.py` | Not a public framework source. | Fails closed on missing or drifted source roles and authority classes. |
 | Goal handoff | `docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md` | Repository continuation artifact. | Current task and continuation source of truth beneath the overall wiki handoff. |
 | Overall repository handoff | `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` | Repository continuation artifact. | Governs repository-wide continuation and downstream mutation limits. |
 | Root handoff pointer | `ADMISSIBILITY_MIRROR_HANDOFF.md` | Repository continuity pointer. | Points sessions to the overall and goal-specific handoffs. |
@@ -55,14 +59,16 @@ The first preserves what was discussed. The second tests the generalized impleme
 
 ## Publication statement
 
-The narrow public statement is:
+The requested narrow public statement is:
 
 > Reviewed for architectural boundary semantics. The reviewer found the boundary substantially correct subject to incorporated clarifications. This is not an official MindForge specification, implementation endorsement, compatibility certification, or execution-authority determination.
+
+Publication attribution remains prohibited while `static/status/mindforge-publication-attribution-authorization.json` is `PENDING_REVIEWER_RESPONSE`. Silence, delay, or non-response does not create authorization. A modified approved statement must be recorded exactly as authorized with a timestamp and evidence reference.
 
 ## Downstream alignment
 
 ```text
-StegVerse-Labs/admissibility-wiki -> vocabulary, doctrine, evaluation, receipts, and proof-path display
+StegVerse-Labs/admissibility-wiki -> vocabulary, doctrine, evaluation, receipts, authorization state, and proof-path display
 StegVerse-Labs/Site -> public mirror/display only when its current handoff permits propagation
 GCAT-BCAT-Engine/Publisher -> governed publication transport only when its current handoff permits ingestion
 StegVerse-002/stegguardian-wiki -> downstream governance mirror only when its current handoff permits propagation
