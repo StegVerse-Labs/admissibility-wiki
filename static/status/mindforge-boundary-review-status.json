@@ -9,6 +9,10 @@
   "canonical_checker": "scripts/check_standing_determination_receipt.py",
   "source_location_checker": "scripts/check_mindforge_source_location_registry.py",
   "source_location_registry": "docs/external-frameworks/evidence/mindforge-source-location-registry.md",
+  "attribution_authorization_checker": "scripts/check_mindforge_publication_attribution_authorization.py",
+  "attribution_authorization_record": "static/status/mindforge-publication-attribution-authorization.json",
+  "attribution_authorization_state": "PENDING_REVIEWER_RESPONSE",
+  "attribution_publication_permitted": false,
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "last_observed_run_id": 30244212970,
   "last_observed_commit": "947c6a7b7ecac0544377223139cd30685240d7a1",
@@ -27,7 +31,8 @@
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
   "remaining": [
-    "observe source-location alignment checker in a successor canonical run",
+    "observe source-location and attribution-authorization checkers in a successor canonical run",
+    "receive an explicit reviewer response before publishing reviewer attribution",
     "observe repository-wide canonical workflow success after unrelated gates are repaired",
     "observe public deployment and route reachability",
     "record run-bound publication closure"
