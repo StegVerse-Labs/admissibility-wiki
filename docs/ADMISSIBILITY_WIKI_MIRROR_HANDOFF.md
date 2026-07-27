@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, public determinations, and reciprocal self-review.
-Current state: public-anchor doctrine, governed-framework-review v1 schema, TA-14 and ASRO governed public review dockets, reciprocal StegVerse public-anchor self-review, reconstruction-submission schema, correction-receipt schema, examples, validators, navigation, multi-docket public status, and bounded external-framework records including ArquivoNulo and One World AI Limited are installed.
+Current state: three governed dockets, reciprocal StegVerse self-review, review-governance schemas, frozen reconstruction manifest, bounded route-observation receipt, validators, navigation, multi-docket status, and bounded external-framework intake records are installed.
 Manual task requirement: none.
 User manual action required: false.
 ```
@@ -14,37 +14,54 @@ User manual action required: false.
 ## Current Activation Goal
 
 ```text
-Goal id: wiki-public-anchor-three-docket-activation
-Doctrine: docs/governance/wiki-public-anchor.md
+Goal id: wiki-public-anchor-independent-reconstruction-activation
 External dockets:
 - docs/external-frameworks/ta-14-public-review-docket.md
 - docs/external-frameworks/asro-public-review-docket.md
-Reciprocal self-review: docs/stegverse/public-anchor-self-review-docket.md
+Reciprocal self-review:
+- docs/stegverse/public-anchor-self-review-docket.md
 Records:
 - static/data/governed-framework-reviews/ta-14.reference-docket.v1.json
 - static/data/governed-framework-reviews/asro.reference-docket.v1.json
 - static/data/governed-framework-reviews/stegverse-public-anchor.self-review.v1.json
-Status: static/status/wiki-public-anchor-multi-docket-status.json
-Validators:
-- scripts/check_governed_framework_review_reference.py
-- scripts/check_asro_governed_review_docket.py
-- scripts/check_stegverse_public_anchor_self_review.py
+Status:
+- static/status/wiki-public-anchor-multi-docket-status.json
+Frozen reconstruction manifest:
+- static/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json
+Route-observation receipt:
+- static/status/wiki-public-anchor-route-observation-receipt.json
+Canonical integration:
 - scripts/check_wiki_public_anchor_multi_docket_status.py
-Canonical integration: docket and status validators -> scripts/check_admissibility_automation_handoff.py -> npm run validate
-State: THREE_DOCKETS_IMPLEMENTED_PENDING_CANONICAL_VALIDATION
-Authority posture: public review and reconstruction infrastructure; no certification, government recognition, or execution authority created
+- scripts/check_admissibility_automation_handoff.py
+- npm run validate
+State: RECONSTRUCTION_MANIFEST_AND_ROUTE_RECEIPT_IMPLEMENTED_PENDING_CANONICAL_OBSERVATION
+Authority posture: public review and reconstruction infrastructure only; no certification, government recognition, or execution authority created.
 ```
+
+## Frozen Reconstruction Boundary
+
+```text
+Manifest id: public-anchor-three-docket-freeze-2026-07-27
+Frozen commit: b69fb68c197566e9bf35a2d10611432e4c530f21
+Dockets frozen: TA-14, ASRO, StegVerse public-anchor self-review
+Independent reconstruction status: NOT_RUN
+Hash status: PENDING_CANONICAL_CUSTODY
+Signature status: NOT_SIGNED
+```
+
+The frozen commit is a reconstruction target. Later repository changes do not silently alter that target; they require a successor manifest or explicit supersession record.
 
 ## Review Governance Objects
 
 ```text
+Governed review schema: static/schemas/governed-framework-review.schema.json
 Reconstruction schema: static/schemas/framework-reconstruction-submission.schema.json
-Reconstruction example: static/data/governed-framework-reviews/examples/ta-14.reconstruction-submission.example.json
-Reconstruction validator: scripts/check_framework_reconstruction_submission.py
 Correction schema: static/schemas/framework-review-correction-receipt.schema.json
-Correction example: static/data/governed-framework-reviews/examples/ta-14.correction-receipt.example.json
+Reconstruction validator: scripts/check_framework_reconstruction_submission.py
 Correction validator: scripts/check_framework_review_correction_receipt.py
-State marker: REVIEW_GOVERNANCE_OBJECTS_IMPLEMENTED
+Manifest validator: scripts/check_public_anchor_reconstruction_manifest.py
+Route receipt validator: scripts/check_wiki_public_anchor_public_routes.py
+State marker: REVIEW_GOVERNANCE_OBJECTS_AND_RECONSTRUCTION_PACKET_IMPLEMENTED
 ```
 
 A reconstruction submission is evidence entering review. It does not automatically change standing, grant certification, or create execution authority.
@@ -67,6 +84,8 @@ replay PASS != external execution
 self-publication != correctness
 internal validator PASS != independent reconstruction
 repository ownership != reviewer standing
+route reachability != substantive validity
+frozen manifest != independent verification
 ```
 
 No determination possesses standing merely because StegVerse published it. StegVerse frameworks and review systems must be reviewed under standards equal to or stricter than those applied to external frameworks.
@@ -86,8 +105,6 @@ Certification: false
 Execution authority: false
 ```
 
-Preserve route admissibility versus actor standing, prior binding versus current validity, execution continuity versus authority continuity, and PUBLICLY_UNRESOLVED versus absent or failed.
-
 ### ASRO
 
 ```text
@@ -105,13 +122,10 @@ Certification: false
 Execution authority: false
 ```
 
-The successful run is a StegVerse bounded comparison, not an ASRO-native execution. Correspondence and replay do not grant authority, custody, certification, endorsement, or native interoperability.
-
 ### Reciprocal StegVerse Self-Review
 
 ```text
 Review id: review-stegverse-public-anchor-self-2026-07-27
-Subject: StegVerse Admissibility Wiki public-anchor review system
 Standing: PROVISIONAL
 Reconstruction: PARTIAL
 Challenge: OPEN
@@ -124,7 +138,17 @@ Certification authority: NOT_ESTABLISHED
 Execution authority: false
 ```
 
-StegVerse is the system designer, repository owner, determination issuer, validator author, publication operator, and review subject. That conflict is disclosed and remains unresolved until independent reconstruction occurs.
+StegVerse is the system designer, repository owner, determination issuer, validator author, publication operator, and review subject. That conflict remains disclosed and unresolved until accountable independent reconstruction occurs.
+
+## Public Route Observation
+
+```text
+Receipt: static/status/wiki-public-anchor-route-observation-receipt.json
+Overall state: PENDING
+Observation source: canonical validation, deployment, and public verification workflow
+Pending observation is not framework failure.
+Reachability establishes only observed publication availability at the observation time.
+```
 
 ## Bounded External-Framework Intake
 
@@ -144,7 +168,7 @@ Certification: false
 Execution authority: false
 ```
 
-The intake preserves three distinct functions: proposal generation, execution admissibility, and policy evolution. A separate control path is necessary, but independence alone does not establish standing, current delegation, current policy validity, evidence sufficiency, or effect identity binding.
+Do not promote One World AI into a governed public review docket until a repository, paper, frozen declaration, executable artifact, or commit-bound trace is available.
 
 ## Deployment and Validation Gate
 
@@ -162,14 +186,14 @@ Do not create another active workflow unless repo standards change.
 ## Next Goal
 
 ```text
-Goal: independently consumable reconstruction packet and public route-observation receipt
+Goal: accountable independent reconstruction and canonical custody binding
 Required work:
-- observe canonical validation and deployment for all three dockets
-- freeze doctrine, schemas, records, validators, routes, and commit in a reconstruction manifest
-- add a route-observation receipt without treating reachability as truth
+- observe canonical validation and deployment for the reconstruction manifest and three dockets
+- update the route-observation receipt only from canonical evidence
+- invite or ingest the first accountable independent reconstruction submission
 - bind canonical hashes or signatures when Publisher or Master Records custody is authorized
-- invite or ingest an accountable independent reconstruction result
-- obtain or discover a One World AI repository, paper, frozen declaration, executable artifact, or commit-bound trace before promoting its bounded intake into a governed public review docket
+- preserve divergent findings, conflicts, dissent, corrections, and supersession
+- obtain stronger One World AI technical evidence before docket promotion
 ```
 
 ## Mirror Coordination
@@ -189,13 +213,10 @@ Queued propagation is not completed propagation. Destination mutation remains pr
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-- frozen public-anchor reconstruction manifest
-- scripts/check_wiki_public_anchor_public_routes.py
-- durable multi-docket public-route observation receipt
 - first accountable independent reconstruction submission
 - canonical hash/signature receipts for reconstruction and correction objects
+- canonical workflow-backed update to the route-observation receipt
 - One World AI technical source artifact or explicit owner-confirmed frozen declaration
-- One World AI bounded validator and public route observation after canonical source evidence exists
 
 StegVerse-Labs/Site:
 - public-anchor discovery and comparison projection, pending SITE_MIRROR_HANDOFF authority
@@ -209,7 +230,7 @@ StegVerse-002/stegguardian-wiki:
 
 ## Permitted Continuation Scope
 
-A successor session may validate and repair the three-docket system, create reconstruction manifests and route-observation receipts, preserve challenges and corrections, maintain bounded external-framework records, and queue downstream awareness without unauthorized destination mutation.
+A successor session may validate and repair the three-docket system, maintain or supersede reconstruction manifests, update route-observation receipts from canonical evidence, preserve challenges and corrections, maintain bounded framework records, and queue downstream awareness without unauthorized destination mutation.
 
 ## Handoff Instruction
 
