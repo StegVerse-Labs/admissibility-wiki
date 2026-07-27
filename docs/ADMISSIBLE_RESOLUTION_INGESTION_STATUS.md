@@ -15,6 +15,12 @@ This record verifies source identity, registry identity, receipt-chain continuit
 - `static/status/admissible-resolution-ingestion-verification.json`
 - canonical validation binding through `scripts/check_governed_llm_pages.py`
 
+## Canonical validation repairs
+
+- `scripts/run_canonical_prescan.py` now supports externally redirected report paths without crashing.
+- `tests/test_canonical_prescan.py` now compares the generated receipt against the temporary command inventory used by the test, rather than the restored global inventory.
+- These repairs change no authority, publication, admissibility, or receipt semantics.
+
 ## Preserved boundaries
 
 ```text
