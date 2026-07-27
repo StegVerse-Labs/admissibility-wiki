@@ -52,6 +52,7 @@ MORRISON_RUNTIME_DOWNSTREAM_PROPAGATION_CHECK = ROOT / "scripts" / "check_morris
 TA14_STANDING_RECONSTRUCTION_CHECK = ROOT / "scripts" / "check_ta14_standing_reconstruction.py"
 ARQUIVONULO_EXECUTION_BOUNDARY_CHECK = ROOT / "scripts" / "check_arquivonulo_execution_boundary.py"
 STANDING_DETERMINATION_RECEIPT_CHECK = ROOT / "scripts" / "check_standing_determination_receipt.py"
+MINDFORGE_SOURCE_LOCATION_CHECK = ROOT / "scripts" / "check_mindforge_source_location_registry.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -138,6 +139,7 @@ def main() -> int:
         (TA14_STANDING_RECONSTRUCTION_CHECK, "TA-14 continuous actor-standing reconstruction"),
         (ARQUIVONULO_EXECUTION_BOUNDARY_CHECK, "ArquivoNulo execution-boundary evaluation"),
         (STANDING_DETERMINATION_RECEIPT_CHECK, "MindForge standing determination receipt"),
+        (MINDFORGE_SOURCE_LOCATION_CHECK, "MindForge source-location alignment"),
         (RELEASE_READINESS_CHECK, "release readiness"),
     )
     for path, label in checks:
