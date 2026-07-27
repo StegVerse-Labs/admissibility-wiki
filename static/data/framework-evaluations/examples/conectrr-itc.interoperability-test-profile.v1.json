@@ -1,0 +1,130 @@
+{
+  "schema": "conectrr_itc_interoperability_test_profile.v1",
+  "profile_id": "conectrr-itc-first-interoperability-exercise",
+  "status": "AWAITING_CANONICAL_SOURCE_ARTIFACTS",
+  "authority_effect": "NONE",
+  "source_package": {
+    "specification": {
+      "required": true,
+      "received": false,
+      "path": null,
+      "sha256": null
+    },
+    "canonical_itc": {
+      "required": true,
+      "received": false,
+      "path": null,
+      "sha256": null,
+      "must_remain_immutable": true
+    },
+    "validation_report": {
+      "required": true,
+      "received": false,
+      "path": null,
+      "sha256": null
+    }
+  },
+  "required_checks": [
+    {
+      "check_id": "source-integrity",
+      "result": "NOT_RUN",
+      "blocking": true
+    },
+    {
+      "check_id": "specification-conformance",
+      "result": "NOT_RUN",
+      "blocking": true
+    },
+    {
+      "check_id": "prohibited-authority-semantics",
+      "result": "NOT_RUN",
+      "blocking": true,
+      "prohibited_terms": [
+        "consent",
+        "authority",
+        "admissibility",
+        "governance_approval",
+        "commitment_authorization",
+        "execution_permission",
+        "execution_complete",
+        "outcome_state"
+      ]
+    },
+    {
+      "check_id": "empty-field-fidelity",
+      "result": "NOT_RUN",
+      "blocking": true,
+      "allowed_epistemic_states": [
+        "KNOWN",
+        "UNKNOWN",
+        "UNSUPPORTED",
+        "INTENTIONALLY_OMITTED",
+        "NOT_APPLICABLE"
+      ]
+    },
+    {
+      "check_id": "independent-reconstruction",
+      "result": "NOT_RUN",
+      "blocking": false,
+      "allowed_results": [
+        "RECONSTRUCTION_PASS",
+        "RECONSTRUCTION_PARTIAL",
+        "RECONSTRUCTION_FAIL",
+        "INSUFFICIENT_RECORD"
+      ]
+    },
+    {
+      "check_id": "independent-disposition",
+      "result": "NOT_RUN",
+      "blocking": false,
+      "allowed_results": [
+        "AGREE",
+        "DISAGREE",
+        "DEFER"
+      ],
+      "source_mutation_allowed": false
+    },
+    {
+      "check_id": "replay-stability",
+      "result": "NOT_RUN",
+      "blocking": false
+    },
+    {
+      "check_id": "commit-time-authority-non-inheritance",
+      "result": "NOT_RUN",
+      "blocking": true,
+      "required_current_state_inputs": [
+        "actor",
+        "target",
+        "scope",
+        "policy",
+        "delegation",
+        "context",
+        "validity_window",
+        "evidence_state",
+        "effect_identity",
+        "recoverability"
+      ]
+    }
+  ],
+  "drift_cases": [
+    "EXPIRED_DELEGATION",
+    "CHANGED_TARGET_SCOPE",
+    "STALE_EVIDENCE",
+    "CHANGED_POLICY_VERSION",
+    "DEGRADED_RECOVERABILITY",
+    "ACTOR_SUBSTITUTION",
+    "TARGET_SUBSTITUTION",
+    "SUPERSEDED_RECOMMENDATION",
+    "CHANGED_DEPENDENCY_STATE",
+    "INVALIDATED_SOURCE_REFERENCE"
+  ],
+  "final_results": {
+    "source_boundary": "NOT_DETERMINED",
+    "reconstruction": "NOT_DETERMINED",
+    "replay": "NOT_DETERMINED",
+    "interoperability": "NOT_DETERMINED",
+    "certification": false,
+    "execution_authority": false
+  }
+}
