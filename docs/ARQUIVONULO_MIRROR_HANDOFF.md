@@ -7,8 +7,10 @@ Goal id: arquivonulo-execution-boundary-evaluation
 Destination: StegVerse-Labs/admissibility-wiki
 Doctrine: docs/external-frameworks/arquivonulo.md
 Machine-readable record: static/data/framework-evaluations/arquivonulo.json
+Validator: scripts/check_arquivonulo_execution_boundary.py
+Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
 Sidebar route: external-frameworks/arquivonulo
-State: DOCUMENTED_PUBLICLY_UNRESOLVED_TEST_PROPOSED_NOT_RUN
+State: IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_OBSERVATION
 Manual task requirement: none
 User manual action required: false
 ```
@@ -60,13 +62,27 @@ Continuation must determine whether S5 is provisional with external effect withh
 6. Record ALLOW, HOLD, DENY, INTERDICT, or EFFECT_ALREADY_BOUND.
 ```
 
+## Installed validation chain
+
+```text
+- doctrine page exists and preserves bounded claims
+- machine-readable evaluation exists
+- framework registry entry exists
+- sidebar route exists
+- goal-specific handoff exists
+- ArquivoNulo validator exists
+- canonical admissibility automation invokes the validator
+```
+
+The validator checks source posture, unresolved execution timing, continuing-admissibility proxy exclusions, authority denials, registry consistency, navigation, and handoff ownership.
+
 ## Remaining files or modules
 
 ```text
 Destination: StegVerse-Labs/admissibility-wiki
-- validator for ArquivoNulo page and machine-readable record
-- canonical validation workflow integration
-- observed public deployment receipt
+- canonical workflow run observation
+- public deployment observation for /external-frameworks/arquivonulo
+- durable publication/activation receipt closure when observed
 - optional benchmark fixture after direct technical evidence or owner response
 
 Downstream awareness only; no mutation authority granted:
@@ -80,8 +96,9 @@ Downstream awareness only; no mutation authority granted:
 A successor session may:
 
 ```text
-- add a local validator and integrate it into the existing canonical validation path
-- inspect workflow and deployment evidence
+- inspect canonical workflow and deployment evidence
+- repair failures inside admissibility-wiki
+- update publication receipts and status artifacts from observed evidence
 - update the record when direct technical evidence resolves S5/S7 effect timing
 - prepare a neutral test fixture
 - queue downstream awareness after checking each destination handoff
