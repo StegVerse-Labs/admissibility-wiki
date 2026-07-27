@@ -3,8 +3,8 @@
 
 This validator intentionally accepts the pre-execution pending state. It fails if
 that state asserts completed testing, source mutation, authority inheritance,
-partial receipt of the required three-artifact source package, or a false claim
-of canonical workflow observation.
+partial receipt of the required three-artifact source package, a false claim of
+canonical workflow observation, or invalid AGREE / DISAGREE / DEFER fixtures.
 """
 
 from __future__ import annotations
@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PROFILE_PATH = ROOT / "static/data/framework-evaluations/examples/conectrr-itc.interoperability-test-profile.v1.json"
 RESULT_PATH = ROOT / "static/data/framework-evaluations/examples/conectrr-itc.interoperability-result.pending.v1.json"
 SOURCE_RECEIPT_PATH = ROOT / "static/data/framework-evaluations/examples/conectrr-itc.source-package-receipt.pending.v1.json"
+DISPOSITION_FIXTURES_PATH = ROOT / "static/data/framework-evaluations/examples/conectrr-itc.disposition-fixtures.v1.json"
 SCHEMA_PATH = ROOT / "static/schemas/conectrr-itc-interoperability-result.schema.json"
 INTAKE_PATH = ROOT / "docs/external-frameworks/conectrr-itc-interoperability-intake.md"
 RECORD_PATH = ROOT / "static/data/framework-evaluations/conectrr-itc.json"
@@ -46,6 +47,11 @@ EXPECTED_CHECKS = {
     "independent-disposition",
     "replay-stability",
     "commit-time-authority-non-inheritance",
+}
+EXPECTED_DISPOSITIONS = {
+    "AGREE": "conectrr-itc-agree",
+    "DISAGREE": "conectrr-itc-disagree",
+    "DEFER": "conectrr-itc-defer",
 }
 SOURCE_KEYS = ("specification", "canonical_itc", "validation_report")
 
@@ -133,6 +139,71 @@ def validate_source_receipt(receipt: dict[str, Any], profile: dict[str, Any]) ->
     return receipt_states
 
 
+def validate_disposition_fixtures(fixtures_doc: dict[str, Any], profile: dict[str, Any], source_complete: bool) -> None:
+    if fixtures_doc.get("schema") != "conectrr_itc_disposition_fixtures.v1":
+        fail("unexpected Conectrr disposition-fixture schema")
+    if fixtures_doc.get("profile_id") != profile.get("profile_id"):
+        fail("disposition fixture/profile id mismatch")
+    if fixtures_doc.get("source_mutation_allowed") is not False:
+        fail("disposition fixtures must prohibit source mutation")
+
+    expected_state = "CANONICAL_SOURCE_PACKAGE_RECEIVED" if source_complete else "AWAITING_CANONICAL_SOURCE_ARTIFACTS"
+    if fixtures_doc.get("source_package_state") != expected_state:
+        fail("disposition fixture source-package state mismatch")
+
+    fixtures = fixtures_doc.get("fixtures")
+    if not isinstance(fixtures, list) or len(fixtures) != len(EXPECTED_DISPOSITIONS):
+        fail("exactly three Conectrr disposition fixtures are required")
+
+    observed: dict[str, str] = {}
+    for fixture in fixtures:
+        if not isinstance(fixture, dict):
+            fail("disposition fixture entries must be objects")
+        disposition = fixture.get("disposition")
+        fixture_id = fixture.get("fixture_id")
+        if disposition not in EXPECTED_DISPOSITIONS:
+            fail(f"unsupported disposition fixture: {disposition}")
+        if fixture_id != EXPECTED_DISPOSITIONS[disposition]:
+            fail(f"unexpected fixture id for {disposition}")
+        if disposition in observed:
+            fail(f"duplicate disposition fixture: {disposition}")
+        observed[disposition] = fixture_id
+        if not isinstance(fixture.get("reason"), str) or not fixture.get("reason").strip():
+            fail(f"disposition fixture requires a reason: {disposition}")
+        if fixture.get("commitment_candidate_created") is not False:
+            fail(f"pending disposition fixture cannot create a Commitment Candidate: {disposition}")
+        if fixture.get("spe_determination") != "NOT_RUN":
+            fail(f"pending disposition fixture cannot assert an SPE determination: {disposition}")
+        require_false_authority(fixture.get("authority"), f"{disposition} fixture")
+
+        if not source_complete:
+            if fixture.get("execution_state") != "NOT_RUN":
+                fail(f"pending source package cannot execute disposition fixture: {disposition}")
+            if fixture.get("source_hash") is not None:
+                fail(f"pending source package cannot assert disposition source hash: {disposition}")
+            if fixture.get("reconstruction_result") != "NOT_RUN":
+                fail(f"pending source package cannot assert reconstruction: {disposition}")
+
+    if set(observed) != set(EXPECTED_DISPOSITIONS):
+        fail("AGREE, DISAGREE, and DEFER fixtures are all required")
+
+    non_claims = fixtures_doc.get("non_claims")
+    if not isinstance(non_claims, list):
+        fail("disposition fixture non_claims array is required")
+    required_non_claim_fragments = (
+        "not an executed interoperability result",
+        "agreement does not grant execution authority",
+        "disagreement does not invalidate the canonical source",
+        "deferral is not failure",
+        "Commitment Candidate remains non-authorizing",
+        "SPE must reconstruct current standing",
+    )
+    joined = "\n".join(str(item) for item in non_claims)
+    for marker in required_non_claim_fragments:
+        if marker not in joined:
+            fail(f"disposition fixture missing non-claim marker: {marker}")
+
+
 def main() -> None:
     for path in (SCHEMA_PATH, INTAKE_PATH, RECORD_PATH, AGGREGATE_PATH, PACKAGE_PATH):
         if not path.is_file():
@@ -141,6 +212,7 @@ def main() -> None:
     profile = load_json(PROFILE_PATH)
     result = load_json(RESULT_PATH)
     source_receipt = load_json(SOURCE_RECEIPT_PATH)
+    disposition_fixtures = load_json(DISPOSITION_FIXTURES_PATH)
     binding = load_json(BINDING_STATUS_PATH)
 
     if profile.get("schema") != "conectrr_itc_interoperability_test_profile.v1":
@@ -151,6 +223,8 @@ def main() -> None:
         fail("test profile must have no authority effect")
 
     received_states = validate_source_receipt(source_receipt, profile)
+    source_complete = all(received_states)
+    validate_disposition_fixtures(disposition_fixtures, profile, source_complete)
 
     check_ids = {
         item.get("check_id")
@@ -251,9 +325,12 @@ def main() -> None:
     print(f"OK: {PROFILE_PATH.relative_to(ROOT)}")
     print(f"OK: {RESULT_PATH.relative_to(ROOT)}")
     print(f"OK: {SOURCE_RECEIPT_PATH.relative_to(ROOT)}")
+    print(f"OK: {DISPOSITION_FIXTURES_PATH.relative_to(ROOT)}")
     print(f"OK: {SCHEMA_PATH.relative_to(ROOT)}")
     print(f"OK: {BINDING_STATUS_PATH.relative_to(ROOT)}")
     print(f"conectrr_itc_source_package={source_receipt.get('state')}")
+    print("conectrr_itc_dispositions=AGREE,DISAGREE,DEFER")
+    print("conectrr_itc_disposition_fixtures=BOUND")
     print("conectrr_itc_canonical_binding=BOUND_THROUGH_CANONICAL_AGGREGATE")
     print(f"conectrr_itc_workflow_observation={workflow_state}")
     print("conectrr_itc_authority_effect=NONE")
