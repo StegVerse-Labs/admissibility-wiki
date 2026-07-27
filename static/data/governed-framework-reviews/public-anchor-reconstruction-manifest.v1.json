@@ -1,0 +1,65 @@
+{
+  "schema_version": "public-anchor-reconstruction-manifest.v1",
+  "manifest_id": "public-anchor-three-docket-freeze-2026-07-27",
+  "created_at": "2026-07-27T10:30:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "frozen_commit": "b69fb68c197566e9bf35a2d10611432e4c530f21",
+  "freeze_scope": "Three governed public-review dockets and their public-anchor governance controls as present at the frozen commit.",
+  "doctrine": [
+    "docs/governance/wiki-public-anchor.md"
+  ],
+  "schemas": [
+    "static/schemas/governed-framework-review.schema.json",
+    "static/schemas/framework-reconstruction-submission.schema.json",
+    "static/schemas/framework-review-correction-receipt.schema.json"
+  ],
+  "dockets": [
+    {
+      "review_id": "review-ta14-reference-docket-2026-07-27",
+      "page": "docs/external-frameworks/ta-14-public-review-docket.md",
+      "record": "static/data/governed-framework-reviews/ta-14.reference-docket.v1.json",
+      "validator": "scripts/check_governed_framework_review_reference.py",
+      "public_route": "/external-frameworks/ta-14-public-review-docket",
+      "standing": "PUBLICLY_UNRESOLVED"
+    },
+    {
+      "review_id": "review-asro-reference-docket-2026-07-27",
+      "page": "docs/external-frameworks/asro-public-review-docket.md",
+      "record": "static/data/governed-framework-reviews/asro.reference-docket.v1.json",
+      "validator": "scripts/check_asro_governed_review_docket.py",
+      "public_route": "/external-frameworks/asro-public-review-docket",
+      "standing": "PROVISIONAL"
+    },
+    {
+      "review_id": "review-stegverse-public-anchor-self-2026-07-27",
+      "page": "docs/stegverse/public-anchor-self-review-docket.md",
+      "record": "static/data/governed-framework-reviews/stegverse-public-anchor.self-review.v1.json",
+      "validator": "scripts/check_stegverse_public_anchor_self_review.py",
+      "public_route": "/stegverse/public-anchor-self-review-docket",
+      "standing": "PROVISIONAL"
+    }
+  ],
+  "governance_controls": {
+    "multi_docket_status": "static/status/wiki-public-anchor-multi-docket-status.json",
+    "reconstruction_submission_example": "static/data/governed-framework-reviews/examples/ta-14.reconstruction-submission.example.json",
+    "correction_receipt_example": "static/data/governed-framework-reviews/examples/ta-14.correction-receipt.example.json",
+    "canonical_validation_entry": "scripts/check_admissibility_automation_handoff.py",
+    "canonical_workflow": ".github/workflows/validate-chain-continuation.yml"
+  },
+  "reconstruction_instructions": [
+    "Checkout the frozen commit exactly.",
+    "Inspect each docket record without accepting the StegVerse determination as authoritative.",
+    "Run the listed validators and distinguish structural agreement from substantive correctness.",
+    "Reconstruct standing from referenced evidence, relevant time T, test state, uncertainty, and challenge history.",
+    "Record divergence through the reconstruction-submission schema rather than overwriting the source docket."
+  ],
+  "hash_status": "PENDING_CANONICAL_CUSTODY",
+  "signature_status": "NOT_SIGNED",
+  "independent_reconstruction_status": "NOT_RUN",
+  "authority_boundary": {
+    "manifest_creates_certification": false,
+    "manifest_creates_execution_authority": false,
+    "manifest_establishes_substantive_truth": false,
+    "route_reachability_establishes_validity": false
+  }
+}
