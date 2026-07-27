@@ -29,6 +29,10 @@ class CanonicalPrescanTests(unittest.TestCase):
             ("second", ["python", "second.py"]),
             ("third", ["python", "third.py"]),
         ]
+        expected_inventory = [
+            {"id": command_id, "command": command}
+            for command_id, command in commands
+        ]
         completions = [
             Completed(1, "first failed"),
             Completed(0, "second passed"),
@@ -53,10 +57,10 @@ class CanonicalPrescanTests(unittest.TestCase):
             self.assertEqual(report["passed_commands"], 2)
             self.assertEqual(report["failed_commands"], 1)
             self.assertEqual([item["status"] for item in report["results"]], ["FAIL", "PASS", "PASS"])
-            self.assertEqual(report["command_inventory"], MODULE.canonical_command_inventory())
+            self.assertEqual(report["command_inventory"], expected_inventory)
             self.assertEqual(
                 report["command_inventory_sha256"],
-                MODULE.inventory_sha256(report["command_inventory"]),
+                MODULE.inventory_sha256(expected_inventory),
             )
             self.assertFalse(report["workflow_run_context"]["github_actions"])
             self.assertFalse(report.get("authority", {}).get("deployment_authorized", False))
