@@ -14,6 +14,8 @@
   "source_package_receipt": "static/data/framework-evaluations/examples/conectrr-itc.source-package-receipt.pending.v1.json",
   "disposition_fixture_state": "BOUND_INTO_INTEROPERABILITY_VALIDATOR",
   "disposition_fixtures": "static/data/framework-evaluations/examples/conectrr-itc.disposition-fixtures.v1.json",
+  "immutable_source_hash_receipt_state": "TEMPLATE_INSTALLED_NOT_EXECUTED",
+  "immutable_source_hash_receipt": "static/data/framework-evaluations/examples/conectrr-itc.immutable-source-hash-receipt.template.v1.json",
   "allowed_dispositions": [
     "AGREE",
     "DISAGREE",
@@ -31,6 +33,8 @@
     "workflow execution does not grant execution authority",
     "pending source artifacts are not failed artifacts",
     "source receipt does not create custody or testing authority",
+    "an immutable-source hash template is not an executed receipt",
+    "matching hashes establish only bounded source immutability during the test",
     "AGREE does not create permission",
     "DISAGREE does not invalidate the canonical source",
     "DEFER is not failure"
