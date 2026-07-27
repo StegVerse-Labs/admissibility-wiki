@@ -17,6 +17,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 PROFILE_PATH = ROOT / "static/data/framework-evaluations/examples/conectrr-itc.interoperability-test-profile.v1.json"
 RESULT_PATH = ROOT / "static/data/framework-evaluations/examples/conectrr-itc.interoperability-result.pending.v1.json"
+SOURCE_RECEIPT_PATH = ROOT / "static/data/framework-evaluations/examples/conectrr-itc.source-package-receipt.pending.v1.json"
 SCHEMA_PATH = ROOT / "static/schemas/conectrr-itc-interoperability-result.schema.json"
 INTAKE_PATH = ROOT / "docs/external-frameworks/conectrr-itc-interoperability-intake.md"
 RECORD_PATH = ROOT / "static/data/framework-evaluations/conectrr-itc.json"
@@ -46,6 +47,7 @@ EXPECTED_CHECKS = {
     "replay-stability",
     "commit-time-authority-non-inheritance",
 }
+SOURCE_KEYS = ("specification", "canonical_itc", "validation_report")
 
 
 def fail(message: str) -> None:
@@ -73,6 +75,64 @@ def require_false_authority(authority: Any, label: str) -> None:
             fail(f"{label} must keep authority.{field}=false")
 
 
+def validate_source_receipt(receipt: dict[str, Any], profile: dict[str, Any]) -> list[bool]:
+    if receipt.get("schema") != "conectrr_itc_source_package_receipt.v1":
+        fail("unexpected Conectrr source-package receipt schema")
+    if receipt.get("framework_id") != "conectrr-itc":
+        fail("Conectrr source-package receipt framework mismatch")
+    if receipt.get("source_mutation_allowed") is not False:
+        fail("source-package receipt must prohibit source mutation")
+    require_false_authority(receipt.get("authority"), "source receipt")
+
+    artifacts = receipt.get("artifacts")
+    profile_package = profile.get("source_package")
+    if not isinstance(artifacts, dict) or not isinstance(profile_package, dict):
+        fail("source artifacts and profile source_package objects are required")
+
+    receipt_states: list[bool] = []
+    for key in SOURCE_KEYS:
+        item = artifacts.get(key)
+        profile_item = profile_package.get(key)
+        if not isinstance(item, dict) or item.get("required") is not True:
+            fail(f"source receipt missing required artifact member: {key}")
+        if not isinstance(profile_item, dict) or profile_item.get("required") is not True:
+            fail(f"test profile missing required source package member: {key}")
+        received = item.get("received")
+        if received not in {True, False}:
+            fail(f"source receipt received flag must be boolean: {key}")
+        if received != profile_item.get("received"):
+            fail(f"source receipt/profile receipt-state mismatch: {key}")
+        receipt_states.append(received)
+        if received:
+            if not item.get("path") or not item.get("sha256") or not item.get("media_type"):
+                fail(f"received artifact requires path, sha256, and media_type: {key}")
+        else:
+            for field in ("path", "sha256", "media_type"):
+                if item.get(field) is not None:
+                    fail(f"pending artifact cannot assert {field}: {key}")
+    if artifacts["canonical_itc"].get("immutable") is not True:
+        fail("canonical ITC must be explicitly immutable")
+    if any(receipt_states) and not all(receipt_states):
+        fail("partial source-package receipt is not runnable")
+
+    complete = all(receipt_states)
+    if receipt.get("package_complete") is not complete:
+        fail("source receipt package_complete does not match artifact receipt state")
+    if receipt.get("testing_authorized") is not complete:
+        fail("testing_authorized must be false until the complete source package is present")
+    if complete:
+        if receipt.get("state") != "CANONICAL_SOURCE_PACKAGE_RECEIVED":
+            fail("complete source package requires CANONICAL_SOURCE_PACKAGE_RECEIVED state")
+        if not receipt.get("received_at") or not receipt.get("received_from"):
+            fail("complete source package requires received_at and received_from")
+    else:
+        if receipt.get("state") != "AWAITING_CANONICAL_SOURCE_ARTIFACTS":
+            fail("incomplete source package must remain awaiting canonical source artifacts")
+        if receipt.get("received_at") is not None or receipt.get("received_from") is not None:
+            fail("pending source receipt cannot assert receipt actor or time")
+    return receipt_states
+
+
 def main() -> None:
     for path in (SCHEMA_PATH, INTAKE_PATH, RECORD_PATH, AGGREGATE_PATH, PACKAGE_PATH):
         if not path.is_file():
@@ -80,6 +140,7 @@ def main() -> None:
 
     profile = load_json(PROFILE_PATH)
     result = load_json(RESULT_PATH)
+    source_receipt = load_json(SOURCE_RECEIPT_PATH)
     binding = load_json(BINDING_STATUS_PATH)
 
     if profile.get("schema") != "conectrr_itc_interoperability_test_profile.v1":
@@ -89,17 +150,7 @@ def main() -> None:
     if profile.get("authority_effect") != "NONE":
         fail("test profile must have no authority effect")
 
-    package = profile.get("source_package")
-    if not isinstance(package, dict):
-        fail("source_package object is required")
-    received_states = []
-    for key in ("specification", "canonical_itc", "validation_report"):
-        item = package.get(key)
-        if not isinstance(item, dict) or item.get("required") is not True:
-            fail(f"required source package member missing: {key}")
-        received_states.append(item.get("received"))
-    if any(received_states) and not all(received_states):
-        fail("partial source-package receipt is not a runnable interoperability package")
+    received_states = validate_source_receipt(source_receipt, profile)
 
     check_ids = {
         item.get("check_id")
@@ -131,6 +182,8 @@ def main() -> None:
 
     pending = result.get("source_artifact_state") == "AWAITING_CANONICAL_SOURCE_ARTIFACTS"
     if pending:
+        if any(received_states):
+            fail("pending result conflicts with received source artifacts")
         forbidden_progress = {
             "reconstruction": result.get("reconstruction"),
             "disposition": result.get("disposition"),
@@ -197,9 +250,10 @@ def main() -> None:
 
     print(f"OK: {PROFILE_PATH.relative_to(ROOT)}")
     print(f"OK: {RESULT_PATH.relative_to(ROOT)}")
+    print(f"OK: {SOURCE_RECEIPT_PATH.relative_to(ROOT)}")
     print(f"OK: {SCHEMA_PATH.relative_to(ROOT)}")
     print(f"OK: {BINDING_STATUS_PATH.relative_to(ROOT)}")
-    print("conectrr_itc_source_package=AWAITING_CANONICAL_SOURCE_ARTIFACTS")
+    print(f"conectrr_itc_source_package={source_receipt.get('state')}")
     print("conectrr_itc_canonical_binding=BOUND_THROUGH_CANONICAL_AGGREGATE")
     print(f"conectrr_itc_workflow_observation={workflow_state}")
     print("conectrr_itc_authority_effect=NONE")
