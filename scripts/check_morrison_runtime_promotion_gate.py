@@ -10,6 +10,7 @@ TEMPLATE = ROOT / "docs" / "external-frameworks" / "evidence" / "morrison-runtim
 PROMOTION_GATE = ROOT / "docs" / "external-frameworks" / "evidence" / "morrison-runtime-promotion-gate.v0.1.json"
 ORCHESTRATION = ROOT / "docs" / "external-frameworks" / "evidence" / "morrison-runtime-orchestration-status.v0.1.json"
 BINDING = ROOT / "docs" / "external-frameworks" / "evidence" / "morrison-runtime-formalism-tests-binding.v0.1.json"
+PUBLIC_ROUTE = ROOT / "docs" / "external-frameworks" / "evidence" / "morrison-runtime-public-route-verification.template.json"
 PUBLIC_STATUS = ROOT / "static" / "status" / "morrison-runtime-promotion-status.json"
 
 AUTHORITY = "EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY"
@@ -114,6 +115,61 @@ def check_template(data: dict, failures: list[str]) -> str:
     return "INVALID"
 
 
+def check_public_route(data: dict, mode: str, failures: list[str]) -> None:
+    if data.get("authority_posture") != AUTHORITY:
+        failures.append("public route authority posture changed")
+    if set(data.get("prohibited_promotions", [])) != PROHIBITED:
+        failures.append("public route prohibited promotion set changed")
+    if data.get("fail_closed") is not True:
+        failures.append("public route verification must remain fail-closed")
+    if data.get("source_state_required") != "VERIFIED_BOUNDED_COMPARATIVE_EVIDENCE":
+        failures.append("public route source state requirement changed")
+    if data.get("required_next_transition") != "WIKI_VALIDATED_AND_PUBLIC_ROUTE_VERIFIED":
+        failures.append("public route next transition changed")
+
+    targets = data.get("verification_targets", {})
+    wiki = targets.get("wiki_page", {})
+    status = targets.get("public_status", {})
+    if wiki.get("path") != "docs/external-frameworks/morrison-runtime.md":
+        failures.append("public route wiki target changed")
+    if status.get("path") != "static/status/morrison-runtime-promotion-status.json":
+        failures.append("public route status target changed")
+
+    decision = data.get("promotion_decision", {})
+    if mode == "PENDING_FAIL_CLOSED":
+        if any(value is not False for value in decision.values()):
+            failures.append("pending public route contract contains premature promotion")
+        evidence = data.get("verification_evidence", {})
+        if any(value != "PENDING" for value in evidence.values()):
+            failures.append("pending public route evidence must remain PENDING")
+        if any(
+            value is not False
+            for key, value in wiki.items()
+            if key not in {"path", "rendered_url"}
+        ):
+            failures.append("pending wiki route checks must remain false")
+        if wiki.get("rendered_url") != "PENDING":
+            failures.append("pending wiki rendered URL must remain PENDING")
+        if any(
+            value is not False
+            for key, value in status.items()
+            if key not in {"path", "rendered_url"}
+        ):
+            failures.append("pending status route checks must remain false")
+        if status.get("rendered_url") != "PENDING":
+            failures.append("pending status rendered URL must remain PENDING")
+        return
+
+    if mode == "VERIFIED_BOUNDED_PROMOTION_ELIGIBLE":
+        if decision.get("eligible_for_public_promotion") is not False:
+            failures.append("canonical evidence cannot pre-authorize public promotion")
+        if decision.get("eligible_for_downstream_propagation_review") is not False:
+            failures.append("canonical evidence cannot pre-authorize propagation review")
+        return
+
+    failures.append(f"public route contract cannot be evaluated for mode: {mode}")
+
+
 def check_public_status(data: dict, template: dict, mode: str, failures: list[str]) -> None:
     if data.get("authority_posture") != AUTHORITY:
         failures.append("public status authority posture changed")
@@ -179,13 +235,17 @@ def main() -> int:
         load(PROMOTION_GATE)
         load(ORCHESTRATION)
         load(BINDING)
+        public_route = load(PUBLIC_ROUTE)
         public_status = load(PUBLIC_STATUS)
     except ValueError as exc:
         failures.append(str(exc))
         template = {}
+        public_route = {}
         public_status = {}
 
     mode = check_template(template, failures) if template else "INVALID"
+    if public_route:
+        check_public_route(public_route, mode, failures)
     if public_status:
         check_public_status(public_status, template, mode, failures)
 
