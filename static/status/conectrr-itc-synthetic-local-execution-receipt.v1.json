@@ -1,0 +1,37 @@
+{
+  "schema": "conectrr_itc_synthetic_local_execution_receipt.v1",
+  "test_id": "conectrr-itc-synthetic-capability-smoke-test",
+  "execution_class": "BOUNDED_LOCAL_NONCANONICAL",
+  "result": "PASS",
+  "executed_at": "2026-07-27T20:00:00Z",
+  "runner": "OpenAI ChatGPT isolated Python execution environment",
+  "validator": "scripts/check_conectrr_itc_synthetic_capability.py",
+  "fixture": "static/data/framework-evaluations/examples/conectrr-itc.synthetic-capability-test.v1.json",
+  "source_hash_before": "216b7596ce5f675884edfd973a126df283450d799c7a680a68eb3d45b6a99f50",
+  "source_hash_after": "216b7596ce5f675884edfd973a126df283450d799c7a680a68eb3d45b6a99f50",
+  "hashes_match": true,
+  "replay": "PASS",
+  "dispositions": [
+    "AGREE",
+    "DISAGREE",
+    "DEFER"
+  ],
+  "drift_cases_exercised": 10,
+  "authority_effect": "NONE",
+  "external_validation_claimed": false,
+  "canonical_workflow_observed": false,
+  "canonical_result": "NOT_YET_OBSERVED",
+  "authority": {
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "endorsement": false
+  },
+  "non_claims": [
+    "this local execution receipt is not a canonical GitHub Actions workflow receipt",
+    "this PASS is not Conectrr interoperability",
+    "this PASS is not external validation",
+    "matching hashes establish bounded synthetic source immutability only",
+    "local execution does not establish reviewer standing, custody, certification, endorsement, or execution authority"
+  ]
+}
