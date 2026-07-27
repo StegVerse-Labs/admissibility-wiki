@@ -40,6 +40,8 @@ Canonical run: 30244212970
 Observed commit: 947c6a7b7ecac0544377223139cd30685240d7a1
 Review disposition: SUBSTANTIALLY_CORRECT_WITH_CLARIFICATIONS
 Review scope: BOUNDARY_SEMANTICS_ONLY
+Attribution authorization: PENDING_REVIEWER_RESPONSE
+Attribution publication permitted: false
 ```
 
 ## Installed work
@@ -74,6 +76,15 @@ Activation status:
 
 Boundary review proof receipt:
   receipts/mindforge-boundary-review-receipt.json
+
+Attribution authorization record:
+  static/status/mindforge-publication-attribution-authorization.json
+
+Attribution authorization validator:
+  scripts/check_mindforge_publication_attribution_authorization.py
+
+Source-location alignment validator:
+  scripts/check_mindforge_source_location_registry.py
 
 Canonical validation-chain integration:
   scripts/check_admissibility_automation_handoff.py
@@ -125,6 +136,7 @@ sha256:805c7eab128d7dbad872240064de4587737f0eed9aab11fa1af6935a9b9ece9e
 - the Standing Determination Receipt is auditable but non-executing;
 - MindForge references remain bounded discussion-derived semantics, not an official specification, certification, endorsement, compatibility claim, or implementation statement;
 - private correspondence provenance does not constitute public publication authorization or a canonical MindForge source;
+- reviewer attribution requires an explicit recorded response; silence, delay, or non-response creates no authorization;
 - the Admissibility Wiki is the StegVerse vocabulary, doctrine, evaluation, and proof-path location, not the canonical source for MindForge;
 - Site, Publisher, and StegGuardian remain downstream mirrors or transport surfaces only when their own handoffs authorize propagation.
 
@@ -157,24 +169,54 @@ MindForge publication activation: not yet complete
 
 A passing goal-local checker does not override the repository-wide fail-closed gate.
 
+## Attribution authorization gate
+
+The requested statement is recorded in:
+
+```text
+static/status/mindforge-publication-attribution-authorization.json
+```
+
+Permitted authorization states:
+
+```text
+PENDING_REVIEWER_RESPONSE
+AUTHORIZED_EXACT
+AUTHORIZED_MODIFIED
+REJECTED
+```
+
+Current state:
+
+```text
+PENDING_REVIEWER_RESPONSE
+publication_permitted: false
+```
+
+A transition to `AUTHORIZED_EXACT` or `AUTHORIZED_MODIFIED` requires an explicit reviewer response, exact approved language, an authorization timestamp, and an evidence reference. `REJECTED` also requires an evidence reference. Silence does not constitute authorization.
+
 ## Remaining work
 
 Destination: `StegVerse-Labs/admissibility-wiki`
 
 ```text
 1. Preserve the aligned source-location registry.
-2. Allow repository-wide evidence-grounded repairs to clear the unrelated failing gates.
-3. Observe a successor canonical workflow in which the repository validation passes.
-4. Verify the public MindForge and Commit-Time Interoperability Contract routes.
-5. Record successful build, deployment, and route evidence here.
-6. Promote the activation status only after run-bound public evidence exists.
+2. Observe the source-location and attribution-authorization validators in a successor canonical run.
+3. Record Alane Zhang's explicit response without inferring authorization from silence.
+4. Allow repository-wide evidence-grounded repairs to clear the unrelated failing gates.
+5. Observe a successor canonical workflow in which repository validation passes.
+6. Verify the public MindForge and Commit-Time Interoperability Contract routes.
+7. Record successful build, deployment, and route evidence here.
+8. Promote activation status only after run-bound public evidence exists.
 ```
 
 ## Public statement boundary
 
-The permitted narrow statement is:
+The requested narrow statement is:
 
 > Reviewed for architectural boundary semantics. The reviewer found the boundary substantially correct subject to incorporated clarifications. This is not an official MindForge specification, implementation endorsement, compatibility certification, or execution-authority determination.
+
+This statement must not be attributed to the reviewer publicly while the authorization record remains pending.
 
 ## Downstream awareness
 
@@ -193,12 +235,13 @@ Destination mutation remains prohibited until each destination handoff grants sc
 
 This goal reaches activation completion when:
 
-1. the canonical workflow passes with the checker in the `npm run validate` path;
-2. the Docusaurus build includes the MindForge and Commit-Time Interoperability Contract routes;
-3. public deployment is verified;
-4. schema, status, and receipt artifacts are included in the validated repository/public artifact as intended;
-5. this handoff records run-bound verification evidence.
+1. the canonical workflow passes with all MindForge validators in the `npm run validate` path;
+2. reviewer attribution is either explicitly authorized or omitted from public publication;
+3. the Docusaurus build includes the MindForge and Commit-Time Interoperability Contract routes;
+4. public deployment is verified;
+5. schema, status, authorization, and receipt artifacts are included in the validated repository/public artifact as intended;
+6. this handoff records run-bound verification evidence.
 
 ## Continuation instruction
 
-Continue with repository-wide evidence-grounded repair and subsequent public-route observation. Preserve the distinction among external source, private provenance, StegVerse interpretation, proposed crossing, current standing, auditable receipt, and execution. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
+Continue with successor canonical-run observation, explicit attribution-response handling, repository-wide evidence-grounded repair, and public-route verification. Preserve the distinction among external source, private provenance, StegVerse interpretation, reviewer attribution authorization, proposed crossing, current standing, auditable receipt, and execution. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
