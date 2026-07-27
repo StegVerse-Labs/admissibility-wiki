@@ -80,21 +80,16 @@ def main() -> int:
             if source.get(field) is not False:
                 return fail(f"{label} {field} must remain false")
 
-    for field in (
-        "no_scope_expansion", "private_correspondence_publication_permitted",
-        "screenshot_publication_permitted", "unpublished_draft_publication_permitted",
-        "stronger_attribution_requires_separate_approval", "stegverse_endorsed",
-        "spe_implementation_readiness_validated",
-    ):
-        expected = {
-            "no_scope_expansion": True,
-            "private_correspondence_publication_permitted": False,
-            "screenshot_publication_permitted": False,
-            "unpublished_draft_publication_permitted": False,
-            "stronger_attribution_requires_separate_approval": True,
-            "stegverse_endorsed": False,
-            "spe_implementation_readiness_validated": False,
-        }[field]
+    expected_boundaries = {
+        "no_scope_expansion": True,
+        "private_correspondence_publication_permitted": False,
+        "screenshot_publication_permitted": False,
+        "unpublished_draft_publication_permitted": False,
+        "stronger_attribution_requires_separate_approval": True,
+        "stegverse_endorsed": False,
+        "spe_implementation_readiness_validated": False,
+    }
+    for field, expected in expected_boundaries.items():
         if record.get(field) is not expected:
             return fail(f"authorization boundary mismatch: {field}")
 
@@ -125,7 +120,7 @@ def main() -> int:
     for marker in (
         "not an official mindforge specification",
         "private correspondence",
-        "stronger claim",
+        "stronger attribution",
         "exact approved",
     ):
         if marker not in registry_text and marker not in handoff_text:
