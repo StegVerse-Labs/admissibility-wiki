@@ -33,6 +33,8 @@ REQUIRED_FILES = (
     "static/schemas/governed-relationship-transition-publication-observation.schema.json",
     "scripts/check_governed_relationship_publication_observation_schema.py",
     "scripts/check_governed_relationship_publication_custody_binding.py",
+    "static/status/admissible-resolution-ingestion-receipt.json",
+    "scripts/check_admissible_resolution_ingestion_receipt.py",
 )
 REQUIRED_REFERENCES = {
     "sidebars.js": (
@@ -123,6 +125,10 @@ def main() -> int:
             "scripts/check_governed_relationship_publication_custody_binding.py",
             "relationship-transition publication custody binding validation failed",
         ),
+        (
+            "scripts/check_admissible_resolution_ingestion_receipt.py",
+            "Admissible Resolution ingestion receipt validation failed",
+        ),
     )
     for relative_path, failure_label in checks:
         return_code = run_checker(relative_path, failure_label)
@@ -131,7 +137,8 @@ def main() -> int:
 
     print(
         "GOVERNED LLM PAGES: PASS - docs, contracts, fixtures, publication candidates, "
-        "observation schemas, observation surfaces, custody bindings, and references present"
+        "observation schemas, observation surfaces, custody bindings, bounded Admissible "
+        "Resolution ingestion, and references present"
     )
     return 0
 
