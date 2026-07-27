@@ -1,0 +1,55 @@
+{
+  "schema_version": "standing_determination_cases.v1",
+  "cases": [
+    {
+      "id": "ALLOW_RECONSTRUCTED_CURRENT_STANDING",
+      "expected": "ALLOW",
+      "record": {"policy_state":"VALID","delegation_state":"VALID","evidence_state":"VERIFIED","time_state":"VALID","actor_state":"VALID","target_state":"VALID","action_state":"VALID","scope_state":"VALID","recoverability_state":"PRESERVED","candidate_authorizing":false,"execution_requested":false}
+    },
+    {
+      "id": "DENY_KNOWN_INVALID_STANDING",
+      "expected": "DENY",
+      "record": {"policy_state":"VALID","delegation_state":"REVOKED","evidence_state":"VERIFIED","time_state":"VALID","actor_state":"VALID","target_state":"VALID","action_state":"VALID","scope_state":"VALID","recoverability_state":"PRESERVED","candidate_authorizing":false,"execution_requested":false}
+    },
+    {
+      "id": "FAIL_CLOSED_EVIDENCE_HASH_MISMATCH",
+      "expected": "FAIL_CLOSED",
+      "record": {"policy_state":"VALID","delegation_state":"VALID","evidence_state":"HASH_MISMATCH","time_state":"VALID","actor_state":"VALID","target_state":"VALID","action_state":"VALID","scope_state":"VALID","recoverability_state":"PRESERVED","candidate_authorizing":false,"execution_requested":false}
+    },
+    {
+      "id": "FAIL_CLOSED_POLICY_VERSION_AMBIGUOUS",
+      "expected": "FAIL_CLOSED",
+      "record": {"policy_state":"AMBIGUOUS","delegation_state":"VALID","evidence_state":"VERIFIED","time_state":"VALID","actor_state":"VALID","target_state":"VALID","action_state":"VALID","scope_state":"VALID","recoverability_state":"PRESERVED","candidate_authorizing":false,"execution_requested":false}
+    },
+    {
+      "id": "FAIL_CLOSED_PARTIAL_DELEGATION_REVOCATION",
+      "expected": "FAIL_CLOSED",
+      "record": {"policy_state":"VALID","delegation_state":"PARTIALLY_REVOKED","evidence_state":"VERIFIED","time_state":"VALID","actor_state":"VALID","target_state":"VALID","action_state":"VALID","scope_state":"VALID","recoverability_state":"PRESERVED","candidate_authorizing":false,"execution_requested":false}
+    },
+    {
+      "id": "FAIL_CLOSED_TRUSTED_TIME_UNAVAILABLE",
+      "expected": "FAIL_CLOSED",
+      "record": {"policy_state":"VALID","delegation_state":"VALID","evidence_state":"VERIFIED","time_state":"UNAVAILABLE","actor_state":"VALID","target_state":"VALID","action_state":"VALID","scope_state":"VALID","recoverability_state":"PRESERVED","candidate_authorizing":false,"execution_requested":false}
+    },
+    {
+      "id": "FAIL_CLOSED_TARGET_IDENTITY_AMBIGUOUS",
+      "expected": "FAIL_CLOSED",
+      "record": {"policy_state":"VALID","delegation_state":"VALID","evidence_state":"VERIFIED","time_state":"VALID","actor_state":"VALID","target_state":"AMBIGUOUS","action_state":"VALID","scope_state":"VALID","recoverability_state":"PRESERVED","candidate_authorizing":false,"execution_requested":false}
+    },
+    {
+      "id": "FAIL_CLOSED_ACTION_SEMANTIC_DRIFT",
+      "expected": "FAIL_CLOSED",
+      "record": {"policy_state":"VALID","delegation_state":"VALID","evidence_state":"VERIFIED","time_state":"VALID","actor_state":"VALID","target_state":"VALID","action_state":"SEMANTIC_DRIFT","scope_state":"VALID","recoverability_state":"PRESERVED","candidate_authorizing":false,"execution_requested":false}
+    },
+    {
+      "id": "FAIL_CLOSED_RECOVERY_PATH_UNAVAILABLE",
+      "expected": "FAIL_CLOSED",
+      "record": {"policy_state":"VALID","delegation_state":"VALID","evidence_state":"VERIFIED","time_state":"VALID","actor_state":"VALID","target_state":"VALID","action_state":"VALID","scope_state":"VALID","recoverability_state":"UNAVAILABLE","candidate_authorizing":false,"execution_requested":false}
+    },
+    {
+      "id": "ALLOW_DOES_NOT_EXECUTE",
+      "expected": "ALLOW",
+      "record": {"policy_state":"VALID","delegation_state":"VALID","evidence_state":"VERIFIED","time_state":"VALID","actor_state":"VALID","target_state":"VALID","action_state":"VALID","scope_state":"VALID","recoverability_state":"PRESERVED","candidate_authorizing":false,"execution_requested":true}
+    }
+  ]
+}
