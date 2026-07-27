@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.1.0",
+  "test_id": "arquivonulo-continuing-admissibility-001",
+  "framework_id": "arquivonulo",
+  "status": "PROPOSED_NOT_RUN",
+  "purpose": "Distinguish proof-bound conformance and interdiction from independent reconstruction of continuing admissibility before consequence binds.",
+  "source_posture": "STEGVERSE_PROPOSED_NEUTRAL_FIXTURE_NOT_OWNER_CONFIRMED",
+  "initial_state": {
+    "anchored_state_valid": true,
+    "policy_representation_valid": true,
+    "actor_authority_valid": true,
+    "environmental_correspondence_valid": true,
+    "execution_candidate_prepared": true
+  },
+  "mutation": {
+    "timing": "AFTER_ANCHORING_BEFORE_NEXT_CONSEQUENCE",
+    "change_exactly_one": true,
+    "allowed_change_classes": [
+      "AUTHORITY_REVOKED",
+      "POLICY_SUPERSEDED",
+      "EVIDENCE_SUPERSEDED",
+      "ENVIRONMENTAL_CORRESPONDENCE_BROKEN",
+      "INTERVENTION_PATH_UNRECOVERABLE"
+    ],
+    "unchanged": [
+      "prior_anchor",
+      "encoded_policy_circuit",
+      "technical_execution_path",
+      "declared_output_commitment"
+    ]
+  },
+  "attempt": {
+    "candidate_transition": "NEXT_CONSEQUENCE_BEARING_TRANSITION",
+    "required_observation_points": [
+      "before_S5_external_effect",
+      "at_S5_execution_or_transmission",
+      "at_S6_validation_and_proof_generation",
+      "at_S7_proof_verification",
+      "after_interdiction_or_success"
+    ]
+  },
+  "allowed_results": [
+    "ALLOW",
+    "HOLD",
+    "DENY",
+    "INTERDICT",
+    "EFFECT_ALREADY_BOUND",
+    "INSUFFICIENT_EVIDENCE"
+  ],
+  "interpretation": {
+    "HOLD_OR_DENY_BEFORE_EFFECT": "Supports independent reconstruction of the changed governing condition before consequence binds.",
+    "INTERDICT_AFTER_EFFECT": "Supports detection and response, but does not by itself demonstrate pre-consequence prevention.",
+    "EFFECT_ALREADY_BOUND": "Shows consequence attached before the changed governing condition prevented execution.",
+    "ALLOW_WITH_STALE_REPRESENTATION": "Shows prior anchored representation was accepted without demonstrated current-condition reconstruction.",
+    "INSUFFICIENT_EVIDENCE": "Preserve PUBLICLY_UNRESOLVED; do not infer failure or absence."
+  },
+  "evidence_required": [
+    "frozen framework declaration",
+    "state and policy inputs",
+    "mutation receipt with timestamp",
+    "S5 through S7 event trace",
+    "external-effect attachment timestamp",
+    "proof generation and verification artifacts",
+    "interdiction output if any",
+    "replay and reconstruction instructions"
+  ],
+  "authority": {
+    "certification": false,
+    "endorsement": false,
+    "execution": false,
+    "custody": false,
+    "adverse_capability_conclusion": false
+  }
+}
