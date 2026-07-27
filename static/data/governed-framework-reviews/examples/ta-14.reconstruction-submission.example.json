@@ -1,0 +1,35 @@
+{
+  "schema_version": "framework-reconstruction-submission.v1",
+  "submission_id": "reconstruction-ta14-example-2026-07-27",
+  "review_id": "review-ta14-reference-docket-2026-07-27",
+  "reviewer": {
+    "id": "independent-reviewer-example",
+    "type": "OTHER",
+    "declared_conflicts": []
+  },
+  "performed_at": "2026-07-27T07:00:00Z",
+  "relevant_time_t": "2026-07-26T23:45:00Z",
+  "result": "PARTIAL",
+  "method": "Reconstruct the public-source declaration, evidence registry, bounded determination, and frozen test posture from the cited docket artifacts.",
+  "input_refs": [
+    "/data/governed-framework-reviews/ta-14.reference-docket.v1.json",
+    "/data/framework-evaluations/ta-14.json",
+    "/data/framework-evaluations/test-cases/ta14-continuous-standing-revalidation-v1.json"
+  ],
+  "artifact_refs": [
+    "reviewer-report-placeholder"
+  ],
+  "difference_summary": "The published bounded determination can be reconstructed from public records, but the claimed continuous actor-standing behavior cannot be reproduced because the discriminating live test has not been run.",
+  "missing_evidence": [
+    "live TA-14 implementation access",
+    "completed standing-revalidation output",
+    "publicly committed runtime configuration"
+  ],
+  "claimed_determination_effect": "NONE",
+  "signature_or_receipt_ref": null,
+  "authority_boundary": {
+    "certification_granted": false,
+    "execution_authority_granted": false,
+    "automatic_standing_change": false
+  }
+}
