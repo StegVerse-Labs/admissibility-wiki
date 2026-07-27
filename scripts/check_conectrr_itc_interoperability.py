@@ -2,8 +2,9 @@
 """Validate the bounded Conectrr ITC interoperability package.
 
 This validator intentionally accepts the pre-execution pending state. It fails if
-that state asserts completed testing, source mutation, authority inheritance, or
-partial receipt of the required three-artifact source package.
+that state asserts completed testing, source mutation, authority inheritance,
+partial receipt of the required three-artifact source package, or a false claim
+of canonical workflow observation.
 """
 
 from __future__ import annotations
@@ -19,6 +20,9 @@ RESULT_PATH = ROOT / "static/data/framework-evaluations/examples/conectrr-itc.in
 SCHEMA_PATH = ROOT / "static/schemas/conectrr-itc-interoperability-result.schema.json"
 INTAKE_PATH = ROOT / "docs/external-frameworks/conectrr-itc-interoperability-intake.md"
 RECORD_PATH = ROOT / "static/data/framework-evaluations/conectrr-itc.json"
+BINDING_STATUS_PATH = ROOT / "static/status/conectrr-itc-canonical-validation-binding-status.json"
+AGGREGATE_PATH = ROOT / "scripts/check_admissibility_automation_handoff.py"
+PACKAGE_PATH = ROOT / "package.json"
 
 EXPECTED_DRIFT_CASES = {
     "EXPIRED_DELEGATION",
@@ -70,12 +74,13 @@ def require_false_authority(authority: Any, label: str) -> None:
 
 
 def main() -> None:
-    for path in (SCHEMA_PATH, INTAKE_PATH, RECORD_PATH):
+    for path in (SCHEMA_PATH, INTAKE_PATH, RECORD_PATH, AGGREGATE_PATH, PACKAGE_PATH):
         if not path.is_file():
             fail(f"missing required artifact: {path.relative_to(ROOT)}")
 
     profile = load_json(PROFILE_PATH)
     result = load_json(RESULT_PATH)
+    binding = load_json(BINDING_STATUS_PATH)
 
     if profile.get("schema") != "conectrr_itc_interoperability_test_profile.v1":
         fail("unexpected test-profile schema")
@@ -148,6 +153,35 @@ def main() -> None:
         if not before or before != after:
             fail("executed result requires identical pre/post immutable source hashes")
 
+    if binding.get("schema") != "conectrr_itc_canonical_validation_binding_status.v1":
+        fail("unexpected canonical validation binding status schema")
+    if binding.get("repository") != "StegVerse-Labs/admissibility-wiki":
+        fail("canonical validation binding repository mismatch")
+    if binding.get("binding_state") != "BOUND_THROUGH_CANONICAL_AGGREGATE":
+        fail("Conectrr validator must remain bound through the canonical aggregate")
+    require_false_authority(binding.get("authority"), "binding status")
+
+    aggregate_text = AGGREGATE_PATH.read_text(encoding="utf-8")
+    if "check_conectrr_itc_interoperability.py" not in aggregate_text:
+        fail("canonical aggregate does not reference the Conectrr validator")
+    if "CONECTRR_ITC_INTEROPERABILITY_CHECK" not in aggregate_text:
+        fail("canonical aggregate is missing the Conectrr check constant")
+
+    package_text = PACKAGE_PATH.read_text(encoding="utf-8")
+    if "validate:admissibility-automation-handoff" not in package_text:
+        fail("package.json does not expose the canonical aggregate validation script")
+    if "npm run validate:admissibility-automation-handoff" not in package_text:
+        fail("npm run validate does not invoke the canonical aggregate")
+
+    workflow_state = binding.get("workflow_observation_state")
+    workflow_runs = binding.get("workflow_runs_observed")
+    if workflow_state == "NOT_OBSERVED_FOR_LATEST_COMMIT" and workflow_runs != 0:
+        fail("unobserved workflow state must report zero observed runs")
+    if workflow_state == "OBSERVED_PASS" and (not isinstance(workflow_runs, int) or workflow_runs < 1):
+        fail("observed workflow pass requires at least one workflow run")
+    if workflow_state not in {"NOT_OBSERVED_FOR_LATEST_COMMIT", "OBSERVED_PASS", "OBSERVED_FAIL"}:
+        fail("unsupported workflow observation state")
+
     intake = INTAKE_PATH.read_text(encoding="utf-8")
     for marker in (
         "non-authorizing",
@@ -164,7 +198,10 @@ def main() -> None:
     print(f"OK: {PROFILE_PATH.relative_to(ROOT)}")
     print(f"OK: {RESULT_PATH.relative_to(ROOT)}")
     print(f"OK: {SCHEMA_PATH.relative_to(ROOT)}")
+    print(f"OK: {BINDING_STATUS_PATH.relative_to(ROOT)}")
     print("conectrr_itc_source_package=AWAITING_CANONICAL_SOURCE_ARTIFACTS")
+    print("conectrr_itc_canonical_binding=BOUND_THROUGH_CANONICAL_AGGREGATE")
+    print(f"conectrr_itc_workflow_observation={workflow_state}")
     print("conectrr_itc_authority_effect=NONE")
     print("conectrr_itc_source_mutation_allowed=false")
     print("conectrr_itc_validator=PASS")
