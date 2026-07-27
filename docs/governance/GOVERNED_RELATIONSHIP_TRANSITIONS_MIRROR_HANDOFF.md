@@ -21,6 +21,7 @@ static/status/governed-relationship-transition-publication-candidate.json
 scripts/check_governed_relationship_publication_candidate.py
 scripts/observe_governed_relationship_publication.py
 static/schemas/governed-relationship-transition-publication-observation.schema.json
+static/governance/fixtures/governed-relationship-publication-observation-cases.v0.1.json
 scripts/check_governed_relationship_publication_observation_schema.py
 scripts/check_governed_relationship_publication_custody_binding.py
 scripts/check-public-activation-receipt-writer.mjs
@@ -55,6 +56,7 @@ publication candidate installed: true
 canonical checker binding installed: true
 post-deployment observer installed: true
 publication-observation JSON Schema installed: true
+publication-observation positive/negative boundary fixtures installed: true
 publication-observation schema/observer/writer agreement validator installed: true
 publication-custody binding validator installed: true
 observer invoked by canonical public-activation writer: true
@@ -83,7 +85,9 @@ The canonical public-activation writer invokes the observer after deployment, pr
 
 `static/schemas/governed-relationship-transition-publication-observation.schema.json` constrains workflow-complete, fail-closed, and simulated states; requires the doctrine, schema, and example route observations when workflow completion is claimed; and fixes all authority-bearing fields to `false`.
 
-`scripts/check_governed_relationship_publication_observation_schema.py` verifies agreement among the schema, observer, and public-activation writer before the canonical documentation checker can pass.
+`static/governance/fixtures/governed-relationship-publication-observation-cases.v0.1.json` exercises valid workflow-complete and fail-closed receipts and denies simulated deployment claims, authority escalation, and incomplete workflow-complete claims.
+
+`scripts/check_governed_relationship_publication_observation_schema.py` verifies agreement among the schema, observer, writer, and positive/negative fixtures before the canonical documentation checker can pass.
 
 `scripts/check_governed_relationship_publication_custody_binding.py` verifies the canonical writer invocation, uploaded public-activation artifact path, 30-day retention, embedded closure key, linked receipt key, standalone/embedded equivalence test, and false authority boundaries remain present together.
 
@@ -158,4 +162,4 @@ Observe the repository-owned canonical workflow result and inspect the embedded 
 
 ## Archive posture
 
-This handoff contains the complete relationship-transition package state, canonical observation and custody path, publication-observation schema validation, custody-binding validation, deterministic receipt-equivalence validation, authority boundaries, remaining activation work, downstream review destinations, and next admissible task. The complete thread is ready for archiving without needing additional conversation context.
+This handoff contains the complete relationship-transition package state, canonical observation and custody path, publication-observation schema and boundary-fixture validation, custody-binding validation, deterministic receipt-equivalence validation, authority boundaries, remaining activation work, downstream review destinations, and next admissible task. The complete thread is ready for archiving without needing additional conversation context.
