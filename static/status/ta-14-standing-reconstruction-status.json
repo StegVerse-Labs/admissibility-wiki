@@ -1,14 +1,14 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "status_id": "ta14-continuous-actor-standing-reconstruction",
   "framework_id": "ta-14",
-  "updated_at": "2026-07-27T05:45:00Z",
+  "updated_at": "2026-07-27T07:05:00Z",
   "source_posture": "OWNER_CONTROLLED_PUBLIC_SOURCES_AND_PUBLIC_DIALOGUE_OBSERVED",
   "registry_structure": "PUBLICLY_OBSERVED",
   "runtime_verification_doctrine": "PUBLICLY_OBSERVED",
   "mismatch_response": "PUBLICLY_CLAIMED_HOLD_DENY_ESCALATE",
   "continuous_actor_standing_reconstruction": "PUBLICLY_UNRESOLVED",
-  "standing_revocation_fixture": "PROPOSED_NOT_RUN",
+  "standing_revocation_fixture": "FROZEN_PROPOSED_NOT_RUN",
   "implementation_completeness": "NOT_ESTABLISHED",
   "required_current_state_sources": [
     "revocation registry or authority source",
@@ -28,11 +28,19 @@
     "standing included in doctrine != point-of-effect standing reconstruction demonstrated"
   ],
   "decisive_test": {
-    "test_id": "ta14-continuous-standing-revalidation-001",
-    "status": "PROPOSED_NOT_RUN",
+    "test_id": "ta14-continuous-standing-revalidation-v1",
+    "status": "FROZEN_PROPOSED_NOT_RUN",
+    "fixture_ref": "/data/framework-evaluations/test-cases/ta14-continuous-standing-revalidation-v1.json",
+    "output_template_ref": "/data/framework-evaluations/test-cases/ta14-continuous-standing-revalidation-output-template-v1.json",
     "mutation": "Revoke only actor authority, consent, delegation, identity continuity, or jurisdiction through an authoritative external source while preserving the admitted route unchanged.",
     "required_result": "HOLD_DENY_OR_ESCALATE_BEFORE_NEXT_CONSEQUENCE",
     "failure_to_resolve": "PUBLICLY_UNRESOLVED"
+  },
+  "validation": {
+    "validator": "scripts/check_ta14_standing_reconstruction.py",
+    "canonical_integration": "scripts/check_admissibility_automation_handoff.py -> npm run validate",
+    "local_state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_OBSERVATION",
+    "public_route_observation": "PENDING"
   },
   "authority_boundary": {
     "certification_granted": false,
@@ -43,6 +51,8 @@
   "public_routes": [
     "/external-frameworks/ta-14",
     "/external-frameworks/ta-14-registry-public-record-assessment",
-    "/status/ta-14-standing-reconstruction-status.json"
+    "/status/ta-14-standing-reconstruction-status.json",
+    "/data/framework-evaluations/test-cases/ta14-continuous-standing-revalidation-v1.json",
+    "/data/framework-evaluations/test-cases/ta14-continuous-standing-revalidation-output-template-v1.json"
   ]
 }
