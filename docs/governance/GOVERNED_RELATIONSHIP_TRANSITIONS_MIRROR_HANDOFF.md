@@ -22,6 +22,7 @@ scripts/check_governed_relationship_publication_candidate.py
 scripts/observe_governed_relationship_publication.py
 static/schemas/governed-relationship-transition-publication-observation.schema.json
 scripts/check_governed_relationship_publication_observation_schema.py
+scripts/check_governed_relationship_publication_custody_binding.py
 scripts/check-public-activation-receipt-writer.mjs
 docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md
 sidebars.js
@@ -55,6 +56,7 @@ canonical checker binding installed: true
 post-deployment observer installed: true
 publication-observation JSON Schema installed: true
 publication-observation schema/observer/writer agreement validator installed: true
+publication-custody binding validator installed: true
 observer invoked by canonical public-activation writer: true
 observer receipt embedded in public-activation receipt: true
 observer receipt included in existing public-activation artifact custody: true
@@ -82,6 +84,8 @@ The canonical public-activation writer invokes the observer after deployment, pr
 `static/schemas/governed-relationship-transition-publication-observation.schema.json` constrains workflow-complete, fail-closed, and simulated states; requires the doctrine, schema, and example route observations when workflow completion is claimed; and fixes all authority-bearing fields to `false`.
 
 `scripts/check_governed_relationship_publication_observation_schema.py` verifies agreement among the schema, observer, and public-activation writer before the canonical documentation checker can pass.
+
+`scripts/check_governed_relationship_publication_custody_binding.py` verifies the canonical writer invocation, uploaded public-activation artifact path, 30-day retention, embedded closure key, linked receipt key, standalone/embedded equivalence test, and false authority boundaries remain present together.
 
 `scripts/check-public-activation-receipt-writer.mjs` deterministically verifies that the standalone receipt is created, embedded without divergence, linked at the canonical path, and retains false publication, release, execution, admissibility, and downstream-mutation authority fields during simulated validation.
 
@@ -154,4 +158,4 @@ Observe the repository-owned canonical workflow result and inspect the embedded 
 
 ## Archive posture
 
-This handoff contains the complete relationship-transition package state, canonical observation and custody path, publication-observation schema validation, deterministic receipt-equivalence validation, authority boundaries, remaining activation work, downstream review destinations, and next admissible task. The complete thread is ready for archiving without needing additional conversation context.
+This handoff contains the complete relationship-transition package state, canonical observation and custody path, publication-observation schema validation, custody-binding validation, deterministic receipt-equivalence validation, authority boundaries, remaining activation work, downstream review destinations, and next admissible task. The complete thread is ready for archiving without needing additional conversation context.
