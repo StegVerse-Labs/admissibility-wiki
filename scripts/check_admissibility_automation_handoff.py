@@ -50,6 +50,7 @@ WIKI_PUBLIC_ANCHOR_PUBLIC_ROUTES_CHECK = ROOT / "scripts" / "check_wiki_public_a
 PUBLIC_ANCHOR_RECONSTRUCTION_INVITATION_CHECK = ROOT / "scripts" / "check_stegverse_public_anchor_reconstruction_invitation.py"
 CONECTRR_ITC_INTEROPERABILITY_CHECK = ROOT / "scripts" / "check_conectrr_itc_interoperability.py"
 CONECTRR_ITC_SYNTHETIC_CAPABILITY_CHECK = ROOT / "scripts" / "check_conectrr_itc_synthetic_capability.py"
+CONECTRR_ITC_SYNTHETIC_LOCAL_EXECUTION_RECEIPT_CHECK = ROOT / "scripts" / "check_conectrr_itc_synthetic_local_execution_receipt.py"
 CONECTRR_ITC_RECIPROCAL_METHODOLOGY_CHECK = ROOT / "scripts" / "check_conectrr_itc_reciprocal_methodology_acknowledgment.py"
 RECIPROCAL_FRAMEWORK_CHECK = ROOT / "scripts" / "check_reciprocal_framework_evaluations.py"
 RECIPROCAL_SYMMETRY_CHECK = ROOT / "scripts" / "check_reciprocal_boundary_symmetry.py"
@@ -149,6 +150,7 @@ def main() -> int:
         (PUBLIC_ANCHOR_RECONSTRUCTION_INVITATION_CHECK, "public-anchor independent reconstruction invitation"),
         (CONECTRR_ITC_INTEROPERABILITY_CHECK, "Conectrr ITC interoperability package"),
         (CONECTRR_ITC_SYNTHETIC_CAPABILITY_CHECK, "Conectrr ITC synthetic capability smoke test"),
+        (CONECTRR_ITC_SYNTHETIC_LOCAL_EXECUTION_RECEIPT_CHECK, "Conectrr ITC synthetic local execution receipt"),
         (CONECTRR_ITC_RECIPROCAL_METHODOLOGY_CHECK, "Conectrr ITC reciprocal methodology acknowledgment"),
         (RECIPROCAL_FRAMEWORK_CHECK, "reciprocal framework evaluations"),
         (RECIPROCAL_SYMMETRY_CHECK, "reciprocal boundary symmetry"),
