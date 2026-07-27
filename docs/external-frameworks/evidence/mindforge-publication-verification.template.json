@@ -1,0 +1,54 @@
+{
+  "schema_version": "mindforge_publication_verification.v1",
+  "goal_id": "mindforge-commit-time-boundary-activation",
+  "state": "TEMPLATE_NOT_OBSERVED",
+  "source_commit": null,
+  "workflow_run_id": null,
+  "workflow_conclusion": null,
+  "build_pages_conclusion": null,
+  "deploy_pages_conclusion": null,
+  "verified_at": null,
+  "routes": [
+    {
+      "route": "/external-frameworks/mindforge",
+      "expected_title": "MindForge External Framework Intake",
+      "reachable": false,
+      "content_verified": false,
+      "observed_status_code": null,
+      "evidence_reference": null
+    },
+    {
+      "route": "/external-frameworks/commit-time-interoperability-contract",
+      "expected_title": "Commit-Time Interoperability Contract",
+      "reachable": false,
+      "content_verified": false,
+      "observed_status_code": null,
+      "evidence_reference": null
+    },
+    {
+      "route": "/schemas/standing-determination-receipt.schema.json",
+      "expected_title": "Standing Determination Receipt",
+      "reachable": false,
+      "content_verified": false,
+      "observed_status_code": null,
+      "evidence_reference": null
+    },
+    {
+      "route": "/status/mindforge-boundary-review-status.json",
+      "expected_title": "mindforge-commit-time-boundary-activation",
+      "reachable": false,
+      "content_verified": false,
+      "observed_status_code": null,
+      "evidence_reference": null
+    }
+  ],
+  "attribution_authorization_state": "PENDING_REVIEWER_RESPONSE",
+  "reviewer_attribution_published": false,
+  "activation_receipt_closed": false,
+  "authority_boundary": {
+    "publication_creates_framework_standing": false,
+    "publication_creates_execution_authority": false,
+    "publication_is_official_mindforge_specification": false,
+    "publication_is_compatibility_certification": false
+  }
+}
