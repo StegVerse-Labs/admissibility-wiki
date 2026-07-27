@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, public determinations, and reciprocal self-review.
-Current state: three governed dockets, reciprocal StegVerse self-review, review-governance schemas, frozen reconstruction manifest, bounded route-observation receipt, validators, navigation, multi-docket status, bounded One World AI intake, and a structurally validated Conectrr ITC interoperability package are installed.
+Current state: three governed dockets, reciprocal StegVerse self-review, review-governance schemas, frozen reconstruction manifest, bounded route-observation receipt, accountable reconstruction invitation, validators, navigation, multi-docket status, bounded One World AI intake, and a canonically integrated Conectrr ITC interoperability package are installed.
 Manual task requirement: none.
 User manual action required: false.
 ```
@@ -15,7 +15,7 @@ User manual action required: false.
 
 ```text
 Goal id: wiki-public-anchor-independent-reconstruction-activation
-State: RECONSTRUCTION_MANIFEST_AND_ROUTE_RECEIPT_IMPLEMENTED_PENDING_CANONICAL_OBSERVATION
+State: RECONSTRUCTION_AND_INTEROPERABILITY_VALIDATORS_CANONICALLY_INTEGRATED_PENDING_WORKFLOW_OBSERVATION
 Authority posture: public review and reconstruction infrastructure only; no certification, government recognition, custody, endorsement, or execution authority created.
 ```
 
@@ -29,6 +29,7 @@ static/data/governed-framework-reviews/ta-14.reference-docket.v1.json
 static/data/governed-framework-reviews/asro.reference-docket.v1.json
 static/data/governed-framework-reviews/stegverse-public-anchor.self-review.v1.json
 static/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json
+static/data/governed-framework-reviews/stegverse-public-anchor.independent-reconstruction-invitation.v1.json
 static/status/wiki-public-anchor-multi-docket-status.json
 static/status/wiki-public-anchor-route-observation-receipt.json
 ```
@@ -40,6 +41,8 @@ Manifest id: public-anchor-three-docket-freeze-2026-07-27
 Frozen commit: b69fb68c197566e9bf35a2d10611432e4c530f21
 Dockets frozen: TA-14, ASRO, StegVerse public-anchor self-review
 Independent reconstruction status: NOT_RUN
+Reconstruction invitation: OPEN_NO_ACCOUNTABLE_REVIEWER_ASSIGNED
+Neutral reviewer standing: NOT_ESTABLISHED
 Hash status: PENDING_CANONICAL_CUSTODY
 Signature status: NOT_SIGNED
 ```
@@ -66,6 +69,8 @@ route reachability != substantive validity
 frozen manifest != independent verification
 source receipt != custody
 interoperability disposition != execution authority
+invitation != reviewer standing
+anonymous result != accountable reconstruction
 ```
 
 ## Docket Boundaries
@@ -78,6 +83,18 @@ StegVerse self-review: standing PROVISIONAL; internal structural validation PASS
 
 No docket grants certification or execution authority.
 
+## Canonical Reconstruction Validation
+
+```text
+Frozen manifest validator: scripts/check_public_anchor_reconstruction_manifest.py
+Route-observation receipt validator: scripts/check_wiki_public_anchor_public_routes.py
+Independent reconstruction invitation validator: scripts/check_stegverse_public_anchor_reconstruction_invitation.py
+Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
+State: CANONICALLY_INTEGRATED_PENDING_WORKFLOW_OBSERVATION
+```
+
+The route receipt remains `PENDING` until the canonical post-deployment job produces direct reachability evidence. The invitation remains open and does not create reviewer standing or alter docket standing.
+
 ## Conectrr Intent Transition Contract
 
 ```text
@@ -87,6 +104,7 @@ Test profile: static/data/framework-evaluations/examples/conectrr-itc.interopera
 Result schema: static/schemas/conectrr-itc-interoperability-result.schema.json
 Pending result fixture: static/data/framework-evaluations/examples/conectrr-itc.interoperability-result.pending.v1.json
 Boundary validator: scripts/check_conectrr_itc_interoperability.py
+Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
 Source posture: founder-authored direct correspondence supplied as screenshots
 Implementation claim: first ITC implementation complete in current Conectrr MVP
 Declared boundary: discovery-layer-only, non-authorizing, unknown fields preserved empty
@@ -98,6 +116,7 @@ Replay: NOT_RUN
 Independent reconstruction: NOT_RUN
 Certification: false
 Execution authority: false
+State: CANONICALLY_INTEGRATED_PENDING_WORKFLOW_OBSERVATION
 ```
 
 Bounded path:
@@ -115,7 +134,7 @@ Conectrr discovery output
 
 The source ITC must not inherit consent, authority, admissibility, governance, commitment, execution, outcome state, custody, endorsement, or certification.
 
-The validator now enforces:
+The validator enforces:
 
 ```text
 all three source artifacts are either absent together or received together
@@ -126,8 +145,6 @@ all ten drift vectors remain represented
 AGREE / DISAGREE / DEFER remain downstream dispositions only
 all authority flags remain false
 ```
-
-The validator is structurally implemented but is not yet bound into `npm run validate`. Canonical integration must occur without creating a second workflow.
 
 ## Deployment and Validation Gate
 
@@ -147,7 +164,6 @@ Do not create another active workflow unless repository standards change.
 ```text
 Goal: accountable independent reconstruction and canonical custody binding
 Required work:
-- bind scripts/check_conectrr_itc_interoperability.py into canonical validation
 - observe canonical validation and public deployment
 - update route-observation receipts only from canonical evidence
 - receive and freeze the Conectrr ITC specification, canonical generated ITC, and internal validation report
@@ -163,7 +179,6 @@ Required work:
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-- canonical package.json integration for the Conectrr validator
 - canonical workflow observation receipt for the Conectrr structural package
 - Conectrr ITC Specification v1.0 Draft frozen source artifact
 - canonical Conectrr-generated ITC frozen source artifact
@@ -200,7 +215,7 @@ Queued propagation is not completed propagation. Destination mutation remains pr
 
 ## Permitted Continuation Scope
 
-A successor session may bind and validate the Conectrr structural package, maintain or supersede reconstruction manifests, update route-observation receipts from canonical evidence, preserve challenges and corrections, maintain bounded framework records, prepare source-ingestion and executed-result fixtures, and queue downstream awareness without unauthorized destination mutation.
+A successor session may validate and repair the canonically integrated reconstruction and Conectrr packages, maintain or supersede reconstruction manifests, update route-observation receipts from canonical evidence, preserve challenges and corrections, maintain bounded framework records, prepare source-ingestion and executed-result fixtures, and queue downstream awareness without unauthorized destination mutation.
 
 ## Handoff Instruction
 
