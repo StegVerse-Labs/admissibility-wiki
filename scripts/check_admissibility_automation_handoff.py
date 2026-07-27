@@ -59,6 +59,13 @@ REQUIRED = (
     "Master-Records",
     "optimization-target-binding-at-commit",
     "static/status/optimization-target-binding-publication-verification.json",
+    "morrison-runtime-canonical-promotion-input.template.json",
+    "morrison-runtime-public-route-verification.template.json",
+    "morrison-runtime-downstream-propagation-review.template.json",
+    "scripts/check_morrison_runtime_promotion_gate.py",
+    "scripts/check_morrison_runtime_downstream_propagation.py",
+    "EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY",
+    "activation_authority_granted = false",
 )
 
 
