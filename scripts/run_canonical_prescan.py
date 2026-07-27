@@ -100,6 +100,14 @@ def append_summary(report: dict[str, object]) -> None:
         handle.write("\n".join(lines) + "\n")
 
 
+def report_display_path() -> str:
+    """Return a stable display path even when tests redirect REPORT outside ROOT."""
+    try:
+        return str(REPORT.relative_to(ROOT))
+    except ValueError:
+        return str(REPORT)
+
+
 def main() -> int:
     started = time.time()
     results: list[dict[str, object]] = []
@@ -152,7 +160,7 @@ def main() -> int:
     append_summary(report)
     print(f"CANONICAL PRE-SCAN: {report['overall_status']}")
     print(f"inventory sha256: {report['command_inventory_sha256']}")
-    print(f"report: {REPORT.relative_to(ROOT)}")
+    print(f"report: {report_display_path()}")
     return 1 if failed else 0
 
 
