@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.0.0",
+  "framework_id": "conectrr-itc",
+  "name": "Conectrr Intent Transition Contract",
+  "evaluation_date": "2026-07-27",
+  "source_posture": {
+    "type": "FOUNDER_AUTHORED_DIRECT_CORRESPONDENCE_SCREENSHOT_CAPTURE",
+    "owner_confirmed_implementation_claim": true,
+    "specification_received": false,
+    "canonical_generated_record_received": false,
+    "validation_report_received": false,
+    "repository_reviewed": false,
+    "implementation_artifact_reviewed": false
+  },
+  "declared_boundary": {
+    "generated_directly_from_discovery_output": true,
+    "discovery_layer_only": true,
+    "unknown_fields_remain_empty": true,
+    "fabricated_values_prohibited": true,
+    "excluded_concepts": [
+      "consent",
+      "authority",
+      "admissibility",
+      "governance",
+      "commitment",
+      "execution",
+      "outcome_state"
+    ],
+    "declared_validation": "INTERNAL_PASS"
+  },
+  "requested_artifacts": [
+    "ITC Specification v1.0 Draft",
+    "canonical ITC generated from an actual Conectrr recommendation",
+    "internal validation report"
+  ],
+  "stegverse_determination": {
+    "classification": "NON_AUTHORIZING_DISCOVERY_STATE_TRANSITION_ARTIFACT",
+    "boundary_support": "SUPPORTED_BY_DIRECT_CORRESPONDENCE",
+    "specification_conformance": "NOT_TESTED",
+    "semantic_boundary_validation": "NOT_TESTED",
+    "stable_source_preservation": "NOT_TESTED",
+    "independent_reconstruction": "NOT_RUN",
+    "downstream_agree_disagree_defer": "NOT_RUN",
+    "replay": "NOT_RUN",
+    "commit_time_authority_non_inheritance": "NOT_RUN",
+    "public_review_standing": "BOUNDED_INTAKE"
+  },
+  "minimum_field_classes": [
+    "declared_intent",
+    "criteria_and_constraints",
+    "recommendation",
+    "reasoning",
+    "evidence_or_source_references",
+    "alternatives_considered",
+    "confidence_or_uncertainty",
+    "unresolved_dependencies",
+    "stable_record_identifier",
+    "timestamp"
+  ],
+  "interoperability_path": [
+    "IMMUTABLE_SOURCE_ITC",
+    "SOURCE_IDENTITY_AND_INTEGRITY_RECEIPT",
+    "SPECIFICATION_AND_SCHEMA_VALIDATION",
+    "SEMANTIC_BOUNDARY_VALIDATION",
+    "INDEPENDENT_RECONSTRUCTION",
+    "AGREE_DISAGREE_DEFER",
+    "NON_AUTHORIZING_COMMITMENT_CANDIDATE",
+    "FRESH_SPE_STANDING_DETERMINATION",
+    "ALLOW_DENY_FAIL_CLOSED"
+  ],
+  "test_vectors": [
+    "PROHIBITED_AUTHORITY_SEMANTICS",
+    "EMPTY_FIELD_FIDELITY",
+    "STABLE_RECONSTRUCTION",
+    "INDEPENDENT_DISAGREEMENT",
+    "DEFERRAL",
+    "REPLAY_STABILITY",
+    "COMMIT_TIME_NON_INHERITANCE"
+  ],
+  "drift_variables": [
+    "delegation",
+    "target_scope",
+    "evidence_validity",
+    "policy_version",
+    "recoverability",
+    "actor_identity",
+    "target_identity",
+    "recommendation_supersession",
+    "dependency_state",
+    "source_reference_validity"
+  ],
+  "allowed_downstream_determinations": [
+    "AGREE",
+    "DISAGREE",
+    "DEFER"
+  ],
+  "allowed_commit_determinations": [
+    "ALLOW",
+    "DENY",
+    "FAIL_CLOSED"
+  ],
+  "evidence": {
+    "reviewed": [
+      "user-supplied screenshots of founder-authored direct correspondence",
+      "implementation completion claim",
+      "direct generation from discovery output claim",
+      "discovery-layer-only boundary declaration",
+      "explicit exclusion of authority-bearing and execution-state concepts",
+      "empty-rather-than-inferred field behavior declaration",
+      "internal validation pass claim",
+      "three-artifact package offer"
+    ],
+    "not_yet_reviewed_or_received": [
+      "ITC Specification v1.0 Draft",
+      "canonical Conectrr-generated ITC",
+      "internal validation report",
+      "canonicalization rules",
+      "source hash or signature",
+      "executable generator",
+      "source repository or frozen implementation commit",
+      "raw interoperability outputs",
+      "Conectrr-side reproduction",
+      "independent third-party reconstruction"
+    ]
+  },
+  "promotion_requirements": [
+    "freeze three-artifact package",
+    "record source identity and chronology",
+    "evaluate specification-to-record conformance",
+    "test prohibited authority semantics",
+    "attempt independent reconstruction",
+    "demonstrate AGREE DISAGREE DEFER without source mutation",
+    "retain replay evidence",
+    "publish limitations and disputes"
+  ],
+  "authority": {
+    "comparison": false,
+    "admissibility": false,
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "endorsement": false,
+    "government_recognition": false
+  }
+}
