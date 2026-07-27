@@ -15,6 +15,7 @@ Canonical and iOS workflow mirrors: synchronized
 Optimization-target binding formalism: validation and publication gates installed
 LLM free-tier trust chain: installed and canonical-validator bound
 KPT external-framework intake: source-blocked automation and publication observation installed
+Morrison Runtime bounded promotion path: structurally complete, canonical execution evidence pending
 Manual task requirement: none
 ```
 
@@ -78,6 +79,46 @@ The publication checker validates that the doctrine, formalism JSON, status arti
 A system matching its framework does not prove that its optimization target is explicit, currently authorized, rebound to present state, mutation-provenance valid, admissible at commit, or still subject to an enforceable deny result.
 
 Executable proof fixtures and expected outcomes remain owned by `Data-Continuation/formalism-tests`.
+
+## Morrison Runtime bounded promotion path
+
+Installed automation and evidence surfaces:
+
+```text
+docs/external-frameworks/evidence/morrison-runtime-canonical-promotion-input.template.json
+docs/external-frameworks/evidence/morrison-runtime-public-route-verification.template.json
+docs/external-frameworks/evidence/morrison-runtime-downstream-propagation-review.template.json
+static/status/morrison-runtime-promotion-status.json
+scripts/check_morrison_runtime_promotion_gate.py
+scripts/check_morrison_runtime_downstream_propagation.py
+Data-Continuation/formalism-tests#5
+StegVerse-Labs/admissibility-wiki#39
+```
+
+Required transition sequence:
+
+```text
+PENDING_CANONICAL_EXECUTION
+→ VERIFIED_BOUNDED_COMPARATIVE_EVIDENCE
+→ WIKI_VALIDATED_AND_PUBLIC_ROUTE_VERIFIED
+→ DOWNSTREAM_PROPAGATION_REVIEW
+```
+
+The path remains fail-closed. Canonical execution evidence may authorize only a bounded compatibility-record update. It does not independently authorize public promotion, Site or Publisher mutation, release-snapshot propagation, certification, endorsement, production validation, or StegVerse execution authority.
+
+The governing authority posture remains:
+
+```text
+EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY
+```
+
+Even an approved bounded propagation review must preserve:
+
+```text
+activation_authority_granted = false
+```
+
+Canonical task execution, artifact hashes, equivalence checks, rendered-route receipts, and target-specific propagation receipts must be observed before their corresponding states can advance. Templates and validators are not substitutes for those records.
 
 ## Governing transition elements
 
@@ -158,4 +199,4 @@ Validation success does not create execution, deployment, release, certification
 
 ## Archive instruction
 
-This handoff contains the complete automation, free-tier trust-chain, optimization-target-binding, and repository-owned continuation path. The originating conversation can be archived without requiring earlier context.
+This handoff contains the complete automation, free-tier trust-chain, optimization-target-binding, Morrison Runtime bounded-promotion, and repository-owned continuation path. The originating conversation can be archived without requiring earlier context.
