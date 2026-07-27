@@ -1,0 +1,114 @@
+{
+  "schema": "stegverse.governed_relationship_transition_publication_observation_cases.v0.1",
+  "cases": [
+    {
+      "id": "workflow-complete-valid",
+      "expected": "PASS",
+      "receipt": {
+        "schema": "stegverse.governed_relationship_transition_publication_observation.v1",
+        "repository": "StegVerse-Labs/admissibility-wiki",
+        "observed_at": "2026-07-26T00:00:00+00:00",
+        "state": "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
+        "routes": {
+          "doctrine": {"url": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-relationship-transitions", "reachable": true, "http_status": 200},
+          "schema": {"url": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-relationship-transition.schema.v0.1.json", "reachable": true, "http_status": 200},
+          "example": {"url": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-relationship-transition.example.v0.1.json", "reachable": true, "http_status": 200}
+        },
+        "all_required_public_routes_verified": true,
+        "pages_deployment_observed": true,
+        "publication_authority_granted": false,
+        "release_authority_granted": false,
+        "execution_authority_granted": false,
+        "admissibility_granted": false,
+        "downstream_mutation_authority_granted": false,
+        "manual_tasks_required": [],
+        "user_action_required": false,
+        "non_claims": ["Route reachability is bounded publication evidence only.", "Publication does not establish execution authority or admissibility.", "A passing observation does not independently authorize release or downstream mutation."]
+      }
+    },
+    {
+      "id": "fail-closed-valid",
+      "expected": "PASS",
+      "receipt": {
+        "schema": "stegverse.governed_relationship_transition_publication_observation.v1",
+        "repository": "StegVerse-Labs/admissibility-wiki",
+        "observed_at": "2026-07-26T00:00:00+00:00",
+        "state": "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED",
+        "routes": {},
+        "all_required_public_routes_verified": false,
+        "pages_deployment_observed": false,
+        "publication_authority_granted": false,
+        "release_authority_granted": false,
+        "execution_authority_granted": false,
+        "admissibility_granted": false,
+        "downstream_mutation_authority_granted": false,
+        "manual_tasks_required": [],
+        "user_action_required": false,
+        "non_claims": ["Route reachability is bounded publication evidence only.", "Publication does not establish execution authority or admissibility.", "A passing observation does not independently authorize release or downstream mutation."]
+      }
+    },
+    {
+      "id": "simulated-deployment-claim-denied",
+      "expected": "FAIL",
+      "receipt": {
+        "schema": "stegverse.governed_relationship_transition_publication_observation.v1",
+        "repository": "StegVerse-Labs/admissibility-wiki",
+        "observed_at": "2026-07-26T00:00:00+00:00",
+        "state": "SIMULATED_VALIDATOR_PASS",
+        "routes": {},
+        "all_required_public_routes_verified": true,
+        "pages_deployment_observed": true,
+        "publication_authority_granted": false,
+        "release_authority_granted": false,
+        "execution_authority_granted": false,
+        "admissibility_granted": false,
+        "downstream_mutation_authority_granted": false,
+        "manual_tasks_required": [],
+        "user_action_required": false,
+        "non_claims": ["one", "two", "three"]
+      }
+    },
+    {
+      "id": "authority-escalation-denied",
+      "expected": "FAIL",
+      "receipt": {
+        "schema": "stegverse.governed_relationship_transition_publication_observation.v1",
+        "repository": "StegVerse-Labs/admissibility-wiki",
+        "observed_at": "2026-07-26T00:00:00+00:00",
+        "state": "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED",
+        "routes": {},
+        "all_required_public_routes_verified": false,
+        "pages_deployment_observed": false,
+        "publication_authority_granted": true,
+        "release_authority_granted": false,
+        "execution_authority_granted": false,
+        "admissibility_granted": false,
+        "downstream_mutation_authority_granted": false,
+        "manual_tasks_required": [],
+        "user_action_required": false,
+        "non_claims": ["one", "two", "three"]
+      }
+    },
+    {
+      "id": "incomplete-complete-claim-denied",
+      "expected": "FAIL",
+      "receipt": {
+        "schema": "stegverse.governed_relationship_transition_publication_observation.v1",
+        "repository": "StegVerse-Labs/admissibility-wiki",
+        "observed_at": "2026-07-26T00:00:00+00:00",
+        "state": "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
+        "routes": {},
+        "all_required_public_routes_verified": true,
+        "pages_deployment_observed": true,
+        "publication_authority_granted": false,
+        "release_authority_granted": false,
+        "execution_authority_granted": false,
+        "admissibility_granted": false,
+        "downstream_mutation_authority_granted": false,
+        "manual_tasks_required": [],
+        "user_action_required": false,
+        "non_claims": ["one", "two", "three"]
+      }
+    }
+  ]
+}
