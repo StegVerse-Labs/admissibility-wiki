@@ -1,10 +1,11 @@
 {
   "schema": "conectrr_itc_reciprocal_methodology_validation_status.v1",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "state": "VALIDATOR_INSTALLED_PENDING_CANONICAL_AGGREGATE_BINDING_AND_WORKFLOW_OBSERVATION",
+  "state": "BOUND_THROUGH_CANONICAL_AGGREGATE_PENDING_WORKFLOW_OBSERVATION",
   "record": "static/data/framework-evaluations/examples/conectrr-itc.reciprocal-methodology-acknowledgment.v1.json",
   "documentation": "docs/external-frameworks/conectrr-itc-reciprocal-methodology-acknowledgment-2026-07-27.md",
   "validator": "scripts/check_conectrr_itc_reciprocal_methodology_acknowledgment.py",
+  "aggregate_validator": "scripts/check_admissibility_automation_handoff.py",
   "validated_boundaries": [
     "complete acknowledgment inventory",
     "mutually acknowledged reciprocal-review posture",
@@ -15,7 +16,7 @@
     "non-custodial screenshot-source posture",
     "zero certification, endorsement, custody, execution authority, or government recognition"
   ],
-  "canonical_aggregate_binding": "PENDING",
+  "canonical_aggregate_binding": "BOUND",
   "canonical_workflow_observation": "NOT_OBSERVED",
   "external_validation_claimed": false,
   "authority": {
@@ -26,9 +27,9 @@
     "government_recognition": false
   },
   "next_actions": [
-    "bind validator into scripts/check_admissibility_automation_handoff.py",
     "observe canonical validation without converting missing evidence into PASS or FAIL",
     "retain first canonical success or first-failure evidence",
-    "receive and freeze the three offered Conectrr source artifacts"
+    "receive and freeze the three offered Conectrr source artifacts",
+    "execute bounded v1.0 comparison before any evidence-based v1.1 change"
   ]
 }
