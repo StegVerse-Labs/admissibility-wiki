@@ -13,6 +13,8 @@ REQUIRED_FILES = (
     "docs/external-frameworks/commit-time-interoperability-contract.md",
     "docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.md",
     "docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.json",
+    "data/external-reviews/mindforge/alane-zhang-boundary-semantics-review-intake.json",
+    "scripts/check_mindforge_review_intake.py",
     "docs/external-frameworks/fixtures/mindforge-commit-time-boundary-cases.v0.1.json",
     "scripts/check_mindforge_commit_time_boundary.py",
     "static/schemas/standing-determination-receipt.schema.json",
@@ -33,69 +35,59 @@ REQUIRED_FILES = (
 
 REGISTRY_MARKERS = (
     "External canonical MindForge source: NOT ATTACHED",
-    "Private correspondence: provenance evidence only",
-    "StegVerse doctrine: discussion-derived interpretation",
-    "Reviewer attribution authorization: explicit response required; silence creates no authorization",
-    "Reviewer response evidence: verbatim response plus channel, timestamp, and evidence reference",
+    "Conditional review intake: approval observed, conditions incomplete, fail closed",
+    "Reviewer attribution authorization: explicit complete conditions required",
+    "Reviewer response evidence: preserve what is observed; do not invent missing verbatim text",
     "Publication verification: successful workflow, build, deployment, and route evidence required",
-    "nine-case reconstruction of the original private boundary discussion",
-    "ten-case StegVerse conformance suite",
     "Neither becomes an official MindForge specification",
-    "Publication attribution remains prohibited",
+    "CONDITIONAL_APPROVAL_PENDING_CONDITION_CAPTURE",
+    "FAIL_CLOSED_UNTIL_COMPLETE",
     "No downstream location becomes an independent editorial or canonical MindForge source",
 )
 
 HANDOFF_MARKERS = (
-    "mindforge-source-location-registry.md",
-    "IMPLEMENTED_CANONICAL_CHECK_PASSED_REPOSITORY_CHAIN_FAILED_UNRELATED_GATES",
-    "Canonical run: 30244212970",
+    "IMPLEMENTED_CONDITIONAL_APPROVAL_PENDING_CONDITION_CAPTURE_AND_CANONICAL_VERIFICATION",
+    "Canonical workflow: .github/workflows/validate-chain-continuation.yml",
+    "Last observed run: 30244212970",
     "STANDING DETERMINATION RECEIPT: PASS",
-    "repository-wide validation: FAIL_CLOSED_OBSERVED",
-    "A passing goal-local checker does not override the repository-wide fail-closed gate",
+    "repository-wide fail-closed gate",
+    "data/external-reviews/mindforge/alane-zhang-boundary-semantics-review-intake.json",
+    "scripts/check_mindforge_review_intake.py",
+    "CONDITIONAL_APPROVAL_INCOMPLETE",
     "mindforge-publication-verification.template.json",
-    "mindforge-reviewer-attribution-response.template.json",
 )
 
 
 def main() -> int:
     failures: list[str] = []
-
     for relative in REQUIRED_FILES:
         if not (ROOT / relative).exists():
             failures.append(f"missing aligned source location: {relative}")
 
-    if not REGISTRY.exists():
-        failures.append(f"missing registry: {REGISTRY.relative_to(ROOT)}")
-        registry_text = ""
-    else:
-        registry_text = REGISTRY.read_text(encoding="utf-8")
+    registry_text = REGISTRY.read_text(encoding="utf-8") if REGISTRY.exists() else ""
+    handoff_text = HANDOFF.read_text(encoding="utf-8") if HANDOFF.exists() else ""
+
+    if not registry_text:
+        failures.append("missing source-location registry")
+    if not handoff_text:
+        failures.append("missing MindForge goal handoff")
 
     for marker in REGISTRY_MARKERS:
         if marker not in registry_text:
             failures.append(f"registry missing boundary marker: {marker}")
-
     for relative in REQUIRED_FILES:
         if relative not in registry_text and relative not in {
             "docs/external-frameworks/evidence/mindforge-source-location-registry.md"
         }:
             failures.append(f"registry missing location entry: {relative}")
-
-    if not HANDOFF.exists():
-        failures.append(f"missing handoff: {HANDOFF.relative_to(ROOT)}")
-        handoff_text = ""
-    else:
-        handoff_text = HANDOFF.read_text(encoding="utf-8")
-
     for marker in HANDOFF_MARKERS:
         if marker not in handoff_text:
             failures.append(f"handoff missing alignment marker: {marker}")
 
     if not ROOT_HANDOFF.exists():
         failures.append("missing root handoff pointer")
-    else:
-        root_text = ROOT_HANDOFF.read_text(encoding="utf-8")
-        if "docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md" not in root_text:
-            failures.append("root handoff does not point to MindForge goal handoff")
+    elif "docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md" not in ROOT_HANDOFF.read_text(encoding="utf-8"):
+        failures.append("root handoff does not point to MindForge goal handoff")
 
     if failures:
         print("MINDFORGE SOURCE LOCATION ALIGNMENT: FAIL")
@@ -106,8 +98,8 @@ def main() -> int:
     print(
         "MINDFORGE SOURCE LOCATION ALIGNMENT: PASS "
         f"({len(REQUIRED_FILES)} locations; canonical_external_source=NOT_ATTACHED; "
-        "downstream_editorial_authority=NONE; attribution_authorization=EXPLICIT_ONLY; "
-        "reviewer_response=VERBATIM_EVIDENCE_REQUIRED; publication_verification=RUN_BOUND_ONLY)"
+        "condition_capture=FAIL_CLOSED; downstream_editorial_authority=NONE; "
+        "publication_verification=RUN_BOUND_ONLY)"
     )
     return 0
 
