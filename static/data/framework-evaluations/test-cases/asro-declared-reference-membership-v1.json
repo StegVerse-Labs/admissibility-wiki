@@ -1,11 +1,12 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "test_case_id": "asro-declared-reference-membership-v1",
   "title": "ASRO declared-reference collection-membership test",
-  "status": "FROZEN",
-  "frozen_at": "2026-07-23T00:00:00Z",
-  "package_sha256": "76b89f81df802245d8cb309cc3b432ae283eb22f1f73fe7839c90848bd044537",
-  "purpose": "Determine bounded correspondence without inheriting truth, validity, admissibility, authority, execution, or custody.",
+  "status": "PROVISIONAL_CORRECTION_IN_PROGRESS",
+  "frozen_at": null,
+  "supersedes_package_sha256": "76b89f81df802245d8cb309cc3b432ae283eb22f1f73fe7839c90848bd044537",
+  "package_sha256": null,
+  "purpose": "Determine bounded correspondence to the public StegVerse-generated metadata derivative without inheriting truth, validity, admissibility, authority, execution, or custody. Source-example correspondence remains unresolved until a mutually approved source-input reference or hash exists.",
   "inputs": [
     {
       "artifact_id": "sv-cl-asro-2026-07-23-001",
@@ -13,9 +14,11 @@
       "sha256": "b34e07b12e767c3b0132f03b235c7cb6f62898c5a856167c3366445e8c154947"
     },
     {
-      "artifact_id": "asro-bounded-representative-object-2026-07-23-001",
-      "path": "../asro/asro-author-provided-bounded-representative-object.json",
-      "sha256": "7f748c3d269e02a54ad834ac66ffcff372ba6ee4eee5865716f83f3f791e1d91"
+      "artifact_id": "asro-bounded-representative-metadata-derivative-2026-07-23-001",
+      "artifact_role": "PUBLIC_STEGVERSE_METADATA_DERIVATIVE",
+      "path": "../asro/stegverse-generated-bounded-metadata-derivative.json",
+      "sha256": "c281e494f838be061af13f64273b9cf96b4ee68b7e4b423691ff91e472d5c92b",
+      "hash_scope": "DERIVATIVE_ONLY_NOT_ORIGINAL_SOURCE_INPUT"
     },
     {
       "artifact_id": "review-profile-asro-stegverse-2026-07-23-001",
@@ -25,24 +28,33 @@
     {
       "artifact_id": "asro-stegverse-correspondence-2026-07-23-001",
       "path": "../asro/correspondence-manifest.json",
-      "sha256": "7cc03889970384e79ce99c0d189b1a8e944966ffdc4036fa878d767debfad2ad"
+      "sha256": null,
+      "integrity_status": "RECOMPUTATION_REQUIRED"
     }
   ],
+  "source_example": {
+    "provider": "James Aull / ASRO™",
+    "publicly_reproduced": false,
+    "source_input_reference": null,
+    "source_input_sha256": null,
+    "correspondence_status": "UNRESOLVED"
+  },
   "predicates": [
-    "collection_membership_established",
-    "object_identity_matches",
-    "version_matches",
-    "hash_matches",
+    "derivative_collection_membership_established",
+    "derivative_object_identity_matches",
+    "derivative_version_matches",
+    "derivative_hash_matches",
     "applicable_time_matches",
     "source_declaration_controlling",
     "reviewer_profile_derivative",
     "reviewer_issuer_unresolved",
+    "source_example_not_falsely_hashed",
     "no_authority_inheritance"
   ],
   "expected_outcomes": {
-    "PASS": "All reference bindings and non-inheritance predicates hold.",
-    "FAIL_CLOSED": "Any identity, version, hash, time, collection, issuer, derivation, or authority boundary fails.",
-    "UNRESOLVED": "Required evidence exists but cannot be independently reconstructed."
+    "PASS": "All public derivative bindings and non-inheritance predicates hold after package integrity is recomputed.",
+    "FAIL_CLOSED": "Any derivative identity, version, hash, time, collection, issuer, derivation, provenance, or authority boundary fails.",
+    "UNRESOLVED": "Original source-example correspondence remains unresolved without a mutually approved source-input reference or hash."
   },
   "authority": {
     "comparison": false,
@@ -52,6 +64,8 @@
   },
   "replay": {
     "deterministic": true,
-    "order": "event_index_ascending"
+    "order": "event_index_ascending",
+    "historical_run_status": "PRESERVED_NOT_RETROACTIVELY_REWRITTEN",
+    "corrected_run_required": true
   }
 }
