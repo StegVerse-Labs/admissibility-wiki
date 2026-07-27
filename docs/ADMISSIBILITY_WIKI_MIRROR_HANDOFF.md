@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, public determinations, and reciprocal self-review.
-Current state: public-anchor doctrine, governed-framework-review v1 schema, TA-14 and ASRO governed public review dockets, reciprocal StegVerse public-anchor self-review, reconstruction-submission schema, correction-receipt schema, examples, validators, navigation, and multi-docket public status are installed.
+Current state: public-anchor doctrine, governed-framework-review v1 schema, TA-14 and ASRO governed public review dockets, reciprocal StegVerse public-anchor self-review, reconstruction-submission schema, correction-receipt schema, examples, validators, navigation, multi-docket public status, and bounded external-framework records including ArquivoNulo and One World AI Limited are installed.
 Manual task requirement: none.
 User manual action required: false.
 ```
@@ -126,6 +126,26 @@ Execution authority: false
 
 StegVerse is the system designer, repository owner, determination issuer, validator author, publication operator, and review subject. That conflict is disclosed and remains unresolved until independent reconstruction occurs.
 
+## Bounded External-Framework Intake
+
+### One World AI Limited
+
+```text
+Framework record: docs/external-frameworks/one-world-ai-limited.md
+Machine-readable record: static/data/framework-evaluations/one-world-ai-limited.json
+Source posture: founder-authored public LinkedIn post supplied as screenshots
+Proposal/execution separation: SUPPORTED_BY_PUBLIC_DESCRIPTION
+Independent-authority standing: PUBLICLY_UNRESOLVED
+Policy-evolution separation: PUBLICLY_UNRESOLVED
+Implementation artifact: NOT_REVIEWED
+Live test: NOT_TESTED
+Replay: NOT_TESTED
+Certification: false
+Execution authority: false
+```
+
+The intake preserves three distinct functions: proposal generation, execution admissibility, and policy evolution. A separate control path is necessary, but independence alone does not establish standing, current delegation, current policy validity, evidence sufficiency, or effect identity binding.
+
 ## Deployment and Validation Gate
 
 ```text
@@ -149,6 +169,7 @@ Required work:
 - add a route-observation receipt without treating reachability as truth
 - bind canonical hashes or signatures when Publisher or Master Records custody is authorized
 - invite or ingest an accountable independent reconstruction result
+- obtain or discover a One World AI repository, paper, frozen declaration, executable artifact, or commit-bound trace before promoting its bounded intake into a governed public review docket
 ```
 
 ## Mirror Coordination
@@ -173,6 +194,8 @@ StegVerse-Labs/admissibility-wiki:
 - durable multi-docket public-route observation receipt
 - first accountable independent reconstruction submission
 - canonical hash/signature receipts for reconstruction and correction objects
+- One World AI technical source artifact or explicit owner-confirmed frozen declaration
+- One World AI bounded validator and public route observation after canonical source evidence exists
 
 StegVerse-Labs/Site:
 - public-anchor discovery and comparison projection, pending SITE_MIRROR_HANDOFF authority
@@ -186,7 +209,7 @@ StegVerse-002/stegguardian-wiki:
 
 ## Permitted Continuation Scope
 
-A successor session may validate and repair the three-docket system, create reconstruction manifests and route-observation receipts, preserve challenges and corrections, and queue downstream awareness without unauthorized destination mutation.
+A successor session may validate and repair the three-docket system, create reconstruction manifests and route-observation receipts, preserve challenges and corrections, maintain bounded external-framework records, and queue downstream awareness without unauthorized destination mutation.
 
 ## Handoff Instruction
 
