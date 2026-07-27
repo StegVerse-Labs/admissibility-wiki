@@ -1,0 +1,19 @@
+{
+  "schema_version": "mindforge_reviewer_attribution_response.v1",
+  "goal_id": "mindforge-commit-time-boundary-activation",
+  "reviewer_name": "Alane Zhang",
+  "response_state": "NOT_RECEIVED",
+  "received_at": null,
+  "evidence_reference": null,
+  "response_channel": null,
+  "requested_statement": "Reviewed for architectural boundary semantics. The reviewer found the boundary substantially correct subject to incorporated clarifications. This is not an official MindForge specification, implementation endorsement, compatibility certification, or execution-authority determination.",
+  "reviewer_response_text": null,
+  "approved_statement": null,
+  "authorization_effect": "NONE",
+  "publication_permitted": false,
+  "official_mindforge_specification": false,
+  "implementation_endorsed": false,
+  "compatibility_certified": false,
+  "execution_authority_granted": false,
+  "notes": "Populate only from an explicit reviewer response. Do not infer approval from silence, delay, reactions, or continued discussion. Preserve the response verbatim in reviewer_response_text and record the exact approved statement separately."
+}
