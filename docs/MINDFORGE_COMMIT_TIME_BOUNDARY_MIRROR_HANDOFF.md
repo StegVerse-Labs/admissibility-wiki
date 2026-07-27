@@ -41,6 +41,7 @@ Observed commit: 947c6a7b7ecac0544377223139cd30685240d7a1
 Review disposition: SUBSTANTIALLY_CORRECT_WITH_CLARIFICATIONS
 Review scope: BOUNDARY_SEMANTICS_ONLY
 Attribution authorization: PENDING_REVIEWER_RESPONSE
+Reviewer response evidence: NOT_RECEIVED
 Attribution publication permitted: false
 Publication verification: TEMPLATE_NOT_OBSERVED
 Publication activation: not complete
@@ -81,6 +82,9 @@ Boundary review proof receipt:
 
 Attribution authorization record:
   static/status/mindforge-publication-attribution-authorization.json
+
+Reviewer response evidence template:
+  docs/external-frameworks/evidence/mindforge-reviewer-attribution-response.template.json
 
 Attribution authorization validator:
   scripts/check_mindforge_publication_attribution_authorization.py
@@ -144,7 +148,8 @@ sha256:805c7eab128d7dbad872240064de4587737f0eed9aab11fa1af6935a9b9ece9e
 - the Standing Determination Receipt is auditable but non-executing;
 - MindForge references remain bounded discussion-derived semantics, not an official specification, certification, endorsement, compatibility claim, or implementation statement;
 - private correspondence provenance does not constitute public publication authorization or a canonical MindForge source;
-- reviewer attribution requires an explicit recorded response; silence, delay, or non-response creates no authorization;
+- reviewer attribution requires an explicit recorded response; silence, delay, reactions, or continued discussion create no authorization;
+- reviewer response text must be preserved verbatim with channel, timestamp, and evidence reference;
 - publication activation requires successful workflow, build, deployment, and route evidence;
 - the Admissibility Wiki is the StegVerse vocabulary, doctrine, evaluation, and proof-path location, not the canonical source for MindForge;
 - Site, Publisher, and StegGuardian remain downstream mirrors or transport surfaces only when their own handoffs authorize propagation.
@@ -184,14 +189,21 @@ The requested statement is recorded in:
 static/status/mindforge-publication-attribution-authorization.json
 ```
 
+The explicit response capture surface is:
+
+```text
+docs/external-frameworks/evidence/mindforge-reviewer-attribution-response.template.json
+```
+
 Current state:
 
 ```text
 PENDING_REVIEWER_RESPONSE
+response_state: NOT_RECEIVED
 publication_permitted: false
 ```
 
-A transition to authorization requires an explicit reviewer response, exact approved language, an authorization timestamp, and an evidence reference. Silence does not constitute authorization.
+A transition to authorization requires an explicit reviewer response, preservation of the response verbatim, exact approved language, response channel, timestamp, and evidence reference. The authorization record and response evidence must agree. Silence does not constitute authorization.
 
 ## Publication verification gate
 
@@ -219,12 +231,13 @@ Destination: `StegVerse-Labs/admissibility-wiki`
 ```text
 1. Preserve the aligned source-location registry.
 2. Observe the source-location, attribution-authorization, and publication-verification validators in a successor canonical run.
-3. Record the reviewer's explicit response without inferring authorization from silence.
-4. Allow repository-wide evidence-grounded repairs to clear unrelated failing gates.
-5. Observe a successor canonical workflow in which repository validation passes.
-6. Populate the publication verification contract from successful run-bound evidence.
-7. Record successful build, deployment, and route evidence here.
-8. Promote activation status only after public verification evidence exists.
+3. Record the reviewer's explicit response verbatim without inferring authorization from silence.
+4. Synchronize authorization state only when response evidence is complete and internally consistent.
+5. Allow repository-wide evidence-grounded repairs to clear unrelated failing gates.
+6. Observe a successor canonical workflow in which repository validation passes.
+7. Populate the publication verification contract from successful run-bound evidence.
+8. Record successful build, deployment, and route evidence here.
+9. Promote activation status only after public verification evidence exists.
 ```
 
 ## Public statement boundary
@@ -253,12 +266,12 @@ Destination mutation remains prohibited until each destination handoff grants sc
 This goal reaches activation completion when:
 
 1. the canonical workflow passes with all MindForge validators in the `npm run validate` path;
-2. reviewer attribution is either explicitly authorized or omitted from public publication;
+2. reviewer attribution is either explicitly authorized through matching response evidence or omitted from public publication;
 3. the Docusaurus build includes the MindForge and Commit-Time Interoperability Contract routes;
 4. public deployment is verified;
-5. schema, status, authorization, publication-verification, and receipt artifacts are included in the validated repository/public artifact as intended;
+5. schema, status, authorization, reviewer-response, publication-verification, and receipt artifacts are included in the validated repository/public artifact as intended;
 6. this handoff records run-bound verification evidence.
 
 ## Continuation instruction
 
-Continue with successor canonical-run observation, explicit attribution-response handling, repository-wide evidence-grounded repair, and public-route verification. Preserve the distinction among external source, private provenance, StegVerse interpretation, reviewer attribution authorization, publication verification, proposed crossing, current standing, auditable receipt, and execution. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
+Continue with successor canonical-run observation, explicit reviewer-response capture, repository-wide evidence-grounded repair, and public-route verification. Preserve the distinction among external source, private provenance, StegVerse interpretation, reviewer attribution authorization, reviewer response evidence, publication verification, proposed crossing, current standing, auditable receipt, and execution. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
