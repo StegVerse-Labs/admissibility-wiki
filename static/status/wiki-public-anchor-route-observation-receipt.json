@@ -1,0 +1,37 @@
+{
+  "schema_version": "wiki-public-anchor-route-observation-receipt.v1",
+  "receipt_id": "wiki-public-anchor-three-docket-route-observation-2026-07-27",
+  "generated_at": "2026-07-27T10:35:00Z",
+  "frozen_manifest": "/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json",
+  "routes": [
+    {
+      "route": "/external-frameworks/ta-14-public-review-docket",
+      "observation": "PENDING_CANONICAL_WORKFLOW"
+    },
+    {
+      "route": "/external-frameworks/asro-public-review-docket",
+      "observation": "PENDING_CANONICAL_WORKFLOW"
+    },
+    {
+      "route": "/stegverse/public-anchor-self-review-docket",
+      "observation": "PENDING_CANONICAL_WORKFLOW"
+    },
+    {
+      "route": "/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json",
+      "observation": "PENDING_CANONICAL_WORKFLOW"
+    }
+  ],
+  "overall_state": "PENDING",
+  "observation_method": "Canonical GitHub Pages verification job must establish HTTP reachability after validation and deployment.",
+  "authority_boundary": {
+    "reachability_establishes_truth": false,
+    "reachability_establishes_certification": false,
+    "reachability_establishes_execution_authority": false,
+    "pending_observation_is_failure": false
+  },
+  "notes": [
+    "This receipt is fail-closed and remains pending until canonical workflow evidence exists.",
+    "A reachable route proves only that a published resource responded at the observed time.",
+    "Public visibility does not establish source accuracy, standing, independence, or substantive validity."
+  ]
+}
