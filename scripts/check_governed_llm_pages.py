@@ -25,6 +25,7 @@ REQUIRED_FILES = (
     "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md",
     "static/governance/governed-relationship-transition.schema.v0.1.json",
     "static/governance/governed-relationship-transition.example.v0.1.json",
+    "static/governance/fixtures/governed-relationship-publication-observation-cases.v0.1.json",
     "scripts/check_governed_relationship_transitions.py",
     "static/status/governed-relationship-transition-publication-candidate.json",
     "scripts/check_governed_relationship_publication_candidate.py",
