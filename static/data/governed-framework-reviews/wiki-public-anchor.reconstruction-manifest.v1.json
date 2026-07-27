@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "manifest_id": "wiki-public-anchor-reconstruction-2026-07-27",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "goal_id": "wiki-public-anchor-three-docket-activation",
+  "frozen_from_commit": "9811f69fa5fe700b031bd67a97d676612d5b222f",
+  "created_at": "2026-07-27T00:00:00Z",
+  "state": "RECONSTRUCTION_MANIFEST_INSTALLED_PENDING_CANONICAL_VALIDATION",
+  "authority_boundary": {
+    "publication_is_truth": false,
+    "manifest_is_certification": false,
+    "manifest_is_execution_authority": false,
+    "repository_ownership_is_reviewer_standing": false,
+    "internal_validation_is_independent_reconstruction": false
+  },
+  "doctrine": [
+    "docs/governance/wiki-public-anchor.md"
+  ],
+  "dockets": [
+    {
+      "review_id": "review-ta14-reference-docket-2026-07-27",
+      "page": "docs/external-frameworks/ta-14-public-review-docket.md",
+      "record": "static/data/governed-framework-reviews/ta-14.reference-docket.v1.json",
+      "standing": "PUBLICLY_UNRESOLVED"
+    },
+    {
+      "review_id": "review-asro-reference-docket-2026-07-27",
+      "page": "docs/external-frameworks/asro-public-review-docket.md",
+      "record": "static/data/governed-framework-reviews/asro.reference-docket.v1.json",
+      "standing": "PROVISIONAL"
+    },
+    {
+      "review_id": "review-stegverse-public-anchor-self-2026-07-27",
+      "page": "docs/stegverse/public-anchor-self-review-docket.md",
+      "record": "static/data/governed-framework-reviews/stegverse-public-anchor.self-review.v1.json",
+      "standing": "PROVISIONAL"
+    }
+  ],
+  "schemas": [
+    "static/schemas/framework-reconstruction-submission.schema.json",
+    "static/schemas/framework-review-correction-receipt.schema.json"
+  ],
+  "examples": [
+    "static/data/governed-framework-reviews/examples/ta-14.reconstruction-submission.example.json",
+    "static/data/governed-framework-reviews/examples/ta-14.correction-receipt.example.json"
+  ],
+  "validators": [
+    "scripts/check_governed_framework_review_reference.py",
+    "scripts/check_asro_governed_review_docket.py",
+    "scripts/check_stegverse_public_anchor_self_review.py",
+    "scripts/check_wiki_public_anchor_multi_docket_status.py",
+    "scripts/check_framework_reconstruction_submission.py",
+    "scripts/check_framework_review_correction_receipt.py",
+    "scripts/check_wiki_public_anchor_reconstruction_manifest.py"
+  ],
+  "status_artifact": "static/status/wiki-public-anchor-multi-docket-status.json",
+  "routes": [
+    "/docs/external-frameworks/ta-14-public-review-docket",
+    "/docs/external-frameworks/asro-public-review-docket",
+    "/docs/stegverse/public-anchor-self-review-docket",
+    "/docs/governance/wiki-public-anchor"
+  ],
+  "reconstruction_requirements": {
+    "all_declared_files_present": true,
+    "records_parse_as_json": true,
+    "review_ids_unique": true,
+    "standing_preserved": true,
+    "authority_boundaries_fail_closed": true,
+    "route_reachability_proves_truth": false,
+    "independent_reviewer_required_for_independent_reconstruction": true
+  },
+  "custody": {
+    "publisher_receipt": "NOT_AUTHORIZED",
+    "master_records_hash_receipt": "NOT_AUTHORIZED",
+    "signature_status": "NOT_BOUND"
+  },
+  "next_required_artifacts": [
+    "static/status/wiki-public-anchor-public-route-observation-receipt.json",
+    "scripts/check_wiki_public_anchor_public_routes.py",
+    "first accountable independent reconstruction submission",
+    "canonical hash or signature custody receipt"
+  ]
+}
