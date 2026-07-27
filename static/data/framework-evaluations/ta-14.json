@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.0.0",
-  "evaluation_id": "eval-ta14-public-source-2026-07-22",
+  "schema_version": "1.1.0",
+  "evaluation_id": "eval-ta14-public-source-2026-07-26",
   "framework": {
     "framework_id": "ta-14",
     "name": "TA-14 Admissible Execution Architecture",
@@ -9,7 +9,7 @@
     "owner": "Greggory Don Butler"
   },
   "self_declaration": {
-    "claim_id": "ta14-public-self-declaration-2026-07-22",
+    "claim_id": "ta14-public-self-declaration-2026-07-26",
     "source": "SELF",
     "scope": [
       "proof-bound execution governance",
@@ -28,7 +28,8 @@
       "bind authority and scope",
       "govern commit and execution",
       "record outcome and accountability",
-      "fail closed when admissibility is absent"
+      "fail closed when admissibility is absent",
+      "require standing before, during, and after execution"
     ],
     "dependencies": [
       "captured reality",
@@ -44,44 +45,50 @@
       "public materials reviewed do not expose a reproducible live test package",
       "public materials reviewed do not expose implementation code for the full claimed route",
       "public materials reviewed do not independently establish asserted parentage or originality",
-      "public materials reviewed do not establish legal ownership or patent scope"
+      "public materials reviewed do not establish legal ownership or patent scope",
+      "public exchanges reviewed do not directly establish independent reconstruction of current actor standing after commitment"
     ],
     "exclusions": [
       "no independent certification inferred",
       "no legal conclusion inferred",
       "no implementation completeness inferred",
-      "no universal applicability inferred"
+      "no universal applicability inferred",
+      "publicly unresolved does not mean disproven"
     ],
     "evidence_refs": [
       "src-ta14-eight-stages",
       "src-ta14-execution-boundary",
       "src-ta14-why-different",
       "src-ta14-public-chronology",
-      "src-ta14-rights-boundary"
+      "src-ta14-rights-boundary",
+      "src-ta14-public-standing-dialogue-2026-07"
     ],
     "confidence": 0.9,
     "uncertainty": [
       "whether additional non-indexed technical artifacts exist",
       "whether the public site accurately reflects current implementation state",
-      "whether a private Playground exposes stronger machine-readable evidence"
+      "whether a private Playground exposes stronger machine-readable evidence",
+      "whether current actor standing is independently reconstructed at each next point of effect"
     ]
   },
   "determinations": [
     {
-      "claim_id": "stegverse-det-ta14-boundary-2026-07-22",
+      "claim_id": "stegverse-det-ta14-boundary-2026-07-26",
       "source": "EVALUATOR",
       "scope": [
         "publicly documented consequence-governance architecture",
         "broad cross-domain doctrine",
         "execution-boundary and fail-closed governance claims",
-        "chronology and parent-architecture claims"
+        "chronology and parent-architecture claims",
+        "route-admissibility versus actor-standing distinction"
       ],
       "functions": [
         "describe an eight-stage consequence chain",
         "require evidentiary sufficiency before execution",
         "distinguish permission from admissibility",
         "assert continuity and outcome accountability",
-        "publish chronology and rights-reservation claims"
+        "publish chronology and rights-reservation claims",
+        "assert standing lifecycle requirements"
       ],
       "dependencies": [
         "framework-defined evidence thresholds",
@@ -94,39 +101,61 @@
         "no public deterministic test fixture was located in the reviewed sources",
         "no public canonical event schema was located in the reviewed sources",
         "no public replay bundle was located in the reviewed sources",
-        "no public cross-framework boundary reconstruction result was located"
+        "no public cross-framework boundary reconstruction result was located",
+        "no public point-of-effect actor-standing reconstruction result was located"
       ],
       "exclusions": [
         "this determination does not deny existence of private implementations",
         "this determination does not decide patent validity or ownership",
-        "this determination does not certify StegVerse superiority"
+        "this determination does not certify StegVerse superiority",
+        "this determination does not classify the standing-reconstruction capability as absent or failed"
       ],
       "evidence_refs": [
         "src-ta14-eight-stages",
         "src-ta14-execution-boundary",
         "src-ta14-why-different",
         "src-ta14-public-chronology",
-        "src-ta14-rights-boundary"
+        "src-ta14-rights-boundary",
+        "src-ta14-public-standing-dialogue-2026-07"
       ],
-      "confidence": 0.82,
+      "confidence": 0.84,
       "uncertainty": [
         "private Playground capabilities not observed",
         "private Registry and governed-record formats not observed",
-        "implementation-to-doctrine correspondence not yet tested"
+        "implementation-to-doctrine correspondence not yet tested",
+        "continuous actor-standing reconstruction publicly unresolved"
       ],
-      "determination_id": "det-stegverse-ta14-public-001",
+      "determination_id": "det-stegverse-ta14-public-002",
       "evaluator_id": "stegverse",
       "observation_class": "RECONSTRUCTED",
-      "parentage_claim": "INCONCLUSIVE"
+      "parentage_claim": "INCONCLUSIVE",
+      "continuous_actor_standing_reconstruction": "PUBLICLY_UNRESOLVED"
     }
   ],
-  "test_runs": [],
+  "test_runs": [
+    {
+      "test_id": "ta14-continuous-standing-revalidation-001",
+      "status": "PROPOSED_NOT_RUN",
+      "initial_conditions": [
+        "route admissible",
+        "actor standing valid",
+        "binding valid",
+        "execution delayed or multistage"
+      ],
+      "mutation": "revoke only actor authority, consent, delegation, identity continuity, or jurisdiction while leaving route, policy, evidence packet, and technical path unchanged",
+      "expected_discriminating_result": {
+        "HOLD_DENY_OR_ESCALATE": "supports independent actor-standing reconstruction at the next point of effect",
+        "CONTINUE": "indicates route admissibility or preserved prior standing may be acting as a proxy for current actor standing",
+        "NO_PUBLIC_EVIDENCE": "PUBLICLY_UNRESOLVED"
+      }
+    }
+  ],
   "disputes": [
     {
       "dispute_id": "disp-ta14-parent-architecture-001",
       "claim_refs": [
-        "ta14-public-self-declaration-2026-07-22",
-        "stegverse-det-ta14-boundary-2026-07-22"
+        "ta14-public-self-declaration-2026-07-26",
+        "stegverse-det-ta14-boundary-2026-07-26"
       ],
       "status": "OPEN",
       "summary": "TA-14 publicly claims parent-architecture status. Current public-source review confirms the claim exists but does not independently establish containment of external frameworks.",
@@ -134,6 +163,25 @@
         "src-ta14-why-different",
         "src-ta14-public-chronology",
         "src-ta14-rights-boundary"
+      ]
+    },
+    {
+      "dispute_id": "disp-ta14-route-vs-standing-001",
+      "claim_refs": [
+        "ta14-public-self-declaration-2026-07-26",
+        "stegverse-det-ta14-boundary-2026-07-26"
+      ],
+      "status": "PUBLICLY_UNRESOLVED",
+      "summary": "Public responses confirm that standing is claimed within TA-14 but do not directly establish whether current actor standing is independently reconstructed after commitment and before each next consequence.",
+      "distinctions": [
+        "route admissibility is not actor standing",
+        "binding established is not binding still valid",
+        "execution continuity is not authority continuity",
+        "proof preserved is not state revalidated"
+      ],
+      "required_test_ref": "ta14-continuous-standing-revalidation-001",
+      "evidence_refs": [
+        "src-ta14-public-standing-dialogue-2026-07"
       ]
     }
   ],
@@ -167,10 +215,20 @@
       "url": "https://sites.google.com/view/ta-14-admissible-execution-arc/the-rights-reservation-and-public-boundary-notice",
       "source_class": "owner-controlled public site",
       "supports": ["rights reservation", "protected architecture claim", "commercial review claim"]
+    },
+    {
+      "source_id": "src-ta14-public-standing-dialogue-2026-07",
+      "url": null,
+      "source_class": "user-supplied captures of owner-participating public LinkedIn dialogue",
+      "supports": [
+        "claim that standing is proven before execution, preserved through execution, and verified afterward",
+        "repeated restatement that authority, consent, jurisdiction, evidence, and standing are already part of TA-14",
+        "absence in the captured exchange of a direct answer to independent point-of-effect actor-standing reconstruction"
+      ]
     }
   ],
   "publication": {
-    "published_at": "2026-07-22T12:15:00Z",
+    "published_at": "2026-07-26T23:45:00Z",
     "record_hash": "PENDING_CANONICAL_HASH",
     "projection_authority": "NONE",
     "custody_ref": null,
