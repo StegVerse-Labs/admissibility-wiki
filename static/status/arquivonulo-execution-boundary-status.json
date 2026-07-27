@@ -6,6 +6,7 @@
   "doctrine_path": "docs/external-frameworks/arquivonulo.md",
   "evaluation_path": "static/data/framework-evaluations/arquivonulo.json",
   "fixture_path": "docs/external-frameworks/fixtures/arquivonulo-continuing-admissibility-test.v0.1.json",
+  "publication_evidence_template_path": "docs/external-frameworks/evidence/arquivonulo-publication-verification.template.json",
   "validator_path": "scripts/check_arquivonulo_execution_boundary.py",
   "public_routes": [
     "/external-frameworks/arquivonulo",
@@ -23,12 +24,19 @@
     "live_test_run": false,
     "independent_reproduction_complete": false
   },
+  "publication_evidence": {
+    "template_status": "TEMPLATE_NOT_OBSERVED",
+    "template_populated": false,
+    "workflow_evidence_observed": false,
+    "route_evidence_observed": false
+  },
   "workflow_observation": {
     "canonical_validation_observed": false,
     "public_deployment_observed": false,
     "activation_receipt_closed": false,
-    "latest_checked_commit": "8a830921c5ad35287120673c6ba1c06f2c212bb4",
-    "matching_workflow_runs_found": 0
+    "latest_checked_commit": "b8abd89ec461f99219ca5e4151d90c2a6de516e7",
+    "matching_workflow_runs_found": 0,
+    "combined_status_entries_found": 0
   },
   "authority_boundary": {
     "comparison_authority_granted": false,
@@ -39,5 +47,5 @@
     "integration_claimed": false,
     "adverse_capability_conclusion": false
   },
-  "updated_at": "2026-07-27T07:00:00Z"
+  "updated_at": "2026-07-27T07:30:00Z"
 }
