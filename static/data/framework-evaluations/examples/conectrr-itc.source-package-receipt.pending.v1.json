@@ -1,0 +1,47 @@
+{
+  "schema": "conectrr_itc_source_package_receipt.v1",
+  "receipt_id": "conectrr-itc-source-package-pending-2026-07-27",
+  "framework_id": "conectrr-itc",
+  "state": "AWAITING_CANONICAL_SOURCE_ARTIFACTS",
+  "received_at": null,
+  "received_from": null,
+  "artifacts": {
+    "specification": {
+      "required": true,
+      "received": false,
+      "path": null,
+      "sha256": null,
+      "media_type": null
+    },
+    "canonical_itc": {
+      "required": true,
+      "received": false,
+      "path": null,
+      "sha256": null,
+      "media_type": null,
+      "immutable": true
+    },
+    "validation_report": {
+      "required": true,
+      "received": false,
+      "path": null,
+      "sha256": null,
+      "media_type": null
+    }
+  },
+  "package_complete": false,
+  "source_mutation_allowed": false,
+  "testing_authorized": false,
+  "authority": {
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "endorsement": false
+  },
+  "non_claims": [
+    "pending receipt does not prove source delivery",
+    "receipt does not create custody",
+    "source receipt does not authorize testing until the complete package is present",
+    "source artifacts do not grant execution authority"
+  ]
+}
