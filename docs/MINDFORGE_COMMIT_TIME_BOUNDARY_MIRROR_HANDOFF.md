@@ -21,9 +21,9 @@ Execution boundary -> separate consequence-binding decision
 ```text
 State: IMPLEMENTED_ATTRIBUTION_AUTHORIZED_PENDING_CANONICAL_PUBLICATION_VERIFICATION
 Canonical workflow: .github/workflows/validate-chain-continuation.yml
-Last observed run: 30244212970
-Last observed commit: 947c6a7b7ecac0544377223139cd30685240d7a1
-Goal-local standing-determination result: PASS
+Last observed run: 30277404457
+Last observed commit: 8bd0e0a571e4739ebd2baecb437d456d8fbc523f
+Goal-local deterministic suite: PASS
 Repository-wide result: FAIL_CLOSED_OBSERVED
 Review disposition: SUBSTANTIALLY_CORRECT_WITH_CLARIFICATIONS
 Review scope: BOUNDARY_SEMANTICS_ONLY
@@ -32,6 +32,7 @@ Reviewer response evidence: APPROVED_EXACT_WITH_BOUNDARIES
 Attribution publication permitted: true
 Private correspondence publication permitted: false
 Publication verification: TEMPLATE_NOT_OBSERVED
+Public route verification: NOT_OBSERVED
 Publication activation: not complete
 Downstream mutation authority: none granted
 User manual action required: false
@@ -99,17 +100,35 @@ The public repository stores normalized boundary conditions and hash-bound priva
 
 ## Canonical run evidence
 
-Canonical workflow run `30244212970` evaluated commit `947c6a7b7ecac0544377223139cd30685240d7a1` and observed:
+Canonical workflow run `30277404457` evaluated commit `8bd0e0a571e4739ebd2baecb437d456d8fbc523f`.
+
+Observed MindForge results before repair:
 
 ```text
-STANDING DETERMINATION RECEIPT: PASS
-10 cases
-ALLOW=2
-DENY=1
-FAIL_CLOSED=7
+MINDFORGE REVIEW INTAKE: PASS
+MINDFORGE SOURCE LOCATION ALIGNMENT: PASS
+STANDING DETERMINATION RECEIPT: FAIL - status state was not recognized as implementation-ready
+MINDFORGE ATTRIBUTION AUTHORIZATION: FAIL - stronger-attribution marker wording drift
+MINDFORGE PUBLICATION VERIFICATION: FAIL - authorization state drift and handoff marker mismatch
 ```
 
-The repository-wide canonical validation remained fail-closed because unrelated active gates failed. Build, deployment, and public-route verification were skipped. A goal-local pass does not override the repository-wide fail-closed gate.
+The deterministic suite itself remained valid. The failures were validator/status synchronization defects introduced by the completed attribution-authorization transition. Repairs installed after the run:
+
+```text
+scripts/check_standing_determination_receipt.py
+  -> accepts IMPLEMENTED_ATTRIBUTION_AUTHORIZED_PENDING_CANONICAL_PUBLICATION_VERIFICATION
+
+scripts/check_mindforge_publication_attribution_authorization.py
+  -> binds the exact stronger-attribution boundary wording
+
+docs/external-frameworks/evidence/mindforge-publication-verification.template.json
+  -> binds AUTHORIZED_EXACT_WITH_BOUNDARIES
+
+this handoff
+  -> includes explicit public route verification marker
+```
+
+The repository-wide canonical validation remained fail-closed because shared gates also failed. Build, deployment, and public-route verification were skipped. A goal-local pass does not override the repository-wide fail-closed gate.
 
 ## Publication verification gate
 
@@ -128,13 +147,13 @@ It covers:
 /status/mindforge-boundary-review-status.json
 ```
 
-The contract may move to `VERIFIED` only after successful canonical validation, `build-pages`, `deploy-pages`, and content-aware route verification.
+The contract may move to `VERIFIED` only after successful canonical validation, `build-pages`, `deploy-pages`, and content-aware public route verification.
 
 ## Remaining work
 
 ```text
-1. Observe all MindForge validators in a successor canonical run.
-2. Clear unrelated repository-wide failing gates through evidence-grounded repairs.
+1. Observe all repaired MindForge validators in a successor canonical run.
+2. Clear shared repository-wide failing gates through evidence-grounded repairs.
 3. Observe successful canonical validation, build-pages, and deploy-pages.
 4. Populate the publication-verification contract from run-bound evidence.
 5. Verify all four public routes and close publication activation.
@@ -150,7 +169,7 @@ StegVerse-Labs/admissibility-wiki
 StegVerse-002/stegguardian-wiki
 ```
 
-No downstream destination becomes an independent editorial or canonical MindForge source.
+No downstream destination becomes an independent editorial or canonical MindForge source. No destination mutation is authorized until that destination's current handoff grants scope.
 
 ## Continuation instruction
 
