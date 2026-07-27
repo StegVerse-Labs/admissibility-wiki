@@ -14,6 +14,11 @@ CONTRACT = ROOT / "docs" / "external-frameworks" / "commit-time-interoperability
 MIND_FORGE = ROOT / "docs" / "external-frameworks" / "mindforge.md"
 
 VALID_RESULTS = {"ALLOW", "DENY", "FAIL_CLOSED"}
+IMPLEMENTATION_READY_STATES = {
+    "IMPLEMENTED",
+    "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION",
+    "IMPLEMENTED_ATTRIBUTION_AUTHORIZED_PENDING_CANONICAL_PUBLICATION_VERIFICATION",
+}
 
 UNCERTAIN = {
     "policy_state": {"AMBIGUOUS", "MISSING", "STALE", "UNVERIFIABLE"},
@@ -147,7 +152,7 @@ def main() -> int:
 
     if status.get("goal_id") != "mindforge-commit-time-boundary-activation":
         failures.append("status goal_id mismatch")
-    if status.get("state") not in {"IMPLEMENTED", "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION"}:
+    if status.get("state") not in IMPLEMENTATION_READY_STATES:
         failures.append("status state is not implementation-ready")
     if status.get("fixture_count") != len(observed):
         failures.append("status fixture_count mismatch")
