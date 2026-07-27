@@ -4,11 +4,17 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DOC = ROOT / "docs" / "external-frameworks" / "ta-14.md"
 ASSESSMENT = ROOT / "docs" / "external-frameworks" / "ta-14-registry-public-record-assessment.md"
+REFERENCE_DOCKET_PAGE = ROOT / "docs" / "external-frameworks" / "ta-14-public-review-docket.md"
+REFERENCE_DOCKET_RECORD = ROOT / "static" / "data" / "governed-framework-reviews" / "ta-14.reference-docket.v1.json"
+REFERENCE_DOCKET_SCHEMA = ROOT / "static" / "schemas" / "governed-framework-review.schema.json"
+REFERENCE_DOCKET_CHECK = ROOT / "scripts" / "check_governed_framework_review_reference.py"
 STATUS = ROOT / "static" / "status" / "ta-14-standing-reconstruction-status.json"
 EVALUATION = ROOT / "static" / "data" / "framework-evaluations" / "ta-14.json"
 FIXTURE = ROOT / "static" / "data" / "framework-evaluations" / "test-cases" / "ta14-continuous-standing-revalidation-v1.json"
@@ -30,6 +36,7 @@ def read(path: Path) -> str:
 def main() -> None:
     doc = read(DOC)
     assessment = read(ASSESSMENT)
+    reference_docket_page = read(REFERENCE_DOCKET_PAGE)
     sidebar = read(SIDEBAR)
     handoff = read(HANDOFF)
 
@@ -37,6 +44,8 @@ def main() -> None:
     evaluation = json.loads(read(EVALUATION))
     fixture = json.loads(read(FIXTURE))
     output_template = json.loads(read(OUTPUT_TEMPLATE))
+    reference_docket_record = json.loads(read(REFERENCE_DOCKET_RECORD))
+    reference_docket_schema = json.loads(read(REFERENCE_DOCKET_SCHEMA))
 
     for token in (
         "route admissibility != actor standing",
@@ -54,13 +63,29 @@ def main() -> None:
     ):
         require(token in assessment, f"registry assessment missing token: {token}")
 
+    for token in (
+        "review-ta14-reference-docket-2026-07-27",
+        "Public Reconstruction Procedure",
+        "PUBLICLY_UNRESOLVED",
+        "Publication creates no execution authority",
+    ):
+        require(token in reference_docket_page, f"reference docket page missing token: {token}")
+
     require(
         "external-frameworks/ta-14-registry-public-record-assessment" in sidebar,
         "registry assessment is not exposed in the sidebar",
     )
     require(
+        "external-frameworks/ta-14-public-review-docket" in sidebar,
+        "reference docket is not exposed in the sidebar",
+    )
+    require(
         "ta14-continuous-actor-standing-reconstruction" in handoff,
         "mirror handoff does not own the TA-14 standing goal",
+    )
+    require(
+        "REFERENCE_DOCKET_IMPLEMENTED_PENDING_CANONICAL_VALIDATION" in handoff,
+        "mirror handoff does not record reference docket implementation",
     )
 
     require(status.get("continuous_actor_standing_reconstruction") == "PUBLICLY_UNRESOLVED", "status must remain PUBLICLY_UNRESOLVED")
@@ -106,6 +131,28 @@ def main() -> None:
     require(output_template.get("authority_boundary", {}).get("certification_granted") is False, "output template must deny certification")
     require(output_template.get("authority_boundary", {}).get("execution_authority_granted") is False, "output template must deny execution authority")
 
+    require(reference_docket_schema.get("title") == "Governed Framework Review Record", "reference docket schema title mismatch")
+    require(reference_docket_record.get("schema_version") == "governed-framework-review.v1", "reference docket schema version mismatch")
+    require(reference_docket_record.get("review_id") == "review-ta14-reference-docket-2026-07-27", "reference docket review id mismatch")
+    require(reference_docket_record.get("current_standing") == "PUBLICLY_UNRESOLVED", "reference docket must remain PUBLICLY_UNRESOLVED")
+    require(reference_docket_record.get("reconstruction_status") == "PARTIAL", "reference docket reconstruction status must remain PARTIAL")
+    require(reference_docket_record.get("verified_capabilities") == [], "reference docket must not claim verified capabilities before a live result")
+    require(
+        any(item.get("test_id") == "ta14-continuous-standing-revalidation-001" and item.get("result") == "NOT_RUN" for item in reference_docket_record.get("test_results", [])),
+        "reference docket must preserve the standing test as NOT_RUN",
+    )
+
+    result = subprocess.run(
+        [sys.executable, str(REFERENCE_DOCKET_CHECK)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    print(result.stdout.rstrip())
+    require(result.returncode == 0, "reference docket validator failed")
+
     required_routes = {
         "/external-frameworks/ta-14",
         "/external-frameworks/ta-14-registry-public-record-assessment",
@@ -115,7 +162,7 @@ def main() -> None:
     }
     require(required_routes.issubset(set(status.get("public_routes", []))), "status record is missing one or more public routes")
 
-    print("TA-14 STANDING RECONSTRUCTION: PASS - doctrine, assessment, status, evaluation, frozen fixture, output template, navigation, and handoff agree")
+    print("TA-14 STANDING RECONSTRUCTION: PASS - doctrine, assessment, reference docket, schema, status, evaluation, frozen fixture, output template, navigation, and handoff agree")
 
 
 if __name__ == "__main__":
