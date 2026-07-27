@@ -29,6 +29,16 @@
       "comparison_packet_status": "INSTALLED",
       "reviewer_issuer_status": "UNRESOLVED",
       "live_test_status": "STEGVERSE_RUN_PASS_EXTERNAL_NOT_TESTED"
+    },
+    {
+      "framework_id": "arquivonulo",
+      "name": "ArquivoNulo Protocol",
+      "record_path": "arquivonulo.json",
+      "self_declaration_status": "PUBLIC_SOURCES_OBSERVED_NOT_OWNER_CONFIRMED",
+      "external_source_status": "OWNER_CONTROLLED_PUBLIC_DOCUMENTATION_OBSERVED",
+      "execution_boundary_status": "PUBLICLY_UNRESOLVED",
+      "continuing_admissibility_status": "PUBLICLY_UNRESOLVED",
+      "live_test_status": "NOT_TESTED"
     }
   ],
   "authority": {
@@ -39,5 +49,5 @@
     "custody": false,
     "parentage": false
   },
-  "updated_at": "2026-07-23T00:00:04Z"
+  "updated_at": "2026-07-27T00:00:00Z"
 }
