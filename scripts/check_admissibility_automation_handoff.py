@@ -55,6 +55,7 @@ MORRISON_RUNTIME_DOWNSTREAM_PROPAGATION_CHECK = ROOT / "scripts" / "check_morris
 TA14_STANDING_RECONSTRUCTION_CHECK = ROOT / "scripts" / "check_ta14_standing_reconstruction.py"
 ARQUIVONULO_EXECUTION_BOUNDARY_CHECK = ROOT / "scripts" / "check_arquivonulo_execution_boundary.py"
 STANDING_DETERMINATION_RECEIPT_CHECK = ROOT / "scripts" / "check_standing_determination_receipt.py"
+MINDFORGE_REVIEW_INTAKE_CHECK = ROOT / "scripts" / "check_mindforge_review_intake.py"
 MINDFORGE_SOURCE_LOCATION_CHECK = ROOT / "scripts" / "check_mindforge_source_location_registry.py"
 MINDFORGE_ATTRIBUTION_AUTHORIZATION_CHECK = ROOT / "scripts" / "check_mindforge_publication_attribution_authorization.py"
 MINDFORGE_PUBLICATION_VERIFICATION_CHECK = ROOT / "scripts" / "check_mindforge_publication_verification.py"
@@ -147,6 +148,7 @@ def main() -> int:
         (TA14_STANDING_RECONSTRUCTION_CHECK, "TA-14 continuous actor-standing reconstruction"),
         (ARQUIVONULO_EXECUTION_BOUNDARY_CHECK, "ArquivoNulo execution-boundary evaluation"),
         (STANDING_DETERMINATION_RECEIPT_CHECK, "MindForge standing determination receipt"),
+        (MINDFORGE_REVIEW_INTAKE_CHECK, "MindForge conditional review intake"),
         (MINDFORGE_SOURCE_LOCATION_CHECK, "MindForge source-location alignment"),
         (MINDFORGE_ATTRIBUTION_AUTHORIZATION_CHECK, "MindForge publication attribution authorization"),
         (MINDFORGE_PUBLICATION_VERIFICATION_CHECK, "MindForge publication verification"),
