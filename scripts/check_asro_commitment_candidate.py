@@ -1,10 +1,13 @@
 from pathlib import Path
 import json
+import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGE = ROOT / "docs" / "external-frameworks" / "asro.md"
 MANIFEST = ROOT / "docs" / "external-frameworks" / "asro.json"
 CANDIDATE = ROOT / "docs" / "external-frameworks" / "asro-commitment-candidate.json"
+BOUNDED_VALIDATOR = ROOT / "scripts" / "check_asro_bounded_comparison.py"
 
 FALSE_AUTHORITY_FLAGS = [
     ("authority_boundary", "commitment_candidate_is_authority"),
@@ -52,7 +55,7 @@ def load_json(path: Path) -> dict:
 def main() -> int:
     errors: list[str] = []
 
-    for path in [PAGE, MANIFEST, CANDIDATE]:
+    for path in [PAGE, MANIFEST, CANDIDATE, BOUNDED_VALIDATOR]:
         if not path.exists():
             errors.append(f"missing:{path.relative_to(ROOT)}")
 
@@ -100,11 +103,26 @@ def main() -> int:
     if expected.get("default") != "FAIL-CLOSED":
         errors.append("candidate_expected_default_fail_closed")
 
+    if BOUNDED_VALIDATOR.exists():
+        completed = subprocess.run(
+            [sys.executable, str(BOUNDED_VALIDATOR)],
+            cwd=ROOT,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+        )
+        if completed.stdout:
+            print(completed.stdout.rstrip())
+        if completed.returncode != 0:
+            errors.append("bounded_comparison_provenance_validation_failed")
+
     if errors:
         print("ASRO COMMITMENT CANDIDATE: FAIL - " + ", ".join(errors))
         return 1
 
     print("ASRO COMMITMENT CANDIDATE: PASS")
+    print("The non-authorizing candidate remains bound to corrected provenance, current public-source pinning, and the superseded historical run posture.")
     return 0
 
 
