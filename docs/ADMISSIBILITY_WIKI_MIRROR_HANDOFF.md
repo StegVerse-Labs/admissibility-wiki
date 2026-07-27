@@ -6,7 +6,7 @@ This file is the source of truth for continuing `StegVerse-Labs/admissibility-wi
 
 ```text
 Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, public determinations, and reciprocal self-review.
-Current state: three governed dockets, reciprocal StegVerse self-review, review-governance schemas, frozen reconstruction manifest, bounded route-observation receipt, accountable reconstruction invitation, validators, navigation, multi-docket status, bounded One World AI intake, and a canonically integrated Conectrr ITC interoperability package are installed.
+Current state: three governed dockets, reciprocal StegVerse self-review, review-governance schemas, frozen reconstruction manifest, route-observation receipt, accountable reconstruction invitation, bounded external-framework intakes, and a canonically bound Conectrr ITC interoperability package are installed.
 Manual task requirement: none.
 User manual action required: false.
 ```
@@ -15,11 +15,11 @@ User manual action required: false.
 
 ```text
 Goal id: wiki-public-anchor-independent-reconstruction-activation
-State: RECONSTRUCTION_AND_INTEROPERABILITY_VALIDATORS_CANONICALLY_INTEGRATED_PENDING_WORKFLOW_OBSERVATION
+State: CONECTRR_CANONICAL_BINDING_VERIFIED_PENDING_WORKFLOW_OBSERVATION_AND_SOURCE_ARTIFACTS
 Authority posture: public review and reconstruction infrastructure only; no certification, government recognition, custody, endorsement, or execution authority created.
 ```
 
-Authoritative review artifacts:
+## Authoritative Public-Anchor Artifacts
 
 ```text
 docs/external-frameworks/ta-14-public-review-docket.md
@@ -40,14 +40,14 @@ static/status/wiki-public-anchor-route-observation-receipt.json
 Manifest id: public-anchor-three-docket-freeze-2026-07-27
 Frozen commit: b69fb68c197566e9bf35a2d10611432e4c530f21
 Dockets frozen: TA-14, ASRO, StegVerse public-anchor self-review
-Independent reconstruction status: NOT_RUN
+Independent reconstruction: NOT_RUN
 Reconstruction invitation: OPEN_NO_ACCOUNTABLE_REVIEWER_ASSIGNED
 Neutral reviewer standing: NOT_ESTABLISHED
 Hash status: PENDING_CANONICAL_CUSTODY
 Signature status: NOT_SIGNED
 ```
 
-The frozen commit is a reconstruction target. Later changes require a successor manifest or explicit supersession record.
+Later repository changes do not silently alter this frozen target. They require a successor manifest or explicit supersession record.
 
 ## Constitutional Rules
 
@@ -71,29 +71,18 @@ source receipt != custody
 interoperability disposition != execution authority
 invitation != reviewer standing
 anonymous result != accountable reconstruction
+canonical binding != observed workflow execution
 ```
 
 ## Docket Boundaries
 
 ```text
 TA-14: standing PUBLICLY_UNRESOLVED; reconstruction PARTIAL; challenge OPEN; live discriminating test NOT_RUN.
-ASRO: standing PROVISIONAL; reconstruction PARTIAL; StegVerse bounded run PASS; external ASRO-native execution NOT_RUN.
+ASRO: standing PROVISIONAL; reconstruction PARTIAL; bounded StegVerse run PASS; external ASRO-native execution NOT_RUN.
 StegVerse self-review: standing PROVISIONAL; internal structural validation PASS; independent reciprocal reconstruction NOT_RUN; neutral reviewer standing NOT_ESTABLISHED.
 ```
 
 No docket grants certification or execution authority.
-
-## Canonical Reconstruction Validation
-
-```text
-Frozen manifest validator: scripts/check_public_anchor_reconstruction_manifest.py
-Route-observation receipt validator: scripts/check_wiki_public_anchor_public_routes.py
-Independent reconstruction invitation validator: scripts/check_stegverse_public_anchor_reconstruction_invitation.py
-Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
-State: CANONICALLY_INTEGRATED_PENDING_WORKFLOW_OBSERVATION
-```
-
-The route receipt remains `PENDING` until the canonical post-deployment job produces direct reachability evidence. The invitation remains open and does not create reviewer standing or alter docket standing.
 
 ## Conectrr Intent Transition Contract
 
@@ -104,10 +93,14 @@ Test profile: static/data/framework-evaluations/examples/conectrr-itc.interopera
 Result schema: static/schemas/conectrr-itc-interoperability-result.schema.json
 Pending result fixture: static/data/framework-evaluations/examples/conectrr-itc.interoperability-result.pending.v1.json
 Boundary validator: scripts/check_conectrr_itc_interoperability.py
-Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
-Source posture: founder-authored direct correspondence supplied as screenshots
-Implementation claim: first ITC implementation complete in current Conectrr MVP
-Declared boundary: discovery-layer-only, non-authorizing, unknown fields preserved empty
+Canonical binding status: static/status/conectrr-itc-canonical-validation-binding-status.json
+Aggregate validator: scripts/check_admissibility_automation_handoff.py
+Canonical validation: npm run validate
+Canonical workflow: .github/workflows/validate-chain-continuation.yml
+Binding state: BOUND_THROUGH_CANONICAL_AGGREGATE
+Workflow observation: NOT_OBSERVED_FOR_LATEST_COMMIT
+Observed commit: ada000b4bf757738802390ee24b0e095ac3c03e7
+Workflow runs observed: 0
 Specification: OFFERED_NOT_RECEIVED
 Canonical generated ITC: OFFERED_NOT_RECEIVED
 Internal validation report: OFFERED_NOT_RECEIVED
@@ -116,7 +109,6 @@ Replay: NOT_RUN
 Independent reconstruction: NOT_RUN
 Certification: false
 Execution authority: false
-State: CANONICALLY_INTEGRATED_PENDING_WORKFLOW_OBSERVATION
 ```
 
 Bounded path:
@@ -132,19 +124,7 @@ Conectrr discovery output
 -> ALLOW / DENY / FAIL-CLOSED
 ```
 
-The source ITC must not inherit consent, authority, admissibility, governance, commitment, execution, outcome state, custody, endorsement, or certification.
-
-The validator enforces:
-
-```text
-all three source artifacts are either absent together or received together
-pending source state cannot assert completed results or hashes
-source_mutated is always false
-executed results require identical pre/post source hashes
-all ten drift vectors remain represented
-AGREE / DISAGREE / DEFER remain downstream dispositions only
-all authority flags remain false
-```
+The Conectrr validator now verifies its own canonical aggregate binding, confirms `npm run validate` invokes that aggregate, validates the binding-status receipt, rejects false workflow-observation claims, preserves all ten drift vectors, requires immutable pre/post source hashes for executed results, and holds all authority flags false.
 
 ## Deployment and Validation Gate
 
@@ -164,8 +144,8 @@ Do not create another active workflow unless repository standards change.
 ```text
 Goal: accountable independent reconstruction and canonical custody binding
 Required work:
-- observe canonical validation and public deployment
-- update route-observation receipts only from canonical evidence
+- observe canonical validation and public deployment for the latest Conectrr package commit
+- update workflow and route-observation receipts only from canonical evidence
 - receive and freeze the Conectrr ITC specification, canonical generated ITC, and internal validation report
 - replace the pending fixture with hash-bound executed receipts without mutating the canonical ITC
 - run source-integrity, semantic-boundary, reconstruction, disagreement, deferral, replay, and commit-time non-inheritance checks
@@ -179,7 +159,7 @@ Required work:
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-- canonical workflow observation receipt for the Conectrr structural package
+- canonical workflow observation receipt showing PASS or retained first failure
 - Conectrr ITC Specification v1.0 Draft frozen source artifact
 - canonical Conectrr-generated ITC frozen source artifact
 - Conectrr internal validation report frozen source artifact
@@ -215,7 +195,7 @@ Queued propagation is not completed propagation. Destination mutation remains pr
 
 ## Permitted Continuation Scope
 
-A successor session may validate and repair the canonically integrated reconstruction and Conectrr packages, maintain or supersede reconstruction manifests, update route-observation receipts from canonical evidence, preserve challenges and corrections, maintain bounded framework records, prepare source-ingestion and executed-result fixtures, and queue downstream awareness without unauthorized destination mutation.
+A successor session may validate and repair the canonically integrated reconstruction and Conectrr packages, update workflow-observation receipts from canonical evidence, maintain or supersede reconstruction manifests, preserve challenges and corrections, prepare source-ingestion and executed-result fixtures, and queue downstream awareness without unauthorized destination mutation.
 
 ## Handoff Instruction
 
