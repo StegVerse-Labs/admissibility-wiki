@@ -90,12 +90,12 @@ def main() -> None:
         "reference docket is not exposed in the sidebar",
     )
     require(
-        "ta14-continuous-actor-standing-reconstruction" in handoff,
-        "mirror handoff does not own the TA-14 standing goal",
+        "TA-14: standing PUBLICLY_UNRESOLVED" in handoff,
+        "mirror handoff does not preserve the TA-14 standing boundary",
     )
     require(
-        "REFERENCE_DOCKET_IMPLEMENTED_PENDING_CANONICAL_VALIDATION" in handoff,
-        "mirror handoff does not record reference docket implementation",
+        "Manifest id: public-anchor-three-docket-freeze-2026-07-27" in handoff,
+        "mirror handoff does not bind TA-14 into the frozen three-docket manifest",
     )
 
     require(status.get("continuous_actor_standing_reconstruction") == "PUBLICLY_UNRESOLVED", "status must remain PUBLICLY_UNRESOLVED")
