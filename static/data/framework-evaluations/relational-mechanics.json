@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "framework_id": "relational-mechanics",
+  "name": "Relational Mechanics",
+  "evaluation_date": "2026-07-28",
+  "source_posture": {
+    "type": "PUBLIC_LINKEDIN_POST_AND_DISCUSSION_SCREENSHOT_CAPTURE",
+    "canonical_paper_received": false,
+    "author_designated_specification_received": false,
+    "implementation_artifact_received": false,
+    "repository_reviewed": false,
+    "formalism_reviewed": false
+  },
+  "observed_proposition": {
+    "ethical_behavior_requires_emotional_simulation": false,
+    "functional_relational_understanding_proposed": true,
+    "relationship_classes": [
+      "relationships",
+      "responsibilities",
+      "constraints",
+      "consequences"
+    ],
+    "consciousness_required_for_responsible_behavior": false,
+    "consciousness_posture": "OPEN_SCIENTIFIC_QUESTION"
+  },
+  "stegverse_determination": {
+    "classification": "DESCRIPTIVE_RELATIONAL_INTEGRITY_FRAMEWORK_BOUNDED_INTAKE",
+    "relational_description": "SUPPORTED_BY_CAPTURED_PUBLIC_MATERIAL",
+    "functional_understanding_distinction": "SUPPORTED_BY_AUTHOR_RESPONSE",
+    "canonical_specification_review": "NOT_RUN",
+    "formalism_review": "NOT_RUN",
+    "implementation_review": "NOT_RUN",
+    "observer_standing": "NOT_ESTABLISHED",
+    "binding_authority_mechanism": "NOT_ESTABLISHED",
+    "commit_time_admissibility": "NOT_ESTABLISHED",
+    "continuation_and_reconstruction": "NOT_ESTABLISHED",
+    "public_review_standing": "BOUNDED_INTAKE"
+  },
+  "binding_model": {
+    "expression": "BIND(tau,t) = R(tau,t) AND S(tau,t) AND E(tau,t) AND A(tau,t) AND C(tau,t)",
+    "terms": {
+      "R": "relational_integrity",
+      "S": "current_standing",
+      "E": "sufficient_evidence",
+      "A": "commit_time_authority_and_admissibility",
+      "C": "continuation_and_independent_reconstructability"
+    },
+    "failure_dispositions": [
+      "DENY",
+      "DEFER",
+      "TRANSFORM",
+      "FAIL_CLOSED"
+    ],
+    "policy_binding_required": true
+  },
+  "constitutional_separations": [
+    "relational_understanding != execution_authority",
+    "relational_correctness != binding_judgment",
+    "actor_authorization != authorized_relationship",
+    "authorized_relationship != admissible_transition",
+    "transparency != standing",
+    "traceability != admissibility",
+    "accountability_record != non_bypassable_prevention",
+    "publication != implementation_proof"
+  ],
+  "answerability_survival": {
+    "principle": "actor_lifetime_less_than_accountability_lifetime",
+    "minimum_record_classes": [
+      "actor_and_target_identities",
+      "authority_and_delegation_references",
+      "relational_state",
+      "evidence_set",
+      "policy_and_constraint_versions",
+      "determination_and_disposition",
+      "timestamp_and_chronology",
+      "hash_or_signature_when_authorized",
+      "challenge_dissent_correction_and_supersession_links"
+    ],
+    "authority_inheritance_from_terminated_actor": false
+  },
+  "test_vectors": [
+    "INDIVIDUALLY_CLEAN_RELATIONALLY_UNSAFE",
+    "OBSERVER_AMBIGUITY",
+    "SHORT_LIVED_ACTOR",
+    "AUTHORITY_DRIFT_BEFORE_COMMIT",
+    "RELATIONAL_INTEGRITY_FAILURE_ENFORCEMENT"
+  ],
+  "requested_artifacts": [
+    "canonical paper or author-designated specification",
+    "formal definitions",
+    "formal model schema or executable implementation",
+    "worked examples with expected determinations",
+    "failure and conflict cases",
+    "observer and evidence model",
+    "authority and enforcement boundary",
+    "short-lived actor persistence and reconstruction model",
+    "versioning correction and supersession rules"
+  ],
+  "promotion_requirements": [
+    "freeze canonical source artifacts",
+    "obtain author-confirmed scope",
+    "map formal terms",
+    "review execution-boundary evidence",
+    "run discriminating tests",
+    "obtain accountable independent reconstruction"
+  ],
+  "authority": {
+    "comparison": false,
+    "admissibility": false,
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "endorsement": false,
+    "government_recognition": false
+  }
+}
