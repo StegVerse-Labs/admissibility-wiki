@@ -124,16 +124,16 @@ def main() -> int:
             "relationship-transition publication observation schema validation failed",
         ),
         (
-            "scripts/check_governed_relationship_publication_custody_binding.py",
-            "relationship-transition publication custody binding validation failed",
-        ),
-        (
             "scripts/check_admissible_resolution_ingestion_receipt.py",
             "Admissible Resolution ingestion receipt validation failed",
         ),
         (
             "scripts/check_admissible_resolution_upstream_continuity.py",
             "Admissible Resolution upstream continuity validation failed",
+        ),
+        (
+            "scripts/check_governed_relationship_publication_custody_binding.py",
+            "relationship-transition publication custody binding validation failed",
         ),
     )
     for relative_path, failure_label in checks:
