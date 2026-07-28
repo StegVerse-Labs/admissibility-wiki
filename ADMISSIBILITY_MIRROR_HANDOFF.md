@@ -32,6 +32,12 @@ The active goal-specific handoff for MindForge commit-time boundary activation i
 docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md
 ```
 
+The active goal-specific handoff for the three-stage / three-role observer boundary is:
+
+```text
+docs/OBSERVER_BOUNDARY_MIRROR_HANDOFF.md
+```
+
 Correct downstream mapping:
 
 ```text
@@ -45,11 +51,11 @@ This root file is retained only as a continuity pointer for sessions or tools th
 
 ## Current priority
 
-Continue from the overall docs handoff, then use the applicable goal-specific handoff. Do not rely on prior chat context.
+Continue from the overall docs handoff, then use the applicable goal-specific handoff. For observer-role, meaning-transition, runtime-overwatch, or after-action reconstruction work, continue from `docs/OBSERVER_BOUNDARY_MIRROR_HANDOFF.md`. Do not rely on prior chat context.
 
 ## Boundary
 
-This pointer does not claim production authority, release status, execution authority, clinical authority, certification, endorsement, commit-time standing, provider governance, live runtime execution, or master-record persistence.
+This pointer does not claim production authority, release status, execution authority, clinical authority, certification, endorsement, commit-time standing, provider governance, live runtime execution, independent observer standing, neutral reviewer standing, or master-record persistence.
 
 ## Archive posture
 
