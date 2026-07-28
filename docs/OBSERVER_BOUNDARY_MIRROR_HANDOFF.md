@@ -14,34 +14,49 @@ docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 
 ```text
 docs/concepts/three-stage-three-role-observer-boundary.md
+static/data/observer-boundary/observer-boundary-profile.v1.json
+static/data/observer-boundary/examples/observer-boundary-fixtures.v1.json
+scripts/check_observer_boundary.py
 ```
 
-The installed specification distinguishes temporal stage separation from independent role separation and defines the minimum governed state sequence:
+The specification and executable profile distinguish temporal stage separation from independent role separation and define the minimum governed state sequence:
 
 ```text
 PROPOSED -> AUTHORIZED -> COMMITTED -> RECONSTRUCTED
 ```
 
-It also establishes:
+The deterministic fixture set now covers:
 
 ```text
-three stages != three independent roles
-visibility != observation authority
-intervention != independent witnessing
-after-action reporting != complete reconstruction
-preserved context != shared meaning
+OB-001 stage/role collapse
+OB-002 observer intervention
+OB-003 evidence omission
+OB-004 retrospective authorization inference
+OB-005 complete bounded reconstruction
 ```
+
+All fixtures preserve:
+
+```text
+independent_observer_standing = false
+execution_authority = false
+certification = false
+custody = false
+endorsement = false
+```
+
+The validator derives the established state from the evidence record, requires all deterministic coverage classes, rejects undeclared authority effects, and returns `INDETERMINATE` where authorization, evidence completeness, or contemporaneous support is missing.
 
 ## Current goal
 
-Bind the observer boundary into external-framework reviews, commit-time admissibility records, reconstruction manifests, reviewer-standing records, and challenge/correction workflows without asserting that any existing component already possesses independent observer standing.
+Bind the observer-boundary validator into the canonical aggregate, then reference the profile from external-framework reviews, commit-time admissibility records, reconstruction manifests, reviewer-standing records, and challenge/correction workflows without asserting that any existing component already possesses independent observer standing.
 
 ## Next work
 
-- add a machine-readable observer-boundary schema or profile;
-- create deterministic fixtures for stage/role collapse, observer intervention, evidence omission, and retrospective inference;
-- bind the fixture validator into the canonical aggregate;
-- reference the boundary from runtime-governance and external-framework review templates;
+- add `scripts/check_observer_boundary.py` to `scripts/check_admissibility_automation_handoff.py`;
+- execute the validator through canonical validation and retain the first observed PASS or first-failure evidence;
+- add observer-boundary references to runtime-governance and external-framework review templates;
+- add fields for stage separation, role separation, intervention, evidence control, contemporaneous observation, retrospective inference, and reviewer conflicts to applicable reconstruction templates;
 - create a public comparison surface only after the Site mirror handoff grants scope;
 - project reviewer-standing implications only after the StegGuardian destination handoff grants scope;
 - queue canonical packaging only after the Publisher handoff grants scope.
@@ -50,11 +65,11 @@ Bind the observer boundary into external-framework reviews, commit-time admissib
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-- static/data/observer-boundary/observer-boundary-profile.v1.json
-- static/data/observer-boundary/examples/*.json
-- scripts/check_observer_boundary.py
 - canonical aggregate binding
+- canonical validation observation receipt
 - review-template references
+- reconstruction-manifest observer fields
+- reviewer-standing and challenge/correction references
 
 StegVerse-Labs/Site:
 - public observer-boundary explanation and comparison projection, pending Site handoff authority
@@ -68,7 +83,7 @@ StegVerse-002/stegguardian-wiki:
 
 ## Boundary
 
-This work creates public review vocabulary and testable distinctions only. It does not create certification, government recognition, neutral reviewer standing, custody, endorsement, execution authority, independent verification, or production runtime control.
+This work creates public review vocabulary and deterministic local validation only. A local PASS would establish fixture and profile consistency, not certification, government recognition, neutral reviewer standing, custody, endorsement, execution authority, independent verification, or production runtime control.
 
 ## Archive posture
 
