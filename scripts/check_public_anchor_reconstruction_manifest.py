@@ -53,8 +53,15 @@ def main() -> None:
     if data.get("independent_reconstruction_status") != "NOT_RUN":
         fail("independent reconstruction must remain NOT_RUN until evidence exists")
     handoff = HANDOFF.read_text(encoding="utf-8") if HANDOFF.exists() else ""
-    if "independently consumable reconstruction packet" not in handoff:
-        fail("handoff does not track reconstruction packet goal")
+    required_handoff_markers = (
+        "Frozen Public-Anchor Boundary",
+        "Manifest: static/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json",
+        "Independent reconstruction: NOT_RUN",
+        "Reconstruction invitation: OPEN_NO_ACCOUNTABLE_REVIEWER_ASSIGNED",
+    )
+    for marker in required_handoff_markers:
+        if marker not in handoff:
+            fail(f"handoff missing reconstruction-boundary marker: {marker}")
     print("PUBLIC-ANCHOR RECONSTRUCTION MANIFEST: PASS - three-docket freeze is bounded and independently consumable")
 
 
