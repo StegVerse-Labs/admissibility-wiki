@@ -35,6 +35,8 @@ REQUIRED_FILES = (
     "scripts/check_governed_relationship_publication_custody_binding.py",
     "static/status/admissible-resolution-ingestion-receipt.json",
     "scripts/check_admissible_resolution_ingestion_receipt.py",
+    "static/status/admissible-resolution-upstream-continuity.json",
+    "scripts/check_admissible_resolution_upstream_continuity.py",
 )
 REQUIRED_REFERENCES = {
     "sidebars.js": (
@@ -66,7 +68,7 @@ REQUIRED_REFERENCES = {
     ),
     "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md": (
         "observe_governed_relationship_publication.py",
-        "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED",
+        "Preserve FAIL_CLOSED when any doctrine, schema, or example route is unavailable.",
     ),
 }
 
@@ -122,12 +124,16 @@ def main() -> int:
             "relationship-transition publication observation schema validation failed",
         ),
         (
-            "scripts/check_governed_relationship_publication_custody_binding.py",
-            "relationship-transition publication custody binding validation failed",
-        ),
-        (
             "scripts/check_admissible_resolution_ingestion_receipt.py",
             "Admissible Resolution ingestion receipt validation failed",
+        ),
+        (
+            "scripts/check_admissible_resolution_upstream_continuity.py",
+            "Admissible Resolution upstream continuity validation failed",
+        ),
+        (
+            "scripts/check_governed_relationship_publication_custody_binding.py",
+            "relationship-transition publication custody binding validation failed",
         ),
     )
     for relative_path, failure_label in checks:
@@ -138,7 +144,7 @@ def main() -> int:
     print(
         "GOVERNED LLM PAGES: PASS - docs, contracts, fixtures, publication candidates, "
         "observation schemas, observation surfaces, custody bindings, bounded Admissible "
-        "Resolution ingestion, and references present"
+        "Resolution ingestion, upstream continuity, and references present"
     )
     return 0
 
