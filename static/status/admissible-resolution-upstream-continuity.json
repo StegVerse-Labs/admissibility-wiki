@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "state_type": "admissible_resolution_upstream_continuity",
+  "destination_repository": "StegVerse-Labs/admissibility-wiki",
+  "local_receipt_path": "static/status/admissible-resolution-ingestion-receipt.json",
+  "decision_id": "AR-CHAIN-001",
+  "upstream": {
+    "formal_owner": {
+      "repository": "Admissible-Existence/AE",
+      "merged_commit": "d8dae4892c4d8d916984c4924908c585ab2b1ccc",
+      "public_index_path": "data/admissible_resolution_public_index.json",
+      "focused_validation_run": 11,
+      "reflection_build_run": 429,
+      "validation_state": "HOSTED_VALIDATED"
+    },
+    "validation_factory": {
+      "repository": "Admissible-Existence/ae-validation-factory",
+      "merged_commit": "c8350329857bb95dcf70b466a3c022ed1e1a9286",
+      "validation_state": "HOSTED_VALIDATED"
+    },
+    "operational_owner": {
+      "repository": "Admissible-Existence/TT",
+      "merged_destination_ledger_commit": "e3d2c4ab1246393f67954ee638f9db19ec13e5e1",
+      "destination_ledger_path": "data/propagation/admissible-resolution-destination-receipts.json",
+      "tt_validation_run": 236,
+      "admissible_resolution_validation_run": 28,
+      "registry_validation_run": 107,
+      "validation_state": "HOSTED_VALIDATED"
+    }
+  },
+  "local_state": {
+    "bounded_ingestion_receipt_present": true,
+    "local_checker_bound_to_canonical_aggregate": true,
+    "upstream_continuity_verified": true,
+    "public_projection_state": "NOT_YET_PROJECTED",
+    "site_activation_dependency_satisfied": false,
+    "guardian_propagation_authorized": false,
+    "repository_wide_canonical_pass_observed_for_this_record": false
+  },
+  "authority": {
+    "publication_authorized": false,
+    "release_authorized": false,
+    "execution_authorized": false,
+    "custody_recorded": false,
+    "certification_authority_created": false,
+    "admissibility_determined": false,
+    "standing_created": false,
+    "cross_repository_mutation_authorized": false
+  },
+  "manual_user_action_required": false,
+  "archive_readiness": false
+}
