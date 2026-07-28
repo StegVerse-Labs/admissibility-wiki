@@ -50,7 +50,7 @@ def main() -> None:
         require(token in doc, f"doctrine missing token: {token}")
 
     for token in (
-        "reports/arquivonulo-public-route-observation.json",
+        "arquivonulo-public-route-observation.json",
         "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
         "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED",
         "Publication verifies route availability and bounded content only",
