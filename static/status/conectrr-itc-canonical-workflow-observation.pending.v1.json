@@ -1,0 +1,32 @@
+{
+  "schema": "conectrr_itc_canonical_workflow_observation.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "capability": "conectrr-itc-synthetic-capability-smoke-test",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "canonical_validation": "npm run validate",
+  "state": "NOT_OBSERVED",
+  "observed_commit": "e402d3f466e428758d32e8b42ed5b5944fb33f43",
+  "workflow_run_id": null,
+  "workflow_run_url": null,
+  "workflow_conclusion": null,
+  "validation_job_id": null,
+  "validation_job_conclusion": null,
+  "first_observation_preserved": false,
+  "local_execution_receipt": "static/status/conectrr-itc-synthetic-local-execution-receipt.v1.json",
+  "local_execution_result": "PASS",
+  "canonical_result": "NOT_YET_OBSERVED",
+  "external_validation_claimed": false,
+  "authority": {
+    "certification": false,
+    "execution": false,
+    "custody": false,
+    "endorsement": false
+  },
+  "non_claims": [
+    "local PASS is not a canonical workflow PASS",
+    "absence of a workflow observation is neither PASS nor FAIL",
+    "a later canonical observation must preserve the first observed conclusion",
+    "canonical workflow execution does not establish Conectrr interoperability",
+    "workflow execution does not grant reviewer standing, custody, certification, endorsement, or execution authority"
+  ]
+}
