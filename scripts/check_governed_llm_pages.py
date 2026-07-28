@@ -68,7 +68,7 @@ REQUIRED_REFERENCES = {
     ),
     "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md": (
         "observe_governed_relationship_publication.py",
-        "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED",
+        "Preserve FAIL_CLOSED when any doctrine, schema, or example route is unavailable.",
     ),
 }
 
