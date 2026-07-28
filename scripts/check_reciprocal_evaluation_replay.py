@@ -15,8 +15,20 @@ def main() -> int:
     test = json.loads(TEST.read_text(encoding="utf-8"))
     events = [json.loads(line) for line in RUN.read_text(encoding="utf-8").splitlines() if line.strip()]
 
-    if test.get("status") != "FROZEN":
-        failures.append("test case is not frozen")
+    status = test.get("status")
+    if status == "FROZEN":
+        pass
+    elif status == "PROVISIONAL_CORRECTION_IN_PROGRESS":
+        replay = test.get("replay", {})
+        if replay.get("historical_run_status") != "PRESERVED_NOT_RETROACTIVELY_REWRITTEN":
+            failures.append("historical replay is not preserved")
+        if replay.get("corrected_run_required") is not True:
+            failures.append("corrected replay run must remain required")
+        if test.get("frozen_at") is not None or test.get("package_sha256") is not None:
+            failures.append("provisional corrected test must not claim a frozen package")
+    else:
+        failures.append("test case has an unsupported lifecycle state")
+
     if test.get("replay", {}).get("deterministic") is not True:
         failures.append("test case is not deterministic")
     indexes = [event.get("event_index") for event in events]
@@ -31,11 +43,11 @@ def main() -> int:
     else:
         final = events[-1]
         if final.get("result") != "PASS":
-            failures.append("final result is not PASS")
+            failures.append("historical final result is not PASS")
         if final.get("replay_status") != "PASS":
-            failures.append("replay status is not PASS")
+            failures.append("historical replay status is not PASS")
         if final.get("reconstruction_status") != "PASS":
-            failures.append("reconstruction status is not PASS")
+            failures.append("historical reconstruction status is not PASS")
         if final.get("admissibility") != "NOT_EVALUATED":
             failures.append("replay improperly establishes admissibility")
         if final.get("authority") != "NONE" or final.get("execution") != "NONE":
@@ -47,6 +59,7 @@ def main() -> int:
             print(f"- {failure}")
         return 1
     print("RECIPROCAL EVALUATION REPLAY: PASS")
+    print("Historical replay remains preserved while the corrected package remains provisional, unhashed, and unrun.")
     return 0
 
 
