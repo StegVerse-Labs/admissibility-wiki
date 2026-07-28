@@ -35,7 +35,8 @@ def main() -> int:
             failures.append(f"asymmetric authority promotion at {field}")
 
     for det in record.get("determinations", []):
-        if det.get("parentage_claim") not in ("NOT_CLAIMED", "INCONCLUSIVE"):
+        parentage_claim = det.get("parentage_claim", "NOT_CLAIMED")
+        if parentage_claim not in ("NOT_CLAIMED", "INCONCLUSIVE"):
             failures.append("bounded comparison must not establish parentage")
 
     if failures:
