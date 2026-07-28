@@ -84,7 +84,14 @@ def main() -> int:
 
     require(self_review.get("current_standing") == "PROVISIONAL", "self-review must remain PROVISIONAL", failures)
     require(self_review.get("verified_capabilities") == [], "self-review must have no verified capabilities", failures)
-    require("RECONSTRUCTION_MANIFEST_AND_ROUTE_RECEIPT_IMPLEMENTED_PENDING_CANONICAL_OBSERVATION" in handoff, "handoff missing current reconstruction activation state", failures)
+    required_handoff_markers = (
+        "Goal id: wiki-public-anchor-independent-reconstruction-activation",
+        "Manifest id: public-anchor-three-docket-freeze-2026-07-27",
+        "Independent reconstruction: NOT_RUN",
+        "Reconstruction invitation: OPEN_NO_ACCOUNTABLE_REVIEWER_ASSIGNED",
+    )
+    for marker in required_handoff_markers:
+        require(marker in handoff, f"handoff missing current reconstruction marker: {marker}", failures)
 
     run_check(MANIFEST_CHECK, "public-anchor reconstruction manifest", failures)
     run_check(PUBLIC_ROUTE_CHECK, "public-anchor route observation receipt", failures)
