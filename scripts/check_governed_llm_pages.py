@@ -35,6 +35,8 @@ REQUIRED_FILES = (
     "scripts/check_governed_relationship_publication_custody_binding.py",
     "static/status/admissible-resolution-ingestion-receipt.json",
     "scripts/check_admissible_resolution_ingestion_receipt.py",
+    "static/status/admissible-resolution-upstream-continuity.json",
+    "scripts/check_admissible_resolution_upstream_continuity.py",
 )
 REQUIRED_REFERENCES = {
     "sidebars.js": (
@@ -129,6 +131,10 @@ def main() -> int:
             "scripts/check_admissible_resolution_ingestion_receipt.py",
             "Admissible Resolution ingestion receipt validation failed",
         ),
+        (
+            "scripts/check_admissible_resolution_upstream_continuity.py",
+            "Admissible Resolution upstream continuity validation failed",
+        ),
     )
     for relative_path, failure_label in checks:
         return_code = run_checker(relative_path, failure_label)
@@ -138,7 +144,7 @@ def main() -> int:
     print(
         "GOVERNED LLM PAGES: PASS - docs, contracts, fixtures, publication candidates, "
         "observation schemas, observation surfaces, custody bindings, bounded Admissible "
-        "Resolution ingestion, and references present"
+        "Resolution ingestion, upstream continuity, and references present"
     )
     return 0
 
