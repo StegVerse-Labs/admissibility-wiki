@@ -92,18 +92,18 @@ def main() -> int:
 
     membership = manifest.get("collection_membership", {})
     reference = membership.get("declared_reference", {})
-    if reference.get("artifact_id") != derivative.get("object_id"):
+    if reference.get("object_id") != derivative.get("object_id"):
         failures.append("manifest must bind the corrected derivative identity")
     if reference.get("sha256") != derivative.get("sha256"):
         failures.append("manifest must bind the corrected derivative hash")
-    if reference.get("hash_scope") != "STEGVERSE_GENERATED_DERIVATIVE_ONLY":
-        failures.append("manifest hash scope must be derivative-only")
+    if reference.get("hash_scope") != "STEGVERSE_GENERATED_PUBLIC_METADATA_DERIVATIVE_NOT_SOURCE_INPUT":
+        failures.append("manifest hash scope must remain limited to the public derivative")
     if membership.get("label_only_match_sufficient") is not False:
         failures.append("label-only matching must be rejected")
-    source_membership = manifest.get("source_example_membership", {})
-    if source_membership.get("membership_result") != "UNRESOLVED":
+    source_membership = membership.get("source_example", {})
+    if membership.get("source_membership_result") != "UNRESOLVED":
         failures.append("original source-example membership must remain unresolved")
-    if source_membership.get("source_input_hash") is not None:
+    if source_membership.get("source_input_sha256") is not None:
         failures.append("original source-example hash must remain unset")
 
     determination = manifest.get("determination", {})
