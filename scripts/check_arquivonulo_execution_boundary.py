@@ -42,7 +42,7 @@ def main() -> None:
     for token in (
         "valid_proof(t) != continuing_admissibility(t)",
         "interdiction != pre-consequence prevention",
-        "anchored state != current reality",
+        "anchored_state(t) != current_state_correspondence(t)",
         "S5 Execution",
         "S7 Proof Verification",
         "PUBLICLY_UNRESOLVED",
