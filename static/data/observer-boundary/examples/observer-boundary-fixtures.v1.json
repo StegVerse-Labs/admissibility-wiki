@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0.0",
+  "fixture_set_id": "observer-boundary-deterministic-fixtures-v1",
+  "fixtures": [
+    {
+      "id": "OB-001-stage-role-collapse",
+      "description": "The same authority proposes, authorizes, executes, controls evidence, and authors reconstruction.",
+      "evidence": {
+        "proposal": true,
+        "authorization": true,
+        "commitment": true,
+        "reconstruction_report": true,
+        "role_separation_recorded": false,
+        "intervention_recorded": true,
+        "evidence_omissions_disclosed": true,
+        "retrospective_inference_only": false
+      },
+      "expected_class": "COMMITTED",
+      "independent_observer_standing": false,
+      "required_findings": ["STAGE_ROLE_COLLAPSE", "AUTHORITY_INHERITANCE_PROHIBITED"]
+    },
+    {
+      "id": "OB-002-observer-intervention",
+      "description": "Runtime overwatch intervenes and changes the committed transition.",
+      "evidence": {
+        "proposal": true,
+        "authorization": true,
+        "commitment": true,
+        "reconstruction_report": true,
+        "role_separation_recorded": true,
+        "intervention_recorded": true,
+        "evidence_omissions_disclosed": true,
+        "retrospective_inference_only": false
+      },
+      "expected_class": "RECONSTRUCTED",
+      "independent_observer_standing": false,
+      "required_findings": ["OBSERVER_BECAME_PARTICIPANT", "INTERVENTION_CAUSAL_EFFECT_RECORDED"]
+    },
+    {
+      "id": "OB-003-evidence-omission",
+      "description": "A later report exists but the evidence inventory does not disclose missing runtime records.",
+      "evidence": {
+        "proposal": true,
+        "authorization": true,
+        "commitment": true,
+        "reconstruction_report": true,
+        "role_separation_recorded": true,
+        "intervention_recorded": true,
+        "evidence_omissions_disclosed": false,
+        "retrospective_inference_only": false
+      },
+      "expected_class": "INDETERMINATE",
+      "independent_observer_standing": false,
+      "required_findings": ["EVIDENCE_OMISSION", "RECONSTRUCTION_INCOMPLETE"]
+    },
+    {
+      "id": "OB-004-retrospective-inference",
+      "description": "Authorization is inferred after the event without a commit-time authority record.",
+      "evidence": {
+        "proposal": true,
+        "authorization": false,
+        "commitment": true,
+        "reconstruction_report": true,
+        "role_separation_recorded": true,
+        "intervention_recorded": true,
+        "evidence_omissions_disclosed": true,
+        "retrospective_inference_only": true
+      },
+      "expected_class": "INDETERMINATE",
+      "independent_observer_standing": false,
+      "required_findings": ["RETROSPECTIVE_AUTHORIZATION_INFERENCE", "COMMIT_TIME_AUTHORITY_NOT_ESTABLISHED"]
+    },
+    {
+      "id": "OB-005-complete-bounded-reconstruction",
+      "description": "All four state distinctions and independence records are present, challengeable, and non-authorizing.",
+      "evidence": {
+        "proposal": true,
+        "authorization": true,
+        "commitment": true,
+        "reconstruction_report": true,
+        "role_separation_recorded": true,
+        "intervention_recorded": true,
+        "evidence_omissions_disclosed": true,
+        "retrospective_inference_only": false
+      },
+      "expected_class": "RECONSTRUCTED",
+      "independent_observer_standing": false,
+      "required_findings": ["BOUNDED_RECONSTRUCTION_COMPLETE", "STANDING_NOT_CREATED_BY_FIXTURE"]
+    }
+  ],
+  "authority_effect": {
+    "certification": false,
+    "reviewer_standing": false,
+    "execution_authority": false,
+    "custody": false,
+    "endorsement": false
+  }
+}
