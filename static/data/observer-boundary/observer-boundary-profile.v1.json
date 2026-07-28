@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "profile_id": "observer-boundary-profile-v1",
+  "status": "PUBLIC_REVIEW_VOCABULARY_ONLY",
+  "state_sequence": ["PROPOSED", "AUTHORIZED", "COMMITTED", "RECONSTRUCTED"],
+  "terminal_classes": ["PROPOSED", "AUTHORIZED", "COMMITTED", "RECONSTRUCTED", "INDETERMINATE"],
+  "constitutional_rules": [
+    "three_stages_do_not_establish_three_independent_roles",
+    "visibility_does_not_establish_observation_authority",
+    "intervention_does_not_establish_independent_witnessing",
+    "after_action_reporting_does_not_establish_complete_reconstruction",
+    "preserved_context_does_not_establish_shared_meaning"
+  ],
+  "required_evidence": {
+    "proposal": ["pre_commit_form", "origin", "timestamp_or_order"],
+    "authorization": ["authority_source", "delegation_state_at_commit", "scope"],
+    "commitment": ["state_mutation", "commit_boundary", "causal_actor"],
+    "reconstruction": ["evidence_inventory", "ordering", "integrity", "omissions", "reviewer_standing", "conflicts"]
+  },
+  "independence_conditions": {
+    "role_separation_recorded": true,
+    "interventions_recorded": true,
+    "evidence_control_recorded": true,
+    "contemporaneous_observation_distinguished_from_retrospective_inference": true,
+    "challenge_and_correction_available": true,
+    "authority_inheritance_prohibited": true
+  },
+  "result_rule": "Return INDETERMINATE whenever a required transition edge or independence condition is unsupported.",
+  "authority_effect": {
+    "certification": false,
+    "government_recognition": false,
+    "reviewer_standing": false,
+    "custody": false,
+    "endorsement": false,
+    "execution_authority": false,
+    "independent_verification": false,
+    "production_runtime_control": false
+  }
+}
