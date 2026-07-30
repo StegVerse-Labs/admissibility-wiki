@@ -1,0 +1,17 @@
+{
+  "$schema": "../../../schemas/gsdp/governed-system-description.schema.json",
+  "gsdp_version": "0.1-draft",
+  "declaration_id": "https://example.org/.well-known/governed-system.json#invalid",
+  "system": {
+    "id": "https://example.org/",
+    "name": "Invalid Example"
+  },
+  "expected_result": "REJECT",
+  "expected_errors": [
+    "system.description is required",
+    "operators is required",
+    "components is required",
+    "authority is required",
+    "explicit_non_claims is required"
+  ]
+}
