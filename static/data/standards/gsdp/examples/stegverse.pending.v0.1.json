@@ -1,0 +1,157 @@
+{
+  "$schema": "../../../../schemas/gsdp/governed-system-description.schema.json",
+  "gsdp_version": "0.1-draft",
+  "declaration_id": "https://stegverse.org/.well-known/governed-system.json#pending-0.1",
+  "system": {
+    "id": "https://stegverse.org/",
+    "name": "StegVerse",
+    "description": "A governed distributed AI and evidence infrastructure under active development.",
+    "class": "GovernedDistributedAISystem",
+    "canonical_uri": "https://stegverse.org/",
+    "version": "pending-0.1"
+  },
+  "operators": [
+    {
+      "id": "https://github.com/StegVerse-Labs",
+      "name": "StegVerse-Labs",
+      "relationship": "Development and public-reference operator for selected StegVerse repositories",
+      "component_refs": [
+        "stegverse:component:admissibility-wiki",
+        "stegverse:component:site"
+      ],
+      "authority": [
+        "maintain_selected_public_repositories",
+        "publish_bounded_self-descriptions"
+      ],
+      "explicit_non_authority": [
+        "government_certification",
+        "independent_conformance_assessment",
+        "unrestricted_execution_authority",
+        "authority_over_external_systems"
+      ],
+      "effective_from": "2026-07-30T15:29:00Z",
+      "effective_until": null
+    }
+  ],
+  "components": [
+    {
+      "id": "stegverse:component:admissibility-wiki",
+      "name": "Admissibility Wiki",
+      "class": "public_review_and_reconstruction_surface",
+      "role": "Publishes bounded framework reviews, evidence structures, disputes, corrections, and reconstruction artifacts.",
+      "status": "development",
+      "operator_refs": ["https://github.com/StegVerse-Labs"],
+      "capabilities": [
+        "publish_machine_readable_review_records",
+        "validate_local_fixtures",
+        "preserve_divergent_findings"
+      ],
+      "authority": [
+        "publish_stegverse_authored_determinations"
+      ],
+      "explicit_non_authority": [
+        "certify_external_systems",
+        "grant_execution_authority",
+        "inherit_government_recognition",
+        "claim_independent_verification_without_external_evidence"
+      ],
+      "inputs": ["framework_source_artifacts", "review_submissions", "evidence_receipts"],
+      "outputs": ["bounded_review_records", "reconstruction_artifacts", "dispute_records"],
+      "dependencies": ["stegverse:dependency:github"],
+      "interfaces": ["https://github.com/StegVerse-Labs/admissibility-wiki"],
+      "evidence_refs": ["https://github.com/StegVerse-Labs/admissibility-wiki/tree/main/static/data"]
+    },
+    {
+      "id": "stegverse:component:site",
+      "name": "StegVerse Site",
+      "class": "public_projection_surface",
+      "role": "Projects selected human-readable and machine-readable StegVerse information subject to Site orchestration and activation boundaries.",
+      "status": "development",
+      "operator_refs": ["https://github.com/StegVerse-Labs"],
+      "capabilities": ["serve_public_pages", "project_selected_machine_readable_records"],
+      "authority": ["publish_bounded_site_content_after_repository_admission"],
+      "explicit_non_authority": ["certification", "custody", "independent_verification", "runtime_execution_authority"],
+      "inputs": ["admitted_public_artifacts"],
+      "outputs": ["public_pages", "public_machine_readable_routes"],
+      "dependencies": ["stegverse:dependency:github", "stegverse:dependency:hosting"],
+      "interfaces": ["https://github.com/StegVerse-Labs/Site"],
+      "evidence_refs": ["https://github.com/StegVerse-Labs/Site/blob/main/docs/SITE_MIRROR_HANDOFF.md"]
+    }
+  ],
+  "authority": {
+    "classes": ["proposal", "evaluation", "publication", "execution", "observation", "custody", "reconstruction", "certification"],
+    "delegations": [],
+    "revocation_sources": ["repository_handoffs", "policy_sources", "current_standing_determinations"],
+    "standing_requirements": ["identity_is_insufficient", "scope_must_be_current", "conditions_must_hold_at_commit_time"],
+    "consent_requirements": ["consent_must_exist_before_commit_when_required"],
+    "commit_authorities": [],
+    "explicit_non_authorities": ["external_certification", "government_recognition", "authority_over_unlisted_systems", "production_activation_from_this_declaration"]
+  },
+  "governance": {
+    "decision_states": ["ALLOW", "DENY", "DEFER"],
+    "policy_sources": ["repository_specific_mirror_handoffs", "machine_readable_policy_records"],
+    "admissibility_rules": ["identity_does_not_establish_current_standing", "capability_does_not_establish_authority", "authority_must_be_valid_at_commit_time"],
+    "safe_states": ["DENY", "DEFER", "FAIL_CLOSED"],
+    "rollback_conditions": ["authority_revoked", "evidence_invalidated", "policy_changed", "continuity_broken"],
+    "dispute_routes": ["admissibility_wiki_challenge_and_correction_records"]
+  },
+  "evidence": {
+    "receipt_schemas": [],
+    "verification_methods": ["repository_local_validators", "hash_and_reference_checks_where_available"],
+    "custody_refs": [],
+    "replay_interfaces": [],
+    "reconstruction_procedures": ["bounded_repository_reconstruction_artifacts"],
+    "retention_rules": ["historical_records_must_not_be_silently_rewritten"]
+  },
+  "status": {
+    "declared": "partial",
+    "implemented": "partial",
+    "tested": "not_run_for_this_declaration",
+    "independently_verified": "false",
+    "certified": "false",
+    "operational": "partial_and_component_specific",
+    "authorized": "bounded_by_current_repository_handoffs"
+  },
+  "dependencies": [
+    {
+      "id": "stegverse:dependency:github",
+      "type": "technical",
+      "authority_bearing": false,
+      "description": "Repository hosting and collaboration substrate; hosting does not grant StegVerse governance authority."
+    },
+    {
+      "id": "stegverse:dependency:hosting",
+      "type": "operational",
+      "authority_bearing": false,
+      "description": "Replaceable public hosting substrate; deployment does not establish certification, custody, or execution authority."
+    }
+  ],
+  "history": {
+    "effective_from": "2026-07-30T15:29:00Z",
+    "effective_until": null,
+    "supersedes": null,
+    "previous_declaration": null,
+    "declaration_hash": null,
+    "evidence_cutoff": "2026-07-30T15:29:00Z"
+  },
+  "claims": [
+    {
+      "id": "stegverse:claim:gsdp-first-reference-fixture",
+      "statement": "StegVerse provides the first draft GSDP reference fixture within the StegVerse repositories.",
+      "status": "declared",
+      "evidence_refs": ["docs/standards/governed-system-description-protocol.md"]
+    }
+  ],
+  "explicit_non_claims": [
+    "This declaration is not an independent conformance assessment.",
+    "This declaration does not certify StegVerse or any component.",
+    "This declaration does not establish government recognition or external adoption.",
+    "This declaration does not grant execution authority.",
+    "This declaration is incomplete and does not yet enumerate every StegVerse organization, repository, protocol, product, or dependency."
+  ],
+  "conformance": {
+    "claimed_classes": [],
+    "schema_validated": false,
+    "independent_assessment": "not_run"
+  }
+}
