@@ -2,8 +2,8 @@
   "standard_id": "GSDP",
   "name": "Governed System Description Protocol",
   "draft_version": "0.1-draft",
-  "state": "CANONICAL_VALIDATION_BOUND_WORKFLOW_OBSERVATION_PENDING",
-  "updated_at": "2026-07-30T17:57:00Z",
+  "state": "FIRST_CANONICAL_FAILURE_RETAINED_REPAIR_VALIDATION_PENDING",
+  "updated_at": "2026-07-30T18:09:00Z",
   "artifacts": {
     "normative_draft": "docs/standards/governed-system-description-protocol.md",
     "schema": "static/schemas/gsdp/governed-system-description.schema.json",
@@ -12,16 +12,21 @@
     "canonical_aggregate": "scripts/check_admissibility_automation_handoff.py",
     "authority_non_inheritance_fixture": "static/data/standards/gsdp/fixtures/authority-non-inheritance.invalid.v0.1.json",
     "historical_supersession_fixture": "static/data/standards/gsdp/fixtures/historical-supersession.valid.v0.1.json",
-    "minimum_negative_fixture": "static/data/standards/gsdp/fixtures/schema-minimum.invalid.v0.1.json"
+    "minimum_negative_fixture": "static/data/standards/gsdp/fixtures/schema-minimum.invalid.v0.1.json",
+    "first_canonical_observation": "static/data/standards/gsdp/observations/canonical-workflow-observation.30568611934.v0.1.json"
   },
-  "local_validation": "BOUND_INTO_CANONICAL_AGGREGATE_EXECUTION_NOT_YET_OBSERVED",
+  "local_validation": "BOUND_INTO_CANONICAL_AGGREGATE_FIRST_FAILURE_RETAINED_REPAIR_VALIDATION_PENDING",
   "canonical_binding": {
     "bound": true,
     "entrypoint": "npm run validate",
     "aggregate_validator": "scripts/check_admissibility_automation_handoff.py",
     "binding_commit": "7db29a1e154f7b6e5f318a3d79bd968996a5d28e",
     "workflow": ".github/workflows/validate-chain-continuation.yml",
-    "workflow_observation": "NOT_OBSERVED"
+    "workflow_observation": "FAIL_CLOSED_OBSERVED",
+    "first_observed_run_id": 30568611934,
+    "first_observed_run_number": 3630,
+    "first_observed_conclusion": "failure",
+    "first_failure_classification": "GSDP_STATUS_CONTRACT_DRIFT"
   },
   "schema_validation_effect": "STRUCTURAL_ONLY_NO_EXTERNAL_CONFORMANCE",
   "claimed_conformance_classes": [],
@@ -33,5 +38,5 @@
   "site_publication": "PENDING_SITE_HANDOFF_AND_ORCHESTRATION_ADMISSION",
   "publisher_package": "NOT_CREATED",
   "guardian_projection": "NOT_CREATED",
-  "next_gate": "OBSERVE_CANONICAL_WORKFLOW_EXECUTION_AND_RETAIN_FIRST_PASS_OR_FIRST_FAILURE_EVIDENCE"
+  "next_gate": "OBSERVE_REPAIRED_GSDP_VALIDATOR_IN_CANONICAL_WORKFLOW_WITHOUT_ERASING_FIRST_FAILURE"
 }
