@@ -1,0 +1,50 @@
+{
+  "schema": "gsdp.ecosystem-inventory.v0.1",
+  "standard_id": "GSDP",
+  "inventory_id": "stegverse-ecosystem-inventory-pending-0.1",
+  "state": "PROVENANCE_BOUND_PARTIAL_INVENTORY",
+  "generated_at": "2026-07-30T18:26:00Z",
+  "source_boundary": {
+    "primary_source": "docs/governance/governed-ecosystem-index.md",
+    "primary_source_status": "static/status/governed-ecosystem-index-status.json",
+    "source_record_status": "GOVERNED_ECOSYSTEM_INDEX_PRESENT",
+    "interpretation": "Inventory entries are derived only from named coordinates in the current repository record. Inclusion proves source-record presence, not operational deployment, current standing, custody, certification, or execution authority."
+  },
+  "status_vocabulary": ["verified", "pending", "deprecated", "unresolved"],
+  "organizations": [
+    {"id":"stegverse:org:stegverse-labs","name":"StegVerse-Labs","record_status":"verified","provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:org:stegverse-org","name":"StegVerse-org","record_status":"verified","provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:org:stegverse-002","name":"StegVerse-002","record_status":"verified","provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:org:data-continuation","name":"Data-Continuation","record_status":"verified","provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:org:master-records","name":"master-records","record_status":"verified","provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:org:gcat-bcat-engine","name":"GCAT-BCAT-Engine","record_status":"verified","provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"}
+  ],
+  "components": [
+    {"id":"stegverse:component:admissibility-wiki","repository":"StegVerse-Labs/admissibility-wiki","organization_ref":"stegverse:org:stegverse-labs","class":"public_review_and_reconstruction_surface","record_status":"verified","operational_status":"pending","authority_inferred":false,"provenance_refs":["docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md","docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:component:site","repository":"StegVerse-Labs/Site","organization_ref":"stegverse:org:stegverse-labs","class":"public_entry_and_projection_surface","record_status":"verified","operational_status":"pending","authority_inferred":false,"provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:component:llm-adapter","repository":"StegVerse-org/LLM-adapter","organization_ref":"stegverse:org:stegverse-org","class":"runtime_and_provider_boundary","record_status":"verified","operational_status":"pending","authority_inferred":false,"provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:component:stegverse-sdk","repository":"StegVerse-org/StegVerse-SDK","organization_ref":"stegverse:org:stegverse-org","class":"packet_validation_and_intake_routing","record_status":"verified","operational_status":"pending","authority_inferred":false,"provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:component:core-node-runtime-demo","repository":"StegVerse-org/core-node-runtime-demo","organization_ref":"stegverse:org:stegverse-org","class":"runtime_producer_demonstration","record_status":"verified","operational_status":"pending","authority_inferred":false,"provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:component:micro-node-runtime","repository":"StegVerse-002/micro-node-runtime","organization_ref":"stegverse:org:stegverse-002","class":"portable_transition_request_demonstration","record_status":"verified","operational_status":"pending","authority_inferred":false,"provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:component:formalism-tests","repository":"Data-Continuation/formalism-tests","organization_ref":"stegverse:org:data-continuation","class":"formalism_and_proof_surface","record_status":"verified","operational_status":"pending","authority_inferred":false,"provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:component:master-records-orchestration","repository":"master-records/orchestration","organization_ref":"stegverse:org:master-records","class":"custody_and_reconstruction_surface","record_status":"verified","operational_status":"pending","authority_inferred":false,"provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:component:publisher","repository":"GCAT-BCAT-Engine/Publisher","organization_ref":"stegverse:org:gcat-bcat-engine","class":"publication_and_release_projection","record_status":"verified","operational_status":"pending","authority_inferred":false,"provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:component:stegguardian-wiki","repository":"StegVerse-002/stegguardian-wiki","organization_ref":"stegverse:org:stegverse-002","class":"public_guardian_governance_surface","record_status":"verified","operational_status":"pending","authority_inferred":false,"provenance_refs":["docs/governance/governed-ecosystem-index.md","static/status/governed-ecosystem-index-status.json"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:component:repo-standards","repository":"StegVerse-Labs/repo-standards","organization_ref":"stegverse:org:stegverse-labs","class":"repository_standards_surface","record_status":"verified","operational_status":"pending","authority_inferred":false,"provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"}
+  ],
+  "unresolved": [
+    {"id":"stegverse:component:rtg-stcm-surfaces","record_status":"unresolved","reason":"The source record names RTG/STCM surfaces without one canonical repository coordinate.","provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"},
+    {"id":"stegverse:component:external-executor","record_status":"unresolved","reason":"The source record identifies an external executor coordinate without a canonical StegVerse repository binding.","provenance_refs":["docs/governance/governed-ecosystem-index.md"],"last_verified":"2026-07-30T18:26:00Z"}
+  ],
+  "deprecated": [],
+  "conformance": {
+    "claimed_classes": [],
+    "semantic_evaluation": "NOT_RUN",
+    "inventory_completeness": "PARTIAL"
+  },
+  "explicit_non_claims": [
+    "A verified inventory record means the coordinate is named by the cited repository source, not that the component is deployed or operational.",
+    "This inventory does not grant authority, standing, custody, certification, release, publication, or execution rights.",
+    "This inventory is incomplete and does not yet enumerate every StegVerse organization, repository, protocol, product, dependency, or historical predecessor."
+  ]
+}
