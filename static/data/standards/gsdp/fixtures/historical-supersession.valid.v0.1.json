@@ -1,0 +1,23 @@
+{
+  "fixture_id": "gsdp:fixture:historical-supersession:valid:0.1",
+  "expected_result": "PASS",
+  "previous": {
+    "declaration_id": "https://example.org/.well-known/governed-system.json#v1",
+    "effective_from": "2026-01-01T00:00:00Z",
+    "effective_until": "2026-06-01T00:00:00Z",
+    "declaration_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "successor": {
+    "declaration_id": "https://example.org/.well-known/governed-system.json#v2",
+    "effective_from": "2026-06-01T00:00:00Z",
+    "effective_until": null,
+    "supersedes": "https://example.org/.well-known/governed-system.json#v1",
+    "previous_declaration": "https://example.org/.well-known/governed-system.json#v1"
+  },
+  "requirements": [
+    "previous declaration remains addressable",
+    "successor explicitly identifies the superseded declaration",
+    "effective intervals do not silently overlap",
+    "supersession does not rewrite the previous declaration"
+  ]
+}
