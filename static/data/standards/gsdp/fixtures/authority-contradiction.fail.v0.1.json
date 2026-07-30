@@ -1,0 +1,12 @@
+{
+  "schema": "gsdp.semantic-fixture.v0.1",
+  "fixture_id": "authority-contradiction-fail",
+  "condition": {
+    "component_id": "example:component",
+    "authority": ["runtime_execution_authority"],
+    "explicit_non_authority": ["runtime_execution_authority"]
+  },
+  "expected_result": "FAIL",
+  "expected_reason": "A declaration cannot simultaneously grant and deny the same authority.",
+  "authority_effect": "NONE"
+}
