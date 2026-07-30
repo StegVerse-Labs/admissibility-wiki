@@ -20,13 +20,14 @@ StegVerse is the first bounded reference implementation, not proof that the stan
 
 ```text
 Goal id: gsdp-public-governed-system-description-standard
-State: INITIAL_NORMATIVE_DRAFT_AND_REFERENCE_FIXTURE_IN_PROGRESS
+State: LOCAL_REFERENCE_VALIDATOR_AND_BOUNDARY_FIXTURES_INSTALLED_CANONICAL_BINDING_PENDING
 Authority posture: public draft standard and self-description only
 Certification authority: false
 External adoption: not established
 Independent conformance: not run
 Registry authority: not established
 Execution authority: false
+Canonical workflow observation: not observed
 ```
 
 ## Constitutional rules
@@ -46,7 +47,7 @@ discoverability != interoperability
 interoperability != execution authority
 ```
 
-## Required initial artifacts
+## Installed initial artifacts
 
 ```text
 docs/standards/governed-system-description-protocol.md
@@ -54,7 +55,32 @@ static/schemas/gsdp/governed-system-description.schema.json
 static/data/standards/gsdp/examples/stegverse.pending.v0.1.json
 scripts/check_gsdp_reference.py
 static/status/gsdp-reference-status.json
+static/data/standards/gsdp/fixtures/authority-non-inheritance.invalid.v0.1.json
+static/data/standards/gsdp/fixtures/historical-supersession.valid.v0.1.json
+static/data/standards/gsdp/fixtures/schema-minimum.invalid.v0.1.json
 ```
+
+## Validator coverage
+
+```text
+required declaration-layer presence
+GSDP draft-version binding
+unique operator and component identifiers
+operator-to-component reference resolution
+component-to-operator reference resolution
+component-to-dependency reference resolution
+positive-authority / explicit-non-authority contradiction rejection
+prohibited authority assertion rejection
+pending-reference conformance non-claim preservation
+canonical optional declaration-hash syntax
+explicit independent/certification/execution/external-adoption non-claims
+authority non-inheritance negative fixture
+historical supersession continuity fixture
+minimum declaration rejection fixture
+bounded status-receipt validation
+```
+
+The validator proves only deterministic local structure and boundary behavior. It does not establish external adoption, independent conformance, certification, operational readiness, or execution authority.
 
 ## Minimum declaration layers
 
@@ -97,14 +123,12 @@ Publication to `StegVerse-Labs/Site` requires the current `docs/SITE_MIRROR_HAND
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-- normative draft
-- JSON Schema
-- StegVerse pending reference declaration
-- deterministic validator
-- conformance status receipt
-- negative fixtures
-- historical supersession fixture
-- authority non-inheritance fixture
+- bind scripts/check_gsdp_reference.py into canonical repository validation
+- observe canonical workflow execution
+- retain first PASS or first-failure evidence without rewriting history
+- expand the StegVerse reference declaration only from verified component records
+- add complete conformance-class semantic checks
+- add external declaration examples after accountable source receipt
 
 StegVerse-Labs/Site:
 - public .well-known route after Site handoff admission
@@ -120,7 +144,7 @@ StegVerse-002/stegguardian-wiki:
 
 ## Completion boundary
 
-The initial activation goal is complete only when the normative draft, schema, reference declaration, validator, status receipt, negative fixtures, and canonical validation binding are installed and observed without converting self-validation into external conformance.
+The initial activation goal is complete only when the normative draft, schema, reference declaration, validator, status receipt, negative fixtures, canonical validation binding, and observed canonical execution are installed without converting self-validation into external conformance.
 
 ## Archive posture
 
