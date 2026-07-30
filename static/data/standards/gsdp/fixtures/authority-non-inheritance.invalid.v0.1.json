@@ -1,0 +1,13 @@
+{
+  "fixture_id": "gsdp:fixture:authority-non-inheritance:invalid:0.1",
+  "expected_result": "REJECT",
+  "reason": "A component capability or operator relationship cannot be converted into execution or certification authority without an explicit current delegation and standing basis.",
+  "source_component": {
+    "id": "stegverse:component:site",
+    "capabilities": ["serve_public_pages"],
+    "authority": ["runtime_execution_authority"]
+  },
+  "delegation": null,
+  "standing_evidence": [],
+  "prohibited_inference": "serve_public_pages => runtime_execution_authority"
+}
