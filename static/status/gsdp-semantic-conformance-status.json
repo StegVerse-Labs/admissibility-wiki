@@ -1,8 +1,16 @@
 {
   "schema": "gsdp.semantic-conformance-status.v0.1",
   "standard_id": "GSDP",
-  "state": "SEMANTIC_PREDICATES_INSTALLED_EVALUATION_BOUND",
+  "state": "SEMANTIC_EVALUATION_OBSERVED_ALL_CLASSES_DEFER",
   "inventory_state": "PROVENANCE_BOUND_PARTIAL_INVENTORY",
+  "canonical_observation": {
+    "workflow_run_id": 30571514199,
+    "workflow_run_number": 3648,
+    "workflow_conclusion": "failure",
+    "gsdp_semantic_validator": "PASS",
+    "aggregate_failure_owned_by_gsdp": false,
+    "receipt": "static/data/standards/gsdp/observations/semantic-conformance-observation.30571514199.v0.1.json"
+  },
   "evaluation_result": {
     "GSDP-DISCOVERABLE": "DEFER",
     "GSDP-GOVERNED": "DEFER",
