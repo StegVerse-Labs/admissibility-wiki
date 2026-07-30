@@ -2,18 +2,27 @@
   "standard_id": "GSDP",
   "name": "Governed System Description Protocol",
   "draft_version": "0.1-draft",
-  "state": "LOCAL_REFERENCE_VALIDATION_INSTALLED_WORKFLOW_OBSERVATION_PENDING",
-  "updated_at": "2026-07-30T17:36:00Z",
+  "state": "CANONICAL_VALIDATION_BOUND_WORKFLOW_OBSERVATION_PENDING",
+  "updated_at": "2026-07-30T17:57:00Z",
   "artifacts": {
     "normative_draft": "docs/standards/governed-system-description-protocol.md",
     "schema": "static/schemas/gsdp/governed-system-description.schema.json",
     "reference_declaration": "static/data/standards/gsdp/examples/stegverse.pending.v0.1.json",
     "validator": "scripts/check_gsdp_reference.py",
+    "canonical_aggregate": "scripts/check_admissibility_automation_handoff.py",
     "authority_non_inheritance_fixture": "static/data/standards/gsdp/fixtures/authority-non-inheritance.invalid.v0.1.json",
     "historical_supersession_fixture": "static/data/standards/gsdp/fixtures/historical-supersession.valid.v0.1.json",
     "minimum_negative_fixture": "static/data/standards/gsdp/fixtures/schema-minimum.invalid.v0.1.json"
   },
-  "local_validation": "INSTALLED_NOT_YET_OBSERVED_IN_CANONICAL_WORKFLOW",
+  "local_validation": "BOUND_INTO_CANONICAL_AGGREGATE_EXECUTION_NOT_YET_OBSERVED",
+  "canonical_binding": {
+    "bound": true,
+    "entrypoint": "npm run validate",
+    "aggregate_validator": "scripts/check_admissibility_automation_handoff.py",
+    "binding_commit": "7db29a1e154f7b6e5f318a3d79bd968996a5d28e",
+    "workflow": ".github/workflows/validate-chain-continuation.yml",
+    "workflow_observation": "NOT_OBSERVED"
+  },
   "schema_validation_effect": "STRUCTURAL_ONLY_NO_EXTERNAL_CONFORMANCE",
   "claimed_conformance_classes": [],
   "independent_conformance": "NOT_RUN",
@@ -24,5 +33,5 @@
   "site_publication": "PENDING_SITE_HANDOFF_AND_ORCHESTRATION_ADMISSION",
   "publisher_package": "NOT_CREATED",
   "guardian_projection": "NOT_CREATED",
-  "next_gate": "BIND_VALIDATOR_INTO_CANONICAL_REPOSITORY_VALIDATION_AND_OBSERVE_EXECUTION"
+  "next_gate": "OBSERVE_CANONICAL_WORKFLOW_EXECUTION_AND_RETAIN_FIRST_PASS_OR_FIRST_FAILURE_EVIDENCE"
 }
