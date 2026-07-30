@@ -20,13 +20,14 @@ StegVerse is the first bounded reference implementation, not proof that the stan
 
 ```text
 Goal id: gsdp-public-governed-system-description-standard
-State: LOCAL_REFERENCE_VALIDATOR_AND_BOUNDARY_FIXTURES_INSTALLED_CANONICAL_BINDING_PENDING
+State: CANONICAL_VALIDATION_BOUND_WORKFLOW_OBSERVATION_PENDING
 Authority posture: public draft standard and self-description only
 Certification authority: false
 External adoption: not established
 Independent conformance: not run
 Registry authority: not established
 Execution authority: false
+Canonical validation binding: installed
 Canonical workflow observation: not observed
 ```
 
@@ -58,7 +59,22 @@ static/status/gsdp-reference-status.json
 static/data/standards/gsdp/fixtures/authority-non-inheritance.invalid.v0.1.json
 static/data/standards/gsdp/fixtures/historical-supersession.valid.v0.1.json
 static/data/standards/gsdp/fixtures/schema-minimum.invalid.v0.1.json
+scripts/check_admissibility_automation_handoff.py
 ```
+
+## Canonical binding
+
+```text
+Validator: scripts/check_gsdp_reference.py
+Canonical aggregate: scripts/check_admissibility_automation_handoff.py
+Repository entrypoint: npm run validate
+Canonical workflow: .github/workflows/validate-chain-continuation.yml
+Binding commit: 7db29a1e154f7b6e5f318a3d79bd968996a5d28e
+Binding state: INSTALLED
+Observed execution state: NOT_OBSERVED
+```
+
+The GSDP validator is now executed by the admissibility automation aggregate already called by `npm run validate`. This establishes repository-level canonical binding. It does not establish that the workflow has run successfully, that the reference declaration conforms externally, or that any conformance class may be claimed.
 
 ## Validator coverage
 
@@ -123,9 +139,9 @@ Publication to `StegVerse-Labs/Site` requires the current `docs/SITE_MIRROR_HAND
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-- bind scripts/check_gsdp_reference.py into canonical repository validation
 - observe canonical workflow execution
 - retain first PASS or first-failure evidence without rewriting history
+- update the GSDP status receipt only from canonical workflow evidence
 - expand the StegVerse reference declaration only from verified component records
 - add complete conformance-class semantic checks
 - add external declaration examples after accountable source receipt
