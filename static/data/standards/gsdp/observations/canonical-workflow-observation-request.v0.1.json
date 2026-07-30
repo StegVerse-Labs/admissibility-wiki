@@ -1,0 +1,19 @@
+{
+  "standard_id": "GSDP",
+  "draft_version": "0.1-draft",
+  "request_id": "gsdp-canonical-workflow-observation-2026-07-30",
+  "requested_at": "2026-07-30T18:00:00Z",
+  "purpose": "Trigger and preserve the first observable canonical pull-request validation run after GSDP was bound into the repository aggregate.",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "gsdp/canonical-observation",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "canonical_entry_point": "npm run validate",
+  "aggregate_validator": "scripts/check_admissibility_automation_handoff.py",
+  "gsdp_validator": "scripts/check_gsdp_reference.py",
+  "expected_result": "PASS_OR_RETAINED_FIRST_FAILURE",
+  "authority_effect": "NONE",
+  "certification_authority": false,
+  "execution_authority": false,
+  "external_conformance": "NOT_ESTABLISHED",
+  "observation_result": "PENDING"
+}
