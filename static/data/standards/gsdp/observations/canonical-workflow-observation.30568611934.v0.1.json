@@ -1,0 +1,45 @@
+{
+  "schema": "gsdp.canonical-workflow-observation.v0.1",
+  "standard_id": "GSDP",
+  "draft_version": "0.1-draft",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "pull_request": 46,
+  "workflow": "Validate chain continuation",
+  "workflow_run_id": 30568611934,
+  "workflow_run_number": 3630,
+  "workflow_run_attempt": 1,
+  "event_name": "pull_request",
+  "head_branch": "gsdp/canonical-observation",
+  "head_commit": "2066e9888e0e8217be58946e673effcd3646dc99",
+  "merge_commit_observed": "ee053f4ca58f6a766552d906470093c13b0f2dd2",
+  "observed_at": "2026-07-30T18:03:43.345240Z",
+  "workflow_status": "completed",
+  "workflow_conclusion": "failure",
+  "canonical_prescan": {
+    "status": "PASS",
+    "passed_commands": 11,
+    "total_commands": 11
+  },
+  "full_validation": {
+    "status": "FAIL",
+    "passed_checks": 49,
+    "failed_checks": 6,
+    "skipped_checks": 1
+  },
+  "gsdp_result": {
+    "status": "FAIL",
+    "cause": "validator expected the superseded pre-binding status value",
+    "message": "status state must equal 'LOCAL_REFERENCE_VALIDATION_INSTALLED_WORKFLOW_OBSERVATION_PENDING'",
+    "classification": "GSDP_STATUS_CONTRACT_DRIFT",
+    "repair_required": true
+  },
+  "aggregate_failures_unrelated_to_gsdp": true,
+  "observation_state": "FAIL_CLOSED_OBSERVED",
+  "authority_effect": "NONE",
+  "non_claims": [
+    "This receipt preserves the first canonical GSDP workflow observation without rewriting the failure.",
+    "The failed run grants no merge, release, publication, certification, registry, conformance, deployment, or execution authority.",
+    "Unrelated aggregate failures are not represented as GSDP defects.",
+    "A repaired successor run must be recorded separately and must not replace this receipt."
+  ]
+}
