@@ -1,0 +1,83 @@
+{
+  "schema": "gsdp.semantic-conformance-predicates.v0.1",
+  "standard_id": "GSDP",
+  "version": "0.1-draft",
+  "evaluation_model": "ADDITIVE_FAIL_CLOSED",
+  "decision_states": ["PASS", "FAIL", "DEFER"],
+  "rules": [
+    "A higher class requires every predicate of every lower class.",
+    "Schema validity, source-record presence, or self-declaration alone cannot satisfy a class.",
+    "An unresolved required predicate produces DEFER unless contradictory evidence requires FAIL.",
+    "A class may be claimed only when every additive predicate is PASS and accountable evidence references are present."
+  ],
+  "classes": [
+    {
+      "id": "GSDP-DISCOVERABLE",
+      "requires": [],
+      "predicates": [
+        "canonical_discovery_uri_declared",
+        "public_discovery_route_observed",
+        "machine_readable_declaration_retrievable",
+        "declaration_version_and_effective_time_present",
+        "historical_predecessor_or_explicit_genesis_present"
+      ]
+    },
+    {
+      "id": "GSDP-GOVERNED",
+      "requires": ["GSDP-DISCOVERABLE"],
+      "predicates": [
+        "operators_and_components_enumerated",
+        "authority_and_explicit_non_authority_declared",
+        "standing_and_consent_requirements_declared",
+        "allow_deny_defer_or_equivalent_decision_states_declared",
+        "revocation_and_rollback_sources_declared",
+        "unresolved_and_stale_records_governed"
+      ]
+    },
+    {
+      "id": "GSDP-EVIDENCED",
+      "requires": ["GSDP-GOVERNED"],
+      "predicates": [
+        "claims_bind_accountable_evidence",
+        "validation_receipts_retained",
+        "failure_history_not_silently_rewritten",
+        "custody_and_retention_boundaries_declared",
+        "evidence_cutoff_present"
+      ]
+    },
+    {
+      "id": "GSDP-RECONSTRUCTABLE",
+      "requires": ["GSDP-EVIDENCED"],
+      "predicates": [
+        "reconstruction_procedure_declared",
+        "historical_state_at_time_t_recoverable",
+        "independent_reconstruction_inputs_available",
+        "divergent_findings_preservable",
+        "correction_and_dispute_route_declared"
+      ]
+    },
+    {
+      "id": "GSDP-INTEROPERABLE",
+      "requires": ["GSDP-RECONSTRUCTABLE"],
+      "predicates": [
+        "external_component_or_framework_binding_exists",
+        "shared_semantics_are_machine_readable",
+        "cross_system_authority_non_inheritance_enforced",
+        "source_and_result_hashes_or_equivalent_bindings_present",
+        "reciprocal_disposition_or_error_handling_defined"
+      ]
+    },
+    {
+      "id": "GSDP-CERTIFIABLE",
+      "requires": ["GSDP-INTEROPERABLE"],
+      "predicates": [
+        "independent_assessor_standing_model_declared",
+        "complete_test_and_evidence_profile_available",
+        "scope_limited_certification_result_representable",
+        "expiration_revocation_and_supersession_supported",
+        "certification_does_not_grant_execution_authority"
+      ]
+    }
+  ],
+  "authority_effect": "NONE"
+}
