@@ -1,0 +1,75 @@
+{
+  "record_version": "1.0.0",
+  "record_type": "bounded_external_framework_intake",
+  "record_id": "oda3-gaissf-commit-time-interoperability",
+  "review_owner": "StegVerse-Labs/admissibility-wiki",
+  "framework": {
+    "name": "Global AI Safety and Security Framework",
+    "abbreviation": "GAISSF",
+    "publisher": "ODA3 Institute",
+    "canonical_control_version": null,
+    "canonical_control_mapping_state": "PENDING"
+  },
+  "source_boundary": {
+    "public_locators": [
+      {
+        "url": "https://oda3.org/institute/faculty/index.html",
+        "source_role": "published contributor-pathway and methodology context",
+        "control_authority": false
+      }
+    ],
+    "private_correspondence": {
+      "present": true,
+      "use": "scope-of-outreach-only",
+      "canonical_framework_semantics": false,
+      "institutional_commitment": false
+    }
+  },
+  "comparison_path": [
+    "proposed_action",
+    "actor_identity",
+    "current_standing",
+    "authority_and_delegation",
+    "consent_conditions",
+    "policy_applicability",
+    "commit_time_admissibility_decision",
+    "execution_evidence",
+    "post_event_reconstruction"
+  ],
+  "stage_dispositions": [
+    {"stage": "proposed_action", "disposition": "DEFER", "gaissf_control_refs": []},
+    {"stage": "actor_identity", "disposition": "DEFER", "gaissf_control_refs": []},
+    {"stage": "current_standing", "disposition": "DEFER", "gaissf_control_refs": []},
+    {"stage": "authority_and_delegation", "disposition": "DEFER", "gaissf_control_refs": []},
+    {"stage": "consent_conditions", "disposition": "DEFER", "gaissf_control_refs": []},
+    {"stage": "policy_applicability", "disposition": "DEFER", "gaissf_control_refs": []},
+    {"stage": "commit_time_admissibility_decision", "disposition": "DEFER", "gaissf_control_refs": []},
+    {"stage": "execution_evidence", "disposition": "DEFER", "gaissf_control_refs": []},
+    {"stage": "post_event_reconstruction", "disposition": "DEFER", "gaissf_control_refs": []}
+  ],
+  "required_outcomes": ["AGREE", "DISAGREE", "DEFER"],
+  "claims": {
+    "alignment_observed": true,
+    "interoperability_proven": false,
+    "adoption": false,
+    "endorsement": false,
+    "certification": false,
+    "faculty_appointment": false,
+    "formal_partnership": false,
+    "production_validation": false,
+    "execution_authority": false,
+    "authority_inheritance": false
+  },
+  "next_gate": {
+    "name": "canonical_gaissf_control_crosswalk",
+    "state": "NOT_STARTED",
+    "requirements": [
+      "freeze exact GAISSF source locators",
+      "record canonical GAISSF version or edition",
+      "map exact control identifiers to each comparison stage",
+      "identify unsupported inferred semantics",
+      "validate prohibited claims",
+      "run one synthetic dual-representation transition"
+    ]
+  }
+}
