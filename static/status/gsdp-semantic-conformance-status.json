@@ -1,0 +1,25 @@
+{
+  "schema": "gsdp.semantic-conformance-status.v0.1",
+  "standard_id": "GSDP",
+  "state": "SEMANTIC_PREDICATES_INSTALLED_EVALUATION_BOUND",
+  "inventory_state": "PROVENANCE_BOUND_PARTIAL_INVENTORY",
+  "evaluation_result": {
+    "GSDP-DISCOVERABLE": "DEFER",
+    "GSDP-GOVERNED": "DEFER",
+    "GSDP-EVIDENCED": "DEFER",
+    "GSDP-RECONSTRUCTABLE": "DEFER",
+    "GSDP-INTEROPERABLE": "DEFER",
+    "GSDP-CERTIFIABLE": "DEFER"
+  },
+  "claimed_conformance_classes": [],
+  "blocking_conditions": [
+    "public discovery route not observed",
+    "ecosystem inventory remains partial",
+    "unresolved component coordinates remain",
+    "independent assessment not run",
+    "external implementation evidence not established"
+  ],
+  "certification_authority": false,
+  "execution_authority": false,
+  "authority_effect": "NONE"
+}
