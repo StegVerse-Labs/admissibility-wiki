@@ -20,17 +20,16 @@ StegVerse is the first bounded reference implementation, not proof that the stan
 
 ```text
 Goal id: gsdp-public-governed-system-description-standard
-State: INITIAL_REFERENCE_ACTIVATION_COMPLETE
+Initial reference activation: COMPLETE
+Current phase: VERIFIED_ECOSYSTEM_INVENTORY_AND_SEMANTIC_CONFORMANCE
+Current phase state: PARTIAL_PROVENANCE_BOUND_INVENTORY_INSTALLED_CANONICAL_OBSERVATION_PENDING
 Authority posture: public draft standard and self-description only
 Certification authority: false
 External adoption: not established
 Independent conformance: not run
 Registry authority: not established
 Execution authority: false
-Canonical validation binding: installed
-First canonical observation: FAIL_CLOSED_OBSERVED
-Repair canonical observation: PASS_OBSERVED
-Aggregate workflow result for repair run: FAIL from unrelated repository checks
+Claimed conformance classes: none
 ```
 
 ## Constitutional rules
@@ -51,25 +50,11 @@ interoperability != execution authority
 failed observation != erased history
 repaired validation != retroactive PASS
 component inventory entry != verified component truth
+source-record presence != operational deployment
+inventory completeness != conformance
 ```
 
-## Installed initial activation artifacts
-
-```text
-docs/standards/governed-system-description-protocol.md
-static/schemas/gsdp/governed-system-description.schema.json
-static/data/standards/gsdp/examples/stegverse.pending.v0.1.json
-scripts/check_gsdp_reference.py
-static/status/gsdp-reference-status.json
-static/data/standards/gsdp/fixtures/authority-non-inheritance.invalid.v0.1.json
-static/data/standards/gsdp/fixtures/historical-supersession.valid.v0.1.json
-static/data/standards/gsdp/fixtures/schema-minimum.invalid.v0.1.json
-scripts/check_admissibility_automation_handoff.py
-static/data/standards/gsdp/observations/canonical-workflow-observation.30568611934.v0.1.json
-static/data/standards/gsdp/observations/canonical-workflow-observation.30569337389.v0.1.json
-```
-
-## Canonical observations
+## Initial activation evidence
 
 ```text
 Run 30568611934 / workflow run 3630
@@ -86,30 +71,63 @@ Run 30569337389 / workflow run 3634
 - history: retained separately from first failure
 ```
 
-The repaired validator executed successfully inside the canonical workflow. The repository-wide workflow still failed because other governed checks remained fail-closed. GSDP activation therefore closes only at the bounded standard-reference layer; no repository-wide PASS, release, deployment, certification, conformance, registry, publication, or execution authority is inferred.
+The repaired reference validator executed successfully inside the canonical workflow. Initial GSDP reference activation is complete only at the bounded standard-reference layer. No repository-wide PASS, release, deployment, certification, conformance, registry, publication, or execution authority is inferred.
 
-## Validator coverage
+## Installed initial reference artifacts
 
 ```text
-required declaration-layer presence
-GSDP draft-version binding
-unique operator and component identifiers
-operator-to-component reference resolution
-component-to-operator reference resolution
-component-to-dependency reference resolution
-positive-authority / explicit-non-authority contradiction rejection
-prohibited authority assertion rejection
-pending-reference conformance non-claim preservation
-canonical optional declaration-hash syntax
-explicit independent/certification/execution/external-adoption non-claims
-authority non-inheritance negative fixture
-historical supersession continuity fixture
-minimum declaration rejection fixture
-bounded lifecycle-status validation
-first canonical failure preservation
+docs/standards/governed-system-description-protocol.md
+static/schemas/gsdp/governed-system-description.schema.json
+static/data/standards/gsdp/examples/stegverse.pending.v0.1.json
+scripts/check_gsdp_reference.py
+static/status/gsdp-reference-status.json
+static/data/standards/gsdp/fixtures/authority-non-inheritance.invalid.v0.1.json
+static/data/standards/gsdp/fixtures/historical-supersession.valid.v0.1.json
+static/data/standards/gsdp/fixtures/schema-minimum.invalid.v0.1.json
+static/data/standards/gsdp/observations/canonical-workflow-observation.30568611934.v0.1.json
+static/data/standards/gsdp/observations/canonical-workflow-observation.30569337389.v0.1.json
 ```
 
-The validator proves only deterministic local structure and boundary behavior. It does not establish external adoption, independent conformance, certification, operational readiness, or execution authority.
+## Installed inventory-phase artifacts
+
+```text
+static/data/standards/gsdp/inventory/stegverse-ecosystem.inventory.pending.v0.1.json
+scripts/check_gsdp_inventory.py
+static/status/gsdp-inventory-status.json
+scripts/check_admissibility_automation_handoff.py
+```
+
+The inventory seed is derived only from the current governed ecosystem index and its status record. It contains:
+
+```text
+organizations recorded: 6
+source-bound components recorded: 11
+unresolved coordinates recorded: 2
+deprecated components recorded: 0
+inventory completeness: PARTIAL
+semantic conformance evaluation: NOT_RUN
+claimed conformance classes: none
+```
+
+A component marked `record_status=verified` means that the coordinate is explicitly named by the cited repository source. It does not mean the component is deployed, operational, admissible, independently verified, certified, or authorized to execute.
+
+## Inventory validation coverage
+
+```text
+source index and status presence
+bounded inventory lifecycle state
+allowed verified/pending/deprecated/unresolved vocabulary
+unique organization and component identifiers
+organization-reference resolution
+mandatory provenance and last-verified fields
+explicit authority-inference prohibition
+partial-inventory preservation
+zero conformance-class claims
+semantic evaluation NOT_RUN preservation
+bounded inventory status receipt
+```
+
+The inventory validator is bound into `scripts/check_admissibility_automation_handoff.py`, which is already called by the canonical repository validation chain.
 
 ## Public discovery target
 
@@ -117,25 +135,22 @@ The validator proves only deterministic local structure and boundary behavior. I
 /.well-known/governed-system.json
 ```
 
-Publication to `StegVerse-Labs/Site` requires the current `docs/SITE_MIRROR_HANDOFF.md` authority and orchestration sequence. This repository may define the standard and fixtures, but it does not independently activate the Site route.
+Publication to `StegVerse-Labs/Site` requires the current `docs/SITE_MIRROR_HANDOFF.md` authority and orchestration sequence. This repository may define the standard, inventory, fixtures, and conformance logic, but it does not independently activate the Site route.
 
-## Next goal
-
-```text
-Goal: construct the verified StegVerse ecosystem component inventory and implement semantic conformance-class evaluation.
-```
-
-Required next work:
+## Current phase remaining work
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-- enumerate StegVerse organizations and components only from verified repository records
-- classify every component as verified, pending, deprecated, or unresolved
-- add provenance and last-verified fields for every inventory entry
-- implement additive GSDP-DISCOVERABLE through GSDP-CERTIFIABLE semantic checks
-- retain zero claimed conformance classes until every class predicate is satisfied
+- observe the inventory validator in the canonical workflow
+- retain the first inventory PASS or first failure without rewriting history
+- expand inventory only from verified repository records
+- resolve RTG/STCM canonical repository coordinates
+- resolve the external-executor coordinate or preserve it unresolved
+- identify deprecated and superseded components from accountable records
+- implement additive GSDP-DISCOVERABLE through GSDP-CERTIFIABLE predicates
+- retain zero claimed conformance classes until each predicate is satisfied
 - add contradiction, stale-record, unresolved-reference, and authority-inheritance fixtures
-- add external declaration examples only after accountable source receipt
+- add external declarations only after accountable source receipt
 
 StegVerse-Labs/Site:
 - public .well-known route after Site handoff admission
@@ -151,7 +166,9 @@ StegVerse-002/stegguardian-wiki:
 
 ## Completion boundary
 
-Initial GSDP reference activation is complete. The broader GSDP standard is not complete until verified ecosystem enumeration, semantic conformance evaluation, public discovery publication, independent assessment support, correction governance, versioned publication, and external implementation evidence exist.
+The inventory and semantic-conformance phase is complete only when the ecosystem inventory is provenance-bound, stale and unresolved records are governed, additive conformance predicates are implemented, canonical execution is observed, and any claimed class is supported by its complete predicate set. Schema validity or inventory presence alone can never establish conformance.
+
+The broader GSDP standard is not complete until public discovery publication, independent assessment support, correction governance, versioned publication, and external implementation evidence exist.
 
 ## Archive posture
 
