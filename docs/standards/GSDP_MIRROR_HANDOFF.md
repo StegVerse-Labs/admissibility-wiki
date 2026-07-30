@@ -20,7 +20,7 @@ StegVerse is the first bounded reference implementation, not proof that the stan
 
 ```text
 Goal id: gsdp-public-governed-system-description-standard
-State: FIRST_CANONICAL_FAILURE_RETAINED_REPAIR_VALIDATION_PENDING
+State: INITIAL_REFERENCE_ACTIVATION_COMPLETE
 Authority posture: public draft standard and self-description only
 Certification authority: false
 External adoption: not established
@@ -28,9 +28,9 @@ Independent conformance: not run
 Registry authority: not established
 Execution authority: false
 Canonical validation binding: installed
-Canonical workflow observation: FAIL_CLOSED_OBSERVED
-First observed run: 30568611934 / run 3630
-First GSDP result: FAIL — GSDP_STATUS_CONTRACT_DRIFT
+First canonical observation: FAIL_CLOSED_OBSERVED
+Repair canonical observation: PASS_OBSERVED
+Aggregate workflow result for repair run: FAIL from unrelated repository checks
 ```
 
 ## Constitutional rules
@@ -50,9 +50,10 @@ discoverability != interoperability
 interoperability != execution authority
 failed observation != erased history
 repaired validation != retroactive PASS
+component inventory entry != verified component truth
 ```
 
-## Installed initial artifacts
+## Installed initial activation artifacts
 
 ```text
 docs/standards/governed-system-description-protocol.md
@@ -65,30 +66,27 @@ static/data/standards/gsdp/fixtures/historical-supersession.valid.v0.1.json
 static/data/standards/gsdp/fixtures/schema-minimum.invalid.v0.1.json
 scripts/check_admissibility_automation_handoff.py
 static/data/standards/gsdp/observations/canonical-workflow-observation.30568611934.v0.1.json
+static/data/standards/gsdp/observations/canonical-workflow-observation.30569337389.v0.1.json
 ```
 
-## Canonical binding and first observation
+## Canonical observations
 
 ```text
-Validator: scripts/check_gsdp_reference.py
-Canonical aggregate: scripts/check_admissibility_automation_handoff.py
-Repository entrypoint: npm run validate
-Canonical workflow: .github/workflows/validate-chain-continuation.yml
-Binding commit: 7db29a1e154f7b6e5f318a3d79bd968996a5d28e
-Binding state: INSTALLED
-First observed workflow run: 30568611934
-First observed workflow conclusion: failure
-Canonical pre-scan: PASS (11/11)
-Full validation chain: FAIL (49 passed, 6 failed, 1 skipped)
-GSDP-specific failure: validator expected a superseded pre-binding status value
-Failure classification: GSDP_STATUS_CONTRACT_DRIFT
-Failure history: RETAINED, NOT REWRITTEN
-Authority effect: NONE
+Run 30568611934 / workflow run 3630
+- workflow conclusion: failure
+- GSDP result: FAIL
+- classification: GSDP_STATUS_CONTRACT_DRIFT
+- history: retained, not rewritten
+
+Run 30569337389 / workflow run 3634
+- workflow conclusion: failure
+- GSDP result: PASS
+- repair verified: true
+- aggregate failure owned by GSDP: false
+- history: retained separately from first failure
 ```
 
-The first canonical run is preserved as fail-closed evidence. The GSDP defect was a status-contract mismatch introduced when the status receipt advanced after canonical binding while the validator retained its prior literal state requirement. The repair allows explicitly governed lifecycle states and binds the first observation receipt. A successor run may demonstrate the repair, but it must not replace or rewrite the first failure.
-
-Other aggregate failures observed in run 30568611934 remain owned by their respective goals and are not classified as GSDP defects.
+The repaired validator executed successfully inside the canonical workflow. The repository-wide workflow still failed because other governed checks remained fail-closed. GSDP activation therefore closes only at the bounded standard-reference layer; no repository-wide PASS, release, deployment, certification, conformance, registry, publication, or execution authority is inferred.
 
 ## Validator coverage
 
@@ -107,41 +105,11 @@ explicit independent/certification/execution/external-adoption non-claims
 authority non-inheritance negative fixture
 historical supersession continuity fixture
 minimum declaration rejection fixture
-bounded status-receipt validation
-first canonical observation receipt validation
-lifecycle-state transition validation
+bounded lifecycle-status validation
+first canonical failure preservation
 ```
 
 The validator proves only deterministic local structure and boundary behavior. It does not establish external adoption, independent conformance, certification, operational readiness, or execution authority.
-
-## Minimum declaration layers
-
-```text
-identity
-composition
-operators
-capabilities
-authority and explicit non-authority
-governance and admissibility
-evidence and reconstruction
-status and maturity
-dependencies and external authorities
-historical continuity and supersession
-claims and explicit non-claims
-```
-
-## First conformance classes
-
-```text
-GSDP-DISCOVERABLE
-GSDP-GOVERNED
-GSDP-EVIDENCED
-GSDP-RECONSTRUCTABLE
-GSDP-INTEROPERABLE
-GSDP-CERTIFIABLE
-```
-
-Each higher class is additive. No class may be claimed solely from schema validation.
 
 ## Public discovery target
 
@@ -151,16 +119,23 @@ Each higher class is additive. No class may be claimed solely from schema valida
 
 Publication to `StegVerse-Labs/Site` requires the current `docs/SITE_MIRROR_HANDOFF.md` authority and orchestration sequence. This repository may define the standard and fixtures, but it does not independently activate the Site route.
 
-## Remaining work and destinations
+## Next goal
+
+```text
+Goal: construct the verified StegVerse ecosystem component inventory and implement semantic conformance-class evaluation.
+```
+
+Required next work:
 
 ```text
 StegVerse-Labs/admissibility-wiki:
-- observe the repaired GSDP validator in a successor canonical workflow run
-- retain the successor result separately from the first failure
-- close initial reference activation when GSDP validation is observed executing under the canonical workflow
-- expand the StegVerse reference declaration only from verified component records
-- add complete conformance-class semantic checks
-- add external declaration examples after accountable source receipt
+- enumerate StegVerse organizations and components only from verified repository records
+- classify every component as verified, pending, deprecated, or unresolved
+- add provenance and last-verified fields for every inventory entry
+- implement additive GSDP-DISCOVERABLE through GSDP-CERTIFIABLE semantic checks
+- retain zero claimed conformance classes until every class predicate is satisfied
+- add contradiction, stale-record, unresolved-reference, and authority-inheritance fixtures
+- add external declaration examples only after accountable source receipt
 
 StegVerse-Labs/Site:
 - public .well-known route after Site handoff admission
@@ -176,7 +151,7 @@ StegVerse-002/stegguardian-wiki:
 
 ## Completion boundary
 
-The initial activation goal is complete when the normative draft, schema, reference declaration, validator, status receipt, negative fixtures, canonical validation binding, and canonical execution observation are installed without converting self-validation into external conformance. The retained first failure satisfies the observation requirement historically; the current repair must still be observed so the active GSDP validator is shown executing rather than merely installed.
+Initial GSDP reference activation is complete. The broader GSDP standard is not complete until verified ecosystem enumeration, semantic conformance evaluation, public discovery publication, independent assessment support, correction governance, versioned publication, and external implementation evidence exist.
 
 ## Archive posture
 
