@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Validate the internal, repository-addressable TA-14 review task layer.
 
-This check does not require missing evidence to exist. It requires every task to
-have concrete work, evidence, and completion paths; forbids external/manual
-waiting states; and ensures unresolved evidence cannot halt unrelated work.
+This check accepts incomplete evidence while forbidding external/manual waiting
+states. Every task must remain observable, actionable, and nonblocking until a
+task-specific completion receipt exists.
 """
 from __future__ import annotations
 
@@ -44,17 +44,22 @@ def main() -> None:
 
     registry = load(REGISTRY)
     status = load(STATUS)
-
-    if registry.get("external_tasks_allowed") is not False:
+    policy = registry.get("execution_policy")
+    if not isinstance(policy, dict):
+        fail("execution_policy object required")
+    if policy.get("external_tasks_allowed") is not False:
         fail("external_tasks_allowed must remain false")
-    if registry.get("unresolved_evidence_halts_unrelated_work") is not False:
+    if policy.get("unresolved_evidence_halts_unrelated_work") is not False:
         fail("unresolved evidence must not halt unrelated work")
+    if policy.get("evidence_gaps_remain_actionable") is not True:
+        fail("evidence gaps must remain actionable")
 
     tasks = registry.get("tasks")
     if not isinstance(tasks, list) or not tasks:
         fail("non-empty tasks array required")
 
     task_ids: set[str] = set()
+    completion_paths: set[str] = set()
     for task in tasks:
         if not isinstance(task, dict):
             fail("each task must be an object")
@@ -70,6 +75,10 @@ def main() -> None:
                 fail(f"{task_id} missing {field}")
             if value.startswith(("http://", "https://")):
                 fail(f"{task_id} {field} must be repository-addressable, not external")
+        completion_path = task["completion_path"]
+        if completion_path in completion_paths:
+            fail(f"completion path must be task-specific: {completion_path}")
+        completion_paths.add(completion_path)
         if task.get("state") in {"WAITING_EXTERNAL", "MANUAL_REQUIRED", "BLOCKED_EXTERNAL"}:
             fail(f"{task_id} contains prohibited external/manual state")
 
@@ -84,10 +93,12 @@ def main() -> None:
     if not isinstance(rules, dict):
         fail("status rules object required")
     required_rules = {
-        "blocked_task_prevents_claim_promotion": True,
-        "blocked_task_prevents_unrelated_work": False,
+        "evidence_gap_prevents_claim_promotion": True,
+        "evidence_gap_prevents_unrelated_work": False,
         "task_without_repository_path_is_invalid": True,
         "status_is_recomputed_from_repository_state": True,
+        "completion_requires_completion_path": True,
+        "missing_evidence_remains_actionable": True,
     }
     for key, expected in required_rules.items():
         if rules.get(key) is not expected:
@@ -99,8 +110,10 @@ def main() -> None:
     observed_ids = {item.get("task_id") for item in observations if isinstance(item, dict)}
     if observed_ids != task_ids:
         fail("status observations must cover every registry task exactly")
+    if status.get("invalid_tasks") != []:
+        fail("invalid_tasks must be empty before canonical binding")
 
-    print(f"TA-14 REVIEW TASK EXECUTION: PASS - {len(task_ids)} internal tasks are repository-addressable and nonblocking")
+    print(f"TA-14 REVIEW TASK EXECUTION: PASS - {len(task_ids)} internal tasks are repository-addressable, actionable, and nonblocking")
 
 
 if __name__ == "__main__":
