@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/reviews/ta14/authority-evidence.schema.json",
+  "title": "TA-14 Authority Evidence Observation",
+  "type": "object",
+  "required": ["schema_version", "observation_id", "source", "authority", "evidence_state", "claim_effect"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "observation_id": {"type": "string", "minLength": 1},
+    "source": {
+      "type": "object",
+      "required": ["artifact_uri", "observed_at", "digest"],
+      "properties": {
+        "artifact_uri": {"type": "string", "minLength": 1},
+        "observed_at": {"type": "string", "format": "date-time"},
+        "digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "authority": {
+      "type": "object",
+      "required": ["issuer", "basis", "scope", "subject", "valid_from", "valid_until", "revocation_state", "standing_state"],
+      "properties": {
+        "issuer": {"type": "string"},
+        "basis": {"type": "string"},
+        "scope": {"type": "array", "items": {"type": "string"}},
+        "subject": {"type": "string"},
+        "delegate": {"type": ["string", "null"]},
+        "valid_from": {"type": "string", "format": "date-time"},
+        "valid_until": {"type": "string", "format": "date-time"},
+        "revocation_state": {"enum": ["NOT_REVOKED", "REVOKED", "UNKNOWN"]},
+        "standing_state": {"enum": ["ESTABLISHED", "NOT_ESTABLISHED", "UNKNOWN"]},
+        "affected_party_authority": {"enum": ["ESTABLISHED", "NOT_ESTABLISHED", "NOT_APPLICABLE", "UNKNOWN"]}
+      },
+      "additionalProperties": false
+    },
+    "evidence_state": {"enum": ["VERIFIED_BOUNDED", "EVIDENCE_ABSENT_FAIL_CLOSED", "SIMULATED_ONLY", "CONTRADICTED"]},
+    "claim_effect": {"enum": ["AUTHORITY_CLAIM_ALLOWED_BOUNDED", "AUTHORITY_CLAIM_DENIED", "AUTHORITY_CLAIM_UNAVAILABLE"]}
+  },
+  "additionalProperties": false
+}
