@@ -103,7 +103,8 @@
       "title": "Execute and report the internal continuation queue",
       "state": "ACTIVE_INTERNAL",
       "owner_record": "docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md",
-      "work_locations": ["scripts/run_wiki_public_anchor_internal_tasks.py", "reports/wiki-public-anchor-internal-task-execution.json", "scripts/check_wiki_public_anchor_multi_docket_status.py"],
+      "work_locations": ["scripts/run_wiki_public_anchor_internal_tasks.py", "scripts/check_wiki_public_anchor_multi_docket_status.py"],
+      "generated_output": "reports/wiki-public-anchor-internal-task-execution.json",
       "observer": "scripts/run_wiki_public_anchor_internal_tasks.py",
       "completion_predicate": "executor runs every runnable non-recursive observer, records PASS or continuable failure per task, writes the execution report, and exits 0 unless the queue structure itself is invalid",
       "fallback": "record the exact missing observer or structural defect while continuing every remaining runnable task"
