@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run all known Wiki public-anchor task queues without global stalling."""
+"""Run all registered Wiki public-anchor task queues without global stalling."""
 from __future__ import annotations
 
 import json
@@ -7,63 +7,92 @@ import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+REGISTRY = ROOT / "static" / "status" / "wiki-public-anchor-task-mesh-registry.json"
 REPORT = ROOT / "reports" / "wiki-public-anchor-task-mesh-execution.json"
 
-QUEUES = (
-    {
-        "queue_id": "public-anchor-internal",
-        "runner": "scripts/run_wiki_public_anchor_internal_tasks.py",
-        "registry": "static/status/wiki-public-anchor-internal-task-registry.json",
-        "report": "reports/wiki-public-anchor-internal-task-execution.json",
-    },
-    {
-        "queue_id": "ta14-gap-review-v2",
-        "runner": "scripts/run_ta14_stegverse_gap_review_v2_tasks.py",
-        "registry": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json",
-        "report": "static/status/ta-14-stegverse-gap-review-v2.execution-status.json",
-    },
-)
+
+def load_registry() -> dict[str, Any]:
+    value = json.loads(REGISTRY.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise ValueError("task-mesh registry must contain an object")
+    queues = value.get("queues")
+    if not isinstance(queues, list) or not queues:
+        raise ValueError("task-mesh registry must contain at least one queue")
+    return value
 
 
 def main() -> int:
-    results = []
-    structural_failures = []
-    for queue in QUEUES:
-        runner = ROOT / queue["runner"]
-        registry = ROOT / queue["registry"]
-        if not runner.exists() or not registry.exists():
-            missing = [str(path.relative_to(ROOT)) for path in (runner, registry) if not path.exists()]
-            results.append({**queue, "state": "BLOCKED_MISSING_QUEUE_ARTIFACT", "missing": missing})
+    try:
+        registry = load_registry()
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
+        print(f"WIKI PUBLIC-ANCHOR TASK MESH: FAIL - {exc}")
+        return 1
+
+    results: list[dict[str, Any]] = []
+    structural_failures: list[str] = []
+    for queue in registry["queues"]:
+        if not isinstance(queue, dict):
+            structural_failures.append("non-object queue entry")
+            continue
+        queue_id = queue.get("queue_id")
+        runner_value = queue.get("runner")
+        registry_value = queue.get("registry")
+        report_value = queue.get("report")
+        if not all(isinstance(value, str) and value for value in (queue_id, runner_value, registry_value, report_value)):
+            structural_failures.append(f"invalid queue declaration: {queue!r}")
+            continue
+
+        runner = ROOT / runner_value
+        queue_registry = ROOT / registry_value
+        queue_report = ROOT / report_value
+        if not runner.exists() or not queue_registry.exists():
+            missing = [str(path.relative_to(ROOT)) for path in (runner, queue_registry) if not path.exists()]
+            results.append({
+                "queue_id": queue_id,
+                "runner": runner_value,
+                "registry": registry_value,
+                "report": report_value,
+                "state": "BLOCKED_MISSING_QUEUE_ARTIFACT",
+                "missing": missing,
+            })
             structural_failures.extend(missing)
             continue
+
         result = subprocess.run(
             [sys.executable, str(runner)], cwd=ROOT, text=True,
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
         )
-        report_exists = (ROOT / queue["report"]).exists()
         results.append({
-            **queue,
+            "queue_id": queue_id,
+            "runner": runner_value,
+            "registry": registry_value,
+            "report": report_value,
             "state": "PASS_INTERNAL" if result.returncode == 0 else "FAIL_INTERNAL_CONTINUABLE",
             "exit_code": result.returncode,
-            "report_exists": report_exists,
+            "report_exists": queue_report.exists(),
             "output": result.stdout[-12000:],
         })
 
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "schema_version": "wiki-public-anchor-task-mesh-execution.v1",
+        "registry": str(REGISTRY.relative_to(ROOT)),
+        "registry_id": registry.get("registry_id"),
         "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "execution_policy": {
             "external_tasks_exist": False,
+            "registry_driven_queue_discovery": True,
             "continue_after_queue_failure": True,
             "failed_queue_blocks_unrelated_queue": False,
             "evidence_gap_halts_development": False,
         },
         "queues": results,
         "summary": {
-            "total": len(results),
+            "registered": len(registry["queues"]),
+            "observed": len(results),
             "pass": sum(item["state"] == "PASS_INTERNAL" for item in results),
             "fail_continuable": sum(item["state"] == "FAIL_INTERNAL_CONTINUABLE" for item in results),
             "blocked_structural": sum(item["state"] == "BLOCKED_MISSING_QUEUE_ARTIFACT" for item in results),
@@ -79,9 +108,14 @@ def main() -> int:
     for item in results:
         print(f"{item['queue_id']}: {item['state']} ({item['runner']})")
     if structural_failures:
-        print("WIKI PUBLIC-ANCHOR TASK MESH: FAIL - missing queue artifacts")
+        print("WIKI PUBLIC-ANCHOR TASK MESH: FAIL - missing or invalid queue structure")
+        for failure in structural_failures:
+            print(f"- {failure}")
         return 1
-    print(f"WIKI PUBLIC-ANCHOR TASK MESH: PASS - report written to {REPORT.relative_to(ROOT)}")
+    print(
+        "WIKI PUBLIC-ANCHOR TASK MESH: PASS - "
+        f"{len(results)} registered queues observed; report written to {REPORT.relative_to(ROOT)}"
+    )
     return 0
 
 
