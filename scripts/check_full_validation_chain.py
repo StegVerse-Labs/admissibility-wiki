@@ -68,6 +68,8 @@ CHECKS = [
     ("Validate governed LLM public pages", "scripts/check_governed_llm_pages.py"),
     ("Validate governed LLM demo docs", "scripts/check_governed_llm_demo_docs.py"),
     ("Validate LLM free-tier trust chain", "scripts/check_llm_free_tier_trust_chain.py"),
+    ("Validate TA-14 task observation registry", "scripts/check_ta14_task_observation_registry.py"),
+    ("Validate TA-14 observation fixtures", "scripts/check_ta14_observation_fixtures.py"),
     ("Validate iOS workflow mirror status", "scripts/check_ios_workflow_mirror_status.py"),
     ("Validate admissibility automation handoff", "scripts/check_admissibility_automation_handoff.py"),
     ("Validate CI evidence state", "scripts/check_ci_evidence.py"),
@@ -210,10 +212,6 @@ def main() -> int:
             "output": "ST-017 sandbox failed; reconstruction generation was not executed.",
         })
 
-    # Diagnostic completeness is independent of overall success. Run every
-    # validator even when the pre-scan or sandbox fails so one broken
-    # prerequisite cannot hide unrelated repository defects. Any failure still
-    # keeps the complete chain fail-closed.
     for name, relative_path in CHECKS:
         print(f"\n--- {name} ---")
         return_code, output = execute(relative_path)
