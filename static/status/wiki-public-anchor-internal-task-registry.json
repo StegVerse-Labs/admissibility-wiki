@@ -2,6 +2,12 @@
   "schema_version": "wiki-public-anchor-internal-task-registry.v1",
   "registry_id": "wiki-public-anchor-internal-continuation-2026-08-01",
   "state": "BEING_BUILT_INTERNAL_CONTINUATION_ACTIVE",
+  "activation": {
+    "installed": true,
+    "canonical_binding": "scripts/check_wiki_public_anchor_multi_docket_status.py -> scripts/check_admissibility_automation_handoff.py -> npm run validate",
+    "external_tasks_exist": false,
+    "development_may_continue_when_evidence_is_missing": true
+  },
   "policy": {
     "external_tasks_exist": false,
     "missing_external_evidence_blocks_unrelated_development": false,
@@ -84,7 +90,7 @@
     {
       "task_id": "PA-INT-008",
       "title": "Generate internal continuation queue",
-      "state": "ACTIVE_INTERNAL",
+      "state": "COMPLETE_INTERNAL",
       "owner_record": "static/status/wiki-public-anchor-internal-task-registry.json",
       "work_locations": ["static/status/wiki-public-anchor-internal-task-registry.json", "scripts/check_wiki_public_anchor_internal_tasks.py"],
       "observer": "scripts/check_wiki_public_anchor_internal_tasks.py",
