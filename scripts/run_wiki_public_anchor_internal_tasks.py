@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Execute the Wiki public-anchor internal task queue without global stalling.
 
-Each task observer runs independently. A failed observer is recorded for its task and
-does not prevent later independent tasks from running. The aggregate validator task is
-not recursively invoked; it is recorded as DEFERRED_SELF_OBSERVATION and is evaluated
-by the canonical caller after this executor returns.
+Each leaf task observer runs independently. A failed observer is recorded for its task
+and does not prevent later independent tasks from running. Aggregate/self-referential
+tasks are not recursively invoked; they are recorded as DEFERRED_SELF_OBSERVATION and
+are evaluated by the canonical caller after this executor returns.
 """
 from __future__ import annotations
 
@@ -18,7 +18,12 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "static" / "status" / "wiki-public-anchor-internal-task-registry.json"
 REPORT = ROOT / "reports" / "wiki-public-anchor-internal-task-execution.json"
-SELF_TASK_ID = "PA-INT-007"
+
+# PA-INT-002 invokes this executor through the multi-docket aggregate.
+# PA-INT-007 is the canonical aggregate and is evaluated by its caller.
+# PA-INT-009 points directly back to this executor.
+# Running any of them from inside this queue would recurse and could halt development.
+DEFERRED_AGGREGATE_TASK_IDS = {"PA-INT-002", "PA-INT-007", "PA-INT-009"}
 RUNNABLE_STATES = {"READY_INTERNAL", "ACTIVE_INTERNAL"}
 
 
@@ -34,13 +39,13 @@ def run_observer(task: dict[str, Any]) -> dict[str, Any]:
     observer = task["observer"]
     observer_path = ROOT / observer
 
-    if task_id == SELF_TASK_ID:
+    if task_id in DEFERRED_AGGREGATE_TASK_IDS or observer_path.resolve() == Path(__file__).resolve():
         return {
             "task_id": task_id,
             "state": "DEFERRED_SELF_OBSERVATION",
             "observer": observer,
             "exit_code": None,
-            "output": "Canonical aggregate evaluates itself after the internal executor returns.",
+            "output": "Aggregate or self-referential observer is evaluated by the canonical caller after the internal executor returns.",
         }
 
     if not observer_path.exists():
@@ -121,7 +126,8 @@ def main() -> int:
             "continue_after_task_failure": True,
             "external_tasks_exist": False,
             "failed_task_blocks_unrelated_tasks": False,
-            "self_observation_task": SELF_TASK_ID,
+            "deferred_aggregate_tasks": sorted(DEFERRED_AGGREGATE_TASK_IDS),
+            "recursion_prevention_active": True,
         },
         "results": results,
         "summary": {
