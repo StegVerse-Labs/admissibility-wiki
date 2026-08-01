@@ -23,6 +23,52 @@ StegVerse will not continue testing the available TA-14 demonstration artifacts 
 
 This decision is not based on an inference that the paid environment lacks additional modules. TA-14's own pages state that demonstration pages may not use every module available in the paid review. That statement is part of the reason continued demo testing is not supported.
 
+## Changed-evidence status update — 2026-08-01
+
+After publication of this determination, TA-14 identified a newly public set of execution artifacts associated with Door Eight of the Exchange. TA-14 represents those artifacts as materially different from the demonstrations reviewed in this record and as publicly accessible without requiring an account.
+
+The original determination remains valid for the evidence and testing arrangement observed at the time. The newly exposed artifacts trigger the determination's reopening conditions; they do not automatically satisfy them.
+
+Three separate propositions must remain distinct:
+
+```text
+1. Reopening is warranted.
+2. The new artifacts exist publicly.
+3. The artifacts prove TA-14's broader governance claims.
+```
+
+The first is justified by the asserted change in public evidence posture. The second may now be directly observed. The third remains unestablished and requires artifact-by-artifact inspection, testing, replay, reconstruction, and claim-to-artifact correspondence review.
+
+Reopening the determination is not the same as reversing it. Public exposure is not the same as public verification.
+
+The next admissible action is therefore:
+
+```text
+preserve the original determination as historically valid for the observed state
+-> open a superseding review cycle for the newly exposed artifacts
+-> test each artifact against the published reopening conditions
+-> preserve any revised, confirmed, or divergent finding without erasing history
+```
+
+### Public-exposure observation
+
+This scrutiny has already produced more public exposure for both TA-14 and StegVerse than either platform would likely have received had the claims simply been ignored.
+
+TA-14 has responded by exposing additional artifacts. StegVerse must now demonstrate that its own determinations remain responsive to materially changed evidence while preserving the distinction between visibility and verification.
+
+This is a constructive public-governance result:
+
+```text
+scrutiny
+-> increased visibility
+-> stronger public evidence
+-> clearer claims
+-> more testable systems
+-> preserved disagreement and revision history
+```
+
+The increased visibility benefits both platforms. Public governance standing, however, must still be earned independently through evidence, replay, reconstruction, and challenge.
+
 ## Decisive structural concern
 
 The observed disclosure and testing structure is:
@@ -195,4 +241,7 @@ halt of StegVerse testing != universal prohibition on independent review
 public claim != public standing
 visibility != verification
 marketing accessibility != neutral governance scrutiny
+reopening != reversal
+public artifact existence != capability proof
+increased exposure != governance standing
 ```
