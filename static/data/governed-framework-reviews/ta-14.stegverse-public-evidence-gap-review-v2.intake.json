@@ -1,0 +1,55 @@
+{
+  "schema_version": "external-review-intake.v1",
+  "intake_id": "ta14-stegverse-public-evidence-gap-review-v2-2026-08-01",
+  "issuer": "TA-14 Authority - Governance Institution for Admissible Execution Architecture",
+  "title": "StegVerse Public-Evidence Gap Review",
+  "version": "2.0",
+  "issued_at": "2026-08-01",
+  "artifact": {
+    "media_type": "application/pdf",
+    "sha256": "4d9bfb86738601952ede6f5e83477ea3c086ce229c3403d2fa3bdaf4ae75bfbf",
+    "page_count": 11,
+    "source_posture": "ATTRIBUTABLE_EXTERNAL_REVIEW_SUPPLIED_DIRECTLY"
+  },
+  "classification": {
+    "review_received": true,
+    "external_review": true,
+    "independent_reproduction_claimed": false,
+    "route_complete_exchange_test_claimed": false,
+    "status": "RECEIVED_UNADJUDICATED"
+  },
+  "overall_external_determination": "PUBLIC_BETA_MATERIAL_FULL_CHAIN_GAPS_PUBLIC_CLAIMS_EXCEED_PUBLIC_PROOF",
+  "gap_findings": [
+    "G-01","G-02","G-03","G-04","G-05","G-06","G-07","G-08","G-09",
+    "G-10","G-11","G-12","G-13","G-14","G-15","G-16","G-17","G-18"
+  ],
+  "adjudication": {
+    "state": "NOT_STARTED",
+    "allowed_dispositions": ["AGREE","PARTIAL","DISAGREE","DEFER"],
+    "automatic_adoption": false,
+    "automatic_rejection": false,
+    "evidence_mapping_required": true,
+    "release_route_policy_time_binding_required": true
+  },
+  "standing": {
+    "ta14": "PUBLICLY_UNRESOLVED",
+    "stegverse_self_review": "PROVISIONAL",
+    "standing_changed_by_intake": false
+  },
+  "authority_boundary": {
+    "certification_granted": false,
+    "execution_authority_granted": false,
+    "custody_granted": false,
+    "endorsement_granted": false,
+    "government_recognition_established": false,
+    "reviewer_neutrality_established": false,
+    "independent_reconstruction_established": false
+  },
+  "next_actions": [
+    "decompose and adjudicate all eighteen findings",
+    "map each finding to exact public evidence and unresolved gaps",
+    "construct a canonical route-complete evidence manifest",
+    "preserve corrections challenges dissent and supersession append-only",
+    "invite accountable independent reconstruction"
+  ]
+}
