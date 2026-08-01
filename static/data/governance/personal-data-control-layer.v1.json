@@ -51,11 +51,11 @@
     {
       "task_id": "PDCL-004",
       "repository": "StegVerse-Labs/admissibility-wiki",
-      "path": "scripts/check_admissibility_automation_handoff.py",
-      "owner_role": "canonical-aggregate",
+      "path": "package.json",
+      "owner_role": "canonical-validation-chain",
       "input_evidence": ["personal-data control validator"],
-      "completion_predicate": "validator_bound_into_canonical_aggregate",
-      "status": "IN_PROGRESS",
+      "completion_predicate": "validator_bound_into_npm_validate",
+      "status": "COMPLETE",
       "receipt_path": "static/status/personal-data-control-layer-status.json"
     },
     {
@@ -73,7 +73,7 @@
     "goal_id": "PDCL-CANONICAL-OBSERVATION",
     "repository": "StegVerse-Labs/admissibility-wiki",
     "path": ".github/workflows/validate-chain-continuation.yml",
-    "completion_predicate": "canonical_workflow_observes_validator_result",
-    "status": "READY_AFTER_AGGREGATE_BINDING"
+    "completion_predicate": "next_canonical_workflow_run_observes_validator_result",
+    "status": "AUTOMATIC_NON_BLOCKING"
   }
 }
