@@ -6,9 +6,10 @@ This file is the task authority for the bounded TA-14 public-evidence review and
 
 - Title: `TA-14 Authority | StegVerse Public-Evidence Gap Review v2.0`
 - Date stated by source: 1 August 2026
-- Public repository path: `/evidence/ta14/TA-14-Ste gVerse-Public-Evidence-Gap-Review-v2.0.pdf` (normalize filename before publication)
+- Intended public repository path: `/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf`
 - SHA-256: `4d9bfb86738601952ede6f5e83477ea3c086ce229c3403d2fa3bdaf4ae75bfbf`
 - Source posture: voluntarily published, self-authored external critique; not independently adjudicated
+- Exact PDF repository state: `PENDING_BINARY_UPLOAD`
 
 ## Determination
 
@@ -20,6 +21,7 @@ Independent adjudication: NOT ESTABLISHED
 TA-14 Exchange exclusivity: NOT ESTABLISHED
 Neutral reviewer standing: NOT ESTABLISHED
 Source artifact integrity: SHA-256 RECORDED
+Exact PDF public custody: PENDING_BINARY_UPLOAD
 ```
 
 ## Governing interpretation
@@ -44,7 +46,23 @@ reproducibility may exist without independent authorship
 ```text
 docs/reviews/ta14-public-evidence-gap-review-v2-analysis.md
 docs/reviews/ta14-remediation-task-list.md
-static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf
+static/reviews/ta14/claim-inventory.v0.1.json
+static/reviews/ta14/canonical-architecture-manifest.v0.1.json
+static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf (pending)
+```
+
+## Work completed in branch
+
+```text
+analysis page: CREATED
+G-01 through G-18 remediation matrix: CREATED
+claim inventory starter: CREATED
+canonical architecture manifest starter: CREATED
+source PDF digest: RECORDED
+exact PDF bytes: NOT YET COMMITTED
+navigation binding: NOT YET INSTALLED
+canonical validator binding: NOT YET INSTALLED
+public route: NOT YET OBSERVED
 ```
 
 ## Immediate work sequence
@@ -54,8 +72,14 @@ static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf
 3. Publish the remediation task list mapped to TA-14 findings G-01 through G-18 and the ten-part evidence package.
 4. Add the pages to repository navigation without claiming independent adjudication.
 5. Bind validation for document presence, PDF digest, links, and required posture statements into the existing canonical validation path.
-6. Begin Phase 0 remediation: exact claim inventory, canonical architecture manifest, decision-semantics reconciliation, and test-scope declaration.
+6. Continue Phase 0 remediation: resolve exact claim sources, complete the canonical architecture manifest, reconcile decision semantics, and publish the test-scope declaration.
 7. Preserve unresolved authority, execution, outcome, and independent-replay claims as fail-closed.
+
+## Binary-upload blocker
+
+The connected GitHub text-content mutation path does not accept a local binary file reference. The exact PDF remains preserved in the active conversation runtime and its SHA-256 is recorded, but publication cannot be claimed until the identical bytes are committed at the intended path and digest-verified.
+
+This blocker must not be converted into a claim that the PDF is public or in repository custody.
 
 ## Non-claims
 
@@ -74,4 +98,4 @@ The track reaches publication-candidate completeness only when:
 
 ## Archive condition
 
-Do not archive while the PDF is absent, the public analysis is unroutable, or the remediation matrix lacks owners and exit criteria.
+Do not archive while the PDF is absent, the public analysis is unroutable, or canonical validation and navigation binding are incomplete.
