@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1.0",
+  "artifact_type": "canonical_architecture_manifest",
+  "manifest_id": "STEGVERSE-TA14-REMEDIATION-ARCHITECTURE-V0.1",
+  "status": "INCOMPLETE_FAIL_CLOSED",
+  "generated_for": "TA-14 Public-Evidence Gap Review v2.0 remediation",
+  "source_pdf_sha256": "4d9bfb86738601952ede6f5e83477ea3c086ce229c3403d2fa3bdaf4ae75bfbf",
+  "canonical_publication_repository": "StegVerse-Labs/admissibility-wiki",
+  "components": [
+    {
+      "component_id": "admissibility-wiki",
+      "repository": "StegVerse-Labs/admissibility-wiki",
+      "role": "public vocabulary, bounded findings, challenge procedure, evidence navigation and status",
+      "release_ref": null,
+      "commit_sha": null,
+      "artifact_digest": null,
+      "runtime_enforcement_authority": false,
+      "publication_authority": false,
+      "evidence_state": "BRANCH_CANDIDATE"
+    },
+    {
+      "component_id": "stegverse-sdk",
+      "repository": "StegVerse-org/StegVerse-SDK",
+      "role": "public SDK, route, evaluator and package boundary identified by the source review",
+      "release_ref": null,
+      "commit_sha": null,
+      "artifact_digest": null,
+      "runtime_enforcement_authority": false,
+      "publication_authority": false,
+      "evidence_state": "CURRENT_HANDOFF_AND_RELEASE_RESOLUTION_REQUIRED"
+    },
+    {
+      "component_id": "formalism-tests",
+      "repository": "Data-Continuation/formalism-tests",
+      "role": "executable fixtures, expected outcomes, adversarial cases, replay and proof receipts",
+      "release_ref": null,
+      "commit_sha": null,
+      "artifact_digest": null,
+      "runtime_enforcement_authority": false,
+      "publication_authority": false,
+      "evidence_state": "CURRENT_HANDOFF_AND_RELEASE_RESOLUTION_REQUIRED"
+    }
+  ],
+  "trust_boundaries": [
+    "public documentation is not proof authority",
+    "SDK evaluation is not complete mediation",
+    "receipt integrity is not signer authority",
+    "workflow validation is not external outcome proof",
+    "publication is not independent adjudication",
+    "replayability is not runtime enforcement"
+  ],
+  "unresolved_required_fields": [
+    "authoritative release refs and commit SHAs",
+    "component artifact digests",
+    "dependency lock and software bill of materials",
+    "deployment profile",
+    "authority resolver identity",
+    "receipt trust anchor and revocation surface",
+    "bind and atomic commit component",
+    "runtime effector and bypass boundary",
+    "external outcome evidence source",
+    "independent replay attestation"
+  ],
+  "completion_rule": "Manifest remains INCOMPLETE_FAIL_CLOSED until every required component, release, digest, dependency, trust boundary and evidence state is attributable and reproducible."
+}
