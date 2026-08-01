@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.1.0",
+  "fixture_type": "ta14_observation_category_manifest",
+  "source": "static/reviews/ta14/fixtures/observation-cases.v0.1.json",
+  "development_halt": false,
+  "categories": {
+    "authority": ["authority-absent", "authority-stale"],
+    "receipt_trust": ["signer-revoked"],
+    "object_binding": ["object-substitution", "parameter-expansion"],
+    "atomic_commit": ["stale-commit-token"],
+    "execution_boundary": ["direct-runtime-bypass", "receipt-service-outage"],
+    "refusal": ["refusal-contradicted"],
+    "outcome": ["outcome-evidence-absent"],
+    "neutral_review": ["neutral-review-self-asserted"]
+  },
+  "completion_rule": "Every aggregate fixture id must appear exactly once in the category manifest. Missing evidence changes only the bounded claim state and never halts unrelated development."
+}
