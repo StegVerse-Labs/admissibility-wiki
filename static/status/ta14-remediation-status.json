@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.1.0",
+  "status_type": "ta14_remediation_status",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "feature/ta14-public-evidence-review",
+  "pull_request": 52,
+  "layer_state": "BEING_BUILT",
+  "activation_state": "NOT_YET_ADMISSIBLE",
+  "development_halt": false,
+  "external_tasks": [],
+  "policy": {
+    "missing_evidence_blocks_only_named_claim": true,
+    "generic_blocked_state_prohibited": true,
+    "unrelated_tasks_continue": true,
+    "synthetic_fixtures_do_not_upgrade_public_claims": true,
+    "observation_is_repository_owned": true
+  },
+  "completed_surfaces": [
+    "docs/reviews/TA14_PUBLIC_EVIDENCE_REVIEW_MIRROR_HANDOFF.md",
+    "docs/reviews/ta14-public-evidence-gap-review-v2-analysis.md",
+    "docs/reviews/ta14-remediation-task-list.md",
+    "docs/reviews/ta14-observation-and-completion-plan.md",
+    "static/reviews/ta14/task-observation-registry.v0.1.json",
+    "scripts/check_ta14_task_observation_registry.py",
+    "static/reviews/ta14/evidence-contracts/authority-evidence.schema.json",
+    "static/reviews/ta14/evidence-contracts/outcome-evidence.schema.json"
+  ],
+  "active_tasks": [
+    {
+      "task_id": "TA14-OBS-003",
+      "state": "IN_PROGRESS",
+      "location": "static/reviews/ta14/evidence-contracts/",
+      "remaining": [
+        "receipt-trust-evidence.schema.json",
+        "execution-boundary-evidence.schema.json",
+        "neutral-review-evidence.schema.json"
+      ]
+    },
+    {
+      "task_id": "TA14-OBS-004",
+      "state": "READY",
+      "location": "static/reviews/ta14/fixtures/",
+      "remaining": ["authority", "object-binding", "atomic-commit", "bypass", "refusal", "adversarial"]
+    },
+    {
+      "task_id": "TA14-OBS-005",
+      "state": "READY",
+      "location": ".github/workflows/validate-chain-continuation.yml",
+      "supporting_location": "scripts/check_governed_llm_pages.py"
+    },
+    {
+      "task_id": "TA14-OBS-006",
+      "state": "IN_PROGRESS",
+      "location": "static/status/ta14-remediation-status.json"
+    }
+  ],
+  "bounded_claim_blocks": [
+    {"claim": "exact PDF public custody", "state": "EVIDENCE_ABSENT_FAIL_CLOSED"},
+    {"claim": "independent adjudication", "state": "NOT_ESTABLISHED"},
+    {"claim": "neutral reviewer standing", "state": "NOT_ESTABLISHED"},
+    {"claim": "route-complete outcome governance", "state": "NOT_YET_VERIFIED"}
+  ],
+  "next_executable_task": {
+    "task_id": "TA14-OBS-003",
+    "location": "static/reviews/ta14/evidence-contracts/receipt-trust-evidence.schema.json",
+    "action": "Install the next evidence contract and continue without waiting for external evidence."
+  }
+}
