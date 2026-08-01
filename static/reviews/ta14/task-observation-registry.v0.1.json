@@ -1,0 +1,228 @@
+{
+  "schema_version": "0.1.0",
+  "registry_type": "ta14_task_observation_registry",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "feature/ta14-public-evidence-review",
+  "pull_request": 52,
+  "layer_state": "BEING_BUILT",
+  "activation_state": "NOT_YET_ADMISSIBLE",
+  "policy": {
+    "external_tasks_exist": false,
+    "external_evidence_may_exist": true,
+    "external_evidence_absence_blocks_only_bounded_claim": true,
+    "generic_blocked_state_prohibited": true,
+    "silent_ownership_transfer_prohibited": true,
+    "every_task_requires_repository_location": true,
+    "every_task_requires_next_executable_action": true
+  },
+  "canonical_locations": {
+    "human_task_matrix": "docs/reviews/ta14-remediation-task-list.md",
+    "observation_plan": "docs/reviews/ta14-observation-and-completion-plan.md",
+    "track_handoff": "docs/reviews/TA14_PUBLIC_EVIDENCE_REVIEW_MIRROR_HANDOFF.md",
+    "analysis": "docs/reviews/ta14-public-evidence-gap-review-v2-analysis.md",
+    "claim_inventory": "static/reviews/ta14/claim-inventory.v0.1.json",
+    "architecture_manifest": "static/reviews/ta14/canonical-architecture-manifest.v0.1.json",
+    "registry_validator": "scripts/check_ta14_task_observation_registry.py",
+    "source_pdf": "static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf"
+  },
+  "tasks": [
+    {
+      "id": "T14-001",
+      "findings": ["G-01"],
+      "ownership": "STEGVERSE_OWNED",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/claim-inventory.v0.1.json"],
+      "observer_paths": ["scripts/check_ta14_task_observation_registry.py"],
+      "state": "BUILD_INTERNAL",
+      "claim_effect": "NONE_UNTIL_EXACT_SOURCE_MAPPING",
+      "next_action": "Resolve exact StegVerse-authored claim sources and bind each claim to release, component, test, limitation, and evidence state."
+    },
+    {
+      "id": "T14-002",
+      "findings": ["G-09", "G-15"],
+      "ownership": "STEGVERSE_OWNED",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/canonical-architecture-manifest.v0.1.json"],
+      "observer_paths": ["scripts/check_ta14_task_observation_registry.py"],
+      "state": "BUILD_INTERNAL",
+      "claim_effect": "ARCHITECTURE_STATUS_REMAINS_PARTIAL",
+      "next_action": "Populate owned component versions, digests, dependency relationships, trust boundaries, and canonical documentation routes."
+    },
+    {
+      "id": "T14-003",
+      "findings": ["G-08"],
+      "ownership": "STEGVERSE_OWNED",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/decision-semantics.v0.1.json", "docs/reviews/ta14-decision-semantics.md"],
+      "observer_paths": ["scripts/check_ta14_decision_semantics.py"],
+      "state": "BUILD_INTERNAL",
+      "claim_effect": "SEMANTIC_CONSISTENCY_NOT_YET_VERIFIED",
+      "next_action": "Install canonical decision-state machine and invalid-transition fixtures."
+    },
+    {
+      "id": "T14-004",
+      "findings": ["G-01"],
+      "ownership": "STEGVERSE_OWNED",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["docs/reviews/ta14-test-scope-and-non-claims.md"],
+      "observer_paths": ["scripts/check_ta14_test_scope.py"],
+      "state": "BUILD_INTERNAL",
+      "claim_effect": "UNTESTED_PATHS_REMAIN_UNCLAIMED",
+      "next_action": "Publish tested boundaries, simulated fixtures, excluded paths, production non-claims, and external observation dependencies."
+    },
+    {
+      "id": "T14-005",
+      "findings": ["G-16", "G-17", "G-18"],
+      "ownership": "REVIEWER_BURDEN",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/ta14-finding-map.v0.1.json"],
+      "observer_paths": ["scripts/check_ta14_finding_map.py"],
+      "state": "BUILD_INTERNAL",
+      "claim_effect": "TA14_ALLEGATIONS_REMAIN_BOUNDED_AND_DISPUTED",
+      "next_action": "Preserve exact TA-14 claims, cited evidence, method, burden holder, and reproducibility posture."
+    },
+    {
+      "id": "T14-006",
+      "findings": ["G-02"],
+      "ownership": "OWNERSHIP_UNRESOLVED",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/evidence-contracts/authority-evidence.schema.json"],
+      "observer_paths": ["scripts/observe_ta14_authority_evidence.py"],
+      "state": "OBSERVE",
+      "claim_effect": "AUTHORITY_CLAIMS_FAIL_CLOSED_WHILE_EVIDENCE_ABSENT",
+      "next_action": "Build authority evidence contract, synthetic valid/stale/revoked fixtures, and absence status output."
+    },
+    {
+      "id": "T14-007",
+      "findings": ["G-04"],
+      "ownership": "STEGVERSE_OWNED",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/fixtures/continuity/", "scripts/check_ta14_continuity_fixtures.py"],
+      "observer_paths": ["scripts/check_ta14_continuity_fixtures.py"],
+      "state": "BUILD_INTERNAL",
+      "claim_effect": "COMPLETENESS_UNVERIFIED_UNTIL_FIXTURES_PASS",
+      "next_action": "Add expected-count, omission, checkpoint, witness, and closure fixtures."
+    },
+    {
+      "id": "T14-008",
+      "findings": ["G-03", "G-10"],
+      "ownership": "OWNERSHIP_UNRESOLVED",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/evidence-contracts/receipt-trust-evidence.schema.json"],
+      "observer_paths": ["scripts/observe_ta14_receipt_trust_evidence.py"],
+      "state": "OBSERVE",
+      "claim_effect": "TRUSTED_SIGNING_CLAIMS_FAIL_CLOSED_WHILE_EVIDENCE_ABSENT",
+      "next_action": "Build signer, custody, rotation, revocation, compromise, and trust-anchor evidence intake with synthetic fixtures."
+    },
+    {
+      "id": "T14-009",
+      "findings": ["G-05"],
+      "ownership": "SHARED_INTERFACE",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/fixtures/object-binding/", "scripts/check_ta14_object_binding.py"],
+      "observer_paths": ["scripts/check_ta14_object_binding.py"],
+      "state": "BUILD_INTERNAL",
+      "claim_effect": "EXACT_OBJECT_CORRESPONDENCE_UNVERIFIED",
+      "next_action": "Build equal-digest, substituted-object, expanded-parameter, and tool-reinterpretation fixtures."
+    },
+    {
+      "id": "T14-010",
+      "findings": ["G-14"],
+      "ownership": "STEGVERSE_OWNED",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["docs/reviews/ta14-governance-of-governance.md", "static/reviews/ta14/governance-change-policy.v0.1.json"],
+      "observer_paths": ["scripts/check_ta14_governance_change_policy.py"],
+      "state": "BUILD_INTERNAL",
+      "claim_effect": "RULE_CHANGE_AUTHORITY_UNVERIFIED",
+      "next_action": "Define change authority, versioning, historical interpretation, compromise removal, and emergency override rules."
+    },
+    {
+      "id": "T14-011",
+      "findings": ["G-07"],
+      "ownership": "SHARED_INTERFACE",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/fixtures/atomic-commit/", "scripts/check_ta14_atomic_commit.py"],
+      "observer_paths": ["scripts/check_ta14_atomic_commit.py"],
+      "state": "BUILD_INTERNAL",
+      "claim_effect": "ATOMIC_COMMIT_CLAIMS_UNAVAILABLE_UNTIL_BOUNDED_PASS",
+      "next_action": "Build reservation, lease, expiry, cancellation, stale-token, race, and compare-and-commit fixtures."
+    },
+    {
+      "id": "T14-012",
+      "findings": ["G-06"],
+      "ownership": "SHARED_INTERFACE",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/evidence-contracts/execution-boundary-evidence.schema.json", "static/reviews/ta14/fixtures/bypass/"],
+      "observer_paths": ["scripts/observe_ta14_execution_boundary.py"],
+      "state": "OBSERVE",
+      "claim_effect": "NON_BYPASSABILITY_CLAIMS_FAIL_CLOSED_OUTSIDE_OBSERVED_BOUNDARY",
+      "next_action": "Build direct-call, SDK-bypass, metadata-strip, alternate-route, outage, and stale-replay observation fixtures."
+    },
+    {
+      "id": "T14-013",
+      "findings": ["G-11"],
+      "ownership": "EVIDENCE_COORDINATION_ONLY",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/evidence-contracts/outcome-evidence.schema.json"],
+      "observer_paths": ["scripts/observe_ta14_outcome_evidence.py"],
+      "state": "OBSERVE",
+      "claim_effect": "OUTCOME_CORRESPONDENCE_FAILS_CLOSED_WHILE_SOURCE_EVIDENCE_ABSENT",
+      "next_action": "Build system-of-record delta, environmental effect, restoration, mismatch, and absence intake fixtures."
+    },
+    {
+      "id": "T14-014",
+      "findings": ["G-12"],
+      "ownership": "SHARED_INTERFACE",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/fixtures/refusal/", "scripts/check_ta14_refusal_nonoccurrence.py"],
+      "observer_paths": ["scripts/check_ta14_refusal_nonoccurrence.py"],
+      "state": "BUILD_INTERNAL",
+      "claim_effect": "NON_OCCURRENCE_UNVERIFIED_OUTSIDE_BOUNDED_FIXTURE",
+      "next_action": "Build effector rejection, credential denial, alternate-path, protected-state, and contradictory-outcome fixtures."
+    },
+    {
+      "id": "T14-015",
+      "findings": ["G-13"],
+      "ownership": "STEGVERSE_OWNED",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/replay/", "scripts/check_ta14_replay_package.py"],
+      "observer_paths": ["scripts/check_ta14_replay_package.py"],
+      "state": "BUILD_INTERNAL",
+      "claim_effect": "INDEPENDENT_ATTESTATION_NOT_ESTABLISHED",
+      "next_action": "Publish pinned verifier, fixtures, dependency lock, expected results, and attestation intake."
+    },
+    {
+      "id": "T14-016",
+      "findings": ["G-06", "G-07", "G-10", "G-11", "G-12", "G-13"],
+      "ownership": "STEGVERSE_OWNED",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/fixtures/adversarial/", "scripts/check_ta14_adversarial_suite.py"],
+      "observer_paths": ["scripts/check_ta14_adversarial_suite.py"],
+      "state": "BUILD_INTERNAL",
+      "claim_effect": "ADVERSARIAL_COVERAGE_PARTIAL",
+      "next_action": "Install bypass, replay, stale authority, signer compromise, missing record, outage, mutation, substitution, race, and alternate-execution fixtures."
+    },
+    {
+      "id": "T14-017",
+      "findings": ["G-13"],
+      "ownership": "EVIDENCE_COORDINATION_ONLY",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["docs/reviews/ta14-neutral-reproduction-procedure.md", "static/reviews/ta14/evidence-contracts/neutral-review-evidence.schema.json"],
+      "observer_paths": ["scripts/observe_ta14_neutral_review_evidence.py"],
+      "state": "BUILD_INTERNAL",
+      "claim_effect": "NEUTRAL_STANDING_NOT_ESTABLISHED_UNTIL_EXTERNAL_ATTESTATION",
+      "next_action": "Publish open challenge procedure and machine-readable attestation intake without granting exclusive authority."
+    },
+    {
+      "id": "T14-018",
+      "findings": ["G-16", "G-17", "G-18"],
+      "ownership": "REVIEWER_BURDEN",
+      "task_file": "docs/reviews/ta14-remediation-task-list.md",
+      "implementation_paths": ["static/reviews/ta14/ta14-exchange-observation.json"],
+      "observer_paths": ["scripts/observe_ta14_exchange_result.py"],
+      "state": "DISPUTED_REVIEWER_BURDEN",
+      "claim_effect": "NO_EXCHANGE_EXCLUSIVITY_OR_ADJUDICATIVE_AUTHORITY_INFERRED",
+      "next_action": "Define optional observation record for any TA-14 Exchange result while preserving it as one bounded review route."
+    }
+  ]
+}
