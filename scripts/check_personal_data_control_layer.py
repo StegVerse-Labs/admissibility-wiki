@@ -9,7 +9,7 @@ STANDARD = ROOT / "docs/standards/personal-data-control-and-deletion-layer.md"
 MANIFEST = ROOT / "static/data/governance/personal-data-control-layer.v1.json"
 STATUS = ROOT / "static/status/personal-data-control-layer-status.json"
 OBSERVATION = ROOT / "docs/external-frameworks/ta-14-account-data-request-channel-observation-2026-08-01.md"
-AGGREGATE = ROOT / "scripts/check_admissibility_automation_handoff.py"
+PACKAGE = ROOT / "package.json"
 
 REQUIRED_STANDARD_MARKERS = (
     "A theoretical legal right is not an activated governance capability.",
@@ -40,7 +40,7 @@ def fail(message: str, failures: list[str]) -> None:
 def main() -> int:
     failures: list[str] = []
 
-    for path in (STANDARD, MANIFEST, STATUS, OBSERVATION, AGGREGATE):
+    for path in (STANDARD, MANIFEST, STATUS, OBSERVATION, PACKAGE):
         if not path.exists():
             fail(f"missing {path.relative_to(ROOT)}", failures)
 
@@ -56,6 +56,7 @@ def main() -> int:
 
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     status = json.loads(STATUS.read_text(encoding="utf-8"))
+    package = json.loads(PACKAGE.read_text(encoding="utf-8"))
 
     if manifest.get("external_dependency_required") is not False:
         fail("external_dependency_required must be false", failures)
@@ -91,9 +92,12 @@ def main() -> int:
         if task["status"] != "COMPLETE":
             fail(f"task {task_id} is not COMPLETE", failures)
 
-    aggregate_text = AGGREGATE.read_text(encoding="utf-8")
-    if "check_personal_data_control_layer.py" not in aggregate_text:
-        fail("personal-data validator not bound into canonical aggregate", failures)
+    scripts = package.get("scripts", {})
+    expected_command = "python scripts/check_personal_data_control_layer.py"
+    if scripts.get("validate:personal-data-control-layer") != expected_command:
+        fail("personal-data validator command missing from package.json", failures)
+    if "npm run validate:personal-data-control-layer" not in scripts.get("validate", ""):
+        fail("personal-data validator not bound into canonical npm validate chain", failures)
 
     if status.get("state") != "ACTIVATED_AND_CANONICALLY_BOUND":
         fail("status state is not ACTIVATED_AND_CANONICALLY_BOUND", failures)
@@ -113,7 +117,7 @@ def main() -> int:
     print("PERSONAL DATA CONTROL LAYER: PASS")
     print(f"- tasks: {len(tasks)} complete")
     print("- external tasks required: false")
-    print("- canonical aggregate binding: present")
+    print("- canonical npm validate binding: present")
     print("- authority granted: false")
     return 0
 
