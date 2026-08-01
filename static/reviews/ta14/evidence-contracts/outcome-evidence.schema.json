@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/reviews/ta14/outcome-evidence.schema.json",
+  "title": "TA-14 Outcome Evidence Observation",
+  "type": "object",
+  "required": ["schema_version", "observation_id", "transition_id", "system_of_record", "pre_state_digest", "post_state_digest", "result", "evidence_state", "claim_effect"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "observation_id": {"type": "string", "minLength": 1},
+    "transition_id": {"type": "string", "minLength": 1},
+    "system_of_record": {"type": "string", "minLength": 1},
+    "pre_state_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "post_state_digest": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "result": {"enum": ["EXPECTED_EFFECT_OBSERVED", "EXPECTED_NON_OCCURRENCE_OBSERVED", "MISMATCH", "NO_EVIDENCE"]},
+    "restoration_state": {"enum": ["NOT_REQUIRED", "COMPLETE", "INCOMPLETE", "UNKNOWN"]},
+    "evidence_state": {"enum": ["VERIFIED_BOUNDED", "EVIDENCE_ABSENT_FAIL_CLOSED", "SIMULATED_ONLY", "CONTRADICTED"]},
+    "claim_effect": {"enum": ["OUTCOME_CLAIM_ALLOWED_BOUNDED", "OUTCOME_CLAIM_DENIED", "OUTCOME_CLAIM_UNAVAILABLE"]}
+  },
+  "additionalProperties": false
+}
