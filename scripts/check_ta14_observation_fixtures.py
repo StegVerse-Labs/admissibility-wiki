@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / "static/reviews/ta14/fixtures/observation-cases.v0.1.json"
 CATEGORY_MANIFEST = ROOT / "static/reviews/ta14/fixtures/category-manifest.v0.1.json"
+EXPECTED_SCHEMA_VERSION = "0.2.0"
 
 REQUIRED_CATEGORIES = {
     "authority",
@@ -53,9 +54,9 @@ def main() -> int:
     data = load_json(FIXTURES)
     manifest = load_json(CATEGORY_MANIFEST)
 
-    if data.get("schema_version") != "0.1.0":
+    if data.get("schema_version") != EXPECTED_SCHEMA_VERSION:
         fail("unexpected observation fixture schema_version")
-    if manifest.get("schema_version") != "0.1.0":
+    if manifest.get("schema_version") != EXPECTED_SCHEMA_VERSION:
         fail("unexpected category manifest schema_version")
     if manifest.get("source") != str(FIXTURES.relative_to(ROOT)):
         fail("category manifest source does not point to the aggregate fixture file")
