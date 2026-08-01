@@ -1,6 +1,7 @@
 ---
 title: TA-14 Testing Support Determination — Public Demonstrations
 sidebar_label: TA-14 Testing Support Determination
+slug: /external-frameworks/ta-14-testing-support-determination-2026-08-01
 ---
 
 # TA-14 Testing Support Determination — Public Demonstrations
