@@ -6,17 +6,78 @@ This file is the current source of truth for continuing `StegVerse-Labs/admissib
 
 ```text
 Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, public determinations, and reciprocal self-review.
-Current state: three governed dockets, reciprocal StegVerse self-review, frozen reconstruction boundary, reconstruction invitation, bounded external-framework intakes, a canonically bound Conectrr ITC pre-execution package, a deterministic synthetic capability smoke test, and a preserved reciprocal Conectrr methodology acknowledgment are installed.
+Current state: the governed public-anchor layer exists and is BEING_BUILT through three dockets, reciprocal self-review, reconstruction and correction objects, frozen reconstruction packaging, synthetic capability testing, canonical validators, and an internal non-halting continuation registry.
 Manual task requirement: none.
 User manual action required: false.
+External tasks: none.
 ```
 
 ## Current Activation Goal
 
 ```text
 Goal id: wiki-public-anchor-independent-reconstruction-activation
-State: CONECTRR_RECIPROCAL_METHODOLOGY_ACKNOWLEDGED_SYNTHETIC_CAPABILITY_READY_FOR_CANONICAL_EXECUTION_PENDING_WORKFLOW_OBSERVATION_AND_EXTERNAL_SOURCE_ARTIFACTS
-Authority posture: public review and reconstruction infrastructure only; no certification, government recognition, custody, endorsement, or execution authority created.
+State: BEING_BUILT_INTERNAL_CONTINUATION_ACTIVE
+Activation state: NOT YET ADMISSIBLE
+Latest canonical run: 30681187876
+Latest canonical commit: fc19aafc2f8ae7e249cbea731fa2d16b48fafca6
+Canonical result: FAIL_CLOSED_OBSERVED
+Build/deploy/public verification: SKIPPED
+Authority posture: public review and reconstruction infrastructure only; no certification, government recognition, custody, endorsement, reviewer standing, or execution authority created.
+```
+
+## Internal Continuation Layer
+
+```text
+Task registry: static/status/wiki-public-anchor-internal-task-registry.json
+Registry validator: scripts/check_wiki_public_anchor_internal_tasks.py
+Coordination record: docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md
+Multi-docket integration: scripts/check_wiki_public_anchor_multi_docket_status.py
+Canonical aggregate: scripts/check_admissibility_automation_handoff.py
+Canonical command: npm run validate
+Canonical workflow: .github/workflows/validate-chain-continuation.yml
+Master coordination: GitHub issue #50
+Conectrr evidence lane: GitHub issue #47
+```
+
+Every task must have an owner record, exact repository work locations, an observer, a completion predicate, and a fallback. A task without those fields is invalid.
+
+## Non-Halting Rule
+
+```text
+missing external evidence != development stop
+no accountable external reviewer != no reconstruction work
+no provider artifact != no synthetic or surrogate testing
+no workflow observation != local development failure
+one validator failure != unrelated-track suspension
+```
+
+There are no external tasks. Third-party artifacts, reviewer participation, signatures, and provider observations are evidence states only. When unavailable, preserve them as `NOT_RECEIVED` or `NOT_OBSERVED`, execute bounded internal simulations or surrogate tests, prohibit promotion into independent evidence, and continue every unrelated `READY_INTERNAL` task.
+
+## Located Task Authority
+
+The complete located task set is authoritative in:
+
+```text
+static/status/wiki-public-anchor-internal-task-registry.json
+```
+
+Current task IDs:
+
+```text
+PA-INT-001 repair frozen reconstruction manifest binding
+PA-INT-002 align multi-docket status
+PA-INT-003 maintain reconstruction invitation and internal simulation
+PA-INT-004 execute deterministic synthetic capability path
+PA-INT-005 observe canonical workflow without stalling
+PA-INT-006 use bounded internal surrogate testing while source evidence is absent
+PA-INT-007 repair shared canonical validation drift
+PA-INT-008 maintain the continuation queue
+```
+
+The human-readable locations, predicates, and fallbacks are mirrored in:
+
+```text
+docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md
 ```
 
 ## Frozen Public-Anchor Boundary
@@ -27,13 +88,13 @@ Manifest id: public-anchor-three-docket-freeze-2026-07-27
 Frozen commit: b69fb68c197566e9bf35a2d10611432e4c530f21
 Dockets: TA-14, ASRO, StegVerse public-anchor self-review
 Independent reconstruction: NOT_RUN
-Reconstruction invitation: OPEN_NO_ACCOUNTABLE_REVIEWER_ASSIGNED
+Internal reconstruction simulation: static/data/governed-framework-reviews/examples/stegverse-public-anchor.reconstruction-submission.example.json
 Neutral reviewer standing: NOT_ESTABLISHED
 Hash status: PENDING_CANONICAL_CUSTODY
 Signature status: NOT_SIGNED
 ```
 
-Later repository changes do not silently alter this frozen target. They require a successor manifest or explicit supersession record.
+Internal reconstruction simulation is not independent reconstruction. Later repository changes do not silently alter the frozen target; they require a successor manifest or explicit supersession record.
 
 ## Constitutional Rules
 
@@ -67,6 +128,7 @@ DISAGREE != source invalidation
 DEFER != failure
 Commitment Candidate != execution authority
 synthetic PASS != external validation
+internal simulation != independent reconstruction
 methodology acknowledgment != implementation proof
 methodology acknowledgment != independent reconstruction
 methodology acknowledgment != execution authority
@@ -82,81 +144,20 @@ StegVerse self-review: standing PROVISIONAL; internal structural validation PASS
 
 No docket grants certification or execution authority.
 
-## Conectrr Intent Transition Contract
+## Conectrr Internal Development Path
 
 ```text
 Framework record: docs/external-frameworks/conectrr-itc-interoperability-intake.md
-Reciprocal acknowledgment record: docs/external-frameworks/conectrr-itc-reciprocal-methodology-acknowledgment-2026-07-27.md
-Reciprocal acknowledgment data: static/data/framework-evaluations/examples/conectrr-itc.reciprocal-methodology-acknowledgment.v1.json
-Machine-readable intake: static/data/framework-evaluations/conectrr-itc.json
-Test profile: static/data/framework-evaluations/examples/conectrr-itc.interoperability-test-profile.v1.json
-Pending result: static/data/framework-evaluations/examples/conectrr-itc.interoperability-result.pending.v1.json
-Pending source receipt: static/data/framework-evaluations/examples/conectrr-itc.source-package-receipt.pending.v1.json
-Disposition fixtures: static/data/framework-evaluations/examples/conectrr-itc.disposition-fixtures.v1.json
-Immutable-source hash receipt template: static/data/framework-evaluations/examples/conectrr-itc.immutable-source-hash-receipt.template.v1.json
-Synthetic capability fixture: static/data/framework-evaluations/examples/conectrr-itc.synthetic-capability-test.v1.json
-Synthetic capability validator: scripts/check_conectrr_itc_synthetic_capability.py
-Synthetic capability status: static/status/conectrr-itc-synthetic-capability-status.json
-Boundary validator: scripts/check_conectrr_itc_interoperability.py
-Canonical binding status: static/status/conectrr-itc-canonical-validation-binding-status.json
-Aggregate validator: scripts/check_admissibility_automation_handoff.py
-Canonical validation: npm run validate
-Canonical workflow: .github/workflows/validate-chain-continuation.yml
-Binding state: BOUND_THROUGH_CANONICAL_AGGREGATE
-Disposition fixture state: BOUND_INTO_INTEROPERABILITY_VALIDATOR
-Immutable-source hash receipt state: BOUND_INTO_INTEROPERABILITY_VALIDATOR
-Synthetic capability state: READY_FOR_CANONICAL_EXECUTION
-Reciprocal methodology state: MUTUALLY_ACKNOWLEDGED
-Technical validation effect of acknowledgment: NONE
-Workflow observation: NOT_OBSERVED_FOR_LATEST_COMMIT
-Source-package state: AWAITING_CANONICAL_SOURCE_ARTIFACTS
-Specification: OFFERED_NOT_RECEIVED
-Canonical generated ITC: OFFERED_NOT_RECEIVED
-Internal validation report: OFFERED_NOT_RECEIVED
-Live external interoperability test: NOT_RUN
-Synthetic smoke test: READY_NOT_YET_OBSERVED
-Replay: NOT_RUN_EXTERNALLY
-Independent reconstruction: NOT_RUN_EXTERNALLY
-Certification: false
-Execution authority: false
+Synthetic fixture: static/data/framework-evaluations/examples/conectrr-itc.synthetic-capability-test.v1.json
+Synthetic validator: scripts/check_conectrr_itc_synthetic_capability.py
+Synthetic status: static/status/conectrr-itc-synthetic-capability-status.json
+Local receipt validator: scripts/check_conectrr_itc_synthetic_local_execution_receipt.py
+Interoperability validator: scripts/check_conectrr_itc_interoperability.py
+Canonical observation index: static/status/conectrr-itc-canonical-workflow-observation.json
+Canonical observation validator: scripts/check_conectrr_itc_canonical_workflow_observation.py
 ```
 
-Bounded external path:
-
-```text
-Conectrr discovery output
--> immutable ITC
--> complete three-artifact source receipt
--> pre-test SHA-256 capture
--> source-integrity and semantic-boundary validation
--> independent reconstruction
--> AGREE / DISAGREE / DEFER
--> post-test SHA-256 capture
--> exact pre/post hash comparison
--> non-authorizing Commitment Candidate
--> fresh SPE current-standing determination
--> ALLOW / DENY / FAIL-CLOSED
-```
-
-Synthetic readiness path:
-
-```text
-synthetic three-artifact package
--> deterministic canonical JSON hashing
--> immutable pre/post comparison
--> deterministic replay comparison
--> AGREE / DISAGREE / DEFER coverage
--> all ten drift vectors represented
--> prohibited authority semantics verified
--> zero authority inheritance
--> canonical aggregate
--> npm run validate
--> canonical workflow observation
-```
-
-The synthetic capability fixture and validator permit immediate testing of the complete local evidence machinery without misrepresenting test data as Conectrr-provided evidence. The smoke test computes deterministic SHA-256 values, confirms replay stability, exercises all three dispositions, checks all ten drift vectors, verifies excluded authority semantics, and holds certification, execution, custody, and endorsement false. It is canonically bound through `scripts/check_admissibility_automation_handoff.py`.
-
-The reciprocal methodology acknowledgment preserves mutual recognition of responsibility separation, non-collapsing divergent findings, evidence-constrained v1.1 development, and a non-subsuming review relationship. It does not alter technical validation, standing, custody, certification, or execution authority.
+Missing Conectrr source artifacts are `NOT_RECEIVED_NON_BLOCKING`. Development continues through deterministic synthetic and surrogate fixtures. Synthetic outputs may validate StegVerse machinery only; they may not be represented as Conectrr-provided evidence or external validation.
 
 ## Deployment and Validation Gate
 
@@ -171,51 +172,31 @@ Public verification job: verify-public-pages
 
 No observed workflow execution may be converted into a PASS or FAIL claim without canonical evidence. Do not create another active workflow unless repository standards change.
 
-## Next Goal
+## Activation Dependency Chain
 
 ```text
-Goal: execute and observe the synthetic capability test, then replace synthetic inputs with accountable external evidence
-Required work:
-- observe canonical execution of the synthetic capability smoke test
-- retain first canonical PASS or first-failure evidence without rewriting history
-- update workflow and route-observation receipts only from canonical evidence
-- receive and freeze the Conectrr ITC specification, canonical generated ITC, and internal validation report
-- convert the pending source-package receipt only when all three artifacts are present
-- capture immutable pre-test and post-test hashes without mutating the canonical ITC
-- replace pending fixtures with hash-bound executed receipts
-- run source-integrity, semantic-boundary, reconstruction, disposition, replay, and commit-time non-inheritance checks
-- ingest the first accountable independent reconstruction submission
-- bind canonical hashes or signatures when Publisher or Master Records custody is authorized
-- preserve divergent findings, conflicts, dissent, corrections, and supersession
-- obtain stronger One World AI technical evidence before docket promotion
+execute located READY_INTERNAL tasks
+-> preserve exact validator failures without rewriting history
+-> continue unrelated ready tasks
+-> rerun canonical aggregate
+-> repository-wide canonical PASS
+-> build-pages
+-> deploy-pages
+-> content-aware public-route verification
+-> append activation receipts
+-> inspect destination handoffs
+-> handoff-authorized downstream propagation
 ```
 
-## Known Remaining Files and Destinations
+## Known Evidence Gaps
 
 ```text
-StegVerse-Labs/admissibility-wiki:
-- canonical synthetic smoke-test PASS or retained first-failure receipt
-- canonical workflow observation receipt
-- Conectrr ITC Specification v1.0 Draft frozen source artifact
-- canonical Conectrr-generated ITC frozen source artifact
-- Conectrr internal validation report frozen source artifact
-- completed source-package receipt with hashes and media types
-- executed immutable-source pre/post hash receipt
-- executed independent reconstruction and replay receipts
-- executed AGREE / DISAGREE / DEFER result
-- commit-time authority non-inheritance edge-case results
-- first accountable independent reconstruction submission
-- canonical hash/signature receipts for reconstruction and correction objects
-
-StegVerse-Labs/Site:
-- public-anchor discovery and comparison projection, pending SITE_MIRROR_HANDOFF authority
-
-GCAT-BCAT-Engine/Publisher:
-- canonical docket packaging, signatures, publication receipts, and supersession projection, pending PUBLISHER_MIRROR_HANDOFF authority
-
-StegVerse-002/stegguardian-wiki:
-- reviewer standing, conflicts, challenge, appeal, dissent, and correction governance projection, pending destination handoff authority
+Accountable independent reconstruction: NOT_OBSERVED_NON_BLOCKING
+Conectrr external three-artifact source package: NOT_RECEIVED_NON_BLOCKING
+Canonical custody signatures: NOT_AVAILABLE_NON_BLOCKING
 ```
+
+Evidence gaps do not halt internal development. Their internal continuation paths are defined in `static/status/wiki-public-anchor-internal-task-registry.json`.
 
 ## Mirror Coordination
 
@@ -232,8 +213,8 @@ Queued propagation is not completed propagation. Destination mutation remains pr
 
 ## Permitted Continuation Scope
 
-A successor session may execute, observe, validate, and repair the synthetic capability path; validate and repair the external Conectrr package; update workflow-observation receipts from canonical evidence; maintain or supersede reconstruction manifests; preserve challenges and corrections; prepare source-ingestion and executed-result fixtures; and queue downstream awareness without unauthorized destination mutation.
+A successor session may execute every located `READY_INTERNAL` task, repair exact validator failures, maintain or supersede reconstruction manifests, run synthetic and surrogate tests, update canonical observation receipts from direct evidence, preserve challenges and corrections, and queue downstream awareness without unauthorized destination mutation.
 
 ## Handoff Instruction
 
-Continue from this file before relying on prior chat context. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
+Continue from this file and `static/status/wiki-public-anchor-internal-task-registry.json` before relying on prior chat context. The complete thread is ready for archiving without any additional part of the thread needed to move forward.
