@@ -22,6 +22,8 @@ TA-14 Exchange exclusivity: NOT ESTABLISHED
 Neutral reviewer standing: NOT ESTABLISHED
 Source artifact integrity: SHA-256 RECORDED
 Exact PDF public custody: PENDING_BINARY_UPLOAD
+Issue ownership: MUST BE DETERMINED PER BOUNDARY
+Automatic StegVerse ownership: PROHIBITED
 ```
 
 ## Governing interpretation
@@ -41,6 +43,37 @@ review artifact != adjudicative authority
 reproducibility may exist without independent authorship
 ```
 
+## Issue-ownership boundary
+
+The presence of an issue in the TA-14 review does not establish that StegVerse owns the issue, controls the relevant component, or bears the burden of curing it.
+
+Every issue must identify separately:
+
+```text
+substantive component owner
+evidence custodian
+test operator
+claim author
+burden holder
+authority source
+runtime or effector owner
+system-of-record owner
+StegVerse coordination role, if any
+```
+
+Permitted classifications:
+
+```text
+STEGVERSE_OWNED
+SHARED_INTERFACE
+EXTERNAL_OWNER
+REVIEWER_BURDEN
+EVIDENCE_COORDINATION_ONLY
+OWNERSHIP_UNRESOLVED
+```
+
+A StegVerse task may preserve, map, test, request, or route evidence without transferring substantive ownership to StegVerse. TA-14 retains ownership of its Exchange route, methods, neutrality and standing claims, interpretations, and adjudicative assertions. External authority issuers, runtimes, effectors, credential custodians, and systems of record retain ownership of the controls and evidence they alone can produce.
+
 ## Owned files
 
 ```text
@@ -55,7 +88,8 @@ static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf (pendin
 
 ```text
 analysis page: CREATED
-G-01 through G-18 remediation matrix: CREATED
+G-01 through G-18 issue matrix: CREATED
+issue-ownership doctrine: CREATED
 claim inventory starter: CREATED
 canonical architecture manifest starter: CREATED
 source PDF digest: RECORDED
@@ -68,12 +102,14 @@ public route: NOT YET OBSERVED
 ## Immediate work sequence
 
 1. Preserve the exact PDF bytes and recorded digest.
-2. Publish the bounded analysis with explicit source-derived, inferred, and disputed findings.
-3. Publish the remediation task list mapped to TA-14 findings G-01 through G-18 and the ten-part evidence package.
-4. Add the pages to repository navigation without claiming independent adjudication.
-5. Bind validation for document presence, PDF digest, links, and required posture statements into the existing canonical validation path.
-6. Continue Phase 0 remediation: resolve exact claim sources, complete the canonical architecture manifest, reconcile decision semantics, and publish the test-scope declaration.
-7. Preserve unresolved authority, execution, outcome, and independent-replay claims as fail-closed.
+2. Publish the bounded analysis with explicit source-derived, inferred, disputed, and ownership-unresolved findings.
+3. Classify every TA-14 issue by component owner, evidence custodian, test operator, and burden holder before assigning remediation.
+4. Publish the issue task list mapped to G-01 through G-18 and the ten-part evidence package without transferring external ownership to StegVerse.
+5. Add the pages to repository navigation without claiming independent adjudication.
+6. Bind validation for document presence, PDF digest, links, reciprocal posture, ownership classification, and required non-claims into the existing canonical validation path.
+7. Continue only StegVerse-owned Phase 0 work: resolve exact StegVerse claim sources, complete the StegVerse architecture manifest, reconcile StegVerse decision semantics, and publish the test-scope declaration.
+8. Refer shared and external issues to their actual owners when identified.
+9. Preserve unresolved authority, execution, outcome, ownership, and independent-replay claims as fail-closed.
 
 ## Binary-upload blocker
 
@@ -83,7 +119,7 @@ This blocker must not be converted into a claim that the PDF is public or in rep
 
 ## Non-claims
 
-This track does not claim that TA-14 is invalid, that StegVerse has already closed the identified gaps, that the PDF is neutral verification, or that publication creates authority.
+This track does not claim that TA-14 is invalid, that StegVerse owns every issue identified by TA-14, that StegVerse has already closed the identified gaps, that the PDF is neutral verification, or that publication creates authority.
 
 ## Completion evidence
 
@@ -92,10 +128,11 @@ The track reaches publication-candidate completeness only when:
 - the exact PDF is committed and digest-verified;
 - analysis and task list are publicly routable;
 - canonical validation includes the new surfaces;
-- every TA-14 issue is mapped to an owner, artifact, exit criterion, and evidence state;
-- no unresolved claim is silently upgraded;
+- every TA-14 issue is mapped to an ownership classification, burden holder, artifact or evidence request, exit criterion, and evidence state;
+- external controls remain attributed to their actual owners;
+- no unresolved claim or ownership assignment is silently upgraded;
 - the handoff and orchestration state record the successor commit and observation posture.
 
 ## Archive condition
 
-Do not archive while the PDF is absent, the public analysis is unroutable, or canonical validation and navigation binding are incomplete.
+Do not archive while the PDF is absent, the public analysis is unroutable, issue ownership remains unclassified, or canonical validation and navigation binding are incomplete.
