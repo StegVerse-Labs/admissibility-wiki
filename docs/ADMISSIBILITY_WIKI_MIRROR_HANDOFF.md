@@ -6,7 +6,7 @@ This file is the current source of truth for continuing `StegVerse-Labs/admissib
 
 ```text
 Goal: grow the Wiki network into the recognized public anchor for governed external-framework review, capability mapping, evidence preservation, independent reconstruction, disputes, corrections, public determinations, and reciprocal self-review.
-Current state: the governed public-anchor layer exists and is BEING_BUILT through three dockets, reciprocal self-review, reconstruction and correction objects, frozen reconstruction packaging, synthetic capability testing, canonical validators, and an internal non-halting continuation registry.
+Current state: the governed public-anchor layer exists and is BEING_BUILT through three dockets, reciprocal self-review, reconstruction and correction objects, frozen reconstruction packaging, synthetic capability testing, canonical validators, and an active internal non-halting task executor.
 Manual task requirement: none.
 User manual action required: false.
 External tasks: none.
@@ -16,7 +16,7 @@ External tasks: none.
 
 ```text
 Goal id: wiki-public-anchor-independent-reconstruction-activation
-State: BEING_BUILT_INTERNAL_CONTINUATION_ACTIVE
+State: BEING_BUILT_INTERNAL_EXECUTION_ACTIVE
 Activation state: NOT YET ADMISSIBLE
 Latest canonical run: 30681187876
 Latest canonical commit: fc19aafc2f8ae7e249cbea731fa2d16b48fafca6
@@ -25,11 +25,13 @@ Build/deploy/public verification: SKIPPED
 Authority posture: public review and reconstruction infrastructure only; no certification, government recognition, custody, endorsement, reviewer standing, or execution authority created.
 ```
 
-## Internal Continuation Layer
+## Internal Continuation and Execution Layer
 
 ```text
 Task registry: static/status/wiki-public-anchor-internal-task-registry.json
 Registry validator: scripts/check_wiki_public_anchor_internal_tasks.py
+Task executor: scripts/run_wiki_public_anchor_internal_tasks.py
+Generated execution report: reports/wiki-public-anchor-internal-task-execution.json
 Coordination record: docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md
 Multi-docket integration: scripts/check_wiki_public_anchor_multi_docket_status.py
 Canonical aggregate: scripts/check_admissibility_automation_handoff.py
@@ -41,6 +43,8 @@ Conectrr evidence lane: GitHub issue #47
 
 Every task must have an owner record, exact repository work locations, an observer, a completion predicate, and a fallback. A task without those fields is invalid.
 
+The executor runs each runnable observer independently. It records `PASS_INTERNAL`, `FAIL_INTERNAL_CONTINUABLE`, `BLOCKED_MISSING_OBSERVER`, or `DEFERRED_SELF_OBSERVATION`, writes the generated execution report, and continues after ordinary task failures. Only a malformed queue or missing required structure causes executor failure.
+
 ## Non-Halting Rule
 
 ```text
@@ -49,6 +53,7 @@ no accountable external reviewer != no reconstruction work
 no provider artifact != no synthetic or surrogate testing
 no workflow observation != local development failure
 one validator failure != unrelated-track suspension
+failed task != queue termination
 ```
 
 There are no external tasks. Third-party artifacts, reviewer participation, signatures, and provider observations are evidence states only. When unavailable, preserve them as `NOT_RECEIVED` or `NOT_OBSERVED`, execute bounded internal simulations or surrogate tests, prohibit promotion into independent evidence, and continue every unrelated `READY_INTERNAL` task.
@@ -71,7 +76,8 @@ PA-INT-004 execute deterministic synthetic capability path
 PA-INT-005 observe canonical workflow without stalling
 PA-INT-006 use bounded internal surrogate testing while source evidence is absent
 PA-INT-007 repair shared canonical validation drift
-PA-INT-008 maintain the continuation queue
+PA-INT-008 maintain the continuation registry
+PA-INT-009 execute and report the internal continuation queue
 ```
 
 The human-readable locations, predicates, and fallbacks are mirrored in:
@@ -129,6 +135,7 @@ DEFER != failure
 Commitment Candidate != execution authority
 synthetic PASS != external validation
 internal simulation != independent reconstruction
+internal task PASS != external validation
 methodology acknowledgment != implementation proof
 methodology acknowledgment != independent reconstruction
 methodology acknowledgment != execution authority
@@ -175,7 +182,8 @@ No observed workflow execution may be converted into a PASS or FAIL claim withou
 ## Activation Dependency Chain
 
 ```text
-execute located READY_INTERNAL tasks
+run scripts/run_wiki_public_anchor_internal_tasks.py
+-> record each task result in reports/wiki-public-anchor-internal-task-execution.json
 -> preserve exact validator failures without rewriting history
 -> continue unrelated ready tasks
 -> rerun canonical aggregate
@@ -213,7 +221,7 @@ Queued propagation is not completed propagation. Destination mutation remains pr
 
 ## Permitted Continuation Scope
 
-A successor session may execute every located `READY_INTERNAL` task, repair exact validator failures, maintain or supersede reconstruction manifests, run synthetic and surrogate tests, update canonical observation receipts from direct evidence, preserve challenges and corrections, and queue downstream awareness without unauthorized destination mutation.
+A successor session may execute every located `READY_INTERNAL` task, run the internal executor, repair exact validator failures, maintain or supersede reconstruction manifests, run synthetic and surrogate tests, update canonical observation receipts from direct evidence, preserve challenges and corrections, and queue downstream awareness without unauthorized destination mutation.
 
 ## Handoff Instruction
 
