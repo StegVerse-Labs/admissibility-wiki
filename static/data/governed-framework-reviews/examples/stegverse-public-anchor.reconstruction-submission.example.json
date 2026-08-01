@@ -1,0 +1,64 @@
+{
+  "schema_version": "framework-reconstruction-submission.v1",
+  "submission_id": "reconstruction-stegverse-public-anchor-internal-simulation-001",
+  "review_id": "review-stegverse-public-anchor-self-2026-07-27",
+  "framework_id": "stegverse-public-anchor",
+  "reviewer": {
+    "name": "StegVerse internal self-adversarial simulation",
+    "type": "AI_ENTITY",
+    "identity_locator": "StegVerse-Labs/admissibility-wiki",
+    "standing_basis": "INTERNAL_SIMULATION_ONLY",
+    "conflicts": [
+      "The reviewer is produced within the system under review.",
+      "The simulation is not independent and cannot establish neutral reviewer standing."
+    ]
+  },
+  "performed_at": "2026-08-01T19:41:00Z",
+  "relevant_time_t": "2026-07-27T09:10:00Z",
+  "method": {
+    "name": "Self-adversarial bounded reconstruction",
+    "version": "v1",
+    "description": "Reconstruct the public-anchor standing from published doctrine, schemas, dockets, validators, and status records while rejecting StegVerse determinations as authoritative inputs. This is an internal simulation, not an independent review."
+  },
+  "inputs": [
+    {
+      "id": "public-anchor-self-review-record",
+      "locator": "/data/governed-framework-reviews/stegverse-public-anchor.self-review.v1.json",
+      "hash": null,
+      "access": "PUBLIC"
+    },
+    {
+      "id": "public-anchor-reconstruction-manifest",
+      "locator": "/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json",
+      "hash": null,
+      "access": "PUBLIC"
+    },
+    {
+      "id": "public-anchor-doctrine",
+      "locator": "/governance/wiki-public-anchor",
+      "hash": null,
+      "access": "PUBLIC"
+    }
+  ],
+  "result": "PARTIAL",
+  "reconstructed_determination": "The repository demonstrates a structured public review mechanism with bounded dockets, correction and reconstruction objects, and internal validation. Independence, neutral reviewer standing, government recognition, certification authority, and substantive correctness remain unresolved.",
+  "agreement_with_published_determination": "AGREES_WITHIN_INTERNAL_SIMULATION_SCOPE",
+  "differences": [],
+  "missing_evidence": [
+    "accountable independent reviewer identity",
+    "external reconstruction artifacts",
+    "canonical custody signatures",
+    "independently governed challenge resolution"
+  ],
+  "artifact_refs": [
+    "/data/governed-framework-reviews/stegverse-public-anchor.self-review.v1.json",
+    "/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json"
+  ],
+  "requested_effect": "NO_AUTOMATIC_STANDING_CHANGE",
+  "authority_boundary": {
+    "independent_reconstruction_claimed": false,
+    "certification_granted": false,
+    "execution_authority_granted": false,
+    "government_recognition_claimed": false
+  }
+}
