@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.1.0",
+  "projection_id": "admissibility-wiki-rtg-tt-formal-boundary",
+  "contract_version": "rtg-tt-v0.1",
+  "site_source": {
+    "repository": "StegVerse-Labs/Site",
+    "commit": "50d417b2dbf29d3812bdae8c3d1942b1ce5a5162"
+  },
+  "stegverse_operational_source": {
+    "repository": "StegVerse-Labs/StegCore",
+    "commit": "47cb26c513c9404017e650e025b8cc14eb02c41c"
+  },
+  "canonical_sources": {
+    "rtg_tests": "2fd7099bb3b6d2d7aa8ce7d72f7f71f6dfd4566a",
+    "transition_table": "19720bae935ef9881ce5b239e0b66423fcd8bfab",
+    "validation_factory": "5ca6ac0442809c5902f9765d2f865e5fa03d9c60",
+    "factory_report_hash": "sha256:a11eea46242f3df6faa64c2c4174779abea08be9ca7ea93342317cdbcdf7aa56"
+  },
+  "ownership": {
+    "rtg_ae": "relational geometry and minimum-node declaration",
+    "tt": "bounded local allocation and ALLOW/DENY/DEFER result",
+    "validation_factory": "procedural correlation and consistency validation",
+    "admissibility_wiki": "public formal-boundary projection only"
+  },
+  "mapping": {
+    "RESOLUTION_SATISFIED": "ALLOW",
+    "FAIL_CLOSED": "DENY",
+    "QUARANTINE": "DEFER"
+  },
+  "authority": {
+    "commitment": false,
+    "execution": false,
+    "custody": false,
+    "publication": false,
+    "release": false
+  },
+  "non_claims": [
+    "Mathematical completeness is not established.",
+    "Universal physical validity is not established.",
+    "A bounded ALLOW result does not independently authorize execution."
+  ]
+}
