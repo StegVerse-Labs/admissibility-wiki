@@ -1,10 +1,11 @@
 {
   "schema_version": "wiki-public-anchor-internal-task-registry.v1",
   "registry_id": "wiki-public-anchor-internal-continuation-2026-08-01",
-  "state": "BEING_BUILT_INTERNAL_CONTINUATION_ACTIVE",
+  "state": "BEING_BUILT_INTERNAL_EXECUTION_ACTIVE",
   "activation": {
     "installed": true,
-    "canonical_binding": "scripts/check_wiki_public_anchor_multi_docket_status.py -> scripts/check_admissibility_automation_handoff.py -> npm run validate",
+    "executor_active": true,
+    "canonical_binding": "scripts/run_wiki_public_anchor_internal_tasks.py -> scripts/check_wiki_public_anchor_multi_docket_status.py -> scripts/check_admissibility_automation_handoff.py -> npm run validate",
     "external_tasks_exist": false,
     "development_may_continue_when_evidence_is_missing": true
   },
@@ -25,7 +26,7 @@
       "work_locations": ["static/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json", "scripts/check_public_anchor_reconstruction_manifest.py"],
       "observer": "scripts/check_public_anchor_reconstruction_manifest.py",
       "completion_predicate": "validator exits 0 and manifest preserves frozen commit, three dockets, unresolved independence, and no authority inheritance",
-      "fallback": "emit a bounded failure receipt and continue PA-INT-002 through PA-INT-008"
+      "fallback": "emit a bounded failure receipt and continue PA-INT-002 through PA-INT-009"
     },
     {
       "task_id": "PA-INT-002",
@@ -89,13 +90,23 @@
     },
     {
       "task_id": "PA-INT-008",
-      "title": "Generate internal continuation queue",
+      "title": "Maintain internal continuation registry",
       "state": "COMPLETE_INTERNAL",
       "owner_record": "static/status/wiki-public-anchor-internal-task-registry.json",
       "work_locations": ["static/status/wiki-public-anchor-internal-task-registry.json", "scripts/check_wiki_public_anchor_internal_tasks.py"],
       "observer": "scripts/check_wiki_public_anchor_internal_tasks.py",
       "completion_predicate": "all tasks have existing owner/work/observer locations, explicit completion predicates, and non-halting fallbacks",
       "fallback": "fail validation with the exact missing path; do not classify the entire layer as externally blocked"
+    },
+    {
+      "task_id": "PA-INT-009",
+      "title": "Execute and report the internal continuation queue",
+      "state": "ACTIVE_INTERNAL",
+      "owner_record": "docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md",
+      "work_locations": ["scripts/run_wiki_public_anchor_internal_tasks.py", "reports/wiki-public-anchor-internal-task-execution.json", "scripts/check_wiki_public_anchor_multi_docket_status.py"],
+      "observer": "scripts/run_wiki_public_anchor_internal_tasks.py",
+      "completion_predicate": "executor runs every runnable non-recursive observer, records PASS or continuable failure per task, writes the execution report, and exits 0 unless the queue structure itself is invalid",
+      "fallback": "record the exact missing observer or structural defect while continuing every remaining runnable task"
     }
   ],
   "evidence_gaps": [
