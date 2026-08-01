@@ -1,0 +1,80 @@
+{
+  "schema_version": "0.1.0",
+  "status_type": "ta14_canonical_run_observation",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "feature/ta14-public-evidence-review",
+  "pull_request": 52,
+  "observed_run": {
+    "run_id": 30715224273,
+    "run_number": 3696,
+    "workflow": "Validate chain continuation",
+    "commit": "af5130034c9fcd270edf5e2d3a3729bb0612ba3d",
+    "conclusion": "failure"
+  },
+  "ta14_layer_result": {
+    "task_registry_validator": "PASS",
+    "observation_fixture_validator": "PASS",
+    "task_count": 18,
+    "fixture_count": 11,
+    "development_halt": false,
+    "state": "BOUNDED_LAYER_VALIDATION_PASS_REPOSITORY_ACTIVATION_FAIL_CLOSED"
+  },
+  "repository_failures_outside_ta14_layer": [
+    {
+      "task_id": "REPO-WORKFLOW-001",
+      "location": ".github/workflows/deploy-pages.yml",
+      "paired_location": ".github/workflows/deploy.yml",
+      "validator": "scripts/check_workflow_sprawl.py",
+      "state": "BUILD_INTERNAL",
+      "effect": "repository canonical activation unavailable; TA-14 development continues"
+    },
+    {
+      "task_id": "REPO-MDX-001",
+      "location": "docs/formalisms/micro-timescale-human-admissibility.md",
+      "line": 74,
+      "paired_location": "docs/research/micro-timescale-human-admissibility-observation-protocol.md",
+      "paired_line": 99,
+      "validator": "scripts/run_sandbox_validation.py",
+      "state": "BUILD_INTERNAL",
+      "effect": "site build unavailable; TA-14 fixtures and contracts continue"
+    },
+    {
+      "task_id": "REPO-MORRISON-001",
+      "location": "scripts/check_morrison_runtime_promotion_gate.py",
+      "state": "BUILD_INTERNAL",
+      "effect": "Goal 5 aggregate remains fail-closed; TA-14 bounded validators remain passed"
+    },
+    {
+      "task_id": "REPO-ASRO-001",
+      "location": "scripts/check_asro_commitment_candidate.py",
+      "state": "BUILD_INTERNAL",
+      "effect": "ASRO comparison remains fail-closed; TA-14 layer progression continues"
+    },
+    {
+      "task_id": "REPO-GOV-LLM-001",
+      "location": "scripts/check_governed_llm_pages.py",
+      "paired_location": "scripts/check-public-activation-receipt-writer.mjs",
+      "state": "BUILD_INTERNAL",
+      "effect": "repository publication activation unavailable; TA-14 internal completion continues"
+    },
+    {
+      "task_id": "REPO-HANDOFF-001",
+      "location": "scripts/check_admissibility_automation_handoff.py",
+      "state": "BUILD_INTERNAL",
+      "effect": "repository-wide handoff not closed; TA-14 bounded status remains independently observable"
+    }
+  ],
+  "policy": {
+    "external_tasks": [],
+    "unrelated_repository_failure_does_not_reopen_passed_ta14_checks": true,
+    "repository_activation_requires_full_canonical_pass": true,
+    "ta14_development_continues_after_repository_failure": true,
+    "synthetic_or_bounded_pass_does_not_claim_public_activation": true
+  },
+  "next_ta14_task": {
+    "task_id": "TA14-OBS-004",
+    "location": "static/reviews/ta14/fixtures/",
+    "validator": "scripts/check_ta14_observation_fixtures.py",
+    "action": "Expand fixtures by category and retain development_halt=false for every observation result."
+  }
+}
