@@ -29,7 +29,14 @@ def main() -> int:
         return 1
 
     require(registry.get("schema_version") == "wiki-public-anchor-internal-task-registry.v1", "schema version mismatch", failures)
-    require(registry.get("state") == "BEING_BUILT_INTERNAL_CONTINUATION_ACTIVE", "registry state mismatch", failures)
+    require(registry.get("state") == "BEING_BUILT_INTERNAL_EXECUTION_ACTIVE", "registry state mismatch", failures)
+
+    activation = registry.get("activation", {})
+    require(activation.get("installed") is True, "internal continuation must be installed", failures)
+    require(activation.get("executor_active") is True, "internal executor must be active", failures)
+    require(activation.get("external_tasks_exist") is False, "activation must deny external tasks", failures)
+    require(activation.get("development_may_continue_when_evidence_is_missing") is True, "missing evidence must not halt development", failures)
+    require("run_wiki_public_anchor_internal_tasks.py" in str(activation.get("canonical_binding", "")), "canonical binding must include the internal executor", failures)
 
     policy = registry.get("policy", {})
     require(policy.get("external_tasks_exist") is False, "external_tasks_exist must be false", failures)
@@ -62,12 +69,17 @@ def main() -> int:
             require(isinstance(location, str) and location, f"{prefix} has invalid work location", failures)
             if isinstance(location, str) and location:
                 require((ROOT / location).exists(), f"{prefix} work path does not exist: {location}", failures)
+        generated_output = task.get("generated_output")
+        if generated_output is not None:
+            require(isinstance(generated_output, str) and bool(generated_output), f"{prefix}.generated_output invalid", failures)
         observer = task.get("observer")
         require(isinstance(observer, str) and observer, f"{prefix}.observer missing", failures)
         if isinstance(observer, str) and observer:
             require((ROOT / observer).exists(), f"{prefix} observer path does not exist: {observer}", failures)
         require(isinstance(task.get("completion_predicate"), str) and bool(task.get("completion_predicate")), f"{prefix}.completion_predicate missing", failures)
         require(isinstance(task.get("fallback"), str) and bool(task.get("fallback")), f"{prefix}.fallback missing", failures)
+
+    require("PA-INT-009" in ids, "executor task PA-INT-009 missing", failures)
 
     gaps = registry.get("evidence_gaps", [])
     require(isinstance(gaps, list), "evidence_gaps must be an array", failures)
@@ -94,7 +106,7 @@ def main() -> int:
             print(f"- {failure}")
         return 1
 
-    print(f"WIKI PUBLIC-ANCHOR INTERNAL TASKS: PASS - {len(tasks)} located internal tasks and {len(gaps)} non-blocking evidence gaps")
+    print(f"WIKI PUBLIC-ANCHOR INTERNAL TASKS: PASS - {len(tasks)} located internal tasks, active executor, and {len(gaps)} non-blocking evidence gaps")
     return 0
 
 
