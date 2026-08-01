@@ -70,6 +70,7 @@ CHECKS = [
     ("Validate LLM free-tier trust chain", "scripts/check_llm_free_tier_trust_chain.py"),
     ("Validate TA-14 task observation registry", "scripts/check_ta14_task_observation_registry.py"),
     ("Validate TA-14 observation fixtures", "scripts/check_ta14_observation_fixtures.py"),
+    ("Validate TA-14 source PDF custody", "scripts/check_ta14_source_pdf.py"),
     ("Validate TA-14 canonical run observation", "scripts/check_ta14_canonical_run_observation.py"),
     ("Validate iOS workflow mirror status", "scripts/check_ios_workflow_mirror_status.py"),
     ("Validate admissibility automation handoff", "scripts/check_admissibility_automation_handoff.py"),
