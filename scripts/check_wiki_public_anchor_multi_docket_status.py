@@ -14,6 +14,8 @@ MANIFEST_CHECK = ROOT / "scripts" / "check_public_anchor_reconstruction_manifest
 PUBLIC_ROUTE_CHECK = ROOT / "scripts" / "check_wiki_public_anchor_public_routes.py"
 INDEPENDENT_RECONSTRUCTION_INVITATION_CHECK = ROOT / "scripts" / "check_public_anchor_independent_reconstruction_invitation.py"
 INTERNAL_TASK_CHECK = ROOT / "scripts" / "check_wiki_public_anchor_internal_tasks.py"
+INTERNAL_TASK_EXECUTOR = ROOT / "scripts" / "run_wiki_public_anchor_internal_tasks.py"
+INTERNAL_TASK_REPORT = ROOT / "reports" / "wiki-public-anchor-internal-task-execution.json"
 
 
 def require(condition: bool, message: str, failures: list[str]) -> None:
@@ -92,6 +94,17 @@ def main() -> int:
     run_check(PUBLIC_ROUTE_CHECK, "public-anchor route observation receipt", failures)
     run_check(INDEPENDENT_RECONSTRUCTION_INVITATION_CHECK, "independent reconstruction invitation", failures)
     run_check(INTERNAL_TASK_CHECK, "non-halting internal task registry", failures)
+    run_check(INTERNAL_TASK_EXECUTOR, "non-halting internal task executor", failures)
+
+    if INTERNAL_TASK_REPORT.exists():
+        report = load(INTERNAL_TASK_REPORT, failures)
+        policy = report.get("execution_policy", {})
+        require(policy.get("continue_after_task_failure") is True, "executor report must continue after task failure", failures)
+        require(policy.get("external_tasks_exist") is False, "executor report must deny external tasks", failures)
+        require(policy.get("failed_task_blocks_unrelated_tasks") is False, "executor report must not block unrelated tasks", failures)
+        require(report.get("authority_boundary", {}).get("internal_pass_is_external_validation") is False, "internal PASS must not become external validation", failures)
+    else:
+        failures.append(f"missing {INTERNAL_TASK_REPORT.relative_to(ROOT)} after executor run")
 
     if failures:
         print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: FAIL")
@@ -99,7 +112,7 @@ def main() -> int:
             print(f"- {failure}")
         return 1
 
-    print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS - three dockets, reconstruction controls, and non-halting internal continuation remain aligned")
+    print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS - three dockets, reconstruction controls, and active non-halting internal execution remain aligned")
     return 0
 
 
