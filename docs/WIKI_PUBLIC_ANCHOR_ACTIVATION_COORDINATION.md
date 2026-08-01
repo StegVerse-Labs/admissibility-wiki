@@ -7,188 +7,177 @@ Layer: governed public-anchor activation and canonical publication-verification 
 Repository: StegVerse-Labs/admissibility-wiki
 State: BEING_BUILT
 Activation state: NOT YET ADMISSIBLE
+External tasks: NONE
+Internal continuation: ACTIVE
 Latest canonical run: 30681187876
 Latest canonical commit: fc19aafc2f8ae7e249cbea731fa2d16b48fafca6
 Canonical result: FAIL_CLOSED_OBSERVED
 Build/deploy/public verification: SKIPPED
 ```
 
-The layer is not absent: its review, reconstruction, synthetic-test, attribution, publication-verification, and coordination components exist. It is not built to activation closure because repository-wide canonical validation, build, deployment, public-route verification, independent reconstruction, and accountable external-source evidence remain incomplete.
+The layer exists in StegVerse and is being built. It is not activation-complete because repository-wide canonical validation, build, deployment, and content-aware public verification have not completed.
 
-This coordination record does not grant publication, release, certification, execution, custody, reviewer-standing, or downstream mutation authority.
+There are **no external tasks**. Missing third-party artifacts, accountable reviewers, signatures, or provider observations are evidence gaps. They must be represented as `NOT_OBSERVED` or `NOT_RECEIVED`; they must not halt unrelated development.
 
-## Canonical authority
+## Internal continuation authority
 
 ```text
-Overall handoff: docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
-MindForge handoff: docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md
+Task registry: static/status/wiki-public-anchor-internal-task-registry.json
+Task registry validator: scripts/check_wiki_public_anchor_internal_tasks.py
+Aggregate binding: scripts/check_wiki_public_anchor_multi_docket_status.py
+Canonical aggregate: scripts/check_admissibility_automation_handoff.py
+Canonical command: npm run validate
 Canonical workflow: .github/workflows/validate-chain-continuation.yml
-Canonical validation: npm run validate
+Master coordination issue: .github issue #50
+Conectrr evidence lane: .github issue #47
 ```
 
-No second active validation workflow is authorized.
+Every task must identify its owner record, work files, observer, completion predicate, and fallback. A task without a repository location is invalid.
 
-## Latest observed canonical evidence
-
-Run `30681187876` completed the diagnostic pre-scan and full validation scan, uploaded the complete report set, and failed only at final canonical enforcement.
+## Non-halting rule
 
 ```text
-pre-scan: PASS (11/11)
-full validation checks: 49 PASS / 6 FAIL groups
-build-pages: SKIPPED
-configure/deploy-pages: SKIPPED
-verify-public-pages: SKIPPED
+missing external evidence != development stop
+no accountable external reviewer != no reconstruction work
+no provider artifact != no synthetic or surrogate testing
+no workflow observation != local development failure
+one validator failure != unrelated-track suspension
 ```
 
-Observed local advances:
+When evidence is unavailable:
+
+1. preserve the gap explicitly;
+2. execute the bounded internal surrogate or simulation;
+3. prohibit promotion of that result into independent or external evidence;
+4. continue all unrelated `READY_INTERNAL` tasks;
+5. rerun the canonical aggregate after each repair group.
+
+## Located internal tasks
+
+### PA-INT-001 — Repair frozen reconstruction manifest binding
 
 ```text
-Conectrr synthetic capability: PASS
-Conectrr synthetic local execution receipt: PASS
-MindForge standing determination: PASS
-MindForge review intake: PASS
-MindForge attribution authorization: PASS
-MindForge publication-verification template: PASS, not activated
-ASRO provenance correction/governance/publication projection: PASS
-public-anchor invitation: PASS
-public routes: PASS as bounded route declarations, not live deployment evidence
+Owner: docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
+Work: static/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json
+Observer: scripts/check_public_anchor_reconstruction_manifest.py
+Completion: validator exits 0 while preserving frozen commit, three dockets, unresolved independence, and no authority inheritance
+Fallback: preserve bounded failure output; continue PA-INT-002 through PA-INT-008
 ```
 
-## Coordinated task routing
-
-### Track 1 — Public-anchor reconstruction ownership
-
-Owner source: `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`
-
-Tasks:
+### PA-INT-002 — Align multi-docket status
 
 ```text
-- align the handoff with the current reconstruction-packet activation state
-- repair the frozen public-anchor reconstruction-manifest binding
-- restore or formally supersede the missing independent-reconstruction invitation validator reference
-- keep independent reconstruction, neutral reviewer standing, custody, and signatures unresolved until observed
+Owner: docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
+Work: static/status/wiki-public-anchor-multi-docket-status.json
+Observer: scripts/check_wiki_public_anchor_multi_docket_status.py
+Completion: validator exits 0 with three bounded dockets and no capability or authority inflation
+Fallback: retain prior status as superseded-pending; continue other ready tasks
 ```
 
-Current failing checks:
+### PA-INT-003 — Maintain reconstruction invitation and internal simulation
 
 ```text
-check_public_anchor_reconstruction_manifest.py
-check_wiki_public_anchor_multi_docket_status.py
+Owner: docs/stegverse/public-anchor-self-review-docket.md
+Work: static/data/governed-framework-reviews/examples/stegverse-public-anchor.reconstruction-submission.example.json
+Schema: static/schemas/framework-reconstruction-submission.schema.json
+Observer: scripts/check_stegverse_public_anchor_reconstruction_invitation.py
+Completion: invitation and simulation remain valid while independent reconstruction stays NOT_OBSERVED
+Fallback: classify result INTERNAL_SIMULATION_ONLY; never promote it to independent evidence
 ```
 
-### Track 2 — ASRO bounded comparison
-
-Owner source: current ASRO goal records and handoff.
-
-Tasks:
+### PA-INT-004 — Execute deterministic synthetic capability path
 
 ```text
-- bind the corrected derivative identity
-- restrict manifest hash scope to the derivative
-- preserve unresolved original source-example membership
-- regenerate the receipt results for correspondence, replay, reconstruction, admissibility, authority, execution, and custody
+Owner: docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
+Fixture: static/data/framework-evaluations/examples/conectrr-itc.synthetic-capability-test.v1.json
+Validator: scripts/check_conectrr_itc_synthetic_capability.py
+Status: static/status/conectrr-itc-synthetic-capability-status.json
+Receipt validator: scripts/check_conectrr_itc_synthetic_local_execution_receipt.py
+Completion: deterministic hashes, replay stability, all dispositions, all drift vectors, and zero authority inheritance pass
+Fallback: preserve first failure; continue non-dependent tracks
 ```
 
-Do not rewrite the preserved original source or promote the bounded StegVerse run into ASRO-native execution.
-
-### Track 3 — Reciprocal framework evaluation
-
-Owner source: reciprocal-framework registry and record handoffs.
-
-Tasks:
+### PA-INT-005 — Observe canonical workflow without stalling
 
 ```text
-- align framework_id for ArquivoNulo and One World AI Limited
-- restore projection authority to NONE
-- remove any parentage implication from bounded comparison
-- freeze the reciprocal replay test case before replay promotion
+Owner: docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md
+Workflow: .github/workflows/validate-chain-continuation.yml
+Observer: scripts/check_conectrr_itc_canonical_workflow_observation.py
+Receipt: static/status/conectrr-itc-canonical-workflow-observation.json
+Completion: observed run is bound, or NOT_OBSERVED is preserved without becoming failure
+Fallback: leave observation pending; continue every READY_INTERNAL task
 ```
 
-### Track 4 — Human micro-timescale admissibility
-
-Owner source: micro-timescale human admissibility doctrine/model/protocol.
-
-Tasks:
+### PA-INT-006 — Use bounded internal surrogate testing while source evidence is absent
 
 ```text
-- add doctrine markers: Emission is not reception; Admissibility is not commitment
-- add model keys: formalism_id and state_model
-- add observation marker: Repetition stopping is not by itself proof
+Owner: docs/external-frameworks/conectrr-itc-interoperability-intake.md
+Pending source receipt: static/data/framework-evaluations/examples/conectrr-itc.source-package-receipt.pending.v1.json
+Test profile: static/data/framework-evaluations/examples/conectrr-itc.interoperability-test-profile.v1.json
+Pending result: static/data/framework-evaluations/examples/conectrr-itc.interoperability-result.pending.v1.json
+Observer: scripts/check_conectrr_itc_interoperability.py
+Completion: synthetic fixtures validate as synthetic-only while external source state remains AWAITING_SOURCE
+Fallback: preserve evidence gap; continue synthetic development
 ```
 
-These are doctrine/model completeness tasks, not evidence that a human interaction has been independently validated.
-
-### Track 5 — Morrison Runtime promotion
-
-Owner source: `docs/MORRISON_RUNTIME_PROMOTION_HANDOFF.md`.
-
-Tasks:
+### PA-INT-007 — Repair shared canonical validation drift
 
 ```text
-- reconcile promotion input artifact hashes to the canonical proof contract
-- reconcile the equivalence set
-- align public status hashes and equivalence fields to the same immutable inputs
+Owner: docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md
+Aggregate: scripts/check_admissibility_automation_handoff.py
+Completion: aggregate exits 0 or prints exact failing validator names and paths for the next internal iteration
+Fallback: route failures by file; do not suspend unrelated tracks
 ```
 
-Preserve comparative-only authority and do not infer implementation readiness or execution authority.
-
-### Track 6 — TA-14 and ArquivoNulo ownership
-
-Owners: current TA-14 and ArquivoNulo goal handoffs.
-
-Tasks:
+### PA-INT-008 — Maintain the continuation queue itself
 
 ```text
-TA-14: assign the standing-reconstruction goal to the correct mirror handoff
-ArquivoNulo: add the exact doctrine token 'valid proof != continuing admissibility'
+Owner: static/status/wiki-public-anchor-internal-task-registry.json
+Observer: scripts/check_wiki_public_anchor_internal_tasks.py
+Completion: every task has existing repository locations, observer, completion predicate, and non-halting fallback
+Fallback: fail with exact missing path; do not classify the layer as externally blocked
 ```
 
-### Track 7 — MindForge synchronization residue
-
-Owner source: `docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md`.
-
-Tasks:
+## Evidence gaps, not tasks
 
 ```text
-- update source-location validator markers from obsolete run 30244212970 to current observed run evidence
-- preserve the standing-determination PASS wording required by the registry validator
-- rerun before changing publication-verification state
+Accountable independent reconstruction: NOT_OBSERVED_NON_BLOCKING
+Conectrr external three-artifact package: NOT_RECEIVED_NON_BLOCKING
+Canonical custody signatures: NOT_AVAILABLE_NON_BLOCKING
 ```
 
-MindForge publication remains blocked by repository-wide validation, build, deployment, and four-route observation—not by attribution authorization.
+Internal continuation paths are recorded in `static/status/wiki-public-anchor-internal-task-registry.json`.
 
-### Track 8 — Observer and GSDP concurrent work
-
-Owners: their current goal-specific handoffs.
-
-Tasks:
+## Activation dependency chain
 
 ```text
-Observer: reconcile OB-001 expected COMMITTED versus derived RECONSTRUCTED without collapsing stage and role
-GSDP: align status state to LOCAL_REFERENCE_VALIDATION_INSTALLED_WORKFLOW_OBSERVATION_PENDING or supersede the validator contract explicitly
-```
-
-These concurrent tracks must refetch before mutation and must not be absorbed into public-anchor doctrine.
-
-## Dependency order
-
-```text
-route Tracks 1-8 to their goal-specific handoffs
--> repair mechanically provable drift without rewriting evidence
--> observe successor canonical run
+execute located READY_INTERNAL tasks
+-> preserve exact failures without rewriting history
+-> rerun canonical aggregate
 -> repository-wide canonical PASS
 -> build-pages
 -> deploy-pages
 -> content-aware public-route verification
--> close MindForge and public-anchor publication receipts
+-> append activation receipts
 -> inspect destination handoffs
 -> handoff-authorized downstream propagation
 ```
 
-Conectrr accountable external-source intake and independent reconstruction may proceed in parallel. Its synthetic PASS is local capability evidence only.
+## Authority boundary
+
+This coordination creates no certification, execution authority, custody, endorsement, government recognition, reviewer standing, or downstream mutation authority.
+
+Preserve:
+
+```text
+local capability PASS != repository-wide activation
+synthetic PASS != external validation
+internal simulation != independent reconstruction
+canonical FAIL-CLOSED != framework failure
+skipped deployment != public-route failure
+route reachability != substantive truth
+```
 
 ## Completion and archive condition
 
-Active coordinated tasks remain. The layer must stay `BEING_BUILT` until a successor canonical PASS permits build, deployment, route verification, and run-bound activation closure.
-
-This session is not archivable while these routed tasks remain active and have not been durably completed or transferred into their owner handoffs.
+Located internal tasks remain active. This session is not archivable until those tasks are completed or durably transferred with their repository locations and observers intact.
