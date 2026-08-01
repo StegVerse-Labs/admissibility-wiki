@@ -1,0 +1,13 @@
+{
+  "layer_id": "personal-data-control-and-deletion",
+  "state": "ACTIVATED_AND_CANONICALLY_BOUND",
+  "all_internal_tasks_complete": true,
+  "external_tasks_required": false,
+  "canonical_validator": "scripts/check_personal_data_control_layer.py",
+  "canonical_command": "npm run validate:personal-data-control-layer",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "first_observation": "docs/external-frameworks/ta-14-account-data-request-channel-observation-2026-08-01.md",
+  "request_delivery_for_ta14": "NOT_ESTABLISHED",
+  "legal_compliance_adjudicated": false,
+  "authority_granted": false
+}
