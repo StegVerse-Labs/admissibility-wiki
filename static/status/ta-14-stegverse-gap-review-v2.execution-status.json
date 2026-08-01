@@ -4,20 +4,81 @@
   "execution_mode": "INTERNAL_NONBLOCKING",
   "external_tasks_allowed": false,
   "development_halted": false,
-  "layer_state": "BEING_BUILT_AND_ACTIVE",
-  "tasks": [
-    {"task_id":"TA14-V2-001","state":"IMPLEMENTED_PENDING_CANONICAL_OBSERVATION","path":"scripts/check_ta14_stegverse_gap_review_v2_intake.py"},
-    {"task_id":"TA14-V2-002","state":"IN_PROGRESS","path":"static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.adjudication.json"},
-    {"task_id":"TA14-V2-003","state":"IN_PROGRESS","path":"static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json"},
-    {"task_id":"TA14-V2-004","state":"IMPLEMENTED","path":"scripts/run_ta14_stegverse_gap_review_v2_tasks.py"},
-    {"task_id":"TA14-V2-005","state":"READY","path":"scripts/check_admissibility_automation_handoff.py"}
+  "completed_tasks": [],
+  "actionable_tasks": [
+    "TA14-V2-001",
+    "TA14-V2-002",
+    "TA14-V2-003",
+    "TA14-V2-004",
+    "TA14-V2-005"
   ],
-  "next_internal_actions": [
-    {"action":"bind task observer and intake validator into canonical aggregate","path":"scripts/check_admissibility_automation_handoff.py"},
-    {"action":"advance evidence mapping finding by finding","path":"static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.adjudication.json"},
-    {"action":"populate route components as repository evidence is verified","path":"static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json"},
-    {"action":"recompute status from repository state","path":"scripts/run_ta14_stegverse_gap_review_v2_tasks.py"}
+  "evidence_gap_tasks": [],
+  "invalid_tasks": [],
+  "observations": [
+    {
+      "task_id": "TA14-V2-001",
+      "declared_state": "IMPLEMENTED_PENDING_CANONICAL_OBSERVATION",
+      "observed_state": "ACTIONABLE_EVIDENCE_PRESENT",
+      "work_path": "scripts/check_ta14_stegverse_gap_review_v2_intake.py",
+      "work_exists": true,
+      "evidence_path": "static/data/governed-framework-reviews/ta-14.stegverse-public-evidence-gap-review-v2.intake.json",
+      "evidence_exists": true,
+      "completion_path": "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-001.json",
+      "completion_exists": false
+    },
+    {
+      "task_id": "TA14-V2-002",
+      "declared_state": "IN_PROGRESS",
+      "observed_state": "ACTIONABLE_EVIDENCE_PRESENT",
+      "work_path": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.adjudication.json",
+      "work_exists": true,
+      "evidence_path": "docs/external-frameworks/ta-14-stegverse-public-evidence-gap-review-v2-intake.md",
+      "evidence_exists": true,
+      "completion_path": "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-002.json",
+      "completion_exists": false
+    },
+    {
+      "task_id": "TA14-V2-003",
+      "declared_state": "IN_PROGRESS",
+      "observed_state": "ACTIONABLE_EVIDENCE_PRESENT",
+      "work_path": "static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json",
+      "work_exists": true,
+      "evidence_path": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.adjudication.json",
+      "evidence_exists": true,
+      "completion_path": "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-003.json",
+      "completion_exists": false
+    },
+    {
+      "task_id": "TA14-V2-004",
+      "declared_state": "IMPLEMENTED",
+      "observed_state": "ACTIONABLE_EVIDENCE_PRESENT",
+      "work_path": "scripts/run_ta14_stegverse_gap_review_v2_tasks.py",
+      "work_exists": true,
+      "evidence_path": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json",
+      "evidence_exists": true,
+      "completion_path": "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-004.json",
+      "completion_exists": false
+    },
+    {
+      "task_id": "TA14-V2-005",
+      "declared_state": "READY",
+      "observed_state": "ACTIONABLE_EVIDENCE_PRESENT",
+      "work_path": "scripts/check_admissibility_automation_handoff.py",
+      "work_exists": true,
+      "evidence_path": "scripts/check_ta14_stegverse_gap_review_v2_task_execution.py",
+      "evidence_exists": true,
+      "completion_path": "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-005.json",
+      "completion_exists": false
+    }
   ],
+  "rules": {
+    "evidence_gap_prevents_claim_promotion": true,
+    "evidence_gap_prevents_unrelated_work": false,
+    "task_without_repository_path_is_invalid": true,
+    "status_is_recomputed_from_repository_state": true,
+    "completion_requires_completion_path": true,
+    "missing_evidence_remains_actionable": true
+  },
   "claim_boundaries": {
     "review_fully_adjudicated": false,
     "route_complete_evidence_proven": false,
