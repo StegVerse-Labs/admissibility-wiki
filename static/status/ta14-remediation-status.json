@@ -22,33 +22,33 @@
     "docs/reviews/ta14-observation-and-completion-plan.md",
     "static/reviews/ta14/task-observation-registry.v0.1.json",
     "scripts/check_ta14_task_observation_registry.py",
+    "scripts/check_ta14_observation_fixtures.py",
     "static/reviews/ta14/evidence-contracts/authority-evidence.schema.json",
     "static/reviews/ta14/evidence-contracts/receipt-trust-evidence.schema.json",
     "static/reviews/ta14/evidence-contracts/execution-boundary-evidence.schema.json",
     "static/reviews/ta14/evidence-contracts/outcome-evidence.schema.json",
     "static/reviews/ta14/evidence-contracts/neutral-review-evidence.schema.json",
     "static/reviews/ta14/fixtures/observation-cases.v0.1.json",
-    "scripts/check_ta14_observation_fixtures.py"
+    "scripts/check_full_validation_chain.py",
+    "sidebars.js"
   ],
   "active_tasks": [
     {
       "task_id": "TA14-OBS-003",
       "state": "COMPLETE",
-      "location": "static/reviews/ta14/evidence-contracts/",
-      "remaining": []
+      "location": "static/reviews/ta14/evidence-contracts/"
     },
     {
       "task_id": "TA14-OBS-004",
       "state": "IN_PROGRESS",
-      "location": "static/reviews/ta14/fixtures/observation-cases.v0.1.json",
-      "validator": "scripts/check_ta14_observation_fixtures.py",
-      "remaining": ["bind validator into canonical validation", "expand category-specific fixtures where exact runtime interfaces are identified"]
+      "location": "static/reviews/ta14/fixtures/",
+      "remaining": ["category-specific fixture directories and deeper positive/negative cases"]
     },
     {
       "task_id": "TA14-OBS-005",
-      "state": "READY",
-      "location": ".github/workflows/validate-chain-continuation.yml",
-      "supporting_location": "scripts/check_governed_llm_pages.py"
+      "state": "COMPLETE_AWAITING_CANONICAL_RUN",
+      "location": "scripts/check_full_validation_chain.py",
+      "supporting_location": ".github/workflows/validate-chain-continuation.yml"
     },
     {
       "task_id": "TA14-OBS-006",
@@ -56,16 +56,14 @@
       "location": "static/status/ta14-remediation-status.json"
     },
     {
-      "task_id": "TA14-PUB-001",
-      "state": "EVIDENCE_ABSENT_FAIL_CLOSED",
-      "location": "static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf",
-      "claim_effect": "blocks exact PDF custody and public source-artifact claims only"
+      "task_id": "TA14-PUB-002",
+      "state": "COMPLETE_AWAITING_SITE_BUILD",
+      "location": "sidebars.js"
     },
     {
-      "task_id": "TA14-PUB-002",
-      "state": "READY",
-      "location": "sidebars.js",
-      "action": "add analysis, remediation, and observation pages to navigation"
+      "task_id": "TA14-PUB-001",
+      "state": "EVIDENCE_ABSENT_FAIL_CLOSED",
+      "location": "static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf"
     }
   ],
   "bounded_claim_blocks": [
@@ -75,9 +73,8 @@
     {"claim": "route-complete outcome governance", "state": "NOT_YET_VERIFIED"}
   ],
   "next_executable_task": {
-    "task_id": "TA14-OBS-005",
-    "location": ".github/workflows/validate-chain-continuation.yml",
-    "supporting_location": "scripts/check_governed_llm_pages.py",
-    "action": "Bind the registry, evidence contracts, observation fixture validator, and non-halting status checks into the existing canonical validation path."
+    "task_id": "TA14-OBS-004",
+    "location": "static/reviews/ta14/fixtures/",
+    "action": "Expand category-specific fixtures while canonical validation and navigation await repository-owned execution."
   }
 }
