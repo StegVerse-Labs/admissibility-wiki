@@ -1,0 +1,32 @@
+{
+  "schema_version": "route-complete-evidence-manifest.v1",
+  "manifest_id": "ta14-stegverse-route-complete-evidence-2026-08-01",
+  "source_review": "static/data/governed-framework-reviews/ta-14.stegverse-public-evidence-gap-review-v2.intake.json",
+  "adjudication": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.adjudication.json",
+  "state": "STRUCTURE_ACTIVE_EVIDENCE_ACCUMULATING",
+  "non_blocking_policy": {
+    "missing_component_stops_claim_promotion": true,
+    "missing_component_stops_unrelated_development": false,
+    "each_component_has_repository_path": true,
+    "partial_completion_is_preserved": true
+  },
+  "components": [
+    {"component_id":"architecture","state":"PARTIAL","work_path":"static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json","required_evidence":["component versions","repository refs","release digests","dependency lock","trust boundaries"]},
+    {"component_id":"authority","state":"PARTIAL","work_path":"docs/external-frameworks/ta-14.md","required_evidence":["issuer","basis","scope","delegate","expiry","revocation","standing","resolver response","affected-party authority"]},
+    {"component_id":"reality","state":"PARTIAL","work_path":"static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json","required_evidence":["original input","source identity","capture time","freshness","transformations","exclusions","challenge history"]},
+    {"component_id":"determination","state":"PARTIAL","work_path":"static/data/governed-framework-reviews/ta-14.reference-docket.v1.json","required_evidence":["policy hash","evaluator version","evidence sufficiency","decision","dissent","follow-up"]},
+    {"component_id":"bind_commit","state":"OPEN","work_path":"docs/commit-boundary-binding.md","required_evidence":["evaluated-object digest","parameter closure","atomic token","lease window","anti-substitution","race control"]},
+    {"component_id":"execution_refusal","state":"OPEN","work_path":"static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json","required_evidence":["effector-side execution proof","effector-side refusal proof","alternate-path closure"]},
+    {"component_id":"continuity","state":"PARTIAL","work_path":"static/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json","required_evidence":["ordered receipts","expected count","checkpoints","trusted signers","revocation","omission detection","closure"]},
+    {"component_id":"replay","state":"PARTIAL","work_path":"static/data/governed-framework-reviews/stegverse-public-anchor.independent-reconstruction-invitation.v1.json","required_evidence":["pinned verifier","instructions","fixtures","expected results","independent attestation"]},
+    {"component_id":"outcome","state":"OPEN","work_path":"static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json","required_evidence":["external system-of-record evidence","actual consequence or verified non-occurrence","restoration","closure"]},
+    {"component_id":"adversarial","state":"OPEN","work_path":"static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json","required_evidence":["bypass","replay","stale authority","signer compromise","missing record","outage","mutation","substitution"]}
+  ],
+  "claim_state": "NO_ROUTE_COMPLETE_CLAIM",
+  "authority_boundary": {
+    "manifest_establishes_truth": false,
+    "manifest_grants_certification": false,
+    "manifest_grants_execution_authority": false,
+    "manifest_establishes_independent_reconstruction": false
+  }
+}
