@@ -1,0 +1,44 @@
+{
+  "schema_version": "wiki-public-anchor-task-mesh-registry.v1",
+  "registry_id": "wiki-public-anchor-task-mesh-2026-08-01",
+  "state": "ACTIVE_INTERNAL_MULTI_QUEUE_EXECUTION",
+  "policy": {
+    "external_tasks_exist": false,
+    "queue_failure_blocks_unrelated_queues": false,
+    "evidence_gap_halts_development": false,
+    "every_queue_requires_runner": true,
+    "every_queue_requires_registry": true,
+    "every_queue_requires_report": true
+  },
+  "queues": [
+    {
+      "queue_id": "public-anchor-internal",
+      "owner_record": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+      "runner": "scripts/run_wiki_public_anchor_internal_tasks.py",
+      "registry": "static/status/wiki-public-anchor-internal-task-registry.json",
+      "report": "reports/wiki-public-anchor-internal-task-execution.json",
+      "validator": "scripts/check_wiki_public_anchor_internal_tasks.py",
+      "completion_predicate": "runner executes all non-recursive READY_INTERNAL tasks, records each outcome, and continues after ordinary failures"
+    },
+    {
+      "queue_id": "ta14-gap-review-v2",
+      "owner_record": "docs/external-frameworks/ta-14-stegverse-public-evidence-gap-review-v2-intake.md",
+      "runner": "scripts/run_ta14_stegverse_gap_review_v2_tasks.py",
+      "registry": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json",
+      "report": "static/status/ta-14-stegverse-gap-review-v2.execution-status.json",
+      "validator": "scripts/check_ta14_stegverse_gap_review_v2_task_execution.py",
+      "completion_predicate": "repository paths are observed, actionable evidence gaps remain nonblocking, invalid tasks fail closed, and task-specific receipts record completion"
+    }
+  ],
+  "mesh": {
+    "runner": "scripts/run_wiki_public_anchor_task_mesh.py",
+    "validator": "scripts/check_wiki_public_anchor_task_mesh.py",
+    "report": "reports/wiki-public-anchor-task-mesh-execution.json",
+    "canonical_binding": "scripts/check_wiki_public_anchor_task_mesh.py -> scripts/check_wiki_public_anchor_multi_docket_status.py -> scripts/check_admissibility_automation_handoff.py -> npm run validate"
+  },
+  "authority_boundary": {
+    "task_mesh_pass_is_external_validation": false,
+    "task_mesh_pass_grants_certification": false,
+    "task_mesh_pass_grants_execution_authority": false
+  }
+}
