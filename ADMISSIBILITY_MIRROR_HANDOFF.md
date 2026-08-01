@@ -8,6 +8,12 @@ The overall active handoff and task source of truth for `StegVerse-Labs/admissib
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 ```
 
+The active coordination record for the governed public-anchor activation and canonical publication-verification layer is:
+
+```text
+docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md
+```
+
 The active goal-specific handoff for AI-led radiology execution-boundary activation is:
 
 ```text
@@ -51,12 +57,14 @@ This root file is retained only as a continuity pointer for sessions or tools th
 
 ## Current priority
 
-Continue from the overall docs handoff, then use the applicable goal-specific handoff. For observer-role, meaning-transition, runtime-overwatch, or after-action reconstruction work, continue from `docs/OBSERVER_BOUNDARY_MIRROR_HANDOFF.md`. Do not rely on prior chat context.
+Continue from the overall docs handoff, then the activation coordination record, then the applicable goal-specific handoff. The activation layer is being built and is not yet admissible for activation because canonical workflow observation, shared-gate clearance, build, deployment, public-route verification, and external-source evidence remain pending.
+
+For observer-role, meaning-transition, runtime-overwatch, or after-action reconstruction work, continue from `docs/OBSERVER_BOUNDARY_MIRROR_HANDOFF.md`. Do not rely on prior chat context.
 
 ## Boundary
 
-This pointer does not claim production authority, release status, execution authority, clinical authority, certification, endorsement, commit-time standing, provider governance, live runtime execution, independent observer standing, neutral reviewer standing, or master-record persistence.
+This pointer and the coordination record do not claim production authority, release status, execution authority, clinical authority, certification, endorsement, commit-time standing, provider governance, live runtime execution, independent observer standing, neutral reviewer standing, or master-record persistence.
 
 ## Archive posture
 
-The root pointer exists so the complete thread can be archived without losing the overall repository handoff or any active goal-specific handoff.
+The activation coordination record contains active tasks. This session is not archivable until those tasks are completed or durably transferred into successor handoffs with run-bound evidence.
