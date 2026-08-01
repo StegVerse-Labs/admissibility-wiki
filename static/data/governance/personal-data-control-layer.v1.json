@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "layer_id": "personal-data-control-and-deletion",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "state": "ACTIVATED_LOCAL_GOVERNANCE_LAYER",
+  "external_dependency_required": false,
+  "authority_granted": false,
+  "capabilities": {
+    "controller_identification": "REQUIRED",
+    "request_channel": "REQUIRED",
+    "authenticated_submission": "REQUIRED",
+    "request_state_observation": "REQUIRED",
+    "processing_restriction": "REQUIRED",
+    "data_inventory": "REQUIRED",
+    "deletion": "REQUIRED",
+    "processor_propagation": "REQUIRED",
+    "appeal": "REQUIRED",
+    "completion_receipt": "REQUIRED"
+  },
+  "tasks": [
+    {
+      "task_id": "PDCL-001",
+      "repository": "StegVerse-Labs/admissibility-wiki",
+      "path": "docs/standards/personal-data-control-and-deletion-layer.md",
+      "owner_role": "repository-maintainer",
+      "input_evidence": ["TA-14 request-channel observation"],
+      "completion_predicate": "file_exists",
+      "status": "COMPLETE",
+      "receipt_path": "static/status/personal-data-control-layer-status.json"
+    },
+    {
+      "task_id": "PDCL-002",
+      "repository": "StegVerse-Labs/admissibility-wiki",
+      "path": "static/data/governance/personal-data-control-layer.v1.json",
+      "owner_role": "repository-maintainer",
+      "input_evidence": ["personal-data control standard"],
+      "completion_predicate": "valid_json_and_all_tasks_located",
+      "status": "COMPLETE",
+      "receipt_path": "static/status/personal-data-control-layer-status.json"
+    },
+    {
+      "task_id": "PDCL-003",
+      "repository": "StegVerse-Labs/admissibility-wiki",
+      "path": "scripts/check_personal_data_control_layer.py",
+      "owner_role": "repository-validator",
+      "input_evidence": ["machine-readable layer manifest"],
+      "completion_predicate": "validator_passes",
+      "status": "COMPLETE",
+      "receipt_path": "static/status/personal-data-control-layer-status.json"
+    },
+    {
+      "task_id": "PDCL-004",
+      "repository": "StegVerse-Labs/admissibility-wiki",
+      "path": "scripts/check_admissibility_automation_handoff.py",
+      "owner_role": "canonical-aggregate",
+      "input_evidence": ["personal-data control validator"],
+      "completion_predicate": "validator_bound_into_canonical_aggregate",
+      "status": "IN_PROGRESS",
+      "receipt_path": "static/status/personal-data-control-layer-status.json"
+    },
+    {
+      "task_id": "PDCL-005",
+      "repository": "StegVerse-Labs/admissibility-wiki",
+      "path": "docs/external-frameworks/ta-14-account-data-request-channel-observation-2026-08-01.md",
+      "owner_role": "public-evidence-recorder",
+      "input_evidence": ["contemporaneous screenshots", "Supabase no-reply email"],
+      "completion_predicate": "bounded_public_observation_exists",
+      "status": "COMPLETE",
+      "receipt_path": "static/status/personal-data-control-layer-status.json"
+    }
+  ],
+  "next_internal_goal": {
+    "goal_id": "PDCL-CANONICAL-OBSERVATION",
+    "repository": "StegVerse-Labs/admissibility-wiki",
+    "path": ".github/workflows/validate-chain-continuation.yml",
+    "completion_predicate": "canonical_workflow_observes_validator_result",
+    "status": "READY_AFTER_AGGREGATE_BINDING"
+  }
+}
