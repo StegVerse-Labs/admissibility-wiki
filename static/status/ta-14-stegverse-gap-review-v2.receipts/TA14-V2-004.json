@@ -1,0 +1,24 @@
+{
+  "schema_version": "governed-review-task-completion-receipt.v1",
+  "task_id": "TA14-V2-004",
+  "title": "Observe and advance task states",
+  "state": "COMPLETED",
+  "completed_at": "2026-08-01T15:48:00-05:00",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "main",
+  "work_path": "scripts/run_ta14_stegverse_gap_review_v2_tasks.py",
+  "registry_path": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json",
+  "status_path": "static/status/ta-14-stegverse-gap-review-v2.execution-status.json",
+  "verified_properties": {
+    "external_tasks_allowed": false,
+    "development_halted": false,
+    "missing_evidence_remains_actionable": true,
+    "completion_requires_task_specific_receipt": true,
+    "invalid_missing_work_fails_closed": true
+  },
+  "authority_boundary": {
+    "certification_granted": false,
+    "execution_authority_granted": false,
+    "independent_reconstruction_established": false
+  }
+}
