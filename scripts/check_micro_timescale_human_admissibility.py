@@ -15,15 +15,15 @@ required_doc_markers = [
     "Micro-Timescale Human Admissibility",
     "t_A",
     "t_M",
-    "Emission is not reception",
-    "Admissibility is not commitment",
+    "emitted != received",
+    "admissible != committed",
     "mutually observable",
 ]
 required_protocol_markers = [
     "Observation Protocol",
     "ADMISSIBILITY_CROSSING_CANDIDATE",
     "MUTUALLY_OBSERVABLE_CANDIDATE",
-    "Repetition stopping is not by itself proof",
+    "A candidate crossing is not accepted merely because repetition stops.",
     "independent",
 ]
 required_event_types = {

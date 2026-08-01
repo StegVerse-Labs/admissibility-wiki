@@ -16,13 +16,13 @@
       "report_sha256": "PENDING",
       "receipts_sha256": "PENDING",
       "verification_sha256": "PENDING",
-      "canonical_evidence_gate_sha256": "PENDING"
+      "canonical_gate_sha256": "PENDING"
     },
     "artifact_equivalence": {
       "report": false,
       "receipts": false,
       "expected_outcomes": false,
-      "canonical_evidence_gate": false
+      "canonical_gate": false
     },
     "canonical_status": "PENDING_CANONICAL_EXECUTION"
   },

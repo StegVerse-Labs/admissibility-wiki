@@ -21,10 +21,11 @@ def main() -> int:
         failures.append("receipt run_id does not match final event")
     if receipt.get("test_case_id") != final.get("test_case_id"):
         failures.append("receipt test_case_id does not match final event")
+    if receipt.get("status") != "PROVISIONAL_SUPERSEDED_PENDING_CORRECTED_RUN":
+        failures.append("receipt must preserve superseded provisional status")
 
-    result = receipt.get("result", {})
-    expected = {
-        "correspondence": final.get("correspondence"),
+    historical = receipt.get("historical_result", {})
+    expected_historical = {
         "replay": final.get("replay_status"),
         "reconstruction": final.get("reconstruction_status"),
         "admissibility": final.get("admissibility"),
@@ -32,9 +33,29 @@ def main() -> int:
         "execution": final.get("execution"),
         "custody": "NONE",
     }
-    for key, value in expected.items():
-        if result.get(key) != value:
-            failures.append(f"receipt result mismatch for {key}")
+    for key, value in expected_historical.items():
+        if historical.get(key) != value:
+            failures.append(f"historical receipt result mismatch for {key}")
+    if historical.get("correspondence") != "ESTABLISHED_FOR_THEN-DECLARED_PUBLIC_ARTIFACT":
+        failures.append("historical correspondence must remain scoped to the then-declared public artifact")
+
+    current = receipt.get("current_effect", {})
+    if current.get("correspondence") != "UNRESOLVED_PENDING_CORRECTED_RUN_AND_RECOMPUTED_INTEGRITY":
+        failures.append("current correspondence must remain unresolved pending corrected run")
+    if current.get("external_asro_native_execution") != "NOT_TESTED":
+        failures.append("external ASRO-native execution must remain NOT_TESTED")
+    if current.get("reviewer_issuer") != "unresolved":
+        failures.append("current reviewer issuer must remain unresolved")
+
+    correction = receipt.get("provenance_correction", {})
+    if correction.get("required") is not True:
+        failures.append("provenance correction must remain required")
+    if correction.get("historical_run_preserved") is not True:
+        failures.append("historical run must remain preserved")
+    if correction.get("corrected_run_required") is not True:
+        failures.append("corrected run must remain required")
+    if receipt.get("current_test_package_sha256") is not None:
+        failures.append("current corrected package hash must remain unset before corrected run")
 
     non_claims = receipt.get("bounded_non_claims", {})
     for key in (
@@ -55,6 +76,8 @@ def main() -> int:
         failures.append("reviewer issuer must remain unresolved")
     if receipt.get("projection_authority") != "NONE":
         failures.append("projection authority must remain NONE")
+    if receipt.get("finalization_status") != "UNFINALIZED_PENDING_CORRECTED_PACKAGE_HASH_AND_RUN":
+        failures.append("receipt must remain unfinalized pending corrected evidence")
 
     if failures:
         print("ASRO BOUNDED COMPARISON RECEIPT: FAIL")
@@ -62,6 +85,7 @@ def main() -> int:
             print(f"- {failure}")
         return 1
     print("ASRO BOUNDED COMPARISON RECEIPT: PASS")
+    print("Historical results remain preserved while current correspondence, corrected integrity, and external execution remain unresolved.")
     return 0
 
 

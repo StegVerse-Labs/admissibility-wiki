@@ -67,6 +67,7 @@ authority-field preservation validation installed: true
 canonical workflow pass observed: false
 Pages deployment observed: false
 public route reachability observed: false
+PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED
 ```
 
 The publication candidate remains:

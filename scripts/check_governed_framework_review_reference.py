@@ -103,7 +103,12 @@ def main() -> int:
     for marker in ("review-ta14-reference-docket-2026-07-27", "PUBLICLY_UNRESOLVED", "Public Reconstruction Procedure", "Publication creates no execution authority"):
         require(marker in page_text, f"reference page missing marker: {marker}", failures)
     require("external-frameworks/ta-14-public-review-docket" in sidebar_text, "reference docket missing from sidebar", failures)
-    require("REVIEW_GOVERNANCE_OBJECTS_IMPLEMENTED" in handoff_text, "handoff does not record review governance objects", failures)
+    for marker in (
+        "Manifest id: public-anchor-three-docket-freeze-2026-07-27",
+        "Dockets: TA-14, ASRO, StegVerse public-anchor self-review",
+        "TA-14: standing PUBLICLY_UNRESOLVED; reconstruction PARTIAL",
+    ):
+        require(marker in handoff_text, f"handoff does not bind review governance marker: {marker}", failures)
 
     require(status.get("reference_review_id") == record.get("review_id"), "status review binding mismatch", failures)
     require(status.get("reference_boundary", {}).get("current_standing") == "PUBLICLY_UNRESOLVED", "status standing mismatch", failures)

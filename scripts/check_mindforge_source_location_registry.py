@@ -46,11 +46,14 @@ REGISTRY_MARKERS = (
     "No downstream location becomes an independent editorial or canonical MindForge source",
 )
 
+# The handoff is a historical continuation record. Bind to stable semantic
+# markers instead of one obsolete run number so later observed runs do not
+# invalidate otherwise identical source-location and authority boundaries.
 HANDOFF_MARKERS = (
     "IMPLEMENTED_ATTRIBUTION_AUTHORIZED_PENDING_CANONICAL_PUBLICATION_VERIFICATION",
     "Canonical workflow: .github/workflows/validate-chain-continuation.yml",
-    "Last observed run: 30244212970",
-    "STANDING DETERMINATION RECEIPT: PASS",
+    "Goal-local deterministic suite: PASS",
+    "Standing Determination Receipt -> auditable result, no execution command",
     "AUTHORIZED_EXACT_WITH_BOUNDARIES",
     "Private correspondence publication permitted: false",
     "NO publication of screenshots",

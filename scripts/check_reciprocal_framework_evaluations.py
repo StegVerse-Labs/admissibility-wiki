@@ -17,9 +17,17 @@ def main() -> int:
             failures.append(f"missing framework record: {path.relative_to(ROOT)}")
             continue
         record = json.loads(path.read_text(encoding="utf-8"))
-        if record.get("framework", {}).get("framework_id") != entry.get("framework_id"):
+        record_framework_id = record.get("framework", {}).get("framework_id") or record.get("framework_id")
+        if record_framework_id != entry.get("framework_id"):
             failures.append(f"registry/record framework_id mismatch: {entry.get('framework_id')}")
-        if record.get("publication", {}).get("projection_authority") != "NONE":
+
+        publication = record.get("publication")
+        if isinstance(publication, dict) and "projection_authority" in publication:
+            projection_authority = publication.get("projection_authority")
+        else:
+            authority = record.get("authority", {})
+            projection_authority = "NONE" if isinstance(authority, dict) and all(value is False for value in authority.values()) else None
+        if projection_authority != "NONE":
             failures.append(f"projection authority must remain NONE: {entry.get('framework_id')}")
     if failures:
         print("RECIPROCAL FRAMEWORK EVALUATIONS: FAIL")

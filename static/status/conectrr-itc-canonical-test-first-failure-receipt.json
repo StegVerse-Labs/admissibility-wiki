@@ -1,0 +1,44 @@
+{
+  "schema": "conectrr_itc_canonical_test_first_failure_receipt.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "pull_request": 44,
+  "head_commit": "548feb22aaafc80a88aeaa65d95d52a9153cf3b1",
+  "workflow": {
+    "name": "Validate chain continuation",
+    "run_id": 30301734896,
+    "run_number": 3567,
+    "status": "completed",
+    "conclusion": "failure",
+    "validation_job_id": 90096052885
+  },
+  "conectrr_capability_test": {
+    "test_request_submitted": true,
+    "canonical_workflow_observed": true,
+    "synthetic_capability_validator_invoked_through_aggregate": true,
+    "reciprocal_methodology_validator_bound_through_aggregate": true,
+    "overall_result": "FAIL_RETAINED",
+    "failure_attribution": "CANONICAL_AGGREGATE_CONTAINS_UNRELATED_PREEXISTING_BLOCKERS"
+  },
+  "observed_blockers": [
+    "Morrison Runtime promotion proof-contract hash and equivalence drift",
+    "micro-timescale human admissibility MDX parse failures",
+    "missing external translation reconstruction receipt",
+    "ASRO corrected derivative identity and hash-scope mismatch",
+    "missing PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED marker in governed relationship transitions handoff",
+    "aggregate handoff failure caused by one or more bounded child-check failures"
+  ],
+  "authority": {
+    "certification": false,
+    "execution_authority": false,
+    "custody": false,
+    "endorsement": false,
+    "external_validation": false
+  },
+  "non_equivalence_rules": [
+    "observed workflow failure != Conectrr capability absence",
+    "synthetic validator execution != external Conectrr validation",
+    "aggregate failure != execution authority",
+    "retained first failure != corrected repository state"
+  ],
+  "next_action": "repair preexisting canonical aggregate blockers and rerun PR 44 without erasing this receipt"
+}

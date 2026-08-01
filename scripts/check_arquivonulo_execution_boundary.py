@@ -40,9 +40,9 @@ def main() -> None:
     publication = json.loads(read(PUBLICATION_TEMPLATE))
 
     for token in (
-        "valid proof != continuing admissibility",
+        "valid_proof(t) != continuing_admissibility(t)",
         "interdiction != pre-consequence prevention",
-        "anchored state != current reality",
+        "anchored_state(t) != current_state_correspondence(t)",
         "S5 Execution",
         "S7 Proof Verification",
         "PUBLICLY_UNRESOLVED",
@@ -50,7 +50,7 @@ def main() -> None:
         require(token in doc, f"doctrine missing token: {token}")
 
     for token in (
-        "reports/arquivonulo-public-route-observation.json",
+        "arquivonulo-public-route-observation.json",
         "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
         "PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED",
         "Publication verifies route availability and bounded content only",
