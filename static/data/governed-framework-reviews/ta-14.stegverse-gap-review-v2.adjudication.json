@@ -1,0 +1,41 @@
+{
+  "schema_version": "external-review-adjudication.v1",
+  "adjudication_id": "ta14-stegverse-gap-review-v2-adjudication-2026-08-01",
+  "source_intake": "static/data/governed-framework-reviews/ta-14.stegverse-public-evidence-gap-review-v2.intake.json",
+  "state": "IN_PROGRESS",
+  "disposition_vocabulary": ["AGREE", "PARTIAL", "DISAGREE", "DEFER"],
+  "rules": {
+    "no_disposition_without_evidence_path": true,
+    "missing_public_proof_is_not_nonexistence": true,
+    "architecture_disagreement_is_not_implementation_failure": true,
+    "self_authored_validation_is_not_independent_reconstruction": true,
+    "unresolved_finding_does_not_halt_other_findings": true
+  },
+  "findings": [
+    {"finding_id":"G-01","topic":"universal marketing claim","disposition":"DEFER","state":"EVIDENCE_MAPPING","work_path":"docs/external-frameworks/ta-14-stegverse-public-evidence-gap-review-v2-intake.md","evidence_targets":["public package claims","exact release metadata","test-scope declaration"]},
+    {"finding_id":"G-02","topic":"authority establishment","disposition":"PARTIAL","state":"EVIDENCE_MAPPING","work_path":"docs/external-frameworks/ta-14.md","evidence_targets":["issuer trust","standing","delegation","expiry","revocation","affected-party authority"]},
+    {"finding_id":"G-03","topic":"trusted receipt issuance","disposition":"AGREE","state":"BOUNDED","work_path":"docs/governance/wiki-public-anchor.md","evidence_targets":["signer identity","key provenance","revocation","omission resistance","execution correspondence"]},
+    {"finding_id":"G-04","topic":"continuity completeness","disposition":"PARTIAL","state":"EVIDENCE_MAPPING","work_path":"static/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json","evidence_targets":["expected count","sequence commitment","checkpoint","closure receipt"]},
+    {"finding_id":"G-05","topic":"evaluated-to-committed object identity","disposition":"PARTIAL","state":"EVIDENCE_MAPPING","work_path":"docs/commit-boundary-binding.md","evidence_targets":["evaluated digest","bound digest","committed digest","parameter closure"]},
+    {"finding_id":"G-06","topic":"non-bypassability","disposition":"AGREE","state":"BOUNDED","work_path":"static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json","evidence_targets":["direct-call denial","SDK bypass","metadata stripping","stale-token replay","outage behavior"]},
+    {"finding_id":"G-07","topic":"atomic commit","disposition":"AGREE","state":"BOUNDED","work_path":"static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json","evidence_targets":["reservation token","lease","compare-and-commit","expiry","cancellation","TOCTOU"]},
+    {"finding_id":"G-08","topic":"canonical decision semantics","disposition":"PARTIAL","state":"EVIDENCE_MAPPING","work_path":"static/data/canonical-decision-enum-registry.json","evidence_targets":["formal mapping","downstream obligation","canonical state machine"]},
+    {"finding_id":"G-09","topic":"canonical runtime assembly","disposition":"AGREE","state":"BOUNDED","work_path":"static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json","evidence_targets":["signed bill of materials","dependency lock","deployment manifest","reproducible command"]},
+    {"finding_id":"G-10","topic":"key provenance","disposition":"AGREE","state":"BOUNDED","work_path":"static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json","evidence_targets":["key establishment","custody","rotation","revocation","external trust anchor"]},
+    {"finding_id":"G-11","topic":"external outcome correspondence","disposition":"AGREE","state":"BOUNDED","work_path":"static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json","evidence_targets":["system-of-record delta","settlement or actuator proof","closure"]},
+    {"finding_id":"G-12","topic":"verified restraint","disposition":"AGREE","state":"BOUNDED","work_path":"static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json","evidence_targets":["effector rejection","credential custody","alternate-route test","protected-state evidence"]},
+    {"finding_id":"G-13","topic":"independent replay","disposition":"AGREE","state":"BOUNDED","work_path":"static/data/governed-framework-reviews/stegverse-public-anchor.independent-reconstruction-invitation.v1.json","evidence_targets":["pinned verifier","instructions","fixtures","independent attestation"]},
+    {"finding_id":"G-14","topic":"governance of governance","disposition":"PARTIAL","state":"EVIDENCE_MAPPING","work_path":"docs/governance/wiki-public-anchor.md","evidence_targets":["rule-change authority","historical meaning","maintainer removal","emergency overrides"]},
+    {"finding_id":"G-15","topic":"canonical web identity","disposition":"PARTIAL","state":"EVIDENCE_MAPPING","work_path":"static/status/wiki-public-anchor-route-observation-receipt.json","evidence_targets":["canonical routes","release identity","documentation stability"]},
+    {"finding_id":"G-16","topic":"reviewability of TA-14 findings","disposition":"PARTIAL","state":"EVIDENCE_MAPPING","work_path":"static/data/governed-framework-reviews/ta-14.reference-docket.v1.json","evidence_targets":["method","route","expected result","observed result","environment","replay"]},
+    {"finding_id":"G-17","topic":"categorical dismissal of TA-14","disposition":"AGREE","state":"BOUNDED","work_path":"docs/external-frameworks/ta-14-public-review-docket.md","evidence_targets":["bounded claim language","absence of universal adverse conclusion"]},
+    {"finding_id":"G-18","topic":"architecture critique versus implementation failure","disposition":"AGREE","state":"BOUNDED","work_path":"docs/external-frameworks/ta-14-public-review-docket.md","evidence_targets":["separate architecture hypothesis from runtime finding"]}
+  ],
+  "standing_effect": "NONE_PENDING_REVIEW",
+  "authority_boundary": {
+    "certification_granted": false,
+    "execution_authority_granted": false,
+    "government_recognition_established": false,
+    "independent_reconstruction_established": false
+  }
+}
