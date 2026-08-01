@@ -14,8 +14,8 @@ MANIFEST_CHECK = ROOT / "scripts" / "check_public_anchor_reconstruction_manifest
 PUBLIC_ROUTE_CHECK = ROOT / "scripts" / "check_wiki_public_anchor_public_routes.py"
 INDEPENDENT_RECONSTRUCTION_INVITATION_CHECK = ROOT / "scripts" / "check_public_anchor_independent_reconstruction_invitation.py"
 INTERNAL_TASK_CHECK = ROOT / "scripts" / "check_wiki_public_anchor_internal_tasks.py"
-INTERNAL_TASK_EXECUTOR = ROOT / "scripts" / "run_wiki_public_anchor_internal_tasks.py"
-INTERNAL_TASK_REPORT = ROOT / "reports" / "wiki-public-anchor-internal-task-execution.json"
+TASK_MESH_CHECK = ROOT / "scripts" / "check_wiki_public_anchor_task_mesh.py"
+TASK_MESH_REPORT = ROOT / "reports" / "wiki-public-anchor-task-mesh-execution.json"
 
 
 def require(condition: bool, message: str, failures: list[str]) -> None:
@@ -41,12 +41,8 @@ def run_check(path: Path, label: str, failures: list[str]) -> None:
         failures.append(f"missing {path.relative_to(ROOT)}")
         return
     result = subprocess.run(
-        [sys.executable, str(path)],
-        cwd=ROOT,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
+        [sys.executable, str(path)], cwd=ROOT, text=True,
+        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
     )
     print(result.stdout.rstrip())
     if result.returncode != 0:
@@ -94,17 +90,18 @@ def main() -> int:
     run_check(PUBLIC_ROUTE_CHECK, "public-anchor route observation receipt", failures)
     run_check(INDEPENDENT_RECONSTRUCTION_INVITATION_CHECK, "independent reconstruction invitation", failures)
     run_check(INTERNAL_TASK_CHECK, "non-halting internal task registry", failures)
-    run_check(INTERNAL_TASK_EXECUTOR, "non-halting internal task executor", failures)
+    run_check(TASK_MESH_CHECK, "non-halting public-anchor task mesh", failures)
 
-    if INTERNAL_TASK_REPORT.exists():
-        report = load(INTERNAL_TASK_REPORT, failures)
+    if TASK_MESH_REPORT.exists():
+        report = load(TASK_MESH_REPORT, failures)
         policy = report.get("execution_policy", {})
-        require(policy.get("continue_after_task_failure") is True, "executor report must continue after task failure", failures)
-        require(policy.get("external_tasks_exist") is False, "executor report must deny external tasks", failures)
-        require(policy.get("failed_task_blocks_unrelated_tasks") is False, "executor report must not block unrelated tasks", failures)
-        require(report.get("authority_boundary", {}).get("internal_pass_is_external_validation") is False, "internal PASS must not become external validation", failures)
+        require(policy.get("continue_after_queue_failure") is True, "task mesh must continue after queue failure", failures)
+        require(policy.get("external_tasks_exist") is False, "task mesh must deny external tasks", failures)
+        require(policy.get("failed_queue_blocks_unrelated_queue") is False, "task mesh must not block unrelated queues", failures)
+        require(policy.get("evidence_gap_halts_development") is False, "evidence gaps must not halt development", failures)
+        require(len(report.get("queues", [])) >= 2, "task mesh must observe public-anchor and TA-14 queues", failures)
     else:
-        failures.append(f"missing {INTERNAL_TASK_REPORT.relative_to(ROOT)} after executor run")
+        failures.append(f"missing {TASK_MESH_REPORT.relative_to(ROOT)} after task-mesh execution")
 
     if failures:
         print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: FAIL")
@@ -112,7 +109,7 @@ def main() -> int:
             print(f"- {failure}")
         return 1
 
-    print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS - three dockets, reconstruction controls, and active non-halting internal execution remain aligned")
+    print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS - dockets, reconstruction controls, and non-halting task mesh remain aligned")
     return 0
 
 
