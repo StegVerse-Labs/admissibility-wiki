@@ -1,0 +1,61 @@
+{
+  "schema_version": "governed-review-task-registry.v1",
+  "registry_id": "ta14-stegverse-gap-review-v2-tasks-2026-08-01",
+  "review_intake": "static/data/governed-framework-reviews/ta-14.stegverse-public-evidence-gap-review-v2.intake.json",
+  "coordination_issue": 53,
+  "execution_policy": {
+    "external_tasks_allowed": false,
+    "unresolved_evidence_halts_unrelated_work": false,
+    "ready_tasks_execute_in_dependency_order": true,
+    "blocked_tasks_emit_bounded_receipts": true,
+    "status_without_repository_path_is_invalid": true,
+    "append_only_history_required": true
+  },
+  "tasks": [
+    {
+      "task_id": "TA14-V2-001",
+      "title": "Validate external-review intake",
+      "state": "IMPLEMENTED_PENDING_CANONICAL_OBSERVATION",
+      "work_path": "scripts/check_ta14_stegverse_gap_review_v2_intake.py",
+      "evidence_path": "static/data/governed-framework-reviews/ta-14.stegverse-public-evidence-gap-review-v2.intake.json",
+      "completion_path": "static/status/ta-14-stegverse-gap-review-v2.execution-status.json",
+      "dependencies": []
+    },
+    {
+      "task_id": "TA14-V2-002",
+      "title": "Adjudicate G-01 through G-18",
+      "state": "READY",
+      "work_path": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.adjudication.json",
+      "evidence_path": "docs/external-frameworks/ta-14-stegverse-public-evidence-gap-review-v2-intake.md",
+      "completion_path": "static/status/ta-14-stegverse-gap-review-v2.execution-status.json",
+      "dependencies": ["TA14-V2-001"]
+    },
+    {
+      "task_id": "TA14-V2-003",
+      "title": "Construct route-complete evidence manifest",
+      "state": "READY",
+      "work_path": "static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json",
+      "evidence_path": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.adjudication.json",
+      "completion_path": "static/status/ta-14-stegverse-gap-review-v2.execution-status.json",
+      "dependencies": ["TA14-V2-002"]
+    },
+    {
+      "task_id": "TA14-V2-004",
+      "title": "Observe and advance task states",
+      "state": "READY",
+      "work_path": "scripts/run_ta14_stegverse_gap_review_v2_tasks.py",
+      "evidence_path": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json",
+      "completion_path": "static/status/ta-14-stegverse-gap-review-v2.execution-status.json",
+      "dependencies": []
+    },
+    {
+      "task_id": "TA14-V2-005",
+      "title": "Bind task execution into canonical aggregate",
+      "state": "READY",
+      "work_path": "scripts/check_admissibility_automation_handoff.py",
+      "evidence_path": "scripts/run_ta14_stegverse_gap_review_v2_tasks.py",
+      "completion_path": "static/status/ta-14-stegverse-gap-review-v2.execution-status.json",
+      "dependencies": ["TA14-V2-004"]
+    }
+  ]
+}
