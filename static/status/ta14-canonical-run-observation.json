@@ -1,25 +1,31 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "status_type": "ta14_canonical_run_observation",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "branch": "feature/ta14-public-evidence-review",
   "pull_request": 52,
   "observed_run": {
-    "run_id": 30715224273,
-    "run_number": 3696,
+    "run_id": 30720655708,
+    "run_number": 3744,
     "workflow": "Validate chain continuation",
-    "commit": "af5130034c9fcd270edf5e2d3a3729bb0612ba3d",
-    "conclusion": "failure"
+    "commit": "a66e774bb93ab1c74551ac01dda6d00d3f3bc4ea",
+    "conclusion": "failure",
+    "full_validation_passed": 49,
+    "full_validation_total": 59,
+    "full_validation_failed": 9,
+    "full_validation_skipped": 1
   },
   "ta14_layer_result": {
     "task_registry_validator": "PASS",
     "observation_fixture_validator": "PASS",
+    "canonical_run_observation_validator": "PASS",
     "task_count": 18,
-    "fixture_count": 11,
+    "fixture_count": 21,
+    "fixture_category_count": 8,
     "development_halt": false,
     "state": "BOUNDED_LAYER_VALIDATION_PASS_REPOSITORY_ACTIVATION_FAIL_CLOSED"
   },
-  "repository_failures_outside_ta14_layer": [
+  "repository_failures_outside_ta14_bounded_checks": [
     {
       "task_id": "REPO-WORKFLOW-001",
       "location": ".github/workflows/deploy-pages.yml",
@@ -36,7 +42,7 @@
       "paired_line": 99,
       "validator": "scripts/run_sandbox_validation.py",
       "state": "BUILD_INTERNAL",
-      "effect": "site build unavailable; TA-14 fixtures and contracts continue"
+      "effect": "site build unavailable; TA-14 contracts, fixtures, custody validation, and mapping continue"
     },
     {
       "task_id": "REPO-MORRISON-001",
@@ -61,7 +67,7 @@
       "task_id": "REPO-HANDOFF-001",
       "location": "scripts/check_admissibility_automation_handoff.py",
       "state": "BUILD_INTERNAL",
-      "effect": "repository-wide handoff not closed; TA-14 bounded status remains independently observable"
+      "effect": "repository-wide handoff remains fail-closed; TA-14 bounded progress remains independently observable"
     }
   ],
   "policy": {
@@ -69,12 +75,28 @@
     "unrelated_repository_failure_does_not_reopen_passed_ta14_checks": true,
     "repository_activation_requires_full_canonical_pass": true,
     "ta14_development_continues_after_repository_failure": true,
-    "synthetic_or_bounded_pass_does_not_claim_public_activation": true
+    "synthetic_or_bounded_pass_does_not_claim_public_activation": true,
+    "source_pdf_absence_blocks_only_exact_custody_claim": true
   },
-  "next_ta14_task": {
-    "task_id": "TA14-OBS-004",
-    "location": "static/reviews/ta14/fixtures/",
-    "validator": "scripts/check_ta14_observation_fixtures.py",
-    "action": "Expand fixtures by category and retain development_halt=false for every observation result."
-  }
+  "next_ta14_tasks": [
+    {
+      "task_id": "TA14-PUB-001",
+      "location": "static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf",
+      "validator": "scripts/check_ta14_source_pdf.py",
+      "state": "EVIDENCE_ABSENT_FAIL_CLOSED",
+      "action": "Commit exact PDF bytes; validator already handles both absent fail-closed and present digest-verified states without halting unrelated work."
+    },
+    {
+      "task_id": "TA14-PHASE0-001",
+      "location": "static/reviews/ta14/claim-inventory.v0.1.json",
+      "state": "BUILD_INTERNAL",
+      "action": "Resolve exact StegVerse-controlled claim sources, revisions, validators, limitations, and publication posture."
+    },
+    {
+      "task_id": "TA14-PHASE0-002",
+      "location": "static/reviews/ta14/canonical-architecture-manifest.v0.1.json",
+      "state": "BUILD_INTERNAL",
+      "action": "Complete authority, receipt, binding, commit, execution, outcome, replay, and publication boundary mappings."
+    }
+  ]
 }
