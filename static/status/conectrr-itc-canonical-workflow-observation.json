@@ -1,0 +1,15 @@
+{
+  "schema_version": "canonical-workflow-observation-index.v1",
+  "status_id": "conectrr-itc-canonical-workflow-observation-index",
+  "current_observation": "static/status/conectrr-itc-canonical-workflow-observation-2026-07-27.json",
+  "pending_template": "static/status/conectrr-itc-canonical-workflow-observation.pending.v1.json",
+  "observer": "scripts/check_conectrr_itc_canonical_workflow_observation.py",
+  "state": "OBSERVED_FAIL_CLOSED_SUCCESSOR_RUN_REQUIRED",
+  "development_blocking": false,
+  "meaning": "Canonical observation controls activation claims but does not halt unrelated internal development.",
+  "authority_boundary": {
+    "certification_granted": false,
+    "execution_authority_granted": false,
+    "external_validation_claimed": false
+  }
+}
