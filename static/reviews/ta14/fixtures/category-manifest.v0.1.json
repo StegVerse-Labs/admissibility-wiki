@@ -1,17 +1,17 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "fixture_type": "ta14_observation_category_manifest",
   "source": "static/reviews/ta14/fixtures/observation-cases.v0.1.json",
   "development_halt": false,
   "categories": {
-    "authority": ["authority-absent", "authority-stale"],
-    "receipt_trust": ["signer-revoked"],
-    "object_binding": ["object-substitution", "parameter-expansion"],
-    "atomic_commit": ["stale-commit-token"],
-    "execution_boundary": ["direct-runtime-bypass", "receipt-service-outage"],
-    "refusal": ["refusal-contradicted"],
-    "outcome": ["outcome-evidence-absent"],
-    "neutral_review": ["neutral-review-self-asserted"]
+    "authority": ["authority-absent", "authority-stale", "authority-scope-mismatch"],
+    "receipt_trust": ["signer-revoked", "signer-rotation-discontinuous", "trust-anchor-substitution"],
+    "object_binding": ["object-substitution", "parameter-expansion", "object-match-parameter-mismatch"],
+    "atomic_commit": ["stale-commit-token", "compare-and-commit-race"],
+    "execution_boundary": ["direct-runtime-bypass", "receipt-service-outage", "metadata-stripped", "alternate-credential-route"],
+    "refusal": ["refusal-contradicted", "refusal-delayed-execution"],
+    "outcome": ["outcome-evidence-absent", "outcome-contradictory"],
+    "neutral_review": ["neutral-review-self-asserted", "neutral-review-conflict-undisclosed"]
   },
   "completion_rule": "Every aggregate fixture id must appear exactly once in the category manifest. Missing evidence changes only the bounded claim state and never halts unrelated development."
 }
