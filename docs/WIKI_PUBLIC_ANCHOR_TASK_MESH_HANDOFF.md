@@ -3,14 +3,14 @@
 ## Determination
 
 ```text
-Layer: registry-driven non-halting task mesh
+Layer: registry-driven non-halting task mesh with bounded completion cycles
 Repository: StegVerse-Labs/admissibility-wiki
 State: BUILT_AND_ACTIVATED_INTERNAL
 External tasks: none
 Manual task requirement: none
 ```
 
-The task mesh is the continuation layer above individual task queues. It discovers registered queues from repository state, executes each queue independently, records each queue result, and continues after ordinary queue failure.
+The task mesh is the continuation layer above individual task queues. It discovers registered queues from repository state, executes each queue independently, records each queue result, continues after ordinary queue failure, and now advances the complete mesh through bounded completion cycles until all queues pass, an internal fixed point is reached, or the bounded cycle limit is reached.
 
 ## Authoritative locations
 
@@ -19,6 +19,9 @@ Mesh registry: static/status/wiki-public-anchor-task-mesh-registry.json
 Mesh runner: scripts/run_wiki_public_anchor_task_mesh.py
 Mesh validator: scripts/check_wiki_public_anchor_task_mesh.py
 Mesh report: reports/wiki-public-anchor-task-mesh-execution.json
+Completion controller: scripts/run_wiki_public_anchor_completion_cycles.py
+Completion validator: scripts/check_wiki_public_anchor_completion_cycles.py
+Completion report: reports/wiki-public-anchor-completion-cycle.json
 Canonical integration: scripts/check_wiki_public_anchor_multi_docket_status.py
 Canonical aggregate: scripts/check_admissibility_automation_handoff.py
 Canonical workflow: .github/workflows/validate-chain-continuation.yml
@@ -69,6 +72,36 @@ completion_predicate
 
 The mesh runner reads the registry dynamically. New queues do not require a hard-coded Python queue list.
 
+## Completion-cycle contract
+
+The bounded controller runs:
+
+```text
+scripts/run_wiki_public_anchor_completion_cycles.py
+```
+
+It executes no more than three mesh cycles in one canonical invocation. Each cycle records:
+
+```text
+cycle number
+runner exit code
+mesh-report hashes before and after
+state fingerprint
+queue summary
+unresolved queue state
+exact runner, registry, report, and validator paths
+```
+
+Valid stop states are:
+
+```text
+ALL_REGISTERED_QUEUES_PASS
+INTERNAL_FIXED_POINT_REACHED
+MAX_CYCLES_REACHED
+```
+
+`INTERNAL_FIXED_POINT_REACHED` means the observable repository-derived queue state did not change between cycles. It is not task completion and may not be promoted as activation closure. Remaining work stays located in `reports/wiki-public-anchor-completion-cycle.json`.
+
 ## Non-halting rules
 
 ```text
@@ -77,6 +110,8 @@ missing evidence != missing task
 missing evidence != development stop
 queue failure != mesh termination
 failed queue != unrelated queue suspension
+fixed point != completion
+bounded retry != indefinite waiting
 mesh PASS != external validation
 mesh PASS != certification
 mesh PASS != execution authority
@@ -85,6 +120,16 @@ mesh PASS != execution authority
 Evidence gaps remain actionable states inside their owning queue. They restrict claim promotion but do not stop other work.
 
 ## Active coordinated tasks
+
+### Completion-cycle canonical observation
+
+```text
+Work: scripts/run_wiki_public_anchor_completion_cycles.py
+Observer: scripts/check_wiki_public_anchor_completion_cycles.py
+Evidence: reports/wiki-public-anchor-completion-cycle.json
+Canonical caller: scripts/check_wiki_public_anchor_multi_docket_status.py
+Completion predicate: at least one bounded cycle executes, exact remaining internal work is preserved, no external task is created, and development_halted remains false.
+```
 
 ### Mesh canonical observation
 
@@ -117,8 +162,10 @@ Receipts: static/status/ta-14-stegverse-gap-review-v2.receipts/
 ## Next transition
 
 ```text
-run registry-driven task mesh
--> preserve per-queue reports
+run bounded completion cycles
+-> preserve per-cycle and per-queue reports
+-> if progress occurs, continue within the bounded cycle limit
+-> if fixed point occurs, retain exact unresolved repository paths
 -> repair exact internal failures by named repository path
 -> continue unrelated queues
 -> canonical aggregate PASS
@@ -130,4 +177,4 @@ run registry-driven task mesh
 
 ## Authority boundary
 
-This layer coordinates and observes internal development only. It grants no certification, government recognition, reviewer standing, custody, endorsement, or execution authority.
+This layer coordinates, observes, and advances internal development only. It grants no certification, government recognition, reviewer standing, custody, endorsement, or execution authority.
