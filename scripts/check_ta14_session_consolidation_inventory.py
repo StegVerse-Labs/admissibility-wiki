@@ -7,7 +7,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 INVENTORY = ROOT / "static/reviews/ta14/session-consolidation-inventory.v0.1.json"
 REQUIRED_TASK_IDS = {f"TA14-GOAL-{index:03d}" for index in range(1, 9)}
-ALLOWED_SCHEMA_VERSIONS = {"0.1.0", "0.2.0"}
 ALLOWED_CLAIM_STATES = {
     "UNCLAIMED",
     "CLAIMED_FOR_IMPLEMENTATION",
@@ -18,6 +17,10 @@ ALLOWED_CLAIM_STATES = {
     "COMPLETE",
     "SUPERSEDED",
     "MERGED_INTO_CANONICAL_WORKSTREAM",
+}
+ARCHIVE_SAFE_SESSION_ROLES = {
+    "MERGED_INTO_CANONICAL_WORKSTREAM",
+    "COMPLETE_ARCHIVE",
 }
 
 
@@ -35,8 +38,8 @@ def main() -> int:
     except Exception as exc:
         return fail(f"invalid JSON: {exc}")
 
-    if payload.get("schema_version") not in ALLOWED_SCHEMA_VERSIONS:
-        return fail(f"schema_version must be one of {sorted(ALLOWED_SCHEMA_VERSIONS)}")
+    if payload.get("schema_version") not in {"0.1.0", "0.2.0", "0.3.0"}:
+        return fail("schema_version must be one of 0.1.0, 0.2.0, or 0.3.0")
     if payload.get("goal_id") != "TA14-RECIPROCAL-REVIEW-LAYER":
         return fail("unexpected goal_id")
 
@@ -54,6 +57,7 @@ def main() -> int:
     if ids != REQUIRED_TASK_IDS:
         return fail(f"expected goal IDs {sorted(REQUIRED_TASK_IDS)}, found {sorted(ids)}")
 
+    archival_dependencies = []
     for goal in goals:
         if not isinstance(goal, dict):
             return fail("every goal must be an object")
@@ -71,10 +75,24 @@ def main() -> int:
             return fail(f"{task_id} owner must not be an unspecified external task")
         if goal.get("claim_state") == "BLOCKED" and not goal.get("release_condition"):
             return fail(f"{task_id} BLOCKED without machine-observable release_condition")
+        if goal.get("archival_dependency") is True:
+            archival_dependencies.append(goal)
+            if not goal.get("release_condition"):
+                return fail(f"{task_id} archival dependency missing release_condition")
 
     convergence = payload.get("convergence")
     if not isinstance(convergence, dict) or not convergence.get("canonical_workstream"):
         return fail("convergence must name canonical_workstream")
+
+    observation = payload.get("current_observation")
+    if observation is not None:
+        if not isinstance(observation, dict):
+            return fail("current_observation must be an object")
+        for key in ("workflow", "run_id", "run_number", "status", "development_halt"):
+            if key not in observation:
+                return fail(f"current_observation missing {key}")
+        if observation.get("development_halt") is not False:
+            return fail("current_observation must preserve development_halt=false")
 
     metrics = payload.get("metrics")
     if not isinstance(metrics, dict):
@@ -83,7 +101,8 @@ def main() -> int:
         "required_tasks", "complete_or_implemented_tasks", "required_developed_files",
         "developed_files", "scaffolding_or_stubs", "missing_required_files",
         "required_validations", "validated", "required_integrations", "integrated",
-        "session_goals", "transferred_or_complete", "goal_activation_percent", "archival_ready",
+        "session_goals", "transferred_or_complete", "goal_activation_percent",
+        "archival_ready",
     }
     if not required_metric_keys.issubset(metrics):
         return fail("metrics missing required denominator fields")
@@ -93,18 +112,23 @@ def main() -> int:
         return fail("session_goals must equal number of goals")
     if metrics.get("transferred_or_complete") != len(goals):
         return fail("all session goals must be durably transferred before this inventory can pass")
-    if metrics.get("archival_ready") is True:
-        return fail("inventory may not claim archival readiness while archival dependencies remain")
 
-    current_observation = payload.get("current_observation")
-    if payload.get("schema_version") == "0.2.0":
-        if not isinstance(current_observation, dict):
-            return fail("schema 0.2.0 requires current_observation")
-        for key in ("workflow", "run_id", "run_number", "status", "development_halt"):
-            if key not in current_observation:
-                return fail(f"current_observation missing {key}")
-        if current_observation.get("development_halt") is not False:
-            return fail("current_observation must preserve development_halt=false")
+    archival_ready = metrics.get("archival_ready") is True
+    session_role = payload.get("session_role")
+    if archival_ready:
+        if session_role not in ARCHIVE_SAFE_SESSION_ROLES:
+            return fail("archival_ready requires an archive-safe session_role")
+        if payload.get("unique_session_work_remaining") is not False:
+            return fail("archival_ready requires unique_session_work_remaining=false")
+        if not payload.get("archive_receipt"):
+            return fail("archival_ready requires archive_receipt")
+        for goal in archival_dependencies:
+            if goal.get("claim_state") not in {
+                "MACHINE_OWNED", "BLOCKED", "CLAIMED_FOR_IMPLEMENTATION",
+                "CLAIMED_FOR_VALIDATION", "CLAIMED_FOR_INTEGRATION",
+                "MERGED_INTO_CANONICAL_WORKSTREAM", "COMPLETE", "SUPERSEDED",
+            }:
+                return fail(f"{goal.get('task_id')} is not durably owned for archival transfer")
 
     archive_conditions = payload.get("archive_conditions")
     if not isinstance(archive_conditions, list) or not archive_conditions:
@@ -112,9 +136,8 @@ def main() -> int:
 
     print(
         "TA-14 SESSION CONSOLIDATION INVENTORY: PASS - "
-        f"schema={payload['schema_version']} goals={len(goals)} "
-        f"transferred={metrics['transferred_or_complete']} "
-        f"archival_ready={str(metrics['archival_ready']).lower()} external_tasks=0"
+        f"goals={len(goals)} transferred={metrics['transferred_or_complete']} "
+        f"archival_ready={str(archival_ready).lower()} external_tasks=0"
     )
     return 0
 
