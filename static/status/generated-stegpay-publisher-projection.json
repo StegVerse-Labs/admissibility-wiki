@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "artifact_type": "publisher_generated_stegpay_projection",
+  "source_repository": "GCAT-BCAT-Engine/Publisher",
+  "publisher_projection_hash_sha256": "29366d3597dd98b868a46efbcb4ba32bd8a750e1a684ed382775a657e5bfc66a",
+  "site_receipt_hash_sha256": "45e8e8849f6d0967de66da6bc45f874c33fcea703a80ba165f45ffa6fecd81d1",
+  "propagation_hash_sha256": "aecfd09a016e1daaa32b66f0e7aa2bc2681edc70be14f25637fa95df2a1468e3",
+  "event_id": "09373107-5e4b-483e-85de-9e26c126fc0c",
+  "provider_id": "pi_test_123",
+  "state": "BOUNDED_TEST_EVIDENCE_IMPORTED",
+  "determination": "VERIFIED_TEST_TRANSPORT_AND_CONSUMPTION_ONLY",
+  "test_only": true,
+  "admissibility_determination_granted": false,
+  "publication_authorized": false,
+  "release_authorized": false,
+  "execution_authorized": false,
+  "custody_recorded": false,
+  "payment_is_entitlement": false,
+  "transport_is_authority": false,
+  "next_executable_task": "PUBLIC_ANCHOR_CANONICAL_VALIDATION"
+}
