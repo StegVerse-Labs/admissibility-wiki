@@ -4,8 +4,8 @@
   "execution_mode": "INTERNAL_NONBLOCKING",
   "external_tasks_allowed": false,
   "development_halted": false,
-  "completed_tasks": ["TA14-V2-004", "TA14-V2-005"],
-  "actionable_tasks": ["TA14-V2-001", "TA14-V2-002", "TA14-V2-003"],
+  "completed_tasks": ["TA14-V2-003", "TA14-V2-004", "TA14-V2-005"],
+  "actionable_tasks": ["TA14-V2-001", "TA14-V2-002"],
   "evidence_gap_tasks": [],
   "invalid_tasks": [],
   "observations": [
@@ -34,13 +34,13 @@
     {
       "task_id": "TA14-V2-003",
       "declared_state": "IN_PROGRESS",
-      "observed_state": "ACTIONABLE_EVIDENCE_PRESENT",
+      "observed_state": "COMPLETED_STRUCTURE_EVIDENCE_ACCUMULATING",
       "work_path": "static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json",
       "work_exists": true,
       "evidence_path": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.adjudication.json",
       "evidence_exists": true,
       "completion_path": "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-003.json",
-      "completion_exists": false
+      "completion_exists": true
     },
     {
       "task_id": "TA14-V2-004",
