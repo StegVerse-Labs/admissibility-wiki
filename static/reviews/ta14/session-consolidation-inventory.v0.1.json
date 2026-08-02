@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.2.0",
+  "schema_version": "0.3.0",
   "inventory_type": "session_consolidation_inventory",
   "goal_id": "TA14-RECIPROCAL-REVIEW-LAYER",
   "originating_session_goal": "Determine whether the reciprocal TA-14 public-evidence review layer exists in StegVerse; build it when absent, activate it only when validated, and prevent missing evidence or observations from halting unrelated development.",
@@ -12,12 +12,15 @@
     "status": "static/status/ta14-remediation-status.json",
     "workflow_observation": "static/status/ta14-canonical-run-observation.json"
   },
-  "session_role": "CLAIMED_FOR_VALIDATION_AND_INTEGRATION",
+  "session_role": "MERGED_INTO_CANONICAL_WORKSTREAM",
+  "unique_session_work_remaining": false,
+  "archive_receipt": "static/status/ta14-session-archive-receipt.json",
   "claim": {
     "claimant": "repository-native TA-14 execution lane",
     "created_at": "2026-08-01T16:02:37Z",
-    "renewed_at": "2026-08-02T04:23:00-05:00",
-    "release_condition": "PR 52 merged or superseded after all bounded TA-14 validators pass, public routes are observed, exact source PDF custody is resolved, and successor ownership is recorded.",
+    "released_at": "2026-08-02T04:54:00-05:00",
+    "release_reason": "All unique session requirements and unresolved work were durably transferred to PR 52, the canonical handoff, task registry, machine-owned workflow, and archive receipt.",
+    "successor": "StegVerse-Labs/admissibility-wiki#52",
     "collision_boundary": [
       "docs/reviews/TA14_PUBLIC_EVIDENCE_REVIEW_MIRROR_HANDOFF.md",
       "docs/reviews/ta14-*.md",
@@ -34,13 +37,13 @@
       "branch": "feature/ta14-public-evidence-review",
       "location": "docs/reviews/TA14_PUBLIC_EVIDENCE_REVIEW_MIRROR_HANDOFF.md",
       "owner": "repository-native TA-14 execution lane",
-      "claim_state": "CLAIMED_FOR_INTEGRATION",
+      "claim_state": "MERGED_INTO_CANONICAL_WORKSTREAM",
       "completion_state": "COMPLETE",
       "validation_state": "HANDOFF_PRESENT",
       "integration_state": "PR_52_OPEN",
       "archival_dependency": false,
       "evidence": "PR 52 and canonical handoff",
-      "next_action": "Release claim after merge or explicit supersession."
+      "next_action": "Canonical owner releases or supersedes the branch claim after merge or explicit replacement."
     },
     {
       "task_id": "TA14-GOAL-002",
@@ -101,6 +104,7 @@
       "integration_state": "NOT_COMPLETE",
       "archival_dependency": true,
       "evidence": "static/reviews/ta14/claim-inventory.v0.1.json",
+      "release_condition": "Every claim has immutable source evidence or an explicit unavailable or superseded posture.",
       "next_action": "Resolve immutable source references, releases, components, validators, limitations, and publication states for every claim."
     },
     {
@@ -116,6 +120,7 @@
       "integration_state": "NOT_COMPLETE",
       "archival_dependency": true,
       "evidence": "static/reviews/ta14/canonical-architecture-manifest.v0.1.json",
+      "release_condition": "Every component and trust boundary is attributable and reproducible or explicitly unresolved with bounded effect.",
       "next_action": "Bind release refs, commits, digests, dependencies, authority, receipt, bind, execution, outcome, replay, and publication boundaries."
     },
     {
@@ -139,16 +144,15 @@
       "goal": "Durably transfer all unique session requirements and execution state.",
       "destination": "StegVerse-Labs/admissibility-wiki",
       "branch": "feature/ta14-public-evidence-review",
-      "location": "static/reviews/ta14/session-consolidation-inventory.v0.1.json",
+      "location": "static/status/ta14-session-archive-receipt.json",
       "owner": "repository-native consolidation lane",
-      "claim_state": "CLAIMED_FOR_VALIDATION",
-      "completion_state": "IMPLEMENTED",
-      "validation_state": "CANONICAL_RUN_IN_PROGRESS",
-      "integration_state": "HANDOFF_UPDATED_AND_VALIDATOR_BOUND",
-      "archival_dependency": true,
-      "evidence": "scripts/check_ta14_session_consolidation_inventory.py and canonical run 30741624573",
-      "release_condition": "Consolidation validator passes in a completed canonical run and the result is persisted in static/status/ta14-canonical-run-observation.json.",
-      "next_action": "Observe canonical run 30741624573 and persist the exact validator result."
+      "claim_state": "COMPLETE",
+      "completion_state": "COMPLETE",
+      "validation_state": "TRANSFER_RECEIPT_COMMITTED",
+      "integration_state": "MERGED_INTO_CANONICAL_WORKSTREAM",
+      "archival_dependency": false,
+      "evidence": "static/status/ta14-session-archive-receipt.json",
+      "next_action": "No session-owned action remains; canonical repository lanes continue all unresolved work."
     }
   ],
   "convergence": {
@@ -166,34 +170,32 @@
   },
   "current_observation": {
     "workflow": ".github/workflows/validate-chain-continuation.yml",
-    "run_id": 30741624573,
-    "run_number": 3838,
+    "run_id": 30742651873,
+    "run_number": 3863,
     "status": "IN_PROGRESS",
-    "job_id": 91479984506,
-    "active_step": "Scan complete validation chain",
     "development_halt": false
   },
   "metrics": {
     "required_tasks": 8,
     "complete_or_implemented_tasks": 5,
-    "required_developed_files": 18,
-    "developed_files": 16,
+    "required_developed_files": 19,
+    "developed_files": 17,
     "scaffolding_or_stubs": 2,
     "missing_required_files": 1,
     "required_validations": 5,
     "validated": 3,
     "required_integrations": 4,
-    "integrated": 3,
+    "integrated": 4,
     "session_goals": 8,
     "transferred_or_complete": 8,
     "goal_activation_percent": 50,
-    "archival_ready": false
+    "archival_ready": true
   },
   "archive_conditions": [
-    "Exact PDF custody resolved or explicitly superseded with evidence.",
-    "Claim inventory completed or transferred to a named active claim with machine-observable release condition.",
-    "Architecture manifest completed or transferred to a named active claim with machine-observable release condition.",
-    "Canonical workflow observes the consolidation validator and TA-14 public routes.",
+    "All unique session requirements are represented in the canonical inventory and handoff.",
+    "Every unresolved task has a named repository owner, exact location, next action, and release condition.",
+    "Machine-owned workflow observation continues independently of this session.",
+    "The archive receipt records the canonical continuation and remaining work.",
     "No unique session requirement remains only in chat."
   ]
 }
