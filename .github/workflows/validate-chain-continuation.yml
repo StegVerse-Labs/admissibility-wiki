@@ -125,7 +125,7 @@ jobs:
           PY
 
   capture-opa-evidence:
-    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.validate-chain-continuation.result == 'success' }}
+    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     needs: validate-chain-continuation
@@ -152,7 +152,7 @@ jobs:
           retention-days: 30
 
   replay-opa-fresh-runner:
-    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.capture-opa-evidence.result == 'success' }}
+    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     needs: capture-opa-evidence
@@ -181,7 +181,7 @@ jobs:
           retention-days: 30
 
   build-selected-cedar-binary:
-    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.validate-chain-continuation.result == 'success' }}
+    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     needs: validate-chain-continuation
@@ -207,7 +207,7 @@ jobs:
           retention-days: 30
 
   build-pages:
-    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.validate-chain-continuation.result == 'success' }}
+    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     needs: validate-chain-continuation
@@ -300,7 +300,7 @@ jobs:
           path: build
 
   deploy-pages:
-    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.build-pages.result == 'success' }}
+    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.build-pages.result == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -315,7 +315,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
   verify-public-pages:
-    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.deploy-pages.result == 'success' }}
+    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.deploy-pages.result == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     needs: deploy-pages
