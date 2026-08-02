@@ -1,38 +1,67 @@
 {
-  "schema_version": "0.2.0",
+  "schema_version": "0.3.0",
   "status_type": "ta14_canonical_run_observation",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "branch": "feature/ta14-public-evidence-review",
   "pull_request": 52,
   "observed_run": {
-    "run_id": 30720655708,
-    "run_number": 3744,
+    "run_id": 30741719006,
+    "run_number": 3842,
     "workflow": "Validate chain continuation",
-    "commit": "a66e774bb93ab1c74551ac01dda6d00d3f3bc4ea",
+    "commit": "708b24b9c85c244061150931c9b0c3ccfb3ce7f6",
+    "merge_commit": "a4c333f6dd9b8f14450ce83bf946f3d2f12bc91a",
     "conclusion": "failure",
-    "full_validation_passed": 49,
-    "full_validation_total": 59,
-    "full_validation_failed": 9,
-    "full_validation_skipped": 1
+    "full_validation_passed": 48,
+    "full_validation_total": 61,
+    "full_validation_failed": 12,
+    "full_validation_skipped": 1,
+    "build_state": "SKIPPED_VALIDATION_FAILED",
+    "deployment_state": "SKIPPED_BUILD_NOT_REACHED",
+    "public_route_state": "NOT_OBSERVED"
   },
   "ta14_layer_result": {
     "task_registry_validator": "PASS",
     "observation_fixture_validator": "PASS",
-    "canonical_run_observation_validator": "PASS",
+    "source_pdf_validator": "FAIL_STATUS_SHAPE_REPAIRED_AFTER_RUN",
+    "canonical_run_observation_validator": "FAIL_STALE_IDENTITY_REPAIRED_AFTER_RUN",
+    "session_consolidation_validator": "FAIL_SCHEMA_VERSION_REPAIRED_AFTER_RUN",
     "task_count": 18,
     "fixture_count": 21,
     "fixture_category_count": 8,
     "development_halt": false,
-    "state": "BOUNDED_LAYER_VALIDATION_PASS_REPOSITORY_ACTIVATION_FAIL_CLOSED"
+    "state": "TA14_CORE_PASS_SUPPORT_VALIDATORS_FAIL_CLOSED"
   },
+  "ta14_repairs_after_observed_run": [
+    {
+      "task_id": "TA14-REPAIR-001",
+      "location": "static/status/ta14-remediation-status.json",
+      "validator": "scripts/check_ta14_source_pdf.py",
+      "commit": "44e61b875f8f6fcab63c4c862f93940fd2922129",
+      "state": "IMPLEMENTED_AWAITING_CANONICAL_OBSERVATION",
+      "effect": "restores bounded_claim_blocks list and preserves EVIDENCE_ABSENT_FAIL_CLOSED for exact PDF custody"
+    },
+    {
+      "task_id": "TA14-REPAIR-002",
+      "location": "scripts/check_ta14_canonical_run_observation.py",
+      "commit": "645fe2a63edc43c57db5fe1aa827cc1853826e88",
+      "state": "IMPLEMENTED_AWAITING_CANONICAL_OBSERVATION",
+      "effect": "removes stale hard-coded run identity and validates current durable run receipts"
+    },
+    {
+      "task_id": "TA14-REPAIR-003",
+      "location": "scripts/check_ta14_session_consolidation_inventory.py",
+      "commit": "6eb9040077bc45b2dea8f79576151a829d0ffb1a",
+      "state": "IMPLEMENTED_AWAITING_CANONICAL_OBSERVATION",
+      "effect": "accepts inventory schema 0.2.0 and validates current_observation without weakening archival gates"
+    }
+  ],
   "repository_failures_outside_ta14_bounded_checks": [
     {
       "task_id": "REPO-WORKFLOW-001",
-      "location": ".github/workflows/deploy-pages.yml",
-      "paired_location": ".github/workflows/deploy.yml",
+      "location": ".github/workflows/observe-wiki-publication.yml",
       "validator": "scripts/check_workflow_sprawl.py",
       "state": "BUILD_INTERNAL",
-      "effect": "repository canonical activation unavailable; TA-14 development continues"
+      "effect": "single-workflow policy fails; TA-14 development continues"
     },
     {
       "task_id": "REPO-MDX-001",
@@ -42,32 +71,38 @@
       "paired_line": 99,
       "validator": "scripts/run_sandbox_validation.py",
       "state": "BUILD_INTERNAL",
-      "effect": "site build unavailable; TA-14 contracts, fixtures, custody validation, and mapping continue"
+      "effect": "site build unavailable; TA-14 bounded implementation continues"
     },
     {
       "task_id": "REPO-MORRISON-001",
       "location": "scripts/check_morrison_runtime_promotion_gate.py",
       "state": "BUILD_INTERNAL",
-      "effect": "Goal 5 aggregate remains fail-closed; TA-14 bounded validators remain passed"
+      "effect": "Goal 5 aggregate remains fail-closed"
+    },
+    {
+      "task_id": "REPO-AGCP-001",
+      "location": "scripts/check_agcp_registry_assessment.py",
+      "state": "BUILD_INTERNAL",
+      "effect": "AGCP handoff boundary remains incomplete"
     },
     {
       "task_id": "REPO-ASRO-001",
       "location": "scripts/check_asro_commitment_candidate.py",
       "state": "BUILD_INTERNAL",
-      "effect": "ASRO comparison remains fail-closed; TA-14 layer progression continues"
+      "effect": "bounded comparison provenance remains fail-closed"
     },
     {
       "task_id": "REPO-GOV-LLM-001",
       "location": "scripts/check_governed_llm_pages.py",
       "paired_location": "scripts/check-public-activation-receipt-writer.mjs",
       "state": "BUILD_INTERNAL",
-      "effect": "repository publication activation unavailable; TA-14 internal completion continues"
+      "effect": "publication custody binding remains unavailable"
     },
     {
       "task_id": "REPO-HANDOFF-001",
       "location": "scripts/check_admissibility_automation_handoff.py",
       "state": "BUILD_INTERNAL",
-      "effect": "repository-wide handoff remains fail-closed; TA-14 bounded progress remains independently observable"
+      "effect": "repository-wide handoff remains fail-closed"
     }
   ],
   "policy": {
@@ -76,27 +111,39 @@
     "repository_activation_requires_full_canonical_pass": true,
     "ta14_development_continues_after_repository_failure": true,
     "synthetic_or_bounded_pass_does_not_claim_public_activation": true,
-    "source_pdf_absence_blocks_only_exact_custody_claim": true
+    "source_pdf_absence_blocks_only_exact_custody_claim": true,
+    "support_validator_failure_requires_repair_and_reobservation": true
   },
   "next_ta14_tasks": [
+    {
+      "task_id": "TA14-OBS-011",
+      "location": "scripts/check_ta14_session_consolidation_inventory.py",
+      "paired_locations": [
+        "scripts/check_ta14_source_pdf.py",
+        "scripts/check_ta14_canonical_run_observation.py",
+        "static/status/ta14-remediation-status.json"
+      ],
+      "state": "IMPLEMENTED_AWAITING_CANONICAL_OBSERVATION",
+      "action": "Observe one completed canonical run in which all five TA-14 validators pass and persist that exact result."
+    },
     {
       "task_id": "TA14-PUB-001",
       "location": "static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf",
       "validator": "scripts/check_ta14_source_pdf.py",
       "state": "EVIDENCE_ABSENT_FAIL_CLOSED",
-      "action": "Commit exact PDF bytes; validator already handles both absent fail-closed and present digest-verified states without halting unrelated work."
+      "action": "Commit exact PDF bytes; the validator preserves non-halting bounded custody state until then."
     },
     {
       "task_id": "TA14-PHASE0-001",
       "location": "static/reviews/ta14/claim-inventory.v0.1.json",
-      "state": "BUILD_INTERNAL",
-      "action": "Resolve exact StegVerse-controlled claim sources, revisions, validators, limitations, and publication posture."
+      "state": "CLAIMED_FOR_IMPLEMENTATION",
+      "action": "Resolve immutable claim sources, revisions, validators, limitations, and publication posture."
     },
     {
       "task_id": "TA14-PHASE0-002",
       "location": "static/reviews/ta14/canonical-architecture-manifest.v0.1.json",
-      "state": "BUILD_INTERNAL",
-      "action": "Complete authority, receipt, binding, commit, execution, outcome, replay, and publication boundary mappings."
+      "state": "CLAIMED_FOR_IMPLEMENTATION",
+      "action": "Complete authority, receipt, binding, execution, outcome, replay, and publication boundary mappings."
     }
   ]
 }
