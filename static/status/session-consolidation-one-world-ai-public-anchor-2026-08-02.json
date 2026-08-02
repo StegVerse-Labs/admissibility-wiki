@@ -1,0 +1,125 @@
+{
+  "schema_version": "session-consolidation-inventory.v1",
+  "inventory_id": "one-world-ai-public-anchor-session-2026-08-02",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "main",
+  "originating_session_goal": "Evaluate the One World AI proposal-versus-execution-authority architecture and install a bounded external-framework record.",
+  "primary_goal": "Advance the governed public-anchor activation layer without duplicating canonical work.",
+  "canonical_continuation": {
+    "overall_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+    "coordination_record": "docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md",
+    "owned_track_handoff": "docs/PUBLIC_ANCHOR_RECONSTRUCTION_MIRROR_HANDOFF.md",
+    "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "canonical_command": "npm run validate"
+  },
+  "session_goals": [
+    {
+      "goal_id": "OWAI-INTAKE-001",
+      "goal": "Install bounded One World AI framework intake",
+      "destination": "StegVerse-Labs/admissibility-wiki",
+      "locations": [
+        "docs/external-frameworks/one-world-ai-limited.md",
+        "static/data/framework-evaluations/one-world-ai-limited.json",
+        "static/data/framework-evaluations/index.json"
+      ],
+      "claim_state": "COMPLETE",
+      "validation_state": "STRUCTURAL_RECORD_INSTALLED_PUBLIC_ROUTE_DEFERRED",
+      "integration_state": "MERGED_INTO_CANONICAL_WORKSTREAM",
+      "evidence": [
+        "c2ff25cbdeb0b41486d1e776c445c1f87e8c6a08",
+        "d90b262ec828f61a4e05ca8242db2ecce25bd86b",
+        "d2430a1906fdc2e9313a11cca8d362f9c336b4aa"
+      ],
+      "next_action": "Obtain owner-controlled technical evidence before docket promotion."
+    },
+    {
+      "goal_id": "PUBLIC-ANCHOR-FREEZE-002",
+      "goal": "Install and validate the frozen three-docket reconstruction target",
+      "destination": "StegVerse-Labs/admissibility-wiki",
+      "locations": [
+        "static/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json",
+        "scripts/check_public_anchor_reconstruction_manifest.py"
+      ],
+      "claim_state": "CLAIMED_FOR_VALIDATION",
+      "validation_state": "SUCCESSOR_CANONICAL_RUN_REQUIRED",
+      "integration_state": "BOUND_TO_MULTI_DOCKET_VALIDATOR",
+      "evidence": [
+        "6b1dbc3dcfdb5e565a594cea94a4a6daaa90117b"
+      ],
+      "next_action": "Observe the successor canonical workflow and retain the first PASS or first-failure evidence."
+    },
+    {
+      "goal_id": "PUBLIC-ANCHOR-INVITE-003",
+      "goal": "Restore the independent reconstruction invitation and fail-closed release condition",
+      "destination": "StegVerse-Labs/admissibility-wiki",
+      "locations": [
+        "docs/governance/public-anchor-independent-reconstruction-invitation.md",
+        "static/status/public-anchor-independent-reconstruction-invitation.json",
+        "scripts/check_public_anchor_independent_reconstruction_invitation.py"
+      ],
+      "claim_state": "CLAIMED_FOR_VALIDATION",
+      "validation_state": "LOCAL_STRUCTURE_INSTALLED_CANONICAL_RUN_REQUIRED",
+      "integration_state": "REFERENCED_BY_MULTI_DOCKET_VALIDATOR",
+      "evidence": [
+        "dcf15b6d2f9a3fa52a1be4ceb889d2d64381da22",
+        "9ae9294397dfd39589d5ce1e2834805c832aed6e",
+        "a8c7365e352abd0b83b2e16d0819c1f8df41eaf3"
+      ],
+      "next_action": "Run the canonical validator and retain the invitation result in the workflow report set."
+    },
+    {
+      "goal_id": "PUBLIC-ANCHOR-ACTIVATE-004",
+      "goal": "Activate the governed public-anchor publication layer",
+      "destination": "StegVerse-Labs/admissibility-wiki",
+      "locations": [
+        "docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md",
+        ".github/workflows/validate-chain-continuation.yml"
+      ],
+      "claim_state": "MACHINE_OWNED",
+      "validation_state": "FAIL_CLOSED_OBSERVED_RUN_30681187876",
+      "integration_state": "BLOCKED_BEFORE_BUILD_DEPLOY_ROUTE_VERIFICATION",
+      "evidence": [
+        "c923b4eb1eced3d9baaf4af222d133aefb86da87"
+      ],
+      "next_action": "Repair all routed canonical failure tracks, then observe repository-wide PASS, build, deployment, and content-aware route verification."
+    }
+  ],
+  "active_claim": {
+    "task_id": "PUBLIC-ANCHOR-RECONSTRUCTION-VALIDATION-2026-08-02",
+    "originating_goal": "PUBLIC-ANCHOR-FREEZE-002 and PUBLIC-ANCHOR-INVITE-003",
+    "claimant": "repository-validation-lane",
+    "role": "CLAIMED_FOR_VALIDATION",
+    "branch": "main",
+    "files": [
+      "scripts/check_public_anchor_reconstruction_manifest.py",
+      "scripts/check_public_anchor_independent_reconstruction_invitation.py",
+      "static/status/public-anchor-independent-reconstruction-invitation.json",
+      "docs/PUBLIC_ANCHOR_RECONSTRUCTION_MIRROR_HANDOFF.md"
+    ],
+    "claim_timestamp": "2026-08-02T09:23:00Z",
+    "release_condition": "A successor canonical workflow run records both owned validators PASS or retains a new first-failure receipt and updates the owned track handoff.",
+    "collision_boundary": "Do not modify ASRO, TA-14, Morrison, MindForge, Observer, GSDP, or human micro-timescale owner files from this claim.",
+    "expected_evidence": "Canonical run id, commit, job result, validator output, and retained report artifact."
+  },
+  "merged_goals": [
+    {
+      "session_goal": "Overall public-anchor activation",
+      "merged_into": "docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md"
+    },
+    {
+      "session_goal": "One World AI framework continuation",
+      "merged_into": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md and static/data/framework-evaluations/one-world-ai-limited.json"
+    }
+  ],
+  "archive_state": "ACTIVE_DISTINCT_SUPPORT_ROLE",
+  "archive_blockers": [
+    "No successor canonical run has yet validated the repaired reconstruction binding and restored invitation checker.",
+    "The active validation claim has not reached its machine-observable release condition."
+  ],
+  "authority_boundary": {
+    "inventory_creates_execution_authority": false,
+    "claim_creates_downstream_mutation_authority": false,
+    "local_file_presence_establishes_validation": false,
+    "session_transfer_establishes_activation": false
+  }
+}
