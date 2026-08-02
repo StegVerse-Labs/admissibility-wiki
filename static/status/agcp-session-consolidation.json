@@ -1,0 +1,94 @@
+{
+  "schema_version": "agcp-session-consolidation.v1",
+  "consolidation_id": "AGCP-SESSION-CONSOLIDATION-2026-08-02",
+  "originating_session_goal": "Determine whether StegVerse has a governed public layer for assessing runtime-governance conformance registries, build or activate it, and ensure unresolved work is repository-owned rather than external.",
+  "canonical_continuation": {
+    "repository": "StegVerse-Labs/admissibility-wiki",
+    "branch": "main",
+    "handoff": "docs/external-frameworks/AGCP_REGISTRY_MIRROR_HANDOFF.md",
+    "task_id": "ADMISSIBILITY-AGCP-001",
+    "queue": "agcp-registry-review",
+    "runner": "scripts/run_agcp_registry_tasks.py",
+    "report": "reports/agcp-registry-task-execution.json"
+  },
+  "session_goals": [
+    {
+      "goal_id": "AGCP-LAYER-DETERMINATION",
+      "state": "COMPLETE",
+      "evidence": "docs/external-frameworks/AGCP_REGISTRY_MIRROR_HANDOFF.md"
+    },
+    {
+      "goal_id": "AGCP-PUBLIC-ASSESSMENT",
+      "state": "COMPLETE",
+      "evidence": "docs/external-frameworks/agcp-registry.md"
+    },
+    {
+      "goal_id": "AGCP-MACHINE-READABLE-BOUNDARY",
+      "state": "COMPLETE",
+      "evidence": "static/external-frameworks/agcp-registry-assessment.v0.1.json"
+    },
+    {
+      "goal_id": "AGCP-DETERMINISTIC-VALIDATION",
+      "state": "COMPLETE",
+      "evidence": "scripts/check_agcp_registry_assessment.py"
+    },
+    {
+      "goal_id": "AGCP-NONHALTING-CONTINUATION",
+      "state": "MACHINE_OWNED",
+      "evidence": "scripts/run_agcp_registry_tasks.py"
+    },
+    {
+      "goal_id": "AGCP-CANONICAL-WORKFLOW-OBSERVATION",
+      "state": "BLOCKED",
+      "evidence": "reports/agcp-registry-task-execution.json",
+      "release_condition": "A canonical workflow run for a commit containing the AGCP queue becomes observable with jobs, logs, and artifacts."
+    },
+    {
+      "goal_id": "AGCP-PUBLIC-ROUTE-OBSERVATION",
+      "state": "BLOCKED",
+      "evidence": "docs/external-frameworks/agcp-registry.md",
+      "release_condition": "The canonical Pages observer records successful deployment and direct route reachability."
+    },
+    {
+      "goal_id": "AGCP-PROPAGATION-REVIEW",
+      "state": "BLOCKED",
+      "release_condition": "Repository-wide release criteria authorize destination-handoff inspection for Site, Publisher, and stegguardian-wiki."
+    }
+  ],
+  "claim": {
+    "task_id": "ADMISSIBILITY-AGCP-001",
+    "claim_state": "MACHINE_OWNED",
+    "claimant": "StegVerse-Labs/admissibility-wiki canonical workflow",
+    "role": "implementation validation observation and continuation",
+    "claimed_surfaces": [
+      "docs/external-frameworks/agcp-registry.md",
+      "static/external-frameworks/agcp-registry-assessment.v0.1.json",
+      "scripts/check_agcp_registry_assessment.py",
+      "scripts/run_agcp_registry_tasks.py",
+      "scripts/check_agcp_registry_task_execution.py",
+      "reports/agcp-registry-task-execution.json"
+    ],
+    "collision_boundary": "No other session or queue may create a competing AGCP assessment owner or report path.",
+    "release_condition": "Canonical workflow and public-route observations are recorded or the handoff explicitly supersedes this task.",
+    "next_task_after_release": "Evaluate propagation applicability under repository-wide release policy."
+  },
+  "duplicate_and_convergence": {
+    "broader_external_framework_workstream_detected": true,
+    "merged_into_canonical_workstream": true,
+    "merged_into": "StegVerse-Labs/admissibility-wiki/docs/external-frameworks/AGCP_REGISTRY_MIRROR_HANDOFF.md",
+    "duplicate_implementation_allowed": false
+  },
+  "session_archival": {
+    "unique_requirements_transferred": true,
+    "unassigned_work_exists": false,
+    "machine_owned_continuation_installed": true,
+    "conversation_required_for_continuation": false,
+    "archive_state": "READY_AFTER_VALIDATION_OF_THIS_RECORD"
+  },
+  "authority_boundary": {
+    "consolidation_is_certification": false,
+    "consolidation_is_admissibility": false,
+    "consolidation_grants_execution_authority": false,
+    "consolidation_grants_release_authority": false
+  }
+}
