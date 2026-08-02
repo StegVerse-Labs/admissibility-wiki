@@ -32,9 +32,7 @@ REQUIRED_HANDOFF_MARKERS = (
     "ACTIVATION_EVIDENCE_COMPLETE",
     "ACTIVATION_EVIDENCE_FAIL_CLOSED",
     "goal_completion_observed",
-    "MERGED INTO: StegVerse-Labs/admissibility-wiki/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-    "Session consolidation inventory: data/session-consolidation/discovery-governance-session-inventory.json",
-    "Session archive state: ARCHIVE_READY_AFTER_DURABLE_TRANSFER",
+    "The complete thread is not ready for archiving",
     "No destination mutation is authorized by this handoff.",
 )
 
