@@ -1,0 +1,29 @@
+{
+  "schema_version": "public-anchor-independent-reconstruction-invitation.v1",
+  "invitation_id": "public-anchor-independent-reconstruction-invitation-2026-08-02",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "target_manifest_path": "static/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json",
+  "target_manifest_id": "public-anchor-three-docket-freeze-2026-07-27",
+  "invitation_page": "docs/governance/public-anchor-independent-reconstruction-invitation.md",
+  "submission_schema": "static/schemas/framework-reconstruction-submission.schema.json",
+  "state": "OPEN_NO_ACCOUNTABLE_REVIEWER_ASSIGNED",
+  "independent_reconstruction_status": "NOT_RUN",
+  "neutral_reviewer_standing": "NOT_ESTABLISHED",
+  "accountable_reviewer_assigned": false,
+  "accepted_submission_path": null,
+  "machine_release_condition": {
+    "submission_state": "ACCEPTED_FOR_REVIEW",
+    "reviewer_identity_required": true,
+    "reviewer_conflicts_disclosed_required": true,
+    "frozen_manifest_binding_required": true,
+    "schema_validation_required": true,
+    "run_record_required": true
+  },
+  "authority_boundary": {
+    "invitation_creates_reviewer_standing": false,
+    "invitation_creates_certification": false,
+    "invitation_creates_execution_authority": false,
+    "invitation_creates_custody": false,
+    "submission_automatically_changes_standing": false
+  }
+}
