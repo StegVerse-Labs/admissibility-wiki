@@ -1,6 +1,6 @@
 {
   "schema_version": "wiki-public-anchor-task-mesh-registry.v1",
-  "registry_id": "wiki-public-anchor-task-mesh-2026-08-01",
+  "registry_id": "wiki-public-anchor-task-mesh-2026-08-02",
   "state": "ACTIVE_INTERNAL_MULTI_QUEUE_EXECUTION",
   "policy": {
     "external_tasks_exist": false,
@@ -11,6 +11,15 @@
     "every_queue_requires_report": true
   },
   "queues": [
+    {
+      "queue_id": "internal-task-discovery",
+      "owner_record": "docs/INTERNAL_TASK_DISCOVERY_HANDOFF.md",
+      "runner": "scripts/discover_internal_tasks.py",
+      "registry": "static/status/internal-task-registry.json",
+      "report": "reports/internal-task-discovery.json",
+      "validator": "scripts/check_internal_task_discovery.py",
+      "completion_predicate": "repository-owned completion evidence is re-observed, located tasks are refreshed, and missing evidence remains nonblocking"
+    },
     {
       "queue_id": "public-anchor-internal",
       "owner_record": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
