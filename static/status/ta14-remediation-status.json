@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.3.0",
+  "schema_version": "0.4.0",
   "status_type": "ta14_remediation_status",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "branch": "feature/ta14-public-evidence-review",
@@ -34,6 +34,49 @@
     "archival_ready": false,
     "remaining_distinct_role": "CLAIMED_FOR_VALIDATION_AND_INTEGRATION"
   },
+  "latest_canonical_observation": {
+    "run_id": 30741719006,
+    "run_number": 3842,
+    "commit": "708b24b9c85c244061150931c9b0c3ccfb3ce7f6",
+    "workflow_conclusion": "failure",
+    "full_validation": {"passed": 48, "required": 61, "failed": 12, "skipped": 1},
+    "task_registry_validator": "PASS",
+    "observation_fixture_validator": "PASS",
+    "source_pdf_validator": "FAILED_STATUS_SHAPE_REPAIRED",
+    "canonical_observation_validator": "FAILED_STALE_IDENTITY_REPAIRED",
+    "session_consolidation_validator": "FAILED_SCHEMA_VERSION_REPAIRED",
+    "build_state": "SKIPPED_VALIDATION_FAILED",
+    "deployment_state": "SKIPPED_BUILD_NOT_REACHED",
+    "public_route_state": "NOT_OBSERVED",
+    "development_halt": false
+  },
+  "bounded_claim_blocks": [
+    {
+      "claim": "exact PDF public custody",
+      "state": "EVIDENCE_ABSENT_FAIL_CLOSED",
+      "location": "static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf"
+    },
+    {
+      "claim": "independent adjudication",
+      "state": "NOT_ESTABLISHED",
+      "location": "docs/reviews/ta14-public-evidence-gap-review-v2-analysis.md"
+    },
+    {
+      "claim": "neutral reviewer standing",
+      "state": "NOT_ESTABLISHED",
+      "location": "static/reviews/ta14/evidence-contracts/neutral-review-evidence.schema.json"
+    },
+    {
+      "claim": "route-complete outcome governance",
+      "state": "NOT_YET_VERIFIED",
+      "location": "static/reviews/ta14/evidence-contracts/outcome-evidence.schema.json"
+    },
+    {
+      "claim": "public route active",
+      "state": "NOT_OBSERVED",
+      "location": "static/status/ta14-canonical-run-observation.json"
+    }
+  ],
   "active_tasks": [
     {
       "task_id": "TA14-PUB-001C",
@@ -61,14 +104,19 @@
       "next_action": "Bind release refs, commits, digests, dependencies, authority, receipt, bind, execution, outcome, replay, and publication boundaries."
     },
     {
-      "task_id": "TA14-OBS-010",
+      "task_id": "TA14-OBS-011",
       "state": "CLAIMED_FOR_VALIDATION",
-      "location": "static/reviews/ta14/session-consolidation-inventory.v0.1.json",
+      "location": "scripts/check_ta14_session_consolidation_inventory.py",
       "owner": "repository-native validation lane",
-      "validator": "scripts/check_ta14_session_consolidation_inventory.py",
+      "paired_locations": [
+        "scripts/check_ta14_source_pdf.py",
+        "scripts/check_ta14_canonical_run_observation.py",
+        "static/status/ta14-remediation-status.json",
+        "static/status/ta14-canonical-run-observation.json"
+      ],
       "canonical_binding_location": "scripts/check_full_validation_chain.py",
-      "release_condition": "Validator is bound and observed passing in the canonical workflow.",
-      "next_action": "Bind the consolidation validator into the canonical chain and inspect the resulting workflow run."
+      "release_condition": "All five TA-14 validators pass in one completed canonical workflow run.",
+      "next_action": "Observe the workflow run for the repaired TA-14 validator set and persist its exact results."
     },
     {
       "task_id": "TA14-PUB-003",
@@ -91,6 +139,7 @@
     "scripts/check_ta14_task_observation_registry.py",
     "scripts/check_ta14_observation_fixtures.py",
     "scripts/check_ta14_source_pdf.py",
+    "scripts/check_ta14_canonical_run_observation.py",
     "static/reviews/ta14/fixtures/observation-cases.v0.1.json",
     "static/reviews/ta14/fixtures/category-manifest.v0.1.json",
     "static/reviews/ta14/evidence-contracts/authority-evidence.schema.json",
@@ -106,14 +155,18 @@
     "scaffolding_or_stubs": 2,
     "missing_required_files": 1,
     "validation": {"validated": 3, "required": 5},
-    "integration": {"integrated": 2, "required": 4},
+    "integration": {"integrated": 3, "required": 4},
     "goal_activation_percent": 50,
     "session_consolidation": {"transferred_or_complete": 8, "total": 8}
   },
   "next_executable_task": {
-    "task_id": "TA14-OBS-010",
-    "location": "scripts/check_full_validation_chain.py",
-    "supporting_location": "scripts/check_ta14_session_consolidation_inventory.py",
-    "action": "Bind and observe the session consolidation validator without disturbing unrelated task states."
+    "task_id": "TA14-OBS-011",
+    "location": "scripts/check_ta14_session_consolidation_inventory.py",
+    "supporting_locations": [
+      "scripts/check_ta14_source_pdf.py",
+      "scripts/check_ta14_canonical_run_observation.py",
+      "static/status/ta14-canonical-run-observation.json"
+    ],
+    "action": "Observe one canonical workflow run with the repaired TA-14 validators and persist the results without changing unrelated task states."
   }
 }
