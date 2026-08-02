@@ -9,6 +9,7 @@
     "overall_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
     "coordination_record": "docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md",
     "owned_track_handoff": "docs/PUBLIC_ANCHOR_RECONSTRUCTION_MIRROR_HANDOFF.md",
+    "incident_record": "docs/incidents/WORKFLOW_RUN_IMPLEMENTATION_GAP_2026-08-02.md",
     "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
     "canonical_command": "npm run validate"
   },
@@ -30,7 +31,7 @@
         "d90b262ec828f61a4e05ca8242db2ecce25bd86b",
         "d2430a1906fdc2e9313a11cca8d362f9c336b4aa"
       ],
-      "next_action": "Obtain owner-controlled technical evidence before docket promotion."
+      "next_action": "Machine-owned intake promotion remains blocked until owner-controlled technical evidence is committed."
     },
     {
       "goal_id": "PUBLIC-ANCHOR-FREEZE-002",
@@ -38,15 +39,20 @@
       "destination": "StegVerse-Labs/admissibility-wiki",
       "locations": [
         "static/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json",
-        "scripts/check_public_anchor_reconstruction_manifest.py"
+        "scripts/check_public_anchor_reconstruction_manifest.py",
+        "docs/PUBLIC_ANCHOR_RECONSTRUCTION_MIRROR_HANDOFF.md"
       ],
-      "claim_state": "CLAIMED_FOR_VALIDATION",
-      "validation_state": "SUCCESSOR_CANONICAL_RUN_REQUIRED",
+      "claim_state": "MACHINE_OWNED",
+      "validation_state": "FIRST_FAILURE_RETAINED_RUN_30741874432_SUCCESSOR_RUN_REQUIRED",
       "integration_state": "BOUND_TO_MULTI_DOCKET_VALIDATOR",
       "evidence": [
-        "6b1dbc3dcfdb5e565a594cea94a4a6daaa90117b"
+        "6b1dbc3dcfdb5e565a594cea94a4a6daaa90117b",
+        "0e5ec7a59afdf34154e7bb82886e52d73e83d9d0",
+        "run:30741874432",
+        "job:91480753781",
+        "artifact:8831585512"
       ],
-      "next_action": "Observe the successor canonical workflow and retain the first PASS or first-failure evidence."
+      "next_action": "Canonical workflow observer records the first successor PASS or first-failure evidence in docs/PUBLIC_ANCHOR_RECONSTRUCTION_MIRROR_HANDOFF.md."
     },
     {
       "goal_id": "PUBLIC-ANCHOR-INVITE-003",
@@ -57,15 +63,18 @@
         "static/status/public-anchor-independent-reconstruction-invitation.json",
         "scripts/check_public_anchor_independent_reconstruction_invitation.py"
       ],
-      "claim_state": "CLAIMED_FOR_VALIDATION",
-      "validation_state": "LOCAL_STRUCTURE_INSTALLED_CANONICAL_RUN_REQUIRED",
+      "claim_state": "COMPLETE",
+      "validation_state": "CANONICAL_PASS_OBSERVED_RUN_30741874432",
       "integration_state": "REFERENCED_BY_MULTI_DOCKET_VALIDATOR",
       "evidence": [
         "dcf15b6d2f9a3fa52a1be4ceb889d2d64381da22",
         "9ae9294397dfd39589d5ce1e2834805c832aed6e",
-        "a8c7365e352abd0b83b2e16d0819c1f8df41eaf3"
+        "a8c7365e352abd0b83b2e16d0819c1f8df41eaf3",
+        "run:30741874432",
+        "job:91480753781",
+        "artifact:8831585512"
       ],
-      "next_action": "Run the canonical validator and retain the invitation result in the workflow report set."
+      "next_action": "Machine-owned invitation remains open until an attributable schema-valid reconstruction submission is committed."
     },
     {
       "goal_id": "PUBLIC-ANCHOR-ACTIVATE-004",
@@ -73,53 +82,63 @@
       "destination": "StegVerse-Labs/admissibility-wiki",
       "locations": [
         "docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md",
+        "docs/incidents/WORKFLOW_RUN_IMPLEMENTATION_GAP_2026-08-02.md",
         ".github/workflows/validate-chain-continuation.yml"
       ],
       "claim_state": "MACHINE_OWNED",
-      "validation_state": "FAIL_CLOSED_OBSERVED_RUN_30681187876",
-      "integration_state": "BLOCKED_BEFORE_BUILD_DEPLOY_ROUTE_VERIFICATION",
+      "validation_state": "FAIL_CLOSED_OBSERVED_RUN_30741874432",
+      "integration_state": "BLOCKED_BEFORE_REPOSITORY_WIDE_PASS_DEPLOY_ROUTE_VERIFICATION",
       "evidence": [
-        "c923b4eb1eced3d9baaf4af222d133aefb86da87"
+        "c923b4eb1eced3d9baaf4af222d133aefb86da87",
+        "93df2a0b9450f92747f6fd2d4c650be50e441a4d",
+        "run:30741874432",
+        "job:91480753781",
+        "build_job:91480938308"
       ],
-      "next_action": "Repair all routed canonical failure tracks, then observe repository-wide PASS, build, deployment, and content-aware route verification."
+      "next_action": "Repository-owned tracks repair the retained failure inventory; canonical workflow then proves repository-wide PASS, build, deployment, and content-aware route verification."
     }
   ],
-  "active_claim": {
+  "released_claim": {
     "task_id": "PUBLIC-ANCHOR-RECONSTRUCTION-VALIDATION-2026-08-02",
     "originating_goal": "PUBLIC-ANCHOR-FREEZE-002 and PUBLIC-ANCHOR-INVITE-003",
     "claimant": "repository-validation-lane",
-    "role": "CLAIMED_FOR_VALIDATION",
+    "prior_role": "CLAIMED_FOR_VALIDATION",
+    "released_to": "MACHINE_OWNED_CANONICAL_WORKFLOW_OBSERVER",
     "branch": "main",
-    "files": [
-      "scripts/check_public_anchor_reconstruction_manifest.py",
-      "scripts/check_public_anchor_independent_reconstruction_invitation.py",
-      "static/status/public-anchor-independent-reconstruction-invitation.json",
-      "docs/PUBLIC_ANCHOR_RECONSTRUCTION_MIRROR_HANDOFF.md"
-    ],
     "claim_timestamp": "2026-08-02T09:23:00Z",
-    "release_condition": "A successor canonical workflow run records both owned validators PASS or retains a new first-failure receipt and updates the owned track handoff.",
-    "collision_boundary": "Do not modify ASRO, TA-14, Morrison, MindForge, Observer, GSDP, or human micro-timescale owner files from this claim.",
-    "expected_evidence": "Canonical run id, commit, job result, validator output, and retained report artifact."
+    "release_timestamp": "2026-08-02T09:50:00Z",
+    "release_condition_satisfied_by": "Run 30741874432 retained the first successor failure evidence; the invitation validator passed; the exact manifest, task-mesh, and completion-cycle failures were recorded in docs/PUBLIC_ANCHOR_RECONSTRUCTION_MIRROR_HANDOFF.md; synchronization repairs were committed.",
+    "continuation_location": "docs/PUBLIC_ANCHOR_RECONSTRUCTION_MIRROR_HANDOFF.md",
+    "expected_next_evidence": "A completed non-cancelled successor canonical run, exact validator outputs, report artifact IDs, build/deploy/public verification states, and handoff update."
   },
   "merged_goals": [
     {
       "session_goal": "Overall public-anchor activation",
-      "merged_into": "docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md"
+      "merged_into": "docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md and docs/incidents/WORKFLOW_RUN_IMPLEMENTATION_GAP_2026-08-02.md"
     },
     {
       "session_goal": "One World AI framework continuation",
       "merged_into": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md and static/data/framework-evaluations/one-world-ai-limited.json"
+    },
+    {
+      "session_goal": "Public-anchor reconstruction validation observation",
+      "merged_into": "docs/PUBLIC_ANCHOR_RECONSTRUCTION_MIRROR_HANDOFF.md and .github/workflows/validate-chain-continuation.yml"
     }
   ],
-  "archive_state": "ACTIVE_DISTINCT_SUPPORT_ROLE",
-  "archive_blockers": [
-    "No successor canonical run has yet validated the repaired reconstruction binding and restored invitation checker.",
-    "The active validation claim has not reached its machine-observable release condition."
+  "archive_state": "COMPLETE_ARCHIVE",
+  "archive_blockers": [],
+  "archive_evidence": [
+    "All four session goals are complete or machine-owned with exact continuation locations.",
+    "The first successor failure evidence is retained with run, job, and artifact identifiers.",
+    "The active validation claim is released to the canonical workflow observer.",
+    "No unique requirement remains only in chat history.",
+    "Deleting the originating conversation does not remove implementation state, evidence, ownership, or release conditions."
   ],
   "authority_boundary": {
     "inventory_creates_execution_authority": false,
     "claim_creates_downstream_mutation_authority": false,
     "local_file_presence_establishes_validation": false,
-    "session_transfer_establishes_activation": false
+    "session_transfer_establishes_activation": false,
+    "archive_readiness_establishes_repository_completion": false
   }
 }
