@@ -11,6 +11,7 @@ STATUS = ROOT / "static" / "status" / "discovery-governance-handoff-status.json"
 HANDOFF = ROOT / "docs" / "DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md"
 CONSOLIDATION_CHECK = ROOT / "scripts" / "check_discovery_governance_session_consolidation.py"
 FEDERAL_SECURITY_CHECK = ROOT / "scripts" / "check_federal_minimum_exceedance_security.py"
+FEDERAL_SECURITY_RUNTIME_CHECK = ROOT / "scripts" / "check_federal_minimum_exceedance_security_runtime.py"
 FEDERAL_SECURITY_TASK = ROOT / "data" / "session-consolidation" / "federal-minimum-exceedance-security-task.json"
 
 EXPECTED_STATE = "SOURCE_COMPLETE_WITH_CANONICAL_RUNTIME_VALIDATION_PENDING_WORKFLOW_OBSERVATION"
@@ -110,6 +111,7 @@ def main() -> int:
 
     run_validator(CONSOLIDATION_CHECK, "session consolidation", failures)
     run_validator(FEDERAL_SECURITY_CHECK, "federal minimum exceedance security", failures)
+    run_validator(FEDERAL_SECURITY_RUNTIME_CHECK, "federal minimum exceedance security runtime", failures)
 
     if failures:
         print("DISCOVERY GOVERNANCE HANDOFF SYNC: FAIL")
