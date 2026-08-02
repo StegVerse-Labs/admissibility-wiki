@@ -8,6 +8,12 @@ The overall active handoff and task source of truth for `StegVerse-Labs/admissib
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 ```
 
+The active publication-pipeline repair handoff is:
+
+```text
+docs/WIKI_PUBLICATION_PIPELINE_MIRROR_HANDOFF.md
+```
+
 The active coordination record for the governed public-anchor activation and canonical publication-verification layer is:
 
 ```text
@@ -57,14 +63,14 @@ This root file is retained only as a continuity pointer for sessions or tools th
 
 ## Current priority
 
-Continue from the overall docs handoff, then the activation coordination record, then the applicable goal-specific handoff. The activation layer is being built and is not yet admissible for activation because canonical workflow observation, shared-gate clearance, build, deployment, public-route verification, and external-source evidence remain pending.
+First continue from `docs/WIKI_PUBLICATION_PIPELINE_MIRROR_HANDOFF.md` and verify that the repaired canonical workflow builds, deploys, and verifies current public content even when unrelated semantic validators remain fail-closed. Then continue from the overall docs handoff, activation coordination record, and applicable goal-specific handoff.
 
 For observer-role, meaning-transition, runtime-overwatch, or after-action reconstruction work, continue from `docs/OBSERVER_BOUNDARY_MIRROR_HANDOFF.md`. Do not rely on prior chat context.
 
 ## Boundary
 
-This pointer and the coordination record do not claim production authority, release status, execution authority, clinical authority, certification, endorsement, commit-time standing, provider governance, live runtime execution, independent observer standing, neutral reviewer standing, or master-record persistence.
+Publication availability is distinct from semantic validation success. The repair does not waive or promote any failed validator and does not claim production authority, release status, execution authority, clinical authority, certification, endorsement, commit-time standing, provider governance, live runtime execution, independent observer standing, neutral reviewer standing, or master-record persistence.
 
 ## Archive posture
 
-The activation coordination record contains active tasks. This session is not archivable until those tasks are completed or durably transferred into successor handoffs with run-bound evidence.
+The publication repair requires run-bound build, deployment, and rendered-route evidence. This session is not archivable until that evidence is observed or the exact remaining failure is durably transferred into the publication-pipeline handoff.
