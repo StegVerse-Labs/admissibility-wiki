@@ -28,7 +28,7 @@ def main() -> None:
         fail("branch mismatch")
 
     continuation = data.get("canonical_continuation", {})
-    for key in ("overall_handoff", "coordination_record", "owned_track_handoff", "canonical_workflow"):
+    for key in ("overall_handoff", "coordination_record", "owned_track_handoff", "incident_record", "canonical_workflow"):
         value = continuation.get(key)
         if not isinstance(value, str) or not value:
             fail(f"canonical continuation missing {key}")
@@ -73,24 +73,32 @@ def main() -> None:
         if not goal.get("next_action"):
             fail(f"goal {goal.get('goal_id')} has no next executable action")
 
-    claim = data.get("active_claim", {})
-    if claim.get("role") != "CLAIMED_FOR_VALIDATION":
-        fail("active role must remain CLAIMED_FOR_VALIDATION")
-    if not claim.get("claim_timestamp"):
-        fail("active claim timestamp missing")
-    if not claim.get("release_condition"):
-        fail("active claim release condition missing")
-    if not claim.get("collision_boundary"):
-        fail("active claim collision boundary missing")
-    for location in claim.get("files", []):
-        if not (ROOT / location).exists():
-            fail(f"claimed file missing: {location}")
+    released = data.get("released_claim", {})
+    if released.get("prior_role") != "CLAIMED_FOR_VALIDATION":
+        fail("released claim prior role mismatch")
+    if released.get("released_to") != "MACHINE_OWNED_CANONICAL_WORKFLOW_OBSERVER":
+        fail("released claim must transfer to canonical workflow observer")
+    for key in (
+        "claim_timestamp",
+        "release_timestamp",
+        "release_condition_satisfied_by",
+        "continuation_location",
+        "expected_next_evidence",
+    ):
+        if not released.get(key):
+            fail(f"released claim missing {key}")
+    continuation_location = released.get("continuation_location")
+    if not (ROOT / continuation_location).exists():
+        fail("released claim continuation location missing")
 
-    if data.get("archive_state") != "ACTIVE_DISTINCT_SUPPORT_ROLE":
-        fail("archive state must remain ACTIVE_DISTINCT_SUPPORT_ROLE until claim release")
-    blockers = data.get("archive_blockers", [])
-    if not isinstance(blockers, list) or len(blockers) < 2:
-        fail("archive blockers must remain explicit")
+    if data.get("archive_state") != "COMPLETE_ARCHIVE":
+        fail("archive state must be COMPLETE_ARCHIVE after claim release")
+    blockers = data.get("archive_blockers")
+    if blockers != []:
+        fail("archive blockers must be empty after durable transfer")
+    evidence = data.get("archive_evidence", [])
+    if not isinstance(evidence, list) or len(evidence) < 4:
+        fail("archive evidence is incomplete")
 
     boundary = data.get("authority_boundary", {})
     for key in (
@@ -98,11 +106,12 @@ def main() -> None:
         "claim_creates_downstream_mutation_authority",
         "local_file_presence_establishes_validation",
         "session_transfer_establishes_activation",
+        "archive_readiness_establishes_repository_completion",
     ):
         if boundary.get(key) is not False:
             fail(f"authority boundary {key} must be false")
 
-    print("SESSION CONSOLIDATION INVENTORY: PASS - goals, claims, continuation paths, and archive blockers are durable")
+    print("SESSION CONSOLIDATION INVENTORY: PASS - goals are durable, validation claim released, and session archive state is complete")
 
 
 if __name__ == "__main__":
