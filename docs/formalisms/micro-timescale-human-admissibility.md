@@ -64,47 +64,47 @@ Let:
 
 The listener reconstructs:
 
-\[
+$$
 r_n = R(u_n,x_n)
-\]
+$$
 
 and evaluates:
 
-\[
+$$
 q_n = P(r_n=I\mid u_n,x_n,E_{1:n})
-\]
+$$
 
 where \(E_{1:n}\) is the accumulated evidence from the interaction so far.
 
 The listener's admissibility decision is:
 
-\[
+$$
 A_n =
 \begin{cases}
 1, & q_n\geq\tau_A\\
 0, & q_n<\tau_A
 \end{cases}
-\]
+$$
 
 The speaker cannot directly inspect \(q_n\). The speaker infers gate state from feedback:
 
-\[
+$$
 \hat q_n = S(f_n,x_n,E_{1:n})
-\]
+$$
 
 The correction rule is:
 
-\[
+$$
 u_{n+1}=u_n+\Delta(I,u_n,f_n,x_n)
-\]
+$$
 
 where \(\Delta\) may alter articulation, stress, rhythm, duration, volume, gesture, gaze, or lexical choice.
 
 The loop terminates when:
 
-\[
+$$
 \hat q_n\geq\tau_A
-\]
+$$
 
 or, more observably, when the listener begins a response consistent with the intended referent.
 
@@ -114,21 +114,21 @@ The final utterance need not be independently sufficient. Earlier failed attempt
 
 Define the evidence state:
 
-\[
+$$
 E_n = E_{n-1}\cup\{u_n,f_n,x_n\}
-\]
+$$
 
 Then admissibility is evaluated over the accumulated state:
 
-\[
+$$
 A_n = G(u_n,x_n,E_n)
-\]
+$$
 
 not over the isolated utterance alone:
 
-\[
+$$
 A_n \neq G(u_n)
-\]
+$$
 
 This explains why a tenth pronunciation may cross the gate even when it is only slightly different from the ninth. The candidate changed, but so did the evidence state.
 
@@ -136,25 +136,25 @@ This explains why a tenth pronunciation may cross the gate even when it is only 
 
 The process is bidirectional. The listener updates a reconstruction while the speaker updates an estimate of the listener's reconstruction.
 
-\[
+$$
 r_{n+1}=R(u_{n+1},x_{n+1},E_{n+1})
-\]
+$$
 
-\[
+$$
 \hat r_{n+1}=S(f_{n+1},x_{n+1},E_{n+1})
-\]
+$$
 
 The interaction converges when both sides behave as though:
 
-\[
+$$
 r_n\approx I
-\]
+$$
 
 and
 
-\[
+$$
 \hat r_n\approx r_n
-\]
+$$
 
 The second condition matters. Communication has not socially completed until the speaker has evidence that the listener understood.
 
@@ -166,21 +166,21 @@ Let \(q(t)\) be listener reconstruction confidence and \(\hat q(t)\) the speaker
 
 The admissibility crossing time is:
 
-\[
+$$
 t_A=\inf\{t:q(t)\geq\tau_A\}
-\]
+$$
 
 The mutually observable crossing time is:
 
-\[
+$$
 t_M=\inf\{t:q(t)\geq\tau_A\land\hat q(t)\geq\tau_A\}
-\]
+$$
 
 The consequential commitment time is:
 
-\[
+$$
 t_C=\inf\{t\geq t_M:q(t)\geq\tau_C\land a(t)\neq 0\}
-\]
+$$
 
 where \(a(t)\) is listener action based on the admitted interpretation.
 
@@ -192,15 +192,15 @@ The gate must be located where interpretation begins to produce consequence.
 
 A listener may entertain several candidate meanings without admitting any of them for action. Therefore:
 
-\[
+$$
 \text{candidate interpretation}\neq\text{admitted interpretation}
-\]
+$$
 
 and:
 
-\[
+$$
 \text{high plausibility}\neq\text{response authority}
-\]
+$$
 
 The gate crossing is visible when the interaction changes from search or repair into referent-consistent response.
 
