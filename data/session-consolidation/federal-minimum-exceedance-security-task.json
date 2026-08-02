@@ -10,20 +10,28 @@
   "authoritative_files": [
     "docs/security/federal-minimum-exceedance-security-baseline.md",
     "static/security/federal-minimum-exceedance-security-profile.json",
-    "scripts/check_federal_minimum_exceedance_security.py"
+    "scripts/check_federal_minimum_exceedance_security.py",
+    "scripts/check_federal_minimum_exceedance_security_runtime.py"
   ],
   "owner": "admissibility-wiki canonical validation workstream",
   "claim_state": "MACHINE_OWNED",
-  "role": "security baseline validation and downgrade prevention",
+  "role": "security baseline validation, downgrade prevention, and negative-path enforcement",
   "claim_timestamp": "2026-08-02T22:20:00Z",
   "claim_expiration_or_release_condition": "release only when a stronger committed successor profile is accepted by canonical validation",
-  "completion_state": "SOURCE_IMPLEMENTED_AWAITING_HOSTED_WORKFLOW_OBSERVATION",
-  "validation_state": "deterministic source validator installed",
-  "integration_state": "canonical handoff-sync integration required and assigned",
+  "completion_state": "SOURCE_IMPLEMENTED_WITH_RUNTIME_NEGATIVE_PATH_VALIDATION_AWAITING_HOSTED_WORKFLOW_OBSERVATION",
+  "validation_state": "deterministic source validator and six-case fail-closed runtime validator installed",
+  "integration_state": "canonical handoff-sync integration complete",
   "archival_dependency": "none after canonical integration; remaining observation is repository-owned",
   "evidence_location": "docs/security/FEDERAL_MINIMUM_EXCEEDANCE_SECURITY_MIRROR_HANDOFF.md",
   "expected_evidence": [
     "passing deterministic security-profile validator",
+    "passing valid-profile runtime case",
+    "rejection of federal-floor removal",
+    "rejection of exceedance-control downgrade",
+    "rejection of unsupported certification claim",
+    "rejection of missing-evidence success inference",
+    "rejection of canonical workflow displacement",
+    "rejection of cross-repository authority escalation",
     "canonical validation invocation",
     "workflow run and logs when exposed",
     "runtime evidence before security effectiveness claims"
@@ -34,8 +42,8 @@
     "do not downgrade stronger StegVerse controls",
     "do not mutate downstream repositories without current handoff authority"
   ],
-  "next_executable_action": "canonical validation executes scripts/check_federal_minimum_exceedance_security.py",
-  "machine_observable_release_condition": "canonical workflow run reports the validator PASS without profile downgrade",
+  "next_executable_action": "canonical validation executes both federal security validators and records hosted run evidence",
+  "machine_observable_release_condition": "canonical workflow run reports both validators PASS without profile downgrade",
   "session_transfer": {
     "classification": "MERGED_INTO_CANONICAL_WORKSTREAM",
     "merged_into": "StegVerse-Labs/admissibility-wiki/docs/security/FEDERAL_MINIMUM_EXCEEDANCE_SECURITY_MIRROR_HANDOFF.md",
