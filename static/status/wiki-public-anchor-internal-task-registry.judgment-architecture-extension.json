@@ -29,6 +29,32 @@
       "duplicate_prevention": "duplicate_execution_key judgment-architecture-source-locator-candidates.v1",
       "next_task_rule": "COMPLETE routes to citation binding; REVIEW_REQUIRED routes to publication-identity review; BLOCKED waits for candidate registry mutation",
       "authority_boundary": "source acceptance does not grant certification, endorsement, interoperability, execution authority, or replay readiness"
+    },
+    {
+      "task_id": "PA-INT-012",
+      "title": "Validate archive-safe consolidation of the Shaun Ralston and Judgment Architecture session",
+      "state": "ACTIVE_INTERNAL",
+      "owner_record": "docs/session-consolidation/shaun-ralston-judgment-architecture-session-consolidation.md",
+      "work_locations": [
+        "docs/session-consolidation/shaun-ralston-judgment-architecture-session-consolidation.md",
+        "static/status/judgment-architecture-session-consolidation.json",
+        "scripts/check_judgment_architecture_session_consolidation.py"
+      ],
+      "observer": "scripts/check_judgment_architecture_session_consolidation.py",
+      "trigger": "canonical validation, internal task executor, or consolidation-record mutation",
+      "deterministic_inputs": [
+        "session goal inventory",
+        "canonical handoff path",
+        "PA-INT-011 ownership record",
+        "released session claims",
+        "archive loss test"
+      ],
+      "deterministic_outputs": ["PASS_INTERNAL", "FAIL_INTERNAL_CONTINUABLE"],
+      "completion_predicate": "validator confirms all session-specific goals are complete or transferred, session claims are released, PA-INT-011 is machine-owned, and future execution does not require chat history",
+      "fallback": "record exact missing durable location and retain the session until the consolidation record validates",
+      "duplicate_prevention": "duplicate_execution_key judgment-architecture-session-consolidation.v1",
+      "next_task_rule": "PASS permits conversation archival while PA-INT-011 continues independently; FAIL routes to the exact missing consolidation surface",
+      "authority_boundary": "session archival does not complete PA-INT-011 or grant certification, endorsement, interoperability, publication, or execution authority"
     }
   ]
 }
