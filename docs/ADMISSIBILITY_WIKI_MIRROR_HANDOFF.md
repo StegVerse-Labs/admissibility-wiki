@@ -30,6 +30,7 @@ Authority posture: public review and reconstruction infrastructure only; no cert
 ```text
 Primary task registry: static/status/wiki-public-anchor-internal-task-registry.json
 TA-14 publication extension: static/status/wiki-public-anchor-internal-task-registry.ta14-publication-extension.json
+TA-14 review task registry: static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json
 Registry validator: scripts/check_wiki_public_anchor_internal_tasks.py
 Task executor: scripts/run_wiki_public_anchor_internal_tasks.py
 Generated execution report: reports/wiki-public-anchor-internal-task-execution.json
@@ -37,12 +38,14 @@ Primary coordination record: docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md
 TA-14 publication coordination: docs/external-frameworks/TA14_PUBLICATION_ACTIVATION_COORDINATION.md
 TA-14 publication observer: scripts/observe_ta14_determination_publication.py
 TA-14 publication observation: reports/ta14-determination-publication-observation.json
+TA-14 session consolidation: static/status/session-consolidation/ta14-governed-review-session-2026-08-02.json
 Multi-docket integration: scripts/check_wiki_public_anchor_multi_docket_status.py
 Canonical aggregate: scripts/check_admissibility_automation_handoff.py
 Canonical command: npm run validate
 Canonical workflow: .github/workflows/validate-chain-continuation.yml
 Master coordination: GitHub issue #50
 Conectrr evidence lane: GitHub issue #47
+TA-14 review lane: GitHub issue #53
 ```
 
 Every task must have an owner record, exact repository work locations, an observer, a completion predicate, and a fallback. A task without those fields is invalid.
@@ -70,6 +73,7 @@ The located task set is authoritative across:
 ```text
 static/status/wiki-public-anchor-internal-task-registry.json
 static/status/wiki-public-anchor-internal-task-registry.ta14-publication-extension.json
+static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json
 ```
 
 Current task IDs:
@@ -85,6 +89,11 @@ PA-INT-007 repair shared canonical validation drift
 PA-INT-008 maintain the continuation registry
 PA-INT-009 execute and report the internal continuation queue
 PA-INT-010 observe and complete TA-14 determination publication without halting unrelated development
+TA14-V2-001 observe canonical execution of the TA-14 v2 intake validator
+TA14-V2-002 bounded adjudication of G-01 through G-18 — COMPLETE
+TA14-V2-003 route-complete evidence manifest structure — COMPLETE, evidence accumulating
+TA14-V2-004 TA-14 task observer — COMPLETE
+TA14-V2-005 canonical validation binding — COMPLETE
 ```
 
 Human-readable locations, predicates, and fallbacks are mirrored in:
@@ -92,6 +101,7 @@ Human-readable locations, predicates, and fallbacks are mirrored in:
 ```text
 docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md
 docs/external-frameworks/TA14_PUBLICATION_ACTIVATION_COORDINATION.md
+static/status/session-consolidation/ta14-governed-review-session-2026-08-02.json
 ```
 
 ## Active TA-14 Publication Task
@@ -113,6 +123,25 @@ User action required: false
 Completion requires the canonical workflow to remain the only active workflow, the source page to exist, and a network-enabled observation to record `PASS_PUBLIC_CONTENT_VERIFIED` for the exact public route and expected determination text.
 
 A 404, unavailable network observation, or failed deployment is recorded as `NOT_OBSERVED_CONTINUABLE` or `FAIL_INTERNAL_CONTINUABLE`; it does not suspend unrelated development.
+
+## TA-14 Review Session Consolidation
+
+```text
+Consolidation record: static/status/session-consolidation/ta14-governed-review-session-2026-08-02.json
+Session role: MERGED_INTO_CANONICAL_WORKSTREAM
+Unique session goals: 7
+Transferred or complete: 7
+Chat-only requirements remaining: 0
+Unassigned tasks remaining: 0
+Stale session claims remaining: 0
+Session execution authority remaining: false
+```
+
+The consolidation record preserves the original session objective, every adjacent goal, destination repository and branch, exact work and evidence locations, claim states, completion and validation states, integration state, archival dependencies, next executable actions, convergence records, and machine-observable release conditions.
+
+The session-specific implementation claim is released. Continuation is machine-owned by the canonical task registries and workflow. A successor chat must not duplicate these files or capabilities; it must read this handoff and the registries and take only an unclaimed validation, integration, repair, observation, or propagation role.
+
+MERGED INTO: `StegVerse-Labs/admissibility-wiki/docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`, `static/status/session-consolidation/ta14-governed-review-session-2026-08-02.json`, issue #53, and the three canonical task registries listed above.
 
 ## Frozen Public-Anchor Boundary
 
@@ -169,6 +198,8 @@ methodology acknowledgment != independent reconstruction
 methodology acknowledgment != execution authority
 public-route PASS != substantive correctness
 public-route FAIL != global development halt
+session archive != project completion
+session consolidation != authority transfer beyond recorded repository claims
 ```
 
 ## Docket Boundaries
@@ -253,10 +284,24 @@ REPO_STANDARDS_MIRROR_HANDOFF.md when applicable
 
 Queued propagation is not completed propagation. Destination mutation remains prohibited until the destination handoff grants scope.
 
+## Completion Percentages
+
+```text
+Developed files: 17 / 17 required session-specific files installed
+Validation: 8 / 10 session-specific validation obligations completed; successor canonical observation and public content observation remain machine-owned
+Integration: 7 / 7 session-specific integration obligations completed or durably transferred
+Goal activation: 5 / 7 session goals activated to their strongest currently admissible level; two observations remain pending without halting development
+Session consolidation: 7 / 7 session goals transferred or complete
+Archive readiness for this conversation: READY
+Project activation readiness: NOT YET ADMISSIBLE
+```
+
+Percentages concern this session's deliverables and transfer obligations, not the entire repository or public-anchor program.
+
 ## Permitted Continuation Scope
 
 A successor session may execute every located `READY_INTERNAL` or `ACTIVE_INTERNAL` task, run the internal executor, repair exact validator failures, maintain or supersede reconstruction manifests, run synthetic and surrogate tests, update canonical observation receipts from direct evidence, preserve challenges and corrections, and queue downstream awareness without unauthorized destination mutation.
 
 ## Handoff Instruction
 
-Continue from this file, the primary task registry, and all located registry extensions before relying on prior chat context. PA-INT-010 remains active until its content-aware observer records `PASS_PUBLIC_CONTENT_VERIFIED`. The thread is not ready for archiving while that task remains active.
+Continue from this file, the primary task registry, the TA-14 review task registry, the publication extension, and the session-consolidation record before relying on prior chat context. Active project work remains machine-owned, but this conversation no longer contains unique requirements or execution responsibility. The complete thread is ready for archiving without any additional part of the thread being required to move forward.
