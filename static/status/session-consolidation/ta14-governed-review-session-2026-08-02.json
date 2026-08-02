@@ -1,0 +1,213 @@
+{
+  "schema_version": "session-consolidation-record.v1",
+  "record_id": "ta14-governed-review-session-2026-08-02",
+  "created_at": "2026-08-02T04:12:00-05:00",
+  "originating_session_goal": "Determine whether the TA-14 governed-review response, task-observation, non-halting continuation, canonical validation, evidence assembly, and publication layers exist in StegVerse; build or activate them; locate every task; eliminate external-task language; and continue development without retaining chat-only state.",
+  "canonical_continuation": {
+    "repository": "StegVerse-Labs/admissibility-wiki",
+    "branch": "main",
+    "handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+    "primary_task_registry": "static/status/wiki-public-anchor-internal-task-registry.json",
+    "ta14_publication_extension": "static/status/wiki-public-anchor-internal-task-registry.ta14-publication-extension.json",
+    "ta14_review_registry": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json",
+    "coordination_issue": 53,
+    "master_issue": 50
+  },
+  "session_role": "MERGED_INTO_CANONICAL_WORKSTREAM",
+  "claims": {
+    "session_implementation_claim": "RELEASED_AFTER_TRANSFER",
+    "canonical_machine_claim": "MACHINE_OWNED",
+    "collision_boundary": "No successor chat session should duplicate implementation in the listed files; it must read the canonical handoff and registries and take only an unclaimed validation, integration, repair, or propagation role.",
+    "release_condition": "All unique session requirements are represented by committed files, task registries, completion receipts, observers, validators, issues, and this consolidation record."
+  },
+  "inventory": [
+    {
+      "task_id": "SESSION-TA14-001",
+      "goal": "Preserve and validate the externally supplied TA-14 StegVerse evidence-gap review intake.",
+      "destination": "StegVerse-Labs/admissibility-wiki",
+      "branch": "main",
+      "locations": [
+        "docs/external-frameworks/ta-14-stegverse-public-evidence-gap-review-v2-intake.md",
+        "static/data/governed-framework-reviews/ta-14.stegverse-public-evidence-gap-review-v2.intake.json",
+        "scripts/check_ta14_stegverse_gap_review_v2_intake.py"
+      ],
+      "owner": "TA14-V2-001 via static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json",
+      "claim_state": "MACHINE_OWNED",
+      "completion_state": "IMPLEMENTED_PENDING_CANONICAL_OBSERVATION",
+      "validation_state": "CANONICALLY_BOUND_NOT_YET_OBSERVED_ON_SUCCESSOR_RUN",
+      "integration_state": "BOUND_THROUGH scripts/check_ta14_standing_reconstruction.py",
+      "archival_dependency": "NONE_FOR_THIS_SESSION; continuation is durable",
+      "evidence": "static/status/ta-14-stegverse-gap-review-v2.execution-status.json",
+      "next_action": "Observe the next canonical run and write static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-001.json only from direct workflow evidence."
+    },
+    {
+      "task_id": "SESSION-TA14-002",
+      "goal": "Boundedly adjudicate G-01 through G-18 without converting missing proof into framework nonexistence or halting unrelated development.",
+      "destination": "StegVerse-Labs/admissibility-wiki",
+      "branch": "main",
+      "locations": [
+        "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.adjudication.json",
+        "scripts/check_ta14_stegverse_gap_review_v2_adjudication.py",
+        "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-002.json"
+      ],
+      "owner": "TA14-V2-002",
+      "claim_state": "COMPLETE",
+      "completion_state": "18_OF_18_BOUNDED",
+      "validation_state": "VALIDATOR_INSTALLED_AND_CANONICALLY_BOUND",
+      "integration_state": "INTEGRATED",
+      "archival_dependency": "NONE",
+      "evidence": "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-002.json",
+      "next_action": "Continue evidence enrichment in each finding work_path without reopening the completed bounded-adjudication task."
+    },
+    {
+      "task_id": "SESSION-TA14-003",
+      "goal": "Create a route-complete evidence manifest with internal locations for architecture, authority, reality, determination, bind/commit, execution/refusal, continuity, replay, outcome, and adversarial evidence.",
+      "destination": "StegVerse-Labs/admissibility-wiki",
+      "branch": "main",
+      "locations": [
+        "static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json",
+        "scripts/check_ta14_stegverse_route_complete_evidence_manifest.py",
+        "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-003.json"
+      ],
+      "owner": "TA14-V2-003",
+      "claim_state": "COMPLETE_STRUCTURE_EVIDENCE_ACCUMULATING",
+      "completion_state": "10_OF_10_COMPONENTS_LOCATED",
+      "validation_state": "VALIDATOR_INSTALLED",
+      "integration_state": "CANONICAL_TASK_LAYER",
+      "archival_dependency": "NONE",
+      "evidence": "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-003.json",
+      "next_action": "Advance component states only from directly inspectable evidence; preserve NO_ROUTE_COMPLETE_CLAIM until all components qualify."
+    },
+    {
+      "task_id": "SESSION-TA14-004",
+      "goal": "Observe and advance repository-addressable tasks while treating evidence gaps as actionable and non-halting.",
+      "destination": "StegVerse-Labs/admissibility-wiki",
+      "branch": "main",
+      "locations": [
+        "scripts/run_ta14_stegverse_gap_review_v2_tasks.py",
+        "scripts/check_ta14_stegverse_gap_review_v2_task_execution.py",
+        "static/status/ta-14-stegverse-gap-review-v2.execution-status.json",
+        "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-004.json"
+      ],
+      "owner": "TA14-V2-004",
+      "claim_state": "COMPLETE",
+      "completion_state": "OBSERVER_ACTIVE",
+      "validation_state": "STRUCTURAL_VALIDATOR_INSTALLED",
+      "integration_state": "INTEGRATED",
+      "archival_dependency": "NONE",
+      "evidence": "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-004.json",
+      "next_action": "Repository-native execution recomputes task state; invalid work artifacts fail closed while evidence gaps remain actionable."
+    },
+    {
+      "task_id": "SESSION-TA14-005",
+      "goal": "Bind the TA-14 v2 intake, adjudication, route-manifest, and non-halting task execution into the canonical validation path without adding a duplicate workflow.",
+      "destination": "StegVerse-Labs/admissibility-wiki",
+      "branch": "main",
+      "locations": [
+        "scripts/check_ta14_standing_reconstruction.py",
+        "scripts/check_admissibility_automation_handoff.py",
+        ".github/workflows/validate-chain-continuation.yml",
+        "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-005.json"
+      ],
+      "owner": "TA14-V2-005",
+      "claim_state": "COMPLETE",
+      "completion_state": "CANONICALLY_BOUND",
+      "validation_state": "SUCCESSOR_CANONICAL_RUN_NOT_YET_OBSERVED",
+      "integration_state": "INTEGRATED",
+      "archival_dependency": "NONE_FOR_THIS_SESSION",
+      "evidence": "static/status/ta-14-stegverse-gap-review-v2.receipts/TA14-V2-005.json",
+      "next_action": "The machine-owned canonical workflow records the next observed result; no chat session should create another workflow."
+    },
+    {
+      "task_id": "SESSION-TA14-006",
+      "goal": "Publish and content-verify the TA-14 testing-support determination without allowing a 404, unavailable network, or failed deployment to halt repository development.",
+      "destination": "StegVerse-Labs/admissibility-wiki",
+      "branch": "main",
+      "locations": [
+        "docs/external-frameworks/ta-14-testing-support-determination-2026-08-01.md",
+        "docs/external-frameworks/TA14_PUBLICATION_ACTIVATION_COORDINATION.md",
+        "scripts/observe_ta14_determination_publication.py",
+        "reports/ta14-determination-publication-observation.json",
+        "static/status/wiki-public-anchor-internal-task-registry.ta14-publication-extension.json"
+      ],
+      "owner": "PA-INT-010",
+      "claim_state": "MACHINE_OWNED",
+      "completion_state": "ACTIVE_INTERNAL",
+      "validation_state": "CONTENT_AWARE_OBSERVER_INSTALLED",
+      "integration_state": "REGISTRY_EXTENSION_DISCOVERED_BY_INTERNAL_EXECUTOR",
+      "archival_dependency": "NONE_FOR_THIS_SESSION; active work is durably machine-owned",
+      "evidence": "reports/ta14-determination-publication-observation.json",
+      "next_action": "Run scripts/observe_ta14_determination_publication.py with TA14_OBSERVE_PUBLIC_NETWORK=true after canonical deployment; record PASS_PUBLIC_CONTENT_VERIFIED only when exact content is observed."
+    },
+    {
+      "task_id": "SESSION-TA14-007",
+      "goal": "Prevent duplicate cross-session execution and preserve the complete session inventory in a canonical durable location.",
+      "destination": "StegVerse-Labs/admissibility-wiki",
+      "branch": "main",
+      "locations": [
+        "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+        "static/status/session-consolidation/ta14-governed-review-session-2026-08-02.json",
+        "static/status/wiki-public-anchor-internal-task-registry.json",
+        "static/status/wiki-public-anchor-internal-task-registry.ta14-publication-extension.json"
+      ],
+      "owner": "Canonical handoff and registries",
+      "claim_state": "COMPLETE",
+      "completion_state": "SESSION_STATE_TRANSFERRED",
+      "validation_state": "DIRECTLY_INSPECTABLE_COMMITTED_RECORD",
+      "integration_state": "CANONICAL_CONTINUATION",
+      "archival_dependency": "HANDOFF MUST REFERENCE THIS RECORD",
+      "evidence": "this record",
+      "next_action": "Successor work begins from the canonical handoff and registries; this conversation is not an execution dependency."
+    }
+  ],
+  "convergence": [
+    {
+      "session_work": "TA-14 task observation and non-halting continuation",
+      "merged_into": "static/status/wiki-public-anchor-internal-task-registry.json and scripts/run_wiki_public_anchor_internal_tasks.py",
+      "classification": "MERGED_INTO_CANONICAL_WORKSTREAM"
+    },
+    {
+      "session_work": "TA-14 determination publication observation",
+      "merged_into": "static/status/wiki-public-anchor-internal-task-registry.ta14-publication-extension.json task PA-INT-010",
+      "classification": "MACHINE_OWNED"
+    },
+    {
+      "session_work": "TA-14 review adjudication and route evidence",
+      "merged_into": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json and issue #53",
+      "classification": "MERGED_INTO_CANONICAL_WORKSTREAM"
+    }
+  ],
+  "remaining_machine_owned_work": [
+    {
+      "task_id": "TA14-V2-001",
+      "location": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json",
+      "release_condition": "A directly observed successor canonical run executes the intake validator and supports a completion receipt."
+    },
+    {
+      "task_id": "PA-INT-010",
+      "location": "static/status/wiki-public-anchor-internal-task-registry.ta14-publication-extension.json",
+      "release_condition": "Content-aware public observation records PASS_PUBLIC_CONTENT_VERIFIED for the exact route and expected text."
+    },
+    {
+      "task_id": "PA-INT-001..PA-INT-009",
+      "location": "static/status/wiki-public-anchor-internal-task-registry.json",
+      "release_condition": "Each task's committed completion predicate is met or it is explicitly superseded by an append-only record."
+    }
+  ],
+  "session_consolidation": {
+    "unique_goals_total": 7,
+    "transferred_or_complete": 7,
+    "chat_only_requirements_remaining": 0,
+    "unassigned_tasks_remaining": 0,
+    "stale_session_claims_remaining": 0,
+    "session_execution_authority_remaining": false,
+    "archive_ready_after_handoff_reference": true
+  },
+  "authority_boundary": {
+    "session_archive_means_project_complete": false,
+    "session_archive_releases_machine_tasks": false,
+    "session_archive_grants_certification": false,
+    "session_archive_grants_execution_authority": false,
+    "repository_records_remain_authoritative": true
+  }
+}
