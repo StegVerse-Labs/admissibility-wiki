@@ -13,7 +13,29 @@ External framework role: historical governance review evidence
 Wiki role: observatory record, boundary mapping, and commit-time test target
 Citation status: artifact package required
 Evidence provenance status: private correspondence provenance installed; public source still required
+Architectural-boundary review attribution: authorized and published with exact boundaries
 ```
+
+## Authorized Architectural-Boundary Review
+
+The following statement is the complete authorized public description of the external architectural-boundary review:
+
+> Reviewed for architectural boundary semantics. The reviewer found the boundary substantially correct subject to incorporated clarifications. This is not an official MindForge specification, implementation endorsement, compatibility certification, or execution-authority determination.
+
+The authorization is limited to that exact description and does not extend to endorsement of StegVerse, SPE implementation readiness, MindForge compatibility, certification, or execution authority.
+
+Private correspondence, screenshots, unpublished draft text, and any stronger reviewer attribution are not published and require separate approval before any future use.
+
+The reviewed boundary is:
+
+```text
+MindForge evidence -> reconstructable historical governance context
+Commitment Candidate -> non-authorizing crossing proposal
+SPE Standing Determination -> commit-time admissibility result
+Execution -> separate boundary; ALLOW does not execute the transition
+```
+
+This review concerns architectural boundary semantics only. It does not establish a public canonical MindForge source, framework provenance, implementation readiness, compatibility, certification, reviewer standing, or execution authority.
 
 ## Source
 
@@ -171,6 +193,8 @@ This page does not treat a Commitment Candidate as authorization.
 This page does not treat artifact-specific evaluation as system-wide validation.
 This page does not mark the framework as sourced until an authorized public source is supplied.
 This page does not treat private correspondence provenance as a public canonical framework source.
+This page does not publish or quote private correspondence, screenshots, or unpublished draft text.
+This page does not make any attribution stronger than the exact authorized architectural-boundary review description.
 ```
 
 ## Challenge Path
