@@ -1,0 +1,79 @@
+{
+  "schema_version": "judgment_architecture_session_consolidation.v1",
+  "session_origin": "Shaun Ralston LinkedIn authority-architecture discussion",
+  "archive_disposition": "ARCHIVE",
+  "canonical_repository": "StegVerse-Labs/admissibility-wiki",
+  "canonical_branch": "main",
+  "canonical_handoff": "docs/external-frameworks/JUDGMENT_ARCHITECTURE_MIRROR_HANDOFF.md",
+  "canonical_task": {
+    "task_id": "PA-INT-011",
+    "state": "MACHINE_OWNED",
+    "registry": "static/status/wiki-public-anchor-internal-task-registry.judgment-architecture-extension.json",
+    "observer": "scripts/observe_judgment_architecture_source_locator.py",
+    "persistent_state": "static/status/judgment-architecture-source-locator-observation.json",
+    "release_condition": "accepted locator type binds the exact publication identity and stable page or section anchors"
+  },
+  "goals": [
+    {
+      "goal_id": "SESSION-LI-001",
+      "state": "COMPLETE_TRANSFERRED",
+      "destination": "docs/session-consolidation/shaun-ralston-judgment-architecture-session-consolidation.md",
+      "remaining_owner": "user-observed social surface",
+      "next_action": "none unless new response evidence is supplied"
+    },
+    {
+      "goal_id": "SESSION-JA-001",
+      "state": "COMPLETE_TRANSFERRED",
+      "destination": "docs/external-frameworks/judgment-architecture.md",
+      "remaining_owner": "StegVerse-Labs/admissibility-wiki",
+      "next_action": "preserve authority boundaries"
+    },
+    {
+      "goal_id": "SESSION-JA-002",
+      "state": "COMPLETE_VALIDATED",
+      "destination": "static/status/judgment-architecture-binding-adapter-status.json",
+      "remaining_owner": "canonical workflow evidence",
+      "next_action": "none"
+    },
+    {
+      "goal_id": "SESSION-JA-003",
+      "state": "MACHINE_OWNED_BLOCKED",
+      "destination": "PA-INT-011",
+      "remaining_owner": "repository-native task executor",
+      "next_action": "observe candidate-registry mutation"
+    },
+    {
+      "goal_id": "SESSION-JA-004",
+      "state": "COMPLETE_TRANSFERRED",
+      "destination": "docs/session-consolidation/shaun-ralston-judgment-architecture-session-consolidation.md",
+      "remaining_owner": "none",
+      "next_action": "none"
+    }
+  ],
+  "claim_state": {
+    "session_implementation_claim": "RELEASED",
+    "session_validation_claim": "RELEASED",
+    "session_integration_claim": "RELEASED",
+    "machine_claim": "ACTIVE",
+    "duplicate_execution_permitted": false
+  },
+  "cross_repository_propagation": {
+    "required": false,
+    "site": "NOT_AUTHORIZED_NOT_REQUIRED",
+    "publisher": "NOT_AUTHORIZED_NOT_REQUIRED",
+    "stegguardian_wiki": "NOT_AUTHORIZED_NOT_REQUIRED",
+    "master_records": "NOT_AUTHORIZED_NOT_REQUIRED"
+  },
+  "loss_test": {
+    "unique_chat_only_requirements_remaining": 0,
+    "session_specific_claims_remaining": 0,
+    "future_execution_requires_chat": false,
+    "deleting_conversation_impairs_continuation": false
+  },
+  "authority_boundary": {
+    "social_post_is_framework_source": false,
+    "source_observation_grants_endorsement": false,
+    "session_consolidation_grants_execution_authority": false,
+    "archive_disposition_completes_machine_task": false
+  }
+}
