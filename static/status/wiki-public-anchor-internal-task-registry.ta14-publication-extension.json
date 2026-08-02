@@ -1,0 +1,33 @@
+{
+  "schema_version": "wiki-public-anchor-internal-task-registry-extension.v1",
+  "extension_id": "ta14-determination-publication-2026-08-01",
+  "extends": "static/status/wiki-public-anchor-internal-task-registry.json",
+  "external_tasks_exist": false,
+  "tasks": [
+    {
+      "task_id": "PA-INT-010",
+      "title": "Observe and complete TA-14 determination publication without halting unrelated development",
+      "state": "ACTIVE_INTERNAL",
+      "owner_record": "docs/external-frameworks/TA14_PUBLICATION_ACTIVATION_COORDINATION.md",
+      "work_locations": [
+        "docs/external-frameworks/ta-14-testing-support-determination-2026-08-01.md",
+        ".github/workflows/validate-chain-continuation.yml",
+        "scripts/observe_ta14_determination_publication.py",
+        "reports/ta14-determination-publication-observation.json",
+        "static/status/wiki-public-anchor-internal-task-registry.ta14-publication-extension.json"
+      ],
+      "observer": "scripts/observe_ta14_determination_publication.py",
+      "completion_predicate": "the canonical workflow is the only active workflow, the source page exists, and a network-enabled observation records PASS_PUBLIC_CONTENT_VERIFIED for the exact public route and expected determination text",
+      "fallback": "record NOT_OBSERVED_CONTINUABLE or FAIL_INTERNAL_CONTINUABLE in reports/ta14-determination-publication-observation.json and continue every unrelated READY_INTERNAL task",
+      "dependencies": [],
+      "external_dependencies": []
+    }
+  ],
+  "policy": {
+    "no_external_tasks": true,
+    "missing_public_observation_blocks_unrelated_development": false,
+    "every_task_has_locations": true,
+    "every_task_has_observer": true,
+    "every_task_has_completion_predicate": true
+  }
+}
