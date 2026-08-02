@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 INVENTORY = ROOT / "static/reviews/ta14/session-consolidation-inventory.v0.1.json"
 REQUIRED_TASK_IDS = {f"TA14-GOAL-{index:03d}" for index in range(1, 9)}
+ALLOWED_SCHEMA_VERSIONS = {"0.1.0", "0.2.0"}
 ALLOWED_CLAIM_STATES = {
     "UNCLAIMED",
     "CLAIMED_FOR_IMPLEMENTATION",
@@ -34,8 +35,8 @@ def main() -> int:
     except Exception as exc:
         return fail(f"invalid JSON: {exc}")
 
-    if payload.get("schema_version") != "0.1.0":
-        return fail("schema_version must equal 0.1.0")
+    if payload.get("schema_version") not in ALLOWED_SCHEMA_VERSIONS:
+        return fail(f"schema_version must be one of {sorted(ALLOWED_SCHEMA_VERSIONS)}")
     if payload.get("goal_id") != "TA14-RECIPROCAL-REVIEW-LAYER":
         return fail("unexpected goal_id")
 
@@ -58,18 +59,9 @@ def main() -> int:
             return fail("every goal must be an object")
         task_id = goal.get("task_id")
         for key in (
-            "goal",
-            "destination",
-            "branch",
-            "location",
-            "owner",
-            "claim_state",
-            "completion_state",
-            "validation_state",
-            "integration_state",
-            "archival_dependency",
-            "evidence",
-            "next_action",
+            "goal", "destination", "branch", "location", "owner", "claim_state",
+            "completion_state", "validation_state", "integration_state",
+            "archival_dependency", "evidence", "next_action",
         ):
             if key not in goal or goal.get(key) in (None, ""):
                 return fail(f"{task_id} missing {key}")
@@ -88,20 +80,10 @@ def main() -> int:
     if not isinstance(metrics, dict):
         return fail("metrics must be an object")
     required_metric_keys = {
-        "required_tasks",
-        "complete_or_implemented_tasks",
-        "required_developed_files",
-        "developed_files",
-        "scaffolding_or_stubs",
-        "missing_required_files",
-        "required_validations",
-        "validated",
-        "required_integrations",
-        "integrated",
-        "session_goals",
-        "transferred_or_complete",
-        "goal_activation_percent",
-        "archival_ready",
+        "required_tasks", "complete_or_implemented_tasks", "required_developed_files",
+        "developed_files", "scaffolding_or_stubs", "missing_required_files",
+        "required_validations", "validated", "required_integrations", "integrated",
+        "session_goals", "transferred_or_complete", "goal_activation_percent", "archival_ready",
     }
     if not required_metric_keys.issubset(metrics):
         return fail("metrics missing required denominator fields")
@@ -114,13 +96,24 @@ def main() -> int:
     if metrics.get("archival_ready") is True:
         return fail("inventory may not claim archival readiness while archival dependencies remain")
 
+    current_observation = payload.get("current_observation")
+    if payload.get("schema_version") == "0.2.0":
+        if not isinstance(current_observation, dict):
+            return fail("schema 0.2.0 requires current_observation")
+        for key in ("workflow", "run_id", "run_number", "status", "development_halt"):
+            if key not in current_observation:
+                return fail(f"current_observation missing {key}")
+        if current_observation.get("development_halt") is not False:
+            return fail("current_observation must preserve development_halt=false")
+
     archive_conditions = payload.get("archive_conditions")
     if not isinstance(archive_conditions, list) or not archive_conditions:
         return fail("archive_conditions must be a nonempty list")
 
     print(
         "TA-14 SESSION CONSOLIDATION INVENTORY: PASS - "
-        f"goals={len(goals)} transferred={metrics['transferred_or_complete']} "
+        f"schema={payload['schema_version']} goals={len(goals)} "
+        f"transferred={metrics['transferred_or_complete']} "
         f"archival_ready={str(metrics['archival_ready']).lower()} external_tasks=0"
     )
     return 0
