@@ -14,6 +14,7 @@ MANIFEST_CHECK = ROOT / "scripts" / "check_public_anchor_reconstruction_manifest
 PUBLIC_ROUTE_CHECK = ROOT / "scripts" / "check_wiki_public_anchor_public_routes.py"
 INDEPENDENT_RECONSTRUCTION_INVITATION_CHECK = ROOT / "scripts" / "check_public_anchor_independent_reconstruction_invitation.py"
 SESSION_CONSOLIDATION_CHECK = ROOT / "scripts" / "check_session_consolidation_one_world_ai_public_anchor.py"
+MINDFORGE_SESSION_CONSOLIDATION_CHECK = ROOT / "scripts" / "check_session_consolidation_mindforge_public_anchor.py"
 INTERNAL_TASK_CHECK = ROOT / "scripts" / "check_wiki_public_anchor_internal_tasks.py"
 TASK_MESH_CHECK = ROOT / "scripts" / "check_wiki_public_anchor_task_mesh.py"
 TASK_MESH_REPORT = ROOT / "reports" / "wiki-public-anchor-task-mesh-execution.json"
@@ -92,7 +93,8 @@ def main() -> int:
     run_check(MANIFEST_CHECK, "public-anchor reconstruction manifest", failures)
     run_check(PUBLIC_ROUTE_CHECK, "public-anchor route observation receipt", failures)
     run_check(INDEPENDENT_RECONSTRUCTION_INVITATION_CHECK, "independent reconstruction invitation", failures)
-    run_check(SESSION_CONSOLIDATION_CHECK, "session consolidation inventory", failures)
+    run_check(SESSION_CONSOLIDATION_CHECK, "One World AI session consolidation inventory", failures)
+    run_check(MINDFORGE_SESSION_CONSOLIDATION_CHECK, "MindForge public-anchor session consolidation inventory", failures)
     run_check(INTERNAL_TASK_CHECK, "non-halting internal task registry", failures)
     run_check(TASK_MESH_CHECK, "non-halting public-anchor task mesh", failures)
     run_check(COMPLETION_CYCLE_CHECK, "bounded public-anchor completion cycles", failures)
@@ -123,7 +125,7 @@ def main() -> int:
             print(f"- {failure}")
         return 1
 
-    print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS - dockets, reconstruction controls, session consolidation, task mesh, and bounded completion cycles remain aligned")
+    print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS - dockets, reconstruction controls, session consolidation inventories, task mesh, and bounded completion cycles remain aligned")
     return 0
 
 
