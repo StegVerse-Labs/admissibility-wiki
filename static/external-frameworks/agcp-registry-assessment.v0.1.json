@@ -1,0 +1,71 @@
+{
+  "schema_version": "0.1.0",
+  "record_type": "external_framework_assessment",
+  "framework_id": "agcp-registry",
+  "framework_name": "AGCP Registry",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "review_state": "SOURCE_CAPTURED_REVIEW_ACTIVE",
+  "source_capture": {
+    "source_type": "public_linkedin_announcement",
+    "captured_at": "2026-08-02",
+    "source_artifact": "user-supplied screenshots",
+    "independently_verified": false,
+    "announced_result": "first Founders Cohort member reported at 100 percent of applicable Registry requirements",
+    "scope_qualification_present": true,
+    "planned_registry_data_release": "2026-08-31",
+    "planned_release_observed": false
+  },
+  "dimensions": {
+    "public_specification_identity": "UNRESOLVED",
+    "requirement_inventory": "PARTIAL_CLAIM_ONLY",
+    "applicability_transparency": "PARTIAL_CLAIM_ONLY",
+    "evidence_accessibility": "UNRESOLVED",
+    "deterministic_assessment": "ASSERTED_NOT_REPRODUCED",
+    "evaluator_independence": "UNRESOLVED",
+    "time_t_reconstruction": "UNRESOLVED",
+    "commit_time_validity": "UNRESOLVED",
+    "dispute_and_correction": "UNRESOLVED",
+    "conformance_claim": "BOUNDED_REPORTED_RESULT",
+    "admissibility": "NOT_ESTABLISHED",
+    "execution_authority": "NOT_ESTABLISHED"
+  },
+  "required_evidence": [
+    "immutable_specification_identifier_and_digest",
+    "complete_requirement_inventory",
+    "applicability_and_exclusion_record",
+    "deterministic_assessment_method",
+    "immutable_assessed_implementation_snapshot",
+    "requirement_level_evidence_references",
+    "assessor_delegation_independence_and_conflict_record",
+    "machine_readable_assessment_result",
+    "independent_replay_or_reconstruction_result",
+    "mutation_and_commit_time_validity_result",
+    "dispute_correction_withdrawal_expiration_and_supersession_procedure"
+  ],
+  "claim_boundaries": {
+    "conformance_implies_specification_completeness": false,
+    "conformance_implies_independent_reconstruction": false,
+    "conformance_implies_commit_time_validity": false,
+    "conformance_implies_admissibility": false,
+    "conformance_implies_execution_authority": false,
+    "conformance_implies_consequence_authority": false
+  },
+  "task_control": {
+    "task_id": "ADMISSIBILITY-AGCP-001",
+    "execution_class": "PARALLEL_SAFE",
+    "owner": "repository_canonical_workflow",
+    "external_tasks_allowed": false,
+    "manual_user_tasks_required": [],
+    "next_transition": "BIND_VALIDATOR_TO_CANONICAL_AGGREGATE",
+    "completion_condition": "validator passes in canonical workflow and public route is observed without stronger unsupported claims"
+  },
+  "authority": {
+    "certification": false,
+    "endorsement": false,
+    "admissibility": false,
+    "execution": false,
+    "publication": false,
+    "release": false,
+    "cross_repository_mutation": false
+  }
+}
