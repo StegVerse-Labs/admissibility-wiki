@@ -4,79 +4,122 @@
 
 This file is the task source of truth for the AGCP Registry external-framework review layer in `StegVerse-Labs/admissibility-wiki`.
 
+## Active goal
+
+```text
+goal_id: ADMISSIBILITY-AGCP-001
+repository: StegVerse-Labs/admissibility-wiki
+branch: main
+goal: activate a governed public evaluation of the AGCP conformance registry without converting missing evidence into external or manual tasks
+state: IMPLEMENTED_AWAITING_CANONICAL_WORKFLOW_AND_PUBLIC_ROUTE_OBSERVATION
+```
+
 ## Determination
 
 ```text
-layer requested: governed public evaluation of a conformance registry
-pre-existing AGCP-specific layer: NOT FOUND
+pre-existing AGCP-specific layer before goal start: NOT FOUND
 broader external-framework machinery: PRESENT
-result: BUILD STARTED AS PARALLEL_SAFE WORK
-```
-
-The repository already contains external-framework intake, evidence capture, replay, publication, and fail-closed authority boundaries. It did not contain an AGCP-specific review record when this task began.
-
-## Active task
-
-```text
-task_id: ADMISSIBILITY-AGCP-001
-owner: repository canonical workflow
-execution_class: PARALLEL_SAFE
-state: IMPLEMENTED_AWAITING_CANONICAL_BINDING_AND_OBSERVATION
+AGCP page, assessment, validator, task runner, task validator, navigation, aggregate binding, and task-mesh registration: INSTALLED
 external tasks: none
 manual user tasks required: none
 ```
 
-## Installed files
+## Authoritative files
 
 ```text
 docs/external-frameworks/agcp-registry.md
 static/external-frameworks/agcp-registry-assessment.v0.1.json
 scripts/check_agcp_registry_assessment.py
-docs/external-frameworks/AGCP_REGISTRY_MIRROR_HANDOFF.md
+scripts/run_agcp_registry_tasks.py
+scripts/check_agcp_registry_task_execution.py
+reports/agcp-registry-task-execution.json (generated)
+static/status/wiki-public-anchor-task-mesh-registry.json
+scripts/run_wiki_public_anchor_task_mesh.py
+scripts/run_wiki_public_anchor_completion_cycles.py
+scripts/check_goal5_external_frameworks_all.py
+sidebars.js
+.github/workflows/validate-chain-continuation.yml
 ```
 
-## Internal completion sequence
-
-All tasks are repository-local and include their exact location.
+## Completed work and evidence
 
 ```text
-1. Bind scripts/check_agcp_registry_assessment.py into scripts/check_goal5_external_frameworks_all.py.
-   Destination: StegVerse-Labs/admissibility-wiki
-
-2. Add docs/external-frameworks/agcp-registry.md to docs/external-frameworks/index.md and sidebars.js.
-   Destination: StegVerse-Labs/admissibility-wiki
-
-3. Add static/external-frameworks/agcp-registry-assessment.v0.1.json to any existing registry or observatory generator that requires explicit enumeration.
-   Destination: StegVerse-Labs/admissibility-wiki
-
-4. Observe the next canonical .github/workflows/validate-chain-continuation.yml run.
-   Evidence location: GitHub Actions run, job, logs, and generated receipts in StegVerse-Labs/admissibility-wiki
-
-5. Repair only deterministic repository failures found by the canonical run.
-   Repair location: exact failing file in StegVerse-Labs/admissibility-wiki
-
-6. Preserve unsupported claims as false until immutable AGCP evidence is repository-observed.
-   Enforcement locations: static/external-frameworks/agcp-registry-assessment.v0.1.json and scripts/check_agcp_registry_assessment.py
+b869e42ce432e81840b90369f3761592efdab057  public AGCP review page
+a21d5f1b36eb9c6174a004d67b8fd4fb69b88afd  machine-readable bounded assessment
+09ed51cfd05977924f2e64197a35893036de5f67  deterministic assessment validator
+0cd6e1f997ca6fa25b4795238d9981d4bc0e2e70  initial mirror handoff
+ae5222c026d655f7025ef2935963a6b0cfb1ec73  Goal 5 aggregate binding
+e7fb6bf9b67c47599761b7912577502b926a78c1  repository-owned AGCP task runner
+049342515c723b8d617c3883d154a8b8f1fc9c7e  AGCP task-execution validator
+f4c6ac817bca455293d90cef851a47a0cd2753f7  public-anchor task-mesh registration
+051dca91b02d88759adafab39109a7e5845d131a  Docusaurus sidebar navigation binding
 ```
 
-## Anti-stall execution rule
+## Machine-owned continuation
 
-A missing external publication, response, artifact, or assessor package does not halt development. The repository must:
+The AGCP queue is registered in:
 
 ```text
-observe available public evidence
--> record missing evidence as UNRESOLVED
--> retain a repository-owned next transition
--> continue all parallel-safe validation, navigation, schema, and publication work
--> automatically re-evaluate on canonical workflow triggers
+static/status/wiki-public-anchor-task-mesh-registry.json
+queue_id: agcp-registry-review
+runner: scripts/run_agcp_registry_tasks.py
+registry: static/external-frameworks/agcp-registry-assessment.v0.1.json
+report: reports/agcp-registry-task-execution.json
+validator: scripts/check_agcp_registry_task_execution.py
 ```
 
-No item may be converted into an unowned "external task." Evidence not yet available is a watched condition, not a development stop condition.
+Trigger and continuation path:
+
+```text
+push | pull_request | workflow_dispatch | hourly schedule
+-> .github/workflows/validate-chain-continuation.yml
+-> canonical validation aggregates
+-> scripts/run_wiki_public_anchor_completion_cycles.py
+-> scripts/run_wiki_public_anchor_task_mesh.py
+-> scripts/run_agcp_registry_tasks.py
+-> reports/agcp-registry-task-execution.json
+```
+
+The task report distinguishes `COMPLETE`, `BLOCKED`, `RETRY`, `REVIEW_REQUIRED`, and `FAILED`, records a machine-observable release condition, names the next executable repository task, prevents duplicate queue ownership, produces an inspectable report, and never creates an unspecified external task.
+
+## Current evidence boundary
+
+```text
+source capture from supplied public post: PRESENT
+independent source verification: NOT OBSERVED
+planned Registry data release: NOT OBSERVED
+canonical workflow PASS for the integrated AGCP queue: NOT OBSERVED
+public page route: NOT OBSERVED
+```
+
+Missing evidence is classified and re-observed by the repository. It does not halt unrelated work.
+
+## Exact incomplete tasks
+
+```text
+1. Add the AGCP row to docs/external-frameworks/index.md.
+   Owner: StegVerse-Labs/admissibility-wiki
+   State: READY_INTERNAL
+
+2. Execute and inspect the canonical workflow containing the task-mesh registration.
+   Owner: .github/workflows/validate-chain-continuation.yml
+   Evidence: workflow run, jobs, logs, reports/agcp-registry-task-execution.json, and task-mesh/completion-cycle reports
+   Release condition: a run for a commit containing f4c6ac817bca455293d90cef851a47a0cd2753f7 and 051dca91b02d88759adafab39109a7e5845d131a becomes observable
+
+3. Repair only exact deterministic failures identified by the canonical workflow.
+   Owner: the failing file path in StegVerse-Labs/admissibility-wiki
+   State: BLOCKED_UNTIL_FAILURE_EVIDENCE
+
+4. Observe the deployed public route for docs/external-frameworks/agcp-registry.md.
+   Owner: canonical Pages deployment and public-route observer
+   State: BLOCKED_UNTIL_DEPLOYMENT_EVIDENCE
+```
 
 ## Claim boundary
 
 ```text
-reported scoped conformance
+AGCP scoped conformance
+!= specification completeness
 != independent reconstruction
 != commit-time validity
 != admissibility
@@ -84,32 +127,43 @@ reported scoped conformance
 != consequence authority
 ```
 
-## Completion condition
+## Cross-repository posture
 
-`ADMISSIBILITY-AGCP-001` reaches `COMPLETE_AWAITING_PUBLIC_EVIDENCE_SUCCESSION` only after:
-
-```text
-validator bound to canonical aggregate
-navigation bound
-canonical workflow PASS observed
-public page route observed
-all authority and non-implication fields remain false
-no external or manual user task exists
-```
-
-Future AGCP evidence is handled by a new succession transition and does not reopen completed installation work.
-
-## Release boundary
-
-No tag or release is authorized by this layer alone. When repository-wide release criteria are met, the release task must also verify propagation applicability for:
+No propagation has been claimed. A repository-wide release transition must determine applicability and inspect destination handoffs before any mutation to:
 
 ```text
 StegVerse-Labs/Site
 GCAT-BCAT-Engine/Publisher
-StegVerse-Labs/admissibility-wiki
 StegVerse-002/stegguardian-wiki
+master-records
 ```
 
-## Archive posture
+## Validation commands
 
-This handoff contains the determination, installed files, exact task locations, anti-stall execution model, completion condition, and authority limits. Earlier conversation context is not required to continue.
+```text
+python scripts/check_agcp_registry_assessment.py
+python scripts/run_agcp_registry_tasks.py
+python scripts/check_agcp_registry_task_execution.py
+python scripts/run_wiki_public_anchor_task_mesh.py
+python scripts/check_wiki_public_anchor_task_mesh.py
+python scripts/run_wiki_public_anchor_completion_cycles.py
+python scripts/check_wiki_public_anchor_completion_cycles.py
+python scripts/check_goal5_external_frameworks_all.py
+npm run validate
+```
+
+## Completion and archive conditions
+
+The goal is complete only after the index entry is committed, canonical validation is directly observed passing, the generated AGCP task report is inspected, the public route is directly observed, and all non-authority boundaries remain enforced. Until then, active work remains and this thread must not be treated as archive-ready.
+
+## Completion accounting
+
+```text
+required deliverables: 12
+developed files: 9
+scaffolding or stubs: 0
+missing required files: 1
+validation deliverables observed complete: 0 of 2 hosted/public observations
+integration deliverables installed: 2 of 2
+goal activation: 75 percent
+```
