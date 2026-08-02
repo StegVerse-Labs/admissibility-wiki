@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 STATUS = ROOT / "static" / "status" / "discovery-governance-handoff-status.json"
 HANDOFF = ROOT / "docs" / "DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md"
 CONSOLIDATION_CHECK = ROOT / "scripts" / "check_discovery_governance_session_consolidation.py"
+FEDERAL_SECURITY_CHECK = ROOT / "scripts" / "check_federal_minimum_exceedance_security.py"
+FEDERAL_SECURITY_TASK = ROOT / "data" / "session-consolidation" / "federal-minimum-exceedance-security-task.json"
 
 EXPECTED_STATE = "SOURCE_COMPLETE_WITH_CANONICAL_RUNTIME_VALIDATION_PENDING_WORKFLOW_OBSERVATION"
 EXPECTED_CRITERIA = (
@@ -35,6 +37,23 @@ REQUIRED_HANDOFF_MARKERS = (
     "The complete thread is not ready for archiving",
     "No destination mutation is authorized by this handoff.",
 )
+
+
+def run_validator(path: Path, label: str, failures: list[str]) -> None:
+    if not path.exists():
+        failures.append(f"missing {path.relative_to(ROOT)}")
+        return
+    result = subprocess.run(
+        [sys.executable, str(path)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    print(result.stdout.rstrip())
+    if result.returncode != 0:
+        failures.append(f"{label} validation failed")
 
 
 def main() -> int:
@@ -75,20 +94,22 @@ def main() -> int:
         if criterion not in handoff_text:
             failures.append(f"handoff missing completion criterion: {criterion}")
 
-    if not CONSOLIDATION_CHECK.exists():
-        failures.append("missing session consolidation validator")
+    if not FEDERAL_SECURITY_TASK.exists():
+        failures.append("missing federal minimum exceedance session task record")
     else:
-        result = subprocess.run(
-            [sys.executable, str(CONSOLIDATION_CHECK)],
-            cwd=ROOT,
-            text=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            check=False,
-        )
-        print(result.stdout.rstrip())
-        if result.returncode != 0:
-            failures.append("session consolidation validation failed")
+        task = json.loads(FEDERAL_SECURITY_TASK.read_text(encoding="utf-8"))
+        if task.get("task_id") != "SECURITY-FEDERAL-MINIMUM-EXCEEDANCE-001":
+            failures.append("federal security task id mismatch")
+        if task.get("claim_state") != "MACHINE_OWNED":
+            failures.append("federal security task must remain machine owned")
+        transfer = task.get("session_transfer", {})
+        if transfer.get("classification") != "MERGED_INTO_CANONICAL_WORKSTREAM":
+            failures.append("federal security session transfer classification mismatch")
+        if transfer.get("unique_chat_only_requirements_remaining") != 0:
+            failures.append("federal security chat-only requirements remain")
+
+    run_validator(CONSOLIDATION_CHECK, "session consolidation", failures)
+    run_validator(FEDERAL_SECURITY_CHECK, "federal minimum exceedance security", failures)
 
     if failures:
         print("DISCOVERY GOVERNANCE HANDOFF SYNC: FAIL")
