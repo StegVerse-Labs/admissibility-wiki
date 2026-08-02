@@ -16,6 +16,8 @@ INDEPENDENT_RECONSTRUCTION_INVITATION_CHECK = ROOT / "scripts" / "check_public_a
 INTERNAL_TASK_CHECK = ROOT / "scripts" / "check_wiki_public_anchor_internal_tasks.py"
 TASK_MESH_CHECK = ROOT / "scripts" / "check_wiki_public_anchor_task_mesh.py"
 TASK_MESH_REPORT = ROOT / "reports" / "wiki-public-anchor-task-mesh-execution.json"
+COMPLETION_CYCLE_CHECK = ROOT / "scripts" / "check_wiki_public_anchor_completion_cycles.py"
+COMPLETION_CYCLE_REPORT = ROOT / "reports" / "wiki-public-anchor-completion-cycle.json"
 
 
 def require(condition: bool, message: str, failures: list[str]) -> None:
@@ -91,6 +93,7 @@ def main() -> int:
     run_check(INDEPENDENT_RECONSTRUCTION_INVITATION_CHECK, "independent reconstruction invitation", failures)
     run_check(INTERNAL_TASK_CHECK, "non-halting internal task registry", failures)
     run_check(TASK_MESH_CHECK, "non-halting public-anchor task mesh", failures)
+    run_check(COMPLETION_CYCLE_CHECK, "bounded public-anchor completion cycles", failures)
 
     if TASK_MESH_REPORT.exists():
         report = load(TASK_MESH_REPORT, failures)
@@ -103,13 +106,22 @@ def main() -> int:
     else:
         failures.append(f"missing {TASK_MESH_REPORT.relative_to(ROOT)} after task-mesh execution")
 
+    if COMPLETION_CYCLE_REPORT.exists():
+        completion = load(COMPLETION_CYCLE_REPORT, failures)
+        require(completion.get("external_tasks_exist") is False, "completion controller must deny external tasks", failures)
+        require(completion.get("development_halted") is False, "completion controller must not halt development", failures)
+        require(completion.get("policy", {}).get("bounded_retry_prevents_infinite_wait") is True, "completion controller must prevent infinite waiting", failures)
+        require(completion.get("policy", {}).get("fixed_point_is_not_completion") is True, "fixed point must not be mislabeled completion", failures)
+    else:
+        failures.append(f"missing {COMPLETION_CYCLE_REPORT.relative_to(ROOT)} after completion-cycle execution")
+
     if failures:
         print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: FAIL")
         for failure in failures:
             print(f"- {failure}")
         return 1
 
-    print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS - dockets, reconstruction controls, and non-halting task mesh remain aligned")
+    print("WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS - dockets, reconstruction controls, task mesh, and bounded completion cycles remain aligned")
     return 0
 
 
