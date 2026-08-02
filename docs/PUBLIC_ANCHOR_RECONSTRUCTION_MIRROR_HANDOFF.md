@@ -8,81 +8,80 @@ This file is the task authority for the public-anchor reconstruction repair trac
 Layer: governed public-anchor activation and canonical publication-verification
 State: BEING_BUILT
 Activation state: NOT YET ADMISSIBLE
-Latest observed canonical run: 30681187876
-Latest observed canonical commit: fc19aafc2f8ae7e249cbea731fa2d16b48fafca6
+Latest canonical run: 30741874432
+Latest canonical commit: 42a7745319f90397a9f3e410b920104317d5ae22
 Canonical result: FAIL_CLOSED_OBSERVED
-Pre-scan: PASS 11/11
-Full validation: 49 PASS / 6 FAIL groups
-Build: SKIPPED
+Pre-scan: 10 PASS / 1 FAIL
+Full validation: 46 PASS / 9 FAIL / 1 SKIPPED
+Build: FAIL_CLOSED_OBSERVED
 Deployment: SKIPPED
 Public-route verification: SKIPPED
-Latest repair commit: 1c2d2bceedc1c448e9e621af64dbdcad95180cef
-Successor canonical observation: PENDING
+Independent reconstruction: NOT_RUN
+Neutral reviewer standing: NOT_ESTABLISHED
+Custody: PENDING_CANONICAL_CUSTODY
+Signature: NOT_SIGNED
 ```
 
-The layer exists and is under active construction. It is not eligible for activation because repository-wide canonical validation has not passed and no successor build, deployment, or live public-route verification has been observed.
-
-## Active claim
-
-```text
-Task id: PUBLIC-ANCHOR-RECONSTRUCTION-VALIDATION-2026-08-02
-Originating session goals: One World AI bounded intake; public-anchor reconstruction and activation
-Repository: StegVerse-Labs/admissibility-wiki
-Branch: main
-Execution lane: repository-validation-lane
-Role: CLAIMED_FOR_VALIDATION
-Claim created: 2026-08-02T09:23:00Z
-Release condition: successor canonical workflow records both owned validators PASS, or retains the next first-failure evidence and updates this handoff
-Collision boundary: do not mutate ASRO, TA-14, Morrison, MindForge, Observer, GSDP, or human micro-timescale owner files from this track
-Claim registry: static/status/session-consolidation-one-world-ai-public-anchor-2026-08-02.json
-Claim validator: scripts/check_session_consolidation_one_world_ai_public_anchor.py
-```
+The layer exists and remains under construction. It is not eligible for activation because canonical validation did not pass, the Pages build failed, and no deployment or live public-route verification followed.
 
 ## Assigned scope
 
-This handoff owns only the public-anchor reconstruction failures identified by canonical run `30681187876`:
+This handoff owns the public-anchor reconstruction failures identified by canonical run `30741874432`:
 
 ```text
 scripts/check_public_anchor_reconstruction_manifest.py
 scripts/check_wiki_public_anchor_multi_docket_status.py
-scripts/check_public_anchor_independent_reconstruction_invitation.py
-scripts/check_session_consolidation_one_world_ai_public_anchor.py
+scripts/check_wiki_public_anchor_task_mesh.py
+scripts/check_wiki_public_anchor_completion_cycles.py
 ```
 
-## Implemented repair
+## Latest canonical evidence
 
 ```text
-- replaced stale phrase-only handoff matching in the frozen-manifest validator with explicit current-goal, track-ownership, invitation, custody, signature, and manifest-id checks
-- created docs/governance/public-anchor-independent-reconstruction-invitation.md
-- created static/status/public-anchor-independent-reconstruction-invitation.json
-- created scripts/check_public_anchor_independent_reconstruction_invitation.py
-- created static/status/session-consolidation-one-world-ai-public-anchor-2026-08-02.json
-- created scripts/check_session_consolidation_one_world_ai_public_anchor.py
-- bound the session inventory validator into scripts/check_wiki_public_anchor_multi_docket_status.py
+Run id: 30741874432
+Validation job id: 91480753781
+Build job id: 91480938308
+Canonical pre-scan report artifact id: 8831566040
+Full validation report artifact id: 8831585512
+Pre-scan result: 10/11 commands passed
+Full validation result: 46/56 checks passed; 9 failed; 1 skipped
+Public-anchor invitation validator: PASS
+Session consolidation inventory validator: PASS
+Public-anchor reconstruction manifest validator: FAIL
+Task-mesh validator: FAIL
+Completion-cycle validator: FAIL
 ```
 
-Implementation commits:
+Observed public-anchor-specific failures:
 
 ```text
-dcf15b6d2f9a3fa52a1be4ceb889d2d64381da22
-9ae9294397dfd39589d5ce1e2834805c832aed6e
-a8c7365e352abd0b83b2e16d0819c1f8df41eaf3
-6b1dbc3dcfdb5e565a594cea94a4a6daaa90117b
-3031d190685f927c9aa523c77746bff3b9012ea8
-2fb6476dcd96d52d89418bda9df5fa35f7778838
-1c2d2bceedc1c448e9e621af64dbdcad95180cef
+manifest: track handoff did not preserve the exact state Independent reconstruction: NOT_RUN
+task mesh: validator expected only two queues while the registry and runner observed five
+completion cycles: unresolved queue records omitted validator paths because the task-mesh runner omitted them
 ```
 
-## Preserved fail-closed state
+These are classified as synchronization defects, not evidence that independent reconstruction occurred or that authority was granted.
+
+## Repairs installed after run 30741874432
 
 ```text
-Independent reconstruction: NOT_RUN
-Invitation: OPEN_NO_ACCOUNTABLE_REVIEWER_ASSIGNED
-Neutral reviewer standing: NOT_ESTABLISHED
-Canonical custody: PENDING_CANONICAL_CUSTODY
-Signature: NOT_SIGNED
-Certification: false
-Execution authority: false
+- exact Independent reconstruction: NOT_RUN boundary restored in this handoff
+- task-mesh checker aligned to the registry-derived queue set rather than a stale hard-coded two-queue set
+- task-mesh runner required to persist each queue validator path into execution reports
+- completion-cycle unresolved-work records can therefore retain exact validator locations
+```
+
+## Required work
+
+```text
+1. Observe the first successor canonical run containing the synchronization repairs.
+2. Preserve that run id, commit, job ids, logs, and report artifacts here.
+3. Confirm the manifest, task-mesh, completion-cycle, and multi-docket validators PASS or retain exact first-failure evidence.
+4. Keep independent reconstruction as NOT_RUN until accountable evidence exists.
+5. Keep neutral reviewer standing as NOT_ESTABLISHED.
+6. Keep custody and signature state unauthorized or pending until destination handoffs grant authority.
+7. Use the existing canonical workflow only; do not add a second active workflow.
+8. Release or renew the active validation claim based on successor canonical evidence.
 ```
 
 ## Non-owned failures
@@ -90,39 +89,33 @@ Execution authority: false
 The following tracks remain with their existing goal-specific handoffs and must not be absorbed here:
 
 ```text
-- ASRO derivative identity and bounded-comparison receipt repair
-- reciprocal framework evaluation and replay freezing
-- human micro-timescale doctrine/model completion
+- duplicate active workflow observe-wiki-publication.yml
+- human micro-timescale MDX and doctrine/model repair
 - Morrison Runtime promotion hash reconciliation
-- TA-14 standing-reconstruction assignment
+- AGCP handoff external-task boundary
+- external translation reconstruction receipt generation
+- ASRO derivative identity and bounded-comparison receipt repair
+- governed relationship custody workflow markers
+- reciprocal framework evaluation and replay freezing
+- TA-14 standing-reconstruction ownership
 - ArquivoNulo doctrine token alignment
 - MindForge run-marker synchronization
 - Observer OB-001 stage/role reconciliation
 - GSDP status-contract alignment
 ```
 
-## Next executable action
-
-```text
-Observe the first canonical workflow run containing commit 1c2d2bceedc1c448e9e621af64dbdcad95180cef or a successor commit.
-Inspect the validation job, logs, and retained report artifacts.
-If either owned validator fails, classify and repair only the owned defect.
-If both pass, record the run id, job id, artifact identity, and outputs here and release this validation claim.
-```
-
-No second active workflow is authorized.
-
 ## Completion evidence
 
 This track completes only when all of the following are observed:
 
 ```text
-- both owned validators PASS in a canonical run
-- their outputs are included in the retained canonical report set
+- all four owned validators PASS in a canonical run
+- their results are included in the retained canonical report set
 - the frozen manifest is unchanged or explicitly superseded
-- unresolved authority fields remain fail-closed
+- independent reconstruction remains NOT_RUN unless an accountable submission is present
+- neutral reviewer standing remains NOT_ESTABLISHED unless separately established
+- custody and signatures remain fail-closed unless explicitly authorized
 - the successor run id and commit are recorded in this handoff
-- the active validation claim is released or merged into the machine-owned observation lane
 ```
 
 Track completion does not activate the overall layer. Overall activation additionally requires repository-wide canonical PASS, build, deployment, and content-aware public-route verification.
@@ -136,17 +129,8 @@ route declaration != live route reachability
 workflow execution != certification
 publication != execution authority
 coordination assignment != downstream mutation authority
-session inventory != activation
-```
-
-## Session consolidation
-
-```text
-Original One World AI intake: MERGED INTO static/data/framework-evaluations/one-world-ai-limited.json and docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
-Overall activation goal: MERGED INTO docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md
-Distinct support role retained here: canonical validation and evidence observation for the reconstructed public-anchor track
 ```
 
 ## Archive condition
 
-This track is not archivable while the active validation claim has not reached its machine-observable release condition. Once the successor canonical evidence is recorded and the claim is released, this session contains no unique continuation state beyond the durable repository records above.
+This validation track may be transferred to the repository-owned canonical workflow observer after the successor run is durably recorded. The originating chat session need not remain active once its unique requirements, evidence, and release condition are fully preserved here and in the session-consolidation registry.
