@@ -72,6 +72,7 @@ CHECKS = [
     ("Validate TA-14 observation fixtures", "scripts/check_ta14_observation_fixtures.py"),
     ("Validate TA-14 source PDF custody", "scripts/check_ta14_source_pdf.py"),
     ("Validate TA-14 canonical run observation", "scripts/check_ta14_canonical_run_observation.py"),
+    ("Validate TA-14 session consolidation inventory", "scripts/check_ta14_session_consolidation_inventory.py"),
     ("Validate iOS workflow mirror status", "scripts/check_ios_workflow_mirror_status.py"),
     ("Validate admissibility automation handoff", "scripts/check_admissibility_automation_handoff.py"),
     ("Validate CI evidence state", "scripts/check_ci_evidence.py"),
