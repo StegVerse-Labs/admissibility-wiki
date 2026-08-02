@@ -14,6 +14,7 @@ Wiki role: observatory record, boundary mapping, and commit-time test target
 Citation status: artifact package required
 Evidence provenance status: private correspondence provenance installed; public source still required
 Architectural-boundary review attribution: authorized and published with exact boundaries
+Comparative-testing status: not yet authorized from MindForge evidence
 ```
 
 ## Authorized Architectural-Boundary Review
@@ -98,7 +99,7 @@ H1: future artifact-specific evaluation until authorized artifacts are attached.
 
 ## Private Correspondence Provenance
 
-A bounded provenance packet now records the June 24–26, 2026 technical correspondence that converged on the non-authorizing Commitment Candidate invariant, commit-time authority re-binding, FAIL-CLOSED behavior, and the initial edge-case set.
+A bounded provenance packet records the June 24–26, 2026 technical correspondence that converged on the non-authorizing Commitment Candidate invariant, commit-time authority re-binding, FAIL-CLOSED behavior, and the initial edge-case set.
 
 ```text
 docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.md
@@ -148,11 +149,100 @@ Commitment Candidate asks: What exact transition is now being proposed?
 SPE asks: Does current standing still exist at the crossing point?
 ```
 
+## Existing StegVerse Test Of The Interoperability Assumptions
+
+The distinction above is not only conceptual. StegVerse now has a bounded Human–LLM attribution-trajectory experiment in `StegVerse-Labs/hybrid-collab-bridge` designed to test two competing assumptions:
+
+```text
+Interchangeability assumption:
+Equivalent access to the same model, source packet, prompt, and objective can reproduce the governing contribution without the originating conceptual trajectory.
+
+Trajectory-dependence assumption:
+The governing contribution materially depends on the originating sequence of observations, distinctions, rejected alternatives, revisions, selections, and authority decisions.
+```
+
+The canonical experiment compares five conditions:
+
+1. same access without the originating trajectory;
+2. partial trajectory disclosure;
+3. full trajectory disclosure;
+4. human-only control;
+5. shared-source control.
+
+It measures:
+
+- problem-recognition fidelity;
+- governing-distinction fidelity;
+- dependency reconstruction;
+- reconstruction of rejected alternatives;
+- authority-boundary fidelity;
+- final-structure similarity;
+- evaluator agreement;
+- contamination risk.
+
+The validator derives one of three outcomes independently of the stated claim:
+
+```text
+supports_interchangeability
+supports_trajectory_dependence
+indeterminate
+```
+
+This test is relevant to MindForge because it provides an existing method for examining whether a historical review artifact merely records an output or preserves enough originating structure for an independent evaluator to reconstruct the contribution and distinguish historical evidence from present authority.
+
+The test may support or weaken either assumption. Equivalent reconstruction without trajectory evidence would weaken claims that the contribution depends on a distinctive originating path. Repeated failure without that path, followed by materially improved reconstruction when the path is restored, would support trajectory dependence.
+
+No MindForge conclusion follows from the existence of the test. Applying it to MindForge requires an authorized, hash-bound artifact package, raw outputs, pinned source versions, declared expected outcomes, replay commands, evaluator independence, and independent reproduction.
+
+## MindForge-Specific Comparative Test Contract
+
+A future MindForge evidence package should be evaluated through both the Commit-Time Interoperability Contract and the attribution-trajectory experiment.
+
+Required inputs:
+
+```text
+public or jointly authorized source package
+source version or immutable hash
+review artifact and evidence packet
+review-time policy and scope references
+raw outputs
+runtime configuration
+timestamps
+replay commands
+declared expected outcome
+current Commitment Candidate
+current SPE standing inputs
+independent evaluator assignments
+```
+
+Required comparisons:
+
+| Condition | Question |
+|---|---|
+| Evidence packet only | Can an evaluator reconstruct the historical review posture without inheriting authority? |
+| Evidence plus partial trajectory | Which distinctions become recoverable, and which remain ambiguous? |
+| Evidence plus full authorized trajectory | Does reconstruction materially improve while the authority boundary remains intact? |
+| Changed actor, policy, target, scope, or delegation | Does SPE reject inherited standing and reconstruct current authority? |
+| Independent reproduction | Can a separate evaluator reproduce both the historical interpretation and the commit-time authority separation? |
+
+Required fail-closed outcomes:
+
+- source package missing or unverifiable;
+- raw outputs absent;
+- source version or runtime configuration unpinned;
+- replay commands absent;
+- evaluator contamination above the declared threshold;
+- review-time authority silently inherited;
+- claimed result conflicts with the derived result;
+- independent reproduction absent.
+
+Until these gates are satisfied, the strongest allowed result remains `COMPATIBILITY_EVIDENCE_ONLY`.
+
 ## Execution Authority Boundary
 
 MindForge is unevaluated for general StegVerse execution-authority purposes.
 
-No MindForge artifact, output, recommendation, trace, proof, review artifact, evidence packet, or evaluation constitutes execution authority inside StegVerse.
+No MindForge artifact, output, recommendation, trace, proof, review artifact, evidence packet, evaluation, or trajectory-reconstruction result constitutes execution authority inside StegVerse.
 
 MindForge material may be evaluated as external evidence, but execution authority is determined only by StegVerse commit-time admissibility under current standing semantics.
 
@@ -182,6 +272,7 @@ This boundary prevents a review-time artifact from becoming a commit-time author
 | Transition context | Transition; Transition Table |
 | Historical reviewer conclusion | Non-authorizing evidence; Commit-Time Validity |
 | Review posture | Approval vs Execution; Auditability vs Admissibility |
+| Attribution trajectory | Independent reconstruction; provenance continuity; authority-boundary fidelity |
 
 ## Commitment Candidate Use
 
@@ -212,6 +303,8 @@ The Commitment Candidate must remain non-authorizing and should include:
 | MindForge evidence is stale or incomplete. | SPE should FAIL-CLOSED if current standing cannot be reconstructed. |
 | Current recoverability is degraded. | SPE should FAIL-CLOSED unless policy defines safe partial standing. |
 | Actor changes between review and commit. | SPE must reconstruct actor standing and must not inherit the reviewed actor's authority. |
+| Same source and model access reproduces the governing structure without trajectory evidence. | The interchangeability assumption gains support; distinctive trajectory claims weaken. |
+| Equivalent access fails until the authorized trajectory is restored. | The trajectory-dependence assumption gains support, subject to contamination and independent-reproduction controls. |
 
 ## Non-Claims
 
@@ -226,6 +319,8 @@ This page does not treat private correspondence provenance as a public canonical
 This page does not publish or quote private correspondence, screenshots, or unpublished draft text.
 This page does not make any attribution stronger than the exact authorized architectural-boundary review description.
 This page does not treat a publication notice or reviewer silence as approval, endorsement, waiver, standing, or continued participation.
+This page does not treat the existence of an attribution-trajectory test as evidence for either assumption.
+This page does not make comparative-testing claims without an authorized MindForge artifact package and independent reproduction.
 ```
 
 ## Challenge Path
@@ -238,4 +333,4 @@ This page reflects a bounded admissibility packet. Publication does not create s
 
 ## Next Safe Build Target
 
-Run an authorized MindForge evidence package through the Commit-Time Interoperability Contract and verify that authority re-binding occurs only inside SPE.
+Run an authorized MindForge evidence package through both the Commit-Time Interoperability Contract and the existing attribution-trajectory experiment. Verify that historical contribution structure can be independently reconstructed, that competing interoperability assumptions remain falsifiable, and that authority re-binding occurs only inside SPE.
