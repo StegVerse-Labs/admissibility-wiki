@@ -26,6 +26,22 @@ docs/formalisms/micro-timescale-human-admissibility.md
 docs/research/micro-timescale-human-admissibility-observation-protocol.md
 ```
 
+A later canonical run exposed a separate deterministic publication blocker:
+
+```text
+run: 30741874432
+head commit: 42a7745319f90397a9f3e410b920104317d5ae22
+validation job: failure at semantic enforcement
+build-pages job: 91480938308
+failed step: Setup Node
+exact error: Dependencies lock file is not found
+failed build receipt artifact: 8831589852
+deploy-pages: skipped
+verify-public-pages: skipped
+```
+
+The repository contains `package.json` but no `package-lock.json`, `npm-shrinkwrap.json`, or `yarn.lock`. The workflow nevertheless requested `cache: npm` and used `npm ci`, so publication failed before dependency installation or site compilation.
+
 ## Installed repair
 
 ```text
@@ -49,6 +65,19 @@ f3cfcf4fa872a40ab14fd02724520732cb6bd170
   -> uploads a machine-readable observation receipt
   -> comments COMPLETE evidence on canonical issue #56
   -> fails closed until every release condition is satisfied
+
+e0b042fa32608dcfc3baf6f8b6fb153886cb46e0
+  -> isolated manual canonical runs from later push cancellation
+  -> added bounded job timeouts
+
+f0e4801614312a6d1a42139d36713220236948ee
+  -> restored publication decoupling after an accidental semantic-validation recoupling
+  -> retained manual-run isolation and bounded timeouts
+
+08c51241e5b56bb92875bd2e9a2224727ede4a8f
+  -> removed unsupported npm caching without a lockfile
+  -> replaced npm ci with npm install --no-audit --no-fund
+  -> preserved fail-closed semantic validation, site-build enforcement, deployment gating, and observer ownership
 ```
 
 ## Governing distinction
@@ -79,10 +108,13 @@ The observation workflow is intentionally read-only with respect to Pages deploy
 
 ## Verification target
 
-A successful successor workflow must show:
+A successful successor workflow after commit `08c51241e5b56bb92875bd2e9a2224727ede4a8f` must show:
 
 ```text
 validate-chain-continuation: PASS or FAIL with preserved reports
+Setup Node: PASS
+Install dependencies: PASS
+Build site: PASS
 build-pages: PASS
 deploy-pages: PASS
 verify-public-pages: PASS
@@ -109,7 +141,7 @@ release_condition_satisfied: true
 
 All remaining work is assigned to issue #56 and `.github/workflows/observe-wiki-publication.yml`:
 
-1. The observer selects the newest canonical workflow run after the repair cutoff.
+1. The observer selects the newest canonical workflow run after repair commit `08c51241e5b56bb92875bd2e9a2224727ede4a8f`.
 2. It records the run ID, head SHA, job IDs, job conclusions, and artifact IDs.
 3. It verifies `build-pages`, `deploy-pages`, and `verify-public-pages` are successful.
 4. It fetches the public MindForge route with a cache-busting query.
@@ -124,7 +156,11 @@ All remaining work is assigned to issue #56 and `.github/workflows/observe-wiki-
 Release condition:
 
 ```text
-build-pages=success
+successor run head_sha >= 08c51241e5b56bb92875bd2e9a2224727ede4a8f
+AND Setup Node=success
+AND Install dependencies=success
+AND Build site=success
+AND build-pages=success
 AND deploy-pages=success
 AND verify-public-pages=success
 AND both public markers present
@@ -144,7 +180,7 @@ This repair and observation automation change publication availability and obser
 
 ## Session consolidation and archive posture
 
-The originating session's unique implementation history, requirements, claims, collision boundaries, unresolved tasks, retry behavior, and release conditions are durably transferred to:
+The originating session's unique implementation history, requirements, claims, collision boundaries, unresolved tasks, retry behavior, exact failure evidence, and release conditions are durably transferred to:
 
 ```text
 docs/WIKI_PUBLICATION_PIPELINE_MIRROR_HANDOFF.md
