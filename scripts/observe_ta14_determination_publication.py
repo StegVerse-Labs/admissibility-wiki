@@ -27,10 +27,12 @@ def active_workflows() -> list[str]:
 
 
 def observe_public_url() -> tuple[str, int | None, str]:
-    if os.environ.get("TA14_OBSERVE_PUBLIC_NETWORK", "false").lower() != "true":
-        return "NOT_OBSERVED_CONTINUABLE", None, "Network observation not requested in this execution."
+    # Observation is active by default. Set TA14_OBSERVE_PUBLIC_NETWORK=false only
+    # in an intentionally offline environment. Network failure remains continuable.
+    if os.environ.get("TA14_OBSERVE_PUBLIC_NETWORK", "true").lower() != "true":
+        return "NOT_OBSERVED_CONTINUABLE", None, "Network observation was explicitly disabled for this execution."
     try:
-        request = urllib.request.Request(PUBLIC_URL, headers={"User-Agent": "StegVerse-publication-observer/1.0"})
+        request = urllib.request.Request(PUBLIC_URL, headers={"User-Agent": "StegVerse-publication-observer/1.1"})
         with urllib.request.urlopen(request, timeout=30) as response:
             body = response.read(250000).decode("utf-8", errors="replace")
             code = response.getcode()
@@ -41,7 +43,7 @@ def observe_public_url() -> tuple[str, int | None, str]:
         return "NOT_OBSERVED_CONTINUABLE", code, "Route responded but expected determination content was not established."
     except urllib.error.HTTPError as exc:
         return "NOT_OBSERVED_CONTINUABLE", exc.code, f"HTTP error: {exc}"
-    except Exception as exc:  # bounded observation must not halt unrelated work
+    except Exception as exc:
         return "NOT_OBSERVED_CONTINUABLE", None, f"Observation error: {exc}"
 
 
@@ -74,12 +76,13 @@ def main() -> int:
             "external_tasks_exist": False,
             "public_route_not_observed_blocks_unrelated_development": False,
             "deployment_claim_requires_content_verification": True,
+            "network_observation_active_by_default": True
         },
         "authority_boundary": {
             "source_present_is_deployment_proof": False,
             "http_200_without_expected_content_is_publication_proof": False,
-            "internal_observation_is_external_validation": False,
-        },
+            "internal_observation_is_external_validation": False
+        }
     }
     REPORT.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
