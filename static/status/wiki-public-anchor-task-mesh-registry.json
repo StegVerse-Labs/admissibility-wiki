@@ -32,7 +32,7 @@
     {
       "queue_id": "ta14-gap-review-v2",
       "owner_record": "docs/external-frameworks/ta-14-stegverse-public-evidence-gap-review-v2-intake.md",
-      "runner": "scripts/run_ta14_stegverse-gap-review-v2-tasks.py",
+      "runner": "scripts/run_ta14_stegverse_gap_review_v2_tasks.py",
       "registry": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json",
       "report": "static/status/ta-14-stegverse-gap-review-v2.execution-status.json",
       "validator": "scripts/check_ta14_stegverse_gap_review_v2_task_execution.py",
