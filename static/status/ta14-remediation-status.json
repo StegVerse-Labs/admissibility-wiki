@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.2.0",
+  "schema_version": "0.3.0",
   "status_type": "ta14_remediation_status",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "branch": "feature/ta14-public-evidence-review",
@@ -8,101 +8,112 @@
   "activation_state": "NOT_YET_ADMISSIBLE",
   "development_halt": false,
   "external_tasks": [],
+  "canonical_continuation": {
+    "handoff": "docs/reviews/TA14_PUBLIC_EVIDENCE_REVIEW_MIRROR_HANDOFF.md",
+    "session_inventory": "static/reviews/ta14/session-consolidation-inventory.v0.1.json",
+    "task_registry": "static/reviews/ta14/task-observation-registry.v0.1.json",
+    "workflow_observation": "static/status/ta14-canonical-run-observation.json"
+  },
   "policy": {
     "missing_evidence_blocks_only_named_claim": true,
     "generic_blocked_state_prohibited": true,
     "unrelated_tasks_continue": true,
     "synthetic_fixtures_do_not_upgrade_public_claims": true,
     "observation_is_repository_owned": true,
-    "pending_workflow_run_is_observation_not_blocker": true
+    "pending_workflow_run_is_observation_not_blocker": true,
+    "session_history_is_not_execution_authority": true,
+    "duplicate_sessions_merge_into_canonical_workstream": true
   },
-  "current_observation": {
-    "head_sha": "7867f0e6e5879141c239cb013e15430d08ee9722",
-    "workflow": ".github/workflows/validate-chain-continuation.yml",
-    "run_id": 30720532877,
-    "run_number": 3740,
-    "run_state": "PENDING",
-    "claim_effect": "NO_ACTIVATION_CLAIM_UNTIL_OBSERVED",
-    "development_halt": false,
-    "observer_output": "static/status/ta14-canonical-run-observation.json"
+  "session_consolidation": {
+    "state": "DURABLY_TRANSFERRED_VALIDATION_ACTIVE",
+    "canonical_workstream": "StegVerse-Labs/admissibility-wiki#52",
+    "inventory": "static/reviews/ta14/session-consolidation-inventory.v0.1.json",
+    "validator": "scripts/check_ta14_session_consolidation_inventory.py",
+    "goals_transferred_or_complete": 8,
+    "total_session_goals": 8,
+    "archival_ready": false,
+    "remaining_distinct_role": "CLAIMED_FOR_VALIDATION_AND_INTEGRATION"
   },
+  "active_tasks": [
+    {
+      "task_id": "TA14-PUB-001C",
+      "state": "BLOCKED",
+      "location": "static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf",
+      "owner": "repository-native custody lane",
+      "validator": "scripts/check_ta14_source_pdf.py",
+      "release_condition": "Exact PDF bytes exist at the declared path, begin with %PDF-, and match SHA-256 4d9bfb86738601952ede6f5e83477ea3c086ce229c3403d2fa3bdaf4ae75bfbf.",
+      "next_action": "Commit exact binary bytes through a repository path that accepts binary content and rerun canonical validation."
+    },
+    {
+      "task_id": "TA14-PHASE0-001",
+      "state": "CLAIMED_FOR_IMPLEMENTATION",
+      "location": "static/reviews/ta14/claim-inventory.v0.1.json",
+      "owner": "repository-native claim-resolution lane",
+      "release_condition": "Every claim has immutable source evidence or explicit unavailable/superseded posture.",
+      "next_action": "Resolve immutable source references, releases, components, validators, limitations, and publication states."
+    },
+    {
+      "task_id": "TA14-PHASE0-002",
+      "state": "CLAIMED_FOR_IMPLEMENTATION",
+      "location": "static/reviews/ta14/canonical-architecture-manifest.v0.1.json",
+      "owner": "repository-native architecture-resolution lane",
+      "release_condition": "Every component and trust boundary is attributable and reproducible or explicitly unresolved with bounded effect.",
+      "next_action": "Bind release refs, commits, digests, dependencies, authority, receipt, bind, execution, outcome, replay, and publication boundaries."
+    },
+    {
+      "task_id": "TA14-OBS-010",
+      "state": "CLAIMED_FOR_VALIDATION",
+      "location": "static/reviews/ta14/session-consolidation-inventory.v0.1.json",
+      "owner": "repository-native validation lane",
+      "validator": "scripts/check_ta14_session_consolidation_inventory.py",
+      "canonical_binding_location": "scripts/check_full_validation_chain.py",
+      "release_condition": "Validator is bound and observed passing in the canonical workflow.",
+      "next_action": "Bind the consolidation validator into the canonical chain and inspect the resulting workflow run."
+    },
+    {
+      "task_id": "TA14-PUB-003",
+      "state": "MACHINE_OWNED",
+      "location": ".github/workflows/validate-chain-continuation.yml",
+      "owner": "canonical workflow",
+      "observer_location": "static/status/ta14-canonical-run-observation.json",
+      "release_condition": "Build, deployment, and endpoint verification complete for all three TA-14 routes.",
+      "next_action": "Persist route observations when the canonical workflow reaches build, deploy, and verification jobs."
+    }
+  ],
   "completed_surfaces": [
     "docs/reviews/TA14_PUBLIC_EVIDENCE_REVIEW_MIRROR_HANDOFF.md",
     "docs/reviews/ta14-public-evidence-gap-review-v2-analysis.md",
     "docs/reviews/ta14-remediation-task-list.md",
     "docs/reviews/ta14-observation-and-completion-plan.md",
     "static/reviews/ta14/task-observation-registry.v0.1.json",
+    "static/reviews/ta14/session-consolidation-inventory.v0.1.json",
+    "scripts/check_ta14_session_consolidation_inventory.py",
     "scripts/check_ta14_task_observation_registry.py",
     "scripts/check_ta14_observation_fixtures.py",
+    "scripts/check_ta14_source_pdf.py",
+    "static/reviews/ta14/fixtures/observation-cases.v0.1.json",
+    "static/reviews/ta14/fixtures/category-manifest.v0.1.json",
     "static/reviews/ta14/evidence-contracts/authority-evidence.schema.json",
     "static/reviews/ta14/evidence-contracts/receipt-trust-evidence.schema.json",
     "static/reviews/ta14/evidence-contracts/execution-boundary-evidence.schema.json",
     "static/reviews/ta14/evidence-contracts/outcome-evidence.schema.json",
     "static/reviews/ta14/evidence-contracts/neutral-review-evidence.schema.json",
-    "static/reviews/ta14/fixtures/observation-cases.v0.1.json",
-    "static/reviews/ta14/fixtures/category-manifest.v0.1.json",
-    "scripts/check_full_validation_chain.py",
     "sidebars.js"
   ],
-  "active_tasks": [
-    {
-      "task_id": "TA14-OBS-003",
-      "state": "COMPLETE",
-      "location": "static/reviews/ta14/evidence-contracts/"
-    },
-    {
-      "task_id": "TA14-OBS-004",
-      "state": "VERIFIED_BOUNDED_AWAITING_DEEPER_CASES",
-      "location": "static/reviews/ta14/fixtures/observation-cases.v0.1.json",
-      "category_manifest": "static/reviews/ta14/fixtures/category-manifest.v0.1.json",
-      "validator": "scripts/check_ta14_observation_fixtures.py",
-      "remaining": [
-        "add deeper positive and negative cases to the aggregate fixture set",
-        "preserve one-to-one category membership in the category manifest"
-      ]
-    },
-    {
-      "task_id": "TA14-OBS-005",
-      "state": "OBSERVING_CANONICAL_RUN",
-      "location": "scripts/check_full_validation_chain.py",
-      "workflow_location": ".github/workflows/validate-chain-continuation.yml",
-      "run_id": 30720532877,
-      "observer_location": "static/status/ta14-canonical-run-observation.json"
-    },
-    {
-      "task_id": "TA14-OBS-006",
-      "state": "IN_PROGRESS",
-      "location": "static/status/ta14-remediation-status.json"
-    },
-    {
-      "task_id": "TA14-PUB-002",
-      "state": "COMPLETE_AWAITING_SITE_BUILD",
-      "location": "sidebars.js"
-    },
-    {
-      "task_id": "TA14-PUB-001",
-      "state": "EVIDENCE_ABSENT_FAIL_CLOSED",
-      "location": "static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf"
-    },
-    {
-      "task_id": "TA14-PUB-003",
-      "state": "OBSERVE_AFTER_BUILD",
-      "location": ".github/workflows/validate-chain-continuation.yml",
-      "observer_location": "static/status/ta14-canonical-run-observation.json"
-    }
-  ],
-  "bounded_claim_blocks": [
-    {"claim": "exact PDF public custody", "state": "EVIDENCE_ABSENT_FAIL_CLOSED", "location": "static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf"},
-    {"claim": "independent adjudication", "state": "NOT_ESTABLISHED", "location": "docs/reviews/ta14-public-evidence-gap-review-v2-analysis.md"},
-    {"claim": "neutral reviewer standing", "state": "NOT_ESTABLISHED", "location": "static/reviews/ta14/evidence-contracts/neutral-review-evidence.schema.json"},
-    {"claim": "route-complete outcome governance", "state": "NOT_YET_VERIFIED", "location": "static/reviews/ta14/evidence-contracts/outcome-evidence.schema.json"},
-    {"claim": "public route active", "state": "NOT_OBSERVED", "location": "static/status/ta14-canonical-run-observation.json"}
-  ],
+  "metrics": {
+    "task_completion": {"complete_or_implemented": 5, "required": 8},
+    "developed_files": {"developed": 16, "required": 18},
+    "scaffolding_or_stubs": 2,
+    "missing_required_files": 1,
+    "validation": {"validated": 3, "required": 5},
+    "integration": {"integrated": 2, "required": 4},
+    "goal_activation_percent": 50,
+    "session_consolidation": {"transferred_or_complete": 8, "total": 8}
+  },
   "next_executable_task": {
-    "task_id": "TA14-OBS-004A",
-    "location": "static/reviews/ta14/fixtures/observation-cases.v0.1.json",
-    "supporting_location": "static/reviews/ta14/fixtures/category-manifest.v0.1.json",
-    "validator": "scripts/check_ta14_observation_fixtures.py",
-    "action": "Add deeper bounded cases while workflow run 30720532877 is observed independently."
+    "task_id": "TA14-OBS-010",
+    "location": "scripts/check_full_validation_chain.py",
+    "supporting_location": "scripts/check_ta14_session_consolidation_inventory.py",
+    "action": "Bind and observe the session consolidation validator without disturbing unrelated task states."
   }
 }
