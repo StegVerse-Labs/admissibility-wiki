@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.4.0",
+  "schema_version": "0.5.0",
   "status_type": "ta14_remediation_status",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "branch": "feature/ta14-public-evidence-review",
@@ -12,7 +12,8 @@
     "handoff": "docs/reviews/TA14_PUBLIC_EVIDENCE_REVIEW_MIRROR_HANDOFF.md",
     "session_inventory": "static/reviews/ta14/session-consolidation-inventory.v0.1.json",
     "task_registry": "static/reviews/ta14/task-observation-registry.v0.1.json",
-    "workflow_observation": "static/status/ta14-canonical-run-observation.json"
+    "workflow_observation": "static/status/ta14-canonical-run-observation.json",
+    "archive_receipt": "static/status/ta14-session-archive-receipt.json"
   },
   "policy": {
     "missing_evidence_blocks_only_named_claim": true,
@@ -25,14 +26,16 @@
     "duplicate_sessions_merge_into_canonical_workstream": true
   },
   "session_consolidation": {
-    "state": "DURABLY_TRANSFERRED_VALIDATION_ACTIVE",
+    "state": "COMPLETE_AND_ARCHIVE_SAFE",
     "canonical_workstream": "StegVerse-Labs/admissibility-wiki#52",
     "inventory": "static/reviews/ta14/session-consolidation-inventory.v0.1.json",
+    "archive_receipt": "static/status/ta14-session-archive-receipt.json",
     "validator": "scripts/check_ta14_session_consolidation_inventory.py",
     "goals_transferred_or_complete": 8,
     "total_session_goals": 8,
-    "archival_ready": false,
-    "remaining_distinct_role": "CLAIMED_FOR_VALIDATION_AND_INTEGRATION"
+    "archival_ready": true,
+    "unique_session_work_remaining": false,
+    "remaining_distinct_role": "NONE"
   },
   "latest_canonical_observation": {
     "run_id": 30741719006,
@@ -50,32 +53,20 @@
     "public_route_state": "NOT_OBSERVED",
     "development_halt": false
   },
+  "machine_owned_observation": {
+    "workflow": ".github/workflows/validate-chain-continuation.yml",
+    "run_id": 30742651873,
+    "run_number": 3863,
+    "state": "IN_PROGRESS",
+    "receipt_destination": "static/status/ta14-canonical-run-observation.json",
+    "development_halt": false
+  },
   "bounded_claim_blocks": [
-    {
-      "claim": "exact PDF public custody",
-      "state": "EVIDENCE_ABSENT_FAIL_CLOSED",
-      "location": "static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf"
-    },
-    {
-      "claim": "independent adjudication",
-      "state": "NOT_ESTABLISHED",
-      "location": "docs/reviews/ta14-public-evidence-gap-review-v2-analysis.md"
-    },
-    {
-      "claim": "neutral reviewer standing",
-      "state": "NOT_ESTABLISHED",
-      "location": "static/reviews/ta14/evidence-contracts/neutral-review-evidence.schema.json"
-    },
-    {
-      "claim": "route-complete outcome governance",
-      "state": "NOT_YET_VERIFIED",
-      "location": "static/reviews/ta14/evidence-contracts/outcome-evidence.schema.json"
-    },
-    {
-      "claim": "public route active",
-      "state": "NOT_OBSERVED",
-      "location": "static/status/ta14-canonical-run-observation.json"
-    }
+    {"claim": "exact PDF public custody", "state": "EVIDENCE_ABSENT_FAIL_CLOSED", "location": "static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf"},
+    {"claim": "independent adjudication", "state": "NOT_ESTABLISHED", "location": "docs/reviews/ta14-public-evidence-gap-review-v2-analysis.md"},
+    {"claim": "neutral reviewer standing", "state": "NOT_ESTABLISHED", "location": "static/reviews/ta14/evidence-contracts/neutral-review-evidence.schema.json"},
+    {"claim": "route-complete outcome governance", "state": "NOT_YET_VERIFIED", "location": "static/reviews/ta14/evidence-contracts/outcome-evidence.schema.json"},
+    {"claim": "public route active", "state": "NOT_OBSERVED", "location": "static/status/ta14-canonical-run-observation.json"}
   ],
   "active_tasks": [
     {
@@ -92,7 +83,7 @@
       "state": "CLAIMED_FOR_IMPLEMENTATION",
       "location": "static/reviews/ta14/claim-inventory.v0.1.json",
       "owner": "repository-native claim-resolution lane",
-      "release_condition": "Every claim has immutable source evidence or explicit unavailable/superseded posture.",
+      "release_condition": "Every claim has immutable source evidence or explicit unavailable or superseded posture.",
       "next_action": "Resolve immutable source references, releases, components, validators, limitations, and publication states."
     },
     {
@@ -105,18 +96,13 @@
     },
     {
       "task_id": "TA14-OBS-011",
-      "state": "CLAIMED_FOR_VALIDATION",
-      "location": "scripts/check_ta14_session_consolidation_inventory.py",
+      "state": "MACHINE_OWNED",
+      "location": ".github/workflows/validate-chain-continuation.yml",
       "owner": "repository-native validation lane",
-      "paired_locations": [
-        "scripts/check_ta14_source_pdf.py",
-        "scripts/check_ta14_canonical_run_observation.py",
-        "static/status/ta14-remediation-status.json",
-        "static/status/ta14-canonical-run-observation.json"
-      ],
       "canonical_binding_location": "scripts/check_full_validation_chain.py",
+      "observer_location": "static/status/ta14-canonical-run-observation.json",
       "release_condition": "All five TA-14 validators pass in one completed canonical workflow run.",
-      "next_action": "Observe the workflow run for the repaired TA-14 validator set and persist its exact results."
+      "next_action": "Workflow run 30742651873 records the repaired TA-14 validator set without session intervention."
     },
     {
       "task_id": "TA14-PUB-003",
@@ -135,6 +121,7 @@
     "docs/reviews/ta14-observation-and-completion-plan.md",
     "static/reviews/ta14/task-observation-registry.v0.1.json",
     "static/reviews/ta14/session-consolidation-inventory.v0.1.json",
+    "static/status/ta14-session-archive-receipt.json",
     "scripts/check_ta14_session_consolidation_inventory.py",
     "scripts/check_ta14_task_observation_registry.py",
     "scripts/check_ta14_observation_fixtures.py",
@@ -151,22 +138,18 @@
   ],
   "metrics": {
     "task_completion": {"complete_or_implemented": 5, "required": 8},
-    "developed_files": {"developed": 16, "required": 18},
+    "developed_files": {"developed": 17, "required": 19},
     "scaffolding_or_stubs": 2,
     "missing_required_files": 1,
     "validation": {"validated": 3, "required": 5},
-    "integration": {"integrated": 3, "required": 4},
+    "integration": {"integrated": 4, "required": 4},
     "goal_activation_percent": 50,
     "session_consolidation": {"transferred_or_complete": 8, "total": 8}
   },
   "next_executable_task": {
     "task_id": "TA14-OBS-011",
-    "location": "scripts/check_ta14_session_consolidation_inventory.py",
-    "supporting_locations": [
-      "scripts/check_ta14_source_pdf.py",
-      "scripts/check_ta14_canonical_run_observation.py",
-      "static/status/ta14-canonical-run-observation.json"
-    ],
-    "action": "Observe one canonical workflow run with the repaired TA-14 validators and persist the results without changing unrelated task states."
+    "location": ".github/workflows/validate-chain-continuation.yml",
+    "observer_location": "static/status/ta14-canonical-run-observation.json",
+    "action": "Machine-owned workflow run 30742651873 observes the repaired validator set; no session-owned action remains."
   }
 }
