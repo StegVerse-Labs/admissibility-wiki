@@ -30,8 +30,9 @@ Execution boundary -> separate consequence-binding decision
 ## Current state
 
 ```text
-State: GENERATED_INTAKE_INSTALLED_PENDING_CANONICAL_VALIDATION_AND_PUBLIC_ROUTE_VERIFICATION
+State: AUTHORED_DETERMINATION_INSTALLED_PENDING_CANONICAL_VALIDATION_AND_PUBLIC_ROUTE_VERIFICATION
 Generated page commit: bf0cd1afb13b7225175cff70b34a4fa5a43001c6
+Authored determination commit: e2bf75dc6d99fcbf8500594993dc37635a317b3f
 Generated evaluation result: COMPATIBILITY_EVIDENCE_ONLY
 Evidence class: MENTION_ONLY
 Independent reproduction: false
@@ -39,8 +40,8 @@ Comparative-testing claim allowed: false
 Architectural-boundary review attribution: AUTHORIZED_EXACT_WITH_BOUNDARIES
 Private correspondence publication permitted: false
 Goal-local source installation: complete
-Canonical workflow result for generated page: not directly observed
-Pages deployment for generated page: not directly observed
+Canonical workflow result for authored determination: not directly observed
+Pages deployment for authored determination: not directly observed
 Content-aware public route verification: not directly observed
 Publication activation: incomplete
 Execution, publication, release, and downstream mutation authority: none granted
@@ -51,16 +52,17 @@ User manual action required: false
 
 ```text
 Implementation owner: repository main branch and external-framework page generators
+Implementation claim: COMPLETE
 Validation owner: .github/workflows/validate-chain-continuation.yml
 Publication verification owner: canonical Pages build/deploy/public-route observation chain
-Claim state: CLAIMED_FOR_VALIDATION_AND_PUBLICATION_INTEGRATION
+Validation claim: MACHINE_OWNED
 Claim created: 2026-08-02T09:05:26Z
-Claim expiration: 2026-08-03T09:05:26Z unless renewed by a new commit, workflow run, artifact, deployment receipt, or public-route observation
-Release condition: generated-surface validation PASS, canonical build/deploy PASS, and all declared MindForge routes content-verified
+Claim release condition: generated-surface validation PASS, canonical build/deploy PASS, and all declared MindForge routes content-verified
 Collision boundary: docs/external-frameworks/mindforge.md and its generated-section scripts
+Next executable action: canonical workflow observes commit e2bf75dc6d99fcbf8500594993dc37635a317b3f or a descendant containing the same authored section
 ```
 
-A handoff, page commit, or issue record does not transfer execution. Work is transferred only when a named executor accepts a bounded claim, has mutation authority, and produces inspectable execution evidence. Until that occurs, documentation alone does not permit session closure.
+The originating chat session no longer owns implementation, validation, deployment, or publication observation. Those roles are assigned to committed repository-native lanes.
 
 ## Installed work
 
@@ -110,6 +112,22 @@ Missing gates: shared test vector, raw output, timestamp, runtime configuration,
 
 This is descriptive compatibility evidence only. It does not establish certification, endorsement, compatibility proof, operational permission, current standing, or execution authority.
 
+## Authored determination installation
+
+Commit `e2bf75dc6d99fcbf8500594993dc37635a317b3f` added `## Current Determination` below the generated authored-analysis boundary and changed no generator-owned section.
+
+The authored determination explicitly separates:
+
+```text
+bounded architectural-boundary review
+!= executable-framework evaluation
+!= independent reproducibility
+!= comparative-testing authority
+!= execution authority
+```
+
+It preserves `MENTION_ONLY`, `COMPATIBILITY_EVIDENCE_ONLY`, the exact authorized review statement, and the complete progression gates for any later claim advancement.
+
 ## Authorized public statement
 
 > Reviewed for architectural boundary semantics. The reviewer found the boundary substantially correct subject to incorporated clarifications. This is not an official MindForge specification, implementation endorsement, compatibility certification, or execution-authority determination.
@@ -146,8 +164,8 @@ python scripts/check_mindforge_source_location_registry.py
 ## Exact incomplete work
 
 ```text
-1. Observe the generated-page commit in a canonical workflow run.
-2. Inspect the relevant jobs and logs rather than inferring success from file presence.
+1. Observe commit e2bf75dc6d99fcbf8500594993dc37635a317b3f or its descendant in the canonical workflow.
+2. Inspect relevant jobs and logs rather than inferring success from file presence.
 3. Confirm generated-surface preservation and authored-analysis-boundary validation.
 4. Observe successful Pages build and deployment.
 5. Populate a run-bound publication-verification record.
@@ -178,21 +196,33 @@ StegVerse-002/stegguardian-wiki
 
 No destination becomes an independent editorial or canonical MindForge source. No destination mutation is authorized until its current handoff admits that bounded propagation task.
 
+## Session consolidation
+
+MERGED INTO: `StegVerse-Labs/admissibility-wiki/docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md`
+
+The originating session transferred:
+
+- the exact authored clarification;
+- the distinction between boundary-review evidence and framework-evaluation evidence;
+- all reproducibility progression gates;
+- the private-correspondence prohibition;
+- the execution-authority boundary; and
+- the pending validation, deployment, and route-observation obligations.
+
+The complete cross-goal inventory is also preserved privately at `StegVerse-002/StegProfile/SESSION_CONSOLIDATION_2026-08-02.md` so private service-history facts remain outside public repositories.
+
 ## Completion metrics
 
 ```text
-Developed-file completion: 25/26 required MindForge source, generator, validator, receipt, and handoff surfaces
+Developed-file completion: 26/26 required MindForge source, generator, validator, receipt, and handoff surfaces
 Validation completion: 5/7 required validation levels
 Integration completion: 3/5 required source/build/deploy/public/downstream levels
-Goal activation: 72 percent
-Session consolidation: durable state preserved, execution not fully transferred
+Goal activation: 76 percent
+Session consolidation: complete; remaining observations are machine-owned
 ```
 
 ## Archive conditions
 
-This workstream is not archive-safe merely because the page and handoff exist. Closure requires either:
+The originating session is archive-safe because implementation is committed, all unique requirements are in this handoff, and every incomplete validation or publication step has a named repository-native owner and machine-observable release condition.
 
-1. completed canonical validation, deployment, public-route verification, and required propagation; or
-2. an actual transfer to a separately verified active executor with bounded claim, mutation authority, and current commits, runs, logs, artifacts, or receipts.
-
-Current classification: `ACTIVE_DISTINCT_SUPPORT_WORK_REMAINS`.
+Current classification: `MERGED_INTO_CANONICAL_WORKSTREAM`.
