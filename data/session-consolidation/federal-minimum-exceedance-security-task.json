@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "session_goal_supplement",
+  "task_id": "SECURITY-FEDERAL-MINIMUM-EXCEEDANCE-001",
+  "originating_session_goal": "Treat federal security requirements as the minimum and require StegVerse to exceed them.",
+  "destination": "StegVerse-Labs/admissibility-wiki",
+  "branch": "main",
+  "canonical_handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+  "goal_handoff": "docs/security/FEDERAL_MINIMUM_EXCEEDANCE_SECURITY_MIRROR_HANDOFF.md",
+  "authoritative_files": [
+    "docs/security/federal-minimum-exceedance-security-baseline.md",
+    "static/security/federal-minimum-exceedance-security-profile.json",
+    "scripts/check_federal_minimum_exceedance_security.py"
+  ],
+  "owner": "admissibility-wiki canonical validation workstream",
+  "claim_state": "MACHINE_OWNED",
+  "role": "security baseline validation and downgrade prevention",
+  "claim_timestamp": "2026-08-02T22:20:00Z",
+  "claim_expiration_or_release_condition": "release only when a stronger committed successor profile is accepted by canonical validation",
+  "completion_state": "SOURCE_IMPLEMENTED_AWAITING_HOSTED_WORKFLOW_OBSERVATION",
+  "validation_state": "deterministic source validator installed",
+  "integration_state": "canonical handoff-sync integration required and assigned",
+  "archival_dependency": "none after canonical integration; remaining observation is repository-owned",
+  "evidence_location": "docs/security/FEDERAL_MINIMUM_EXCEEDANCE_SECURITY_MIRROR_HANDOFF.md",
+  "expected_evidence": [
+    "passing deterministic security-profile validator",
+    "canonical validation invocation",
+    "workflow run and logs when exposed",
+    "runtime evidence before security effectiveness claims"
+  ],
+  "collision_boundaries": [
+    "do not create a second active workflow",
+    "do not claim federal certification or authorization",
+    "do not downgrade stronger StegVerse controls",
+    "do not mutate downstream repositories without current handoff authority"
+  ],
+  "next_executable_action": "canonical validation executes scripts/check_federal_minimum_exceedance_security.py",
+  "machine_observable_release_condition": "canonical workflow run reports the validator PASS without profile downgrade",
+  "session_transfer": {
+    "classification": "MERGED_INTO_CANONICAL_WORKSTREAM",
+    "merged_into": "StegVerse-Labs/admissibility-wiki/docs/security/FEDERAL_MINIMUM_EXCEEDANCE_SECURITY_MIRROR_HANDOFF.md",
+    "unique_chat_only_requirements_remaining": 0,
+    "session_execution_authority_remaining": false,
+    "archive_ready_after_canonical_integration": true
+  },
+  "authority": {
+    "federal_certification_claimed": false,
+    "cross_repository_mutation": false,
+    "release": false,
+    "publication": false,
+    "execution": false
+  }
+}
