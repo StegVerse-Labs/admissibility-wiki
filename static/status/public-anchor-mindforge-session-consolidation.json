@@ -150,15 +150,15 @@
       "goal": "Durably preserve the complete session goal inventory and release duplicate claims",
       "destination": "StegVerse-Labs/admissibility-wiki",
       "branch": "main",
-      "location": "docs/session-consolidation/public-anchor-mindforge-session-consolidation.md; static/status/public-anchor-mindforge-session-consolidation.json; scripts/check_public_anchor_mindforge_session_consolidation.py",
-      "owner": "PA-INT-013",
+      "location": "docs/session-consolidation/public-anchor-mindforge-session-consolidation.md; static/status/public-anchor-mindforge-session-consolidation.json; scripts/check_public_anchor_mindforge_session_consolidation.py; static/status/wiki-public-anchor-task-mesh-registry.json",
+      "owner": "public-anchor-mindforge-session-consolidation queue",
       "claim_state": "MACHINE_OWNED_VALIDATION",
-      "completion_state": "IMPLEMENTED",
-      "validation_state": "VALIDATOR_INSTALLATION_PENDING",
-      "integration_state": "TASK_MESH_REGISTRATION_PENDING",
-      "archival_dependency": true,
-      "evidence": "this consolidation record",
-      "next_action": "install validator and register consolidation queue"
+      "completion_state": "COMPLETE_AND_TRANSFERRED",
+      "validation_state": "VALIDATOR_INSTALLED_AND_REGISTERED",
+      "integration_state": "TASK_MESH_REGISTERED",
+      "archival_dependency": false,
+      "evidence": "commits 40bdbaa8, 74d6d395, 87ba25cf, fb46952f",
+      "next_action": "machine-owned canonical validation; originating session may archive independently"
     }
   ],
   "duplicate_and_convergence": {
@@ -184,5 +184,5 @@
     "session_archival_grants_certification": false,
     "session_archival_grants_execution_authority": false
   },
-  "archive_disposition": "ARCHIVE_AFTER_CONSOLIDATION_VALIDATOR_AND_QUEUE_REGISTRATION"
+  "archive_disposition": "ARCHIVE"
 }
