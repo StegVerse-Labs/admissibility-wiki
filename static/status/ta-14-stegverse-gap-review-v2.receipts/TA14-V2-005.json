@@ -1,0 +1,38 @@
+{
+  "schema_version": "governed-review-task-completion-receipt.v1",
+  "task_id": "TA14-V2-005",
+  "title": "Bind task execution into canonical aggregate",
+  "state": "COMPLETED",
+  "completed_at": "2026-08-01T20:23:00-05:00",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "main",
+  "binding_path": "scripts/check_ta14_standing_reconstruction.py",
+  "canonical_aggregate_path": "scripts/check_admissibility_automation_handoff.py",
+  "bound_checks": [
+    "scripts/check_ta14_stegverse_gap_review_v2_intake.py",
+    "scripts/check_ta14_stegverse_gap_review_v2_task_execution.py"
+  ],
+  "binding_chain": [
+    "scripts/check_ta14_stegverse_gap_review_v2_intake.py",
+    "scripts/check_ta14_stegverse_gap_review_v2_task_execution.py",
+    "scripts/check_ta14_standing_reconstruction.py",
+    "scripts/check_admissibility_automation_handoff.py",
+    "npm run validate",
+    ".github/workflows/validate-chain-continuation.yml"
+  ],
+  "binding_commit": "4444d0f3923f5d71d34244cd2a8d7ece174193c8",
+  "canonical_execution_observed": false,
+  "observation_state": "BOUND_PENDING_SUCCESSOR_CANONICAL_RUN",
+  "execution_policy": {
+    "external_tasks_allowed": false,
+    "development_halted": false,
+    "evidence_gaps_remain_actionable": true,
+    "unresolved_evidence_halts_unrelated_work": false
+  },
+  "authority_boundary": {
+    "validator_binding_is_validator_pass": false,
+    "validator_pass_is_independent_reconstruction": false,
+    "certification_granted": false,
+    "execution_authority_granted": false
+  }
+}
