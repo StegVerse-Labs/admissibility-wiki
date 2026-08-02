@@ -16,6 +16,8 @@ REFERENCE_DOCKET_RECORD = ROOT / "static" / "data" / "governed-framework-reviews
 REFERENCE_DOCKET_SCHEMA = ROOT / "static" / "schemas" / "governed-framework-review.schema.json"
 REFERENCE_DOCKET_CHECK = ROOT / "scripts" / "check_governed_framework_review_reference.py"
 PUBLIC_ROUTE_CHECK = ROOT / "scripts" / "check_ta14_public_routes.py"
+GAP_REVIEW_V2_INTAKE_CHECK = ROOT / "scripts" / "check_ta14_stegverse_gap_review_v2_intake.py"
+GAP_REVIEW_V2_TASK_EXECUTION_CHECK = ROOT / "scripts" / "check_ta14_stegverse_gap_review_v2_task_execution.py"
 STATUS = ROOT / "static" / "status" / "ta-14-standing-reconstruction-status.json"
 EVALUATION = ROOT / "static" / "data" / "framework-evaluations" / "ta-14.json"
 FIXTURE = ROOT / "static" / "data" / "framework-evaluations" / "test-cases" / "ta14-continuous-standing-revalidation-v1.json"
@@ -32,6 +34,20 @@ def require(condition: bool, message: str) -> None:
 def read(path: Path) -> str:
     require(path.exists(), f"missing {path.relative_to(ROOT)}")
     return path.read_text(encoding="utf-8")
+
+
+def run_nested_check(path: Path, label: str) -> None:
+    require(path.exists(), f"missing {path.relative_to(ROOT)}")
+    result = subprocess.run(
+        [sys.executable, str(path)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    print(result.stdout.rstrip())
+    require(result.returncode == 0, f"{label} failed")
 
 
 def main() -> None:
@@ -153,16 +169,9 @@ def main() -> None:
         "reference docket must preserve the standing test as NOT_RUN",
     )
 
-    result = subprocess.run(
-        [sys.executable, str(REFERENCE_DOCKET_CHECK)],
-        cwd=ROOT,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
-    )
-    print(result.stdout.rstrip())
-    require(result.returncode == 0, "reference docket validator failed")
+    run_nested_check(REFERENCE_DOCKET_CHECK, "reference docket validator")
+    run_nested_check(GAP_REVIEW_V2_INTAKE_CHECK, "TA-14 StegVerse gap-review v2 intake validator")
+    run_nested_check(GAP_REVIEW_V2_TASK_EXECUTION_CHECK, "TA-14 StegVerse gap-review v2 internal task validator")
 
     required_routes = {
         "/external-frameworks/ta-14",
@@ -173,7 +182,7 @@ def main() -> None:
     }
     require(required_routes.issubset(set(status.get("public_routes", []))), "status record is missing one or more public routes")
 
-    print("TA-14 STANDING RECONSTRUCTION: PASS - doctrine, assessment, reference docket, schema, status, evaluation, frozen fixture, output template, public route checker, navigation, and handoff agree")
+    print("TA-14 STANDING RECONSTRUCTION: PASS - doctrine, assessment, reference docket, gap-review v2 intake, internal nonblocking task execution, schema, status, evaluation, frozen fixture, output template, public route checker, navigation, and handoff agree")
 
 
 if __name__ == "__main__":
