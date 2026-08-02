@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Execute the Wiki public-anchor internal task queue without global stalling.
 
-Each leaf task observer runs independently. A failed observer is recorded for its task
-and does not prevent later independent tasks from running. Aggregate/self-referential
-tasks are not recursively invoked; they are recorded as DEFERRED_SELF_OBSERVATION and
-are evaluated by the canonical caller after this executor returns.
+Each leaf task observer runs independently. Failed observers are recorded and do not
+prevent later independent tasks from running. Located registry extensions are merged
+into the canonical queue so newly discovered internal work cannot remain outside the
+executor merely because the primary registry has not yet been rewritten.
 """
 from __future__ import annotations
 
@@ -16,22 +16,49 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-REGISTRY = ROOT / "static" / "status" / "wiki-public-anchor-internal-task-registry.json"
-REPORT = ROOT / "reports" / "wiki-public-anchor-internal-task-execution.json"
+REGISTRY = ROOT / "static/status/wiki-public-anchor-internal-task-registry.json"
+EXTENSION_GLOB = "wiki-public-anchor-internal-task-registry.*-extension.json"
+REPORT = ROOT / "reports/wiki-public-anchor-internal-task-execution.json"
 
-# PA-INT-002 invokes this executor through the multi-docket aggregate.
-# PA-INT-007 is the canonical aggregate and is evaluated by its caller.
-# PA-INT-009 points directly back to this executor.
-# Running any of them from inside this queue would recurse and could halt development.
 DEFERRED_AGGREGATE_TASK_IDS = {"PA-INT-002", "PA-INT-007", "PA-INT-009"}
 RUNNABLE_STATES = {"READY_INTERNAL", "ACTIVE_INTERNAL"}
 
 
-def load_registry() -> dict[str, Any]:
-    value = json.loads(REGISTRY.read_text(encoding="utf-8"))
+def load_json_object(path: Path) -> dict[str, Any]:
+    value = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(value, dict):
-        raise ValueError("registry must contain a JSON object")
+        raise ValueError(f"{path.relative_to(ROOT)} must contain a JSON object")
     return value
+
+
+def load_registry() -> tuple[dict[str, Any], list[str]]:
+    registry = load_json_object(REGISTRY)
+    tasks = registry.get("tasks", [])
+    if not isinstance(tasks, list):
+        raise ValueError("primary registry tasks must be an array")
+
+    merged = list(tasks)
+    extension_paths = sorted((ROOT / "static/status").glob(EXTENSION_GLOB))
+    extension_names: list[str] = []
+    known_ids = {task.get("task_id") for task in merged if isinstance(task, dict)}
+
+    for path in extension_paths:
+        extension = load_json_object(path)
+        extension_tasks = extension.get("tasks", [])
+        if not isinstance(extension_tasks, list):
+            raise ValueError(f"{path.relative_to(ROOT)} tasks must be an array")
+        for task in extension_tasks:
+            if not isinstance(task, dict):
+                raise ValueError(f"{path.relative_to(ROOT)} contains a non-object task")
+            task_id = task.get("task_id")
+            if task_id in known_ids:
+                raise ValueError(f"duplicate task_id across registries: {task_id}")
+            known_ids.add(task_id)
+            merged.append(task)
+        extension_names.append(str(path.relative_to(ROOT)))
+
+    registry["tasks"] = merged
+    return registry, extension_names
 
 
 def run_observer(task: dict[str, Any]) -> dict[str, Any]:
@@ -77,16 +104,12 @@ def run_observer(task: dict[str, Any]) -> dict[str, Any]:
 def main() -> int:
     failures: list[str] = []
     try:
-        registry = load_registry()
+        registry, loaded_extensions = load_registry()
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         print(f"WIKI PUBLIC-ANCHOR INTERNAL EXECUTOR: FAIL - {exc}")
         return 1
 
     tasks = registry.get("tasks", [])
-    if not isinstance(tasks, list):
-        print("WIKI PUBLIC-ANCHOR INTERNAL EXECUTOR: FAIL - tasks must be an array")
-        return 1
-
     results: list[dict[str, Any]] = []
     for task in tasks:
         if not isinstance(task, dict):
@@ -119,8 +142,9 @@ def main() -> int:
 
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     payload = {
-        "schema_version": "wiki-public-anchor-internal-task-execution.v1",
+        "schema_version": "wiki-public-anchor-internal-task-execution.v2",
         "registry_id": registry.get("registry_id"),
+        "loaded_extensions": loaded_extensions,
         "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "execution_policy": {
             "continue_after_task_failure": True,
@@ -128,6 +152,7 @@ def main() -> int:
             "failed_task_blocks_unrelated_tasks": False,
             "deferred_aggregate_tasks": sorted(DEFERRED_AGGREGATE_TASK_IDS),
             "recursion_prevention_active": True,
+            "located_registry_extensions_are_executed": True,
         },
         "results": results,
         "summary": {
