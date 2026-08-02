@@ -1,0 +1,68 @@
+{
+  "schema_version": "stegverse.federal_minimum_exceedance_security_profile.v1",
+  "profile_id": "SECURITY-FEDERAL-MINIMUM-EXCEEDANCE-001",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "policy": "FEDERAL_REQUIREMENTS_ARE_MINIMUM_STEGVERSE_MUST_EXCEED",
+  "federal_floor": [
+    {"reference": "NIST SP 800-53 Rev. 5", "required_as_floor": true, "certification_claimed": false},
+    {"reference": "NIST SP 800-53B", "required_as_floor": true, "certification_claimed": false},
+    {"reference": "NIST SP 800-218 SSDF", "required_as_floor": true, "certification_claimed": false},
+    {"reference": "FIPS 140-3", "required_when_applicable": true, "validation_claimed": false},
+    {"reference": "FedRAMP Rev. 5", "required_when_applicable": true, "authorization_claimed": false}
+  ],
+  "exceedance_controls": {
+    "authority_separation": true,
+    "deny_by_default": true,
+    "missing_evidence_fails_closed": true,
+    "run_bound_identity": true,
+    "sha256_input_output_binding": true,
+    "deterministic_negative_path_tests": true,
+    "single_canonical_workflow": true,
+    "duplicate_execution_prevention": true,
+    "expiring_or_release_conditioned_claims": true,
+    "supply_chain_provenance": true,
+    "cryptographic_agility": true,
+    "post_quantum_migration_readiness": true,
+    "operator_authority_degradation_testing": true,
+    "recovery_and_reconstructability": true,
+    "privacy_minimization_and_purpose_limitation": true,
+    "continuous_repository_owned_observation": true,
+    "security_downgrade_requires_governed_exception": true
+  },
+  "required_states": [
+    "COMPLETE",
+    "BLOCKED",
+    "RETRY",
+    "REVIEW_REQUIRED",
+    "FAILED",
+    "CLAIMED",
+    "SUPERSEDED",
+    "MERGED",
+    "FAIL_CLOSED"
+  ],
+  "prohibited_inferences": {
+    "verification_implies_execution": false,
+    "publication_implies_admissibility": false,
+    "deployment_implies_release_authority": false,
+    "federal_floor_implies_certification": false,
+    "post_quantum_readiness_implies_validation": false,
+    "missing_evidence_implies_success": false
+  },
+  "claims": {
+    "fedramp_authorized": false,
+    "fisma_authorized": false,
+    "fips_validated": false,
+    "federal_compliance_certified": false,
+    "agency_approved": false,
+    "penetration_resistance_verified": false,
+    "runtime_activation_verified": false
+  },
+  "owner": {
+    "repository": "StegVerse-Labs/admissibility-wiki",
+    "workflow": ".github/workflows/validate-chain-continuation.yml",
+    "validator": "scripts/check_federal_minimum_exceedance_security.py"
+  },
+  "manual_user_action_required": false,
+  "cross_repository_mutation_authority_granted": false,
+  "release_authority_granted": false
+}
