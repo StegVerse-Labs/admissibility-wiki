@@ -40,11 +40,16 @@ static/security/federal-minimum-exceedance-security-profile.json
 scripts/check_federal_minimum_exceedance_security.py
   commit a0e10d7f9c8e53d49a5ae1a0759a971d37d1fe77
 
+scripts/check_federal_minimum_exceedance_security_runtime.py
+  commit 2cdb14afd05e566ba7b38185bd6fe35ba082e5ae
+
 data/session-consolidation/federal-minimum-exceedance-security-task.json
-  commit 3cd83f2d57639672a4b07d3438395f949cebe351
+  initial commit 3cd83f2d57639672a4b07d3438395f949cebe351
+  runtime validation update 05d3d737044cac82dfcac7ba6bb3bfa8ec30d6ac
 
 scripts/check_discovery_governance_handoff_sync.py
-  canonical integration commit 4d202bac8b5106e501640e6f01ed4c6f6ce4792e
+  source integration commit 4d202bac8b5106e501640e6f01ed4c6f6ce4792e
+  runtime integration commit 0507eca4e1733dbfc5d30694e000699f0424b2db
 ```
 
 ## Federal floor references
@@ -88,34 +93,56 @@ The StegVerse baseline exceeds the declared floor by requiring all of the follow
 ```text
 current owner: admissibility-wiki canonical validation workstream
 claim state: MACHINE_OWNED
-role: security-baseline validation and drift prevention
+role: security-baseline validation, downgrade prevention, and negative-path enforcement
 claim creation time: 2026-08-02T22:20:00Z
 claim expiration or release condition: release only when the baseline is superseded by a stronger committed profile and the canonical validator accepts the successor
 collision boundary: do not create a second active workflow; do not claim federal certification; do not weaken existing controls
-expected evidence: committed profile, passing deterministic validator, canonical validation inclusion, and run-bound workflow evidence when exposed
+expected evidence: committed profile, passing deterministic validators, canonical validation inclusion, and run-bound workflow evidence when exposed
 ```
+
+## Deterministic runtime validation
+
+The canonical source validator is exercised through:
+
+```text
+scripts/check_federal_minimum_exceedance_security_runtime.py
+```
+
+The runtime validator requires the unmodified profile to pass, then proves fail-closed rejection of:
+
+```text
+1. removal of a federal-floor reference;
+2. downgrade of deny-by-default enforcement;
+3. unsupported FedRAMP authorization claim;
+4. treating missing evidence as success;
+5. displacement of the single canonical workflow;
+6. cross-repository mutation authority escalation.
+```
+
+The profile is restored after every test sequence and must pass again after restoration. The runtime validator is invoked by `scripts/check_discovery_governance_handoff_sync.py`, which is already in the canonical validation chain.
 
 ## Validation commands
 
 ```text
 python scripts/check_federal_minimum_exceedance_security.py
+python scripts/check_federal_minimum_exceedance_security_runtime.py
 python scripts/check_discovery_governance_handoff_sync.py
 ```
 
 ## Validation integration
 
-The security validator is invoked by `scripts/check_discovery_governance_handoff_sync.py`, which is already executed by the canonical admissibility automation validation chain. This reuses the single canonical workflow and creates no competing workflow.
+Both security validators are invoked through `scripts/check_discovery_governance_handoff_sync.py`, which is already executed by the canonical admissibility automation validation chain. This reuses the single canonical workflow and creates no competing workflow.
 
 Source-level validation is installed. A hosted workflow PASS is not claimed until a specific run, job, and log are observed.
 
 ## Incomplete work and release condition
 
-Source policy, machine-readable profile, and deterministic validation are repository-owned. Hosted-workflow success, deployment, and runtime security effectiveness remain unclaimed until a specific canonical run and applicable runtime evidence are inspected.
+Source policy, machine-readable profile, deterministic source validation, and deterministic negative-path runtime validation are repository-owned. Hosted-workflow success, deployment, and runtime security effectiveness remain unclaimed until a specific canonical run and applicable runtime evidence are inspected.
 
 Machine-observable release condition:
 
 ```text
-a canonical workflow run executes the security validator successfully and preserves the profile and handoff without downgrade
+a canonical workflow run executes both security validators successfully and preserves the profile and handoff without downgrade
 ```
 
 ## Cross-repository obligations
@@ -144,13 +171,13 @@ The originating requirement, owner, claim, validation path, unresolved evidence 
 ## Percentages
 
 ```text
-developed-files percentage: 100% for the four required source and control files
-validation percentage: 80% until a hosted canonical run is observed
+developed-files percentage: 100% for the five required source and control files
+validation percentage: 90% until a hosted canonical run is observed
 integration percentage: 90% until downstream consumers adopt or explicitly defer the profile
-security-goal activation percentage: 85% until canonical workflow and runtime evidence are observed
+security-goal activation percentage: 90% until canonical workflow and runtime evidence are observed
 session-consolidation percentage: 100%
 ```
 
 ## Archive condition
 
-This session may be archived because the profile, validator, task record, handoff, and canonical integration are committed, and all remaining evidence collection is assigned to repository-native automation with a machine-observable release condition. Repository security activation remains distinct from session archival readiness.
+This session may be archived because the profile, source validator, runtime fail-closed validator, task record, handoff, and canonical integration are committed, and all remaining evidence collection is assigned to repository-native automation with a machine-observable release condition. Repository security activation remains distinct from session archival readiness.
