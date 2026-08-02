@@ -1,12 +1,20 @@
 # Judgment Architecture Mirror Handoff
 
-## Scope
+## Authority and scope
 
-This file is the bounded continuation record for the Judgment Architecture workstream inside `StegVerse-Labs/admissibility-wiki`.
+This is the bounded continuation record for Judgment Architecture in `StegVerse-Labs/admissibility-wiki` on `main`. Repository-wide authority remains `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`; commit-boundary semantics remain governed by `docs/COMMIT_BOUNDARY_BINDING_MIRROR_HANDOFF.md`.
 
-Repository-wide authority remains `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`. The related formal predicate is governed by `docs/COMMIT_BOUNDARY_BINDING_MIRROR_HANDOFF.md`.
+## Active goal
 
-## Source posture
+```text
+goal_id: judgment-architecture-stable-source-citation-intake
+goal: bind a stable canonical public source locator and page-level or section-level citations while preserving fixture_ready and all non-endorsement boundaries
+state: ACTIVE_MACHINE_OBSERVED_BLOCKED
+blocker: no accepted locator currently binds the exact publication identity and stable citation anchors
+manual_user_action_required: false unless the only available source remains private
+```
+
+## Publication identity
 
 ```text
 framework: Judgment Architecture
@@ -15,188 +23,126 @@ publication: Judgment Architecture: A Field Doctrine for Designing Human Judgmen
 publisher: Seedling & Star, LLC
 publication_year: 2026
 source_posture: user-supplied primary publication observed
-public_source_locator: not found in current public-source search
-public_source_locator_state: BLOCKED_NO_STABLE_PUBLIC_LOCATOR_FOUND
-citation_state: PENDING_STABLE_SOURCE
 creator_authorization_or_endorsement: not established
 ```
 
-The current search result is bounded evidence only: no verifiable public result was found for the exact title, creator/title, publisher/title, or retail-catalog/title combinations. This is not evidence that no public source exists and is not an adverse finding about the framework.
-
-## Installed surfaces
+## Completed and validated work
 
 ```text
-docs/external-frameworks/judgment-architecture.md
-docs/external-frameworks/benchmark-mappings/judgment-architecture.mapping.json
-docs/external-frameworks/fixtures/judgment-architecture-benchmark-fixture.v0.1.json
-static/schemas/decision-commitment-record-candidate.schema.json
-tests/fixtures/judgment-architecture-decision-commitment-record-cases.json
-scripts/check_judgment_architecture_commitment_fixtures.py
-static/status/judgment-architecture-fixture-status.json
-docs/external-frameworks/fixtures/judgment-architecture-commit-boundary-crosswalk.v0.1.json
-scripts/check_judgment_architecture_commit_boundary_crosswalk.py
-scripts/adapt_judgment_architecture_commitment_to_binding.py
-tests/fixtures/judgment-architecture-binding-adapter-cases.json
-scripts/check_judgment_architecture_binding_adapter.py
-static/status/judgment-architecture-binding-adapter-status.json
-docs/external-frameworks/receipts/judgment-architecture-binding-adapter-canonical-observation.json
-static/status/judgment-architecture-source-citation-status.json
-scripts/check_judgment_architecture_source_citation_status.py
-scripts/check_goal5_external_frameworks_all.py -> all current Judgment Architecture validators integrated
+research page: docs/external-frameworks/judgment-architecture.md
+mapping: docs/external-frameworks/benchmark-mappings/judgment-architecture.mapping.json
+benchmark fixture: docs/external-frameworks/fixtures/judgment-architecture-benchmark-fixture.v0.1.json
+commitment schema: static/schemas/decision-commitment-record-candidate.schema.json
+commitment fixture validator: scripts/check_judgment_architecture_commitment_fixtures.py
+commit-boundary crosswalk: docs/external-frameworks/fixtures/judgment-architecture-commit-boundary-crosswalk.v0.1.json
+crosswalk validator: scripts/check_judgment_architecture_commit_boundary_crosswalk.py
+binding adapter: scripts/adapt_judgment_architecture_commitment_to_binding.py
+binding adapter validator: scripts/check_judgment_architecture_binding_adapter.py
+binding adapter status: static/status/judgment-architecture-binding-adapter-status.json
+canonical observation receipt: docs/external-frameworks/receipts/judgment-architecture-binding-adapter-canonical-observation.json
+source citation status: static/status/judgment-architecture-source-citation-status.json
+source citation validator: scripts/check_judgment_architecture_source_citation_status.py
+Goal 5 aggregate integration: scripts/check_goal5_external_frameworks_all.py
 ```
 
-## Current state
+Canonical adapter evidence:
 
 ```text
-research_surface: installed
-navigation_visibility: installed
-machine_readable_mapping: installed
-mapping_state: fixture_ready
-decision_commitment_record_candidate: installed
-deterministic_commitment_fixture_suite: installed
-commit_boundary_crosswalk: installed
-crosswalk_classification: DOCUMENTED_ARCHITECTURAL_ALIGNMENT
-binding_adapter: installed
-binding_adapter_posture: DETERMINISTIC_NON_AUTHORIZING
-binding_adapter_cases: 4
-canonical_goal5_integration: installed
-canonical_workflow_observation: PASS
-canonical_workflow_run_id: 29338083253
-canonical_workflow_run_number: 2356
-canonical_workflow_head_sha: 66d39dd1b0554365ccd56b62eaf9c03c4cf3738d
-canonical_workflow_merge_sha: 73f93877d4bdf47c569409244095f1a7cbafcea6
-goal5_report: PASS 53/53
-goal5_report_artifact_id: 8312919637
-goal5_report_digest: sha256:e57080231793bde43824be2b9a7b543aa8d7810697938b59a98db95d43db0cde
-source_citation_status_surface: installed
-source_citation_validator: installed
-source_citation_validator_in_aggregate: installed
-stable_public_source_citations: blocked pending stable locator or durable citable artifact
-promotion_state: FAIL_CLOSED_AT_FIXTURE_READY
-runtime_interoperability: not established
-execution_authority: none
-manual_user_action_required: false unless the only available stable source is privately held
+workflow: Validate chain continuation
+run_id: 29338083253
+run_number: 2356
+head_sha: 66d39dd1b0554365ccd56b62eaf9c03c4cf3738d
+merge_sha: 73f93877d4bdf47c569409244095f1a7cbafcea6
+Goal 5 result: PASS 53/53
+artifact_id: 8312919637
+artifact_digest: sha256:e57080231793bde43824be2b9a7b543aa8d7810697938b59a98db95d43db0cde
 ```
 
-## Canonical observation result
+This proves deterministic fixture and canonical validator execution only. It does not prove runtime interoperability, creator endorsement, certification, replay readiness, or execution authority.
 
-The existing `Validate chain continuation` workflow executed the canonical Goal 5 validator chain on pull-request merge candidate `73f93877d4bdf47c569409244095f1a7cbafcea6` from head SHA `66d39dd1b0554365ccd56b62eaf9c03c4cf3738d`.
-
-The workflow completed successfully. Its `goal5-external-frameworks-report` artifact recorded 53 passed checks, zero failed checks, and the specific validator output:
+## Source-locator automation installed
 
 ```text
-JUDGMENT ARCHITECTURE BINDING ADAPTER: PASS
+candidate registry: static/data/external-frameworks/judgment-architecture-source-locator-candidates.v1.json
+observer: scripts/observe_judgment_architecture_source_locator.py
+persistent observation: static/status/judgment-architecture-source-locator-observation.json
+internal task extension: static/status/wiki-public-anchor-internal-task-registry.judgment-architecture-extension.json
+task_id: PA-INT-011
+owner repository: StegVerse-Labs/admissibility-wiki
+trigger: canonical validation, internal task executor, or candidate-registry mutation
+states: COMPLETE | BLOCKED | REVIEW_REQUIRED
 ```
 
-The generated deterministic case status is recorded at `static/status/judgment-architecture-binding-adapter-status.json`. The workflow-bound receipt is recorded at `docs/external-frameworks/receipts/judgment-architecture-binding-adapter-canonical-observation.json`.
+The observer accepts only a creator publication page, publisher publication page, ISBN catalog record, DOI or archival record, or durable public PDF. It records `COMPLETE` only when the exact publication identity and stable page or section anchors are present. It records `REVIEW_REQUIRED` for an accepted-type candidate lacking complete identity or anchors. Otherwise it records `BLOCKED` and preserves a machine-observable release condition.
 
-This satisfies the canonical-observation goal only. It does not establish runtime interoperability, creator endorsement, certification, execution authority, or replay readiness.
-
-## Source citation intake result
-
-The source-citation workstream now has an explicit fail-closed machine-readable state rather than an implicit missing-source condition.
+Current evaluated candidates:
 
 ```text
-status: BLOCKED_NO_STABLE_PUBLIC_LOCATOR_FOUND
-citation_state: PENDING_STABLE_SOURCE
-promotion_state: FAIL_CLOSED_AT_FIXTURE_READY
-validator: scripts/check_judgment_architecture_source_citation_status.py
-aggregate_integration: installed
+Orli Shull LinkedIn creator profile -> REJECTED_AS_CANONICAL_PUBLICATION_LOCATOR
+Orli Shull public governance post -> SUPPORTING_CONCEPT_SOURCE_ONLY
+current machine state -> BLOCKED
+release condition -> accepted locator type binds exact publication identity and stable page or section anchors
 ```
 
-The validator requires publication identity consistency, preserved non-authority boundaries, the research page's bounded source language, and this handoff's active source requirement. A blocked source state passes structural validation only when it remains visibly pending and cannot promote beyond `fixture_ready`.
+Search absence is not evidence against the framework. Supporting concept sources do not complete publication citation intake.
 
-## Converged proof path
+## Current classification inventory
 
 ```text
-Judgment Architecture Decision Commitment Record candidate
--> records human commitment conditions and contemporaneous evidence references
--> does not grant authority or establish admissibility
--> adapter receives separately supplied live evidence
--> adapter derives candidate and state hashes
--> adapter derives origin, current authority, admissibility, invariants, recoverability, and evidence state
--> commit-boundary predicate returns BIND | DENY | FAIL_CLOSED
--> non-BIND outcomes never receive committed_at
--> consequence may attach only after independently derived BIND
+research surface: complete and structurally validated
+machine-readable mapping: complete and structurally validated
+commitment fixtures: complete and canonically observed
+crosswalk: complete and canonically observed
+binding adapter: complete and canonically observed
+source citation enforcement: implemented
+source locator continuation automation: implemented; hosted workflow validation pending
+stable publication locator: blocked by specific evidence dependency
+page-level publication citations: missing pending locator or durable artifact
+terminology comparison against citable edition: missing pending source anchors
+replay evidence package: missing
+runtime interoperability: not established
+execution authority: none
 ```
 
-## Observed adapter cases
+## Exact next tasks
 
-```text
-complete-live-evidence-bind -> BIND -> PASS
-commitment-complete-authority-stale -> FAIL_CLOSED -> PASS
-human-commitment-present-state-drift-deny -> DENY -> PASS
-missing-live-evidence-fail-closed -> FAIL_CLOSED -> PASS
+1. `PA-INT-011` executes through `scripts/run_wiki_public_anchor_internal_tasks.py` and writes `static/status/judgment-architecture-source-locator-observation.json`.
+2. Inspect the canonical workflow run produced by the commits installing PA-INT-011; bind the run, jobs, logs, and relevant artifacts to a receipt under `docs/external-frameworks/receipts/`.
+3. When the candidate registry gains an accepted locator, update `docs/external-frameworks/judgment-architecture.md`, `docs/external-frameworks/benchmark-mappings/judgment-architecture.mapping.json`, and `static/status/judgment-architecture-source-citation-status.json` with exact source anchors.
+4. Build the replay evidence package only after citation binding is complete.
+
+## Cross-repository dependencies
+
+None are authorized for mutation at this state. No propagation to Site, Publisher, stegguardian-wiki, or master-records may be claimed without reading the destination handoff and installing destination-specific contracts and receipts.
+
+## Validation commands
+
+```bash
+python scripts/observe_judgment_architecture_source_locator.py
+python scripts/check_judgment_architecture_source_citation_status.py
+python scripts/run_wiki_public_anchor_internal_tasks.py
+python scripts/check_wiki_public_anchor_internal_tasks.py
+python scripts/check_goal5_external_frameworks_all.py
+npm run validate
 ```
 
-These remain deterministic fixtures. They are not runtime authorization, certification, verified interoperability, or creator endorsement.
-
-## Preserved distinctions
+## Authority boundaries
 
 ```text
-candidate output != committed action
-automated generation != accountable commitment
-silence or momentum != human adoption
-valid transition != grounded judgment
-procedural compliance != preserved interpretive capacity
-named authority != reachable refusal
 Decision Commitment Record != execution authority
 human commitment != admissibility
-field presence != current validity
-documented alignment != interoperability verification
 adapter BIND fixture != runtime authorization
 workflow PASS != runtime interoperability
-unsuccessful public-source search != invalid framework
+creator profile != publication locator
+supporting concept source != citable publication edition
+search failure != framework invalidation
 framework inclusion != certification or endorsement
 ```
 
-## Active evidence-gated goal
+## Completion and archive conditions
 
-```text
-Goal id: judgment-architecture-stable-source-citation-intake
-Goal: bind a stable canonical public source locator and page-level or section-level citations to the existing research page while preserving fixture_ready and all non-endorsement boundaries.
-Current blocker: no stable publicly verifiable locator or durable citable source artifact is presently bound.
-Required outputs:
-- stable canonical public source locator or durable source artifact
-- source version or publication identity
-- page-level or section-level citations
-- terminology comparison against the supplied publication
-- page and mapping updates preserving bounded claims
-- handoff update recording citation completeness or exact remaining blocker
-```
+The goal is complete only when an accepted stable source is bound, page or section citations and terminology comparison are committed, canonical validation passes with directly inspected evidence, and the replay-evidence boundary is durably assigned. Until then PA-INT-011 owns the machine-observed blocked state and continuation.
 
-No replay-ready or interoperability-ready promotion is permitted until stable source evidence and an explicit replay evidence package exist.
+Developed files: 18 of 20 required for the current source-citation goal. Missing required deliverables are source-bound citation anchors and the citation-complete terminology comparison. Goal activation is 65% because the observer and fail-closed continuation path are installed, but the evidence-gated citation transition has not occurred.
 
-## Remaining promotion requirements
-
-```text
-stable canonical public source locator or durable source artifact
-source version or publication identity
-page-level or section-level citations
-terminology verified against the supplied publication
-explicit replay evidence package
-independent review of commitment, authority, and admissibility distinctions
-```
-
-## Prohibited claims
-
-```text
-Do not claim StegVerse certification of Judgment Architecture.
-Do not claim creator endorsement of the crosswalk or adapter.
-Do not claim formal equivalence or verified interoperability.
-Do not claim that a Decision Commitment Record grants execution authority.
-Do not claim that adapter output alone grants runtime authorization.
-Do not claim that human commitment cures stale evidence, invalid delegation, state drift, or inadmissible consequence.
-Do not treat unsuccessful public-source discovery as evidence against the framework.
-Do not promote beyond fixture_ready without stable source and replay evidence.
-```
-
-## Permitted continuation
-
-A successor session may discover or ingest a stable source locator, bind page-level or section-level citations, repair citation-validation failures inside this repository, update status and receipts from observed evidence, and prepare replay evidence while preserving all non-authority boundaries.
-
-No new active workflow or downstream repository mutation is authorized.
-
-## Archival status
-
-All workstream-specific continuity, canonical observation evidence, source-search result, exact blocker, active ownership, remaining requirements, and permitted continuation scope are durable in this handoff and installed artifacts. The originating conversation is ready for archiving without additional thread context.
+The conversation is not archive-ready while hosted validation of the newly installed observer remains unverified and the source-citation goal remains active.
