@@ -41,20 +41,25 @@ def main() -> int:
         runner_value = queue.get("runner")
         registry_value = queue.get("registry")
         report_value = queue.get("report")
-        if not all(isinstance(value, str) and value for value in (queue_id, runner_value, registry_value, report_value)):
+        validator_value = queue.get("validator")
+        required_values = (queue_id, runner_value, registry_value, report_value, validator_value)
+        if not all(isinstance(value, str) and value for value in required_values):
             structural_failures.append(f"invalid queue declaration: {queue!r}")
             continue
 
         runner = ROOT / runner_value
         queue_registry = ROOT / registry_value
         queue_report = ROOT / report_value
-        if not runner.exists() or not queue_registry.exists():
-            missing = [str(path.relative_to(ROOT)) for path in (runner, queue_registry) if not path.exists()]
+        validator = ROOT / validator_value
+        required_paths = (runner, queue_registry, validator)
+        if any(not path.exists() for path in required_paths):
+            missing = [str(path.relative_to(ROOT)) for path in required_paths if not path.exists()]
             results.append({
                 "queue_id": queue_id,
                 "runner": runner_value,
                 "registry": registry_value,
                 "report": report_value,
+                "validator": validator_value,
                 "state": "BLOCKED_MISSING_QUEUE_ARTIFACT",
                 "missing": missing,
             })
@@ -70,6 +75,7 @@ def main() -> int:
             "runner": runner_value,
             "registry": registry_value,
             "report": report_value,
+            "validator": validator_value,
             "state": "PASS_INTERNAL" if result.returncode == 0 else "FAIL_INTERNAL_CONTINUABLE",
             "exit_code": result.returncode,
             "report_exists": queue_report.exists(),
