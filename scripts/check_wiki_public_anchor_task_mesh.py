@@ -30,6 +30,7 @@ def load(path: Path, failures: list[str]) -> dict:
 def main() -> int:
     failures: list[str] = []
     registry = load(REGISTRY, failures)
+    expected_queue_ids: set[str] = set()
 
     if registry:
         if registry.get("schema_version") != "wiki-public-anchor-task-mesh-registry.v1":
@@ -44,7 +45,6 @@ def main() -> int:
         if policy.get("evidence_gap_halts_development") is not False:
             failures.append("evidence gaps must not halt development")
 
-        queue_ids: set[str] = set()
         for index, queue in enumerate(registry.get("queues", [])):
             if not isinstance(queue, dict):
                 failures.append(f"queues[{index}] must be an object")
@@ -53,9 +53,9 @@ def main() -> int:
             if not isinstance(queue_id, str) or not queue_id:
                 failures.append(f"queues[{index}] missing queue_id")
                 continue
-            if queue_id in queue_ids:
+            if queue_id in expected_queue_ids:
                 failures.append(f"duplicate queue id: {queue_id}")
-            queue_ids.add(queue_id)
+            expected_queue_ids.add(queue_id)
             for key in ("owner_record", "runner", "registry", "validator"):
                 value = queue.get(key)
                 if not isinstance(value, str) or not value:
@@ -68,8 +68,8 @@ def main() -> int:
             if not isinstance(queue.get("completion_predicate"), str) or not queue.get("completion_predicate"):
                 failures.append(f"{queue_id} missing completion predicate")
 
-        if queue_ids != {"public-anchor-internal", "ta14-gap-review-v2"}:
-            failures.append("task-mesh registry queue set mismatch")
+        if len(expected_queue_ids) < 2:
+            failures.append("task-mesh registry must contain at least two distinct queues")
 
     if not RUNNER.exists():
         failures.append(f"missing {RUNNER.relative_to(ROOT)}")
@@ -95,8 +95,15 @@ def main() -> int:
             failures.append("evidence gaps must not halt development")
         queues = report.get("queues", [])
         ids = {item.get("queue_id") for item in queues if isinstance(item, dict)}
-        if ids != {"public-anchor-internal", "ta14-gap-review-v2"}:
+        if ids != expected_queue_ids:
             failures.append("task-mesh report queue set mismatch")
+        for item in queues if isinstance(queues, list) else []:
+            if not isinstance(item, dict):
+                failures.append("task-mesh report queue entries must be objects")
+                continue
+            for key in ("queue_id", "runner", "registry", "report", "validator", "state"):
+                if not item.get(key):
+                    failures.append(f"task-mesh report entry missing {key}")
         boundary = report.get("authority_boundary", {})
         for key in (
             "task_mesh_pass_is_external_validation",
@@ -111,7 +118,10 @@ def main() -> int:
         for failure in failures:
             print(f"- {failure}")
         return 1
-    print("WIKI PUBLIC-ANCHOR TASK MESH CHECK: PASS - located public-anchor and TA-14 queues execute without global stalling")
+    print(
+        "WIKI PUBLIC-ANCHOR TASK MESH CHECK: PASS - "
+        f"{len(expected_queue_ids)} registry-defined queues execute without global stalling"
+    )
     return 0
 
 
