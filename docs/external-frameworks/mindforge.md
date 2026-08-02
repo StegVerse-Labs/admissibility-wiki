@@ -93,6 +93,42 @@ Architectural-boundary review attribution: authorized and published with exact b
 Comparative-testing status: not yet authorized from MindForge evidence
 ```
 
+## Current Determination
+
+MindForge currently occupies two separate and deliberately non-equivalent evidence positions in this record:
+
+1. **The architectural boundary has received a bounded external review.** The exact authorized statement is published below. It supports the formulation that historical review evidence, a current Commitment Candidate, a commit-time standing determination, and execution are separate boundaries.
+2. **MindForge itself has not been independently evaluated as an executable framework.** No public canonical framework source, implementation package, raw output set, pinned runtime, replay procedure, or independent reproduction is attached.
+
+Accordingly, the present determination remains:
+
+```text
+architectural boundary review: AUTHORIZED_EXACT_WITH_BOUNDARIES
+framework evidence class: MENTION_ONLY
+framework evaluation result: COMPATIBILITY_EVIDENCE_ONLY
+independent reproducibility: false
+comparative-testing claim allowed: false
+execution-authority claim: false
+```
+
+The bounded review is evidence about the correctness of the **separation of authority boundaries**. It is not evidence that MindForge implements those boundaries, interoperates with StegVerse, satisfies the Commit-Time Interoperability Contract, or can be reproduced independently.
+
+### Progression gates
+
+The page may advance beyond `COMPATIBILITY_EVIDENCE_ONLY` only when the applicable evidence package supplies and validates:
+
+- a public or jointly authorized canonical source;
+- an immutable source version or content hash;
+- the reviewed artifact and evidence packet;
+- raw outputs and timestamps;
+- runtime and policy configuration;
+- declared expected outcomes;
+- deterministic replay commands;
+- current Commitment Candidate and SPE standing inputs; and
+- independent reproduction by a separate evaluator.
+
+Missing evidence remains a fail-closed evidence state, not a negative determination about MindForge and not a reason to inherit authority from the prior review.
+
 ## Authorized Architectural-Boundary Review
 
 The following statement is the complete authorized public description of the external architectural-boundary review:
