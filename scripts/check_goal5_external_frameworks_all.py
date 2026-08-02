@@ -73,6 +73,7 @@ CHECKS = [
     "scripts/check_decision_authority_integration_receipt.py",
     "scripts/check_goal5_external_blockers.py",
     "scripts/check_goal5_release_readiness.py",
+    "scripts/check_agcp_registry_assessment.py",
     "scripts/check_external_frameworks_index.py",
 ]
 
