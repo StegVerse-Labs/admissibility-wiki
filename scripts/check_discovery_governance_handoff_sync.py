@@ -2,11 +2,14 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STATUS = ROOT / "static" / "status" / "discovery-governance-handoff-status.json"
 HANDOFF = ROOT / "docs" / "DISCOVERY_GOVERNANCE_HANDOFF_MIRROR_HANDOFF.md"
+CONSOLIDATION_CHECK = ROOT / "scripts" / "check_discovery_governance_session_consolidation.py"
 
 EXPECTED_STATE = "SOURCE_COMPLETE_WITH_CANONICAL_RUNTIME_VALIDATION_PENDING_WORKFLOW_OBSERVATION"
 EXPECTED_CRITERIA = (
@@ -29,7 +32,9 @@ REQUIRED_HANDOFF_MARKERS = (
     "ACTIVATION_EVIDENCE_COMPLETE",
     "ACTIVATION_EVIDENCE_FAIL_CLOSED",
     "goal_completion_observed",
-    "The complete thread is not ready for archiving",
+    "MERGED INTO: StegVerse-Labs/admissibility-wiki/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+    "Session consolidation inventory: data/session-consolidation/discovery-governance-session-inventory.json",
+    "Session archive state: ARCHIVE_READY_AFTER_DURABLE_TRANSFER",
     "No destination mutation is authorized by this handoff.",
 )
 
@@ -72,9 +77,20 @@ def main() -> int:
         if criterion not in handoff_text:
             failures.append(f"handoff missing completion criterion: {criterion}")
 
-    stale_archive_claim = "The complete thread is ready for archiving without any additional part of the thread needed to move forward."
-    if stale_archive_claim in handoff_text:
-        failures.append("handoff contains stale archive-ready claim while run-bound evidence is pending")
+    if not CONSOLIDATION_CHECK.exists():
+        failures.append("missing session consolidation validator")
+    else:
+        result = subprocess.run(
+            [sys.executable, str(CONSOLIDATION_CHECK)],
+            cwd=ROOT,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+        )
+        print(result.stdout.rstrip())
+        if result.returncode != 0:
+            failures.append("session consolidation validation failed")
 
     if failures:
         print("DISCOVERY GOVERNANCE HANDOFF SYNC: FAIL")
