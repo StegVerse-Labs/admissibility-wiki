@@ -75,35 +75,35 @@ UNRESOLVED
 
 Let candidate onset times be \(t_1,\ldots,t_N\). Define:
 
-\[
+$$
 \Delta t_n=t_{n+1}-t_n
-\]
+$$
 
 Let \(t_F^{(n)}\) be the first observable listener feedback after candidate \(n\). The feedback latency is:
 
-\[
+$$
 L_F^{(n)}=t_F^{(n)}-t_n
-\]
+$$
 
 Let \(t_R^{(n+1)}\) be the onset of the next repair. The repair latency is:
 
-\[
+$$
 L_R^{(n)}=t_R^{(n+1)}-t_F^{(n)}
-\]
+$$
 
 Let \(t_A^*\) be the first independently coded admissibility-crossing candidate, \(t_M^*\) the first mutually observable candidate, and \(t_C^*\) consequential response onset.
 
 The observed intervals are:
 
-\[
+$$
 D_{A\rightarrow M}=t_M^*-t_A^*
-\]
+$$
 
 and:
 
-\[
+$$
 D_{M\rightarrow C}=t_C^*-t_M^*
-\]
+$$
 
 These are observational estimates of the formal variables, not measurements of neural decision time.
 
