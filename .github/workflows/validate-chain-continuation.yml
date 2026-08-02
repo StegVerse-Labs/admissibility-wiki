@@ -13,13 +13,16 @@ permissions:
   pages: write
   id-token: write
 
+# Push and pull-request runs may supersede older work on the same ref. A manual
+# canonical verification run is isolated and is never cancelled by later pushes.
 concurrency:
-  group: admissibility-wiki-canonical-${{ github.ref }}
-  cancel-in-progress: true
+  group: admissibility-wiki-canonical-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name != 'workflow_dispatch' }}
 
 jobs:
   validate-chain-continuation:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -122,8 +125,9 @@ jobs:
           PY
 
   capture-opa-evidence:
-    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.validate-chain-continuation.result == 'success' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     needs: validate-chain-continuation
     continue-on-error: true
     steps:
@@ -148,8 +152,9 @@ jobs:
           retention-days: 30
 
   replay-opa-fresh-runner:
-    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.capture-opa-evidence.result == 'success' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     needs: capture-opa-evidence
     continue-on-error: true
     steps:
@@ -176,8 +181,9 @@ jobs:
           retention-days: 30
 
   build-selected-cedar-binary:
-    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.validate-chain-continuation.result == 'success' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     needs: validate-chain-continuation
     continue-on-error: true
     steps:
@@ -201,8 +207,9 @@ jobs:
           retention-days: 30
 
   build-pages:
-    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.validate-chain-continuation.result == 'success' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     needs: validate-chain-continuation
     steps:
       - name: Checkout
@@ -293,11 +300,12 @@ jobs:
           path: build
 
   deploy-pages:
-    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.build-pages.result == 'success' }}
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.build-pages.result == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     needs: build-pages
     outputs:
       page_url: ${{ steps.deployment.outputs.page_url }}
@@ -307,8 +315,9 @@ jobs:
         uses: actions/deploy-pages@v4
 
   verify-public-pages:
-    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.deploy-pages.result == 'success' }}
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.deploy-pages.result == 'success' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     needs: deploy-pages
     steps:
       - name: Checkout
