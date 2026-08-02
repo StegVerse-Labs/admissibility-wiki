@@ -1,0 +1,51 @@
+{
+  "schema_version": "judgment-architecture-source-locator-candidates.v1",
+  "framework": "Judgment Architecture",
+  "publication_identity": {
+    "title": "Judgment Architecture: A Field Doctrine for Designing Human Judgment at Scale",
+    "creator": "Orli Shull",
+    "publisher": "Seedling & Star, LLC",
+    "publication_year": 2026
+  },
+  "candidate_policy": {
+    "accepted_locator_types": ["creator_publication_page", "publisher_publication_page", "isbn_catalog_record", "doi_or_archival_record", "durable_public_pdf"],
+    "rejected_as_sufficient_alone": ["creator_profile", "social_post_without_publication_identity", "third_party_summary", "search_result_snippet"],
+    "missing_locator_result": "BLOCKED",
+    "review_required_result": "REVIEW_REQUIRED",
+    "complete_result": "COMPLETE"
+  },
+  "candidates": [
+    {
+      "candidate_id": "ja-source-001",
+      "locator": "https://www.linkedin.com/in/orlishull",
+      "locator_type": "creator_profile",
+      "observed_identity": "Orli Shull / Seedling & Star, LLC",
+      "publication_title_present": false,
+      "stable_page_or_section_anchors_available": false,
+      "disposition": "REJECTED_AS_CANONICAL_PUBLICATION_LOCATOR",
+      "reason": "Creator identity is publicly observable, but the exact publication identity and stable citation anchors are not established on this surface."
+    },
+    {
+      "candidate_id": "ja-source-002",
+      "locator": "https://www.linkedin.com/posts/orlishull_aigovernance-aisafety-aialignment-activity-7449810156298809344-nUm2",
+      "locator_type": "social_post_without_publication_identity",
+      "observed_identity": "Orli Shull public post discussing judgment conditions and governance",
+      "publication_title_present": false,
+      "stable_page_or_section_anchors_available": false,
+      "disposition": "SUPPORTING_CONCEPT_SOURCE_ONLY",
+      "reason": "The post supports related terminology but does not identify or expose the named publication as a citable edition."
+    }
+  ],
+  "machine_state": {
+    "state": "BLOCKED",
+    "next_executable_task": "Re-evaluate candidate registry when a creator, publisher, catalog, archival, or durable public PDF locator is added.",
+    "duplicate_execution_key": "judgment-architecture-source-locator-candidates.v1",
+    "release_condition": "At least one accepted locator type must bind the exact publication identity and stable page or section anchors."
+  },
+  "authority_boundary": {
+    "candidate_registry_grants_endorsement": false,
+    "creator_profile_is_publication_locator": false,
+    "supporting_concept_source_completes_citation_intake": false,
+    "locator_acceptance_grants_interoperability": false
+  }
+}
