@@ -37,6 +37,36 @@ Execution -> separate boundary; ALLOW does not execute the transition
 
 This review concerns architectural boundary semantics only. It does not establish a public canonical MindForge source, framework provenance, implementation readiness, compatibility, certification, reviewer standing, or execution authority.
 
+## Attribution-Confirmation Participation Loop
+
+Providing the reviewer with the rendered public record after publication is a non-authorizing confirmation event.
+
+```text
+publication notice != renewed approval request
+publication notice != endorsement request
+publication notice != continuing reviewer obligation
+publication notice != execution authority
+
+publication notice = evidence-loop closure
+                   + inspectable attribution fidelity
+                   + privacy-boundary confirmation
+                   + voluntary path to correction or future participation
+```
+
+The confirmation event is not required to make the bounded publication valid. Its governance value is that the participant can inspect whether the system used the contribution exactly as authorized, excluded private material, and avoided silently expanding the participant's standing or responsibility.
+
+Accurate attribution therefore functions as participation infrastructure. Faithful implementation can reduce the risk of future contribution and increase voluntary review, correction, or collaboration without creating pressure, inherited authority, or an implied duty to respond.
+
+A reviewer who receives the public link retains complete choice to:
+
+- take no further action;
+- identify a correction;
+- clarify the approved boundary;
+- challenge the public representation; or
+- participate in a later bounded review.
+
+No response is treated as approval, endorsement, waiver, standing, or continued participation.
+
 ## Source
 
 Public canonical source required before this page is marked `sourced`.
@@ -195,6 +225,7 @@ This page does not mark the framework as sourced until an authorized public sour
 This page does not treat private correspondence provenance as a public canonical framework source.
 This page does not publish or quote private correspondence, screenshots, or unpublished draft text.
 This page does not make any attribution stronger than the exact authorized architectural-boundary review description.
+This page does not treat a publication notice or reviewer silence as approval, endorsement, waiver, standing, or continued participation.
 ```
 
 ## Challenge Path
