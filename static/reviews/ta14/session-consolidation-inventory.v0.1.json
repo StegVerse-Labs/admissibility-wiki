@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "inventory_type": "session_consolidation_inventory",
   "goal_id": "TA14-RECIPROCAL-REVIEW-LAYER",
   "originating_session_goal": "Determine whether the reciprocal TA-14 public-evidence review layer exists in StegVerse; build it when absent, activate it only when validated, and prevent missing evidence or observations from halting unrelated development.",
@@ -12,12 +12,12 @@
     "status": "static/status/ta14-remediation-status.json",
     "workflow_observation": "static/status/ta14-canonical-run-observation.json"
   },
-  "session_role": "CLAIMED_FOR_INTEGRATION",
+  "session_role": "CLAIMED_FOR_VALIDATION_AND_INTEGRATION",
   "claim": {
     "claimant": "repository-native TA-14 execution lane",
     "created_at": "2026-08-01T16:02:37Z",
-    "renewed_at": "2026-08-02T04:18:00-05:00",
-    "release_condition": "PR 52 merged or superseded after all bounded TA-14 validators pass, public routes are observed, the exact source PDF custody state is resolved, and the handoff records successor ownership.",
+    "renewed_at": "2026-08-02T04:23:00-05:00",
+    "release_condition": "PR 52 merged or superseded after all bounded TA-14 validators pass, public routes are observed, exact source PDF custody is resolved, and successor ownership is recorded.",
     "collision_boundary": [
       "docs/reviews/TA14_PUBLIC_EVIDENCE_REVIEW_MIRROR_HANDOFF.md",
       "docs/reviews/ta14-*.md",
@@ -86,7 +86,7 @@
       "archival_dependency": true,
       "evidence": "scripts/check_ta14_source_pdf.py",
       "release_condition": "Exact PDF bytes exist at the declared path, begin with %PDF-, and match SHA-256 4d9bfb86738601952ede6f5e83477ea3c086ce229c3403d2fa3bdaf4ae75bfbf.",
-      "next_action": "Commit the exact binary through a repository path that accepts binary content; then rerun canonical validation."
+      "next_action": "Commit exact binary through a repository path accepting binary content, then rerun canonical validation."
     },
     {
       "task_id": "TA14-GOAL-005",
@@ -132,7 +132,7 @@
       "archival_dependency": true,
       "evidence": "static/status/ta14-canonical-run-observation.json",
       "release_condition": "Canonical build, deploy, and public endpoint verification complete for all three TA-14 routes.",
-      "next_action": "Observe the next canonical workflow result and persist route outcomes."
+      "next_action": "Persist build, deploy, and route outcomes from the next completed canonical run."
     },
     {
       "task_id": "TA14-GOAL-008",
@@ -143,11 +143,12 @@
       "owner": "repository-native consolidation lane",
       "claim_state": "CLAIMED_FOR_VALIDATION",
       "completion_state": "IMPLEMENTED",
-      "validation_state": "VALIDATOR_PENDING",
-      "integration_state": "HANDOFF_UPDATE_PENDING",
+      "validation_state": "CANONICAL_RUN_IN_PROGRESS",
+      "integration_state": "HANDOFF_UPDATED_AND_VALIDATOR_BOUND",
       "archival_dependency": true,
-      "evidence": "this inventory and its canonical validator",
-      "next_action": "Validate this inventory, bind its validator, and update the canonical handoff."
+      "evidence": "scripts/check_ta14_session_consolidation_inventory.py and canonical run 30741624573",
+      "release_condition": "Consolidation validator passes in a completed canonical run and the result is persisted in static/status/ta14-canonical-run-observation.json.",
+      "next_action": "Observe canonical run 30741624573 and persist the exact validator result."
     }
   ],
   "convergence": {
@@ -163,6 +164,15 @@
     ],
     "superseded_chat_only_status_reports": true
   },
+  "current_observation": {
+    "workflow": ".github/workflows/validate-chain-continuation.yml",
+    "run_id": 30741624573,
+    "run_number": 3838,
+    "status": "IN_PROGRESS",
+    "job_id": 91479984506,
+    "active_step": "Scan complete validation chain",
+    "development_halt": false
+  },
   "metrics": {
     "required_tasks": 8,
     "complete_or_implemented_tasks": 5,
@@ -173,7 +183,7 @@
     "required_validations": 5,
     "validated": 3,
     "required_integrations": 4,
-    "integrated": 2,
+    "integrated": 3,
     "session_goals": 8,
     "transferred_or_complete": 8,
     "goal_activation_percent": 50,
@@ -184,7 +194,6 @@
     "Claim inventory completed or transferred to a named active claim with machine-observable release condition.",
     "Architecture manifest completed or transferred to a named active claim with machine-observable release condition.",
     "Canonical workflow observes the consolidation validator and TA-14 public routes.",
-    "Canonical handoff records this inventory and successor ownership.",
     "No unique session requirement remains only in chat."
   ]
 }
