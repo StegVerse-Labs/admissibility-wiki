@@ -8,6 +8,7 @@ task-specific completion receipt exists.
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -18,6 +19,8 @@ STATUS = ROOT / "static/status/ta-14-stegverse-gap-review-v2.execution-status.js
 ADJUDICATION = ROOT / "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.adjudication.json"
 ROUTE_MANIFEST = ROOT / "static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json"
 OBSERVER = ROOT / "scripts/run_ta14_stegverse_gap_review_v2_tasks.py"
+ADJUDICATION_CHECK = ROOT / "scripts/check_ta14_stegverse_gap_review_v2_adjudication.py"
+ROUTE_MANIFEST_CHECK = ROOT / "scripts/check_ta14_stegverse_route_complete_evidence_manifest.py"
 
 
 def fail(message: str) -> None:
@@ -37,8 +40,20 @@ def load(path: Path) -> dict[str, Any]:
     return value
 
 
+def run_check(path: Path, label: str) -> None:
+    if not path.is_file():
+        fail(f"missing {path.relative_to(ROOT)}")
+    result = subprocess.run(
+        [sys.executable, str(path)], cwd=ROOT, text=True,
+        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
+    )
+    print(result.stdout.rstrip())
+    if result.returncode != 0:
+        fail(f"{label} failed")
+
+
 def main() -> None:
-    for path in (OBSERVER, ADJUDICATION, ROUTE_MANIFEST):
+    for path in (OBSERVER, ADJUDICATION, ROUTE_MANIFEST, ADJUDICATION_CHECK, ROUTE_MANIFEST_CHECK):
         if not path.is_file():
             fail(f"missing {path.relative_to(ROOT)}")
 
@@ -112,6 +127,9 @@ def main() -> None:
         fail("status observations must cover every registry task exactly")
     if status.get("invalid_tasks") != []:
         fail("invalid_tasks must be empty before canonical binding")
+
+    run_check(ADJUDICATION_CHECK, "bounded finding adjudication")
+    run_check(ROUTE_MANIFEST_CHECK, "route-complete evidence manifest structure")
 
     print(f"TA-14 REVIEW TASK EXECUTION: PASS - {len(task_ids)} internal tasks are repository-addressable, actionable, and nonblocking")
 
