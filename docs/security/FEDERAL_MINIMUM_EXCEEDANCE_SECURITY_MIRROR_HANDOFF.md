@@ -25,13 +25,26 @@ canonical repository handoff: ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 canonical workflow: .github/workflows/validate-chain-continuation.yml
 ```
 
-## Authoritative files
+## Authoritative files and commits
 
 ```text
+docs/security/FEDERAL_MINIMUM_EXCEEDANCE_SECURITY_MIRROR_HANDOFF.md
+  initial commit 9eba97f697030d202a1e0113eb46e70d207e7f8e
+
 docs/security/federal-minimum-exceedance-security-baseline.md
+  commit e3ea8a934cd03b79657aa1c2a79cee3e98ce9df1
+
 static/security/federal-minimum-exceedance-security-profile.json
+  commit b080c7c1f821a4fea2ead1650a0efd0e8a1f7a90
+
 scripts/check_federal_minimum_exceedance_security.py
+  commit a0e10d7f9c8e53d49a5ae1a0759a971d37d1fe77
+
 data/session-consolidation/federal-minimum-exceedance-security-task.json
+  commit 3cd83f2d57639672a4b07d3438395f949cebe351
+
+scripts/check_discovery_governance_handoff_sync.py
+  canonical integration commit 4d202bac8b5106e501640e6f01ed4c6f6ce4792e
 ```
 
 ## Federal floor references
@@ -89,6 +102,12 @@ python scripts/check_federal_minimum_exceedance_security.py
 python scripts/check_discovery_governance_handoff_sync.py
 ```
 
+## Validation integration
+
+The security validator is invoked by `scripts/check_discovery_governance_handoff_sync.py`, which is already executed by the canonical admissibility automation validation chain. This reuses the single canonical workflow and creates no competing workflow.
+
+Source-level validation is installed. A hosted workflow PASS is not claimed until a specific run, job, and log are observed.
+
 ## Incomplete work and release condition
 
 Source policy, machine-readable profile, and deterministic validation are repository-owned. Hosted-workflow success, deployment, and runtime security effectiveness remain unclaimed until a specific canonical run and applicable runtime evidence are inspected.
@@ -134,4 +153,4 @@ session-consolidation percentage: 100%
 
 ## Archive condition
 
-This session may be archived once the profile, validator, task record, and canonical integration are committed, because all remaining evidence collection is assigned to repository-native automation with a machine-observable release condition. Repository security activation remains distinct from session archival readiness.
+This session may be archived because the profile, validator, task record, handoff, and canonical integration are committed, and all remaining evidence collection is assigned to repository-native automation with a machine-observable release condition. Repository security activation remains distinct from session archival readiness.
