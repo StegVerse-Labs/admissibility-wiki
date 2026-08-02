@@ -32,7 +32,7 @@
     {
       "queue_id": "ta14-gap-review-v2",
       "owner_record": "docs/external-frameworks/ta-14-stegverse-public-evidence-gap-review-v2-intake.md",
-      "runner": "scripts/run_ta14_stegverse_gap_review_v2_tasks.py",
+      "runner": "scripts/run_ta14_stegverse-gap-review-v2-tasks.py",
       "registry": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json",
       "report": "static/status/ta-14-stegverse-gap-review-v2.execution-status.json",
       "validator": "scripts/check_ta14_stegverse_gap_review_v2_task_execution.py",
@@ -46,6 +46,15 @@
       "report": "reports/agcp-registry-task-execution.json",
       "validator": "scripts/check_agcp_registry_task_execution.py",
       "completion_predicate": "the bounded assessment validates, current source and release evidence are classified, exact repository-owned next work is persisted, and unavailable evidence never becomes an external task or global halt"
+    },
+    {
+      "queue_id": "public-anchor-mindforge-session-consolidation",
+      "owner_record": "docs/session-consolidation/public-anchor-mindforge-session-consolidation.md",
+      "runner": "scripts/check_public_anchor_mindforge_session_consolidation.py",
+      "registry": "static/status/public-anchor-mindforge-session-consolidation.json",
+      "report": "static/status/public-anchor-mindforge-session-consolidation.json",
+      "validator": "scripts/check_public_anchor_mindforge_session_consolidation.py",
+      "completion_predicate": "all 13 originating session goals are complete or durably transferred, claims are released, no chat-only requirement remains, and future execution does not depend on the originating conversation"
     }
   ],
   "mesh": {
