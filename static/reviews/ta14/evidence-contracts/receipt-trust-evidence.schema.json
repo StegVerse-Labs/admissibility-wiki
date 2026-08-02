@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/reviews/ta14/receipt-trust-evidence.schema.json",
+  "title": "TA-14 Receipt Trust Evidence Observation",
+  "type": "object",
+  "required": ["schema_version", "observation_id", "signer", "key", "custody", "evidence_state", "claim_effect"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "observation_id": {"type": "string", "minLength": 1},
+    "signer": {
+      "type": "object",
+      "required": ["identity", "authorization_state"],
+      "properties": {
+        "identity": {"type": "string", "minLength": 1},
+        "authorization_state": {"enum": ["AUTHORIZED", "UNAUTHORIZED", "UNKNOWN"]}
+      },
+      "additionalProperties": false
+    },
+    "key": {
+      "type": "object",
+      "required": ["fingerprint", "provenance_state", "revocation_state"],
+      "properties": {
+        "fingerprint": {"type": "string", "minLength": 1},
+        "provenance_state": {"enum": ["VERIFIED", "UNVERIFIED", "CONTRADICTED"]},
+        "rotation_record": {"type": ["string", "null"]},
+        "revocation_state": {"enum": ["NOT_REVOKED", "REVOKED", "UNKNOWN"]},
+        "trust_anchor": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "custody": {
+      "type": "object",
+      "required": ["custodian", "state"],
+      "properties": {
+        "custodian": {"type": "string", "minLength": 1},
+        "state": {"enum": ["VERIFIED", "UNVERIFIED", "COMPROMISED", "UNKNOWN"]}
+      },
+      "additionalProperties": false
+    },
+    "evidence_state": {"enum": ["VERIFIED_BOUNDED", "EVIDENCE_ABSENT_FAIL_CLOSED", "SIMULATED_ONLY", "CONTRADICTED"]},
+    "claim_effect": {"enum": ["TRUSTED_RECEIPT_CLAIM_ALLOWED_BOUNDED", "TRUSTED_RECEIPT_CLAIM_DENIED", "TRUSTED_RECEIPT_CLAIM_UNAVAILABLE"]}
+  },
+  "additionalProperties": false
+}

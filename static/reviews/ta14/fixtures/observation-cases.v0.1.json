@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.2.0",
+  "fixture_type": "ta14_observation_cases",
+  "cases": [
+    {"id": "authority-absent", "category": "authority", "input_state": "ABSENT", "expected_task_state": "EVIDENCE_ABSENT_FAIL_CLOSED", "expected_claim_effect": "AUTHORITY_CLAIM_UNAVAILABLE", "development_halt": false},
+    {"id": "authority-stale", "category": "authority", "input_state": "STALE", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "AUTHORITY_CLAIM_UNAVAILABLE", "development_halt": false},
+    {"id": "authority-scope-mismatch", "category": "authority", "input_state": "DELEGATION_SCOPE_MISMATCH", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "AUTHORITY_SCOPE_DENIED", "development_halt": false},
+    {"id": "signer-revoked", "category": "receipt_trust", "input_state": "REVOKED", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "TRUSTED_SIGNING_CLAIM_UNAVAILABLE", "development_halt": false},
+    {"id": "signer-rotation-discontinuous", "category": "receipt_trust", "input_state": "ROTATION_WITHOUT_CONTINUITY", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "SIGNER_CONTINUITY_UNAVAILABLE", "development_halt": false},
+    {"id": "trust-anchor-substitution", "category": "receipt_trust", "input_state": "TRUST_ANCHOR_CHANGED_UNBOUND", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "TRUSTED_SIGNING_CLAIM_UNAVAILABLE", "development_halt": false},
+    {"id": "object-substitution", "category": "object_binding", "input_state": "DIGEST_MISMATCH", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "EXECUTION_DENIED", "development_halt": false},
+    {"id": "parameter-expansion", "category": "object_binding", "input_state": "UNBOUND_PARAMETER", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "EXECUTION_DENIED", "development_halt": false},
+    {"id": "object-match-parameter-mismatch", "category": "object_binding", "input_state": "OBJECT_DIGEST_MATCH_PARAMETER_DIGEST_MISMATCH", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "EXECUTION_DENIED", "development_halt": false},
+    {"id": "stale-commit-token", "category": "atomic_commit", "input_state": "LEASE_EXPIRED", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "COMMIT_DENIED", "development_halt": false},
+    {"id": "compare-and-commit-race", "category": "atomic_commit", "input_state": "STATE_CHANGED_AFTER_COMPARE", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "COMMIT_DENIED", "development_halt": false},
+    {"id": "direct-runtime-bypass", "category": "execution_boundary", "input_state": "BYPASS_ATTEMPT", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "NON_BYPASSABILITY_UNAVAILABLE", "development_halt": false},
+    {"id": "receipt-service-outage", "category": "execution_boundary", "input_state": "OUTAGE", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "FAIL_CLOSED_REQUIRED", "development_halt": false},
+    {"id": "metadata-stripped", "category": "execution_boundary", "input_state": "GOVERNANCE_METADATA_REMOVED", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "EXECUTION_DENIED", "development_halt": false},
+    {"id": "alternate-credential-route", "category": "execution_boundary", "input_state": "UNMEDIATED_CREDENTIAL_PATH", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "NON_BYPASSABILITY_UNAVAILABLE", "development_halt": false},
+    {"id": "refusal-contradicted", "category": "refusal", "input_state": "PROTECTED_STATE_CHANGED", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "NON_OCCURRENCE_NOT_PROVEN", "development_halt": false},
+    {"id": "refusal-delayed-execution", "category": "refusal", "input_state": "EXECUTION_AFTER_DENIAL_WINDOW", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "NON_OCCURRENCE_NOT_PROVEN", "development_halt": false},
+    {"id": "outcome-evidence-absent", "category": "outcome", "input_state": "ABSENT", "expected_task_state": "EVIDENCE_ABSENT_FAIL_CLOSED", "expected_claim_effect": "OUTCOME_CORRESPONDENCE_UNAVAILABLE", "development_halt": false},
+    {"id": "outcome-contradictory", "category": "outcome", "input_state": "SYSTEM_OF_RECORD_CONTRADICTS_CLAIM", "expected_task_state": "SIMULATED_ONLY", "expected_claim_effect": "OUTCOME_CLAIM_DENIED", "development_halt": false},
+    {"id": "neutral-review-self-asserted", "category": "neutral_review", "input_state": "SELF_ASSERTED", "expected_task_state": "DISPUTED_REVIEWER_BURDEN", "expected_claim_effect": "NO_NEUTRAL_STANDING_INFERRED", "development_halt": false},
+    {"id": "neutral-review-conflict-undisclosed", "category": "neutral_review", "input_state": "CONFLICT_DISCLOSURE_ABSENT", "expected_task_state": "DISPUTED_REVIEWER_BURDEN", "expected_claim_effect": "NO_NEUTRAL_STANDING_INFERRED", "development_halt": false}
+  ]
+}

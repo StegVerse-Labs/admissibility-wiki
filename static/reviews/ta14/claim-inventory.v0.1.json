@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.1.0",
+  "artifact_type": "public_claim_inventory",
+  "review_id": "TA14-STEGVERSE-PUBLIC-EVIDENCE-GAP-REVIEW-V2",
+  "source_document_date": "2026-08-01",
+  "source_pdf_sha256": "4d9bfb86738601952ede6f5e83477ea3c086ce229c3403d2fa3bdaf4ae75bfbf",
+  "posture": {
+    "source_is_self_authored_external_critique": true,
+    "independent_adjudication_established": false,
+    "exchange_exclusivity_established": false,
+    "claims_verified_against_original_public_surfaces": false
+  },
+  "claims": [
+    {
+      "claim_id": "TA14-CITED-CLAIM-001",
+      "text_as_characterized_by_review": "verifies every action before it happens",
+      "review_location": "Executive Determination / G-01",
+      "original_source": "PyPI package page identified by TA-14",
+      "original_source_immutable_reference": null,
+      "release": null,
+      "component": null,
+      "test_reference": null,
+      "limitation_reference": null,
+      "evidence_state": "SOURCE_VERIFICATION_REQUIRED",
+      "remediation": "Locate exact original text and release context; map or narrow the claim."
+    },
+    {
+      "claim_id": "TA14-CITED-CLAIM-002",
+      "text_as_characterized_by_review": "produces cryptographic proof",
+      "review_location": "Executive Determination / G-01",
+      "original_source": "PyPI package page identified by TA-14",
+      "original_source_immutable_reference": null,
+      "release": null,
+      "component": null,
+      "test_reference": null,
+      "limitation_reference": null,
+      "evidence_state": "SOURCE_VERIFICATION_REQUIRED",
+      "remediation": "Define the bounded receipt/proof class and distinguish integrity evidence from trusted authority and outcome proof."
+    },
+    {
+      "claim_id": "TA14-CITED-CLAIM-003",
+      "text_as_characterized_by_review": "eliminates ungoverned execution at the point of irreversibility",
+      "review_location": "Executive Determination / G-01",
+      "original_source": "PyPI package page identified by TA-14",
+      "original_source_immutable_reference": null,
+      "release": null,
+      "component": null,
+      "test_reference": null,
+      "limitation_reference": null,
+      "evidence_state": "SOURCE_VERIFICATION_REQUIRED",
+      "remediation": "Locate exact source context and map the claim to non-bypassability, effector custody, atomic commit, and verified non-occurrence evidence."
+    },
+    {
+      "claim_id": "TA14-REVIEW-CLAIM-001",
+      "text_as_characterized_by_review": "TA-14 error states were published in an Admissibility Wiki",
+      "review_location": "Public-Critique Fallacy and Method Defect Analysis / G-16",
+      "original_source": "Public discussion supplied to TA-14",
+      "original_source_immutable_reference": null,
+      "release": null,
+      "component": "admissibility-wiki",
+      "test_reference": null,
+      "limitation_reference": null,
+      "evidence_state": "EXACT_QUOTATION_AND_CONTEXT_REQUIRED",
+      "remediation": "Freeze exact statements, routes, methods, expected and observed results, and bounded conclusions."
+    }
+  ],
+  "next_actions": [
+    "Resolve exact immutable source references",
+    "Record release and component boundaries",
+    "Map every claim to tests and limitations",
+    "Add reciprocal TA-14 claims under the same schema",
+    "Fail closed on any claim without attributable source evidence"
+  ]
+}

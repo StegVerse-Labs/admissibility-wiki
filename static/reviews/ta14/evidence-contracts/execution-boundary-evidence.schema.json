@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/reviews/ta14/execution-boundary-evidence.schema.json",
+  "title": "TA-14 Execution Boundary Evidence",
+  "type": "object",
+  "required": ["schema_version", "transition_id", "boundary_id", "evidence_state", "claim_effect", "observations"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "transition_id": {"type": "string", "minLength": 1},
+    "boundary_id": {"type": "string", "minLength": 1},
+    "boundary_owner": {"type": ["string", "null"]},
+    "runtime_owner": {"type": ["string", "null"]},
+    "effector_owner": {"type": ["string", "null"]},
+    "credential_custodian": {"type": ["string", "null"]},
+    "evidence_state": {"enum": ["EVIDENCE_ABSENT_FAIL_CLOSED", "SIMULATED_ONLY", "VERIFIED_BOUNDED"]},
+    "claim_effect": {"enum": ["NON_BYPASSABILITY_UNAVAILABLE", "BOUNDED_MEDIATION_ONLY", "VERIFIED_WITHIN_DECLARED_BOUNDARY"]},
+    "observations": {
+      "type": "object",
+      "required": ["direct_call", "sdk_bypass", "metadata_stripping", "alternate_route", "outage_behavior", "stale_replay"],
+      "properties": {
+        "direct_call": {"enum": ["NOT_OBSERVED", "DENIED", "ALLOWED", "SIMULATED"]},
+        "sdk_bypass": {"enum": ["NOT_OBSERVED", "DENIED", "ALLOWED", "SIMULATED"]},
+        "metadata_stripping": {"enum": ["NOT_OBSERVED", "DENIED", "ALLOWED", "SIMULATED"]},
+        "alternate_route": {"enum": ["NOT_OBSERVED", "DENIED", "ALLOWED", "SIMULATED"]},
+        "outage_behavior": {"enum": ["NOT_OBSERVED", "FAIL_CLOSED", "FAIL_OPEN", "SIMULATED"]},
+        "stale_replay": {"enum": ["NOT_OBSERVED", "DENIED", "ALLOWED", "SIMULATED"]}
+      },
+      "additionalProperties": false
+    },
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"evidence_state": {"const": "EVIDENCE_ABSENT_FAIL_CLOSED"}}},
+      "then": {"properties": {"claim_effect": {"const": "NON_BYPASSABILITY_UNAVAILABLE"}}}
+    },
+    {
+      "if": {"properties": {"evidence_state": {"const": "VERIFIED_BOUNDED"}}},
+      "then": {"properties": {"claim_effect": {"const": "VERIFIED_WITHIN_DECLARED_BOUNDARY"}}}
+    }
+  ],
+  "additionalProperties": false
+}

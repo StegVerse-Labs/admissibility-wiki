@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/reviews/ta14/neutral-review-evidence.schema.json",
+  "title": "TA-14 Neutral Review Evidence",
+  "type": "object",
+  "required": ["schema_version", "review_id", "reviewer_identity", "standing_state", "method", "artifact_refs", "result_state", "claim_effect"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "review_id": {"type": "string", "minLength": 1},
+    "reviewer_identity": {"type": "string", "minLength": 1},
+    "reviewer_affiliations": {"type": "array", "items": {"type": "string"}},
+    "conflicts_disclosed": {"type": "boolean"},
+    "standing_state": {"enum": ["NOT_ESTABLISHED", "SELF_ASSERTED", "INDEPENDENTLY_ATTESTED"]},
+    "method": {
+      "type": "object",
+      "required": ["public", "reproducible", "bounded", "version"],
+      "properties": {
+        "public": {"type": "boolean"},
+        "reproducible": {"type": "boolean"},
+        "bounded": {"type": "boolean"},
+        "version": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "artifact_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "result_state": {"enum": ["NOT_RUN", "REPRODUCED", "NOT_REPRODUCED", "PARTIAL", "DISPUTED"]},
+    "claim_effect": {"enum": ["NO_NEUTRAL_STANDING_INFERRED", "BOUNDED_EXTERNAL_REPRODUCTION", "INDEPENDENT_ATTESTATION_ESTABLISHED"]},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"standing_state": {"enum": ["NOT_ESTABLISHED", "SELF_ASSERTED"]}}},
+      "then": {"properties": {"claim_effect": {"const": "NO_NEUTRAL_STANDING_INFERRED"}}}
+    },
+    {
+      "if": {"properties": {"standing_state": {"const": "INDEPENDENTLY_ATTESTED"}}},
+      "then": {"properties": {"claim_effect": {"enum": ["BOUNDED_EXTERNAL_REPRODUCTION", "INDEPENDENT_ATTESTATION_ESTABLISHED"]}}}
+    }
+  ],
+  "additionalProperties": false
+}

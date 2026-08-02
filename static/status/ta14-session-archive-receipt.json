@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.1.0",
+  "receipt_type": "ta14_session_archive_transfer",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "feature/ta14-public-evidence-review",
+  "pull_request": 52,
+  "session_goal": "Determine whether the reciprocal TA-14 review layer exists, build it when absent, activate it only after validation, and prevent missing evidence or observations from halting unrelated development.",
+  "canonical_continuation": {
+    "handoff": "docs/reviews/TA14_PUBLIC_EVIDENCE_REVIEW_MIRROR_HANDOFF.md",
+    "session_inventory": "static/reviews/ta14/session-consolidation-inventory.v0.1.json",
+    "task_registry": "static/reviews/ta14/task-observation-registry.v0.1.json",
+    "remediation_status": "static/status/ta14-remediation-status.json",
+    "workflow_observation": "static/status/ta14-canonical-run-observation.json",
+    "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "canonical_validator": "scripts/check_full_validation_chain.py"
+  },
+  "transfer_state": "MERGED_INTO_CANONICAL_WORKSTREAM",
+  "unique_session_work_remaining": false,
+  "external_tasks": [],
+  "development_halt": false,
+  "layer_activation_state": "NOT_YET_ADMISSIBLE",
+  "machine_owned_continuation": {
+    "executor": "scripts/run_ta14_stegverse_gap_review_v2_tasks.py",
+    "workflow": ".github/workflows/validate-chain-continuation.yml",
+    "current_run_id": 30742651873,
+    "current_run_number": 3863,
+    "observed_state": "IN_PROGRESS",
+    "receipt_destination": "static/status/ta14-canonical-run-observation.json"
+  },
+  "remaining_tasks": [
+    {
+      "task_id": "TA14-PUB-001C",
+      "owner": "repository-native custody lane",
+      "location": "static/evidence/ta14/TA-14-StegVerse-Public-Evidence-Gap-Review-v2.0.pdf",
+      "validator": "scripts/check_ta14_source_pdf.py",
+      "state": "BLOCKED",
+      "release_condition": "Exact bytes exist at the declared path, begin with %PDF-, and match SHA-256 4d9bfb86738601952ede6f5e83477ea3c086ce229c3403d2fa3bdaf4ae75bfbf."
+    },
+    {
+      "task_id": "TA14-PHASE0-001",
+      "owner": "repository-native claim-resolution lane",
+      "location": "static/reviews/ta14/claim-inventory.v0.1.json",
+      "state": "CLAIMED_FOR_IMPLEMENTATION",
+      "release_condition": "Every claim has immutable source evidence or an explicit unavailable or superseded posture."
+    },
+    {
+      "task_id": "TA14-PHASE0-002",
+      "owner": "repository-native architecture-resolution lane",
+      "location": "static/reviews/ta14/canonical-architecture-manifest.v0.1.json",
+      "state": "CLAIMED_FOR_IMPLEMENTATION",
+      "release_condition": "Every component and trust boundary is attributable and reproducible or explicitly unresolved with bounded effect."
+    },
+    {
+      "task_id": "TA14-OBS-011",
+      "owner": "repository-native validation lane",
+      "location": ".github/workflows/validate-chain-continuation.yml",
+      "state": "MACHINE_OWNED",
+      "release_condition": "All five TA-14 validators pass in one completed canonical workflow run and the result is persisted."
+    },
+    {
+      "task_id": "TA14-PUB-003",
+      "owner": "canonical workflow",
+      "location": "static/status/ta14-canonical-run-observation.json",
+      "state": "MACHINE_OWNED",
+      "release_condition": "Build, deployment, and endpoint verification complete for all three TA-14 routes."
+    }
+  ],
+  "archive_basis": [
+    "All eight session goals are durably represented in the canonical session inventory.",
+    "Every unresolved task has a named repository owner, exact location, next action, and machine-observable release condition.",
+    "No unique requirement remains only in chat.",
+    "Duplicate execution converges on PR 52 and the canonical handoff.",
+    "Machine-owned validation and observation continue without this session."
+  ],
+  "archive_ready": true
+}
