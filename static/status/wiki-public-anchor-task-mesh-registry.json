@@ -37,6 +37,15 @@
       "report": "static/status/ta-14-stegverse-gap-review-v2.execution-status.json",
       "validator": "scripts/check_ta14_stegverse_gap_review_v2_task_execution.py",
       "completion_predicate": "repository paths are observed, actionable evidence gaps remain nonblocking, invalid tasks fail closed, and task-specific receipts record completion"
+    },
+    {
+      "queue_id": "agcp-registry-review",
+      "owner_record": "docs/external-frameworks/AGCP_REGISTRY_MIRROR_HANDOFF.md",
+      "runner": "scripts/run_agcp_registry_tasks.py",
+      "registry": "static/external-frameworks/agcp-registry-assessment.v0.1.json",
+      "report": "reports/agcp-registry-task-execution.json",
+      "validator": "scripts/check_agcp_registry_task_execution.py",
+      "completion_predicate": "the bounded assessment validates, current source and release evidence are classified, exact repository-owned next work is persisted, and unavailable evidence never becomes an external task or global halt"
     }
   ],
   "mesh": {
