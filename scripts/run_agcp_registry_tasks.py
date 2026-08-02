@@ -11,7 +11,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ASSESSMENT = ROOT / "static/external-frameworks/agcp-registry-assessment.v0.1.json"
 VALIDATOR = ROOT / "scripts/check_agcp_registry_assessment.py"
+CONSOLIDATION = ROOT / "static/status/agcp-session-consolidation.json"
+CONSOLIDATION_VALIDATOR = ROOT / "scripts/check_agcp_session_consolidation.py"
 REPORT = ROOT / "reports/agcp-registry-task-execution.json"
+
+
+def execute(path: Path) -> tuple[int, str]:
+    if not path.exists():
+        return 127, f"missing {path.relative_to(ROOT)}"
+    result = subprocess.run(
+        [sys.executable, str(path)], cwd=ROOT, text=True,
+        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
+    )
+    return result.returncode, result.stdout.rstrip()
 
 
 def main() -> int:
@@ -26,24 +38,13 @@ def main() -> int:
             failures.append(f"invalid assessment: {exc}")
             data = {}
 
-    validator_result = subprocess.run(
-        [sys.executable, str(VALIDATOR)],
-        cwd=ROOT,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
-    ) if VALIDATOR.exists() else None
+    validator_exit, validator_output = execute(VALIDATOR)
+    if validator_exit != 0:
+        failures.append("assessment validator failed")
 
-    if validator_result is None:
-        failures.append(str(VALIDATOR.relative_to(ROOT)))
-        validator_exit = 127
-        validator_output = "validator missing"
-    else:
-        validator_exit = validator_result.returncode
-        validator_output = validator_result.stdout.rstrip()
-        if validator_exit != 0:
-            failures.append("assessment validator failed")
+    consolidation_exit, consolidation_output = execute(CONSOLIDATION_VALIDATOR)
+    if consolidation_exit != 0:
+        failures.append("session consolidation validator failed")
 
     capture = data.get("source_capture", {}) if isinstance(data, dict) else {}
     verified = isinstance(capture, dict) and capture.get("independently_verified") is True
@@ -71,12 +72,16 @@ def main() -> int:
         "inputs": [
             str(ASSESSMENT.relative_to(ROOT)),
             str(VALIDATOR.relative_to(ROOT)),
+            str(CONSOLIDATION.relative_to(ROOT)),
+            str(CONSOLIDATION_VALIDATOR.relative_to(ROOT)),
             "docs/external-frameworks/agcp-registry.md",
             "docs/external-frameworks/AGCP_REGISTRY_MIRROR_HANDOFF.md"
         ],
         "state": lifecycle_state,
-        "validator_exit_code": validator_exit,
-        "validator_output": validator_output,
+        "validation": {
+            "assessment": {"exit_code": validator_exit, "output": validator_output},
+            "session_consolidation": {"exit_code": consolidation_exit, "output": consolidation_output}
+        },
         "failures": failures,
         "release_condition": {
             "planned_release_observed": planned_release_observed,
@@ -91,7 +96,13 @@ def main() -> int:
         "duplicate_execution_control": {
             "canonical_task_id": "ADMISSIBILITY-AGCP-001",
             "single_report_path": str(REPORT.relative_to(ROOT)),
-            "append_only_parallel_queue_forbidden": True
+            "append_only_parallel_queue_forbidden": True,
+            "canonical_claim_record": str(CONSOLIDATION.relative_to(ROOT))
+        },
+        "session_consolidation": {
+            "record": str(CONSOLIDATION.relative_to(ROOT)),
+            "validated": consolidation_exit == 0,
+            "conversation_required_for_continuation": False
         },
         "manual_user_tasks_required": [],
         "external_tasks_exist": False,
