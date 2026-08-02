@@ -1,0 +1,35 @@
+{
+  "schema_version": "governed-review-task-completion-receipt.v1",
+  "task_id": "TA14-V2-002",
+  "title": "Adjudicate G-01 through G-18",
+  "state": "BOUNDED_ADJUDICATION_COMPLETED_EVIDENCE_MAPPING_CONTINUES",
+  "completed_at": "2026-08-02T01:39:00-05:00",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "main",
+  "adjudication_path": "static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.adjudication.json",
+  "validator_path": "scripts/check_ta14_stegverse_gap_review_v2_adjudication.py",
+  "canonical_binding_path": "scripts/check_ta14_stegverse_gap_review_v2_task_execution.py",
+  "binding_commit": "a2494ae09e9dff3cd57f7ec07ad239a4a6f2f634",
+  "finding_coverage": {
+    "required": 18,
+    "bounded": 18,
+    "agree": 9,
+    "partial": 8,
+    "disagree": 0,
+    "defer": 1
+  },
+  "continuation_policy": {
+    "evidence_mapping_remains_internal": true,
+    "unresolved_finding_halts_other_findings": false,
+    "missing_public_proof_is_nonexistence": false,
+    "disposition_changes_require_evidence_path": true
+  },
+  "standing_effect": "NONE_PENDING_REVIEW",
+  "authority_boundary": {
+    "bounded_adjudication_is_route_complete_proof": false,
+    "bounded_adjudication_is_independent_reconstruction": false,
+    "certification_granted": false,
+    "execution_authority_granted": false,
+    "government_recognition_established": false
+  }
+}
