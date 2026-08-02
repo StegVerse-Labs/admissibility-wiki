@@ -19,10 +19,11 @@ Execution boundary -> separate consequence-binding decision
 ## Current state
 
 ```text
-State: IMPLEMENTED_ATTRIBUTION_AUTHORIZED_PENDING_CANONICAL_PUBLICATION_VERIFICATION
+State: PUBLIC_ATTRIBUTION_INSTALLED_PENDING_CANONICAL_PUBLICATION_VERIFICATION
 Canonical workflow: .github/workflows/validate-chain-continuation.yml
 Last observed run: 30277404457
 Last observed commit: 8bd0e0a571e4739ebd2baecb437d456d8fbc523f
+Public attribution installation commit: cbdbe8223ed8094c3dbad37e3e0dbc51ddb98388
 Goal-local deterministic suite: PASS
 Repository-wide result: FAIL_CLOSED_OBSERVED
 Review disposition: SUBSTANTIALLY_CORRECT_WITH_CLARIFICATIONS
@@ -30,8 +31,9 @@ Review scope: BOUNDARY_SEMANTICS_ONLY
 Attribution authorization: AUTHORIZED_EXACT_WITH_BOUNDARIES
 Reviewer response evidence: APPROVED_EXACT_WITH_BOUNDARIES
 Attribution publication permitted: true
+Authorized statement installed in public source: true
 Private correspondence publication permitted: false
-Publication verification: TEMPLATE_NOT_OBSERVED
+Publication verification: PENDING_CANONICAL_RUN
 Public route verification: NOT_OBSERVED
 Publication activation: not complete
 Downstream mutation authority: none granted
@@ -63,6 +65,12 @@ scripts/check_mindforge_publication_verification.py
 scripts/check_mindforge_source_location_registry.py
 scripts/check_admissibility_automation_handoff.py
 ```
+
+## Public attribution installation receipt
+
+Commit `cbdbe8223ed8094c3dbad37e3e0dbc51ddb98388` installs the exact authorized public statement in `docs/external-frameworks/mindforge.md`, records the reviewed four-part boundary, and preserves every publication prohibition without reproducing private correspondence, screenshots, or unpublished drafts.
+
+Installation in repository source is complete. Canonical workflow, build, deployment, and content-aware public-route verification remain separate required gates.
 
 ## Fixture distinction
 
@@ -125,7 +133,7 @@ docs/external-frameworks/evidence/mindforge-publication-verification.template.js
   -> binds AUTHORIZED_EXACT_WITH_BOUNDARIES
 
 this handoff
-  -> includes explicit public route verification marker
+  -> includes explicit public route verification marker and public attribution installation receipt
 ```
 
 The repository-wide canonical validation remained fail-closed because shared gates also failed. Build, deployment, and public-route verification were skipped. A goal-local pass does not override the repository-wide fail-closed gate.
@@ -152,7 +160,7 @@ The contract may move to `VERIFIED` only after successful canonical validation, 
 ## Remaining work
 
 ```text
-1. Observe all repaired MindForge validators in a successor canonical run.
+1. Observe all repaired MindForge validators and the installed public statement in a successor canonical run.
 2. Clear shared repository-wide failing gates through evidence-grounded repairs.
 3. Observe successful canonical validation, build-pages, and deploy-pages.
 4. Populate the publication-verification contract from run-bound evidence.
