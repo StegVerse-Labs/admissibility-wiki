@@ -1,0 +1,32 @@
+{
+  "schema_version": "governed-review-task-completion-receipt.v1",
+  "task_id": "TA14-V2-003",
+  "title": "Construct route-complete evidence manifest",
+  "state": "STRUCTURE_COMPLETED_EVIDENCE_ACCUMULATING",
+  "completed_at": "2026-08-01T21:05:00-05:00",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "main",
+  "manifest_path": "static/data/governed-framework-reviews/ta-14.stegverse-route-complete-evidence-manifest.v1.json",
+  "validator_path": "scripts/check_ta14_stegverse_route_complete_evidence_manifest.py",
+  "validator_commit": "ce2f891b3c445427785d2f7346b26be821bc671b",
+  "component_coverage": {
+    "required": 10,
+    "located": 10,
+    "partial": 6,
+    "open": 4
+  },
+  "continuation_policy": {
+    "component_evidence_work_remains_internal": true,
+    "missing_component_evidence_halts_unrelated_development": false,
+    "missing_component_evidence_prevents_route_complete_claim": true,
+    "partial_completion_is_preserved": true
+  },
+  "claim_state": "NO_ROUTE_COMPLETE_CLAIM",
+  "authority_boundary": {
+    "structure_completion_is_route_completion": false,
+    "manifest_establishes_truth": false,
+    "manifest_grants_certification": false,
+    "manifest_grants_execution_authority": false,
+    "manifest_establishes_independent_reconstruction": false
+  }
+}
