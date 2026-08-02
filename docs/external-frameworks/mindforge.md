@@ -4,6 +4,82 @@ title: MindForge External Framework Intake
 
 # MindForge External Framework Intake
 
+## Generated Evaluation Status
+
+This section is generated from the framework manifest and compatibility report. Do not edit it manually.
+
+```text
+Framework ID: mindforge
+Manifest: docs/external-frameworks/mindforge.json
+Compatibility report: ./reports/mindforge.compatibility.json
+Evidence class: MENTION_ONLY
+Independently reproducible: False
+Comparative-testing claim allowed: False
+Missing reproducibility gates: shared_test_vector, raw_output, timestamp, runtime_configuration, source_version_or_hash, replay_commands, declared_expected_outcome, independent_reproduction
+Evaluation result: COMPATIBILITY_EVIDENCE_ONLY
+Cycle status: FIRST_FRAMEWORK_CYCLE_COMPLETE
+Execution authority claim: False
+Next bounded action: Add executable observations, raw outputs, pinned versions, replay commands, and independent reproduction before making comparative-testing claims.
+Posting source: generated compatibility report
+```
+
+Generated status is descriptive compatibility evidence only.
+
+## Generated Authored Analysis Boundary
+
+This section is generated. Do not edit it manually.
+
+```text
+Framework ID: mindforge
+Framework name: MindForge
+Generated sections above this boundary may be rebuilt from registry, manifest, compatibility-report, and result artifacts.
+Authored analysis below this boundary may contain interpretation, notes, and framework-specific discussion.
+Generators must preserve authored analysis unless a future validator explicitly declares a migration path.
+Boundary rule: generated material is descriptive compatibility evidence only and does not create certification, endorsement, adoption, proof, or operational permission.
+```
+
+## Generated Transition Mapping
+
+This section is generated from the framework manifest. Do not edit it manually.
+
+| Field | Generated Value |
+|---|---|
+| `framework_identity` | MindForge |
+| `source_reference` | artifact package required |
+| `source_version` | ARTIFACT_PACKAGE_REQUIRED |
+| `allowed_use_boundary` | historical evidence intake only |
+| `claims` | review artifacts, evidence packets, governance context, review posture, transition context |
+| `non_claims` | no certification, endorsement, execution authority, or current standing inheritance |
+| `input_artifact_type` | historical governance evidence package |
+| `output_artifact_type` | compatibility manifest and report |
+| `actor_or_authority_model` | historical reviewer posture only; current authority must be rebound |
+| `evidence_model` | review artifacts and evidence packets |
+| `policy_or_rule_model` | review-time evidence does not become commit-time authority |
+| `delegation_model` | must be reconstructed at commit time if relevant |
+| `decision_or_result_model` | historical review evidence only |
+| `execution_authority_claim` | false |
+| `receipt_or_trace_model` | evidence packet reference if supplied |
+| `reconstruction_model` | blocked until artifact package supports authority re-binding review |
+| `SPE_overlap` | current standing must be reconstructed by SPE |
+| `StegVerse_ecosystem_overlap` | Commitment Candidate and non-authorizing evidence boundary |
+| `fail_closed_conditions` | artifact package missing, stale evidence, changed standing, or authority overclaim |
+
+Generated mapping is compatibility evidence only.
+
+## Generated Framework Metadata
+
+This section is generated from the external-framework registry. Do not edit it manually.
+
+```text
+Framework ID: mindforge
+Name: MindForge
+Registry status: ARTIFACT-PACKAGE-REQUIRED
+Testbench state: ARTIFACT_PACKAGE_REQUIRED_FAIL_CLOSED
+Manifest path: docs/external-frameworks/mindforge.json
+Source reference: artifact package required
+Metadata boundary: generated metadata is descriptive only; it does not create certification, endorsement, formalism adoption, admissibility proof, or execution authority.
+```
+
 ## Status
 
 ```text
