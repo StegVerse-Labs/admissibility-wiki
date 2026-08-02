@@ -1,0 +1,34 @@
+{
+  "schema_version": "wiki-public-anchor-internal-task-registry-extension.v1",
+  "registry_extension_id": "judgment-architecture-source-locator-continuation-2026-08-02",
+  "owner_repository": "StegVerse-Labs/admissibility-wiki",
+  "tasks": [
+    {
+      "task_id": "PA-INT-011",
+      "title": "Observe Judgment Architecture canonical source locator candidates",
+      "state": "ACTIVE_INTERNAL",
+      "owner_record": "docs/external-frameworks/JUDGMENT_ARCHITECTURE_MIRROR_HANDOFF.md",
+      "work_locations": [
+        "static/data/external-frameworks/judgment-architecture-source-locator-candidates.v1.json",
+        "scripts/observe_judgment_architecture_source_locator.py",
+        "static/status/judgment-architecture-source-locator-observation.json",
+        "static/status/judgment-architecture-source-citation-status.json"
+      ],
+      "generated_output": "static/status/judgment-architecture-source-locator-observation.json",
+      "observer": "scripts/observe_judgment_architecture_source_locator.py",
+      "trigger": "canonical validation, internal task executor, or candidate-registry mutation",
+      "deterministic_inputs": [
+        "publication identity",
+        "accepted locator-type policy",
+        "candidate locator records",
+        "citation-anchor availability"
+      ],
+      "deterministic_outputs": ["COMPLETE", "BLOCKED", "REVIEW_REQUIRED"],
+      "completion_predicate": "observer records COMPLETE only when an accepted locator type binds the exact publication identity and stable page or section anchors",
+      "fallback": "record BLOCKED with the machine-observable release condition and continue unrelated internal tasks",
+      "duplicate_prevention": "duplicate_execution_key judgment-architecture-source-locator-candidates.v1",
+      "next_task_rule": "COMPLETE routes to citation binding; REVIEW_REQUIRED routes to publication-identity review; BLOCKED waits for candidate registry mutation",
+      "authority_boundary": "source acceptance does not grant certification, endorsement, interoperability, execution authority, or replay readiness"
+    }
+  ]
+}
