@@ -1,0 +1,31 @@
+{
+  "schema_version": "wiki-public-anchor-internal-task-registry-extension.v1",
+  "extension_id": "generated-stegpay-bounded-projection-2026-08-02",
+  "extends": "static/status/wiki-public-anchor-internal-task-registry.json",
+  "external_tasks_exist": false,
+  "tasks": [
+    {
+      "task_id": "PA-INT-011",
+      "title": "Validate the bounded generated StegPay projection without authority escalation",
+      "state": "READY_INTERNAL",
+      "owner_record": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+      "work_locations": [
+        "static/status/generated-stegpay-publisher-projection.json",
+        "scripts/check_generated_stegpay_publisher_projection.py",
+        "static/status/wiki-public-anchor-internal-task-registry.generated-stegpay-extension.json"
+      ],
+      "observer": "scripts/check_generated_stegpay_publisher_projection.py",
+      "completion_predicate": "the validator records GENERATED_STEGPAY_ADMISSIBILITY_IMPORT=PASS with exact Publisher, Site, propagation, event, test-only, and false-authority bindings",
+      "fallback": "record FAIL_INTERNAL_CONTINUABLE and preserve the exact first mismatched field without weakening authority boundaries",
+      "dependencies": [],
+      "external_dependencies": []
+    }
+  ],
+  "policy": {
+    "no_external_tasks": true,
+    "missing_workflow_observation_blocks_unrelated_development": false,
+    "every_task_has_locations": true,
+    "every_task_has_observer": true,
+    "every_task_has_completion_predicate": true
+  }
+}
