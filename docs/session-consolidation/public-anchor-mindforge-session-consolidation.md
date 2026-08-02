@@ -4,6 +4,7 @@
 
 ```text
 state: MERGED_INTO_CANONICAL_WORKSTREAM
+archive disposition: ARCHIVE
 session role: consolidation and validation
 session implementation claim: RELEASED
 session validation claim: RELEASED_TO_MACHINE_OWNER
@@ -48,7 +49,7 @@ Mesh registry: static/status/wiki-public-anchor-task-mesh-registry.json
 Coordination issue: GitHub issue #50
 Session status: static/status/public-anchor-mindforge-session-consolidation.json
 Session validator: scripts/check_public_anchor_mindforge_session_consolidation.py
-Session queue registration: static/status/wiki-public-anchor-task-mesh-registry.json
+Session queue: public-anchor-mindforge-session-consolidation
 ```
 
 ## Convergence and duplicate prevention
@@ -60,7 +61,7 @@ public-anchor execution -> MERGED INTO static/status/wiki-public-anchor-task-mes
 publication repair -> MERGED INTO docs/WIKI_PUBLICATION_PIPELINE_MIRROR_HANDOFF.md
 MindForge publication -> MERGED INTO docs/external-frameworks/mindforge.md
 canonical validation -> .github/workflows/validate-chain-continuation.yml
-session consolidation validation -> PA-INT-013
+session consolidation validation -> public-anchor-mindforge-session-consolidation queue
 ```
 
 Collision surfaces that must not receive competing implementations:
@@ -87,7 +88,7 @@ A successor session may inspect workflow evidence, repair a named failure, add a
 | Completion-cycle observation | MACHINE_OWNED | task-mesh handoff | `scripts/run_wiki_public_anchor_completion_cycles.py` | report reaches all-pass or exact fixed-point paths |
 | Publication pipeline validation | CLAIMED_FOR_VALIDATION | publication handoff | `docs/WIKI_PUBLICATION_PIPELINE_MIRROR_HANDOFF.md` | successor workflow shows build, deploy, and route verification evidence |
 | MindForge rendered publication | MERGED_INTO_CANONICAL_WORKSTREAM | publication handoff | `docs/external-frameworks/mindforge.md` | rendered route contains required generated and authored sections |
-| Session consolidation validation | MACHINE_OWNED_VALIDATION | PA-INT-013 | `scripts/check_public_anchor_mindforge_session_consolidation.py` | validator confirms zero chat-only requirements and released claims |
+| Session consolidation validation | MACHINE_OWNED_VALIDATION | task mesh | `scripts/check_public_anchor_mindforge_session_consolidation.py` | validator confirms zero chat-only requirements and released claims |
 
 Claims are not indefinite. A machine-owned claim remains valid only while its owner record, observer, release condition, and next action remain present. Missing claim structure fails closed.
 
@@ -170,6 +171,7 @@ Archiving this conversation does not remove any implementation authority or uniq
 - all remaining work has exact repository locations;
 - every unresolved dependency has an owner and observable release condition;
 - implementation, validation, and integration claims have been released or transferred;
+- the consolidation validator is registered in the task mesh;
 - no task requires the wording or chronology of the conversation;
 - canonical workstreams remain active independently of this session.
 
@@ -177,9 +179,9 @@ Archiving this conversation does not remove any implementation authority or uniq
 unique_chat_only_requirements_remaining: 0
 session_specific_claims_remaining: 0
 originating_conversation_required_for_future_execution: false
-archive_disposition: ARCHIVE_AFTER_MACHINE_VALIDATION_INSTALLATION
+archive_disposition: ARCHIVE
 ```
 
 ## Metrics denominator
 
-For this session-consolidation goal, the denominator is 13 required session goals listed above. Twelve implementation goals are complete or transferred; the thirteenth is this consolidation package. Required consolidation files are this document, the machine-readable status, the validator, and task-mesh queue registration.
+For this session-consolidation goal, the denominator is 13 required session goals listed above. All 13 are complete or durably transferred. Required consolidation surfaces are this document, the machine-readable status, the validator, and task-mesh queue registration; all four are installed.
