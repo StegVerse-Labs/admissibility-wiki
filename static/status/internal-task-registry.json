@@ -1,0 +1,62 @@
+{
+  "schema_version": "internal-task-discovery.v1",
+  "generated_at": "2026-08-02T06:35:00Z",
+  "state": "ACTIVE_INTERNAL_DISCOVERY",
+  "external_tasks_exist": false,
+  "policy": {
+    "missing_evidence_is_external_task": false,
+    "discovered_failure_blocks_unrelated_work": false,
+    "every_task_requires_locations": true,
+    "every_task_requires_completion_predicate": true
+  },
+  "tasks": [
+    {
+      "task_id": "DISC-TA14-PUBLICATION",
+      "title": "Complete TA-14 determination publication",
+      "owner_record": "docs/external-frameworks/TA14_PUBLICATION_ACTIVATION_COORDINATION.md",
+      "work_locations": [
+        "docs/external-frameworks/ta-14-testing-support-determination-2026-08-01.md",
+        "scripts/observe_ta14_determination_publication.py",
+        "reports/ta14-determination-publication-observation.json",
+        ".github/workflows/validate-chain-continuation.yml"
+      ],
+      "completion_path": "reports/ta14-determination-publication-observation.json",
+      "completion_field": "public_state",
+      "completion_value": "PASS_PUBLIC_CONTENT_VERIFIED",
+      "priority": "HIGH",
+      "state": "READY_INTERNAL",
+      "missing_locations": ["reports/ta14-determination-publication-observation.json"],
+      "blocking": false,
+      "external_task": false,
+      "last_observed": "2026-08-02T06:35:00Z",
+      "completion_predicate": "reports/ta14-determination-publication-observation.json contains public_state=PASS_PUBLIC_CONTENT_VERIFIED",
+      "fallback": "record the exact unresolved state and continue unrelated READY_INTERNAL tasks"
+    },
+    {
+      "task_id": "DISC-TASK-MESH",
+      "title": "Execute and validate the public-anchor task mesh",
+      "owner_record": "docs/WIKI_PUBLIC_ANCHOR_TASK_MESH_HANDOFF.md",
+      "work_locations": [
+        "scripts/run_wiki_public_anchor_task_mesh.py",
+        "scripts/check_wiki_public_anchor_task_mesh.py",
+        "reports/wiki-public-anchor-task-mesh-execution.json"
+      ],
+      "completion_path": "reports/wiki-public-anchor-task-mesh-execution.json",
+      "completion_field": "overall_state",
+      "completion_value": "PASS_INTERNAL",
+      "priority": "HIGH",
+      "state": "READY_INTERNAL",
+      "missing_locations": ["reports/wiki-public-anchor-task-mesh-execution.json"],
+      "blocking": false,
+      "external_task": false,
+      "last_observed": "2026-08-02T06:35:00Z",
+      "completion_predicate": "reports/wiki-public-anchor-task-mesh-execution.json contains overall_state=PASS_INTERNAL",
+      "fallback": "record the exact unresolved state and continue unrelated READY_INTERNAL tasks"
+    }
+  ],
+  "summary": {
+    "total": 2,
+    "ready": 2,
+    "complete": 0
+  }
+}
