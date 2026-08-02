@@ -1,0 +1,18 @@
+{
+  "schema_version": "judgment-architecture-source-locator-observation.v1",
+  "framework": "Judgment Architecture",
+  "generated_at": null,
+  "state": "BLOCKED",
+  "accepted_candidate_ids": [],
+  "review_required_candidate_ids": [],
+  "candidate_count": 2,
+  "next_executable_task": "Wait for a new accepted-type candidate, then rerun the repository-owned observer.",
+  "release_condition": "At least one accepted locator type must bind the exact publication identity and stable page or section anchors.",
+  "duplicate_execution_key": "judgment-architecture-source-locator-candidates.v1",
+  "authority_boundary": {
+    "candidate_registry_grants_endorsement": false,
+    "creator_profile_is_publication_locator": false,
+    "supporting_concept_source_completes_citation_intake": false,
+    "locator_acceptance_grants_interoperability": false
+  }
+}
