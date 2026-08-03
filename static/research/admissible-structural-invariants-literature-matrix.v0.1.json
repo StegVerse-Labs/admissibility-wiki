@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.1.0",
+  "record_id": "admissible-structural-invariants-literature-matrix-v0.1",
+  "status": "PRIMARY_SOURCE_REVIEW_REQUIRED",
+  "novelty_status": "NOT_DETERMINED",
+  "execution_authority": false,
+  "source_page": "docs/research/admissible-structural-invariants-literature-matrix.md",
+  "classification_enum": ["PARTIAL_ANALOGUE", "CLOSE_PARTIAL_ANALOGUE", "EXACT_PRECEDENT", "NO_MATERIAL_OVERLAP"],
+  "rows": [
+    {"field":"formal_verification","classification":"PARTIAL_ANALOGUE","contribution":"invariant preservation across reachable states","gap":"no separate commit-time admissibility of preservation"},
+    {"field":"refinement_and_simulation","classification":"PARTIAL_ANALOGUE","contribution":"behavioral continuity across implementations","gap":"preserved relation normally remains the assumed correctness target"},
+    {"field":"dynamical_systems","classification":"PARTIAL_ANALOGUE","contribution":"persistence under dynamics","gap":"no reconstructed authority, policy, or affected-entity standing"},
+    {"field":"category_theory","classification":"PARTIAL_ANALOGUE","contribution":"structure-preserving mappings and composition","gap":"structure preservation does not establish governance admissibility"},
+    {"field":"runtime_assurance","classification":"CLOSE_PARTIAL_ANALOGUE","contribution":"context-conditioned operational permission","gap":"normally evaluates action or trajectory rather than legitimacy of preserving the invariant itself"},
+    {"field":"authorization_systems","classification":"CLOSE_PARTIAL_ANALOGUE","contribution":"context-sensitive permission","gap":"no complete continuity-thread succession and reconstruction model"},
+    {"field":"constitutional_change","classification":"CLOSE_PARTIAL_ANALOGUE","contribution":"continued validity and lawful supersession","gap":"domain-specific and not a complete computational decision record"},
+    {"field":"distributed_systems","classification":"CLOSE_PARTIAL_ANALOGUE","contribution":"consistency, quorum authority, and epoch change","gap":"no unified purpose-inversion, relational-admissibility, and succession object"},
+    {"field":"provenance_and_audit","classification":"PARTIAL_ANALOGUE","contribution":"later reconstruction","gap":"reconstruction does not establish commit-time admissibility"},
+    {"field":"multi_agent_governance","classification":"CLOSE_PARTIAL_ANALOGUE","contribution":"conflicting constraints and aggregation","gap":"often lacks receipt-bound invariant succession"}
+  ],
+  "candidate_gap_dimensions": [
+    "preservation",
+    "preservation_admissibility",
+    "authority_and_purpose",
+    "affected_entity_dispositions",
+    "receipt_bound_succession",
+    "independent_reconstructability"
+  ],
+  "primary_sources": [],
+  "promotion_rule": "Novelty posture may change only after primary source records identify exact propositions, limitations, and independent review disposition."
+}
