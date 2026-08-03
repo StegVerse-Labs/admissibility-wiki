@@ -1,7 +1,7 @@
 {
   "schema_version": "commit_boundary_binding_status.v1",
   "goal_id": "commit-boundary-binding-predicate",
-  "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION",
+  "state": "IMPLEMENTED_CANONICAL_VALIDATION_OBSERVED_PUBLICATION_PENDING",
   "doctrine": "docs/formalisms/commit-boundary-binding-predicate.md",
   "handoff": "docs/COMMIT_BOUNDARY_BINDING_MIRROR_HANDOFF.md",
   "schema": "static/schemas/commit-boundary-binding-record.schema.json",
@@ -19,6 +19,26 @@
     "evidence"
   ],
   "decision_results": ["BIND", "DENY", "FAIL_CLOSED"],
+  "canonical_validation": {
+    "workflow": ".github/workflows/validate-chain-continuation.yml",
+    "run_id": 30681187876,
+    "run_commit": "fc19aafc2f8ae7e249cbea731fa2d16b48fafca6",
+    "job_id": 91318551239,
+    "job_name": "validate-chain-continuation",
+    "goal_validator_result": "PASS",
+    "goal_validator_output": "COMMIT BOUNDARY BINDING: PASS (8 cases; BIND=1; DENY=5; FAIL_CLOSED=2)",
+    "aggregate_result": "FAIL_CLOSED_OBSERVED",
+    "aggregate_failure_attributed_to_this_goal": false,
+    "build_job": "SKIPPED",
+    "deploy_job": "SKIPPED",
+    "public_verification_job": "SKIPPED"
+  },
+  "remaining_activation_obligation": {
+    "state": "MACHINE_OWNED",
+    "owner": "canonical workflow and wiki public-anchor internal task registries",
+    "release_condition": "a canonical aggregate PASS permits build, deploy, and public verification of the formalism route",
+    "session_specific_action_required": false
+  },
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
   "workflow_policy": "single canonical workflow only",
