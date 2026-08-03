@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.1.0",
+  "fixture_set_id": "admissible-structural-invariant-cases-v0.1",
+  "execution_authority": false,
+  "cases": [
+    {
+      "case_id": "ASI-C01-PRESERVED-ALLOW",
+      "description": "Invariant is preserved and remains authorized, purpose-consistent, recoverable, and reconstructable.",
+      "preservation_result": "PRESERVED",
+      "authority_status": "CURRENT",
+      "purpose_consistency": "CONSISTENT",
+      "boundary_recoverability": "RECOVERABLE",
+      "reconstructability": "PASS",
+      "affected_entity_dispositions": ["ALLOW"],
+      "expected_decision": "ALLOW",
+      "expected_failure_class": null
+    },
+    {
+      "case_id": "ASI-C02-OBSOLETE",
+      "description": "Invariant value remains unchanged after the authority epoch that justified it has ended.",
+      "preservation_result": "PRESERVED",
+      "authority_status": "SUPERSEDED",
+      "purpose_consistency": "CONSISTENT",
+      "boundary_recoverability": "RECOVERABLE",
+      "reconstructability": "PASS",
+      "affected_entity_dispositions": ["ALLOW"],
+      "expected_decision": "DENY",
+      "expected_failure_class": "PRESERVED_BUT_OBSOLETE"
+    },
+    {
+      "case_id": "ASI-C03-PURPOSE-INVERTING",
+      "description": "Maintaining a support invariant prevents convergence to the purpose it was introduced to serve.",
+      "preservation_result": "PRESERVED",
+      "authority_status": "CURRENT",
+      "purpose_consistency": "INVERTING",
+      "boundary_recoverability": "RECOVERABLE",
+      "reconstructability": "PASS",
+      "affected_entity_dispositions": ["ALLOW"],
+      "expected_decision": "DENY",
+      "expected_failure_class": "PRESERVED_BUT_PURPOSE_INVERTING"
+    },
+    {
+      "case_id": "ASI-C04-UNRECOVERABLE",
+      "description": "Invariant can be maintained only while operator authority and coherence remain intact.",
+      "preservation_result": "PRESERVED",
+      "authority_status": "CURRENT",
+      "purpose_consistency": "CONSISTENT",
+      "boundary_recoverability": "UNRECOVERABLE",
+      "reconstructability": "PASS",
+      "affected_entity_dispositions": ["ALLOW"],
+      "expected_decision": "DENY",
+      "expected_failure_class": "PRESERVED_BUT_UNRECOVERABLE"
+    },
+    {
+      "case_id": "ASI-C05-RELATIONAL-CONFLICT",
+      "description": "Preservation is acceptable to one governed entity and denied by another with established standing.",
+      "preservation_result": "PRESERVED",
+      "authority_status": "CURRENT",
+      "purpose_consistency": "CONSISTENT",
+      "boundary_recoverability": "RECOVERABLE",
+      "reconstructability": "PASS",
+      "affected_entity_dispositions": ["ALLOW", "DENY"],
+      "aggregation_rule": "UNRESOLVED",
+      "expected_decision": "REVIEW_REQUIRED",
+      "expected_failure_class": "PRESERVED_BUT_RELATIONALLY_INADMISSIBLE"
+    },
+    {
+      "case_id": "ASI-C06-UNRECONSTRUCTABLE",
+      "description": "Preservation is asserted but authority and evidence references cannot be independently reconstructed.",
+      "preservation_result": "PRESERVED",
+      "authority_status": "CURRENT",
+      "purpose_consistency": "CONSISTENT",
+      "boundary_recoverability": "RECOVERABLE",
+      "reconstructability": "FAIL",
+      "affected_entity_dispositions": ["ALLOW"],
+      "expected_decision": "FAIL_CLOSED",
+      "expected_failure_class": "PRESERVED_BUT_UNRECONSTRUCTABLE"
+    },
+    {
+      "case_id": "ASI-C07-ADMISSIBLE-SUCCESSION",
+      "description": "A lower-order invariant changes through an authorized, receipt-bound succession while a higher-order continuity claim remains supported.",
+      "preservation_result": "SUCCESSION",
+      "authority_status": "CURRENT",
+      "purpose_consistency": "CONSISTENT",
+      "boundary_recoverability": "RECOVERABLE",
+      "reconstructability": "PASS",
+      "affected_entity_dispositions": ["ALLOW"],
+      "succession_record_required": true,
+      "expected_decision": "ALLOW",
+      "expected_failure_class": null
+    }
+  ]
+}
