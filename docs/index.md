@@ -179,6 +179,19 @@ Mature wiki changes should provide enough links or records for a reviewer to rec
 
 Replay and reconstruction records do not make the wiki a formal proof authority. They make the wiki decision path visible.
 
+## CAT Governance Stack
+
+The CAT stack is currently interpreted as:
+
+| Layer | Working Name | Function |
+| --- | --- | --- |
+| ECAT | Emotional / Experiential Constraint Analysis | Models intra-entity state: emotion, intuition, perception, affective processing, coherence, and meaning before governance hardens into boundary or authority. |
+| ICAT | Interpersonal / Intuitive Constraint Analysis | Models inter-entity state: trust, relationship continuity, shared understanding, social coherence, and intuition formed between entities. |
+| BCAT | Boundary Constraint Analysis | Models the boundary conditions under which a transition, entity, claim, or interaction can remain recoverable and non-inverting. |
+| GCAT | Governance Constraint Analysis | Models governance standing, admissibility, policy, delegation, authority, and fail-closed execution decisions. |
+
+ECAT and ICAT should not be reduced to evidence and identity labels. Those interpretations may appear in narrower proof-path contexts, but the broader origin of ECAT/ICAT is the human-governance problem: how emotion, intuition, coherence, and relationship dynamics shape the constraints that later become boundary and governance determinations.
+
 ## Current Standing Of The Wiki System
 
 The wiki currently has:
