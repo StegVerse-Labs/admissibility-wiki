@@ -11,12 +11,14 @@
     "missing_registry_binding_requires_explicit_state": true
   },
   "counts": {
-    "sidebar_entries": 52,
-    "support_pages": 26,
+    "sidebar_entries": 59,
+    "support_pages": 33,
     "framework_pages": 26
   },
   "entries": [
     {"sidebar_route":"external-frameworks/index","page_path":"docs/external-frameworks/index.md","page_type":"support","association_id":"index"},
+    {"sidebar_route":"external-frameworks/spe-equivalence-taxonomy","page_path":"docs/external-frameworks/spe-equivalence-taxonomy.md","page_type":"support","association_id":"spe-equivalence-taxonomy"},
+    {"sidebar_route":"external-frameworks/agcp-registry","page_path":"docs/external-frameworks/agcp-registry.md","page_type":"support","association_id":"agcp-registry"},
     {"sidebar_route":"external-frameworks/candidate-directory","page_path":"docs/external-frameworks/candidate-directory.md","page_type":"support","association_id":"candidate-directory"},
     {"sidebar_route":"external-frameworks/evaluation-standard","page_path":"docs/external-frameworks/evaluation-standard.md","page_type":"support","association_id":"evaluation-standard"},
     {"sidebar_route":"external-frameworks/governance-compatibility-testing","page_path":"docs/external-frameworks/governance-compatibility-testing.md","page_type":"support","association_id":"governance-compatibility-testing"},
@@ -41,9 +43,14 @@
     {"sidebar_route":"external-frameworks/governance-observatory-protocol","page_path":"docs/external-frameworks/governance-observatory-protocol.md","page_type":"support","association_id":"governance-observatory-protocol"},
     {"sidebar_route":"external-frameworks/commit-time-interoperability-contract","page_path":"docs/external-frameworks/commit-time-interoperability-contract.md","page_type":"support","association_id":"commit-time-interoperability-contract"},
     {"sidebar_route":"external-frameworks/judgment-architecture","page_path":"docs/external-frameworks/judgment-architecture.md","page_type":"support","association_id":"judgment-architecture"},
+    {"sidebar_route":"external-frameworks/ta-14","page_path":"docs/external-frameworks/ta-14.md","page_type":"support","association_id":"ta-14"},
+    {"sidebar_route":"external-frameworks/ta-14-public-review-docket","page_path":"docs/external-frameworks/ta-14-public-review-docket.md","page_type":"support","association_id":"ta-14-public-review-docket"},
+    {"sidebar_route":"external-frameworks/arquivonulo","page_path":"docs/external-frameworks/arquivonulo.md","page_type":"support","association_id":"arquivonulo"},
+    {"sidebar_route":"external-frameworks/ta-14-registry-public-record-assessment","page_path":"docs/external-frameworks/ta-14-registry-public-record-assessment.md","page_type":"support","association_id":"ta-14-registry-public-record-assessment"},
     {"sidebar_route":"external-frameworks/glm","page_path":"docs/external-frameworks/glm.md","page_type":"framework","framework_id":"glm","docs_registry_state":"present","static_registry_id":"external.glm","static_registry_state":"present"},
     {"sidebar_route":"external-frameworks/evide","page_path":"docs/external-frameworks/evide.md","page_type":"framework","framework_id":"evide","docs_registry_state":"present","static_registry_id":"external.evide","static_registry_state":"present"},
     {"sidebar_route":"external-frameworks/asro","page_path":"docs/external-frameworks/asro.md","page_type":"framework","framework_id":"asro","docs_registry_state":"present","static_registry_id":null,"static_registry_state":"missing_explicit"},
+    {"sidebar_route":"external-frameworks/asro-public-review-docket","page_path":"docs/external-frameworks/asro-public-review-docket.md","page_type":"support","association_id":"asro-public-review-docket"},
     {"sidebar_route":"external-frameworks/decisionassure","page_path":"docs/external-frameworks/decisionassure.md","page_type":"framework","framework_id":"decisionassure","docs_registry_state":"present","static_registry_id":null,"static_registry_state":"missing_explicit"},
     {"sidebar_route":"external-frameworks/mindforge","page_path":"docs/external-frameworks/mindforge.md","page_type":"framework","framework_id":"mindforge","docs_registry_state":"present","static_registry_id":null,"static_registry_state":"missing_explicit"},
     {"sidebar_route":"external-frameworks/morrison-runtime","page_path":"docs/external-frameworks/morrison-runtime.md","page_type":"framework","framework_id":"morrison-runtime","docs_registry_state":"present","static_registry_id":"external.morrison-runtime","static_registry_state":"present"},
