@@ -1,0 +1,67 @@
+{
+  "schema_version": "wiki-public-anchor-internal-task-registry-extension.v1",
+  "extension_id": "admissible-structural-invariants-2026-08-02",
+  "extends": "static/status/wiki-public-anchor-internal-task-registry.json",
+  "external_tasks_exist": false,
+  "tasks": [
+    {
+      "task_id": "PA-INT-011",
+      "title": "Validate and extend admissible structural invariants formalization",
+      "state": "READY_INTERNAL",
+      "owner_record": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+      "work_locations": [
+        "docs/research/admissible-structural-invariants.md",
+        "static/research/admissible-structural-invariants.v0.1.json",
+        "scripts/check_admissible_structural_invariants.py",
+        "sidebars.js",
+        "static/status/wiki-public-anchor-internal-task-registry.admissible-invariants-extension.json"
+      ],
+      "observer": "scripts/check_admissible_structural_invariants.py",
+      "completion_predicate": "the research note, machine-readable candidate record, sidebar binding, decision enum, failure classes, and five testable propositions pass deterministic validation",
+      "fallback": "record the exact validator failure as FAIL_INTERNAL_CONTINUABLE, repair only the listed files, preserve novelty_status NOT_DETERMINED, and continue unrelated READY_INTERNAL tasks",
+      "dependencies": [],
+      "external_dependencies": []
+    },
+    {
+      "task_id": "PA-INT-012",
+      "title": "Build primary-source precedent and analogue matrix for preservation admissibility",
+      "state": "READY_INTERNAL",
+      "owner_record": "docs/research/admissible-structural-invariants.md",
+      "work_locations": [
+        "docs/research/admissible-structural-invariants-literature-matrix.md",
+        "static/research/admissible-structural-invariants-literature-matrix.v0.1.json",
+        "scripts/check_admissible_structural_invariants_literature.py"
+      ],
+      "observer": "scripts/check_admissible_structural_invariants_literature.py",
+      "completion_predicate": "primary sources are classified as exact precedent, partial analogue, vocabulary overlap, or unresolved gap with locators and claim-bounded notes; novelty remains NOT_DETERMINED until independent review",
+      "fallback": "retain missing sources as NOT_RETRIEVED, do not infer novelty, and continue fixture and schema development from the installed formalization candidate",
+      "dependencies": ["PA-INT-011"],
+      "external_dependencies": []
+    },
+    {
+      "task_id": "PA-INT-013",
+      "title": "Implement preservation-admissibility counterexample fixtures and governed succession schema",
+      "state": "BLOCKED",
+      "owner_record": "docs/research/admissible-structural-invariants.md",
+      "work_locations": [
+        "static/research/examples/admissible-structural-invariant-cases.v0.1.json",
+        "static/research/admissible-invariant-succession.schema.v0.1.json",
+        "scripts/check_admissible_invariant_cases.py"
+      ],
+      "observer": "scripts/check_admissible_invariant_cases.py",
+      "completion_predicate": "fixtures deterministically demonstrate preserved-ALLOW, preserved-DENY, changed-ALLOW through governed succession, and multi-entity conflict without granting execution authority",
+      "fallback": "remain BLOCKED until PA-INT-011 passes and the decision-record field set is stable; do not create production authority from research fixtures",
+      "dependencies": ["PA-INT-011"],
+      "external_dependencies": []
+    }
+  ],
+  "policy": {
+    "no_external_tasks": true,
+    "missing_literature_blocks_internal_formalization": false,
+    "novelty_claim_requires_independent_review": true,
+    "every_task_has_locations": true,
+    "every_task_has_observer": true,
+    "every_task_has_completion_predicate": true,
+    "duplicate_execution_prohibited": true
+  }
+}
