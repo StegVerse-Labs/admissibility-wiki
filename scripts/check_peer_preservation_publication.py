@@ -12,6 +12,7 @@ SCHEMA = ROOT / "static/schemas/peer-preservation-observation.schema.json"
 FIXTURES = ROOT / "tests/fixtures/peer-preservation-cases.json"
 CHECKER = ROOT / "scripts/check_peer_preservation_claims.py"
 STATUS = ROOT / "static/status/peer-preservation-inference-boundary-status.json"
+TASK = ROOT / "static/status/peer-preservation-activation-task.json"
 RECEIPT = ROOT / "receipts/peer-preservation-claim-validation-receipt.json"
 HANDOFF = ROOT / "docs/PEER_PRESERVATION_MIRROR_HANDOFF.md"
 SIDEBAR = ROOT / "sidebars.js"
@@ -30,7 +31,7 @@ def require_file(path: Path, failures: list[str]) -> None:
 
 def main() -> int:
     failures: list[str] = []
-    for path in (DOCTRINE, SCHEMA, FIXTURES, CHECKER, STATUS, RECEIPT, HANDOFF, SIDEBAR):
+    for path in (DOCTRINE, SCHEMA, FIXTURES, CHECKER, STATUS, TASK, RECEIPT, HANDOFF, SIDEBAR):
         require_file(path, failures)
 
     if failures:
@@ -62,6 +63,18 @@ def main() -> int:
     if status.get("grants_execution_authority") is not False:
         failures.append("status must not grant execution authority")
 
+    task = json.loads(TASK.read_text(encoding="utf-8"))
+    if task.get("task_id") != "PP-ACTIVATION-001":
+        failures.append("activation task id mismatch")
+    if task.get("claim_state") not in {"MACHINE_OWNED", "COMPLETE"}:
+        failures.append("activation task claim state is invalid")
+    if task.get("owner") != ".github/workflows/validate-chain-continuation.yml":
+        failures.append("activation task owner mismatch")
+    if not task.get("release_condition"):
+        failures.append("activation task release condition is missing")
+    if task.get("manual_task_requirement") != "none":
+        failures.append("activation task must not create a manual task")
+
     receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
     if receipt.get("result") != "PASS":
         failures.append("claim validation receipt is not PASS")
@@ -78,6 +91,7 @@ def main() -> int:
         "Canonical validation integration: installed",
         "Public activation observation:",
         "Manual task requirement: none",
+        "PP-ACTIVATION-001",
     ):
         if marker not in handoff:
             failures.append(f"handoff missing marker: {marker}")
