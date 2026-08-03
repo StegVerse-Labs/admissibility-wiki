@@ -8,7 +8,7 @@
   "work_state": "BLOCKED_BUT_OBSERVED",
   "system_health": "HEALTHY_DECLARED_DEPENDENCY_BLOCK",
   "heartbeat_mode": "TRANSITION_DRIVEN_HEALTH_RELATIVE",
-  "repository_heartbeat": 10,
+  "repository_heartbeat": 11,
   "ecosystem_heartbeat_observed": 1,
   "time_role": "WATCHDOG_ONLY",
   "active_independent_workloads": [
@@ -109,6 +109,46 @@
       "commits": ["767f5fbebb77014ea08c7b7f756c36ac6c5929f8", "d1d20fae488278a4c478c4951ff9b8fc831d0045", "284c3d8f13c037e7c5cdde926e039470e103881f"],
       "observation": {"canonical_writer_invocation_bound": true, "existing_artifact_upload_bound": true, "retention_days": 30, "standalone_receipt_bound": true, "embedded_closure_bound": true, "linked_receipt_key_bound": true, "authority_fields_const_false": true, "canonical_workflow_pass_claimed": false, "pages_deployment_observed": false, "artifact_production_observed": false, "public_reachability_observed": false, "manual_tasks_required": [], "authority_inferred": false},
       "next_task": "Observe authentic canonical workflow and artifact evidence; apply exact deterministic repairs only."
+    },
+    {
+      "task_id": "ADMISSIBILITY-PUBLICATION-REPAIR-001",
+      "workload": "Repair the canonical Docusaurus publication lane and bind the CAT governance update to the public docs source",
+      "execution_class": "PARALLEL_SAFE",
+      "state": "COMPLETE_AWAITING_REPOSITORY_OBSERVATION",
+      "installed_paths": [
+        ".github/workflows/validate-chain-continuation.yml",
+        "docusaurus.config.js",
+        "docs/index.md",
+        "static/external-frameworks/sidebar-page-associations.v1.json",
+        "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+        "data/admissibility-wiki-orchestration-state.json"
+      ],
+      "removed_paths": [
+        ".github/workflows/observe-wiki-publication.yml",
+        ".github/workflows/validate-doctrine-research-companion.yml"
+      ],
+      "commits": [
+        "a63b131d6b773c558d554e758dd6752e2ace7d90",
+        "f952b688ad8a1cf97e29eb367d33306b994958a8",
+        "fb9c7b4712d4f71398446010d186295d1459f528",
+        "e969ea349796e74e53a3d15124cddd4fcfd01a64",
+        "2f79cebce1c45bee992b83def4c7993ba0b820cb",
+        "604775de012819b538d7918f4fd630b7e966e44b",
+        "6be558322c8c1de93bb6412effbef1794c3eb1fa"
+      ],
+      "observation": {
+        "readme_is_public_site_source": false,
+        "cat_stack_bound_to_docs_index": true,
+        "single_canonical_workflow_restored": true,
+        "markdown_commonmark_detection_enabled": true,
+        "sidebar_association_count_reconciled": true,
+        "canonical_run_result_claimed": false,
+        "pages_deployment_observed": false,
+        "public_reachability_observed": false,
+        "manual_tasks_required": [],
+        "authority_inferred": false
+      },
+      "next_task": "Observe the latest main-head canonical run and inspect build-pages, deploy-pages, and verify-public-pages independently."
     }
   ],
   "dependency_blocked_workloads": [
@@ -134,6 +174,6 @@
     "manual_user_tasks_required": false
   },
   "authority": {"execution": false, "publication": false, "release": false, "custody": false, "proof": false, "admissibility": false, "cross_repository_mutation": false},
-  "last_transition": {"event_type": "GOVERNED_RELATIONSHIP_PUBLICATION_CUSTODY_BINDING_RECORDED", "progress_effect": true, "authority_effect": false},
+  "last_transition": {"event_type": "PUBLICATION_REPAIR_COMMITTED_AWAITING_REPOSITORY_OBSERVATION", "progress_effect": true, "authority_effect": false},
   "idle_terminal_statement": "end of current work task sequence 0001, no tasks running"
 }
