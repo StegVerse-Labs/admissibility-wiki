@@ -37,6 +37,10 @@ REQUIRED_FILES = (
     "scripts/check_admissible_resolution_ingestion_receipt.py",
     "static/status/admissible-resolution-upstream-continuity.json",
     "scripts/check_admissible_resolution_upstream_continuity.py",
+    "docs/formalisms/reconstruction-singularity.md",
+    "static/formalisms/reconstruction-singularity.v0.1.json",
+    "static/formalisms/fixtures/reconstruction-singularity-cases.v0.1.json",
+    "scripts/check_reconstruction_singularity.py",
 )
 REQUIRED_REFERENCES = {
     "sidebars.js": (
@@ -46,6 +50,7 @@ REQUIRED_REFERENCES = {
         "governance/governed-llm-deployment-status",
         "governance/governed-llm-archive-handoff",
         "governance/governed-relationship-transitions",
+        "formalisms/reconstruction-singularity",
     ),
     "docusaurus.config.js": (
         "/governance/governed-llm-activation-map",
@@ -69,6 +74,11 @@ REQUIRED_REFERENCES = {
     "docs/governance/GOVERNED_RELATIONSHIP_TRANSITIONS_MIRROR_HANDOFF.md": (
         "observe_governed_relationship_publication.py",
         "Preserve FAIL_CLOSED when any doctrine, schema, or example route is unavailable.",
+    ),
+    "docs/formalisms/reconstruction-singularity.md": (
+        "procedural memory != governable learning",
+        "static/formalisms/reconstruction-singularity.v0.1.json",
+        "scripts/check_reconstruction_singularity.py",
     ),
 }
 
@@ -115,6 +125,7 @@ def main() -> int:
     checks = (
         ("scripts/check_system_boundary_declaration.py", "system-boundary contract validation failed"),
         ("scripts/check_governed_relationship_transitions.py", "relationship-transition validation failed"),
+        ("scripts/check_reconstruction_singularity.py", "reconstruction-singularity validation failed"),
         (
             "scripts/check_governed_relationship_publication_candidate.py",
             "relationship-transition publication candidate validation failed",
@@ -142,9 +153,9 @@ def main() -> int:
             return return_code
 
     print(
-        "GOVERNED LLM PAGES: PASS - docs, contracts, fixtures, publication candidates, "
-        "observation schemas, observation surfaces, custody bindings, bounded Admissible "
-        "Resolution ingestion, upstream continuity, and references present"
+        "GOVERNED LLM PAGES: PASS - docs, contracts, fixtures, reconstruction singularity, "
+        "publication candidates, observation schemas, observation surfaces, custody bindings, "
+        "bounded Admissible Resolution ingestion, upstream continuity, and references present"
     )
     return 0
 
