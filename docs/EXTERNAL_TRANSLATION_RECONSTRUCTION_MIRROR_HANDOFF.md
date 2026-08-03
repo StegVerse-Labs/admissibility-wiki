@@ -1,8 +1,8 @@
 # External Translation Reconstruction Mirror Handoff
 
-## Relationship to canonical repository authority
+## Canonical relationship
 
-This is the goal-specific handoff for `ADMISSIBILITY-TRANSLATION-RECONSTRUCTION-001` in `StegVerse-Labs/admissibility-wiki`.
+This is the completed goal-specific handoff for `ADMISSIBILITY-TRANSLATION-RECONSTRUCTION-001` in `StegVerse-Labs/admissibility-wiki`.
 
 Repository-wide authority remains:
 
@@ -11,184 +11,217 @@ ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 data/admissibility-wiki-orchestration-state.json
 ```
 
-This file owns only the exact validation-orchestration repair described below. It grants no publication, release, execution, custody, proof, admissibility, or cross-repository mutation authority.
+This work grants no publication, release, execution, custody, proof, admissibility, certification, or cross-repository mutation authority.
 
-## Active goal and claim
+## Goal disposition
 
 ```text
 goal_id: ADMISSIBILITY-TRANSLATION-RECONSTRUCTION-001
-originating_session_goal: continue the completed publication session into the next directly related, unclaimed canonical-validation integration repair
+originating_session_goal: continue the completed publication session into the next directly related unclaimed canonical-validation integration repair
 repository: StegVerse-Labs/admissibility-wiki
 branch: main
-role: CLAIMED_FOR_INTEGRATION
-claimant: external-translation-reconstruction-integration-lane
+role: COMPLETE
+former_claimant: external-translation-reconstruction-integration-lane
 claim_created_at: 2026-08-03T19:50:00Z
-claim_release_condition: first qualifying canonical main run proves independent generation and receipt validation while preserving unrelated fail-closed results
+claim_released_at: 2026-08-03T20:04:00Z
+claim_state: COMPLETE
+session_state: COMPLETE_ARCHIVE_READY
 ```
 
-Goal:
+Completed capability:
 
 ```text
-Generate and validate the external-translation reconstruction receipt independently of unrelated ST-017 sandbox failures, while preserving the sandbox failure and complete-chain fail-closed result.
+The external-translation reconstruction receipt is generated and validated independently of unrelated ST-017 sandbox failures. The sandbox and all remaining validators continue to fail closed independently.
 ```
 
-## Authoritative files and owner surfaces
+## Authoritative implementation
 
 ```text
 scripts/check_full_validation_chain.py
 scripts/generate_external_translation_reconstruction_receipt.py
 scripts/check_external_translation_reconstruction_receipt.py
+```
+
+Coordination and evidence surfaces:
+
+```text
 docs/EXTERNAL_TRANSLATION_RECONSTRUCTION_MIRROR_HANDOFF.md
+ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
+data/admissibility-wiki-orchestration-state.json
 StegVerse-Labs/admissibility-wiki issue #50
+GitHub Actions run 30847927019
+full-validation-chain-report artifact 8869494846
 ```
 
 ## Collision and convergence result
 
-Inspected before implementation:
+The claim was opened only after verifying that no open PR or branch owned this exact defect. Riverbraid PR #17 remained a nonoverlapping active implementation claim. Morrison, AGCP, ASRO, governed relationship, discovery, reciprocal evaluation, observer, GSDP, TA-14, publication, release, and cross-repository work remained outside this lane.
 
-```text
-open PRs matching external translation reconstruction: none
-branches matching translation: none
-issue #50: canonical coordination owner, no separate claimant for this exact defect
-Riverbraid PR #17: active nonoverlapping implementation claim
-```
+No competing translation-reconstruction implementation was created.
 
-Classification:
-
-```text
-translation reconstruction orchestration: CLAIMED_FOR_INTEGRATION
-issue #50: CANONICAL_OWNER_SURFACE
-Riverbraid PR #17: CLAIMED_FOR_IMPLEMENTATION, nonoverlapping
-Morrison, AGCP, ASRO, governed relationship, discovery, reciprocal, observer, GSDP, TA-14, and other failures: outside this claim
-```
-
-Collision boundary:
-
-```text
-This lane may modify only the full-chain reconstruction orchestration, its exact receipt validator, this handoff, and issue #50 evidence.
-It must not weaken sandbox, Goal 5, ASRO, governed-page, automation-handoff, publication, or release gates.
-```
-
-## Baseline defect evidence
+## Baseline defect
 
 Canonical run `30841948608`, validation job `91781047986`, recorded:
 
 ```text
 ST-017 sandbox: FAIL
-Generate external translation reconstruction receipt: SKIPPED_DEPENDENCY_FAILED
-scripts/check_external_translation_reconstruction_receipt.py: FAIL
-reason: reports/external-translation/reconstruction-receipt.json was not generated
-full chain: 49/56 PASS, 6 FAIL, 1 SKIPPED
+translation reconstruction generator: SKIPPED_DEPENDENCY_FAILED
+translation reconstruction validator: FAIL because the generated receipt was absent
+full validation: 49/56 PASS, 6 FAIL, 1 SKIPPED
 ```
 
-The generator reads nine translation-specific JSON inputs and performs its own cross-record and canonical-hash checks. The prior orchestrator suppressed that bounded evidence solely because unrelated sandbox checks failed, then counted the absent receipt as an additional validator failure.
+The generator already had bounded translation-specific inputs and deterministic cross-record/hash checks. The defect was orchestration coupling: an unrelated sandbox failure suppressed generation and produced a second missing-evidence failure.
 
-## Implemented repair
+## Installed repair
 
-### Commit `cba36e4667606a542c2099e271ea1898bac53db5`
+### `cba36e4667606a542c2099e271ea1898bac53db5`
 
-Updated `scripts/check_full_validation_chain.py` to:
+`check_full_validation_chain.py` now:
 
 ```text
-preserve ST-017 sandbox result independently
-always execute scripts/generate_external_translation_reconstruction_receipt.py
-record generator PASS or FAIL independently of sandbox status
-retain reconstruction payload in reports/full_validation_chain_report.json
-remove SKIPPED_DEPENDENCY_FAILED behavior for this generator
-keep all complete-chain failures fail-closed
+records ST-017 sandbox status independently
+always executes generate_external_translation_reconstruction_receipt.py
+records reconstruction generation PASS or FAIL independently
+retains the generated payload in the complete report
+contains no reconstruction SKIPPED_DEPENDENCY_FAILED branch
+preserves complete-chain fail-closed enforcement
 ```
 
-### Commit `804746986b8910ea5b1ccd5e43dc4036d4e60d13`
+### `804746986b8910ea5b1ccd5e43dc4036d4e60d13`
 
-Updated `scripts/check_external_translation_reconstruction_receipt.py` to:
+`check_external_translation_reconstruction_receipt.py` now:
 
 ```text
-parse the full-chain orchestrator as Python AST
-require exactly one reconstruction-generator execution
-reject any generator call nested under an if statement
-reject the obsolete sandbox-gated skip branch
-require the reconstruction payload binding in the complete report
-continue validating schema, cross-record predicates, nine canonical input hashes, three review summaries, supersession posture, continuation ownership, and explicit non-authority language
+parses the full-chain orchestrator as Python AST
+requires exactly one reconstruction-generator execution
+rejects an execution nested under an if statement
+rejects restoration of the obsolete sandbox-gated skip branch
+requires the reconstruction payload binding in the complete report
+validates schema, six cross-record predicates, nine canonical input hashes, three review summaries, supersession posture, continuation ownership, and explicit non-authority language
 ```
 
-The validator now protects the integration architecture as well as the generated evidence.
-
-## Static inspection evidence
-
-Direct post-commit inspection confirms:
+Claim and coordination commits:
 
 ```text
-generator execution is outside the sandbox conditional path
-sandbox failure is still appended to the failure list
-reconstruction generation has an independent PASS/FAIL result
-no reconstruction SKIPPED_DEPENDENCY_FAILED branch remains
-receipt payload remains bound to the complete report
-receipt validator remains fail-closed on missing or stale evidence
+348db48ade7c1ac29b5ec51bd25291162a42b381
+c098ac9d5eef8f3f479d5de97dd893ef86235474
+290ad77eab516f850c8efa984a9fe9304067a826
+150a61d7ec11bb6e7625af961481bc9cc5504772
 ```
 
-## Release condition
+## Hosted validation evidence
 
-Release this claim only when a canonical `main` run on commit `804746986b8910ea5b1ccd5e43dc4036d4e60d13` or a descendant shows:
+Qualifying canonical run:
 
 ```text
+run_id: 30847927019
+head_sha: 150a61d7ec11bb6e7625af961481bc9cc5504772
+validation_job: 91800734802
+```
+
+Observed required results:
+
+```text
+canonical pre-scan: 11/11 PASS
 Generate external translation reconstruction receipt: PASS
-EXTERNAL TRANSLATION RECONSTRUCTION RECEIPT: PASS
-sandbox-independent orchestration bound
-no SKIPPED_DEPENDENCY_FAILED state for the generator
-ST-017 sandbox failure, if still present, remains independently fail-closed
-canonical pre-scan and full-validation artifacts are produced
+receipt path: reports/external-translation/reconstruction-receipt.json
+sandbox_status=FAIL
+reconstruction_status=PASS
+translation reconstruction evaluated independently: true
+Validate external translation reconstruction receipt: PASS
+validated inputs: 9
+validated cross-record checks: 6
+sandbox-independent orchestration bound: true
+reconstruction SKIPPED_DEPENDENCY_FAILED: absent
 ```
 
-Expected bounded improvement from run `30841948608`, absent unrelated concurrent changes:
+The independent sandbox failure remained present, proving the repair did not convert sandbox failure into success.
+
+Final complete-chain result:
 
 ```text
-previous: 49/56 PASS, 6 FAIL, 1 SKIPPED
-expected: 51/56 PASS, 5 FAIL, 0 SKIPPED
+51/56 PASS
+5 FAIL
+0 SKIPPED
+overall_status: FAIL_CLOSED
 ```
 
-The hosted result controls; the expected count is not evidence.
-
-## Validation commands
-
-```bash
-python scripts/generate_external_translation_reconstruction_receipt.py
-python scripts/check_external_translation_reconstruction_receipt.py
-python scripts/check_full_validation_chain.py
-```
-
-Strongest required path:
+The exact remaining failing validators are:
 
 ```text
-source inspection: COMPLETE
-hosted generator execution: PENDING
-hosted receipt validation: PENDING
-complete-chain artifact inspection: PENDING
+scripts/run_sandbox_validation.py
+scripts/check_goal5_external_frameworks_all.py
+scripts/check_asro_commitment_candidate.py
+scripts/check_governed_llm_pages.py
+scripts/check_admissibility_automation_handoff.py
 ```
 
-## Integration and propagation obligations
+This matches the bounded expected improvement from `49/56, 6 FAIL, 1 SKIPPED` to `51/56, 5 FAIL, 0 SKIPPED` without weakening any unrelated gate.
+
+## Artifact inspection
+
+Canonical artifacts:
 
 ```text
-canonical workflow: .github/workflows/validate-chain-continuation.yml
-canonical report: reports/full_validation_chain_report.json
-canonical artifact: full-validation-chain-report
-coordination issue: StegVerse-Labs/admissibility-wiki#50
-cross-repository propagation: none; repository-local validation repair
+canonical-prescan-report
+  artifact_id: 8869434427
+  digest: sha256:fb0e9238a3e1235ca41bef6026863ad33a07f2350197354464a38c212fd29a89
+
+full-validation-chain-report
+  artifact_id: 8869494846
+  digest: sha256:b27a0bd3e76dc12895b1a97754917fd80563c4dd9d8697f746bf05c7568baf4b
+  retention: through 2026-09-02
 ```
 
-After claim release, the event-driven canonical workflow owns recurring execution. Missing receipt evidence remains failure, not success.
-
-## Current state
+The full-validation artifact was downloaded and its JSON inspected directly. It records:
 
 ```text
-completion_state: IMPLEMENTED_AWAITING_HOSTED_VALIDATION
-validation_state: STATIC_STRUCTURE_VERIFIED_HOSTED_RUN_PENDING
-integration_state: COMPLETE_CHAIN_BOUND_HOSTED_OBSERVATION_PENDING
-blockers: canonical run completion and evidence inspection
-machine_observable_release_condition: qualifying run for commit 804746986b8910ea5b1ccd5e43dc4036d4e60d13 or descendant
-next_executable_action: inspect canonical run jobs, logs, and full-validation artifact
-session_consolidation_state: ACTIVE_DISTINCT_SUPPORT_ROLE
-archive_condition: hosted evidence recorded and claim released
+schema: admissibility_wiki.full_validation_chain_report.v1
+generated_at: 2026-08-03T19:58:33.102417+00:00
+total_checks: 56
+passed_checks: 51
+failed_checks: 5
+skipped_checks: 0
+overall_status: FAIL
+external_translation_reconstruction.overall_status: PASS
+generator return_code: 0
+receipt validator return_code: 0
 ```
+
+## Deployment and runtime distinction
+
+The same run also recorded successful `build-pages`, `deploy-pages`, and `verify-public-pages` jobs, but this goal is a repository-local validation integration. It neither required nor claims a new public feature, runtime execution, release, or cross-repository propagation.
+
+## Automation continuation
+
+Recurring ownership is now repository-native:
+
+```text
+owner: .github/workflows/validate-chain-continuation.yml
+triggers: push to main, pull_request, workflow_dispatch
+state persistence: full-validation-chain-report artifact
+collision control: cancel superseded event/ref runs
+missing evidence: FAIL
+next executable task: issue #50 and scoped owners continue the five remaining exact validator failures
+```
+
+No chat-owned observer or repeated manual check remains.
+
+## Claim release
+
+Release conditions are satisfied:
+
+```text
+generator PASS: satisfied
+receipt validator PASS: satisfied
+sandbox-independent marker: satisfied
+no reconstruction skip: satisfied
+sandbox remained independently fail-closed: satisfied
+canonical pre-scan artifact: satisfied
+full-validation artifact: satisfied and directly inspected
+```
+
+The integration claim is released. Issue #50 remains open because it owns broader repository validation work, not because this completed session retains work.
 
 ## Completeness metrics
 
@@ -196,29 +229,32 @@ Denominator:
 
 ```text
 required developed files/control surfaces: 3
-  full-chain orchestration
-  receipt validator orchestration contract
-  goal-specific mirror handoff
 required validation gates: 5
-  generator implementation inspection
-  receipt validator structural inspection
-  hosted generator execution
-  hosted receipt validation
-  hosted full-report artifact inspection
 required integration bindings: 2
-  complete validation chain
-  issue #50 and handoff evidence closure
+session goals: 1
 ```
 
-Current metrics:
+Final metrics:
 
 ```text
-task completion: 70%
+task completion: 100%
 developed files: 3/3 = 100%
 scaffolding or stubs: 0
 missing required files: 0
-validation: 2/5 = 40%
-integration: 1/2 = 50%
-goal activation: 70%
-session consolidation: 0/1 = 0%
+validation: 5/5 = 100%
+integration: 2/2 = 100%
+goal activation: 100%
+session consolidation: 1/1 = 100%
 ```
+
+## Archive posture
+
+```text
+archive_state: COMPLETE_ARCHIVE_READY
+session-owned claims: 0
+unique chat-only requirements: 0
+canonical continuation: StegVerse-Labs/admissibility-wiki issue #50 and repository-scoped handoffs
+originating conversation required for future execution: false
+```
+
+The complete goal history, implementation, validation evidence, remaining failures, ownership boundaries, and continuation path are durable. This session may be archived.
