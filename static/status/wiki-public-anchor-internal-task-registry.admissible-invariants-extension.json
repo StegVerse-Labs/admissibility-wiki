@@ -6,52 +6,72 @@
   "tasks": [
     {
       "task_id": "PA-INT-011",
-      "title": "Validate and extend admissible structural invariants formalization",
+      "title": "Validate admissible structural invariants formalization",
       "state": "READY_INTERNAL",
-      "owner_record": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+      "implementation_state": "INSTALLED_UNVALIDATED",
+      "owner_record": "docs/research/ADMISSIBLE_STRUCTURAL_INVARIANTS_COORDINATION.md",
       "work_locations": [
         "docs/research/admissible-structural-invariants.md",
         "static/research/admissible-structural-invariants.v0.1.json",
         "scripts/check_admissible_structural_invariants.py",
-        "sidebars.js",
-        "static/status/wiki-public-anchor-internal-task-registry.admissible-invariants-extension.json"
+        "sidebars.js"
       ],
       "observer": "scripts/check_admissible_structural_invariants.py",
-      "completion_predicate": "the research note, machine-readable candidate record, sidebar binding, decision enum, failure classes, and five testable propositions pass deterministic validation",
-      "fallback": "record the exact validator failure as FAIL_INTERNAL_CONTINUABLE, repair only the listed files, preserve novelty_status NOT_DETERMINED, and continue unrelated READY_INTERNAL tasks",
+      "completion_predicate": "the research note, candidate record, sidebar binding, decision enum, failure classes, and five propositions pass deterministic validation",
+      "fallback": "record FAIL_INTERNAL_CONTINUABLE, repair only listed files, preserve novelty_status NOT_DETERMINED, and continue unrelated tasks",
       "dependencies": [],
       "external_dependencies": []
     },
     {
       "task_id": "PA-INT-012",
-      "title": "Build primary-source precedent and analogue matrix for preservation admissibility",
+      "title": "Validate and extend the precedent and analogue matrix",
       "state": "READY_INTERNAL",
-      "owner_record": "docs/research/admissible-structural-invariants.md",
+      "implementation_state": "BASELINE_INSTALLED_PRIMARY_SOURCE_INTAKE_PENDING",
+      "owner_record": "docs/research/ADMISSIBLE_STRUCTURAL_INVARIANTS_COORDINATION.md",
       "work_locations": [
         "docs/research/admissible-structural-invariants-literature-matrix.md",
         "static/research/admissible-structural-invariants-literature-matrix.v0.1.json",
         "scripts/check_admissible_structural_invariants_literature.py"
       ],
       "observer": "scripts/check_admissible_structural_invariants_literature.py",
-      "completion_predicate": "primary sources are classified as exact precedent, partial analogue, vocabulary overlap, or unresolved gap with locators and claim-bounded notes; novelty remains NOT_DETERMINED until independent review",
-      "fallback": "retain missing sources as NOT_RETRIEVED, do not infer novelty, and continue fixture and schema development from the installed formalization candidate",
+      "completion_predicate": "the baseline matrix passes validation and later primary sources are added with stable locators, bounded propositions, limitations, and independent novelty disposition",
+      "fallback": "retain missing sources as NOT_RETRIEVED, do not infer novelty, and continue internal validation",
       "dependencies": ["PA-INT-011"],
       "external_dependencies": []
     },
     {
       "task_id": "PA-INT-013",
-      "title": "Implement preservation-admissibility counterexample fixtures and governed succession schema",
-      "state": "BLOCKED",
-      "owner_record": "docs/research/admissible-structural-invariants.md",
+      "title": "Validate counterexample fixtures and governed invariant succession schema",
+      "state": "READY_INTERNAL",
+      "implementation_state": "INSTALLED_UNVALIDATED",
+      "owner_record": "docs/research/ADMISSIBLE_STRUCTURAL_INVARIANTS_COORDINATION.md",
       "work_locations": [
         "static/research/examples/admissible-structural-invariant-cases.v0.1.json",
         "static/research/admissible-invariant-succession.schema.v0.1.json",
         "scripts/check_admissible_invariant_cases.py"
       ],
       "observer": "scripts/check_admissible_invariant_cases.py",
-      "completion_predicate": "fixtures deterministically demonstrate preserved-ALLOW, preserved-DENY, changed-ALLOW through governed succession, and multi-entity conflict without granting execution authority",
-      "fallback": "remain BLOCKED until PA-INT-011 passes and the decision-record field set is stable; do not create production authority from research fixtures",
+      "completion_predicate": "seven fixtures cover preserved ALLOW, all five preserved-but-inadmissible failure classes, multi-entity conflict, and receipt-bound succession without granting execution authority",
+      "fallback": "record exact failure as FAIL_INTERNAL_CONTINUABLE and repair only the fixture, schema, or validator",
       "dependencies": ["PA-INT-011"],
+      "external_dependencies": []
+    },
+    {
+      "task_id": "PA-INT-014",
+      "title": "Bind admissible invariant validators into canonical validation and preserve receipts",
+      "state": "READY_INTERNAL",
+      "implementation_state": "NOT_STARTED",
+      "owner_record": "docs/research/ADMISSIBLE_STRUCTURAL_INVARIANTS_COORDINATION.md",
+      "work_locations": [
+        "package.json",
+        ".github/workflows/validate-chain-continuation.yml",
+        "reports/admissible-structural-invariants-validation.json",
+        "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
+      ],
+      "observer": "scripts/run_wiki_public_anchor_internal_tasks.py",
+      "completion_predicate": "all three validators are canonical aggregate dependencies, a directly observed run records their results, and the canonical mirror handoff incorporates the execution state",
+      "fallback": "record NOT_OBSERVED_CONTINUABLE when hosted execution is unavailable; do not claim workflow, build, deployment, or public activation success",
+      "dependencies": ["PA-INT-011", "PA-INT-012", "PA-INT-013"],
       "external_dependencies": []
     }
   ],
@@ -62,6 +82,7 @@
     "every_task_has_locations": true,
     "every_task_has_observer": true,
     "every_task_has_completion_predicate": true,
-    "duplicate_execution_prohibited": true
+    "duplicate_execution_prohibited": true,
+    "session_execution_authority_required": false
   }
 }
