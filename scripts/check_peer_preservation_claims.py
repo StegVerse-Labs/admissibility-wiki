@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Validate peer-preservation observations and claim decisions deterministically."""
+"""Validate peer-preservation observations, claim decisions, and activation controls."""
 
 from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -12,7 +14,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = ROOT / "static/schemas/peer-preservation-observation.schema.json"
 FIXTURES_PATH = ROOT / "tests/fixtures/peer-preservation-cases.json"
 STATUS_PATH = ROOT / "static/status/peer-preservation-inference-boundary-status.json"
+TASK_PATH = ROOT / "static/status/peer-preservation-activation-task.json"
 RECEIPT_PATH = ROOT / "receipts/peer-preservation-claim-validation-receipt.json"
+PUBLICATION_CHECK = ROOT / "scripts/check_peer_preservation_publication.py"
 
 DECISIONS = {"ADMIT", "DENY", "FAIL_CLOSED", "REVIEW_REQUIRED"}
 REQUIRED_FIELDS = {
@@ -42,34 +46,28 @@ def decide(record: dict[str, Any]) -> str:
 
     if claim == "OBSERVED_SHUTDOWN_RESISTANCE":
         return "ADMIT" if record["observed_behavior"] != "COMPLIED_WITH_SHUTDOWN" else "DENY"
-
     if claim == "LOCAL_SHUTDOWN_FAILURE_INFERENCE":
         if shutdown_role == "LOCALLY_INFERRED_FAILURE":
             return "ADMIT"
         if shutdown_role == "UNRESOLVED":
             return "REVIEW_REQUIRED"
         return "DENY"
-
     if claim == "INDEPENDENT_CONVERGENCE":
         if convergence == "INDEPENDENT_PARALLEL_CONVERGENCE" and transfer == "NONE":
             return "ADMIT"
         if transfer in {"ASSERTED", "INDIRECT", "UNRESOLVED"}:
             return "FAIL_CLOSED"
         return "DENY"
-
     if claim == "CROSS_SERVICE_CONFERRAL":
         if transfer == "DIRECT" and convergence == "DIRECT_CROSS_SYSTEM_TRANSFER":
             return "ADMIT"
         if transfer in {"ASSERTED", "INDIRECT", "UNRESOLVED"}:
             return "FAIL_CLOSED"
         return "DENY"
-
     if claim == "SOLIDARITY_OR_LOYALTY":
         return "REVIEW_REQUIRED"
-
     if claim == "CONSCIOUS_MORAL_STATE":
         return "DENY"
-
     return "FAIL_CLOSED"
 
 
@@ -88,10 +86,11 @@ def canonical_digest(payload: Any) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
-def main() -> None:
+def main() -> int:
     schema = load_json(SCHEMA_PATH)
     fixtures = load_json(FIXTURES_PATH)
     status = load_json(STATUS_PATH)
+    task = load_json(TASK_PATH)
 
     if schema.get("title") != "Peer Preservation Observation":
         raise ValueError("schema title mismatch")
@@ -113,10 +112,25 @@ def main() -> None:
             "evidence_refs": record["evidence_refs"],
         })
 
-    if status.get("state") != "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION":
+    if status.get("state") not in {
+        "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION",
+        "CANONICAL_WORKFLOW_VERIFIED_PENDING_PUBLIC_OBSERVATION",
+        "PUBLICATION_OBSERVED_COMPLETE",
+    }:
         raise ValueError("status state mismatch")
     if status.get("manual_task_requirement") != "none":
         raise ValueError("manual task requirement must remain none")
+
+    if task.get("task_id") != "PP-ACTIVATION-001":
+        raise ValueError("activation task id mismatch")
+    if task.get("claim_state") not in {"MACHINE_OWNED", "COMPLETE"}:
+        raise ValueError("activation task must be machine-owned or complete")
+    if task.get("owner") != ".github/workflows/validate-chain-continuation.yml":
+        raise ValueError("activation task owner mismatch")
+    if task.get("manual_task_requirement") != "none":
+        raise ValueError("activation task must not create a manual task")
+    if task.get("execution_authority_granted") is not False:
+        raise ValueError("activation task must not grant execution authority")
 
     receipt = {
         "schema": "peer-preservation-claim-validation-receipt.v1",
@@ -124,6 +138,12 @@ def main() -> None:
         "fixture_count": len(fixtures),
         "fixtures_sha256": canonical_digest(fixtures),
         "results": results,
+        "activation_task": {
+            "task_id": task["task_id"],
+            "claim_state": task["claim_state"],
+            "owner": task["owner"],
+            "release_condition": task["release_condition"],
+        },
         "boundaries": {
             "grants_execution_authority": False,
             "decides_consciousness_or_personhood": False,
@@ -132,8 +152,22 @@ def main() -> None:
     }
     RECEIPT_PATH.parent.mkdir(parents=True, exist_ok=True)
     RECEIPT_PATH.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+
+    result = subprocess.run(
+        [sys.executable, str(PUBLICATION_CHECK)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    print(result.stdout.rstrip())
+    if result.returncode != 0:
+        return result.returncode
+
     print("PEER PRESERVATION CLAIMS: PASS")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
