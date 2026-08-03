@@ -1,0 +1,133 @@
+{
+  "schema_version": "session_consolidation.v1",
+  "session_id": "commit-boundary-linkedin-session-2026-08-02",
+  "session_state": "MERGED_INTO_CANONICAL_WORKSTREAM",
+  "originating_session_goal": "Interpret and formalize the execution-boundary governance discussion into a durable StegVerse commit-boundary control model.",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "main",
+  "canonical_continuation": {
+    "overall_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+    "goal_handoff": "docs/COMMIT_BOUNDARY_BINDING_MIRROR_HANDOFF.md",
+    "status": "static/status/commit-boundary-binding-status.json",
+    "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+    "machine_owner": "wiki public-anchor internal task registries and canonical workflow"
+  },
+  "goal_inventory": [
+    {
+      "task_id": "CBL-001",
+      "goal": "Separate decision validity from transition validity and define the binding of consequence.",
+      "destination": "docs/formalisms/commit-boundary-binding-predicate.md",
+      "claim_state": "COMPLETE",
+      "completion_state": "IMPLEMENTED",
+      "validation_state": "CANONICAL_VALIDATOR_PASS_OBSERVED",
+      "integration_state": "CANONICAL_AGGREGATE_BOUND",
+      "evidence": [
+        "commit:c16579532539cdfc180d8f8025348c1adb1d1378",
+        "workflow-run:30681187876",
+        "job:91318551239"
+      ],
+      "next_action": "none"
+    },
+    {
+      "task_id": "CBL-002",
+      "goal": "Require admissibility redetermination at commit against live state rather than inherited approval.",
+      "destination": "docs/formalisms/commit-boundary-binding-predicate.md",
+      "claim_state": "COMPLETE",
+      "completion_state": "IMPLEMENTED",
+      "validation_state": "CANONICAL_VALIDATOR_PASS_OBSERVED",
+      "integration_state": "CANONICAL_AGGREGATE_BOUND",
+      "evidence": ["workflow-run:30681187876"],
+      "next_action": "none"
+    },
+    {
+      "task_id": "CBL-003",
+      "goal": "Validate actual causal origin independently from commit authority.",
+      "destination": "static/schemas/commit-boundary-binding-record.schema.json",
+      "claim_state": "COMPLETE",
+      "completion_state": "IMPLEMENTED",
+      "validation_state": "CANONICAL_VALIDATOR_PASS_OBSERVED",
+      "integration_state": "CANONICAL_AGGREGATE_BOUND",
+      "evidence": [
+        "fixture:DENY_ORIGIN_INVALID",
+        "workflow-output:COMMIT BOUNDARY BINDING PASS"
+      ],
+      "next_action": "none"
+    },
+    {
+      "task_id": "CBL-004",
+      "goal": "Preserve authority re-derivation, invariant preservation, recoverability margin, replay rejection, and fail-closed evidence handling as independent binding axes.",
+      "destination": "scripts/check_commit_boundary_binding.py",
+      "claim_state": "COMPLETE",
+      "completion_state": "IMPLEMENTED",
+      "validation_state": "CANONICAL_VALIDATOR_PASS_OBSERVED",
+      "integration_state": "CANONICAL_AGGREGATE_BOUND",
+      "evidence": [
+        "fixtures:tests/fixtures/commit-boundary-binding-cases.json",
+        "receipt:receipts/commit-boundary-binding-proof-receipt.json"
+      ],
+      "next_action": "none"
+    },
+    {
+      "task_id": "CBL-005",
+      "goal": "Publish the formalism through the existing Docusaurus surface without creating a second workflow.",
+      "destination": "sidebars.js",
+      "claim_state": "MACHINE_OWNED",
+      "completion_state": "IMPLEMENTED_BUT_PUBLICATION_UNOBSERVED",
+      "validation_state": "GOAL_VALIDATOR_PASS_AGGREGATE_FAIL_CLOSED",
+      "integration_state": "CANONICAL_WORKFLOW_BOUND",
+      "archival_dependency": false,
+      "blocker": "Repository-wide canonical aggregate failed on unrelated validators, so build, deploy, and public verification were skipped.",
+      "release_condition": "A successor canonical aggregate PASS reaches build-pages, deploy-pages, and verify-public-pages.",
+      "evidence": [
+        "workflow-run:30681187876",
+        "status:static/status/commit-boundary-binding-status.json"
+      ],
+      "next_action": "canonical machine owner observes successor workflow; no session-specific action"
+    },
+    {
+      "task_id": "CBL-006",
+      "goal": "Classify external PFC overlap conservatively until inspectable implementation evidence exists.",
+      "destination": "docs/COMMIT_BOUNDARY_BINDING_MIRROR_HANDOFF.md",
+      "claim_state": "COMPLETE",
+      "completion_state": "DURABLY_RECORDED",
+      "validation_state": "DOCUMENT_BOUNDARY_RECORDED",
+      "integration_state": "MERGED_INTO_CANONICAL_WORKSTREAM",
+      "evidence": ["classification:CLAIMED_CONCEPTUAL_ALIGNMENT"],
+      "next_action": "promote classification only from independently inspectable evidence"
+    }
+  ],
+  "duplicate_or_converged_work": {
+    "detected": true,
+    "classification": "MERGED_INTO_CANONICAL_WORKSTREAM",
+    "details": "The repository now has a broader wiki-public-anchor machine-owned execution lane. This session retains no competing implementation claim and contributes only its installed commit-boundary artifacts and evidence."
+  },
+  "active_claims": [],
+  "released_claims": [
+    {
+      "task_id": "commit-boundary-binding-predicate",
+      "former_lane": "this conversation",
+      "released_to": "canonical workflow and wiki public-anchor internal task registries",
+      "release_evidence": "workflow run 30681187876 observed the goal validator PASS"
+    }
+  ],
+  "validation_summary": {
+    "developed_files": 9,
+    "required_files": 9,
+    "goal_validators_passed": 1,
+    "goal_validators_required": 1,
+    "publication_observations_passed": 0,
+    "publication_observations_required": 1,
+    "aggregate_workflow_state": "FAIL_CLOSED_OBSERVED",
+    "goal_failure_attributed": false
+  },
+  "session_consolidation": {
+    "goals_total": 6,
+    "goals_transferred_or_complete": 6,
+    "chat_only_requirements_remaining": 0,
+    "unassigned_tasks_remaining": 0,
+    "stale_claims_remaining": 0,
+    "session_execution_authority_remaining": false,
+    "archive_ready": true
+  },
+  "archive_condition": "Immediate; deleting the conversation does not remove any required implementation, evidence, ownership, blocker, or continuation instruction."
+}
