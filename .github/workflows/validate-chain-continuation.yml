@@ -326,6 +326,13 @@ jobs:
           python-version: '3.11'
       - name: Verify deployed site root
         run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "${{ needs.deploy-pages.outputs.page_url }}"
+      - name: Verify CAT governance stack publication
+        run: |
+          curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors \
+            "${{ needs.deploy-pages.outputs.page_url }}" \
+            --output /tmp/index.html
+          grep -F "CAT Governance Stack" /tmp/index.html
+          grep -F "ECAT and ICAT should not be reduced" /tmp/index.html
       - name: Verify public status JSON
         run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/status/admissibility-wiki-status.json"
       - name: Verify MindForge page and authorized attribution
