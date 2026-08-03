@@ -14,7 +14,15 @@ const config = {
   projectName: 'admissibility-wiki',
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    // Treat .md files as CommonMark and reserve MDX parsing for .mdx files.
+    // This prevents LaTeX braces and backslashes in doctrine documents from
+    // being interpreted as JSX/JavaScript expressions by the MDX compiler.
+    format: 'detect',
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
 
   i18n: {
     defaultLocale: 'en',
