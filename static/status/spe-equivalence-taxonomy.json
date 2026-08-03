@@ -1,0 +1,176 @@
+{
+  "schema_version": "0.1.0",
+  "record_id": "spe-equivalence-taxonomy-2026-08-03",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "main",
+  "source_page": "docs/external-frameworks/spe-equivalence-taxonomy.md",
+  "originating_session_goal": "Determine whether any governance products or frameworks are equivalent, similar, overlapping, or adjacent to the StegVerse SPE and commit-time admissibility governance framework.",
+  "standing": "PROVISIONAL_TAXONOMY",
+  "authority_boundary": {
+    "creates_execution_authority": false,
+    "creates_certification": false,
+    "claims_market_exclusivity": false,
+    "claims_final_research_closure": false,
+    "adopts_external_framework_claims": false
+  },
+  "core_question": "May this proposed transition bind consequence now, at the commit boundary, using reconstructable current standing rather than historical approval alone?",
+  "classes": [
+    {
+      "class_id": "closest_conceptual_equivalent",
+      "definition": "Attempts to decide or gate action from evidence, policy, state, or consequence before execution.",
+      "standing_reconstruction": "PARTIAL_OR_CANDIDATE"
+    },
+    {
+      "class_id": "similar",
+      "definition": "Shares runtime decision, policy, authorization, or enforcement behavior.",
+      "standing_reconstruction": "USUALLY_POLICY_OR_PERMISSION_ONLY"
+    },
+    {
+      "class_id": "overlapping",
+      "definition": "Supplies required evidence, provenance, identity, risk, or governance input to SPE.",
+      "standing_reconstruction": "EVIDENCE_INPUT_ONLY"
+    },
+    {
+      "class_id": "adjacent",
+      "definition": "Governs surrounding management, lifecycle, assurance, compliance, or documentation context.",
+      "standing_reconstruction": "USUALLY_NOT_COMMIT_BOUND_GATE"
+    },
+    {
+      "class_id": "not_equivalent",
+      "definition": "Valuable but answers a different governance question.",
+      "standing_reconstruction": "NO_DIRECT_COMMIT_TIME_RECONSTRUCTION"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "DecisionAssure-style causal-continuity trace review",
+      "relationship_class": "closest_conceptual_equivalent",
+      "relationship_summary": "Tests whether a supplied trace can support authority reconstruction and causal-continuity claims.",
+      "boundary": "Candidate interoperability target; does not become authority."
+    },
+    {
+      "name": "CARE Runtime-style public runtime-governance platform",
+      "relationship_class": "closest_conceptual_equivalent",
+      "relationship_summary": "Runtime-governance and consequence-boundary language relevant to StegVerse.",
+      "boundary": "Source status remains bounded by available public evidence; no equivalence claim."
+    },
+    {
+      "name": "Open Policy Agent / Rego",
+      "relationship_class": "similar",
+      "relationship_summary": "Runtime policy-decision engine over structured input.",
+      "boundary": "Policy decision is not full admissibility, authority, evidence, custody, and standing reconstruction."
+    },
+    {
+      "name": "Cedar Policy",
+      "relationship_class": "similar",
+      "relationship_summary": "Authorization policy semantics and permit/forbid decisions.",
+      "boundary": "Strong authorization overlap, but not a full transition admissibility framework by itself."
+    },
+    {
+      "name": "XACML / ABAC / PBAC policy engines",
+      "relationship_class": "similar",
+      "relationship_summary": "Access-control and policy-decision models.",
+      "boundary": "Primarily access authorization, not transition admissibility or continuity reconstruction."
+    },
+    {
+      "name": "Zanzibar / OpenFGA relationship authorization",
+      "relationship_class": "similar",
+      "relationship_summary": "Relation-based permissions at scale.",
+      "boundary": "Answers who can access what, not whether a proposed consequence-binding transition is admissible now."
+    },
+    {
+      "name": "Runtime governance for AI agents",
+      "relationship_class": "similar",
+      "relationship_summary": "Checks next actions, paths, policies, or operating constraints.",
+      "boundary": "Must still prove evidence, authority, delegation, and standing at commit."
+    },
+    {
+      "name": "Policy Cards",
+      "relationship_class": "overlapping",
+      "relationship_summary": "Machine-readable policy artifact and runtime obligations.",
+      "boundary": "Can feed SPE policy references; does not itself prove standing."
+    },
+    {
+      "name": "Guardrails AI / NeMo Guardrails / Llama Guard",
+      "relationship_class": "similar",
+      "relationship_summary": "Runtime output, action, and model-behavior constraints.",
+      "boundary": "Safety constraints are not a full admissibility proof engine."
+    },
+    {
+      "name": "in-toto",
+      "relationship_class": "overlapping",
+      "relationship_summary": "Supply-chain layout, steps, and signed provenance.",
+      "boundary": "Strong evidence-chain input; does not decide transition admissibility."
+    },
+    {
+      "name": "SLSA",
+      "relationship_class": "overlapping",
+      "relationship_summary": "Supply-chain assurance levels and provenance requirements.",
+      "boundary": "Assurance input only unless bound to SPE standing rules."
+    },
+    {
+      "name": "Sigstore",
+      "relationship_class": "overlapping",
+      "relationship_summary": "Signing, transparency log, and artifact identity evidence.",
+      "boundary": "Cryptographic evidence input, not governance authority."
+    },
+    {
+      "name": "W3C PROV / OpenLineage",
+      "relationship_class": "overlapping",
+      "relationship_summary": "Provenance and lineage modeling.",
+      "boundary": "Reconstruction input, not authority decision."
+    },
+    {
+      "name": "W3C Verifiable Credentials / DID / OpenID Connect / OAuth2",
+      "relationship_class": "overlapping",
+      "relationship_summary": "Identity, claims, delegation, and access-token ecosystems.",
+      "boundary": "Can represent identity and delegation evidence; token validity is not full admissibility."
+    },
+    {
+      "name": "SPIFFE / SPIRE",
+      "relationship_class": "overlapping",
+      "relationship_summary": "Workload identity and attestation.",
+      "boundary": "Strong identity and workload-standing input; not transition governance alone."
+    },
+    {
+      "name": "OSCAL",
+      "relationship_class": "overlapping",
+      "relationship_summary": "Control and assessment representation.",
+      "boundary": "Compliance and control evidence input, not commit-time execution authority."
+    },
+    {
+      "name": "NIST AI RMF",
+      "relationship_class": "adjacent",
+      "relationship_summary": "AI risk management lifecycle and trustworthiness framing.",
+      "boundary": "Management framework, not a commit-time execution gate."
+    },
+    {
+      "name": "ISO/IEC 42001",
+      "relationship_class": "adjacent",
+      "relationship_summary": "AI management system standard.",
+      "boundary": "Organizational governance system, not SPE-equivalent standing reconstruction."
+    },
+    {
+      "name": "EU AI Act",
+      "relationship_class": "adjacent",
+      "relationship_summary": "Legal and regulatory obligation framework.",
+      "boundary": "External legal duties can constrain SPE, but do not implement SPE."
+    }
+  ],
+  "equivalent_frameworks_confirmed": [],
+  "unique_stegverse_combination": [
+    "transition candidate",
+    "current authority and delegation",
+    "evidence posture",
+    "review posture",
+    "boundary recoverability",
+    "continuity and reconstruction obligations",
+    "fail-closed unknown handling",
+    "receipt-bound outcome",
+    "public non-authorizing observation"
+  ],
+  "validation": {
+    "validator": "scripts/check_spe_equivalence_taxonomy.py",
+    "expected_result": "PASS"
+  }
+}
