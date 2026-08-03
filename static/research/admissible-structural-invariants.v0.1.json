@@ -1,0 +1,96 @@
+{
+  "schema_version": "0.1.0",
+  "record_id": "admissible-structural-invariants-v0.1",
+  "status": "FORMALIZATION_CANDIDATE",
+  "novelty_status": "NOT_DETERMINED",
+  "execution_authority": false,
+  "canonical_owner": "StegVerse-Labs/admissibility-wiki",
+  "source_note": "docs/research/admissible-structural-invariants.md",
+  "core_separation": {
+    "preservation_predicate": "I(S_i) == I(S_{i+1})",
+    "preservation_admissibility_predicate": "AdmPres(I,T,C)",
+    "required_for_governed_continuity_candidate": [
+      "preservation_or_receipt_bound_succession_established",
+      "commit_time_preservation_admissibility_allow",
+      "continuity_evidence_reconstructable"
+    ]
+  },
+  "context_dimensions": [
+    "authority",
+    "policy_and_purpose",
+    "evidence",
+    "boundary_and_constraints",
+    "recoverability",
+    "affected_entity_governance"
+  ],
+  "decision_enum": [
+    "ALLOW",
+    "DENY",
+    "REVIEW_REQUIRED",
+    "FAIL_CLOSED"
+  ],
+  "failure_classes": [
+    "PRESERVED_BUT_OBSOLETE",
+    "PRESERVED_BUT_PURPOSE_INVERTING",
+    "PRESERVED_BUT_UNRECOVERABLE",
+    "PRESERVED_BUT_RELATIONALLY_INADMISSIBLE",
+    "PRESERVED_BUT_UNRECONSTRUCTABLE"
+  ],
+  "testable_propositions": [
+    {
+      "id": "ASI-P1",
+      "name": "preservation_insufficiency",
+      "claim": "An invariant can be preserved while preservation admissibility is DENY."
+    },
+    {
+      "id": "ASI-P2",
+      "name": "governed_succession",
+      "claim": "A changed lower-order invariant can support a higher-order continuity claim through receipt-bound admissible succession."
+    },
+    {
+      "id": "ASI-P3",
+      "name": "context_conditioned_domain",
+      "claim": "An invariant can leave its admissibility domain without changing represented value."
+    },
+    {
+      "id": "ASI-P4",
+      "name": "multi_entity_conflict",
+      "claim": "Entity-relative admissibility determinations can conflict and require an explicit aggregation rule."
+    },
+    {
+      "id": "ASI-P5",
+      "name": "reconstruction_independence",
+      "claim": "Preservation, commit-time admissibility, and later reconstructability are independently variable."
+    }
+  ],
+  "required_decision_record_fields": [
+    "record_id",
+    "continuity_thread_id",
+    "transition_id",
+    "candidate_invariant_id",
+    "pre_state_reference",
+    "post_state_reference",
+    "preservation_result",
+    "invariant_scope",
+    "affected_entities",
+    "authority_references",
+    "policy_references",
+    "evidence_references",
+    "purpose_consistency",
+    "boundary_recoverability",
+    "multi_entity_dispositions",
+    "commit_time",
+    "decision",
+    "reason_codes",
+    "supersession_reference",
+    "receipt_chain_reference"
+  ],
+  "research_required": [
+    "primary_source_literature_review",
+    "exact_precedent_and_partial_analogue_matrix",
+    "counterexample_fixtures",
+    "multi_entity_aggregation_contract",
+    "invariant_succession_schema",
+    "independent_review_before_novelty_claim"
+  ]
+}
