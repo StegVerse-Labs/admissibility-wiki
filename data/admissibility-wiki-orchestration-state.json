@@ -1,74 +1,34 @@
 {
-  "schema_version": "1.2.0",
+  "schema_version": "1.3.0",
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "session_inventory": "data/session-consolidation/admissibility-wiki-publication-session-inventory.v1.json",
   "task_sequence": 3,
   "task_sequence_label": "translation reconstruction integration sequence 0003",
-  "work_state": "REPOSITORY_ACTIVE_DISTINCT_SUPPORT_ROLE",
-  "system_health": "PUBLICATION_HEALTHY_CANONICAL_VALIDATION_FAIL_CLOSED_REPAIR_ACTIVE",
+  "work_state": "REPOSITORY_ACTIVE_SESSION_ARCHIVE_READY",
+  "system_health": "PUBLICATION_HEALTHY_CANONICAL_VALIDATION_FAIL_CLOSED",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
-  "repository_heartbeat": 13,
+  "repository_heartbeat": 14,
   "time_role": "NO_TIMER_OWNERSHIP",
-  "completed_publication_session": {
-    "inventory_id": "ADMISSIBILITY-WIKI-PUBLICATION-SESSION-2026-08-03",
-    "archive_state": "COMPLETE_ARCHIVE_READY",
-    "session_claims_active": 0,
-    "session_goals_total": 6,
-    "session_goals_transferred_or_complete": 6,
-    "claims_released_at": "2026-08-03T18:48:00Z",
-    "canonical_run": {
-      "run_id": 30841948608,
-      "head_sha": "ac2e4f75dbe046cfbd42da62156e7959679096a0",
-      "validation_job": {
-        "job_id": 91781047986,
-        "conclusion": "failure_fail_closed_unrelated_validators",
-        "cat_publication_evidence_validator": "PASS",
-        "session_consolidation_validator": "PASS",
-        "canonical_orchestration_contract": "PASS",
-        "activation_projection_orchestration_contract": "PASS",
-        "canonical_prescan": "11_OF_11_PASS",
-        "full_validation": "49_OF_56_PASS_6_FAIL_1_SKIPPED"
-      },
-      "build_pages": {"job_id": 91781631840, "conclusion": "success"},
-      "deploy_pages": {"job_id": 91782075870, "conclusion": "success"},
-      "verify_public_pages": {
-        "job_id": 91782126780,
-        "conclusion": "success",
-        "cat_governance_marker_step": "success",
-        "mindforge_marker_step": "success"
-      },
-      "artifacts": {
-        "canonical_prescan_report": {
-          "artifact_id": 8867141195,
-          "digest": "sha256:e8e8031e996b325bd60358806cf89e2e8c8d85fdc49244799b179a926b411466"
-        },
-        "full_validation_chain_report": {
-          "artifact_id": 8867206490,
-          "digest": "sha256:9d8a5bd689983655c1fad1c4820e0802db0ccbe59007abb2247b75ff3ee6c676"
-        },
-        "pages_build_receipt": {
-          "artifact_id": 8867258088,
-          "digest": "sha256:ed240bb09335dd8b2c73a74ddb0f7deadec4942e8a272a0dea0928cc8ae4c75d"
-        },
-        "github_pages": {
-          "artifact_id": 8867259392,
-          "digest": "sha256:40b47ec61ea1355f2f141376f01e9dd09bb992f9740afcdcf4d34cdcdf08586a"
-        }
-      }
-    }
-  },
-  "active_support_workloads": [
+  "completed_session_sequences": [
+    {
+      "task_id": "ADMISSIBILITY-PUBLICATION-REPAIR-001",
+      "inventory": "data/session-consolidation/admissibility-wiki-publication-session-inventory.v1.json",
+      "state": "COMPLETE_ARCHIVE_READY",
+      "claims_active": 0,
+      "evidence_run": 30841948608
+    },
     {
       "task_id": "ADMISSIBILITY-TRANSLATION-RECONSTRUCTION-001",
       "originating_goal": "continue the completed publication session into the next directly related unclaimed canonical-validation integration repair",
-      "owner": "external-translation-reconstruction-integration-lane",
+      "former_owner": "external-translation-reconstruction-integration-lane",
       "branch": "main",
-      "role": "CLAIMED_FOR_INTEGRATION",
-      "state": "IMPLEMENTED_AWAITING_HOSTED_VALIDATION",
+      "former_role": "CLAIMED_FOR_INTEGRATION",
+      "claim_state": "COMPLETE",
       "claim_created_at": "2026-08-03T19:50:00Z",
-      "claim_expiration_or_release_condition": "Release on the first canonical main run for commit 804746986b8910ea5b1ccd5e43dc4036d4e60d13 or a descendant that shows generator PASS, receipt validator PASS, no reconstruction skip, preserved sandbox fail-closed result, and full-validation artifact production.",
+      "claim_released_at": "2026-08-03T20:04:00Z",
+      "state": "COMPLETE_VALIDATED_INTEGRATED_AND_TRANSFERRED",
+      "handoff": "docs/EXTERNAL_TRANSLATION_RECONSTRUCTION_MIRROR_HANDOFF.md",
       "claimed_surfaces": [
         "scripts/check_full_validation_chain.py",
         "scripts/check_external_translation_reconstruction_receipt.py",
@@ -78,19 +38,53 @@
       "implementation_commits": [
         "cba36e4667606a542c2099e271ea1898bac53db5",
         "804746986b8910ea5b1ccd5e43dc4036d4e60d13",
-        "c098ac9d5eef8f3f479d5de97dd893ef86235474"
+        "348db48ade7c1ac29b5ec51bd25291162a42b381",
+        "c098ac9d5eef8f3f479d5de97dd893ef86235474",
+        "290ad77eab516f850c8efa984a9fe9304067a826",
+        "150a61d7ec11bb6e7625af961481bc9cc5504772",
+        "cc9df43f1fb2d1ae771cd0de5da4a8dbb0b1691c"
       ],
-      "expected_evidence": [
-        "Generate external translation reconstruction receipt: PASS",
-        "EXTERNAL TRANSLATION RECONSTRUCTION RECEIPT: PASS",
-        "sandbox-independent orchestration bound",
-        "full-validation-chain-report artifact"
-      ],
-      "collision_boundary": "No Morrison, AGCP, ASRO, governed relationship, discovery, reciprocal, observer, GSDP, TA-14, Riverbraid, publication, release, or cross-repository mutation work is claimed.",
-      "next_task_after_release": "Canonical workflow owns recurring translation reconstruction generation and validation; remaining exact validator defects continue under issue #50 and scoped owner surfaces.",
-      "handoff": "docs/EXTERNAL_TRANSLATION_RECONSTRUCTION_MIRROR_HANDOFF.md"
+      "validation": {
+        "run_id": 30847927019,
+        "head_sha": "150a61d7ec11bb6e7625af961481bc9cc5504772",
+        "validation_job_id": 91800734802,
+        "canonical_prescan": "11_OF_11_PASS",
+        "generator": "PASS",
+        "receipt_validator": "PASS_9_INPUTS_6_CROSS_RECORD_CHECKS",
+        "sandbox_independent": true,
+        "sandbox_result_preserved": "FAIL",
+        "full_validation": "51_OF_56_PASS_5_FAIL_0_SKIPPED",
+        "overall_repository_status": "FAIL_CLOSED"
+      },
+      "artifacts": {
+        "canonical_prescan_report": {
+          "artifact_id": 8869434427,
+          "digest": "sha256:fb0e9238a3e1235ca41bef6026863ad33a07f2350197354464a38c212fd29a89"
+        },
+        "full_validation_chain_report": {
+          "artifact_id": 8869494846,
+          "digest": "sha256:b27a0bd3e76dc12895b1a97754917fd80563c4dd9d8697f746bf05c7568baf4b",
+          "directly_inspected": true
+        }
+      },
+      "completion_metrics": {
+        "task_completion_percent": 100,
+        "developed_files": 3,
+        "required_files": 3,
+        "scaffolding_or_stubs": 0,
+        "missing_required_files": 0,
+        "validated_gates": 5,
+        "required_validation_gates": 5,
+        "integrated_bindings": 2,
+        "required_integration_bindings": 2,
+        "goal_activation_percent": 100,
+        "session_consolidation": "1_OF_1"
+      },
+      "next_owner": "StegVerse-Labs/admissibility-wiki issue #50 and canonical workflow",
+      "session_dependency": false
     }
   ],
+  "active_support_workloads": [],
   "active_independent_workloads": [
     {
       "task_id": "ADMISSIBILITY-RIVERBRAID-001",
@@ -112,7 +106,6 @@
       "execution_class": "MACHINE_OWNED_DEPENDENCY_BLOCKED",
       "state": "BLOCKED_BUT_OBSERVED",
       "required_upstream_evidence": [
-        "completed Site participant upload evidence",
         "authorized real-provider response",
         "durable provider-usage persistence",
         "authenticated Master-Records custody receipt",
@@ -141,38 +134,23 @@
     }
   ],
   "canonical_validation_state": {
-    "baseline_run_id": 30841948608,
+    "run_id": 30847927019,
+    "head_sha": "150a61d7ec11bb6e7625af961481bc9cc5504772",
     "overall_status": "FAIL_CLOSED",
-    "passed_checks": 49,
+    "passed_checks": 51,
     "total_checks": 56,
-    "failed_checks": 6,
-    "skipped_checks": 1,
+    "failed_checks": 5,
+    "skipped_checks": 0,
     "failing_validators": [
       "scripts/run_sandbox_validation.py",
-      "scripts/check_external_translation_reconstruction_receipt.py",
       "scripts/check_goal5_external_frameworks_all.py",
       "scripts/check_asro_commitment_candidate.py",
       "scripts/check_governed_llm_pages.py",
       "scripts/check_admissibility_automation_handoff.py"
     ],
-    "active_repair_target": "scripts/check_external_translation_reconstruction_receipt.py",
-    "expected_bounded_result_after_repair": "51_OF_56_PASS_5_FAIL_0_SKIPPED_ABSENT_UNRELATED_CHANGES",
-    "owner": "issue #50 canonical validation task mesh plus scoped handoffs",
-    "missing_evidence_implies_success": false
-  },
-  "completed_session_workload": {
-    "task_id": "ADMISSIBILITY-PUBLICATION-REPAIR-001",
-    "workload": "Repair and validate the canonical Docusaurus publication lane and CAT governance public rendering",
-    "state": "COMPLETE_VALIDATED_INTEGRATED_AND_TRANSFERRED",
-    "claim_state": "COMPLETE",
-    "evidence": "GitHub Actions run 30841948608 and the publication session inventory",
-    "session_claim_released": true
-  },
-  "historical_state": {
-    "previous_schema_version": "1.1.0",
-    "previous_blob_sha": "d769a9ce952b9a8d80993821f38060988014f1ed",
-    "detailed_completed_workload_history_preserved_in_git": true,
-    "goal_specific_handoffs_preserved": true
+    "owner": "StegVerse-Labs/admissibility-wiki issue #50 and scoped handoffs",
+    "missing_evidence_implies_success": false,
+    "session_dependency": false
   },
   "policy": {
     "handoff_is_source_of_truth": true,
@@ -184,7 +162,6 @@
     "recursive_derivative_expansion_allowed": false,
     "blocked_but_observed_is_not_failed": true,
     "missing_evidence_implies_success": false,
-    "admissibility_projection_requires_verified_upstream_evidence": true,
     "manual_user_tasks_required": false
   },
   "authority": {
@@ -197,10 +174,10 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "TRANSLATION_RECONSTRUCTION_REPAIR_COMMITTED_AWAITING_HOSTED_VALIDATION",
+    "event_type": "TRANSLATION_RECONSTRUCTION_INTEGRATION_COMPLETE_ARCHIVE_READY",
     "progress_effect": true,
     "authority_effect": false,
-    "implementation_head": "804746986b8910ea5b1ccd5e43dc4036d4e60d13"
+    "observed_run_id": 30847927019
   },
-  "idle_terminal_statement": "translation reconstruction integration claim active; hosted workflow evidence pending"
+  "idle_terminal_statement": "end of translation reconstruction integration sequence 0003, no session-owned tasks running"
 }
