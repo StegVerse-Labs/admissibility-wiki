@@ -31,6 +31,9 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Validate publication session consolidation inventory
+        run: python scripts/check_publication_session_consolidation_inventory.py
+
       - name: Run canonical pre-scan
         id: canonical-prescan
         continue-on-error: true
