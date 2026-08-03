@@ -1,0 +1,40 @@
+{
+  "schema_version": "wiki-public-anchor-internal-task-registry-extension.v1",
+  "extension_id": "spe-equivalence-taxonomy-2026-08-03",
+  "extends": "static/status/wiki-public-anchor-internal-task-registry.json",
+  "external_tasks_exist": false,
+  "tasks": [
+    {
+      "task_id": "PA-INT-013",
+      "title": "Complete canonical integration and publication observation for the SPE equivalence taxonomy",
+      "state": "READY_INTERNAL",
+      "owner_record": "docs/external-frameworks/SPE_EQUIVALENCE_TAXONOMY_MIRROR_HANDOFF.md",
+      "work_locations": [
+        "docs/external-frameworks/spe-equivalence-taxonomy.md",
+        "static/status/spe-equivalence-taxonomy.json",
+        "scripts/check_spe_equivalence_taxonomy.py",
+        "sidebars.js",
+        "docs/external-frameworks/index.md",
+        "scripts/check_admissibility_automation_handoff.py",
+        ".github/workflows/validate-chain-continuation.yml",
+        "static/status/session-consolidation/spe-equivalence-taxonomy-session-2026-08-03.json"
+      ],
+      "observer": "scripts/check_spe_equivalence_taxonomy.py",
+      "completion_predicate": "the standalone validator exits 0, the taxonomy page is navigable, the canonical aggregate invokes the validator, and any public-route observation is recorded without converting absent deployment evidence into execution authority",
+      "fallback": "retain canonical aggregate or public-route gaps as NOT_OBSERVED_CONTINUABLE, preserve the taxonomy as provisional, and continue unrelated READY_INTERNAL tasks",
+      "dependencies": [
+        "PA-INT-007",
+        "PA-INT-009"
+      ],
+      "external_dependencies": []
+    }
+  ],
+  "policy": {
+    "no_external_tasks": true,
+    "missing_public_observation_blocks_unrelated_development": false,
+    "equivalence_may_not_be_claimed_without_independent_support": true,
+    "every_task_has_locations": true,
+    "every_task_has_observer": true,
+    "every_task_has_completion_predicate": true
+  }
+}
