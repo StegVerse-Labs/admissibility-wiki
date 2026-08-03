@@ -2,252 +2,310 @@
 
 ## Current source of truth
 
-This file is the handoff source of truth for `StegVerse-Labs/admissibility-wiki` until superseded.
+This file is the canonical handoff and task source of truth for `StegVerse-Labs/admissibility-wiki` until superseded.
 
-## Mandatory orchestration entry
+Every arriving session or repository-native automation must read this handoff and `data/admissibility-wiki-orchestration-state.json` before opening a branch, changing a workflow, claiming files, asserting publication, or starting adjacent work.
 
-Every arriving session or automation must read this handoff and `data/admissibility-wiki-orchestration-state.json` before opening a branch, changing a workflow, or claiming a workload.
-
-An incoming prompt, workflow result, scheduled trigger, or external post is a candidate workload only. It does not select the task or grant mutation, publication, release, proof, execution, or admissibility authority.
+An incoming prompt, workflow result, scheduled trigger, external post, generated report, or public route is candidate evidence only. It does not grant mutation, publication, release, proof, custody, execution, admissibility, Guardian, or cross-repository authority.
 
 Required entry sequence:
 
 ```text
 1. Read ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md.
 2. Read data/admissibility-wiki-orchestration-state.json.
-3. Preserve active workload ownership and claimed paths.
-4. Continue only an admitted PARALLEL_SAFE task.
-5. Keep dependency-blocked work visible without fabricating progress.
-6. Update the handoff and orchestration state before closure.
+3. Read data/session-consolidation/admissibility-wiki-publication-session-inventory.v1.json when the publication goal is relevant.
+4. Preserve active owners and claimed paths.
+5. Continue only an admitted nonconflicting implementation, validation, integration, or observation role.
+6. Update durable state before releasing a claim or closing a session.
 ```
 
 ## Active goal
 
-Complete governed public documentation activation through the single canonical workflow while eliminating manual validation, observation, reconciliation, classification, comparison, bounded-history maintenance, publication checking, receipt custody, and archival tasks.
-
-The cross-repository HIL goal is also registered as a dependency-blocked downstream admissibility projection. It does not replace the canonical documentation goal and must not delay or duplicate the active HIL upload, provider-runtime, custody, Site, or Publisher owners.
-
-## Current repository state
-
 ```text
-Canonical workflow: .github/workflows/validate-chain-continuation.yml
-Canonical triggers: push, pull_request, workflow_dispatch, hourly schedule
-Public site: https://stegverse-labs.github.io/admissibility-wiki/
-Manual user tasks required: none
-Cross-repository mutation authority: not granted
-Release/tag authority: not granted
+goal_id: ADMISSIBILITY-WIKI-PUBLICATION-ACTIVATION-001
+goal: publish committed documentation through the single canonical Docusaurus and GitHub Pages path, verify the CAT Governance Stack on the public landing page, and durably transfer all adjacent session goals
+repository: StegVerse-Labs/admissibility-wiki
+branch: main
+canonical workflow: .github/workflows/validate-chain-continuation.yml
+canonical triggers: push to main, pull_request, workflow_dispatch
+canonical workflow timer: prohibited by repository contract
+manual user tasks: none
 ```
 
-## Current live task sequence
+The original session goal was to fix the wiki so committed changes publish. The current distinct session role is bounded validation and consolidation only. It does not own unrelated external-framework, proof-fixture, Site, Publisher, Guardian, or HIL implementation.
+
+## Active claims and collision boundaries
+
+### Publication validation claim
 
 ```text
-current work task sequence 0001
-state: BLOCKED_BUT_OBSERVED
-health: HEALTHY_DECLARED_DEPENDENCY_BLOCK
-heartbeat: transition-driven and health-relative
-time role: watchdog only
+task_id: AWP-PUB-001
+claimant: publication-session-validation-lane
+role: CLAIMED_FOR_VALIDATION
+branch: main
+claimed surfaces:
+  docs/index.md
+  docusaurus.config.js
+  static/external-frameworks/sidebar-page-associations.v1.json
+  .github/workflows/validate-chain-continuation.yml
+claim_created_at: 2026-08-03T18:18:00Z
+release condition:
+  a canonical main run at commit c0c230f5223fee73b41b4d4cf90fcac7c5047f23 or a descendant records:
+    build-pages=success
+    deploy-pages=success
+    verify-public-pages=success
+    Verify CAT governance stack publication=success
+expected evidence: run ID, job IDs, step result, Pages artifact, Pages build receipt
+collision boundary: no parallel session may edit these publication surfaces for this task until the claim releases
 ```
 
-Active independent owner:
+### Canonical workflow contract validation claim
 
 ```text
-PR #17: Riverbraid source-blocked admissibility intake
-owner branch: agent/add-riverbraid-intake
-state: ACTIVE_INDEPENDENT_WORKSTREAM
+task_id: AWP-CI-002
+claimant: publication-session-validation-lane
+role: CLAIMED_FOR_VALIDATION
+branch: main
+claimed surfaces:
+  .github/workflows/validate-chain-continuation.yml
+  scripts/check_canonical_orchestration_contract.py
+  scripts/check_activation_projection_orchestration_contract.py
+claim_created_at: 2026-08-03T18:18:00Z
+release condition:
+  first canonical main run at commit 4bfcf4faec66c10ff23b5f97369dc434f5ffbfee or a descendant no longer reports timer-ownership failures
+collision boundary: exact workflow-contract correction only; no broad validator weakening
 ```
 
-Queued dependency-blocked HIL projection:
+### Independent external claim
 
 ```text
-task: ingest verified Site HIL activation and Publisher propagation evidence
-execution class: DEPENDENCY_BLOCKED
-upstream owners:
-  StegVerse-Labs/Site
-  StegVerse-org/LLM-adapter issue #18 and PR #44
-  master-records/orchestration issue #2
-  GCAT-BCAT-Engine/Publisher
+task_id: ADMISSIBILITY-RIVERBRAID-001
+owner: pull request #17
+branch: agent/add-riverbraid-intake
+role: CLAIMED_FOR_IMPLEMENTATION
+state: OPEN; not merged; currently not mergeable
+claimed scope: Riverbraid source-blocked admissibility intake
+collision boundary: do not recreate or edit PR #17 workload from the publication validation lane
+release condition: PR owner resolves mergeability and completion criteria or explicitly releases the claim
 ```
 
-The HIL projection may begin only after authentic upstream activation, custody, reconstruction, and propagation evidence exists. No placeholder, workflow artifact, local browser record, or pending receipt may satisfy that boundary.
+## Durable session inventory
 
-## Publication repair checkpoint — 2026-08-03
-
-The latest observed failing canonical run exposed four independent publication blockers:
+The complete primary and adjacent goal inventory is committed at:
 
 ```text
-1. README.md contained the CAT-stack update, but README.md is not the Docusaurus landing-page source.
-2. Docusaurus parsed .md doctrine files as MDX, causing LaTeX braces and backslashes to fail compilation.
-3. Three active workflow files violated the single-canonical-workflow contract.
-4. External-framework sidebar associations were stale at 52 records while navigation contained 59 routes.
+data/session-consolidation/admissibility-wiki-publication-session-inventory.v1.json
+scripts/check_publication_session_consolidation_inventory.py
 ```
 
-Exact deterministic repairs committed to `main`:
+The validator is bound into the canonical workflow before the canonical pre-scan. It enforces unique goal IDs, exact owners, claim states, observable release conditions, transferred-work markers, percentage denominators, no inferred authority, event-driven workflow ownership, and the CAT public marker verification step.
+
+Inventory goals:
+
+```text
+AWP-PUB-001        publication implementation and public verification
+AWP-CI-002         canonical event-driven workflow contract repair
+AWP-RIVERBRAID-003 preserve PR #17 ownership without duplication
+AWP-HIL-004        transfer HIL succession to repository-native owners
+AWP-FORMALISM-005  transfer optimization-target canonical execution to formalism-tests issue #6
+AWP-VALIDATION-006 preserve unrelated validation defects in run artifacts and canonical task meshes
+```
+
+## Publication implementation
+
+Installed on `main`:
 
 ```text
 a63b131d6b773c558d554e758dd6752e2ace7d90
-  remove superseded observe-wiki-publication.yml
+  removed superseded observe-wiki-publication workflow
 
 f952b688ad8a1cf97e29eb367d33306b994958a8
-  remove superseded validate-doctrine-research-companion.yml
+  removed superseded doctrine-only workflow
 
 fb9c7b4712d4f71398446010d186295d1459f528
-  configure markdown.format=detect so .md uses CommonMark and .mdx remains MDX
+  configured markdown format detection so .md uses CommonMark and .mdx remains MDX
 
 e969ea349796e74e53a3d15124cddd4fcfd01a64
-  reconcile 59 sidebar routes, 33 support pages, and 26 framework pages
-
-2f79cebce1c45bee992b83def4c7993ba0b820cb
-  make the canonical workflow hourly and set cancel-in-progress=true
+  reconciled 59 external-framework sidebar routes, 33 support pages, and 26 framework pages
 
 604775de012819b538d7918f4fd630b7e966e44b
-  publish the CAT Governance Stack in docs/index.md, the actual wiki landing page
+  published the CAT Governance Stack in docs/index.md, the actual Docusaurus landing-page source
+
+4bfcf4faec66c10ff23b5f97369dc434f5ffbfee
+  restored the event-driven canonical workflow contract by removing the prohibited timer
+
+c0c230f5223fee73b41b4d4cf90fcac7c5047f23
+  added exact public landing-page verification for CAT Governance Stack and ECAT/ICAT boundary language
+
+39fcc43f992aa13ad7957a146615f191e625aff1
+  installed the durable session goal and claim inventory
+
+1d0907d47da643401d2802497b7494d11781af89
+  installed the session consolidation validator
+
+7bbd31758c557f0f962f5fc277d5e9a50c76994c
+  bound session consolidation validation into the canonical workflow
+
+9eab0755eedefe46e36d871ac848d672a126c2ce
+  separated this session's bounded validation claims from the independent PR #17 implementation claim
 ```
 
-Current checkpoint state:
+## Direct publication evidence
+
+Canonical GitHub Actions run:
 
 ```text
-repair commits: PRESENT_ON_MAIN
-latest publication candidate: 604775de012819b538d7918f4fd630b7e966e44b
-canonical run result: AWAITING_REPOSITORY_OWNED_OBSERVATION
-Pages deployment result: NOT_YET_CLAIMED
-public route verification: NOT_YET_CLAIMED
-release/tag authority: NOT_GRANTED
-manual user task: none
+run_id: 30837466398
+head_sha: fd3523766e66d37c3e1b0e64905117103197e968
+overall result: failure because canonical validation remained fail-closed
 ```
 
-The publication lane may be declared complete only when the canonical run exposes `build-pages=success`, `deploy-pages=success`, and `verify-public-pages=success` for the latest publication candidate. An overall workflow failure caused by unrelated fail-closed governance validators does not by itself prove that Pages deployment failed; job-level evidence remains required.
-
-## Terminal workflow-observation rollup
-
-The recursive derivative chain is closed by one terminal envelope:
+Publication-lane jobs from that run:
 
 ```text
-workflow trigger
--> full validation receipt
--> bounded observation, health, transition, trend, frequency, stability, comparison, and history artifacts
--> terminal workflow-observation rollup
--> hash-bound Pages build receipt
--> 30-day workflow artifact custody
--> Pages deployment
--> automatic public endpoint verification
--> hourly repository-owned re-observation
+build-pages
+  job_id: 91766690214
+  result: SUCCESS
+  Build site: SUCCESS
+  Pages build receipt: SUCCESS
+  Pages artifact upload: SUCCESS
+
+deploy-pages
+  job_id: 91768371492
+  result: SUCCESS
+
+verify-public-pages
+  job_id: 91769034746
+  result: SUCCESS
+  deployed site root: SUCCESS
+  public status JSON: SUCCESS
+  MindForge route and attribution markers: SUCCESS
+  inference-window route: SUCCESS
+  governed LLM route set: SUCCESS
 ```
 
-Installed terminal surfaces:
+Run-bound artifacts:
 
 ```text
-scripts/generate_canonical_workflow_observation_rollup.py
-scripts/check_canonical_workflow_observation_rollup.py
-scripts/reconcile_canonical_workflow_stability_change_frequency_change_history.py
-scripts/check_canonical_workflow_stability_change_frequency_change_history.py
-scripts/write_pages_build_receipt.py
-scripts/check_pages_build_receipt_rollup_binding.py
-scripts/check_canonical_workflow_observation_automation_status.py
-scripts/check_governed_llm_deployment_status.py
-static/status/canonical-workflow-observation-automation.json
-static/status/canonical-workflow-observation-rollup.json (generated)
-reports/pages-build-receipt.json (generated and uploaded)
+pages-build-receipt
+  artifact_id: 8865657321
+  digest: sha256:4e76058b636b33a9974dfd0a13420c9846750b95bf4eb881c3cea468c39f49c3
+  retention: 30 days
+
+github-pages
+  artifact_id: 8865658459
+  digest: sha256:c37b91542eff9b8a0169811096950fe8d5c5cbce187b1be93a851330a9e71fdc
+
+full-validation-chain-report
+  artifact_id: 8865473106
+  digest: sha256:94bf38a739fac7fe3602531cf3f1bb2a430874303b600538b4e45b119118a74a
+  retention: 30 days
+
+canonical-prescan-report
+  artifact_id: 8865412492
+  digest: sha256:34583d5791f092fff07626c27de83fa1f25a4a8296108130c4774bee24439517
+  retention: 30 days
 ```
 
-Terminal policy:
+This proves the repaired site built, deployed, and passed the then-configured public checks. It does not yet prove the newly added CAT-specific marker step, because that step was committed after run `30837466398`.
+
+## Canonical validation state
+
+Run `30837466398` produced:
 
 ```text
-terminal_envelope: true
-recursive_derivative_expansion_allowed: false
-artifact_count: 17
-local_presence: PRESENT | MISSING
-completeness: COMPLETE_LOCAL_CHAIN | FAIL_CLOSED_INCOMPLETE_LOCAL_CHAIN
-public_reachability_before_deploy: NOT_OBSERVED_UNTIL_POST_DEPLOY_VERIFICATION
-semantic_reclassification_performed: false
-generation_owner: canonical build-pages job
-next_evaluation: next repository-owned canonical workflow trigger
-manual_tasks_required: []
-user_action_required: false
+canonical pre-scan: 11/11 PASS
+full validation chain: 47/56 PASS; 8 FAIL; 1 SKIPPED
+Docusaurus build: PASS
+Pages build/deploy/public verification: PASS
 ```
 
-The envelope points to the latest observation, history, health, transition, trend, frequency, stability, comparison, and bounded-history artifacts. It records repository path, public endpoint, local presence, generation ownership, and pre-deployment reachability posture for each artifact. It does not reinterpret their scientific, governance, authority, or admissibility meaning.
-
-The terminal rollup is generated automatically after the final bounded comparison-history reconciliation. Missing artifacts produce `FAIL_CLOSED_INCOMPLETE_LOCAL_CHAIN`; they do not create a user or reviewer task.
-
-## Deterministic fail-closed validation
-
-The terminal validator exercises both required branches:
+Two failures were introduced by the now-superseded timer configuration and were repaired by commit `4bfcf4faec66c10ff23b5f97369dc434f5ffbfee`:
 
 ```text
-complete fixture chain -> COMPLETE_LOCAL_CHAIN
-one required artifact removed -> FAIL_CLOSED_INCOMPLETE_LOCAL_CHAIN
-missing artifact identity -> stability_change_frequency_change_history
-missing_count -> 1
-present_count -> 16
-manual_tasks_required -> []
-user_action_required -> false
+scripts/check_canonical_orchestration_contract.py
+scripts/check_activation_projection_orchestration_contract.py
 ```
 
-The validator backs up and restores any pre-existing generated status artifacts, so the negative case does not leave repository state mutated.
-
-Commit:
+The remaining run-bound failing validators are preserved in artifact `8865473106` and include:
 
 ```text
-9a5d049d4c16c927d2d5597fc5ac0f776bed1b3c
+scripts/run_sandbox_validation.py
+scripts/check_external_translation_reconstruction_receipt.py
+scripts/check_goal5_external_frameworks_all.py
+scripts/check_asro_commitment_candidate.py
+scripts/check_governed_llm_pages.py
+scripts/check_admissibility_automation_handoff.py
 ```
 
-## Terminal artifact custody
+These failures do not erase the successful Pages deployment. They remain fail-closed and are not reassigned to this publication session. Exact subfailures include Morrison proof-contract drift, AGCP handoff-boundary drift, missing generated translation receipt, ASRO provenance drift, relationship-publication custody marker drift, and multiple already-registered automation-handoff workstreams.
 
-The existing uploaded Pages build receipt now embeds a hash-bound terminal-rollup snapshot.
+## Convergence and canonical continuation transfers
 
-Required receipt behavior:
+### HIL and Ecosystem Chat
 
 ```text
-rollup missing -> FAIL_CLOSED_ROLLUP_MISSING
-rollup structurally invalid -> FAIL_CLOSED_ROLLUP_INVALID
-rollup terminal and no-recursion boundary valid -> ROLLUP_BOUND
-completeness required for successful build receipt -> COMPLETE_LOCAL_CHAIN
-rollup digest -> SHA-256 of generated terminal envelope
-artifact upload -> pages-build-receipt
-retention -> 30 days
-manual_tasks_required -> []
-user_action_required -> false
+MERGED INTO: StegVerse-Labs/Site/docs/SITE_MIRROR_HANDOFF.md
+additional owners:
+  StegVerse-Labs/Site issue #24
+  StegVerse-Labs/Site PR #98
+  StegVerse-org/LLM-adapter issue #18
+  master-records/orchestration issue #2
+  GCAT-BCAT-Engine/Publisher/PUBLISHER_MIRROR_HANDOFF.md
+  StegVerse-002/stegguardian-wiki/STEGGUARDIAN_WIKI_MIRROR_HANDOFF.md
+state: MACHINE_OWNED / DEPENDENCY_BLOCKED
+release condition: authorized real-provider execution, durable usage persistence, authenticated custody, reconstruction PASS, immutable zero-blocker receipt, Site ACTIVATION_COMPLETE, and Publisher verified ingestion
+publication-session responsibility: none after transfer
 ```
 
-The Pages build receipt remains distinct from deployment, public verification, release, or execution authority. The rollup binding performs no semantic reclassification.
+Publisher already owns an hourly Site activation importer and both wiki consumers already own repository-native importers. No duplicate importer is authorized here.
 
-Durable commits:
+### Optimization-target and proof fixtures
 
 ```text
-d641170fe22464f3cc23bbf6a2b478392536aa2c
-ba9acaef0a0dc5ccb3dca450d983655656d482bf
+MERGED INTO: Data-Continuation/formalism-tests/FORMALISM_TESTS_MIRROR_HANDOFF.md and issue #6
+state: implemented bounded package; canonical execution pending
+owner: Data-Continuation/formalism-tests issue #6
+publication-session responsibility: none after transfer
 ```
 
-## Observation state
+The proof package already contains the five required optimization-target cases, schemas, task manifest, pending canonical evidence, reproduction receipt, and downstream fail-closed contract. This repository must not duplicate proof execution authority.
+
+### Riverbraid
 
 ```text
-connected commit-status records: none exposed
-PR-linked workflow runs for latest observed commit: none exposed
-canonical workflow pass: not claimed
-Pages deployment pass: not claimed
-terminal rollup public reachability: not claimed
+MERGED INTO: StegVerse-Labs/admissibility-wiki pull request #17
+state: active independent implementation claim
+publication-session responsibility: preserve ownership and avoid collision
 ```
 
-The absence of exposed status records is not converted into a manual task. The hourly canonical workflow remains the owner of validation, deployment, public re-observation, and artifact renewal.
-
-## HIL admissibility succession contract
-
-The first seamless HIL user experience follows this evidence sequence:
+### Guardian
 
 ```text
-Site participant upload
--> governed real-provider response
--> exact persistence and provider-usage record
+MERGED INTO: StegVerse-002/stegguardian-wiki/STEGGUARDIAN_WIKI_MIRROR_HANDOFF.md
+state: dependency-blocked; no active Guardian HIL implementation claim
+release condition: complete verified upstream HIL and admissibility succession chain
+publication-session responsibility: none after transfer
+```
+
+## HIL succession boundary
+
+The ordered chain remains:
+
+```text
+Site HIL upload
+-> authorized real-provider response
+-> provider-usage persistence
 -> authenticated Master-Records custody
 -> reconstruction PASS
--> immutable zero-blocker VERIFIED activation receipt
+-> immutable zero-blocker VERIFIED receipt
 -> Site ACTIVATION_COMPLETE
 -> Publisher VERIFIED_INGESTION_READY
 -> admissibility-wiki bounded interpretation
--> StegGuardian downstream interpretation
+-> StegGuardian bounded interpretation
 ```
 
-The admissibility-wiki projection may describe and classify only the evidence actually received. It must preserve these distinctions:
+The wiki may classify only evidence actually received. Preserve:
 
 ```text
 upload != custody
@@ -261,100 +319,108 @@ public documentation != proof
 visibility != authority
 ```
 
-No HIL page, report, status, or public proof-path statement may claim live activation until the complete upstream evidence chain is hash-bound and independently validated.
+## Terminal observation and custody surfaces
 
-## Admissible automated-transition catalogue
+Installed repository-native continuation surfaces include:
 
 ```text
-transition_id: automation.github-handoff-watch.hourly.v1
-lifecycle_state: ACTIVE_BOOTSTRAP_ORCHESTRATION
-authority_source: current *_MIRROR_HANDOFF.md
-trigger: hourly canonical workflow observation
-trigger_does_not_select_task: true
-admissibility_result: ALLOW | DENY | FAIL_CLOSED
-commit_time_validity_required_before_mutation: true
-run_specific_receipt_required: true
-cross_repository_authority_inferred: false
-release_deploy_merge_or_ecosystem_authority_inferred: false
-manual_user_task: none
+scripts/generate_canonical_workflow_observation_rollup.py
+scripts/check_canonical_workflow_observation_rollup.py
+scripts/reconcile_canonical_workflow_stability_change_frequency_change_history.py
+scripts/check_canonical_workflow_stability_change_frequency_change_history.py
+scripts/write_pages_build_receipt.py
+scripts/check_pages_build_receipt_rollup_binding.py
+scripts/check_canonical_workflow_observation_automation_status.py
+scripts/check_governed_llm_deployment_status.py
+static/status/canonical-workflow-observation-automation.json
+static/status/canonical-workflow-observation-rollup.json
+reports/pages-build-receipt.json
 ```
 
-The triggering email, workflow result, schedule, or manual request does not determine the task. The current handoff, policy and delegation references, evidence, scope, execution context, recoverability posture, and commit-time validity determine whether a proposed action is allowed. Catalogue presence and an `ALLOW` receipt do not create authority beyond the bounded transition recorded in that run-specific receipt.
-
-## Authority boundaries
+Policy:
 
 ```text
-admissibility-wiki owns vocabulary, explanation, status, and public proof-path documentation
-Data-Continuation/formalism-tests owns executable fixtures, expected outcomes, and proof receipts
-Site is downstream display only
-Publisher is downstream publication/indexing only
-StegGuardian interpretation remains deferred until executable proof fixtures exist
-workflow evidence, terminal rollup, and Pages build receipt do not grant proof, release, execution, custody transfer, or downstream mutation authority
-heartbeat observation does not grant progress or authority
-blocked-but-observed does not equal failed
+terminal envelope: true
+recursive derivative expansion: prohibited
+missing required artifact: FAIL_CLOSED
+manual user tasks: none
+semantic reclassification: false
+workflow receipt != deployment authority
+Pages deployment != proof or release authority
 ```
 
-## Remaining files or modules and destinations
+## Remaining executable work
 
-### `StegVerse-Labs/admissibility-wiki`
+### Publication validation lane — current session
 
 ```text
-Preserve PR #17 ownership and do not recreate the Riverbraid intake.
-Observe the canonical workflow jobs for latest commit 604775de012819b538d7918f4fd630b7e966e44b.
-Inspect pages-build-receipt and full-validation-chain artifacts when connector run evidence becomes available.
-If build-pages fails, repair only the exact new deterministic build error.
-If build-pages succeeds but verify-public-pages fails, repair only the exact route or marker mismatch.
-Continue resolving remaining fail-closed governance validators independently from the Pages publication lane.
-Keep deployment and public-route evidence fail-closed until observed.
-Do not resume recursive summary-of-summary construction.
-When authentic HIL propagation evidence arrives, create one bounded interpretation from canonical records rather than reconstructing claims from prose.
-Manual user task: none.
+1. Observe the first completed canonical run for the current main head.
+2. Inspect validate-chain-continuation, build-pages, deploy-pages, and verify-public-pages independently.
+3. Confirm the session consolidation validator passed.
+4. Confirm both timer-ownership contract failures are absent.
+5. Confirm the CAT public marker step passed.
+6. Update this handoff and the session inventory with run-bound evidence.
+7. Release AWP-PUB-001 and AWP-CI-002.
+8. Declare the session archive-ready only after those steps are durable.
 ```
 
-### `Data-Continuation/formalism-tests`
+### Canonical repository task mesh — not owned by this session
 
 ```text
-Add optimization-target fixtures for explicit target, stale binding, unauthorized mutation, policy divergence, and denial unreachable.
-Add FAIL_CLOSED expected outcomes and executable proof receipts.
-Proceed only when the repository is accessible and its current *_MIRROR_HANDOFF.md authorizes the task.
-Manual user task: none.
+Repair remaining exact deterministic validators without weakening fail-closed gates.
+Preserve run artifacts and scoped handoffs as owner surfaces.
+Do not convert repository-wide validation failure into a false Pages failure.
+Do not merge or duplicate PR #17.
 ```
 
-### Downstream destinations
+### Cross-repository machine-owned continuation
 
 ```text
-StegVerse-Labs/Site: upstream HIL display and activation owner
-GCAT-BCAT-Engine/Publisher: upstream HIL propagation owner
-StegVerse-002/stegguardian-wiki: defer until verified HIL evidence and current destination handoff authority
-StegVerse-002/StegGuardian: no implementation mutation authorized
+Site, LLM-adapter, Master-Records, Publisher, admissibility-wiki importers, and StegGuardian continue only under their own handoffs and release conditions.
+No manual file movement, workflow dispatch, route confirmation, receipt construction, or blocker transcription is assigned to the user.
 ```
 
 ## Release posture
 
-No tag or release is authorized until canonical validation, build, public-route verification, proof evidence, and repository release criteria are durably confirmed. A later release must automatically queue propagation-status review for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `StegVerse-Labs/admissibility-wiki`, and `StegVerse-002/stegguardian-wiki`.
+No tag or release is authorized by this handoff. Repository release requires the repository's own full validation and release criteria, durable run evidence, and required downstream propagation review.
 
-## Next task
-
-```text
-1. Preserve the independent PR #17 workstream.
-2. Observe the canonical workflow result for 604775de012819b538d7918f4fd630b7e966e44b when evidence is exposed.
-3. Confirm build-pages, deploy-pages, and verify-public-pages independently of unrelated validator failures.
-4. Apply exact deterministic repairs only.
-5. Retain HIL projection as dependency-blocked until verified Site, custody, and Publisher evidence arrives.
-6. Preserve the terminal envelope, no-recursion boundary, and hash-bound artifact custody.
-7. Do not request manual route checks, workflow triggering, receipt construction, archival, file movement, or downstream propagation from the user.
-```
-
-## Idle barrier
-
-The repository may close the current sequence only when all admitted work is completed or explicitly retained as a healthy declared dependency block:
+When release-qualified, review propagation to:
 
 ```text
-end of current work task sequence 0001, no tasks running
+StegVerse-Labs/Site
+GCAT-BCAT-Engine/Publisher
+StegVerse-Labs/admissibility-wiki
+StegVerse-002/stegguardian-wiki
 ```
 
-This statement does not grant release, publication, proof, execution, or admissibility authority.
+## Authority boundaries
 
-## Archive posture
+```text
+admissibility-wiki owns vocabulary, bounded explanation, and public proof-path documentation
+Data-Continuation/formalism-tests owns executable fixtures and proof receipts
+Site owns display and activation projection
+Publisher owns bounded publication/index projection
+StegGuardian owns bounded Guardian interpretation after upstream evidence
+workflow success != proof
+workflow failure != automatic deployment failure
+artifact presence != integration success
+public reachability != authority
+release readiness != release authority
+session consolidation != project-wide completion
+```
 
-This handoff and `data/admissibility-wiki-orchestration-state.json` preserve the active goal, publication repair checkpoint, installed terminal automation, fail-closed validation, artifact custody, active ownership, HIL succession, dependency blockers, authority boundaries, remaining workflow-observation work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
+## Archive conditions
+
+This conversation may be archived only when:
+
+```text
+the CAT landing-page marker verification step succeeds on a canonical main run
+the event-driven orchestration repair is observed in that run
+the session consolidation validator succeeds
+the exact run, jobs, steps, and artifacts are recorded here and in the inventory
+AWP-PUB-001 and AWP-CI-002 are released
+all six session goals remain complete, superseded, or durably transferred
+no unique execution information remains only in chat history
+```
+
+Until then, the session retains one distinct validation and evidence-closeout role. All implementation history, adjacent goals, owners, blockers, artifacts, authority boundaries, and continuation paths are otherwise durable in this handoff, the session inventory, orchestration state, Git history, pull request #17, workflow run `30837466398`, and adjacent repository handoffs.
