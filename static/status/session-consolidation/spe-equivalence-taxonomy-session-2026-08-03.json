@@ -1,0 +1,77 @@
+{
+  "schema_version": "session-consolidation.v1",
+  "session_id": "spe-equivalence-taxonomy-session-2026-08-03",
+  "originating_goal": "Classify governance products and frameworks as equivalent, closest, similar, overlapping, or adjacent to the Standing-Proof Engine and StegVerse commit-time admissibility governance.",
+  "canonical_repository": "StegVerse-Labs/admissibility-wiki",
+  "canonical_branch": "main",
+  "canonical_handoff": "docs/external-frameworks/SPE_EQUIVALENCE_TAXONOMY_MIRROR_HANDOFF.md",
+  "parent_handoff": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+  "merged_into": "static/status/wiki-public-anchor-internal-task-registry.spe-equivalence-taxonomy-extension.json#PA-INT-013",
+  "transferred_requirements": [
+    "Preserve a bounded answer to whether any located framework is fully equivalent to SPE.",
+    "Distinguish equivalent, closest conceptual equivalent, similar, overlapping, adjacent, and not-equivalent classes.",
+    "Preserve that no full equivalent is confirmed in the current inventory.",
+    "Preserve framework-specific boundaries so policy engines, provenance systems, identity systems, guardrails, and lifecycle standards do not inherit commit-time admissibility claims.",
+    "Preserve that the taxonomy does not prove novelty, exclusivity, superiority, certification, or execution authority.",
+    "Continue canonical aggregate binding, index linkage, validation, and public observation through repository-native automation rather than chat-state dependence."
+  ],
+  "completed": [
+    {
+      "location": "docs/external-frameworks/spe-equivalence-taxonomy.md",
+      "state": "INSTALLED"
+    },
+    {
+      "location": "static/status/spe-equivalence-taxonomy.json",
+      "state": "INSTALLED"
+    },
+    {
+      "location": "scripts/check_spe_equivalence_taxonomy.py",
+      "state": "INSTALLED"
+    },
+    {
+      "location": "sidebars.js",
+      "state": "NAVIGATION_BOUND"
+    },
+    {
+      "location": "static/status/wiki-public-anchor-internal-task-registry.spe-equivalence-taxonomy-extension.json",
+      "state": "MACHINE_CONTINUATION_INSTALLED"
+    }
+  ],
+  "remaining_machine_owned": [
+    {
+      "task_id": "PA-INT-013",
+      "location": "scripts/check_admissibility_automation_handoff.py",
+      "state": "READY_INTERNAL",
+      "release_condition": "canonical aggregate invokes scripts/check_spe_equivalence_taxonomy.py"
+    },
+    {
+      "task_id": "PA-INT-013",
+      "location": "docs/external-frameworks/index.md",
+      "state": "READY_INTERNAL",
+      "release_condition": "index links the taxonomy without claiming equivalence or ranking"
+    },
+    {
+      "task_id": "PA-INT-013",
+      "location": ".github/workflows/validate-chain-continuation.yml",
+      "state": "NOT_OBSERVED_CONTINUABLE",
+      "release_condition": "a canonical run records the taxonomy validator result"
+    },
+    {
+      "task_id": "PA-INT-013",
+      "location": "public route /external-frameworks/spe-equivalence-taxonomy",
+      "state": "NOT_OBSERVED_CONTINUABLE",
+      "release_condition": "network-enabled observation records the expected content"
+    }
+  ],
+  "claim_state": "MERGED_INTO_CANONICAL_WORKSTREAM",
+  "session_unique_information_remaining": false,
+  "chat_dependency_remaining": false,
+  "archive_condition": "The session may be archived because all unique requirements and unresolved work are durably transferred; repository activation remains machine-owned by PA-INT-013.",
+  "authority_boundary": {
+    "certification_granted": false,
+    "equivalence_confirmed": false,
+    "market_exclusivity_claimed": false,
+    "novelty_proved": false,
+    "execution_authority_granted": false
+  }
+}
