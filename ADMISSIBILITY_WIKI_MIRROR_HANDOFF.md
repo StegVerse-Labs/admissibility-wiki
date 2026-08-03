@@ -70,6 +70,53 @@ upstream owners:
 
 The HIL projection may begin only after authentic upstream activation, custody, reconstruction, and propagation evidence exists. No placeholder, workflow artifact, local browser record, or pending receipt may satisfy that boundary.
 
+## Publication repair checkpoint — 2026-08-03
+
+The latest observed failing canonical run exposed four independent publication blockers:
+
+```text
+1. README.md contained the CAT-stack update, but README.md is not the Docusaurus landing-page source.
+2. Docusaurus parsed .md doctrine files as MDX, causing LaTeX braces and backslashes to fail compilation.
+3. Three active workflow files violated the single-canonical-workflow contract.
+4. External-framework sidebar associations were stale at 52 records while navigation contained 59 routes.
+```
+
+Exact deterministic repairs committed to `main`:
+
+```text
+a63b131d6b773c558d554e758dd6752e2ace7d90
+  remove superseded observe-wiki-publication.yml
+
+f952b688ad8a1cf97e29eb367d33306b994958a8
+  remove superseded validate-doctrine-research-companion.yml
+
+fb9c7b4712d4f71398446010d186295d1459f528
+  configure markdown.format=detect so .md uses CommonMark and .mdx remains MDX
+
+e969ea349796e74e53a3d15124cddd4fcfd01a64
+  reconcile 59 sidebar routes, 33 support pages, and 26 framework pages
+
+2f79cebce1c45bee992b83def4c7993ba0b820cb
+  make the canonical workflow hourly and set cancel-in-progress=true
+
+604775de012819b538d7918f4fd630b7e966e44b
+  publish the CAT Governance Stack in docs/index.md, the actual wiki landing page
+```
+
+Current checkpoint state:
+
+```text
+repair commits: PRESENT_ON_MAIN
+latest publication candidate: 604775de012819b538d7918f4fd630b7e966e44b
+canonical run result: AWAITING_REPOSITORY_OWNED_OBSERVATION
+Pages deployment result: NOT_YET_CLAIMED
+public route verification: NOT_YET_CLAIMED
+release/tag authority: NOT_GRANTED
+manual user task: none
+```
+
+The publication lane may be declared complete only when the canonical run exposes `build-pages=success`, `deploy-pages=success`, and `verify-public-pages=success` for the latest publication candidate. An overall workflow failure caused by unrelated fail-closed governance validators does not by itself prove that Pages deployment failed; job-level evidence remains required.
+
 ## Terminal workflow-observation rollup
 
 The recursive derivative chain is closed by one terminal envelope:
@@ -253,9 +300,11 @@ blocked-but-observed does not equal failed
 
 ```text
 Preserve PR #17 ownership and do not recreate the Riverbraid intake.
-Observe the canonical workflow result for the terminal-rollup custody commits when repository-owned evidence is exposed.
-Inspect the pages-build-receipt workflow artifact and full-validation-chain report when connector run evidence becomes available.
-Repair only exact deterministic failures without weakening validation or adding another active workflow.
+Observe the canonical workflow jobs for latest commit 604775de012819b538d7918f4fd630b7e966e44b.
+Inspect pages-build-receipt and full-validation-chain artifacts when connector run evidence becomes available.
+If build-pages fails, repair only the exact new deterministic build error.
+If build-pages succeeds but verify-public-pages fails, repair only the exact route or marker mismatch.
+Continue resolving remaining fail-closed governance validators independently from the Pages publication lane.
 Keep deployment and public-route evidence fail-closed until observed.
 Do not resume recursive summary-of-summary construction.
 When authentic HIL propagation evidence arrives, create one bounded interpretation from canonical records rather than reconstructing claims from prose.
@@ -288,8 +337,8 @@ No tag or release is authorized until canonical validation, build, public-route 
 
 ```text
 1. Preserve the independent PR #17 workstream.
-2. Observe the canonical workflow result for the terminal-rollup custody chain when evidence is exposed.
-3. Inspect repository-owned workflow artifacts and logs when available.
+2. Observe the canonical workflow result for 604775de012819b538d7918f4fd630b7e966e44b when evidence is exposed.
+3. Confirm build-pages, deploy-pages, and verify-public-pages independently of unrelated validator failures.
 4. Apply exact deterministic repairs only.
 5. Retain HIL projection as dependency-blocked until verified Site, custody, and Publisher evidence arrives.
 6. Preserve the terminal envelope, no-recursion boundary, and hash-bound artifact custody.
@@ -308,4 +357,4 @@ This statement does not grant release, publication, proof, execution, or admissi
 
 ## Archive posture
 
-This handoff and `data/admissibility-wiki-orchestration-state.json` preserve the active goal, installed terminal automation, fail-closed validation, artifact custody, active ownership, HIL succession, dependency blockers, authority boundaries, remaining workflow-observation work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
+This handoff and `data/admissibility-wiki-orchestration-state.json` preserve the active goal, publication repair checkpoint, installed terminal automation, fail-closed validation, artifact custody, active ownership, HIL succession, dependency blockers, authority boundaries, remaining workflow-observation work, and no-manual-task continuation scope. The complete thread is ready for archiving without needing additional conversation context.
