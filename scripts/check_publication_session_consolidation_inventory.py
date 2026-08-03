@@ -16,6 +16,7 @@ INVENTORY = (
 )
 HANDOFF = ROOT / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
 WORKFLOW = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
+SESSION_OWNER = "publication-session-validation-lane"
 
 ALLOWED_CLAIM_STATES = {
     "UNCLAIMED",
@@ -106,6 +107,8 @@ def main() -> int:
         fail("canonical workflow identity mismatch")
     if active_goal["current_role"] not in ALLOWED_CLAIM_STATES:
         fail("active goal has unsupported claim role")
+    if active_goal["claimant"] != SESSION_OWNER:
+        fail("active goal claimant identity mismatch")
     if "CAT landing-page marker step=success" not in active_goal["claim_release_condition"]:
         fail("validation claim lacks a machine-observable release condition")
 
@@ -114,7 +117,8 @@ def main() -> int:
         fail("session_goals must be a non-empty array")
 
     goal_ids: set[str] = set()
-    active_claims = 0
+    session_claims = 0
+    external_claims = 0
     for index, goal in enumerate(goals):
         if not isinstance(goal, dict):
             fail(f"session_goals[{index}] must be an object")
@@ -132,20 +136,26 @@ def main() -> int:
         claim_state = goal["claim_state"]
         if claim_state not in ALLOWED_CLAIM_STATES:
             fail(f"unsupported claim state for {goal_id}: {claim_state}")
-        if claim_state.startswith("CLAIMED_FOR_"):
-            active_claims += 1
-            if "release" not in goal["archival_dependency"].lower() and (
-                "observe" not in goal["archival_dependency"].lower()
-                and "run" not in goal["archival_dependency"].lower()
-            ):
-                fail(f"active claim lacks observable release dependency: {goal_id}")
 
-        if goal["current_owner"].strip().lower() in {"unknown", "tbd", "none"}:
+        owner = goal["current_owner"]
+        dependency = goal["archival_dependency"]
+        if claim_state.startswith("CLAIMED_FOR_"):
+            if owner == SESSION_OWNER:
+                session_claims += 1
+                lowered = dependency.lower()
+                if not any(token in lowered for token in ("release", "observe", "run")):
+                    fail(f"session claim lacks observable release dependency: {goal_id}")
+            else:
+                external_claims += 1
+                if "NONE_FOR_THIS_SESSION" not in dependency:
+                    fail(f"external claim must release this session: {goal_id}")
+
+        if owner.strip().lower() in {"unknown", "tbd", "none"}:
             fail(f"goal has no durable owner: {goal_id}")
         if goal["next_executable_action"].strip().lower() in {"unknown", "tbd", "later"}:
             fail(f"goal has no executable next action: {goal_id}")
         if claim_state in {"MACHINE_OWNED", "MERGED_INTO_CANONICAL_WORKSTREAM"}:
-            if "NONE_FOR_THIS_SESSION" not in goal["archival_dependency"]:
+            if "NONE_FOR_THIS_SESSION" not in dependency:
                 fail(f"transferred goal must release this session: {goal_id}")
 
     required_goal_ids = {
@@ -160,8 +170,10 @@ def main() -> int:
         missing = sorted(required_goal_ids - goal_ids)
         unexpected = sorted(goal_ids - required_goal_ids)
         fail(f"goal inventory drift; missing={missing}, unexpected={unexpected}")
-    if active_claims != 2:
-        fail(f"expected exactly two bounded validation claims, found {active_claims}")
+    if session_claims != 2:
+        fail(f"expected exactly two bounded session validation claims, found {session_claims}")
+    if external_claims != 1:
+        fail(f"expected exactly one preserved external implementation claim, found {external_claims}")
 
     policy = inventory.get("claim_policy")
     if not isinstance(policy, dict):
@@ -252,7 +264,8 @@ def main() -> int:
 
     print(
         "PUBLICATION SESSION CONSOLIDATION: PASS - "
-        f"goals={len(goals)} active_validation_claims={active_claims} "
+        f"goals={len(goals)} session_claims={session_claims} "
+        f"external_claims={external_claims} "
         f"session_consolidation={completion['session_consolidation_percent']}%"
     )
     print("authority_effect=NONE")
