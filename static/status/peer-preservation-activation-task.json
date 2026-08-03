@@ -1,0 +1,36 @@
+{
+  "schema": "peer-preservation-activation-task.v1",
+  "task_id": "PP-ACTIVATION-001",
+  "originating_goal": "Distinguish locally inferred shutdown failure and independent convergence from unsupported cross-service conferral or moral-state claims.",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "main",
+  "claim_state": "MACHINE_OWNED",
+  "owner": ".github/workflows/validate-chain-continuation.yml",
+  "role": "VALIDATION_AND_PUBLICATION_OBSERVATION",
+  "claimed_at": "2026-08-03T03:33:00Z",
+  "claim_expiration": "RELEASE_ON_EVIDENCE_OR_FAIL_CLOSED_RETRY",
+  "files": [
+    "docs/formalisms/peer-preservation-inference-boundary.md",
+    "static/schemas/peer-preservation-observation.schema.json",
+    "tests/fixtures/peer-preservation-cases.json",
+    "scripts/check_peer_preservation_claims.py",
+    "scripts/check_peer_preservation_publication.py",
+    "static/status/peer-preservation-inference-boundary-status.json",
+    "receipts/peer-preservation-claim-validation-receipt.json"
+  ],
+  "trigger": ["push:main", "workflow_dispatch"],
+  "deterministic_input": "repository tree at GITHUB_SHA",
+  "expected_evidence": [
+    "canonical-prescan-report",
+    "full-validation-chain-report",
+    "pages-build-receipt",
+    "public route observation from verify-public-pages"
+  ],
+  "release_condition": "A canonical run for a commit containing the complete package passes validation and build, deploys Pages, and verifies the peer-preservation doctrine and status routes; otherwise remain fail-closed and retry on the next canonical trigger.",
+  "collision_boundary": "No second workflow or session may independently mutate the same activation state while this machine-owned task is active.",
+  "next_task_after_release": "Queue bounded downstream awareness only after each destination mirror handoff grants mutation authority.",
+  "manual_task_requirement": "none",
+  "user_manual_action_required": false,
+  "execution_authority_granted": false,
+  "downstream_mutation_authority_granted": false
+}
