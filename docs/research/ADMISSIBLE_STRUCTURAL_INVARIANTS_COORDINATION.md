@@ -1,62 +1,70 @@
 # Admissible Structural Invariants Coordination
 
-## Claim
+## Canonical claim state
 
 ```text
 goal_id: admissible-structural-invariants-v0.1
 originating_session_goal: document and research whether invariant preservation is itself subject to admissibility
 repository: StegVerse-Labs/admissibility-wiki
 branch: main
-role: IMPLEMENTATION_AND_TRANSFER
-claim_state: CLAIMED_FOR_IMPLEMENTATION
+canonical_owner: repository-native internal task executor
+session_role: MERGED_INTO_CANONICAL_WORKSTREAM
+session_claim_state: RELEASED
 claim_created: 2026-08-02T21:33:00-05:00
-claim_release_condition: PA-INT-011 installed with deterministic observer and all unique session requirements transferred
-collision_boundary: docs/research/admissible-structural-invariants.md; static/research/admissible-structural-invariants.v0.1.json; scripts/check_admissible_structural_invariants.py; related registry extension
+claim_released: 2026-08-02T22:03:00-05:00
+release_evidence: static/status/wiki-public-anchor-internal-task-registry.admissible-invariants-extension.json
+collision_boundary: only PA-INT-011 through PA-INT-014 may mutate the listed research, validation, receipt, and handoff surfaces without a supersession record
 ```
 
-## Installed Work
+## Installed work
 
-| Item | Location | State | Evidence |
+| Capability | Location | State |
+| --- | --- | --- |
+| Research formalization | `docs/research/admissible-structural-invariants.md` | INSTALLED |
+| Machine-readable candidate | `static/research/admissible-structural-invariants.v0.1.json` | INSTALLED |
+| Core deterministic validator | `scripts/check_admissible_structural_invariants.py` | INSTALLED_UNEXECUTED |
+| Public navigation binding | `sidebars.js` | INSTALLED |
+| Literature comparison page | `docs/research/admissible-structural-invariants-literature-matrix.md` | BASELINE_INSTALLED |
+| Literature comparison record | `static/research/admissible-structural-invariants-literature-matrix.v0.1.json` | BASELINE_INSTALLED |
+| Literature validator | `scripts/check_admissible_structural_invariants_literature.py` | INSTALLED_UNEXECUTED |
+| Counterexample fixtures | `static/research/examples/admissible-structural-invariant-cases.v0.1.json` | INSTALLED |
+| Invariant succession schema | `static/research/admissible-invariant-succession.schema.v0.1.json` | INSTALLED |
+| Fixture/schema validator | `scripts/check_admissible_invariant_cases.py` | INSTALLED_UNEXECUTED |
+| Machine continuation registry | `static/status/wiki-public-anchor-internal-task-registry.admissible-invariants-extension.json` | ACTIVE |
+| Session consolidation record | `static/status/session-consolidation/admissible-structural-invariants-session-2026-08-02.json` | CANONICAL ARCHIVE RECORD |
+
+## Preserved requirements
+
+1. Preservation and preservation admissibility are separate predicates.
+2. An unchanged invariant can leave its context-conditioned admissibility domain.
+3. Preserved-but-obsolete, purpose-inverting, unrecoverable, relationally inadmissible, and unreconstructable outcomes remain explicit.
+4. Receipt-bound invariant succession may preserve a higher-order continuity claim while replacing a lower-order invariant.
+5. Authority, purpose, evidence, recoverability, and affected-entity standing are first-class decision dimensions.
+6. Multi-entity conflict requires an explicit aggregation rule and cannot be collapsed into single-system preservation.
+7. Preservation, commit-time admissibility, and later reconstructability remain independently testable.
+8. Novelty remains `NOT_DETERMINED` until primary-source intake and independent review are complete.
+
+## Machine-owned execution inventory
+
+| Task | State | Exact next action | Completion evidence |
 | --- | --- | --- | --- |
-| Research formalization | `docs/research/admissible-structural-invariants.md` | IMPLEMENTED | commit `ac2f01d36ce82676f6eeba2ffb8479ce00a8ef5c` |
-| Machine-readable candidate | `static/research/admissible-structural-invariants.v0.1.json` | IMPLEMENTED | commit `143a1efe05d965b8b7417faec1a304af89b40a96` |
-| Deterministic validator | `scripts/check_admissible_structural_invariants.py` | IMPLEMENTED_UNEXECUTED | commit `148baf02f76d30a15408559dfc6ac41978f23030` |
-| Public navigation binding | `sidebars.js` | IMPLEMENTED | commit `65bdeede3993e8e6ae7b3a8be6e337d8ce7c7959` |
-| Machine continuation tasks | `static/status/wiki-public-anchor-internal-task-registry.admissible-invariants-extension.json` | IMPLEMENTED | commit `1c9524fe2d2aeec4f48fd1aff04a4b779a2619e6` |
+| `PA-INT-011` | READY_INTERNAL | run `python scripts/check_admissible_structural_invariants.py` | validator output or canonical execution receipt |
+| `PA-INT-012` | READY_INTERNAL | run the baseline literature validator, then add claim-bounded primary-source records | literature validator output and source records |
+| `PA-INT-013` | READY_INTERNAL | run `python scripts/check_admissible_invariant_cases.py` | fixture/schema validator output |
+| `PA-INT-014` | READY_INTERNAL | bind all three validators into `package.json`, execute canonical validation, preserve receipt, and incorporate state into the canonical mirror handoff | package diff, workflow/local receipt, and handoff update |
 
-## Preserved Requirements
+## Validation boundary
 
-1. Distinguish preservation from the admissibility of preserving.
-2. Model an invariant's context-conditioned admissibility domain rather than treating change only as temporal decay.
-3. Support preserved-but-inadmissible outcomes.
-4. Support receipt-bound invariant succession where a lower-order invariant changes but higher-order continuity may remain admissible.
-5. Treat authority, purpose, evidence, boundary recoverability, and affected entities as first-class context dimensions.
-6. Preserve multi-entity conflict rather than collapsing it into a single-system invariant.
-7. Keep preservation, commit-time admissibility, and later reconstructability independently testable.
-8. Make no novelty claim until a primary-source comparison and independent review are complete.
+No validation, hosted workflow, build, deployment, public-route verification, release, or governed activation is claimed. A direct container attempt could not reach GitHub because DNS/network access was unavailable. That failed observation does not invalidate installed repository state and is not represented as a validator result.
 
-## Execution Inventory
+## Cross-repository boundary
 
-| Task ID | Destination | Claim state | Completion | Validation | Integration | Next executable action |
-| --- | --- | --- | --- | --- | --- | --- |
-| PA-INT-011 | wiki research note, record, validator, sidebar | MACHINE_OWNED | implemented | unexecuted | registry extension installed | run `python scripts/check_admissible_structural_invariants.py` through the internal executor or canonical workflow |
-| PA-INT-012 | literature matrix files named in registry | MACHINE_OWNED | missing | not started | task installed | retrieve primary sources and install claim-bounded comparison matrix |
-| PA-INT-013 | counterexample fixtures and succession schema named in registry | BLOCKED | missing | not started | task installed | release when PA-INT-011 passes and record fields stabilize |
+Potential consumers remain `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, and `stegguardian-wiki`. No propagation is claimed. `PA-INT-014` must read each destination mirror handoff before creating a source contract, mirror candidate, or downstream mutation.
 
-## Validation Commands
+## Consolidation and archive disposition
 
-```bash
-python scripts/check_admissible_structural_invariants.py
-python scripts/run_wiki_public_anchor_internal_tasks.py
-npm run validate
-```
+All unique requirements and all unresolved execution work from this session are now installed or assigned to repository-native tasks with exact locations, observers, completion predicates, fallbacks, and collision controls. The session owns no remaining implementation, validation, integration, propagation, or observation authority.
 
-No validation run is claimed by this record. File installation and commit evidence do not prove canonical workflow execution, build success, deployment, public route accessibility, or governed activation.
+MERGED INTO: `StegVerse-Labs/admissibility-wiki/docs/research/ADMISSIBLE_STRUCTURAL_INVARIANTS_COORDINATION.md`, `static/status/wiki-public-anchor-internal-task-registry.admissible-invariants-extension.json`, and `static/status/session-consolidation/admissible-structural-invariants-session-2026-08-02.json`.
 
-## Cross-Repository Propagation
-
-Potential consumers are `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, `admissibility-wiki`, and `stegguardian-wiki`. No downstream propagation is claimed. Destination handoffs must be read before mutation. Publication from this repository is the current canonical first step.
-
-## Archive Dependency
-
-The unique conceptual and implementation requirements from this conversation are durably installed. Machine-owned continuation exists for validation, literature research, and fixtures. This coordination record may be merged into the canonical `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` during the next handoff maintenance pass. Until that merge is committed and PA-INT-011 is observed, this session retains a distinct integration/validation responsibility.
+The complete thread is ready for archiving without any additional part of the thread being required to move forward.
