@@ -29,59 +29,25 @@ REQUIRED_CLASSIFICATIONS = {
 }
 
 REQUIRED_MARKERS = {
-    "handoff": [
-        "SRC-PHASE3-001",
-        "CLAIMED_FOR_IMPLEMENTATION",
-        "CLAIMED_FOR_VALIDATION",
-        "Group B",
-        "Group H",
-        "archive",
-    ],
-    "terminology": [
-        "standing.evidentiary",
-        "standing.interpretive",
-        "standing.authority",
-        "verification",
-        "validation",
-        "Prohibited unqualified terms",
-    ],
-    "claims": [
-        "SRC-CLAIM-001",
-        "SRC-CLAIM-018",
-        "Adoption rule",
-        "Known corpus limitation",
-    ],
-    "open_questions": [
-        "SRC-OQ-001",
-        "SRC-OQ-015",
-        "Fail-closed rule",
-        "Group B",
-        "Group H",
-    ],
-    "formalism": [
-        "Proposed StegVerse Formalism",
-        "Transition Element",
-        "Commit-Time Admissibility Reconstruction",
-        "Dead Basis",
-        "Standing Correction",
-    ],
-    "revision_matrix": [
-        "SRC-REV-001",
-        "SRC-REV-020",
-        "Doctrine rewrite gate",
-        "Propagation gate",
-    ],
+    "handoff": ["SRC-PHASE3-001", "CLAIMED_FOR_IMPLEMENTATION", "CLAIMED_FOR_VALIDATION", "Group B", "Group H", "archive"],
+    "terminology": ["standing.evidentiary", "standing.interpretive", "standing.authority", "verification", "validation", "Prohibited unqualified terms"],
+    "claims": ["SRC-CLAIM-001", "SRC-CLAIM-018", "Adoption rule", "Known corpus limitation"],
+    "open_questions": ["SRC-OQ-001", "SRC-OQ-015", "Fail-closed rule", "Group B", "Group H"],
+    "formalism": ["Proposed StegVerse formalism", "Transition Element", "Commit-Time Admissibility Reconstruction", "Dead Basis", "Standing Correction"],
+    "revision_matrix": ["SRC-REV-001", "SRC-REV-020", "Doctrine rewrite gate", "Propagation gate"],
 }
-
-PROHIBITED_FALSE_COMPLETION = [
-    re.compile(r"Phase 1[^\n]{0,80}\bCOMPLETE\b", re.IGNORECASE),
-    re.compile(r"Phase 2[^\n]{0,80}\bCOMPLETE\b", re.IGNORECASE),
-]
 
 
 def fail(message: str) -> None:
     print(f"DOCTRINE RESEARCH COMPANION: FAILED - {message}")
     raise SystemExit(1)
+
+
+def require_contiguous(text: str, prefix: str, start: int, end: int) -> None:
+    found = sorted(set(re.findall(rf"{re.escape(prefix)}(\d{{3}})", text)))
+    expected = [f"{i:03d}" for i in range(start, end + 1)]
+    if found != expected:
+        fail(f"{prefix} register must contain contiguous {prefix}{start:03d} through {prefix}{end:03d}")
 
 
 def main() -> int:
@@ -102,30 +68,17 @@ def main() -> int:
     if missing_classes:
         fail(f"missing canonical classifications: {', '.join(missing_classes)}")
 
-    claim_ids = re.findall(r"SRC-CLAIM-(\d{3})", texts["claims"])
-    if sorted(set(claim_ids)) != [f"{i:03d}" for i in range(1, 19)]:
-        fail("claims register must contain contiguous SRC-CLAIM-001 through SRC-CLAIM-018")
+    require_contiguous(texts["claims"], "SRC-CLAIM-", 1, 18)
+    require_contiguous(texts["open_questions"], "SRC-OQ-", 1, 15)
+    require_contiguous(texts["revision_matrix"], "SRC-REV-", 1, 20)
 
-    oq_ids = re.findall(r"SRC-OQ-(\d{3})", texts["open_questions"])
-    if sorted(set(oq_ids)) != [f"{i:03d}" for i in range(1, 16)]:
-        fail("open questions register must contain contiguous SRC-OQ-001 through SRC-OQ-015")
-
-    rev_ids = re.findall(r"SRC-REV-(\d{3})", texts["revision_matrix"])
-    if sorted(set(rev_ids)) != [f"{i:03d}" for i in range(1, 21)]:
-        fail("revision matrix must contain contiguous SRC-REV-001 through SRC-REV-020")
-
-    handoff = texts["handoff"]
-    for pattern in PROHIBITED_FALSE_COMPLETION:
-        if pattern.search(handoff) and "scaffold" not in handoff.lower():
-            fail("handoff appears to claim Phase 1/2 completion without preserving scaffold caveat")
-
-    if "Doctrine rewrite: NOT AUTHORIZED" not in handoff:
+    handoff_lower = texts["handoff"].lower()
+    if "phase 1" not in handoff_lower or "phase 2" not in handoff_lower or "scaffold" not in handoff_lower:
+        fail("handoff must preserve the Group B/H scaffold limitation for Phase 1 and Phase 2")
+    if "Doctrine rewrite: NOT AUTHORIZED" not in texts["handoff"]:
         fail("handoff must preserve the doctrine rewrite authority boundary")
 
-    print(
-        "DOCTRINE RESEARCH COMPANION: PASS - "
-        "6 canonical files, 18 claims, 15 open questions, 20 revision rows validated"
-    )
+    print("DOCTRINE RESEARCH COMPANION: PASS - 6 canonical files, 18 claims, 15 open questions, 20 revision rows validated")
     return 0
 
 
