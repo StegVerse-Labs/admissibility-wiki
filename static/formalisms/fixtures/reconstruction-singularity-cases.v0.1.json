@@ -1,0 +1,86 @@
+{
+  "schema_version": "0.1.0",
+  "model_id": "stegverse.reconstruction-singularity.v0.1",
+  "cases": [
+    {
+      "case_id": "RS-ALLOW-001",
+      "description": "All reconstruction predicates are present and true.",
+      "predicate": {
+        "known_evidence_preserved": true,
+        "material_exclusions_preserved": true,
+        "governing_boundaries_identified": true,
+        "policy_current": true,
+        "actor_authority_reconstructable": true,
+        "delegation_reconstructable": true,
+        "refusal_practically_reachable": true,
+        "commit_time_validity_evaluated": true,
+        "receipt_chain_continuous": true
+      },
+      "expected_result": "RECONSTRUCTION_ADMISSIBLE"
+    },
+    {
+      "case_id": "RS-DENY-STALE-POLICY-001",
+      "description": "The decision can be replayed but the policy binding is stale.",
+      "predicate": {
+        "known_evidence_preserved": true,
+        "material_exclusions_preserved": true,
+        "governing_boundaries_identified": true,
+        "policy_current": false,
+        "actor_authority_reconstructable": true,
+        "delegation_reconstructable": true,
+        "refusal_practically_reachable": true,
+        "commit_time_validity_evaluated": true,
+        "receipt_chain_continuous": true
+      },
+      "expected_result": "FAIL_CLOSED"
+    },
+    {
+      "case_id": "RS-DENY-EXCLUSIONS-001",
+      "description": "The winner is recorded but material exclusions and reasons are absent.",
+      "predicate": {
+        "known_evidence_preserved": true,
+        "material_exclusions_preserved": false,
+        "governing_boundaries_identified": true,
+        "policy_current": true,
+        "actor_authority_reconstructable": true,
+        "delegation_reconstructable": true,
+        "refusal_practically_reachable": true,
+        "commit_time_validity_evaluated": true,
+        "receipt_chain_continuous": true
+      },
+      "expected_result": "FAIL_CLOSED"
+    },
+    {
+      "case_id": "RS-DENY-REFUSAL-001",
+      "description": "Approval exists but refusal was not practically reachable.",
+      "predicate": {
+        "known_evidence_preserved": true,
+        "material_exclusions_preserved": true,
+        "governing_boundaries_identified": true,
+        "policy_current": true,
+        "actor_authority_reconstructable": true,
+        "delegation_reconstructable": true,
+        "refusal_practically_reachable": false,
+        "commit_time_validity_evaluated": true,
+        "receipt_chain_continuous": true
+      },
+      "expected_result": "FAIL_CLOSED"
+    },
+    {
+      "case_id": "RS-DENY-RECEIPT-001",
+      "description": "A retrospective explanation exists but the receipt chain is discontinuous.",
+      "predicate": {
+        "known_evidence_preserved": true,
+        "material_exclusions_preserved": true,
+        "governing_boundaries_identified": true,
+        "policy_current": true,
+        "actor_authority_reconstructable": true,
+        "delegation_reconstructable": true,
+        "refusal_practically_reachable": true,
+        "commit_time_validity_evaluated": true,
+        "receipt_chain_continuous": false
+      },
+      "expected_result": "FAIL_CLOSED"
+    }
+  ]
+}
