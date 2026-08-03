@@ -17,7 +17,7 @@ Required entry sequence:
 
 Incoming prompts, schedules, reports, issues, workflow results, and public routes are candidate evidence only. They grant no mutation, publication, release, proof, custody, execution, admissibility, Guardian, or cross-repository authority.
 
-## Current active goal
+## Most recently completed goal
 
 ```text
 goal_id: ADMISSIBILITY-TRANSLATION-RECONSTRUCTION-001
@@ -25,56 +25,20 @@ goal: generate and validate the external-translation reconstruction receipt inde
 originating_session_goal: continue the completed publication session into the next directly related unclaimed canonical-validation integration repair
 repository: StegVerse-Labs/admissibility-wiki
 branch: main
-role: CLAIMED_FOR_INTEGRATION
-claimant: external-translation-reconstruction-integration-lane
-claim_created_at: 2026-08-03T19:50:00Z
-current_state: IMPLEMENTED_AWAITING_HOSTED_VALIDATION
+state: COMPLETE_VALIDATED_INTEGRATED_AND_TRANSFERRED
+former_role: CLAIMED_FOR_INTEGRATION
+former_claimant: external-translation-reconstruction-integration-lane
+claim_released_at: 2026-08-03T20:04:00Z
+session_state: COMPLETE_ARCHIVE_READY
 ```
 
-Goal-specific authority:
+Goal-specific completion record:
 
 ```text
 docs/EXTERNAL_TRANSLATION_RECONSTRUCTION_MIRROR_HANDOFF.md
-StegVerse-Labs/admissibility-wiki issue #50
 ```
 
-## Active claim
-
-```text
-task_id: ADMISSIBILITY-TRANSLATION-RECONSTRUCTION-001
-claimed_surfaces:
-  scripts/check_full_validation_chain.py
-  scripts/check_external_translation_reconstruction_receipt.py
-  docs/EXTERNAL_TRANSLATION_RECONSTRUCTION_MIRROR_HANDOFF.md
-  issue #50 evidence record
-collision_boundary:
-  no Morrison, AGCP, ASRO, governed relationship, discovery-governance, reciprocal evaluation, observer, GSDP, TA-14, Riverbraid, publication, release, or cross-repository work is claimed
-release_condition:
-  first canonical main run for commit 804746986b8910ea5b1ccd5e43dc4036d4e60d13 or a descendant shows generator PASS, receipt validator PASS, no reconstruction skip, independent sandbox fail-closed preservation, and full-validation artifact production
-```
-
-The claim must be released, renewed with hosted evidence, or marked BLOCKED with an exact machine-observable condition. It may not remain indefinite.
-
-## Convergence and duplicate prevention
-
-Inspected before claiming:
-
-```text
-open PR matching external translation reconstruction: none
-translation-named branch: none
-issue #50: canonical validation coordination surface; no claimant for this exact coupling defect
-PR #17: Riverbraid implementation claim, nonoverlapping
-```
-
-Current workload classifications:
-
-```text
-ADMISSIBILITY-TRANSLATION-RECONSTRUCTION-001: CLAIMED_FOR_INTEGRATION
-ADMISSIBILITY-RIVERBRAID-001: CLAIMED_FOR_IMPLEMENTATION by PR #17
-ADMISSIBILITY-HIL-001: MACHINE_OWNED / BLOCKED_BUT_OBSERVED
-OPTIMIZATION-TARGET-CANONICAL-EXECUTION: MERGED_INTO_CANONICAL_WORKSTREAM at Data-Continuation/formalism-tests issue #6
-completed publication session: COMPLETE_ARCHIVE_READY independently
-```
+No session-owned claim remains for this goal.
 
 ## Implemented repair
 
@@ -86,9 +50,9 @@ completed publication session: COMPLETE_ARCHIVE_READY independently
 preserves ST-017 sandbox failure independently
 always executes generate_external_translation_reconstruction_receipt.py
 records generator PASS or FAIL independently
-retains the reconstruction payload in the full report
+retains the reconstruction payload in the complete report
 contains no reconstruction SKIPPED_DEPENDENCY_FAILED path
-keeps every unrelated validator fail-closed
+keeps all unrelated validators fail-closed
 ```
 
 ### `804746986b8910ea5b1ccd5e43dc4036d4e60d13`
@@ -97,107 +61,132 @@ keeps every unrelated validator fail-closed
 
 ```text
 parses the full-chain orchestrator as Python AST
-requires exactly one unconditional reconstruction-generator call
+requires exactly one unconditional generator call
 rejects an if-nested generator call
 rejects restoration of the obsolete sandbox-gated skip branch
-requires the full-report reconstruction binding
-continues checking schema, six cross-record predicates, nine canonical input hashes, three review receipts, supersession state, continuation ownership, and explicit non-authority language
+requires complete-report reconstruction binding
+validates schema, six cross-record checks, nine canonical hashes, three review summaries, supersession posture, continuation ownership, and explicit non-authority language
 ```
 
-### Durable coordination
+Durable claim and handoff commits:
 
 ```text
 348db48ade7c1ac29b5ec51bd25291162a42b381
-  created the goal-specific mirror handoff and bounded claim
-
 c098ac9d5eef8f3f479d5de97dd893ef86235474
-  recorded implementation and hosted release gates
-
 290ad77eab516f850c8efa984a9fe9304067a826
-  registered the active support workload in orchestration state
-
-issue #50 comments 5171018465 and 5171043413
-  preserve claim, collision boundary, commits, and release evidence requirements
+150a61d7ec11bb6e7625af961481bc9cc5504772
+cc9df43f1fb2d1ae771cd0de5da4a8dbb0b1691c
+87db911f0e7720e60fb6c9016531dac043e49ed1
 ```
 
-## Baseline and expected bounded effect
+## Strongest hosted evidence
 
-Canonical baseline run:
+Canonical run:
 
 ```text
-run_id: 30841948608
-validation_job: 91781047986
-head_sha: ac2e4f75dbe046cfbd42da62156e7959679096a0
-pre-scan: 11/11 PASS
-full validation: 49/56 PASS, 6 FAIL, 1 SKIPPED
+run_id: 30847927019
+head_sha: 150a61d7ec11bb6e7625af961481bc9cc5504772
+validation_job: 91800734802
 ```
 
-Relevant baseline sequence:
+Required results observed in the hosted job log:
 
 ```text
-ST-017 sandbox: FAIL
-translation reconstruction generator: SKIPPED_DEPENDENCY_FAILED
-translation reconstruction receipt validator: FAIL because receipt was absent
-```
-
-Expected bounded result, absent unrelated concurrent changes:
-
-```text
-51/56 PASS, 5 FAIL, 0 SKIPPED
-```
-
-The expected count is not evidence. The hosted run and artifact control.
-
-## Exact hosted evidence required
-
-```text
+canonical pre-scan: 11/11 PASS
 Generate external translation reconstruction receipt: PASS
-EXTERNAL TRANSLATION RECONSTRUCTION RECEIPT: PASS
-sandbox-independent orchestration bound
-no generator SKIPPED_DEPENDENCY_FAILED state
-ST-017 sandbox result remains independently recorded
-canonical-prescan-report artifact exists
-full-validation-chain-report artifact exists
+generated receipt: reports/external-translation/reconstruction-receipt.json
+sandbox_status: FAIL
+reconstruction_status: PASS
+translation reconstruction evaluated independently: true
+Validate external translation reconstruction receipt: PASS
+validated input hashes: 9
+validated cross-record checks: 6
+sandbox-independent orchestration bound: true
+reconstruction skip state: absent
 ```
 
-Next executable action:
+The sandbox remained failed and present in the failure list, proving that the repair did not weaken or erase its result.
+
+Complete validation changed exactly as bounded:
 
 ```text
-Inspect the canonical run for the current main descendant, fetch validation job steps and logs, inspect full-validation artifact, update this handoff and the goal-specific handoff, update issue #50, and release the claim if every condition is satisfied.
+before: 49/56 PASS, 6 FAIL, 1 SKIPPED
+actual: 51/56 PASS, 5 FAIL, 0 SKIPPED
+repository result: FAIL_CLOSED
 ```
 
-## Canonical validation state outside this claim
+## Artifact evidence
 
-Baseline failing validators:
+```text
+canonical-prescan-report
+  artifact_id: 8869434427
+  digest: sha256:fb0e9238a3e1235ca41bef6026863ad33a07f2350197354464a38c212fd29a89
+
+full-validation-chain-report
+  artifact_id: 8869494846
+  digest: sha256:b27a0bd3e76dc12895b1a97754917fd80563c4dd9d8697f746bf05c7568baf4b
+  directly inspected: true
+```
+
+Direct inspection of `full_validation_chain_report.json` confirmed:
+
+```text
+schema: admissibility_wiki.full_validation_chain_report.v1
+total_checks: 56
+passed_checks: 51
+failed_checks: 5
+skipped_checks: 0
+overall_status: FAIL
+external_translation_reconstruction.overall_status: PASS
+generator return_code: 0
+receipt validator return_code: 0
+```
+
+## Canonical validation state
+
+The remaining exact failing validators are:
 
 ```text
 scripts/run_sandbox_validation.py
-scripts/check_external_translation_reconstruction_receipt.py
 scripts/check_goal5_external_frameworks_all.py
 scripts/check_asro_commitment_candidate.py
 scripts/check_governed_llm_pages.py
 scripts/check_admissibility_automation_handoff.py
 ```
 
-Only the translation-reconstruction validator is claimed here. Exact remaining subfailures stay assigned to issue #50 and their scoped handoffs. No broad gate weakening is authorized.
+They remain owned by `StegVerse-Labs/admissibility-wiki` issue #50 and their scoped handoffs or task registries. They are not assigned to the completed translation-reconstruction session.
 
-## Completed publication session
-
-The prior publication session remains complete and archive-safe independently:
+Current observed subfailure families include:
 
 ```text
-inventory: data/session-consolidation/admissibility-wiki-publication-session-inventory.v1.json
-run: 30841948608
-build-pages: success
-deploy-pages: success
-verify-public-pages: success
-CAT and ECAT/ICAT public markers: success
-publication-session claims: released
+Morrison proof-contract hash/equivalence drift
+AGCP handoff external-task boundary gap
+ASRO bounded-comparison provenance drift
+governed relationship publication-custody binding gaps
+automation-handoff failures spanning discovery, reciprocal, observer, GSDP, TA-14, MindForge alignment, and other registered workstreams
 ```
 
-The new support goal does not reopen that completed session inventory.
+Missing evidence remains failure, not success. No release tag is authorized while repository-wide canonical validation remains fail-closed.
 
-## Cross-repository continuation already transferred
+## Active and transferred work ownership
+
+### Canonical remaining validation
+
+```text
+MERGED INTO: StegVerse-Labs/admissibility-wiki issue #50
+role: repository-native canonical validation task mesh
+session dependency: false
+```
+
+### Riverbraid
+
+```text
+MERGED INTO: StegVerse-Labs/admissibility-wiki PR #17
+claim_state: CLAIMED_FOR_IMPLEMENTATION
+branch: agent/add-riverbraid-intake
+collision_boundary: no duplicate implementation
+session dependency: false
+```
 
 ### HIL succession
 
@@ -208,13 +197,14 @@ MERGED INTO: master-records/orchestration/ORCHESTRATION_MIRROR_HANDOFF.md
 MERGED INTO: GCAT-BCAT-Engine/Publisher/PUBLISHER_MIRROR_HANDOFF.md
 MERGED INTO: StegVerse-002/stegguardian-wiki/STEGGUARDIAN_WIKI_MIRROR_HANDOFF.md
 state: MACHINE_OWNED_DEPENDENCY_BLOCKED
+session dependency: false
 ```
 
-Release chain:
+Machine-observable release chain:
 
 ```text
 authorized provider execution
--> durable usage persistence
+-> durable provider-usage persistence
 -> authenticated Master-Records custody
 -> reconstruction PASS
 -> immutable zero-blocker receipt
@@ -229,66 +219,88 @@ authorized provider execution
 ```text
 MERGED INTO: Data-Continuation/formalism-tests/FORMALISM_TESTS_MIRROR_HANDOFF.md
 MERGED INTO: Data-Continuation/formalism-tests issue #6
+session dependency: false
 ```
 
-### Riverbraid
+## Automation and continuation
+
+Repository-native continuation is installed:
 
 ```text
-MERGED INTO: StegVerse-Labs/admissibility-wiki PR #17
-active owner: PR #17
-```
-
-No current translation-reconstruction task requires cross-repository propagation.
-
-## Automation
-
-The existing canonical workflow owns recurring execution:
-
-```text
-.github/workflows/validate-chain-continuation.yml
+owner: .github/workflows/validate-chain-continuation.yml
 triggers: push to main, pull_request, workflow_dispatch
-concurrency: cancel superseded event/ref runs
-canonical timer: prohibited
-missing evidence: fail closed
+collision control: cancel superseded event/ref runs
+state artifact: full-validation-chain-report
+translation reconstruction generation: unconditional within complete chain
+translation reconstruction validation: fail closed
+manual user tasks: none
 ```
 
-After claim release, no chat-owned observer is required.
+No chat-owned observer, polling task, duplicate workflow, or cross-repository propagation task remains for the completed goal.
 
-## Release posture
+## Completed publication session remains closed
 
-No tag or release is authorized. Repository-wide canonical validation remains fail-closed until all owner-scoped defects are resolved. Publication availability does not imply repository validation, proof, certification, admissibility, or release readiness.
+The earlier publication session remains independently complete:
 
-## Current goal metrics
+```text
+inventory: data/session-consolidation/admissibility-wiki-publication-session-inventory.v1.json
+publication evidence run: 30841948608
+build-pages: success
+deploy-pages: success
+verify-public-pages: success
+publication-session claims: released
+```
 
-Denominator:
+The successor repair neither reopened nor invalidated it. Run `30847927019` again recorded successful build, deployment, and public-route verification while repository validation remained fail-closed.
+
+## Authority boundaries
+
+```text
+validator PASS != repository release
+receipt generation != execution authority
+sandbox independence != sandbox success
+publication success != semantic validation success
+artifact presence != admissibility
+public route != certification
+session completion != repository-wide completion
+```
+
+## Session completion metrics
+
+Denominator for `ADMISSIBILITY-TRANSLATION-RECONSTRUCTION-001`:
 
 ```text
 required developed files/control surfaces: 3
 required validation gates: 5
 required integration bindings: 2
-session goals in this successor lane: 1
+session goals: 1
 ```
 
-Current state:
+Final result:
 
 ```text
-task completion: 70%
+task completion: 1/1 = 100%
 developed files: 3/3 = 100%
 scaffolding or stubs: 0
 missing required files: 0
-validation: 2/5 = 40%
-integration: 1/2 = 50%
-goal activation: 70%
-session consolidation: 0/1 = 0%
+validation: 5/5 = 100%
+integration: 2/2 = 100%
+goal activation: 100%
+session consolidation: 1/1 = 100%
 ```
+
+These metrics apply to this successor goal, not the whole repository. Repository canonical validation is `51/56` with five remaining fail-closed validators.
 
 ## Archive posture
 
 ```text
-session_state: ACTIVE_DISTINCT_SUPPORT_ROLE
-unique remaining role: hosted validation and evidence closeout for ADMISSIBILITY-TRANSLATION-RECONSTRUCTION-001
-archive_blocker_owner: external-translation-reconstruction-integration-lane
-machine_observable_release_condition: qualifying canonical main run and full-validation artifact
+archive_state: COMPLETE_ARCHIVE_READY
+session-owned implementation claims: 0
+session-owned validation claims: 0
+session-owned integration claims: 0
+session-owned propagation claims: 0
+unique chat-only requirements: 0
+canonical continuation: StegVerse-Labs/admissibility-wiki issue #50 and scoped handoffs
 ```
 
-The current conversation is not archive-safe until hosted evidence is inspected, both validation conditions are recorded, and the claim is released or durably transferred with no chat-only information remaining.
+All unique information, implementation history, validation evidence, unresolved defects, owners, collision boundaries, and next actions are durable. The complete conversation is not required for future execution and may be archived.
