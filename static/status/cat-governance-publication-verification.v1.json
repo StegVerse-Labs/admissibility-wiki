@@ -1,0 +1,64 @@
+{
+  "schema": "stegverse.cat-governance-publication-verification.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "public_route": "https://stegverse-labs.github.io/admissibility-wiki/",
+  "source_page": "docs/index.md",
+  "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
+  "observed_at": "2026-08-03T18:30:00Z",
+  "workflow_run": {
+    "run_id": 30837466398,
+    "head_sha": "fd3523766e66d37c3e1b0e64905117103197e968",
+    "overall_conclusion": "failure_fail_closed_validation",
+    "publication_jobs": {
+      "build-pages": {
+        "job_id": 91766690214,
+        "conclusion": "success"
+      },
+      "deploy-pages": {
+        "job_id": 91768371492,
+        "conclusion": "success"
+      },
+      "verify-public-pages": {
+        "job_id": 91769034746,
+        "conclusion": "success"
+      }
+    }
+  },
+  "artifacts": {
+    "github-pages": {
+      "artifact_id": 8865658459,
+      "digest": "sha256:c37b91542eff9b8a0169811096950fe8d5c5cbce187b1be93a851330a9e71fdc",
+      "inspected_path": "index.html"
+    },
+    "pages-build-receipt": {
+      "artifact_id": 8865657321,
+      "digest": "sha256:4e76058b636b33a9974dfd0a13420c9846750b95bf4eb881c3cea468c39f49c3"
+    },
+    "full-validation-chain-report": {
+      "artifact_id": 8865473106,
+      "digest": "sha256:94bf38a739fac7fe3602531cf3f1bb2a430874303b600538b4e45b119118a74a"
+    }
+  },
+  "inspection": {
+    "method": "download GitHub Pages workflow artifact, extract artifact.tar, inspect generated root index.html",
+    "root_index_present": true,
+    "required_markers": {
+      "CAT Governance Stack": true,
+      "ECAT and ICAT should not be reduced": true
+    },
+    "deployed_artifact_marker_result": "PASS",
+    "public_route_job_result": "PASS",
+    "recurring_marker_verification_installed": true,
+    "recurring_marker_verification_step": "Verify CAT governance stack publication"
+  },
+  "result": "VERIFIED_DEPLOYED_ARTIFACT_AND_PUBLIC_ROUTE_JOB",
+  "non_claims": {
+    "full_repository_validation_passed": false,
+    "release_authorized": false,
+    "publication_authority_granted": false,
+    "execution_authority_granted": false,
+    "admissibility_granted": false,
+    "cross_repository_mutation_authorized": false
+  },
+  "next_action": "Repository-native canonical workflow applies the installed CAT marker check on each future main deployment; unrelated fail-closed validators continue under their canonical owners."
+}
