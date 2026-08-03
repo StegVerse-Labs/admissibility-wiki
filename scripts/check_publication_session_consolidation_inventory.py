@@ -16,7 +16,7 @@ INVENTORY = (
 )
 HANDOFF = ROOT / "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
 WORKFLOW = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
-SESSION_OWNER = "publication-session-validation-lane"
+RELEASED_SESSION_OWNER = "publication-session-validation-lane-released"
 
 ALLOWED_CLAIM_STATES = {
     "UNCLAIMED",
@@ -80,6 +80,8 @@ def main() -> int:
         fail("repository identity mismatch")
     if inventory.get("branch") != "main":
         fail("canonical branch must remain main")
+    if inventory.get("archive_state") != "COMPLETE_ARCHIVE_READY":
+        fail("archive state is not complete")
 
     active_goal = inventory.get("active_goal")
     if not isinstance(active_goal, dict):
@@ -93,6 +95,7 @@ def main() -> int:
         "current_role",
         "claimant",
         "claim_created_at",
+        "claim_released_at",
         "claim_release_condition",
     ):
         require_nonempty_string(active_goal, field, "active_goal")
@@ -105,12 +108,19 @@ def main() -> int:
         ".github/workflows/validate-chain-continuation.yml"
     ):
         fail("canonical workflow identity mismatch")
-    if active_goal["current_role"] not in ALLOWED_CLAIM_STATES:
-        fail("active goal has unsupported claim role")
-    if active_goal["claimant"] != SESSION_OWNER:
-        fail("active goal claimant identity mismatch")
-    if "CAT landing-page marker step=success" not in active_goal["claim_release_condition"]:
-        fail("validation claim lacks a machine-observable release condition")
+    if active_goal["current_role"] != "COMPLETE":
+        fail("session goal must be complete before archival")
+    if active_goal["claimant"] != RELEASED_SESSION_OWNER:
+        fail("released claimant identity mismatch")
+    release_condition = active_goal["claim_release_condition"]
+    for marker in (
+        "SATISFIED",
+        "30841948608",
+        "CAT evidence validator",
+        "CAT landing-page marker step",
+    ):
+        if marker not in release_condition:
+            fail(f"release condition missing evidence marker: {marker}")
 
     goals = inventory.get("session_goals")
     if not isinstance(goals, list) or not goals:
@@ -140,11 +150,8 @@ def main() -> int:
         owner = goal["current_owner"]
         dependency = goal["archival_dependency"]
         if claim_state.startswith("CLAIMED_FOR_"):
-            if owner == SESSION_OWNER:
+            if "publication-session-validation-lane" in owner:
                 session_claims += 1
-                lowered = dependency.lower()
-                if not any(token in lowered for token in ("release", "observe", "run")):
-                    fail(f"session claim lacks observable release dependency: {goal_id}")
             else:
                 external_claims += 1
                 if "NONE_FOR_THIS_SESSION" not in dependency:
@@ -157,6 +164,11 @@ def main() -> int:
         if claim_state in {"MACHINE_OWNED", "MERGED_INTO_CANONICAL_WORKSTREAM"}:
             if "NONE_FOR_THIS_SESSION" not in dependency:
                 fail(f"transferred goal must release this session: {goal_id}")
+        if goal_id in {"AWP-PUB-001", "AWP-CI-002"}:
+            if claim_state != "COMPLETE":
+                fail(f"session-owned claim not released: {goal_id}")
+            if "NONE_FOR_THIS_SESSION" not in dependency:
+                fail(f"completed session goal still blocks archival: {goal_id}")
 
     required_goal_ids = {
         "AWP-PUB-001",
@@ -170,8 +182,8 @@ def main() -> int:
         missing = sorted(required_goal_ids - goal_ids)
         unexpected = sorted(goal_ids - required_goal_ids)
         fail(f"goal inventory drift; missing={missing}, unexpected={unexpected}")
-    if session_claims != 2:
-        fail(f"expected exactly two bounded session validation claims, found {session_claims}")
+    if session_claims != 0:
+        fail(f"session claims remain active: {session_claims}")
     if external_claims != 1:
         fail(f"expected exactly one preserved external implementation claim, found {external_claims}")
 
@@ -222,12 +234,14 @@ def main() -> int:
         fail("required_session_goals does not match inventory length")
     if completion["transferred_or_complete_session_goals"] != len(goals):
         fail("all session goals must be durably transferred or complete")
-    if completion["developed_files"] > completion["required_files_for_session_goal"]:
-        fail("developed file count exceeds required file count")
-    if completion["validated_gates"] > completion["required_validation_gates"]:
-        fail("validated gate count exceeds required gate count")
-    if completion["integrated_bindings"] > completion["required_integration_bindings"]:
-        fail("integrated binding count exceeds required binding count")
+    if completion["developed_files"] != completion["required_files_for_session_goal"]:
+        fail("developed file inventory is incomplete")
+    if completion["scaffolding_or_stubs"] != 0 or completion["missing_required_files"] != 0:
+        fail("session deliverables still contain stubs or missing files")
+    if completion["validated_gates"] != completion["required_validation_gates"]:
+        fail("session validation gates are incomplete")
+    if completion["integrated_bindings"] != completion["required_integration_bindings"]:
+        fail("session integration bindings are incomplete")
     for field in (
         "task_completion_percent",
         "developed_files_percent",
@@ -237,14 +251,35 @@ def main() -> int:
         "goal_activation_percent",
         "session_consolidation_percent",
     ):
-        if not 0 <= completion[field] <= 100:
-            fail(f"completion percentage out of range: {field}")
+        if completion[field] != 100:
+            fail(f"archive-complete percentage must equal 100: {field}")
 
     archive_conditions = inventory.get("archive_conditions")
     if not isinstance(archive_conditions, list) or len(archive_conditions) < 4:
         fail("archive_conditions must preserve all release gates")
-    if not all(isinstance(item, str) and item.strip() for item in archive_conditions):
-        fail("archive_conditions contains an invalid entry")
+    for item in archive_conditions:
+        if not isinstance(item, str) or not item.startswith("SATISFIED:"):
+            fail("archive condition is not satisfied")
+
+    archive_evidence = inventory.get("archive_evidence")
+    if not isinstance(archive_evidence, dict):
+        fail("archive_evidence must be an object")
+    expected_evidence = {
+        "run_id": 30841948608,
+        "head_sha": "ac2e4f75dbe046cfbd42da62156e7959679096a0",
+        "validation_job": 91781047986,
+        "build_pages_job": 91781631840,
+        "deploy_pages_job": 91782075870,
+        "verify_public_pages_job": 91782126780,
+        "canonical_prescan_artifact": 8867141195,
+        "full_validation_artifact": 8867206490,
+        "pages_build_receipt_artifact": 8867258088,
+        "github_pages_artifact": 8867259392,
+    }
+    for field, expected in expected_evidence.items():
+        if archive_evidence.get(field) != expected:
+            fail(f"archive evidence mismatch: {field}")
+    require_nonempty_string(archive_evidence, "claims_released_at", "archive_evidence")
 
     authority = inventory.get("authority")
     if not isinstance(authority, dict) or not authority:
@@ -265,8 +300,7 @@ def main() -> int:
     print(
         "PUBLICATION SESSION CONSOLIDATION: PASS - "
         f"goals={len(goals)} session_claims={session_claims} "
-        f"external_claims={external_claims} "
-        f"session_consolidation={completion['session_consolidation_percent']}%"
+        f"external_claims={external_claims} archive_state={inventory['archive_state']}"
     )
     print("authority_effect=NONE")
     return 0
