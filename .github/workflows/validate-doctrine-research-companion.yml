@@ -1,0 +1,32 @@
+name: Validate Doctrine Research Companion
+
+on:
+  push:
+    paths:
+      - 'docs/DOCTRINE_RESEARCH_MIRROR_HANDOFF.md'
+      - 'docs/research/**'
+      - 'scripts/check_doctrine_research_companion.py'
+      - '.github/workflows/validate-doctrine-research-companion.yml'
+  pull_request:
+    paths:
+      - 'docs/DOCTRINE_RESEARCH_MIRROR_HANDOFF.md'
+      - 'docs/research/**'
+      - 'scripts/check_doctrine_research_companion.py'
+      - '.github/workflows/validate-doctrine-research-companion.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate canonical Phase 3 package
+        run: python scripts/check_doctrine_research_companion.py
