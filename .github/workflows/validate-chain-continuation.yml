@@ -31,6 +31,9 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Validate CAT governance publication evidence
+        run: python scripts/check_cat_governance_publication_verification.py
+
       - name: Validate publication session consolidation inventory
         run: python scripts/check_publication_session_consolidation_inventory.py
 
