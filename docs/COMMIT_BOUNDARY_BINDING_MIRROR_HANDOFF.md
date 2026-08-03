@@ -1,82 +1,38 @@
 # Commit-Boundary Binding Mirror Handoff
 
-## Source of truth
+## Authority and continuation
 
-This file is the goal-specific continuation record for the commit-boundary binding predicate in `StegVerse-Labs/admissibility-wiki`.
+This is the goal-specific continuation record for `commit-boundary-binding-predicate` in `StegVerse-Labs/admissibility-wiki` on branch `main`.
 
-Overall repository authority remains governed by:
+Overall repository authority remains:
 
 ```text
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
 ```
 
-## Goal
+Session consolidation record:
 
-Convert the execution-boundary synthesis into a deterministic public proof path that distinguishes:
+```text
+static/status/session-consolidation/commit-boundary-linkedin-session-2026-08-02.json
+```
+
+## Originating session goal
+
+Convert the execution-boundary governance discussion into an installed and testable control model for the point where a proposed mutation becomes binding consequence.
+
+The model must preserve independent determinations for:
 
 ```text
 decision validity
 transition admissibility
 commit authority
-origin validity
+causal origin validity
 invariant preservation
 recoverability preservation
 execution evidence
 ```
 
-The governed event is the `binding of consequence`: the point at which a proposed mutation becomes real and downstream consequence attaches.
-
-## Current state
-
-```text
-State: IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_VERIFICATION
-Manual task requirement: none
-User manual action required: false
-Downstream mutation authority: none granted
-Canonical workflow: .github/workflows/validate-chain-continuation.yml
-```
-
-## Installed work
-
-```text
-Doctrine:
-  docs/formalisms/commit-boundary-binding-predicate.md
-  commit c16579532539cdfc180d8f8025348c1adb1d1378
-
-Goal handoff:
-  docs/COMMIT_BOUNDARY_BINDING_MIRROR_HANDOFF.md
-  initial commit 06a155e50aa9bed888f7d1f9e02b55589effde27
-
-Schema:
-  static/schemas/commit-boundary-binding-record.schema.json
-  commit 3c3445443d187663057ac49f69e8bed7cab5001d
-
-Fixtures:
-  tests/fixtures/commit-boundary-binding-cases.json
-  commit f92d9337e740830ff4d33f12fb6b5c2eee0ce659
-
-Deterministic checker:
-  scripts/check_commit_boundary_binding.py
-  commit 9ef4d11d9706f739c47df2f4c10e11db285c8522
-
-Status artifact:
-  static/status/commit-boundary-binding-status.json
-  commit 8589cf8cb0d645bc4547d6dc06925de1ae00998a
-
-Proof receipt:
-  receipts/commit-boundary-binding-proof-receipt.json
-  commit 32b2cd48d6318ab12e3779e13286f298ce10db07
-
-Canonical validation-chain integration:
-  scripts/check_admissibility_automation_handoff.py
-  commit 448faece5b0e7741b33f04fcacd6ea1b0b9e7647
-
-Public documentation navigation:
-  sidebars.js
-  commit 3e1d956378e2d689c7eb26b308d856fa50f99053
-```
-
-## Canonical binding predicate
+## Canonical predicate
 
 ```text
 BIND(u_t, x_t) iff
@@ -88,9 +44,39 @@ BIND(u_t, x_t) iff
   and EvidenceComplete(E_t)
 ```
 
-Any missing, invalid, contradictory, stale, or unresolved required component yields `DENY` or `FAIL_CLOSED`; it never yields `BIND`.
+Missing, invalid, contradictory, stale, or unresolved required evidence never yields `BIND`.
 
-## Installed deterministic cases
+## Installed implementation
+
+```text
+Doctrine: docs/formalisms/commit-boundary-binding-predicate.md
+Schema: static/schemas/commit-boundary-binding-record.schema.json
+Fixtures: tests/fixtures/commit-boundary-binding-cases.json
+Checker: scripts/check_commit_boundary_binding.py
+Status: static/status/commit-boundary-binding-status.json
+Proof receipt: receipts/commit-boundary-binding-proof-receipt.json
+Canonical integration: scripts/check_admissibility_automation_handoff.py
+Public navigation: sidebars.js
+Session consolidation: static/status/session-consolidation/commit-boundary-linkedin-session-2026-08-02.json
+```
+
+Initial implementation commits:
+
+```text
+c16579532539cdfc180d8f8025348c1adb1d1378 doctrine
+06a155e50aa9bed888f7d1f9e02b55589effde27 initial handoff
+3c3445443d187663057ac49f69e8bed7cab5001d schema
+f92d9337e740830ff4d33f12fb6b5c2eee0ce659 fixtures
+9ef4d11d9706f739c47df2f4c10e11db285c8522 checker
+8589cf8cb0d645bc4547d6dc06925de1ae00998a initial status
+32b2cd48d6318ab12e3779e13286f298ce10db07 proof receipt
+448faece5b0e7741b33f04fcacd6ea1b0b9e7647 canonical validation integration
+3e1d956378e2d689c7eb26b308d856fa50f99053 public navigation
+536b5c7d7d1871b28f6c054c27bb907beffab9c3 canonical validation evidence status
+2ac4b8f285a15a7d6332102f7263ea2b5833a45b session consolidation
+```
+
+## Deterministic cases
 
 ```text
 BIND_VALID_TRANSITION -> BIND
@@ -109,22 +95,28 @@ Fixture digest:
 sha256:271e1c1c64df182076e2db1114d466a60e7dca06922457182a81e579a2f1c3e4
 ```
 
-The checker independently evaluates each fixture, compares the result with the committed proof receipt, verifies the status digest, and fails closed on missing files, unresolved controls, stale evidence, replay, invalid origin, invalid authority, state drift, invariant failure, or recoverability-margin erosion.
+## Strongest observed validation
 
-## Governance decisions preserved
+Canonical workflow evidence:
 
-- admissibility is redetermined at transition and cannot be inherited from an earlier decision;
-- origin validation is independent from authority validation;
-- authority must be re-derived against live state and the specific requested mutation;
-- a valid authorized identity does not prove the actual causal origin of a transition;
-- a transition binds only when origin, authority, admissibility, invariants, recoverability, and evidence all pass;
-- unresolved or stale evidence returns `FAIL_CLOSED`;
-- receipts support reconstruction but do not create execution authority merely by existing;
-- conceptual similarity with an external framework does not establish implementation equivalence.
+```text
+Workflow: .github/workflows/validate-chain-continuation.yml
+Run: 30681187876
+Commit tested: fc19aafc2f8ae7e249cbea731fa2d16b48fafca6
+Validation job: 91318551239
+Goal validator result: PASS
+Observed output: COMMIT BOUNDARY BINDING: PASS (8 cases; BIND=1; DENY=5; FAIL_CLOSED=2)
+Aggregate result: FAIL_CLOSED_OBSERVED
+Build: SKIPPED
+Deploy: SKIPPED
+Public verification: SKIPPED
+```
 
-## External-framework comparison boundary
+The aggregate failure was caused by other repository validators. The commit-boundary checker itself passed in the canonical job. Do not convert this into a claim that the repository aggregate, build, deployment, or public route passed.
 
-Permitted classifications:
+## External-framework boundary
+
+PFC and other external descriptions may be recorded as:
 
 ```text
 CLAIMED_CONCEPTUAL_ALIGNMENT
@@ -134,77 +126,65 @@ INDEPENDENTLY_REPRODUCED
 INTEROPERABILITY_VERIFIED
 ```
 
-No classification above `CLAIMED_CONCEPTUAL_ALIGNMENT` may be inferred from a social-media description alone. Claims involving PFC or any other external framework remain observation evidence until inspectable artifacts and repeatable tests establish a stronger classification.
+Social-media descriptions alone support no classification above `CLAIMED_CONCEPTUAL_ALIGNMENT`.
 
-## Validation posture
-
-The checker is invoked by `scripts/check_admissibility_automation_handoff.py`, which is already invoked by `npm run validate` under the single canonical workflow. No second workflow or manual command surface was created.
-
-The latest commit had no combined status available when observed. Therefore:
+## Claim and ownership state
 
 ```text
-local deterministic implementation: installed
-canonical workflow verification: pending observation
-public build/deployment verification: pending observation
-publication receipt closure: not yet claimed
+Session implementation claim: RELEASED
+Current classification: MERGED_INTO_CANONICAL_WORKSTREAM
+Implementation owner: complete canonical files in this repository
+Remaining publication observation owner: canonical workflow and wiki-public-anchor internal task registries
+Manual task requirement: none
+User manual action required: false
+Session-specific execution authority remaining: false
+Downstream mutation authority: none granted
 ```
 
-Repository-wide workflow failures observed on 2026-07-14 may be unrelated to this goal and must be diagnosed from the actual failing job logs before attribution. Do not infer that this implementation passed or caused those failures without run-bound evidence.
+No successor session may duplicate the implementation. It may take only evidence-grounded repair, validation, publication observation, integration, or handoff-authorized propagation work.
 
-## Remaining work
+## Remaining machine-owned activation obligation
 
-Destination: `StegVerse-Labs/admissibility-wiki`
+The formalism route remains unverified publicly because the observed canonical aggregate failed before build and deployment.
 
 ```text
-1. Observe the canonical workflow run containing commit 3e1d956378e2d689c7eb26b308d856fa50f99053 or a successor commit.
-2. Inspect the failing job and logs if validation or build fails.
-3. Repair only evidence-grounded failures inside this repository.
-4. Record the successful workflow run, public route, and publication evidence here.
-5. Optionally add an explicit npm alias for the checker only if needed; canonical integration already exists through the automation-handoff validator.
-6. Add a public activation receipt closure only after the route and proof artifacts are observed in the deployed build.
+State: MACHINE_OWNED
+Owner: docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md and its canonical task registries
+Release condition: canonical aggregate PASS reaches build-pages, deploy-pages, and verify-public-pages
+Next action: observe a successor canonical run and update static/status/commit-boundary-binding-status.json from direct run-bound evidence
+Archival dependency for this conversation: none
 ```
 
-## Downstream awareness
+## Downstream boundary
 
-At tag or release readiness, create or update durable verification tasks for pertinent propagation to:
+Before any propagation, read the current destination handoff for:
 
 ```text
 StegVerse-Labs/Site
 GCAT-BCAT-Engine/Publisher
-StegVerse-Labs/admissibility-wiki
 StegVerse-002/stegguardian-wiki
 StegVerse-Labs/repo-standards
 ```
 
-Destination mutation remains prohibited until each destination handoff grants scope.
+Queued awareness is not completed propagation. No destination mutation is authorized by this handoff.
 
-## Permitted continuation scope
+## Completion accounting
 
-A successor session may:
+```text
+Required developed files: 9
+Developed files installed: 9
+Scaffolding or stubs: 0
+Missing required files: 0
+Goal-specific deterministic validation: 1 / 1 observed PASS
+Public publication observation: 0 / 1
+Integration obligations: 4 / 4 installed
+Session goals transferred or complete: 6 / 6
+Chat-only requirements remaining: 0
+Stale session claims remaining: 0
+```
 
-- inspect canonical workflow, build, deployment, and artifact evidence;
-- repair failures inside this repository;
-- update status and receipt artifacts from observed evidence;
-- add public publication closure after successful deployment verification;
-- record external frameworks without asserting equivalence beyond available evidence.
+## Archive condition
 
-A successor session may not:
+The originating conversation is archive-ready. All decisions, installed work, validation evidence, remaining machine-owned observation, collision boundaries, and continuation scope are durable in this handoff, the status artifact, and the session-consolidation record.
 
-- create a second active workflow;
-- treat documentation, publication, or receipt presence as execution authority;
-- mutate Site, Publisher, StegGuardian, or repo-standards without reviewing their current handoffs and receiving destination scope;
-- represent conceptual overlap as verified implementation equivalence.
-
-## Completion event
-
-This goal reaches activation completion when:
-
-1. the canonical workflow passes with the checker in its `npm run validate` path;
-2. the Docusaurus build includes the formalism route;
-3. public deployment is verified;
-4. the proof receipt and status artifact are reachable or included in the validated public artifact as intended;
-5. this handoff records run-bound verification evidence.
-
-## Continuation instruction
-
-Continue with workflow observation and evidence-grounded repair. Preserve the independent axes of origin, authority, admissibility, invariants, recoverability, and evidence; do not collapse them into a single boolean before receipt generation.
+MERGED INTO: `StegVerse-Labs/admissibility-wiki/docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`, `docs/COMMIT_BOUNDARY_BINDING_MIRROR_HANDOFF.md`, `static/status/commit-boundary-binding-status.json`, and `static/status/session-consolidation/commit-boundary-linkedin-session-2026-08-02.json`.
