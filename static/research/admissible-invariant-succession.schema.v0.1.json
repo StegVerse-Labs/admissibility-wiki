@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse.org/schemas/admissible-invariant-succession.schema.v0.1.json",
+  "title": "Admissible Invariant Succession Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "succession_id", "continuity_thread_id", "transition_id",
+    "predecessor_invariant", "successor_invariant", "authority_references",
+    "policy_references", "evidence_references", "affected_entity_dispositions",
+    "higher_order_continuity_claim", "decision", "reason_codes", "commit_time",
+    "receipt_chain_reference", "execution_authority"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "succession_id": {"type": "string", "minLength": 1},
+    "continuity_thread_id": {"type": "string", "minLength": 1},
+    "transition_id": {"type": "string", "minLength": 1},
+    "predecessor_invariant": {"$ref": "#/$defs/invariantReference"},
+    "successor_invariant": {"$ref": "#/$defs/invariantReference"},
+    "authority_references": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "policy_references": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "evidence_references": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "affected_entity_dispositions": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["entity_id", "standing", "disposition"],
+        "properties": {
+          "entity_id": {"type": "string", "minLength": 1},
+          "standing": {"enum": ["ESTABLISHED", "PROVISIONAL", "NOT_ESTABLISHED"]},
+          "disposition": {"enum": ["ALLOW", "DENY", "REVIEW_REQUIRED", "NOT_APPLICABLE"]}
+        }
+      }
+    },
+    "aggregation_rule": {"type": ["string", "null"]},
+    "higher_order_continuity_claim": {"type": "string", "minLength": 1},
+    "decision": {"enum": ["ALLOW", "DENY", "REVIEW_REQUIRED", "FAIL_CLOSED"]},
+    "reason_codes": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "commit_time": {"type": "string", "format": "date-time"},
+    "receipt_chain_reference": {"type": "string", "minLength": 1},
+    "execution_authority": {"const": false}
+  },
+  "$defs": {
+    "invariantReference": {
+      "type": "object", "additionalProperties": false,
+      "required": ["invariant_id", "value_hash", "scope", "status"],
+      "properties": {
+        "invariant_id": {"type": "string", "minLength": 1},
+        "value_hash": {"type": "string", "minLength": 1},
+        "scope": {"type": "string", "minLength": 1},
+        "status": {"enum": ["ACTIVE", "SUPERSEDED", "CANDIDATE"]}
+      }
+    }
+  }
+}
