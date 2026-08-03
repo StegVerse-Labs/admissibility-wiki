@@ -1,0 +1,108 @@
+{
+  "schema_version": "session-consolidation.v1",
+  "record_id": "admissible-structural-invariants-session-2026-08-02",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "main",
+  "session_state": "MERGED_INTO_CANONICAL_WORKSTREAM",
+  "archive_ready": true,
+  "session_execution_authority_remaining": false,
+  "chat_only_requirements_remaining": 0,
+  "unassigned_tasks_remaining": 0,
+  "stale_claims_remaining": 0,
+  "canonical_locations": [
+    "docs/research/ADMISSIBLE_STRUCTURAL_INVARIANTS_COORDINATION.md",
+    "static/status/wiki-public-anchor-internal-task-registry.admissible-invariants-extension.json",
+    "docs/research/admissible-structural-invariants.md",
+    "static/research/admissible-structural-invariants.v0.1.json"
+  ],
+  "session_goals": [
+    {
+      "goal_id": "ASI-G01",
+      "originating_goal": "Document the distinction between structural invariant preservation and admissibility of preserving the invariant.",
+      "state": "COMPLETE_INSTALLED",
+      "destination": "docs/research/admissible-structural-invariants.md",
+      "evidence": [
+        "ac2f01d36ce82676f6eeba2ffb8479ce00a8ef5c",
+        "143a1efe05d965b8b7417faec1a304af89b40a96",
+        "65bdeede3993e8e6ae7b3a8be6e337d8ce7c7959"
+      ]
+    },
+    {
+      "goal_id": "ASI-G02",
+      "originating_goal": "Research precedent and distinguish exact precedent from partial analogues without making an unsupported novelty claim.",
+      "state": "BASELINE_COMPLETE_CONTINUATION_MACHINE_OWNED",
+      "destination": "docs/research/admissible-structural-invariants-literature-matrix.md",
+      "task_owner": "PA-INT-012",
+      "evidence": [
+        "9cedc824f2b55daeec367a42e50cd08718be66dd",
+        "87287b53c2b54d0f30f4e10cd7b00fb258b11dbe",
+        "a1e9a88260adf8ee215f9a341190030d1aaff26c"
+      ],
+      "next_action": "Run the baseline validator and add primary-source records with bounded claims and stable locators."
+    },
+    {
+      "goal_id": "ASI-G03",
+      "originating_goal": "Make preserved-but-inadmissible outcomes, multi-entity conflict, and governed invariant succession deterministically testable.",
+      "state": "IMPLEMENTED_UNVALIDATED_CONTINUATION_MACHINE_OWNED",
+      "destination": "static/research/examples/admissible-structural-invariant-cases.v0.1.json",
+      "task_owner": "PA-INT-013",
+      "evidence": [
+        "c2538d822c90172dbea23d9494adeecea69fbe81",
+        "162d8b336ff4c49e5774e57f35377566e7b3b7d2",
+        "295b1341868f134434a908099366436db3d2b48e"
+      ],
+      "next_action": "Run the fixture and succession-schema validator."
+    },
+    {
+      "goal_id": "ASI-G04",
+      "originating_goal": "Install a nonduplicative repository-native continuation and validation path.",
+      "state": "TRANSFERRED_MACHINE_OWNED",
+      "destination": "static/status/wiki-public-anchor-internal-task-registry.admissible-invariants-extension.json",
+      "task_owner": "PA-INT-011 through PA-INT-014",
+      "evidence": [
+        "1c9524fe2d2aeec4f48fd1aff04a4b779a2619e6",
+        "0eee927b63134f6ba817f215334f0141fca04c9d",
+        "e0b6742cb319cf2d6a108c45b0f44db3d47caf6c"
+      ],
+      "next_action": "Bind validators into canonical validation, execute, preserve receipts, and merge state into the canonical mirror handoff."
+    }
+  ],
+  "validation_state": {
+    "file_presence": "VERIFIED_BY_GITHUB_CONTENTS_AND_COMMITS",
+    "static_validator_execution": "NOT_OBSERVED",
+    "canonical_workflow_execution": "NOT_OBSERVED",
+    "build": "NOT_OBSERVED",
+    "deployment": "NOT_OBSERVED",
+    "public_route": "NOT_OBSERVED",
+    "governed_activation": "NOT_ADMISSIBLE"
+  },
+  "failed_observations": [
+    {
+      "observer": "container git clone and local validator attempt",
+      "result": "NETWORK_DNS_UNAVAILABLE",
+      "classification": "NOT_OBSERVED_CONTINUABLE",
+      "effect": "No validator PASS or FAIL was inferred."
+    }
+  ],
+  "claims": {
+    "session_implementation_claim": "RELEASED",
+    "canonical_machine_claim": "ACTIVE",
+    "collision_control": "Only task owners PA-INT-011 through PA-INT-014 may modify listed surfaces absent supersession."
+  },
+  "propagation": {
+    "state": "NOT_STARTED_HANDOFF_GATED",
+    "potential_destinations": [
+      "StegVerse-Labs/Site",
+      "GCAT-BCAT-Engine/Publisher",
+      "stegguardian-wiki"
+    ],
+    "owner": "PA-INT-014",
+    "release_condition": "Canonical local or hosted validation receipts exist and destination mirror handoffs authorize scope."
+  },
+  "archive_evidence": "Every session requirement is installed or assigned to a durable machine-owned task with an exact location, observer, completion predicate, fallback, dependency set, and collision boundary. No unique chat-only execution state remains.",
+  "merged_into": [
+    "StegVerse-Labs/admissibility-wiki/docs/research/ADMISSIBLE_STRUCTURAL_INVARIANTS_COORDINATION.md",
+    "StegVerse-Labs/admissibility-wiki/static/status/wiki-public-anchor-internal-task-registry.admissible-invariants-extension.json",
+    "StegVerse-Labs/admissibility-wiki/static/status/session-consolidation/admissible-structural-invariants-session-2026-08-02.json"
+  ]
+}
