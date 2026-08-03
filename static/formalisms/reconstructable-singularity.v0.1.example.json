@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.1.0",
+  "trajectory_id": "trajectory-example-001",
+  "candidate_histories": ["gamma-a", "gamma-b", "gamma-c"],
+  "observers": [
+    {
+      "observer_id": "observer-1",
+      "affirmed_history_ids": ["gamma-a", "gamma-b"],
+      "excluded_history_ids": ["gamma-c"]
+    },
+    {
+      "observer_id": "observer-2",
+      "affirmed_history_ids": ["gamma-b", "gamma-c"],
+      "excluded_history_ids": ["gamma-a"]
+    }
+  ],
+  "selected_observer_ids": ["observer-1", "observer-2"],
+  "surviving_history_ids": ["gamma-b"],
+  "threshold": {
+    "minimum_perspective_count": 2,
+    "singleton_reconstruction": true,
+    "injective_on_admissibility_consistent_histories": true
+  }
+}
