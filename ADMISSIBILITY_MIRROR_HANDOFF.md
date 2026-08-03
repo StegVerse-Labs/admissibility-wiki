@@ -1,76 +1,92 @@
-# Admissibility Wiki Mirror Handoff
+# Admissibility Wiki Mirror Handoff Pointer
 
-## Current source of truth
+## Canonical repository handoff
 
-The overall active handoff and task source of truth for `StegVerse-Labs/admissibility-wiki` is:
+The repository-wide handoff and task source of truth for `StegVerse-Labs/admissibility-wiki` is:
+
+```text
+ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
+```
+
+This file is retained only as a compatibility pointer for sessions or tools that search for the older `ADMISSIBILITY_MIRROR_HANDOFF.md` name. It does not own a separate task queue, workflow, claim, release condition, or authority surface.
+
+## Goal-specific handoffs
+
+Read a goal-specific handoff only after reading the canonical repository handoff:
 
 ```text
 docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
-```
+  public-anchor reconstruction, dockets, and internal task execution
 
-The active publication-pipeline repair handoff is:
-
-```text
 docs/WIKI_PUBLICATION_PIPELINE_MIRROR_HANDOFF.md
-```
+  completed legacy Pages publication repair and run-bound evidence
 
-The active coordination record for the governed public-anchor activation and canonical publication-verification layer is:
-
-```text
 docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md
-```
+  public-anchor activation coordination
 
-The active goal-specific handoff for AI-led radiology execution-boundary activation is:
-
-```text
 docs/AI_LED_RADIOLOGY_MIRROR_HANDOFF.md
-```
+  AI-led radiology execution boundary
 
-The active goal-specific handoff for Ecosystem Chat activation projection is:
-
-```text
 docs/ECOSYSTEM_CHAT_ACTIVATION_MIRROR_HANDOFF.md
-```
+  Ecosystem Chat activation projection
 
-The active goal-specific handoff for Morrison Runtime commit-time scope proof promotion is:
-
-```text
 docs/MORRISON_RUNTIME_PROMOTION_HANDOFF.md
-```
+  Morrison Runtime promotion
 
-The active goal-specific handoff for MindForge commit-time boundary activation is:
-
-```text
 docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md
-```
+  completed MindForge route publication and continuing evidence boundaries
 
-The active goal-specific handoff for the three-stage / three-role observer boundary is:
-
-```text
 docs/OBSERVER_BOUNDARY_MIRROR_HANDOFF.md
+  three-stage and three-role observer boundary
 ```
 
-Correct downstream mapping:
+Where a goal-specific handoff contains an older repository-wide source-of-truth declaration, the hierarchy in this pointer and `ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` supersedes that declaration. Goal-specific files retain authority only for their named bounded goals.
+
+## Current publication standing
 
 ```text
+legacy Pages repair: COMPLETE
+MindForge public rendering: VERIFIED
+canonical issue #56: CLOSED_COMPLETED
+current CAT publication session inventory:
+  data/session-consolidation/admissibility-wiki-publication-session-inventory.v1.json
+canonical deployment workflow:
+  .github/workflows/validate-chain-continuation.yml
+separate publication observer workflow: none
+manual user tasks: none
+```
+
+The directly observed publication evidence is recorded in:
+
+```text
+static/status/cat-governance-publication-verification.v1.json
+docs/WIKI_PUBLICATION_PIPELINE_MIRROR_HANDOFF.md
+docs/MINDFORGE_COMMIT_TIME_BOUNDARY_MIRROR_HANDOFF.md
+GitHub Actions run 30837466398
+```
+
+## Downstream mapping
+
+```text
+StegVerse-Labs/Site
+GCAT-BCAT-Engine/Publisher
 StegVerse-Labs/admissibility-wiki
 StegVerse-002/stegguardian-wiki
 ```
 
-`StegVerse-Labs/Sit` does not exist and is not a destination. `StegVerse-Labs/Site` is the existing Site source repository.
-
-This root file is retained only as a continuity pointer for sessions or tools that first search the repository root for `*_MIRROR_HANDOFF.md`.
-
-## Current priority
-
-First continue from `docs/WIKI_PUBLICATION_PIPELINE_MIRROR_HANDOFF.md` and verify that the repaired canonical workflow builds, deploys, and verifies current public content even when unrelated semantic validators remain fail-closed. Then continue from the overall docs handoff, activation coordination record, and applicable goal-specific handoff.
-
-For observer-role, meaning-transition, runtime-overwatch, or after-action reconstruction work, continue from `docs/OBSERVER_BOUNDARY_MIRROR_HANDOFF.md`. Do not rely on prior chat context.
+`StegVerse-Labs/Sit` does not exist and is not a destination.
 
 ## Boundary
 
-Publication availability is distinct from semantic validation success. The repair does not waive or promote any failed validator and does not claim production authority, release status, execution authority, clinical authority, certification, endorsement, commit-time standing, provider governance, live runtime execution, independent observer standing, neutral reviewer standing, or master-record persistence.
+```text
+publication availability != semantic validation success
+publication != proof
+public rendering != authority
+workflow success != certification
+workflow failure != automatic deployment failure
+route reachability != substantive correctness
+```
 
 ## Archive posture
 
-The publication repair requires run-bound build, deployment, and rendered-route evidence. This session is not archivable until that evidence is observed or the exact remaining failure is durably transferred into the publication-pipeline handoff.
+The legacy publication-repair and MindForge-publication tasks are complete, their claims are released, issue #56 is closed, and their continuation state is durable. Any current session must use the canonical repository handoff and session inventory to determine whether a separate active validation claim remains.
