@@ -4,7 +4,7 @@
   "repository": "StegVerse-Labs/admissibility-wiki",
   "branch": "main",
   "created_at": "2026-08-03T18:18:00Z",
-  "updated_at": "2026-08-03T18:18:00Z",
+  "updated_at": "2026-08-03T18:32:00Z",
   "active_goal": {
     "goal_id": "ADMISSIBILITY-WIKI-PUBLICATION-ACTIVATION-001",
     "description": "Publish repository changes through the single canonical Docusaurus and GitHub Pages path, verify the CAT governance update on the public landing page, and transfer all adjacent session goals into durable canonical workstreams.",
@@ -14,7 +14,7 @@
     "current_role": "CLAIMED_FOR_VALIDATION",
     "claimant": "publication-session-validation-lane",
     "claim_created_at": "2026-08-03T18:18:00Z",
-    "claim_release_condition": "Release when a main-branch canonical run for commit c0c230f5223fee73b41b4d4cf90fcac7c5047f23 or a descendant records build-pages=success, deploy-pages=success, verify-public-pages=success, and the CAT landing-page marker step=success, and the handoff records that evidence."
+    "claim_release_condition": "Release when a main-branch canonical run for commit 58e6077c74c34a4d3bf820140405f705843850b3 or a descendant records the CAT evidence validator=success, session inventory validator=success, no timer-contract failures, build-pages=success, deploy-pages=success, verify-public-pages=success, and the CAT landing-page marker step=success, and the handoff records that evidence."
   },
   "session_goals": [
     {
@@ -23,15 +23,15 @@
       "destination_organization": "StegVerse-Labs",
       "destination_repository": "admissibility-wiki",
       "branch": "main",
-      "location": "docs/index.md; docusaurus.config.js; static/external-frameworks/sidebar-page-associations.v1.json; .github/workflows/validate-chain-continuation.yml",
+      "location": "docs/index.md; docusaurus.config.js; static/external-frameworks/sidebar-page-associations.v1.json; .github/workflows/validate-chain-continuation.yml; static/status/cat-governance-publication-verification.v1.json; scripts/check_cat_governance_publication_verification.py",
       "current_owner": "publication-session-validation-lane",
       "claim_state": "CLAIMED_FOR_VALIDATION",
-      "completion_state": "IMPLEMENTED_AND_DEPLOYED",
-      "validation_state": "DEPLOYMENT_VERIFIED_EXACT_CAT_MARKER_OBSERVATION_PENDING",
-      "integration_state": "INTEGRATED_CANONICAL_PAGES_PATH",
-      "archival_dependency": "Observe the CAT marker verification step on a canonical run for c0c230f5223fee73b41b4d4cf90fcac7c5047f23 or descendant.",
-      "evidence_location": "GitHub Actions run 30837466398; commits fb9c7b4712d4f71398446010d186295d1459f528, e969ea349796e74e53a3d15124cddd4fcfd01a64, 604775de012819b538d7918f4fd630b7e966e44b, 4bfcf4faec66c10ff23b5f97369dc434f5ffbfee, c0c230f5223fee73b41b4d4cf90fcac7c5047f23",
-      "next_executable_action": "Inspect the latest canonical workflow jobs and verify-public-pages logs; record exact run-bound evidence in the handoff."
+      "completion_state": "IMPLEMENTED_DEPLOYED_AND_ARTIFACT_INSPECTED",
+      "validation_state": "BUILD_DEPLOY_PUBLIC_ROUTE_AND_EXACT_DEPLOYED_ARTIFACT_MARKERS_VERIFIED_RECURRING_STEP_OBSERVATION_PENDING",
+      "integration_state": "INTEGRATED_CANONICAL_PAGES_PATH_WITH_DURABLE_RECEIPT",
+      "archival_dependency": "Observe the CAT evidence validator and recurring CAT marker step on a canonical run for 58e6077c74c34a4d3bf820140405f705843850b3 or descendant.",
+      "evidence_location": "static/status/cat-governance-publication-verification.v1.json; GitHub Actions run 30837466398; github-pages artifact 8865658459; pages-build-receipt artifact 8865657321; commits fb9c7b4712d4f71398446010d186295d1459f528, e969ea349796e74e53a3d15124cddd4fcfd01a64, 604775de012819b538d7918f4fd630b7e966e44b, c0c230f5223fee73b41b4d4cf90fcac7c5047f23, 27fea5c33ff52cf8417d60d135a2ecc8cbeba456, 978492826c4300c1abfa446f5daee4117f11ed44",
+      "next_executable_action": "Inspect the latest canonical workflow jobs and exact validator and verify-public-pages steps; record run-bound evidence in the handoff."
     },
     {
       "goal_id": "AWP-CI-002",
@@ -39,15 +39,15 @@
       "destination_organization": "StegVerse-Labs",
       "destination_repository": "admissibility-wiki",
       "branch": "main",
-      "location": ".github/workflows/validate-chain-continuation.yml; scripts/check_canonical_orchestration_contract.py; scripts/check_activation_projection_orchestration_contract.py",
+      "location": ".github/workflows/validate-chain-continuation.yml; scripts/check_canonical_orchestration_contract.py; scripts/check_activation_projection_orchestration_contract.py; scripts/check_publication_session_consolidation_inventory.py",
       "current_owner": "publication-session-validation-lane",
       "claim_state": "CLAIMED_FOR_VALIDATION",
       "completion_state": "IMPLEMENTED",
-      "validation_state": "REPOSITORY_RUN_PENDING_AFTER_EVENT_DRIVEN_CONTRACT_REPAIR",
+      "validation_state": "STATIC_CONTRACT_REPAIRED_REPOSITORY_RUN_PENDING",
       "integration_state": "INTEGRATED",
-      "archival_dependency": "Canonical run must show both orchestration contract validators no longer fail because of a timer.",
-      "evidence_location": "commit 4bfcf4faec66c10ff23b5f97369dc434f5ffbfee; prior failing run 30837466398",
-      "next_executable_action": "Inspect the first canonical run at or after commit 4bfcf4faec66c10ff23b5f97369dc434f5ffbfee."
+      "archival_dependency": "Canonical run must show both orchestration contract validators no longer fail because of a timer and the consolidation validator passes.",
+      "evidence_location": "commits 4bfcf4faec66c10ff23b5f97369dc434f5ffbfee, 7bbd31758c557f0f962f5fc277d5e9a50c76994c, 9eab0755eedefe46e36d871ac848d672a126c2ce, 58e6077c74c34a4d3bf820140405f705843850b3; prior failing run 30837466398",
+      "next_executable_action": "Inspect the first canonical run at or after commit 58e6077c74c34a4d3bf820140405f705843850b3."
     },
     {
       "goal_id": "AWP-RIVERBRAID-003",
@@ -134,24 +134,24 @@
   "completion_inventory": {
     "required_session_goals": 6,
     "transferred_or_complete_session_goals": 6,
-    "required_files_for_session_goal": 8,
-    "developed_files": 8,
+    "required_files_for_session_goal": 10,
+    "developed_files": 10,
     "scaffolding_or_stubs": 0,
     "missing_required_files": 0,
     "required_validation_gates": 6,
-    "validated_gates": 4,
+    "validated_gates": 5,
     "required_integration_bindings": 5,
     "integrated_bindings": 5,
-    "task_completion_percent": 92,
+    "task_completion_percent": 96,
     "developed_files_percent": 100,
-    "validation_percent": 67,
+    "validation_percent": 83,
     "integration_percent": 100,
     "propagation_percent": 100,
-    "goal_activation_percent": 92,
+    "goal_activation_percent": 96,
     "session_consolidation_percent": 100
   },
   "archive_conditions": [
-    "The exact CAT landing-page marker verification step succeeds on the canonical main workflow.",
+    "The CAT evidence validator and exact CAT landing-page marker step succeed on the canonical main workflow.",
     "The event-driven orchestration contract repair is observed in a repository run.",
     "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md records the successful run, job IDs, artifact IDs, and released validation claim.",
     "No session-specific requirement remains only in conversation history."
