@@ -1,0 +1,59 @@
+{
+  "schema_version": "0.1.0",
+  "model_id": "stegverse.reconstruction-singularity.v0.1",
+  "title": "Reconstruction Singularity",
+  "state": "BOUNDED_FORMALISM",
+  "threshold": {
+    "definition": "Governed reconstruction demand exceeds verified reconstruction capacity or reconstruction quality falls below the minimum required threshold.",
+    "expression": "D_r(t) > R(t) OR Q_r(t) < tau_r",
+    "empirical_crossing_claimed": false
+  },
+  "required_commit_state": [
+    "candidate_set_identity",
+    "known_evidence_at_selection",
+    "excluded_candidates",
+    "exclusion_reasons",
+    "boundary_references",
+    "policy_reference",
+    "policy_version",
+    "actor_identity",
+    "authority_reference",
+    "delegation_reference",
+    "refusal_reachability",
+    "commit_time_validity",
+    "selected_action",
+    "execution_time",
+    "supersession_state",
+    "receipt_chain"
+  ],
+  "reconstruction_predicate": {
+    "operator": "ALL",
+    "terms": [
+      "known_evidence_preserved",
+      "material_exclusions_preserved",
+      "governing_boundaries_identified",
+      "policy_current",
+      "actor_authority_reconstructable",
+      "delegation_reconstructable",
+      "refusal_practically_reachable",
+      "commit_time_validity_evaluated",
+      "receipt_chain_continuous"
+    ],
+    "missing_term_result": "FAIL_CLOSED"
+  },
+  "distinctions": [
+    "repeatable_outcome != reconstructable_judgment",
+    "historical_artifact != learning_system",
+    "procedural_memory != governable_learning",
+    "recorded_decision != recoverable_justification",
+    "same_output != same_admissibility"
+  ],
+  "authority": {
+    "execution": false,
+    "publication": false,
+    "release": false,
+    "custody": false,
+    "proof": false,
+    "admissibility": false
+  }
+}
