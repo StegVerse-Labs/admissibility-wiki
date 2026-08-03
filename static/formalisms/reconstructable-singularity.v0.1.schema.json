@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/reconstructable-singularity.v0.1.schema.json",
+  "title": "Reconstructable Singularity Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "trajectory_id", "candidate_histories", "observers", "selected_observer_ids", "surviving_history_ids", "threshold"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "trajectory_id": {"type": "string", "minLength": 1},
+    "candidate_histories": {
+      "type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true
+    },
+    "observers": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["observer_id", "affirmed_history_ids", "excluded_history_ids"],
+        "properties": {
+          "observer_id": {"type": "string", "minLength": 1},
+          "affirmed_history_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "excluded_history_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+        }
+      }
+    },
+    "selected_observer_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+    "surviving_history_ids": {"type": "array", "minItems": 1, "maxItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+    "threshold": {
+      "type": "object", "additionalProperties": false,
+      "required": ["minimum_perspective_count", "singleton_reconstruction", "injective_on_admissibility_consistent_histories"],
+      "properties": {
+        "minimum_perspective_count": {"type": "integer", "minimum": 1},
+        "singleton_reconstruction": {"const": true},
+        "injective_on_admissibility_consistent_histories": {"const": true}
+      }
+    }
+  }
+}
