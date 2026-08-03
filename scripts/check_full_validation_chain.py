@@ -189,26 +189,31 @@ def main() -> int:
     if sandbox_status != "PASS":
         failures.append(SANDBOX_RUNNER)
 
-    reconstruction_payload: object | None = None
-    if sandbox_status == "PASS":
-        print("\n--- Generate external translation reconstruction receipt ---")
-        generation_code, generation_output = execute(RECONSTRUCTION_GENERATOR)
-        if generation_output:
-            print(generation_output)
-        reconstruction_payload = read_json_if_present(RECONSTRUCTION_REPORT)
-        generation_status = "PASS" if generation_code == 0 and isinstance(reconstruction_payload, dict) and reconstruction_payload.get("overall_status") == "PASS" else "FAIL"
-        results.append({"name": "Generate external translation reconstruction receipt", "path": RECONSTRUCTION_GENERATOR, "status": generation_status, "return_code": generation_code, "output": generation_output})
-        if generation_status != "PASS":
-            failures.append(RECONSTRUCTION_GENERATOR)
-    else:
-        print("\n--- Reconstruction generation skipped: sandbox failed ---")
-        results.append({
-            "name": "Generate external translation reconstruction receipt",
-            "path": RECONSTRUCTION_GENERATOR,
-            "status": "SKIPPED_DEPENDENCY_FAILED",
-            "return_code": None,
-            "output": "ST-017 sandbox failed; reconstruction generation was not executed.",
-        })
+    # Translation reconstruction has its own bounded inputs, hashes, and
+    # cross-record checks. Always execute it so an unrelated sandbox failure
+    # cannot suppress inspectable translation evidence or create a duplicate
+    # missing-receipt failure. The sandbox result remains independently
+    # fail-closed above.
+    print("\n--- Generate external translation reconstruction receipt ---")
+    generation_code, generation_output = execute(RECONSTRUCTION_GENERATOR)
+    if generation_output:
+        print(generation_output)
+    reconstruction_payload = read_json_if_present(RECONSTRUCTION_REPORT)
+    generation_status = "PASS" if generation_code == 0 and isinstance(reconstruction_payload, dict) and reconstruction_payload.get("overall_status") == "PASS" else "FAIL"
+    generation_context = (
+        f"sandbox_status={sandbox_status}; reconstruction_status={generation_status}. "
+        "Translation reconstruction is evaluated independently and does not alter the sandbox result."
+    )
+    combined_generation_output = "\n".join(part for part in (generation_output, generation_context) if part)
+    results.append({
+        "name": "Generate external translation reconstruction receipt",
+        "path": RECONSTRUCTION_GENERATOR,
+        "status": generation_status,
+        "return_code": generation_code,
+        "output": combined_generation_output,
+    })
+    if generation_status != "PASS":
+        failures.append(RECONSTRUCTION_GENERATOR)
 
     # Diagnostic completeness is independent of overall success. Run every
     # validator even when the pre-scan or sandbox fails so one broken
