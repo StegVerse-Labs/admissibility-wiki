@@ -1,0 +1,13 @@
+{
+  "schema": "gsdp.semantic-fixture.v0.1",
+  "fixture_id": "stale-record-defer",
+  "condition": {
+    "record_status": "verified",
+    "last_verified": "2025-01-01T00:00:00Z",
+    "staleness_policy_days": 30,
+    "current_evidence_present": false
+  },
+  "expected_result": "DEFER",
+  "expected_reason": "A previously verified record without current evidence cannot satisfy a current semantic predicate.",
+  "authority_effect": "NONE"
+}

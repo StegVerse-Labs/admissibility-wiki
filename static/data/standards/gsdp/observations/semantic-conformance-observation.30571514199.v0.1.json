@@ -1,0 +1,30 @@
+{
+  "schema": "gsdp.semantic-conformance-observation.v0.1",
+  "standard_id": "GSDP",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "pull_request": 46,
+  "workflow_run_id": 30571514199,
+  "workflow_run_number": 3648,
+  "workflow_conclusion": "failure",
+  "canonical_prescan": "PASS",
+  "gsdp_reference_validator": "PASS",
+  "gsdp_inventory_validator": "PASS",
+  "gsdp_semantic_conformance_validator": "PASS",
+  "class_results": {
+    "GSDP-DISCOVERABLE": "DEFER",
+    "GSDP-GOVERNED": "DEFER",
+    "GSDP-EVIDENCED": "DEFER",
+    "GSDP-RECONSTRUCTABLE": "DEFER",
+    "GSDP-INTEROPERABLE": "DEFER",
+    "GSDP-CERTIFIABLE": "DEFER"
+  },
+  "claimed_conformance_classes": [],
+  "aggregate_failure_owned_by_gsdp": false,
+  "observation_state": "PASS_OBSERVED_BOUNDED_DEFER_RESULTS",
+  "authority_effect": "NONE",
+  "non_claims": [
+    "The aggregate workflow failure is caused by separately owned repository checks and is not represented as a GSDP failure.",
+    "A validator PASS does not convert any DEFER class into PASS.",
+    "This observation grants no certification, publication, merge, deployment, or execution authority."
+  ]
+}

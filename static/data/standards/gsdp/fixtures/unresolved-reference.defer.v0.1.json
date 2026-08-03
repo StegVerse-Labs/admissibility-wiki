@@ -1,0 +1,12 @@
+{
+  "schema": "gsdp.semantic-fixture.v0.1",
+  "fixture_id": "unresolved-reference-defer",
+  "condition": {
+    "required_reference": "stegverse:component:external-executor",
+    "record_status": "unresolved",
+    "canonical_binding": null
+  },
+  "expected_result": "DEFER",
+  "expected_reason": "A required unresolved coordinate prevents the dependent conformance predicate from passing.",
+  "authority_effect": "NONE"
+}

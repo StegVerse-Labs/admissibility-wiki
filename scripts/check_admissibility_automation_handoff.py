@@ -69,6 +69,8 @@ MINDFORGE_ATTRIBUTION_AUTHORIZATION_CHECK = ROOT / "scripts" / "check_mindforge_
 MINDFORGE_PUBLICATION_VERIFICATION_CHECK = ROOT / "scripts" / "check_mindforge_publication_verification.py"
 OBSERVER_BOUNDARY_CHECK = ROOT / "scripts" / "check_observer_boundary.py"
 GSDP_REFERENCE_CHECK = ROOT / "scripts" / "check_gsdp_reference.py"
+GSDP_INVENTORY_CHECK = ROOT / "scripts" / "check_gsdp_inventory.py"
+GSDP_SEMANTIC_CONFORMANCE_CHECK = ROOT / "scripts" / "check_gsdp_semantic_conformance.py"
 REQUIRED = (
     "scripts/check_ios_workflow_mirror_status.py",
     "static/status/ios-workflow-mirror-status.json",
@@ -172,6 +174,8 @@ def main() -> int:
         (MINDFORGE_PUBLICATION_VERIFICATION_CHECK, "MindForge publication verification"),
         (OBSERVER_BOUNDARY_CHECK, "three-stage / three-role observer boundary"),
         (GSDP_REFERENCE_CHECK, "GSDP reference declaration and fixtures"),
+        (GSDP_INVENTORY_CHECK, "GSDP provenance-bound ecosystem inventory"),
+        (GSDP_SEMANTIC_CONFORMANCE_CHECK, "GSDP additive semantic conformance"),
         (RELEASE_READINESS_CHECK, "release readiness"),
     )
     for path, label in checks:

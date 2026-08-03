@@ -13,6 +13,7 @@ REFERENCE = ROOT / "static/data/standards/gsdp/examples/stegverse.pending.v0.1.j
 FIXTURES = ROOT / "static/data/standards/gsdp/fixtures"
 STATUS = ROOT / "static/status/gsdp-reference-status.json"
 HANDOFF = ROOT / "docs/standards/GSDP_MIRROR_HANDOFF.md"
+FIRST_OBSERVATION = ROOT / "static/data/standards/gsdp/observations/canonical-workflow-observation.30568611934.v0.1.json"
 
 REQUIRED_ROOT = {
     "$schema", "gsdp_version", "declaration_id", "system", "operators",
@@ -25,6 +26,11 @@ PROHIBITED_POSITIVE_AUTHORITY = {
     "authority_over_external_systems", "production_activation_from_this_declaration",
 }
 SHA256 = re.compile(r"^sha256:[0-9a-f]{64}$")
+ALLOWED_STATUS_STATES = {
+    "CANONICAL_VALIDATION_BOUND_WORKFLOW_OBSERVATION_PENDING",
+    "FIRST_CANONICAL_FAILURE_RETAINED_REPAIR_VALIDATION_PENDING",
+    "INITIAL_REFERENCE_ACTIVATION_COMPLETE",
+}
 
 
 def load(path: Path) -> Any:
@@ -128,12 +134,32 @@ def validate_fixtures(errors: list[str]) -> None:
         fail(errors, "minimum negative fixture must expect deterministic rejection errors")
 
 
+def validate_observation(errors: list[str]) -> None:
+    observation = load(FIRST_OBSERVATION)
+    required = {
+        "standard_id": "GSDP",
+        "workflow_run_id": 30568611934,
+        "workflow_conclusion": "failure",
+        "observation_state": "FAIL_CLOSED_OBSERVED",
+        "authority_effect": "NONE",
+    }
+    for key, expected in required.items():
+        if observation.get(key) != expected:
+            fail(errors, f"first observation {key} must equal {expected!r}")
+    if observation.get("canonical_prescan", {}).get("status") != "PASS":
+        fail(errors, "first observation must preserve canonical pre-scan PASS")
+    gsdp_result = observation.get("gsdp_result", {})
+    if gsdp_result.get("classification") != "GSDP_STATUS_CONTRACT_DRIFT":
+        fail(errors, "first observation must classify the retained GSDP failure")
+    if gsdp_result.get("repair_required") is not True:
+        fail(errors, "first observation must preserve repair_required=true")
+
+
 def validate_status(errors: list[str]) -> None:
     status = load(STATUS)
     required = {
         "standard_id": "GSDP",
         "draft_version": "0.1-draft",
-        "state": "LOCAL_REFERENCE_VALIDATION_INSTALLED_WORKFLOW_OBSERVATION_PENDING",
         "schema_validation_effect": "STRUCTURAL_ONLY_NO_EXTERNAL_CONFORMANCE",
         "independent_conformance": "NOT_RUN",
         "certification_authority": False,
@@ -142,11 +168,20 @@ def validate_status(errors: list[str]) -> None:
     for key, expected in required.items():
         if status.get(key) != expected:
             fail(errors, f"status {key} must equal {expected!r}")
+    if status.get("state") not in ALLOWED_STATUS_STATES:
+        fail(errors, f"status state must be one of {sorted(ALLOWED_STATUS_STATES)}")
+    observation = status.get("canonical_binding", {}).get("workflow_observation")
+    if status.get("state") == "CANONICAL_VALIDATION_BOUND_WORKFLOW_OBSERVATION_PENDING":
+        if observation != "NOT_OBSERVED":
+            fail(errors, "pending state requires workflow_observation=NOT_OBSERVED")
+    else:
+        if observation not in {"FAIL_CLOSED_OBSERVED", "PASS_OBSERVED"}:
+            fail(errors, "observed state requires a retained workflow observation")
 
 
 def main() -> int:
     errors: list[str] = []
-    for path in (SCHEMA, REFERENCE, STATUS, HANDOFF):
+    for path in (SCHEMA, REFERENCE, STATUS, HANDOFF, FIRST_OBSERVATION):
         if not path.exists():
             fail(errors, f"missing required artifact: {path.relative_to(ROOT)}")
     if errors:
@@ -160,6 +195,7 @@ def main() -> int:
         fail(errors, "GSDP schema must use JSON Schema draft 2020-12")
     validate_reference(load(REFERENCE), errors)
     validate_fixtures(errors)
+    validate_observation(errors)
     validate_status(errors)
 
     if errors:
@@ -170,6 +206,7 @@ def main() -> int:
 
     print("GSDP reference validation: PASS")
     print("effect: structural and boundary validation only")
+    print("first canonical failure: retained fail-closed")
     print("external conformance: NOT ESTABLISHED")
     print("certification authority: false")
     print("execution authority: false")

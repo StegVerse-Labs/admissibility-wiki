@@ -1,0 +1,35 @@
+{
+  "schema": "gsdp.canonical-workflow-observation.v0.1",
+  "standard_id": "GSDP",
+  "draft_version": "0.1-draft",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "pull_request": 46,
+  "workflow": "Validate chain continuation",
+  "workflow_run_id": 30569337389,
+  "workflow_run_number": 3634,
+  "event_name": "pull_request",
+  "head_branch": "gsdp/canonical-observation",
+  "head_commit": "c5fdf9467b20f5672437dd1eebff811b6dac2bbb",
+  "workflow_status": "completed",
+  "workflow_conclusion": "failure",
+  "canonical_validation_job": "failure",
+  "gsdp_result": {
+    "status": "PASS",
+    "message": "GSDP reference validation: PASS",
+    "effect": "STRUCTURAL_AND_BOUNDARY_VALIDATION_ONLY",
+    "repair_verified": true
+  },
+  "aggregate_result": {
+    "status": "FAIL",
+    "gsdp_caused_aggregate_failure": false,
+    "unrelated_failures_present": true
+  },
+  "observation_state": "PASS_OBSERVED_WITH_UNRELATED_AGGREGATE_FAILURES",
+  "authority_effect": "NONE",
+  "non_claims": [
+    "This receipt does not rewrite or supersede the retained first canonical GSDP failure.",
+    "GSDP PASS establishes only that the repaired validator executed successfully in the canonical workflow.",
+    "The aggregate workflow failure remains valid and blocks repository-wide success.",
+    "This receipt creates no certification, registry, publication, deployment, conformance, or execution authority."
+  ]
+}
