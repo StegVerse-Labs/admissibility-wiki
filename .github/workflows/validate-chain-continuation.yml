@@ -6,6 +6,8 @@ on:
       - main
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
 
 permissions:
   contents: read
@@ -13,11 +15,10 @@ permissions:
   pages: write
   id-token: write
 
-# Push and pull-request runs may supersede older work on the same ref. A manual
-# canonical verification run is isolated and is never cancelled by later pushes.
+# Every newer canonical run supersedes older work on the same event/ref lane.
 concurrency:
   group: admissibility-wiki-canonical-${{ github.event_name }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.event_name != 'workflow_dispatch' }}
+  cancel-in-progress: true
 
 jobs:
   validate-chain-continuation:
