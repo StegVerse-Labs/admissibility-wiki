@@ -6,16 +6,20 @@ title: Open Policy Agent
 ## Evidence posture
 
 ```text
-evidence_class: PARAMETERIZED_OBSERVATION
+evidence_class: SOURCE_REVIEWED
+observed_evidence_class: PARAMETERIZED_OBSERVATION
 page_completeness: COMPLETE_WITH_EXTERNAL_GATES
 native_runtime_observation: observed
 same_environment_replay: observed
 fresh_runner_same_provider_replay: observed
 StegVerse_bounded_governance_compatibility: observed_6_of_6
 independent_implementation_reproduction: false
-comparative_testing_claim_allowed: bounded_only
+comparative_testing_claim_allowed: false
+bounded_comparative_result_recorded: true
 execution_authority_claim_allowed: false
 ```
+
+`SOURCE_REVIEWED` remains the page's non-escalating source boundary required by the public remediation contract. The stronger bounded observation is recorded separately and does not convert the page into a general compatibility, certification, standing, or authority claim.
 
 ## Published scope
 
@@ -51,7 +55,7 @@ StegVerse -> ALLOW / DENY / ESCALATE / FAIL_CLOSED
 separate commit/execution boundary -> consequence
 ```
 
-## Observed StegVerse test
+## Evidence Provenance
 
 Canonical evidence:
 
@@ -132,6 +136,17 @@ validity_window
 source_timestamp
 ```
 
+## Failure Classes
+
+| Failure class | Observed or tested boundary |
+|---|---|
+| Policy denial | OPA `allow: false` enters as policy evidence and produced `DENY / POLICY_DENIAL`. |
+| Authority drift | OPA `allow: true` did not override revoked delegation; StegVerse produced `DENY / AUTHORITY_DRIFT`. |
+| Stale evidence | OPA `allow: true` did not override stale evidence; StegVerse produced `FAIL_CLOSED / STALE_EVIDENCE`. |
+| Framework runtime error | Missing usable OPA decision produced `FAIL_CLOSED / FRAMEWORK_RUNTIME_ERROR`. |
+| Scope divergence | OPA `allow: true` did not override target mismatch; StegVerse produced `DENY / SCOPE_DIVERGENCE`. |
+| Replay divergence | Same-environment and fresh-runner decisions matched for the pinned test, but independent implementation/provider reproduction remains unobserved. |
+
 ## Replay path
 
 ```text
@@ -166,6 +181,25 @@ execution authority: not granted
 
 Those gates limit stronger claims; they do not erase the bounded 6/6 observed compatibility result.
 
+## Validation Completion Criteria
+
+The local second-page evidence package is complete at the bounded observation level only when all of the following remain inspectable together:
+
+```text
+pinned OPA runtime identity
+pinned policy and input artifacts
+raw capture/replay evidence
+same-environment replay receipt
+fresh-runner same-provider replay receipt
+six predeclared compatibility cases
+6/6 expected-versus-observed match
+workflow and commit identity
+artifact digests
+explicit non-equivalence and non-authority boundaries
+```
+
+Independent organization/provider/implementation reproduction is a separate higher evidence class and is not claimed here.
+
 ## Maintenance and challenge path
 
 Maintenance owner: `StegVerse-Labs/admissibility-wiki`, External Frameworks audit surface. A challenge should identify `open-policy-agent`, the disputed field or observed result, and the source or artifact supporting correction. Evidence strength may not be increased without corresponding inspectable evidence.
@@ -175,3 +209,7 @@ Maintenance owner: `StegVerse-Labs/admissibility-wiki`, External Frameworks audi
 OPA inclusion is not certification, equivalence, admissibility proof, standing, production integration, or execution authority. A policy allow result does not independently authorize consequence binding. The bounded StegVerse result applies only to the pinned policy/input/replay artifacts and six declared compatibility cases.
 
 This page reflects bounded evidence-governance work. Publication does not create standing.
+
+## Next Safe Build Target
+
+Preserve the bounded OPA result while seeking a genuinely independent provider, organization, or alternate implementation reproduction. Until such evidence exists, keep `comparative_testing_claim_allowed: false` for general claims and preserve the 6/6 result only as a parameterized StegVerse observation.
