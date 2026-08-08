@@ -211,7 +211,7 @@ H1: future artifact-specific evaluation until authorized artifacts are attached.
 
 ## Private Correspondence Provenance
 
-A bounded provenance packet records the June 24–26, 2026 technical correspondence that converged on the non-authorizing Commitment Candidate invariant, commit-time authority re-binding, FAIL-CLOSED behavior, and the initial edge-case set.
+A bounded provenance packet records the earlier June 24–26, 2026 technical correspondence that informed the StegVerse boundary formulation and converged on the non-authorizing Commitment Candidate invariant, commit-time authority re-binding, FAIL-CLOSED behavior, and the initial edge-case set. The later attribution authorization and post-publication inspection are separate non-authorizing events and do not extend this provenance date range.
 
 ```text
 docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.md
