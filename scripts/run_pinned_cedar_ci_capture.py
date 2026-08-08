@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import os
@@ -15,10 +16,10 @@ REGISTRY = ROOT / "docs" / "external-frameworks" / "implementation-selection-gat
 CAPTURE_DIR = ROOT / "docs" / "external-frameworks" / "capture" / "cedar"
 CAPTURE_SCRIPT = ROOT / "scripts" / "capture_cedar_observation.py"
 VALIDATE_SCRIPT = ROOT / "scripts" / "validate_cedar_capture_artifacts.py"
-WORK = ROOT / ".tmp" / "cedar-capture"
-SOURCE = WORK / "cedar"
 REPORTS = ROOT / "reports" / "external-frameworks" / "cedar"
 SUMMARY = REPORTS / "cedar-pinned-ci-capture-summary.json"
+EXPECTED_COMMIT = "0807ec154afd7ffa14a658c9955d25bfe12770ca"
+EXPECTED_CARGO_LOCK_SHA256 = "6efd3893a3c32d463748edfbd8361152e26dd17964d61bbe94cc4a390cd887b1"
 
 
 def run(command: list[str], cwd: Path = ROOT) -> subprocess.CompletedProcess[str]:
@@ -57,9 +58,14 @@ def fail(summary: dict, message: str) -> int:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description="Execute bounded Cedar fixtures with the exact binary bound by an inspected build receipt.")
+    parser.add_argument("--binary", required=True, type=Path)
+    parser.add_argument("--build-receipt", required=True, type=Path)
+    args = parser.parse_args()
+
     summary = {
         "artifact_type": "cedar_pinned_ci_capture_summary",
-        "schema_version": "0.1",
+        "schema_version": "0.2",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "framework_id": "cedar-policy",
         "capture_state": "STARTED",
@@ -86,53 +92,52 @@ def main() -> int:
             return fail(summary, "cedar-policy repository-local capture execution is not authorized in the registry")
         if registry.get("gate", {}).get("execution_jobs_may_be_added") is not True:
             return fail(summary, "registry execution_jobs_may_be_added gate is not enabled")
+        if record.get("execution_authority_ref") != "https://github.com/StegVerse-Labs/admissibility-wiki/issues/63#issuecomment-5227967090":
+            return fail(summary, "Cedar bounded execution authority receipt reference mismatch")
         source_ref = str(selection.get("implementation_source", ""))
-        if not source_ref.startswith("cedar-policy/cedar@"):
+        if source_ref != f"cedar-policy/cedar@{EXPECTED_COMMIT}":
             return fail(summary, "unexpected Cedar implementation source")
-        commit = source_ref.split("@", 1)[1]
-        expected_binary_hash = str(selection.get("compiled_binary_sha256", ""))
-        if len(expected_binary_hash) != 64:
-            return fail(summary, "missing canonical compiled binary SHA-256")
         implementation_id = str(selection.get("implementation_identifier", ""))
         if implementation_id != "cedar-policy-cli":
             return fail(summary, "unexpected implementation identifier")
+        promoted_reference_hash = str(selection.get("compiled_binary_sha256", ""))
+        receipt = load(args.build_receipt)
     except Exception as exc:
-        return fail(summary, f"registry validation failed: {exc}")
+        return fail(summary, f"governed input validation failed: {exc}")
 
-    WORK.mkdir(parents=True, exist_ok=True)
-    if SOURCE.exists():
-        cleanup = run(["rm", "-rf", str(SOURCE)])
-        if cleanup.returncode != 0:
-            return fail(summary, "could not reset Cedar source workspace")
+    binary = args.binary.resolve()
+    if not binary.exists() or not binary.is_file():
+        return fail(summary, "inspected Cedar build binary is unavailable")
+    current_hash = sha256(binary)
+    receipt_binary = receipt.get("binary", {})
+    checks = {
+        "receipt_artifact_type": receipt.get("artifact_type") == "external_framework_selected_binary_build_receipt",
+        "receipt_framework": receipt.get("framework_id") == "cedar-policy",
+        "receipt_implementation": receipt.get("implementation_identifier") == implementation_id,
+        "receipt_pinned_commit": receipt.get("pinned_commit") == EXPECTED_COMMIT,
+        "receipt_resolved_commit": receipt.get("resolved_commit") == EXPECTED_COMMIT,
+        "receipt_lockfile": receipt.get("cargo_lock_sha256") == EXPECTED_CARGO_LOCK_SHA256,
+        "receipt_build_success": receipt.get("build_exit_code") == 0 and receipt.get("overall_status") == "BUILT_HASHED_UNEXECUTED",
+        "receipt_hash_matches_exact_binary": receipt_binary.get("sha256") == current_hash,
+        "receipt_pre_capture_unexecuted": receipt_binary.get("executed_after_build") is False,
+        "receipt_no_external_consequence": receipt.get("authority_boundary", {}).get("external_consequence_allowed") is False,
+    }
+    failed_checks = [name for name, passed in checks.items() if not passed]
+    if failed_checks:
+        return fail(summary, "exact build receipt predicates failed: " + ", ".join(failed_checks))
 
-    clone = run(["git", "clone", "--filter=blob:none", "https://github.com/cedar-policy/cedar.git", str(SOURCE)])
-    if clone.returncode != 0:
-        return fail(summary, f"source clone failed: {clone.stderr.strip()}")
-    checkout = run(["git", "checkout", commit], cwd=SOURCE)
-    if checkout.returncode != 0:
-        return fail(summary, f"pinned source checkout failed: {checkout.stderr.strip()}")
-    resolved = run(["git", "rev-parse", "HEAD"], cwd=SOURCE)
-    if resolved.returncode != 0 or resolved.stdout.strip() != commit:
-        return fail(summary, "resolved Cedar source commit does not equal the registry pin")
-
-    build = run(["cargo", "build", "--locked", "--release", "-p", "cedar-policy-cli"], cwd=SOURCE)
-    if build.returncode != 0:
-        return fail(summary, f"locked Cedar build failed: {build.stderr[-4000:]}")
-    binary = SOURCE / "target" / "release" / "cedar"
-    if not binary.exists():
-        return fail(summary, "built Cedar CLI binary not found")
-    actual_binary_hash = sha256(binary)
     summary["runtime"] = {
         "implementation_id": implementation_id,
-        "pinned_commit": commit,
-        "resolved_commit": resolved.stdout.strip(),
-        "expected_binary_sha256": expected_binary_hash,
-        "observed_binary_sha256": actual_binary_hash,
-        "binary_hash_match": actual_binary_hash == expected_binary_hash,
-        "build_command": "cargo build --locked --release -p cedar-policy-cli",
+        "pinned_commit": EXPECTED_COMMIT,
+        "cargo_lock_sha256": EXPECTED_CARGO_LOCK_SHA256,
+        "build_receipt_path": str(args.build_receipt),
+        "build_receipt_sha256": sha256(args.build_receipt),
+        "executed_binary_sha256": current_hash,
+        "registry_promoted_reference_sha256": promoted_reference_hash,
+        "registry_reference_hash_matches_current_binary": promoted_reference_hash == current_hash,
+        "binary_hash_reproducibility_claimed": False,
+        "execution_binding": "exact_same_binary_as_inspected_build_receipt",
     }
-    if actual_binary_hash != expected_binary_hash:
-        return fail(summary, "rebuilt Cedar binary hash does not match the governed registry hash")
 
     version_command = shlex.join([str(binary), "--version"])
     cases = {
@@ -143,36 +148,21 @@ def main() -> int:
     for label, request_path in cases.items():
         request = load(request_path)
         command = [
-            str(binary),
-            "authorize",
-            "--policies",
-            "{policy}",
-            "--principal",
-            str(request["principal"]),
-            "--action",
-            str(request["action"]),
-            "--resource",
-            str(request["resource"]),
+            str(binary), "authorize", "--policies", "{policy}",
+            "--principal", str(request["principal"]),
+            "--action", str(request["action"]),
+            "--resource", str(request["resource"]),
         ]
-        evaluate_command = shlex.join(command)
         output = REPORTS / f"cedar-{label}-capture.json"
         capture = run([
-            sys.executable,
-            str(CAPTURE_SCRIPT),
-            "--policy",
-            str(CAPTURE_DIR / "policy.cedar"),
-            "--request",
-            str(request_path),
-            "--case-id",
-            f"cedar-{label}-read-001",
-            "--version-command",
-            version_command,
-            "--evaluate-command",
-            evaluate_command,
-            "--implementation-id",
-            implementation_id,
-            "--output",
-            str(output),
+            sys.executable, str(CAPTURE_SCRIPT),
+            "--policy", str(CAPTURE_DIR / "policy.cedar"),
+            "--request", str(request_path),
+            "--case-id", f"cedar-{label}-read-001",
+            "--version-command", version_command,
+            "--evaluate-command", shlex.join(command),
+            "--implementation-id", implementation_id,
+            "--output", str(output),
         ])
         if capture.returncode != 0:
             return fail(summary, f"{label} capture failed: {(capture.stdout + capture.stderr)[-4000:]}")
@@ -188,6 +178,8 @@ def main() -> int:
     summary["capture_state"] = "CAPTURED_VALIDATED_BOUNDED"
     summary["limitations"] = [
         "native Cedar authorization execution is confined to repository fixtures on a GitHub-hosted CI runner",
+        "the executed binary is exactly the binary hashed by the current inspected build receipt",
+        "the registry binary hash is a prior observed build reference and is not treated as a reproducible-build invariant",
         "no same-environment or fresh-runner replay is claimed by this transition",
         "no independent implementation/provider reproduction is claimed",
         "native authorization output is evidence only and does not bind consequence",
