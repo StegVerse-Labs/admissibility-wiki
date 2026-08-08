@@ -1,7 +1,7 @@
 {
   "schema": "admissibility_wiki.observer_relative_admissibility_status.v1",
   "goal_id": "OBSERVER-RELATIVE-ADMISSIBILITY-001",
-  "state": "IMPLEMENTED_PENDING_CANONICAL_VALIDATION",
+  "state": "INTEGRATED_PENDING_CANONICAL_VALIDATION",
   "canonical_doctrine": "docs/governance/observer-relative-admissibility.md",
   "requirements": {
     "transition_facts_separate_from_characterization": true,
@@ -22,7 +22,10 @@
   "validation": {
     "validator": "scripts/check_observer_relative_admissibility.py",
     "canonical_parent": "scripts/check_admissibility_automation_handoff.py",
-    "hosted_run": null,
+    "canonical_parent_commit": "e50a35dae34f364364f51d788d564b286d8fc32d",
+    "hosted_run": 31277199128,
+    "hosted_run_number": 4002,
+    "hosted_run_state_observed": "PENDING",
     "last_result": "PENDING"
   }
 }
