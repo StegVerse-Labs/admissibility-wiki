@@ -38,7 +38,9 @@
         "selection_evidence_path": "docs/external-frameworks/implementation-selections/cedar-policy-cli-4.11.0.selection-evidence.json",
         "compiled_binary_sha256": "2f85096e819a40b90a11d45e971c9bb1f6cc1024aa20f00bfc593893d7a3b6d3"
       },
-      "execution_authorized": false
+      "execution_authorized": true,
+      "execution_authority_scope": "repository-local deterministic Cedar authorization capture against repository-owned fixtures only; no credentials, external writes, external consequence, standing, certification, delegation, or production action",
+      "execution_authority_ref": "https://github.com/StegVerse-Labs/admissibility-wiki/issues/63#issuecomment-5227967090"
     },
     {
       "framework_id": "mcp",
@@ -146,7 +148,8 @@
     "all_required_fields_present": false,
     "all_artifacts_hash_bound": false,
     "all_versions_pinned": false,
-    "execution_jobs_may_be_added": false
+    "execution_jobs_may_be_added": true,
+    "execution_job_scope": "Only framework records that independently satisfy selection completeness and execution_authorized=true may execute. Current authorization is Cedar repository-local capture only."
   },
   "authority_boundary": {
     "implementation_selection_is_certification": false,
