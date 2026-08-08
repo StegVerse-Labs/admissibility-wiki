@@ -15,6 +15,7 @@ HEX40 = re.compile(r"^[0-9a-f]{40}$")
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 EXPECTED_COMMIT = "0807ec154afd7ffa14a658c9955d25bfe12770ca"
 EXPECTED_VERSION = "4.11.0"
+AUTHORITY_REF = "https://github.com/StegVerse-Labs/admissibility-wiki/issues/63#issuecomment-5227967090"
 
 
 def load_json(path: Path) -> dict:
@@ -39,110 +40,92 @@ def validate_promoted_hash(compiled_hash: object, failures: list[str]) -> None:
     source = receipt.get("source_promotion_candidate", {})
     target = receipt.get("registry_target", {})
     review = receipt.get("review", {})
-    if receipt.get("decision") != "ALLOW_REGISTRY_PROMOTION_ONLY":
-        failures.append("applied promotion receipt decision mismatch")
-    if receipt.get("promotion_state") != "APPLIED_HASH_ONLY":
-        failures.append("applied promotion receipt state mismatch")
-    if receipt.get("registry_mutation_applied") is not True:
-        failures.append("applied promotion receipt must record hash-only mutation")
-    if receipt.get("runtime_execution_authorized") is not False:
-        failures.append("applied promotion receipt must not authorize execution")
-    if receipt.get("external_consequence_allowed") is not False:
-        failures.append("applied promotion receipt must not allow external consequence")
-    if review.get("status") != "PASS" or not review.get("delegation_ref"):
-        failures.append("applied promotion receipt requires completed delegated review")
-    if source.get("candidate_state") != "READY_FOR_REGISTRY_PROMOTION_REVIEW":
-        failures.append("applied promotion receipt candidate was not ready")
-    if source.get("binary_sha256") != compiled_hash:
-        failures.append("registry compiled hash differs from promotion candidate")
-    if target.get("field") != "frameworks[cedar-policy].selection.compiled_binary_sha256":
-        failures.append("applied promotion receipt targets wrong registry field")
-    if target.get("proposed_value") != compiled_hash:
-        failures.append("registry compiled hash differs from applied promotion target")
+    if receipt.get("decision") != "ALLOW_REGISTRY_PROMOTION_ONLY": failures.append("applied promotion receipt decision mismatch")
+    if receipt.get("promotion_state") != "APPLIED_HASH_ONLY": failures.append("applied promotion receipt state mismatch")
+    if receipt.get("registry_mutation_applied") is not True: failures.append("applied promotion receipt must record hash-only mutation")
+    if receipt.get("runtime_execution_authorized") is not False: failures.append("hash-promotion receipt itself must not authorize execution")
+    if receipt.get("external_consequence_allowed") is not False: failures.append("applied promotion receipt must not allow external consequence")
+    if review.get("status") != "PASS" or not review.get("delegation_ref"): failures.append("applied promotion receipt requires completed delegated review")
+    if source.get("candidate_state") != "READY_FOR_REGISTRY_PROMOTION_REVIEW": failures.append("applied promotion receipt candidate was not ready")
+    if source.get("binary_sha256") != compiled_hash: failures.append("registry compiled hash differs from promotion candidate")
+    if target.get("field") != "frameworks[cedar-policy].selection.compiled_binary_sha256": failures.append("applied promotion receipt targets wrong registry field")
+    if target.get("proposed_value") != compiled_hash: failures.append("registry compiled hash differs from applied promotion target")
+
+
+def validate_bounded_execution_authority(cedar: dict, registry: dict, failures: list[str]) -> None:
+    if cedar.get("execution_authorized") is not True:
+        failures.append("registry Cedar bounded repository-local capture authority missing")
+        return
+    if cedar.get("execution_authority_ref") != AUTHORITY_REF:
+        failures.append("registry Cedar execution authority ref mismatch")
+    scope = str(cedar.get("execution_authority_scope", "")).lower()
+    for marker in ("repository-local", "no credentials", "external writes", "external consequence", "production action"):
+        if marker not in scope:
+            failures.append(f"registry Cedar bounded execution scope missing marker: {marker}")
+    gate = registry.get("gate", {})
+    if gate.get("execution_jobs_may_be_added") is not True:
+        failures.append("registry Cedar bounded capture is authorized but execution job gate is closed")
+    if "cedar" not in str(gate.get("execution_job_scope", "")).lower():
+        failures.append("registry execution job scope does not bind the open gate to Cedar")
+    if registry.get("authority_boundary", {}).get("selection_gate_may_authorize_external_consequence") is not False:
+        failures.append("selection gate must not authorize external consequence")
 
 
 def main() -> int:
     failures: list[str] = []
     for path in (EVIDENCE, REGISTRY, APPLIED_PROMOTION_RECEIPT):
-        if not path.exists():
-            failures.append(f"missing {path.relative_to(ROOT)}")
+        if not path.exists(): failures.append(f"missing {path.relative_to(ROOT)}")
     if failures:
         print("CEDAR IMPLEMENTATION SELECTION EVIDENCE: FAIL")
-        for failure in failures:
-            print(f"- {failure}")
+        for failure in failures: print(f"- {failure}")
         return 1
-
     try:
-        evidence = load_json(EVIDENCE)
-        registry = load_json(REGISTRY)
+        evidence = load_json(EVIDENCE); registry = load_json(REGISTRY)
     except (OSError, json.JSONDecodeError, ValueError) as exc:
-        print("CEDAR IMPLEMENTATION SELECTION EVIDENCE: FAIL")
-        print(f"- invalid evidence or registry: {exc}")
-        return 1
+        print("CEDAR IMPLEMENTATION SELECTION EVIDENCE: FAIL"); print(f"- invalid evidence or registry: {exc}"); return 1
 
-    if evidence.get("artifact_type") != "external_framework_implementation_selection_evidence":
-        failures.append("artifact_type mismatch")
-    if evidence.get("framework_id") != "cedar-policy":
-        failures.append("framework_id mismatch")
-    if evidence.get("selection_state") != "implementation_selected_hash_bound":
-        failures.append("selection_state mismatch")
-
+    if evidence.get("artifact_type") != "external_framework_implementation_selection_evidence": failures.append("artifact_type mismatch")
+    if evidence.get("framework_id") != "cedar-policy": failures.append("framework_id mismatch")
+    if evidence.get("selection_state") != "implementation_selected_hash_bound": failures.append("selection_state mismatch")
     implementation = evidence.get("implementation", {})
-    if implementation.get("identifier") != "cedar-policy-cli":
-        failures.append("implementation identifier mismatch")
-    if implementation.get("canonical_commit") != EXPECTED_COMMIT:
-        failures.append("canonical commit mismatch")
-    if implementation.get("version") != EXPECTED_VERSION:
-        failures.append("version mismatch")
+    if implementation.get("identifier") != "cedar-policy-cli": failures.append("implementation identifier mismatch")
+    if implementation.get("canonical_commit") != EXPECTED_COMMIT: failures.append("canonical commit mismatch")
+    if implementation.get("version") != EXPECTED_VERSION: failures.append("version mismatch")
 
     source_rows = evidence.get("canonical_source_evidence", [])
-    if len(source_rows) < 4:
-        failures.append("insufficient canonical source evidence")
+    if len(source_rows) < 4: failures.append("insufficient canonical source evidence")
     canonical_parts = []
     for row in source_rows:
-        blob = str(row.get("git_blob_sha", ""))
-        path = str(row.get("path", ""))
-        if not path or not HEX40.fullmatch(blob):
-            failures.append(f"invalid source row: {row}")
+        blob = str(row.get("git_blob_sha", "")); path = str(row.get("path", ""))
+        if not path or not HEX40.fullmatch(blob): failures.append(f"invalid source row: {row}")
         canonical_parts.append(f"{path}:{blob}")
     canonical = f"cedar-policy/cedar@{EXPECTED_COMMIT}|" + "|".join(canonical_parts)
     computed = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
     recorded = evidence.get("source_evidence_bundle", {}).get("sha256")
-    if recorded != computed or not HEX64.fullmatch(str(recorded or "")):
-        failures.append("source evidence bundle hash mismatch")
+    if recorded != computed or not HEX64.fullmatch(str(recorded or "")): failures.append("source evidence bundle hash mismatch")
 
     commands = evidence.get("commands", {})
     for key in ("version_command", "build_command", "evaluation_command_template"):
-        if not str(commands.get(key, "")).strip():
-            failures.append(f"commands.{key} missing")
-    if "--locked" not in str(commands.get("build_command", "")):
-        failures.append("build command must be lockfile-bound")
-
+        if not str(commands.get(key, "")).strip(): failures.append(f"commands.{key} missing")
+    if "--locked" not in str(commands.get("build_command", "")): failures.append("build command must be lockfile-bound")
     boundary = evidence.get("authority_boundary", {})
     for key in ("selection_is_certification", "selection_is_compatibility", "selection_creates_standing", "selection_authorizes_execution", "source_bundle_hash_is_compiled_binary_hash"):
-        if boundary.get(key) is not False:
-            failures.append(f"authority_boundary.{key} must be false")
+        if boundary.get(key) is not False: failures.append(f"authority_boundary.{key} must be false")
 
     cedar = next((item for item in registry.get("frameworks", []) if item.get("framework_id") == "cedar-policy"), None)
     if not cedar:
         failures.append("Cedar registry record missing")
     else:
-        if cedar.get("selection_state") != "implementation_selected_hash_bound":
-            failures.append("registry Cedar state mismatch")
-        if cedar.get("execution_authorized") is not False:
-            failures.append("registry Cedar execution must remain unauthorized")
+        if cedar.get("selection_state") != "implementation_selected_hash_bound": failures.append("registry Cedar state mismatch")
+        validate_bounded_execution_authority(cedar, registry, failures)
         selection = cedar.get("selection", {})
-        expected_path = str(EVIDENCE.relative_to(ROOT))
-        if selection.get("selection_evidence_path") != expected_path:
-            failures.append("registry evidence path mismatch")
-        expected_hash = f"source-evidence-bundle-sha256:{computed}"
-        if selection.get("artifact_or_package_hash") != expected_hash:
-            failures.append("registry source bundle hash mismatch")
+        if selection.get("selection_evidence_path") != str(EVIDENCE.relative_to(ROOT)): failures.append("registry evidence path mismatch")
+        if selection.get("artifact_or_package_hash") != f"source-evidence-bundle-sha256:{computed}": failures.append("registry source bundle hash mismatch")
         validate_promoted_hash(selection.get("compiled_binary_sha256"), failures)
 
     print("CEDAR IMPLEMENTATION SELECTION EVIDENCE:", "FAIL" if failures else "PASS")
-    for failure in failures:
-        print(f"- {failure}")
+    if not failures: print("- selection provenance remains non-authorizing; bounded execution authority is separately receipt-bound")
+    for failure in failures: print(f"- {failure}")
     return 1 if failures else 0
 
 
