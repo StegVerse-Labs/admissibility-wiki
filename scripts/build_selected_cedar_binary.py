@@ -15,6 +15,9 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "reports" / "external-frameworks" / "cedar-build"
 OUTPUT = OUTPUT_DIR / "cedar-binary-build-receipt.json"
 INSPECTOR = ROOT / "scripts" / "inspect_cedar_binary_build_receipt.py"
+CAPTURE_RUNNER = ROOT / "scripts" / "run_pinned_cedar_ci_capture.py"
+CAPTURE_REPORTS = ROOT / "reports" / "external-frameworks" / "cedar"
+REGISTRY = ROOT / "docs" / "external-frameworks" / "implementation-selection-gates.v0.1.json"
 REPOSITORY = "https://github.com/cedar-policy/cedar.git"
 COMMIT = "0807ec154afd7ffa14a658c9955d25bfe12770ca"
 VERSION = "4.11.0"
@@ -38,6 +41,24 @@ def run(command: list[str], cwd: Path | None = None) -> subprocess.CompletedProc
         stderr=subprocess.PIPE,
         check=False,
     )
+
+
+def capture_authorized() -> bool:
+    try:
+        payload = json.loads(REGISTRY.read_text(encoding="utf-8"))
+        record = next(item for item in payload.get("frameworks", []) if item.get("framework_id") == "cedar-policy")
+        return bool(record.get("execution_authorized")) and payload.get("gate", {}).get("execution_jobs_may_be_added") is True
+    except (OSError, json.JSONDecodeError, StopIteration, TypeError):
+        return False
+
+
+def persist_capture_into_build_artifact() -> None:
+    if not CAPTURE_REPORTS.exists():
+        return
+    destination = OUTPUT_DIR / "capture"
+    if destination.exists():
+        shutil.rmtree(destination)
+    shutil.copytree(CAPTURE_REPORTS, destination)
 
 
 def main() -> int:
@@ -128,7 +149,7 @@ def main() -> int:
             "runtime_execution_authorized": False,
             "external_consequence_allowed": False,
         },
-        "required_next_transition": "inspect_binary_build_receipt_then_attach_separate_authority_and_consequence_boundary_review",
+        "required_next_transition": "inspect_binary_build_receipt_then_run_separately_authorized_repository_local_capture_if_gate_is_open",
     }
     OUTPUT.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     print(f"CEDAR SELECTED BINARY BUILD: {receipt['overall_status']} -> {OUTPUT.relative_to(ROOT)}")
@@ -151,7 +172,32 @@ def main() -> int:
         print(inspected.stdout.rstrip())
     if inspected.returncode != 0:
         print("CEDAR BUILD RECEIPT INSPECTION failed", file=sys.stderr)
-    return inspected.returncode
+        return inspected.returncode
+
+    if not capture_authorized():
+        print("CEDAR BOUNDED CAPTURE: NOT AUTHORIZED; build remains hash-only")
+        return 0
+    if not CAPTURE_RUNNER.exists():
+        print(f"CEDAR BOUNDED CAPTURE: authorized but runner missing: {CAPTURE_RUNNER.relative_to(ROOT)}", file=sys.stderr)
+        return 1
+
+    capture = subprocess.run(
+        [sys.executable, str(CAPTURE_RUNNER)],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        check=False,
+    )
+    if capture.stdout:
+        print(capture.stdout.rstrip())
+    persist_capture_into_build_artifact()
+    if capture.returncode != 0:
+        print("CEDAR BOUNDED CAPTURE: failed closed; receipts retained in build artifact", file=sys.stderr)
+        return capture.returncode
+
+    print("CEDAR BOUNDED CAPTURE: CAPTURED_VALIDATED_BOUNDED; receipts retained in build artifact")
+    return 0
 
 
 if __name__ == "__main__":

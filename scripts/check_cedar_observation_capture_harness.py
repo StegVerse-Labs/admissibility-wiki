@@ -14,6 +14,7 @@ FILES = [
     ROOT / "scripts" / "capture_cedar_observation.py",
     ROOT / "scripts" / "validate_cedar_capture_artifacts.py",
     ROOT / "scripts" / "summarize_cedar_evidence_pipeline.py",
+    ROOT / "scripts" / "run_pinned_cedar_ci_capture.py",
 ]
 
 
@@ -32,10 +33,12 @@ def main() -> int:
     capture_script = FILES[4].read_text(encoding="utf-8")
     validator = FILES[5].read_text(encoding="utf-8")
     summary = FILES[6].read_text(encoding="utf-8")
+    pinned_runner = FILES[7].read_text(encoding="utf-8")
     for label, source in [
         ("capture script", capture_script),
         ("artifact validator", validator),
         ("pipeline summary", summary),
+        ("pinned CI capture runner", pinned_runner),
     ]:
         try:
             ast.parse(source)
@@ -83,6 +86,22 @@ def main() -> int:
     for phrase in summary_phrases:
         if phrase not in summary:
             failures.append(f"pipeline summary missing phrase: {phrase}")
+
+    runner_phrases = [
+        '"repository_local_test_execution_only": True',
+        '"credentials_permitted": False',
+        '"external_writes_permitted": False',
+        '"external_consequence_allowed": False',
+        '"cedar_decision_is_execution_authority": False',
+        '"capture_is_compatibility_proof": False',
+        '"capture_state"] = "BLOCKED_FAIL_CLOSED"',
+        '"capture_state"] = "CAPTURED_VALIDATED_BOUNDED"',
+        'compiled_binary_sha256',
+        'execution_jobs_may_be_added',
+    ]
+    for phrase in runner_phrases:
+        if phrase not in pinned_runner:
+            failures.append(f"pinned CI capture runner missing phrase: {phrase}")
 
     runbook = FILES[3].read_text(encoding="utf-8")
     for phrase in [
