@@ -33,14 +33,7 @@ def sha256(path: Path) -> str:
 
 
 def run(command: list[str], cwd: Path | None = None) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(
-        command,
-        cwd=cwd,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        check=False,
-    )
+    return subprocess.run(command, cwd=cwd, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
 
 
 def capture_authorized() -> bool:
@@ -72,9 +65,11 @@ def main() -> int:
     build_stdout = ""
     build_stderr = ""
     build_exit_code: int | None = None
+    temporary = tempfile.TemporaryDirectory(prefix="cedar-build-")
+    binary: Path | None = None
 
-    with tempfile.TemporaryDirectory(prefix="cedar-build-") as temporary:
-        work = Path(temporary) / "cedar"
+    try:
+        work = Path(temporary.name) / "cedar"
         clone = run(["git", "clone", "--filter=blob:none", "--no-checkout", REPOSITORY, str(work)])
         if clone.returncode != 0:
             failures.append("canonical repository clone failed")
@@ -87,13 +82,11 @@ def main() -> int:
                 checkout_sha = resolved.stdout.strip() if resolved.returncode == 0 else None
                 if checkout_sha != COMMIT:
                     failures.append("resolved checkout does not match pinned commit")
-
                 lockfile = work / "Cargo.lock"
                 if not lockfile.exists():
                     failures.append("Cargo.lock missing at pinned commit")
                 else:
                     cargo_lock_sha256 = sha256(lockfile)
-
                 if not failures:
                     build = run(BUILD_COMMAND, cwd=work)
                     build_stdout = build.stdout
@@ -105,99 +98,83 @@ def main() -> int:
                         binary = work / "target" / "release" / "cedar"
                         if not binary.exists():
                             failures.append("cedar binary missing after build")
+                            binary = None
                         else:
                             binary_sha256 = sha256(binary)
                             binary_size = binary.stat().st_size
 
-    receipt = {
-        "artifact_type": "external_framework_selected_binary_build_receipt",
-        "schema_version": "0.1",
-        "framework_id": "cedar-policy",
-        "implementation_identifier": "cedar-policy-cli",
-        "selection_version": VERSION,
-        "canonical_repository": REPOSITORY,
-        "pinned_commit": COMMIT,
-        "resolved_commit": checkout_sha,
-        "build_started_at_utc": started,
-        "build_completed_at_utc": datetime.now(timezone.utc).isoformat(),
-        "build_environment": {
-            "runner_os": os.environ.get("RUNNER_OS"),
-            "runner_arch": os.environ.get("RUNNER_ARCH"),
-            "github_run_id": os.environ.get("GITHUB_RUN_ID"),
-            "github_run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
-            "github_sha": os.environ.get("GITHUB_SHA"),
-            "rustc_path": shutil.which("rustc"),
-            "cargo_path": shutil.which("cargo"),
-        },
-        "build_command": " ".join(BUILD_COMMAND),
-        "build_exit_code": build_exit_code,
-        "cargo_lock_sha256": cargo_lock_sha256,
-        "binary": {
-            "name": "cedar",
-            "sha256": binary_sha256,
-            "size_bytes": binary_size,
-            "executed_after_build": False,
-        },
-        "build_stdout": build_stdout,
-        "build_stderr": build_stderr,
-        "overall_status": "BUILT_HASHED_UNEXECUTED" if not failures else "BUILD_FAILED",
-        "failures": failures,
-        "authority_boundary": {
-            "binary_build_is_execution_authority": False,
-            "binary_hash_is_compatibility_proof": False,
-            "binary_was_used_for_authorization_decision": False,
-            "runtime_execution_authorized": False,
-            "external_consequence_allowed": False,
-        },
-        "required_next_transition": "inspect_binary_build_receipt_then_run_separately_authorized_repository_local_capture_if_gate_is_open",
-    }
-    OUTPUT.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
-    print(f"CEDAR SELECTED BINARY BUILD: {receipt['overall_status']} -> {OUTPUT.relative_to(ROOT)}")
+        receipt = {
+            "artifact_type": "external_framework_selected_binary_build_receipt",
+            "schema_version": "0.1",
+            "receipt_stage": "pre_capture_build_provenance",
+            "framework_id": "cedar-policy",
+            "implementation_identifier": "cedar-policy-cli",
+            "selection_version": VERSION,
+            "canonical_repository": REPOSITORY,
+            "pinned_commit": COMMIT,
+            "resolved_commit": checkout_sha,
+            "build_started_at_utc": started,
+            "build_completed_at_utc": datetime.now(timezone.utc).isoformat(),
+            "build_environment": {
+                "runner_os": os.environ.get("RUNNER_OS"),
+                "runner_arch": os.environ.get("RUNNER_ARCH"),
+                "github_run_id": os.environ.get("GITHUB_RUN_ID"),
+                "github_run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
+                "github_sha": os.environ.get("GITHUB_SHA"),
+                "rustc_path": shutil.which("rustc"),
+                "cargo_path": shutil.which("cargo"),
+            },
+            "build_command": " ".join(BUILD_COMMAND),
+            "build_exit_code": build_exit_code,
+            "cargo_lock_sha256": cargo_lock_sha256,
+            "binary": {"name": "cedar", "sha256": binary_sha256, "size_bytes": binary_size, "executed_after_build": False},
+            "build_stdout": build_stdout,
+            "build_stderr": build_stderr,
+            "overall_status": "BUILT_HASHED_UNEXECUTED" if not failures else "BUILD_FAILED",
+            "failures": failures,
+            "authority_boundary": {
+                "binary_build_is_execution_authority": False,
+                "binary_hash_is_compatibility_proof": False,
+                "binary_was_used_for_authorization_decision": False,
+                "runtime_execution_authorized": False,
+                "external_consequence_allowed": False,
+            },
+            "required_next_transition": "inspect_binary_build_receipt_then_attach_separate_authority_and_consequence_boundary_review",
+            "authorized_follow_on_transition": "run_separately_authorized_repository_local_capture_with_this_exact_binary_if_gate_is_open",
+        }
+        OUTPUT.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+        print(f"CEDAR SELECTED BINARY BUILD: {receipt['overall_status']} -> {OUTPUT.relative_to(ROOT)}")
+        if failures:
+            return 1
+        if not INSPECTOR.exists() or binary is None:
+            print("CEDAR BUILD RECEIPT INSPECTION unavailable", file=sys.stderr)
+            return 1
 
-    if failures:
-        return 1
-    if not INSPECTOR.exists():
-        print(f"CEDAR BUILD RECEIPT INSPECTION unavailable: missing {INSPECTOR.relative_to(ROOT)}", file=sys.stderr)
-        return 1
+        inspected = run([sys.executable, str(INSPECTOR)])
+        if inspected.stdout or inspected.stderr:
+            print((inspected.stdout + inspected.stderr).rstrip())
+        if inspected.returncode != 0:
+            print("CEDAR BUILD RECEIPT INSPECTION failed", file=sys.stderr)
+            return inspected.returncode
 
-    inspected = subprocess.run(
-        [sys.executable, str(INSPECTOR)],
-        cwd=ROOT,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
-    )
-    if inspected.stdout:
-        print(inspected.stdout.rstrip())
-    if inspected.returncode != 0:
-        print("CEDAR BUILD RECEIPT INSPECTION failed", file=sys.stderr)
-        return inspected.returncode
+        if not capture_authorized():
+            print("CEDAR BOUNDED CAPTURE: NOT AUTHORIZED; build remains hash-only")
+            return 0
+        if not CAPTURE_RUNNER.exists():
+            print(f"CEDAR BOUNDED CAPTURE: authorized but runner missing: {CAPTURE_RUNNER.relative_to(ROOT)}", file=sys.stderr)
+            return 1
 
-    if not capture_authorized():
-        print("CEDAR BOUNDED CAPTURE: NOT AUTHORIZED; build remains hash-only")
+        capture = run([sys.executable, str(CAPTURE_RUNNER), "--binary", str(binary), "--build-receipt", str(OUTPUT)])
+        if capture.stdout or capture.stderr:
+            print((capture.stdout + capture.stderr).rstrip())
+        persist_capture_into_build_artifact()
+        if capture.returncode != 0:
+            print("CEDAR BOUNDED CAPTURE: failed closed; receipts retained in build artifact", file=sys.stderr)
+            return capture.returncode
+        print("CEDAR BOUNDED CAPTURE: CAPTURED_VALIDATED_BOUNDED; receipts retained in build artifact")
         return 0
-    if not CAPTURE_RUNNER.exists():
-        print(f"CEDAR BOUNDED CAPTURE: authorized but runner missing: {CAPTURE_RUNNER.relative_to(ROOT)}", file=sys.stderr)
-        return 1
-
-    capture = subprocess.run(
-        [sys.executable, str(CAPTURE_RUNNER)],
-        cwd=ROOT,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
-    )
-    if capture.stdout:
-        print(capture.stdout.rstrip())
-    persist_capture_into_build_artifact()
-    if capture.returncode != 0:
-        print("CEDAR BOUNDED CAPTURE: failed closed; receipts retained in build artifact", file=sys.stderr)
-        return capture.returncode
-
-    print("CEDAR BOUNDED CAPTURE: CAPTURED_VALIDATED_BOUNDED; receipts retained in build artifact")
-    return 0
+    finally:
+        temporary.cleanup()
 
 
 if __name__ == "__main__":
