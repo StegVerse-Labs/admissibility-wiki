@@ -57,6 +57,7 @@ claimed frameworks:
 issue: #63
 primary branch: worker/external-frameworks-policy-agent
 repair branch used for OPA closure: worker/external-frameworks-policy-agent-repair
+Cedar promotion branch: worker/external-frameworks-cedar-promotion
 claimed frameworks:
   Open Policy Agent
   Cedar Policy
@@ -117,7 +118,7 @@ OPA completion state means the bounded second-page evaluation is complete at the
 
 #### Cedar Policy — CLAIMED_FOR_IMPLEMENTATION_AND_VALIDATION
 
-Cedar is Worker B's next active empirical target.
+Cedar is Worker B's active empirical target.
 
 Canonical run `31272895338` produced and uploaded `cedar-selected-binary-build` artifact `9026196254`. Direct artifact inspection established:
 
@@ -133,25 +134,39 @@ state: BUILT_HASHED_UNEXECUTED
 binary.executed_after_build: false
 runtime_execution_authorized: false
 external_consequence_allowed: false
+source build receipt SHA-256: 0b9004042129effeb9627fc952dd0fd497095c8e042b43c36f00db0aefb259d8
+promotion candidate SHA-256: b500a8d0b42eb48236e5f603c706587fe2c259af81be2408ae33f4492e41cbec
 ```
 
-The generated promotion candidate is `READY_FOR_REGISTRY_PROMOTION_REVIEW` and binds source-build-receipt SHA-256 `0b9004042129effeb9627fc952dd0fd497095c8e042b43c36f00db0aefb259d8`.
+The generated promotion candidate was `READY_FOR_REGISTRY_PROMOTION_REVIEW`.
 
-The repository registry still contains the prior compiled binary hash `96e6b0517f145875c12457f3350ad43fdc3be9f0e32c42ce813df0667fa036e1`. Therefore the current binary hash must not be treated as promoted or executable yet.
+The current hash-only provenance transition is now installed:
+
+```text
+PR: #70
+merge commit: 388d9f6dbf73cd35b8b89ebc0195b048940c1758
+registry: docs/external-frameworks/implementation-selection-gates.v0.1.json
+compiled_binary_sha256: 2f85096e819a40b90a11d45e971c9bb1f6cc1024aa20f00bfc593893d7a3b6d3
+execution_authorized: false
+current promotion receipt: reports/external-frameworks/cedar-build/cedar-binary-registry-promotion-receipt.applied-hash-only.json
+Cedar page evidence posture: IMPLEMENTATION_BUILT_HASHED_UNEXECUTED
+```
+
+PR #70 also updates the Cedar second page to expose the inspected build evidence and explicitly avoids runtime, compatibility, certification, standing, or execution-authority promotion.
+
+Canonical validation for this transition is machine-owned by workflow run `31276206898`, triggered from merge commit `388d9f6dbf73cd35b8b89ebc0195b048940c1758`. At the latest inspection the run is `pending`; no canonical PASS is claimed yet.
 
 Exact next transition:
 
 ```text
-inspect current promotion candidate
--> create/validate a current governed hash-only promotion receipt
--> apply only compiled_binary_sha256 in docs/external-frameworks/implementation-selection-gates.v0.1.json
--> preserve execution_authorized=false
--> revalidate registry/provenance
--> execute the selected Cedar authorization capture only through the existing governed capture path when its execution gate is satisfied
--> preserve raw output and StegVerse compatibility result
+workflow run 31276206898 reaches terminal state
+-> inspect Cedar registry/promotion/provenance validators
+-> if the hash-only transition validates, release the provenance sub-claim
+-> invoke the existing governed Cedar authorization capture path only when its execution gate is satisfied
+-> preserve request/policy/entities, raw Cedar result, runtime identity, timestamps, replay evidence, and StegVerse compatibility result
 ```
 
-Cedar is not complete while the binary remains `BUILT_HASHED_UNEXECUTED` and no current authorization decision has been observed.
+Cedar is not complete while no Cedar authorization decision or runtime compatibility observation has been preserved.
 
 ### Worker C — standards and risk
 
@@ -269,7 +284,8 @@ Completion percentage is `2.78%` (`1/36`). Worker/issue ownership coverage remai
 ```text
 OPA sub-claim: COMPLETE; implementation/validation claim released after run 31272895338 proved OPA-specific remediation and compatibility PASS
 Cedar sub-claim: CLAIMED_FOR_IMPLEMENTATION_AND_VALIDATION by Worker B / issue #63
-Cedar release condition: current binary provenance promoted under hash-only governed receipt, runtime capture/compatibility work either observed and preserved or explicitly reaches LOCAL_WORK_COMPLETE_EXTERNAL_EVIDENCE_BLOCKED after all local execution paths are exhausted
+Cedar hash-only provenance transition: MERGED; canonical validation pending run 31276206898
+Cedar release condition: runtime capture/compatibility work either observed and preserved or explicitly reaches LOCAL_WORK_COMPLETE_EXTERNAL_EVIDENCE_BLOCKED after all local execution paths are exhausted
 Workers A/C/D: unchanged active claims under issues #62/#64/#65
 MindForge/Morrison/ASRO: unchanged issue #50 ownership
 ```
