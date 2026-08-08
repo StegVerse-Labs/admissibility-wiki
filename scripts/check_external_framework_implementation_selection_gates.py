@@ -18,6 +18,13 @@ COMMON_BOUNDARIES = [
     "implementation_selection_creates_execution_authority",
     "selection_gate_may_authorize_external_consequence",
 ]
+CEDAR_AUTHORITY_REF = "https://github.com/StegVerse-Labs/admissibility-wiki/issues/63#issuecomment-5227967090"
+CEDAR_SCOPE_MARKERS = [
+    "repository-local",
+    "no credentials",
+    "external writes",
+    "external consequence",
+]
 
 
 def nonempty(value: object) -> bool:
@@ -102,6 +109,7 @@ def main() -> int:
         failures.append(f"framework order/identity mismatch: {ids}")
 
     selected_count = 0
+    cedar_authorized = False
     for item in frameworks:
         if not isinstance(item, dict):
             failures.append("framework entry must be an object")
@@ -116,7 +124,19 @@ def main() -> int:
         if not isinstance(specific, list) or len(specific) < 3:
             failures.append(f"{framework_id}: insufficient framework-specific requirements")
             specific = []
-        if item.get("execution_authorized") is not False:
+
+        if framework_id == "cedar-policy":
+            cedar_authorized = item.get("execution_authorized") is True
+            if cedar_authorized:
+                scope = str(item.get("execution_authority_scope", "")).lower()
+                if item.get("execution_authority_ref") != CEDAR_AUTHORITY_REF:
+                    failures.append("cedar-policy: execution authority ref does not match the governed issue receipt")
+                for marker in CEDAR_SCOPE_MARKERS:
+                    if marker not in scope:
+                        failures.append(f"cedar-policy: execution authority scope missing marker {marker!r}")
+            elif item.get("execution_authorized") is not False:
+                failures.append("cedar-policy: execution_authorized must be a boolean")
+        elif item.get("execution_authorized") is not False:
             failures.append(f"{framework_id}: execution_authorized must remain false")
 
         if state == "selection_required":
@@ -149,15 +169,22 @@ def main() -> int:
         failures.append(f"expected exactly one promoted hash-bound selection, found {selected_count}")
 
     gate = payload.get("gate", {})
-    for key in ["all_required_fields_present", "all_artifacts_hash_bound", "all_versions_pinned", "execution_jobs_may_be_added"]:
+    for key in ["all_required_fields_present", "all_artifacts_hash_bound", "all_versions_pinned"]:
         if gate.get(key) is not False:
-            failures.append(f"gate.{key} must remain false")
+            failures.append(f"gate.{key} must remain false while five selections are incomplete")
+    if gate.get("execution_jobs_may_be_added") is not cedar_authorized:
+        failures.append("gate.execution_jobs_may_be_added must equal the presence of a bounded Cedar execution authorization")
+    if cedar_authorized and "cedar" not in str(gate.get("execution_job_scope", "")).lower():
+        failures.append("gate.execution_job_scope must name Cedar when the bounded execution gate is open")
+
     boundary = payload.get("authority_boundary", {})
     for key in COMMON_BOUNDARIES:
         if boundary.get(key) is not False:
             failures.append(f"authority_boundary.{key} must be false")
 
     print("IMPLEMENTATION SELECTION GATES:", "FAIL" if failures else "PASS")
+    if cedar_authorized:
+        print("- cedar-policy: bounded repository-local capture authorization present")
     for failure in failures:
         print(f"- {failure}")
     return 1 if failures else 0
