@@ -22,6 +22,7 @@ AI_LED_RADIOLOGY_PUBLICATION_CHECK = ROOT / "scripts" / "check_ai_led_radiology_
 AI_LED_RADIOLOGY_HANDOFF_SYNC_CHECK = ROOT / "scripts" / "check_ai_led_radiology_handoff_sync.py"
 VERIFICATION_EXECUTION_AUTHORITY_CHECK = ROOT / "scripts" / "check_verification_execution_authority.py"
 VISIBILITY_AUTHORITY_CHECK = ROOT / "scripts" / "check_visibility_authority_doctrine.py"
+OBSERVER_RELATIVE_ADMISSIBILITY_CHECK = ROOT / "scripts" / "check_observer_relative_admissibility.py"
 COMMIT_BOUNDARY_BINDING_CHECK = ROOT / "scripts" / "check_commit_boundary_binding.py"
 QUANTUM_SECURITY_PUBLICATION_CHECK = ROOT / "scripts" / "check_quantum_resilient_security_publication.py"
 PEER_PRESERVATION_CHECK = ROOT / "scripts" / "check_peer_preservation_claims.py"
@@ -126,6 +127,7 @@ def main() -> int:
         (AI_LED_RADIOLOGY_HANDOFF_SYNC_CHECK, "AI-led radiology handoff sync"),
         (VERIFICATION_EXECUTION_AUTHORITY_CHECK, "verification versus execution authority"),
         (VISIBILITY_AUTHORITY_CHECK, "visibility versus authority doctrine"),
+        (OBSERVER_RELATIVE_ADMISSIBILITY_CHECK, "observer-relative admissibility doctrine"),
         (COMMIT_BOUNDARY_BINDING_CHECK, "commit-boundary binding predicate"),
         (QUANTUM_SECURITY_PUBLICATION_CHECK, "quantum-resilient security publication"),
         (PEER_PRESERVATION_CHECK, "peer-preservation inference boundary"),
