@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "docs" / "external-frameworks" / "implementation-selection-gates.v0.1.json"
 CAPTURE_DIR = ROOT / "docs" / "external-frameworks" / "capture" / "cedar"
+ENTITIES = CAPTURE_DIR / "entities.json"
 CAPTURE_SCRIPT = ROOT / "scripts" / "capture_cedar_observation.py"
 VALIDATE_SCRIPT = ROOT / "scripts" / "validate_cedar_capture_artifacts.py"
 REPORTS = ROOT / "reports" / "external-frameworks" / "cedar"
@@ -108,6 +109,15 @@ def main() -> int:
     binary = args.binary.resolve()
     if not binary.exists() or not binary.is_file():
         return fail(summary, "inspected Cedar build binary is unavailable")
+    if not ENTITIES.exists() or not ENTITIES.is_file():
+        return fail(summary, "Cedar entity-store fixture is unavailable")
+    try:
+        entities_payload = json.loads(ENTITIES.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        return fail(summary, f"Cedar entity-store fixture is invalid JSON: {exc}")
+    if not isinstance(entities_payload, list):
+        return fail(summary, "Cedar entity-store fixture must be a JSON array")
+
     current_hash = sha256(binary)
     receipt_binary = receipt.get("binary", {})
     checks = {
@@ -137,6 +147,8 @@ def main() -> int:
         "registry_reference_hash_matches_current_binary": promoted_reference_hash == current_hash,
         "binary_hash_reproducibility_claimed": False,
         "execution_binding": "exact_same_binary_as_inspected_build_receipt",
+        "entities_path": str(ENTITIES.relative_to(ROOT)),
+        "entities_sha256": sha256(ENTITIES),
     }
 
     version_command = shlex.join([str(binary), "--version"])
@@ -148,7 +160,9 @@ def main() -> int:
     for label, request_path in cases.items():
         request = load(request_path)
         command = [
-            str(binary), "authorize", "--policies", "{policy}",
+            str(binary), "authorize",
+            "--entities", str(ENTITIES),
+            "--policies", "{policy}",
             "--principal", str(request["principal"]),
             "--action", str(request["action"]),
             "--resource", str(request["resource"]),
@@ -180,6 +194,7 @@ def main() -> int:
         "native Cedar authorization execution is confined to repository fixtures on a GitHub-hosted CI runner",
         "the executed binary is exactly the binary hashed by the current inspected build receipt",
         "the registry binary hash is a prior observed build reference and is not treated as a reproducible-build invariant",
+        "the explicit entity-store fixture is empty because the retained policy uses only literal entity UIDs and no entity attributes or parents",
         "no same-environment or fresh-runner replay is claimed by this transition",
         "no independent implementation/provider reproduction is claimed",
         "native authorization output is evidence only and does not bind consequence",
