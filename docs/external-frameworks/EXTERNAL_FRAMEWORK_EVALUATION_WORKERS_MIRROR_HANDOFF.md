@@ -55,7 +55,8 @@ claimed frameworks:
 
 ```text
 issue: #63
-branch: worker/external-frameworks-policy-agent
+primary branch: worker/external-frameworks-policy-agent
+repair branch used for OPA closure: worker/external-frameworks-policy-agent-repair
 claimed frameworks:
   Open Policy Agent
   Cedar Policy
@@ -68,7 +69,89 @@ claimed frameworks:
   Agent Governance Playbook
 ```
 
-OPA is the leading empirical candidate in this lane. Existing native execution and replay evidence must be preserved. Its pending canonical StegVerse governance-compatibility execution/receipt gate must be closed before stronger claims are made.
+#### Open Policy Agent — COMPLETE_BOUNDED_OBSERVED
+
+OPA is the first completed second-page evaluation under this worker program.
+
+Canonical implementation/evidence commits:
+
+```text
+PR #68 -> merge commit 3831367b1de4bad41c639a215c2a106860b53cfc
+PR #69 -> repair merge commit 49ae93ddc8d48476d067a606a04f190b1c2e39f4
+canonical validation run: 31272895338
+```
+
+Observed bounded evidence preserved on the OPA pages:
+
+```text
+historical observed compatibility run: 29455057960
+case families: 6
+expected == observed: 6/6
+native capture: observed
+same-environment replay: observed
+fresh-runner same-provider replay: observed
+independent implementation reproduction: not observed
+independent provider reproduction: not observed
+execution authority: not granted
+certification / endorsement: not established
+```
+
+Successor canonical run `31272895338` directly established that the OPA-specific closure survived current validation:
+
+```text
+EXTERNAL FRAMEWORK PAGE REMEDIATION: PASS
+EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS
+compatibility_observed=1
+opa_bounded_compatibility=observed_run_29455057960
+open-policy-agent_case_families=6
+capture-opa-evidence: SUCCESS
+replay-opa-fresh-runner: SUCCESS
+build-pages: SUCCESS
+deploy-pages: SUCCESS
+verify-public-pages: SUCCESS
+```
+
+The repository-wide canonical run remains fail-closed for unrelated tracks owned outside the OPA sub-claim, including Morrison Runtime promotion and AGCP handoff state. Those failures do not erase the directly observed OPA-specific PASS evidence and must not be reassigned to Worker B.
+
+OPA completion state means the bounded second-page evaluation is complete at the strongest supported evidence class. It does not create a general OPA certification or claim independent reproduction.
+
+#### Cedar Policy — CLAIMED_FOR_IMPLEMENTATION_AND_VALIDATION
+
+Cedar is Worker B's next active empirical target.
+
+Canonical run `31272895338` produced and uploaded `cedar-selected-binary-build` artifact `9026196254`. Direct artifact inspection established:
+
+```text
+implementation: cedar-policy-cli 4.11.0
+pinned/resolved commit: 0807ec154afd7ffa14a658c9955d25bfe12770ca
+build command: cargo build --locked --release -p cedar-policy-cli
+build exit code: 0
+Cargo.lock SHA-256: 6efd3893a3c32d463748edfbd8361152e26dd17964d61bbe94cc4a390cd887b1
+compiled binary SHA-256: 2f85096e819a40b90a11d45e971c9bb1f6cc1024aa20f00bfc593893d7a3b6d3
+binary size: 16325032 bytes
+state: BUILT_HASHED_UNEXECUTED
+binary.executed_after_build: false
+runtime_execution_authorized: false
+external_consequence_allowed: false
+```
+
+The generated promotion candidate is `READY_FOR_REGISTRY_PROMOTION_REVIEW` and binds source-build-receipt SHA-256 `0b9004042129effeb9627fc952dd0fd497095c8e042b43c36f00db0aefb259d8`.
+
+The repository registry still contains the prior compiled binary hash `96e6b0517f145875c12457f3350ad43fdc3be9f0e32c42ce813df0667fa036e1`. Therefore the current binary hash must not be treated as promoted or executable yet.
+
+Exact next transition:
+
+```text
+inspect current promotion candidate
+-> create/validate a current governed hash-only promotion receipt
+-> apply only compiled_binary_sha256 in docs/external-frameworks/implementation-selection-gates.v0.1.json
+-> preserve execution_authorized=false
+-> revalidate registry/provenance
+-> execute the selected Cedar authorization capture only through the existing governed capture path when its execution gate is satisfied
+-> preserve raw output and StegVerse compatibility result
+```
+
+Cedar is not complete while the binary remains `BUILT_HASHED_UNEXECUTED` and no current authorization decision has been observed.
 
 ### Worker C — standards and risk
 
@@ -122,7 +205,7 @@ These three frameworks remain part of the 36-framework goal but are counted unde
 ```text
 issue: #66
 role: 36-framework completion coordination and anti-scaffold accounting
-handoff task: #67
+handoff task: #67 (complete)
 ```
 
 ## Completion definition per framework
@@ -171,13 +254,38 @@ Each worker must:
 ## Current accounting
 
 ```text
-complete: 0/36
-active worker-owned: 33/36
-existing issue #50 owned: 3/36
+complete: 1/36
+completed framework: Open Policy Agent
+active incomplete framework records: 35/36
+worker-lane incomplete records: 32/36
+existing issue #50 incomplete records: 3/36
 unowned: 0/36
 ```
 
-Completion percentage is therefore `0%` at worker activation. Worker deployment/claim coverage is `100%` of the 36-framework goal, but claim coverage must never be reported as framework completion.
+Completion percentage is `2.78%` (`1/36`). Worker/issue ownership coverage remains `100%` of the 36-framework goal, but ownership coverage must never be reported as framework completion.
+
+## Active claims and release conditions
+
+```text
+OPA sub-claim: COMPLETE; implementation/validation claim released after run 31272895338 proved OPA-specific remediation and compatibility PASS
+Cedar sub-claim: CLAIMED_FOR_IMPLEMENTATION_AND_VALIDATION by Worker B / issue #63
+Cedar release condition: current binary provenance promoted under hash-only governed receipt, runtime capture/compatibility work either observed and preserved or explicitly reaches LOCAL_WORK_COMPLETE_EXTERNAL_EVIDENCE_BLOCKED after all local execution paths are exhausted
+Workers A/C/D: unchanged active claims under issues #62/#64/#65
+MindForge/Morrison/ASRO: unchanged issue #50 ownership
+```
+
+## Session consolidation
+
+The originating session requirements are durably transferred here and to issues #63/#66:
+
+```text
+conversation or acknowledgment != validation
+page existence != completed evaluation
+generated procedure != observed test
+framework completion requires claims vs actual abilities + StegVerse test evidence + governance-chain placement
+```
+
+The session may be archived only after its live Worker B execution role is released or durably transferred to another active canonical claimant with all current Cedar evidence and next actions preserved.
 
 ## Release and archive guard
 
