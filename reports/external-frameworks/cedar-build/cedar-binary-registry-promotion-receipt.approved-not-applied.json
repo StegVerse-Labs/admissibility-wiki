@@ -3,29 +3,32 @@
   "receipt_type": "cedar_binary_registry_promotion_receipt",
   "framework_id": "cedar-policy",
   "source_promotion_candidate": {
-    "path": "artifact://cedar-selected-binary-build/cedar-binary-registry-promotion-candidate.json",
-    "sha256": "1324a6a9b83b19c30f674c6b93de2e71b46d64ac485419f480a60c1061558468",
+    "path": "github-actions://StegVerse-Labs/admissibility-wiki/runs/31272895338/artifacts/9026196254/cedar-binary-registry-promotion-candidate.json",
+    "sha256": "b500a8d0b42eb48236e5f603c706587fe2c259af81be2408ae33f4492e41cbec",
     "candidate_state": "READY_FOR_REGISTRY_PROMOTION_REVIEW",
-    "binary_sha256": "96e6b0517f145875c12457f3350ad43fdc3be9f0e32c42ce813df0667fa036e1"
+    "binary_sha256": "2f85096e819a40b90a11d45e971c9bb1f6cc1024aa20f00bfc593893d7a3b6d3"
   },
   "decision": "ALLOW_REGISTRY_PROMOTION_ONLY",
   "promotion_state": "APPROVED_NOT_APPLIED",
   "review": {
     "status": "PASS",
-    "reviewer_identity": "StegVerse governed build session",
-    "delegation_ref": "docs/external-frameworks/EXTERNAL_FRAMEWORKS_MIRROR_HANDOFF.md@9e60f52f01f5e981baf4fd5c55a9a5a6e199e25c",
-    "reviewed_at_utc": "2026-07-12T19:46:20Z",
+    "reviewer_identity": "StegVerse Worker B governed execution session",
+    "delegation_ref": "docs/external-frameworks/EXTERNAL_FRAMEWORK_EVALUATION_WORKERS_MIRROR_HANDOFF.md@c795bc65935363135db0cf63b7e3e00d7ac9a10f",
+    "reviewed_at_utc": "2026-08-08T20:02:00Z",
     "evidence_refs": [
-      "github-actions://StegVerse-Labs/admissibility-wiki/runs/29205883335/artifacts/8263766611",
-      "sha256:edd03d9e5334009674916586ba27045309f006435b623f38f89da2fa3cf015d1",
-      "sha256:1324a6a9b83b19c30f674c6b93de2e71b46d64ac485419f480a60c1061558468"
+      "github-actions://StegVerse-Labs/admissibility-wiki/runs/31272895338/jobs/93141992388",
+      "github-actions://StegVerse-Labs/admissibility-wiki/runs/31272895338/artifacts/9026196254",
+      "sha256:7067090a90f5ba74384b7488522559f630120c9d32350f171283e7af92d7907b",
+      "sha256:0b9004042129effeb9627fc952dd0fd497095c8e042b43c36f00db0aefb259d8",
+      "sha256:b500a8d0b42eb48236e5f603c706587fe2c259af81be2408ae33f4492e41cbec",
+      "sha256:6efd3893a3c32d463748edfbd8361152e26dd17964d61bbe94cc4a390cd887b1"
     ]
   },
   "registry_target": {
     "path": "docs/external-frameworks/implementation-selection-gates.v0.1.json",
     "field": "frameworks[cedar-policy].selection.compiled_binary_sha256",
-    "expected_previous_value": null,
-    "proposed_value": "96e6b0517f145875c12457f3350ad43fdc3be9f0e32c42ce813df0667fa036e1"
+    "expected_previous_value": "96e6b0517f145875c12457f3350ad43fdc3be9f0e32c42ce813df0667fa036e1",
+    "proposed_value": "2f85096e819a40b90a11d45e971c9bb1f6cc1024aa20f00bfc593893d7a3b6d3"
   },
   "registry_mutation_applied": false,
   "runtime_execution_authorized": false,
