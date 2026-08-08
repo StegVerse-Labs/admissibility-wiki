@@ -1,0 +1,28 @@
+{
+  "schema": "admissibility_wiki.observer_relative_admissibility_status.v1",
+  "goal_id": "OBSERVER-RELATIVE-ADMISSIBILITY-001",
+  "state": "IMPLEMENTED_PENDING_CANONICAL_VALIDATION",
+  "canonical_doctrine": "docs/governance/observer-relative-admissibility.md",
+  "requirements": {
+    "transition_facts_separate_from_characterization": true,
+    "observer_context_required": true,
+    "authority_scope_required": true,
+    "evaluation_context_may_change_admissibility": true,
+    "production_context_may_change_admissibility": true,
+    "historical_transition_is_not_mutated_by_contest": true,
+    "future_constraints_may_change_from_contest_evidence": true,
+    "single_committed_outcome_does_not_imply_single_observer_pov": true
+  },
+  "authority_boundaries": {
+    "test_authorization_is_production_authorization": false,
+    "capability_demonstration_is_malicious_intent": false,
+    "observer_label_is_transition_fact": false,
+    "doctrine_publication_grants_execution_authority": false
+  },
+  "validation": {
+    "validator": "scripts/check_observer_relative_admissibility.py",
+    "canonical_parent": "scripts/check_admissibility_automation_handoff.py",
+    "hosted_run": null,
+    "last_result": "PENDING"
+  }
+}
