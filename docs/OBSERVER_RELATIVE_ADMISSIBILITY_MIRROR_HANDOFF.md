@@ -2,37 +2,42 @@
 
 ## Source of truth
 
-This goal-specific handoff is subordinate to the repository-wide `ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` and is the canonical continuation record for `OBSERVER-RELATIVE-ADMISSIBILITY-001`.
+This goal-specific handoff is subordinate to repository-wide `ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` and is the canonical continuation record for `OBSERVER-RELATIVE-ADMISSIBILITY-001`.
 
-## Completed goal and origin
+## Active goal
 
 ```text
 goal_id: OBSERVER-RELATIVE-ADMISSIBILITY-001
-originating_session_goal: preserve and implement the insight that a transition can receive different admissibility judgments from different observer positions, including authorized capability evaluation versus affected production-maintainer perspectives
+originating_session_goal: formalize observer role without treating observer preference, temporal precedence, or later observation as transition governance
 repository: StegVerse-Labs/admissibility-wiki
 branch: main
 canonical_owner: StegVerse-Labs/admissibility-wiki
-state: COMPLETE_VALIDATED_INTEGRATED_AND_TRANSFERRED
-implementation_claim: RELEASED
-validation_claim: RELEASED_TO_REPOSITORY_NATIVE_CANONICAL_MESH
-claim_created_at: 2026-08-08T19:55:00Z
-release_condition_satisfied: scoped validator executed from canonical parent in hosted run and returned PASS; unrelated repository failures remain fail-closed
+state: IMPLEMENTED_VALIDATION_PENDING
+implementation_claim: COMPLETE_FOR_CURRENT_REFINEMENT
+validation_claim: CLAIMED_BY_REPOSITORY_NATIVE_CANONICAL_MESH
+claim_created_at: 2026-08-08
+claim_release_condition: successor canonical hosted execution observes scoped validator PASS with the refined doctrine and status
+collision_boundary: do not replace visibility-authority, observer-boundary, or repository-wide issue #50 ownership
 ```
 
 ## Session requirements transferred
 
-The following requirements are durable and complete:
+The current session adds and durably installs these requirements:
 
 ```text
-1. A factual transition record is separated from observer characterization.
-2. A label such as malicious is not assumed to be an intrinsic property of the transition without a bound governance predicate.
-3. Authorized capability/red-team testing can intentionally permit behavior that would be denied in ordinary production authority.
-4. Defensive modeling based only on guessed strategies is weaker than bounded observation of discovered strategies.
-5. The same action sequence may be ALLOW from the evaluator scope and DENY/FAIL_CLOSED from an affected maintainer or production scope.
-6. One committed outcome does not imply one observer point of view.
-7. Consequence contest does not rewrite history; actionable contest changes future constraints, evidence requirements, or admissibility predicates.
-8. Reconstruction retains observer role, authority scope, objective, evidence, admissibility result, and characterization.
+1. A realized state transition has one continuity outcome.
+2. An observer is not a governance primitive merely by observing that outcome.
+3. Observer preference or dissatisfaction is not an admissibility constraint and grants no veto.
+4. Temporal precedence does not confer causal, governance, or authority standing.
+5. For state-transition reasoning, time describes observable ordering; it is not an independent admissibility input.
+6. Observation cannot retroactively alter the completed transition.
+7. A later correction, reversal, remediation, or acceptance is a new candidate transition.
+8. Observer-supplied information does not automatically become an applicable future constraint.
+9. Intentional constraint augmentation requires sufficient comprehension of the constraint-to-transition relationship plus applicable standing/authority.
+10. Knowing realized_outcome != preferred_outcome is insufficient to establish constraint_delta -> preferred_outcome.
 ```
+
+This refinement supersedes the earlier overly broad implication that consequence contest itself changes future governance. Contest may produce candidate information; applicability is determined independently by governance of a later transition.
 
 ## Installed surfaces
 
@@ -41,139 +46,82 @@ docs/governance/observer-relative-admissibility.md
 static/status/observer-relative-admissibility-status.json
 scripts/check_observer_relative_admissibility.py
 docs/OBSERVER_RELATIVE_ADMISSIBILITY_MIRROR_HANDOFF.md
-scripts/check_admissibility_automation_handoff.py  # canonical parent binding
+scripts/check_admissibility_automation_handoff.py  # canonical parent, pre-existing
 ```
 
-## Canonical hosted validation evidence
+Current refinement commits:
 
 ```text
-validated_head: c1ef83f46a762bee38473dfc25e8b4841e8a5f57
-canonical_parent_binding_commit: e50a35dae34f364364f51d788d564b286d8fc32d
-workflow: Validate chain continuation
-run_id: 31277243840
-run_number: 4003
-canonical_validation_job: 93152767882
-observer-relative validator: PASS
-canonical parent invocation: OBSERVED
-full repository chain: 51/56 PASS, 5 FAIL, 0 SKIPPED
-repository posture: FAIL_CLOSED
+e4cb05b3cdd6a0495c81963a4e74269228e921cf  doctrine rewrite
+5487cff5ba7e2426562a402781bd3ccd6e5654d7  status requirements
+556c025c857a650bdd603fe92beb1e4bc4709ad4  validator refinement
+a15901e31fb0c3f2eaadc4da062b55732a35f933  constraint-comprehension invariant token
 ```
 
-The workflow's repository-level failure is not evidence that this scoped goal failed. The canonical parent executed `scripts/check_observer_relative_admissibility.py`, and the scoped validator returned PASS. The repository-wide chain remained fail-closed because of unrelated registered validators. This handoff does not suppress, reclassify, or convert those failures into success.
+## Prior validation evidence
 
-Artifacts from the same run:
+The predecessor doctrine was hosted and scoped-PASS at run `31277243840`, job `93152767882`, with canonical-parent invocation observed. That evidence does not validate the new refinement. Repository-wide posture was and remains independently FAIL_CLOSED; issue #50 owns repository-wide activation.
+
+## Validation commands
 
 ```text
-full-validation-chain-report
-  artifact_id: 9027386084
-  digest: sha256:bb0a155fafc1d4fd22a42e5ce628b0a2a38f725fc026ab737d5c0dab6f3f613e
-
-canonical-prescan-report
-  artifact_id: 9027363192
-  digest: sha256:af088f77c5d001fcefa4a8f6d381bef8d999b5d2ff37b427f05aa668d95f46ba
+python scripts/check_observer_relative_admissibility.py
+python scripts/check_admissibility_automation_handoff.py
 ```
 
-## Blocker resolution
-
-The former blocker was defined too broadly: it required the whole repository workflow to become green before this scoped doctrine could close. That coupled a completed scoped validator to unrelated repository failures.
-
-The replacement completion rule is:
-
-```text
-scoped goal completion =
-  installed scoped surfaces
-  + canonical-parent binding
-  + hosted execution of the scoped validator
-  + scoped PASS evidence
-  + preservation of unrelated fail-closed results
-```
-
-It does not require unrelated repository validators to pass. Repository release still requires repository-wide canonical validation. This separates scoped completion from repository release without weakening either gate.
-
-## Claim and collision boundaries
-
-Existing visibility-versus-authority and observer-boundary doctrines remain independently owned. No replacement or duplicate implementation was created.
-
-```text
-Do not replace VISIBILITY_AUTHORITY_MIRROR_HANDOFF.md.
-Do not replace existing three-role observer-boundary logic.
-Do not reinterpret test authorization as production authorization.
-Do not collapse observer labels into transition facts.
-Do not infer repository release from scoped goal completion.
-```
-
-## Integration and propagation determination
-
-The doctrine owner is `StegVerse-Labs/admissibility-wiki`. `StegVerse-Labs/Site` was inspected before propagation was considered and has distinct active HIL, heartbeat/orchestration, and deployment claims. No concrete downstream contract was found that requires this observer-relative doctrine to be copied into Site, Publisher, StegGuardian, or StegCore for this goal to operate.
-
-Therefore:
-
-```text
-Site mutation required for this goal: false
-Publisher mutation required for this goal: false
-StegGuardian mutation required for this goal: false
-StegCore mutation required for this goal: false
-future consumer regression handling: repository-native canonical validation mesh
-```
-
-A future consumer may import these semantics through an explicit contract, but an unproven possible consumer is not an archival dependency.
+Strong completion evidence requires a successor hosted canonical run proving the refined scoped validator executed from the canonical parent and returned PASS. Missing hosted evidence remains pending, not success.
 
 ## Machine-owned continuation
 
-Repeated validation is already owned by the existing canonical workflow through `scripts/check_admissibility_automation_handoff.py`. Missing doctrine/status/handoff markers remain fail-closed through `scripts/check_observer_relative_admissibility.py`.
+```text
+owner: StegVerse-Labs/admissibility-wiki repository-native canonical validation mesh
+trigger: existing canonical validate-chain-continuation workflow
+inputs: doctrine + status + handoff + validator + canonical parent
+outputs: hosted job result and canonical validation artifacts
+success: scoped validator PASS and canonical-parent invocation observed
+failure: FAIL_CLOSED / retain exact validator evidence
+next executable task: observe successor canonical run and bind run/job/artifact evidence here
+```
 
-No chat-owned polling, duplicate workflow, manual workflow dispatch, or session-specific implementation claim remains.
+No duplicate workflow is created. Repository-wide failures and release remain coordinated by issue #50.
+
+## Integration and propagation
+
+No downstream propagation is claimed. The repository-wide handoff identifies possible downstream surfaces as StegVerse-Labs/Site, GCAT-BCAT-Engine/Publisher, StegVerse-Labs/admissibility-wiki, and StegVerse-002/stegguardian-wiki. This scoped refinement has no proven downstream contract requiring mutation before its own validation. Any future propagation must be authorized by the destination handoff.
 
 ## Consolidation record
 
 ```text
 MERGED INTO: StegVerse-Labs/admissibility-wiki/docs/OBSERVER_RELATIVE_ADMISSIBILITY_MIRROR_HANDOFF.md
-transferred: observer-relative admissibility doctrine, authorized-evaluation POV, defensive-modeling implication, manifold observer projections, consequence-contest semantics
-already complete before session: visibility-versus-authority doctrine and three-stage/three-role observer boundary
-completed in this workstream: doctrine, status surface, validator, canonical-parent binding, hosted scoped validation, claim release, closeout record
-remaining session-specific work: none
-continuation_owner: StegVerse-Labs/admissibility-wiki repository-native canonical validation mesh
-repository-wide unrelated work: remains independently fail-closed and owned by existing canonical workstreams
-archive_condition: SATISFIED
+transferred: observer non-privilege, time-as-observable-ordering boundary, constraint-comprehension requirement, new-transition correction rule
+already complete: predecessor observer-relative doctrine and canonical-parent binding
+remaining: successor hosted scoped validation only
+continuation_owner: repository-native canonical validation mesh
+archive_condition: successor hosted scoped PASS evidence is durably recorded; no unique chat-only requirements remain
 ```
 
 ## Completion metrics
 
-Denominator for `OBSERVER-RELATIVE-ADMISSIBILITY-001`:
-
 ```text
 required task/control surfaces: 6
-required developed files/control surfaces: 5
+completed task/control surfaces: 5
+required developed files/control surfaces: 4
+implemented developed files/control surfaces: 4
+scaffolding_or_stubs: 0
+missing_required_files: 0
 required scoped validation gates: 2
+validated after refinement: 0
 required integration bindings: 1
-session-specific conceptual goals: 1
+integrated: 1
+session-specific conceptual requirements: 10
+transferred: 10
 ```
-
-Result:
-
-```text
-task completion: 6/6 = 100%
-developed files: 5/5 = 100%
-scaffolding or stubs: 0
-missing required files: 0
-validation: 2/2 = 100%
-integration: 1/1 = 100%
-goal activation: 100%
-session consolidation: 1/1 = 100%
-```
-
-The two scoped validation gates are (1) hosted PASS from `scripts/check_observer_relative_admissibility.py` and (2) direct observation that it executed from the canonical parent. These metrics apply to this scoped goal, not to repository-wide release readiness.
 
 ## Archive posture
 
 ```text
-archive_state: COMPLETE_ARCHIVE_READY
-session-owned implementation claims: 0
-session-owned validation claims: 0
-session-owned integration claims: 0
-session-owned propagation claims: 0
+archive_state: ACTIVE_DISTINCT_SUPPORT_ROLE
 unique chat-only requirements: 0
+session role: validation observation until successor hosted evidence is bound
 canonical continuation: this handoff plus repository-native canonical validation mesh
 ```
-
-The complete conversation is no longer required for future execution of this goal.
