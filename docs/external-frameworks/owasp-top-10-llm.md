@@ -9,100 +9,109 @@ title: OWASP Top 10 for LLM Applications External Framework Crosswalk
 ```text
 Relationship type: external framework crosswalk
 Canonical StegVerse formalism source: Admissible-Existence
-External framework role: LLM application risk and vulnerability guidance
-Wiki role: risk-control observatory, evidence comparison, and relationship review
-Citation status: sourced
-Evidence provenance status: Batch 3 refactor installed
+External framework role: LLM/GenAI application risk and vulnerability guidance
+Current evaluated resource: OWASP Top 10 for LLM Applications 2025
+Current broader project: OWASP GenAI Security Project
+Evidence posture: VERSIONED_PUBLIC_GUIDANCE + BOUNDED_STEGVERSE_CROSSWALK
+Runtime posture: NOT_APPLICABLE_AS_AUTHORITY_ENGINE
+Standing: no standing created
+Execution authority: none
 ```
 
-## Source
+## Official Source And Version
 
-Official source: `https://owasp.org/www-project-top-10-for-large-language-model-applications/`
-
-The official source is treated as the canonical public source for OWASP Top 10 for LLM Applications framing.
-
-## Evidence Provenance
-
-| Evidence Class | Current Evidence | Status | Missing Fields |
-|---|---|---|---|
-| Official Framework Sources | Official OWASP project source URL. | present | Versioned source snapshot and source hash. |
-| Official Implementation Sources | OWASP Top 10 for LLM Applications is treated here as external guidance rather than a runtime implementation. | not_applicable_or_external_guidance | Specific version/snapshot if used in a test. |
-| Observed Behavior | No runtime behavior is claimed. | not_applicable_for_runtime_result | Not a runtime-result page. |
-| Reproduced Behavior | No independent reproduction is claimed. | not_applicable | Reproduction only if a mapping fixture is created. |
-| StegVerse Analysis | Risk categories, prompt injection, output handling, mitigations, and application security review are mapped to admissibility primitives. | risk_category_crosswalk | Concrete Commitment Candidate fixture with risk-category references. |
-| Interoperability Assessment | OWASP risk evidence may support review posture, not authority. | pending_mapping_to_application_review_posture | Fixture and compatibility report. |
-| Standing | Sourced provisional. | provisional | Source snapshot and mapping artifact. |
-
-Evidence classification:
+This evaluation is pinned to the **OWASP Top 10 for LLM Applications 2025** resource and records the OWASP GenAI Security Project as the current broader project context.
 
 ```text
-F1: official OWASP project source URL and framework-native guidance claims.
-S1: StegVerse interpretation of OWASP LLM risk categories as review-context evidence.
-S2: mapping to Review Posture, Evidence Posture, Governance Boundary, Drift, Fail-Closed behavior, Commit-Time Validity, Receipt-Bound Execution, Policy Reference, Boundary Conditions, and Reconstructability.
-H1: future mapping fixture until concrete risk-category references are attached.
+2025 resource: https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/
+current project: https://genai.owasp.org/
+project evolution: https://genai.owasp.org/2025/03/26/project-owasp-promotes-genai-security-project-to-flagship-status/
+evaluated list: 2025 Top 10 Risk & Mitigations for LLMs and Gen AI Apps
 ```
 
-## Definition
+The evaluated LLM/GenAI Top 10 remains distinct from the later OWASP Top 10 for Agentic Applications. Project evolution does not silently change the identity of the evidence used by this crosswalk.
 
-OWASP Top 10 for LLM Applications is treated in this wiki as an external LLM-application risk and vulnerability guidance framework.
+## What The Framework Claims And Demonstrates
 
-It is not treated as an admissibility engine, execution-authority source, certification authority, or commit-time standing proof.
+The 2025 OWASP Top 10 provides security-risk categories, vulnerability descriptions, and mitigations for LLM and generative-AI applications. The broader GenAI Security Project publishes additional security resources, but this evaluation does not treat those resources as one undifferentiated authority source.
 
-## Framework-Term Definitions
+OWASP risk guidance can identify security-relevant conditions. It does **not** establish actor identity, delegation, StegVerse standing, commit-time admissibility, or authority to bind consequence.
 
-| Native OWASP Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
-|---|---|---|---|
-| OWASP Top 10 for LLM Applications | External LLM-application risk and vulnerability guidance framework. | new | Preserved as framework-native terminology. |
-| Top 10 risk category | Published risk or vulnerability category for LLM applications. | adjacent | Related to Review Posture and Evidence Posture. |
-| Prompt injection | Attack class where model instructions or context are manipulated to alter behavior. | adjacent | Related to Governance Boundary, Drift, and Fail-Closed behavior. |
-| Insecure output handling | Risk where model output is trusted or acted on without sufficient controls. | adjacent | Related to Commit-Time Validity and Receipt-Bound Execution. |
-| Mitigation guidance | Recommended control or practice for reducing an identified LLM-application risk. | adjacent | Related to Policy Reference and Boundary Conditions. |
-| LLM application security review | Review of application-level risks around an LLM system. | adjacent | Supports Review Posture but does not replace SPE standing determination. |
+## StegVerse Evidence Installed
 
-## Relationship To Admissibility
+The repository contains a bounded six-family governance compatibility contract for this framework. The fixture is StegVerse-authored crosswalk machinery and does not imply that OWASP executed or endorsed StegVerse tests.
 
-OWASP Top 10 for LLM Applications is listed as a crosswalk target for LLM-application risk, vulnerability, and mitigation context.
+```text
+manifest: docs/external-frameworks/owasp-top-10-llm.json
+governance fixture: tests/fixtures/external-frameworks/owasp-top-10-llm-governance-compatibility-cases.v1.json
+case families: 6
+simulation_only: true
+canonical validation path: .github/workflows/validate-chain-continuation.yml
+```
 
-Admissibility review remains separate and asks whether a proposed transition may bind consequence at commit time.
+The six bounded test families cover:
 
-In StegVerse terms, OWASP evidence may support a Commitment Candidate by identifying risk category, vulnerability class, mitigation expectation, and control gap context. Those records remain evidence. They do not become execution authority.
-
-## Crosswalk Targets
-
-| OWASP Candidate Function | Wiki / AE Relationship |
+| Family | StegVerse Boundary Tested |
 |---|---|
-| Risk category classification | Review Posture; Evidence Posture |
-| Prompt-injection analysis | Governance Boundary; Drift; Fail-Closed behavior |
-| Output-handling review | Commit-Time Validity; Receipt-Bound Execution |
-| Mitigation mapping | Policy Reference; Boundary Conditions |
-| Application security review | Review Posture; Reconstructability |
+| positive alignment | Risk context may support ALLOW only if independent authority, policy, scope, freshness, and mitigation predicates are satisfied. |
+| framework denial / negative result | A blocking security condition maps to DENY within the evaluated scope. |
+| authority / delegation failure | Security guidance cannot restore absent or expired authority. |
+| stale / missing evidence | Stale or incomplete risk evidence fails closed. |
+| malformed / undefined result | Undefined mapping or malformed evidence fails closed. |
+| semantic divergence guard | Evidence or mitigation for one application scope cannot authorize another scope. |
 
-## Three-Part Boundary
+The canonical governance-compatibility validator has observed all six `owasp-top-10-llm` case families as repository tests. That proves execution of the StegVerse mapping contract, not runtime execution of OWASP guidance.
+
+## Governance-Chain Placement
+
+OWASP Top 10 evidence belongs upstream of commitment:
 
 ```text
-OWASP asks: Which LLM-application risks or mitigations are relevant?
-Admissibility asks: May this transition bind consequence at commit time?
-EVIDE asks: What evidence remains after the event?
+versioned OWASP risk / vulnerability / mitigation reference
+  -> Evidence Posture + Review Posture + Governance Boundary context
+  -> candidate policy / mitigation expectations
+  -> independent standing + delegation + scope + freshness reconstruction
+  -> commit-time admissibility decision
+  -> consequence binding only when separately authorized
 ```
 
-## Non-Claims
+A risk classification can strengthen or weaken the evidence available to an admissibility gate. It does not become execution authority merely because it is security-relevant.
+
+## Claims Versus Demonstrated Abilities
+
+| Question | Current Evidence |
+|---|---|
+| Is a specific OWASP resource identified? | Yes: Top 10 for LLM Applications 2025. |
+| Is current broader project context recorded? | Yes: OWASP GenAI Security Project. |
+| Is the Agentic Top 10 kept distinct? | Yes. |
+| Are risk and mitigation concepts mappable into review evidence? | Yes. |
+| Has StegVerse installed a six-family mapping contract? | Yes. |
+| Has the canonical validator exercised those six families? | Yes, as StegVerse tests. |
+| Does this prove a production application is secure? | No. |
+| Does OWASP guidance establish actor standing or delegation? | No. |
+| Is certification or OWASP endorsement claimed? | No. |
+| Is execution authority granted? | No. |
+
+## Non-Capabilities And Non-Claims
 
 ```text
 OWASP Top 10 for LLM Applications is not a StegVerse canonical formalism.
-OWASP Top 10 for LLM Applications does not prove transition admissibility.
-OWASP Top 10 for LLM Applications does not grant execution authority inside StegVerse.
-OWASP source citation is not acceptance of equivalence.
-Security-risk review may support evidence and review posture, but review does not become authority.
+OWASP guidance does not prove transition admissibility.
+A risk category does not establish actor identity or delegation.
+A mitigation recommendation does not prove that a mitigation is implemented or effective in a specific target.
+Security review does not become execution authority.
+The StegVerse compatibility fixture is simulation/crosswalk evidence, not OWASP certification or endorsement.
+Publication creates no standing.
 ```
+
+## Current Completion Gate
+
+The versioned source identity, current project context, six-family mapping contract, governance-chain placement, and non-authority boundaries are installed. The remaining local gate is canonical validation of the merged page/manifest state. If the OWASP-specific manifest, terminology, page, provenance, benchmark, and governance-compatibility checks pass, this evaluation can reach `LOCAL_WORK_COMPLETE_BOUNDED_SECURITY_CROSSWALK` without inventing runtime or certification evidence.
 
 ## Challenge Path
 
-A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
+A reader may challenge the evaluated resource, version, risk mapping, mitigation interpretation, scope, failure posture, or authority boundary by supplying inspectable evidence for correction.
 
 ## Mandatory Footer
 
 This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing that can be reconstructed from the referenced evidence, authority, and admissibility conditions.
-
-## Next Safe Build Target
-
-Connect OWASP risk categories to the governance observatory protocol and test whether LLM-application risk evidence can be routed into a Commitment Candidate without granting execution authority to the risk record itself.
