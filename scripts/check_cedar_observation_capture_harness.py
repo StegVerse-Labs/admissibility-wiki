@@ -15,6 +15,7 @@ FILES = [
     ROOT / "scripts" / "validate_cedar_capture_artifacts.py",
     ROOT / "scripts" / "summarize_cedar_evidence_pipeline.py",
     ROOT / "scripts" / "run_pinned_cedar_ci_capture.py",
+    ROOT / "scripts" / "run_cedar_same_environment_replay.py",
 ]
 
 
@@ -34,11 +35,13 @@ def main() -> int:
     validator = FILES[5].read_text(encoding="utf-8")
     summary = FILES[6].read_text(encoding="utf-8")
     pinned_runner = FILES[7].read_text(encoding="utf-8")
+    replay_runner = FILES[8].read_text(encoding="utf-8")
     for label, source in [
         ("capture script", capture_script),
         ("artifact validator", validator),
         ("pipeline summary", summary),
         ("pinned CI capture runner", pinned_runner),
+        ("same-environment replay runner", replay_runner),
     ]:
         try:
             ast.parse(source)
@@ -65,16 +68,34 @@ def main() -> int:
 
     validator_phrases = [
         '"capture_state": "captured_unverified"',
-        '"same_environment_replay_state": "not_performed"',
+        '"same_environment_replay_state": "observed_pass" if replay_state == "PASS" else replay_state',
         '"fresh_runner_replay_state": "not_performed"',
         '"compatibility_state": "not_claimed"',
         '"standing_state": "not_created"',
         '"execution_authority_state": "not_created"',
         '"implementation_identification_is_certification": False',
+        'run_same_environment_replay',
+        'REPLAY_RECEIPT',
     ]
     for phrase in validator_phrases:
         if phrase not in validator:
             failures.append(f"artifact validator missing phrase: {phrase}")
+
+    replay_phrases = [
+        '"replay_class": "SAME_RUNNER_SAME_BINARY"',
+        '"replay_is_execution_authority": False',
+        '"replay_creates_standing": False',
+        '"replay_is_certification": False',
+        '"replay_is_independent_provider_reproduction": False',
+        '"replay_binds_external_consequence": False',
+        '"overall_result": "PASS" if not failures and receipt["cases_total"] == 2 else "FAIL"',
+        '"stdout_sha256_matches"',
+        '"stderr_sha256_matches"',
+        '"binary_hash_matches_capture"',
+    ]
+    for phrase in replay_phrases:
+        if phrase not in replay_runner:
+            failures.append(f"same-environment replay runner missing phrase: {phrase}")
 
     summary_phrases = [
         '"pipeline_state": pipeline_state',
