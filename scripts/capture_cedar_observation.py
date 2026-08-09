@@ -38,6 +38,20 @@ def parse_json_or_raw(text: str) -> Any:
         return {"raw": text}
 
 
+def classify_authorize_result(result: subprocess.CompletedProcess[str]) -> tuple[str | None, bool, str]:
+    """Interpret Cedar CLI authorization exit semantics without collapsing DENY into execution failure.
+
+    cedar-policy-cli 4.11.0 defines exit 0 for an ALLOW authorization result and exit 2 for a
+    successfully evaluated DENY result. Other exit codes remain fail-closed here.
+    """
+    decision = result.stdout.strip().upper()
+    if result.returncode == 0 and decision == "ALLOW":
+        return "ALLOW", True, "cedar_success_exit_0"
+    if result.returncode == 2 and decision == "DENY":
+        return "DENY", True, "cedar_authorize_deny_exit_2"
+    return None, False, "unexpected_or_failed_cedar_authorize_result"
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Capture an exact, non-authorizing Cedar authorization observation receipt.")
     parser.add_argument("--policy", default=str(CAPTURE_DIR / "policy.cedar"))
@@ -74,6 +88,7 @@ def main() -> int:
         return version_result.returncode or 2
 
     eval_result = run(eval_cmd)
+    observed_decision, decision_semantics_valid, exit_semantics = classify_authorize_result(eval_result)
     captured_at = datetime.now(timezone.utc).isoformat()
     policy_bytes = policy.read_bytes()
     request_bytes = request.read_bytes()
@@ -85,7 +100,7 @@ def main() -> int:
         "schema_version": "0.1",
         "framework_id": "cedar-policy",
         "case_id": args.case_id,
-        "capture_state": "captured_unverified",
+        "capture_state": "captured_unverified" if decision_semantics_valid else "captured_error",
         "captured_at_utc": captured_at,
         "runtime": {
             "implementation_id": args.implementation_id,
@@ -93,6 +108,9 @@ def main() -> int:
             "version_output": parse_json_or_raw(version_result.stdout),
             "evaluate_command": eval_cmd,
             "exit_code": eval_result.returncode,
+            "exit_semantics": exit_semantics,
+            "decision_semantics_validated": decision_semantics_valid,
+            "observed_decision": observed_decision,
         },
         "source": {
             "canonical_reference": "https://docs.cedarpolicy.com/",
@@ -142,11 +160,14 @@ def main() -> int:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
 
-    if eval_result.returncode != 0:
+    if not decision_semantics_valid:
         print(f"CEDAR CAPTURE: CAPTURED ERROR -> {output_path.relative_to(ROOT)}")
-        return eval_result.returncode
+        return eval_result.returncode or 2
 
-    print(f"CEDAR CAPTURE: CAPTURED_UNVERIFIED -> {output_path.relative_to(ROOT)}")
+    print(
+        "CEDAR CAPTURE: CAPTURED_UNVERIFIED "
+        f"decision={observed_decision} exit_code={eval_result.returncode} -> {output_path.relative_to(ROOT)}"
+    )
     return 0
 
 
