@@ -96,6 +96,7 @@
   "boundary": {
     "legal_advice_claim": false,
     "certification_claim": false,
+    "endorsement_claim": false,
     "regulator_endorsement_claim": false,
     "standing_claim": false,
     "execution_authority_claim": false,

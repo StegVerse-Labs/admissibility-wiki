@@ -88,7 +88,7 @@ def main() -> int:
         '"replay_is_certification": False',
         '"replay_is_independent_provider_reproduction": False',
         '"replay_binds_external_consequence": False',
-        '"overall_result": "PASS" if not failures and receipt["cases_total"] == 2 else "FAIL"',
+        'receipt["overall_result"] = "PASS" if not failures and receipt["cases_total"] == 2 else "FAIL"',
         '"stdout_sha256_matches"',
         '"stderr_sha256_matches"',
         '"binary_hash_matches_capture"',
