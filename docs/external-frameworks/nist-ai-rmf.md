@@ -11,8 +11,10 @@ Relationship type: external framework crosswalk
 Canonical StegVerse formalism source: Admissible-Existence
 External framework role: voluntary AI risk-management framework
 Source version: NIST AI RMF 1.0 / NIST AI 100-1 / 2023-01-26
+Source content SHA-256: 7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1
 Wiki role: convergence, mapping, and relationship review
-Evidence posture: SOURCE_VERSION_PINNED_MAPPING_OBSERVED_RUNTIME_NOT_APPLICABLE
+Evidence posture: SOURCE_CONTENT_HASH_PINNED_MAPPING_OBSERVED_RUNTIME_NOT_APPLICABLE
+Local completion posture: LOCAL_WORK_COMPLETE_BOUNDED_CROSSWALK
 General compatibility claimed: false
 Execution authority granted: false
 ```
@@ -25,9 +27,14 @@ Pinned official publication record:
 NIST AI Risk Management Framework (AI RMF 1.0)
 NIST AI 100-1
 published: 2023-01-26
-source: https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10
+publication: https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10
+source PDF: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf
 doi: https://doi.org/10.6028/NIST.AI.100-1
+source content SHA-256: 7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1
+source size: 1946127 bytes
 ```
+
+The immutable hash was captured from the official NIST PDF by repository-native workflow run `31290014846`. The hash-only workflow artifact is `9031064931`, digest `sha256:367f339c5f8b4175ec9381042876531abff2ecaa97afd59e1cf22fe0e5b421ad`. The durable receipt is `docs/external-frameworks/source-receipts/nist-ai-rmf-1.0.source.json`. The source PDF itself is not redistributed by this repository.
 
 NIST describes AI RMF 1.0 as voluntary guidance intended to help organizations manage AI risks and incorporate trustworthiness considerations into the design, development, deployment/use, and evaluation of AI systems. That source claim is preserved here as framework-native context; it is not converted into StegVerse execution authority.
 
@@ -35,7 +42,7 @@ NIST describes AI RMF 1.0 as voluntary guidance intended to help organizations m
 
 | Evidence Class | Current Evidence | Status | Remaining gap |
 |---|---|---|---|
-| Official Framework Source | NIST AI RMF 1.0 / NIST AI 100-1 publication record and official NIST source. | pinned_version | Content snapshot hash is not yet preserved in-repo. |
+| Official Framework Source | NIST AI RMF 1.0 / NIST AI 100-1 publication record plus official PDF content hash and durable receipt. | source_content_hash_pinned | No local source-identification gap. |
 | Runtime Implementation | NIST AI RMF is guidance, not a runtime authorization engine. | not_applicable_standard_framework | No runtime result should be manufactured. |
 | StegVerse Mapping Fixture | `docs/external-frameworks/fixtures/nist-ai-rmf-benchmark-fixture.v0.1.json` | present | Mapping evidence remains bounded to the fixture. |
 | Benchmark Mapping | `docs/external-frameworks/benchmark-mappings/nist-ai-rmf.mapping.json` | present | No claim that the mapping is endorsed by NIST. |
@@ -57,7 +64,9 @@ check_external_framework_benchmark_fixtures.py: PASS
 check_external_framework_reports.py: PASS
 ```
 
-This establishes that the NIST mapping/report/contract surfaces were actually exercised by StegVerse's canonical validation chain. It does **not** establish a native NIST runtime execution, independent NIST implementation reproduction, NIST endorsement, certification, or execution authority.
+Source reconstruction was subsequently strengthened by run `31290014846`, which fetched the official NIST PDF, validated PDF magic, and produced the immutable source receipt above.
+
+This establishes that the NIST mapping/report/contract surfaces were actually exercised by StegVerse's canonical validation chain and that the exact official source content used for the crosswalk is reconstructably identified. It does **not** establish a native NIST runtime execution, independent NIST implementation reproduction, NIST endorsement, certification, or execution authority.
 
 ## Six bounded governance cases
 
@@ -90,7 +99,7 @@ NIST AI RMF sits **upstream of commit-time admissibility** as risk-management an
 
 | Claim or capability | Evidence-backed finding |
 |---|---|
-| Provides AI risk-management guidance | Supported by the pinned official NIST publication record. |
+| Provides AI risk-management guidance | Supported by the pinned and hashed official NIST publication. |
 | Provides trustworthiness-oriented lifecycle guidance | Supported by the official framework description and StegVerse mapping. |
 | Can inform StegVerse review/evidence posture | Demonstrated by the installed mapping fixture, report, and hosted validation PASS. |
 | Determines current actor standing | **Not demonstrated / outside framework role.** |
@@ -104,6 +113,7 @@ NIST AI RMF sits **upstream of commit-time admissibility** as risk-management an
 ```text
 SOURCE_MISSING
 SOURCE_VERSION_UNDEFINED
+SOURCE_HASH_MISMATCH
 MAPPING_INCOMPLETE
 EVIDENCE_STALE_OR_MISSING
 AUTHORITY_OR_DELEGATION_INVALID
@@ -114,11 +124,11 @@ AUTHORITY_OVERCLAIM
 
 Any attempt to convert organization-level or lifecycle risk-management alignment into action-level permission fails closed at the StegVerse boundary.
 
-## Remaining evidence gate
+## Completion boundary
 
-The local mapping and hosted-validation work is materially complete for the current source record, but the strongest terminal source-review posture still requires an immutable content snapshot/hash of the exact NIST AI RMF 1.0 source used for the crosswalk. Until that is preserved, this page remains source-version pinned rather than source-content-hash pinned.
+All locally executable work required for this bounded standards-framework evaluation is now represented: official source/version identification, immutable source-content receipt, installed mapping fixture, benchmark mapping, compatibility report, six-family StegVerse governance contract, hosted validation observation, claims-versus-capabilities analysis, governance-chain placement, failure classes, and explicit non-capabilities.
 
-A content snapshot/hash would strengthen reconstruction. It would not convert NIST AI RMF into execution authority, native runtime behavior, certification, or endorsement.
+Because NIST AI RMF 1.0 is a guidance framework rather than an authorization runtime, native runtime execution and runtime replay are not applicable completion requirements and must not be manufactured. A future NIST-endorsed implementation, profile, or external interoperability package would constitute a new evidence transition rather than a missing local task in this bounded AI RMF 1.0 crosswalk.
 
 ## Non-Claims
 
