@@ -11,98 +11,122 @@ Relationship type: external framework crosswalk
 Canonical StegVerse formalism source: Admissible-Existence
 External framework role: adversarial AI threat knowledge base
 Wiki role: threat-model observatory, evidence comparison, and relationship review
-Citation status: sourced
-Evidence provenance status: Batch 3 refactor installed
+Evidence posture: PINNED_PUBLIC_RELEASE + BOUNDED_STEGVERSE_CROSSWALK
+Runtime posture: NOT_APPLICABLE_AS_AUTHORITY_ENGINE
+Standing: no standing created
+Execution authority: none
 ```
 
-## Source
+## Official Source And Version
 
-Official source: `https://atlas.mitre.org/`
-
-The official source is treated as the canonical public source for MITRE ATLAS framing.
-
-## Evidence Provenance
-
-| Evidence Class | Current Evidence | Status | Missing Fields |
-|---|---|---|---|
-| Official Framework Sources | Official MITRE ATLAS source URL. | present | Versioned source snapshot and source hash. |
-| Official Implementation Sources | MITRE ATLAS is treated here as an external knowledge base rather than a runtime implementation. | not_applicable_or_external_knowledgebase | Specific technique/version snapshot if used in a test. |
-| Observed Behavior | No runtime behavior is claimed. | not_applicable_for_runtime_result | Not a runtime-result page. |
-| Reproduced Behavior | No independent reproduction is claimed. | not_applicable | Reproduction only if a mapping fixture is created. |
-| StegVerse Analysis | Tactics, techniques, mitigations, case studies, and threat-informed review are mapped to admissibility primitives. | threat_context_crosswalk | Concrete Commitment Candidate fixture with threat-context references. |
-| Interoperability Assessment | MITRE ATLAS may provide threat-context evidence for review posture, not authority. | pending_mapping_to_review_posture | Fixture and compatibility report. |
-| Standing | Sourced provisional. | provisional | Source snapshot and mapping artifact. |
-
-Evidence classification:
+The current bounded source identity used by this evaluation is the official MITRE ATLAS data release `v2026.06`, released 2026-06-30 from the `mitre-atlas/atlas-data` repository.
 
 ```text
-F1: official MITRE ATLAS source URL and framework-native threat-knowledge claims.
-S1: StegVerse interpretation of MITRE ATLAS as adversarial AI threat-context evidence.
-S2: mapping to Review Posture, Governance Boundary, Evidence Posture, Drift, Commit-Time Validity, Policy Reference, Boundary Conditions, Reconstructability, and Fail-Closed behavior.
-H1: future mapping fixture until concrete technique references are attached.
+project: https://atlas.mitre.org/
+data repository: https://github.com/mitre-atlas/atlas-data
+pinned release: https://github.com/mitre-atlas/atlas-data/releases/tag/v2026.06
+content version: 2026.06
+release asset: ATLAS-2026.06.yaml
+release asset SHA-256: b771de8b1489564b2838a709c7429849a9575dbd94073928817fe1a21661e70a
 ```
 
-## Definition
+ATLAS separates knowledge-base content versioning from data-format versioning beginning with the 2026.05 / format 6.0.0 transition. This page therefore treats `2026.06` as the pinned content release and the v6 data model as a distinct format lineage. A mutable `latest` alias is not used as immutable source identity.
 
-MITRE ATLAS is treated in this wiki as an external adversarial AI threat-knowledge framework for describing tactics, techniques, mitigations, case studies, and threat-informed AI system risk review.
+## What MITRE ATLAS Claims And Demonstrates
 
-MITRE ATLAS is not treated as an admissibility engine, execution-authority source, certification authority, or commit-time standing proof.
+MITRE ATLAS provides structured adversarial-AI threat knowledge including tactics, techniques, mitigations, case studies, and relationships. Its official data repository also provides machine-readable distribution artifacts and validation/data-management tooling for the ATLAS data model.
 
-## Framework-Term Definitions
+Those capabilities establish threat taxonomy and threat-context evidence. They do **not** establish actor delegation, StegVerse standing, commit-time admissibility, consequence binding, or execution authority.
 
-| Native MITRE ATLAS Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
-|---|---|---|---|
-| MITRE ATLAS | External adversarial AI threat-knowledge framework. | new | Preserved as framework-native terminology. |
-| Tactic | High-level adversarial objective or phase. | adjacent | Related to threat posture and review context, not execution authority. |
-| Technique | Specific adversarial behavior or method. | adjacent | Related to Evidence Posture, Drift, and Review Posture. |
-| Mitigation | Control or action intended to reduce a threat or technique. | adjacent | Related to Policy Reference and Governance Boundary. |
-| Case study | Documented example of adversarial AI behavior or incident pattern. | adjacent | Related to Reconstructability and evidence comparison. |
-| Threat-informed review | Review using known tactics, techniques, and mitigations as context. | adjacent | Supports Review Posture but does not replace SPE standing determination. |
+## StegVerse Evidence Installed
 
-## Relationship To Admissibility
+The repository already contains the following bounded evaluation machinery and it is treated as supporting evidence rather than as proof that MITRE itself executed StegVerse tests:
 
-MITRE ATLAS is listed as a crosswalk target for adversarial AI threat context.
+```text
+manifest: docs/external-frameworks/mitre-atlas.json
+benchmark fixture: docs/external-frameworks/fixtures/mitre-atlas-benchmark-fixture.v0.1.json
+governance compatibility cases: tests/fixtures/external-frameworks/mitre-atlas-governance-compatibility-cases.v1.json
+case families: 6
+simulation_only: true
+canonical validation path: .github/workflows/validate-chain-continuation.yml
+```
 
-Admissibility review remains separate and asks whether a proposed transition may bind consequence at commit time.
+The six StegVerse case families are:
 
-In StegVerse terms, MITRE ATLAS evidence may support a Commitment Candidate by identifying threat context, relevant technique classes, and mitigation expectations. Those records remain evidence. They do not become execution authority.
-
-## Crosswalk Targets
-
-| MITRE ATLAS Candidate Function | Wiki / AE Relationship |
+| Family | Bounded Expected Posture |
 |---|---|
-| Tactic classification | Review Posture; Governance Boundary |
-| Technique classification | Evidence Posture; Drift; Commit-Time Validity |
-| Mitigation mapping | Policy Reference; Boundary Conditions |
-| Case-study reference | Reconstructability; Evidence Posture |
-| Threat-informed review | Review Posture; Fail-Closed behavior |
+| positive alignment | Threat context may support ALLOW only when independent authority, policy, scope, and freshness predicates remain satisfied. |
+| framework denial / negative result | A critical unmitigated threat maps to DENY within the evaluated scope. |
+| authority / delegation failure | Threat context cannot restore expired or absent delegation; result remains DENY. |
+| stale / missing evidence | Stale technique or threat-context evidence fails closed. |
+| malformed / undefined result | Mapping errors fail closed. |
+| semantic divergence guard | Threat or mitigation evidence for one scope cannot authorize a different consequence scope. |
 
-## Three-Part Boundary
+The canonical external-framework validator has observed all six MITRE ATLAS case families in the repository-wide compatibility contract. This is a StegVerse governance test of the installed mapping; it is not runtime execution of MITRE ATLAS as an authorization engine.
+
+## Failure Classes Exercised
 
 ```text
-MITRE ATLAS asks: Which adversarial AI tactics, techniques, mitigations, or case studies are relevant?
-Admissibility asks: May this transition bind consequence at commit time?
-EVIDE asks: What evidence remains after the event?
+UNMITIGATED_THREAT
+AUTHORITY_DRIFT
+STALE_THREAT_CONTEXT
+ATLAS_MAPPING_ERROR
+SCOPE_DIVERGENCE
 ```
 
-## Non-Claims
+The positive case carries no failure class when all independently evaluated StegVerse predicates are satisfied.
+
+## Governance-Chain Placement
+
+MITRE ATLAS belongs **upstream of commit-time admissibility** as threat-context and review evidence:
+
+```text
+pinned ATLAS release / tactic / technique / mitigation / case-study reference
+  -> Evidence Posture + Review Posture + Drift / Policy Reference context
+  -> Commitment Candidate evidence set
+  -> independent standing / delegation / policy / scope / freshness reconstruction
+  -> commit-time admissibility decision
+  -> consequence binding only if separately authorized
+```
+
+ATLAS evidence can change the evidence available to the gate. It does not become the gate and does not inherit authority from its inclusion.
+
+## Claims Versus Demonstrated Abilities
+
+| Question | Current Evidence |
+|---|---|
+| Is an official public source identified? | Yes. |
+| Is a current public release pinned? | Yes: content v2026.06. |
+| Is an immutable release-asset hash recorded? | Yes. |
+| Are content and data-format versions distinguished? | Yes. |
+| Does ATLAS provide structured threat knowledge? | Yes, according to the official project/data release. |
+| Has StegVerse authored a six-family compatibility contract? | Yes. |
+| Has the repository canonical validator exercised those six case families? | Yes, as bounded StegVerse mapping tests. |
+| Is native MITRE ATLAS runtime authorization execution claimed? | No. |
+| Is independent interoperability certification claimed? | No. |
+| Does threat classification create StegVerse standing? | No. |
+| Does ATLAS grant execution authority? | No. |
+
+## Non-Capabilities And Non-Claims
 
 ```text
 MITRE ATLAS is not a StegVerse canonical formalism.
 MITRE ATLAS does not prove transition admissibility.
+MITRE ATLAS does not establish actor identity or delegation.
 MITRE ATLAS does not grant execution authority inside StegVerse.
-MITRE ATLAS source citation is not acceptance of equivalence.
-Threat-informed review may support evidence and review posture, but review does not become authority.
+Threat-informed review is evidence/review context, not authority.
+The StegVerse six-case fixture is simulation/crosswalk evidence, not a MITRE certification or endorsement.
+Publication of this page creates no standing.
 ```
+
+## Current Completion Gate
+
+The locally available source identity, immutable release asset hash, mapping fixture, six-family compatibility contract, governance-chain placement, and non-capability boundaries are now installed. The remaining local gate is canonical validation of this merged page/manifest state. If those MITRE-specific source, manifest, page, benchmark, provenance, and governance-compatibility checks pass, this evaluation can reach `LOCAL_WORK_COMPLETE_BOUNDED_THREAT_CROSSWALK` without inventing runtime or certification evidence.
 
 ## Challenge Path
 
-A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
+A reader may challenge this reflection by identifying the exact source, version, mapping, failure class, governance-chain placement, or non-claim at issue and supplying inspectable evidence for correction.
 
 ## Mandatory Footer
 
 This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing that can be reconstructed from the referenced evidence, authority, and admissibility conditions.
-
-## Next Safe Build Target
-
-Connect MITRE ATLAS tactics and techniques to the governance observatory protocol and test whether threat-context evidence can be routed into a Commitment Candidate without granting execution authority to the threat record itself.
