@@ -3,14 +3,94 @@
   "schema_version": "0.1",
   "framework_id": "policy-cards",
   "name": "Policy Cards",
-  "source_reference": "https://arxiv.org/abs/2510.24383",
-  "source_version": "public source recorded",
-  "allowed_use_boundary": ["Use as external machine-readable policy artifact crosswalk evidence.", "Preserve Policy Cards-native terminology.", "Do not treat as certification, endorsement, execution authority, or commit-time authority."],
-  "claims": ["Policy Cards can express operational, regulatory, and ethical constraints.", "Policy Cards can be mapped to allow/deny rules, obligations, and evidentiary requirements."],
-  "non_claims": ["Policy Cards do not prove transition admissibility.", "Machine-readable policy artifacts do not automatically grant execution authority.", "The wiki relationship record is not acceptance of equivalence."],
-  "transition_table_mapping": {"framework_identity":"Policy Cards","source_reference":"https://arxiv.org/abs/2510.24383","source_version":"public source recorded","allowed_use_boundary":"machine-readable policy artifact crosswalk evidence only","claims":"deployment-layer policy artifact, operational constraints, regulatory constraints, ethical constraints, allow/deny rules, evidentiary requirements","non_claims":"no admissibility proof, certification, endorsement, or execution authority","input_artifact_type":"machine-readable policy card artifact","output_artifact_type":"crosswalk and compatibility evidence","actor_or_authority_model":"external policy-artifact posture; no StegVerse authority inherited","evidence_model":"evidentiary requirements and policy metadata","policy_or_rule_model":"allow/deny rules and obligations","delegation_model":"not asserted by wiki entry","decision_or_result_model":"runtime policy evidence only","execution_authority_claim":false,"receipt_or_trace_model":"source reference and wiki record","reconstruction_model":"source plus crosswalk can reconstruct policy-artifact relationship limits","SPE_overlap":"may inform policy reference and evidence posture, not standing determination","StegVerse_ecosystem_overlap":"Transition Table, Runtime Transition Governance, Policy Reference, Evidence Posture","fail_closed_conditions":"missing source, undefined mapping, policy overclaim, or authority overclaim"},
-  "SPE_overlap": {"standing_boundary":"policy-artifact evidence only","authority_evaluation":"not performed by Policy Cards","commit_time_admissibility":"not claimed","receipt_reconstruction":"source-reference bounded"},
-  "StegVerse_ecosystem_overlap": {"transition_table":"allow/deny and obligation mapping","chain_status":"crosswalk evidence","documentation_surface":"wiki reference","execution_path":"not authorized"},
-  "fail_closed_conditions": ["source reference is missing", "source version is missing", "transition-table mapping is incomplete", "SPE overlap is undefined", "any certification, endorsement, execution authority, or commit-time authority claim appears"],
-  "boundary": {"certification_claim":false,"endorsement_claim":false,"execution_authority_claim":false,"commit_time_authority_claim":false,"compatibility_manifest_is_authority":false,"missing_or_partial_fields_fail_closed":true}
+  "source_reference": "https://arxiv.org/abs/2510.24383v1",
+  "source_version": "arXiv:2510.24383v1",
+  "source_identity": {
+    "title": "Policy Cards: Machine-Readable Runtime Governance for Autonomous AI Agents",
+    "author": "Juraj Mavračić",
+    "paper_date": "2025-10-19",
+    "submission_timestamp_utc": "2025-10-28T12:59:55Z",
+    "arxiv_doi": "10.48550/arXiv.2510.24383",
+    "canonical_archive_doi_listed_by_arxiv": "10.5281/zenodo.17391796",
+    "related_resource_doi_listed_by_arxiv": "10.5281/zenodo.17464706"
+  },
+  "evidence_posture": {
+    "primary_source_pinned": true,
+    "paper_schema_description_reviewed": true,
+    "json_schema_version_described": "2020-12",
+    "external_repository_identity_bound": false,
+    "implementation_attached": false,
+    "native_execution_observed": false,
+    "stegverse_simulation_installed": true
+  },
+  "allowed_use_boundary": [
+    "Use as external machine-readable deployment policy artifact crosswalk evidence.",
+    "Preserve Policy Cards-native terminology and framework effects.",
+    "Distinguish source-described schema/validator behavior from StegVerse simulation.",
+    "Do not treat a policy-card allow result as actor standing, StegVerse admissibility, certification, endorsement, or execution authority."
+  ],
+  "claims": [
+    "The evaluated paper defines Policy Cards as versioned machine-readable deployment-layer normative policy artifacts.",
+    "The paper describes a JSON Schema 2020-12 structure with controls, obligations, monitoring, KPI/critical-auto-fail, change-management, assurance-mapping, and reference sections.",
+    "The paper describes action-rule effects allow, deny, and require_escalation and automated validation/linting integration."
+  ],
+  "non_claims": [
+    "StegVerse has not executed the external full Policy Cards validator in this transition.",
+    "StegVerse has not observed a native Policy Cards runtime gateway in this transition.",
+    "The paper's statement that a public repository exists is not a verified repository/commit identity in this manifest.",
+    "Policy Cards do not prove transition admissibility.",
+    "Machine-readable policy artifacts do not automatically grant execution authority.",
+    "The wiki relationship record is not acceptance of equivalence, certification, endorsement, or compliance."
+  ],
+  "transition_table_mapping": {
+    "framework_identity": "Policy Cards / arXiv:2510.24383v1",
+    "source_reference": "https://arxiv.org/abs/2510.24383v1",
+    "source_version": "v1 submitted 2025-10-28T12:59:55Z",
+    "allowed_use_boundary": "source-reviewed machine-readable deployment policy crosswalk evidence only",
+    "claims": "deployment-layer normative artifact, structured controls, obligations, exceptions, evidence requirements, monitoring, change management, assurance mappings",
+    "non_claims": "no actor standing, commit-time admissibility, certification, endorsement, compliance determination, or execution authority",
+    "input_artifact_type": "versioned machine-readable Policy Card artifact",
+    "output_artifact_type": "policy-reference and compatibility evidence",
+    "actor_or_authority_model": "external policy-artifact posture; no StegVerse authority inherited",
+    "evidence_model": "evidentiary requirements, monitoring, source/version identity, validity and policy metadata",
+    "policy_or_rule_model": "allow/deny/require_escalation action rules plus obligations and bounded exceptions",
+    "delegation_model": "not established by a card alone",
+    "decision_or_result_model": "framework effect is policy evidence only",
+    "execution_authority_claim": false,
+    "receipt_or_trace_model": "versioned card identity plus retained monitoring/evidence references",
+    "reconstruction_model": "source, version, scope, rule, exception, evidence, monitoring, and change history support reconstruction",
+    "SPE_overlap": "may inform policy reference and evidence posture, not standing determination",
+    "StegVerse_ecosystem_overlap": "Transition Table, Runtime Transition Governance, Policy Reference, Evidence Posture, Commitment Candidate",
+    "fail_closed_conditions": "missing identity, stale validity, undefined mapping, semantic divergence, missing evidence, or authority overclaim"
+  },
+  "SPE_overlap": {
+    "standing_boundary": "policy-artifact evidence only",
+    "authority_evaluation": "not established by Policy Cards",
+    "commit_time_admissibility": "not claimed",
+    "receipt_reconstruction": "source/version/scope/evidence bounded"
+  },
+  "StegVerse_ecosystem_overlap": {
+    "transition_table": "rule and obligation mapping",
+    "chain_status": "crosswalk evidence",
+    "documentation_surface": "wiki reference",
+    "execution_path": "not authorized by this manifest"
+  },
+  "fail_closed_conditions": [
+    "source identity or source version is missing",
+    "policy-card identity or validity is missing",
+    "semantic action/resource mapping is unresolved",
+    "required evidence is missing or stale",
+    "implementation identity is asserted without an immutable external locator",
+    "StegVerse simulation is presented as native execution",
+    "any certification, endorsement, actor-standing, execution-authority, or commit-time-authority claim appears"
+  ],
+  "boundary": {
+    "certification_claim": false,
+    "endorsement_claim": false,
+    "execution_authority_claim": false,
+    "commit_time_authority_claim": false,
+    "compatibility_manifest_is_authority": false,
+    "simulation_is_native_execution": false,
+    "missing_or_partial_fields_fail_closed": true
+  }
 }

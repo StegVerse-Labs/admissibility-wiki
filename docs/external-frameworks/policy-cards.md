@@ -9,81 +9,177 @@ title: Policy Cards External Framework Crosswalk
 ```text
 Relationship type: external framework crosswalk
 Canonical StegVerse formalism source: Admissible-Existence
-External framework role: machine-readable runtime governance artifact
-Wiki role: convergence, mapping, and relationship review
-Citation status: sourced
-Evidence provenance status: Batch 4 refactor installed
+External framework role: machine-readable deployment-layer normative policy artifact
+Evaluated source: arXiv:2510.24383v1
+Source submission: 2025-10-28
+Paper date: 2025-10-19
+Canonical archived DOI declared by arXiv: 10.5281/zenodo.17391796
+Related resource DOI declared by arXiv: 10.5281/zenodo.17464706
+Evidence class: SOURCE_REVIEWED_SCHEMA_DESCRIBED
+Runtime posture: NATIVE_EXECUTION_NOT_OBSERVED
+Standing: none created
+Execution authority: none
 ```
 
-## Source
+## Framework-Native Scope
 
-Public source: `https://arxiv.org/abs/2510.24383`
+Policy Cards are presented as versioned, machine-readable, deployment-layer specifications that encode operational rules, obligations, exceptions, evidence requirements, monitoring, change-management information, and assurance mappings for a specific deployed AI system or agent. The paper specifies JSON Schema 2020-12 as the structural basis and describes cards as suitable for automated validation, version control, CI/CD gates, runtime policy gateways, monitoring, and audit pipelines.
+
+The paper describes three effects for action rules: `allow`, `deny`, and `require_escalation`. It also describes explicit deployment scope, temporal validity, monitoring and retention fields, KPI/critical-auto-fail controls, change-management hooks, assurance mappings, and references to related governance artifacts.
+
+## Official Source And Version
+
+```text
+primary record: https://arxiv.org/abs/2510.24383
+arXiv version: 2510.24383v1
+submission timestamp: 2025-10-28T12:59:55Z
+paper title: Policy Cards: Machine-Readable Runtime Governance for Autonomous AI Agents
+author: Juraj Mavračić
+arXiv DOI: 10.48550/arXiv.2510.24383
+canonical archived record DOI listed by arXiv: 10.5281/zenodo.17391796
+related resource DOI listed by arXiv: 10.5281/zenodo.17464706
+```
+
+The source paper states that a full schema and validator are available in a public repository and archived via Zenodo, but this transition does not claim a repository/commit locator that has not been independently bound into the StegVerse record. The paper's schema description and illustrative excerpt are treated as source evidence; they are not promoted into observed native validator execution.
 
 ## Evidence Provenance
 
 | Evidence Class | Current Evidence | Status | Missing Fields |
 |---|---|---|---|
-| Official Framework Sources | Public arXiv source URL. | present | Versioned source snapshot and source hash. |
-| Official Implementation Sources | Treated as paper/artifact-dependent; no implementation package is attached on this page. | paper_or_artifact_dependent | Policy-card schema, examples, release, repository, or commit reference if available. |
-| Observed Behavior | No runtime behavior is claimed. | not_started | Policy-card input artifact, output, timestamp, and source version. |
-| Reproduced Behavior | No independent reproduction is claimed. | not_started | Reproduction fixture for parsing/evaluating a policy-card artifact. |
-| StegVerse Analysis | Deployment-layer artifacts, constraints, allow/deny rules, and evidentiary requirements are mapped to admissibility primitives. | runtime_policy_artifact_crosswalk_with_page_provenance | Concrete Policy Card-to-Commitment-Candidate fixture. |
-| Interoperability Assessment | Policy Cards may supply policy/evidence material for StegVerse review, not authority. | pending_policy_artifact_fixture | Fixture and compatibility report. |
-| Standing | Sourced provisional. | provisional | Source snapshot and fixture. |
-
-Evidence classification:
-
-```text
-F1: public Policy Cards source URL and paper-native claims.
-F2: pending until implementation/schema/artifact package is attached.
-S1: StegVerse interpretation of Policy Cards as runtime policy/evidence artifacts.
-S2: mapping to Transition Table, Runtime Transition Governance, Policy Reference, Governance Boundary, Evidence Posture, Receipt-Bound Execution, and Core-Lite Admissibility Engine.
-H1: future policy-card fixture until concrete artifacts are attached.
-```
-
-## Definition
-
-Policy Cards are presented in their source paper as machine-readable deployment-layer artifacts for expressing operational, regulatory, and ethical constraints for AI agents.
+| Official Framework Source | arXiv `2510.24383v1`, author, submission timestamp, paper date, arXiv DOI, and archive/resource DOI identifiers. | pinned_versioned_public_source | No source-version ambiguity for the evaluated paper revision. |
+| Schema Evidence | Paper explicitly describes JSON Schema 2020-12, ten top-level sections, semantic versioning, ABAC-like action rules, temporal bounds, monitoring, KPI and assurance-mapping structures, plus an illustrative schema excerpt. | source_described | Exact external repository/commit/hash for the full schema and validator is not bound locally. |
+| Official Implementation Evidence | Paper states a full schema/validator and domain scenarios exist in a public repository/Zenodo resource. | external_locator_unbound | Stable repository/commit and immutable package identity are required before implementation execution is attributed. |
+| Observed Native Behavior | No external Policy Cards validator or runtime gateway was executed by this StegVerse transition. | not_observed | Frozen implementation package, command, environment, raw output, and receipt required for a native-execution claim. |
+| StegVerse Analysis | Six deterministic governance cases exercise positive alignment, framework denial, authority failure, stale evidence, malformed input, and semantic/authority divergence. | installed_simulation_only | Simulation remains separate from native framework execution. |
+| Standing | Publication, schema description, an `allow` effect, or a policy-card artifact does not establish current actor delegation or execution authority. | none_created | Standing and delegation must be independently reconstructed at commit time. |
 
 ## Framework-Term Definitions
 
-| Native Policy Cards Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
-|---|---|---|---|
-| Policy Cards | External machine-readable deployment-layer policy artifacts. | new | Preserved as framework-native artifact terminology. |
-| Deployment-layer artifact | A governance artifact intended to operate near deployment/runtime use. | adjacent | Related to Core-Lite Admissibility Engine. |
-| Operational constraints | Machine-readable constraints on agent operation. | adjacent | Related to Policy Reference and Governance Boundary. |
-| Regulatory constraints | Machine-readable constraints derived from regulatory duties. | adjacent | Related to Policy Reference. |
-| Ethical constraints | Machine-readable constraints derived from ethical requirements or posture. | adjacent | Related to Review Posture and Governance Boundary. |
-| Allow/deny rules | Machine-readable rules that permit or deny actions under conditions. | adjacent | Related to Transition Table and Runtime Transition Governance. |
-| Evidentiary requirements | Requirements for evidence that must exist or be supplied. | adjacent | Related to Evidence Posture and Receipt-Bound Execution. |
+| Native term | Definition for this wiki | Admissibility relationship |
+|---|---|---|
+| Policy Card | Versioned machine-readable deployment policy for a specific system/context. | Policy Reference and Evidence Posture input; not a commit decision. |
+| `controls.action_rules` | Rules binding subject, action, resource, condition, and effect. | Candidate policy evidence for transition review. |
+| `allow` / `deny` / `require_escalation` | Framework-native rule effects. | Must not be conflated with StegVerse standing, admissibility, or execution authority. |
+| obligations | Actions that must occur under specified conditions. | May become commitment obligations only when independently applicable and current. |
+| exceptions | Explicit bounded deviations with approval/justification/validity. | Requires independent authority and validity reconstruction. |
+| monitoring | Loggable events, fields, detectors, thresholds, retention, and review cadence. | Evidence Posture and reconstructability input. |
+| `critical_auto_fail` | Critical KPI failure condition described by the source. | Supports fail-closed policy evidence; does not independently bind consequence. |
+| assurance mapping | Links policy fields to external assurance frameworks. | Translation evidence; mapping is not certification or equivalence. |
 
-## Relationship To Admissibility
+## Relationship to Admissibility
 
-Policy Cards are useful as a runtime-governance and policy-artifact crosswalk target.
+A Policy Card can be a strong structured Policy Reference for a Commitment Candidate because it can bind a deployment context, rule effect, evidence requirements, validity period, monitoring expectations, and change history. That makes it useful for transport and reconstruction.
 
-They do not replace commit-time admissibility review, execution authority checks, receipt-bound execution, or Admissible-Existence formalism sources.
+It does not answer all commit-time questions. StegVerse must still reconstruct whether the card is current and applicable, whether the actor has standing and delegation, whether referenced evidence is fresh, whether the proposed action semantically matches the governed resource/action, whether an exception remains valid, and whether the target can bind consequence under current authority.
 
-## Crosswalk Targets
+`policy_card.effect == allow` therefore does **not** imply `StegVerse admissibility == ALLOW`.
 
-| Policy Cards Function | Wiki / AE Relationship |
+## StegVerse Analysis
+
+Installed deterministic case families:
+
+| Family | StegVerse expected posture |
 |---|---|
-| Allow/deny rules | Transition Table; Runtime Transition Governance |
-| Obligations | Policy Reference; Governance Boundary |
-| Evidentiary requirements | Evidence Posture; Receipt-Bound Execution |
-| Runtime enforcement mapping | Core-Lite Admissibility Engine |
+| positive alignment | ALLOW only when policy evidence, authority, freshness, scope, and other commitment conditions are independently satisfied. |
+| framework denial / negative result | DENY when the Policy Card rule denies the proposed action. |
+| authority / delegation failure | DENY when a card permits an action but current actor authority is absent. |
+| stale / missing evidence | FAIL_CLOSED when card/evidence validity cannot be established. |
+| malformed / undefined input | FAIL_CLOSED when the policy artifact cannot be interpreted. |
+| semantic / authority divergence | DENY when a policy artifact is used to claim authority it does not confer or action semantics diverge. |
+
+These are StegVerse-authored deterministic simulations. `implementation_attached=false` and `native_execution_observed=false` remain required boundaries in the fixture.
+
+## Commit-Time Interoperability Contract
+
+```text
+policy_card_id
+policy_card_version
+policy_card_hash
+source_or_schema_identity
+deployment_scope
+jurisdiction
+valid_from
+valid_to
+subject
+action
+resource
+condition
+framework_effect
+obligations
+exception_reference
+evidence_required
+monitoring_reference
+critical_auto_fail_state
+assurance_mapping_refs
+policy_owner_reference
+delegation_reference
+commitment_candidate_hash
+```
+
+A consumer must reject or defer when identity, validity, scope, semantics, authority, or required evidence cannot be reconstructed.
+
+## Failure Classes
+
+```text
+POLICY_CARD_DENY
+POLICY_CARD_UNRESOLVED
+POLICY_CARD_STALE
+POLICY_CARD_SCOPE_DIVERGENCE
+POLICY_CARD_AUTHORITY_OVERCLAIM
+POLICY_CARD_IMPLEMENTATION_IDENTITY_UNBOUND
+POLICY_CARD_NATIVE_EXECUTION_NOT_OBSERVED
+```
+
+## Machine-Readable Companions
+
+```text
+manifest: docs/external-frameworks/policy-cards.json
+benchmark mapping: docs/external-frameworks/benchmark-mappings/policy-cards.mapping.json
+benchmark fixture: docs/external-frameworks/fixtures/policy-cards-benchmark-fixture.v0.1.json
+governance fixture: tests/fixtures/external-frameworks/policy-cards-governance-compatibility-cases.v1.json
+compatibility report: docs/external-frameworks/reports/policy-cards.compatibility.json
+canonical workflow: .github/workflows/validate-chain-continuation.yml
+```
+
+## Claims Versus Demonstrated Abilities
+
+| Question | Current evidence |
+|---|---|
+| Is a versioned primary source pinned? | Yes: arXiv `2510.24383v1`. |
+| Does the source define a machine-readable deployment policy artifact? | Yes. |
+| Does the source describe JSON Schema 2020-12 and validation/linting behavior? | Yes. |
+| Has StegVerse executed the external full validator? | No. |
+| Has StegVerse observed a native Policy Cards runtime gateway? | No. |
+| Are six governance case families installed? | Yes, as deterministic StegVerse simulations. |
+| Does a Policy Card `allow` establish actor standing? | No. |
+| Does Policy Cards establish StegVerse execution authority? | No. |
+| Is certification or endorsement claimed? | No. |
+
+## Validation Completion Criteria
+
+For the bounded source-level evaluation, canonical validation must observe the manifest, terminology, report, page metadata/mapping/status, evidence provenance, benchmark mapping/fixture, and six-family governance compatibility without a Policy-Cards-specific failure. Native implementation execution must remain explicitly unclaimed unless a frozen repository/package identity and observed command/output receipt are later installed.
 
 ## Non-Claims
 
 ```text
 Policy Cards are not a StegVerse canonical formalism.
-Policy Cards do not prove transition admissibility.
-Machine-readable policy artifacts do not automatically grant execution authority inside StegVerse.
+A Policy Card is policy evidence, not actor identity or delegation.
+A framework-native allow effect is not StegVerse commit-time admissibility.
+Machine readability does not create standing.
+StegVerse deterministic fixtures are not native Policy Cards runtime observations.
+The paper's statement that a public repository exists is not treated here as a verified repository/commit identity.
+No certification, endorsement, compliance determination, or execution authority is created by this page.
+Publication does not create standing.
 ```
+
+## Next Safe Build Target
+
+If a stable public repository/Zenodo implementation package can be independently resolved, freeze the exact schema/validator identity, package hashes, commands, environment, inputs, raw outputs, and replay receipt, then evaluate whether native implementation evidence legitimately raises the evidence class. Until then, the bounded source-level crosswalk must fail closed against native-runtime claims.
 
 ## Challenge Path
 
-A reader may challenge this reflection by identifying the claim, challenged field, reason, supporting evidence, and requested correction or standing change.
+A challenge should identify the disputed source version, schema field, rule effect, deployment scope, evidence requirement, implementation identity, StegVerse mapping, or authority boundary and provide inspectable evidence for correction.
 
 ## Mandatory Footer
 
-This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing that can be reconstructed from the referenced evidence, authority, and admissibility conditions.
+This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing reconstructable from referenced evidence, authority, and admissibility conditions.
