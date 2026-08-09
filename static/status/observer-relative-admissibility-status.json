@@ -1,7 +1,7 @@
 {
   "schema": "admissibility_wiki.observer_relative_admissibility_status.v1",
   "goal_id": "OBSERVER-RELATIVE-ADMISSIBILITY-001",
-  "state": "IMPLEMENTED_VALIDATION_PENDING",
+  "state": "COMPLETE_VALIDATED_INTEGRATED_AND_TRANSFERRED",
   "canonical_doctrine": "docs/governance/observer-relative-admissibility.md",
   "requirements": {
     "transition_facts_separate_from_characterization": true,
@@ -32,14 +32,26 @@
   "validation": {
     "validator": "scripts/check_observer_relative_admissibility.py",
     "canonical_parent": "scripts/check_admissibility_automation_handoff.py",
-    "previous_validated_head_commit": "c1ef83f46a762bee38473dfc25e8b4841e8a5f57",
-    "previous_hosted_run": 31277243840,
-    "last_result": "PENDING_AFTER_DOCTRINE_REFINEMENT"
+    "validated_head_commit": "6e9df7c30398d884b4392d2a80a39968bd23de8a",
+    "hosted_run": 31290115437,
+    "hosted_run_number": 4033,
+    "hosted_job": 93185787394,
+    "hosted_run_state_observed": "COMPLETED_FAILURE_WITH_SCOPED_VALIDATOR_PASS",
+    "scoped_validator_result": "PASS",
+    "canonical_parent_invocation_observed": true,
+    "repository_chain_result": "FAIL_CLOSED_UNRELATED",
+    "repository_chain_summary": "46/56 PASS; 10 FAIL; 0 SKIPPED",
+    "full_validation_chain_artifact_id": 9031120793,
+    "full_validation_chain_artifact_digest": "sha256:f2498289bb5755bfd3bbfa750e9a3979fe4de3f4de7bb98883656fd6d14a8874",
+    "canonical_prescan_artifact_id": 9031099002,
+    "canonical_prescan_artifact_digest": "sha256:78b3f08b215d8af8457f4b0fbc29b5cfc39a6b47da973ba5aaff875e50419e36",
+    "last_result": "PASS"
   },
   "completion": {
-    "scoped_goal_complete": false,
+    "scoped_goal_complete": true,
     "repository_wide_release_ready": false,
-    "session_claim_released": false,
-    "canonical_continuation": "docs/OBSERVER_RELATIVE_ADMISSIBILITY_MIRROR_HANDOFF.md"
+    "unrelated_repository_failures_block_scoped_goal_completion": false,
+    "session_claim_released": true,
+    "canonical_continuation": "StegVerse-Labs/admissibility-wiki issue #50 for unrelated repository-wide activation"
   }
 }
