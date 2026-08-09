@@ -1,0 +1,36 @@
+{
+  "artifact_type": "external_framework_official_source_receipt",
+  "schema_version": "0.1",
+  "framework_id": "nist-ai-rmf",
+  "framework_version": "NIST AI RMF 1.0",
+  "publication_identifier": "NIST AI 100-1",
+  "publication_date": "2023-01-26",
+  "publication_url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10",
+  "doi": "https://doi.org/10.6028/NIST.AI.100-1",
+  "source_url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+  "resolved_source_url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+  "captured_at_utc": "2026-08-09T02:17:04.211013+00:00",
+  "capture_workflow_run": 31290014846,
+  "capture_artifact_id": 9031064931,
+  "capture_artifact_digest": "sha256:367f339c5f8b4175ec9381042876531abff2ecaa97afd59e1cf22fe0e5b421ad",
+  "content": {
+    "sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+    "size_bytes": 1946127,
+    "content_type": "application/pdf",
+    "pdf_magic_validated": true,
+    "etag": "\"327b21f74d5db1:0\"",
+    "last_modified": "Wed, 04 Jun 2025 17:14:26 GMT"
+  },
+  "retention_boundary": {
+    "source_document_redistributed": false,
+    "receipt_retains_hash_and_metadata_only": true,
+    "source_remains_at_official_nist_url": true
+  },
+  "authority_boundary": {
+    "source_hash_is_nist_endorsement": false,
+    "source_hash_is_certification": false,
+    "source_hash_grants_standing": false,
+    "source_hash_grants_execution_authority": false
+  },
+  "overall_status": "OFFICIAL_SOURCE_FETCHED_HASHED"
+}
