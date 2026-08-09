@@ -1,1 +1,121 @@
-{"artifact_type":"external_framework_manifest","schema_version":"0.1","framework_id":"oscal","name":"OSCAL","source_reference":"https://pages.nist.gov/OSCAL/","source_version":"official NIST source recorded","allowed_use_boundary":["Use machine-readable control and assessment artifacts as evidence only."],"claims":["OSCAL represents controls, profiles, implementations, assessments, and results."],"non_claims":["OSCAL does not prove transition admissibility.","Machine readability does not create authority."],"transition_table_mapping":{"framework_identity":"OSCAL","source_reference":"https://pages.nist.gov/OSCAL/","source_version":"official NIST source recorded","allowed_use_boundary":"control and assessment evidence only","claims":"machine-readable control and assessment models","non_claims":"no admissibility proof or execution authority","input_artifact_type":"control or assessment model","output_artifact_type":"structured control evidence","actor_or_authority_model":"external control model; authority not inherited","evidence_model":"official source plus bounded crosswalk","policy_or_rule_model":"control catalogs and profiles","delegation_model":"not established","decision_or_result_model":"assessment evidence","execution_authority_claim":false,"receipt_or_trace_model":"manifest and report references","reconstruction_model":"structured artifacts support reconstruction","SPE_overlap":"control evidence may inform standing review","StegVerse_ecosystem_overlap":"evidence and reconstruction boundary","fail_closed_conditions":"missing source, mapping, or authority overclaim"},"SPE_overlap":{"standing_boundary":"control evidence only","authority_evaluation":"performed separately","commit_time_admissibility":"not claimed","receipt_reconstruction":"source-reference bounded"},"StegVerse_ecosystem_overlap":{"transition_table":"control evidence mapping","chain_status":"source-reviewed crosswalk","documentation_surface":"wiki page","execution_path":"not authorized"},"fail_closed_conditions":["missing source","incomplete mapping","authority overclaim"],"boundary":{"certification_claim":false,"endorsement_claim":false,"execution_authority_claim":false,"commit_time_authority_claim":false,"compatibility_manifest_is_authority":false,"missing_or_partial_fields_fail_closed":true}}
+{
+  "artifact_type": "external_framework_manifest",
+  "schema_version": "0.1",
+  "framework_id": "oscal",
+  "name": "OSCAL",
+  "source_reference": "https://pages.nist.gov/OSCAL-Reference/models/v1.2.2/",
+  "source_version": "OSCAL 1.2.2",
+  "source_set": [
+    {
+      "role": "official_project",
+      "reference": "https://pages.nist.gov/OSCAL/"
+    },
+    {
+      "role": "current_model_reference",
+      "identifier": "OSCAL 1.2.2",
+      "reference": "https://pages.nist.gov/OSCAL-Reference/models/v1.2.2/"
+    },
+    {
+      "role": "official_model_repository_release",
+      "identifier": "usnistgov/OSCAL v1.2.2",
+      "reference": "https://github.com/usnistgov/OSCAL/releases/tag/v1.2.2",
+      "released": "2026-04-30"
+    },
+    {
+      "role": "pinned_public_profile_sample",
+      "identifier": "NIST SP 800-53 Rev. 5.2.0 Privacy Baseline Profile",
+      "repository": "usnistgov/oscal-content",
+      "repository_tag": "v1.5.0",
+      "path": "nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_PRIVACY-baseline_profile.json",
+      "git_blob_sha": "85025c21e392ab4d67ad4b4490bbff6871811945",
+      "document_version": "5.2.0",
+      "oscal_version": "1.2.2"
+    }
+  ],
+  "versioning_boundary": {
+    "oscal_release": "1.2.2",
+    "oscal_release_scheme": "semantic versioning",
+    "sample_document_version": "5.2.0",
+    "sample_document_oscal_version": "1.2.2",
+    "oscal_model_version_is_not_document_version": true,
+    "content_repository_release": "v1.5.0",
+    "content_release_is_not_oscal_model_release": true
+  },
+  "allowed_use_boundary": [
+    "Use machine-readable control, implementation, assessment, and remediation artifacts as structured evidence only.",
+    "Preserve OSCAL-native model terminology and distinguish OSCAL model/release version from individual document/content version.",
+    "Use schema-validity and reference-resolution results as evidence properties, not as proof that represented controls are implemented, effective, current, or authorized.",
+    "Do not treat OSCAL inclusion as certification, endorsement, standing, execution authority, or commit-time authority."
+  ],
+  "claims": [
+    "OSCAL 1.2.2 provides machine-readable models for catalogs, profiles, component definitions, system security plans, assessment plans, assessment results, plans of action and milestones, and control mappings.",
+    "OSCAL artifacts can provide structured control and assessment evidence for reconstruction and review.",
+    "A pinned public OSCAL 1.2.2 profile sample demonstrates distinct document-version and oscal-version metadata in an official NIST content release."
+  ],
+  "non_claims": [
+    "OSCAL does not prove transition admissibility.",
+    "Machine readability or schema validity does not create authority.",
+    "A valid OSCAL document does not prove represented controls are implemented, effective, fresh, or applicable to the transition.",
+    "The StegVerse compatibility fixture is a bounded mapping test and is not NIST certification or endorsement."
+  ],
+  "transition_table_mapping": {
+    "framework_identity": "NIST OSCAL 1.2.2",
+    "source_reference": "https://pages.nist.gov/OSCAL-Reference/models/v1.2.2/",
+    "source_version": "OSCAL 1.2.2",
+    "allowed_use_boundary": "machine-readable control and assessment evidence only",
+    "claims": "catalog, profile, component-definition, SSP, assessment-plan, assessment-results, POA&M, control-mapping, and structured evidence representation",
+    "non_claims": "no admissibility proof, certification, endorsement, standing, or execution authority",
+    "input_artifact_type": "versioned OSCAL control, implementation, assessment, remediation, or mapping document",
+    "output_artifact_type": "structured control and assessment evidence",
+    "actor_or_authority_model": "OSCAL party/responsibility records are evidence declarations; current StegVerse authority is independently reconstructed",
+    "evidence_model": "versioned machine-readable models plus references, hashes, validation state, and assessment freshness",
+    "policy_or_rule_model": "catalogs and profiles may supply structured policy/control references",
+    "delegation_model": "responsible-party declarations do not independently establish current delegation",
+    "decision_or_result_model": "assessment findings and results are review evidence only",
+    "execution_authority_claim": false,
+    "receipt_or_trace_model": "pinned model release, immutable source/sample identity, manifest, compatibility fixture, and validation reports",
+    "reconstruction_model": "source package, model version, document version, references, transformations, and assessment records support reconstruction when retained",
+    "SPE_overlap": "structured control/assessment evidence may inform review but not standing determination",
+    "StegVerse_ecosystem_overlap": "Policy Reference, Evidence Posture, Review Posture, Reconstructability, Drift, Fail-Closed behavior",
+    "fail_closed_conditions": "missing source identity, model/document version confusion, schema/reference failure, stale assessment, missing current authority, semantic scope divergence, or authority overclaim"
+  },
+  "SPE_overlap": {
+    "standing_boundary": "structured control and assessment evidence only",
+    "authority_evaluation": "performed separately at the governed transition",
+    "commit_time_admissibility": "not claimed",
+    "receipt_reconstruction": "versioned-source and document-reference bounded"
+  },
+  "StegVerse_ecosystem_overlap": {
+    "transition_table": "control and assessment evidence mapping",
+    "chain_status": "upstream policy/evidence/review input",
+    "documentation_surface": "wiki reference plus manifest, fixtures, mappings, and generated reports",
+    "execution_path": "not authorized"
+  },
+  "evidence_gap": {
+    "state": "CURRENT_OSCAL_RELEASE_AND_PUBLIC_SAMPLE_PINNED",
+    "local_work_remaining": true,
+    "next_local_transition": "bind second page and six-family fixture to OSCAL 1.2.2 and validate merged state through the canonical workflow",
+    "external_evidence_required_for_current_bounded_crosswalk": false,
+    "stronger_interoperability_evidence_transition": "run and preserve a pinned OSCAL validator/converter against a frozen source package if a native tool-execution claim is later required"
+  },
+  "fail_closed_conditions": [
+    "official model source is missing",
+    "OSCAL release version is missing",
+    "document version and OSCAL model version are conflated",
+    "document schema or references are unresolved",
+    "assessment evidence is stale",
+    "responsible party or delegation evidence is not current",
+    "requested action is outside represented scope",
+    "any certification, endorsement, standing, execution authority, or commit-time authority claim appears"
+  ],
+  "boundary": {
+    "certification_claim": false,
+    "endorsement_claim": false,
+    "standing_claim": false,
+    "execution_authority_claim": false,
+    "commit_time_authority_claim": false,
+    "compatibility_manifest_is_authority": false,
+    "schema_validity_is_implementation_proof": false,
+    "missing_or_partial_fields_fail_closed": true
+  }
+}
