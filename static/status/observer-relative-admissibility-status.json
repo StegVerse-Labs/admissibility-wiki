@@ -1,7 +1,7 @@
 {
   "schema": "admissibility_wiki.observer_relative_admissibility_status.v1",
   "goal_id": "OBSERVER-RELATIVE-ADMISSIBILITY-001",
-  "state": "COMPLETE_VALIDATED_INTEGRATED_AND_TRANSFERRED",
+  "state": "IMPLEMENTED_VALIDATION_PENDING",
   "canonical_doctrine": "docs/governance/observer-relative-admissibility.md",
   "requirements": {
     "transition_facts_separate_from_characterization": true,
@@ -11,38 +11,35 @@
     "production_context_may_change_admissibility": true,
     "historical_transition_is_not_mutated_by_contest": true,
     "future_constraints_may_change_from_contest_evidence": true,
-    "single_committed_outcome_does_not_imply_single_observer_pov": true
+    "single_committed_outcome_does_not_imply_single_observer_pov": true,
+    "observer_is_not_governance_primitive": true,
+    "observer_preference_is_not_governance_constraint": true,
+    "temporal_precedence_is_not_governance_standing": true,
+    "time_is_descriptive_ordering_for_state_transition_observation": true,
+    "constraint_augmentation_requires_constraint_comprehension": true,
+    "observer_information_requires_independent_applicability": true,
+    "subsequent_correction_is_new_transition": true
   },
   "authority_boundaries": {
     "test_authorization_is_production_authorization": false,
     "capability_demonstration_is_malicious_intent": false,
     "observer_label_is_transition_fact": false,
-    "doctrine_publication_grants_execution_authority": false
+    "doctrine_publication_grants_execution_authority": false,
+    "observer_dissatisfaction_grants_veto": false,
+    "temporal_order_grants_authority": false,
+    "observation_retroactively_changes_admissibility": false
   },
   "validation": {
     "validator": "scripts/check_observer_relative_admissibility.py",
     "canonical_parent": "scripts/check_admissibility_automation_handoff.py",
-    "canonical_parent_commit": "e50a35dae34f364364f51d788d564b286d8fc32d",
-    "validated_head_commit": "c1ef83f46a762bee38473dfc25e8b4841e8a5f57",
-    "hosted_run": 31277243840,
-    "hosted_run_number": 4003,
-    "hosted_job": 93152767882,
-    "hosted_run_state_observed": "COMPLETED_FAILURE_WITH_SCOPED_VALIDATOR_PASS",
-    "scoped_validator_result": "PASS",
-    "canonical_parent_invocation_observed": true,
-    "repository_chain_result": "FAIL_CLOSED_UNRELATED",
-    "repository_chain_summary": "51/56 PASS; 5 FAIL; 0 SKIPPED",
-    "full_validation_chain_artifact_id": 9027386084,
-    "full_validation_chain_artifact_digest": "sha256:bb0a155fafc1d4fd22a42e5ce628b0a2a38f725fc026ab737d5c0dab6f3f613e",
-    "canonical_prescan_artifact_id": 9027363192,
-    "canonical_prescan_artifact_digest": "sha256:af088f77c5d001fcefa4a8f6d381bef8d999b5d2ff37b427f05aa668d95f46ba",
-    "last_result": "PASS"
+    "previous_validated_head_commit": "c1ef83f46a762bee38473dfc25e8b4841e8a5f57",
+    "previous_hosted_run": 31277243840,
+    "last_result": "PENDING_AFTER_DOCTRINE_REFINEMENT"
   },
   "completion": {
-    "scoped_goal_complete": true,
+    "scoped_goal_complete": false,
     "repository_wide_release_ready": false,
-    "unrelated_repository_failures_block_scoped_goal_completion": false,
-    "session_claim_released": true,
-    "canonical_continuation": "repository-native canonical validation mesh"
+    "session_claim_released": false,
+    "canonical_continuation": "docs/OBSERVER_RELATIVE_ADMISSIBILITY_MIRROR_HANDOFF.md"
   }
 }
