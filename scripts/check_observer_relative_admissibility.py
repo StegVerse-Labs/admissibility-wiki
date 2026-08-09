@@ -14,11 +14,10 @@ DOCTRINE_MARKERS = (
     "capability demonstrated != malicious intent",
     "test authorization != production authorization",
     "one committed outcome != one observer point of view",
-    "observer_id",
-    "authority_scope",
-    "admissibility_result",
-    "characterization",
-    "Authorized adversarial or capability testing",
+    "observer preference != governance constraint",
+    "temporal precedence != governance standing",
+    "Observer is not a governance primitive",
+    "constraint_augmentation_requires_constraint_comprehension",
     "Crossing the authorized test boundary is a new transition",
     "A_i(T)",
 )
@@ -27,11 +26,15 @@ STATUS_TRUE = (
     "transition_facts_separate_from_characterization",
     "observer_context_required",
     "authority_scope_required",
-    "evaluation_context_may_change_admissibility",
-    "production_context_may_change_admissibility",
     "historical_transition_is_not_mutated_by_contest",
-    "future_constraints_may_change_from_contest_evidence",
     "single_committed_outcome_does_not_imply_single_observer_pov",
+    "observer_is_not_governance_primitive",
+    "observer_preference_is_not_governance_constraint",
+    "temporal_precedence_is_not_governance_standing",
+    "time_is_descriptive_ordering_for_state_transition_observation",
+    "constraint_augmentation_requires_constraint_comprehension",
+    "observer_information_requires_independent_applicability",
+    "subsequent_correction_is_new_transition",
 )
 
 STATUS_FALSE = (
@@ -39,6 +42,9 @@ STATUS_FALSE = (
     "capability_demonstration_is_malicious_intent",
     "observer_label_is_transition_fact",
     "doctrine_publication_grants_execution_authority",
+    "observer_dissatisfaction_grants_veto",
+    "temporal_order_grants_authority",
+    "observation_retroactively_changes_admissibility",
 )
 
 HANDOFF_MARKERS = (
@@ -51,7 +57,6 @@ HANDOFF_MARKERS = (
 
 def main() -> int:
     failures: list[str] = []
-
     if not DOCTRINE.exists():
         failures.append(f"missing {DOCTRINE.relative_to(ROOT)}")
     else:
