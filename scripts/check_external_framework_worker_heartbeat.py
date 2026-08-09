@@ -38,9 +38,12 @@ def main() -> int:
     if registry.get("repository") != "StegVerse-Labs/admissibility-wiki":
         failures.append("registry repository mismatch")
 
+    heartbeat_interval = int(registry.get("heartbeat_interval_minutes", 0))
     ttl = int(registry.get("claim_ttl_minutes", 0))
-    if ttl <= 0:
-        failures.append("claim_ttl_minutes must be positive")
+    if heartbeat_interval <= 0:
+        failures.append("heartbeat_interval_minutes must be positive")
+    if ttl <= heartbeat_interval:
+        failures.append("claim_ttl_minutes must be greater than heartbeat_interval_minutes")
 
     workers = registry.get("workers")
     if not isinstance(workers, list) or not workers:
@@ -75,19 +78,14 @@ def main() -> int:
         if not worker.get("collision_boundary"):
             failures.append(f"{wid}: missing collision_boundary")
 
-        age_minutes = None
-        stale = False
+        claim_age_minutes = None
         if not isinstance(created, str):
             failures.append(f"{wid}: missing claim_created_at_utc")
         else:
             try:
-                age_minutes = (now - parse_utc(created)).total_seconds() / 60.0
-                stale = state not in TERMINAL and age_minutes > ttl
+                claim_age_minutes = (now - parse_utc(created)).total_seconds() / 60.0
             except Exception as exc:
                 failures.append(f"{wid}: invalid claim_created_at_utc: {exc}")
-
-        if stale:
-            failures.append(f"{wid}: stale claim age {age_minutes:.1f}m exceeds TTL {ttl}m; renew with evidence or mark BLOCKED with release condition")
 
         if not isinstance(assigned, list) or not assigned:
             failures.append(f"{wid}: assigned_frameworks must be non-empty list")
@@ -101,12 +99,15 @@ def main() -> int:
                 failures.append(f"framework collision: {framework} owned by {prior} and {wid}")
             framework_owner[framework] = wid
 
+        renewed = state not in TERMINAL and not failures
         worker_receipts.append({
             "worker_id": wid,
             "issue": issue,
             "state": state,
-            "claim_age_minutes": round(age_minutes, 2) if isinstance(age_minutes, float) else None,
-            "stale": stale,
+            "claim_created_at_utc": created,
+            "claim_age_minutes": round(claim_age_minutes, 2) if isinstance(claim_age_minutes, float) else None,
+            "heartbeat_renewed_at_utc": now.isoformat().replace("+00:00", "Z") if renewed else None,
+            "claim_valid_until_utc": (now + dt.timedelta(minutes=ttl)).isoformat().replace("+00:00", "Z") if renewed else None,
             "assigned_framework_count": len(assigned),
             "next_executable_action": worker.get("next_executable_action"),
             "release_condition": worker.get("release_condition"),
@@ -118,7 +119,7 @@ def main() -> int:
         "goal_id": registry.get("goal_id"),
         "repository": registry.get("repository"),
         "observed_at_utc": now.isoformat().replace("+00:00", "Z"),
-        "heartbeat_interval_minutes": registry.get("heartbeat_interval_minutes"),
+        "heartbeat_interval_minutes": heartbeat_interval,
         "claim_ttl_minutes": ttl,
         "worker_count": len(workers),
         "framework_assignments_observed": len(framework_owner),
