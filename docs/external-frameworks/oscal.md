@@ -11,6 +11,10 @@ Relationship type: external framework crosswalk
 Canonical StegVerse formalism source: Admissible-Existence
 External framework role: machine-readable security control and assessment language
 Evaluated OSCAL release: 1.2.2
+evidence_class: SOURCE_REVIEWED
+page_completeness: COMPLETE_WITH_EXTERNAL_GATES
+comparative_testing_claim_allowed: false
+execution_authority_claim_allowed: false
 Evidence posture: PINNED_PUBLIC_MODEL_RELEASE + PINNED_PUBLIC_SAMPLE + BOUNDED_STEGVERSE_CROSSWALK
 Runtime posture: NOT_AN_AUTHORITY_ENGINE
 Standing: no standing created
@@ -80,23 +84,19 @@ H1: any future claim of native tool interoperability, implementation effectivene
 | `oscal-version` | Metadata indicating the OSCAL model version used to represent the document. | new | Required for interpretation/replay and must not be conflated with the document's own content version. |
 | Document version | Version metadata belonging to the represented content/artifact. | new | Evidence-freshness identity distinct from OSCAL model release identity. |
 
-## What OSCAL Claims And Demonstrates
+## Published Scope
 
 OSCAL provides machine-readable models for security controls and their lifecycle artifacts, including catalogs, profiles, component definitions, system security plans, assessment plans, assessment results, plans of action and milestones, and control mappings. NIST publishes model references and official content in machine-readable formats.
 
 The pinned public sample demonstrates that a real official profile artifact carries both a content version and an OSCAL model version. This is useful for reconstruction and version discipline. It does **not** establish that any represented control is implemented, effective, current, applicable, or authorized for a specific transition.
 
-## StegVerse Tests Installed
+## Relationship to Admissibility
 
-```text
-manifest: docs/external-frameworks/oscal.json
-benchmark mapping: docs/external-frameworks/benchmark-mappings/oscal.mapping.json
-benchmark fixture: docs/external-frameworks/fixtures/oscal-benchmark-fixture.v0.1.json
-governance fixture: tests/fixtures/external-frameworks/oscal-governance-compatibility-cases.v1.json
-compatibility report: docs/external-frameworks/reports/oscal.compatibility.json
-case families: 6
-canonical workflow: .github/workflows/validate-chain-continuation.yml
-```
+OSCAL belongs upstream of commit-time admissibility as structured control and assessment evidence. Its documents can contribute current, provenance-bound evidence, but OSCAL does not itself determine standing, delegation, admissibility, or execution authority.
+
+## StegVerse Analysis
+
+The strongest currently supported StegVerse use is a bounded source-versioned crosswalk: preserve model/document identity, validate references and freshness, map control/assessment semantics, and fail closed when authority or action scope cannot be reconstructed.
 
 The six StegVerse case families are bounded mapping tests, not native NIST runtime tests:
 
@@ -121,9 +121,29 @@ ACTION_SCOPE_DIVERGENCE
 
 `FRAMEWORK_RUNTIME_ERROR` in the StegVerse fixture is a fail-closed test label for malformed/undefined evaluation input; it is not evidence that NIST OSCAL itself experienced a runtime failure.
 
-## Governance-Chain Placement
+## Commit-Time Interoperability Contract
 
-OSCAL belongs upstream of commit-time admissibility as structured evidence:
+```text
+transition_id
+oscal_model_type
+oscal_document_reference
+oscal_document_hash
+oscal_version
+document_version
+profile_reference
+control_references
+assessment_result_references
+responsible_party_references
+validation_tool_reference
+transformation_receipt
+policy_reference
+delegation_reference
+evidence_references
+source_timestamp
+validity_window
+```
+
+Governance-chain placement:
 
 ```text
 pinned OSCAL artifact + model version + document version + references/hashes
@@ -136,6 +156,18 @@ pinned OSCAL artifact + model version + document version + references/hashes
 ```
 
 Machine readability improves transport, inspection, and reconstruction. It does not convert represented claims into truth or convert named responsible parties into current execution authority.
+
+## Machine-Readable Companions
+
+```text
+manifest: docs/external-frameworks/oscal.json
+benchmark mapping: docs/external-frameworks/benchmark-mappings/oscal.mapping.json
+benchmark fixture: docs/external-frameworks/fixtures/oscal-benchmark-fixture.v0.1.json
+governance fixture: tests/fixtures/external-frameworks/oscal-governance-compatibility-cases.v1.json
+compatibility report: docs/external-frameworks/reports/oscal.compatibility.json
+case families: 6
+canonical workflow: .github/workflows/validate-chain-continuation.yml
+```
 
 ## Claims Versus Demonstrated Abilities
 
@@ -152,7 +184,7 @@ Machine readability improves transport, inspection, and reconstruction. It does 
 | Does OSCAL establish StegVerse standing or execution authority? | No. |
 | Is NIST certification or endorsement claimed? | No. |
 
-## Non-Capabilities And Non-Claims
+## Non-Claims
 
 ```text
 OSCAL is not a StegVerse canonical formalism.
@@ -162,6 +194,8 @@ Responsible-party declarations do not independently establish current delegation
 Assessment findings are evidence, not consequence-binding authority.
 Machine readability does not create standing.
 The StegVerse six-case fixture is bounded crosswalk evidence, not NIST certification or endorsement.
+Comparative testing claim allowed: false.
+Execution authority claim allowed: false.
 Publication creates no standing.
 ```
 
@@ -171,9 +205,13 @@ The current source-level packet is reconstructable from the pinned OSCAL release
 
 No such stronger runtime claim is made here.
 
-## Current Completion Gate
+## Validation Completion Criteria
 
-The official model release, pinned public sample, version distinctions, terminology reconciliation, six-family mapping, governance-chain placement, failure boundaries, and non-authority language are installed. The remaining local gate is canonical validation of this merged page/manifest/fixture state. If OSCAL-specific manifest, terminology, page, benchmark, report, provenance, and governance-compatibility checks pass, the evaluation may reach `LOCAL_WORK_COMPLETE_BOUNDED_CONTROL_ASSESSMENT_CROSSWALK` without manufacturing native runtime or certification evidence.
+The official model release, pinned public sample, version distinctions, terminology reconciliation, six-family mapping, governance-chain placement, failure boundaries, and non-authority language must all remain installed and validator-compatible. Canonical validation must observe OSCAL manifest, terminology, page remediation, benchmark mapping/fixture, report, provenance, and governance-compatibility checks without OSCAL-specific failures.
+
+## Next Safe Build Target
+
+After the current source-versioned bounded crosswalk is canonically validated, a stronger optional evidence transition may execute a frozen official OSCAL validation/conversion tool against the pinned sample, preserving exact tool version, command, raw output, timestamps, environment, source hashes, and replay receipt. That stronger transition is not required to claim the bounded source-reviewed terminal class and must not be inferred from page publication alone.
 
 ## Challenge Path
 
