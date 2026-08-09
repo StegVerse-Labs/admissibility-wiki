@@ -290,6 +290,28 @@ Workers A/C/D: unchanged active claims under issues #62/#64/#65
 MindForge/Morrison/ASRO: unchanged issue #50 ownership
 ```
 
+## Session accountability and archive rule
+
+The originating session remains responsible for the governing project until the complete 36-framework goal is finished, not merely until its current framework sub-task or unique implementation knowledge is transferred.
+
+For this project, archive eligibility requires all of the following:
+
+```text
+36/36 external-framework second-page evaluations have reached a legitimate terminal completion posture;
+all required files and contributions needed for those 36 evaluations are accounted for;
+all locally executable work has been completed and validated;
+all remaining evidence-blocked states, if any, are explicit terminal records rather than unimplemented work;
+worker/coordinator claims are released or terminally reconciled;
+canonical handoffs and issue state reflect the completed denominator;
+no framework remains merely scaffolding, procedure-only, simulation-only, or awaiting local implementation;
+```
+
+A transfer of Cedar or any other sub-task to another worker, issue, workflow, handoff, or machine process does **not** by itself make the originating session archive-ready while the 36-framework project remains incomplete.
+
+When the user requests a task/goal status check, the session must report the delta since the previous status check using live repository evidence. If no project state changed, report `NO CHANGE OBSERVED` and keep the session active; do not reinterpret inactivity as archival readiness.
+
+This rule supersedes any earlier session-consolidation language that allowed archival solely because current sub-task state had been durably transferred.
+
 ## Session consolidation
 
 The originating session requirements are durably transferred here and to issues #63/#66:
@@ -299,9 +321,11 @@ conversation or acknowledgment != validation
 page existence != completed evaluation
 generated procedure != observed test
 framework completion requires claims vs actual abilities + StegVerse test evidence + governance-chain placement
+session responsibility persists until the 36-framework project is complete
+status checks must report what changed since the immediately preceding status check
 ```
 
-The session may be archived only after its live Worker B execution role is released or durably transferred to another active canonical claimant with all current Cedar evidence and next actions preserved.
+The session must remain active while the governing project is incomplete, even when individual implementation lanes are durably transferred.
 
 ## Release and archive guard
 
@@ -314,6 +338,7 @@ simulation != execution
 fresh-runner same-provider replay != independent implementation reproduction
 publication != standing
 compatibility evidence != certification
+sub-task transfer != session archival readiness
 ```
 
 Do not mark the 36-framework evaluation goal archive-ready while any worker issue #62-#65 or existing issue #50 framework track remains incomplete or evidence-blocked without a durable terminal record.
