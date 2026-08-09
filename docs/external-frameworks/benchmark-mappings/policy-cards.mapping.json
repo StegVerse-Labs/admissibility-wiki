@@ -15,7 +15,7 @@
     "authority_boundary": {"state": "applicable", "summary": "A Policy Card, owner field, exception approver, or allow effect does not independently establish current actor delegation or target execution authority."},
     "evidence_freshness_boundary": {"state": "applicable", "summary": "Card version, valid_from/valid_to, monitoring evidence, exception duration, policy references, and change history must be current for the evaluated transition."},
     "reconstruction_boundary": {"state": "applicable", "summary": "Versioned machine-readable policy, monitoring fields, evidence requirements, assurance mappings, and change-management records support deterministic reconstruction when retained."},
-    "interoperability_path": {"state": "mapped_core", "summary": "Policy Cards can enter StegVerse as structured Policy Reference and Evidence Posture inputs; native validator/runtime interoperability remains a separately observed evidence transition."}
+    "interoperability_path": {"state": "adapter_required", "summary": "Policy Cards can enter StegVerse as structured Policy Reference and Evidence Posture inputs, but semantic mapping and a frozen native implementation remain required before native validator/runtime interoperability is claimed."}
   },
   "non_claims": {
     "is_certification": false,

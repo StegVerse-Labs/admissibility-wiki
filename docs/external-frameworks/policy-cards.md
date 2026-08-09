@@ -23,11 +23,11 @@ Execution authority: none
 
 ## Framework-Native Scope
 
-Policy Cards are presented as versioned, machine-readable, deployment-layer specifications that encode operational rules, obligations, exceptions, evidence requirements, monitoring, change-management information, and assurance mappings for a specific deployed AI system or agent. The paper specifies JSON Schema 2020-12 as the structural basis and describes cards as suitable for automated validation, version control, CI/CD gates, runtime policy gateways, monitoring, and audit pipelines.
+Policy Cards are presented as versioned, machine-readable deployment-layer specifications for operational rules, obligations, exceptions, evidence requirements, monitoring, change management, and assurance mappings for a deployed AI system or agent. The paper describes JSON Schema 2020-12 as the structural basis and discusses validation, version control, CI/CD gates, runtime policy gateways, monitoring, and audit pipelines.
 
-The paper describes three effects for action rules: `allow`, `deny`, and `require_escalation`. It also describes explicit deployment scope, temporal validity, monitoring and retention fields, KPI/critical-auto-fail controls, change-management hooks, assurance mappings, and references to related governance artifacts.
+The framework-native action effects are `allow`, `deny`, and `require_escalation`. Those effects are policy-artifact outputs. They are not StegVerse standing, delegation, admissibility, commitment, or execution authority.
 
-## Official Source And Version
+## Official Framework Sources
 
 ```text
 primary record: https://arxiv.org/abs/2510.24383
@@ -40,22 +40,38 @@ canonical archived record DOI listed by arXiv: 10.5281/zenodo.17391796
 related resource DOI listed by arXiv: 10.5281/zenodo.17464706
 ```
 
-The source paper states that a full schema and validator are available in a public repository and archived via Zenodo, but this transition does not claim a repository/commit locator that has not been independently bound into the StegVerse record. The paper's schema description and illustrative excerpt are treated as source evidence; they are not promoted into observed native validator execution.
+The evaluated framework source is therefore version-pinned to arXiv `2510.24383v1`.
+
+## Official Implementation Sources
+
+The paper states that a full schema, validator, and domain scenarios are available through a public repository and Zenodo resource. This StegVerse record does **not** promote that statement into an implementation identity because no exact external repository commit, immutable package hash, or frozen validator binary/package has been independently bound here.
+
+Implementation status:
+
+```text
+implementation_attached=false
+native_execution_observed=false
+implementation_identity=UNBOUND
+```
+
+A later implementation evidence transition must bind a stable repository/package identity, immutable hashes, commands, environment, raw output, and replay receipt before native validator or runtime behavior can be claimed.
 
 ## Evidence Provenance
 
 | Evidence Class | Current Evidence | Status | Missing Fields |
 |---|---|---|---|
 | Official Framework Source | arXiv `2510.24383v1`, author, submission timestamp, paper date, arXiv DOI, and archive/resource DOI identifiers. | pinned_versioned_public_source | No source-version ambiguity for the evaluated paper revision. |
-| Schema Evidence | Paper explicitly describes JSON Schema 2020-12, ten top-level sections, semantic versioning, ABAC-like action rules, temporal bounds, monitoring, KPI and assurance-mapping structures, plus an illustrative schema excerpt. | source_described | Exact external repository/commit/hash for the full schema and validator is not bound locally. |
-| Official Implementation Evidence | Paper states a full schema/validator and domain scenarios exist in a public repository/Zenodo resource. | external_locator_unbound | Stable repository/commit and immutable package identity are required before implementation execution is attributed. |
-| Observed Native Behavior | No external Policy Cards validator or runtime gateway was executed by this StegVerse transition. | not_observed | Frozen implementation package, command, environment, raw output, and receipt required for a native-execution claim. |
-| StegVerse Analysis | Six deterministic governance cases exercise positive alignment, framework denial, authority failure, stale evidence, malformed input, and semantic/authority divergence. | installed_simulation_only | Simulation remains separate from native framework execution. |
+| Schema Evidence | Paper describes JSON Schema 2020-12, structured deployment policy fields, semantic versioning, action rules, temporal bounds, monitoring, KPI and assurance-mapping structures. | source_described | Exact external repository/commit/hash for the full schema and validator is not bound locally. |
+| Official Implementation Evidence | Paper states a full schema/validator and domain scenarios exist in a public repository/Zenodo resource. | external_locator_unbound | Stable repository/commit and immutable package identity required before execution attribution. |
+| Observed Native Behavior | No external Policy Cards validator or runtime gateway was executed by this StegVerse transition. | not_observed | Frozen implementation package, command, environment, raw output, and receipt required. |
+| StegVerse Analysis | Six deterministic governance case families are installed. | installed_simulation_only | Simulation remains separate from native framework execution. |
 | Standing | Publication, schema description, an `allow` effect, or a policy-card artifact does not establish current actor delegation or execution authority. | none_created | Standing and delegation must be independently reconstructed at commit time. |
 
 ## Framework-Term Definitions
 
-| Native term | Definition for this wiki | Admissibility relationship |
+This section provides inline terminology reconciliation and governed coverage for the framework-native vocabulary.
+
+| Native term | Definition for this wiki | Governed coverage / admissibility relationship |
 |---|---|---|
 | Policy Card | Versioned machine-readable deployment policy for a specific system/context. | Policy Reference and Evidence Posture input; not a commit decision. |
 | `controls.action_rules` | Rules binding subject, action, resource, condition, and effect. | Candidate policy evidence for transition review. |
@@ -68,28 +84,56 @@ The source paper states that a full schema and validator are available in a publ
 
 ## Relationship to Admissibility
 
-A Policy Card can be a strong structured Policy Reference for a Commitment Candidate because it can bind a deployment context, rule effect, evidence requirements, validity period, monitoring expectations, and change history. That makes it useful for transport and reconstruction.
-
-It does not answer all commit-time questions. StegVerse must still reconstruct whether the card is current and applicable, whether the actor has standing and delegation, whether referenced evidence is fresh, whether the proposed action semantically matches the governed resource/action, whether an exception remains valid, and whether the target can bind consequence under current authority.
+A Policy Card can be a structured Policy Reference for a Commitment Candidate because it can bind deployment context, rule effect, evidence requirements, validity period, monitoring expectations, and change history. StegVerse must still reconstruct whether the card is current and applicable, whether the actor has standing and delegation, whether evidence is fresh, whether the proposed action semantically matches the governed resource/action, whether an exception remains valid, and whether the target can bind consequence under current authority.
 
 `policy_card.effect == allow` therefore does **not** imply `StegVerse admissibility == ALLOW`.
+
+## Observed Behavior
+
+No Policy Cards native validator or runtime gateway behavior has been observed by StegVerse in this evidence transition.
+
+```text
+native_execution_observed=false
+observed_native_decisions=0
+```
+
+The absence of native observation is preserved as an evidence boundary rather than interpreted as failure or success.
+
+## Reproduced Behavior
+
+No native implementation reproduction has been performed because the implementation package identity is not yet frozen.
+
+```text
+same_environment_replay=NOT_PERFORMED
+fresh_runner_replay=NOT_PERFORMED
+independent_provider_reproduction=NOT_PERFORMED
+```
+
+StegVerse deterministic simulations are separately reproducible repository fixtures but are not native Policy Cards runtime replay.
 
 ## StegVerse Analysis
 
 Installed deterministic case families:
 
-| Family | StegVerse expected posture |
-|---|---|
-| positive alignment | ALLOW only when policy evidence, authority, freshness, scope, and other commitment conditions are independently satisfied. |
-| framework denial / negative result | DENY when the Policy Card rule denies the proposed action. |
-| authority / delegation failure | DENY when a card permits an action but current actor authority is absent. |
-| stale / missing evidence | FAIL_CLOSED when card/evidence validity cannot be established. |
-| malformed / undefined input | FAIL_CLOSED when the policy artifact cannot be interpreted. |
-| semantic / authority divergence | DENY when a policy artifact is used to claim authority it does not confer or action semantics diverge. |
+F1: positive alignment — ALLOW only when policy evidence, authority, freshness, scope, and other commitment conditions are independently satisfied.
+
+F2: framework denial — DENY when the Policy Card rule denies the proposed action.
+
+S1: authority/delegation failure — DENY when a card permits an action but current actor authority is absent.
+
+S2: stale or missing evidence — FAIL_CLOSED when card/evidence validity cannot be established.
+
+H1: malformed or undefined input — FAIL_CLOSED when the policy artifact cannot be interpreted.
+
+Additional semantic/authority divergence family — DENY when a policy artifact is used to claim authority it does not confer or when action semantics diverge.
 
 These are StegVerse-authored deterministic simulations. `implementation_attached=false` and `native_execution_observed=false` remain required boundaries in the fixture.
 
-## Commit-Time Interoperability Contract
+## Interoperability Assessment
+
+Current interoperability is a bounded source-level crosswalk, not native validator/runtime interoperability.
+
+`runtime_policy_artifact_crosswalk`:
 
 ```text
 policy_card_id
@@ -117,6 +161,19 @@ commitment_candidate_hash
 ```
 
 A consumer must reject or defer when identity, validity, scope, semantics, authority, or required evidence cannot be reconstructed.
+
+Governance-chain placement:
+
+```text
+Policy Card artifact
+  -> Policy Reference / Evidence Posture
+  -> standing + delegation reconstruction
+  -> freshness + applicability + semantic equivalence checks
+  -> commit-time admissibility
+  -> execution authority / consequence binding
+```
+
+Policy Cards occupy the policy-artifact/evidence layer. They do not independently supply the later authority layers.
 
 ## Failure Classes
 
@@ -157,7 +214,7 @@ canonical workflow: .github/workflows/validate-chain-continuation.yml
 
 ## Validation Completion Criteria
 
-For the bounded source-level evaluation, canonical validation must observe the manifest, terminology, report, page metadata/mapping/status, evidence provenance, benchmark mapping/fixture, and six-family governance compatibility without a Policy-Cards-specific failure. Native implementation execution must remain explicitly unclaimed unless a frozen repository/package identity and observed command/output receipt are later installed.
+For the bounded source-level evaluation, canonical validation must observe the manifest, terminology, report, page metadata/mapping/status, evidence provenance, benchmark mapping/fixture, and six-family governance compatibility without a Policy-Cards-specific failure. Native implementation execution remains explicitly unclaimed unless a frozen repository/package identity and observed command/output receipt are later installed.
 
 ## Non-Claims
 
