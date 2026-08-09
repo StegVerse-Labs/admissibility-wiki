@@ -4,13 +4,82 @@
   "framework_id": "iso-iec-42001",
   "name": "ISO/IEC 42001",
   "source_reference": "https://www.iso.org/standard/42001",
-  "source_version": "public source recorded",
-  "allowed_use_boundary": ["Use as external AI management system crosswalk evidence.", "Preserve ISO/IEC 42001-native terminology.", "Do not treat as certification, endorsement, execution authority, or commit-time authority."],
-  "claims": ["ISO/IEC 42001 can support AI management system comparison.", "ISO/IEC 42001 can be mapped to organizational process and continual-improvement terms."],
-  "non_claims": ["ISO/IEC 42001 does not prove transition admissibility.", "Management-system compliance does not grant execution authority.", "The wiki relationship record is not acceptance of equivalence."],
-  "transition_table_mapping": {"framework_identity":"ISO/IEC 42001","source_reference":"https://www.iso.org/standard/42001","source_version":"public source recorded","allowed_use_boundary":"AI management system crosswalk evidence only","claims":"AI management system, risk and opportunity management, organizational process, continual improvement","non_claims":"no admissibility proof, certification, endorsement, or execution authority","input_artifact_type":"AI management system standard reference","output_artifact_type":"crosswalk and compatibility evidence","actor_or_authority_model":"external standards posture; no StegVerse authority inherited","evidence_model":"management-system and organizational-process evidence posture","policy_or_rule_model":"organizational AI management controls","delegation_model":"not asserted by wiki entry","decision_or_result_model":"comparison evidence only","execution_authority_claim":false,"receipt_or_trace_model":"source reference and wiki record","reconstruction_model":"source plus crosswalk can reconstruct management-system relationship limits","SPE_overlap":"may inform governance boundary and policy reference, not standing determination","StegVerse_ecosystem_overlap":"Governance Boundary, Policy Reference, Triad Governance, Decision Continuity","fail_closed_conditions":"missing source, undefined mapping, or authority overclaim"},
-  "SPE_overlap": {"standing_boundary":"management-system evidence only","authority_evaluation":"not performed by ISO/IEC 42001","commit_time_admissibility":"not claimed","receipt_reconstruction":"source-reference bounded"},
-  "StegVerse_ecosystem_overlap": {"transition_table":"management-system mapping","chain_status":"crosswalk evidence","documentation_surface":"wiki reference","execution_path":"not authorized"},
-  "fail_closed_conditions": ["source reference is missing", "source version is missing", "transition-table mapping is incomplete", "SPE overlap is undefined", "any certification, endorsement, execution authority, or commit-time authority claim appears"],
-  "boundary": {"certification_claim":false,"endorsement_claim":false,"execution_authority_claim":false,"commit_time_authority_claim":false,"compatibility_manifest_is_authority":false,"missing_or_partial_fields_fail_closed":true}
+  "source_version": "ISO/IEC 42001:2023 / Edition 1 / 2023-12",
+  "allowed_use_boundary": [
+    "Use the official public ISO record as source-version and high-level management-system evidence.",
+    "Use installed StegVerse mapping/fixture/report surfaces as bounded crosswalk evidence only.",
+    "Do not infer clause-level support without an authorized licensed source package.",
+    "Do not treat the crosswalk as certification, endorsement, conformity assessment, standing, execution authority, or commit-time authority."
+  ],
+  "claims": [
+    "ISO/IEC 42001:2023 is a published AI management system standard.",
+    "The public ISO record supports high-level AI-management-system, risk/opportunity, organizational-process, and continual-improvement comparison.",
+    "StegVerse can map those public-source concepts to organizational governance and evidence posture without inheriting authority."
+  ],
+  "non_claims": [
+    "The repository does not possess or redistribute the licensed full-text standard.",
+    "The crosswalk does not establish clause-level conformity.",
+    "ISO/IEC 42001 does not prove transition admissibility.",
+    "Management-system conformity does not grant execution authority.",
+    "The wiki relationship record is not ISO certification or endorsement."
+  ],
+  "transition_table_mapping": {
+    "framework_identity": "ISO/IEC 42001:2023",
+    "source_reference": "https://www.iso.org/standard/42001",
+    "source_version": "ISO/IEC 42001:2023 / Edition 1 / 2023-12",
+    "allowed_use_boundary": "public-source AI management system crosswalk evidence only; no clause-level inference without licensed source package",
+    "claims": "AI management system, risk and opportunity management, organizational process, continual improvement",
+    "non_claims": "no clause-level conformity, admissibility proof, certification, endorsement, standing, or execution authority",
+    "input_artifact_type": "public AI management system standard record or separately authorized source package",
+    "output_artifact_type": "bounded crosswalk and compatibility evidence",
+    "actor_or_authority_model": "external organizational standards posture; no StegVerse actor authority inherited",
+    "evidence_model": "management-system and organizational-process evidence posture",
+    "policy_or_rule_model": "organizational AI management controls at public-source semantic level",
+    "delegation_model": "not established by ISO crosswalk",
+    "decision_or_result_model": "comparison/review evidence only",
+    "execution_authority_claim": false,
+    "receipt_or_trace_model": "official public source reference plus StegVerse mapping/validation record",
+    "reconstruction_model": "public source identity plus mapping can reconstruct high-level management-system relationship limits; clause-level reconstruction requires licensed source evidence",
+    "SPE_overlap": "may inform governance boundary and policy reference, not standing determination",
+    "StegVerse_ecosystem_overlap": "Governance Boundary, Policy Reference, Evidence Posture, Review Posture, Triad Governance, Decision Continuity",
+    "fail_closed_conditions": "missing source/version, unsupported clause-level inference, stale evidence, incomplete mapping, semantic-scope divergence, or authority overclaim"
+  },
+  "SPE_overlap": {
+    "standing_boundary": "management-system evidence only",
+    "authority_evaluation": "not performed by ISO/IEC 42001 crosswalk",
+    "commit_time_admissibility": "not claimed",
+    "receipt_reconstruction": "public-source-reference bounded; clause-level evidence requires licensed source package"
+  },
+  "StegVerse_ecosystem_overlap": {
+    "transition_table": "management-system mapping",
+    "chain_status": "upstream organizational governance/review evidence",
+    "documentation_surface": "wiki reference plus mapping/fixture/report",
+    "execution_path": "not authorized"
+  },
+  "evidence_gap": {
+    "state": "EXTERNAL_SOURCE_PACKAGE_REQUIRED_FOR_CLAUSE_LEVEL_PROMOTION",
+    "owner_boundary": "authorized human/source-package provider",
+    "release_condition": "licensed ISO/IEC 42001:2023 full-text or clause-level evidence package supplied with custody/license basis and immutable content identity",
+    "local_work_remaining_without_source_package": false
+  },
+  "fail_closed_conditions": [
+    "official source reference is missing",
+    "source version is missing",
+    "licensed full-text absence is treated as clause-level evidence",
+    "transition-table mapping is incomplete",
+    "SPE overlap is undefined",
+    "management-system evidence is applied outside its scope",
+    "any certification, endorsement, standing, execution authority, or commit-time authority claim appears"
+  ],
+  "boundary": {
+    "certification_claim": false,
+    "endorsement_claim": false,
+    "conformity_assessment_claim": false,
+    "standing_claim": false,
+    "execution_authority_claim": false,
+    "commit_time_authority_claim": false,
+    "compatibility_manifest_is_authority": false,
+    "missing_or_partial_fields_fail_closed": true,
+    "licensed_full_text_possessed": false
+  }
 }
