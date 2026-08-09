@@ -83,6 +83,7 @@ contested != defective
 observer disagreement != governance failure
 observer satisfaction != admission criterion
 observation != governance constraint
+constraint_augmentation_requires_constraint_comprehension
 ```
 
 An entity may supply information relevant to a later transition. But to intentionally augment governance toward a different outcome, the proposed constraint must be understood sufficiently to establish its relationship to the governed transition and must have applicable standing/authority under that later transition's governance.
