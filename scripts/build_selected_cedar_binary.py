@@ -16,6 +16,7 @@ OUTPUT_DIR = ROOT / "reports" / "external-frameworks" / "cedar-build"
 OUTPUT = OUTPUT_DIR / "cedar-binary-build-receipt.json"
 INSPECTOR = ROOT / "scripts" / "inspect_cedar_binary_build_receipt.py"
 CAPTURE_RUNNER = ROOT / "scripts" / "run_pinned_cedar_ci_capture.py"
+COMPAT_EVALUATOR = ROOT / "scripts" / "run_cedar_governance_compatibility.py"
 CAPTURE_REPORTS = ROOT / "reports" / "external-frameworks" / "cedar"
 REGISTRY = ROOT / "docs" / "external-frameworks" / "implementation-selection-gates.v0.1.json"
 REPOSITORY = "https://github.com/cedar-policy/cedar.git"
@@ -52,6 +53,28 @@ def persist_capture_into_build_artifact() -> None:
     if destination.exists():
         shutil.rmtree(destination)
     shutil.copytree(CAPTURE_REPORTS, destination)
+
+
+def run_observed_compatibility() -> int:
+    capture_dir = OUTPUT_DIR / "capture"
+    output = capture_dir / "cedar-stegverse-governance-compatibility-receipt.json"
+    if not COMPAT_EVALUATOR.exists():
+        print(f"CEDAR GOVERNANCE COMPATIBILITY: evaluator missing: {COMPAT_EVALUATOR.relative_to(ROOT)}", file=sys.stderr)
+        return 1
+    if not capture_dir.exists():
+        print("CEDAR GOVERNANCE COMPATIBILITY: capture directory missing", file=sys.stderr)
+        return 1
+    result = run([
+        sys.executable,
+        str(COMPAT_EVALUATOR),
+        "--capture-dir",
+        str(capture_dir),
+        "--output",
+        str(output),
+    ])
+    if result.stdout or result.stderr:
+        print((result.stdout + result.stderr).rstrip())
+    return result.returncode
 
 
 def main() -> int:
@@ -172,6 +195,11 @@ def main() -> int:
             print("CEDAR BOUNDED CAPTURE: failed closed; receipts retained in build artifact", file=sys.stderr)
             return capture.returncode
         print("CEDAR BOUNDED CAPTURE: CAPTURED_VALIDATED_BOUNDED; receipts retained in build artifact")
+
+        compatibility = run_observed_compatibility()
+        if compatibility != 0:
+            print("CEDAR GOVERNANCE COMPATIBILITY: observed-response binding failed closed", file=sys.stderr)
+            return compatibility
         return 0
     finally:
         temporary.cleanup()
