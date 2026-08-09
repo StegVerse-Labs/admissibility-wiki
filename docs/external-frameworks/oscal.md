@@ -84,7 +84,7 @@ H1: any future claim of native tool interoperability, implementation effectivene
 | `oscal-version` | Metadata indicating the OSCAL model version used to represent the document. | new | Required for interpretation/replay and must not be conflated with the document's own content version. |
 | Document version | Version metadata belonging to the represented content/artifact. | new | Evidence-freshness identity distinct from OSCAL model release identity. |
 
-## Published Scope
+## Framework-Native Scope
 
 OSCAL provides machine-readable models for security controls and their lifecycle artifacts, including catalogs, profiles, component definitions, system security plans, assessment plans, assessment results, plans of action and milestones, and control mappings. NIST publishes model references and official content in machine-readable formats.
 
