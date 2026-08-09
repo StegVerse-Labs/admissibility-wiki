@@ -1,0 +1,104 @@
+{
+  "artifact_type": "stegverse_worker_task_registry",
+  "schema_version": "1.0",
+  "goal_id": "EXT-FRAMEWORK-SECOND-PAGE-36",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "canonical_handoff": "docs/external-frameworks/EXTERNAL_FRAMEWORK_EVALUATION_WORKERS_MIRROR_HANDOFF.md",
+  "coordinator_issue": 66,
+  "activated_at_utc": "2026-08-09T16:51:00Z",
+  "heartbeat_interval_minutes": 60,
+  "claim_ttl_minutes": 180,
+  "archive_policy": "ARCHIVE_ONLY_IF_36_OF_36_TERMINAL_OR_ALL_INCOMPLETE_TASKS_HAVE_ACTIVE_HEARTBEATING_WORKERS",
+  "allowed_states": [
+    "CLAIMED",
+    "ACTIVE",
+    "BLOCKED",
+    "RETRY",
+    "REVIEW_REQUIRED",
+    "FAILED",
+    "COMPLETE",
+    "SUPERSEDED",
+    "MERGED"
+  ],
+  "workers": [
+    {
+      "worker_id": "external-framework-worker-a",
+      "issue": 62,
+      "role": "identity-and-supply-chain implementation and validation",
+      "state": "ACTIVE",
+      "claim_created_at_utc": "2026-08-09T16:51:00Z",
+      "release_condition": "all assigned frameworks reach a legitimate terminal evidence class and coordinator issue #66 records release",
+      "collision_boundary": "do not modify Worker B/C/D or issue #50 framework files",
+      "assigned_frameworks": [
+        "OAuth 2.0",
+        "OpenID Connect",
+        "W3C Decentralized Identifiers",
+        "W3C Verifiable Credentials",
+        "SPIFFE/SPIRE",
+        "in-toto",
+        "SLSA",
+        "Sigstore",
+        "OpenLineage"
+      ],
+      "next_executable_action": "select the first nonterminal assigned framework from the canonical handoff, replace scaffold/source-only posture with the strongest evidence-backed bounded evaluation, run canonical validators, and persist evidence",
+      "expected_evidence": ["merged commit", "framework-specific canonical validation", "updated issue #62", "coordinator denominator update on terminal release"]
+    },
+    {
+      "worker_id": "external-framework-worker-b",
+      "issue": 63,
+      "role": "policy-and-agent-control implementation and validation",
+      "state": "ACTIVE",
+      "claim_created_at_utc": "2026-08-09T16:51:00Z",
+      "release_condition": "all assigned frameworks reach a legitimate terminal evidence class and coordinator issue #66 records release",
+      "collision_boundary": "do not modify Worker A/C/D or issue #50 framework files",
+      "assigned_frameworks": [
+        "Cedar Policy",
+        "Guardrails AI",
+        "NeMo Guardrails",
+        "Llama Guard",
+        "Model Context Protocol",
+        "Agent2Agent Protocol",
+        "Emergency Stop Convention",
+        "Agent Governance Playbook"
+      ],
+      "next_executable_action": "complete Cedar fresh-runner same-provider replay through the existing canonical workflow, persist the receipt and page/handoff evidence, then advance to the next nonterminal assigned framework",
+      "expected_evidence": ["fresh-runner Cedar replay receipt", "merged page/handoff update", "framework-specific canonical validation", "updated issue #63"]
+    },
+    {
+      "worker_id": "external-framework-worker-c",
+      "issue": 64,
+      "role": "standards-and-risk implementation and validation",
+      "state": "ACTIVE",
+      "claim_created_at_utc": "2026-08-09T16:51:00Z",
+      "release_condition": "Policy Cards and Runtime Governance for AI Agents reach legitimate terminal evidence classes and coordinator issue #66 records release",
+      "collision_boundary": "do not modify Worker A/B/D or issue #50 framework files",
+      "assigned_frameworks": ["Policy Cards", "Runtime Governance for AI Agents"],
+      "next_executable_action": "observe canonical run 31324616908 for Policy Cards; repair any Policy-Cards-specific failure or release Policy Cards if all its gates pass; then advance to Runtime Governance for AI Agents",
+      "expected_evidence": ["Policy Cards canonical validation", "terminal or exact blocked class", "updated issue #64", "coordinator denominator update"]
+    },
+    {
+      "worker_id": "external-framework-worker-d",
+      "issue": 65,
+      "role": "bespoke-and-interoperability implementation and validation",
+      "state": "ACTIVE",
+      "claim_created_at_utc": "2026-08-09T16:51:00Z",
+      "release_condition": "all assigned frameworks reach a legitimate terminal evidence class or fully specified external-evidence-blocked terminal state and coordinator issue #66 records release",
+      "collision_boundary": "do not modify Worker A/B/C or issue #50 framework files",
+      "assigned_frameworks": ["GLM", "EVIDE", "DecisionAssure", "CARE Runtime", "KPT", "AAR", "W3C PROV"],
+      "next_executable_action": "finish all locally establishable source/artifact evidence for the first nonterminal assigned framework, execute installed compatibility tests, and fail closed on absent external packages",
+      "expected_evidence": ["merged evidence page", "canonical validation or exact external blocker", "updated issue #65", "coordinator denominator update"]
+    },
+    {
+      "worker_id": "external-framework-worker-issue50",
+      "issue": 50,
+      "role": "existing exclusive framework repair lane",
+      "state": "ACTIVE",
+      "claim_created_at_utc": "2026-08-09T16:51:00Z",
+      "release_condition": "MindForge, Morrison Runtime, and ASRO each reach their legitimate terminal state and issue #50 records release",
+      "collision_boundary": "exclusive ownership of MindForge, Morrison Runtime, and ASRO; Workers A-D must not take these files",
+      "assigned_frameworks": ["MindForge", "Morrison Runtime", "ASRO"],
+      "next_executable_action": "continue the existing issue #50 repair tracks from current canonical workflow failures and preserve raw runtime/source evidence where available",
+      "expected_evidence": ["framework-specific repair commits", "canonical validation", "updated issue #50", "coordinator denominator update"]
+    }
+  ]
+}
