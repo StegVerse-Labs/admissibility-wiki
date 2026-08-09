@@ -1,147 +1,184 @@
 ---
-title: OSCAL
+title: OSCAL External Framework Crosswalk
 ---
-# OSCAL
 
-## Evidence posture
+# OSCAL External Framework Crosswalk
 
-```text
-evidence_class: SOURCE_REVIEWED
-page_completeness: COMPLETE_WITH_EXTERNAL_GATES
-runtime_observation: none attached
-independent_reproduction: false
-comparative_testing_claim_allowed: false
-execution_authority_claim_allowed: false
-```
-
-## Published scope
-
-OSCAL provides machine-readable models for control catalogs, profiles, implementation descriptions, assessment plans, assessment results, and plans of action and milestones.
-
-Canonical source: https://pages.nist.gov/OSCAL/
-
-Source snapshot posture: the canonical NIST source is recorded, but no pinned OSCAL release, model profile, validation toolchain, sample assessment package, conversion output, or independent reconstruction receipt is attached.
-
-## Native terms
-
-| OSCAL term | Meaning here | StegVerse relationship |
-|---|---|---|
-| Catalog | Structured control definitions. | Policy/control source evidence. |
-| Profile | Selected and tailored controls. | Scoped policy evidence requiring provenance. |
-| Component definition | Reusable implementation description. | Implementation-claim evidence, not operational proof. |
-| System security plan | System control implementation description. | Declared posture evidence. |
-| Assessment results | Findings and observations from assessment. | Review evidence; not execution authority. |
-
-## Relationship to admissibility
+## Status
 
 ```text
-OSCAL asks: How can controls, implementation claims, assessments, and findings be represented consistently?
-StegVerse asks: Does the specific transition have current standing and permission to bind consequence now?
+Relationship type: external framework crosswalk
+Canonical StegVerse formalism source: Admissible-Existence
+External framework role: machine-readable security control and assessment language
+Evaluated OSCAL release: 1.2.2
+Evidence posture: PINNED_PUBLIC_MODEL_RELEASE + PINNED_PUBLIC_SAMPLE + BOUNDED_STEGVERSE_CROSSWALK
+Runtime posture: NOT_AN_AUTHORITY_ENGINE
+Standing: no standing created
+Execution authority: none
 ```
 
-OSCAL artifacts may contribute structured control and assessment evidence to reconstruction. Machine readability improves transport and inspection but does not establish the truth, freshness, legitimacy, or consequence-binding authority of the represented claims.
+## Official Source And Version
 
-## Observation boundary
-
-No public OSCAL interoperability conversion or runtime validation result is claimed.
+This evaluation is pinned to NIST **OSCAL 1.2.2**, the latest released OSCAL model reference identified by the official NIST reference and project release surfaces at the time of this evaluation.
 
 ```text
-shared test vector: missing
-raw output: missing
-timestamp: missing
-runtime configuration: missing
-source version or hash: missing
-replay commands: missing
-declared expected outcome: missing
-independent reproduction: missing
+project: https://pages.nist.gov/OSCAL/
+release reference: https://pages.nist.gov/OSCAL-Reference/models/v1.2.2/
+release tag: https://github.com/usnistgov/OSCAL/releases/tag/v1.2.2
+release: OSCAL 1.2.2
+release date: 2026-04-30
 ```
 
-## StegVerse analysis
-
-| Criterion | Current result |
-|---|---|
-| Identity | OSCAL can name parties and roles but does not prove current identity. |
-| Authority | Control ownership and assessment roles do not create execution authority. |
-| Policy | Strong overlap for structured policy and control references. |
-| Delegation | Responsibility assignments require separate current delegation evidence. |
-| Evidence | OSCAL can carry structured evidence references and findings. |
-| Replayability | Requires pinned OSCAL version, profile, source package, validation tools, and conversion rules. |
-| Reconstructability | Strong potential when source packages, references, and transformations are retained. |
-| Failure behavior | Invalid models, unresolved references, stale assessments, or transformation loss must fail closed. |
-| Interoperability | OSCAL records can enter a Commitment Candidate as structured control and assessment evidence. |
-
-## Commit-time interoperability contract
+A second pinned official source demonstrates actual public content using OSCAL 1.2.2:
 
 ```text
-transition_id
-oscal_model_type
-oscal_document_reference
-oscal_document_hash
-oscal_version
-profile_reference
-control_references
-assessment_result_references
-responsible_party_references
-validation_tool_reference
-transformation_receipt
-policy_reference
-delegation_reference
-evidence_references
-source_timestamp
-validity_window
+repository: usnistgov/oscal-content
+repository tag: v1.5.0
+sample: nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_PRIVACY-baseline_profile.json
+Git blob SHA: 85025c21e392ab4d67ad4b4490bbff6871811945
+document metadata version: 5.2.0
+document oscal-version: 1.2.2
 ```
 
-## Failure classes
+The model-release version, OSCAL content-repository release, and an individual OSCAL document's own version are distinct identities. This evaluation keeps them separate rather than treating any one version string as a substitute for the others.
 
-| Failure class | Applies | Current evidence posture |
-|---|---:|---|
-| Semantic equivalence divergence | Yes | OSCAL control status is not StegVerse admissibility. |
-| Authority drift | Yes | Named roles may no longer hold current authority. |
-| Stale evidence | Yes | Assessments and implementation claims age. |
-| Replay divergence | Yes | Model versions and transformations can change meaning. |
-| Recoverability loss | Yes | Broken references or missing source packages impair reconstruction. |
-| Source-claim mismatch | Yes | Structured claims can diverge from actual implementation. |
-| Evidence class confusion | Yes | Assessment results must not be presented as reproduced runtime behavior. |
+## Evidence Provenance
 
-## Machine-readable companions
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | Official NIST OSCAL project, OSCAL 1.2.2 release reference/tag, and official model documentation. | present_pinned_release | No current source-identity gap for the bounded model crosswalk. |
+| Official Implementation Sources | Official `usnistgov/oscal-content` v1.5.0 profile sample pinned by path and Git blob SHA; document metadata records `oscal-version: 1.2.2`. | present_pinned_public_sample | No claim that this sample represents a deployed system. |
+| Observed Behavior | Direct source inspection confirms a real official OSCAL profile sample with separate document version `5.2.0` and `oscal-version` `1.2.2`. No native authorization runtime behavior is claimed. | source_structure_observed | Native validator/converter execution is not claimed by this transition. |
+| Reproduced Behavior | No independent validator/converter reproduction is claimed. | not_applicable_for_runtime_result | A separate frozen tool-execution packet would be required for an interoperability-runtime claim. |
+| StegVerse Analysis | OSCAL control and assessment artifacts are mapped to Policy Reference, Evidence Posture, Review Posture, Reconstructability, Drift, and Fail-Closed behavior. Six bounded cases exercise freshness, reference, authority, and scope boundaries. | control_assessment_crosswalk | Canonical merged-state validation is the remaining local gate. |
+| Interoperability Assessment | OSCAL artifacts can enter a Commitment Candidate as structured control/assessment evidence, but schema validity and machine readability do not create standing or authority. | bounded_crosswalk_pending_merged_validation | No independent interoperability certification is claimed. |
+| Standing | Publication, schema validity, role declarations, and assessment results create no StegVerse standing. | none_created | Standing and delegation must be independently reconstructed at commit time. |
+
+Evidence classification:
+
+```text
+F1: official NIST OSCAL 1.2.2 project/release/reference sources.
+F2: official usnistgov/oscal-content v1.5.0 sample pinned by repository tag, exact path, and Git blob SHA; metadata exposes document version 5.2.0 and oscal-version 1.2.2.
+S1: StegVerse interpretation of OSCAL artifacts as structured policy/control/assessment evidence rather than authority.
+S2: six-family StegVerse governance mapping for schema/reference validity, evidence freshness, current authority, and semantic scope.
+H1: any future claim of native tool interoperability, implementation effectiveness, certification, standing, or execution authority remains prohibited until separately observed and governed.
+```
+
+## Framework-Term Definitions
+
+| Native OSCAL Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
+|---|---|---|---|
+| OSCAL | NIST Open Security Controls Assessment Language, evaluated here at release 1.2.2. | new | Structured security-control and assessment evidence language; not an admissibility engine. |
+| Catalog | Machine-readable collection of control definitions. | adjacent | May provide Policy Reference evidence. |
+| Profile | Selection, tailoring, and organization of controls from one or more catalogs. | adjacent | May provide scoped policy evidence; profile validity does not establish transition authority. |
+| Component Definition | Reusable description of how a component may implement controls or capabilities. | adjacent | Implementation-claim evidence; declaration is not operational proof. |
+| System Security Plan | System-specific description of control implementation and system context. | adjacent | Evidence Posture and reconstruction input; not current execution authority. |
+| Assessment Plan | Structured plan for evaluating control implementation. | adjacent | Review Posture input; a plan is not an observed result. |
+| Assessment Results | Structured findings and observations produced by an assessment. | adjacent | Evidence Posture and Review Posture; findings do not create delegation. |
+| Plan of Action and Milestones | Structured remediation/planning information for identified findings or risks. | adjacent | May inform corrective-action review and continuity; does not authorize consequence. |
+| Control Mapping | Structured relationship among controls or control concepts. | adjacent | Supports translation/reconstruction; semantic mapping is not equivalence by itself. |
+| `oscal-version` | Metadata indicating the OSCAL model version used to represent the document. | new | Required for interpretation/replay and must not be conflated with the document's own content version. |
+| Document version | Version metadata belonging to the represented content/artifact. | new | Evidence-freshness identity distinct from OSCAL model release identity. |
+
+## What OSCAL Claims And Demonstrates
+
+OSCAL provides machine-readable models for security controls and their lifecycle artifacts, including catalogs, profiles, component definitions, system security plans, assessment plans, assessment results, plans of action and milestones, and control mappings. NIST publishes model references and official content in machine-readable formats.
+
+The pinned public sample demonstrates that a real official profile artifact carries both a content version and an OSCAL model version. This is useful for reconstruction and version discipline. It does **not** establish that any represented control is implemented, effective, current, applicable, or authorized for a specific transition.
+
+## StegVerse Tests Installed
 
 ```text
 manifest: docs/external-frameworks/oscal.json
+benchmark mapping: docs/external-frameworks/benchmark-mappings/oscal.mapping.json
+benchmark fixture: docs/external-frameworks/fixtures/oscal-benchmark-fixture.v0.1.json
+governance fixture: tests/fixtures/external-frameworks/oscal-governance-compatibility-cases.v1.json
 compatibility report: docs/external-frameworks/reports/oscal.compatibility.json
-canonical registry: docs/external-frameworks/index.json
-canonical union: static/external-frameworks/canonical-union-inventory.v1.json
+case families: 6
+canonical workflow: .github/workflows/validate-chain-continuation.yml
 ```
 
-## Maintenance and challenge path
+The six StegVerse case families are bounded mapping tests, not native NIST runtime tests:
 
-Maintenance owner: `StegVerse-Labs/admissibility-wiki`, External Frameworks audit surface.
+| Family | Expected StegVerse Posture |
+|---|---|
+| positive alignment | ALLOW only when the document is valid, references resolve, evidence is fresh, responsible party/delegation/policy are current, scope matches, and recoverability is satisfied. |
+| framework denial / negative result | DENY when the represented control evidence fails the evaluated validation boundary. |
+| authority / delegation failure | DENY even when the OSCAL document is valid if current responsible-party/delegation authority is absent. |
+| stale / missing evidence | FAIL_CLOSED when assessment evidence is stale. |
+| malformed / undefined result | FAIL_CLOSED when the evidence package cannot be validly interpreted or resolved. |
+| semantic divergence guard | DENY when the requested action is outside the scope represented by the OSCAL evidence. |
 
-A challenge must identify `oscal`, the disputed mapping or source claim, the affected OSCAL model or version, supporting evidence, and the requested correction. A structured OSCAL record cannot increase standing merely because it validates against a schema.
-
-## Validation completion criteria
+## Failure Classes
 
 ```text
-pinned OSCAL release and schemas
-public source package and hashes
-validation and transformation commands
-raw validation or conversion outputs
-reference-resolution results
-timestamps and toolchain configuration
-predeclared expected boundaries
-independent reconstruction receipt
-non-claim language preserved
+CONTROL_EVIDENCE_VALIDATION_DENIAL
+AUTHORITY_DRIFT
+STALE_CONTROL_EVIDENCE
+FRAMEWORK_RUNTIME_ERROR
+ACTION_SCOPE_DIVERGENCE
 ```
 
-## Benchmark relevance
+`FRAMEWORK_RUNTIME_ERROR` in the StegVerse fixture is a fail-closed test label for malformed/undefined evaluation input; it is not evidence that NIST OSCAL itself experienced a runtime failure.
 
-`evidence_freshness_boundary`, `reconstruction_boundary`, `authority_boundary`, `interoperability_path`
+## Governance-Chain Placement
 
-## Non-claims
+OSCAL belongs upstream of commit-time admissibility as structured evidence:
 
-OSCAL inclusion is not certification, equivalence, transition admissibility, or execution authority. Schema-valid OSCAL content is not proof that the represented controls are implemented, current, effective, or authorized.
+```text
+pinned OSCAL artifact + model version + document version + references/hashes
+  -> Policy Reference / Evidence Posture / Review Posture
+  -> freshness + reference-resolution + system/action-scope checks
+  -> independent standing / delegation reconstruction
+  -> Commitment Candidate evidence set
+  -> commit-time admissibility decision
+  -> consequence binding only when separately authorized
+```
 
-## Next safe build target
+Machine readability improves transport, inspection, and reconstruction. It does not convert represented claims into truth or convert named responsible parties into current execution authority.
 
-Attach one pinned OSCAL package with source hash, schema version, validation command, raw output, reference-resolution record, expected StegVerse evidence posture, and independent reconstruction receipt.
+## Claims Versus Demonstrated Abilities
+
+| Question | Current Evidence |
+|---|---|
+| Is an official current OSCAL release pinned? | Yes: 1.2.2. |
+| Is a real official OSCAL 1.2.2 content sample pinned? | Yes, by repository tag, path, and Git blob SHA. |
+| Are OSCAL release version and document version kept distinct? | Yes. |
+| Can OSCAL represent controls and assessment lifecycle artifacts? | Yes, per the official model reference. |
+| Has StegVerse installed a six-family governance mapping? | Yes. |
+| Has native OSCAL validator/converter execution been observed in this transition? | No. |
+| Does schema validity prove represented controls are implemented or effective? | No. |
+| Does an OSCAL responsible-party record establish current delegation? | No. |
+| Does OSCAL establish StegVerse standing or execution authority? | No. |
+| Is NIST certification or endorsement claimed? | No. |
+
+## Non-Capabilities And Non-Claims
+
+```text
+OSCAL is not a StegVerse canonical formalism.
+OSCAL does not prove transition admissibility.
+Schema-valid OSCAL content does not prove represented controls are implemented, effective, current, or applicable.
+Responsible-party declarations do not independently establish current delegation.
+Assessment findings are evidence, not consequence-binding authority.
+Machine readability does not create standing.
+The StegVerse six-case fixture is bounded crosswalk evidence, not NIST certification or endorsement.
+Publication creates no standing.
+```
+
+## Replay And Reconstruction Boundary
+
+The current source-level packet is reconstructable from the pinned OSCAL release and pinned public sample identity. A stronger native interoperability claim would require a frozen validation/conversion tool version, exact input package, commands, raw output, timestamps, environment, expected output, and an independent replay or reconstruction receipt.
+
+No such stronger runtime claim is made here.
+
+## Current Completion Gate
+
+The official model release, pinned public sample, version distinctions, terminology reconciliation, six-family mapping, governance-chain placement, failure boundaries, and non-authority language are installed. The remaining local gate is canonical validation of this merged page/manifest/fixture state. If OSCAL-specific manifest, terminology, page, benchmark, report, provenance, and governance-compatibility checks pass, the evaluation may reach `LOCAL_WORK_COMPLETE_BOUNDED_CONTROL_ASSESSMENT_CROSSWALK` without manufacturing native runtime or certification evidence.
+
+## Challenge Path
+
+A challenge must identify the OSCAL source/release, model/document version distinction, affected model or artifact, disputed mapping, failure class, or authority boundary, and provide inspectable evidence for correction.
+
+## Mandatory Footer
 
 This page reflects a bounded admissibility packet. Publication does not create standing. The reflected claim inherits only the standing reconstructable from referenced evidence, authority, and admissibility conditions.

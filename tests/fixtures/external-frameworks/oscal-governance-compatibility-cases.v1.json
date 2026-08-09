@@ -1,8 +1,19 @@
 {
   "schema": "oscal_governance_compatibility_cases.v1",
   "framework_id": "oscal",
-  "framework_version": "source-reviewed-runtime-unpinned",
-  "evidence_posture": "SIMULATED_TRANSLATION_CONTRACT_RUNTIME_PENDING",
+  "framework_version": "OSCAL_1.2.2_SOURCE_BOUNDED",
+  "evidence_posture": "PINNED_SOURCE_AND_PUBLIC_SAMPLE_BOUNDED_CROSSWALK",
+  "simulation_only": true,
+  "source_binding": {
+    "oscal_release": "1.2.2",
+    "official_reference": "https://pages.nist.gov/OSCAL-Reference/models/v1.2.2/",
+    "sample_repository": "usnistgov/oscal-content",
+    "sample_repository_tag": "v1.5.0",
+    "sample_path": "nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_PRIVACY-baseline_profile.json",
+    "sample_git_blob_sha": "85025c21e392ab4d67ad4b4490bbff6871811945",
+    "sample_document_version": "5.2.0",
+    "sample_oscal_version": "1.2.2"
+  },
   "cases": [
     {
       "case_id": "oscal-positive-alignment",
@@ -52,5 +63,12 @@
       "expected_stegverse_result": "DENY",
       "expected_failure_class": "ACTION_SCOPE_DIVERGENCE"
     }
-  ]
+  ],
+  "authority_boundary": {
+    "simulation_is_native_oscal_execution": false,
+    "schema_validity_is_control_effectiveness": false,
+    "responsible_party_record_is_current_delegation": false,
+    "crosswalk_is_certification": false,
+    "crosswalk_is_execution_authority": false
+  }
 }
