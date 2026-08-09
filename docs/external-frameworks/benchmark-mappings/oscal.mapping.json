@@ -14,17 +14,17 @@
     "sample_oscal_version": "1.2.2"
   },
   "benchmark_suite": "static/external-frameworks/runtime-governance-benchmark-suite.v0.1.json",
-  "mapping_state": "mapped_bounded_source_versioned",
+  "mapping_state": "mapped_core",
   "benchmark_dimensions": {
     "execution_boundary": {"state": "not_applicable", "summary": "OSCAL represents controls and assessment artifacts rather than executing governed transitions."},
-    "preparation_boundary": {"state": "context_only", "summary": "OSCAL may document controls around preparation but does not determine or authorize preparation consequence."},
+    "preparation_boundary": {"state": "mapped_partial", "summary": "OSCAL may document controls around preparation but does not determine or authorize preparation consequence."},
     "commitment_boundary": {"state": "adapter_required", "summary": "Versioned control and assessment evidence may inform commitment review through a StegVerse evidence adapter; it is not a commit decision."},
     "semantic_equivalence_boundary": {"state": "applicable", "summary": "Control identifiers, profile resolution, model version, document version, and transformation semantics require explicit interpretation; schema-validity is not semantic equivalence."},
     "unknown_trajectory_boundary": {"state": "insufficient_evidence", "summary": "OSCAL does not directly classify unknown runtime trajectories; missing applicability or unresolved context must fail closed."},
     "authority_boundary": {"state": "applicable", "summary": "Responsible-party, implementation, and assessment records do not grant current execution authority or delegation."},
     "evidence_freshness_boundary": {"state": "applicable", "summary": "Model release, document/content version, assessment time, references, and applicability must remain current for the evaluated transition."},
     "reconstruction_boundary": {"state": "applicable", "summary": "Pinned model/document identities and machine-readable control/assessment records can strengthen reconstruction when references and transformations are retained."},
-    "interoperability_path": {"state": "mapped_bounded", "summary": "OSCAL artifacts enter as structured policy/control/assessment evidence; stronger native validator/converter interoperability requires a separately observed tool-execution packet."}
+    "interoperability_path": {"state": "mapped_partial", "summary": "OSCAL artifacts enter as structured policy/control/assessment evidence; stronger native validator/converter interoperability requires a separately observed tool-execution packet."}
   },
   "non_claims": {
     "is_certification": false,
