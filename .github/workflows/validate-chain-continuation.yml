@@ -6,6 +6,8 @@ on:
       - main
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
 
 permissions:
   contents: read
@@ -19,6 +21,28 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  external-framework-worker-heartbeat:
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate active worker registry and emit heartbeat receipt
+        run: python scripts/check_external_framework_worker_heartbeat.py
+      - name: Upload worker heartbeat receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-framework-worker-heartbeat
+          path: reports/external-frameworks/worker-heartbeat.json
+          if-no-files-found: error
+          retention-days: 30
+
   validate-chain-continuation:
     runs-on: ubuntu-latest
     timeout-minutes: 30
