@@ -31,6 +31,40 @@ evaluated list: 2025 Top 10 Risk & Mitigations for LLMs and Gen AI Apps
 
 The evaluated LLM/GenAI Top 10 remains distinct from the later OWASP Top 10 for Agentic Applications. Project evolution does not silently change the identity of the evidence used by this crosswalk.
 
+## Evidence Provenance
+
+| Evidence Class | Current Evidence | Status | Missing Fields |
+|---|---|---|---|
+| Official Framework Sources | Versioned OWASP Top 10 for LLM Applications 2025 resource plus current OWASP GenAI Security Project context. | present_versioned_public_guidance | No source-identity gap for the bounded 2025-list crosswalk. |
+| Official Implementation Sources | OWASP Top 10 is security guidance rather than an authorization runtime implementation. | not_applicable_external_guidance | A target application's implementation evidence must be evaluated separately. |
+| Observed Behavior | No native OWASP runtime authorization or consequence-binding behavior is claimed. | not_applicable_for_runtime_result | Runtime behavior is not a property of the guidance document itself. |
+| Reproduced Behavior | No independent runtime reproduction is claimed. | not_applicable_for_runtime_result | Target-specific security testing would be a separate evidence packet. |
+| StegVerse Analysis | Risk categories and mitigations are mapped to Evidence Posture, Review Posture, Governance Boundary, Drift, Policy Reference, Receipt-Bound Execution, and Fail-Closed behavior. | risk_category_crosswalk | Canonical merged-state validation remains the local gate. |
+| Interoperability Assessment | Six StegVerse case families test whether risk evidence can influence review without becoming identity, delegation, standing, or authority. | bounded_crosswalk_pending_merged_validation | No OWASP certification or endorsement is claimed. |
+| Standing | Security guidance and this page create no standing. | none_created | Standing must be independently reconstructed at the governed transition. |
+
+Evidence classification:
+
+```text
+F1: official OWASP Top 10 for LLM Applications 2025 resource and current OWASP GenAI Security Project context.
+S1: StegVerse interpretation of OWASP LLM/GenAI risk categories and mitigations as security-review evidence rather than authority.
+S2: six-family StegVerse mapping to Evidence Posture, Review Posture, Governance Boundary, Drift, Policy Reference, Receipt-Bound Execution, and Fail-Closed behavior.
+H1: any claim that OWASP guidance itself proves target security, grants standing, establishes delegation, certifies StegVerse, or authorizes consequence remains prohibited unless separately evidenced.
+```
+
+## Framework-Term Definitions
+
+| Native OWASP Term | Definition For This Wiki | Reconciliation Class | Admissibility Relationship |
+|---|---|---|---|
+| OWASP Top 10 for LLM Applications | Versioned external LLM/GenAI application risk and vulnerability guidance; this evaluation is pinned to the 2025 list. | new | Preserved as framework-native security terminology; not an admissibility engine. |
+| Top 10 risk category | Published class of LLM/GenAI application security risk. | adjacent | Supports Review Posture and Evidence Posture. |
+| Prompt injection | Attack class in which instructions or context are manipulated to influence model/application behavior. | adjacent | Related to Governance Boundary, Drift, scope integrity, and Fail-Closed behavior. |
+| Insecure output handling | Risk arising when model output is insufficiently validated or constrained before downstream use. | adjacent | Related to Commit-Time Validity and Receipt-Bound Execution. |
+| Mitigation guidance | Recommended practice or control intended to reduce an identified risk. | adjacent | May inform Policy Reference and Boundary Conditions; recommendation is not proof of implementation or effectiveness. |
+| LLM application security review | Review of security risks and mitigations around an LLM/GenAI application. | adjacent | Supports Review Posture and Reconstructability; review does not become authority. |
+| OWASP GenAI Security Project | Current broader OWASP project context containing multiple GenAI security resources. | new | Context for source lineage; broader project scope must not silently alter the evaluated resource identity. |
+| Agentic Applications Top 10 | Separate OWASP resource addressing agentic-system risks. | distinct | Must not be conflated with the evaluated 2025 LLM/GenAI Top 10 evidence packet. |
+
 ## What The Framework Claims And Demonstrates
 
 The 2025 OWASP Top 10 provides security-risk categories, vulnerability descriptions, and mitigations for LLM and generative-AI applications. The broader GenAI Security Project publishes additional security resources, but this evaluation does not treat those resources as one undifferentiated authority source.
@@ -106,7 +140,7 @@ Publication creates no standing.
 
 ## Current Completion Gate
 
-The versioned source identity, current project context, six-family mapping contract, governance-chain placement, and non-authority boundaries are installed. The remaining local gate is canonical validation of the merged page/manifest state. If the OWASP-specific manifest, terminology, page, provenance, benchmark, and governance-compatibility checks pass, this evaluation can reach `LOCAL_WORK_COMPLETE_BOUNDED_SECURITY_CROSSWALK` without inventing runtime or certification evidence.
+The versioned source identity, current project context, six-family mapping contract, governance-chain placement, terminology reconciliation, evidence-provenance contract, and non-authority boundaries are installed. The remaining local gate is canonical validation of the merged page/manifest state. If the OWASP-specific manifest, terminology, page, provenance, benchmark, and governance-compatibility checks pass, this evaluation can reach `LOCAL_WORK_COMPLETE_BOUNDED_SECURITY_CROSSWALK` without inventing runtime or certification evidence.
 
 ## Challenge Path
 
