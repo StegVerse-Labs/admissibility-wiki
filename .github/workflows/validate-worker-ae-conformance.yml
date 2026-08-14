@@ -1,0 +1,51 @@
+name: Validate Worker AE Conformance
+
+on:
+  push:
+    paths:
+      - 'docs/external-frameworks/worker-task-registry.json'
+      - 'docs/external-frameworks/worker-handoff.ae-conformance.json'
+      - '.github/workflows/validate-worker-ae-conformance.yml'
+  pull_request:
+    paths:
+      - 'docs/external-frameworks/worker-task-registry.json'
+      - 'docs/external-frameworks/worker-handoff.ae-conformance.json'
+      - '.github/workflows/validate-worker-ae-conformance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve public source ref
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "SOURCE_REF=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_ENV"
+          else
+            echo "SOURCE_REF=${{ github.sha }}" >> "$GITHUB_ENV"
+          fi
+      - name: Fetch registry and HANDOFF conformance manifest anonymously
+        shell: bash
+        run: |
+          curl -fsSL "https://raw.githubusercontent.com/StegVerse-Labs/admissibility-wiki/${SOURCE_REF}/docs/external-frameworks/worker-task-registry.json" -o worker-task-registry.json
+          curl -fsSL "https://raw.githubusercontent.com/StegVerse-Labs/admissibility-wiki/${SOURCE_REF}/docs/external-frameworks/worker-handoff.ae-conformance.json" -o worker-handoff.json
+      - name: Fetch canonical StegCore AE verifier anonymously
+        shell: bash
+        run: |
+          curl -fsSL "https://raw.githubusercontent.com/StegVerse-Labs/StegCore/main/scripts/verify_admissible_existence_task_conformance.py" -o verify_ae.py
+          mkdir -p management
+          curl -fsSL "https://raw.githubusercontent.com/StegVerse-Labs/StegCore/main/management/admissible-existence-task-conformance-policy.json" -o management/admissible-existence-task-conformance-policy.json
+      - name: Assert no non-TV/TVC runtime credential path
+        shell: bash
+        run: |
+          test -z "${GH_TOKEN:-}"
+          test -z "${GITHUB_TOKEN_EXPORTED_FOR_RUNTIME:-}"
+          ! grep -q "secrets\." .github/workflows/validate-worker-ae-conformance.yml 2>/dev/null || exit 1
+      - name: Verify HANDOFF and Worker Task Registry
+        run: |
+          python verify_ae.py --handoff worker-handoff.json --registry worker-task-registry.json --receipt worker-ae-conformance.receipt.json
+          python -m json.tool worker-ae-conformance.receipt.json
