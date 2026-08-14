@@ -46,7 +46,7 @@ jobs:
           test -z "${GH_TOKEN:-}"
           test -z "${GITHUB_TOKEN_EXPORTED_FOR_RUNTIME:-}"
           ! grep -q "secrets\." workflow-under-test.yml
-          ! grep -Eq "GH_TOKEN:|GITHUB_TOKEN:" workflow-under-test.yml
+          ! grep -Eq '^[[:space:]]*(GH_TOKEN|GITHUB_TOKEN):' workflow-under-test.yml
       - name: Verify HANDOFF and Worker Task Registry
         run: |
           python verify_ae.py --handoff worker-handoff.json --registry worker-task-registry.json --receipt worker-ae-conformance.receipt.json
