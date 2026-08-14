@@ -28,11 +28,12 @@ jobs:
           else
             echo "SOURCE_REF=${{ github.sha }}" >> "$GITHUB_ENV"
           fi
-      - name: Fetch registry and HANDOFF conformance manifest anonymously
+      - name: Fetch governed surfaces anonymously
         shell: bash
         run: |
           curl -fsSL "https://raw.githubusercontent.com/StegVerse-Labs/admissibility-wiki/${SOURCE_REF}/docs/external-frameworks/worker-task-registry.json" -o worker-task-registry.json
           curl -fsSL "https://raw.githubusercontent.com/StegVerse-Labs/admissibility-wiki/${SOURCE_REF}/docs/external-frameworks/worker-handoff.ae-conformance.json" -o worker-handoff.json
+          curl -fsSL "https://raw.githubusercontent.com/StegVerse-Labs/admissibility-wiki/${SOURCE_REF}/.github/workflows/validate-worker-ae-conformance.yml" -o workflow-under-test.yml
       - name: Fetch canonical StegCore AE verifier anonymously
         shell: bash
         run: |
@@ -44,7 +45,8 @@ jobs:
         run: |
           test -z "${GH_TOKEN:-}"
           test -z "${GITHUB_TOKEN_EXPORTED_FOR_RUNTIME:-}"
-          ! grep -q "secrets\." .github/workflows/validate-worker-ae-conformance.yml 2>/dev/null || exit 1
+          ! grep -q "secrets\." workflow-under-test.yml
+          ! grep -Eq "GH_TOKEN:|GITHUB_TOKEN:" workflow-under-test.yml
       - name: Verify HANDOFF and Worker Task Registry
         run: |
           python verify_ae.py --handoff worker-handoff.json --registry worker-task-registry.json --receipt worker-ae-conformance.receipt.json
