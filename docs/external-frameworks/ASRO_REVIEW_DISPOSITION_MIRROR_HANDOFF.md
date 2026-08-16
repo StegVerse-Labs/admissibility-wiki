@@ -2,7 +2,7 @@
 
 ## Scope and authority
 
-This is the goal-specific continuation record for the 2026-08-16 ASRO review disposition and the bounded provenance-correction continuation in `StegVerse-Labs/admissibility-wiki`.
+This is the goal-specific continuation record for the 2026-08-16 ASRO review disposition and bounded provenance-correction continuation in `StegVerse-Labs/admissibility-wiki`.
 
 Read `ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` and `data/admissibility-wiki-orchestration-state.json` first. This file owns only the ASRO review-disposition subgoal under the existing exclusive issue #50 lane. It does not supersede repository-wide ownership, grant release authority, or authorize reciprocal ASRO-native execution.
 
@@ -12,7 +12,7 @@ repository: StegVerse-Labs/admissibility-wiki
 branch: main
 coordinator: issue #50
 worker_owner: external-framework-worker-issue50
-state: ACTIVE_VALIDATION_PENDING
+state: COMPLETE_ASRO_VALIDATED_REPOSITORY_FAIL_CLOSED_INDEPENDENT
 session_dependency: false
 collision_boundary: ASRO remains inside the issue #50 exclusive framework repair lane
 ```
@@ -25,7 +25,7 @@ The 2026-08-16 response from James Aull / ASRO is recorded additively as bounded
 provenance_correction: ACCEPTED_FOR_HISTORICAL_CLASSIFICATION
 existing_stegverse_analysis: ACKNOWLEDGED_AS_UNILATERAL
 contributor_protocol: DIRECTIONALLY_ACCEPTABLE_NOT_BILATERALLY_AUTHORIZED
-companion_declaration: ELEVEN_AREA_MAPPING_REQUIRED_AND_NOW_INSTALLED
+companion_declaration: ELEVEN_AREA_MAPPING_INSTALLED_AND_VALIDATED
 historical_public_source_pin: PENDING_EXACT_2026_07_23_EVIDENCE
 independent_reviewer_issuer: UNRESOLVED
 external_asro_native_execution: NOT_TESTED
@@ -53,7 +53,7 @@ static/data/framework-evaluations/asro/correspondence-manifest.json
 
 static/data/framework-evaluations/test-cases/asro-declared-reference-membership-v1.json
   revised declaration hash binding
-  corrected run remains required
+  corrected run remains required before any new current-execution claim
 
 docs/external-frameworks/asro-response-disposition-2026-08-16.md
   additive human-readable disposition record
@@ -87,39 +87,37 @@ dc3dfc0ebae0587e0ff1c5d3e91c77a83bd4051c
   validate canonical heartbeat-cycle worker coordination instead of wall-clock TTLs
 ```
 
-## Hosted evidence and current validation target
+## Hosted evidence and terminal ASRO observation
 
-Canonical run `31932431091` against `ca5cbdae062fb5efef055d86b241ac581ba47b91` completed fail-closed. It directly demonstrated:
+Canonical run `31932431091` against `ca5cbdae062fb5efef055d86b241ac581ba47b91` originally exposed the bounded-comparison and receipt validator drifts. Those were repaired in `fe2221...` and `97b2...`.
+
+The newer canonical run `31932854800` at head `5d451e5a75227a3c9a6a53553d271db2c9281abc` reached a terminal fail-closed repository result. Direct log inspection proves the ASRO-specific chain is now green:
 
 ```text
 ASRO PROVENANCE CORRECTION: PASS
 ASRO COMPARISON GOVERNANCE: PASS
-ASRO BOUNDED COMPARISON: FAIL due validator/schema drift
-ASRO BOUNDED COMPARISON RECEIPT: FAIL due stale historical/current receipt interpretation
-ASRO reciprocal publication verification: PASS
-ASRO Site projection bundle: PASS
-ASRO governed public review docket: PASS
-build-pages: SUCCESS
-deploy-pages: SUCCESS
-verify-public-pages: SUCCESS
+ASRO BOUNDED COMPARISON: PASS
+ASRO BOUNDED COMPARISON RECEIPT: PASS
+ASRO COMMITMENT CANDIDATE: PASS
+ASRO RECIPROCAL PUBLICATION VERIFICATION: PASS
+ASRO SITE PROJECTION BUNDLE: PASS
+ASRO GOVERNED REVIEW DOCKET: PASS
 ```
 
-The two ASRO validator drifts identified by that run were repaired in `fe2221...` and `97b2...`.
-
-Current canonical observation target:
+The same run failed repository-wide for independently owned conditions, including the event-driven canonical workflow contract, Morrison Runtime promotion evidence, AGCP handoff boundary, generated external-framework surfaces, governed relationship custody, reciprocal evaluation, micro-timescale admissibility, TA-14, ArquivoNulo, MindForge, observer, GSDP, and other automation-handoff conditions. Therefore:
 
 ```text
-run_id: 31932797126
-run_number: 4204
-head_sha: dc3dfc0ebae0587e0ff1c5d3e91c77a83bd4051c
-state_at_last_observation: PENDING
+ASRO_SUBGOAL_VALIDATION: PASS
+REPOSITORY_CANONICAL_VALIDATION: FAIL_CLOSED
+ASRO_RELEASE_AUTHORITY: NONE
+REPOSITORY_RELEASE_AUTHORITY: NONE
 ```
 
-Do not infer PASS while this run remains pending. Intermediate runs may be cancelled by canonical concurrency when a newer main commit supersedes them.
+The repository failure must not be attributed to ASRO after run `31932854800`; conversely, an ASRO-specific PASS must not mask the independent repository failures.
 
 ## Worker ownership
 
-The durable worker registry assigns ASRO to:
+The durable worker registry assigns the broader external-framework lane to:
 
 ```text
 worker_id: external-framework-worker-issue50
@@ -128,26 +126,22 @@ state: ACTIVE
 assigned_frameworks: MindForge, Morrison Runtime, ASRO
 ```
 
-Repository-local claims are collision-control ownership records until the canonical StegVerse heartbeat registry admits and fences a corresponding lease. The hosted workflow is not the worker lease clock and must not manufacture wall-clock expiration authority.
+The ASRO validation-observation task is complete. Issue #50 remains active only for independently evidenced continuation within its broader framework-repair scope. Repository-local claims remain collision-control records until the canonical StegVerse heartbeat registry admits and fences a corresponding lease. Hosted workflow execution is validation/publication evidence, not production execution authority.
 
-## Remaining ASRO work
+## Remaining ASRO evidence boundaries
 
-The remaining executable ASRO lane is:
+No ASRO-specific code repair is justified by run `31932854800`. The remaining ASRO boundaries are evidence/authority boundaries, not unassigned implementation tasks:
 
 ```text
-1. Observe the newest canonical run for the repaired validators.
-2. Repair only any remaining ASRO-specific failures supported by direct run evidence.
-3. Recompute/finalize the corrected bounded package and corrected StegVerse run only when the package inputs satisfy the existing provenance rules.
-4. Preserve the historical 2026-07-23 public-source identity as unresolved unless actual evidence is recovered.
-5. Keep reviewer/issuer unresolved until an accountable designation is evidenced.
-6. Keep external ASRO-native execution NOT_TESTED.
-7. Keep reciprocal execution DEFERRED until a genuine ASRO-native object and mutually approved fixture, manifest, transport, execution scope, and return package exist.
-8. Do not issue or imply a bilateral Seam Comparison Record without exact-language authorization from both owners.
+historical_2026_07_23_source_identity: UNRESOLVED_UNTIL_ACTUAL_EVIDENCE
+independent_reviewer_issuer: UNRESOLVED_UNTIL_ACCOUNTABLE_DESIGNATION
+external_asro_native_execution: NOT_TESTED
+reciprocal_execution: DEFERRED_UNTIL_GENUINE_ASRO_NATIVE_OBJECT_AND_MUTUALLY_APPROVED_CONTROLS
+bilateral_seam_comparison_record: NOT_ISSUED_OR_AUTHORIZED
+corrected_current_execution_claim: MUST_REMAIN_FAIL_CLOSED_UNTIL_A_GENUINE_CORRECTED_RUN_EXISTS
 ```
 
-## Independent repository failures
-
-Repository-wide canonical validation currently contains failures outside this ASRO lane. They include Morrison Runtime, AGCP, governed relationship custody, reciprocal evaluation, micro-timescale admissibility, TA-14, ArquivoNulo, MindForge, observer, GSDP, generated-framework surfaces, and orchestration drift. Those failures must remain independently owned and must not be hidden by an ASRO-specific PASS.
+These boundaries are intentionally non-activatable by repository inference. A later source, synthetic fixture, unilateral publication, or StegVerse-only test cannot satisfy them.
 
 ## Release and propagation boundary
 
@@ -160,9 +154,9 @@ external correspondence != bilateral publication authority
 workflow success != authority transfer
 ```
 
-No tag or release is authorized while repository-wide canonical validation remains fail-closed.
+No tag or repository release is authorized while repository-wide canonical validation remains fail-closed.
 
-Downstream destinations to inspect only after release conditions are genuinely met:
+Downstream destinations are release-governed and must not be marked propagated from the ASRO subgoal alone:
 
 ```text
 StegVerse-Labs/Site
@@ -176,10 +170,13 @@ StegVerse-002/stegguardian-wiki
 ## Archive posture
 
 ```text
-archive_state: NOT_READY_VALIDATION_PENDING
-chat_only_requirements: 0 after this handoff is committed
-executable_continuation_owner: external-framework-worker-issue50 / issue #50 / canonical workflow
-blocking_observation: canonical run 31932797126 has not yet reached a terminal observed state
+archive_state: READY_ASRO_SESSION_OBSERVATION_COMPLETE
+chat_only_requirements: 0
+asro_specific_executable_repairs_remaining: 0
+broader_repository_continuation_owner: external-framework-worker-issue50 / issue #50 / canonical workflow
+terminal_observation: run 31932854800
+terminal_asro_result: PASS
+terminal_repository_result: FAIL_CLOSED_INDEPENDENT
 ```
 
-The conversation is not required to recover the ASRO goal state, but this session should not be declared complete until the newest canonical validation is observed and the resulting ASRO-specific state is durably recorded.
+The ASRO goal no longer requires a chat session for implementation, validation, integration, propagation, reconciliation, or observation. Broader issue #50 failures remain durably owned by the canonical workstream and must be repaired only from direct evidence without reopening completed ASRO controls.
