@@ -1,10 +1,80 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "artifact_type": "stegverse_companion_layer_declaration",
   "declaration_id": "sv-cl-asro-2026-07-23-001",
   "framework_id": "stegverse",
   "terminology_owner": "StegVerse",
   "canonical_status": "CONTROLLING_SOURCE_DECLARATION",
+  "declaration_revision": 2,
+  "updated_at": "2026-08-16T01:35:00-05:00",
+  "review_disposition": {
+    "provenance_correction": "ACCEPTED_FOR_HISTORICAL_CLASSIFICATION",
+    "contributor_protocol": "DIRECTIONALLY_ACCEPTABLE_NOT_BILATERALLY_AUTHORIZED",
+    "external_asro_native_execution": "NOT_TESTED",
+    "reciprocal_execution": "DEFERRED",
+    "independent_reviewer_issuer": "UNRESOLVED"
+  },
+  "intake_areas": {
+    "artifact_identity": {
+      "value": "StegVerse Companion Layer declaration and its versioned repository artifacts.",
+      "state": "DECLARED"
+    },
+    "declaring_owner": {
+      "value": "StegVerse Labs, represented for this comparison by Rigel Randolph as Founder and Architect.",
+      "state": "DECLARED"
+    },
+    "claimed_function": {
+      "value": "Express StegVerse governance and admissibility concepts in StegVerse terminology for bounded comparison.",
+      "state": "DECLARED"
+    },
+    "explicit_non_claims": {
+      "value": "No ASRO-native execution, partnership, integration, endorsement, certification, completeness, joint issuance, or authority inheritance.",
+      "state": "DECLARED"
+    },
+    "timing_position": {
+      "value": "StegVerse evaluates whether a proposed transition may bind consequence at commit time; ASRO evidence remains an input rather than inherited authority.",
+      "state": "DECLARED"
+    },
+    "authority_boundary": {
+      "value": "StegVerse issues only its own transition receipts and admissibility results. Cross-layer correspondence is non-authorizing.",
+      "state": "DECLARED"
+    },
+    "evidence_status": {
+      "value": "Public ASRO sources and bounded correspondence materials are evidence with provenance-specific standing. Private or unreleased ASRO materials are excluded unless separately and mutually authorized.",
+      "state": "DECLARED"
+    },
+    "composition_constraints": {
+      "value": "Source declarations remain controlling; reviewer-side profiles are derivative; disagreement and unresolved fields remain visible.",
+      "state": "DECLARED"
+    },
+    "known_divergence_risks": {
+      "value": "Evidence may be mistaken for authority; correspondence may be mistaken for truth or validity; historical and execution targets may be conflated; source and derivative artifacts may be conflated.",
+      "state": "DECLARED"
+    },
+    "declaration_validity_and_staleness": {
+      "value": "Valid only for the identified repository state and while owner, scope, terminology, authority, and source evidence remain accurate; stale after an unrecorded material change.",
+      "state": "DECLARED"
+    },
+    "reviewer_use_limitations": {
+      "value": "A reviewer may compare declared surfaces but may not rewrite source meaning, infer authority, designate an issuer, or publish a bilateral record without exact-language approval from both owners.",
+      "state": "DECLARED"
+    }
+  },
+  "version_binding": {
+    "version": "1.1.0",
+    "release_state": "comparison-specific public declaration",
+    "source_path": "static/data/framework-evaluations/asro/stegverse-companion-layer-declaration.json",
+    "repository": "https://github.com/StegVerse-Labs/admissibility-wiki",
+    "commit_binding": "resolved by repository commit history",
+    "integrity_reference": "sha256 field computed over canonical JSON excluding the sha256 field",
+    "validity_condition": "valid only while declared owner, role, scope, repository, and authority boundaries remain accurate",
+    "update_or_supersession": "additive Git commits with visible correction or supersession notes"
+  },
+  "historical_source_binding": {
+    "original_2026_07_23_public_source_pin": "PENDING",
+    "later_public_source_may_substitute_backward": false,
+    "current_public_source_observation": "static/data/framework-evaluations/asro/public-source-observation-2026-07-26.json"
+  },
   "scope": [
     "transition-state admissibility",
     "commit-time authority reconstruction",
@@ -32,9 +102,10 @@
     "external_review": false,
     "certification": false,
     "execution": false,
-    "custody": false
+    "custody": false,
+    "bilateral_authorization": false
   },
   "effective_time": "2026-07-23T00:00:00Z",
   "supersedes": null,
-  "sha256": "b34e07b12e767c3b0132f03b235c7cb6f62898c5a856167c3366445e8c154947"
+  "sha256": "59ee43d079bdfcea04b8da78e9c395511e06d746ef85079de0e7e596e643fd7b"
 }
