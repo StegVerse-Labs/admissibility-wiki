@@ -11,7 +11,9 @@
     {
       "artifact_id": "sv-cl-asro-2026-07-23-001",
       "path": "../asro/stegverse-companion-layer-declaration.json",
-      "sha256": "b34e07b12e767c3b0132f03b235c7cb6f62898c5a856167c3366445e8c154947"
+      "sha256": "59ee43d079bdfcea04b8da78e9c395511e06d746ef85079de0e7e596e643fd7b",
+      "declaration_revision": 2,
+      "eleven_area_mapping": "COMPLETE"
     },
     {
       "artifact_id": "asro-bounded-representative-metadata-derivative-2026-07-23-001",
@@ -39,6 +41,11 @@
     "source_input_sha256": null,
     "correspondence_status": "UNRESOLVED"
   },
+  "historical_public_source": {
+    "original_2026_07_23_pin": "PENDING",
+    "later_source_substitution_allowed": false,
+    "current_observation": "../asro/public-source-observation-2026-07-26.json"
+  },
   "predicates": [
     "derivative_collection_membership_established",
     "derivative_object_identity_matches",
@@ -46,15 +53,17 @@
     "derivative_hash_matches",
     "applicable_time_matches",
     "source_declaration_controlling",
+    "companion_declaration_eleven_area_mapping_complete",
     "reviewer_profile_derivative",
     "reviewer_issuer_unresolved",
     "source_example_not_falsely_hashed",
+    "historical_source_not_retroactively_substituted",
     "no_authority_inheritance"
   ],
   "expected_outcomes": {
     "PASS": "All public derivative bindings and non-inheritance predicates hold after package integrity is recomputed.",
     "FAIL_CLOSED": "Any derivative identity, version, hash, time, collection, issuer, derivation, provenance, or authority boundary fails.",
-    "UNRESOLVED": "Original source-example correspondence remains unresolved without a mutually approved source-input reference or hash."
+    "UNRESOLVED": "Original source-example correspondence and the exact historical 2026-07-23 public-source pin remain unresolved without independently evidenced source binding."
   },
   "authority": {
     "comparison": false,
