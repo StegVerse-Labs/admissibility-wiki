@@ -1,0 +1,56 @@
+{
+  "artifact_type": "stegcore.admissible_existence_handoff_conformance_manifest",
+  "schema_version": "1.0",
+  "policy_id": "ADMISSIBLE-EXISTENCE-TASK-CONFORMANCE-003",
+  "canonical_handoff": "docs/external-frameworks/EXTERNAL_FRAMEWORK_EVALUATION_WORKERS_MIRROR_HANDOFF.md",
+  "tasks": [
+    {
+      "goal_id": "EXT-FRAMEWORK-REGISTRY-AE-MIGRATION-20260814",
+      "task_horizon": "recently_completed",
+      "operational_state": "COMPLETE",
+      "ae_phase": "ADMISSIBLE",
+      "owner": "StegVerse-Labs/admissibility-wiki",
+      "collision_boundary": "worker task registry and AE conformance binding only",
+      "next_executable_action": "preserve schema-v2 registry semantics and validate every subsequent task-state change",
+      "evidence_refs": ["docs/external-frameworks/worker-task-registry.json", "StegVerse-Labs/StegCore#115"],
+      "standing_evidence_refs": ["docs/external-frameworks/worker-task-registry.json"],
+      "admissibility_evidence_refs": ["StegVerse-Labs/StegCore/scripts/verify_admissible_existence_task_conformance.py"],
+      "activation_proof_ref": null,
+      "blockers": [],
+      "continuation_owner": "StegVerse-Labs/admissibility-wiki#66",
+      "credential_authority": "TV/TVC",
+      "github_token_runtime_authority": false
+    },
+    {
+      "goal_id": "EXT-FRAMEWORK-SECOND-PAGE-36",
+      "task_horizon": "current",
+      "operational_state": "ACTIVE",
+      "ae_phase": "STANDING",
+      "owner": "StegVerse-Labs/admissibility-wiki#66",
+      "collision_boundary": "Workers A-D and issue #50 retain their existing exclusive framework lanes",
+      "next_executable_action": "continue nonterminal framework evaluation through the registry workers and advance AE phase only when evidence supports it",
+      "evidence_refs": ["docs/external-frameworks/worker-task-registry.json", "docs/external-frameworks/EXTERNAL_FRAMEWORK_EVALUATION_WORKERS_MIRROR_HANDOFF.md"],
+      "standing_evidence_refs": ["docs/external-frameworks/worker-task-registry.json", "issue #66"],
+      "activation_proof_ref": null,
+      "blockers": ["framework work remains nonterminal"],
+      "continuation_owner": "StegVerse-Labs/admissibility-wiki#66",
+      "credential_authority": "TV/TVC",
+      "github_token_runtime_authority": false
+    },
+    {
+      "goal_id": "EXT-FRAMEWORK-AE-TERMINAL-RECONCILIATION",
+      "task_horizon": "future",
+      "operational_state": "CLAIMED",
+      "ae_phase": "DECLARED",
+      "owner": "StegVerse-Labs/admissibility-wiki#66",
+      "collision_boundary": "terminal reconciliation and archival evidence only after worker lanes finish or transfer",
+      "next_executable_action": "when workers reach terminal states, reconcile HANDOFF and Worker Task Registry through the canonical AE verifier before archival",
+      "evidence_refs": ["StegVerse-Labs/StegCore/management/admissible-existence-task-conformance-policy.json"],
+      "activation_proof_ref": null,
+      "blockers": ["depends on completion or durable transfer of current worker lanes"],
+      "continuation_owner": "StegVerse-Labs/admissibility-wiki#66",
+      "credential_authority": "TV/TVC",
+      "github_token_runtime_authority": false
+    }
+  ]
+}
