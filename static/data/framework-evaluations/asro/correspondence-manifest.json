@@ -31,8 +31,10 @@
   },
   "source_declaration": {
     "declaration_id": "sv-cl-asro-2026-07-23-001",
-    "sha256": "b34e07b12e767c3b0132f03b235c7cb6f62898c5a856167c3366445e8c154947",
-    "canonical_status": "CONTROLLING_SOURCE_DECLARATION"
+    "sha256": "59ee43d079bdfcea04b8da78e9c395511e06d746ef85079de0e7e596e643fd7b",
+    "canonical_status": "CONTROLLING_SOURCE_DECLARATION",
+    "revision": 2,
+    "eleven_area_mapping": "COMPLETE"
   },
   "reviewer_profile": {
     "review_profile_id": "review-profile-asro-stegverse-2026-07-23-001",
