@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "mindforge_provenance_date_correction",
+  "recorded_at_utc": "2026-08-18T23:02:00Z",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "state": "UNVERIFIED_DATE_ASSERTION_RETRACTED",
+  "reason": "The public record asserted a June 24-26, 2026 correspondence range that could not be directly verified from the seven bound source-capture hashes after bounded evidence recovery attempts.",
+  "previously_recorded_unverified_range": {
+    "start": "2026-06-24",
+    "end": "2026-06-26"
+  },
+  "current_date_claim": null,
+  "source_capture_hash_count": 7,
+  "bounded_library_candidate_hash_checks": 15,
+  "exact_source_capture_hash_matches": 0,
+  "secondary_evidence": {
+    "private_draft_date": "2026-07-26",
+    "semantic_boundary_supported": true,
+    "original_correspondence_dates_supported": false
+  },
+  "installed_commits": [
+    "fd0aa0990a4b2de15a10f4202e4dcd8e6b7ae1f4",
+    "eeed56a6677fb51677d8f8b32d92b15092818068",
+    "46a2fe5e9d0fccfee85712cd14761fd9d19211d4"
+  ],
+  "mutated_surfaces": [
+    "docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.json",
+    "docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.md",
+    "docs/external-frameworks/mindforge.md"
+  ],
+  "preserved_non_claims": [
+    "no replacement date range asserted",
+    "no source capture absence claim",
+    "no publication authority expansion",
+    "no certification",
+    "no execution authority",
+    "no release authority",
+    "no activation claim"
+  ],
+  "required_next_transition": "recover_exact_bound_source_capture_and_verify_dates",
+  "validation_state": "CURRENT_HEAD_CANONICAL_WORKFLOW_UNOBSERVED"
+}
