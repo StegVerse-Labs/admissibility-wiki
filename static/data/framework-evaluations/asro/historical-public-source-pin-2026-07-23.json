@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "historical_public_source_pin",
+  "record_id": "asro-historical-public-source-pin-2026-07-23",
+  "target_observation_date": "2026-07-23",
+  "framework": "ASRO",
+  "source_scope": "public sources actually referenced by the StegVerse historical comparison",
+  "public_site": {
+    "url": "https://aisystemsreliability.org/",
+    "historical_content_hash": null,
+    "status": "URL_HISTORICALLY_REFERENCED_CONTENT_NOT_INDEPENDENTLY_PINNED"
+  },
+  "public_repository": {
+    "url": "https://github.com/magicianzcardstockllc/asro",
+    "commit_sha_at_target_date": "46f8fd2f8f35668b2b27fcbdb4e24e06b58513a2",
+    "commit_date": "2026-06-15T00:31:34Z",
+    "commit_status": "CONFIRMED_BY_PUBLIC_COMMIT_HISTORY_NO_LATER_COMMIT_BEFORE_TARGET_DATE",
+    "declared_version_at_commit": "ASRO v1.0 Release Candidate"
+  },
+  "source_path": {
+    "value": null,
+    "status": "UNRESOLVED_FROM_HISTORICAL_RECORD",
+    "candidate_reference": "README.md",
+    "candidate_reference_git_blob_sha": "164920eb86bb1ad27c869142f03db149342d5984",
+    "candidate_reference_status": "PRESENT_AT_PINNED_COMMIT_NOT_RETROACTIVELY_ASSERTED_AS_THE_EXACT_PATH_OBSERVED"
+  },
+  "stegverse_historical_evidence": {
+    "bounded_object_commit": "be9b58a33031bd3e0e01a132bacf819ce4c9e1f8",
+    "bounded_object_commit_time": "2026-07-23T06:20:39Z",
+    "comparison_page_commit": "261b9ec2bb99738c3677d70722ee8eb7db36f019",
+    "comparison_page_source_section": "Public source and public repository URLs were recorded; the page itself explicitly listed the versioned source snapshot, source hash, specific release, commit hash, and artifact package snapshot as missing fields."
+  },
+  "historical_identity_status": "REPOSITORY_COMMIT_PINNED_EXACT_SOURCE_PATH_UNRESOLVED",
+  "later_source_may_substitute_backward": false,
+  "later_implementation_may_substitute_backward": false,
+  "execution_target": false,
+  "private_or_unreleased_material_used": false,
+  "authority": {
+    "external_review": false,
+    "certification": false,
+    "endorsement": false,
+    "joint_issuance": false,
+    "admissibility": false,
+    "execution": false,
+    "custody": false,
+    "bilateral_authorization": false
+  },
+  "closure_rule": "This is a complete historical pin record even though the exact historical source path remains unresolved. The unresolved field must remain unresolved unless direct historical evidence identifies it; no later source path may be substituted backward.",
+  "recorded_at": "2026-08-18"
+}
