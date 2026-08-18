@@ -211,14 +211,14 @@ H1: future artifact-specific evaluation until authorized artifacts are attached.
 
 ## Private Correspondence Provenance
 
-A bounded provenance packet records the earlier June 24–26, 2026 technical correspondence that informed the StegVerse boundary formulation and converged on the non-authorizing Commitment Candidate invariant, commit-time authority re-binding, FAIL-CLOSED behavior, and the initial edge-case set. The later attribution authorization and post-publication inspection are separate non-authorizing events and do not extend this provenance date range.
+A bounded provenance packet records the earlier private technical correspondence that informed the StegVerse boundary formulation and converged on the non-authorizing Commitment Candidate invariant, commit-time authority re-binding, FAIL-CLOSED behavior, and the initial edge-case set. The previously recorded `2026-06-24 through 2026-06-26` range is currently **unverified and is not asserted as provenance**. The later attribution authorization and post-publication inspection are separate non-authorizing events and are not substituted as proof of the original correspondence dates.
 
 ```text
 docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.md
 docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.json
 ```
 
-The packet contains SHA-256 identifiers for the seven reviewed captures but does not publish the screenshots. It is provenance for the StegVerse boundary formulation only. It does not constitute a public canonical MindForge source, participant publication authorization, compatibility evidence, standing, or execution authority.
+The packet contains SHA-256 identifiers for the seven reviewed captures but does not publish the screenshots. Those hashes establish capture identity only; until one or more exact source captures are recovered, the correspondence date range remains `UNVERIFIED`. The packet is provenance for the StegVerse boundary formulation only. It does not constitute a public canonical MindForge source, participant publication authorization, compatibility evidence, standing, or execution authority.
 
 ## Definition
 
