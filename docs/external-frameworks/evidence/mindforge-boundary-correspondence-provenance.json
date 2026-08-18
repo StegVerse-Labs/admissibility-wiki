@@ -1,10 +1,25 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "record_type": "private_correspondence_provenance",
   "framework": "MindForge",
   "public_source_status": "not_authorized_for_publication",
-  "captured_date_range": {"start": "2026-06-24", "end": "2026-06-26"},
+  "correspondence_date_status": "UNVERIFIED",
+  "captured_date_range": null,
+  "previously_recorded_unverified_range": {
+    "start": "2026-06-24",
+    "end": "2026-06-26",
+    "status": "RETRACTED_FROM_ASSERTED_PROVENANCE_UNTIL_DIRECTLY_VERIFIED"
+  },
   "recorded_at": "2026-07-25",
+  "date_verification_basis": {
+    "exact_source_capture_hash_match_recovered": false,
+    "bound_source_capture_count": 7,
+    "bounded_library_candidates_hash_checked": 15,
+    "exact_hash_matches": 0,
+    "later_correspondence_substitution_permitted": false,
+    "discussion_derived_private_draft_date": "2026-07-26",
+    "discussion_derived_private_draft_proves_original_correspondence_dates": false
+  },
   "boundary": {
     "historical_evidence_role": "reconstructable historical governance evidence",
     "commitment_candidate_role": "non-authorizing proposed crossing",
@@ -34,5 +49,5 @@
     "mindforge_page_may_be_marked_sourced": false,
     "required": ["authorized public source", "authorized artifact package", "repository or specification", "or jointly approved technical note"]
   },
-  "non_claims": ["MindForge certification", "general compatibility", "participant publication authorization", "execution authority", "StegVerse standing"]
+  "non_claims": ["MindForge certification", "general compatibility", "participant publication authorization", "execution authority", "StegVerse standing", "unverified correspondence date range"]
 }
