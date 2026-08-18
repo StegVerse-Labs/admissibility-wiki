@@ -7,8 +7,28 @@ record_type: private-correspondence provenance
 public_source_status: not_authorized_for_publication
 framework: MindForge
 boundary_subject: historical review evidence, non-authorizing Commitment Candidate, and commit-time SPE authority re-binding
-captured_dates: 2026-06-24 through 2026-06-26
+correspondence_date_status: UNVERIFIED
+captured_dates: not asserted pending direct source verification
+previously_recorded_unverified_range: 2026-06-24 through 2026-06-26
 recorded_at: 2026-07-25
+```
+
+## Date Verification Correction
+
+The previously recorded `2026-06-24 through 2026-06-26` range is no longer presented as verified provenance. It remains preserved only as a previously recorded, unverified value until direct evidence from the seven hash-bound source captures is recovered.
+
+A bounded Library search materially checked 15 candidate image artifacts by SHA-256 against all seven source-capture hashes and produced zero exact matches. That negative search does not establish that the captures are absent and does not establish a replacement range.
+
+A later private technical draft is dated `2026-07-26` and explicitly states that it formalizes a boundary developed in the prior discussion. That document confirms the discussion-derived semantics but does not establish when the original correspondence occurred. Later approval, publication, or inspection correspondence must not be substituted as proof of the original source dates.
+
+Therefore:
+
+```text
+source_capture_identity: bound by seven SHA-256 hashes
+source_capture_date_range: UNVERIFIED
+previously_recorded_range: RETRACTED_FROM_ASSERTED_PROVENANCE
+correction_needed_if_direct_source_dates_differ: true
+public_date_claim_allowed_now: false
 ```
 
 ## Purpose
@@ -70,7 +90,7 @@ The seven source captures are retained outside the public repository. These SHA-
 6. `1c5006bdcfa1a8e79feac2f745469bf3f7dcc076d00c2b94c08c3ede06fc96fa`
 7. `57af075cbcadf5c37ceac624489599971585cba683fa23ab050deac1704364f9`
 
-These hashes establish capture identity only. They do not establish public-source status, participant authorization, framework ownership, compatibility, standing, or execution authority.
+These hashes establish capture identity only. They do not establish the correspondence date range, public-source status, participant authorization, framework ownership, compatibility, standing, or execution authority.
 
 ## Publication and Promotion Gate
 
@@ -78,8 +98,8 @@ This record does not promote MindForge from intake status. Promotion to `sourced
 
 ## Verification Target
 
-Run an authorized MindForge evidence package through the Commit-Time Interoperability Contract and verify that historical evidence remains reconstructable, the Commitment Candidate remains non-authorizing, SPE independently reconstructs every current-standing dimension, all six failure vectors produce DENY or FAIL-CLOSED as policy requires, and no historical artifact becomes execution authority through reference or reconstruction.
+First recover one or more exact source captures matching the seven bound SHA-256 values and verify the actual correspondence dates. Separately, run an authorized MindForge evidence package through the Commit-Time Interoperability Contract and verify that historical evidence remains reconstructable, the Commitment Candidate remains non-authorizing, SPE independently reconstructs every current-standing dimension, all six failure vectors produce DENY or FAIL-CLOSED as policy requires, and no historical artifact becomes execution authority through reference or reconstruction.
 
 ## Non-Claims
 
-This provenance record does not certify MindForge, establish general compatibility, publish private correspondence, create standing, authorize execution, or attribute the doctrine beyond the bounded exchange represented here.
+This provenance record does not certify MindForge, establish general compatibility, publish private correspondence, create standing, authorize execution, attribute the doctrine beyond the bounded exchange represented here, or assert an unverified correspondence date range.
