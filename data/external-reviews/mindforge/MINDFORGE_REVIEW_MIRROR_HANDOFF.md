@@ -1,27 +1,32 @@
 # MindForge Review Mirror Handoff
 
-Status: `CONDITION_CAPTURE_PENDING`
+Status: `PUBLICATION_INSPECTED_PROVENANCE_DATE_VERIFICATION_PENDING`
 Parent source of truth: `ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`
 Repository: `StegVerse-Labs/admissibility-wiki`
 Task ID: `ADMISSIBILITY-MINDFORGE-REVIEW-001`
-Execution class: `PARALLEL_SAFE`
-Authority granted: none
+Execution class: `PARALLEL_SAFE_WITH_ISSUE_50_COLLISION_CONTROL`
+Authority granted: exact approved description publication only
+Release authority: none
+Execution authority: none
+Cross-repository mutation authority: none
 
-## Installed in this sequence
+## Current installed surfaces
 
 - `data/external-reviews/mindforge/alane-zhang-boundary-semantics-review-intake.json`
 - `scripts/check_alane_zhang_boundary_review_intake.py`
+- `docs/external-frameworks/mindforge.md`
+- `docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.md`
+- `docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.json`
 
-Commits:
+Current validator-alignment commit:
 
-- `e8ede97e3dc372de0e54c4a767c76fde1505af6c`
-- `ef8c90ca54d943439f34b94d5cfd1c69c55eec72`
+- `f1733e0e1ae3af43de1dba3e4e68f90807725965`
 
 ## Preserved determination boundary
 
-The reviewer-approved description is preserved verbatim in the intake record. The record is limited to architectural boundary semantics and grants no endorsement, certification, implementation validation, compatibility determination, execution authority, publication authority, or release authority.
+The reviewer-approved public description remains limited to architectural boundary semantics. Publication does not create endorsement, certification, implementation validation, compatibility certification, execution authority, release authority, reviewer standing, continuing reviewer obligation, or cross-repository authority.
 
-The intake preserves the following distinctions:
+The intake and validator preserve:
 
 ```text
 Commitment Candidate != authorization
@@ -30,37 +35,92 @@ DENY != failed reconstruction
 FAIL-CLOSED != DENY
 Standing Determination Receipt != candidate
 Standing Determination Receipt != execution boundary
-reported suite result != independent reproduction
 reviewed semantics != implementation certification
+publication notice != renewed approval request
+publication inspection != release authority
 ```
 
-## Current blocker
+## Publication-condition state
 
-The reviewer stated two publication boundaries. The available screenshots expose only a partial view of the first and do not expose the second in full.
-
-Therefore:
+The machine-readable intake now records both publication conditions as captured and the exact narrow description as publishable:
 
 ```text
-publishable: false
-status: CONDITION_CAPTURE_PENDING
-publication gate: FAIL_CLOSED_UNTIL_COMPLETE
+status: AUTHORIZED_NARROW_DESCRIPTION_WITH_PUBLICATION_BOUNDARIES
+publishable: true
+publication_conditions.declared_count: 2
+publication_conditions.fully_captured_count: 2
+publication_conditions.normalized_capture_complete: true
+publication_conditions.gate: SATISFIED_FOR_EXACT_APPROVED_DESCRIPTION_ONLY
+publication_of_private_correspondence: false
+release: false
+execution: false
+cross_repository_mutation: false
 ```
 
-No public framework page, navigation entry, certification badge, endorsement statement, compatibility statement, or release may be generated from this intake until both conditions are captured verbatim.
+The former `CONDITION_CAPTURE_PENDING` handoff state is superseded. The validator was repaired because it still enforced obsolete pending-state keys and would not validate the current intake schema/state.
+
+## Public inspection evidence
+
+A later non-authorizing reviewer event inspected the rendered public record and found the attribution, publication, and privacy boundaries consistent with the approved architectural-boundary description. The inspection also explicitly recognized that the publication notice is not a renewed approval, endorsement request, or continuing reviewer obligation.
+
+This closes the public-description fidelity question only. It does not expand the authorized description or create any stronger claim.
+
+## Current blocker: provenance date verification
+
+The public record currently states that the bounded private-correspondence provenance packet covers:
+
+```text
+2026-06-24 through 2026-06-26
+```
+
+The Markdown and JSON provenance records agree on that range, but the latest reviewer inspection requested that the correspondence date range be checked for accuracy.
+
+Current determination:
+
+```text
+provenance_records_internally_consistent: true
+source_capture_date_range_independently_verified_in_current_evidence: false
+provenance_date_gate: VERIFICATION_PENDING
+```
+
+Do not convert internal consistency into source-date verification. The seven provenance capture hashes identify source captures, but the currently available later approval/publication/inspection screenshots are different artifacts and must not be substituted as proof of the June source dates.
 
 ## Next admissible tasks
 
-1. Ingest the complete text of publication conditions 1 and 2 when authentic evidence is available.
-2. Verify the approved description remains byte-for-byte unchanged.
-3. Preserve durable custody or references for all source images and their SHA-256 values.
-4. Link the ten-case deterministic suite or independently reproduce it in the proper executable-proof repository.
-5. Add a correction/dispute route.
-6. Only after the conditions gate passes, prepare a bounded public review page and request publication authority through the repository's canonical process.
-7. At release readiness, create propagation-verification tasks for:
+1. Locate authentic source evidence for the seven provenance capture hashes.
+2. Verify the earliest and latest source-capture correspondence dates against that evidence.
+3. If the existing `2026-06-24` through `2026-06-26` range is correct, record a bounded verification receipt without changing the range.
+4. If it is incorrect, correct both provenance records atomically and preserve the correction history.
+5. Run `scripts/check_alane_zhang_boundary_review_intake.py` and the applicable MindForge/Goal-5 validators.
+6. Observe the successor canonical workflow at the exact resulting commit before changing repository-wide validation or activation state.
+7. Preserve issue #50 ownership/collision boundaries for MindForge synchronization work.
+8. At release readiness only, inspect destination handoffs before any propagation-status verification for:
    - `StegVerse-Labs/Site`
    - `GCAT-BCAT-Engine/Publisher`
    - `StegVerse-Labs/admissibility-wiki`
    - `StegVerse-002/stegguardian-wiki`
+
+## Remaining files/modules and destinations
+
+### `StegVerse-Labs/admissibility-wiki`
+
+- authentic source-date evidence for the seven provenance captures;
+- bounded provenance-date verification/correction receipt;
+- current-head validator execution evidence;
+- successor canonical workflow observation;
+- repository-wide canonical PASS before release/activation claims.
+
+### `Data-Continuation/formalism-tests`
+
+- preserve or verify the executable case suite and explicit `ALLOW`-does-not-execute proof where required by the current canonical contract; do not infer completion from the intake record alone.
+
+### Downstream destinations at release readiness only
+
+- `StegVerse-Labs/Site`
+- `GCAT-BCAT-Engine/Publisher`
+- `StegVerse-002/stegguardian-wiki`
+
+No downstream mutation is authorized by this handoff.
 
 ## Validation command
 
@@ -68,30 +128,22 @@ No public framework page, navigation entry, certification badge, endorsement sta
 python scripts/check_alane_zhang_boundary_review_intake.py
 ```
 
-Expected result:
+Expected current bounded result:
 
 ```text
-PASS: bounded external-review intake remains fail-closed and non-authorizing
+PASS: bounded MindForge review intake preserves exact publication and non-authority boundaries
 ```
 
-## Remaining files/modules and destinations
-
-### `StegVerse-Labs/admissibility-wiki`
-
-- complete publication-condition evidence;
-- durable source-image custody or references;
-- deterministic suite links or independent reproduction receipts;
-- correction/dispute procedure;
-- public review page, withheld until authority and evidence gates pass;
-- review-status vocabulary distinguishing review, validation, compatibility, certification, endorsement, and execution authority;
-- canonical validation binding, only after the parent handoff admits it.
-
-### `Data-Continuation/formalism-tests`
-
-- executable fixtures for the ten reported cases, if not already present;
-- expected outcomes for `ALLOW`, `DENY`, and `FAIL-CLOSED`;
-- explicit proof that `ALLOW` does not invoke execution.
+A validator PASS is not repository-wide PASS, deployment, runtime proof, release, or activation.
 
 ## Archive posture
 
-This handoff, the intake record, image hashes, approved wording, boundary distinctions, validation guard, blocker, and next admissible tasks are sufficient to continue without any additional part of the originating conversation. The complete thread is ready for archiving.
+```text
+archive_state: NOT_READY
+required_state_remaining: PROVENANCE_DATE_VERIFICATION_PENDING
+current_head_validation: UNOBSERVED_AFTER_VALIDATOR_ALIGNMENT
+repository_release: NOT_AUTHORIZED
+repository_activation: NOT_COMPLETE
+```
+
+This handoff is sufficient to continue work without relying on conversational history, but durable transfer does not satisfy the outstanding provenance verification, canonical validation, release, deployment, or activation requirements. Keep the goal open until those required states are actually observed.
