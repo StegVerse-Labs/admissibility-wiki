@@ -1,6 +1,6 @@
 # MindForge Review Mirror Handoff
 
-Status: `PUBLICATION_INSPECTED_PROVENANCE_DATE_VERIFICATION_PENDING`
+Status: `PUBLIC_DATE_ASSERTION_CORRECTED_SOURCE_DATE_VERIFICATION_PENDING`
 Parent source of truth: `ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`
 Repository: `StegVerse-Labs/admissibility-wiki`
 Task ID: `ADMISSIBILITY-MINDFORGE-REVIEW-001`
@@ -17,10 +17,16 @@ Cross-repository mutation authority: none
 - `docs/external-frameworks/mindforge.md`
 - `docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.md`
 - `docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.json`
+- `receipts/mindforge-provenance-date-correction-2026-08-18.json`
 
-Current validator-alignment commit:
+Current repair/correction commits:
 
-- `f1733e0e1ae3af43de1dba3e4e68f90807725965`
+- `f1733e0e1ae3af43de1dba3e4e68f90807725965` — validator aligned with authorized narrow-publication state
+- `12030759028d95b93a263ab29fb494dfe4784552` — handoff reconciled with publication-inspected state
+- `fd0aa0990a4b2de15a10f4202e4dcd8e6b7ae1f4` — machine-readable provenance date assertion retracted fail-closed
+- `eeed56a6677fb51677d8f8b32d92b15092818068` — human-readable provenance date assertion retracted fail-closed
+- `46a2fe5e9d0fccfee85712cd14761fd9d19211d4` — public MindForge page corrected to stop asserting the unverified range
+- `5fd7552ab63b94c29456775ec5ca47eb5dbec567` — correction receipt recorded
 
 ## Preserved determination boundary
 
@@ -42,7 +48,7 @@ publication inspection != release authority
 
 ## Publication-condition state
 
-The machine-readable intake now records both publication conditions as captured and the exact narrow description as publishable:
+The machine-readable intake records both publication conditions as captured and the exact narrow description as publishable:
 
 ```text
 status: AUTHORIZED_NARROW_DESCRIPTION_WITH_PUBLICATION_BOUNDARIES
@@ -57,43 +63,65 @@ execution: false
 cross_repository_mutation: false
 ```
 
-The former `CONDITION_CAPTURE_PENDING` handoff state is superseded. The validator was repaired because it still enforced obsolete pending-state keys and would not validate the current intake schema/state.
-
 ## Public inspection evidence
 
 A later non-authorizing reviewer event inspected the rendered public record and found the attribution, publication, and privacy boundaries consistent with the approved architectural-boundary description. The inspection also explicitly recognized that the publication notice is not a renewed approval, endorsement request, or continuing reviewer obligation.
 
 This closes the public-description fidelity question only. It does not expand the authorized description or create any stronger claim.
 
-## Current blocker: provenance date verification
+## Provenance date correction
 
-The public record currently states that the bounded private-correspondence provenance packet covers:
+The public record previously asserted that the bounded private-correspondence provenance packet covered:
 
 ```text
 2026-06-24 through 2026-06-26
 ```
 
-The Markdown and JSON provenance records agree on that range, but the latest reviewer inspection requested that the correspondence date range be checked for accuracy.
+That assertion is no longer presented as verified provenance.
 
-Current determination:
+Evidence recovered in this continuation establishes:
 
 ```text
-provenance_records_internally_consistent: true
-source_capture_date_range_independently_verified_in_current_evidence: false
-provenance_date_gate: VERIFICATION_PENDING
+bound source captures: 7 SHA-256 identities
+bounded Library candidate images hash-checked: 15
+exact source-capture hash matches: 0
+private discussion-derived technical draft date: 2026-07-26
+private draft proves earlier semantic discussion existed: true
+private draft proves original correspondence dates: false
+later approval/publication/inspection screenshots may substitute for source dates: false
 ```
 
-Do not convert internal consistency into source-date verification. The seven provenance capture hashes identify source captures, but the currently available later approval/publication/inspection screenshots are different artifacts and must not be substituted as proof of the June source dates.
+Therefore the repository now records:
+
+```text
+correspondence_date_status: UNVERIFIED
+captured_date_range: null
+previously_recorded_unverified_range: 2026-06-24 through 2026-06-26
+previous_range_status: RETRACTED_FROM_ASSERTED_PROVENANCE_UNTIL_DIRECTLY_VERIFIED
+public_date_claim_allowed_now: false
+```
+
+The public MindForge page, Markdown provenance record, JSON provenance record, and correction receipt all preserve that fail-closed posture. No replacement date range has been invented.
+
+## Current blocker
+
+```text
+required_next_transition: recover_exact_bound_source_capture_and_verify_dates
+source_date_gate: VERIFICATION_PENDING
+current_head_validation: UNOBSERVED_AFTER_DATE_CORRECTION
+```
+
+Direct source-date verification still requires recovery of one or more artifacts that exactly match the seven bound SHA-256 captures. A negative bounded Library search is not evidence that those captures no longer exist.
 
 ## Next admissible tasks
 
-1. Locate authentic source evidence for the seven provenance capture hashes.
-2. Verify the earliest and latest source-capture correspondence dates against that evidence.
-3. If the existing `2026-06-24` through `2026-06-26` range is correct, record a bounded verification receipt without changing the range.
-4. If it is incorrect, correct both provenance records atomically and preserve the correction history.
-5. Run `scripts/check_alane_zhang_boundary_review_intake.py` and the applicable MindForge/Goal-5 validators.
-6. Observe the successor canonical workflow at the exact resulting commit before changing repository-wide validation or activation state.
-7. Preserve issue #50 ownership/collision boundaries for MindForge synchronization work.
+1. Continue exact-hash recovery for the seven bound source captures using available private evidence stores without publishing private correspondence.
+2. Once an exact source capture is recovered, inspect the actual message-date evidence and reconstruct the earliest/latest correspondence dates from direct evidence only.
+3. If direct evidence confirms the previously recorded range, restore it only through a new bounded verification receipt.
+4. If direct evidence establishes a different range, correct both provenance records atomically and preserve the prior retraction/correction history.
+5. Run `scripts/check_alane_zhang_boundary_review_intake.py` and applicable MindForge/Goal-5 validators against the resulting exact head.
+6. Observe the successor canonical workflow at that exact commit before changing repository-wide validation, release, deployment, or activation state.
+7. Preserve issue #50 exclusive collision control for MindForge, Morrison Runtime, and ASRO.
 8. At release readiness only, inspect destination handoffs before any propagation-status verification for:
    - `StegVerse-Labs/Site`
    - `GCAT-BCAT-Engine/Publisher`
@@ -104,11 +132,12 @@ Do not convert internal consistency into source-date verification. The seven pro
 
 ### `StegVerse-Labs/admissibility-wiki`
 
-- authentic source-date evidence for the seven provenance captures;
-- bounded provenance-date verification/correction receipt;
+- exact source-capture recovery for one or more of the seven provenance hashes;
+- direct source-date verification receipt;
 - current-head validator execution evidence;
 - successor canonical workflow observation;
-- repository-wide canonical PASS before release/activation claims.
+- repository-wide canonical PASS before release/activation claims;
+- Pages build/deployment/public-route evidence if and only if preceding canonical gates pass.
 
 ### `Data-Continuation/formalism-tests`
 
@@ -128,7 +157,7 @@ No downstream mutation is authorized by this handoff.
 python scripts/check_alane_zhang_boundary_review_intake.py
 ```
 
-Expected current bounded result:
+Expected bounded result from the repaired validator:
 
 ```text
 PASS: bounded MindForge review intake preserves exact publication and non-authority boundaries
@@ -140,10 +169,11 @@ A validator PASS is not repository-wide PASS, deployment, runtime proof, release
 
 ```text
 archive_state: NOT_READY
-required_state_remaining: PROVENANCE_DATE_VERIFICATION_PENDING
-current_head_validation: UNOBSERVED_AFTER_VALIDATOR_ALIGNMENT
+required_state_remaining: SOURCE_DATE_VERIFICATION_PENDING
+current_head_validation: UNOBSERVED_AFTER_DATE_CORRECTION
 repository_release: NOT_AUTHORIZED
+repository_deployment: NOT_PROVEN_FOR_CORRECTED_HEAD
 repository_activation: NOT_COMPLETE
 ```
 
-This handoff is sufficient to continue work without relying on conversational history, but durable transfer does not satisfy the outstanding provenance verification, canonical validation, release, deployment, or activation requirements. Keep the goal open until those required states are actually observed.
+This handoff is sufficient to continue without relying on conversational history, but durable transfer does not satisfy source-date verification, current-head validation, release, deployment, runtime proof, propagation, or activation requirements. Keep the goal open until every required terminal state is directly evidenced.
