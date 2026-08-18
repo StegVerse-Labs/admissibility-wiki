@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "stegverse_accountable_party_declaration",
+  "declaration_id": "sv-accountable-party-asro-comparison-2026-08-18-001",
+  "declaring_entity": "StegVerse Labs",
+  "entity_form": "project and technical lab; no separate legal-entity status is asserted by this declaration",
+  "accountability_basis": "ROLE",
+  "accountable_role": "Founder and Architect",
+  "contact_point": {
+    "primary": "repository issues and public StegVerse contact surfaces",
+    "canonical_repository": "https://github.com/StegVerse-Labs/admissibility-wiki",
+    "canonical_organization": "https://github.com/StegVerse-Labs",
+    "canonical_website": "https://stegverse.org"
+  },
+  "scope": "StegVerse-side accountability for the bounded ASRO comparison, its unilateral declarations, corrections, contribution records, and StegVerse-issued evaluation artifacts",
+  "publication_status": "UNILATERAL_STEGVERSE_DECLARATION",
+  "relationship_non_claims": [
+    "no partnership",
+    "no agency",
+    "no shared ownership",
+    "no endorsement",
+    "no certification",
+    "no integration",
+    "no joint issuance",
+    "no authority transfer",
+    "no inherited execution authority"
+  ],
+  "authority": {
+    "self_declaration": true,
+    "external_review": false,
+    "certification": false,
+    "execution": false,
+    "custody_transfer": false,
+    "bilateral_authorization": false,
+    "authority_over_external_materials": false
+  },
+  "canonical_human_readable_declaration": "docs/external-frameworks/stegverse-owner-declaration-asro-comparison.md",
+  "validity": {
+    "effective_date": "2026-08-18",
+    "condition": "valid while the declaring entity, accountable role, scope, repository, website, and authority boundaries remain accurate",
+    "stale_when": "a material change occurs without an additive correction or supersession record",
+    "update_mechanism": "additive Git commit with visible correction or supersession linkage"
+  },
+  "reviewer_use_limitations": "This declaration identifies StegVerse accountability only. It does not designate an independent reviewer or issuer and may not be used to infer bilateral authorization or external execution authority.",
+  "external_identity_policy": "No external individual identity is asserted by this machine-readable declaration.",
+  "recorded_at": "2026-08-18"
+}
