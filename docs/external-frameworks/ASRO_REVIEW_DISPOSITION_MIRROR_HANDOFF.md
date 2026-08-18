@@ -19,14 +19,14 @@ collision_boundary: ASRO remains inside the issue #50 exclusive framework repair
 
 ## Accepted external disposition
 
-The 2026-08-16 response from James Aull / ASRO is recorded additively as bounded external correspondence evidence. The accepted state is:
+The 2026-08-16 response is recorded additively as bounded external correspondence evidence. The accepted state is:
 
 ```text
 provenance_correction: ACCEPTED_FOR_HISTORICAL_CLASSIFICATION
 existing_stegverse_analysis: ACKNOWLEDGED_AS_UNILATERAL
 contributor_protocol: DIRECTIONALLY_ACCEPTABLE_NOT_BILATERALLY_AUTHORIZED
 companion_declaration: ELEVEN_AREA_MAPPING_INSTALLED_AND_VALIDATED
-historical_public_source_pin: PENDING_EXACT_2026_07_23_EVIDENCE
+historical_public_source_pin: REPOSITORY_COMMIT_PINNED_EXACT_SOURCE_PATH_UNRESOLVED
 independent_reviewer_issuer: UNRESOLVED
 external_asro_native_execution: NOT_TESTED
 reciprocal_execution: DEFERRED
@@ -44,8 +44,24 @@ static/data/framework-evaluations/asro/stegverse-companion-layer-declaration.jso
   version/update/staleness binding
   historical-source non-substitution boundary
 
+static/data/framework-evaluations/asro/historical-public-source-pin-2026-07-23.json
+  historical public repository commit pinned to 46f8fd2f8f35668b2b27fcbdb4e24e06b58513a2
+  target observation date bound to 2026-07-23
+  exact historical source path remains unresolved rather than inferred
+  later-source backward substitution prohibited
+
+static/data/framework-evaluations/asro/stegverse-accountable-party-declaration.json
+  StegVerse entity form
+  accountable role
+  contact point
+  canonical repository and website
+  validity/staleness/update rules
+  explicit non-authority and non-partnership boundaries
+
 static/data/framework-evaluations/asro/contribution-ledger.jsonl
-  append-only entry for the 2026-08-16 external disposition
+  append-only history beginning 2026-05-06
+  2026-08-16 disposition preserved
+  2026-08-18 source-pin and accountability closure entries appended
 
 static/data/framework-evaluations/asro/correspondence-manifest.json
   corrected derivative binding
@@ -57,6 +73,9 @@ static/data/framework-evaluations/test-cases/asro-declared-reference-membership-
 
 docs/external-frameworks/asro-response-disposition-2026-08-16.md
   additive human-readable disposition record
+
+docs/external-frameworks/stegverse-owner-declaration-asro-comparison.md
+  human-readable StegVerse owner/accountability declaration
 
 scripts/check_asro_comparison_governance.py
   eleven-area and review-disposition enforcement
@@ -85,7 +104,47 @@ fe2221b4db6226b6f5e7a59c8ff8146f6ff144b1
 
 dc3dfc0ebae0587e0ff1c5d3e91c77a83bd4051c
   validate canonical heartbeat-cycle worker coordination instead of wall-clock TTLs
+
+ecaa7814a0ff1b12dde9f4025ea8b193552e6c33
+  add evidence-bounded historical public-source pin
+
+a6d2d7811b4c85070f13d56a5e5af2f37241a623
+  add machine-readable StegVerse accountable-party declaration
+
+1f93fe73bc05b2fbb0c6b0fd183704f13f28fcd5
+  append source-pin and accountability records to the contribution ledger
 ```
+
+## Four-artifact closure state — 2026-08-18
+
+The requested declaration/source/ledger/accountability package is now durably installed without converting unresolved evidence into asserted fact:
+
+```text
+1 companion_layer_declaration:
+  artifact: static/data/framework-evaluations/asro/stegverse-companion-layer-declaration.json
+  artifact_state: COMPLETE_INSTALLED_VALIDATED
+  semantic_state: ELEVEN_AREA_MAPPING_COMPLETE
+
+2 historical_public_source_pin:
+  artifact: static/data/framework-evaluations/asro/historical-public-source-pin-2026-07-23.json
+  artifact_state: COMPLETE_EVIDENCE_BOUNDED_RECORD
+  repository_commit_state: PINNED
+  exact_historical_source_path: UNRESOLVED
+  backward_substitution: PROHIBITED
+
+3 append_only_contribution_ledger:
+  artifact: static/data/framework-evaluations/asro/contribution-ledger.jsonl
+  artifact_state: COMPLETE_APPEND_ONLY_THROUGH_2026_08_18
+  origin_date: 2026-05-06
+
+4 accountable_party_declaration:
+  artifact: static/data/framework-evaluations/asro/stegverse-accountable-party-declaration.json
+  human_readable: docs/external-frameworks/stegverse-owner-declaration-asro-comparison.md
+  artifact_state: COMPLETE_UNILATERAL_STEGVERSE_DECLARATION
+  bilateral_authorization: false
+```
+
+`artifact_state: COMPLETE_EVIDENCE_BOUNDED_RECORD` for the historical source pin means the record itself is complete and correctly represents the available evidence. It does **not** mean the exact historical source path was discovered. That field remains unresolved by design until direct historical evidence exists.
 
 ## Hosted evidence and terminal ASRO observation
 
@@ -115,6 +174,8 @@ REPOSITORY_RELEASE_AUTHORITY: NONE
 
 The repository failure must not be attributed to ASRO after run `31932854800`; conversely, an ASRO-specific PASS must not mask the independent repository failures.
 
+The 2026-08-18 artifact-only continuation changed declaration/evidence records, not execution semantics. Repository write commits themselves are durable evidence of installation. Hosted successor workflow evidence for these exact commits must be observed before claiming a new repository-wide validation result; absence of a commit status is not a PASS.
+
 ## Worker ownership
 
 The durable worker registry assigns the broader external-framework lane to:
@@ -130,10 +191,11 @@ The ASRO validation-observation task is complete. Issue #50 remains active only 
 
 ## Remaining ASRO evidence boundaries
 
-No ASRO-specific code repair is justified by run `31932854800`. The remaining ASRO boundaries are evidence/authority boundaries, not unassigned implementation tasks:
+The four requested artifacts are installed. The remaining ASRO boundaries are evidence/authority boundaries and must not be manufactured from the artifact closure:
 
 ```text
-historical_2026_07_23_source_identity: UNRESOLVED_UNTIL_ACTUAL_EVIDENCE
+historical_2026_07_23_repository_commit: PINNED
+historical_2026_07_23_exact_source_path: UNRESOLVED_UNTIL_DIRECT_HISTORICAL_EVIDENCE
 independent_reviewer_issuer: UNRESOLVED_UNTIL_ACCOUNTABLE_DESIGNATION
 external_asro_native_execution: NOT_TESTED
 reciprocal_execution: DEFERRED_UNTIL_GENUINE_ASRO_NATIVE_OBJECT_AND_MUTUALLY_APPROVED_CONTROLS
@@ -146,6 +208,7 @@ These boundaries are intentionally non-activatable by repository inference. A la
 ## Release and propagation boundary
 
 ```text
+four_artifacts_complete != reciprocal_execution_authorized
 ASRO goal PASS != repository release
 ASRO public route != certification
 ASRO bounded replay != native ASRO execution
@@ -170,13 +233,15 @@ StegVerse-002/stegguardian-wiki
 ## Archive posture
 
 ```text
-archive_state: READY_ASRO_SESSION_OBSERVATION_COMPLETE
+archive_state: READY_ASRO_ARTIFACT_CLOSURE_DURABLE
 chat_only_requirements: 0
+four_requested_artifacts: 4_OF_4_INSTALLED
 asro_specific_executable_repairs_remaining: 0
 broader_repository_continuation_owner: external-framework-worker-issue50 / issue #50 / canonical workflow
-terminal_observation: run 31932854800
-terminal_asro_result: PASS
-terminal_repository_result: FAIL_CLOSED_INDEPENDENT
+last_fully_observed_terminal_run: 31932854800
+last_fully_observed_terminal_asro_result: PASS
+last_fully_observed_terminal_repository_result: FAIL_CLOSED_INDEPENDENT
+new_exact_commit_validation: NOT_YET_OBSERVED
 ```
 
-The ASRO goal no longer requires a chat session for implementation, validation, integration, propagation, reconciliation, or observation. Broader issue #50 failures remain durably owned by the canonical workstream and must be repaired only from direct evidence without reopening completed ASRO controls.
+The four-artifact continuation no longer requires this chat for implementation. Broader issue #50 failures and any successor workflow observation remain durably owned by the canonical workstream. Do not infer new release, reciprocal execution, external review, or bilateral authorization from artifact completion.
