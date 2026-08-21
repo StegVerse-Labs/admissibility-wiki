@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "component_id": "STEGVERSE-ADMISSIBILITY-WIKI",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "component_version": "2026.08.21-dev.1",
+  "version_stage": "DEVELOPMENT",
+  "release": {
+    "tag": null,
+    "commit": null,
+    "release_evidence": []
+  },
+  "validated_capabilities": [
+    {
+      "capability_id": "ADMISSIBILITY-TRANSLATION-RECONSTRUCTION-001",
+      "state": "COMPLETE_VALIDATED_INTEGRATED_AND_TRANSFERRED",
+      "workflow_run": 30847927019,
+      "artifact_id": 8869494846
+    }
+  ],
+  "repository_validation": {
+    "state": "FAIL_CLOSED",
+    "passed_checks": 51,
+    "required_checks": 56,
+    "failed_checks": 5,
+    "skipped_checks": 0,
+    "release_tag_authorized": false
+  },
+  "runtime": {
+    "state": "PENDING",
+    "evidence": [
+      "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+      "data/admissibility-wiki-orchestration-state.json"
+    ],
+    "next_required_state": "CANONICAL_VALIDATION_PASS_AND_VERIFIED_UPSTREAM_PROPAGATION"
+  },
+  "activation": {
+    "state": "PENDING",
+    "evidence": [
+      "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
+    ],
+    "current_projection": "PUBLICATION_HEALTHY_CANONICAL_VALIDATION_FAIL_CLOSED"
+  },
+  "source_of_truth": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+  "version_contract": "StegVerse-Labs/Site:docs/ECOSYSTEM_COMPONENT_VERSION_CONTRACT.md",
+  "authority_effect": "NONE"
+}
