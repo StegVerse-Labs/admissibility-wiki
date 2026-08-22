@@ -5,19 +5,8 @@
   "association_source": "static/external-frameworks/sidebar-page-associations.v1.json",
   "navigation_disposition_source": "static/external-frameworks/registry-navigation-dispositions.v1.json",
   "artifact_binding_source": "static/external-frameworks/sidebar-framework-artifact-bindings.v1.json",
-  "path_conventions": {
-    "page": "docs/external-frameworks/{page_slug}.md",
-    "manifest": "docs/external-frameworks/{record_id}.json",
-    "report": "docs/external-frameworks/reports/{record_id}.compatibility.json"
-  },
-  "counts": {
-    "records": 38,
-    "external_frameworks": 36,
-    "internal_records": 2,
-    "public_sidebar": 26,
-    "non_public_explicit": 10,
-    "internal_record": 2
-  },
+  "path_conventions": {"page":"docs/external-frameworks/{page_slug}.md","manifest":"docs/external-frameworks/{record_id}.json","report":"docs/external-frameworks/reports/{record_id}.compatibility.json"},
+  "counts": {"records":38,"external_frameworks":36,"internal_records":2,"public_sidebar":36,"non_public_explicit":0,"internal_record":2},
   "entries": [
     {"record_id":"glm","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar"},
     {"record_id":"evide","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar"},
@@ -45,18 +34,18 @@
     {"record_id":"guardrails-ai","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar"},
     {"record_id":"llama-guard","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar"},
     {"record_id":"nemo-guardrails","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar"},
-    {"record_id":"aar","record_type":"external_framework","external_framework":true,"navigation_state":"non_public_explicit"},
-    {"record_id":"mitre-atlas","record_type":"external_framework","external_framework":true,"navigation_state":"non_public_explicit"},
-    {"record_id":"owasp-top-10-llm","record_type":"external_framework","external_framework":true,"navigation_state":"non_public_explicit"},
-    {"record_id":"agent-governance-playbook","record_type":"external_framework","external_framework":true,"navigation_state":"non_public_explicit"},
-    {"record_id":"emergency-stop-convention","record_type":"external_framework","external_framework":true,"navigation_state":"non_public_explicit","page_slug":"killswitch-md"},
-    {"record_id":"nist-ai-rmf","record_type":"external_framework","external_framework":true,"navigation_state":"non_public_explicit"},
-    {"record_id":"iso-iec-42001","record_type":"external_framework","external_framework":true,"navigation_state":"non_public_explicit"},
-    {"record_id":"eu-ai-act","record_type":"external_framework","external_framework":true,"navigation_state":"non_public_explicit"},
-    {"record_id":"policy-cards","record_type":"external_framework","external_framework":true,"navigation_state":"non_public_explicit"},
-    {"record_id":"runtime-governance-for-ai-agents","record_type":"external_framework","external_framework":true,"navigation_state":"non_public_explicit","page_slug":"runtime-governance-policies-on-paths"},
+    {"record_id":"aar","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar"},
+    {"record_id":"mitre-atlas","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar"},
+    {"record_id":"owasp-top-10-llm","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar"},
+    {"record_id":"agent-governance-playbook","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar"},
+    {"record_id":"emergency-stop-convention","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar","page_slug":"killswitch-md"},
+    {"record_id":"nist-ai-rmf","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar"},
+    {"record_id":"iso-iec-42001","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar"},
+    {"record_id":"eu-ai-act","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar"},
+    {"record_id":"policy-cards","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar"},
+    {"record_id":"runtime-governance-for-ai-agents","record_type":"external_framework","external_framework":true,"navigation_state":"public_sidebar","page_slug":"runtime-governance-policies-on-paths"},
     {"record_id":"admissible-existence-seed-cycle","record_type":"internal_ecosystem_record","external_framework":false,"navigation_state":"internal_record"},
     {"record_id":"decision-authority","record_type":"internal_ecosystem_record","external_framework":false,"navigation_state":"internal_record"}
   ],
-  "boundary": "Canonical inventory coverage is descriptive and fail-closed. Inclusion does not create compatibility, certification, standing, admissibility, endorsement, or execution authority."
+  "boundary": "Canonical inventory coverage is descriptive and fail-closed. Public navigation does not create compatibility, certification, standing, admissibility, endorsement, or execution authority."
 }
