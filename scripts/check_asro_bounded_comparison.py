@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 import sys
@@ -13,6 +14,7 @@ DOC = ROOT / "docs" / "external-frameworks" / "asro.md"
 DERIVATIVE = BASE / "stegverse-generated-bounded-metadata-derivative.json"
 DEPRECATED_ALIAS = BASE / "asro-author-provided-bounded-representative-object.json"
 SOURCE_OBSERVATION = BASE / "public-source-observation-2026-07-26.json"
+EXPECTED_SOURCE_PROVIDER_SHA256 = "f77353724aab99c5e8aacbf588ebb83f555730624fef02f159672fe4393a87dd"
 DEPENDENT_VALIDATORS = [
     ROOT / "scripts" / "check_asro_provenance_correction.py",
     ROOT / "scripts" / "check_asro_comparison_governance.py",
@@ -59,8 +61,10 @@ def main() -> int:
     if derivative.get("creator") != "StegVerse Labs":
         failures.append("public derivative creator must be StegVerse Labs")
     source = derivative.get("source_example", {})
-    if not derivative.get("source_provider"):
-        failures.append("underlying source provider attribution is missing")
+    provider = derivative.get("source_provider")
+    provider_hash = hashlib.sha256(str(provider).encode("utf-8")).hexdigest()
+    if provider_hash != EXPECTED_SOURCE_PROVIDER_SHA256:
+        failures.append("underlying source provider attribution changed")
     if source.get("publicly_reproduced") is not False:
         failures.append("underlying source example must not be represented as publicly reproduced")
     if source.get("content_hash_recorded") is not False:
@@ -174,7 +178,7 @@ def main() -> int:
             print(f"- {failure}")
         return 1
     print("ASRO BOUNDED COMPARISON: PASS")
-    print("Corrected provenance, current public-source pinning, unilateral publication status, immutable input binding, machine-readable evidence bundle, and superseded historical run remain fail-closed.")
+    print("Corrected provenance, current public-source pinning, unilateral publication status, exact source-provider attribution, immutable input binding, machine-readable evidence bundle, and superseded historical run remain fail-closed.")
     return 0
 
 
