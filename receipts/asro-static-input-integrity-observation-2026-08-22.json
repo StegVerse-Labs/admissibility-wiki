@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "asro_static_input_integrity_observation",
+  "goal_id": "ADMISSIBILITY-ASRO-REVIEW-DISPOSITION-001",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "observed_main_head_before_receipt_commit": "eb84e20766be6085b31b2fff62c3602beed90404",
+  "observation_method": "GitHub repository content metadata and Git blob identities compared against static/data/framework-evaluations/asro/exact-head-validation-inputs-2026-08-22.json",
+  "input_bundle": {
+    "path": "static/data/framework-evaluations/asro/exact-head-validation-inputs-2026-08-22.json",
+    "git_blob_sha1": "87629ffd1e7e28c1876c89bf6335061e6e0c53c4",
+    "source_head": "99fde15049f4c86d7056d9501d6c52733b5e5d0e"
+  },
+  "observed_inputs": {
+    "owner_declaration": {
+      "path": "docs/external-frameworks/stegverse-owner-declaration-asro-comparison.md",
+      "expected_git_blob_sha1": "92613150495b40a67a4309bf2de03b972c4a284b",
+      "observed_git_blob_sha1": "92613150495b40a67a4309bf2de03b972c4a284b",
+      "match": true
+    },
+    "contributor_protocol": {
+      "path": "docs/external-frameworks/asro-stegverse-comparison-contributor-protocol.md",
+      "expected_git_blob_sha1": "586f3ca753e077084be7a7cc24c334fb250ba2b7",
+      "observed_git_blob_sha1": "586f3ca753e077084be7a7cc24c334fb250ba2b7",
+      "match": true
+    },
+    "companion_declaration": {
+      "path": "static/data/framework-evaluations/asro/stegverse-companion-layer-declaration.json",
+      "expected_git_blob_sha1": "a6c3661dae573ef0016545b48fefca2371d9b27d",
+      "observed_git_blob_sha1": "a6c3661dae573ef0016545b48fefca2371d9b27d",
+      "match": true
+    },
+    "historical_public_source_pin": {
+      "path": "static/data/framework-evaluations/asro/historical-public-source-pin-2026-07-23.json",
+      "expected_git_blob_sha1": "7b4b27df5964243de35f1d1ea8f945f5a112a8fc",
+      "observed_git_blob_sha1": "7b4b27df5964243de35f1d1ea8f945f5a112a8fc",
+      "match": true
+    },
+    "accountable_party_declaration": {
+      "path": "static/data/framework-evaluations/asro/stegverse-accountable-party-declaration.json",
+      "expected_git_blob_sha1": "3d7c9208abdfca6e559ff66da2807f121da0fa63",
+      "observed_git_blob_sha1": "3d7c9208abdfca6e559ff66da2807f121da0fa63",
+      "match": true
+    },
+    "contribution_ledger": {
+      "path": "static/data/framework-evaluations/asro/contribution-ledger.jsonl",
+      "expected_git_blob_sha1": "880bbc7cf1493d8dc7f9c87bd97fab9d73d45cf2",
+      "observed_git_blob_sha1": "880bbc7cf1493d8dc7f9c87bd97fab9d73d45cf2",
+      "match": true
+    },
+    "comparison_governance_validator": {
+      "path": "scripts/check_asro_comparison_governance.py",
+      "expected_git_blob_sha1": "15e7c5f8e75acfcff26c08cc612976e4fb4d171e",
+      "observed_git_blob_sha1": "15e7c5f8e75acfcff26c08cc612976e4fb4d171e",
+      "match": true
+    },
+    "validation_trigger_receipt": {
+      "path": "receipts/asro-exact-head-validation-trigger-2026-08-22.json",
+      "expected_git_blob_sha1": "4effb4362516ef8469d955d9e4a701f483317411",
+      "observed_git_blob_sha1": "4effb4362516ef8469d955d9e4a701f483317411",
+      "match": true
+    }
+  },
+  "static_integrity_result": "PASS_STATIC_BLOB_CONSISTENCY",
+  "canonical_workflow_result": "UNOBSERVED",
+  "validation_boundary": "This receipt proves only that the GitHub-observed bytes for all pinned ASRO input records matched the immutable bundle at observation time. It is not execution of the canonical workflow and does not satisfy exact-head hosted validation, release, deployment, runtime, activation, reciprocal execution, or bilateral authorization.",
+  "preserved_boundaries": {
+    "exact_historical_source_path": "UNRESOLVED",
+    "independent_reviewer_issuer": "UNRESOLVED",
+    "external_asro_native_execution": "NOT_TESTED",
+    "reciprocal_execution": "DEFERRED",
+    "bilateral_seam_comparison_record": "NOT_ISSUED_OR_AUTHORIZED",
+    "repository_release": "NOT_AUTHORIZED",
+    "runtime": "NOT_PROVEN",
+    "activation": "NOT_COMPLETE"
+  },
+  "recorded_at": "2026-08-22T16:57:00-05:00"
+}
