@@ -16,6 +16,7 @@ SOURCE_OBSERVATION = BASE / "public-source-observation-2026-07-26.json"
 DEPENDENT_VALIDATORS = [
     ROOT / "scripts" / "check_asro_provenance_correction.py",
     ROOT / "scripts" / "check_asro_comparison_governance.py",
+    ROOT / "scripts" / "check_asro_exact_head_input_bundle.py",
 ]
 
 
@@ -172,7 +173,7 @@ def main() -> int:
             print(f"- {failure}")
         return 1
     print("ASRO BOUNDED COMPARISON: PASS")
-    print("Corrected provenance, current public-source pinning, unilateral publication status, and superseded historical run remain fail-closed.")
+    print("Corrected provenance, current public-source pinning, unilateral publication status, immutable input binding, and superseded historical run remain fail-closed.")
     return 0
 
 
