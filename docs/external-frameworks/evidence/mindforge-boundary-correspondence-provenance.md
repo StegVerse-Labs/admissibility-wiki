@@ -17,7 +17,9 @@ recorded_at: 2026-07-25
 
 The previously recorded `2026-06-24 through 2026-06-26` range is no longer presented as verified provenance. It remains preserved only as a previously recorded, unverified value until direct evidence from the seven hash-bound source captures is recovered.
 
-A bounded Library search materially checked 15 candidate image artifacts by SHA-256 against all seven source-capture hashes and produced zero exact matches. That negative search does not establish that the captures are absent and does not establish a replacement range.
+Expanded bounded Library recovery has now materially checked 16 candidate image artifacts by SHA-256 against all seven source-capture hashes and produced zero exact matches. The latest search checkpoint is recorded in `receipts/mindforge-provenance-source-recovery-search-2026-08-21.json`. The newly surfaced candidate hashed to `24e8083c3cc3dc4f18dc5728e0b1792946750207842b28f70eca1496bcd4670d`; a previously known technical-discussion candidate was independently reproduced at `abf15fea1069c0e52b7730ec9c5910caeb96082d0eb56c70a40600f72879596b`. Neither matches any of the seven bound source captures.
+
+That negative search does not establish that the captures are absent and does not establish a replacement range.
 
 A later private technical draft is dated `2026-07-26` and explicitly states that it formalizes a boundary developed in the prior discussion. That document confirms the discussion-derived semantics but does not establish when the original correspondence occurred. Later approval, publication, or inspection correspondence must not be substituted as proof of the original source dates.
 
@@ -25,6 +27,8 @@ Therefore:
 
 ```text
 source_capture_identity: bound by seven SHA-256 hashes
+bounded_candidates_hash_checked: 16
+exact_source_capture_matches: 0
 source_capture_date_range: UNVERIFIED
 previously_recorded_range: RETRACTED_FROM_ASSERTED_PROVENANCE
 correction_needed_if_direct_source_dates_differ: true
