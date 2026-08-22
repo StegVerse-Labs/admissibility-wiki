@@ -2,286 +2,211 @@
 
 ## Source of truth
 
-This file is the continuation source of truth for Goal 5 external-framework intake, evidence capture, implementation selection, binary promotion, readiness, runtime authorization, dispatch observation, replay, Pages build verification, artifact preservation, deployment observation, and publication work in `StegVerse-Labs/admissibility-wiki`.
-
-Preserve unrelated CI repair, conceptual-inheritance, lifecycle-formalism, inference-window, External Chat, and documentation-mesh work owned by other workstreams.
+This file is the continuation source of truth for the External Frameworks section of `StegVerse-Labs/admissibility-wiki`. Repository-wide authority remains governed by `ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`; worker ownership and collision control remain governed by `docs/external-frameworks/worker-task-registry.json` and coordinator issue #66.
 
 ## Current goal
 
 ```text
-Goal: evidence-bound external-framework intake through observed, replayable, non-authorizing interoperability evidence
-Phase: OPA same-provider replay passed; Pages build, artifact, status-promotion, status-application, and deployment-observation boundaries installed
-Result: PAGES_DEPLOYMENT_OBSERVATION_BOUNDARY_PENDING_CANONICAL_EVIDENCE
+goal_id: EXT-FRAMEWORK-SECOND-PAGE-36
+goal: make every actual external-framework record function as a first-class, evidence-bounded Wiki surface with public navigation, machine-readable companions, deterministic source validation, canonical build/deploy evidence, content-aware public-route verification, and framework-specific evaluation completion
+actual external-framework denominator: 36
+internal ecosystem records in the same canonical registry: 2
+public sidebar source wiring: 36/36
+internal records intentionally excluded from external-framework sidebar: 2/2
+framework-evaluation terminal denominator: preserve coordinator issue #66 until newer direct evidence changes it
+release authority: none
+execution authority: none
+cross-repository mutation authority: none
 ```
 
-## Current state
+## Public Wiki navigation repair
+
+The prior registry state contained 36 actual external frameworks but only 26 public-sidebar framework pages. Ten real framework pages were direct-path-only. That split is removed.
+
+The ten newly public-sidebar-bound framework records are:
 
 ```text
-registered framework and crosswalk entries: 19
-candidate intake records: 42
-visible observatory entries: 61
-sourced-intake pages: 18
-benchmark mappings: 18 of 18
-non-authorizing fixtures: 18 of 18
-priority capture queue entries: 7 of 7
-capture harnesses: 7 of 7
-artifact validators: 7 of 7
-Cedar pinned build-and-hash automation: observed passing
-Cedar hash-only registry promotion: APPLIED_HASH_ONLY
-runtime execution authorized by promotion: false
-dispatch-state fixture coverage: 4 of 4
-dispatch-observation hash-chain validation: installed
-canonical validation chain: PASS on run 29212846956
-OPA capture and same-environment replay: PASS on run 29212846956
-fresh-runner replay: PASS on run 29212846956
-build-pages on run 29212846956: FAIL from governed-action-lifecycle MDX rendering
-bounded lifecycle page repair: installed
-lifecycle MDX regression guard: installed
-Pages build verification contract: installed
-Pages durable build receipt automation: installed
-Pages verification candidate generator: installed, non-mutating
-Pages artifact-binding receipt layer: installed, fixture-only
-Pages status-promotion receipt boundary: installed, blocked fixture only
-Pages verification-status application layer: installed
-Pages deployment-observation receipt layer: installed, FAIL_CLOSED baseline
-runtime jobs emitted by plan automation: 0
-independent organization/provider replays: 0 of 18
+aar
+mitre-atlas
+owasp-top-10-llm
+agent-governance-playbook
+emergency-stop-convention -> page slug killswitch-md
+nist-ai-rmf
+iso-iec-42001
+eu-ai-act
+policy-cards
+runtime-governance-for-ai-agents -> page slug runtime-governance-policies-on-paths
 ```
 
-## Validation-critical references
+The following internal ecosystem records remain outside the external-framework sidebar by design:
 
 ```text
-docs/external-frameworks/observed-evidence-capture-protocol.md
-docs/external-frameworks/observed-evidence-capture-queue.v0.1.json
-scripts/check_observed_evidence_capture_queue.py
-scripts/check_goal5_external_frameworks_all.py
-scripts/check-formalism-publication-artifacts.mjs
-static/schemas/pages-build-verification-receipt.schema.json
-static/status/pages-build-verification.json
-scripts/check_pages_build_verification_receipt.py
-scripts/write_pages_build_receipt.py
-scripts/check_pages_build_receipt_automation.py
-scripts/generate_pages_build_verification_candidate.py
-scripts/check_pages_build_verification_candidate.py
-static/schemas/pages-artifact-binding-receipt.schema.json
-tests/fixtures/pages-artifact-binding-receipt.preserved.json
-scripts/check_pages_artifact_binding_receipt.py
-static/schemas/pages-build-status-promotion-receipt.schema.json
-tests/fixtures/pages-build-status-promotion-receipt.blocked.json
-scripts/check_pages_build_status_promotion_receipt.py
-scripts/check_pages_build_verification_status_application.py
-static/schemas/pages-deployment-observation-receipt.schema.json
-tests/fixtures/pages-deployment-observation-receipt.fail-closed.json
-scripts/check_pages_deployment_observation_receipt.py
+admissible-existence-seed-cycle
+decision-authority
+```
+
+This is record-type separation, not concealment or evidence promotion.
+
+## Installed cross-cutting surfaces
+
+```text
+sidebars.js
+static/external-frameworks/sidebar-page-associations.v1.json
+static/external-frameworks/sidebar-framework-artifact-bindings.v1.json
+static/external-frameworks/registry-navigation-dispositions.v1.json
+static/external-frameworks/canonical-union-inventory.v1.json
+static/external-frameworks/all-navigated-framework-page-completeness.v1.json
+static/external-frameworks/full-registry-public-navigation-remediation.v1.json
+scripts/check-external-framework-registry.mjs
+scripts/check_external_frameworks_index.py
+scripts/check_all_navigated_external_framework_page_completeness.py
+scripts/check_external_framework_public_routes.py
 .github/workflows/validate-chain-continuation.yml
-iosnoperiod/github/workflows/validate-chain-continuation.yml
 ```
 
-The observed-evidence queue must not advance beyond exact artifact evidence. Same-environment and fresh-runner replay inside the same repository/provider are not independent organization, provider, implementation, authority, compatibility, standing, execution authority, or consequence authority.
-
-## Cedar evidence boundary
+Current structural target:
 
 ```text
-Run: 29205883335
-Artifact: cedar-selected-binary-build
-Artifact ID: 8263766611
-Artifact digest: sha256:cff4fbf627776db206c9f1f66281bf03a2c732709d29fa7682e56b99923b61dc
-Pinned Cedar commit: 0807ec154afd7ffa14a658c9955d25bfe12770ca
-Binary SHA-256: 96e6b0517f145875c12457f3350ad43fdc3be9f0e32c42ce813df0667fa036e1
-Build state: BUILT_HASHED_UNEXECUTED
-Registry promotion state: APPLIED_HASH_ONLY
-execution_authorized: false
+canonical registry records: 38
+actual external frameworks: 36
+internal records: 2
+public-sidebar external frameworks: 36
+non-public actual external frameworks: 0
+sidebar support pages: 33
+sidebar total entries: 69
+framework manifest bindings: 36/36
+framework compatibility-report bindings: 36/36
+navigated authored-page completeness: 36/36 COMPLETE_WITH_EXTERNAL_GATES
 ```
 
-Hash promotion does not establish compatibility, certification, standing, admissibility, dispatch authority, execution authority, or consequence authority.
+All 36 sidebar framework records have an existing manifest and compatibility report bound through `sidebar-framework-artifact-bindings.v1.json`. The compatibility reports remain evidence artifacts; their existence is not certification or terminal framework evaluation.
 
-## OPA replay completion
+## Fail-closed navigation invariants
+
+`check-external-framework-registry.mjs` enforces exact sidebar/association ordering, page existence, registry-state declarations, manifest/report bindings, and the rule that a registry record is exactly one of sidebar-bound or explicitly dispositioned.
+
+`check_external_frameworks_index.py` now additionally requires:
 
 ```text
-Workflow: Validate chain continuation
-Run: 29212846956
-Commit: b93edf144dc60a2fe980a384b5b107ced9aee90b
-validate-chain-continuation: PASS
-capture-opa-evidence: PASS
-replay-opa-fresh-runner: PASS
+sidebar framework IDs == canonical-union actual external-framework IDs
+canonical union public_sidebar IDs == all actual external-framework IDs
+non-public actual external-framework IDs == empty set
+public_sidebar count == external-framework count
+non_public_explicit count == 0
+internal records must not appear as framework sidebar items
 ```
 
-Preserve the fresh-runner artifact, hashes, environment, comparison results, and limitations before any stronger claim.
+This prevents a future actual external framework from silently becoming direct-path-only while still appearing complete in the canonical registry.
 
-## Pages failure and bounded repair
+## Authored-page completeness boundary
 
-Run `29212846956` failed at `build-pages` after governance validation passed:
+The four completeness cohorts now cover all 36 actual external-framework pages:
 
 ```text
-Failing path: /admissibility-wiki/formalisms/governed-action-lifecycle
-Failure class: Docusaurus MDX static-render ReferenceError
-Exact error: ReferenceError: t_c is not defined
-Deploy pages: skipped
-Verify public pages: skipped
+policy_identity_provenance_supply_chain: 13
+priority_agent_protocol_guardrail: 5
+legacy_priority_runtime_and_intake: 8
+previously_direct_path_only_external_frameworks: 10
+total: 36
 ```
 
-Bounded repair chain:
+`COMPLETE_WITH_EXTERNAL_GATES` means the Wiki page has the required authored semantic surface. It does not establish source sufficiency, observed runtime behavior, independent reproduction, compatibility, certification, standing, admissibility, release authority, or execution authority.
+
+## Public-route runtime proof
+
+`scripts/check_external_framework_public_routes.py` is installed as a post-deployment verifier. It:
 
 ```text
-e85d06703eeb1463ba15dd1fccafcb2120f17bac
-  -> governed-action-lifecycle static-render repair
-202cffb477b0195f914c663e449040a3296e061e
-  -> formalism publication regression guard
-7e82e84b0ae20b84ca2b842a2bf73c1645101015
-  -> regression-guard installation receipt
+reads the canonical sidebar association artifact
+requires exactly 36 framework routes
+requires each source page to exist
+extracts the source frontmatter title or first H1
+requests the deployed public route
+requires HTTP 200
+rejects obvious rendered 404 content
+requires the normalized source heading/title in rendered HTML
+writes reports/external-frameworks/public-route-verification.json
+fails if any framework route is missing or content-mismatched
 ```
 
-The repair and guard do not weaken activation, deployment, public-verification, release, governance, or authority gates.
-
-## Pages evidence progression
+The canonical Pages workflow runs this verifier only after successful deployment and uploads the resulting report as `external-framework-public-route-verification`.
 
 ```text
-PAGES_BUILD_COMPLETE
--> PAGES_BUILD_PASS_ARTIFACT_PENDING
--> PAGES_ARTIFACT_PRESERVED
--> ALLOW_STATUS_PROMOTION_ONLY
--> separate canonical status application
--> PAGES_ARTIFACT_PRESERVED canonical status
--> separate deployment observation
--> DEPLOYMENT_OBSERVED
--> separate public endpoint verification
+source wiring != successful build
+successful build != deployment
+deployment != route reachability
+route reachability != content fidelity
+content fidelity != framework compatibility
 ```
 
-Every arrow is a separate governed transition. No earlier state implies any later state.
+Current exact-head hosted result must remain UNOBSERVED until the workflow result for the exact resulting commit is directly inspected.
 
-### Build and artifact layers
+## Worker ownership and framework-specific evaluation
+
+Do not use this cross-cutting navigation repair to overwrite worker-owned framework analysis. The current worker registry and issue #66 partition all 36 framework evaluation workloads among issues #62, #63, #64, #65, and #50.
+
+The 36-page navigation denominator and the 36-framework evaluation denominator are separate:
 
 ```text
-reports/pages-build-receipt.json
-reports/pages-build-verification-candidate.json
-static/schemas/pages-artifact-binding-receipt.schema.json
-tests/fixtures/pages-artifact-binding-receipt.preserved.json
-static/schemas/pages-build-status-promotion-receipt.schema.json
-tests/fixtures/pages-build-status-promotion-receipt.blocked.json
-static/status/pages-build-verification.json
+public Wiki source wiring: 36/36
+terminal framework-specific evaluation: determined only by issue #66 direct evidence
 ```
 
-Artifact preservation requires exact run, job, attempt, artifact ID, artifact digest, candidate hash, and build-manifest hash evidence. It does not establish deployment.
+A framework page being visible, authored, manifest-bound, report-bound, built, deployed, and route-verified does not by itself answer the stronger second-page evaluation completion criteria.
 
-## Pages deployment-observation boundary
+## Required next transitions
 
-Installed:
+1. Observe the exact-head canonical validation run produced after the 36-framework navigation repair.
+2. Repair any structural or validation failures directly observed at that exact commit; do not substitute a moving `main`.
+3. Require `build-pages` to succeed for the exact validated source set.
+4. Require `deploy-pages` to succeed for that same source set.
+5. Consume `external-framework-public-route-verification` and require 36/36 reachable and content-verified.
+6. Continue the framework-specific worker program until every one of the 36 framework records reaches its strongest legitimate terminal or explicit evidence-blocked state under issue #66.
+7. Obtain repository-wide canonical PASS before any repository release/activation claim.
+8. At release readiness only, inspect current destination handoffs before propagation-status verification for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, and `StegVerse-002/stegguardian-wiki`.
+
+## Remaining modules and destinations
+
+### `StegVerse-Labs/admissibility-wiki`
+
+- exact-head structural/canonical validation evidence;
+- exact-head Pages build and deploy evidence;
+- 36/36 content-aware public-route verification artifact;
+- completion or explicit evidence-blocked resolution for all 36 framework-specific worker evaluations;
+- repository-wide canonical PASS;
+- release/activation evidence only after the preceding gates.
+
+### Downstream at release readiness only
+
+- `StegVerse-Labs/Site`
+- `GCAT-BCAT-Engine/Publisher`
+- `StegVerse-002/stegguardian-wiki`
+
+No downstream mutation is authorized by this handoff.
+
+## Authority boundary
 
 ```text
-static/schemas/pages-deployment-observation-receipt.schema.json
-tests/fixtures/pages-deployment-observation-receipt.fail-closed.json
-scripts/check_pages_deployment_observation_receipt.py
-receipts/pages-deployment-observation-layer-2026-07-13.json
-scripts/check_goal5_external_frameworks_all.py
+registry inclusion != certification
+sidebar visibility != compatibility
+manifest presence != source sufficiency
+compatibility report presence != terminal evaluation
+page completeness != independent reproduction
+workflow pass != runtime authority
+build success != deployment
+route verification != release
+public rendering != endorsement
+ALLOW != execution
 ```
 
-The baseline remains:
+## Archive posture
 
 ```text
-observation_state: FAIL_CLOSED
-deployment.deployment_status: UNRESOLVED
-deployment.evidence_ref: null
-public_verification_complete: false
-release_authorized: false
-downstream_propagation_authorized: false
-required_next_transition: repair_or_obtain_deployment_evidence
+archive_state: NOT_READY
+source_navigation_goal: 36_OF_36_INSTALLED_PENDING_EXACT_HEAD_HOSTED_PROOF
+framework_evaluation_goal: NONTERMINAL_UNTIL_ISSUE_66_DIRECT_EVIDENCE_CLOSES_36_OF_36
+repository_release: NOT_AUTHORIZED
+repository_activation: NOT_COMPLETE
 ```
 
-`DEPLOYMENT_OBSERVED` requires all of the following:
-
-```text
-canonical source status: PAGES_ARTIFACT_PRESERVED
-source status SHA-256
-source artifact-binding receipt SHA-256
-Pages artifact ID and sha256 digest
-deployment run ID
-deployment job ID
-environment: github-pages
-https page URL
-deployment_status: SUCCESS
-non-empty evidence reference
-```
-
-Even `DEPLOYMENT_OBSERVED` preserves:
-
-```text
-public_verification_complete: false
-release_authorized: false
-downstream_propagation_authorized: false
-required_next_transition: separate_public_endpoint_verification
-```
-
-The validator now checks exact field shapes, hash formats, deployment identifiers, environment, URL scheme, state-specific evidence, required non-claims, and fail-closed baseline posture.
-
-Installation and cleanup commits:
-
-```text
-2ce3784e5a8f1478906b9f19f3d4c74ba3aee222  schema
-ce25dc988adcdfe623ad82b3f095813e59732344  canonical fail-closed fixture
-c0bd08e70036d60a2e59ca251243414720219bc6  validator
-61997a9871d07dc0d57ecf316b6c3f768a510d00  aggregate integration
-ac554bc1ab17bf028d4b0c3d1ec18ea448226f6f  validator hardening
-29027318cc3bae24c834b598b1a92dcaa1ab5fad  duplicate fixture cleanup
-3c1bf655721c4a6dc66deb3fcca6e5c90b9c9e93  installation receipt
-```
-
-## Next task
-
-```text
-1. Verify the canonical successor run containing the complete Pages evidence chain and deployment-observation validator.
-2. Require formalism publication, build-receipt automation, candidate, artifact-binding, status-promotion, status-application, deployment-observation, Docusaurus build, and Pages artifact upload checks to pass.
-3. Inspect pages-build-receipt, verification-candidate, Pages artifact, and deployment job evidence from the exact run.
-4. Record run_id, build-pages job_id, run_attempt, Pages artifact_id, artifact digest, deployment job_id, page URL, build manifest SHA-256, file count, and total bytes.
-5. Create an evidence-bound PAGES_ARTIFACT_PRESERVED receipt only from observed values.
-6. Create ALLOW_STATUS_PROMOTION_ONLY only if every promotion predicate passes.
-7. Apply static/status/pages-build-verification.json only through the separate status-application transition.
-8. Create DEPLOYMENT_OBSERVED only from exact successful deployment evidence.
-9. Do not infer public endpoint verification from deployment success.
-10. Perform replay outside the same repository/provider before stronger independence claims.
-11. Review destination handoffs before propagation to Site, Publisher, or StegGuardian.
-```
-
-## Remaining modules
-
-```text
-StegVerse-Labs/admissibility-wiki
-  -> canonical workflow verification of the complete Pages evidence chain
-  -> observed Pages build and artifact evidence
-  -> evidence-bound artifact-binding receipt
-  -> evidence-bound status-promotion receipt
-  -> separate canonical status mutation
-  -> observed deployment receipt
-  -> separate public endpoint verification receipt
-
-Independent organization/provider
-  -> independent OPA replay or implementation review
-
-StegVerse-Labs/Site
-GCAT-BCAT-Engine/Publisher
-StegVerse-002/stegguardian-wiki
-  -> destination-handoff review before propagation
-```
-
-## Authority and release boundary
-
-```text
-binary build != runtime execution
-binary hash != compatibility proof
-capture != standing
-same-environment replay != independent replay
-fresh runner in same provider != independent organization or provider
-Pages verification candidate != artifact preservation
-artifact-binding receipt != canonical status mutation
-artifact preservation != deployment observation
-status-promotion receipt != deployment authority
-canonical status mutation != deployment observation
-deployment job existence != deployment success
-deployment observation != public endpoint verification
-public verification != release authority
-```
-
-No deployment, release, tag, external-repository mutation, runtime execution, credential attachment, dispatch, or public activation follows from these repository-local contracts. No release tag is justified solely by schema, fixture, validation, promotion, capture, replay, repair, guard, receipt, candidate, artifact binding, status mutation, deployment-observation contract, or automation installation.
-
-## Archive readiness
-
-This handoff preserves Cedar evidence, OPA replay evidence, the Pages failure and repair chain, durable build evidence, candidate generation, artifact-binding boundaries, status-promotion and status-application boundaries, deployment-observation boundaries, authority limits, remaining modules, and ordered continuation task. Earlier conversation context is not required.
+Keep this workstream open until exact-head validation, build, deployment, all-route runtime proof, framework-specific evaluation completion, repository-wide PASS, and any required release/propagation/activation evidence are directly established.
