@@ -5,8 +5,8 @@
   "framework_id": "stegverse",
   "terminology_owner": "StegVerse",
   "canonical_status": "CONTROLLING_SOURCE_DECLARATION",
-  "declaration_revision": 2,
-  "updated_at": "2026-08-16T01:35:00-05:00",
+  "declaration_revision": 3,
+  "updated_at": "2026-08-22T18:15:00-05:00",
   "review_disposition": {
     "provenance_correction": "ACCEPTED_FOR_HISTORICAL_CLASSIFICATION",
     "contributor_protocol": "DIRECTIONALLY_ACCEPTABLE_NOT_BILATERALLY_AUTHORIZED",
@@ -71,7 +71,10 @@
     "update_or_supersession": "additive Git commits with visible correction or supersession notes"
   },
   "historical_source_binding": {
-    "original_2026_07_23_public_source_pin": "PENDING",
+    "original_2026_07_23_public_source_pin": "COMPLETE_BOUNDED_PIN_EXACT_SOURCE_PATH_UNRESOLVED",
+    "pin_record": "static/data/framework-evaluations/asro/historical-public-source-pin-2026-07-23.json",
+    "exact_historical_source_path": null,
+    "exact_historical_source_path_status": "UNRESOLVED_FROM_HISTORICAL_RECORD",
     "later_public_source_may_substitute_backward": false,
     "current_public_source_observation": "static/data/framework-evaluations/asro/public-source-observation-2026-07-26.json"
   },
@@ -107,5 +110,5 @@
   },
   "effective_time": "2026-07-23T00:00:00Z",
   "supersedes": null,
-  "sha256": "59ee43d079bdfcea04b8da78e9c395511e06d746ef85079de0e7e596e643fd7b"
+  "sha256": "83cdd52398c01f792d52a438de2cdae61afeaff96b6d6ae8cb8202ca196a0de1"
 }
