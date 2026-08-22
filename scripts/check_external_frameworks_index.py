@@ -14,45 +14,22 @@ SIDEBAR_ASSOCIATIONS = ROOT / "static" / "external-frameworks" / "sidebar-page-a
 CANONICAL_UNION = ROOT / "static" / "external-frameworks" / "canonical-union-inventory.v1.json"
 
 REQUIRED_ENTRY_FIELDS = [
-    "framework_id",
-    "name",
-    "status",
-    "path",
-    "manifest_path",
-    "source",
-    "testbench_state",
-    "claims_certification",
-    "claims_endorsement",
+    "framework_id", "name", "status", "path", "manifest_path", "source",
+    "testbench_state", "claims_certification", "claims_endorsement",
     "claims_execution_authority",
 ]
 
 MINIMUM_TRANSITION_TABLE_ELEMENTS = [
-    "framework_identity",
-    "source_reference",
-    "source_version",
-    "allowed_use_boundary",
-    "claims",
-    "non_claims",
-    "input_artifact_type",
-    "output_artifact_type",
-    "actor_or_authority_model",
-    "evidence_model",
-    "policy_or_rule_model",
-    "delegation_model",
-    "decision_or_result_model",
-    "execution_authority_claim",
-    "receipt_or_trace_model",
-    "reconstruction_model",
-    "SPE_overlap",
-    "StegVerse_ecosystem_overlap",
-    "fail_closed_conditions",
+    "framework_identity", "source_reference", "source_version", "allowed_use_boundary",
+    "claims", "non_claims", "input_artifact_type", "output_artifact_type",
+    "actor_or_authority_model", "evidence_model", "policy_or_rule_model",
+    "delegation_model", "decision_or_result_model", "execution_authority_claim",
+    "receipt_or_trace_model", "reconstruction_model", "SPE_overlap",
+    "StegVerse_ecosystem_overlap", "fail_closed_conditions",
 ]
 
 ALLOWED_SCHEMA_VERSIONS = {"0.3", "0.4"}
-ALLOWED_GOAL_IDS = {
-    "external-framework-compatibility-testbench",
-    "external-framework-expansion-cycle",
-}
+ALLOWED_GOAL_IDS = {"external-framework-compatibility-testbench", "external-framework-expansion-cycle"}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -61,11 +38,9 @@ def load_json(path: Path) -> dict[str, Any]:
 
 def main() -> int:
     failures: list[str] = []
-
     for path in [INDEX_MD, INDEX_JSON, MANIFEST_SCHEMA, SIDEBAR_ASSOCIATIONS, CANONICAL_UNION]:
         if not path.exists():
             failures.append(f"missing path: {path.relative_to(ROOT)}")
-
     if failures:
         print("EXTERNAL FRAMEWORKS INDEX: FAIL")
         for failure in failures:
@@ -121,31 +96,29 @@ def main() -> int:
                 failures.append(f"entry {entry.get('framework_id')} boundary mismatch: {claim_field}")
 
     sidebar_ids = {
-        entry.get("framework_id")
-        for entry in associations.get("entries", [])
+        entry.get("framework_id") for entry in associations.get("entries", [])
         if entry.get("page_type") == "framework"
     }
     union_entries = canonical_union.get("entries", [])
-    union_all_ids = {
-        entry.get("record_id")
-        for entry in union_entries
-        if isinstance(entry.get("record_id"), str)
-    }
-    union_external_ids = {
-        entry.get("record_id")
-        for entry in union_entries
-        if entry.get("external_framework") is True
-    }
-    union_internal_ids = {
-        entry.get("record_id")
-        for entry in union_entries
-        if entry.get("external_framework") is False
+    union_all_ids = {entry.get("record_id") for entry in union_entries if isinstance(entry.get("record_id"), str)}
+    union_external_ids = {entry.get("record_id") for entry in union_entries if entry.get("external_framework") is True}
+    union_internal_ids = {entry.get("record_id") for entry in union_entries if entry.get("external_framework") is False}
+    public_sidebar_ids = {entry.get("record_id") for entry in union_entries if entry.get("navigation_state") == "public_sidebar"}
+    non_public_external_ids = {
+        entry.get("record_id") for entry in union_entries
+        if entry.get("external_framework") is True and entry.get("navigation_state") != "public_sidebar"
     }
 
     if not sidebar_ids:
         failures.append("sidebar framework coverage is empty")
-    if not sidebar_ids.issubset(union_external_ids):
-        failures.append("sidebar framework IDs are not fully represented as external records in the canonical union")
+    if sidebar_ids != union_external_ids:
+        missing = sorted(union_external_ids - sidebar_ids)
+        extra = sorted(sidebar_ids - union_external_ids)
+        failures.append(f"all actual external framework IDs must be public-sidebar bound; missing={missing}; extra={extra}")
+    if public_sidebar_ids != union_external_ids:
+        failures.append("canonical union must mark every actual external framework public_sidebar")
+    if non_public_external_ids:
+        failures.append(f"external frameworks may not remain non-public: {sorted(non_public_external_ids)}")
     if ids != union_all_ids:
         failures.append("canonical registry IDs do not exactly match canonical union IDs")
     if sidebar_ids & union_internal_ids:
@@ -158,14 +131,15 @@ def main() -> int:
         failures.append("canonical union internal-record count is stale")
     if len(union_all_ids) != union_counts.get("records"):
         failures.append("canonical union total-record count is stale")
+    if union_counts.get("public_sidebar") != len(union_external_ids):
+        failures.append("canonical union public_sidebar count must equal actual external-framework count")
+    if union_counts.get("non_public_explicit") != 0:
+        failures.append("canonical union non_public_explicit external-framework count must be zero")
 
     required_index_references = [
-        "External Framework Evaluation Standard",
-        "External Framework Evaluation Results",
-        "Expanded External Framework Intake",
-        "External Framework Family Coverage",
-        "External Framework Intake Promotion Criteria",
-        "External Framework Page Template",
+        "External Framework Evaluation Standard", "External Framework Evaluation Results",
+        "Expanded External Framework Intake", "External Framework Family Coverage",
+        "External Framework Intake Promotion Criteria", "External Framework Page Template",
         "Evidence Provenance Rollout",
     ]
     for reference in required_index_references:
@@ -173,21 +147,10 @@ def main() -> int:
             failures.append(f"index markdown missing canonical navigation reference: {reference}")
 
     boundary = data.get("boundary", {})
-    false_keys = [
-        "index_inclusion_is_certification",
-        "index_inclusion_is_endorsement",
-        "index_inclusion_is_execution_authority",
-    ]
-    true_keys = [
-        "testbench_outputs_are_compatibility_evidence_only",
-        "missing_source_fails_closed",
-        "missing_transition_table_mapping_fails_closed",
-        "undefined_overlap_fails_closed",
-    ]
-    for key in false_keys:
+    for key in ["index_inclusion_is_certification", "index_inclusion_is_endorsement", "index_inclusion_is_execution_authority"]:
         if boundary.get(key) is not False:
             failures.append(f"boundary false mismatch: {key}")
-    for key in true_keys:
+    for key in ["testbench_outputs_are_compatibility_evidence_only", "missing_source_fails_closed", "missing_transition_table_mapping_fails_closed", "undefined_overlap_fails_closed"]:
         if boundary.get(key) is not True:
             failures.append(f"boundary true mismatch: {key}")
 
@@ -196,6 +159,7 @@ def main() -> int:
     print(f"sidebar_frameworks={len(sidebar_ids)}")
     print(f"canonical_union_external_records={len(union_external_ids)}")
     print(f"canonical_union_internal_records={len(union_internal_ids)}")
+    print(f"public_sidebar_external_records={len(public_sidebar_ids & union_external_ids)}")
     for failure in failures:
         print(f"- {failure}")
     return 1 if failures else 0
