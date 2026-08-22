@@ -18,6 +18,7 @@ Cross-repository mutation authority: none
 - `docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.md`
 - `docs/external-frameworks/evidence/mindforge-boundary-correspondence-provenance.json`
 - `receipts/mindforge-provenance-date-correction-2026-08-18.json`
+- `receipts/mindforge-provenance-source-recovery-search-2026-08-21.json`
 
 Current repair/correction commits:
 
@@ -27,6 +28,9 @@ Current repair/correction commits:
 - `eeed56a6677fb51677d8f8b32d92b15092818068` — human-readable provenance date assertion retracted fail-closed
 - `46a2fe5e9d0fccfee85712cd14761fd9d19211d4` — public MindForge page corrected to stop asserting the unverified range
 - `5fd7552ab63b94c29456775ec5ca47eb5dbec567` — correction receipt recorded
+- `72c92ddba907b04b3bbd1c5a3a62e63761375fa9` — expanded source-recovery search receipt recorded
+- `03be2dfefdceea1c590b8ed0186b5512445b8e86` — machine-readable provenance synchronized to 16 checked candidates
+- `2bafa712a23863bc654ae8b5b2916ca543e1e8d7` — human-readable provenance synchronized to 16 checked candidates
 
 ## Preserved determination boundary
 
@@ -69,7 +73,7 @@ A later non-authorizing reviewer event inspected the rendered public record and 
 
 This closes the public-description fidelity question only. It does not expand the authorized description or create any stronger claim.
 
-## Provenance date correction
+## Provenance date correction and recovery state
 
 The public record previously asserted that the bounded private-correspondence provenance packet covered:
 
@@ -79,12 +83,14 @@ The public record previously asserted that the bounded private-correspondence pr
 
 That assertion is no longer presented as verified provenance.
 
-Evidence recovered in this continuation establishes:
+Evidence recovered so far establishes:
 
 ```text
 bound source captures: 7 SHA-256 identities
-bounded Library candidate images hash-checked: 15
+bounded Library candidate images hash-checked: 16
 exact source-capture hash matches: 0
+latest newly surfaced candidate SHA-256: 24e8083c3cc3dc4f18dc5728e0b1792946750207842b28f70eca1496bcd4670d
+reproduced known technical-discussion candidate SHA-256: abf15fea1069c0e52b7730ec9c5910caeb96082d0eb56c70a40600f72879596b
 private discussion-derived technical draft date: 2026-07-26
 private draft proves earlier semantic discussion existed: true
 private draft proves original correspondence dates: false
@@ -101,14 +107,14 @@ previous_range_status: RETRACTED_FROM_ASSERTED_PROVENANCE_UNTIL_DIRECTLY_VERIFIE
 public_date_claim_allowed_now: false
 ```
 
-The public MindForge page, Markdown provenance record, JSON provenance record, and correction receipt all preserve that fail-closed posture. No replacement date range has been invented.
+The public MindForge page, Markdown provenance record, JSON provenance record, correction receipt, and source-recovery search receipt preserve that fail-closed posture. No replacement date range has been invented.
 
 ## Current blocker
 
 ```text
 required_next_transition: recover_exact_bound_source_capture_and_verify_dates
 source_date_gate: VERIFICATION_PENDING
-current_head_validation: UNOBSERVED_AFTER_DATE_CORRECTION
+current_head_validation: UNOBSERVED_AFTER_PROVENANCE_SEARCH_SYNC
 ```
 
 Direct source-date verification still requires recovery of one or more artifacts that exactly match the seven bound SHA-256 captures. A negative bounded Library search is not evidence that those captures no longer exist.
@@ -170,9 +176,9 @@ A validator PASS is not repository-wide PASS, deployment, runtime proof, release
 ```text
 archive_state: NOT_READY
 required_state_remaining: SOURCE_DATE_VERIFICATION_PENDING
-current_head_validation: UNOBSERVED_AFTER_DATE_CORRECTION
+current_head_validation: UNOBSERVED_AFTER_PROVENANCE_SEARCH_SYNC
 repository_release: NOT_AUTHORIZED
-repository_deployment: NOT_PROVEN_FOR_CORRECTED_HEAD
+repository_deployment: NOT_PROVEN_FOR_CURRENT_HEAD
 repository_activation: NOT_COMPLETE
 ```
 
