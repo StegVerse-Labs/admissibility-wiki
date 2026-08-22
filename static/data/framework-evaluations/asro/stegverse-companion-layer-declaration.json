@@ -5,8 +5,8 @@
   "framework_id": "stegverse",
   "terminology_owner": "StegVerse",
   "canonical_status": "CONTROLLING_SOURCE_DECLARATION",
-  "declaration_revision": 3,
-  "updated_at": "2026-08-22T18:15:00-05:00",
+  "declaration_revision": 2,
+  "updated_at": "2026-08-22T18:16:00-05:00",
   "review_disposition": {
     "provenance_correction": "ACCEPTED_FOR_HISTORICAL_CLASSIFICATION",
     "contributor_protocol": "DIRECTIONALLY_ACCEPTABLE_NOT_BILATERALLY_AUTHORIZED",
@@ -15,50 +15,17 @@
     "independent_reviewer_issuer": "UNRESOLVED"
   },
   "intake_areas": {
-    "artifact_identity": {
-      "value": "StegVerse Companion Layer declaration and its versioned repository artifacts.",
-      "state": "DECLARED"
-    },
-    "declaring_owner": {
-      "value": "StegVerse Labs, represented for this comparison by Rigel Randolph as Founder and Architect.",
-      "state": "DECLARED"
-    },
-    "claimed_function": {
-      "value": "Express StegVerse governance and admissibility concepts in StegVerse terminology for bounded comparison.",
-      "state": "DECLARED"
-    },
-    "explicit_non_claims": {
-      "value": "No ASRO-native execution, partnership, integration, endorsement, certification, completeness, joint issuance, or authority inheritance.",
-      "state": "DECLARED"
-    },
-    "timing_position": {
-      "value": "StegVerse evaluates whether a proposed transition may bind consequence at commit time; ASRO evidence remains an input rather than inherited authority.",
-      "state": "DECLARED"
-    },
-    "authority_boundary": {
-      "value": "StegVerse issues only its own transition receipts and admissibility results. Cross-layer correspondence is non-authorizing.",
-      "state": "DECLARED"
-    },
-    "evidence_status": {
-      "value": "Public ASRO sources and bounded correspondence materials are evidence with provenance-specific standing. Private or unreleased ASRO materials are excluded unless separately and mutually authorized.",
-      "state": "DECLARED"
-    },
-    "composition_constraints": {
-      "value": "Source declarations remain controlling; reviewer-side profiles are derivative; disagreement and unresolved fields remain visible.",
-      "state": "DECLARED"
-    },
-    "known_divergence_risks": {
-      "value": "Evidence may be mistaken for authority; correspondence may be mistaken for truth or validity; historical and execution targets may be conflated; source and derivative artifacts may be conflated.",
-      "state": "DECLARED"
-    },
-    "declaration_validity_and_staleness": {
-      "value": "Valid only for the identified repository state and while owner, scope, terminology, authority, and source evidence remain accurate; stale after an unrecorded material change.",
-      "state": "DECLARED"
-    },
-    "reviewer_use_limitations": {
-      "value": "A reviewer may compare declared surfaces but may not rewrite source meaning, infer authority, designate an issuer, or publish a bilateral record without exact-language approval from both owners.",
-      "state": "DECLARED"
-    }
+    "artifact_identity": {"value": "StegVerse Companion Layer declaration and its versioned repository artifacts.", "state": "DECLARED"},
+    "declaring_owner": {"value": "StegVerse Labs, represented for this comparison by Rigel Randolph as Founder and Architect.", "state": "DECLARED"},
+    "claimed_function": {"value": "Express StegVerse governance and admissibility concepts in StegVerse terminology for bounded comparison.", "state": "DECLARED"},
+    "explicit_non_claims": {"value": "No ASRO-native execution, partnership, integration, endorsement, certification, completeness, joint issuance, or authority inheritance.", "state": "DECLARED"},
+    "timing_position": {"value": "StegVerse evaluates whether a proposed transition may bind consequence at commit time; ASRO evidence remains an input rather than inherited authority.", "state": "DECLARED"},
+    "authority_boundary": {"value": "StegVerse issues only its own transition receipts and admissibility results. Cross-layer correspondence is non-authorizing.", "state": "DECLARED"},
+    "evidence_status": {"value": "Public ASRO sources and bounded correspondence materials are evidence with provenance-specific standing. Private or unreleased ASRO materials are excluded unless separately and mutually authorized.", "state": "DECLARED"},
+    "composition_constraints": {"value": "Source declarations remain controlling; reviewer-side profiles are derivative; disagreement and unresolved fields remain visible.", "state": "DECLARED"},
+    "known_divergence_risks": {"value": "Evidence may be mistaken for authority; correspondence may be mistaken for truth or validity; historical and execution targets may be conflated; source and derivative artifacts may be conflated.", "state": "DECLARED"},
+    "declaration_validity_and_staleness": {"value": "Valid only for the identified repository state and while owner, scope, terminology, authority, and source evidence remain accurate; stale after an unrecorded material change.", "state": "DECLARED"},
+    "reviewer_use_limitations": {"value": "A reviewer may compare declared surfaces but may not rewrite source meaning, infer authority, designate an issuer, or publish a bilateral record without exact-language approval from both owners.", "state": "DECLARED"}
   },
   "version_binding": {
     "version": "1.1.0",
@@ -71,35 +38,19 @@
     "update_or_supersession": "additive Git commits with visible correction or supersession notes"
   },
   "historical_source_binding": {
-    "original_2026_07_23_public_source_pin": "COMPLETE_BOUNDED_PIN_EXACT_SOURCE_PATH_UNRESOLVED",
+    "original_2026_07_23_public_source_pin": "PENDING",
+    "pending_scope": "EXACT_HISTORICAL_SOURCE_PATH_ONLY",
+    "bounded_historical_pin_status": "COMPLETE",
+    "bounded_historical_pin_identity_status": "REPOSITORY_COMMIT_PINNED_EXACT_SOURCE_PATH_UNRESOLVED",
     "pin_record": "static/data/framework-evaluations/asro/historical-public-source-pin-2026-07-23.json",
     "exact_historical_source_path": null,
     "exact_historical_source_path_status": "UNRESOLVED_FROM_HISTORICAL_RECORD",
     "later_public_source_may_substitute_backward": false,
     "current_public_source_observation": "static/data/framework-evaluations/asro/public-source-observation-2026-07-26.json"
   },
-  "scope": [
-    "transition-state admissibility",
-    "commit-time authority reconstruction",
-    "evidence-bound execution posture",
-    "continuity, replay, and reconstruction",
-    "bounded external-framework correspondence"
-  ],
-  "functions": [
-    "declare StegVerse boundaries in StegVerse terminology",
-    "separate observation, correspondence, admissibility, authority, and execution",
-    "bind claims and references to stable identities, versions, hashes, and applicable time",
-    "preserve reviewer profiles as derivative records",
-    "fail closed when accountable issuer or reference correspondence is unresolved"
-  ],
-  "non_inheritance": [
-    "correspondence does not establish truth",
-    "correspondence does not establish sufficiency",
-    "correspondence does not establish validity",
-    "correspondence does not establish admissibility",
-    "correspondence does not establish authority inheritance",
-    "review publication does not transfer canonical custody"
-  ],
+  "scope": ["transition-state admissibility", "commit-time authority reconstruction", "evidence-bound execution posture", "continuity, replay, and reconstruction", "bounded external-framework correspondence"],
+  "functions": ["declare StegVerse boundaries in StegVerse terminology", "separate observation, correspondence, admissibility, authority, and execution", "bind claims and references to stable identities, versions, hashes, and applicable time", "preserve reviewer profiles as derivative records", "fail closed when accountable issuer or reference correspondence is unresolved"],
+  "non_inheritance": ["correspondence does not establish truth", "correspondence does not establish sufficiency", "correspondence does not establish validity", "correspondence does not establish admissibility", "correspondence does not establish authority inheritance", "review publication does not transfer canonical custody"],
   "authority": {
     "self_declaration": true,
     "external_review": false,
@@ -110,5 +61,5 @@
   },
   "effective_time": "2026-07-23T00:00:00Z",
   "supersedes": null,
-  "sha256": "83cdd52398c01f792d52a438de2cdae61afeaff96b6d6ae8cb8202ca196a0de1"
+  "sha256": "3b028529aee769b1c786f65518115b3922a0b1a038f4b40bf3b42add3905d918"
 }
