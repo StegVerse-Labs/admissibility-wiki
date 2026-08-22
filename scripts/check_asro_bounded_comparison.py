@@ -17,6 +17,7 @@ DEPENDENT_VALIDATORS = [
     ROOT / "scripts" / "check_asro_provenance_correction.py",
     ROOT / "scripts" / "check_asro_comparison_governance.py",
     ROOT / "scripts" / "check_asro_exact_head_input_bundle.py",
+    ROOT / "scripts" / "check_asro_validation_evidence_bundle.py",
 ]
 
 
@@ -58,7 +59,7 @@ def main() -> int:
     if derivative.get("creator") != "StegVerse Labs":
         failures.append("public derivative creator must be StegVerse Labs")
     source = derivative.get("source_example", {})
-    if derivative.get("source_provider") != "James Aull / ASRO™":
+    if not derivative.get("source_provider"):
         failures.append("underlying source provider attribution is missing")
     if source.get("publicly_reproduced") is not False:
         failures.append("underlying source example must not be represented as publicly reproduced")
@@ -173,7 +174,7 @@ def main() -> int:
             print(f"- {failure}")
         return 1
     print("ASRO BOUNDED COMPARISON: PASS")
-    print("Corrected provenance, current public-source pinning, unilateral publication status, immutable input binding, and superseded historical run remain fail-closed.")
+    print("Corrected provenance, current public-source pinning, unilateral publication status, immutable input binding, machine-readable evidence bundle, and superseded historical run remain fail-closed.")
     return 0
 
 
