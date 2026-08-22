@@ -1,14 +1,14 @@
 {
-  "schema_version": "1.3.0",
+  "schema_version": "1.4.0",
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "task_sequence": 3,
-  "task_sequence_label": "translation reconstruction integration sequence 0003",
-  "work_state": "REPOSITORY_ACTIVE_SESSION_ARCHIVE_READY",
+  "task_sequence": 4,
+  "task_sequence_label": "canonical validation support sequence 0004",
+  "work_state": "REPOSITORY_ACTIVE_SUPPORT_WORK_PENDING",
   "system_health": "PUBLICATION_HEALTHY_CANONICAL_VALIDATION_FAIL_CLOSED",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
-  "repository_heartbeat": 14,
+  "repository_heartbeat": 15,
   "time_role": "NO_TIMER_OWNERSHIP",
   "completed_session_sequences": [
     {
@@ -29,12 +29,6 @@
       "claim_released_at": "2026-08-03T20:04:00Z",
       "state": "COMPLETE_VALIDATED_INTEGRATED_AND_TRANSFERRED",
       "handoff": "docs/EXTERNAL_TRANSLATION_RECONSTRUCTION_MIRROR_HANDOFF.md",
-      "claimed_surfaces": [
-        "scripts/check_full_validation_chain.py",
-        "scripts/check_external_translation_reconstruction_receipt.py",
-        "docs/EXTERNAL_TRANSLATION_RECONSTRUCTION_MIRROR_HANDOFF.md",
-        "StegVerse-Labs/admissibility-wiki issue #50"
-      ],
       "implementation_commits": [
         "cba36e4667606a542c2099e271ea1898bac53db5",
         "804746986b8910ea5b1ccd5e43dc4036d4e60d13",
@@ -56,17 +50,6 @@
         "full_validation": "51_OF_56_PASS_5_FAIL_0_SKIPPED",
         "overall_repository_status": "FAIL_CLOSED"
       },
-      "artifacts": {
-        "canonical_prescan_report": {
-          "artifact_id": 8869434427,
-          "digest": "sha256:fb0e9238a3e1235ca41bef6026863ad33a07f2350197354464a38c212fd29a89"
-        },
-        "full_validation_chain_report": {
-          "artifact_id": 8869494846,
-          "digest": "sha256:b27a0bd3e76dc12895b1a97754917fd80563c4dd9d8697f746bf05c7568baf4b",
-          "directly_inspected": true
-        }
-      },
       "completion_metrics": {
         "task_completion_percent": 100,
         "developed_files": 3,
@@ -84,7 +67,28 @@
       "session_dependency": false
     }
   ],
-  "active_support_workloads": [],
+  "active_support_workloads": [
+    {
+      "task_id": "ADMISSIBILITY-MINDFORGE-REVIEW-001",
+      "owner": "StegVerse-Labs/admissibility-wiki issue #50",
+      "handoff": "data/external-reviews/mindforge/MINDFORGE_REVIEW_MIRROR_HANDOFF.md",
+      "workload": "MindForge provenance source-date verification and current validation alignment",
+      "execution_class": "PARALLEL_SAFE_WITH_ISSUE_50_COLLISION_CONTROL",
+      "claim_state": "ACTIVE",
+      "heartbeat_lease_ref": null,
+      "canonical_heartbeat_lease_established": false,
+      "state": "PUBLIC_DATE_ASSERTION_CORRECTED_SOURCE_DATE_VERIFICATION_PENDING",
+      "current_source_head_at_registration": "8168c995d638a2823020ae6891b5e46c31b06ed2",
+      "current_source_head_validation": "UNOBSERVED",
+      "bound_source_capture_count": 7,
+      "bounded_library_candidates_hash_checked": 16,
+      "exact_source_capture_hash_matches": 0,
+      "required_next_transition": "recover_exact_bound_source_capture_and_verify_dates",
+      "release_condition": "direct source-date verification, exact-head applicable validation, successor canonical workflow observation, and legitimate terminal state recorded by issue #50",
+      "duplicate_work_prohibited": true,
+      "session_dependency": false
+    }
+  ],
   "active_independent_workloads": [
     {
       "task_id": "ADMISSIBILITY-RIVERBRAID-001",
@@ -134,6 +138,7 @@
     }
   ],
   "canonical_validation_state": {
+    "evidence_class": "LAST_FULLY_OBSERVED_CANONICAL_BASELINE",
     "run_id": 30847927019,
     "head_sha": "150a61d7ec11bb6e7625af961481bc9cc5504772",
     "overall_status": "FAIL_CLOSED",
@@ -148,6 +153,7 @@
       "scripts/check_governed_llm_pages.py",
       "scripts/check_admissibility_automation_handoff.py"
     ],
+    "current_main_validation": "UNOBSERVED_AFTER_SUPPORT_REPAIRS",
     "owner": "StegVerse-Labs/admissibility-wiki issue #50 and scoped handoffs",
     "missing_evidence_implies_success": false,
     "session_dependency": false
@@ -174,10 +180,12 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "TRANSLATION_RECONSTRUCTION_INTEGRATION_COMPLETE_ARCHIVE_READY",
+    "event_type": "MINDFORGE_ACTIVE_SUPPORT_WORKLOAD_REGISTERED",
     "progress_effect": true,
     "authority_effect": false,
-    "observed_run_id": 30847927019
+    "source_commit": "8168c995d638a2823020ae6891b5e46c31b06ed2",
+    "required_next_transition": "recover_exact_bound_source_capture_and_verify_dates"
   },
-  "idle_terminal_statement": "end of translation reconstruction integration sequence 0003, no session-owned tasks running"
+  "idle_terminal_statement": null,
+  "archive_state": "NOT_READY_WHILE_ACTIVE_SUPPORT_OR_REQUIRED_VALIDATION_REMAINS"
 }
