@@ -2,7 +2,7 @@
 
 ## Scope and authority
 
-This is the goal-specific continuation record for ASRO review-disposition, provenance-correction, four-artifact closure, immutable-input binding, and exact-head validation work in `StegVerse-Labs/admissibility-wiki`.
+This is the goal-specific continuation record for ASRO review-disposition, provenance-correction, four-artifact closure, immutable-input binding, machine-readable validation evidence, and exact-head validation work in `StegVerse-Labs/admissibility-wiki`.
 
 Read `ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md` and `data/admissibility-wiki-orchestration-state.json` first. This goal remains inside issue #50. It grants no release, deployment, publication, reciprocal-execution, custody, certification, reviewer standing, or bilateral authority.
 
@@ -71,21 +71,34 @@ immutable_input_validator:
   path: scripts/check_asro_exact_head_input_bundle.py
   state: INSTALLED_AND_ENFORCES_ALL_PINNED_BLOBS
 
+validation_evidence_bundle_runner:
+  path: scripts/check_asro_validation_evidence_bundle.py
+  report: reports/asro-validation-evidence-bundle.json
+  state: INSTALLED_FAIL_CLOSED
+  local_pass_class: PASS_LOCAL_EVIDENCE_BUNDLE
+  hosted_pass_class: NOT_GRANTED_BY_THIS_RUNNER
+
 bounded_integration:
   path: scripts/check_asro_bounded_comparison.py
-  state: IMMUTABLE_INPUT_VALIDATOR_REQUIRED_DEPENDENCY
+  state: IMMUTABLE_INPUT_AND_EVIDENCE_BUNDLE_REQUIRED_DEPENDENCIES
+  source_provider_attribution_guard: EXACT_HASH_BOUND
 
 static_integrity_receipt:
   path: receipts/asro-static-input-integrity-observation-2026-08-22.json
   state: PASS_STATIC_BLOB_CONSISTENCY
   observed_input_matches: 8_OF_8
 
+canonical_aggregate:
+  path: scripts/check_admissibility_automation_handoff.py
+  binding: calls scripts/check_asro_bounded_comparison.py
+  transitive_evidence_bundle_binding: true
+
 canonical_workflow:
   path: .github/workflows/validate-chain-continuation.yml
   hosted_exact_head_result: UNOBSERVED
 ```
 
-Static integrity proves the pinned repository bytes match the immutable ASRO bundle. It is not hosted workflow execution and does not satisfy canonical validation, release, deployment, runtime, activation, reciprocal execution, or bilateral authorization.
+The machine-readable evidence bundle executes the immutable-input, comparison-governance, and provenance checks and writes exact result/output records. Because it is now a required dependency of `check_asro_bounded_comparison.py`, and the repository canonical aggregate calls that bounded validator, canonical execution transitively requires the evidence bundle. A local bundle PASS still does not equal hosted canonical PASS.
 
 ## Recent implementation chain
 
@@ -106,10 +119,22 @@ bb82c85b3fde5b3e53573eced305a0bce5fb014d
   bind immutable-input validator into bounded comparison
 
 eb84e20766be6085b31b2fff62c3602beed90404
-  remove governance-validator identity exception and enforce all pinned blobs
+  enforce all pinned blob identities
 
 9c88f5e08a727eba2942582262b45d21b89dbfc2
   record 8/8 GitHub-observed static input integrity PASS
+
+996c5ade10698a7eefbb1901fb68d0dd8f4ead80
+  converge this handoff on static-integrity state
+
+53d8809f964723d842bf6f6a2a7f33eb682c038a
+  add machine-readable ASRO validation evidence-bundle runner
+
+15a355f52acaad2e211ab2a983cc1cf6f7908a05
+  bind evidence-bundle runner into bounded comparison
+
+91d9dbe1b4311a8645ecff0eaffcd51e6b75a864
+  restore exact source-provider attribution enforcement using a stable hash guard
 ```
 
 ## Strongest observed evidence
@@ -121,13 +146,14 @@ last_fully_observed_asro_result: PASS
 last_fully_observed_repository_result: FAIL_CLOSED_INDEPENDENT
 ```
 
-That older run cannot validate the later four-artifact and immutable-input controls.
+That older run cannot validate the later four-artifact, immutable-input, or evidence-bundle controls.
 
 Current stronger non-hosted evidence:
 
 ```text
 static_integrity_result: PASS_STATIC_BLOB_CONSISTENCY
 pinned_inputs_verified: 8_OF_8
+machine_readable_bundle_generation: INSTALLED_CANONICAL_CHAIN_BOUND
 hosted_canonical_validation: UNOBSERVED
 ```
 
@@ -150,14 +176,15 @@ repository_activation: NOT_COMPLETE
 
 ```text
 1. consume terminal canonical workflow evidence for the current exact head or a clearly superseding main head;
-2. require check_asro_exact_head_input_bundle.py, check_asro_comparison_governance.py, check_asro_bounded_comparison.py, receipt validation, and commitment-candidate validation to PASS on the same validated source set;
-3. preserve any repository-wide independent failures as independent rather than reopening ASRO-specific work without evidence;
-4. repair the highest-priority unblocked nonduplicate failing gate if repository-wide validation remains fail-closed;
-5. require repository-wide canonical PASS before any tag/release claim;
-6. only after an authorized exact release set, inspect destination handoffs before propagation to StegVerse-Labs/Site, GCAT-BCAT-Engine/Publisher, and StegVerse-002/stegguardian-wiki;
-7. require deployment/runtime/activation evidence where the release contract requires it;
-8. keep reciprocal ASRO-native execution deferred until a genuine native object and mutually approved controls exist;
-9. keep a bilateral Seam Comparison Record unissued until exact-language bilateral authorization exists.
+2. consume reports/asro-validation-evidence-bundle.json from that exact validated source set and require PASS_LOCAL_EVIDENCE_BUNDLE inside the hosted run;
+3. require check_asro_bounded_comparison.py, receipt validation, commitment-candidate validation, reciprocal-publication verification, Site-projection validation, and governed-review-docket validation to PASS on the same source set;
+4. preserve repository-wide independent failures as independent rather than reopening ASRO-specific work without evidence;
+5. repair the highest-priority unblocked nonduplicate failing gate if repository-wide validation remains fail-closed;
+6. require repository-wide canonical PASS before any tag/release claim;
+7. only after an authorized exact release set, inspect destination handoffs before propagation to StegVerse-Labs/Site, GCAT-BCAT-Engine/Publisher, and StegVerse-002/stegguardian-wiki;
+8. require deployment/runtime/activation evidence where the release contract requires it;
+9. keep reciprocal ASRO-native execution deferred until a genuine native object and mutually approved controls exist;
+10. keep a bilateral Seam Comparison Record unissued until exact-language bilateral authorization exists.
 ```
 
 ## Non-equivalence rules
@@ -165,6 +192,7 @@ repository_activation: NOT_COMPLETE
 ```text
 artifact installed != validated
 static integrity PASS != hosted canonical PASS
+local evidence bundle PASS != hosted canonical PASS
 validator installed != validator PASS
 workflow PASS != runtime
 source complete != activated
@@ -185,6 +213,7 @@ archive_blocker: HOSTED_CANONICAL_VALIDATION_UNOBSERVED
 four_requested_artifacts: 4_OF_4_INSTALLED
 immutable_input_binding: INSTALLED
 static_input_integrity: PASS_8_OF_8
+validation_evidence_bundle: INSTALLED_CANONICAL_CHAIN_BOUND
 hosted_exact_head_validation: UNOBSERVED
 release: NOT_AUTHORIZED
 deployment: NOT_PROVEN
