@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "asro_exact_head_validation_inputs",
+  "goal_id": "ADMISSIBILITY-ASRO-REVIEW-DISPOSITION-001",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "source_head": "99fde15049f4c86d7056d9501d6c52733b5e5d0e",
+  "source_head_role": "IMMUTABLE_INPUT_BUNDLE_ORIGIN_NOT_RELEASE_AUTHORITY",
+  "inputs": {
+    "owner_declaration": {
+      "path": "docs/external-frameworks/stegverse-owner-declaration-asro-comparison.md",
+      "git_blob_sha1": "92613150495b40a67a4309bf2de03b972c4a284b"
+    },
+    "contributor_protocol": {
+      "path": "docs/external-frameworks/asro-stegverse-comparison-contributor-protocol.md",
+      "git_blob_sha1": "586f3ca753e077084be7a7cc24c334fb250ba2b7"
+    },
+    "companion_declaration": {
+      "path": "static/data/framework-evaluations/asro/stegverse-companion-layer-declaration.json",
+      "git_blob_sha1": "a6c3661dae573ef0016545b48fefca2371d9b27d"
+    },
+    "historical_public_source_pin": {
+      "path": "static/data/framework-evaluations/asro/historical-public-source-pin-2026-07-23.json",
+      "git_blob_sha1": "7b4b27df5964243de35f1d1ea8f945f5a112a8fc"
+    },
+    "accountable_party_declaration": {
+      "path": "static/data/framework-evaluations/asro/stegverse-accountable-party-declaration.json",
+      "git_blob_sha1": "3d7c9208abdfca6e559ff66da2807f121da0fa63"
+    },
+    "contribution_ledger": {
+      "path": "static/data/framework-evaluations/asro/contribution-ledger.jsonl",
+      "git_blob_sha1": "880bbc7cf1493d8dc7f9c87bd97fab9d73d45cf2"
+    },
+    "comparison_governance_validator": {
+      "path": "scripts/check_asro_comparison_governance.py",
+      "git_blob_sha1": "15e7c5f8e75acfcff26c08cc612976e4fb4d171e",
+      "binding_role": "VALIDATOR_BASELINE_BEFORE_INPUT_BUNDLE_BINDING"
+    },
+    "validation_trigger_receipt": {
+      "path": "receipts/asro-exact-head-validation-trigger-2026-08-22.json",
+      "git_blob_sha1": "4effb4362516ef8469d955d9e4a701f483317411"
+    }
+  },
+  "preserved_boundaries": {
+    "exact_historical_source_path": "UNRESOLVED",
+    "independent_reviewer_issuer": "UNRESOLVED",
+    "external_asro_native_execution": "NOT_TESTED",
+    "reciprocal_execution": "DEFERRED",
+    "bilateral_seam_comparison_record": "NOT_ISSUED_OR_AUTHORIZED",
+    "repository_release": "NOT_AUTHORIZED",
+    "runtime": "NOT_PROVEN",
+    "activation": "NOT_COMPLETE"
+  },
+  "validation_rule": "Each pinned Git blob identity must match the repository file bytes consumed by the ASRO comparison-governance validator. A later commit may validate this immutable input bundle without silently substituting changed content.",
+  "authority": {
+    "release": false,
+    "deployment": false,
+    "runtime": false,
+    "activation": false,
+    "reciprocal_execution": false,
+    "bilateral_authorization": false
+  },
+  "recorded_at": "2026-08-22T14:21:00-05:00"
+}
