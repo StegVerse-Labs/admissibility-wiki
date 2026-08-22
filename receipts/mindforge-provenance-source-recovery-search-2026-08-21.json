@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_type": "mindforge_provenance_source_recovery_search",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "task_id": "ADMISSIBILITY-MINDFORGE-REVIEW-001",
+  "recorded_at_utc": "2026-08-22T04:53:00Z",
+  "search_scope": "private_library_source_recovery",
+  "authority_effect": "NONE",
+  "publication_effect": "NONE",
+  "release_effect": "NONE",
+  "activation_effect": "NONE",
+  "target_source_capture_sha256": [
+    "699af94cadba3f9861613b11d764ce12e0449573f290fbd0287530dabf1aeb93",
+    "35217d7e6e040a1f5eea353e1b12ea447e49b9a189cad6b6834a7858a1298246",
+    "4007705621c9526cb0fb8f7fe7867342bd7b7390c5ad49ade1eef9cb76f9f8e6",
+    "bbdf0d82f31e04b1349685694cb9ca45be3c00c6e1bc559c01a37e206334e771",
+    "75ecbb1d29a86cb60aca85313d461edf3be51f8ab877849689514aa3c3f6eefe",
+    "1c5006bdcfa1a8e79feac2f745469bf3f7dcc076d00c2b94c08c3ede06fc96fa",
+    "57af075cbcadf5c37ceac624489599971585cba683fa23ab050deac1704364f9"
+  ],
+  "prior_bounded_candidate_hash_checks": 15,
+  "new_candidates_hash_checked": [
+    {
+      "library_filename": "4E76150C-550D-4564-AD2E-B3607587A139.png",
+      "sha256": "24e8083c3cc3dc4f18dc5728e0b1792946750207842b28f70eca1496bcd4670d",
+      "matches_bound_source_capture": false,
+      "classification": "later_publication_boundary_correspondence_candidate",
+      "may_substitute_for_original_source_date_proof": false
+    }
+  ],
+  "rechecked_known_candidate": {
+    "library_filename": "32BFB996-6956-4DCA-B652-80F1B37030B4.png",
+    "sha256": "abf15fea1069c0e52b7730ec9c5910caeb96082d0eb56c70a40600f72879596b",
+    "matches_bound_source_capture": false
+  },
+  "cumulative_bounded_candidate_hash_checks": 16,
+  "exact_bound_source_capture_matches": 0,
+  "correspondence_date_status": "UNVERIFIED",
+  "captured_date_range": null,
+  "previously_recorded_unverified_range": {
+    "start": "2026-06-24",
+    "end": "2026-06-26",
+    "status": "RETRACTED_FROM_ASSERTED_PROVENANCE_UNTIL_DIRECTLY_VERIFIED"
+  },
+  "negative_search_is_absence_proof": false,
+  "required_next_transition": "recover_exact_bound_source_capture_and_verify_dates",
+  "validation_effect": "NONE",
+  "notes": [
+    "The expanded semantic image search surfaced one additional plausible later correspondence screenshot that had not been included in the prior 15-candidate bounded hash check.",
+    "Its exact byte hash does not match any of the seven bound source-capture hashes.",
+    "A previously known technical-discussion screenshot was re-materialized and its prior non-match was independently reproduced.",
+    "No replacement correspondence date range is asserted from this search."
+  ]
+}
