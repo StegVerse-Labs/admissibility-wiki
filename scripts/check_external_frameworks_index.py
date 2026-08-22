@@ -95,10 +95,8 @@ def main() -> int:
             if entry.get(claim_field) is not False:
                 failures.append(f"entry {entry.get('framework_id')} boundary mismatch: {claim_field}")
 
-    sidebar_ids = {
-        entry.get("framework_id") for entry in associations.get("entries", [])
-        if entry.get("page_type") == "framework"
-    }
+    framework_associations = [entry for entry in associations.get("entries", []) if entry.get("page_type") == "framework"]
+    sidebar_ids = {entry.get("framework_id") for entry in framework_associations}
     union_entries = canonical_union.get("entries", [])
     union_all_ids = {entry.get("record_id") for entry in union_entries if isinstance(entry.get("record_id"), str)}
     union_external_ids = {entry.get("record_id") for entry in union_entries if entry.get("external_framework") is True}
@@ -123,6 +121,16 @@ def main() -> int:
         failures.append("canonical registry IDs do not exactly match canonical union IDs")
     if sidebar_ids & union_internal_ids:
         failures.append("internal ecosystem records must not appear as framework-specific sidebar entries")
+
+    for association in framework_associations:
+        page_path = association.get("page_path")
+        framework_id = association.get("framework_id")
+        if not isinstance(page_path, str):
+            failures.append(f"framework association missing page path: {framework_id}")
+            continue
+        expected_link = f"(./{Path(page_path).name})"
+        if expected_link not in md:
+            failures.append(f"public index missing framework link for {framework_id}: {expected_link}")
 
     union_counts = canonical_union.get("counts", {})
     if len(union_external_ids) != union_counts.get("external_frameworks"):
@@ -157,6 +165,7 @@ def main() -> int:
     print("EXTERNAL FRAMEWORKS INDEX:", "FAIL" if failures else "PASS")
     print(f"registry_records={len(ids)}")
     print(f"sidebar_frameworks={len(sidebar_ids)}")
+    print(f"index_framework_links={len(framework_associations)}")
     print(f"canonical_union_external_records={len(union_external_ids)}")
     print(f"canonical_union_internal_records={len(union_internal_ids)}")
     print(f"public_sidebar_external_records={len(public_sidebar_ids & union_external_ids)}")
