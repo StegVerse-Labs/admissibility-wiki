@@ -376,3 +376,15 @@ jobs:
         run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/formalisms/inference-window-irreversibility-governance"
       - name: Verify governed LLM route set
         run: python scripts/check_governed_llm_deployment_status.py
+      - name: Verify all external framework public routes and rendered headings
+        env:
+          ADMISSIBILITY_WIKI_PUBLIC_BASE_URL: ${{ needs.deploy-pages.outputs.page_url }}
+        run: python scripts/check_external_framework_public_routes.py
+      - name: Upload external framework public-route verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-framework-public-route-verification
+          path: reports/external-frameworks/public-route-verification.json
+          if-no-files-found: error
+          retention-days: 30
