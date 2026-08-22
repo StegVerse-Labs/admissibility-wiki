@@ -1,0 +1,24 @@
+{
+  "schema": "external_framework_full_registry_public_navigation_remediation.v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "cohort": "previously_direct_path_only_external_frameworks",
+  "counts": {
+    "cohort_pages": 10,
+    "complete_with_external_gates": 10,
+    "partial": 0
+  },
+  "entries": [
+    {"framework_id":"aar","page_path":"docs/external-frameworks/aar.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"mitre-atlas","page_path":"docs/external-frameworks/mitre-atlas.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"owasp-top-10-llm","page_path":"docs/external-frameworks/owasp-top-10-llm.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"agent-governance-playbook","page_path":"docs/external-frameworks/agent-governance-playbook.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"emergency-stop-convention","page_path":"docs/external-frameworks/killswitch-md.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"nist-ai-rmf","page_path":"docs/external-frameworks/nist-ai-rmf.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"iso-iec-42001","page_path":"docs/external-frameworks/iso-iec-42001.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"eu-ai-act","page_path":"docs/external-frameworks/eu-ai-act.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"policy-cards","page_path":"docs/external-frameworks/policy-cards.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"},
+    {"framework_id":"runtime-governance-for-ai-agents","page_path":"docs/external-frameworks/runtime-governance-policies-on-paths.md","completeness":"COMPLETE_WITH_EXTERNAL_GATES"}
+  ],
+  "boundary": "Public navigation exposes existing evidence-bounded pages. It does not promote evidence class, establish independent reproduction, certify compatibility, create standing, or grant execution authority.",
+  "next_action": "Require all 36 actual external-framework pages to remain sidebar-visible and content-aware route verified in the canonical publication workflow."
+}
