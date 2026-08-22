@@ -70,11 +70,6 @@ def main() -> int:
         if not target.exists():
             errors.append(f"missing_input:{name}:{rel}")
             continue
-        # The governance validator entry records the validator baseline that created
-        # the four-artifact binding. This validator is intentionally a later additive
-        # control and therefore does not rewrite that historical baseline identity.
-        if name == "comparison_governance_validator" and record.get("binding_role") == "VALIDATOR_BASELINE_BEFORE_INPUT_BUNDLE_BINDING":
-            continue
         actual = git_blob_sha1(target)
         if actual != expected:
             errors.append(f"blob_mismatch:{name}:{expected}:{actual}")
@@ -123,7 +118,7 @@ def main() -> int:
         return 1
 
     print("ASRO EXACT-HEAD INPUT BUNDLE: PASS")
-    print("Pinned artifact bytes, trigger binding, unresolved evidence states, and non-authority boundaries are preserved without moving-main substitution.")
+    print("Pinned artifact bytes, governance-validator identity, trigger binding, unresolved evidence states, and non-authority boundaries are preserved without moving-main substitution.")
     return 0
 
 
