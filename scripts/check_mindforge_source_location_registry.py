@@ -63,7 +63,7 @@ REGISTRY_MARKERS = (
 PUBLICATION_HANDOFF_MARKERS = (
     "state: COMPLETE_PUBLIC_ROUTE_VERIFIED",
     "run_id: 30837466398",
-    "STANDING DETERMINATION RECEIPT: auditable result, no execution command",
+    "Standing Determination Receipt -> auditable result, no execution command",
     "AUTHORIZED_EXACT_WITH_BOUNDARIES",
     "private_correspondence_publication_permitted: false",
     "NO publication of screenshots",
