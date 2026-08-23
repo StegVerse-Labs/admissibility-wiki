@@ -74,6 +74,7 @@ CHECKS = [
     "scripts/check_goal5_external_blockers.py",
     "scripts/check_goal5_release_readiness.py",
     "scripts/check_agcp_registry_assessment.py",
+    "scripts/check_external_framework_publication_proof_contract.py",
     "scripts/check_external_frameworks_index.py",
 ]
 
