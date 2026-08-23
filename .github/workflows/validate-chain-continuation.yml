@@ -332,6 +332,18 @@ jobs:
         if: always()
         run: test "${{ steps.site-build.outcome }}" = "success"
 
+      - name: Verify all generated external framework route files and rendered headings
+        run: python scripts/check_external_framework_public_routes.py --built-site --build-dir build
+
+      - name: Upload external framework built-route verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-framework-built-route-verification
+          path: reports/external-frameworks/built-route-verification.json
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
