@@ -274,6 +274,18 @@ jobs:
       - name: Generate external framework page status
         run: python scripts/generate_external_framework_page_status.py
 
+      - name: Validate all external framework source routes and headings
+        run: python scripts/check_external_framework_public_routes.py --source-only
+
+      - name: Upload external framework source-route contract
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-framework-source-route-contract
+          path: reports/external-frameworks/source-route-contract.json
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
