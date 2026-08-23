@@ -61,6 +61,8 @@ scripts/check-external-framework-registry.mjs
 scripts/check_external_frameworks_index.py
 scripts/check_all_navigated_external_framework_page_completeness.py
 scripts/check_external_framework_public_routes.py
+scripts/check_external_framework_publication_proof_contract.py
+scripts/check_goal5_external_frameworks_all.py
 .github/workflows/validate-chain-continuation.yml
 ```
 
@@ -115,7 +117,7 @@ total: 36
 
 ## Three-stage route proof
 
-`scripts/check_external_framework_public_routes.py` now enforces three distinct route transitions rather than collapsing source, build, and deployment into one claim.
+`scripts/check_external_framework_public_routes.py` enforces three distinct route transitions rather than collapsing source, build, and deployment into one claim.
 
 ### Stage 1 — pre-build source-route contract
 
@@ -189,6 +191,35 @@ route reachability != content fidelity
 content fidelity != framework compatibility
 ```
 
+## Publication proof contract regression guard
+
+The three-stage chain is itself now validated as a Goal-5 contract rather than relying on documentation alone.
+
+`scripts/check_external_framework_publication_proof_contract.py` requires:
+
+```text
+36 framework associations
+all three route-validator modes and report schemas
+source-route validation before Node/build
+source-route artifact binding
+Docusaurus build before built-route validation
+built-route validation before Pages artifact upload
+built-route artifact binding
+deployment after Pages artifact production
+post-deployment public-route verification
+public-route artifact binding
+handoff preservation of non-authority and stage-separation markers
+```
+
+`check_goal5_external_frameworks_all.py` now executes this validator. Therefore removal, reordering, or silent weakening of the source -> build -> generated-route -> Pages artifact -> deployment -> public-route proof chain is a Goal-5 failure rather than an unobserved documentation regression.
+
+Installed commits:
+
+```text
+4906baa3ee8bc3a24d29e8479ce40723ca1bd965  add publication proof contract validator
+2503fd6482332636ed211095e76774b0d425b814  bind publication proof contract into Goal-5 aggregate validation
+```
+
 Current hosted result must remain UNOBSERVED until the workflow result for the exact resulting commit is directly inspected. Moving-main substitution is prohibited for evidence claims.
 
 ## Worker ownership and framework-specific evaluation
@@ -204,24 +235,28 @@ terminal framework-specific evaluation: determined only by issue #66 direct evid
 
 A framework page being visible, authored, manifest-bound, report-bound, built, deployed, and route-verified does not by itself answer the stronger second-page evaluation completion criteria.
 
+Latest direct coordinator evidence still records 7/36 terminally reconciled and 29/36 incomplete. No newer issue-#66 evidence was observed during this transition, so the denominator is not promoted.
+
 ## Required next transitions
 
-1. Observe an exact-head canonical validation/build run containing the current three-stage route-proof chain.
-2. Require `external-framework-source-route-contract` to report 36/36 source-contract-verified routes.
-3. Require Docusaurus build success for that same exact head.
-4. Require `external-framework-built-route-verification` to report 36/36 generated route files with content fidelity.
-5. Require Pages artifact upload and `deploy-pages` success for that same source set.
-6. Consume `external-framework-public-route-verification` and require 36/36 reachable and content-verified.
-7. Repair any failure at the exact failing transition; do not substitute a moving `main` result.
-8. Continue the framework-specific worker program until every one of the 36 framework records reaches its strongest legitimate terminal or explicit evidence-blocked state under issue #66.
-9. Obtain repository-wide canonical PASS before any repository release/activation claim.
-10. At release readiness only, inspect current destination handoffs before propagation-status verification for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, and `StegVerse-002/stegguardian-wiki`.
+1. Observe an exact-head canonical validation/build run containing the current three-stage route-proof chain and its Goal-5 regression validator.
+2. Require the Goal-5 publication-proof-contract check to PASS at that exact head.
+3. Require `external-framework-source-route-contract` to report 36/36 source-contract-verified routes.
+4. Require Docusaurus build success for that same exact head.
+5. Require `external-framework-built-route-verification` to report 36/36 generated route files with content fidelity.
+6. Require Pages artifact upload and `deploy-pages` success for that same source set.
+7. Consume `external-framework-public-route-verification` and require 36/36 reachable and content-verified.
+8. Repair any failure at the exact failing transition; do not substitute a moving `main` result.
+9. Continue the framework-specific worker program until every one of the 36 framework records reaches its strongest legitimate terminal or explicit evidence-blocked state under issue #66.
+10. Obtain repository-wide canonical PASS before any repository release/activation claim.
+11. At release readiness only, inspect current destination handoffs before propagation-status verification for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, and `StegVerse-002/stegguardian-wiki`.
 
 ## Remaining modules and destinations
 
 ### `StegVerse-Labs/admissibility-wiki`
 
 - exact-head canonical validation evidence;
+- Goal-5 publication-proof-contract PASS;
 - 36/36 source-route contract artifact;
 - exact-head Docusaurus build evidence;
 - 36/36 generated built-route verification artifact;
@@ -250,6 +285,7 @@ page completeness != independent reproduction
 source-route contract PASS != build success
 build success != generated-route verification
 generated-route verification != deployment
+publication-proof-contract PASS != deployment
 workflow pass != runtime authority
 route verification != release
 public rendering != endorsement
@@ -266,4 +302,4 @@ repository_release: NOT_AUTHORIZED
 repository_activation: NOT_COMPLETE
 ```
 
-Keep this workstream open until exact-head validation, source-route proof, build, generated-route proof, Pages artifact/deployment, all-route runtime proof, framework-specific evaluation completion, repository-wide PASS, and any required release/propagation/activation evidence are directly established.
+Keep this workstream open until exact-head validation, publication-proof-contract validation, source-route proof, build, generated-route proof, Pages artifact/deployment, all-route runtime proof, framework-specific evaluation completion, repository-wide PASS, and any required release/propagation/activation evidence are directly established.
