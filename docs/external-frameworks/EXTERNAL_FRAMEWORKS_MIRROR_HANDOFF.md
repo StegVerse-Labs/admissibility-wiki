@@ -8,7 +8,7 @@ This file is the continuation source of truth for the External Frameworks sectio
 
 ```text
 goal_id: EXT-FRAMEWORK-SECOND-PAGE-36
-goal: make every actual external-framework record function as a first-class, evidence-bounded Wiki surface with public navigation, machine-readable companions, deterministic source validation, canonical build/deploy evidence, content-aware public-route verification, and framework-specific evaluation completion
+goal: make every actual external-framework record function as a first-class, evidence-bounded Wiki surface with public navigation, machine-readable companions, deterministic source validation, built-route proof, deployment evidence, content-aware public-route verification, and framework-specific evaluation completion
 actual external-framework denominator: 36
 internal ecosystem records in the same canonical registry: 2
 public sidebar source wiring: 36/36
@@ -113,11 +113,11 @@ total: 36
 
 `COMPLETE_WITH_EXTERNAL_GATES` means the Wiki page has the required authored semantic surface. It does not establish source sufficiency, observed runtime behavior, independent reproduction, compatibility, certification, standing, admissibility, release authority, or execution authority.
 
-## Two-stage route proof
+## Three-stage route proof
 
-`scripts/check_external_framework_public_routes.py` now has two fail-closed modes.
+`scripts/check_external_framework_public_routes.py` now enforces three distinct route transitions rather than collapsing source, build, and deployment into one claim.
 
-### Pre-build source-route contract
+### Stage 1 — pre-build source-route contract
 
 `python scripts/check_external_framework_public_routes.py --source-only`:
 
@@ -130,21 +130,41 @@ requires every page under docs/external-frameworks/
 requires every source page to exist
 requires an extractable frontmatter title or H1 for every page
 writes reports/external-frameworks/source-route-contract.json
-performs no network request
+performs no build or network request
 ```
 
-The canonical `build-pages` job runs this gate before Node dependency installation and before Docusaurus build. A source-wiring or content-marker defect therefore fails the Pages build lane before deployment. The report is uploaded as `external-framework-source-route-contract`.
+The canonical `build-pages` job runs this gate before Node dependency installation and before Docusaurus build. The report is uploaded as `external-framework-source-route-contract`.
+
+### Stage 2 — generated Docusaurus route proof
+
+`python scripts/check_external_framework_public_routes.py --built-site --build-dir build` runs only after the Docusaurus build result has been enforced as successful and before the Pages artifact is uploaded.
+
+For every one of the 36 external frameworks it:
+
+```text
+repeats the source-route contract
+maps the declared sidebar route to build/external-frameworks/<route>/index.html
+requires the generated route file to exist
+rejects obvious generated 404 content
+requires the source title/H1 in the generated HTML
+writes reports/external-frameworks/built-route-verification.json
+fails build-pages before Pages artifact upload on any missing or mismatched route
+```
+
+The report is uploaded as `external-framework-built-route-verification`.
 
 Installed commits:
 
 ```text
 6de40057249adf47fcee7922b9442b7677580689  add deterministic source-only route-contract mode
 d0a16ee850eb62064acb668261f0eb736db01099  bind source-route contract into canonical build-pages job
+a3608961a1f3f16aa8b48b2deef92b218ec04dc5  add generated Docusaurus route-file verification mode
+b8961bc6c52c0781c602c51eee73e773fa6bed7b  gate Pages artifact upload on 36/36 built-route verification
 ```
 
-### Post-deployment public-route proof
+### Stage 3 — post-deployment public-route proof
 
-The same script without `--source-only` remains a post-deployment verifier. It:
+The same script without `--source-only` or `--built-site` remains the post-deployment verifier. It:
 
 ```text
 repeats the source-route contract
@@ -161,17 +181,19 @@ The canonical Pages workflow runs this verifier only after successful deployment
 ```text
 source wiring != source-route contract PASS
 source-route contract PASS != successful Docusaurus build
-successful build != deployment
+successful Docusaurus build != 36/36 generated route files
+36/36 generated route files != Pages artifact preservation
+Pages artifact preservation != deployment
 deployment != route reachability
 route reachability != content fidelity
 content fidelity != framework compatibility
 ```
 
-Current hosted result must remain UNOBSERVED until the workflow result for the exact resulting commit is directly inspected. The currently installed source/build transition ends at `d0a16ee850eb62064acb668261f0eb736db01099`, subject to later nonconflicting main commits; moving-main substitution is prohibited for evidence claims.
+Current hosted result must remain UNOBSERVED until the workflow result for the exact resulting commit is directly inspected. Moving-main substitution is prohibited for evidence claims.
 
 ## Worker ownership and framework-specific evaluation
 
-Do not use this cross-cutting navigation repair to overwrite worker-owned framework analysis. The current worker registry and issue #66 partition all 36 framework evaluation workloads among issues #62, #63, #64, #65, and #50.
+Do not use this cross-cutting navigation/build repair to overwrite worker-owned framework analysis. The current worker registry and issue #66 partition all 36 framework evaluation workloads among issues #62, #63, #64, #65, and #50.
 
 The 36-page navigation denominator and the 36-framework evaluation denominator are separate:
 
@@ -184,15 +206,16 @@ A framework page being visible, authored, manifest-bound, report-bound, built, d
 
 ## Required next transitions
 
-1. Observe an exact-head canonical validation/build run containing commits `6de4005...` and `d0a16ee...` plus any later nonconflicting main commits.
-2. Require the `external-framework-source-route-contract` artifact to report 36/36 source-contract-verified routes.
-3. Repair any structural or validation failures directly observed at that exact commit; do not substitute a moving `main`.
-4. Require `build-pages` to succeed for the exact validated source set.
-5. Require `deploy-pages` to succeed for that same source set.
+1. Observe an exact-head canonical validation/build run containing the current three-stage route-proof chain.
+2. Require `external-framework-source-route-contract` to report 36/36 source-contract-verified routes.
+3. Require Docusaurus build success for that same exact head.
+4. Require `external-framework-built-route-verification` to report 36/36 generated route files with content fidelity.
+5. Require Pages artifact upload and `deploy-pages` success for that same source set.
 6. Consume `external-framework-public-route-verification` and require 36/36 reachable and content-verified.
-7. Continue the framework-specific worker program until every one of the 36 framework records reaches its strongest legitimate terminal or explicit evidence-blocked state under issue #66.
-8. Obtain repository-wide canonical PASS before any repository release/activation claim.
-9. At release readiness only, inspect current destination handoffs before propagation-status verification for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, and `StegVerse-002/stegguardian-wiki`.
+7. Repair any failure at the exact failing transition; do not substitute a moving `main` result.
+8. Continue the framework-specific worker program until every one of the 36 framework records reaches its strongest legitimate terminal or explicit evidence-blocked state under issue #66.
+9. Obtain repository-wide canonical PASS before any repository release/activation claim.
+10. At release readiness only, inspect current destination handoffs before propagation-status verification for `StegVerse-Labs/Site`, `GCAT-BCAT-Engine/Publisher`, and `StegVerse-002/stegguardian-wiki`.
 
 ## Remaining modules and destinations
 
@@ -200,7 +223,9 @@ A framework page being visible, authored, manifest-bound, report-bound, built, d
 
 - exact-head canonical validation evidence;
 - 36/36 source-route contract artifact;
-- exact-head Pages build and deploy evidence;
+- exact-head Docusaurus build evidence;
+- 36/36 generated built-route verification artifact;
+- exact-head Pages artifact and deployment evidence;
 - 36/36 content-aware public-route verification artifact;
 - completion or explicit evidence-blocked resolution for all 36 framework-specific worker evaluations;
 - repository-wide canonical PASS;
@@ -222,9 +247,10 @@ sidebar visibility != compatibility
 manifest presence != source sufficiency
 compatibility report presence != terminal evaluation
 page completeness != independent reproduction
-source-route contract PASS != deployment
+source-route contract PASS != build success
+build success != generated-route verification
+generated-route verification != deployment
 workflow pass != runtime authority
-build success != deployment
 route verification != release
 public rendering != endorsement
 ALLOW != execution
@@ -234,10 +260,10 @@ ALLOW != execution
 
 ```text
 archive_state: NOT_READY
-source_navigation_goal: 36_OF_36_INSTALLED_WITH_PREBUILD_AND_POSTDEPLOY_GATES_PENDING_HOSTED_PROOF
+source_navigation_goal: 36_OF_36_INSTALLED_WITH_SOURCE_BUILD_AND_POSTDEPLOY_GATES_PENDING_HOSTED_PROOF
 framework_evaluation_goal: NONTERMINAL_UNTIL_ISSUE_66_DIRECT_EVIDENCE_CLOSES_36_OF_36
 repository_release: NOT_AUTHORIZED
 repository_activation: NOT_COMPLETE
 ```
 
-Keep this workstream open until exact-head validation, source-route proof, build, deployment, all-route runtime proof, framework-specific evaluation completion, repository-wide PASS, and any required release/propagation/activation evidence are directly established.
+Keep this workstream open until exact-head validation, source-route proof, build, generated-route proof, Pages artifact/deployment, all-route runtime proof, framework-specific evaluation completion, repository-wide PASS, and any required release/propagation/activation evidence are directly established.
