@@ -16,7 +16,7 @@
       "canonical_path": ".github/workflows/validate-chain-continuation.yml",
       "patch_path": "iosnoperiod/github/workflows/validate-chain-continuation.patch.md",
       "purpose": "iOS-safe mirror of the single active validation and deployment workflow",
-      "status": "patched_delta_recorded"
+      "status": "synchronized"
     }
   ],
   "local_validation_entrypoint": "python scripts/run_canonical_validation.py",
@@ -67,7 +67,7 @@
     "asro_commitment_candidate": "ASRO COMMITMENT CANDIDATE: PASS",
     "governed_llm_pages": "GOVERNED LLM PAGES: PASS",
     "governed_llm_demo_docs": "GOVERNED LLM DEMO DOCS: PASS",
-    "ios_workflow_mirror": "IOS WORKFLOW MIRROR: PATCHED",
+    "ios_workflow_mirror": "IOS WORKFLOW MIRROR: PASS - mirror synchronized with canonical workflow",
     "admissibility_automation_handoff": "ADMISSIBILITY AUTOMATION HANDOFF: PASS",
     "ci_evidence": "CI EVIDENCE: PASS"
   },
