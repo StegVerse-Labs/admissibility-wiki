@@ -1,100 +1,58 @@
-# validate-chain-continuation iOS Mirror Sync Patch
+# validate-chain-continuation iOS Mirror Sync Record
 
 ## Status
 
-The canonical workflow at `.github/workflows/validate-chain-continuation.yml` is ahead of the iOS-safe mirror at `iosnoperiod/github/workflows/validate-chain-continuation.yml`.
+The iOS-safe mirror at `iosnoperiod/github/workflows/validate-chain-continuation.yml` is synchronized with the canonical workflow at `.github/workflows/validate-chain-continuation.yml`.
 
-A full mirror replacement was not applied in this session. This patch note records the required delta so the mirror can be safely refreshed without treating the stale mirror as activation evidence.
+The earlier patch-delta state has been consumed. This file is retained as a historical remediation record and as the controlled location to describe a future delta if the canonical workflow changes before the iOS-safe mirror is refreshed.
 
-## Required additions to the validation job
+Current state:
 
-Add these steps after external framework expansion policy validation and before CI evidence validation:
-
-```yaml
-      - name: Validate ASRO commitment candidate
-        run: python scripts/check_asro_commitment_candidate.py
-
-      - name: Validate governed LLM public pages
-        run: python scripts/check_governed_llm_pages.py
-
-      - name: Validate governed LLM demo docs
-        run: python scripts/check_governed_llm_demo_docs.py
-
-      - name: Validate iOS workflow mirror status
-        run: python scripts/check_ios_workflow_mirror_status.py
-
-      - name: Validate admissibility automation handoff
-        run: python scripts/check_admissibility_automation_handoff.py
+```text
+canonical workflow: .github/workflows/validate-chain-continuation.yml
+iOS-safe mirror: iosnoperiod/github/workflows/validate-chain-continuation.yml
+status: synchronized
+active patch delta: none
+canonical workflow remains source of truth: true
+mirror is activation evidence: false
+patch record is activation evidence: false
 ```
 
-## Required additions to the build job
+## Historical delta classes that were reconciled
 
-Ensure the build job includes both repo preflight steps before `npm run validate`:
+The prior mirror required reconciliation for validation and publication steps including:
 
-```yaml
-      - name: Repo preflight
-        run: node scripts/repo_preflight.mjs
-
-      - name: Validate repo preflight status
-        run: node scripts/check-repo-preflight-status.mjs
+```text
+Validate ASRO commitment candidate
+Validate governed LLM public pages
+Validate governed LLM demo docs
+Validate iOS workflow mirror status
+Validate admissibility automation handoff
+Verify governed LLM route set
+Verify ASRO external framework page
 ```
 
-## Required additions to the public verification job
+The current synchronized mirror also carries the External Frameworks publication-proof chain from the canonical workflow:
 
-The public verification job must include checkout, Node setup, every governed LLM route, ASRO route verification, and the deployment status checker:
-
-```yaml
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Verify governed LLM reconstructive search
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-reconstructive-search"
-
-      - name: Verify governed LLM activation map
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-activation-map"
-
-      - name: Verify governed LLM demo overview
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-demo-overview"
-
-      - name: Verify governed LLM demo verification
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-demo-verification"
-
-      - name: Verify governed LLM site verification
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-site-verification"
-
-      - name: Verify governed LLM deployment status
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-deployment-status"
-
-      - name: Verify governed LLM archive handoff
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-archive-handoff"
-
-      - name: Verify governed LLM route set
-        run: python scripts/check_governed_llm_deployment_status.py
-
-      - name: Verify ASRO external framework page
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/asro"
+```text
+36-framework source-route contract
+Docusaurus build
+36-framework generated-route verification
+Pages artifact upload
+Pages deployment
+36-framework deployed public-route/content verification
 ```
 
-## Required activation receipt steps
+## Future drift rule
 
-The mirror must retain the public activation receipt writer and artifact upload steps:
+If the canonical workflow changes and the iOS-safe mirror is not updated in the same transition:
 
-```yaml
-      - name: Write public activation receipt
-        run: PAGE_URL="${{ needs.deploy-pages.outputs.page_url }}" node scripts/write-public-activation-receipt.mjs
-
-      - name: Upload public activation receipt
-        uses: actions/upload-artifact@v4
-        with:
-          name: public-activation-receipt
-          path: reports/public-activation-receipt.json
-```
+1. `static/status/ios-workflow-mirror-status.json` must return to `patched_delta_recorded`.
+2. `mirror_must_not_be_used_as_current_workflow_until_synced` must become `true`.
+3. This file must describe the complete current delta, including any External Frameworks source/build/deploy proof changes.
+4. `scripts/check_ios_workflow_mirror_status.py` must fail if the divergent mirror lacks that controlled delta record.
+5. Synchronization must restore byte equality before status returns to `synchronized`.
 
 ## Boundary
 
-The iOS mirror is not activation evidence. Until the mirror file itself matches the canonical workflow, this patch note is only a controlled remediation record.
+The iOS mirror is a usability copy, not a second workflow authority. Synchronization does not create activation, deployment, release, execution, standing, admissibility, certification, or publication authority.
