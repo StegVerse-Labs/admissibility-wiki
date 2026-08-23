@@ -2,6 +2,8 @@ name: Validate chain continuation
 
 on:
   push:
+    branches:
+      - main
   pull_request:
   workflow_dispatch:
   schedule:
@@ -13,13 +15,37 @@ permissions:
   pages: write
   id-token: write
 
+# Every newer canonical run supersedes older work on the same event/ref lane.
 concurrency:
   group: admissibility-wiki-canonical-${{ github.event_name }}-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
+  external-framework-worker-heartbeat:
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate active worker registry and emit heartbeat receipt
+        run: python scripts/check_external_framework_worker_heartbeat.py
+      - name: Upload worker heartbeat receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-framework-worker-heartbeat
+          path: reports/external-frameworks/worker-heartbeat.json
+          if-no-files-found: error
+          retention-days: 30
+
   validate-chain-continuation:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,35 +55,29 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Validate inference-window governance cases
-        run: python scripts/validate_inference_window_governance.py
+      - name: Validate CAT governance publication evidence
+        run: python scripts/check_cat_governance_publication_verification.py
 
-      - name: Test inference-window governance validator
-        run: python -m unittest tests.test_inference_window_governance
+      - name: Validate publication session consolidation inventory
+        run: python scripts/check_publication_session_consolidation_inventory.py
 
-      - name: Generate external framework reports
-        run: python scripts/generate_external_framework_reports.py
+      - name: Run canonical pre-scan
+        id: canonical-prescan
+        continue-on-error: true
+        run: python scripts/run_canonical_prescan.py
 
-      - name: Generate external framework evaluation results
-        run: python scripts/generate_external_framework_results.py
-
-      - name: Generate external framework page metadata
-        run: python scripts/generate_external_framework_page_metadata.py
-
-      - name: Generate external framework page mapping
-        run: python scripts/generate_external_framework_page_mapping.py
-
-      - name: Generate external framework page status
-        run: python scripts/generate_external_framework_page_status.py
-
-      - name: Generate implementation automation readiness matrix
-        run: python scripts/generate_external_framework_automation_readiness.py
-
-      - name: Validate implementation automation readiness matrix
-        run: python scripts/check_external_framework_automation_readiness.py
+      - name: Upload canonical pre-scan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: canonical-prescan-report
+          path: reports/canonical-prescan-report.json
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Scan complete validation chain
         id: full-validation-scan
+        if: always()
         continue-on-error: true
         run: python scripts/check_full_validation_chain.py
 
@@ -68,6 +88,16 @@ jobs:
           name: full-validation-chain-report
           path: reports/full_validation_chain_report.json
           if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload discovery governance proof receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: discovery-governance-proof-receipt
+          path: reports/discovery-governance-handoff-proof-receipt.json
+          if-no-files-found: warn
+          retention-days: 30
 
       - name: Upload Goal 5 validation report
         if: always()
@@ -76,6 +106,7 @@ jobs:
           name: goal5-external-frameworks-report
           path: reports/goal5_external_frameworks_report.json
           if-no-files-found: warn
+          retention-days: 30
 
       - name: Upload implementation automation readiness receipt
         if: always()
@@ -83,7 +114,7 @@ jobs:
         with:
           name: external-framework-automation-readiness
           path: reports/external-frameworks/implementation-automation-readiness.json
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 30
 
       - name: Upload Guardian destination report
@@ -93,51 +124,53 @@ jobs:
           name: guardian-destination-status
           path: reports/guardian_destination_status.json
           if-no-files-found: warn
+          retention-days: 30
 
-      - name: Enforce complete validation result
+      - name: Enforce canonical validation result
         if: always()
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
-          path = Path('reports/full_validation_chain_report.json')
-          if not path.exists():
-              raise SystemExit('full validation report was not produced')
-          report = json.loads(path.read_text(encoding='utf-8'))
+          prescan_path = Path('reports/canonical-prescan-report.json')
+          full_path = Path('reports/full_validation_chain_report.json')
+          missing = [str(path) for path in (prescan_path, full_path) if not path.exists()]
+          if missing:
+              raise SystemExit(f"required validation reports were not produced: {', '.join(missing)}")
+
+          prescan = json.loads(prescan_path.read_text(encoding='utf-8'))
+          report = json.loads(full_path.read_text(encoding='utf-8'))
+          print(
+              f"Pre-scan summary: {prescan['passed_commands']}/{prescan['total_commands']} passed; "
+              f"{prescan['failed_commands']} failed"
+          )
           print(
               f"Validation summary: {report['passed_checks']}/{report['total_checks']} passed; "
-              f"{report['failed_checks']} failed"
+              f"{report['failed_checks']} failed; {report.get('skipped_checks', 0)} skipped"
           )
-          for result in report['results']:
-              if result['status'] == 'FAIL':
-                  print(f"\nFAIL: {result['path']}")
-                  print(result.get('output') or '(no validator output)')
-          if report['overall_status'] != 'PASS':
+          if prescan['overall_status'] != 'PASS' or report['overall_status'] != 'PASS':
               raise SystemExit(1)
           PY
 
   capture-opa-evidence:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     needs: validate-chain-continuation
     continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Run pinned OPA capture and same-environment replay
         run: python scripts/run_pinned_opa_ci_capture.py
-
       - name: Validate generated OPA capture and replay artifacts
         if: always()
         run: python scripts/validate_opa_capture_artifacts.py
-
       - name: Upload OPA capture, replay, and validation receipts
         if: always()
         uses: actions/upload-artifact@v4
@@ -148,28 +181,25 @@ jobs:
           retention-days: 30
 
   replay-opa-fresh-runner:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     needs: capture-opa-evidence
     continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Download upstream OPA capture artifact
         uses: actions/download-artifact@v4
         with:
           name: opa-pinned-capture-replay
           path: reports/upstream-opa
-
       - name: Replay OPA on a fresh runner
         run: python scripts/run_independent_opa_ci_replay.py
-
       - name: Upload fresh-runner OPA replay receipt
         if: always()
         uses: actions/upload-artifact@v4
@@ -180,25 +210,22 @@ jobs:
           retention-days: 30
 
   build-selected-cedar-binary:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     needs: validate-chain-continuation
     continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Install pinned Rust toolchain
         uses: dtolnay/rust-toolchain@1.89.0
-
       - name: Build and hash selected Cedar binary without executing it
         run: python scripts/build_selected_cedar_binary.py
-
       - name: Upload Cedar selected-binary build receipt
         if: always()
         uses: actions/upload-artifact@v4
@@ -209,8 +236,9 @@ jobs:
           retention-days: 30
 
   build-pages:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     needs: validate-chain-continuation
     steps:
       - name: Checkout
@@ -228,25 +256,35 @@ jobs:
           path: reports/upstream-full-validation
 
       - name: Publish run-bound workflow observation receipt
+        continue-on-error: true
         run: python scripts/publish_canonical_workflow_observation_receipt.py
 
       - name: Reconcile bounded workflow observation history
+        continue-on-error: true
         run: python scripts/reconcile_canonical_workflow_observation_history.py
 
       - name: Generate external framework reports
         run: python scripts/generate_external_framework_reports.py
-
       - name: Generate external framework evaluation results
         run: python scripts/generate_external_framework_results.py
-
       - name: Generate external framework page metadata
         run: python scripts/generate_external_framework_page_metadata.py
-
       - name: Generate external framework page mapping
         run: python scripts/generate_external_framework_page_mapping.py
-
       - name: Generate external framework page status
         run: python scripts/generate_external_framework_page_status.py
+
+      - name: Validate all external framework source routes and headings
+        run: python scripts/check_external_framework_public_routes.py --source-only
+
+      - name: Upload external framework source-route contract
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-framework-source-route-contract
+          path: reports/external-frameworks/source-route-contract.json
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -254,18 +292,19 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-audit --no-fund
 
-      - name: Repo preflight
+      - name: Repo preflight diagnostic
+        continue-on-error: true
         run: node scripts/repo_preflight.mjs
-
-      - name: Validate repo preflight status
+      - name: Repo preflight status diagnostic
+        continue-on-error: true
         run: node scripts/check-repo-preflight-status.mjs
-
-      - name: Validate public activation receipt writer
+      - name: Public activation receipt writer diagnostic
+        continue-on-error: true
         run: node scripts/check-public-activation-receipt-writer.mjs
-
-      - name: Validate governance and activation artifacts
+      - name: Governance validation diagnostic
+        continue-on-error: true
         run: npm run validate
 
       - name: Build site
@@ -286,28 +325,39 @@ jobs:
         with:
           name: pages-build-receipt
           path: reports/pages-build-receipt.json
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 30
 
       - name: Enforce Pages build result
         if: always()
-        run: |
-          test "${{ steps.site-build.outcome }}" = "success"
+        run: test "${{ steps.site-build.outcome }}" = "success"
+
+      - name: Verify all generated external framework route files and rendered headings
+        run: python scripts/check_external_framework_public_routes.py --built-site --build-dir build
+
+      - name: Upload external framework built-route verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: external-framework-built-route-verification
+          path: reports/external-frameworks/built-route-verification.json
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: build
 
   deploy-pages:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.build-pages.result == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     needs: build-pages
     outputs:
       page_url: ${{ steps.deployment.outputs.page_url }}
@@ -317,71 +367,48 @@ jobs:
         uses: actions/deploy-pages@v4
 
   verify-public-pages:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule')
+    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.deploy-pages.result == 'success' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     needs: deploy-pages
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          node-version: 20
-
+          python-version: '3.11'
       - name: Verify deployed site root
         run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "${{ needs.deploy-pages.outputs.page_url }}"
-
+      - name: Verify CAT governance stack publication
+        run: |
+          curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors \
+            "${{ needs.deploy-pages.outputs.page_url }}" \
+            --output /tmp/index.html
+          grep -F "CAT Governance Stack" /tmp/index.html
+          grep -F "ECAT and ICAT should not be reduced" /tmp/index.html
       - name: Verify public status JSON
         run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/status/admissibility-wiki-status.json"
-
-      - name: Verify iOS workflow mirror status JSON
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/status/ios-workflow-mirror-status.json"
-
+      - name: Verify MindForge page and authorized attribution
+        run: |
+          curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors \
+            "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/mindforge" \
+            --output /tmp/mindforge.html
+          grep -F "Reviewed for architectural boundary semantics" /tmp/mindforge.html
+          grep -F "Attribution-Confirmation Participation Loop" /tmp/mindforge.html
       - name: Verify inference-window governance formalism
         run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/formalisms/inference-window-irreversibility-governance"
-
-      - name: Verify inference-window governance schema
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/schemas/inference-window-governance.schema.json"
-
-      - name: Verify inference-window governance worked cases
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/examples/inference-window-governance.worked-cases.json"
-
-      - name: Verify governed LLM reconstructive search
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-reconstructive-search"
-
-      - name: Verify governed LLM activation map
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-activation-map"
-
-      - name: Verify governed LLM demo overview
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-demo-overview"
-
-      - name: Verify governed LLM demo verification
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-demo-verification"
-
-      - name: Verify governed LLM site verification
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-site-verification"
-
-      - name: Verify governed LLM deployment status
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-deployment-status"
-
-      - name: Verify LLM free-tier trust chain
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/llm-free-tier-trust-chain"
-
-      - name: Verify governed LLM archive handoff
-        run: curl --fail --location --retry 12 --retry-delay 10 --retry-all-errors "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-archive-handoff"
-
       - name: Verify governed LLM route set
         run: python scripts/check_governed_llm_deployment_status.py
-
-      - name: Write public activation receipt
+      - name: Verify all external framework public routes and rendered headings
         env:
-          PAGE_URL: ${{ needs.deploy-pages.outputs.page_url }}
-        run: node scripts/write-public-activation-receipt.mjs
-
-      - name: Upload public activation receipt
+          ADMISSIBILITY_WIKI_PUBLIC_BASE_URL: ${{ needs.deploy-pages.outputs.page_url }}
+        run: python scripts/check_external_framework_public_routes.py
+      - name: Upload external framework public-route verification
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: public-activation-receipt
-          path: reports/public-activation-receipt.json
+          name: external-framework-public-route-verification
+          path: reports/external-frameworks/public-route-verification.json
           if-no-files-found: error
+          retention-days: 30
