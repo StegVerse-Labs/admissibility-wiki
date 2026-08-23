@@ -15,7 +15,9 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSOCIATIONS = ROOT / "static" / "external-frameworks" / "sidebar-page-associations.v1.json"
 PUBLIC_REPORT = ROOT / "reports" / "external-frameworks" / "public-route-verification.json"
 SOURCE_REPORT = ROOT / "reports" / "external-frameworks" / "source-route-contract.json"
+BUILD_REPORT = ROOT / "reports" / "external-frameworks" / "built-route-verification.json"
 DEFAULT_BASE = "https://stegverse-labs.github.io/admissibility-wiki/"
+DEFAULT_BUILD_DIR = ROOT / "build"
 EXPECTED_FRAMEWORK_COUNT = 36
 
 
@@ -44,14 +46,42 @@ def rendered_text(payload: str) -> str:
     return normalize(without_tags)
 
 
+def content_matches(payload: str, heading: str) -> tuple[bool, bool, bool]:
+    text = rendered_text(payload)
+    obvious_404 = any(
+        marker in text
+        for marker in (
+            "page not found",
+            "404 | admissibility wiki",
+            "we could not find what you were looking for",
+        )
+    )
+    heading_present = normalize(heading) in text
+    return bool(text) and not obvious_404 and heading_present, heading_present, obvious_404
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Validate External Framework source-route contracts and, unless --source-only is used, deployed route fidelity."
+        description=(
+            "Validate External Framework source-route contracts, built-site route fidelity, "
+            "or deployed public-route fidelity."
+        )
     )
-    parser.add_argument(
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument(
         "--source-only",
         action="store_true",
-        help="Validate all 36 source routes, unique bindings, source pages, and extractable headings without network requests.",
+        help="Validate all 36 source routes, unique bindings, source pages, and extractable headings without build or network access.",
+    )
+    modes.add_argument(
+        "--built-site",
+        action="store_true",
+        help="Validate all 36 generated Docusaurus route files and rendered heading fidelity from the local build directory.",
+    )
+    parser.add_argument(
+        "--build-dir",
+        default=str(DEFAULT_BUILD_DIR),
+        help="Docusaurus build directory used with --built-site (default: build).",
     )
     return parser.parse_args()
 
@@ -70,6 +100,12 @@ def main() -> int:
         failures.append(f"expected {EXPECTED_FRAMEWORK_COUNT} framework routes, found {len(frameworks)}")
 
     base = os.environ.get("ADMISSIBILITY_WIKI_PUBLIC_BASE_URL", DEFAULT_BASE).rstrip("/") + "/"
+    build_dir = Path(args.build_dir)
+    if not build_dir.is_absolute():
+        build_dir = ROOT / build_dir
+    if args.built_site and not build_dir.exists():
+        failures.append(f"build directory missing: {build_dir}")
+
     results: list[dict[str, object]] = []
     seen_framework_ids: set[str] = set()
     seen_sidebar_routes: set[str] = set()
@@ -84,6 +120,8 @@ def main() -> int:
             "sidebar_route": sidebar_route,
             "page_path": page_path,
             "source_contract_verified": False,
+            "built_file": None,
+            "built_route_verified": False,
             "status_code": None,
             "reachable": False,
             "content_verified": False,
@@ -118,26 +156,33 @@ def main() -> int:
             result["expected_heading"] = heading
             result["source_contract_verified"] = True
 
-            if not args.source_only:
-                route_suffix = sidebar_route.removeprefix("external-frameworks/")
+            route_suffix = sidebar_route.removeprefix("external-frameworks/").strip("/")
+            if not route_suffix or ".." in route_suffix.split("/"):
+                raise ValueError(f"unsafe or empty route suffix: {route_suffix}")
+
+            if args.built_site:
+                built_file = build_dir / "external-frameworks" / route_suffix / "index.html"
+                result["built_file"] = str(built_file.relative_to(ROOT)) if built_file.is_relative_to(ROOT) else str(built_file)
+                if not built_file.exists():
+                    raise ValueError(f"built route file missing: {built_file}")
+                payload = built_file.read_text(encoding="utf-8", errors="replace")
+                matched, heading_present, obvious_404 = content_matches(payload, heading)
+                result["built_route_verified"] = matched
+                result["content_verified"] = matched
+                if not matched:
+                    raise ValueError(
+                        f"built content mismatch: heading_present={heading_present}, obvious_404={obvious_404}"
+                    )
+            elif not args.source_only:
                 url = base + "external-frameworks/" + route_suffix
-                request = urllib.request.Request(url, headers={"User-Agent": "admissibility-wiki-route-verifier/1.1"})
+                request = urllib.request.Request(url, headers={"User-Agent": "admissibility-wiki-route-verifier/1.2"})
                 with urllib.request.urlopen(request, timeout=30) as response:
                     status = int(response.status)
                     payload = response.read().decode("utf-8", errors="replace")
                 result["status_code"] = status
                 result["reachable"] = status == 200
-                text = rendered_text(payload)
-                obvious_404 = any(
-                    marker in text
-                    for marker in (
-                        "page not found",
-                        "404 | admissibility wiki",
-                        "we could not find what you were looking for",
-                    )
-                )
-                heading_present = normalize(heading) in text
-                result["content_verified"] = status == 200 and bool(text) and not obvious_404 and heading_present
+                matched, heading_present, obvious_404 = content_matches(payload, heading)
+                result["content_verified"] = status == 200 and matched
                 if not result["content_verified"]:
                     raise ValueError(
                         f"rendered content mismatch: status={status}, heading_present={heading_present}, obvious_404={obvious_404}"
@@ -148,29 +193,44 @@ def main() -> int:
         results.append(result)
 
     source_verified = sum(1 for item in results if item["source_contract_verified"] is True)
+    built_verified = sum(1 for item in results if item["built_route_verified"] is True)
     reachable = sum(1 for item in results if item["reachable"] is True)
     content_verified = sum(1 for item in results if item["content_verified"] is True)
-    report_path = SOURCE_REPORT if args.source_only else PUBLIC_REPORT
+
+    if args.source_only:
+        mode = "SOURCE_ONLY"
+        report_path = SOURCE_REPORT
+        schema = "admissibility_wiki.external_framework_source_route_contract.v1"
+    elif args.built_site:
+        mode = "BUILT_SITE_ROUTE"
+        report_path = BUILD_REPORT
+        schema = "admissibility_wiki.external_framework_built_route_verification.v1"
+    else:
+        mode = "DEPLOYED_PUBLIC_ROUTE"
+        report_path = PUBLIC_REPORT
+        schema = "admissibility_wiki.external_framework_public_route_verification.v1"
+
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(
         json.dumps(
             {
-                "schema": (
-                    "admissibility_wiki.external_framework_source_route_contract.v1"
-                    if args.source_only
-                    else "admissibility_wiki.external_framework_public_route_verification.v1"
-                ),
-                "mode": "SOURCE_ONLY" if args.source_only else "DEPLOYED_PUBLIC_ROUTE",
-                "base_url": None if args.source_only else base,
+                "schema": schema,
+                "mode": mode,
+                "base_url": base if mode == "DEPLOYED_PUBLIC_ROUTE" else None,
+                "build_dir": str(build_dir) if mode == "BUILT_SITE_ROUTE" else None,
                 "expected_framework_routes": EXPECTED_FRAMEWORK_COUNT,
                 "observed_framework_routes": len(frameworks),
                 "source_contract_verified_routes": source_verified,
+                "built_route_verified_routes": built_verified,
                 "reachable_routes": reachable,
                 "content_verified_routes": content_verified,
                 "overall_status": "FAIL" if failures else "PASS",
                 "results": results,
                 "authority_boundary": (
-                    "Source-route validation proves deterministic source wiring and extractable content markers only; deployed-route validation additionally proves public reachability and rendered heading fidelity. Neither establishes framework compatibility, certification, endorsement, standing, admissibility, release authority, or execution authority."
+                    "Source-route validation proves deterministic source wiring and extractable content markers only. "
+                    "Built-site validation additionally proves that the Docusaurus output contains all expected route files with source-heading fidelity. "
+                    "Deployed-route validation additionally proves public reachability and rendered heading fidelity. "
+                    "None establishes framework compatibility, certification, endorsement, standing, admissibility, release authority, or execution authority."
                 ),
             },
             indent=2,
@@ -179,11 +239,19 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    label = "EXTERNAL FRAMEWORK SOURCE ROUTES" if args.source_only else "EXTERNAL FRAMEWORK PUBLIC ROUTES"
+    if args.source_only:
+        label = "EXTERNAL FRAMEWORK SOURCE ROUTES"
+    elif args.built_site:
+        label = "EXTERNAL FRAMEWORK BUILT ROUTES"
+    else:
+        label = "EXTERNAL FRAMEWORK PUBLIC ROUTES"
     print(label + ":", "FAIL" if failures else "PASS")
     print(f"routes={len(frameworks)}/{EXPECTED_FRAMEWORK_COUNT}")
     print(f"source_contract_verified={source_verified}")
-    if not args.source_only:
+    if args.built_site:
+        print(f"built_route_verified={built_verified}")
+        print(f"content_verified={content_verified}")
+    elif not args.source_only:
         print(f"reachable={reachable}")
         print(f"content_verified={content_verified}")
     print(f"report={report_path.relative_to(ROOT)}")
