@@ -1,10 +1,10 @@
 {
-  "schema_version": "1.4.0",
+  "schema_version": "1.5.0",
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "task_sequence": 4,
-  "task_sequence_label": "canonical validation support sequence 0004",
+  "task_sequence": 5,
+  "task_sequence_label": "canonical validation support sequence 0005",
   "work_state": "REPOSITORY_ACTIVE_SUPPORT_WORK_PENDING",
   "system_health": "PUBLICATION_HEALTHY_CANONICAL_VALIDATION_FAIL_CLOSED",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
@@ -87,6 +87,33 @@
       "release_condition": "direct source-date verification, exact-head applicable validation, successor canonical workflow observation, and legitimate terminal state recorded by issue #50",
       "duplicate_work_prohibited": true,
       "session_dependency": false
+    },
+    {
+      "task_id": "EXT-FRAMEWORK-SECOND-PAGE-36",
+      "owner": "StegVerse-Labs/admissibility-wiki issue #66 with worker issues #62-#65 and issue #50 collision lane",
+      "handoff": "docs/external-frameworks/EXTERNAL_FRAMEWORKS_MIRROR_HANDOFF.md",
+      "worker_handoff": "docs/external-frameworks/EXTERNAL_FRAMEWORK_EVALUATION_WORKERS_MIRROR_HANDOFF.md",
+      "worker_registry": "docs/external-frameworks/worker-task-registry.json",
+      "workload": "36-framework public Wiki functionality, exact build/deploy route proof, and framework-specific evidence completion",
+      "execution_class": "PARALLEL_SAFE_CROSS_CUTTING_WITH_WORKER_COLLISION_CONTROL",
+      "claim_state": "ACTIVE",
+      "heartbeat_lease_ref": null,
+      "canonical_heartbeat_lease_established": false,
+      "state": "SOURCE_WIRING_36_OF_36_THREE_STAGE_ROUTE_PROOF_INSTALLED_HOSTED_PROOF_PENDING",
+      "current_source_head_at_registration": "1aa8e243dad922b8c3677f350cdc5037c93a9023",
+      "current_source_head_validation": "UNOBSERVED",
+      "actual_external_frameworks": 36,
+      "internal_registry_records": 2,
+      "public_sidebar_source_wiring": "36_OF_36",
+      "source_route_contract_gate": "INSTALLED",
+      "built_route_verification_gate": "INSTALLED",
+      "post_deployment_public_route_gate": "INSTALLED",
+      "terminal_framework_evaluations_last_directly_observed": "7_OF_36",
+      "remaining_framework_evaluations": 29,
+      "required_next_transition": "observe_exact_head_source_route_build_built_route_deploy_and_public_route_evidence_then_continue_worker_denominator",
+      "release_condition": "36/36 route proof for the exact release candidate, all framework evaluations terminal or legitimately evidence-blocked, repository-wide canonical PASS, and required release/propagation/activation evidence",
+      "duplicate_work_prohibited": true,
+      "session_dependency": true
     }
   ],
   "active_independent_workloads": [
@@ -153,8 +180,8 @@
       "scripts/check_governed_llm_pages.py",
       "scripts/check_admissibility_automation_handoff.py"
     ],
-    "current_main_validation": "UNOBSERVED_AFTER_SUPPORT_REPAIRS",
-    "owner": "StegVerse-Labs/admissibility-wiki issue #50 and scoped handoffs",
+    "current_main_validation": "UNOBSERVED_AFTER_SUPPORT_REPAIRS_AND_ROUTE_PROOF_INSTALLATION",
+    "owner": "StegVerse-Labs/admissibility-wiki issue #50, issue #66, and scoped handoffs",
     "missing_evidence_implies_success": false,
     "session_dependency": false
   },
@@ -180,11 +207,11 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "MINDFORGE_ACTIVE_SUPPORT_WORKLOAD_REGISTERED",
+    "event_type": "EXTERNAL_FRAMEWORK_THREE_STAGE_ROUTE_PROOF_REGISTERED",
     "progress_effect": true,
     "authority_effect": false,
-    "source_commit": "8168c995d638a2823020ae6891b5e46c31b06ed2",
-    "required_next_transition": "recover_exact_bound_source_capture_and_verify_dates"
+    "source_commit": "1aa8e243dad922b8c3677f350cdc5037c93a9023",
+    "required_next_transition": "observe_exact_head_source_route_build_built_route_deploy_and_public_route_evidence_then_continue_worker_denominator"
   },
   "idle_terminal_statement": null,
   "archive_state": "NOT_READY_WHILE_ACTIVE_SUPPORT_OR_REQUIRED_VALIDATION_REMAINS"
