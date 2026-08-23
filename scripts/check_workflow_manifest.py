@@ -10,6 +10,12 @@ MANIFEST = ROOT / "workflow_manifest.json"
 LOCAL_ENTRYPOINT = "python scripts/run_canonical_validation.py"
 EXPECTED_CRON = "17 * * * *"
 EXPECTED_SCHEMA_VERSION = "1.7"
+EXPECTED_MIRROR = {
+    "mirror_path": "iosnoperiod/github/workflows/validate-chain-continuation.yml",
+    "canonical_path": ".github/workflows/validate-chain-continuation.yml",
+    "patch_path": "iosnoperiod/github/workflows/validate-chain-continuation.patch.md",
+    "status": "synchronized",
+}
 
 REQUIRED_COMMANDS = [
     "python scripts/check_workflow_sprawl.py",
@@ -58,7 +64,7 @@ EXPECTED = {
     "asro_commitment_candidate": "ASRO COMMITMENT CANDIDATE: PASS",
     "governed_llm_pages": "GOVERNED LLM PAGES: PASS",
     "governed_llm_demo_docs": "GOVERNED LLM DEMO DOCS: PASS",
-    "ios_workflow_mirror": "IOS WORKFLOW MIRROR: PATCHED",
+    "ios_workflow_mirror": "IOS WORKFLOW MIRROR: PASS - mirror synchronized with canonical workflow",
     "admissibility_automation_handoff": "ADMISSIBILITY AUTOMATION HANDOFF: PASS",
     "ci_evidence": "CI EVIDENCE: PASS",
 }
@@ -84,6 +90,23 @@ def main() -> int:
         failures.append("canonical workflow path mismatch")
     elif workflows[0].get("cron") != EXPECTED_CRON:
         failures.append("canonical workflow cron mismatch")
+
+    mirrors = manifest.get("mirrors", [])
+    if len(mirrors) != 1:
+        failures.append("workflow mirror count mismatch")
+    else:
+        mirror = mirrors[0]
+        for key, expected_value in EXPECTED_MIRROR.items():
+            if mirror.get(key) != expected_value:
+                failures.append(f"workflow mirror mismatch: {key}")
+        mirror_path = ROOT / str(mirror.get("mirror_path") or "")
+        canonical_path = ROOT / str(mirror.get("canonical_path") or "")
+        if not mirror_path.exists():
+            failures.append("workflow mirror file missing")
+        if not canonical_path.exists():
+            failures.append("canonical workflow file missing")
+        if mirror_path.exists() and canonical_path.exists() and mirror_path.read_bytes() != canonical_path.read_bytes():
+            failures.append("workflow manifest declares synchronized mirror but file contents differ")
 
     if manifest.get("local_validation_entrypoint") != LOCAL_ENTRYPOINT:
         failures.append("local validation entrypoint mismatch")
