@@ -1,6 +1,6 @@
 {
   "schema": "admissibility_wiki_activation.v2",
-  "generated_at": "2026-07-04T00:00:00Z",
+  "generated_at": "2026-08-23T22:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "target_url": "https://stegverse-labs.github.io/admissibility-wiki/",
   "hosting_mode": "github_pages_project_site",
@@ -52,8 +52,8 @@
     },
     {
       "check_id": "ios_workflow_mirror_guard",
-      "description": "iOS-safe workflow mirror drift is checked by a guard and recorded as patched delta until the mirror matches canonical workflow.",
-      "status": "patched_delta_recorded",
+      "description": "The iOS-safe workflow mirror is byte-synchronized with the canonical workflow and guarded against future silent drift.",
+      "status": "synchronized",
       "blocking": true
     },
     {
@@ -135,5 +135,5 @@
     "Browser is checking the old custom-domain or wrong GitHub.io path.",
     "Docusaurus baseUrl does not match the project path."
   ],
-  "current_next_action": "Canonical workflow push-triggered deployment and verification should advance or fail closed without assigning manual tasks."
+  "current_next_action": "Canonical workflow push-triggered validation, build, deployment, and verification should advance or fail closed without assigning manual tasks."
 }
