@@ -64,6 +64,12 @@ scripts/check_external_framework_public_routes.py
 scripts/check_external_framework_publication_proof_contract.py
 scripts/check_goal5_external_frameworks_all.py
 .github/workflows/validate-chain-continuation.yml
+iosnoperiod/github/workflows/validate-chain-continuation.yml
+scripts/check_ios_workflow_mirror_status.py
+static/status/ios-workflow-mirror-status.json
+static/status/ios-workflow-mirror-sync-next.json
+workflow_manifest.json
+scripts/check_workflow_manifest.py
 ```
 
 Current structural target:
@@ -79,6 +85,7 @@ sidebar total entries: 69
 framework manifest bindings: 36/36
 framework compatibility-report bindings: 36/36
 navigated authored-page completeness: 36/36 COMPLETE_WITH_EXTERNAL_GATES
+canonical/iOS workflow mirror equality: REQUIRED
 ```
 
 All 36 sidebar framework records have an existing manifest and compatibility report bound through `sidebar-framework-artifact-bindings.v1.json`. The compatibility reports remain evidence artifacts; their existence is not certification or terminal framework evaluation.
@@ -208,16 +215,45 @@ built-route artifact binding
 deployment after Pages artifact production
 post-deployment public-route verification
 public-route artifact binding
+canonical/iOS-safe workflow byte equality
+iOS workflow mirror status = synchronized
 handoff preservation of non-authority and stage-separation markers
 ```
 
-`check_goal5_external_frameworks_all.py` now executes this validator. Therefore removal, reordering, or silent weakening of the source -> build -> generated-route -> Pages artifact -> deployment -> public-route proof chain is a Goal-5 failure rather than an unobserved documentation regression.
+`check_goal5_external_frameworks_all.py` executes this validator. Therefore removal, reordering, silent weakening, or iOS-mirror loss of the source -> build -> generated-route -> Pages artifact -> deployment -> public-route proof chain is a Goal-5 failure rather than an unobserved documentation regression.
 
 Installed commits:
 
 ```text
 4906baa3ee8bc3a24d29e8479ce40723ca1bd965  add publication proof contract validator
 2503fd6482332636ed211095e76774b0d425b814  bind publication proof contract into Goal-5 aggregate validation
+464e33cf79469bd54c738685e552798f66a79410  require synchronized iOS mirror in publication proof contract
+```
+
+## iOS-safe workflow mirror synchronization
+
+The iOS-safe workflow mirror was materially stale and did not contain the current External Frameworks source-route or generated-route gates. The repository already contained `static/status/ios-workflow-mirror-sync-next.json`, whose required next state was exact synchronization. That transition is now executed.
+
+Installed synchronization chain:
+
+```text
+c9d6beb641a3e86f642cdf989e9953d7db4552bf  replace iOS-safe workflow mirror with the canonical workflow
+25b01f1462f8416e8db216e2bbccaf9c9e0f3168  make mirror guard state-aware for synchronized vs controlled-delta states
+d99e0bdb4b6f50d8f091df5619e79f837296984a  promote iOS workflow mirror status to synchronized
+3a72cace1b2c4193b9f32c099cded7c348b7e2f7  close the previously queued synchronization transition
+486c4c120a8a1bce19558f3663d71648cb9f1690  reconcile workflow manifest to synchronized mirror state
+b1bf42c9c65e9d0552aeffa9becc34a83fc6f16c  require byte-identical synchronized mirror in workflow-manifest validation
+a6bacbf82d1c9d2e7382eb21222d321dc76dc9df  reconcile activation checklist from patched delta to synchronized
+20f1402def9695e3eda3855007eb2c161532ed80  retire the stale active patch description into a historical/future-drift record
+```
+
+The mirror remains a usability surface, not a second workflow authority. Future canonical workflow drift must either update the mirror byte-identically in the same transition or explicitly demote the mirror state to `patched_delta_recorded` with a complete controlled delta record. Silent drift is fail-closed.
+
+```text
+iOS mirror synchronized != canonical workflow executed
+mirror equality != deployment
+mirror equality != activation evidence
+mirror equality != release authority
 ```
 
 Current hosted result must remain UNOBSERVED until the workflow result for the exact resulting commit is directly inspected. Moving-main substitution is prohibited for evidence claims.
@@ -233,14 +269,14 @@ public Wiki source wiring: 36/36
 terminal framework-specific evaluation: determined only by issue #66 direct evidence
 ```
 
-A framework page being visible, authored, manifest-bound, report-bound, built, deployed, and route-verified does not by itself answer the stronger second-page evaluation completion criteria.
+A framework page being visible, authored, manifest-bound, report-bound, built, deployed, route-verified, or portable through the synchronized iOS mirror does not by itself answer the stronger second-page evaluation completion criteria.
 
 Latest direct coordinator evidence still records 7/36 terminally reconciled and 29/36 incomplete. No newer issue-#66 evidence was observed during this transition, so the denominator is not promoted.
 
 ## Required next transitions
 
-1. Observe an exact-head canonical validation/build run containing the current three-stage route-proof chain and its Goal-5 regression validator.
-2. Require the Goal-5 publication-proof-contract check to PASS at that exact head.
+1. Observe an exact-head canonical validation/build run containing the current three-stage route-proof chain, Goal-5 regression validator, and synchronized iOS mirror contract.
+2. Require the Goal-5 publication-proof-contract check to PASS at that exact head, including canonical/iOS mirror equality.
 3. Require `external-framework-source-route-contract` to report 36/36 source-contract-verified routes.
 4. Require Docusaurus build success for that same exact head.
 5. Require `external-framework-built-route-verification` to report 36/36 generated route files with content fidelity.
@@ -257,6 +293,7 @@ Latest direct coordinator evidence still records 7/36 terminally reconciled and 
 
 - exact-head canonical validation evidence;
 - Goal-5 publication-proof-contract PASS;
+- canonical/iOS workflow mirror equality validation;
 - 36/36 source-route contract artifact;
 - exact-head Docusaurus build evidence;
 - 36/36 generated built-route verification artifact;
@@ -286,6 +323,7 @@ source-route contract PASS != build success
 build success != generated-route verification
 generated-route verification != deployment
 publication-proof-contract PASS != deployment
+iOS mirror equality != workflow execution
 workflow pass != runtime authority
 route verification != release
 public rendering != endorsement
@@ -296,10 +334,10 @@ ALLOW != execution
 
 ```text
 archive_state: NOT_READY
-source_navigation_goal: 36_OF_36_INSTALLED_WITH_SOURCE_BUILD_AND_POSTDEPLOY_GATES_PENDING_HOSTED_PROOF
+source_navigation_goal: 36_OF_36_INSTALLED_WITH_SOURCE_BUILD_POSTDEPLOY_AND_IOS_MIRROR_GATES_PENDING_HOSTED_PROOF
 framework_evaluation_goal: NONTERMINAL_UNTIL_ISSUE_66_DIRECT_EVIDENCE_CLOSES_36_OF_36
 repository_release: NOT_AUTHORIZED
 repository_activation: NOT_COMPLETE
 ```
 
-Keep this workstream open until exact-head validation, publication-proof-contract validation, source-route proof, build, generated-route proof, Pages artifact/deployment, all-route runtime proof, framework-specific evaluation completion, repository-wide PASS, and any required release/propagation/activation evidence are directly established.
+Keep this workstream open until exact-head validation, publication-proof-contract validation, synchronized mirror validation, source-route proof, build, generated-route proof, Pages artifact/deployment, all-route runtime proof, framework-specific evaluation completion, repository-wide PASS, and any required release/propagation/activation evidence are directly established.
