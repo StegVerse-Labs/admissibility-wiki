@@ -42,7 +42,7 @@
     "No live governed interlock trace is retained in the certification record.",
     "No certification-profile negative-control run is retained.",
     "S5 execution/transmission versus S7 proof-verification effect timing remains unresolved in the retained public-source record.",
-    "No request/return receipt pair has been retained for an ArquivoNulo-Ste gVerse interlock run."
+    "No request/return receipt pair has been retained for an ArquivoNulo-StegVerse interlock run."
   ],
   "missing_requirements": [
     "immutable tested implementation/version binding",
