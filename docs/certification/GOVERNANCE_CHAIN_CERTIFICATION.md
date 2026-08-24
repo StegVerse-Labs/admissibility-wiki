@@ -5,23 +5,24 @@ sidebar_label: Governance-Chain Certification
 
 # Governance-Chain Certification
 
-## Formalization status
+## Canonical status
 
 ```text
-status: FORMALIZATION_COMPLETE_CANDIDATE
-lane: dev/governance-chain-certification
-pull_request: 101
+status: CANONICAL_FORMAL_STANDARD
+canonical_branch: main
+origin_pull_request: 101
+merge_commit: 956a787a1fd858efe30d0b909fd5cf2400151988
 certification_authority_activated: false
 public_certification_program_activated: false
 ```
 
 StegVerse Governance-Chain Certification defines a property-scoped certification system for governance mechanisms and governance-adjacent mechanisms that materially participate in a consequential transition.
 
-The certification target is not limited to a governance engine. It may be a mechanism immediately before governance, the governance mechanism itself, a mechanism immediately after governance, or a governed interlock connecting independently authoritative systems.
+The certification target may sit immediately before governance, within governance, immediately after governance, or at a governed interlock between independently authoritative systems.
 
 ## Core proposition
 
-StegVerse certification is evidence of demonstrated properties at a defined boundary under a defined test profile. It is not a generic endorsement of a product, organization, model, or implementation.
+StegVerse certification is evidence of demonstrated properties at a defined boundary under a defined test profile. It is not a generic endorsement.
 
 ```text
 certification = demonstrated_property
@@ -92,15 +93,15 @@ Machine-readable definitions and minimum negative-control families are retained 
 
 ## Minimum deterministic profiles
 
-`data/certification/minimum-profiles.v0.1.json` defines the minimum PRE/GOV/POST/INT profiles. Every profile requires explicit property coverage and negative controls. A positive path alone is insufficient.
+`data/certification/minimum-profiles.v0.1.json` defines minimum PRE/GOV/POST/INT profiles. Every profile requires explicit property coverage and negative controls. A positive path alone is insufficient.
 
-Where a mechanism can materially allow or block consequence, relevant profiles exercise successful and unsuccessful behavior, including `ALLOW`, `DENY`, `FAIL_CLOSED`, stale authority/evidence, policy/state drift, duplicate commit/replay, and boundary-translation failure where applicable.
+Where a mechanism can materially allow or block consequence, relevant profiles exercise both successful and unsuccessful behavior, including `ALLOW`, `DENY`, `FAIL_CLOSED`, stale authority/evidence, policy/state drift, duplicate commit/replay, and boundary-translation failure where applicable.
 
 ## Evidence and lifecycle
 
 Certification candidates, results, and evidence packets use machine-readable schemas under `schemas/`.
 
-Evidence is version-bound and freshness-bounded. Certification may transition among lifecycle states including:
+Evidence is version-bound and freshness-bounded. Lifecycle states include:
 
 ```text
 CURRENT
@@ -110,15 +111,13 @@ REVOKED
 SUPERSEDED
 ```
 
-Renewal requires re-evaluation. Prior evidence may be reused only when continued applicability is independently established.
-
-Missing or conflicting required evidence cannot become success.
+Renewal requires re-evaluation. Prior evidence may be reused only when continued applicability is independently established. Missing or conflicting required evidence cannot become success.
 
 ## Public claims
 
 Public certification language MUST state the exact component/version, certification surface, profile version, certified properties, evidence locator, and current lifecycle state.
 
-Generic shorthand such as `StegVerse approved`, `safe`, `trusted`, or an unrestricted `governance certified` claim is not a valid representation of this certification model.
+Generic shorthand such as `StegVerse approved`, `safe`, `trusted`, or an unrestricted `governance certified` claim is not valid under this standard.
 
 A badge is only a pointer to a machine-readable current certificate. It is not a substitute for evidence.
 
@@ -139,19 +138,17 @@ A failed, limited, unresolved, expired, suspended, or revoked result remains val
 
 ## SDK evidence adapter
 
-The StegVerse SDK is the preferred evaluator-facing surface when the tested proposition is representable through published SDK capabilities. Submitted manifest hashes, governance decisions, manifested-route receipts, Master Records custody, replay, reconstruction, and result-binding hashes may become certification evidence.
+The StegVerse SDK is the preferred evaluator-facing surface when the tested proposition is representable through published SDK capabilities. Submitted manifest hashes, governance decisions, route receipts, Master Records custody, replay, reconstruction, and result-binding hashes may become certification evidence.
 
-An SDK `ALLOW` is not itself a certification. The selected certification profile, negative controls, evidence sufficiency, lifecycle requirements, and certificate validator must also pass.
+An SDK `ALLOW` is not itself a certification. The selected profile, negative controls, evidence sufficiency, lifecycle requirements, and certificate validator must also pass.
 
 ## Fin-Co precedent
 
-Fin-Co / Fin-Co-Lab provides the existing ecosystem precedent that implementation claims alone are insufficient, certification requires explicit suite/report evidence, and `ALLOW`, `DENY`, and `FAIL_CLOSED` behavior must be tested. Governance-Chain Certification generalizes those principles across PRE/GOV/POST/INT surfaces.
+Fin-Co / Fin-Co-Lab provides an existing ecosystem precedent that implementation claims alone are insufficient, certification requires explicit suite/report evidence, and `ALLOW`, `DENY`, and `FAIL_CLOSED` behavior must be tested. Governance-Chain Certification generalizes those principles across PRE/GOV/POST/INT surfaces.
 
-## First external pilot
+## First external process pilot
 
 The first external process pilot applies the INT profile to the publicly documented ArquivoNulo protocol family.
-
-The result is intentionally:
 
 ```text
 result: UNRESOLVED
@@ -171,7 +168,7 @@ Scoped validator:
 python scripts/check_governance_chain_certification.py
 ```
 
-Retained scoped validation records:
+Retained scoped result:
 
 ```text
 GOVERNANCE_CHAIN_CERTIFICATION: PASS
@@ -198,8 +195,16 @@ passing one version != passing later versions
 payment != certification outcome
 ```
 
-## Activation boundary
+## Authority activation boundary
 
-Formalization of the standard is complete on this development lane. That is distinct from activation of a public certification authority.
+The formal standard is now canonical. That does **not** activate a public certification authority or certificate-issuance authority.
 
-Public certification authority remains inactive until the standard is canonically merged and an explicit activation decision is made after an evidence-complete certification candidate demonstrates that the issuance path itself can produce and verify a real certificate without weakening the fail-closed rules established here.
+Activation is a separate future goal requiring an evidence-complete candidate, generation of a real machine-readable certificate, independent verification of that certificate and evidence packet, preservation of the negative-control/fail-closed guarantees, and an explicit activation decision.
+
+Until that transition is completed:
+
+```text
+formal_standard: CANONICAL_COMPLETE
+public_certification_authority: INACTIVE
+certificate_issuance_authority: INACTIVE
+```
