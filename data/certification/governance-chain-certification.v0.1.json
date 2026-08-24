@@ -1,0 +1,82 @@
+{
+  "schema_version": "0.1.0",
+  "record_type": "governance_chain_certification_development_lane",
+  "goal_id": "GOVERNANCE-CHAIN-CERTIFICATION-001",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "dev/governance-chain-certification",
+  "state": "ACTIVE_FORMALIZATION",
+  "certification_authority_activated": false,
+  "public_certification_program_activated": false,
+  "surfaces": [
+    "PRE",
+    "GOV",
+    "POST",
+    "INT"
+  ],
+  "property_families": [
+    "AUTHORITY_CURRENT",
+    "ADMISSIBILITY_COMMIT_BOUND",
+    "FAIL_CLOSED",
+    "EVIDENCE_PROVENANCE",
+    "STATE_CORRESPONDENCE",
+    "REPLAY_STABLE",
+    "RECONSTRUCTABLE",
+    "CONSEQUENCE_BOUND",
+    "IDEMPOTENT_TARGET",
+    "CUSTODY_DURABLE",
+    "INTERLOCK_AUTHORITY_SEPARATED",
+    "INTERLOCK_TRANSLATION_BOUNDED",
+    "CONTINUING_CONFORMANCE"
+  ],
+  "result_states": [
+    "CERTIFIED",
+    "CERTIFIED_WITH_LIMITS",
+    "NOT_CERTIFIED",
+    "INDETERMINATE",
+    "STALE_OR_EXPIRED",
+    "REVOKED"
+  ],
+  "invariants": [
+    "certification != endorsement",
+    "certification != execution authority",
+    "certification != permanent validity",
+    "interop != authority transfer",
+    "payment != certification outcome",
+    "missing evidence != success"
+  ],
+  "precedents": [
+    {
+      "repository": "StegVerse-org/StegVerse-SDK",
+      "role": "independent governed evaluation surface"
+    },
+    {
+      "repository": "StegVerse-Labs/admissibility-wiki",
+      "role": "external-framework evaluation and evidence posture"
+    },
+    {
+      "repository": "StegVerse-Labs/Fin-Co",
+      "role": "certification requirements precedent"
+    },
+    {
+      "repository": "StegVerse-Labs/Fin-Co-Lab",
+      "role": "certification fixture and report precedent"
+    },
+    {
+      "repository": "StegVerse-Labs/StegOS",
+      "role": "governed interlock precedent"
+    }
+  ],
+  "next_targets": [
+    "GCC-002 candidate schema",
+    "GCC-003 result certificate schema",
+    "GCC-004 property registry",
+    "GCC-005 PRE GOV POST INT minimum profiles",
+    "GCC-006 evidence packet contract",
+    "GCC-007 freshness renewal expiry revocation",
+    "GCC-008 public claim and badge constraints",
+    "GCC-009 overclaim false-positive fail-closed fixtures",
+    "GCC-010 Fin-Co mapping",
+    "GCC-011 SDK evidence adapter",
+    "GCC-012 first external pilot"
+  ]
+}
