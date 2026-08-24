@@ -6,8 +6,9 @@
 goal_id: GOVERNANCE-CHAIN-CERTIFICATION-001
 repository: StegVerse-Labs/admissibility-wiki
 branch: dev/governance-chain-certification
+pull_request: 101
 role: DEVELOPMENT_LANE
-state: ACTIVE_FORMALIZATION
+state: FORMALIZATION_COMPLETE_PENDING_CANONICAL_MERGE
 canonical_authority_activated: false
 public_certification_program_activated: false
 credential_authority: TV/TVC
@@ -18,110 +19,104 @@ GitHub runtime authority: NONE
 
 Formalize a StegVerse certification system for governance mechanisms and governance-adjacent mechanisms positioned immediately before, within, immediately after, or across a governed transition boundary.
 
-The certification object is property-scoped, version-scoped, test-profile-scoped, evidence-backed, and freshness-bounded. It is not a generic endorsement.
+The certification object is property-scoped, version-scoped, test-profile-scoped, evidence-backed, negative-control-backed, and freshness-bounded. It is not a generic endorsement.
 
 ## Collision boundary
 
-Preflight inspected:
+Preflight preserved the active repository workloads owned by issue #50, issue #66, MindForge review, and Riverbraid PR #17. This lane did not duplicate those implementations or mutate their claimed control paths.
 
-```text
-ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md
-data/admissibility-wiki-orchestration-state.json
-existing certification/assurance branch names
-existing certification references across the ecosystem
-```
-
-Observed active repository workloads include issue #50 canonical validation support, issue #66 external-framework publication work, MindForge review, and Riverbraid PR #17. This lane does not mutate those claimed paths or duplicate their implementation.
-
-Branch searches found no existing certification- or assurance-named development branch in this repository at lane creation.
-
-## Initial doctrine
-
-Canonical development document on this branch:
+## Implemented artifacts
 
 ```text
 docs/certification/GOVERNANCE_CHAIN_CERTIFICATION.md
-```
+  formal doctrine and PRE/GOV/POST/INT scope
 
-Initial certification surfaces:
-
-```text
-PRE  pre-governance mechanisms
-GOV  governance mechanisms
-POST post-governance mechanisms
-INT  governed interlocks between independently authoritative systems
-```
-
-Initial property families:
-
-```text
-AUTHORITY_CURRENT
-ADMISSIBILITY_COMMIT_BOUND
-FAIL_CLOSED
-EVIDENCE_PROVENANCE
-STATE_CORRESPONDENCE
-REPLAY_STABLE
-RECONSTRUCTABLE
-CONSEQUENCE_BOUND
-IDEMPOTENT_TARGET
-CUSTODY_DURABLE
-INTERLOCK_AUTHORITY_SEPARATED
-INTERLOCK_TRANSLATION_BOUNDED
-CONTINUING_CONFORMANCE
-```
-
-## Existing ecosystem precedents to preserve
-
-```text
-StegVerse-org/StegVerse-SDK
-  independent evaluator-defined testing, receipts, replay, reconstruction
-
-StegVerse-Labs/admissibility-wiki
-  external-framework comparison, fixtures, bounded evidence posture
-
-StegVerse-Labs/Fin-Co + Fin-Co-Lab
-  explicit certification-suite precedent with ALLOW / DENY / FAIL_CLOSED coverage
-
-StegVerse-Labs/StegOS + interlock surfaces
-  governed system-to-system authority-separation patterns
-```
-
-These are inputs to the generic certification model; none is silently reclassified as already certified under this new doctrine.
-
-## Implemented development artifacts
-
-```text
-docs/certification/GOVERNANCE_CHAIN_CERTIFICATION.md
-  doctrine and scope
+docs/certification/CERTIFICATION_OPERATIONAL_STANDARD.md
+  claim discipline, lifecycle, badge, Fin-Co mapping, SDK adapter, interlock rules
 
 data/certification/governance-chain-certification.v0.1.json
-  machine-readable development-lane record
-
-schemas/governance-chain-certification-candidate.schema.json
-  version-bound, surface-bound candidate contract
-
-schemas/governance-chain-certification-result.schema.json
-  property-scoped result/certificate contract
+  machine-readable lane state
 
 data/certification/property-registry.v0.1.json
-  initial property definitions and minimum negative-control families
+  property definitions and negative-control families
+
+data/certification/minimum-profiles.v0.1.json
+  deterministic PRE/GOV/POST/INT minimum profiles
+
+data/certification/negative-fixtures.v0.1.json
+  false-positive/overclaim/fail-closed fixture set
+
+data/certification/pilots/arquivonulo-int-pilot.v0.1.json
+  first external process pilot
+
+schemas/governance-chain-certification-candidate.schema.json
+schemas/governance-chain-certification-result.schema.json
+schemas/governance-chain-certification-evidence.schema.json
+
+scripts/check_governance_chain_certification.py
+validation/GOVERNANCE_CHAIN_CERTIFICATION_VALIDATION_2026-08-23.md
 ```
 
-## Required next implementation sequence
+## Completion of implementation sequence
 
 ```text
-GCC-002 candidate schema: IMPLEMENTED_DRAFT
-GCC-003 result certificate schema: IMPLEMENTED_DRAFT
-GCC-004 property registry: IMPLEMENTED_DRAFT
-GCC-005 PRE/GOV/POST/INT minimum deterministic profiles: NEXT
-GCC-006 evidence packet contract: PENDING
-GCC-007 freshness/renewal/expiry/revocation rules: PENDING
-GCC-008 public claim and badge constraints: PENDING
-GCC-009 overclaim/false-positive/fail-closed validator fixtures: PENDING
-GCC-010 Fin-Co precedent mapping: PENDING
-GCC-011 SDK evidence adapter: PENDING
-GCC-012 first external end-to-end pilot: PENDING
+GCC-002 candidate schema: IMPLEMENTED
+GCC-003 result certificate schema: IMPLEMENTED
+GCC-004 property registry: IMPLEMENTED
+GCC-005 PRE/GOV/POST/INT minimum deterministic profiles: IMPLEMENTED
+GCC-006 evidence packet contract: IMPLEMENTED
+GCC-007 freshness/renewal/expiry/revocation rules: IMPLEMENTED
+GCC-008 public claim and badge constraints: IMPLEMENTED
+GCC-009 overclaim/false-positive/fail-closed validator fixtures: IMPLEMENTED
+GCC-010 Fin-Co precedent mapping: IMPLEMENTED
+GCC-011 SDK evidence adapter: IMPLEMENTED
+GCC-012 first external end-to-end process pilot: IMPLEMENTED
 ```
+
+## Scoped validation
+
+Validator:
+
+```text
+python scripts/check_governance_chain_certification.py
+```
+
+Source-equivalent isolated result:
+
+```text
+GOVERNANCE_CHAIN_CERTIFICATION: PASS
+profiles=4
+negative_fixtures=9
+external_pilot=UNRESOLVED_NO_CERTIFICATE
+authority_effect=NONE
+```
+
+Validation record:
+
+```text
+validation/GOVERNANCE_CHAIN_CERTIFICATION_VALIDATION_2026-08-23.md
+```
+
+The scoped validator does not supersede repository-wide canonical validation.
+
+## First external pilot
+
+Candidate:
+
+```text
+ArquivoNulo public protocol family
+surface: INT
+```
+
+Result:
+
+```text
+UNRESOLVED
+certificate_issued: false
+authority_effect: NONE
+```
+
+This is a successful test of the certification process's fail-closed behavior, not a certification of ArquivoNulo. Public architectural material was insufficient to establish the live INT profile because complete interlock traces, required negative controls, and request/return receipt evidence were not available.
 
 ## Commercial and authority invariant
 
@@ -137,41 +132,30 @@ missing evidence != success
 
 ## Activation boundary
 
-This lane may not claim an active certification authority until at least:
+Formalization completion is distinct from public certification-authority activation.
+
+After canonical merge, a separate activation decision still requires an evidence-complete candidate capable of producing and verifying a real machine-readable certificate through the full issuance path. Until then:
 
 ```text
-schemas implemented and validated
-property registry implemented
-minimum profiles implemented
-certificate verification format implemented
-negative/overclaim fixtures passing
-freshness and revocation semantics implemented
-one end-to-end pilot retained with evidence
-public claim language validated
-canonical repository integration completed
+public_certification_authority: INACTIVE
+certificate_issuance_authority: INACTIVE
+formal_standard: COMPLETE_CANDIDATE
 ```
 
-## Development completion accounting
-
-Current lane state:
+## Completion accounting
 
 ```text
-doctrine: IMPLEMENTED_DRAFT
-handoff: IMPLEMENTED
-machine-readable lane record: IMPLEMENTED
-candidate schema: IMPLEMENTED_DRAFT
-result schema: IMPLEMENTED_DRAFT
-property registry: IMPLEMENTED_DRAFT
-minimum profiles: PENDING
-evidence packet: PENDING
-freshness/revocation: PENDING
-public claim constraints: PENDING
-validator fixtures: PENDING
-Fin-Co mapping: PENDING
-SDK adapter: PENDING
-pilot: PENDING
-canonical merge: PENDING
-activation: NOT_AUTHORIZED
+formalization_targets: 11/11 complete
+certification_surfaces: 4/4 defined
+property_families: 13
+negative_fixtures: 9
+scoped_validation: PASS
+external_process_pilots: 1/1 complete
+external_certificates_issued: 0
+canonical_merge: PENDING_PR_101
+public_authority_activation: NOT_AUTHORIZED
 ```
 
-Do not equate branch existence, documentation, draft schemas, or a future passing test with activated certification authority.
+## Continuation
+
+If PR #101 merges cleanly, this formalization goal becomes canonically complete. The next distinct program goal is not more definition of this lane; it is evidence-complete certificate issuance and verification followed by an explicit activation decision.
