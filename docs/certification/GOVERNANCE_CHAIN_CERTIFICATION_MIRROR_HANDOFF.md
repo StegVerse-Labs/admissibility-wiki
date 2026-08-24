@@ -5,118 +5,108 @@
 ```text
 goal_id: GOVERNANCE-CHAIN-CERTIFICATION-001
 repository: StegVerse-Labs/admissibility-wiki
-branch: dev/governance-chain-certification
+canonical_branch: main
+origin_branch: dev/governance-chain-certification
 pull_request: 101
-role: DEVELOPMENT_LANE
-state: FORMALIZATION_COMPLETE_PENDING_CANONICAL_MERGE
+merge_commit: 956a787a1fd858efe30d0b909fd5cf2400151988
+state: COMPLETE_CANONICAL_FORMALIZATION
 canonical_authority_activated: false
 public_certification_program_activated: false
 credential_authority: TV/TVC
 GitHub runtime authority: NONE
 ```
 
-## Goal
+## Goal completed
 
-Formalize a StegVerse certification system for governance mechanisms and governance-adjacent mechanisms positioned immediately before, within, immediately after, or across a governed transition boundary.
+StegVerse now has a canonical formal certification model for governance mechanisms and governance-adjacent mechanisms positioned immediately before, within, immediately after, or across a governed transition boundary.
 
 The certification object is property-scoped, version-scoped, test-profile-scoped, evidence-backed, negative-control-backed, and freshness-bounded. It is not a generic endorsement.
 
-## Collision boundary
-
-Preflight preserved the active repository workloads owned by issue #50, issue #66, MindForge review, and Riverbraid PR #17. This lane did not duplicate those implementations or mutate their claimed control paths.
-
-## Implemented artifacts
+## Canonical artifacts
 
 ```text
 docs/certification/GOVERNANCE_CHAIN_CERTIFICATION.md
-  formal doctrine and PRE/GOV/POST/INT scope
-
 docs/certification/CERTIFICATION_OPERATIONAL_STANDARD.md
-  claim discipline, lifecycle, badge, Fin-Co mapping, SDK adapter, interlock rules
-
 data/certification/governance-chain-certification.v0.1.json
-  machine-readable lane state
-
 data/certification/property-registry.v0.1.json
-  property definitions and negative-control families
-
 data/certification/minimum-profiles.v0.1.json
-  deterministic PRE/GOV/POST/INT minimum profiles
-
 data/certification/negative-fixtures.v0.1.json
-  false-positive/overclaim/fail-closed fixture set
-
 data/certification/pilots/arquivonulo-int-pilot.v0.1.json
-  first external process pilot
-
 schemas/governance-chain-certification-candidate.schema.json
 schemas/governance-chain-certification-result.schema.json
 schemas/governance-chain-certification-evidence.schema.json
-
 scripts/check_governance_chain_certification.py
 validation/GOVERNANCE_CHAIN_CERTIFICATION_VALIDATION_2026-08-23.md
 ```
 
-## Completion of implementation sequence
+## Certification surfaces
 
 ```text
-GCC-002 candidate schema: IMPLEMENTED
-GCC-003 result certificate schema: IMPLEMENTED
-GCC-004 property registry: IMPLEMENTED
-GCC-005 PRE/GOV/POST/INT minimum deterministic profiles: IMPLEMENTED
-GCC-006 evidence packet contract: IMPLEMENTED
-GCC-007 freshness/renewal/expiry/revocation rules: IMPLEMENTED
-GCC-008 public claim and badge constraints: IMPLEMENTED
-GCC-009 overclaim/false-positive/fail-closed validator fixtures: IMPLEMENTED
-GCC-010 Fin-Co precedent mapping: IMPLEMENTED
-GCC-011 SDK evidence adapter: IMPLEMENTED
-GCC-012 first external end-to-end process pilot: IMPLEMENTED
+PRE  pre-governance mechanisms
+GOV  governance mechanisms
+POST post-governance mechanisms
+INT  governed interlocks between independently authoritative systems
+```
+
+## Implemented property families
+
+```text
+AUTHORITY_CURRENT
+ADMISSIBILITY_COMMIT_BOUND
+FAIL_CLOSED
+EVIDENCE_PROVENANCE
+STATE_CORRESPONDENCE
+REPLAY_STABLE
+RECONSTRUCTABLE
+CONSEQUENCE_BOUND
+IDEMPOTENT_TARGET
+CUSTODY_DURABLE
+INTERLOCK_AUTHORITY_SEPARATED
+INTERLOCK_TRANSLATION_BOUNDED
+CONTINUING_CONFORMANCE
+```
+
+## Completed implementation sequence
+
+```text
+GCC-002 candidate schema: COMPLETE
+GCC-003 result certificate schema: COMPLETE
+GCC-004 property registry: COMPLETE
+GCC-005 PRE/GOV/POST/INT minimum deterministic profiles: COMPLETE
+GCC-006 evidence packet contract: COMPLETE
+GCC-007 freshness/renewal/expiry/revocation rules: COMPLETE
+GCC-008 public claim and badge constraints: COMPLETE
+GCC-009 overclaim/false-positive/fail-closed fixtures: COMPLETE
+GCC-010 Fin-Co precedent mapping: COMPLETE
+GCC-011 SDK evidence adapter: COMPLETE
+GCC-012 first external end-to-end process pilot: COMPLETE
 ```
 
 ## Scoped validation
 
-Validator:
-
 ```text
-python scripts/check_governance_chain_certification.py
+validator: scripts/check_governance_chain_certification.py
+validation_class: SOURCE_EQUIVALENT_ISOLATED_SCOPED_VALIDATION
+result: PASS
+profiles: 4
+negative_fixtures: 9
+external_pilot: UNRESOLVED_NO_CERTIFICATE
+authority_effect: NONE
 ```
 
-Source-equivalent isolated result:
+The scoped result does not supersede repository-wide canonical validation or create certification authority.
+
+## First external process pilot
 
 ```text
-GOVERNANCE_CHAIN_CERTIFICATION: PASS
-profiles=4
-negative_fixtures=9
-external_pilot=UNRESOLVED_NO_CERTIFICATE
-authority_effect=NONE
-```
-
-Validation record:
-
-```text
-validation/GOVERNANCE_CHAIN_CERTIFICATION_VALIDATION_2026-08-23.md
-```
-
-The scoped validator does not supersede repository-wide canonical validation.
-
-## First external pilot
-
-Candidate:
-
-```text
-ArquivoNulo public protocol family
+candidate: ArquivoNulo public protocol family
 surface: INT
-```
-
-Result:
-
-```text
-UNRESOLVED
+result: UNRESOLVED
 certificate_issued: false
 authority_effect: NONE
 ```
 
-This is a successful test of the certification process's fail-closed behavior, not a certification of ArquivoNulo. Public architectural material was insufficient to establish the live INT profile because complete interlock traces, required negative controls, and request/return receipt evidence were not available.
+This is a successful fail-closed process pilot, not a certification of ArquivoNulo. Required live interlock traces, negative controls, and request/return receipt evidence were not available, so the process correctly refused to issue a certificate.
 
 ## Commercial and authority invariant
 
@@ -130,32 +120,34 @@ interop != authority transfer
 missing evidence != success
 ```
 
-## Activation boundary
+## Formalization versus authority activation
 
-Formalization completion is distinct from public certification-authority activation.
+The formalization goal is complete and canonical. A distinct later program transition is required before StegVerse may claim an active public certification authority.
 
-After canonical merge, a separate activation decision still requires an evidence-complete candidate capable of producing and verifying a real machine-readable certificate through the full issuance path. Until then:
+That future activation requires an evidence-complete candidate capable of producing and independently verifying a real machine-readable certificate through the full issuance path, followed by an explicit activation decision.
+
+Until then:
 
 ```text
+formal_standard: CANONICAL_COMPLETE
 public_certification_authority: INACTIVE
 certificate_issuance_authority: INACTIVE
-formal_standard: COMPLETE_CANDIDATE
 ```
 
 ## Completion accounting
 
 ```text
-formalization_targets: 11/11 complete
-certification_surfaces: 4/4 defined
+formalization_targets: 11/11 = 100%
+certification_surfaces: 4/4 = 100%
 property_families: 13
 negative_fixtures: 9
 scoped_validation: PASS
-external_process_pilots: 1/1 complete
-external_certificates_issued: 0
-canonical_merge: PENDING_PR_101
-public_authority_activation: NOT_AUTHORIZED
+external_process_pilots: 1/1 = 100%
+canonical_merge: COMPLETE
+formalization_goal: 100%
+public_authority_activation: SEPARATE_FUTURE_GOAL_NOT_CLAIMED
 ```
 
 ## Continuation
 
-If PR #101 merges cleanly, this formalization goal becomes canonically complete. The next distinct program goal is not more definition of this lane; it is evidence-complete certificate issuance and verification followed by an explicit activation decision.
+`GOVERNANCE-CHAIN-CERTIFICATION-001` is complete. The next distinct goal, when opened, is evidence-complete certificate issuance/verification and explicit certification-authority activation. Do not reopen this formalization goal merely to perform that later activation work.
