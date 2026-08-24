@@ -1,0 +1,85 @@
+{
+  "schema_version": "0.1.0",
+  "candidate_id": "arquivonulo-intake-001",
+  "subject": {
+    "subject_id": "arquivonulo-public-protocol-family",
+    "version": "public-materials-observed-through-2026-03-12",
+    "immutable_locator": "https://github.com/arquivonulo369-beep/arquivonulo-foundation",
+    "artifact_hash": null,
+    "provider": "ArquivoNulo"
+  },
+  "surface": "INT",
+  "claimed_properties": [
+    "INTERLOCK_AUTHORITY_SEPARATED",
+    "INTERLOCK_TRANSLATION_BOUNDED",
+    "FAIL_CLOSED",
+    "EVIDENCE_PROVENANCE",
+    "REPLAY_STABLE",
+    "RECONSTRUCTABLE"
+  ],
+  "test_profile": {
+    "profile_id": "INT_MINIMUM",
+    "version": "0.1.0"
+  },
+  "interface": {
+    "interface_class": "DOCUMENTATION_ONLY",
+    "observable_or_executable": false,
+    "locator": "https://arquivonulo369-beep.github.io/arquivonulo-foundation/"
+  },
+  "evidence_routes": {
+    "positive_fixture_route": null,
+    "negative_control_route": null,
+    "effect_observation_point": null,
+    "request_receipt_route": null,
+    "return_receipt_route": null,
+    "replay_material": null,
+    "reconstruction_material": null,
+    "current_condition_inputs": null,
+    "evidence_destination": "StegVerse-Labs/admissibility-wiki/data/certification/intake/arquivonulo-intake.v0.1.json"
+  },
+  "known_limits": [
+    "Public architecture and protocol material is available.",
+    "No live governed interlock trace is retained in the certification record.",
+    "No certification-profile negative-control run is retained.",
+    "S5 execution/transmission versus S7 proof-verification effect timing remains unresolved in the retained public-source record.",
+    "No request/return receipt pair has been retained for an ArquivoNulo-StegVerse interlock run."
+  ],
+  "missing_requirements": [
+    "immutable tested implementation/version binding",
+    "observable or executable INT interface",
+    "positive interlock fixture route",
+    "negative-control interlock fixture route",
+    "pre-effect and post-effect observation points",
+    "request receipt route",
+    "return receipt route",
+    "replay evidence for the tested exchange",
+    "reconstruction evidence for the tested exchange",
+    "retained live trace resolving consequence timing"
+  ],
+  "intake_state": "EVIDENCE_REQUESTED",
+  "certificate_issued": false,
+  "authority_effect": "NONE",
+  "evidence_request": {
+    "request_id": "ARQUIVONULO-INT-EVIDENCE-001",
+    "purpose": "Advance only the proposed INT certification profile from evidence-requested to test-ready if the missing evidence is supplied.",
+    "minimum_requested_artifacts": [
+      "Exact ArquivoNulo implementation/version proposed for testing, with immutable locator or artifact hash.",
+      "A callable or observable interface through which a bounded governed exchange can be executed.",
+      "One declared positive exchange fixture and expected result.",
+      "At least one declared negative-control exchange fixture that should fail closed.",
+      "Observation points showing when external consequence can bind relative to validation/proof verification.",
+      "Request receipt and return receipt for the same exchange identity.",
+      "Replay material sufficient to show whether the recorded exchange can be replayed without duplicating consequence.",
+      "Reconstruction material sufficient to recover the tested state, inputs, decision/proof path, and observed outcome."
+    ],
+    "not_requested": [
+      "unrelated proprietary source code",
+      "business strategy",
+      "customer data",
+      "credentials or secrets",
+      "authority transfer to StegVerse"
+    ],
+    "commercial_requirement": "NONE",
+    "submission_does_not_guarantee_certification": true
+  }
+}

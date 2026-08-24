@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse.org/schemas/external-certification-intake.schema.json",
+  "title": "External Governance-Chain Certification Intake",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "candidate_id",
+    "subject",
+    "surface",
+    "claimed_properties",
+    "test_profile",
+    "interface",
+    "evidence_routes",
+    "known_limits",
+    "intake_state"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject_id", "version", "immutable_locator"],
+      "properties": {
+        "subject_id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "immutable_locator": {"type": "string", "minLength": 1},
+        "artifact_hash": {"type": ["string", "null"]},
+        "provider": {"type": ["string", "null"]}
+      }
+    },
+    "surface": {"enum": ["PRE", "GOV", "POST", "INT"]},
+    "claimed_properties": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "test_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_id", "version"],
+      "properties": {
+        "profile_id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1}
+      }
+    },
+    "interface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["interface_class", "observable_or_executable"],
+      "properties": {
+        "interface_class": {"enum": ["SDK", "API", "CLI", "INTERLOCK", "REPOSITORY", "DOCUMENTATION_ONLY", "OTHER"]},
+        "observable_or_executable": {"type": "boolean"},
+        "locator": {"type": ["string", "null"]}
+      }
+    },
+    "evidence_routes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "positive_fixture_route",
+        "negative_control_route",
+        "effect_observation_point",
+        "request_receipt_route",
+        "return_receipt_route",
+        "replay_material",
+        "reconstruction_material",
+        "evidence_destination"
+      ],
+      "properties": {
+        "positive_fixture_route": {"type": ["string", "null"]},
+        "negative_control_route": {"type": ["string", "null"]},
+        "effect_observation_point": {"type": ["string", "null"]},
+        "request_receipt_route": {"type": ["string", "null"]},
+        "return_receipt_route": {"type": ["string", "null"]},
+        "replay_material": {"type": ["string", "null"]},
+        "reconstruction_material": {"type": ["string", "null"]},
+        "current_condition_inputs": {"type": ["string", "null"]},
+        "evidence_destination": {"type": ["string", "null"]}
+      }
+    },
+    "known_limits": {"type": "array", "items": {"type": "string"}},
+    "missing_requirements": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "intake_state": {
+      "enum": [
+        "READY_FOR_CERTIFICATION_TEST",
+        "READY_WITH_DECLARED_LIMITS",
+        "EVIDENCE_REQUESTED",
+        "SOURCE_ONLY_NOT_TESTABLE",
+        "INDETERMINATE",
+        "REJECTED_SCOPE"
+      ]
+    },
+    "certificate_issued": {"const": false},
+    "authority_effect": {"const": "NONE"}
+  }
+}
