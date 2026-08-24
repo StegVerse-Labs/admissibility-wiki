@@ -1,0 +1,114 @@
+{
+  "schema_version": "0.1.0",
+  "bundle_type": "governance_chain_certification_reference_issuance_bundle",
+  "candidate": {
+    "schema_version": "0.1.0",
+    "candidate_id": "gcc-reference-fail-closed-v1",
+    "subject": {
+      "subject_id": "governance-chain-certification-reference-mechanism",
+      "version": "0.1.0",
+      "immutable_locator": "repo:StegVerse-Labs/admissibility-wiki@main#scripts/check_governance_chain_certification.py",
+      "artifact_hash": "sha256:reference-validator-bound-at-merge"
+    },
+    "surface": "GOV",
+    "claimed_properties": ["FAIL_CLOSED"],
+    "test_profile": {"profile_id": "GOV_MINIMUM", "version": "0.1.0"},
+    "environment": {"environment_class": "TEST"},
+    "fixtures": [
+      {"fixture_id": "missing-evidence-rejected", "expected_outcome_class": "FAIL_CLOSED"},
+      {"fixture_id": "indeterminate-property-rejected", "expected_outcome_class": "FAIL_CLOSED"},
+      {"fixture_id": "public-reference-claim-rejected", "expected_outcome_class": "FAIL_CLOSED"}
+    ],
+    "evidence_requirements": [
+      "FROZEN_TEST_MANIFEST",
+      "SUBJECT_VERSION_BINDING",
+      "NEGATIVE_CONTROLS",
+      "VALIDATOR_OUTPUT",
+      "PORTABLE_VERIFICATION_MATERIAL"
+    ],
+    "known_limits": [
+      "Internal deterministic reference candidate only",
+      "Does not certify StegVerse as a whole",
+      "Does not activate public certification authority"
+    ]
+  },
+  "candidate_hash": "sha256:67d7d17141f5307702e3c3edf3215d49abe12753a29c07aa6e18a7eb0c905695",
+  "evidence": {
+    "schema_version": "0.1.0",
+    "packet_id": "gcc-reference-evidence-v1",
+    "candidate_id": "gcc-reference-fail-closed-v1",
+    "candidate_hash": "sha256:67d7d17141f5307702e3c3edf3215d49abe12753a29c07aa6e18a7eb0c905695",
+    "subject_binding": {
+      "subject_id": "governance-chain-certification-reference-mechanism",
+      "version": "0.1.0",
+      "immutable_locator": "repo:StegVerse-Labs/admissibility-wiki@main#scripts/check_governance_chain_certification.py",
+      "artifact_hash": "sha256:reference-validator-bound-at-merge"
+    },
+    "profile": {"profile_id": "GOV_MINIMUM", "version": "0.1.0"},
+    "observations": [
+      {"fixture_id": "missing-evidence-rejected", "observed": "FAIL_CLOSED", "passed": true},
+      {"fixture_id": "indeterminate-property-rejected", "observed": "FAIL_CLOSED", "passed": true},
+      {"fixture_id": "public-reference-claim-rejected", "observed": "FAIL_CLOSED", "passed": true}
+    ],
+    "property_results": [
+      {
+        "property_id": "FAIL_CLOSED",
+        "state": "CERTIFIED",
+        "evidence_refs": ["obs:missing", "obs:indeterminate", "obs:public-claim"]
+      }
+    ],
+    "validator": {"status": "PASS", "name": "certificate_issuance_reference_validator", "version": "0.1.0"},
+    "replay_status": "NOT_APPLICABLE",
+    "reconstruction_status": "PASS",
+    "negative_controls_complete": true,
+    "portable_verification": true,
+    "authority_effect": "NONE"
+  },
+  "evidence_hash": "sha256:89b7925096c5d276e165007c95526fe90b2ab96181297e53af5b3f08d3f64506",
+  "certificate": {
+    "schema_version": "0.1.0",
+    "certificate_id": "GCC-REF-0001",
+    "certificate_class": "REFERENCE_CERTIFICATE",
+    "candidate_id": "gcc-reference-fail-closed-v1",
+    "candidate_hash": "sha256:67d7d17141f5307702e3c3edf3215d49abe12753a29c07aa6e18a7eb0c905695",
+    "evidence_packet_id": "gcc-reference-evidence-v1",
+    "evidence_hash": "sha256:89b7925096c5d276e165007c95526fe90b2ab96181297e53af5b3f08d3f64506",
+    "subject_binding": {
+      "subject_id": "governance-chain-certification-reference-mechanism",
+      "version": "0.1.0",
+      "immutable_locator": "repo:StegVerse-Labs/admissibility-wiki@main#scripts/check_governance_chain_certification.py",
+      "artifact_hash": "sha256:reference-validator-bound-at-merge"
+    },
+    "surface": "GOV",
+    "profile": {"profile_id": "GOV_MINIMUM", "version": "0.1.0"},
+    "certified_properties": ["FAIL_CLOSED"],
+    "overall_state": "CERTIFIED_WITH_LIMITS",
+    "limits": ["REFERENCE_ONLY", "NO_EXTERNAL_SUBJECT_CERTIFIED", "PUBLIC_CLAIM_NOT_ALLOWED", "NO_AUTHORITY_EFFECT"],
+    "issued_at": "2026-08-23T23:45:00-05:00",
+    "lifecycle": {
+      "state": "CURRENT",
+      "valid_until": null,
+      "renewal_rule": "reissue on reference mechanism or schema version change"
+    },
+    "public_claim_allowed": false,
+    "external_subject": false,
+    "commercial_relationship": {"paid_access": false, "outcome_purchased": false},
+    "authority_effect": "NONE"
+  },
+  "certificate_hash": "sha256:b7ef0215b8db6c2acb83be9a51e2dc2af6c9b81b26105ca39e55bcae1b94a3e2",
+  "negative_issuance_cases": [
+    {"case_id": "NEG-MISSING-EVIDENCE", "mutation": "remove evidence", "expected": "REJECT_NO_CERTIFICATE"},
+    {"case_id": "NEG-INDETERMINATE", "mutation": "set required property INDETERMINATE", "expected": "REJECT_NO_CERTIFICATE"},
+    {"case_id": "NEG-HASH-MISMATCH", "mutation": "alter evidence without updating hash", "expected": "REJECT_NO_CERTIFICATE"},
+    {"case_id": "NEG-PUBLIC-REFERENCE", "mutation": "set public_claim_allowed=true on REFERENCE_CERTIFICATE", "expected": "REJECT_NO_CERTIFICATE"},
+    {"case_id": "NEG-OUTCOME-PURCHASED", "mutation": "set outcome_purchased=true", "expected": "REJECT_NO_CERTIFICATE"},
+    {"case_id": "NEG-REVOKED", "mutation": "set lifecycle state REVOKED", "expected": "REJECT_NO_CERTIFICATE"}
+  ],
+  "activation_decision": {
+    "pipeline_state": "PIPELINE_OPERATIONAL_REFERENCE_ONLY",
+    "public_certification_authority": "INACTIVE",
+    "certificate_issuance_authority": "REFERENCE_ONLY",
+    "external_certification_issued": false,
+    "reason": "Reference issuance path is evidence-complete, but no evidence-complete external certification candidate has been observed."
+  }
+}
