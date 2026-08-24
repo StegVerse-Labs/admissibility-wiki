@@ -9,27 +9,45 @@ sidebar_label: ArquivoNulo
 
 ```text
 Framework id: arquivonulo
-Source posture: owner-controlled public documentation observed
+Source posture: owner-controlled public documentation and public GitHub implementation artifacts observed
 Self-declaration posture: reconstructed from public materials; not owner-confirmed as a frozen evaluation declaration
-StegVerse determination: initial public-source reconstruction complete
-Public implementation posture: protocol specifications and canonical artifacts published; complete operational implementation not independently demonstrated
+StegVerse determination: bounded public-source reconstruction complete and updated through public implementation evidence
+Public implementation posture: protocol specifications, canonical artifacts, verification tooling, and an experimental executable Query Guard implementation are publicly available
 Execution-boundary posture: sequence ambiguity requires clarification
-Live test: NOT_TESTED
+Live cross-framework test: NOT_TESTED
 Replay: NOT_TESTED
 Reconstruction: PARTIAL
 Authority granted: none
 ```
 
+## Public implementation surfaces
+
+ArquivoNulo is not represented only by conceptual publications. Public GitHub repositories currently expose both specifications and executable integrity tooling:
+
+```text
+arquivonulo369-beep/arquivonulo
+  -> canonical-state, authority, ledger, verification, sealing, evidence, and structural history artifacts
+
+arquivonulo369-beep/arquivonulo-foundation
+  -> protocol registry, whitepapers, ANP specifications, governance, verification guidance, canonical manifests, signatures, and ANP-004 release artifacts
+
+arquivonulo369-beep/arquivonulo-query-guard
+  -> experimental/pre-canonical executable integrity layer implementing Merkle construction, signed snapshots, ledger validation, snapshot auditing, and proof verification
+```
+
+The public Query Guard README explicitly labels that implementation `Experimental (Pre-Canonical)`. Public source availability therefore establishes a real implementation surface without establishing completeness, production activation, or equivalence to every published ArquivoNulo claim.
+
 ## Publicly documented architecture
 
-ArquivoNulo publicly presents a protocol family centered on deterministic state anchoring, integrity validation, cryptographic proof, execution records, and interdiction.
+ArquivoNulo publicly presents a protocol family centered on deterministic state anchoring, integrity validation, cryptographic proof, execution records, interdiction, and multi-agent coordination.
 
-The public portal identifies:
+The public materials identify at least:
 
 ```text
 ANP-001 — Deterministic State Stasis Protocol
 ANP-002 — Agent Integrity Protocol, draft v0.1-alpha
 ANP-003 — Execution Ledger Protocol, canonical
+ANP-004 — multi-agent coordination / sovereign ecosystem release package
 ```
 
 ANP-002 describes an autonomous-agent integrity layer combining ANP-001 state anchoring with zero-knowledge proofs. Its declared proof statement is intended to establish that a private computation trace:
@@ -42,11 +60,13 @@ ANP-002 describes an autonomous-agent integrity layer combining ANP-001 state an
 
 The protocol also declares automatic interdiction when proof verification fails.
 
+ANP-004 extends the framework into coordinated multi-agent execution and is relevant to interoperability because it introduces a shared execution-boundary problem across otherwise distinct actors or systems.
+
 ## Initial StegVerse boundary determination
 
 Based only on the reviewed public materials, StegVerse currently determines ArquivoNulo to be:
 
-> A deterministic integrity, proof, and interdiction architecture designed to bind execution to anchored state and declared policy representations while preserving private computation details.
+> A deterministic integrity, proof, execution-ledger, and interdiction architecture designed to bind execution to anchored state and declared policy representations while preserving private computation details, with later public work extending the model toward coordinated multi-agent execution.
 
 This establishes meaningful architectural substance beyond a general claim that invalid states cannot form. It does not yet establish that every current institutional, environmental, or authority condition required for execution is independently reconstructed at the point where consequence attaches.
 
@@ -119,23 +139,32 @@ technically_realizable(t) != presently_authorized(t)
 
 A cryptographic proof can show that an encoded proposition was satisfied. It does not, by itself, establish that the proposition remains institutionally authoritative, temporally current, or materially correspondent with reality.
 
-## Potential interoperability position
+## Open interoperability position
 
 ArquivoNulo and StegVerse need not be treated as mutually exclusive architectures.
 
-A plausible layered relationship is:
+A plausible governed relationship is:
 
 ```text
 StegVerse Transition Table / admissibility reconstruction
   -> determines whether the next transition presently has standing
 
-ArquivoNulo anchoring, proof, and interdiction
+ArquivoNulo anchoring, proof, ledger, and interdiction
   -> proves and enforces conformance to the admitted transition representation
+
+StegVerse Interlock
+  -> preserves each system's independent authority while admitting explicitly governed evidence/state exchange
 ```
 
-Under that interpretation, ArquivoNulo could serve as an integrity and enforcement layer beneath or beside a broader commit-time admissibility system.
+Under that model, either system could expose evidence or state to the other without making either one the other's execution authority. A governed interlock could therefore reveal complementary capability, incompatible assumptions, or improvements useful to one or both systems.
 
-This is only an interoperability hypothesis. It is not an integration claim, endorsement, certification, or assertion that either framework currently implements the other's requirements.
+This is an interoperability hypothesis. It is not an integration claim, endorsement, certification, or assertion that either framework currently implements the other's requirements.
+
+## Independent-use posture
+
+StegVerse treats external frameworks as legitimate independent test surfaces when public artifacts make comparison possible. ArquivoNulo may use the StegVerse SDK, governance lanes, published evidence, and governed test surfaces independently. Likewise, StegVerse may inspect public ArquivoNulo artifacts and test interoperability propositions.
+
+If either system materially validates, augments, or improves the other, attribution is useful provenance but is not a prerequisite for access or testing. The controlling requirement is preservation of evidence, chronology, and independent authority boundaries.
 
 ## Decisive minimum test
 
@@ -170,32 +199,39 @@ insufficient evidence
 ```text
 FOUND
 - official documentation portal
-- named ANP-001, ANP-002, and ANP-003 protocol series
+- public canonical ArquivoNulo repository
+- public ArquivoNulo Foundation repository
+- public experimental Query Guard implementation repository
+- named ANP-001, ANP-002, ANP-003, and ANP-004 protocol/release surfaces
 - deterministic state anchoring and stasis claims
 - ANP-002 zero-knowledge policy-compliance proof model
 - explicit state sequence from ingestion through execution, proof, verification, and interdiction
-- public canonical-artifact, hash, signature, and archive claims for ANP-003
+- public canonical-artifact, hash, signature, and archive claims
+- executable Merkle/snapshot/ledger/proof-verification tooling in Query Guard
 - automatic interdiction doctrine on invalid proof
-- future-work statement calling for a real proof-of-concept
+- multi-agent coordination extension through ANP-004
 
-NOT YET FOUND IN REVIEWED PUBLIC SOURCES
-- frozen neutral evaluation declaration
+NOT YET ESTABLISHED BY REVIEWED PUBLIC EVIDENCE
+- frozen neutral evaluation declaration supplied directly to StegVerse
 - complete live execution trace showing when external effect binds
 - proof that S5 is provisional rather than consequence-bearing
-- independently reproducible implementation of the complete ANP-002 route
+- production activation of the complete published architecture
 - live authority-revocation or environmental-drift fixture
 - independent reconstruction of current authority after anchoring
 - proof that current policy validity is established rather than inherited
-- cross-framework machine-readable comparison packet
+- live ArquivoNulo <-> StegVerse governed interlock run
 ```
 
-`NOT YET FOUND` means only that the reviewed public sources did not expose the artifact or answer. It is not a claim that no private or additional public artifact exists.
+`NOT YET ESTABLISHED` means only that the reviewed evidence does not establish the proposition. It is not a claim that no private or additional public artifact exists.
 
 ## Public sources reviewed
 
 ```text
 https://arquivonulo369-beep.github.io/arquivonulo-foundation/
 https://arquivonulo369-beep.github.io/arquivonulo-foundation/protocols/drafts/ANP-002-agent-integrity.html
+https://github.com/arquivonulo369-beep/arquivonulo
+https://github.com/arquivonulo369-beep/arquivonulo-foundation
+https://github.com/arquivonulo369-beep/arquivonulo-query-guard
 ```
 
 ## Machine-readable record
@@ -208,12 +244,14 @@ https://arquivonulo369-beep.github.io/arquivonulo-foundation/protocols/drafts/AN
 
 ```text
 public documentation != live implementation
+public source != production activation
 protocol integrity != execution authority
 anchored representation != current reality
 policy conformance != current policy validity
 proof verification != institutional legitimacy
 interdiction != pre-consequence prevention
 technical realizability != admissibility
+interoperability != merged authority
 PUBLICLY_UNRESOLVED != absent, failed, or disproven
 publication != certification
 comparison != endorsement
