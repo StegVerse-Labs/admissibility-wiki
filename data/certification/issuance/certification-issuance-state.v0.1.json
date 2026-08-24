@@ -3,7 +3,11 @@
   "state_type": "governance_chain_certification_issuance_state",
   "goal_id": "GOVERNANCE-CHAIN-CERTIFICATION-ISSUANCE-001",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "branch": "dev/certification-issuance-verification",
+  "canonical_branch": "main",
+  "origin_branch": "dev/certification-issuance-verification",
+  "pull_request": 102,
+  "merge_commit": "8bbd28bfc17a1d29eda5ec51a9d133287b6f9348",
+  "state": "COMPLETE_CANONICAL_REFERENCE_ISSUANCE",
   "pipeline_state": "PIPELINE_OPERATIONAL_REFERENCE_ONLY",
   "reference_issuance_authority": "ACTIVE",
   "external_certificate_issuance_authority": "INACTIVE",
@@ -26,8 +30,16 @@
   },
   "activation_decision": {
     "public_authority_activated": false,
+    "external_issuance_activated": false,
+    "reference_issuance_activated": true,
     "reason": "No evidence-complete external certification candidate has yet traversed the canonical issuance and independent-verification path.",
     "next_required_transition": "external evidence-complete candidate -> issuance -> independent verification -> explicit public-authority activation decision"
+  },
+  "completion": {
+    "required_outputs": 8,
+    "completed_outputs": 8,
+    "goal_percent": 100,
+    "canonical_merge": "COMPLETE"
   },
   "invariants": [
     "reference certificate != external certification",
