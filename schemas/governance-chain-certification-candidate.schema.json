@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse.org/schemas/governance-chain-certification-candidate.schema.json",
+  "title": "Governance-Chain Certification Candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "candidate_id",
+    "subject",
+    "surface",
+    "claimed_properties",
+    "test_profile",
+    "environment",
+    "fixtures",
+    "evidence_requirements"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject_id", "version", "immutable_locator"],
+      "properties": {
+        "subject_id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "immutable_locator": {"type": "string", "minLength": 1},
+        "artifact_hash": {"type": ["string", "null"]},
+        "provider": {"type": ["string", "null"]}
+      }
+    },
+    "surface": {"enum": ["PRE", "GOV", "POST", "INT"]},
+    "claimed_properties": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "test_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_id", "version"],
+      "properties": {
+        "profile_id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1}
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["environment_class"],
+      "properties": {
+        "environment_class": {"enum": ["SIMULATION", "TEST", "STAGING", "PRODUCTION_CONNECTED"]}
+      }
+    },
+    "fixtures": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["fixture_id", "expected_outcome_class"],
+        "properties": {
+          "fixture_id": {"type": "string", "minLength": 1},
+          "expected_outcome_class": {
+            "enum": [
+              "ALLOW",
+              "DENY",
+              "FAIL_CLOSED",
+              "HOLD",
+              "REVIEW",
+              "UNRESOLVED",
+              "INSUFFICIENT_EVIDENCE",
+              "STALE_AUTHORITY",
+              "STALE_EVIDENCE",
+              "POLICY_DRIFT",
+              "STATE_DRIFT",
+              "DUPLICATE_OR_REPLAYED_COMMIT",
+              "BOUNDARY_TRANSLATION_FAILURE"
+            ]
+          }
+        }
+      }
+    },
+    "evidence_requirements": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "FROZEN_TEST_MANIFEST",
+          "SUBJECT_VERSION_BINDING",
+          "INPUT_HASHES",
+          "CANDIDATE_HASH",
+          "DECISION_OR_EQUIVALENT_RESULT",
+          "ROUTE_RECEIPTS",
+          "COMMIT_OR_CONSEQUENCE_OBSERVATION",
+          "DURABLE_CUSTODY",
+          "REPLAY_EVIDENCE",
+          "RECONSTRUCTION_EVIDENCE",
+          "NEGATIVE_CONTROLS",
+          "VALIDATOR_OUTPUT",
+          "PORTABLE_VERIFICATION_MATERIAL"
+        ]
+      }
+    },
+    "known_limits": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}

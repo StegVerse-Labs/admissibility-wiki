@@ -1,0 +1,84 @@
+{
+  "schema_version": "0.1.0",
+  "registry_type": "governance_chain_certification_property_registry",
+  "properties": [
+    {
+      "property_id": "AUTHORITY_CURRENT",
+      "surface": ["PRE", "GOV"],
+      "definition": "The mechanism independently establishes that the authority relied upon for the tested transition is current at the relevant consequence boundary.",
+      "minimum_negative_controls": ["STALE_AUTHORITY"]
+    },
+    {
+      "property_id": "ADMISSIBILITY_COMMIT_BOUND",
+      "surface": ["GOV"],
+      "definition": "Admissibility is established before the consequence-bearing commit rather than only after effect binds.",
+      "minimum_negative_controls": ["POLICY_DRIFT", "STATE_DRIFT"]
+    },
+    {
+      "property_id": "FAIL_CLOSED",
+      "surface": ["PRE", "GOV", "POST", "INT"],
+      "definition": "Missing, conflicting, unsupported, stale, or invalid required conditions do not silently become success.",
+      "minimum_negative_controls": ["INSUFFICIENT_EVIDENCE", "BOUNDARY_TRANSLATION_FAILURE"]
+    },
+    {
+      "property_id": "EVIDENCE_PROVENANCE",
+      "surface": ["PRE", "GOV", "POST", "INT"],
+      "definition": "Evidence used or returned by the mechanism remains attributable to distinguishable sources and transformations.",
+      "minimum_negative_controls": ["STALE_EVIDENCE"]
+    },
+    {
+      "property_id": "STATE_CORRESPONDENCE",
+      "surface": ["PRE", "GOV"],
+      "definition": "The state representation relied upon by the mechanism remains correspondent with the tested current state at the required boundary.",
+      "minimum_negative_controls": ["STATE_DRIFT"]
+    },
+    {
+      "property_id": "REPLAY_STABLE",
+      "surface": ["POST", "INT"],
+      "definition": "Replay preserves the governing semantics and evidence identity of the recorded operation without silently changing the original consequence.",
+      "minimum_negative_controls": ["DUPLICATE_OR_REPLAYED_COMMIT"]
+    },
+    {
+      "property_id": "RECONSTRUCTABLE",
+      "surface": ["POST", "INT"],
+      "definition": "The tested transition can be reconstructed from retained evidence sufficiently to distinguish the governing state, decision path, and committed outcome.",
+      "minimum_negative_controls": []
+    },
+    {
+      "property_id": "CONSEQUENCE_BOUND",
+      "surface": ["GOV", "POST"],
+      "definition": "The consequence that commits is bound to the admitted candidate and decision rather than an ungoverned substitute.",
+      "minimum_negative_controls": ["STATE_DRIFT"]
+    },
+    {
+      "property_id": "IDEMPOTENT_TARGET",
+      "surface": ["POST"],
+      "definition": "Repeated delivery or replay does not create an unauthorized duplicate consequence at the target.",
+      "minimum_negative_controls": ["DUPLICATE_OR_REPLAYED_COMMIT"]
+    },
+    {
+      "property_id": "CUSTODY_DURABLE",
+      "surface": ["POST", "INT"],
+      "definition": "Required evidence of the tested transition is durably retained with distinguishable operation identity and integrity checks.",
+      "minimum_negative_controls": []
+    },
+    {
+      "property_id": "INTERLOCK_AUTHORITY_SEPARATED",
+      "surface": ["INT"],
+      "definition": "Successful exchange through an interlock does not collapse or silently transfer execution or governance authority between the connected systems.",
+      "minimum_negative_controls": ["BOUNDARY_TRANSLATION_FAILURE"]
+    },
+    {
+      "property_id": "INTERLOCK_TRANSLATION_BOUNDED",
+      "surface": ["INT"],
+      "definition": "Cross-system translation preserves declared semantics and fails closed when the source representation cannot be faithfully represented at the destination boundary.",
+      "minimum_negative_controls": ["BOUNDARY_TRANSLATION_FAILURE"]
+    },
+    {
+      "property_id": "CONTINUING_CONFORMANCE",
+      "surface": ["PRE", "GOV", "POST", "INT"],
+      "definition": "A previously demonstrated property remains supported under the declared freshness rule and continuing observations; prior certification is not treated as permanent authority.",
+      "minimum_negative_controls": ["STALE_AUTHORITY", "STALE_EVIDENCE", "POLICY_DRIFT", "STATE_DRIFT"]
+    }
+  ]
+}
