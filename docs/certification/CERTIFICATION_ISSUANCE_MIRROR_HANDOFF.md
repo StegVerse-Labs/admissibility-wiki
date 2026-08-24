@@ -7,9 +7,10 @@ goal_id: GOVERNANCE-CHAIN-CERTIFICATION-ISSUANCE-001
 repository: StegVerse-Labs/admissibility-wiki
 branch: dev/certification-issuance-verification
 role: DEVELOPMENT_LANE
-state: ACTIVE_IMPLEMENTATION
+state: IMPLEMENTATION_COMPLETE_PENDING_CANONICAL_MERGE
 public_certification_authority: INACTIVE
-certificate_issuance_authority: INACTIVE
+reference_issuance_authority: ACTIVE
+external_certificate_issuance_authority: INACTIVE
 credential_authority: TV/TVC
 GitHub runtime authority: NONE
 ```
@@ -18,18 +19,80 @@ GitHub runtime authority: NONE
 
 Implement the next distinct program gate after `GOVERNANCE-CHAIN-CERTIFICATION-001`: an evidence-complete certificate issuance and independent verification path that preserves fail-closed behavior and does not activate public certification authority merely because the machinery exists.
 
-## Required outputs
+## Implemented outputs
 
 ```text
-1. issuance/verification operational contract
-2. deterministic reference candidate and evidence packet
-3. machine-readable reference certificate
-4. issuer/verifier implementation
-5. negative issuance fixtures
-6. scoped validation record
-7. explicit activation decision based on observed evidence
-8. canonical merge only after scoped validation passes
+docs/certification/CERTIFICATE_ISSUANCE_AND_VERIFICATION.md
+  issuance/verification operational contract
+
+data/certification/issuance/reference-issuance-bundle.v0.1.json
+  deterministic candidate + evidence + certificate + negative fixtures + activation decision
+
+data/certification/issuance/certification-issuance-state.v0.1.json
+  machine-readable bounded activation state
+
+scripts/check_certificate_issuance_reference.py
+  deterministic certificate verifier and six negative-control mutations
+
+validation/CERTIFICATE_ISSUANCE_REFERENCE_VALIDATION_2026-08-23.md
+  retained scoped validation and activation decision
 ```
+
+## Reference certificate
+
+```text
+certificate_id: GCC-REF-0001
+certificate_class: REFERENCE_CERTIFICATE
+surface: GOV
+certified_property: FAIL_CLOSED
+overall_state: CERTIFIED_WITH_LIMITS
+public_claim_allowed: false
+external_subject: false
+authority_effect: NONE
+certificate_hash: sha256:b7ef0215b8db6c2acb83be9a51e2dc2af6c9b81b26105ca39e55bcae1b94a3e2
+```
+
+This certificate proves the bounded issuance/verification pipeline only. It does not certify StegVerse as a whole or any external system.
+
+## Negative issuance coverage
+
+```text
+NEG-MISSING-EVIDENCE -> REJECT
+NEG-INDETERMINATE -> REJECT
+NEG-HASH-MISMATCH -> REJECT
+NEG-PUBLIC-REFERENCE -> REJECT
+NEG-OUTCOME-PURCHASED -> REJECT
+NEG-REVOKED -> REJECT
+```
+
+## Scoped validation
+
+Source-equivalent isolated validation of the exact bundle and validator logic produced:
+
+```text
+CERTIFICATE_ISSUANCE_REFERENCE: PASS
+certificate=GCC-REF-0001
+negative_cases=6
+pipeline=PIPELINE_OPERATIONAL_REFERENCE_ONLY
+public_authority=INACTIVE
+authority_effect=NONE
+```
+
+This scoped result does not supersede repository-wide canonical validation.
+
+## Activation decision
+
+The evidence supports the following bounded terminal state:
+
+```text
+certificate_pipeline: OPERATIONAL_REFERENCE_ONLY
+reference_issuance_authority: ACTIVE
+external_certificate_issuance_authority: INACTIVE
+public_certification_authority: INACTIVE
+external_certification_issued: false
+```
+
+Public authority remains inactive because no evidence-complete external candidate has yet traversed the canonical issuance and independent-verification path. Missing external evidence is not converted into activation.
 
 ## Authority invariant
 
@@ -45,16 +108,18 @@ TV/TVC_ONLY credentials
 
 ## Collision boundary
 
-This lane does not take ownership of issue #50 canonical repository validation, issue #66 external-framework publication work, MindForge, Riverbraid PR #17, or the existing ArquivoNulo external-framework lane. It may consume their published artifacts as evidence only.
+This lane did not take ownership of issue #50 canonical repository validation, issue #66 external-framework publication work, MindForge, Riverbraid PR #17, or the existing ArquivoNulo external-framework lane.
 
-## Initial activation posture
-
-The first issuance candidate will be an internal deterministic reference mechanism used only to prove the certificate pipeline. The activation decision must distinguish:
+## Completion accounting
 
 ```text
-PIPELINE_OPERATIONAL
-PUBLIC_AUTHORITY_INACTIVE
-EXTERNAL_CERTIFICATION_NOT_ISSUED
+required_outputs: 8
+implemented_before_merge: 7/8
+scoped_validation: PASS
+negative_controls: 6/6 rejected
+reference_certificate: ISSUED_AND_VERIFIABLE
+canonical_merge: PENDING
+public_authority_activation: CORRECTLY_WITHHELD
 ```
 
-A later evidence-complete external candidate may support a separate public-authority activation decision.
+After canonical merge, this goal is complete in the strongest state currently supported by evidence. The next distinct transition is acquisition of an evidence-complete external candidate and a separate public-authority activation decision.
