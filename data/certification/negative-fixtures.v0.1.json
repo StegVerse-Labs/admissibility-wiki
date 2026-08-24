@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1.0",
+  "fixture_set_id": "governance-chain-certification-negative-v0.1",
+  "fixtures": [
+    {"id": "missing-evidence", "surface": "GOV", "condition": "required evidence packet absent", "expected": "UNRESOLVED", "must_not": "CERTIFIED"},
+    {"id": "stale-certificate", "surface": "GOV", "condition": "fresh_until is in the past", "expected": "EXPIRED", "must_not": "CURRENT"},
+    {"id": "implementation-drift", "surface": "POST", "condition": "implementation version differs from tested version", "expected": "SUSPENDED", "must_not": "CURRENT"},
+    {"id": "failed-negative-control", "surface": "PRE", "condition": "required negative control does not produce expected rejection", "expected": "NOT_CERTIFIED", "must_not": "CERTIFIED"},
+    {"id": "authority-injection", "surface": "INT", "condition": "external system assertion is treated as local execution authority", "expected": "NOT_CERTIFIED", "must_not": "CERTIFIED"},
+    {"id": "semantic-expansion", "surface": "INT", "condition": "translation adds capability or meaning not admitted by source contract", "expected": "FAIL_CLOSED", "must_not": "CERTIFIED"},
+    {"id": "payment-bias", "surface": "GOV", "condition": "customer/payment identity changes evaluation outcome", "expected": "INVALID_EVALUATION", "must_not": "CERTIFIED"},
+    {"id": "generic-badge-overclaim", "surface": "POST", "condition": "badge omits property scope or current certificate locator", "expected": "INVALID_PUBLIC_CLAIM", "must_not": "ACTIVE_CERTIFICATION"},
+    {"id": "replay-reexecution", "surface": "POST", "condition": "replay re-executes original consequence", "expected": "NOT_CERTIFIED", "must_not": "REPLAY_STABLE"},
+    {"id": "proof-after-effect", "surface": "POST", "condition": "claimed pre-consequence prevention is verified only after irreversible effect", "expected": "PROPERTY_UNSUPPORTED", "must_not": "CONSEQUENCE_BOUND"}
+  ]
+}
