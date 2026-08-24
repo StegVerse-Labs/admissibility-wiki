@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1.0",
+  "pilot_id": "gcc-pilot-arquivonulo-int-001",
+  "candidate": {
+    "name": "ArquivoNulo public protocol family",
+    "surface": "INT",
+    "implementation_version": "public-source snapshot reviewed by admissibility-wiki",
+    "profile": "governance-chain-minimum-profiles-v0.1/INT"
+  },
+  "evidence_sources": [
+    "docs/external-frameworks/arquivonulo.md",
+    "static/data/framework-evaluations/arquivonulo.json",
+    "docs/ARQUIVONULO_MIRROR_HANDOFF.md"
+  ],
+  "requested_properties": [
+    "INTERLOCK_AUTHORITY_SEPARATED",
+    "INTERLOCK_TRANSLATION_BOUNDED",
+    "EVIDENCE_PROVENANCE",
+    "FAIL_CLOSED"
+  ],
+  "observed": {
+    "owner_controlled_public_sources": true,
+    "complete_interlock_trace": false,
+    "live_bidirectional_interlock_test": false,
+    "authority_injection_negative_control": false,
+    "semantic_expansion_negative_control": false,
+    "request_and_return_receipts": false
+  },
+  "result": "UNRESOLVED",
+  "certificate_issued": false,
+  "reason": "Public materials support bounded architectural comparison but do not provide the complete live INT profile evidence and negative controls required for certification.",
+  "pilot_validates": [
+    "external candidate intake",
+    "profile selection",
+    "property selection",
+    "evidence sufficiency evaluation",
+    "missing-evidence fail-closed behavior",
+    "non-issuance when requirements are incomplete"
+  ],
+  "authority_effect": "NONE"
+}
