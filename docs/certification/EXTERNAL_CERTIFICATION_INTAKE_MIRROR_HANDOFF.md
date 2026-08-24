@@ -5,9 +5,11 @@
 ```text
 goal_id: GOVERNANCE-CHAIN-EXTERNAL-INTAKE-001
 repository: StegVerse-Labs/admissibility-wiki
-branch: dev/external-certification-intake
-role: DEVELOPMENT_LANE
-state: IMPLEMENTATION_COMPLETE_PENDING_CANONICAL_MERGE
+canonical_branch: main
+origin_branch: dev/external-certification-intake
+pull_request: 103
+merge_commit: a2f6a3c9681679672ffca5ccf93e677ff959bd48
+state: COMPLETE_CANONICAL_EXTERNAL_INTAKE
 public_certification_authority: INACTIVE
 external_certificate_issuance_authority: INACTIVE
 reference_issuance_authority: ACTIVE
@@ -15,11 +17,11 @@ credential_authority: TV/TVC
 GitHub runtime authority: NONE
 ```
 
-## Goal
+## Goal completed
 
-Implement the evidence-intake gate required before an external governance or governance-adjacent system may enter the canonical certificate issuance path.
+The canonical Governance-Chain Certification system now includes a fail-closed external candidate intake gate that distinguishes test readiness from public documentation, marketing claims, repository presence, or partial inspectability.
 
-## Implemented outputs
+## Canonical outputs
 
 ```text
 docs/certification/EXTERNAL_CERTIFICATION_INTAKE.md
@@ -29,7 +31,7 @@ scripts/check_external_certification_intake.py
 validation/EXTERNAL_CERTIFICATION_INTAKE_VALIDATION_2026-08-23.md
 ```
 
-The machine-readable intake schema carries the intake-state result classes; the ArquivoNulo record carries the explicit evidence-gap request packet `ARQUIVONULO-INT-EVIDENCE-001`.
+The machine-readable intake schema carries the readiness states, and the ArquivoNulo record carries the explicit evidence-gap request packet `ARQUIVONULO-INT-EVIDENCE-001`.
 
 ## Intake states
 
@@ -86,18 +88,22 @@ certificate_issued: false
 authority_effect: NONE
 ```
 
+The scoped validator does not supersede repository-wide canonical validation.
+
 ## Completion accounting
 
 ```text
-required_outputs: 8
-implemented_before_merge: 7/8
+required_outputs: 8/8 complete
 intake_contract: COMPLETE
 submission_and_state_schema: COMPLETE
 fail_closed_validator: COMPLETE
 Arquivonulo_intake: COMPLETE_EVIDENCE_REQUESTED
 evidence_request_packet: COMPLETE
 scoped_validation_record: COMPLETE
-canonical_merge: PENDING
+canonical_merge: COMPLETE
+goal_percent: 100%
 ```
 
-After canonical merge, `GOVERNANCE-CHAIN-EXTERNAL-INTAKE-001` is complete. The next transition is external evidence receipt. No certificate or public-authority activation may occur until a candidate reaches `READY_FOR_CERTIFICATION_TEST` and actually passes the canonical testing/issuance path.
+## Continuation
+
+`GOVERNANCE-CHAIN-EXTERNAL-INTAKE-001` is complete. The next transition is genuinely evidence-dependent: receipt of sufficient external test material to move a candidate from `EVIDENCE_REQUESTED` to `READY_FOR_CERTIFICATION_TEST`. Only after that may the canonical test/issuance path run, followed by independent certificate verification and a separate public-authority activation decision.
