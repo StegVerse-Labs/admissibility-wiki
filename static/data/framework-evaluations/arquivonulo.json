@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "framework_id": "arquivonulo",
   "name": "ArquivoNulo Protocol",
   "evaluation_posture": "BOUNDED_PUBLIC_SOURCE_RECONSTRUCTION",
@@ -7,8 +7,24 @@
     "owner_controlled_public_sources_observed": true,
     "owner_confirmed_frozen_declaration": false,
     "live_test_run": false,
-    "complete_operational_implementation_demonstrated": false
+    "complete_operational_implementation_demonstrated": false,
+    "public_executable_components_observed": true
   },
+  "public_repositories": [
+    {
+      "repository": "arquivonulo369-beep/arquivonulo",
+      "observed_role": "canonical state, authority, ledger, evidence, sealing, and verification history"
+    },
+    {
+      "repository": "arquivonulo369-beep/arquivonulo-foundation",
+      "observed_role": "protocol registry, whitepapers, canonical manifests, verification guidance, signatures, and ANP release artifacts"
+    },
+    {
+      "repository": "arquivonulo369-beep/arquivonulo-query-guard",
+      "status": "EXPERIMENTAL_PRE_CANONICAL",
+      "observed_role": "executable Merkle, signed snapshot, ledger validation, auditing, and proof verification tooling"
+    }
+  ],
   "public_protocols": [
     {
       "id": "ANP-001",
@@ -27,6 +43,11 @@
       "name": "Execution Ledger Protocol",
       "status": "PUBLICLY_DESCRIBED_AS_CANONICAL",
       "observed_role": "deterministic execution record integrity and auditability"
+    },
+    {
+      "id": "ANP-004",
+      "status": "PUBLIC_RELEASE_ARTIFACTS_OBSERVED",
+      "observed_role": "multi-agent coordination and shared execution-boundary governance"
     }
   ],
   "observed_state_sequence": [
@@ -46,7 +67,9 @@
     "stasis_lock_claimed": true,
     "zero_knowledge_policy_conformance_claimed": true,
     "automatic_interdiction_on_invalid_proof_claimed": true,
-    "canonical_hash_signature_archive_artifacts_claimed": true
+    "canonical_hash_signature_archive_artifacts_claimed": true,
+    "public_executable_integrity_tooling_observed": true,
+    "multi_agent_coordination_surface_observed": true
   },
   "execution_boundary": {
     "status": "PUBLICLY_UNRESOLVED",
@@ -75,7 +98,15 @@
   "interoperability_hypothesis": {
     "status": "UNTESTED_NON_ENDORSING_HYPOTHESIS",
     "stegverse_role": "reconstruct current admissibility of a consequence-bearing transition",
-    "arquivonulo_role": "prove and enforce conformance to the admitted transition representation"
+    "arquivonulo_role": "prove and enforce conformance to the admitted transition representation",
+    "interlock_role": "preserve independent authority while admitting explicitly governed evidence and state exchange",
+    "possible_outcome": "may reveal improvements useful to ArquivoNulo, StegVerse, or both"
+  },
+  "independent_use_posture": {
+    "sdk_testing_open": true,
+    "attribution_required": false,
+    "provenance_preservation_expected": true,
+    "independent_authority_preserved": true
   },
   "minimum_discriminating_test": [
     "anchor a valid state and policy representation",
@@ -87,7 +118,10 @@
   ],
   "source_urls": [
     "https://arquivonulo369-beep.github.io/arquivonulo-foundation/",
-    "https://arquivonulo369-beep.github.io/arquivonulo-foundation/protocols/drafts/ANP-002-agent-integrity.html"
+    "https://arquivonulo369-beep.github.io/arquivonulo-foundation/protocols/drafts/ANP-002-agent-integrity.html",
+    "https://github.com/arquivonulo369-beep/arquivonulo",
+    "https://github.com/arquivonulo369-beep/arquivonulo-foundation",
+    "https://github.com/arquivonulo369-beep/arquivonulo-query-guard"
   ],
   "authority": {
     "comparison": false,
@@ -97,5 +131,5 @@
     "custody": false,
     "integration": false
   },
-  "updated_at": "2026-07-27T00:00:00Z"
+  "updated_at": "2026-08-23T19:43:00-05:00"
 }
