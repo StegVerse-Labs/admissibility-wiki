@@ -14,21 +14,33 @@ Validator: scripts/check_arquivonulo_execution_boundary.py
 Public route checker: scripts/check_arquivonulo_public_routes.py
 Canonical integration: scripts/check_admissibility_automation_handoff.py -> npm run validate
 Sidebar route: external-frameworks/arquivonulo
-State: IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_OBSERVATION
+State: IMPLEMENTED_UPDATED_WITH_PUBLIC_IMPLEMENTATION_EVIDENCE_PENDING_CANONICAL_WORKFLOW_AND_PUBLICATION_OBSERVATION
 Manual task requirement: none
 User manual action required: false
 ```
 
 ## Source posture
 
-The current record is a bounded reconstruction from owner-controlled public materials:
+The current record is a bounded reconstruction from owner-controlled public materials and public implementation artifacts:
 
 ```text
 https://arquivonulo369-beep.github.io/arquivonulo-foundation/
 https://arquivonulo369-beep.github.io/arquivonulo-foundation/protocols/drafts/ANP-002-agent-integrity.html
+https://github.com/arquivonulo369-beep/arquivonulo
+https://github.com/arquivonulo369-beep/arquivonulo-foundation
+https://github.com/arquivonulo369-beep/arquivonulo-query-guard
 ```
 
-No owner-confirmed frozen declaration, live test result, or independently reproduced complete implementation has been received.
+Observed public implementation posture:
+
+```text
+arquivonulo: canonical-state, authority, ledger, evidence, sealing, and verification history
+arquivonulo-foundation: protocol registry, verification guidance, signatures, manifests, whitepapers, ANP release artifacts
+arquivonulo-query-guard: executable Merkle/snapshot/ledger/proof-verification tooling; explicitly Experimental (Pre-Canonical)
+ANP-004: public multi-agent coordination release artifacts observed
+```
+
+No owner-confirmed frozen evaluation declaration, live StegVerse <-> ArquivoNulo interlock result, or independently reproduced complete production implementation has been received.
 
 ## Preserved distinctions
 
@@ -39,8 +51,25 @@ anchored state != current reality
 policy conformance != current policy validity
 interdiction != pre-consequence prevention
 technical realizability != present authorization
+public source != production activation
+interoperability != merged authority
 PUBLICLY_UNRESOLVED != absent, failed, or disproven
 ```
+
+## Independent-use and interoperability posture
+
+ArquivoNulo is treated as an independent external framework, not as an evaluator authority over StegVerse.
+
+```text
+StegVerse SDK use by ArquivoNulo: permitted through published SDK surfaces
+ArquivoNulo public-source inspection by StegVerse: permitted
+attribution for material improvement: welcome, not required for access
+governed interlock candidate: yes
+merged execution authority: no
+independent authority preservation: required
+```
+
+A future governed interlock may admit evidence/state exchange while preserving the independent authority of both systems. A successful connection may improve ArquivoNulo, StegVerse, or both; that possibility is a testable interoperability hypothesis, not an integration or endorsement claim.
 
 ## Decisive unresolved question
 
@@ -116,13 +145,14 @@ WORKFLOW_OBSERVED_PUBLICATION_COMPLETE
 PUBLIC_ROUTE_OBSERVATION_FAIL_CLOSED
 ```
 
-The checker is now enforced structurally by the ArquivoNulo validator. It is not yet invoked by the `verify-public-pages` workflow job, so no deployed-route observation is claimed.
+The checker is enforced structurally by the ArquivoNulo validator. It is not yet invoked by the `verify-public-pages` workflow job, so no deployed-route observation is claimed.
 
 ## Installed validation chain
 
 ```text
 - doctrine page exists and preserves bounded claims
-- machine-readable evaluation exists
+- doctrine now records public GitHub implementation surfaces and ANP-004
+- machine-readable evaluation exists and records public repositories + interoperability posture
 - framework registry entry exists
 - sidebar route exists
 - goal-specific handoff exists
@@ -137,10 +167,9 @@ The checker is now enforced structurally by the ArquivoNulo validator. It is not
 ## Current observation state
 
 ```text
-canonical validation observed: false
-public deployment observed: false
+canonical validation observed after 2026-08-23 source update: false
+public deployment observed after 2026-08-23 source update: false
 activation receipt closed: false
-matching workflow runs found at last observation: 0
 route checker installed: true
 route checker bound to local validator: true
 route checker bound to verify-public-pages: false
@@ -148,17 +177,28 @@ route checker bound to verify-public-pages: false
 
 Absence of an observed run is not recorded as success or failure.
 
+## 2026-08-23 update commits
+
+```text
+45f3fe850e020cce2270cd014272054e0b94d628
+  Expand ArquivoNulo doctrine with public implementation and governed interoperability posture
+
+825089e4fae181929cc8150cd0373c0c500e13fa
+  Update machine-readable ArquivoNulo framework evaluation
+```
+
 ## Remaining files or modules
 
 ```text
 Destination: StegVerse-Labs/admissibility-wiki
 - bind scripts/check_arquivonulo_public_routes.py into the existing verify-public-pages job
-- canonical workflow run observation
+- canonical workflow run observation for the updated record
 - public deployment observation for /external-frameworks/arquivonulo
 - populate durable publication evidence from observed workflow and route results
 - durable publication/activation receipt closure when observed
 - owner-confirmed frozen declaration or direct technical response, if later received
 - live fixture execution and evidence packet, if participation becomes available
+- governed StegVerse <-> ArquivoNulo interlock fixture/run if technically feasible and mutually admitted
 
 Downstream awareness only; no mutation authority granted:
 - StegVerse-Labs/Site
@@ -178,10 +218,11 @@ A successor session may:
 - update publication receipts and status artifacts only from observed evidence
 - update the record when direct technical evidence resolves S5/S7 effect timing
 - execute the neutral fixture only with adequate framework input and preserved evidence
+- design a governed interlock test that preserves independent authority on both sides
 - queue downstream awareness after checking each destination handoff
 ```
 
-Do not infer certification, endorsement, integration, execution authority, custody, adverse capability, or live implementation from publication.
+Do not infer certification, endorsement, integration, execution authority, custody, adverse capability, production activation, or live interoperability from publication.
 
 ## Archive posture
 
