@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1.0",
+  "state_type": "governance_chain_certification_issuance_state",
+  "goal_id": "GOVERNANCE-CHAIN-CERTIFICATION-ISSUANCE-001",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "branch": "dev/certification-issuance-verification",
+  "pipeline_state": "PIPELINE_OPERATIONAL_REFERENCE_ONLY",
+  "reference_issuance_authority": "ACTIVE",
+  "external_certificate_issuance_authority": "INACTIVE",
+  "public_certification_authority": "INACTIVE",
+  "reference_certificate": {
+    "certificate_id": "GCC-REF-0001",
+    "certificate_class": "REFERENCE_CERTIFICATE",
+    "certificate_hash": "sha256:b7ef0215b8db6c2acb83be9a51e2dc2af6c9b81b26105ca39e55bcae1b94a3e2",
+    "overall_state": "CERTIFIED_WITH_LIMITS",
+    "public_claim_allowed": false,
+    "external_subject": false,
+    "authority_effect": "NONE"
+  },
+  "validation": {
+    "validator": "scripts/check_certificate_issuance_reference.py",
+    "record": "validation/CERTIFICATE_ISSUANCE_REFERENCE_VALIDATION_2026-08-23.md",
+    "class": "SOURCE_EQUIVALENT_ISOLATED_SCOPED_VALIDATION",
+    "result": "PASS",
+    "negative_cases": 6
+  },
+  "activation_decision": {
+    "public_authority_activated": false,
+    "reason": "No evidence-complete external certification candidate has yet traversed the canonical issuance and independent-verification path.",
+    "next_required_transition": "external evidence-complete candidate -> issuance -> independent verification -> explicit public-authority activation decision"
+  },
+  "invariants": [
+    "reference certificate != external certification",
+    "pipeline operational != public authority active",
+    "payment != certification outcome",
+    "missing evidence != success",
+    "authority_effect = NONE"
+  ]
+}
