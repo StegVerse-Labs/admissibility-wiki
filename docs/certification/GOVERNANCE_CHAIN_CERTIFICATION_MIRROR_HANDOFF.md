@@ -88,20 +88,39 @@ StegVerse-Labs/StegOS + interlock surfaces
 
 These are inputs to the generic certification model; none is silently reclassified as already certified under this new doctrine.
 
+## Implemented development artifacts
+
+```text
+docs/certification/GOVERNANCE_CHAIN_CERTIFICATION.md
+  doctrine and scope
+
+data/certification/governance-chain-certification.v0.1.json
+  machine-readable development-lane record
+
+schemas/governance-chain-certification-candidate.schema.json
+  version-bound, surface-bound candidate contract
+
+schemas/governance-chain-certification-result.schema.json
+  property-scoped result/certificate contract
+
+data/certification/property-registry.v0.1.json
+  initial property definitions and minimum negative-control families
+```
+
 ## Required next implementation sequence
 
 ```text
-GCC-002 machine-readable candidate schema
-GCC-003 machine-readable result/certificate schema
-GCC-004 certification property registry
-GCC-005 PRE/GOV/POST/INT minimum deterministic profiles
-GCC-006 evidence packet contract
-GCC-007 freshness/renewal/expiry/revocation rules
-GCC-008 public claim and badge constraints
-GCC-009 overclaim/false-positive/fail-closed validator fixtures
-GCC-010 Fin-Co precedent mapping
-GCC-011 SDK evidence adapter
-GCC-012 first external end-to-end pilot
+GCC-002 candidate schema: IMPLEMENTED_DRAFT
+GCC-003 result certificate schema: IMPLEMENTED_DRAFT
+GCC-004 property registry: IMPLEMENTED_DRAFT
+GCC-005 PRE/GOV/POST/INT minimum deterministic profiles: NEXT
+GCC-006 evidence packet contract: PENDING
+GCC-007 freshness/renewal/expiry/revocation rules: PENDING
+GCC-008 public claim and badge constraints: PENDING
+GCC-009 overclaim/false-positive/fail-closed validator fixtures: PENDING
+GCC-010 Fin-Co precedent mapping: PENDING
+GCC-011 SDK evidence adapter: PENDING
+GCC-012 first external end-to-end pilot: PENDING
 ```
 
 ## Commercial and authority invariant
@@ -134,20 +153,25 @@ canonical repository integration completed
 
 ## Development completion accounting
 
-Current state after lane creation:
+Current lane state:
 
 ```text
 doctrine: IMPLEMENTED_DRAFT
 handoff: IMPLEMENTED
-machine-readable lane record: PENDING
-schemas: PENDING
-property registry: PENDING
-profiles: PENDING
-evidence adapter: PENDING
+machine-readable lane record: IMPLEMENTED
+candidate schema: IMPLEMENTED_DRAFT
+result schema: IMPLEMENTED_DRAFT
+property registry: IMPLEMENTED_DRAFT
+minimum profiles: PENDING
+evidence packet: PENDING
+freshness/revocation: PENDING
+public claim constraints: PENDING
 validator fixtures: PENDING
+Fin-Co mapping: PENDING
+SDK adapter: PENDING
 pilot: PENDING
 canonical merge: PENDING
 activation: NOT_AUTHORIZED
 ```
 
-Do not equate branch existence, documentation, or a future passing test with activated certification authority.
+Do not equate branch existence, documentation, draft schemas, or a future passing test with activated certification authority.
