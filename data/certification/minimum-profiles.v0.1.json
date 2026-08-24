@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.1.0",
+  "profile_set_id": "governance-chain-minimum-profiles-v0.1",
+  "status": "DEVELOPMENT_CANDIDATE",
+  "surfaces": {
+    "PRE": {
+      "description": "Mechanisms that establish or transform governance-relevant inputs before a governance decision.",
+      "required_properties": ["EVIDENCE_PROVENANCE", "STATE_CORRESPONDENCE", "FAIL_CLOSED"],
+      "required_negative_controls": ["stale_evidence", "identity_or_source_mismatch", "unsupported_normalization"],
+      "required_observations": ["input_identity", "source_provenance", "normalized_candidate_hash", "rejection_reason"]
+    },
+    "GOV": {
+      "description": "Mechanisms that decide, constrain, admit, deny, review, or fail closed at a governance boundary.",
+      "required_properties": ["AUTHORITY_CURRENT", "ADMISSIBILITY_COMMIT_BOUND", "FAIL_CLOSED", "STATE_CORRESPONDENCE"],
+      "required_negative_controls": ["revoked_authority", "policy_drift", "stale_evidence", "unsupported_relation"],
+      "required_outcome_coverage": ["ALLOW", "DENY", "FAIL_CLOSED"],
+      "required_observations": ["governing_state_hash", "authority_basis", "decision", "decision_reason", "commit_boundary"]
+    },
+    "POST": {
+      "description": "Mechanisms that execute, bind, record, preserve, replay, or reconstruct an admitted consequence after governance.",
+      "required_properties": ["CONSEQUENCE_BOUND", "IDEMPOTENT_TARGET", "CUSTODY_DURABLE", "REPLAY_STABLE", "RECONSTRUCTABLE"],
+      "required_negative_controls": ["candidate_result_mismatch", "duplicate_delivery", "custody_loss", "replay_reexecution"],
+      "required_observations": ["admitted_candidate_hash", "committed_result_hash", "idempotency_key", "custody_receipt", "replay_no_reexecution", "reconstruction_result"]
+    },
+    "INT": {
+      "description": "Governed interlocks connecting independently authoritative systems without collapsing either authority domain.",
+      "required_properties": ["INTERLOCK_AUTHORITY_SEPARATED", "INTERLOCK_TRANSLATION_BOUNDED", "EVIDENCE_PROVENANCE", "FAIL_CLOSED"],
+      "required_negative_controls": ["foreign_authority_injection", "semantic_translation_expansion", "unbound_return", "unknown_capability"],
+      "required_observations": ["source_system_identity", "destination_system_identity", "translation_profile", "authority_effect", "request_receipt", "return_receipt"]
+    }
+  },
+  "cross_surface_requirements": {
+    "candidate_version_bound": true,
+    "implementation_version_bound": true,
+    "profile_version_bound": true,
+    "evidence_packet_required": true,
+    "negative_control_required": true,
+    "missing_evidence_result": "UNRESOLVED",
+    "payment_or_customer_identity_may_change_outcome": false,
+    "certificate_grants_execution_authority": false
+  }
+}
