@@ -304,3 +304,74 @@ canonical continuation: StegVerse-Labs/admissibility-wiki issue #50 and scoped h
 ```
 
 All unique information, implementation history, validation evidence, unresolved defects, owners, collision boundaries, and next actions are durable. The complete conversation is not required for future execution and may be archived.
+
+## Post-completion successor-lane index — 2026-08-26 consolidation
+
+The `COMPLETE_ARCHIVE_READY` statement immediately above is scoped only to `ADMISSIBILITY-TRANSLATION-RECONSTRUCTION-001`. Later sessions created or continued distinct active repository goals. This section is authoritative for avoiding any interpretation that the repository as a whole, or every later conversation touching it, is complete.
+
+Current live `main` observed during consolidation had advanced beyond the translation-reconstruction completion chain and beyond the External Frameworks implementation commits. Repo-wide continuation must therefore enter through `data/admissibility-wiki-orchestration-state.json` and the applicable scoped handoff rather than treating the older completion statement as current repository-wide closure.
+
+### Active External Frameworks second-page / Wiki proof lane
+
+```text
+goal_id: EXT-FRAMEWORK-SECOND-PAGE-36
+canonical_handoff: docs/external-frameworks/EXTERNAL_FRAMEWORKS_MIRROR_HANDOFF.md
+coordinator: issue #66
+worker_owners: issues #62, #63, #64, #65, plus issue #50 collision lane
+state: ACTIVE
+public_wiki_source_navigation: 36_OF_36
+terminal_framework_evaluations_last_directly_observed: 7_OF_36
+remaining_framework_evaluations: 29
+source_route_contract: IMPLEMENTED
+built_route_verification: IMPLEMENTED
+post_deployment_public_route_verification: IMPLEMENTED
+publication_proof_regression_guard: IMPLEMENTED_AND_BOUND_TO_GOAL5
+ios_safe_workflow_mirror: SYNCHRONIZED_WITH_CANONICAL
+exact_head_hosted_validation: UNOBSERVED
+release: NOT_AUTHORIZED
+activation: NOT_COMPLETE
+user_action_required_now: false
+```
+
+Required next evidence remains exact-head Goal-5 publication-proof PASS, 36/36 source-route artifact, successful Docusaurus build, 36/36 built-route artifact, Pages artifact/deployment proof, 36/36 public-route/content proof, remaining framework-specific evidence reconciliation, and repository-wide canonical PASS before release/activation claims.
+
+### Active MindForge provenance lane
+
+```text
+task_id: ADMISSIBILITY-MINDFORGE-REVIEW-001
+canonical_handoff: data/external-reviews/mindforge/MINDFORGE_REVIEW_MIRROR_HANDOFF.md
+owner: issue #50
+state: PUBLIC_DATE_ASSERTION_CORRECTED_SOURCE_DATE_VERIFICATION_PENDING
+bound_source_captures: 7
+bounded_library_candidates_hash_checked: 16
+exact_source_capture_hash_matches: 0
+correspondence_date_status: UNVERIFIED
+required_next_transition: recover_exact_bound_source_capture_and_verify_dates
+release: NOT_AUTHORIZED
+activation: NOT_COMPLETE
+user_action_required_now: false
+```
+
+The previously asserted June 24–26 correspondence range remains retracted from asserted provenance unless direct source evidence verifies it. Do not substitute later publication/inspection screenshots for original message-date evidence.
+
+### Later completed certification-intake lane
+
+```text
+goal_id: GOVERNANCE-CHAIN-EXTERNAL-INTAKE-001
+canonical_handoff: docs/certification/EXTERNAL_CERTIFICATION_INTAKE_MIRROR_HANDOFF.md
+state: COMPLETE_CANONICAL_EXTERNAL_INTAKE
+public_certification_authority: INACTIVE
+external_certificate_issuance_authority: INACTIVE
+reference_issuance_authority: ACTIVE
+next_transition: EVIDENCE_DEPENDENT_EXTERNAL_CANDIDATE_MATERIAL
+```
+
+This later lane is complete as an intake mechanism; it does not certify the External Frameworks set and must not be used to promote any framework evaluation denominator.
+
+### Repository-wide validation boundary
+
+The last fully observed repository-wide canonical baseline remains the historical run `30847927019` at `150a61d7ec11bb6e7625af961481bc9cc5504772`, with `51/56 PASS`, `5 FAIL`, `0 skipped`, and overall `FAIL_CLOSED`. Later source repairs and later `main` commits must not inherit that run as exact-head validation. The exact failing validator list above is therefore a historical last-observed baseline, not a claim that the same five validators still fail at current `main`.
+
+### Archive interpretation
+
+A conversation may be archived only when every unique requirement from that conversation is durably represented in the applicable scoped handoffs/orchestration/global coordination index. Archiving a conversation does not close `EXT-FRAMEWORK-SECOND-PAGE-36`, MindForge provenance recovery, issue #50 canonical validation, Riverbraid, HIL succession, optimization-target execution, or any later certification evidence dependency. Project state remains whatever the current scoped authority records say.
