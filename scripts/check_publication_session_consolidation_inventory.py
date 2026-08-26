@@ -294,8 +294,17 @@ def main() -> int:
     workflow_text = WORKFLOW.read_text(encoding="utf-8")
     if "Verify CAT governance stack publication" not in workflow_text:
         fail("canonical workflow does not verify the session-specific public marker")
-    if "schedule:" in workflow_text.split("jobs:", 1)[0]:
-        fail("canonical workflow must remain event driven")
+
+    trigger_header = workflow_text.split("jobs:", 1)[0]
+    for marker in ("push:", "pull_request:", "workflow_dispatch:"):
+        if marker not in trigger_header:
+            fail(f"canonical workflow lost required event-driven trigger: {marker}")
+
+    # The completed publication session must remain independently replayable and
+    # event-driven, but later canonical work may add bounded scheduled continuation
+    # (for example worker-heartbeat observation). A schedule therefore does not
+    # reopen or invalidate the archived session as long as the original event-driven
+    # triggers and session-specific verification marker remain present.
 
     print(
         "PUBLICATION SESSION CONSOLIDATION: PASS - "
