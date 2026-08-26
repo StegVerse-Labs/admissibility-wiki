@@ -60,7 +60,8 @@
         "corrected package integrity has not yet been recomputed",
         "correspondence is not truth, sufficiency, validity, admissibility, or authority"
       ],
-      "current_effect": "SUPERSEDED_PENDING_CORRECTED_RUN"
+      "current_effect": "SUPERSEDED_PENDING_CORRECTED_RUN",
+      "parentage_claim": "NOT_CLAIMED"
     }
   ],
   "test_runs": [
