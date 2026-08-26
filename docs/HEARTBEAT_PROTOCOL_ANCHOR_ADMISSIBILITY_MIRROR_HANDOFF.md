@@ -210,3 +210,18 @@ repository-wide canonical workflow terminal result: NOT YET OBSERVED
 repository-wide issue #50: SEPARATE
 authority effect: NONE
 \`\`\`
+
+
+## 2026-08-26 terminal workflow-status reconciliation
+
+Run \`33024280473\` subsequently terminated \`CANCELLED\` during a high-frequency sequence of newer main pushes. Preserve the exact distinction:
+
+\`\`\`text
+focused heartbeat step: SUCCESS
+canonical pre-scan step: SUCCESS
+complete-chain scan step: SUCCESS
+workflow terminal conclusion: CANCELLED
+repository-wide canonical PASS: NOT CLAIMED
+\`\`\`
+
+The completed heartbeat validator step remains direct hosted execution evidence for the bounded compact-ID check. The cancelled parent workflow is not a repository-wide PASS and does not satisfy issue #50. Later main pushes continue to supersede/cancel one another under the workflow's concurrency behavior; do not chase those cancellations by creating duplicate validation lanes.
