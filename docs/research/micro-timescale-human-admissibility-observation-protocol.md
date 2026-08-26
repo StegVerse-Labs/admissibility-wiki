@@ -35,7 +35,7 @@ EPISODE_START
   -> EPISODE_END
 ```
 
-A candidate crossing is not accepted merely because repetition stops. Termination may also result from fatigue, distraction, coercion, abandonment, or context loss.
+A candidate crossing is not accepted merely because repetition stops. **Repetition stopping is not by itself proof.** Termination may also result from fatigue, distraction, coercion, abandonment, or context loss.
 
 ## Coding Fields
 
