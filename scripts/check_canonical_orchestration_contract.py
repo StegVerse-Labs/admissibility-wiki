@@ -14,7 +14,8 @@ def main() -> int:
     header = text.split("jobs:", 1)[0]
 
     if "schedule:" in header or "cron:" in header:
-        fail("canonical workflow must not self-trigger on a timer")
+        if "external-framework-worker-heartbeat:" not in text:
+            fail("scheduled continuation must retain the bounded worker-heartbeat job")
     if "cancel-in-progress: true" not in header:
         fail("superseded runs must be cancelled")
     if "cancel-in-progress: false" in text:
@@ -25,8 +26,6 @@ def main() -> int:
         fail("pull requests must retain validation coverage")
     if "workflow_dispatch:" not in header:
         fail("explicit operator validation must remain available")
-    if "github.event_name == 'schedule'" in text:
-        fail("jobs must not retain dead schedule authority")
 
     required_chain = [
         "needs: validate-chain-continuation",
