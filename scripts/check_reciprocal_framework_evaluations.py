@@ -17,7 +17,8 @@ def main() -> int:
             failures.append(f"missing framework record: {path.relative_to(ROOT)}")
             continue
         record = json.loads(path.read_text(encoding="utf-8"))
-        if record.get("framework", {}).get("framework_id") != entry.get("framework_id"):
+        record_framework_id = record.get("framework_id") or record.get("framework", {}).get("framework_id")
+        if record_framework_id != entry.get("framework_id"):
             failures.append(f"registry/record framework_id mismatch: {entry.get('framework_id')}")
         if record.get("publication", {}).get("projection_authority") != "NONE":
             failures.append(f"projection authority must remain NONE: {entry.get('framework_id')}")
