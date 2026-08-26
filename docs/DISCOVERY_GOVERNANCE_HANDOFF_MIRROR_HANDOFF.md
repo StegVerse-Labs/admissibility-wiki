@@ -260,6 +260,41 @@ The historical discovery session inventory now gives DG-003 a machine-observable
 
 These changes install the missing execution/evidence chain. They do not claim that a successor workflow has passed it yet.
 
+## 2026-08-26 hosted discovery publication observation and repair
+
+Run `33015834279` at commit `651c61b03f7d4d6a46dcc17d60e208444116bbc8` directly crossed nearly the entire discovery activation-evidence chain:
+
+```text
+build-pages: PASS
+deploy-pages: PASS
+verify-public-pages:
+  five discovery public routes: PASS / HTTP 200
+  discovery publication state: WORKFLOW_OBSERVED_PUBLICATION_COMPLETE
+  pages_deployment_observed: true
+  standalone/embedded discovery closure equality: PASS
+  proof receipt overall_result: PASS
+  four deterministic outcomes preserved: true
+  receipt repository/run identity match: true
+  input SHA-256 digests present: true
+  authority boundary preserved: true
+  public_activation_publication_complete: false
+  activation evidence state: ACTIVATION_EVIDENCE_FAIL_CLOSED
+```
+
+The sole discovery completion failure was downstream of a base public-activation writer exception. The governed deployment receipt used route keys `verification_execution_authority_doctrine` and `verification_execution_authority_status`, while the base writer looked them up as `*_reachable`. That mismatch caused a preserved fail-closed base receipt even though both verification-authority routes had already been observed by the deployment checker.
+
+Direct source repairs:
+
+```text
+84c0b6b6a3b6906f1fe8572a7143bdf1ae8281a3
+  map verification-authority closure labels to the actual governed deployment-receipt route keys
+
+ce4881ae70c833343bb7ddc0795fe2dd8ac91248
+  extend the deterministic public-activation writer test fixture to include the real governed receipt keys
+```
+
+These repairs do not retroactively change run `33015834279`; its activation-evidence receipt remains fail-closed historical evidence. A successor canonical build/deploy/public run must now show `publication_complete=true` and `ACTIVATION_EVIDENCE_COMPLETE` before the discovery goal can be terminalized.
+
 ## Remaining work
 
 Destination: `StegVerse-Labs/admissibility-wiki`
