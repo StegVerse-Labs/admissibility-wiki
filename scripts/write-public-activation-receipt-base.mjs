@@ -43,6 +43,10 @@ const verificationAuthorityChecks = new Set([
   'verification_execution_authority_doctrine_reachable',
   'verification_execution_authority_status_reachable'
 ]);
+const verificationAuthorityReceiptRoutes = {
+  verification_execution_authority_doctrine_reachable: 'verification_execution_authority_doctrine',
+  verification_execution_authority_status_reachable: 'verification_execution_authority_status'
+};
 const conceptualInheritanceChecks = new Set([
   'conceptual_inheritance_doctrine',
   'conceptual_inheritance_status',
@@ -92,7 +96,8 @@ if (fs.existsSync(optimizationReceiptPath)) {
 }
 const observedRoutes = optimizationTargetReceipt?.routes || {};
 for (const name of verificationAuthorityChecks) {
-  const route = observedRoutes[name];
+  const receiptRouteName = verificationAuthorityReceiptRoutes[name];
+  const route = observedRoutes[receiptRouteName];
   if (!route || route.reachable !== true) throw new Error(`verification-authority route is not confirmed in publication receipt: ${name}`);
 }
 for (const name of conceptualInheritanceChecks) {
@@ -116,7 +121,7 @@ const radiologyActivationClosure = {
 const verificationAuthorityActivationClosure = {
   schema: 'verification_execution_authority_activation_closure.v1', goal_id: 'verification-vs-execution-authority', state: 'WORKFLOW_OBSERVED_PUBLICATION_COMPLETE',
   commit, run_id: runId, run_attempt: runAttempt,
-  evidence: Object.fromEntries([...verificationAuthorityChecks].map((name) => [name, observedRoutes[name]])),
+  evidence: Object.fromEntries([...verificationAuthorityChecks].map((name) => [name, observedRoutes[verificationAuthorityReceiptRoutes[name]]])),
   all_required_public_routes_verified: true, manual_task_requirement: 'NONE', user_manual_action_required: false,
   authority_granted: false, execution_authority_granted: false, certification_authority_granted: false, downstream_mutation_authority_granted: false,
   continuation_source: 'docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md',
