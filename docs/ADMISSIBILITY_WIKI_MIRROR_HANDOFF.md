@@ -227,6 +227,19 @@ Canonical observation validator: scripts/check_conectrr_itc_canonical_workflow_o
 
 Missing Conectrr source artifacts are `NOT_RECEIVED_NON_BLOCKING`. Development continues through deterministic synthetic and surrogate fixtures. Synthetic outputs may validate StegVerse machinery only; they may not be represented as Conectrr-provided evidence or external validation.
 
+## Verification-versus-execution authority binding
+
+```text
+Doctrine: docs/governance/verification-vs-execution-authority.md
+Status: static/status/verification-execution-authority-status.json
+Deployment checker: scripts/check_governed_llm_deployment_status.py
+Activation receipt writer: scripts/write-public-activation-receipt.mjs
+Manual task requirement: none
+Execution authority granted by verification: false
+```
+
+This binding preserves independent verification as evidence input only. Publication or verification does not confer action-level execution authority.
+
 ## Deployment and Validation Gate
 
 ```text
