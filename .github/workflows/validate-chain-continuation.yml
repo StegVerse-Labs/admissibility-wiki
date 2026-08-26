@@ -404,6 +404,18 @@ jobs:
         env:
           ADMISSIBILITY_WIKI_PUBLIC_BASE_URL: ${{ needs.deploy-pages.outputs.page_url }}
         run: python scripts/check_external_framework_public_routes.py
+      - name: Write public activation receipt
+        env:
+          PAGE_URL: ${{ needs.deploy-pages.outputs.page_url }}
+        run: node scripts/write-public-activation-receipt.mjs
+      - name: Upload public activation receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-activation-receipt
+          path: reports/public-activation-receipt.json
+          if-no-files-found: error
+          retention-days: 30
       - name: Upload external framework public-route verification
         if: always()
         uses: actions/upload-artifact@v4
