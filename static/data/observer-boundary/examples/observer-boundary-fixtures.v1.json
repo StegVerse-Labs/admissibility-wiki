@@ -15,9 +15,12 @@
         "evidence_omissions_disclosed": true,
         "retrospective_inference_only": false
       },
-      "expected_class": "COMMITTED",
+      "expected_class": "INDETERMINATE",
       "independent_observer_standing": false,
-      "required_findings": ["STAGE_ROLE_COLLAPSE", "AUTHORITY_INHERITANCE_PROHIBITED"]
+      "required_findings": [
+        "STAGE_ROLE_COLLAPSE",
+        "AUTHORITY_INHERITANCE_PROHIBITED"
+      ]
     },
     {
       "id": "OB-002-observer-intervention",
@@ -34,7 +37,10 @@
       },
       "expected_class": "RECONSTRUCTED",
       "independent_observer_standing": false,
-      "required_findings": ["OBSERVER_BECAME_PARTICIPANT", "INTERVENTION_CAUSAL_EFFECT_RECORDED"]
+      "required_findings": [
+        "OBSERVER_BECAME_PARTICIPANT",
+        "INTERVENTION_CAUSAL_EFFECT_RECORDED"
+      ]
     },
     {
       "id": "OB-003-evidence-omission",
@@ -51,7 +57,10 @@
       },
       "expected_class": "INDETERMINATE",
       "independent_observer_standing": false,
-      "required_findings": ["EVIDENCE_OMISSION", "RECONSTRUCTION_INCOMPLETE"]
+      "required_findings": [
+        "EVIDENCE_OMISSION",
+        "RECONSTRUCTION_INCOMPLETE"
+      ]
     },
     {
       "id": "OB-004-retrospective-inference",
@@ -68,7 +77,10 @@
       },
       "expected_class": "INDETERMINATE",
       "independent_observer_standing": false,
-      "required_findings": ["RETROSPECTIVE_AUTHORIZATION_INFERENCE", "COMMIT_TIME_AUTHORITY_NOT_ESTABLISHED"]
+      "required_findings": [
+        "RETROSPECTIVE_AUTHORIZATION_INFERENCE",
+        "COMMIT_TIME_AUTHORITY_NOT_ESTABLISHED"
+      ]
     },
     {
       "id": "OB-005-complete-bounded-reconstruction",
@@ -85,7 +97,10 @@
       },
       "expected_class": "RECONSTRUCTED",
       "independent_observer_standing": false,
-      "required_findings": ["BOUNDED_RECONSTRUCTION_COMPLETE", "STANDING_NOT_CREATED_BY_FIXTURE"]
+      "required_findings": [
+        "BOUNDED_RECONSTRUCTION_COMPLETE",
+        "STANDING_NOT_CREATED_BY_FIXTURE"
+      ]
     }
   ],
   "authority_effect": {
