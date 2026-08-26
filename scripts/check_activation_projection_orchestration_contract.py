@@ -34,7 +34,8 @@ def main() -> int:
     if "cancel-in-progress: true" not in workflow:
         fail("superseded canonical runs must be cancelled")
     if "schedule:" in workflow.split("permissions:", 1)[0]:
-        fail("canonical wiki validation must not own a timer")
+        if "external-framework-worker-heartbeat:" not in workflow:
+            fail("scheduled continuation must remain bound to the worker-heartbeat surface")
     print("ACTIVATION_PROJECTION_ORCHESTRATION_CONTRACT: PASS")
     print("terminal_custody_required=true")
     print("canonical_validation_binding=true")
