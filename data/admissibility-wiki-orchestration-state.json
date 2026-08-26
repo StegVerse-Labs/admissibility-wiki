@@ -1,11 +1,11 @@
 {
-  "schema_version": "1.8.0",
+  "schema_version": "1.9.0",
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "task_sequence": 8,
-  "task_sequence_label": "EXTERNAL_FRAMEWORK_HOSTED_ROUTE_PROOF_OBSERVED_AND_CANONICAL_FAILURE_REPAIR_ACTIVE",
-  "work_state": "REPOSITORY_ACTIVE_CANONICAL_REPAIR_AND_FRAMEWORK_EVIDENCE_PENDING",
+  "task_sequence": 9,
+  "task_sequence_label": "CANONICAL_54_OF_56_OBSERVED_GOAL5_66_OF_66_PASS_MORRISON_BOUND_EVIDENCE_PUBLIC_ROUTE_PENDING",
+  "work_state": "REPOSITORY_ACTIVE_FINAL_CANONICAL_REPAIRS_AND_FRAMEWORK_EVIDENCE_PENDING",
   "system_health": "PUBLICATION_HEALTHY_CANONICAL_VALIDATION_FAIL_CLOSED",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
   "repository_heartbeat": 15,
@@ -101,7 +101,7 @@
       "canonical_heartbeat_lease_established": false,
       "state": "HOSTED_THREE_STAGE_ROUTE_PROOF_36_OF_36_OBSERVED_CANONICAL_REPAIR_AND_FRAMEWORK_EVIDENCE_PENDING",
       "current_source_head_at_registration": "e2159843b0dcbf77612159db5d7b3df7423ebe63",
-      "current_source_head_validation": "EXACT_ROUTE_PUBLICATION_PROOF_OBSERVED_AT_74BF7ED_CANONICAL_REPOSITORY_FAIL_CLOSED",
+      "current_source_head_validation": "GOAL5_66_OF_66_PASS_AT_13FFC_CANONICAL_REPOSITORY_54_OF_56_FAIL_CLOSED",
       "actual_external_frameworks": 36,
       "internal_registry_records": 2,
       "public_sidebar_source_wiring": "36_OF_36",
@@ -115,7 +115,7 @@
       "ios_workflow_mirror_guard": "STATE_AWARE_AND_FAIL_CLOSED_ON_UNRECORDED_DRIFT",
       "terminal_framework_evaluations_last_directly_observed": "7_OF_36",
       "remaining_framework_evaluations": 29,
-      "required_next_transition": "consume_successor_exact_head_canonical_validation_then_repair_remaining_direct_failures_and_continue_worker_denominator",
+      "required_next_transition": "observe_successor_canonical_run_after_policy_cards_terminology_and_morrison_verified_evidence_binding_then_repair_only_direct_remaining_failure",
       "release_condition": "36/36 route proof for the exact release candidate, publication-proof-contract PASS including canonical/iOS mirror equality, all framework evaluations terminal or legitimately evidence-blocked, repository-wide canonical PASS, and required release/propagation/activation evidence",
       "duplicate_work_prohibited": true,
       "session_dependency": true,
@@ -190,29 +190,39 @@
     }
   ],
   "canonical_validation_state": {
-    "evidence_class": "LATEST_FULLY_OBSERVED_CANONICAL_RUN",
-    "run_id": 33011831798,
-    "head_sha": "74bf7edffc0b975c70a15b649653c32b26bb1ca1",
+    "evidence_class": "LATEST_FULLY_OBSERVED_CANONICAL_SCAN",
+    "run_id": 33014646515,
+    "head_sha": "13ffc730d2b2efb621f8dad794d1af7c8c89ccd3",
     "overall_status": "FAIL_CLOSED",
-    "passed_checks": 47,
+    "passed_checks": 54,
     "total_checks": 56,
-    "failed_checks": 9,
+    "failed_checks": 2,
     "skipped_checks": 0,
     "failing_validators": [
-      "scripts/run_sandbox_validation.py",
-      "scripts/check_canonical_orchestration_contract.py",
-      "scripts/check_activation_projection_orchestration_contract.py",
       "scripts/check_external_framework_terminology.py",
-      "scripts/check_kpt_external_framework_intake.py",
-      "scripts/check_goal5_external_frameworks_all.py",
-      "scripts/check_asro_commitment_candidate.py",
-      "scripts/check_governed_llm_pages.py",
       "scripts/check_admissibility_automation_handoff.py"
     ],
-    "current_main_validation": "PENDING_AFTER_DIRECT_REPAIRS_AND_ASRO_MORRISON_RECONCILIATION",
-    "current_main_at_recording": "d05cbf92038c663367f8cb3312ba431e966ddb45",
-    "owner": "StegVerse-Labs/admissibility-wiki issue #50, issue #66, issue #39, and scoped handoffs",
+    "goal5_external_frameworks": {
+      "passed_checks": 66,
+      "total_checks": 66,
+      "failed_checks": 0,
+      "overall_status": "PASS",
+      "artifact_id": 9624091064,
+      "artifact_digest": "sha256:0ae5f8f0238d94c6971cb286de21a33ba1a9063c8db59bcad61b74b139c6f65c"
+    },
+    "full_validation_artifact_id": 9624089978,
+    "full_validation_artifact_digest": "sha256:a6d3b26c6b18b06f5db4ee2e26fccedbce71c073d76cd778ee7e44ed66f3c02c",
+    "canonical_prescan": {
+      "passed": 11,
+      "total": 11,
+      "result": "PASS",
+      "artifact_id": 9624026775
+    },
+    "current_main_validation": "PENDING_AFTER_POLICY_CARDS_SHARED_TERMINOLOGY_REPAIR_AND_MORRISON_CANONICAL_PROOF_PROMOTION",
+    "current_main_at_recording": "dd4a1bd55783834bdd19a6d116bcd16d89413248",
+    "owner": "StegVerse-Labs/admissibility-wiki issue #50, #66, #64, #39 and scoped handoffs",
     "missing_evidence_implies_success": false,
+    "release_authority": false,
     "session_dependency": false
   },
   "policy": {
@@ -237,13 +247,13 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "EXTERNAL_FRAMEWORK_HOSTED_ROUTE_PROOF_OBSERVED_AND_CANONICAL_REPAIRS_INSTALLED",
+    "event_type": "CANONICAL_SCAN_IMPROVED_TO_54_OF_56_GOAL5_PASS_AND_MORRISON_CANONICAL_PROOF_CONSUMED",
     "progress_effect": true,
     "authority_effect": false,
-    "source_commit": "d05cbf92038c663367f8cb3312ba431e966ddb45",
-    "observed_run_id": 33011831798,
-    "observed_run_head": "74bf7edffc0b975c70a15b649653c32b26bb1ca1",
-    "required_next_transition": "consume_successor_exact_head_canonical_validation_then_repair_only_direct_remaining_failures"
+    "observed_run_id": 33014646515,
+    "observed_run_head": "13ffc730d2b2efb621f8dad794d1af7c8c89ccd3",
+    "current_source_commit": "dd4a1bd55783834bdd19a6d116bcd16d89413248",
+    "required_next_transition": "consume_successor_exact_head_canonical_validation_and_repair_only_direct_remaining_failure"
   },
   "idle_terminal_statement": null,
   "archive_state": "NOT_READY_WHILE_CANONICAL_VALIDATION_FRAMEWORK_EVIDENCE_AND_RUNTIME_ACTIVATION_REMAIN"
