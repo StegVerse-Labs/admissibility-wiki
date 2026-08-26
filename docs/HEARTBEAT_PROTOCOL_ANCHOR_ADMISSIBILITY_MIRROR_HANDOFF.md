@@ -180,3 +180,33 @@ credential_authority: TV/TVC
 \`\`\`
 
 Therefore the focused compact-ID semantics have actual machine execution evidence, but canonical hosted workflow observation remains separately pending and must not be inferred from this local receipt.
+
+
+## 2026-08-26 hosted focused validation observation
+
+The later compact-identifier semantics are now observed through the existing canonical validation workflow.
+
+\`\`\`text
+workflow: Validate chain continuation
+run: 33024280473
+head: afc3e7852b329cf3e347c9143b323684eb75c0c1
+job: validate-chain-continuation / 98362024963
+step: Validate heartbeat protocol anchor admissibility
+step result: SUCCESS
+canonical pre-scan step: SUCCESS
+complete-chain scan step: SUCCESS
+overall workflow state at observation: IN_PROGRESS
+\`\`\`
+
+This is sufficient to advance the bounded compact-ID focused-validation state from NOT OBSERVED to HOSTED_FOCUSED_PASS. It does not make the repository-wide canonical workflow terminal while later enforcement/upload steps remain in progress, and it does not satisfy independently owned issue #50 or create release/admissibility authority.
+
+Current bounded state:
+
+\`\`\`text
+HB-XXXXXXXX compact-ID source: IMPLEMENTED / MERGED
+exact local focused validation: PASS
+hosted focused validation step: PASS / OBSERVED
+repository-wide canonical workflow terminal result: NOT YET OBSERVED
+repository-wide issue #50: SEPARATE
+authority effect: NONE
+\`\`\`
