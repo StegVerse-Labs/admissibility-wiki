@@ -106,5 +106,8 @@
     "execution": false,
     "custody": false,
     "endorsement": false
+  },
+  "publication": {
+    "projection_authority": "NONE"
   }
 }
