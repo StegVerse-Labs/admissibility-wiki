@@ -129,6 +129,10 @@ MERGED INTO: StegVerse-Labs/admissibility-wiki/docs/external-frameworks/AGCP_REG
 
 The session-specific AGCP work has converged with the existing external-framework and public-anchor task-mesh workstream. Duplicate implementation is prohibited. No unique continuation information remains only in conversation history.
 
+## External-task boundary
+
+No external tasks are permitted for missing AGCP evidence. Re-observation remains machine-owned by the canonical workflow/task mesh; manual user tasks required remain none. Missing evidence stays blocked/fail-closed rather than becoming an unspecified external assignment.
+
 ## Current evidence boundary
 
 ```text
