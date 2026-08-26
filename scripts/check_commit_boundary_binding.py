@@ -141,7 +141,7 @@ def main() -> int:
 
     if status.get("goal_id") != "commit-boundary-binding-predicate":
         failures.append("status goal_id mismatch")
-    if status.get("state") not in {"IMPLEMENTED", "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION"}:
+    if status.get("state") not in {"IMPLEMENTED", "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_VERIFICATION", "IMPLEMENTED_CANONICAL_VALIDATION_OBSERVED_PUBLICATION_PENDING"}:
         failures.append("status state is not implementation-ready")
     if status.get("fixture_count") != len(observed):
         failures.append("status fixture_count mismatch")
