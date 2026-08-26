@@ -100,8 +100,13 @@ def main() -> int:
             failures.append(f"claim references unknown task: {claim.get('task_id')}")
 
     canonical_text = CANONICAL_HANDOFF.read_text(encoding="utf-8")
-    if "complete thread is ready for archiving" not in canonical_text.lower():
-        failures.append("canonical handoff does not preserve archive-ready posture")
+    scoped_archive_markers = (
+        "session_state: COMPLETE_ARCHIVE_READY",
+        "Post-completion successor-lane index",
+        "The `COMPLETE_ARCHIVE_READY` statement immediately above is scoped only to",
+    )
+    if not all(marker in canonical_text for marker in scoped_archive_markers):
+        failures.append("canonical handoff does not preserve scoped historical session archive posture")
     if "data/admissibility-wiki-orchestration-state.json" not in canonical_text:
         failures.append("canonical handoff lacks orchestration-state reference")
 
