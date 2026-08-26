@@ -12,10 +12,36 @@ Canonical StegVerse formalism source: Admissible-Existence
 External framework role: pre-execution runtime-governance boundary
 Wiki role: sourced observatory record, compatibility map, and bounded validation path
 Citation status: sourced from Resurrection Tech public pages and a captured public author clarification
-Validation posture: cooperative, bounded, non-certifying
-Runtime-result posture: bounded case observation only where parameters are stated
+Validation posture: VERIFIED_BOUNDED_COMPARATIVE_EVIDENCE for the StegVerse commit-time scope suite; cooperative, bounded, non-certifying
+Canonical comparative execution: Data-Continuation/formalism-tests run 33014956712 at daca16578387c45cde616b82ba517d11314e1ef2; 7/7 deterministic cases PASS
+Runtime-result posture: bounded case observation only where parameters are stated; canonical StegVerse comparative execution is not Morrison production validation
 Evidence provenance status: Batch 1 refactor installed; commit-time scope clarification added pending durable source package
 ```
+
+## Verified Bounded Commit-Time Comparative Evidence
+
+Repository-owned canonical execution now exists for the StegVerse-authored Morrison commit-time scope comparison package:
+
+```text
+upstream repository: Data-Continuation/formalism-tests
+canonical execution commit: daca16578387c45cde616b82ba517d11314e1ef2
+durable evidence commit: 42ac1a25cf4427290f0b239c8e069253c87f86ba
+GitHub Actions run: 33014956712
+execution surface: GITHUB_ACTIONS
+morrison_runtime_commit_time_scope_tests: PASS
+verify_morrison_runtime_commit_time_scope_artifacts: PASS
+check_morrison_runtime_canonical_evidence_gate: PASS
+deterministic cases: 7/7 PASS
+report equivalence: true
+receipt equivalence: true
+expected-outcome equivalence: true
+canonical-gate equivalence: true
+authority posture: EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY
+```
+
+The verified package demonstrates the **StegVerse commit-time reconstruction comparison**, including displacement of an earlier runtime ALLOW/BLOCK posture when current evidence is contradictory, missing, stale, unknown, or newly material. It does not establish that Morrison Runtime itself performs full fresh-state reconstruction by default, does not certify or endorse Morrison, does not establish production Morrison behavior, and does not grant StegVerse or Morrison execution authority.
+
+The exact evidence hashes are bound in the compatibility report and promotion status. Wiki canonical validation and public-route verification remain separate downstream gates before any propagation review.
 
 ## Source
 
