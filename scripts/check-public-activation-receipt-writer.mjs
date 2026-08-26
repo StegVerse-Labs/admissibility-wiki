@@ -43,6 +43,8 @@ const RADIOLOGY_CHECKS = new Set([
   'ai_led_radiology_status_reachable'
 ]);
 const UPSTREAM_ROUTE_NAMES = [
+  'verification_execution_authority_doctrine',
+  'verification_execution_authority_status',
   'verification_execution_authority_doctrine_reachable',
   'verification_execution_authority_status_reachable',
   'conceptual_inheritance_doctrine',
