@@ -48,6 +48,19 @@ endorsement = false
 
 The validator derives the established state from the evidence record, requires all deterministic coverage classes, rejects undeclared authority effects, and returns `INDETERMINATE` where authorization, evidence completeness, or contemporaneous support is missing.
 
+## 2026-08-26 role-collapse fail-closed repair
+
+The observer profile already requires `INDETERMINATE` whenever a required independence condition is unsupported. OB-001 explicitly records `role_separation_recorded=false`, so classifying that case as merely `COMMITTED` was stale fixture/validator behavior.
+
+```text
+a4b6258be2d43c210123b2009aee418d62e209d5 — classifier returns INDETERMINATE when role separation is not recorded
+931be19460e02aea2c6af6d183d5df5c0c4f9cab — OB-001 expected class aligned to INDETERMINATE
+independent observer standing created: false
+execution authority created: false
+```
+
+This strengthens the existing boundary; it does not create observer standing or independent verification.
+
 ## Canonical aggregate state
 
 ```text
