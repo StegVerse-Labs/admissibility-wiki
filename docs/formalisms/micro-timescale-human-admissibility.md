@@ -41,6 +41,13 @@ The model separates six states:
 These states must not be collapsed.
 
 ```text
+Emission is not reception.
+Admissibility is not commitment.
+```
+
+These canonical prose aliases preserve the same state distinctions used below; they do not create a stronger empirical claim.
+
+```text
 emitted != received
 received != recognized
 recognized != interpreted
