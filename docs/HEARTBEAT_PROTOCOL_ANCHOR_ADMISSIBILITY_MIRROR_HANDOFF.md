@@ -132,3 +132,37 @@ authority effect: NONE
 \`\`\`
 
 This closes the registration/source-integration gap only. Exact current-head canonical workflow execution remains a separate validation observation and must not be inferred from the commit itself.
+
+
+## 2026-08-26 compact identifier validator hardening and exact local execution
+
+The focused validator itself is now extended to validate the compact identifier fields rather than merely accepting their presence in source:
+
+\`\`\`text
+5fc7275bec85aff1a2099437c7ce45b7c8c8a5ea  Validate compact heartbeat identifier semantics
+anchor_heartbeat_id == HB-0000000W
+encoding == FIXED_WIDTH_BASE36
+prefix == HB-
+width == 8
+alphabet == 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ
+integer_epoch_remains_canonical == true
+reversible == true
+\`\`\`
+
+Exact connector-retrieved current validator/data were executed in the coordinating machine and returned PASS. Durable bounded receipt:
+
+\`reports/heartbeat/compact-identifier-local-validation-2026-08-26.json\`
+commit: \`c9eb45a65031f85700544e472f08ba314d99ff0b\`
+
+Receipt semantics are intentionally narrow:
+
+\`\`\`text
+result: PASS
+hosted_validation: false
+release_authority: false
+runtime_authority: false
+credential_consumed: false
+credential_authority: TV/TVC
+\`\`\`
+
+Therefore the focused compact-ID semantics have actual machine execution evidence, but canonical hosted workflow observation remains separately pending and must not be inferred from this local receipt.
