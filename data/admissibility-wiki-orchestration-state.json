@@ -1,11 +1,11 @@
 {
-  "schema_version": "1.7.0",
+  "schema_version": "1.8.0",
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "task_sequence": 7,
-  "task_sequence_label": "canonical validation support sequence 0007",
-  "work_state": "REPOSITORY_ACTIVE_SUPPORT_WORK_PENDING",
+  "task_sequence": 8,
+  "task_sequence_label": "EXTERNAL_FRAMEWORK_HOSTED_ROUTE_PROOF_OBSERVED_AND_CANONICAL_FAILURE_REPAIR_ACTIVE",
+  "work_state": "REPOSITORY_ACTIVE_CANONICAL_REPAIR_AND_FRAMEWORK_EVIDENCE_PENDING",
   "system_health": "PUBLICATION_HEALTHY_CANONICAL_VALIDATION_FAIL_CLOSED",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
   "repository_heartbeat": 15,
@@ -99,9 +99,9 @@
       "claim_state": "ACTIVE",
       "heartbeat_lease_ref": null,
       "canonical_heartbeat_lease_established": false,
-      "state": "SOURCE_WIRING_36_OF_36_THREE_STAGE_ROUTE_PROOF_GOAL5_REGRESSION_GUARD_AND_IOS_MIRROR_SYNC_INSTALLED_HOSTED_PROOF_PENDING",
+      "state": "HOSTED_THREE_STAGE_ROUTE_PROOF_36_OF_36_OBSERVED_CANONICAL_REPAIR_AND_FRAMEWORK_EVIDENCE_PENDING",
       "current_source_head_at_registration": "e2159843b0dcbf77612159db5d7b3df7423ebe63",
-      "current_source_head_validation": "UNOBSERVED",
+      "current_source_head_validation": "EXACT_ROUTE_PUBLICATION_PROOF_OBSERVED_AT_74BF7ED_CANONICAL_REPOSITORY_FAIL_CLOSED",
       "actual_external_frameworks": 36,
       "internal_registry_records": 2,
       "public_sidebar_source_wiring": "36_OF_36",
@@ -115,10 +115,30 @@
       "ios_workflow_mirror_guard": "STATE_AWARE_AND_FAIL_CLOSED_ON_UNRECORDED_DRIFT",
       "terminal_framework_evaluations_last_directly_observed": "7_OF_36",
       "remaining_framework_evaluations": 29,
-      "required_next_transition": "observe_exact_head_goal5_publication_proof_and_ios_mirror_contract_then_source_route_build_built_route_deploy_and_public_route_evidence_then_continue_worker_denominator",
+      "required_next_transition": "consume_successor_exact_head_canonical_validation_then_repair_remaining_direct_failures_and_continue_worker_denominator",
       "release_condition": "36/36 route proof for the exact release candidate, publication-proof-contract PASS including canonical/iOS mirror equality, all framework evaluations terminal or legitimately evidence-blocked, repository-wide canonical PASS, and required release/propagation/activation evidence",
       "duplicate_work_prohibited": true,
-      "session_dependency": true
+      "session_dependency": true,
+      "source_route_contract_observed": {
+        "run_id": 33011831798,
+        "artifact_id": 9622942474,
+        "result": "PASS_36_OF_36",
+        "digest": "sha256:558d1c4a758210c275f0d3049cc5cf30c9b1336893a3389ef138338c125be7c5"
+      },
+      "built_route_verification_observed": {
+        "run_id": 33011831798,
+        "artifact_id": 9622986502,
+        "result": "PASS_36_OF_36_CONTENT_VERIFIED",
+        "digest": "sha256:dca3725bdb1f4700227e7f3aff834aa0eb902df88e9f457771b6f7e49d04c3a7"
+      },
+      "public_route_verification_observed": {
+        "run_id": 33011831798,
+        "artifact_id": 9623014776,
+        "result": "PASS_36_OF_36_REACHABLE_CONTENT_VERIFIED",
+        "digest": "sha256:720c1bd70b4ae2bd62dac3e52807ba88a643322b67b4ee0592411916cbbb75df"
+      },
+      "pages_build": "PASS_AT_74BF7ED",
+      "pages_deploy": "PASS_AT_74BF7ED"
     }
   ],
   "active_independent_workloads": [
@@ -170,23 +190,28 @@
     }
   ],
   "canonical_validation_state": {
-    "evidence_class": "LAST_FULLY_OBSERVED_CANONICAL_BASELINE",
-    "run_id": 30847927019,
-    "head_sha": "150a61d7ec11bb6e7625af961481bc9cc5504772",
+    "evidence_class": "LATEST_FULLY_OBSERVED_CANONICAL_RUN",
+    "run_id": 33011831798,
+    "head_sha": "74bf7edffc0b975c70a15b649653c32b26bb1ca1",
     "overall_status": "FAIL_CLOSED",
-    "passed_checks": 51,
+    "passed_checks": 47,
     "total_checks": 56,
-    "failed_checks": 5,
+    "failed_checks": 9,
     "skipped_checks": 0,
     "failing_validators": [
       "scripts/run_sandbox_validation.py",
+      "scripts/check_canonical_orchestration_contract.py",
+      "scripts/check_activation_projection_orchestration_contract.py",
+      "scripts/check_external_framework_terminology.py",
+      "scripts/check_kpt_external_framework_intake.py",
       "scripts/check_goal5_external_frameworks_all.py",
       "scripts/check_asro_commitment_candidate.py",
       "scripts/check_governed_llm_pages.py",
       "scripts/check_admissibility_automation_handoff.py"
     ],
-    "current_main_validation": "UNOBSERVED_AFTER_IOS_MIRROR_SYNCHRONIZATION_AND_PUBLICATION_PROOF_BINDING",
-    "owner": "StegVerse-Labs/admissibility-wiki issue #50, issue #66, and scoped handoffs",
+    "current_main_validation": "PENDING_AFTER_DIRECT_REPAIRS_AND_ASRO_MORRISON_RECONCILIATION",
+    "current_main_at_recording": "d05cbf92038c663367f8cb3312ba431e966ddb45",
+    "owner": "StegVerse-Labs/admissibility-wiki issue #50, issue #66, issue #39, and scoped handoffs",
     "missing_evidence_implies_success": false,
     "session_dependency": false
   },
@@ -212,12 +237,14 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "EXTERNAL_FRAMEWORK_IOS_WORKFLOW_MIRROR_SYNCHRONIZED",
+    "event_type": "EXTERNAL_FRAMEWORK_HOSTED_ROUTE_PROOF_OBSERVED_AND_CANONICAL_REPAIRS_INSTALLED",
     "progress_effect": true,
     "authority_effect": false,
-    "source_commit": "e2159843b0dcbf77612159db5d7b3df7423ebe63",
-    "required_next_transition": "observe_exact_head_goal5_publication_proof_and_ios_mirror_contract_then_source_route_build_built_route_deploy_and_public_route_evidence_then_continue_worker_denominator"
+    "source_commit": "d05cbf92038c663367f8cb3312ba431e966ddb45",
+    "observed_run_id": 33011831798,
+    "observed_run_head": "74bf7edffc0b975c70a15b649653c32b26bb1ca1",
+    "required_next_transition": "consume_successor_exact_head_canonical_validation_then_repair_only_direct_remaining_failures"
   },
   "idle_terminal_statement": null,
-  "archive_state": "NOT_READY_WHILE_ACTIVE_SUPPORT_OR_REQUIRED_VALIDATION_REMAINS"
+  "archive_state": "NOT_READY_WHILE_CANONICAL_VALIDATION_FRAMEWORK_EVIDENCE_AND_RUNTIME_ACTIVATION_REMAIN"
 }
