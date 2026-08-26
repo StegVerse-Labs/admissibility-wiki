@@ -62,10 +62,17 @@ comparison_governance_validator:
   path: scripts/check_asro_comparison_governance.py
   state: INSTALLED_FAIL_CLOSED
 
-immutable_input_bundle:
+immutable_input_bundle_predecessor:
   path: static/data/framework-evaluations/asro/exact-head-validation-inputs-2026-08-22.json
   source_head: 99fde15049f4c86d7056d9501d6c52733b5e5d0e
-  state: INSTALLED
+  state: PRESERVED_IMMUTABLE_HISTORICAL_EVIDENCE
+
+immutable_input_bundle_current:
+  path: static/data/framework-evaluations/asro/exact-head-validation-inputs-2026-08-26.json
+  source_head: a4af9bc3705ca337a0066fa777537576c192358c
+  state: INSTALLED_EXPLICIT_SUCCESSOR
+  supersession_reason: deliberate Companion historical-pin clarification; exact historical source path remains unresolved
+  backward_substitution: PROHIBITED
 
 immutable_input_validator:
   path: scripts/check_asro_exact_head_input_bundle.py
@@ -156,6 +163,29 @@ pinned_inputs_verified: 8_OF_8
 machine_readable_bundle_generation: INSTALLED_CANONICAL_CHAIN_BOUND
 hosted_canonical_validation: UNOBSERVED
 ```
+
+## 2026-08-26 immutable-bundle supersession repair
+
+Exact hosted validation at commit `74bf7edffc0b975c70a15b649653c32b26bb1ca1` exposed one ASRO immutable-input mismatch: the predecessor bundle still pinned the Companion declaration blob `a6c3661d...`, while the live declaration blob is `dcb1aaa7...`. Repository history shows the declaration changed deliberately in `b735f909...` and `a4af9bc...` to clarify the bounded historical repository pin while refusing to backfill an unresolved exact historical source path.
+
+The predecessor bundle was **not rewritten**. Instead:
+
+```text
+27e5fd137f48a19b02aaf8505e8dc1ac07a2a543
+  add exact-head-validation-inputs-2026-08-26.json as an explicit successor bundle
+  preserve predecessor bundle path and bytes
+  bind current corrected Companion declaration blob dcb1aaa779769365ff566415e8cc67b8bc664cf6
+  keep every other pinned input identity unchanged
+  preserve exact_historical_source_path = UNRESOLVED
+  preserve release/runtime/activation/reciprocal/bilateral non-authority boundaries
+
+2cc3bea3dbe7f017cdf51909f5ee676d143781d4
+  move the ASRO exact-input validator to the explicit successor bundle
+  require predecessor-bundle preservation and explicit supersession reason
+  continue exact Git-blob verification for all eight inputs
+```
+
+This is an explicit correction/supersession transition, not moving-main substitution. `PASS_STATIC_BLOB_CONSISTENCY` for the historical predecessor remains historical evidence; the successor must obtain its own hosted canonical PASS before ASRO validation is promoted.
 
 ## Remaining boundaries
 
