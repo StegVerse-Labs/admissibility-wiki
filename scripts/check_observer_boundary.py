@@ -43,6 +43,8 @@ def classify(evidence: dict) -> str:
         return "INDETERMINATE"
     if evidence.get("retrospective_inference_only"):
         return "INDETERMINATE"
+    if evidence.get("role_separation_recorded") is not True:
+        return "INDETERMINATE"
     return "RECONSTRUCTED"
 
 
