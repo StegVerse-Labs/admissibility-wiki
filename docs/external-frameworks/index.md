@@ -74,7 +74,7 @@ The table below is the public navigation catalog for the complete current extern
 | [MindForge](./mindforge.md) | Historical governance-review evidence and commit-time standing boundary. |
 | [Morrison Runtime](./morrison-runtime.md) | Runtime-governance comparison and pre-execution verdict evidence. |
 | [CARE Runtime](./care-runtime.md) | Runtime-governance platform comparison target. |
-| [KPT](./kpt.md) | Runtime decision boundary before downstream consequence. |
+| [KPT](./kpt.md) | KPT -> source-blocked runtime decision state before downstream consequence. |
 | [Open Policy Agent](./open-policy-agent.md) | Policy-decision runtime and policy/data/input evaluation. |
 | [Cedar Policy](./cedar-policy.md) | Authorization-policy evaluation and decision semantics. |
 | [OSCAL](./oscal.md) | Machine-readable security/control assessment and evidence structure. |
