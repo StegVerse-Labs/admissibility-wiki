@@ -212,6 +212,21 @@ StegVerse self-review: standing PROVISIONAL; internal structural validation PASS
 
 No docket grants certification or execution authority.
 
+## TA-14 continuous actor-standing reconstruction ownership
+
+```text
+goal_id: ta14-continuous-actor-standing-reconstruction
+state: REFERENCE_DOCKET_IMPLEMENTED_PENDING_CANONICAL_VALIDATION
+status: static/status/ta-14-standing-reconstruction-status.json
+validator: scripts/check_ta14_standing_reconstruction.py
+publication coordination: docs/external-frameworks/TA14_PUBLICATION_ACTIVATION_COORDINATION.md
+continuous_actor_standing_reconstruction: PUBLICLY_UNRESOLVED
+manual task requirement: none
+execution authority granted: false
+```
+
+The reference docket and deterministic standing-revalidation fixture are installed, but public observation and the external standing-reconstruction capability remain separately unresolved. Repository ownership of this goal does not promote the fixture, standing, certification, or execution authority.
+
 ## Conectrr Internal Development Path
 
 ```text
