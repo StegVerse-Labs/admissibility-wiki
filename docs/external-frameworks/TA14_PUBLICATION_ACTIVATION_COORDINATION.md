@@ -101,3 +101,19 @@ NOT_OBSERVED_CONTINUABLE != development halt
 internal task PASS != external validation
 public determination publication != certification or execution authority
 ```
+
+
+## 2026-08-26 standing-goal ownership reconciliation
+
+Canonical validation exposed that the repository-wide documentation handoff did not contain the exact TA-14 standing-goal ownership marker required by the standing validator.
+
+```text
+goal_id: ta14-continuous-actor-standing-reconstruction
+state: REFERENCE_DOCKET_IMPLEMENTED_PENDING_CANONICAL_VALIDATION
+repair commit: 6868a99dba425488a92cad3089a46abe092be9e9
+continuous actor standing reconstruction: PUBLICLY_UNRESOLVED
+fixture: FROZEN_PROPOSED_NOT_RUN
+execution authority: false
+```
+
+The repair binds ownership only; it does not promote the proposed fixture or resolve current actor standing.
