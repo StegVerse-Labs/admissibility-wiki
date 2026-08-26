@@ -227,6 +227,20 @@ session consolidation: complete
 
 Public route verification proves that the approved bounded content rendered. It does not prove compatibility, correctness, independent reproducibility, reviewer standing, certification, endorsement, release authority, or execution authority.
 
+## Machine-owned publication observation gates
+
+```text
+public route verification: INSTALLED_MACHINE_OWNED
+publication activation: INSTALLED_FAIL_CLOSED
+publication verification template: docs/external-frameworks/evidence/mindforge-publication-verification.template.json
+validator: scripts/check_mindforge_publication_verification.py
+source-date verification: SEPARATE_AND_UNRESOLVED
+private correspondence publication: PROHIBITED
+execution authority: NONE
+```
+
+These markers bind the existing publication machinery to this handoff. They do not convert public route reachability or authorized attribution fidelity into source-date verification, implementation certification, compatibility certification, release authority, or execution authority.
+
 ## Archive posture
 
 The goal-specific publication claim is released. All unique requirements and evidence are durable. This MindForge publication workstream is complete and archive-safe.
