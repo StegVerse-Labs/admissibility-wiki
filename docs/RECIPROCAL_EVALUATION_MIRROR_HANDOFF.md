@@ -177,6 +177,20 @@ StegVerse-002/stegguardian-wiki — guardian interpretation after destination ha
 master-records/orchestration — custody and independent reconstruction integration when authorized
 ```
 
+## 2026-08-26 reciprocal contract reconciliation
+
+Hosted canonical failure evidence exposed representation drift across the reciprocal records, not new reciprocal authority.
+
+```text
+9bb3f109e63b4432521e264621403eedde9602ce — ArquivoNulo publication.projection_authority = NONE
+9bb54cb817d9421ae189b4b57b764759f97fc5f4 — One World AI publication.projection_authority = NONE
+26d2aa45d4e2fba7711f29764e08f5309b3eaeea — ASRO determination parentage_claim = NOT_CLAIMED
+c2bd3a9ea65906615ab3615c56c50705370d4105 — replay validator preserves PROVISIONAL_CORRECTION_IN_PROGRESS only with historical-run preservation and corrected_run_required=true
+7184663f90443468c06d7d8a4fc1d953886097df — reciprocal registry validator accepts current top-level framework_id while retaining legacy nested compatibility
+```
+
+These repairs preserve the existing correction history and fail-closed boundaries. They do not freeze the corrected ASRO package, complete external ASRO-native execution, establish parentage, grant projection authority, or authorize release.
+
 ## Release posture
 
 The reciprocal ASRO workstream is locally feature-complete for the StegVerse bounded run and automated publication observation, but it is not a completed reciprocal external execution. Release claims must retain `external ASRO-native execution: NOT_TESTED` and `reviewer issuer: unresolved` until evidence changes those states.
