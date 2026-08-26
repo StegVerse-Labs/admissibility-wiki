@@ -130,6 +130,8 @@ admissible_continuation(t)
 
 Therefore:
 
+Canonical boundary shorthand: **valid proof != continuing admissibility**.
+
 ```text
 valid_proof(t) != continuing_admissibility(t)
 operational_continuity(t) != authority_continuity(t)
