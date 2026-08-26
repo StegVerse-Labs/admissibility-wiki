@@ -56,6 +56,16 @@ The substantive doctrine already preserves the lower-case state distinctions, th
 - require successor canonical workflow evidence before promotion
 ```
 
+## Source repair installed
+
+```text
+9e88de2eb76f0612898203be4e795a194799342e — exact doctrine aliases for emission/reception and admissibility/commitment
+4159e7f686c57eda5f63f6633ba1df37cbcde2d3 — formalism_id and explicit state_model bound to the existing six-state sequence
+4fe4fc186b4b1fd860b6f557212854fa3e21620e — exact repetition-stopping non-proof marker
+```
+
+The repair changes representation only. Empirical validation, public-route observation, release, and activation remain separately gated.
+
 ## Completion boundary
 
 Source repair is not activation. Completion still requires:
