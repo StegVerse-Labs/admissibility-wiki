@@ -213,10 +213,17 @@ if (relationship.all_required_public_routes_verified !== true) fail('relationshi
 if (relationship.pages_deployment_observed !== false) fail('relationship-transition simulated deployment boundary mismatch');
 if (relationship.user_action_required !== false) fail('relationship-transition user action mismatch');
 if (!Array.isArray(relationship.manual_tasks_required) || relationship.manual_tasks_required.length !== 0) fail('relationship-transition manual task mismatch');
-for (const key of ['publication_authority_granted', 'release_authority_granted', 'execution_authority_granted', 'admissibility_granted', 'downstream_mutation_authority_granted']) {
-  if (relationship[key] !== false) fail(`relationship-transition authority boundary mismatch: ${key}`);
+const relationshipAuthorityErrors = {
+  publication_authority_granted: 'relationship publication authority mismatch',
+  release_authority_granted: 'relationship release authority mismatch',
+  execution_authority_granted: 'relationship execution authority mismatch',
+  admissibility_granted: 'relationship admissibility mismatch',
+  downstream_mutation_authority_granted: 'relationship downstream authority mismatch'
+};
+for (const [key, message] of Object.entries(relationshipAuthorityErrors)) {
+  if (relationship[key] !== false) fail(message);
 }
-if (JSON.stringify(relationship) !== JSON.stringify(relationshipStandalone)) fail('embedded relationship-transition closure differs from standalone receipt');
+if (JSON.stringify(relationship) !== JSON.stringify(relationshipStandalone)) fail('standalone relationship receipt differs from embedded closure');
 if (receipt.linked_receipts?.governed_relationship_transition_publication_observation !== RELATIONSHIP_RECEIPT) fail('relationship-transition receipt binding mismatch');
 
 const reconstructionUrl = receipt.linked_receipts?.external_translation_reconstruction;
