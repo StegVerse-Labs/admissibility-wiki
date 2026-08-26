@@ -87,6 +87,33 @@ WIKI_VALIDATED_AND_PUBLIC_ROUTE_VERIFIED
 
 Only after that exact transition may issue #39 begin the bounded downstream propagation review against the then-current Site, Publisher, and Guardian handoffs.
 
+## 2026-08-26 evidence-class separation repair
+
+The verified repository-owned StegVerse commit-time comparison and the older Morrison demo observations are deliberately separate evidence classes.
+
+```text
+StegVerse-authored commit-time comparative package:
+  VERIFIED_CANONICAL_RUN
+  run: 33014956712
+  deterministic cases: 7/7 PASS
+  artifact equivalence: 4/4 true
+  authority: EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY
+
+Morrison runtime/demo benchmark observations:
+  evidence class: PARAMETERIZED_OBSERVATION
+  raw audit payloads: incomplete
+  timestamps: incomplete
+  runtime configuration: incomplete
+  source hashes: incomplete
+  independent reproduction: not complete
+```
+
+A prior promotion edit changed the top-level compatibility `result` to a new value. The canonical report generator only preserves enriched Morrison observations when the established result remains `COMPATIBILITY_EVIDENCE_ONLY_PARAMETERIZED_BOUNDARY_CASE_PARTIAL`; consequently hosted regeneration dropped the enriched observations and Goal 5 failed.
+
+Commit `68bc4a8ece579b77f45aa6d0f98f18a72451014f` restores the established report result while retaining the separate `canonical_commit_time_scope_evidence` block. This is not a demotion of the verified StegVerse comparison. It prevents that proof from being misrepresented as full reproducibility of Morrison Runtime itself.
+
+Successor canonical validation is required before the Morrison Wiki/public-route gate is promoted.
+
 ## Promotion preconditions
 
 All conditions must be true:
