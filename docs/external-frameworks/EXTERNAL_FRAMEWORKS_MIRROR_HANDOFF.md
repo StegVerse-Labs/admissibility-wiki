@@ -273,6 +273,36 @@ A framework page being visible, authored, manifest-bound, report-bound, built, d
 
 Latest direct coordinator evidence still records 7/36 terminally reconciled and 29/36 incomplete. No newer issue-#66 evidence was observed during this transition, so the denominator is not promoted.
 
+## Exact hosted publication proof — run 33011831798
+
+Exact commit `74bf7edffc0b975c70a15b649653c32b26bb1ca1` produced direct hosted evidence for the publication side of this goal:
+
+```text
+canonical pre-scan: 11/11 PASS
+36/36 source wiring: PASS
+source-route contract: 36/36 PASS
+Docusaurus build: PASS
+36/36 generated-route verification: PASS
+Pages artifact upload: PASS
+deploy-pages: PASS
+36/36 public route/content verification: PASS
+framework-specific evidence completion: SEPARATE / NOT PROMOTED
+repository-wide canonical validation: 47/56 PASS, 9 FAIL, 0 SKIPPED
+repository release authority: NONE
+```
+
+Retained route-proof artifacts:
+
+```text
+external-framework-source-route-contract: artifact 9622942474; sha256:558d1c4a758210c275f0d3049cc5cf30c9b1336893a3389ef138338c125be7c5
+external-framework-built-route-verification: artifact 9622986502; sha256:dca3725bdb1f4700227e7f3aff834aa0eb902df88e9f457771b6f7e49d04c3a7
+external-framework-public-route-verification: artifact 9623014776; sha256:720c1bd70b4ae2bd62dac3e52807ba88a643322b67b4ee0592411916cbbb75df
+```
+
+Observed-evidence continuation is governed by `observed-evidence-capture-protocol.md` and `observed-evidence-capture-queue.v0.1.json`.
+
+This closes the previously unobserved three-stage route-proof requirement for that exact commit only. It does not establish repository-wide canonical PASS, framework-specific terminal evaluation, certification, release, or activation.
+
 ## Required next transitions
 
 1. Observe an exact-head canonical validation/build run containing the current three-stage route-proof chain, Goal-5 regression validator, and synchronized iOS mirror contract.
