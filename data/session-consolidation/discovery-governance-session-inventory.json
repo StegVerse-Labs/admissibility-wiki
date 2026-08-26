@@ -66,7 +66,8 @@
       "integration_state": "post-deploy workflow integration installed",
       "archival_dependency": "none; hourly workflow owns release condition",
       "evidence_location": "reports/discovery-governance-publication-receipt.json",
-      "next_executable_action": "verify routes after successful Pages deployment"
+      "next_executable_action": "verify routes after successful Pages deployment",
+      "release_condition": "a canonical verify-public-pages job for the same run/commit verifies all five discovery-governance public routes and emits WORKFLOW_OBSERVED_PUBLICATION_COMPLETE in reports/discovery-governance-publication-receipt.json"
     },
     {
       "task_id": "DG-004",
@@ -168,14 +169,24 @@
       "claim_timestamp": "2026-08-02T13:10:00Z",
       "claim_expiration_or_release_condition": "release when a complete run-bound activation receipt is durably observed, or renew on the next hourly run",
       "expected_evidence": "workflow run, job, logs, discovery-governance-proof-receipt artifact, public-activation-receipt artifact, Pages route observations",
-      "collision_boundaries": ["do not create a second workflow", "do not fabricate deployment evidence", "do not mutate downstream repositories"],
+      "collision_boundaries": [
+        "do not create a second workflow",
+        "do not fabricate deployment evidence",
+        "do not mutate downstream repositories"
+      ],
       "next_task_after_release": "record activation completion in the goal handoff"
     }
   ],
   "convergence": {
     "classification": "MERGED_INTO_CANONICAL_WORKSTREAM",
     "merged_into": "StegVerse-Labs/admissibility-wiki/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-    "transferred": ["all primary and adjacent discovery-governance requirements", "installed commit history", "remaining machine-owned observation work", "authority boundaries", "archive conditions"],
+    "transferred": [
+      "all primary and adjacent discovery-governance requirements",
+      "installed commit history",
+      "remaining machine-owned observation work",
+      "authority boundaries",
+      "archive conditions"
+    ],
     "duplicate_execution_prohibited": true
   },
   "session_consolidation": {
