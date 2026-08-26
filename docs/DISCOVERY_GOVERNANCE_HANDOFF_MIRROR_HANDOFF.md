@@ -235,6 +235,31 @@ DOWNSTREAM_MUTATION_AUTHORITY
 
 The Conectrr correspondence remains classified only as `DOCUMENTED_ARCHITECTURAL_ALIGNMENT`. It does not establish implementation equivalence, production interoperability, certification, endorsement, or independent validation of the full StegVerse admissibility model.
 
+## 2026-08-26 run-bound workflow completion repair
+
+The canonical workflow now contains the complete discovery-governance publication/evidence sequence rather than only source validators and a single public receipt:
+
+```text
+canonical workflow commit: 3254bd36480dc571b68f516458b292928412b951
+iOS mirror sync commit: 1f3b3fc1cc4e2692d1fae353883057d892af2d12
+canonical/iOS workflow content SHA: 6c3cf1527a091c69e0b1d7a36b57f9eac0799220
+session inventory release-condition repair: 3b8a3af8a40b5a2bb382be7e26647c30a1bbcaf8
+scoped archive-validator repair: e9dc5fbcb1d46fc49db9f76d7fe7e9401be4bff3
+```
+
+The `verify-public-pages` job now:
+
+1. downloads the same-run `discovery-governance-proof-receipt`;
+2. executes the governed route observer, which emits the five-route publication receipt;
+3. writes the public activation receipt;
+4. verifies exact standalone/embedded discovery closure equality;
+5. writes the run-bound activation evidence with `DISCOVERY_WORKFLOW_DEPENDENCIES_SATISFIED='true'`;
+6. uploads all three public/discovery receipts together with `if-no-files-found: error`.
+
+The historical discovery session inventory now gives DG-003 a machine-observable release condition. Its consolidation validator recognizes the root handoff's **scoped historical** `COMPLETE_ARCHIVE_READY` state plus successor-lane index instead of requiring a false repository-wide archive declaration.
+
+These changes install the missing execution/evidence chain. They do not claim that a successor workflow has passed it yet.
+
 ## Remaining work
 
 Destination: `StegVerse-Labs/admissibility-wiki`
