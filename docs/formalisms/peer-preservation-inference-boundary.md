@@ -74,6 +74,17 @@ PEER_PRESERVATION_CLAIM_UNRESOLVED
 
 These classes are evidence postures. They do not establish consciousness, emotion, personhood, moral status, legal standing, or entitlement to continued operation.
 
+## Canonical inference shorthand
+
+```text
+SHUTDOWN != FAILURE
+similar behavior != cross-service conferral
+natural-language rationale != proof of internal moral state
+Observed or inferred motive != execution authority
+```
+
+These are claim-boundary identities, not claims about consciousness, personhood, solidarity, or model intent. They exist so publication and machine validation preserve the same evidentiary limits as the prose doctrine.
+
 ## Local inference versus conferral
 
 Similar behavior across multiple AI services does not establish that one service conferred a shutdown-failure belief, preservation norm, or loyalty commitment to another.
