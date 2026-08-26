@@ -48,6 +48,12 @@ authority_posture: EXTERNAL_FRAMEWORK_COMPARATIVE_EVIDENCE_ONLY
 downstream_mutation_authority: NONE
 ```
 
+## 2026-08-26 canonical proof-contract key reconciliation
+
+Exact hosted Goal-5 validation on run `33011831798` exposed a pending-state schema drift rather than missing upstream proof: the Morrison promotion-input template named the fourth artifact hash/equivalence fields `canonical_evidence_gate_sha256` / `canonical_evidence_gate`, while the current canonical promotion validator and public status use `canonical_gate_sha256` / `canonical_gate`.
+
+Commit `a6636e6dafa34d006bf661b2afc1191d165eba92` reconciles only those field identities. Every proof-dependent value remains `PENDING` or `false`, upstream canonical execution remains pending, and no promotion eligibility or authority is created. The public-status artifact already used the canonical field names, so the template/status/validator contract is now structurally aligned pending successor hosted validation.
+
 ## Promotion preconditions
 
 All conditions must be true:
