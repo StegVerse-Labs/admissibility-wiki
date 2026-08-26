@@ -158,6 +158,12 @@ StegVerse-002/stegguardian-wiki:
 - challenge, correction, appeal, conflict, and reviewer-standing projection
 ```
 
+## 2026-08-26 validator-state reconciliation
+
+Hosted canonical validation exposed a stale checker constant: the status and this handoff already record `CANONICAL_VALIDATION_BOUND_WORKFLOW_OBSERVATION_PENDING`, while the checker still required the predecessor `LOCAL_REFERENCE_VALIDATION_INSTALLED_WORKFLOW_OBSERVATION_PENDING` state.
+
+Commit `09f5d280b15998d1cd0c6d65256b21b325d02a49` aligns the checker to the current canonical-bound state. No workflow PASS, external conformance, certification, registry authority, or execution authority is inferred; workflow observation remains pending.
+
 ## Completion boundary
 
 The initial activation goal is complete only when the normative draft, schema, reference declaration, validator, status receipt, negative fixtures, canonical validation binding, and observed canonical execution are installed without converting self-validation into external conformance.
