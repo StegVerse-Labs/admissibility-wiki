@@ -46,7 +46,12 @@
       "missing_policy": "error"
     }
   },
-  "outcomes": ["HANDOFF_READY", "REVIEW_REQUIRED", "DENY", "FAIL_CLOSED"],
+  "outcomes": [
+    "HANDOFF_READY",
+    "REVIEW_REQUIRED",
+    "DENY",
+    "FAIL_CLOSED"
+  ],
   "completion_criteria": [
     "canonical_dependency_chain_observed",
     "proof_receipt_pass",
@@ -109,5 +114,13 @@
   "manual_task_requirement": "none",
   "user_manual_action_required": false,
   "downstream_mutation_authority": "none granted",
-  "updated_at": "2026-07-22T18:45:00Z"
+  "updated_at": "2026-08-26T16:14:00-05:00",
+  "workflow_binding_state": "RUN_BOUND_PUBLICATION_EVIDENCE_CHAIN_INSTALLED_AWAITING_CANONICAL_OBSERVATION",
+  "latest_source_repairs": {
+    "canonical_workflow_commit": "3254bd36480dc571b68f516458b292928412b951",
+    "ios_workflow_commit": "1f3b3fc1cc4e2692d1fae353883057d892af2d12",
+    "workflow_content_sha": "6c3cf1527a091c69e0b1d7a36b57f9eac0799220",
+    "session_inventory_commit": "3b8a3af8a40b5a2bb382be7e26647c30a1bbcaf8",
+    "session_consolidation_validator_commit": "e9dc5fbcb1d46fc49db9f76d7fe7e9401be4bff3"
+  }
 }
