@@ -15,8 +15,17 @@ def main() -> int:
     test = json.loads(TEST.read_text(encoding="utf-8"))
     events = [json.loads(line) for line in RUN.read_text(encoding="utf-8").splitlines() if line.strip()]
 
-    if test.get("status") != "FROZEN":
-        failures.append("test case is not frozen")
+    status = test.get("status")
+    if status == "FROZEN":
+        pass
+    elif status == "PROVISIONAL_CORRECTION_IN_PROGRESS":
+        replay_meta = test.get("replay", {})
+        if replay_meta.get("historical_run_status") != "PRESERVED_NOT_RETROACTIVELY_REWRITTEN":
+            failures.append("provisional correction must preserve the historical replay explicitly")
+        if replay_meta.get("corrected_run_required") is not True:
+            failures.append("provisional correction must require a corrected run")
+    else:
+        failures.append(f"unsupported test-case status: {status}")
     if test.get("replay", {}).get("deterministic") is not True:
         failures.append("test case is not deterministic")
     indexes = [event.get("event_index") for event in events]
