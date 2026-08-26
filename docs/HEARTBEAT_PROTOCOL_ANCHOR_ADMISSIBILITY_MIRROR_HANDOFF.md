@@ -80,3 +80,39 @@ Execute/observe `python scripts/check_heartbeat_protocol_anchor_admissibility.py
 ## Completion predicate
 
 Source integration is complete. This bounded heartbeat interpretation becomes terminal after focused validation is observed PASS and canonical validation integration, if required, is confirmed. Repository-wide release/admissibility defects remain separate work.
+
+
+## 2026-08-26 compact identifier propagation reconciliation
+
+Current main additionally consumes the canonical compact heartbeat identifier representation:
+
+```text
+anchor integer epoch: 32
+anchor heartbeat id: HB-0000000W
+display format: HB-XXXXXXXX
+encoding: FIXED_WIDTH_BASE36
+width: 8
+integer epoch remains canonical: true
+reversible: true
+```
+
+Live source evidence:
+
+```text
+74bf7edffc0b975c70a15b649653c32b26bb1ca1  Consume compact Base36 heartbeat identifier contract
+data/heartbeat-protocol-anchor-admissibility.json: UPDATED
+```
+
+This is a representation/projection update only. It does not create admissibility, execution, publication, custody, route, credential, or timing authority and does not change the 10 ms / 100 Hz / OSCILLATOR_ONLY heartbeat semantics.
+
+No hosted workflow run is associated with the exact compact-identifier commit in the currently observable PR-run surface. Therefore compact-identifier source is IMPLEMENTED/MERGED but exact hosted validation for that commit remains NOT OBSERVED. The earlier focused heartbeat validator and repository-wide issue #50 remain separate gates; do not promote source presence to validation or release.
+
+Current bounded state:
+
+```text
+HB32 semantics consumed: IMPLEMENTED / MERGED
+HB-XXXXXXXX Base36 representation consumed: IMPLEMENTED / MERGED
+exact hosted validation for compact-identifier commit: NOT OBSERVED
+repository-wide canonical validation: separately governed by issue #50
+release/admissibility authority effect: NONE
+```
