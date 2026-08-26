@@ -107,5 +107,24 @@
     "admissibility crossing != guaranteed semantic truth",
     "public display != governed activation"
   ],
-  "source_doctrine": "/formalisms/micro-timescale-human-admissibility"
+  "source_doctrine": "/formalisms/micro-timescale-human-admissibility",
+  "formalism_id": "micro-timescale-human-admissibility",
+  "state_model": {
+    "sequence": [
+      "EMITTED",
+      "RECEIVED",
+      "RECOGNIZED",
+      "INTERPRETED",
+      "ADMISSIBLE",
+      "COMMITTED"
+    ],
+    "non_equivalences": [
+      "EMITTED != RECEIVED",
+      "RECEIVED != RECOGNIZED",
+      "RECOGNIZED != INTERPRETED",
+      "INTERPRETED != ADMISSIBLE",
+      "ADMISSIBLE != COMMITTED"
+    ],
+    "interpretation": "State labels describe a conceptual communication-gate model; state presence does not establish measured neurocognitive state, objective semantic truth, or execution authority."
+  }
 }
