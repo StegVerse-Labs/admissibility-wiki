@@ -133,7 +133,7 @@ def validate_status(errors: list[str]) -> None:
     required = {
         "standard_id": "GSDP",
         "draft_version": "0.1-draft",
-        "state": "LOCAL_REFERENCE_VALIDATION_INSTALLED_WORKFLOW_OBSERVATION_PENDING",
+        "state": "CANONICAL_VALIDATION_BOUND_WORKFLOW_OBSERVATION_PENDING",
         "schema_validation_effect": "STRUCTURAL_ONLY_NO_EXTERNAL_CONFORMANCE",
         "independent_conformance": "NOT_RUN",
         "certification_authority": False,
