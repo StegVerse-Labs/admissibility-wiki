@@ -1,0 +1,27 @@
+{
+  "schema": "stegverse.local-source-validation.v1",
+  "goal_id": "ADMISSIBILITY-HEARTBEAT-COMPACT-ID-VALIDATION-20260826",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "source_commit": "5fc7275bec85aff1a2099437c7ce45b7c8c8a5ea",
+  "validator_path": "scripts/check_heartbeat_protocol_anchor_admissibility.py",
+  "validator_blob_sha": "56dcd4209ebd6f9bcaa054a625b9682705e1ccfd",
+  "data_path": "data/heartbeat-protocol-anchor-admissibility.json",
+  "data_blob_sha": "b6c7ff381ea985d07345b8aa8087f7abf522a27f",
+  "result": "PASS",
+  "validated_semantics": {
+    "anchor_epoch": 32,
+    "anchor_heartbeat_id": "HB-0000000W",
+    "encoding": "FIXED_WIDTH_BASE36",
+    "width": 8,
+    "period_ms": 10,
+    "reference_rate_hz": 100,
+    "progression_dependency": "OSCILLATOR_ONLY",
+    "authority_effect": "NONE"
+  },
+  "execution_environment": "coordinating machine from exact connector-retrieved source",
+  "hosted_validation": false,
+  "release_authority": false,
+  "runtime_authority": false,
+  "credential_authority": "TV/TVC",
+  "credential_consumed": false
+}
