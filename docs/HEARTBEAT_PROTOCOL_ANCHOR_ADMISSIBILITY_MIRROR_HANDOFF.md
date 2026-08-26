@@ -116,3 +116,19 @@ exact hosted validation for compact-identifier commit: NOT OBSERVED
 repository-wide canonical validation: separately governed by issue #50
 release/admissibility authority effect: NONE
 ```
+
+
+## 2026-08-26 canonical validation registration
+
+The focused heartbeat interpretation validator is now explicitly registered inside the existing canonical \`.github/workflows/validate-chain-continuation.yml\` rather than creating a duplicate workflow.
+
+Installed source:
+
+\`\`\`text
+970b93428e8289db1df172445b5dbc34da2a42c3  Bind heartbeat anchor interpretation into canonical validation
+canonical step: python scripts/check_heartbeat_protocol_anchor_admissibility.py
+duplicate workflow introduced: false
+authority effect: NONE
+\`\`\`
+
+This closes the registration/source-integration gap only. Exact current-head canonical workflow execution remains a separate validation observation and must not be inferred from the commit itself.
