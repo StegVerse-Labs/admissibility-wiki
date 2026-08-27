@@ -85,19 +85,19 @@ Canonical hosted lane remains `.github/workflows/validate-chain-continuation.yml
 
 ## Lifecycle state
 
-Current branch implementation:
+Current-generation reconciliation:
 - IMPLEMENTED: true
-- VALIDATED: true for implementation head `3a1c357f9e726320f47f29c4cf910185c3c14610` via canonical run `33093900082`
-- MERGED: true via PR `#107`, merge commit `1cf24e3faddbe62bfea3db700145b39c3756d459`
-- DEPLOYED: false for this bounded projection update
-- ACTIVATED: false
-- OBSERVED: canonical PR run `33093900082` observed; pre-scan `11/11 PASS`; full validation `56/56 PASS`, `0 failed`, `0 skipped`
-- RECONSTRUCTED: false/not claimed
+- VALIDATED: true; final PR head `448970487994a334a8ca14be951a16a50db7bdd6`, run `33094266251` SUCCESS
+- MERGED: true; merge commit `1cf24e3faddbe62bfea3db700145b39c3756d459`
+- DEPLOYED: true as wiki/Pages projection only; main run `33094673503`
+- ACTIVATED: false as admissibility/financial/runtime authority
+- OBSERVED: true; main canonical validation, Pages build, Pages deploy, and public-route verification all SUCCESS
+- RECONSTRUCTED: false/not required for this bounded projection goal
 - RELEASED: false
-- COMPLETE: false
+- COMPLETE: true for PA-INT-011 current-generation reconciliation only
 
 No user action is required.
 
 ## Next executable action
 
-PR `#107` is MERGED at `1cf24e3faddbe62bfea3db700145b39c3756d459`. Implementation head `3a1c357f9e726320f47f29c4cf910185c3c14610` passed canonical run `33093900082` with pre-scan `11/11 PASS` and full validation `56/56 PASS`. The run did not independently emit the PA-INT-011 marker in its top-level log, so do not substitute the aggregate PASS for a separately observed direct task-executor marker. The next executable boundary is exact post-merge main-branch canonical observation at or after merge commit `1cf24e3faddbe62bfea3db700145b39c3756d459`; only after direct PASS evidence may this bounded projection advance. Then reconcile the existing downstream `StegVerse-002/stegguardian-wiki` lane without creating a duplicate generated-Ste gPay lane.
+No generated-Ste gPay implementation action remains in this repository. PR `#107` is merged and main run `33094673503` is durable. The canonical run did not independently print the PA-INT-011 task marker, and that distinction remains preserved without reopening the already completed bounded reconciliation. Downstream Guardian reconciliation is separately complete in `StegVerse-002/stegguardian-wiki` PR `#19` with merge `d7a4bdd0e92a4c2fa13ddf81ecf9af68974081cb` and main Pages run `33094989577`. Repository-wide exact-head run `33118691192` at `925b4f7a1346ce3f9516224daabe9d2467be2c6d` subsequently proved 11/11 pre-scan PASS, 56/56 canonical PASS, Pages build/deploy PASS, and public verification PASS. Future work must not reopen or duplicate PA-INT-011 unless a newer upstream evidence generation creates a new reconciliation requirement.
