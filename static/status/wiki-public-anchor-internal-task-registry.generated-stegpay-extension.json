@@ -15,7 +15,7 @@
         "static/status/wiki-public-anchor-internal-task-registry.generated-stegpay-extension.json"
       ],
       "observer": "scripts/check_generated_stegpay_publisher_projection.py",
-      "completion_predicate": "the validator records GENERATED_STEGPAY_ADMISSIBILITY_IMPORT=PASS with exact Publisher, Site, propagation, event, test-only, and false-authority bindings",
+      "completion_predicate": "the validator records GENERATED_STEGPAY_ADMISSIBILITY_IMPORT=PASS with exact current Publisher canonical projection, Site receipt, propagation, consumer receipt, generation, event, test-only, and false-authority bindings",
       "fallback": "record FAIL_INTERNAL_CONTINUABLE and preserve the exact first mismatched field without weakening authority boundaries",
       "dependencies": [],
       "external_dependencies": []
