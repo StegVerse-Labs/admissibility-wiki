@@ -425,3 +425,46 @@ The authoritative commit-boundary formalism already exists at `docs/formalisms/c
 The `bind_commit` component remains `OPEN`; the path repair does not claim route-complete evidence, TA-14 standing, implementation equivalence, independent reconstruction, certification, release, or execution authority. Historical run `33035666229` remains fail-closed evidence and is not retroactively promoted. The required next transition is an exact successor canonical run after the repair, followed by direct repair only if that successor exposes another concrete residual failure.
 
 This state is durable here and in the TA-14 coordination handoff/orchestration record; continuation does not require this ChatGPT session.
+
+
+## 2026-08-27 generated StegPay downstream reconciliation
+
+Existing owner lane reused:
+
+```text
+goal_id: generated-stegpay-bounded-admissibility-projection
+task: PA-INT-011
+registry: static/status/wiki-public-anchor-internal-task-registry.generated-stegpay-extension.json
+claim_state: MACHINE_OWNED
+duplicate_lane_created: false
+pull_request: 107
+```
+
+Current bounded evidence binding:
+
+```text
+Publisher merge: cf224d1ee78e16c259db3c6349c02c2444469509
+Publisher source: data/generated-stegpay-site-ingestion.json
+Publisher Git blob SHA: 87c4a198239c5bd951f8133c11d5c591c1e9d947
+Publisher canonical JSON SHA-256: bbae4456bb09de7eaa3b9782c000fdef106ad035c1f2dee64f62e4102df302a1
+Site receipt canonical JSON SHA-256: 687d06eb93693d0bd78f00cdefd465d23d92b54c0bbfa7bc0a04b1364f9a452f
+StegOps propagation SHA-256: e59e71bf31879f0bf29a8356f8027304a94a4dee59d3c0be35c3ecc505e7cec9
+consumer receipt SHA-256: b8084ecc9821eb7738e4dccffd239185a072e0bc630e71c72906098a830cf515
+source generation: 2026-08-27T11:58:18Z
+```
+
+The existing StegPay hash semantic was reproduced rather than replaced: sorted-key compact UTF-8 JSON SHA-256. The registry extension ID remains `generated-stegpay-bounded-projection-2026-08-02` because it is the immutable extension/task-lane identity; PA-INT-011 was not duplicated or versioned into a new task.
+
+Implementation head `3a1c357f9e726320f47f29c4cf910185c3c14610` passed canonical PR run `33093900082`:
+
+```text
+canonical pre-scan: 11/11 PASS
+full validation: 56/56 PASS
+failed: 0
+skipped: 0
+workflow result: SUCCESS
+```
+
+The top-level canonical log did not independently print `GENERATED_STEGPAY_ADMISSIBILITY_IMPORT=PASS` or a `PA-INT-011` line, so the aggregate 56/56 PASS must not be misrepresented as direct task-executor marker observation. Final documentation-successor exact-head and post-merge main observations remain required before closing this lane.
+
+Authority remains false for admissibility determination, publication, release, execution, custody, entitlement, and transport-derived authority. No public publication or certification is inferred from this bounded evidence.
