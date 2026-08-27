@@ -468,3 +468,32 @@ workflow result: SUCCESS
 The top-level canonical log did not independently print `GENERATED_STEGPAY_ADMISSIBILITY_IMPORT=PASS` or a `PA-INT-011` line, so the aggregate 56/56 PASS must not be misrepresented as direct task-executor marker observation. Final documentation-successor exact-head and post-merge main observations remain required before closing this lane.
 
 Authority remains false for admissibility determination, publication, release, execution, custody, entitlement, and transport-derived authority. No public publication or certification is inferred from this bounded evidence.
+
+
+## 2026-08-27 archive reconciliation — generated StegPay merge and current exact-head boundary
+
+Live inspection after the prior TA-14 consolidation observed that the existing Generated StegPay bounded-admissibility lane advanced and reused its canonical owner rather than creating a duplicate lane.
+
+```text
+goal_id: generated-stegpay-bounded-admissibility-projection
+task: PA-INT-011
+pull_request: 107
+premerge canonical run: 33093900082
+premerge canonical head: 3a1c357f9e726320f47f29c4cf910185c3c14610
+premerge canonical prescan: 11/11 PASS
+premerge full validation: 56/56 PASS
+merge commit: 1cf24e3faddbe62bfea3db700145b39c3756d459
+scoped handoff reconciliation: 50b4e3bb15423af56f35f4623a96e4fdebecc1eb
+orchestration reconciliation: 674077624c13c9cdde0ea54d6e1ddc76dc1ce8ff
+post-merge exact-head canonical observation: PENDING
+direct PA-INT-011 marker observation: false
+release authority: false
+activation authority: false
+publication/certification authority: false
+```
+
+The 56/56 result belongs to the pre-merge PR head and must not be transferred automatically to moving `main`. The repository's next exact-head boundary is canonical observation at or after the merged/reconciled main head. Only direct residual failures may be repaired. External Framework terminal evaluation remains separately governed at the last directly observed 7/36 and is not promoted by this 56/56 PR validation.
+
+The current session introduced no new credential, TV/TVC, WebAuthn, iPhone, provider-activation, or physical-runtime requirement for this repository. Existing downstream interpretation remains handoff-governed, including the already-existing StegGuardian lane; no duplicate downstream lane is authorized.
+
+All unique state from this reconciliation is durable in this root handoff, `docs/GENERATED_STEGPAY_PROJECTION_MIRROR_HANDOFF.md`, `data/admissibility-wiki-orchestration-state.json`, PR #107, and canonical workflow evidence. This ChatGPT session is not required for continuation.
