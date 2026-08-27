@@ -118,7 +118,7 @@
       "topic": "canonical decision semantics",
       "disposition": "PARTIAL",
       "state": "EVIDENCE_MAPPING",
-      "work_path": "static/data/canonical-decision-enum-registry.json",
+      "work_path": "static/ontology/canonical-decision-enum-registry.v0.1.json",
       "evidence_targets": [
         "formal mapping",
         "downstream obligation",
