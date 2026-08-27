@@ -3,10 +3,10 @@
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "task_sequence": 14,
-  "task_sequence_label": "GENERATED_STEGPAY_MERGED_POST_MERGE_CANONICAL_OBSERVATION_PENDING",
-  "work_state": "REPOSITORY_ACTIVE_POST_MERGE_CANONICAL_PROOF_AND_FRAMEWORK_EVALUATION_REMAIN",
-  "system_health": "PREMERGE_CANONICAL_56_OF_56_OBSERVED_GENERATED_STEGPAY_MERGED_POST_MERGE_EXACT_HEAD_UNOBSERVED",
+  "task_sequence": 15,
+  "task_sequence_label": "EXACT_CANONICAL_PASS_OBSERVED_FRAMEWORK_EVALUATION_REMAINS",
+  "work_state": "REPOSITORY_ACTIVE_FRAMEWORK_EVALUATION_AND_RELEASE_GATES_REMAIN",
+  "system_health": "EXACT_CANONICAL_56_OF_56_BUILD_DEPLOY_PUBLIC_PASS_FRAMEWORK_EVALUATION_7_OF_36",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
   "repository_heartbeat": 15,
   "time_role": "NO_TIMER_OWNERSHIP",
@@ -85,6 +85,23 @@
       "framework_evaluation_promoted": false,
       "authority_effect": false,
       "session_dependency": false
+    },
+    {
+      "task_id": "GENERATED-STEGPAY-BOUNDED-ADMISSIBILITY-PROJECTION",
+      "owner": "PA-INT-011 / Wiki public-anchor internal task executor",
+      "handoff": "docs/GENERATED_STEGPAY_PROJECTION_MIRROR_HANDOFF.md",
+      "state": "COMPLETE_VALIDATED_MERGED_DEPLOYED_OBSERVED_BOUNDED",
+      "claim_state": "COMPLETE",
+      "pull_request": 107,
+      "merge_commit": "1cf24e3faddbe62bfea3db700145b39c3756d459",
+      "main_canonical_run": 33094673503,
+      "historical_closure_commit": "4dd51d345eba8ae4d9f09d4304dc15998a5eb751",
+      "downstream_guardian_repository": "StegVerse-002/stegguardian-wiki",
+      "downstream_guardian_pull_request": 19,
+      "downstream_guardian_merge": "d7a4bdd0e92a4c2fa13ddf81ecf9af68974081cb",
+      "downstream_guardian_main_pages_run": 33094989577,
+      "authority_effect": false,
+      "session_dependency": false
     }
   ],
   "active_support_workloads": [
@@ -159,25 +176,6 @@
       },
       "pages_build": "PASS_AT_74BF7ED",
       "pages_deploy": "PASS_AT_74BF7ED"
-    },
-    {
-      "task_id": "GENERATED-STEGPAY-BOUNDED-ADMISSIBILITY-PROJECTION",
-      "owner": "PA-INT-011 / Wiki public-anchor internal task executor",
-      "handoff": "docs/GENERATED_STEGPAY_PROJECTION_MIRROR_HANDOFF.md",
-      "workload": "Bounded generated StegPay evidence projection from Publisher/Site/StegOps chain",
-      "execution_class": "MACHINE_OWNED_EXISTING_LANE",
-      "claim_state": "MACHINE_OWNED",
-      "state": "MERGED_POST_MERGE_CANONICAL_OBSERVATION_PENDING",
-      "pull_request": 107,
-      "merge_commit": "1cf24e3faddbe62bfea3db700145b39c3756d459",
-      "premerge_validation_run": 33093900082,
-      "premerge_validation": "11_OF_11_PRESCAN_56_OF_56_FULL_PASS",
-      "direct_task_marker_observed": false,
-      "post_merge_main_validation": "UNOBSERVED",
-      "authority_effect": false,
-      "duplicate_work_prohibited": true,
-      "session_dependency": false,
-      "required_next_transition": "observe exact post-merge main canonical run; preserve bounded authority; then reconcile existing StegGuardian downstream lane"
     }
   ],
   "active_independent_workloads": [
@@ -231,47 +229,34 @@
     }
   ],
   "canonical_validation_state": {
-    "evidence_class": "LATEST_FULLY_OBSERVED_RELEVANT_CANONICAL_SCAN",
-    "run_id": 33035666229,
-    "head_sha": "b9399d80ebc3ffbd5639db96fc2d8332b6f7eb28",
+    "evidence_class": "LATEST_FULLY_OBSERVED_EXACT_MAIN_CANONICAL_SCAN",
+    "run_id": 33118691192,
+    "head_sha": "925b4f7a1346ce3f9516224daabe9d2467be2c6d",
     "event": "push",
-    "overall_status": "FAIL_CLOSED",
-    "passed_checks": 55,
+    "overall_status": "PASS",
+    "passed_checks": 56,
     "total_checks": 56,
-    "failed_checks": 1,
+    "failed_checks": 0,
     "skipped_checks": 0,
-    "canonical_prescan": "OBSERVED_WITH_RUN_LATER_CANCELLED_AFTER_REPORT_PERSISTED",
-    "aggregate_failure": "scripts/check_admissibility_automation_handoff.py",
-    "directly_observed_child_failures": [
-      "TA-14 route-complete evidence manifest bind_commit work_path missing: docs/commit-boundary-binding.md"
-    ],
-    "direct_repairs_installed": [
-      "e7ca41377316110d19d0baa075596256124b47c0 bind_commit rebound to docs/formalisms/commit-boundary-binding-predicate.md",
-      "fdb401ab7dcac7868db99913640a271718285a15 TA-14 coordination handoff updated"
-    ],
-    "publication_observation": {
+    "canonical_prescan": "11_OF_11_PASS",
+    "aggregate_failure": null,
+    "directly_observed_child_failures": [],
+    "exact_head_publication": {
+      "goal5": "PASS",
       "external_framework_source_routes": "36_OF_36_PASS",
-      "discovery_activation_evidence": "ACTIVATION_EVIDENCE_COMPLETE_AT_PRIOR_FULLY_OBSERVED_PUBLICATION_RUN_33033268340"
+      "external_framework_built_routes": "36_OF_36_PASS",
+      "pages_build": "PASS",
+      "pages_deploy": "PASS",
+      "external_framework_public_routes": "36_OF_36_PASS",
+      "discovery_activation_evidence": "ACTIVATION_EVIDENCE_COMPLETE"
     },
-    "current_main_validation": "POST_MERGE_EXACT_HEAD_CANONICAL_OBSERVATION_REQUIRED",
-    "current_main_at_recording": "1cf24e3faddbe62bfea3db700145b39c3756d459",
+    "generated_stegpay_current_generation": "COMPLETE_BOUNDED_RECONCILIATION",
+    "framework_specific_terminal_evaluations_last_directly_observed": "7_OF_36",
+    "remaining_framework_evaluations": 29,
     "release_authority": false,
     "missing_evidence_implies_success": false,
     "session_dependency": false,
-    "latest_premerge_success": {
-      "run_id": 33093900082,
-      "head_sha": "3a1c357f9e726320f47f29c4cf910185c3c14610",
-      "scope": "PR_HEAD",
-      "overall_status": "PASS",
-      "canonical_prescan": "11_OF_11_PASS",
-      "passed_checks": 56,
-      "total_checks": 56,
-      "failed_checks": 0,
-      "skipped_checks": 0,
-      "direct_pa_int_011_marker_observed": false,
-      "merge_commit": "1cf24e3faddbe62bfea3db700145b39c3756d459",
-      "post_merge_main_validation": "UNOBSERVED"
-    }
+    "current_main_validation": "EXACT_PASS_OBSERVED_AT_925B4F7A_HANDOFF_RECONCILIATION_MOVED_MAIN_RELEASE_CANDIDATE_REQUIRES_OWN_EXACT_PROOF"
   },
   "policy": {
     "handoff_is_source_of_truth": true,
@@ -295,13 +280,12 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "GENERATED_STEGPAY_PR107_MERGED",
+    "event_type": "EXACT_REPOSITORY_CANONICAL_PASS_OBSERVED_AND_PA_INT_011_RESTORED_COMPLETE",
     "progress_effect": true,
     "authority_effect": false,
-    "observed_run_id": 33093900082,
-    "observed_run_head": "3a1c357f9e726320f47f29c4cf910185c3c14610",
-    "current_source_commit": "1cf24e3faddbe62bfea3db700145b39c3756d459",
-    "required_next_transition": "observe exact post-merge main canonical run; repair only direct residual failure; continue worker-owned framework evaluations"
+    "observed_run_id": 33118691192,
+    "observed_run_head": "925b4f7a1346ce3f9516224daabe9d2467be2c6d",
+    "required_next_transition": "continue worker-owned framework evaluations under issue #66; do not release until terminal/evidence-blocked evaluation closure and exact release-candidate proof"
   },
   "idle_terminal_statement": null,
   "archive_state": "SESSION_CONTINUITY_DURABLE_PROJECT_REMAINS_ACTIVE"
