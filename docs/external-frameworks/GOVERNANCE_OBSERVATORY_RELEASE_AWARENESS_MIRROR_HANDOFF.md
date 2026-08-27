@@ -29,3 +29,19 @@ AEGISAI remains source-only
 ```
 
 Repository-wide canonical validation remains whatever the exact current canonical workflow proves; this bounded target task must not upgrade it.
+
+
+## Validation architecture correction
+
+The first implementation added a dedicated GitHub workflow and produced a successful focused validation run:
+
+```text
+focused_run: 33026153168
+result: SUCCESS
+```
+
+The repository canonical chain then correctly detected that additional active workflow as a violation of the single-workflow architecture through `scripts/check_workflow_sprawl.py`. The dedicated workflow has therefore been removed before merge.
+
+The bounded validator and machine record remain installed, but no second workflow authority is retained. The repository-wide canonical chain remains independently fail-closed until its unrelated canonical repair owners resolve their own failures.
+
+This correction does not promote the release-awareness record into External Framework evaluation, admissibility, standing, proof, certification, execution, custody, or release authority.
