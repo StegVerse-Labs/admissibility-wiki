@@ -117,3 +117,11 @@ execution authority: false
 ```
 
 The repair binds ownership only; it does not promote the proposed fixture or resolve current actor standing.
+
+## 2026-08-26 G-05 repository-path repair
+
+Run `33032869810` narrowed TA-14 standing validation to one stale repository address in the v2 adjudication: G-05 referenced the nonexistent `docs/commit-boundary-binding.md`.
+
+Commit `62fd1f5bbde6e2682695226512586bd35ce009f9` binds G-05 to the existing authoritative `docs/formalisms/commit-boundary-binding-predicate.md`, which directly covers decision-to-transition separation, commit-time authority, live-state admissibility, binding of consequence, and receipt requirements.
+
+The disposition remains PARTIAL/EVIDENCE_MAPPING. This path correction does not promote TA-14 implementation standing, independent reconstruction, certification, or execution authority.
