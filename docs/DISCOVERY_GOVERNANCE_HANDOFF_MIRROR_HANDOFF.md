@@ -295,6 +295,18 @@ ce4881ae70c833343bb7ddc0795fe2dd8ac91248
 
 These repairs do not retroactively change run `33015834279`; its activation-evidence receipt remains fail-closed historical evidence. A successor canonical build/deploy/public run must now show `publication_complete=true` and `ACTIVATION_EVIDENCE_COMPLETE` before the discovery goal can be terminalized.
 
+## 2026-08-26 run 33024753851 near-terminal observation
+
+Run `33024753851` at `cec94df13fb4812fffb2ed581a8b3f83a215700b` established canonical pre-scan 11/11 PASS, full validation 55/56 PASS, build-pages PASS, deploy-pages PASS, 36/36 External Framework source/build/public routes PASS, and all five discovery-governance public routes PASS.
+
+Discovery publication itself was `WORKFLOW_OBSERVED_PUBLICATION_COMPLETE`, with Pages deployment observed and exact standalone/embedded closure equality. Activation evidence remained fail-closed only because `public_activation_publication_complete=false`.
+
+The one repository-wide validation failure was the aggregate automation handoff, narrowed to two child defects now repaired: TA-14 lacked the exact `REVIEW_GOVERNANCE_OBJECTS_IMPLEMENTED` handoff marker (`626c706440bcda4bf2c6ff516691af4865a69142`), and ArquivoNulo lacked the exact `anchored state != current reality` doctrine token (`336979ad5eb4f706abf8a4402c6832b85ca86a32`).
+
+The public-activation receipt also had a structural completion bug: the base writer never emitted `publication_complete`, while the composite writer required the field to already be `true`. `8c4184b7c50ddc79999ad61a1134452dbfd39bf0` now computes bounded base publication completeness explicitly; `806520a9cecacccb4e2cb2cffc2157a07e89c331` adds a deterministic regression assertion.
+
+Historical run `33024753851` remains fail-closed evidence. A successor hosted run is required for canonical and activation-evidence promotion.
+
 ## Remaining work
 
 Destination: `StegVerse-Labs/admissibility-wiki`
