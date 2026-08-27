@@ -65,6 +65,26 @@
       },
       "next_owner": "StegVerse-Labs/admissibility-wiki issue #50 and canonical workflow",
       "session_dependency": false
+    },
+    {
+      "task_id": "ADMISSIBILITY-GOVOBS-V0.1.0-RELEASE-AWARENESS-104",
+      "owner": "StegVerse-Labs/admissibility-wiki issue #104",
+      "handoff": "docs/external-frameworks/GOVERNANCE_OBSERVATORY_RELEASE_AWARENESS_MIRROR_HANDOFF.md",
+      "state": "COMPLETE_VALIDATED_MERGED",
+      "claim_state": "RELEASED_COMPLETE",
+      "pull_request": 106,
+      "merge_commit": "cd8008638b254fa7e7bca854b1501ab49d002f44",
+      "pre_merge_canonical_run": 33035233431,
+      "pre_merge_awareness_validator": "PASS",
+      "post_merge_canonical_run": 33035436710,
+      "post_merge_awareness_validator": "PASS",
+      "workflow_sprawl": "PASS",
+      "repository_wide_canonical_state_at_completion": "55_OF_56_FAIL_CLOSED",
+      "unrelated_remaining_failure_at_completion": "scripts/check_admissibility_automation_handoff.py / TA-14 route-complete evidence manifest",
+      "external_framework_protocol_modified": false,
+      "framework_evaluation_promoted": false,
+      "authority_effect": false,
+      "session_dependency": false
     }
   ],
   "active_support_workloads": [
@@ -139,23 +159,6 @@
       },
       "pages_build": "PASS_AT_74BF7ED",
       "pages_deploy": "PASS_AT_74BF7ED"
-    },
-    {
-      "task_id": "ADMISSIBILITY-GOVOBS-V0.1.0-RELEASE-AWARENESS-104",
-      "owner": "StegVerse-Labs/admissibility-wiki issue #104",
-      "handoff": "docs/external-frameworks/GOVERNANCE_OBSERVATORY_RELEASE_AWARENESS_MIRROR_HANDOFF.md",
-      "workload": "Record Governance Observatory v0.1.0 as bounded non-authorizing release awareness through the repository's single canonical validation architecture",
-      "execution_class": "PARALLEL_SAFE_RELEASE_AWARENESS",
-      "claim_state": "ACTIVE",
-      "state": "IMPLEMENTATION_VALIDATION_IN_PROGRESS",
-      "duplicate_work_prohibited": true,
-      "external_framework_protocol_modified": false,
-      "framework_evaluation_promoted": false,
-      "canonical_single_workflow_preserved": true,
-      "issue_50_ta14_lane_untouched": true,
-      "riverbraid_lane_untouched": true,
-      "session_dependency": false,
-      "release_condition": "bounded validator PASS in canonical workflow, merge, post-merge observation, claim release, and target evidence returned to Governance Observatory issue #10"
     }
   ],
   "active_independent_workloads": [
@@ -267,11 +270,15 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "GOVERNANCE_OBSERVATORY_V0_1_0_RELEASE_AWARENESS_REBASED_TO_CURRENT_MAIN",
+    "event_type": "GOVERNANCE_OBSERVATORY_V0_1_0_RELEASE_AWARENESS_COMPLETE_VALIDATED_MERGED",
     "progress_effect": true,
     "authority_effect": false,
     "source_release": "v0.1.0",
-    "required_next_transition": "observe canonical branch run, require migrated awareness validator PASS, merge if no awareness-owned failure, preserve unrelated canonical fail-closed state"
+    "target_pr": 106,
+    "target_merge": "cd8008638b254fa7e7bca854b1501ab49d002f44",
+    "post_merge_run": 33035436710,
+    "repository_wide_state_at_completion": "55_OF_56_FAIL_CLOSED",
+    "required_next_transition": "continue existing canonical repair owners; no Governance Observatory release-awareness work remains"
   },
   "idle_terminal_statement": null,
   "archive_state": "NOT_READY_WHILE_SUCCESSOR_CANONICAL_RELEASE_FRAMEWORK_EVALUATION_AND_ACTIVATION_REMAIN"
