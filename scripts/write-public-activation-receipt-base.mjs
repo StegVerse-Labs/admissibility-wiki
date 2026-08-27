@@ -160,6 +160,11 @@ const documentationMeshClosure = {
   continuation_source: 'docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md'
 };
 
+const basePublicationComplete = Object.values(checks).every((item) => ['verified_by_workflow', 'verified_by_writer', 'verified_by_writer_mock'].includes(item?.status))
+  && radiologyActivationClosure.all_required_public_routes_verified === true
+  && verificationAuthorityActivationClosure.all_required_public_routes_verified === true
+  && conceptualInheritanceActivationClosure.all_required_public_routes_verified === true;
+
 const receipt = {
   schema: 'admissibility_wiki_public_activation_receipt.v7',
   receipt_id: `public-activation.workflow.${runId || 'unknown'}.${runAttempt || '0'}`,
@@ -169,6 +174,7 @@ const receipt = {
   activation_closures: { ai_led_radiology: radiologyActivationClosure, verification_execution_authority: verificationAuthorityActivationClosure, conceptual_inheritance: conceptualInheritanceActivationClosure, documentation_mesh: documentationMeshClosure },
   linked_receipts: { optimization_target_publication_verification: optimizationTargetReceipt ? optimizationReceiptPath : null, external_translation_reconstruction: 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json', ai_led_radiology_execution: 'reports/ai-led-radiology-execution-receipt.json' },
   authority_granted: false, release_authority_granted: false, downstream_mutation_authority_granted: false,
+  publication_complete: basePublicationComplete,
   manual_tasks_required: [], user_manual_action_required: false,
   non_claims: ['This receipt records workflow-observed public route reachability only.','This receipt does not prove admissibility.','This receipt does not grant publication authority.','This receipt does not create provider governance.','This receipt does not create external indexing.','This receipt does not certify clinical performance or authorize medical practice.','This receipt does not convert verification or certification into execution authority.','This receipt does not decide authorship, ownership, infringement, derivation, or origin-claim standing.','Documentation-mesh reachability does not grant cross-repository authority or standing.','This receipt does not replace GitHub Pages deployment records.'],
   next_action: 'Retain this uploaded receipt as bounded automated evidence. Source-blocked observations remain automation-owned and create no user task.'
