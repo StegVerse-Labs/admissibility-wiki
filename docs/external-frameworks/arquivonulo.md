@@ -130,7 +130,7 @@ admissible_continuation(t)
 
 Therefore:
 
-Canonical boundary shorthand: **valid proof != continuing admissibility**.
+Canonical boundary shorthand: **valid proof != continuing admissibility**. A second canonical shorthand is **anchored state != current reality**.
 
 ```text
 valid_proof(t) != continuing_admissibility(t)
