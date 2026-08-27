@@ -133,3 +133,12 @@ Hosted run `33033268340` proved ArquivoNulo's prior repair PASS and narrowed the
 Commit `e46503df4c8101369b08167e6f9af306a2a82972` binds G-08 to the existing machine-readable registry `static/ontology/canonical-decision-enum-registry.v0.1.json`. All other TA-14 adjudication work paths were directly rechecked and exist.
 
 The finding remains PARTIAL/EVIDENCE_MAPPING. This path repair does not claim TA-14 standing, implementation equivalence, independent reconstruction, certification, or execution authority.
+
+
+## 2026-08-26 bind_commit route-manifest path repair
+
+Successor run `33035666229` advanced past the earlier G-08 adjudication-path defect and narrowed the sole repository canonical failure to the route-complete evidence manifest: `bind_commit` still referenced nonexistent `docs/commit-boundary-binding.md`.
+
+Commit `e7ca41377316110d19d0baa075596256124b47c0` rebinds `bind_commit` to the existing authoritative `docs/formalisms/commit-boundary-binding-predicate.md`, matching the already-repaired G-05 adjudication work path. The component remains `OPEN`; this path correction does not claim route-complete evidence, TA-14 standing, implementation equivalence, independent reconstruction, certification, or execution authority.
+
+A successor exact canonical run is required. Historical run `33035666229` remains `55/56 FAIL_CLOSED` evidence and is not retroactively rewritten.
