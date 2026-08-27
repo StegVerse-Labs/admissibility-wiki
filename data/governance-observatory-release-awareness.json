@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "admissibility_wiki.governance_observatory.release_awareness",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "source_repository": "StegVerse-Labs/governance-observatory",
+  "source_release": {
+    "state": "RELEASED",
+    "version": "0.1.0",
+    "tag_name": "v0.1.0",
+    "release_id": 377486341,
+    "release_url": "https://github.com/StegVerse-Labs/governance-observatory/releases/tag/v0.1.0",
+    "release_state_head": "31afc11745507e4764c2c9f44be1e5143e920ef1",
+    "release_workflow_run": 33025454602
+  },
+  "local_effect": {
+    "state": "RELEASE_AWARENESS_ONLY",
+    "external_framework_protocol_modified": false,
+    "framework_evaluation_promoted": false,
+    "admissibility_determined": false,
+    "standing_granted": false,
+    "proof_granted": false,
+    "release_authorized": false,
+    "execution_authorized": false,
+    "custody_recorded": false
+  },
+  "collision_control": {
+    "external_framework_second_page_lane_untouched": true,
+    "issue_50_canonical_validation_lane_untouched": true,
+    "riverbraid_lane_untouched": true
+  },
+  "aegisai_boundary": {
+    "source_only": true,
+    "runtime_validated": false,
+    "framework_promoted": false
+  },
+  "validation_architecture": {
+    "canonical_single_workflow_preserved": true,
+    "dedicated_workflow_created": false,
+    "validator_registered_via_workflow_sprawl_migrated_checks": true,
+    "earlier_focused_validation_run": 33026153168,
+    "earlier_focused_validation_conclusion": "success"
+  },
+  "manual_user_action_required": false
+}
