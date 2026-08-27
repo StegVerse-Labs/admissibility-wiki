@@ -227,6 +227,20 @@ execution authority granted: false
 
 The reference docket and deterministic standing-revalidation fixture are installed, but public observation and the external standing-reconstruction capability remain separately unresolved. Repository ownership of this goal does not promote the fixture, standing, certification, or execution authority.
 
+## TA-14 review governance objects
+
+```text
+REVIEW_GOVERNANCE_OBJECTS_IMPLEMENTED
+reference docket: static/data/governed-framework-reviews/ta-14.reference-docket.v1.json
+reference docket page: docs/external-frameworks/ta-14-public-review-docket.md
+standing state: PUBLICLY_UNRESOLVED
+verified capabilities: 0
+live standing test: NOT_RUN
+execution authority: false
+```
+
+This marker records the installed governed review objects only. It does not promote TA-14 standing, capability, certification, or execution authority.
+
 ## Conectrr Internal Development Path
 
 ```text
