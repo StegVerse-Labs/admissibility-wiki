@@ -375,3 +375,37 @@ The last fully observed repository-wide canonical baseline remains the historica
 ### Archive interpretation
 
 A conversation may be archived only when every unique requirement from that conversation is durably represented in the applicable scoped handoffs/orchestration/global coordination index. Archiving a conversation does not close `EXT-FRAMEWORK-SECOND-PAGE-36`, MindForge provenance recovery, issue #50 canonical validation, Riverbraid, HIL succession, optimization-target execution, or any later certification evidence dependency. Project state remains whatever the current scoped authority records say.
+
+## 2026-08-26 session consolidation — canonical validation / external frameworks / discovery activation
+
+This section preserves the complete continuation state from the canonical-validation / External Frameworks execution session. It supersedes older session-only claims but does not erase unrelated active lanes.
+
+```text
+latest fully observed relevant run: 33033268340
+run head: 685b5d90599ed0589560ef6d497f163e860cd459
+canonical pre-scan: 11/11 PASS
+full canonical validation: 55/56 PASS, 1 FAIL, 0 skipped
+sole observed failure: TA-14 G-08 stale work_path
+External Framework source routes: 36/36 PASS
+External Framework built routes/content: 36/36 PASS
+External Framework deployed public routes/content: 36/36 PASS
+Discovery Governance public routes: 5/5 PASS
+Discovery Governance activation evidence: ACTIVATION_EVIDENCE_COMPLETE
+Pages build: PASS
+Pages deploy: PASS
+repository release authority: false
+```
+
+TA-14 path corrections from this session:
+- G-05 now binds to `docs/formalisms/commit-boundary-binding-predicate.md`.
+- G-08 now binds to `static/ontology/canonical-decision-enum-registry.v0.1.json`.
+- all eighteen adjudication work paths were directly checked after G-08 repair; G-08 was the only missing path at the observed failure point.
+- successor canonical proof after G-08 remains required; a later moving `main` or unrelated workflow success must not substitute.
+
+Discovery Governance activation proof is no longer the residual blocker at the observed run. Run 33033268340 emitted `ACTIVATION_EVIDENCE_COMPLETE` with canonical dependency chain, proof receipt, four outcomes, five public routes, publication state, Pages deployment, standalone/embedded closure equality, linked publication receipt, public activation publication completion, run identity, input digests, and authority boundary all PASS.
+
+External Frameworks remain a separate denominator from route/publication proof: source/navigation/build/deploy/public route functionality is 36/36 observed, while framework-specific terminal evaluation remains 7/36 last directly observed, with 29 incomplete and worker ownership preserved under issues #62-#65 and issue #50 collision control. MindForge source-date provenance remains separately unresolved under issue #50; 16 bounded candidates were hash-checked with zero exact source-capture matches, so source dates remain UNVERIFIED.
+
+Current repository head may move for unrelated active lanes such as Governance Observatory release awareness. Exact-head canonical validation must be observed before any repository-wide PASS, release, tag, propagation, or COMPLETE claim.
+
+Continuation does not require this ChatGPT session. Use this handoff, the orchestration state, the External Frameworks worker handoff/registry, TA-14 coordination handoff, MindForge review handoff, and live workflow evidence.
