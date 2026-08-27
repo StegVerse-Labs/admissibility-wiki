@@ -6,24 +6,45 @@ Goal ID: `generated-stegpay-bounded-admissibility-projection`
 
 Preserve the verified, test-only StegPay producer-consumer propagation as bounded evidence without granting admissibility determination, publication, release, execution, custody, payment, or entitlement authority.
 
-## Originating session goal
-
-Continue StegVerse operation through repository-native AI delegation and propagate verified generated StegPay evidence through Site, Publisher, admissibility-wiki, and StegGuardian Wiki.
-
-## Repository and branch
+## Repository and canonical owner
 
 - Repository: `StegVerse-Labs/admissibility-wiki`
-- Branch: `main`
-
-## Canonical owner and claim
-
+- Branch authority: `main`
 - Owner: Wiki public-anchor internal task executor
 - Task: `PA-INT-011`
 - Registry: `static/status/wiki-public-anchor-internal-task-registry.generated-stegpay-extension.json`
 - Role: validation and bounded interpretation
 - Claim state: `MACHINE_OWNED`
-- Claim release condition: internal executor records `GENERATED_STEGPAY_ADMISSIBILITY_IMPORT=PASS`
-- Collision boundary: no competing workflow; use the existing canonical validation and task-executor lane
+- Collision boundary: reuse this lane; do not create a competing generated-Ste gPay task or workflow.
+
+The registry `extension_id` remains `generated-stegpay-bounded-projection-2026-08-02`. It identifies the immutable registry extension/task lane rather than a particular upstream evidence generation. The task identity `PA-INT-011` is therefore retained while its bounded evidence binding is refreshed.
+
+## Current upstream evidence
+
+Publisher source:
+- repository: `GCAT-BCAT-Engine/Publisher`
+- merge commit: `cf224d1ee78e16c259db3c6349c02c2444469509`
+- artifact: `data/generated-stegpay-site-ingestion.json`
+- Git blob SHA: `87c4a198239c5bd951f8133c11d5c591c1e9d947`
+- canonical JSON SHA-256: `bbae4456bb09de7eaa3b9782c000fdef106ad035c1f2dee64f62e4102df302a1`
+
+Canonicalization is the existing Publisher StegPay hash semantic:
+`json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)` encoded as UTF-8 and SHA-256 hashed.
+
+Site / StegOps chain:
+- source generation: `2026-08-27T11:58:18Z`
+- Site receipt canonical JSON SHA-256: `687d06eb93693d0bd78f00cdefd465d23d92b54c0bbfa7bc0a04b1364f9a452f`
+- propagation SHA-256: `e59e71bf31879f0bf29a8356f8027304a94a4dee59d3c0be35c3ecc505e7cec9`
+- consumer receipt SHA-256: `b8084ecc9821eb7738e4dccffd239185a072e0bc630e71c72906098a830cf515`
+- event ID: `09373107-5e4b-483e-85de-9e26c126fc0c`
+- provider ID: `pi_test_123`
+
+The superseded active bindings were:
+- Publisher projection: `29366d3597dd98b868a46efbcb4ba32bd8a750e1a684ed382775a657e5bfc66a`
+- Site receipt: `45e8e8849f6d0967de66da6bc45f874c33fcea703a80ba165f45ffa6fecd81d1`
+- propagation: `aecfd09a016e1daaa32b66f0e7aa2bc2681edc70be14f25637fa95df2a1468e3`
+
+Those values are historical provenance only and must not remain the active projection state.
 
 ## Installed files
 
@@ -31,14 +52,22 @@ Continue StegVerse operation through repository-native AI delegation and propaga
 - `scripts/check_generated_stegpay_publisher_projection.py`
 - `static/status/wiki-public-anchor-internal-task-registry.generated-stegpay-extension.json`
 
-## Evidence chain
+## Preserved authority boundaries
 
-- Publisher projection hash: `29366d3597dd98b868a46efbcb4ba32bd8a750e1a684ed382775a657e5bfc66a`
-- Site receipt hash: `45e8e8849f6d0967de66da6bc45f874c33fcea703a80ba165f45ffa6fecd81d1`
-- StegOps propagation hash: `aecfd09a016e1daaa32b66f0e7aa2bc2681edc70be14f25637fa95df2a1468e3`
-- Event ID: `09373107-5e4b-483e-85de-9e26c126fc0c`
+The projection must continue to assert:
+- `admissibility_determination_granted: false`
+- `publication_authorized: false`
+- `release_authorized: false`
+- `execution_authorized: false`
+- `custody_recorded: false`
+- `payment_is_entitlement: false`
+- `transport_is_authority: false`
 
-## Validation
+A validator PASS is bounded evidence only. It does not establish public publication, admissibility, certification, release, custody, runtime execution, or payment authority.
+
+## Validation contract
+
+Required repository-native checks:
 
 ```text
 python scripts/check_generated_stegpay_publisher_projection.py
@@ -52,26 +81,23 @@ Expected task marker:
 GENERATED_STEGPAY_ADMISSIBILITY_IMPORT=PASS
 ```
 
-## Current state
+Canonical hosted lane remains `.github/workflows/validate-chain-continuation.yml`; no generated-Ste gPay-specific competing workflow is authorized.
 
-- Implementation: complete
-- Static validator: complete
-- Internal task registration: complete
-- Internal executor observation: pending
-- Canonical workflow observation: pending
-- Public publication: not authorized
-- Release: not authorized
+## Lifecycle state
+
+Current branch implementation:
+- IMPLEMENTED: true
+- VALIDATED: true for implementation head `3a1c357f9e726320f47f29c4cf910185c3c14610` via canonical run `33093900082`
+- MERGED: false
+- DEPLOYED: false for this bounded projection update
+- ACTIVATED: false
+- OBSERVED: canonical PR run `33093900082` observed; pre-scan `11/11 PASS`; full validation `56/56 PASS`, `0 failed`, `0 skipped`
+- RECONSTRUCTED: false/not claimed
+- RELEASED: false
+- COMPLETE: false
+
+No user action is required.
 
 ## Next executable action
 
-The repository-owned internal task executor observes `PA-INT-011`, persists its execution report, and the canonical workflow validates the aggregate without creating another workflow.
-
-## Session consolidation
-
-MERGED INTO: `StegVerse-Labs/admissibility-wiki/docs/GENERATED_STEGPAY_PROJECTION_MIRROR_HANDOFF.md`
-
-All project-specific continuation requirements for the bounded admissibility projection are preserved here and in the task registry. Personal medical information from the originating conversation is intentionally excluded from this public repository.
-
-## Archive condition
-
-This project subgoal is archive-safe when the internal execution report and canonical workflow evidence are durable. No prior chat context is required for implementation continuation.
+PR `#107` is the existing-lane reconciliation. Implementation head `3a1c357f9e726320f47f29c4cf910185c3c14610` passed canonical run `33093900082` with pre-scan `11/11 PASS` and full validation `56/56 PASS`. The run did not independently emit the PA-INT-011 marker in its top-level log, so do not substitute the aggregate PASS for a separately observed direct task-executor marker. Validate the final documentation-only successor head, merge only if current/green, observe the main-branch canonical run, then continue to `StegVerse-002/stegguardian-wiki` without creating a duplicate generated-Ste gPay lane.
