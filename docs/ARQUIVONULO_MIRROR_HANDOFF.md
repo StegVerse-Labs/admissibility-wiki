@@ -227,3 +227,11 @@ Do not infer certification, endorsement, integration, execution authority, custo
 ## Archive posture
 
 The complete thread is ready for archiving without any additional part of the thread needed to move forward.
+
+## 2026-08-26 public-route report-path binding repair
+
+Run `33032869810` showed the ArquivoNulo bounded evaluator failing only because its meta-validator requires the public-route observer source to expose the canonical report path as a literal contract token. The observer previously constructed the identical path from `Path` components.
+
+Commit `02ceed78e1438168d5d8613edb93569826893db4` introduces `PUBLICATION_REPORT = "reports/arquivonulo-public-route-observation.json"` and derives the output Path from that constant. Runtime behavior and authority posture are unchanged.
+
+A successor canonical run is required before promotion.
