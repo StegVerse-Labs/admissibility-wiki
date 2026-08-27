@@ -380,3 +380,39 @@ Latest directly observed publication/runtime proof is run `33033268340`: source-
 Framework-specific terminal evaluation remains `7_OF_36` last directly observed; `29` remain incomplete. Worker/collision ownership remains authoritative in `EXTERNAL_FRAMEWORK_EVALUATION_WORKERS_MIRROR_HANDOFF.md`, `worker-task-registry.json`, issues #62-#65, and issue #50. Do not absorb worker-owned framework pages without explicit ownership transition.
 
 Release remains prohibited until framework evaluations are terminal or legitimately evidence-blocked, repository-wide canonical validation passes for the exact candidate, and release/propagation/activation evidence exists. Session dependency for continuation is false once this handoff and the global Projects coordination documents are updated.
+
+
+## 2026-08-27 exact repository-wide canonical PASS — run 33118691192
+
+Exact `main` head `925b4f7a1346ce3f9516224daabe9d2467be2c6d` produced the first directly observed repository-wide canonical PASS after the TA-14 path repairs and Generated StegPay merge reconciliation.
+
+```text
+run: 33118691192
+head: 925b4f7a1346ce3f9516224daabe9d2467be2c6d
+canonical pre-scan: 11/11 PASS
+full canonical validation: 56/56 PASS
+failed: 0
+skipped: 0
+Goal 5 aggregate: PASS
+publication-proof contract: PASS
+framework associations: 36/36
+source-route contract: PASS
+Docusaurus build: PASS
+built-route verification: PASS
+Pages artifact: PASS
+deploy-pages: PASS
+public-route/content verification: PASS
+Discovery Governance activation closure: PASS
+Discovery Governance activation evidence: ACTIVATION_EVIDENCE_COMPLETE
+```
+
+Artifacts include:
+- full validation report `9665746417`, digest `sha256:ec266fce6e7e19b4e662179d8bba63fbaf27e0cbd439ad648db233373e4515df`;
+- source-route contract `9665757372`, digest `sha256:d96143aa6de56d0375bc5380aaa4826cf0be49e97c589e19f0385e5f20c2936a`;
+- built-route verification `9665806310`, digest `sha256:d024e7ffbfc795a8f5a4f3b249eaf5c08589b8d2fa7f75fa601bf91fa959d19e`;
+- public-route verification `9665839609`, digest `sha256:3de0ea31ad15898311c3c97531c7574d3b2b02d49b302ae6909cdaf532c6e268`;
+- public activation receipt `9665838987`, digest `sha256:e06ecb95a9f08b001b7625d0897385ef4260465be4244a87cc3c340b066c6a51`.
+
+This closes the External Framework publication/exact-canonical-proof gate for that exact head. It does **not** promote framework-specific terminal evaluation: issue #66 remains the denominator authority, with the last directly observed state still `7/36` terminal and `29` incomplete. Release remains unauthorized until all framework evaluations are terminal or legitimately evidence-blocked and the exact release candidate satisfies the separate release/propagation contract.
+
+No worker-owned framework evaluation file is absorbed by this transition.
