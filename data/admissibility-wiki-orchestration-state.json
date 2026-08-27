@@ -3,10 +3,10 @@
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "task_sequence": 12,
-  "task_sequence_label": "SESSION_CONSOLIDATED_55_OF_56_G08_REPAIRED_DISCOVERY_ACTIVATION_COMPLETE_EXTERNAL_ROUTES_36_OF_36",
+  "task_sequence": 13,
+  "task_sequence_label": "TA14_BIND_COMMIT_MANIFEST_PATH_REPAIRED_SUCCESSOR_CANONICAL_PENDING",
   "work_state": "REPOSITORY_ACTIVE_SUCCESSOR_CANONICAL_PROOF_AND_FRAMEWORK_EVALUATION_REMAIN",
-  "system_health": "BUILD_DEPLOY_PUBLICATION_HEALTHY_CANONICAL_LAST_OBSERVED_55_OF_56_FAIL_CLOSED_G08_REPAIRED",
+  "system_health": "BUILD_DEPLOY_PUBLICATION_HEALTHY_CANONICAL_55_OF_56_FAIL_CLOSED_BIND_COMMIT_REPAIRED",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
   "repository_heartbeat": 15,
   "time_role": "NO_TIMER_OWNERSHIP",
@@ -213,37 +213,29 @@
   ],
   "canonical_validation_state": {
     "evidence_class": "LATEST_FULLY_OBSERVED_RELEVANT_CANONICAL_SCAN",
-    "run_id": 33033268340,
-    "head_sha": "685b5d90599ed0589560ef6d497f163e860cd459",
+    "run_id": 33035666229,
+    "head_sha": "b9399d80ebc3ffbd5639db96fc2d8332b6f7eb28",
     "event": "push",
     "overall_status": "FAIL_CLOSED",
     "passed_checks": 55,
     "total_checks": 56,
     "failed_checks": 1,
     "skipped_checks": 0,
-    "canonical_prescan": "11_OF_11_PASS",
+    "canonical_prescan": "OBSERVED_WITH_RUN_LATER_CANCELLED_AFTER_REPORT_PERSISTED",
     "aggregate_failure": "scripts/check_admissibility_automation_handoff.py",
     "directly_observed_child_failures": [
-      "TA-14 G-08 adjudication work_path missing: static/data/canonical-decision-enum-registry.json"
+      "TA-14 route-complete evidence manifest bind_commit work_path missing: docs/commit-boundary-binding.md"
     ],
     "direct_repairs_installed": [
-      "e46503df4c8101369b08167e6f9af306a2a82972 G-08 rebound to static/ontology/canonical-decision-enum-registry.v0.1.json",
-      "82aff3e4a34eafe1b0804180fd217fefd751d578 TA-14 coordination handoff reconciliation"
+      "e7ca41377316110d19d0baa075596256124b47c0 bind_commit rebound to docs/formalisms/commit-boundary-binding-predicate.md",
+      "fdb401ab7dcac7868db99913640a271718285a15 TA-14 coordination handoff updated"
     ],
     "publication_observation": {
-      "build_pages": "PASS",
-      "deploy_pages": "PASS",
       "external_framework_source_routes": "36_OF_36_PASS",
-      "external_framework_built_routes": "36_OF_36_PASS",
-      "external_framework_public_routes": "36_OF_36_PASS",
-      "discovery_publication": "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
-      "discovery_public_routes": "5_OF_5_PASS",
-      "discovery_embedded_closure_exact_match": true,
-      "discovery_activation_evidence": "ACTIVATION_EVIDENCE_COMPLETE",
-      "public_activation_publication_complete": true
+      "discovery_activation_evidence": "ACTIVATION_EVIDENCE_COMPLETE_AT_PRIOR_FULLY_OBSERVED_PUBLICATION_RUN_33033268340"
     },
-    "current_main_validation": "SUCCESSOR_CANONICAL_PROOF_REQUIRED_AFTER_G08_REPAIR_AND_LATER_UNRELATED_MAIN_MOVEMENT",
-    "current_main_at_recording": "b9399d80ebc3ffbd5639db96fc2d8332b6f7eb28",
+    "current_main_validation": "SUCCESSOR_CANONICAL_PROOF_REQUIRED_AFTER_BIND_COMMIT_PATH_REPAIR",
+    "current_main_at_recording": "fdb401ab7dcac7868db99913640a271718285a15",
     "release_authority": false,
     "missing_evidence_implies_success": false,
     "session_dependency": false
@@ -270,13 +262,13 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "SESSION_CONSOLIDATION_CANONICAL_STATE_RECONCILED",
+    "event_type": "TA14_BIND_COMMIT_ROUTE_MANIFEST_PATH_REPAIRED",
     "progress_effect": true,
     "authority_effect": false,
-    "observed_run_id": 33033268340,
-    "observed_run_head": "685b5d90599ed0589560ef6d497f163e860cd459",
-    "current_source_commit": "b9399d80ebc3ffbd5639db96fc2d8332b6f7eb28",
-    "required_next_transition": "observe exact successor canonical scan after G-08 repair; consume only direct residual failures; continue 29 worker-owned framework evaluations"
+    "observed_run_id": 33035666229,
+    "observed_run_head": "b9399d80ebc3ffbd5639db96fc2d8332b6f7eb28",
+    "current_source_commit": "fdb401ab7dcac7868db99913640a271718285a15",
+    "required_next_transition": "observe exact successor canonical run; repair only direct residual failure if any; continue worker-owned framework evaluations"
   },
   "idle_terminal_statement": null,
   "archive_state": "SESSION_CONTINUITY_DURABLE_PROJECT_REMAINS_ACTIVE"
