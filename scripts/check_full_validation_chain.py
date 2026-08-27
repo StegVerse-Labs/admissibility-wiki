@@ -71,6 +71,7 @@ CHECKS = [
     ("Validate iOS workflow mirror status", "scripts/check_ios_workflow_mirror_status.py"),
     ("Validate admissibility automation handoff", "scripts/check_admissibility_automation_handoff.py"),
     ("Validate CI evidence state", "scripts/check_ci_evidence.py"),
+    ("Validate bounded generated StegPay projection", "scripts/check_generated_stegpay_publisher_projection.py"),
     ("Resolve Guardian destination", "scripts/check_guardian_destination.py"),
 ]
 
