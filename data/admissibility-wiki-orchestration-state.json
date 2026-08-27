@@ -1,12 +1,12 @@
 {
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "task_sequence": 10,
-  "task_sequence_label": "LATEST_CANONICAL_49_OF_56_OBSERVED_DIRECT_REPAIRS_PENDING_SUCCESSOR_PROOF",
-  "work_state": "REPOSITORY_ACTIVE_CANONICAL_REPAIR_AND_FRAMEWORK_EVIDENCE_PENDING",
-  "system_health": "PUBLICATION_PATH_OBSERVED_CANONICAL_VALIDATION_FAIL_CLOSED",
+  "task_sequence": 11,
+  "task_sequence_label": "LATEST_CANONICAL_55_OF_56_OBSERVED_FINAL_DIRECT_REPAIRS_PENDING_SUCCESSOR",
+  "work_state": "REPOSITORY_ACTIVE_FINAL_CANONICAL_REPAIR_PENDING_SUCCESSOR_PROOF",
+  "system_health": "BUILD_DEPLOY_AND_PUBLICATION_HEALTHY_CANONICAL_55_OF_56_FAIL_CLOSED",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
   "repository_heartbeat": 15,
   "time_role": "NO_TIMER_OWNERSHIP",
@@ -191,47 +191,39 @@
   ],
   "canonical_validation_state": {
     "evidence_class": "LATEST_FULLY_OBSERVED_CANONICAL_SCAN",
-    "run_id": 33023695703,
-    "head_sha": "ed90cfd07f3ec26dd564ce7b4151e66ae01dec77",
-    "event": "schedule",
+    "run_id": 33024753851,
+    "head_sha": "cec94df13fb4812fffb2ed581a8b3f83a215700b",
+    "event": "push",
     "overall_status": "FAIL_CLOSED",
-    "passed_checks": 49,
+    "passed_checks": 55,
     "total_checks": 56,
-    "failed_checks": 7,
+    "failed_checks": 1,
     "skipped_checks": 0,
-    "goal5_external_frameworks": {
-      "passed_checks": 60,
-      "total_checks": 66,
-      "failed_checks": 6,
-      "overall_status": "FAIL",
-      "artifact_id": 9627596190,
-      "artifact_digest": "sha256:06e8a836ff6bf8452806917dfc5608ac3a8c1cdb1809a8613d856efdfd3c0a38"
-    },
-    "directly_observed_failure_families": [
-      "Morrison enriched report regeneration/evidence-class drift",
-      "canonical/iOS workflow mirror divergence after later canonical heartbeat changes",
-      "aggregate automation handoff"
+    "canonical_prescan": "11_OF_11_PASS",
+    "aggregate_failure": "scripts/check_admissibility_automation_handoff.py",
+    "directly_observed_child_failures": [
+      "TA-14 reference docket validator: missing REVIEW_GOVERNANCE_OBJECTS_IMPLEMENTED in handoff",
+      "ArquivoNulo execution boundary: missing exact doctrine token anchored state != current reality"
     ],
-    "source_repairs_installed": [
-      "557f228e816634a116b41b5b91725a398764de95 iOS mirror resync",
-      "687478fa2fefe8c2191e5e1a4f622b0e912905b8 synchronized mirror state refresh",
-      "68bc4a8ece579b77f45aa6d0f98f18a72451014f Morrison evidence-class separation",
-      "84c0b6b6a3b6906f1fe8572a7143bdf1ae8281a3 public-activation governed-route-key repair",
-      "ce4881ae70c833343bb7ddc0795fe2dd8ac91248 public-activation deterministic fixture repair"
+    "direct_repairs_installed": [
+      "626c706440bcda4bf2c6ff516691af4865a69142",
+      "336979ad5eb4f706abf8a4402c6832b85ca86a32",
+      "8c4184b7c50ddc79999ad61a1134452dbfd39bf0",
+      "806520a9cecacccb4e2cb2cffc2157a07e89c331"
     ],
-    "earlier_publication_observation": {
-      "run_id": 33015834279,
-      "head_sha": "651c61b03f7d4d6a46dcc17d60e208444116bbc8",
-      "canonical_scan": "52_OF_56_FAIL_CLOSED",
+    "publication_observation": {
       "build_pages": "PASS",
       "deploy_pages": "PASS",
-      "external_framework_public_routes": "PASS_36_OF_36",
-      "discovery_governance_routes": "PASS_5_OF_5",
-      "discovery_closure_exact_match": true,
+      "external_framework_source_routes": "36_OF_36_PASS",
+      "external_framework_built_routes": "36_OF_36_PASS",
+      "external_framework_public_routes": "36_OF_36_PASS",
+      "discovery_publication": "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
+      "discovery_public_routes": "5_OF_5_PASS",
+      "discovery_embedded_closure_exact_match": true,
       "discovery_activation_evidence": "FAIL_CLOSED_ONLY_PUBLIC_ACTIVATION_PUBLICATION_COMPLETE_FALSE"
     },
     "current_main_validation": "PENDING_SUCCESSOR_HOSTED_PROOF_AFTER_DIRECT_REPAIRS",
-    "current_main_at_recording": "ce4881ae70c833343bb7ddc0795fe2dd8ac91248",
+    "current_main_at_recording": "1b526b533fdef98e67a2bf6048845cd75a4c4010",
     "release_authority": false,
     "missing_evidence_implies_success": false,
     "session_dependency": false
@@ -258,14 +250,14 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "LATEST_CANONICAL_FAILURES_CONSUMED_AND_DIRECT_SOURCE_REPAIRS_INSTALLED",
+    "event_type": "CANONICAL_55_OF_56_CONSUMED_AND_FINAL_DIRECT_DEFECTS_REPAIRED",
     "progress_effect": true,
     "authority_effect": false,
-    "observed_run_id": 33023695703,
-    "observed_run_head": "ed90cfd07f3ec26dd564ce7b4151e66ae01dec77",
-    "current_source_commit": "ce4881ae70c833343bb7ddc0795fe2dd8ac91248",
-    "required_next_transition": "consume_successor_canonical_run_then_repair_only_direct_remaining_failures"
+    "observed_run_id": 33024753851,
+    "observed_run_head": "cec94df13fb4812fffb2ed581a8b3f83a215700b",
+    "current_source_commit": "1b526b533fdef98e67a2bf6048845cd75a4c4010",
+    "required_next_transition": "observe_successor_exact_head_canonical_and_discovery_activation_evidence_then_repair_only_if_direct_failure_remains"
   },
   "idle_terminal_statement": null,
-  "archive_state": "NOT_READY_WHILE_CANONICAL_VALIDATION_FRAMEWORK_EVIDENCE_RELEASE_AND_ACTIVATION_REMAIN"
+  "archive_state": "NOT_READY_WHILE_SUCCESSOR_CANONICAL_RELEASE_FRAMEWORK_EVALUATION_AND_ACTIVATION_REMAIN"
 }
