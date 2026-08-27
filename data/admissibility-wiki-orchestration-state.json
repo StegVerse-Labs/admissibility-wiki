@@ -3,10 +3,10 @@
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "task_sequence": 13,
-  "task_sequence_label": "TA14_BIND_COMMIT_MANIFEST_PATH_REPAIRED_SUCCESSOR_CANONICAL_PENDING",
-  "work_state": "REPOSITORY_ACTIVE_SUCCESSOR_CANONICAL_PROOF_AND_FRAMEWORK_EVALUATION_REMAIN",
-  "system_health": "BUILD_DEPLOY_PUBLICATION_HEALTHY_CANONICAL_55_OF_56_FAIL_CLOSED_BIND_COMMIT_REPAIRED",
+  "task_sequence": 14,
+  "task_sequence_label": "GENERATED_STEGPAY_MERGED_POST_MERGE_CANONICAL_OBSERVATION_PENDING",
+  "work_state": "REPOSITORY_ACTIVE_POST_MERGE_CANONICAL_PROOF_AND_FRAMEWORK_EVALUATION_REMAIN",
+  "system_health": "PREMERGE_CANONICAL_56_OF_56_OBSERVED_GENERATED_STEGPAY_MERGED_POST_MERGE_EXACT_HEAD_UNOBSERVED",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
   "repository_heartbeat": 15,
   "time_role": "NO_TIMER_OWNERSHIP",
@@ -159,6 +159,25 @@
       },
       "pages_build": "PASS_AT_74BF7ED",
       "pages_deploy": "PASS_AT_74BF7ED"
+    },
+    {
+      "task_id": "GENERATED-STEGPAY-BOUNDED-ADMISSIBILITY-PROJECTION",
+      "owner": "PA-INT-011 / Wiki public-anchor internal task executor",
+      "handoff": "docs/GENERATED_STEGPAY_PROJECTION_MIRROR_HANDOFF.md",
+      "workload": "Bounded generated StegPay evidence projection from Publisher/Site/StegOps chain",
+      "execution_class": "MACHINE_OWNED_EXISTING_LANE",
+      "claim_state": "MACHINE_OWNED",
+      "state": "MERGED_POST_MERGE_CANONICAL_OBSERVATION_PENDING",
+      "pull_request": 107,
+      "merge_commit": "1cf24e3faddbe62bfea3db700145b39c3756d459",
+      "premerge_validation_run": 33093900082,
+      "premerge_validation": "11_OF_11_PRESCAN_56_OF_56_FULL_PASS",
+      "direct_task_marker_observed": false,
+      "post_merge_main_validation": "UNOBSERVED",
+      "authority_effect": false,
+      "duplicate_work_prohibited": true,
+      "session_dependency": false,
+      "required_next_transition": "observe exact post-merge main canonical run; preserve bounded authority; then reconcile existing StegGuardian downstream lane"
     }
   ],
   "active_independent_workloads": [
@@ -234,11 +253,25 @@
       "external_framework_source_routes": "36_OF_36_PASS",
       "discovery_activation_evidence": "ACTIVATION_EVIDENCE_COMPLETE_AT_PRIOR_FULLY_OBSERVED_PUBLICATION_RUN_33033268340"
     },
-    "current_main_validation": "SUCCESSOR_CANONICAL_PROOF_REQUIRED_AFTER_BIND_COMMIT_PATH_REPAIR",
-    "current_main_at_recording": "fdb401ab7dcac7868db99913640a271718285a15",
+    "current_main_validation": "POST_MERGE_EXACT_HEAD_CANONICAL_OBSERVATION_REQUIRED",
+    "current_main_at_recording": "1cf24e3faddbe62bfea3db700145b39c3756d459",
     "release_authority": false,
     "missing_evidence_implies_success": false,
-    "session_dependency": false
+    "session_dependency": false,
+    "latest_premerge_success": {
+      "run_id": 33093900082,
+      "head_sha": "3a1c357f9e726320f47f29c4cf910185c3c14610",
+      "scope": "PR_HEAD",
+      "overall_status": "PASS",
+      "canonical_prescan": "11_OF_11_PASS",
+      "passed_checks": 56,
+      "total_checks": 56,
+      "failed_checks": 0,
+      "skipped_checks": 0,
+      "direct_pa_int_011_marker_observed": false,
+      "merge_commit": "1cf24e3faddbe62bfea3db700145b39c3756d459",
+      "post_merge_main_validation": "UNOBSERVED"
+    }
   },
   "policy": {
     "handoff_is_source_of_truth": true,
@@ -262,13 +295,13 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "TA14_BIND_COMMIT_ROUTE_MANIFEST_PATH_REPAIRED",
+    "event_type": "GENERATED_STEGPAY_PR107_MERGED",
     "progress_effect": true,
     "authority_effect": false,
-    "observed_run_id": 33035666229,
-    "observed_run_head": "b9399d80ebc3ffbd5639db96fc2d8332b6f7eb28",
-    "current_source_commit": "fdb401ab7dcac7868db99913640a271718285a15",
-    "required_next_transition": "observe exact successor canonical run; repair only direct residual failure if any; continue worker-owned framework evaluations"
+    "observed_run_id": 33093900082,
+    "observed_run_head": "3a1c357f9e726320f47f29c4cf910185c3c14610",
+    "current_source_commit": "1cf24e3faddbe62bfea3db700145b39c3756d459",
+    "required_next_transition": "observe exact post-merge main canonical run; repair only direct residual failure; continue worker-owned framework evaluations"
   },
   "idle_terminal_statement": null,
   "archive_state": "SESSION_CONTINUITY_DURABLE_PROJECT_REMAINS_ACTIVE"
