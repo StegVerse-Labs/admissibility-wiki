@@ -12,7 +12,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-REPORT = ROOT / "reports" / "arquivonulo-public-route-observation.json"
+PUBLICATION_REPORT = "reports/arquivonulo-public-route-observation.json"
+REPORT = ROOT / PUBLICATION_REPORT
 BASE_URL = os.environ.get(
     "ADMISSIBILITY_WIKI_PUBLIC_BASE_URL",
     "https://stegverse-labs.github.io/admissibility-wiki",
