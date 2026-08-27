@@ -125,3 +125,11 @@ Run `33032869810` narrowed TA-14 standing validation to one stale repository add
 Commit `62fd1f5bbde6e2682695226512586bd35ce009f9` binds G-05 to the existing authoritative `docs/formalisms/commit-boundary-binding-predicate.md`, which directly covers decision-to-transition separation, commit-time authority, live-state admissibility, binding of consequence, and receipt requirements.
 
 The disposition remains PARTIAL/EVIDENCE_MAPPING. This path correction does not promote TA-14 implementation standing, independent reconstruction, certification, or execution authority.
+
+## 2026-08-26 G-08 repository-path repair
+
+Hosted run `33033268340` proved ArquivoNulo's prior repair PASS and narrowed the sole canonical blocker to TA-14 G-08: the adjudication referenced nonexistent `static/data/canonical-decision-enum-registry.json`.
+
+Commit `e46503df4c8101369b08167e6f9af306a2a82972` binds G-08 to the existing machine-readable registry `static/ontology/canonical-decision-enum-registry.v0.1.json`. All other TA-14 adjudication work paths were directly rechecked and exist.
+
+The finding remains PARTIAL/EVIDENCE_MAPPING. This path repair does not claim TA-14 standing, implementation equivalence, independent reconstruction, certification, or execution authority.
