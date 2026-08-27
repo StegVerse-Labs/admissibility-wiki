@@ -409,3 +409,19 @@ External Frameworks remain a separate denominator from route/publication proof: 
 Current repository head may move for unrelated active lanes such as Governance Observatory release awareness. Exact-head canonical validation must be observed before any repository-wide PASS, release, tag, propagation, or COMPLETE claim.
 
 Continuation does not require this ChatGPT session. Use this handoff, the orchestration state, the External Frameworks worker handoff/registry, TA-14 coordination handoff, MindForge review handoff, and live workflow evidence.
+
+
+## 2026-08-26 latest TA-14 successor narrowing — bind_commit manifest path
+
+Run `33035666229` at `b9399d80ebc3ffbd5639db96fc2d8332b6f7eb28` preserved the repository at `55/56 PASS, 1 FAIL, 0 skipped` and narrowed the sole canonical child defect beyond the earlier G-08 repair to the TA-14 route-complete evidence manifest:
+
+```text
+TA-14 ROUTE-COMPLETE EVIDENCE MANIFEST: FAIL
+work_path does not exist for bind_commit: docs/commit-boundary-binding.md
+```
+
+The authoritative commit-boundary formalism already exists at `docs/formalisms/commit-boundary-binding-predicate.md`. Commit `e7ca41377316110d19d0baa075596256124b47c0` rebinds the route-complete manifest's `bind_commit.work_path` to that existing file. Commit `fdb401ab7dcac7868db99913640a271718285a15` records the repair in the TA-14 coordination handoff, and `28d70db6efcf1baa2936e06b0d1eacbc6ea517e8` reconciles orchestration.
+
+The `bind_commit` component remains `OPEN`; the path repair does not claim route-complete evidence, TA-14 standing, implementation equivalence, independent reconstruction, certification, release, or execution authority. Historical run `33035666229` remains fail-closed evidence and is not retroactively promoted. The required next transition is an exact successor canonical run after the repair, followed by direct repair only if that successor exposes another concrete residual failure.
+
+This state is durable here and in the TA-14 coordination handoff/orchestration record; continuation does not require this ChatGPT session.
