@@ -497,3 +497,41 @@ The 56/56 result belongs to the pre-merge PR head and must not be transferred au
 The current session introduced no new credential, TV/TVC, WebAuthn, iPhone, provider-activation, or physical-runtime requirement for this repository. Existing downstream interpretation remains handoff-governed, including the already-existing StegGuardian lane; no duplicate downstream lane is authorized.
 
 All unique state from this reconciliation is durable in this root handoff, `docs/GENERATED_STEGPAY_PROJECTION_MIRROR_HANDOFF.md`, `data/admissibility-wiki-orchestration-state.json`, PR #107, and canonical workflow evidence. This ChatGPT session is not required for continuation.
+
+
+## 2026-08-27 exact canonical closure and PA-INT-011 ownership correction
+
+Live Actions inspection resolves the prior post-merge canonical uncertainty:
+
+```text
+run: 33118691192
+head: 925b4f7a1346ce3f9516224daabe9d2467be2c6d
+event: push / main
+canonical pre-scan: 11/11 PASS
+full canonical validation: 56/56 PASS
+failed: 0
+skipped: 0
+build-pages: PASS
+deploy-pages: PASS
+verify-public-pages: PASS
+external framework public route/content verification: PASS
+Discovery Governance activation closure: PASS
+```
+
+The earlier Generated StegPay bounded reconciliation had already reached terminal state before a later archive reconciliation accidentally regressed its scoped handoff to `COMPLETE: false`. Historical closure commit `4dd51d345eba8ae4d9f09d4304dc15998a5eb751` and hosted evidence establish the correct bounded lifecycle:
+
+```text
+PA-INT-011 current-generation reconciliation: COMPLETE
+PR #107 merge: 1cf24e3faddbe62bfea3db700145b39c3756d459
+main canonical/Pages run: 33094673503 SUCCESS
+downstream StegGuardian PR #19: MERGED
+Guardian merge: d7a4bdd0e92a4c2fa13ddf81ecf9af68974081cb
+Guardian main Pages run: 33094989577 SUCCESS
+Guardian bounded projection: COMPLETE
+```
+
+The canonical run did not independently print the PA-INT-011 task marker, and that distinction remains preserved; it does not reopen the already completed current-generation bounded projection because its canonical handoff and downstream closure evidence already declared that condition non-blocking for the completed reconciliation. An attempted extra validator binding was therefore reverted rather than expanding the canonical denominator or reopening completed work.
+
+Repository-wide canonical validation is now directly observed PASS for exact head `925b4f7a...`. Repository release remains separately blocked by External Framework framework-specific evaluation closure: last directly observed `7/36` terminal, `29/36` incomplete. Moving main after handoff-only reconciliation must not be substituted for an exact future release candidate.
+
+No user action is required for this canonical-validation or Generated StegPay lane.
