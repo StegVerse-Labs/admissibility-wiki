@@ -87,11 +87,11 @@ Canonical hosted lane remains `.github/workflows/validate-chain-continuation.yml
 
 Current branch implementation:
 - IMPLEMENTED: true
-- VALIDATED: pending exact-head hosted observation
+- VALIDATED: true for implementation head `3a1c357f9e726320f47f29c4cf910185c3c14610` via canonical run `33093900082`
 - MERGED: false
 - DEPLOYED: false for this bounded projection update
 - ACTIVATED: false
-- OBSERVED: pending
+- OBSERVED: canonical PR run `33093900082` observed; pre-scan `11/11 PASS`; full validation `56/56 PASS`, `0 failed`, `0 skipped`
 - RECONSTRUCTED: false/not claimed
 - RELEASED: false
 - COMPLETE: false
@@ -100,4 +100,4 @@ No user action is required.
 
 ## Next executable action
 
-Open the existing-lane reconciliation PR, observe exact-head canonical validation including `PA-INT-011`, record the actual run/head evidence here, merge only if current and acceptable, then observe the main-branch canonical run. Continue downstream to `StegVerse-002/stegguardian-wiki` without creating a duplicate generated-Ste gPay lane.
+PR `#107` is the existing-lane reconciliation. Implementation head `3a1c357f9e726320f47f29c4cf910185c3c14610` passed canonical run `33093900082` with pre-scan `11/11 PASS` and full validation `56/56 PASS`. The run did not independently emit the PA-INT-011 marker in its top-level log, so do not substitute the aggregate PASS for a separately observed direct task-executor marker. Validate the final documentation-only successor head, merge only if current/green, observe the main-branch canonical run, then continue to `StegVerse-002/stegguardian-wiki` without creating a duplicate generated-Ste gPay lane.
