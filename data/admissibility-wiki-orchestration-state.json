@@ -3,10 +3,10 @@
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "task_sequence": 11,
-  "task_sequence_label": "LATEST_CANONICAL_55_OF_56_OBSERVED_FINAL_DIRECT_REPAIRS_PENDING_SUCCESSOR",
-  "work_state": "REPOSITORY_ACTIVE_FINAL_CANONICAL_REPAIR_PENDING_SUCCESSOR_PROOF",
-  "system_health": "BUILD_DEPLOY_AND_PUBLICATION_HEALTHY_CANONICAL_55_OF_56_FAIL_CLOSED",
+  "task_sequence": 12,
+  "task_sequence_label": "SESSION_CONSOLIDATED_55_OF_56_G08_REPAIRED_DISCOVERY_ACTIVATION_COMPLETE_EXTERNAL_ROUTES_36_OF_36",
+  "work_state": "REPOSITORY_ACTIVE_SUCCESSOR_CANONICAL_PROOF_AND_FRAMEWORK_EVALUATION_REMAIN",
+  "system_health": "BUILD_DEPLOY_PUBLICATION_HEALTHY_CANONICAL_LAST_OBSERVED_55_OF_56_FAIL_CLOSED_G08_REPAIRED",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
   "repository_heartbeat": 15,
   "time_role": "NO_TIMER_OWNERSHIP",
@@ -119,7 +119,7 @@
       "claim_state": "ACTIVE",
       "heartbeat_lease_ref": null,
       "canonical_heartbeat_lease_established": false,
-      "state": "HOSTED_THREE_STAGE_ROUTE_PROOF_36_OF_36_OBSERVED_CANONICAL_REPAIR_AND_FRAMEWORK_EVIDENCE_PENDING",
+      "state": "HOSTED_THREE_STAGE_ROUTE_PROOF_36_OF_36_OBSERVED_FRAMEWORK_EVALUATION_7_OF_36_SUCCESSOR_CANONICAL_PENDING",
       "current_source_head_at_registration": "e2159843b0dcbf77612159db5d7b3df7423ebe63",
       "current_source_head_validation": "GOAL5_66_OF_66_PASS_AT_13FFC_CANONICAL_REPOSITORY_54_OF_56_FAIL_CLOSED",
       "actual_external_frameworks": 36,
@@ -135,10 +135,10 @@
       "ios_workflow_mirror_guard": "STATE_AWARE_AND_FAIL_CLOSED_ON_UNRECORDED_DRIFT",
       "terminal_framework_evaluations_last_directly_observed": "7_OF_36",
       "remaining_framework_evaluations": 29,
-      "required_next_transition": "observe_successor_canonical_run_after_policy_cards_terminology_and_morrison_verified_evidence_binding_then_repair_only_direct_remaining_failure",
+      "required_next_transition": "observe exact successor canonical run after TA-14 G-08 repair; continue worker-owned framework evaluations without duplicate ownership",
       "release_condition": "36/36 route proof for the exact release candidate, publication-proof-contract PASS including canonical/iOS mirror equality, all framework evaluations terminal or legitimately evidence-blocked, repository-wide canonical PASS, and required release/propagation/activation evidence",
       "duplicate_work_prohibited": true,
-      "session_dependency": true,
+      "session_dependency": false,
       "source_route_contract_observed": {
         "run_id": 33011831798,
         "artifact_id": 9622942474,
@@ -202,17 +202,19 @@
     {
       "task_id": "OPTIMIZATION-TARGET-CANONICAL-EXECUTION",
       "workload": "Execute optimization-target fixtures on an approved canonical surface",
-      "execution_class": "MERGED_INTO_CANONICAL_WORKSTREAM",
-      "state": "CANONICAL_EXECUTION_PENDING",
-      "owner": "Data-Continuation/formalism-tests issue #6",
+      "execution_class": "CANONICAL_EXECUTION_COMPLETE_DOWNSTREAM_REVIEW_PENDING",
+      "state": "VERIFIED_CANONICAL_RUN",
+      "owner": "Data-Continuation/formalism-tests issue #6 CLOSED",
       "handoff": "Data-Continuation/formalism-tests/FORMALISM_TESTS_MIRROR_HANDOFF.md",
-      "session_dependency": false
+      "session_dependency": false,
+      "evidence_run_id": 33025167959,
+      "required_next_transition": "bounded downstream interpretation only; do not reopen canonical execution absent regression evidence"
     }
   ],
   "canonical_validation_state": {
-    "evidence_class": "LATEST_FULLY_OBSERVED_CANONICAL_SCAN",
-    "run_id": 33024753851,
-    "head_sha": "cec94df13fb4812fffb2ed581a8b3f83a215700b",
+    "evidence_class": "LATEST_FULLY_OBSERVED_RELEVANT_CANONICAL_SCAN",
+    "run_id": 33033268340,
+    "head_sha": "685b5d90599ed0589560ef6d497f163e860cd459",
     "event": "push",
     "overall_status": "FAIL_CLOSED",
     "passed_checks": 55,
@@ -222,14 +224,11 @@
     "canonical_prescan": "11_OF_11_PASS",
     "aggregate_failure": "scripts/check_admissibility_automation_handoff.py",
     "directly_observed_child_failures": [
-      "TA-14 reference docket validator: missing REVIEW_GOVERNANCE_OBJECTS_IMPLEMENTED in handoff",
-      "ArquivoNulo execution boundary: missing exact doctrine token anchored state != current reality"
+      "TA-14 G-08 adjudication work_path missing: static/data/canonical-decision-enum-registry.json"
     ],
     "direct_repairs_installed": [
-      "626c706440bcda4bf2c6ff516691af4865a69142",
-      "336979ad5eb4f706abf8a4402c6832b85ca86a32",
-      "8c4184b7c50ddc79999ad61a1134452dbfd39bf0",
-      "806520a9cecacccb4e2cb2cffc2157a07e89c331"
+      "e46503df4c8101369b08167e6f9af306a2a82972 G-08 rebound to static/ontology/canonical-decision-enum-registry.v0.1.json",
+      "82aff3e4a34eafe1b0804180fd217fefd751d578 TA-14 coordination handoff reconciliation"
     ],
     "publication_observation": {
       "build_pages": "PASS",
@@ -240,10 +239,11 @@
       "discovery_publication": "WORKFLOW_OBSERVED_PUBLICATION_COMPLETE",
       "discovery_public_routes": "5_OF_5_PASS",
       "discovery_embedded_closure_exact_match": true,
-      "discovery_activation_evidence": "FAIL_CLOSED_ONLY_PUBLIC_ACTIVATION_PUBLICATION_COMPLETE_FALSE"
+      "discovery_activation_evidence": "ACTIVATION_EVIDENCE_COMPLETE",
+      "public_activation_publication_complete": true
     },
-    "current_main_validation": "PENDING_SUCCESSOR_HOSTED_PROOF_AFTER_DIRECT_REPAIRS",
-    "current_main_at_recording": "1b526b533fdef98e67a2bf6048845cd75a4c4010",
+    "current_main_validation": "SUCCESSOR_CANONICAL_PROOF_REQUIRED_AFTER_G08_REPAIR_AND_LATER_UNRELATED_MAIN_MOVEMENT",
+    "current_main_at_recording": "b9399d80ebc3ffbd5639db96fc2d8332b6f7eb28",
     "release_authority": false,
     "missing_evidence_implies_success": false,
     "session_dependency": false
@@ -270,16 +270,14 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "GOVERNANCE_OBSERVATORY_V0_1_0_RELEASE_AWARENESS_COMPLETE_VALIDATED_MERGED",
+    "event_type": "SESSION_CONSOLIDATION_CANONICAL_STATE_RECONCILED",
     "progress_effect": true,
     "authority_effect": false,
-    "source_release": "v0.1.0",
-    "target_pr": 106,
-    "target_merge": "cd8008638b254fa7e7bca854b1501ab49d002f44",
-    "post_merge_run": 33035436710,
-    "repository_wide_state_at_completion": "55_OF_56_FAIL_CLOSED",
-    "required_next_transition": "continue existing canonical repair owners; no Governance Observatory release-awareness work remains"
+    "observed_run_id": 33033268340,
+    "observed_run_head": "685b5d90599ed0589560ef6d497f163e860cd459",
+    "current_source_commit": "b9399d80ebc3ffbd5639db96fc2d8332b6f7eb28",
+    "required_next_transition": "observe exact successor canonical scan after G-08 repair; consume only direct residual failures; continue 29 worker-owned framework evaluations"
   },
   "idle_terminal_statement": null,
-  "archive_state": "NOT_READY_WHILE_SUCCESSOR_CANONICAL_RELEASE_FRAMEWORK_EVALUATION_AND_ACTIVATION_REMAIN"
+  "archive_state": "SESSION_CONTINUITY_DURABLE_PROJECT_REMAINS_ACTIVE"
 }
