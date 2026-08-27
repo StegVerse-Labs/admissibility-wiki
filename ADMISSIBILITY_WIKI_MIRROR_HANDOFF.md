@@ -465,6 +465,33 @@ skipped: 0
 workflow result: SUCCESS
 ```
 
-The top-level canonical log did not independently print `GENERATED_STEGPAY_ADMISSIBILITY_IMPORT=PASS` or a `PA-INT-011` line, so the aggregate 56/56 PASS must not be misrepresented as direct task-executor marker observation. Final documentation-successor exact-head and post-merge main observations remain required before closing this lane.
+The top-level canonical log did not independently print `GENERATED_STEGPAY_ADMISSIBILITY_IMPORT=PASS` or a `PA-INT-011` line, so the aggregate 56/56 PASS must not be misrepresented as direct task-executor marker observation.
 
-Authority remains false for admissibility determination, publication, release, execution, custody, entitlement, and transport-derived authority. No public publication or certification is inferred from this bounded evidence.
+Final bounded lifecycle and evidence:
+
+```text
+final PR head: 448970487994a334a8ca14be951a16a50db7bdd6
+exact-head PR run: 33094266251 SUCCESS
+canonical pre-scan: 11/11 PASS
+full validation: 56/56 PASS, 0 failed, 0 skipped
+merge commit: 1cf24e3faddbe62bfea3db700145b39c3756d459
+main run: 33094673503
+main canonical validation: SUCCESS
+main Pages build: SUCCESS
+main Pages deployment: SUCCESS
+main public-route verification: SUCCESS
+
+IMPLEMENTED: true
+VALIDATED: true
+MERGED: true
+DEPLOYED: true as wiki/Pages projection only
+ACTIVATED: false as admissibility/financial/runtime authority
+OBSERVED: true
+RECONSTRUCTED: false/not required for this bounded projection goal
+RELEASED: false
+COMPLETE: true for PA-INT-011 current-generation reconciliation only
+```
+
+Authority remains false for admissibility determination, publication authority, release authority, execution, custody, entitlement, and transport-derived authority. The successful Pages/public-route lane is observation/public transport evidence; it does not itself grant an admissibility determination, certification, production payment authority, or release. No tag or release is warranted from this test-only evidence.
+
+The current-generation PA-INT-011 reconciliation is therefore closed without creating a duplicate task or workflow. Unrelated repository goals retain their own lifecycle state and ownership.
