@@ -12,6 +12,7 @@ CANONICAL = "validate-chain-continuation.yml"
 MIGRATED_CHECKS = [
     "scripts/check_correctability_projection.py",
     "scripts/check_nist_ai_rmf_source_receipt.py",
+    "scripts/check_governance_observatory_release_awareness.py",
 ]
 
 
