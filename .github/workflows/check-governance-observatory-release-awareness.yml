@@ -1,0 +1,33 @@
+name: Check Governance Observatory Release Awareness
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/governance-observatory-release-awareness.json
+      - scripts/check_governance_observatory_release_awareness.py
+      - .github/workflows/check-governance-observatory-release-awareness.yml
+      - docs/external-frameworks/GOVERNANCE_OBSERVATORY_RELEASE_AWARENESS_MIRROR_HANDOFF.md
+      - data/admissibility-wiki-orchestration-state.json
+  pull_request:
+    paths:
+      - data/governance-observatory-release-awareness.json
+      - scripts/check_governance_observatory_release_awareness.py
+      - .github/workflows/check-governance-observatory-release-awareness.yml
+      - docs/external-frameworks/GOVERNANCE_OBSERVATORY_RELEASE_AWARENESS_MIRROR_HANDOFF.md
+      - data/admissibility-wiki-orchestration-state.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Validate bounded Governance Observatory release awareness
+        run: python scripts/check_governance_observatory_release_awareness.py
