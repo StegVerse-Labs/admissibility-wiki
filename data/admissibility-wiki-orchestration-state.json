@@ -139,6 +139,23 @@
       },
       "pages_build": "PASS_AT_74BF7ED",
       "pages_deploy": "PASS_AT_74BF7ED"
+    },
+    {
+      "task_id": "ADMISSIBILITY-GOVOBS-V0.1.0-RELEASE-AWARENESS-104",
+      "owner": "StegVerse-Labs/admissibility-wiki issue #104",
+      "handoff": "docs/external-frameworks/GOVERNANCE_OBSERVATORY_RELEASE_AWARENESS_MIRROR_HANDOFF.md",
+      "workload": "Record Governance Observatory v0.1.0 as bounded non-authorizing release awareness through the repository's single canonical validation architecture",
+      "execution_class": "PARALLEL_SAFE_RELEASE_AWARENESS",
+      "claim_state": "ACTIVE",
+      "state": "IMPLEMENTATION_VALIDATION_IN_PROGRESS",
+      "duplicate_work_prohibited": true,
+      "external_framework_protocol_modified": false,
+      "framework_evaluation_promoted": false,
+      "canonical_single_workflow_preserved": true,
+      "issue_50_ta14_lane_untouched": true,
+      "riverbraid_lane_untouched": true,
+      "session_dependency": false,
+      "release_condition": "bounded validator PASS in canonical workflow, merge, post-merge observation, claim release, and target evidence returned to Governance Observatory issue #10"
     }
   ],
   "active_independent_workloads": [
@@ -250,13 +267,11 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "CANONICAL_55_OF_56_CONSUMED_AND_FINAL_DIRECT_DEFECTS_REPAIRED",
+    "event_type": "GOVERNANCE_OBSERVATORY_V0_1_0_RELEASE_AWARENESS_REBASED_TO_CURRENT_MAIN",
     "progress_effect": true,
     "authority_effect": false,
-    "observed_run_id": 33024753851,
-    "observed_run_head": "cec94df13fb4812fffb2ed581a8b3f83a215700b",
-    "current_source_commit": "1b526b533fdef98e67a2bf6048845cd75a4c4010",
-    "required_next_transition": "observe_successor_exact_head_canonical_and_discovery_activation_evidence_then_repair_only_if_direct_failure_remains"
+    "source_release": "v0.1.0",
+    "required_next_transition": "observe canonical branch run, require migrated awareness validator PASS, merge if no awareness-owned failure, preserve unrelated canonical fail-closed state"
   },
   "idle_terminal_statement": null,
   "archive_state": "NOT_READY_WHILE_SUCCESSOR_CANONICAL_RELEASE_FRAMEWORK_EVALUATION_AND_ACTIVATION_REMAIN"
