@@ -88,7 +88,7 @@ Canonical hosted lane remains `.github/workflows/validate-chain-continuation.yml
 Current branch implementation:
 - IMPLEMENTED: true
 - VALIDATED: true for implementation head `3a1c357f9e726320f47f29c4cf910185c3c14610` via canonical run `33093900082`
-- MERGED: false
+- MERGED: true via PR `#107`, merge commit `1cf24e3faddbe62bfea3db700145b39c3756d459`
 - DEPLOYED: false for this bounded projection update
 - ACTIVATED: false
 - OBSERVED: canonical PR run `33093900082` observed; pre-scan `11/11 PASS`; full validation `56/56 PASS`, `0 failed`, `0 skipped`
@@ -100,4 +100,4 @@ No user action is required.
 
 ## Next executable action
 
-PR `#107` is the existing-lane reconciliation. Implementation head `3a1c357f9e726320f47f29c4cf910185c3c14610` passed canonical run `33093900082` with pre-scan `11/11 PASS` and full validation `56/56 PASS`. The run did not independently emit the PA-INT-011 marker in its top-level log, so do not substitute the aggregate PASS for a separately observed direct task-executor marker. Validate the final documentation-only successor head, merge only if current/green, observe the main-branch canonical run, then continue to `StegVerse-002/stegguardian-wiki` without creating a duplicate generated-Ste gPay lane.
+PR `#107` is MERGED at `1cf24e3faddbe62bfea3db700145b39c3756d459`. Implementation head `3a1c357f9e726320f47f29c4cf910185c3c14610` passed canonical run `33093900082` with pre-scan `11/11 PASS` and full validation `56/56 PASS`. The run did not independently emit the PA-INT-011 marker in its top-level log, so do not substitute the aggregate PASS for a separately observed direct task-executor marker. The next executable boundary is exact post-merge main-branch canonical observation at or after merge commit `1cf24e3faddbe62bfea3db700145b39c3756d459`; only after direct PASS evidence may this bounded projection advance. Then reconcile the existing downstream `StegVerse-002/stegguardian-wiki` lane without creating a duplicate generated-Ste gPay lane.
