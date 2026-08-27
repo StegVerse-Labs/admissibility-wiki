@@ -371,3 +371,12 @@ repository_activation: NOT_COMPLETE
 ```
 
 Keep this workstream open until exact-head validation, publication-proof-contract validation, synchronized mirror validation, source-route proof, build, generated-route proof, Pages artifact/deployment, all-route runtime proof, framework-specific evaluation completion, repository-wide PASS, and any required release/propagation/activation evidence are directly established.
+
+
+## 2026-08-26 archive-continuity reconciliation
+
+Latest directly observed publication/runtime proof is run `33033268340`: source-route 36/36 PASS, generated built-route/content 36/36 PASS, Pages build/deploy PASS, and deployed public-route/content 36/36 PASS. These publication proofs do not promote framework-specific evaluation.
+
+Framework-specific terminal evaluation remains `7_OF_36` last directly observed; `29` remain incomplete. Worker/collision ownership remains authoritative in `EXTERNAL_FRAMEWORK_EVALUATION_WORKERS_MIRROR_HANDOFF.md`, `worker-task-registry.json`, issues #62-#65, and issue #50. Do not absorb worker-owned framework pages without explicit ownership transition.
+
+Release remains prohibited until framework evaluations are terminal or legitimately evidence-blocked, repository-wide canonical validation passes for the exact candidate, and release/propagation/activation evidence exists. Session dependency for continuation is false once this handoff and the global Projects coordination documents are updated.
