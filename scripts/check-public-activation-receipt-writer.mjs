@@ -131,6 +131,7 @@ if (receipt.activation_state !== 'workflow_observed_guarded_public_routes') fail
 if (receipt.activation_target !== 'https://stegverse-labs.github.io/admissibility-wiki/') fail('activation_target mismatch');
 if (receipt.commit !== 'validator-local-sha') fail('commit binding mismatch');
 if (receipt.run_id !== 'validator-local-run') fail('run_id binding mismatch');
+if (receipt.publication_complete !== true) fail('publication_complete mismatch');
 
 for (const check of REQUIRED_CHECKS) {
   const value = receipt.checks?.[check];
