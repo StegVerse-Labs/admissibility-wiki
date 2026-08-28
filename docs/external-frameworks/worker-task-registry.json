@@ -51,7 +51,12 @@
         "OpenLineage"
       ],
       "next_executable_action": "select the first nonterminal assigned framework from the canonical handoff, replace scaffold/source-only posture with the strongest evidence-backed bounded evaluation, run canonical validators, and persist evidence",
-      "expected_evidence": ["merged commit", "framework-specific canonical validation", "updated issue #62", "coordinator denominator update on terminal release"]
+      "expected_evidence": [
+        "merged commit",
+        "framework-specific canonical validation",
+        "updated issue #62",
+        "coordinator denominator update on terminal release"
+      ]
     },
     {
       "worker_id": "external-framework-worker-b",
@@ -74,7 +79,12 @@
         "Agent Governance Playbook"
       ],
       "next_executable_action": "complete Cedar fresh-runner same-provider replay through the existing canonical workflow, persist the receipt and page/handoff evidence, then advance to the next nonterminal assigned framework",
-      "expected_evidence": ["fresh-runner Cedar replay receipt", "merged page/handoff update", "framework-specific canonical validation", "updated issue #63"]
+      "expected_evidence": [
+        "fresh-runner Cedar replay receipt",
+        "merged page/handoff update",
+        "framework-specific canonical validation",
+        "updated issue #63"
+      ]
     },
     {
       "worker_id": "external-framework-worker-c",
@@ -86,9 +96,17 @@
       "heartbeat_lease_ref": null,
       "release_condition": "Policy Cards and Runtime Governance for AI Agents reach legitimate terminal evidence classes and coordinator issue #66 records release",
       "collision_boundary": "do not modify Worker A/B/D or issue #50 framework files",
-      "assigned_frameworks": ["Policy Cards", "Runtime Governance for AI Agents"],
-      "next_executable_action": "observe the latest canonical Policy Cards run; repair any Policy-Cards-specific failure or release Policy Cards if all its gates pass; then advance to Runtime Governance for AI Agents",
-      "expected_evidence": ["Policy Cards canonical validation", "terminal or exact blocked class", "updated issue #64", "coordinator denominator update"]
+      "assigned_frameworks": [
+        "Policy Cards",
+        "Runtime Governance for AI Agents"
+      ],
+      "next_executable_action": "advance to Runtime Governance for AI Agents; preserve Policy Cards as terminal bounded source-level crosswalk from run 33121409495 and do not reopen it absent regression or stronger separately admitted native evidence",
+      "expected_evidence": [
+        "Runtime Governance canonical validation",
+        "terminal or exact blocked class",
+        "updated issue #64",
+        "coordinator denominator update"
+      ]
     },
     {
       "worker_id": "external-framework-worker-d",
@@ -100,9 +118,22 @@
       "heartbeat_lease_ref": null,
       "release_condition": "all assigned frameworks reach a legitimate terminal evidence class or fully specified external-evidence-blocked terminal state and coordinator issue #66 records release",
       "collision_boundary": "do not modify Worker A/B/C or issue #50 framework files",
-      "assigned_frameworks": ["GLM", "EVIDE", "DecisionAssure", "CARE Runtime", "KPT", "AAR", "W3C PROV"],
+      "assigned_frameworks": [
+        "GLM",
+        "EVIDE",
+        "DecisionAssure",
+        "CARE Runtime",
+        "KPT",
+        "AAR",
+        "W3C PROV"
+      ],
       "next_executable_action": "finish all locally establishable source/artifact evidence for the first nonterminal assigned framework, execute installed compatibility tests, and fail closed on absent external packages",
-      "expected_evidence": ["merged evidence page", "canonical validation or exact external blocker", "updated issue #65", "coordinator denominator update"]
+      "expected_evidence": [
+        "merged evidence page",
+        "canonical validation or exact external blocker",
+        "updated issue #65",
+        "coordinator denominator update"
+      ]
     },
     {
       "worker_id": "external-framework-worker-issue50",
@@ -114,9 +145,18 @@
       "heartbeat_lease_ref": null,
       "release_condition": "MindForge, Morrison Runtime, and ASRO each reach their legitimate terminal state and issue #50 records release",
       "collision_boundary": "exclusive ownership of MindForge, Morrison Runtime, and ASRO; Workers A-D must not take these files",
-      "assigned_frameworks": ["MindForge", "Morrison Runtime", "ASRO"],
+      "assigned_frameworks": [
+        "MindForge",
+        "Morrison Runtime",
+        "ASRO"
+      ],
       "next_executable_action": "continue the existing issue #50 repair tracks from current canonical workflow failures and preserve raw runtime/source evidence where available",
-      "expected_evidence": ["framework-specific repair commits", "canonical validation", "updated issue #50", "coordinator denominator update"]
+      "expected_evidence": [
+        "framework-specific repair commits",
+        "canonical validation",
+        "updated issue #50",
+        "coordinator denominator update"
+      ]
     }
   ]
 }
