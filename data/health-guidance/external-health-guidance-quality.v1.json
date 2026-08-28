@@ -1,0 +1,167 @@
+{
+  "schema_version": "public.health-guidance-quality.v1",
+  "goal_id": "PUBLIC-HEALTH-GUIDANCE-QUALITY-001",
+  "issue": 109,
+  "updated_at": "2026-08-27T22:55:00-05:00",
+  "posture": "QUALITY_IMPROVEMENT_RECOMMENDATION_NOT_COMPLAINT",
+  "source_program": {
+    "organization": "CVS Caremark / CVS Weight Management",
+    "context": "Health-and-wellness educational materials associated with GLP-1 program participation",
+    "participant_identifying_information_included": false
+  },
+  "authority_boundary": {
+    "clinical_diagnosis": false,
+    "regulatory_finding": false,
+    "proof_of_harm": false,
+    "certification": false,
+    "complaint_disposition": false
+  },
+  "sources": [
+    {
+      "source_id": "NIH-ODS-B6",
+      "authority": "FEDERAL_PRIMARY",
+      "publisher": "NIH Office of Dietary Supplements",
+      "title": "Vitamin B6 Fact Sheet for Consumers",
+      "locator": "https://ods.od.nih.gov/factsheets/VitaminB6-Consumer/"
+    },
+    {
+      "source_id": "NIH-ODS-POTASSIUM",
+      "authority": "FEDERAL_PRIMARY",
+      "publisher": "NIH Office of Dietary Supplements",
+      "title": "Potassium Fact Sheet for Consumers",
+      "locator": "https://ods.od.nih.gov/factsheets/Potassium-Consumer/"
+    },
+    {
+      "source_id": "NHLBI-DASH",
+      "authority": "FEDERAL_PRIMARY",
+      "publisher": "National Heart, Lung, and Blood Institute",
+      "title": "DASH Eating Plan",
+      "locator": "https://www.nhlbi.nih.gov/health/dash-eating-plan"
+    },
+    {
+      "source_id": "NHLBI-DASH-FOLLOWING",
+      "authority": "FEDERAL_PRIMARY",
+      "publisher": "National Heart, Lung, and Blood Institute",
+      "title": "Following DASH",
+      "locator": "https://www.nhlbi.nih.gov/health/dash/following-dash"
+    },
+    {
+      "source_id": "AHA-FATS",
+      "authority": "PROFESSIONAL_CONSENSUS",
+      "publisher": "American Heart Association",
+      "title": "Fats in Foods",
+      "locator": "https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/fats/fats-in-foods"
+    },
+    {
+      "source_id": "AHA-OILS",
+      "authority": "PROFESSIONAL_CONSENSUS",
+      "publisher": "American Heart Association",
+      "title": "Healthy Cooking Oils",
+      "locator": "https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/fats/healthy-cooking-oils"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "MICRO-B6-001",
+      "guide": "Micronutrients reference guide",
+      "reviewed_statement": "Adults 19+ women 1.1 mg/day; men 1.2 mg/day for vitamin B6.",
+      "classification": "CONFIRMED_DISCREPANCY",
+      "comparator": "Adults 19-50: 1.3 mg/day; age 51+ differs by sex.",
+      "source_refs": [
+        "NIH-ODS-B6"
+      ],
+      "recommendation": "Use age-specific current vitamin B6 reference values."
+    },
+    {
+      "finding_id": "MICRO-K-001",
+      "guide": "Micronutrients reference guide",
+      "reviewed_statement": "Potassium 4,700 mg/day for all adults.",
+      "classification": "OUTDATED_REFERENCE",
+      "comparator": "Adults 19+: men 3,400 mg/day; women 2,600 mg/day.",
+      "source_refs": [
+        "NIH-ODS-POTASSIUM"
+      ],
+      "recommendation": "Replace the older generalized target with current age/sex-specific reference values and retain clinical caveats."
+    },
+    {
+      "finding_id": "DASH-NUTS-001",
+      "guide": "DASH quick guide",
+      "reviewed_statement": "Nuts, seeds and legumes: 3 servings per day.",
+      "classification": "CONFIRMED_DISCREPANCY",
+      "comparator": "At 2,000 calories, DASH lists 4-5 servings per week.",
+      "source_refs": [
+        "NHLBI-DASH",
+        "NHLBI-DASH-FOLLOWING"
+      ],
+      "recommendation": "Use calorie-level-aware serving frequencies."
+    },
+    {
+      "finding_id": "DASH-PROTEIN-001",
+      "guide": "DASH quick guide",
+      "reviewed_statement": "Lean protein: 3-6 oz per meal.",
+      "classification": "CONFIRMED_DISCREPANCY",
+      "comparator": "At 2,000 calories, lean meats, poultry and fish are 6 oz or less per day.",
+      "source_refs": [
+        "NHLBI-DASH",
+        "NHLBI-DASH-FOLLOWING"
+      ],
+      "recommendation": "Express the DASH amount as a daily total tied to calorie level."
+    },
+    {
+      "finding_id": "DASH-OIL-001",
+      "guide": "DASH quick guide",
+      "reviewed_statement": "Vegetable oil appears under foods to avoid.",
+      "classification": "CONFIRMED_DISCREPANCY",
+      "comparator": "DASH includes vegetable oils; at 2,000 calories fats and oils are 2-3 servings/day.",
+      "source_refs": [
+        "NHLBI-DASH",
+        "NHLBI-DASH-FOLLOWING"
+      ],
+      "recommendation": "Remove vegetable oil from a blanket avoid category and distinguish unsaturated oils from saturated-fat sources."
+    },
+    {
+      "finding_id": "PROC-INGREDIENTS-001",
+      "guide": "Minimally processed diet quick tips",
+      "reviewed_statement": "Buy foods with 5 ingredients or less.",
+      "classification": "OVERSIMPLIFIED",
+      "comparator": "Ingredient count is not itself a federal nutrition-quality or processing classification.",
+      "source_refs": [],
+      "recommendation": "Teach ingredient composition and Nutrition Facts interpretation rather than a hard ingredient-count cutoff."
+    },
+    {
+      "finding_id": "FAT-TAXONOMY-001",
+      "guide": "Sources of macronutrients",
+      "reviewed_statement": "Saturated fat is grouped as healthy while polyunsaturated fat is grouped as unhealthy.",
+      "classification": "CONFIRMED_DISCREPANCY",
+      "comparator": "AHA recommends monounsaturated and polyunsaturated fats in place of saturated and trans fats.",
+      "source_refs": [
+        "AHA-FATS"
+      ],
+      "recommendation": "Rebuild the fat taxonomy around unsaturated fats to emphasize, saturated fats to limit, and industrial trans fats to avoid."
+    },
+    {
+      "finding_id": "FAT-OMEGA3-001",
+      "guide": "Sources of macronutrients",
+      "reviewed_statement": "Omega-3 is listed as healthy while polyunsaturated fat is listed as unhealthy.",
+      "classification": "CONFIRMED_DISCREPANCY",
+      "comparator": "Omega-3 fatty acids are polyunsaturated fats.",
+      "source_refs": [
+        "AHA-FATS"
+      ],
+      "recommendation": "Nest omega-3 under polyunsaturated fats and remove the internal contradiction."
+    },
+    {
+      "finding_id": "FAT-OILS-001",
+      "guide": "Sources of macronutrients",
+      "reviewed_statement": "Corn, soybean, sunflower and safflower oils are categorized as unhealthy.",
+      "classification": "CONFIRMED_DISCREPANCY",
+      "comparator": "AHA lists these nontropical liquid plant oils among healthier choices compared with solid/saturated fats.",
+      "source_refs": [
+        "AHA-FATS",
+        "AHA-OILS"
+      ],
+      "recommendation": "Do not classify regular polyunsaturated liquid plant oils as unhealthy solely because they are polyunsaturated."
+    }
+  ],
+  "correction_history": []
+}
