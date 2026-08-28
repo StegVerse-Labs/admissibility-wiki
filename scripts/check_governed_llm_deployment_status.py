@@ -6,6 +6,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
+import time
+
+TRANSIENT_HTTP_STATUSES = {429, 500, 502, 503, 504}
+PUBLIC_ROUTE_MAX_ATTEMPTS = 4
+PUBLIC_ROUTE_RETRY_DELAY_SECONDS = 5
 
 PAGES = {
     "governed_llm_reconstructive_search": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-reconstructive-search",
@@ -92,13 +97,35 @@ ASRO_ROUTE_NAMES = (
 
 def check_url(url: str):
     request = Request(url, method="HEAD", headers={"User-Agent": "stegverse-admissibility-verifier/1.0"})
-    try:
-        with urlopen(request, timeout=20) as response:
-            status = int(getattr(response, "status", None) or response.getcode())
-    except HTTPError as exc: return False, exc.code, f"{url} -> HTTP {exc.code}"
-    except URLError as exc: return False, None, f"{url} -> {exc.reason}"
-    except TimeoutError: return False, None, f"{url} -> timeout"
-    return 200 <= status < 400, status, f"{url} -> HTTP {status}"
+    last_status = None
+    last_message = None
+    for attempt in range(1, PUBLIC_ROUTE_MAX_ATTEMPTS + 1):
+        try:
+            with urlopen(request, timeout=20) as response:
+                status = int(getattr(response, "status", None) or response.getcode())
+            if 200 <= status < 400:
+                suffix = f" after {attempt} attempt(s)" if attempt > 1 else ""
+                return True, status, f"{url} -> HTTP {status}{suffix}"
+            last_status = status
+            last_message = f"{url} -> HTTP {status}"
+            if status not in TRANSIENT_HTTP_STATUSES:
+                return False, status, last_message
+        except HTTPError as exc:
+            last_status = exc.code
+            last_message = f"{url} -> HTTP {exc.code}"
+            if exc.code not in TRANSIENT_HTTP_STATUSES:
+                return False, exc.code, last_message
+        except URLError as exc:
+            last_status = None
+            last_message = f"{url} -> {exc.reason}"
+        except TimeoutError:
+            last_status = None
+            last_message = f"{url} -> timeout"
+
+        if attempt < PUBLIC_ROUTE_MAX_ATTEMPTS:
+            time.sleep(PUBLIC_ROUTE_RETRY_DELAY_SECONDS)
+
+    return False, last_status, f"{last_message} after {PUBLIC_ROUTE_MAX_ATTEMPTS} attempts"
 
 def main() -> int:
     results, failures = {}, []
