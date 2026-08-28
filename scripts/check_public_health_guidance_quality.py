@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "health-guidance" / "external-health-guidance-quality.v1.json"
 PAGE = ROOT / "docs" / "health-guidance" / "external-health-guidance-quality.md"
+SIDEBARS = ROOT / "sidebars.js"
 
 ALLOWED_CLASSIFICATIONS = {
     "CONFIRMED_CURRENT",
@@ -49,6 +50,7 @@ def walk_keys(value):
 def main() -> int:
     data = json.loads(DATA.read_text(encoding="utf-8"))
     page = PAGE.read_text(encoding="utf-8")
+    sidebars = SIDEBARS.read_text(encoding="utf-8")
 
     if data.get("schema_version") != "public.health-guidance-quality.v1":
         fail("unexpected schema_version")
@@ -96,6 +98,9 @@ def main() -> int:
     if len(finding_ids) != len(set(finding_ids)):
         fail("finding_id values must be unique")
 
+    if "health-guidance/external-health-guidance-quality" not in sidebars:
+        fail("public page is not discoverable from sidebars.js")
+
     lower_page = page.lower()
     for phrase in (
         "not a complaint or allegation",
@@ -107,7 +112,7 @@ def main() -> int:
 
     print(
         "PUBLIC HEALTH GUIDANCE QUALITY: PASS "
-        f"({len(finding_ids)} findings, {len(source_ids)} sources, privacy/authority boundary intact)"
+        f"({len(finding_ids)} findings, {len(source_ids)} sources, navigation + privacy/authority boundary intact)"
     )
     return 0
 
