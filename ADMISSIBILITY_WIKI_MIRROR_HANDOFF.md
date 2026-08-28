@@ -584,3 +584,25 @@ Worker C next target: Runtime Governance for AI Agents
 ```
 
 This promotion is bounded to source-level evaluation and does not claim native Policy Cards runtime execution. Other worker ownership remains unchanged.
+
+
+## 2026-08-27 health-guidance exact-main failure return
+
+The independently owned public health-guidance lane remains under issue #109 and branch handoff `public/health-guidance-quality:docs/health-guidance/EXTERNAL_HEALTH_GUIDANCE_PUBLIC_MIRROR_HANDOFF.md`.
+
+Exact main evidence after public sidebar publication:
+
+```text
+run: 33135704946
+head: 9a6cd72d63e0ad97e863e0ec0fa7ddaf4a2b0599
+pre-scan: 11/11 PASS
+full canonical validation: 51/56 PASS
+failed: 5
+overall: FAIL_CLOSED
+```
+
+Observed failure families included OPA capture harness, Cedar selected-binary/promotion harnesses, External Framework publication-proof contract, and canonical/iOS workflow consistency. ST-017 reported `ios_workflow_mirror_mismatch_without_controlled_patch`.
+
+This is an independently owned issue #109 regression return, not a transfer of the health-guidance implementation lane to the External Framework coordinator or this session. The health-guidance branch handoff remains `IMPLEMENTED_AWAITING_HOSTED_VALIDATION_AND_PUBLIC_ROUTE_PROOF`. Public-route completion is not claimed.
+
+Issue #109 has been updated with the exact failure evidence and owns remediation/successor proof.
