@@ -565,3 +565,22 @@ The run also preserves the existing non-authority boundaries. It does not promot
 At the time this proof was consumed, `main` had already moved to unrelated work at head `0664a4a82877b5905d1c9efe3074e75ed3a2f2f4` ("Publish bounded external health guidance quality review"). The PASS from run 33121409495 must therefore remain bound to `247c5c04...` and must not be transferred automatically to the newer head or to any future release candidate.
 
 No user action is required by this transition.
+
+
+## 2026-08-27 Policy Cards coordinator promotion — 8/36
+
+Exact run `33121409495` also closed Worker C's Policy Cards bounded source-level evaluation according to that page's declared completion rule. Direct run evidence includes manifest/terminology/report/page metadata-mapping-status/evidence-provenance/benchmark/governance-compatibility PASS and `policy-cards_case_families=6`.
+
+```text
+Policy Cards terminal class: LOCAL_WORK_COMPLETE_BOUNDED_SOURCE_LEVEL_POLICY_ARTIFACT_CROSSWALK
+implementation_attached: false
+native_execution_observed: false
+certification: false
+standing: false
+execution_authority: false
+coordinator issue #66: 8/36 terminal
+remaining: 28/36
+Worker C next target: Runtime Governance for AI Agents
+```
+
+This promotion is bounded to source-level evaluation and does not claim native Policy Cards runtime execution. Other worker ownership remains unchanged.
