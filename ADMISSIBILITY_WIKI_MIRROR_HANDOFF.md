@@ -554,3 +554,24 @@ authority_effect: false
 This lane publishes a non-PHI, recommendation-oriented comparison of selected external nutrition education statements against authoritative nutrition references. It is not a complaint, diagnosis, regulatory finding, proof of harm, certification, or endorsement. The structured record, public page, privacy/authority validator, and canonical-workflow preflight are implemented on the scoped branch. The preflight is outside the existing 56-check semantic denominator and does not alter External Framework evaluation ownership.
 
 Required next transition: exact-PR-head canonical workflow and site build PASS, followed by merge and post-merge public route/content proof.
+
+
+## 2026-08-27 public health-guidance continuation reconciliation
+
+```text
+goal_id: PUBLIC-HEALTH-GUIDANCE-QUALITY-001
+canonical_issue: #109
+canonical_scoped_handoff: docs/health-guidance/EXTERNAL_HEALTH_GUIDANCE_PUBLIC_MIRROR_HANDOFF.md
+current_pr: #111
+superseded_pr_shell: #110
+branch: public/health-guidance-quality
+implementation: COMPLETE_FOR_CURRENT_PUBLIC_SOURCE_SET
+canonical_workflow_mutation: REVERTED
+validator_integration: package.json prebuild
+canonical_56_check_denominator: UNCHANGED
+merge: BLOCKED_ON_STABLE_CURRENT_BASE_VALIDATION
+public_route_proof: PENDING
+authority_effect: false
+```
+
+The current blocker is concurrent unrelated `main` advancement, not missing health-guidance implementation. Do not repair unrelated OPA/Cedar/External Framework lanes under this goal merely because historical run `33135704946` failed after the now-reverted workflow-byte mutation. Continue from the scoped handoff and orchestration record, obtain exact-current-base PR #111 validation after `main` stabilizes, and only then merge/deploy/verify the public route.
