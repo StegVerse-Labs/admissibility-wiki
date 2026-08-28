@@ -60,6 +60,13 @@ def api_bytes(url: str, auth: str | None) -> bytes:
         return response.read()
 
 
+def is_rate_limit_error(exc: urllib.error.HTTPError) -> bool:
+    if exc.code != 403:
+        return False
+    remaining = exc.headers.get("X-RateLimit-Remaining") if exc.headers else None
+    return remaining == "0" or "rate limit" in str(exc).lower()
+
+
 def write_report(payload: dict[str, Any]) -> None:
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
@@ -130,6 +137,7 @@ def exact_artifact_for_run(run: dict[str, Any], auth: str | None) -> dict[str, A
 def main() -> int:
     auth = token()
     authenticated = auth is not None
+    inspected_runs = 0
 
     try:
         runs = api_json(
@@ -143,7 +151,6 @@ def main() -> int:
 
         selected: dict[str, Any] | None = None
         artifact: dict[str, Any] | None = None
-        inspected_runs = 0
         for candidate in candidates:
             inspected_runs += 1
             exact = exact_artifact_for_run(candidate, auth)
@@ -220,7 +227,30 @@ def main() -> int:
                 "authority_boundary": boundary(),
             }
         )
-    except (urllib.error.HTTPError, urllib.error.URLError, KeyError, ValueError, zipfile.BadZipFile, json.JSONDecodeError) as exc:
+    except urllib.error.HTTPError as exc:
+        if is_rate_limit_error(exc):
+            return skip(
+                "github_api_rate_limited_retry_later",
+                authenticated=authenticated,
+                inspected_runs=inspected_runs,
+            )
+        write_report(
+            {
+                "schema_version": "1.0.0",
+                "record_type": "external_chat_activation_evidence_acquisition",
+                "generated_at": now_iso(),
+                "state": "FAIL_CLOSED",
+                "reason": str(exc),
+                "source_repository": f"{OWNER}/{REPO}",
+                "source_workflow": WORKFLOW_NAME,
+                "authenticated_request": authenticated,
+                "projection_written": False,
+                "authority_boundary": boundary(),
+            }
+        )
+        print(f"EXTERNAL CHAT ACTIVATION ACQUISITION: FAIL - {exc}")
+        return 1
+    except (urllib.error.URLError, KeyError, ValueError, zipfile.BadZipFile, json.JSONDecodeError) as exc:
         write_report(
             {
                 "schema_version": "1.0.0",
