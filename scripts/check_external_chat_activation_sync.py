@@ -43,6 +43,8 @@ def main() -> int:
         'payload commit_sha does not match selected run head_sha',
         'successful_runs_inspected',
         'public_artifact_download_requires_authentication',
+        'github_api_rate_limited_retry_later',
+        'is_rate_limit_error',
         'projection_written": False',
         '"state": "FAIL_CLOSED"',
     )
