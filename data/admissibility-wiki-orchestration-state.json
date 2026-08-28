@@ -3,8 +3,8 @@
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "task_sequence": 17,
-  "task_sequence_label": "POLICY_CARDS_TERMINAL_COORDINATOR_8_OF_36",
+  "task_sequence": 18,
+  "task_sequence_label": "FRAMEWORK_8_OF_36_HEALTH_GUIDANCE_FAILURE_RETURNED_TO_OWNER",
   "work_state": "REPOSITORY_ACTIVE_FRAMEWORK_EVALUATION_AND_RELEASE_GATES_REMAIN",
   "system_health": "SUCCESSOR_EXACT_PASS_FRAMEWORK_EVALUATION_8_OF_36",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
@@ -184,6 +184,28 @@
       "duplicate_work_prohibited": true,
       "session_dependency": false,
       "release_condition": "PR owner resolves mergeability and completion criteria or releases the claim."
+    },
+    {
+      "task_id": "PUBLIC-HEALTH-GUIDANCE-QUALITY-001",
+      "owner": "issue #109",
+      "branch": "public/health-guidance-quality",
+      "handoff": "docs/health-guidance/EXTERNAL_HEALTH_GUIDANCE_PUBLIC_MIRROR_HANDOFF.md",
+      "execution_class": "INDEPENDENT_ACTIVE_OWNER_RETAINED",
+      "claim_state": "CLAIMED_BY_ISSUE_109",
+      "state": "IMPLEMENTED_MAIN_VALIDATION_FAIL_CLOSED_SUCCESSOR_PROOF_REQUIRED",
+      "observed_failure_run": 33135704946,
+      "observed_failure_head": "9a6cd72d63e0ad97e863e0ec0fa7ddaf4a2b0599",
+      "observed_validation": "11_OF_11_PRESCAN_51_OF_56_FULL_FAIL_CLOSED",
+      "failure_families": [
+        "OPA observation capture harness",
+        "Cedar selected-binary build harness",
+        "Cedar binary promotion automation",
+        "External Framework publication-proof contract",
+        "canonical/iOS workflow mirror consistency"
+      ],
+      "required_next_transition": "issue #109 owner consumes exact failures, repairs only owned/cross-cutting admitted defects, and obtains successor exact-head canonical/build/public proof",
+      "duplicate_work_prohibited": true,
+      "session_dependency": false
     }
   ],
   "machine_owned_dependency_workloads": [
@@ -274,13 +296,13 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "POLICY_CARDS_BOUNDED_SOURCE_LEVEL_TERMINAL_RECONCILED",
+    "event_type": "HEALTH_GUIDANCE_MAIN_VALIDATION_FAILURE_RETURNED_TO_EXISTING_OWNER",
     "progress_effect": true,
     "authority_effect": false,
-    "observed_run_id": 33121409495,
-    "observed_run_head": "247c5c04fe3956a2f18a6da3408b1d1fb10ec0fc",
+    "observed_run_id": 33135704946,
+    "observed_run_head": "9a6cd72d63e0ad97e863e0ec0fa7ddaf4a2b0599",
     "framework_denominator": "8_OF_36",
-    "required_next_transition": "continue existing worker-owned framework evaluations; Worker C next Runtime Governance for AI Agents"
+    "required_next_transition": "issue #109 owns health-guidance remediation; external-framework workers continue from 8/36 without collision"
   },
   "idle_terminal_statement": null,
   "archive_state": "SESSION_CONTINUITY_DURABLE_PROJECT_REMAINS_ACTIVE"
