@@ -63,7 +63,7 @@ Implemented:
 - `data/health-guidance/external-health-guidance-quality.v1.json` — structured non-PHI comparison record;
 - `docs/health-guidance/external-health-guidance-quality.md` — public research page;
 - `scripts/check_public_health_guidance_quality.py` — consistency, classification, privacy, and authority-boundary validator;
-- existing `.github/workflows/validate-chain-continuation.yml` preflight binding without changing the canonical 56-check semantic denominator.
+- `package.json` prebuild binding runs the health-guidance validator before every `npm run build`; the canonical workflow remains byte-identical to `main` and the canonical 56-check semantic denominator is unchanged.
 
 Current structured record:
 - findings: 9;
@@ -94,7 +94,7 @@ It does not mean:
 
 ## Current next actions
 
-1. obtain hosted canonical preflight + site-build validation evidence on the exact PR head;
+1. obtain hosted exact-PR-head canonical 56/56 PASS plus `npm run build` evidence showing the health-guidance prebuild validator PASS;
 2. merge only if canonical workflow remains PASS;
 3. obtain post-merge public route/content proof;
 4. preserve future source correction responses as successor records.
@@ -102,3 +102,19 @@ It does not mean:
 ## Archive posture
 
 Issue #109 and this handoff are the canonical continuation surfaces for this public research lane. The originating chat is not required after the structured comparison and publication surfaces are durable.
+
+
+## Canonical-workflow mutation lesson
+
+An initial implementation called the health-guidance validator directly from the canonical workflow. Hosted run `33135704946` proved the bounded health validator itself PASS but correctly failed five canonical validators because changing canonical workflow bytes invalidated workflow-manifest, Pages-receipt, iOS-mirror, Goal-5 publication-proof, and sandbox-derived contracts. That workflow change was reverted.
+
+Current design:
+```text
+canonical workflow bytes: RESTORED TO MAIN
+canonical 56-check denominator: UNCHANGED
+health validator enforcement: package.json prebuild
+site build path: npm run build -> prebuild validator -> docusaurus build
+publication authority effect: false
+```
+
+The failed run is preserved as useful fail-closed evidence; it must not be promoted to success.
