@@ -1,0 +1,175 @@
+{
+  "schema_version": "public.health-guidance-micronutrients-successor.v1",
+  "goal_id": "PUBLIC-HEALTH-GUIDANCE-MICRONUTRIENTS-SUCCESSOR-001",
+  "issue": 113,
+  "predecessor_issue": 109,
+  "predecessor_state": "COMPLETED_IMMUTABLE",
+  "updated_at": "2026-08-27",
+  "posture": "QUALITY_IMPROVEMENT_RECOMMENDATION_NOT_COMPLAINT",
+  "source_program": {
+    "organization": "CVS Caremark / CVS Weight Management",
+    "context": "nutrition/wellness educational material associated with GLP-1 program participation",
+    "participant_identifying_information_included": false
+  },
+  "upstream": {
+    "repository": "StegVerse-Labs/StegHealth",
+    "issue": 27,
+    "merge": "94a44c5ac1986ec9a2da7c05f936c479b05c0ad9",
+    "cli_run": 33138699672,
+    "signal_run": 33138699664,
+    "record": "docs/research/external-health-guidance/cvs-micronutrients-review.v1.json"
+  },
+  "h2h_boundary": {
+    "curriculum_review_approved": false,
+    "participant_ready": false,
+    "activation_authority": false
+  },
+  "authority_boundary": {
+    "individualized_clinical_advice": false,
+    "diagnosis": false,
+    "proof_of_harm": false,
+    "regulatory_finding": false,
+    "certification": false,
+    "payer_authority": false,
+    "complaint_disposition": false
+  },
+  "sources": [
+    {
+      "source_id": "NASEM-SODIUM-POTASSIUM-2019",
+      "publisher": "National Academies of Sciences, Engineering, and Medicine",
+      "title": "Dietary Reference Intakes for Sodium and Potassium",
+      "locator": "https://www.nationalacademies.org/read/25353/chapter/2"
+    },
+    {
+      "source_id": "NIH-ODS-CALCIUM",
+      "publisher": "NIH Office of Dietary Supplements",
+      "title": "Calcium Fact Sheet for Consumers",
+      "locator": "https://ods.od.nih.gov/factsheets/Calcium-Consumer/"
+    },
+    {
+      "source_id": "PUBCHEM-POTASSIUM",
+      "publisher": "PubChem / IUPAC-backed element record",
+      "title": "Potassium | K (Element)",
+      "locator": "https://pubchem.ncbi.nlm.nih.gov/element/19"
+    },
+    {
+      "source_id": "PUBCHEM-POLONIUM",
+      "publisher": "PubChem / IUPAC-backed element record",
+      "title": "Polonium | Po (Element)",
+      "locator": "https://pubchem.ncbi.nlm.nih.gov/element/84"
+    },
+    {
+      "source_id": "NIH-ODS-B12",
+      "publisher": "NIH Office of Dietary Supplements",
+      "title": "Vitamin B12 Fact Sheet for Consumers",
+      "locator": "https://ods.od.nih.gov/factsheets/VitaminB12-Consumer/"
+    },
+    {
+      "source_id": "NIH-ODS-VITA",
+      "publisher": "NIH Office of Dietary Supplements",
+      "title": "Vitamin A Fact Sheet for Consumers",
+      "locator": "https://ods.od.nih.gov/factsheets/VitaminA-Consumer/"
+    },
+    {
+      "source_id": "NIH-ODS-FOLATE",
+      "publisher": "NIH Office of Dietary Supplements",
+      "title": "Folate Fact Sheet for Consumers",
+      "locator": "https://ods.od.nih.gov/factsheets/Folate-Consumer/"
+    },
+    {
+      "source_id": "NIH-ODS-NIACIN",
+      "publisher": "NIH Office of Dietary Supplements",
+      "title": "Niacin Fact Sheet for Consumers",
+      "locator": "https://ods.od.nih.gov/factsheets/Niacin-Consumer/"
+    },
+    {
+      "source_id": "NIH-ODS-VITD",
+      "publisher": "NIH Office of Dietary Supplements",
+      "title": "Vitamin D Fact Sheet for Consumers",
+      "locator": "https://ods.od.nih.gov/factsheets/VITAMIND-Consumer/"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "MICRO-NA-001",
+      "classification": "UNSUPPORTED_GENERALIZATION",
+      "reviewed_statement": "Most adults need at least 2,000 mg/day sodium.",
+      "comparator": "Adult sodium AI is 1,500 mg/day; CDRR advises reducing intake if above 2,300 mg/day. A general 2,000 mg minimum for most adults is not established.",
+      "source_refs": [
+        "NASEM-SODIUM-POTASSIUM-2019"
+      ],
+      "recommendation": "Remove the generalized 2,000 mg minimum unless a separate population-specific source is supplied."
+    },
+    {
+      "finding_id": "MICRO-CA-001",
+      "classification": "CONFIRMED_DISCREPANCY",
+      "reviewed_statement": "Calcium age/sex grouping is combined in a way that obscures adult men 19–50 and the 71+ grouping.",
+      "comparator": "Adults 19–50: 1,000 mg/day; men 51–70: 1,000; women 51–70: 1,200; adults 71+: 1,200.",
+      "source_refs": [
+        "NIH-ODS-CALCIUM"
+      ],
+      "recommendation": "Use explicit age/sex rows."
+    },
+    {
+      "finding_id": "MICRO-K-SYMBOL-001",
+      "classification": "CONFIRMED_DISCREPANCY",
+      "reviewed_statement": "Po is used as a potassium symbol.",
+      "comparator": "Potassium is K; Po is polonium.",
+      "source_refs": [
+        "PUBCHEM-POTASSIUM",
+        "PUBCHEM-POLONIUM"
+      ],
+      "recommendation": "Use potassium (K) and spell out vitamin K when distinction is needed."
+    },
+    {
+      "finding_id": "MICRO-WATER-STORAGE-001",
+      "classification": "OVERSIMPLIFIED",
+      "reviewed_statement": "Water-soluble vitamins cannot be stored by the body.",
+      "comparator": "Vitamin B12 is water-soluble but stored in very large amounts relative to daily intake.",
+      "source_refs": [
+        "NIH-ODS-B12"
+      ],
+      "recommendation": "Qualify the statement and note B12 as an important exception."
+    },
+    {
+      "finding_id": "MICRO-VITA-UNIT-001",
+      "classification": "UNIT_CONVENTION_INCOMPLETE",
+      "reviewed_statement": "Vitamin A values shown as mcg without RAE.",
+      "comparator": "NIH ODS expresses recommendations in mcg RAE.",
+      "source_refs": [
+        "NIH-ODS-VITA"
+      ],
+      "recommendation": "Use mcg RAE."
+    },
+    {
+      "finding_id": "MICRO-FOLATE-UNIT-001",
+      "classification": "UNIT_CONVENTION_INCOMPLETE",
+      "reviewed_statement": "Folate shown as 400 mcg without DFE.",
+      "comparator": "Adult folate recommendation is 400 mcg DFE.",
+      "source_refs": [
+        "NIH-ODS-FOLATE"
+      ],
+      "recommendation": "Use mcg DFE and distinguish folic acid from food folate where relevant."
+    },
+    {
+      "finding_id": "MICRO-NIACIN-UNIT-001",
+      "classification": "UNIT_CONVENTION_INCOMPLETE",
+      "reviewed_statement": "Niacin values shown as mg without NE.",
+      "comparator": "Adult niacin recommendations are expressed as mg NE.",
+      "source_refs": [
+        "NIH-ODS-NIACIN"
+      ],
+      "recommendation": "Use mg NE."
+    },
+    {
+      "finding_id": "MICRO-VITD-UNIT-001",
+      "classification": "CONFIRMED_CURRENT_VALUE_UNIT_CONTEXT_CAN_IMPROVE",
+      "reviewed_statement": "Vitamin D shown only as 600 IU and 800 IU age 71+.",
+      "comparator": "Adults 19–70: 15 mcg (600 IU); adults 71+: 20 mcg (800 IU).",
+      "source_refs": [
+        "NIH-ODS-VITD"
+      ],
+      "recommendation": "Retain the values but present both mcg and IU."
+    }
+  ]
+}
