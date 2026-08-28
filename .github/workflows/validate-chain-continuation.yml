@@ -61,6 +61,9 @@ jobs:
       - name: Validate publication session consolidation inventory
         run: python scripts/check_publication_session_consolidation_inventory.py
 
+      - name: Validate bounded public health guidance quality projection
+        run: python scripts/check_public_health_guidance_quality.py
+
       - name: Validate heartbeat protocol anchor admissibility
         run: python scripts/check_heartbeat_protocol_anchor_admissibility.py
 
