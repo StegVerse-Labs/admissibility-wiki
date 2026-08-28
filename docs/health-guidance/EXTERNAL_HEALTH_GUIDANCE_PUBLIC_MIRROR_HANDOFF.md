@@ -4,7 +4,7 @@ Updated: 2026-08-27
 Repository: `StegVerse-Labs/admissibility-wiki`
 Canonical issue: `#109`
 Goal ID: `PUBLIC-HEALTH-GUIDANCE-QUALITY-001`
-State: `ACTIVE_BOUNDED_PUBLIC_RESEARCH_PROJECTION`
+State: `IMPLEMENTED_AWAITING_HOSTED_VALIDATION_AND_PUBLIC_ROUTE_PROOF`
 
 ## Goal
 
@@ -57,14 +57,20 @@ Public records must exclude:
 - `REQUIRES_MORE_EVIDENCE`
 - `CORRECTED_BY_SOURCE`
 
-## Initial machine surfaces
+## Machine surfaces
 
-Planned:
-- structured public comparison JSON;
-- rendered public research page;
-- validation that no private participant fields are present;
-- correction/version history fields;
-- source authority and locator fields.
+Implemented:
+- `data/health-guidance/external-health-guidance-quality.v1.json` — structured non-PHI comparison record;
+- `docs/health-guidance/external-health-guidance-quality.md` — public research page;
+- `scripts/check_public_health_guidance_quality.py` — consistency, classification, privacy, and authority-boundary validator;
+- existing `.github/workflows/validate-chain-continuation.yml` preflight binding without changing the canonical 56-check semantic denominator.
+
+Current structured record:
+- findings: 9;
+- authoritative sources: 6;
+- correction history: empty / awaiting future source response;
+- participant identifying information: explicitly false;
+- clinical/regulatory/certification/complaint authority: explicitly false.
 
 ## Upstream source of truth
 
@@ -88,11 +94,10 @@ It does not mean:
 
 ## Current next actions
 
-1. install structured comparison record;
-2. install public page;
-3. validate record/page consistency and prohibited-field absence;
-4. obtain hosted build/validation evidence;
-5. preserve future source correction responses as successor records.
+1. obtain hosted canonical preflight + site-build validation evidence on the exact PR head;
+2. merge only if canonical workflow remains PASS;
+3. obtain post-merge public route/content proof;
+4. preserve future source correction responses as successor records.
 
 ## Archive posture
 
