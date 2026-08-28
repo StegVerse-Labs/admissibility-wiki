@@ -18,6 +18,7 @@ Health-and-wellness programs should be able to give participants clear nutrition
 
 ## Findings
 
+<!-- finding:MICRO-B6-001 -->
 ### Vitamin B6 reference values — confirmed discrepancy
 
 The reviewed micronutrient guide gives adult vitamin B6 values of 1.1 mg/day for women and 1.2 mg/day for men beginning at age 19.
@@ -26,6 +27,7 @@ NIH Office of Dietary Supplements lists **1.3 mg/day for adults age 19–50**, w
 
 **Recommendation:** use current age-specific vitamin B6 reference values.
 
+<!-- finding:MICRO-K-001 -->
 ### Potassium reference value — outdated reference
 
 The reviewed guide gives **4,700 mg/day** as a generalized adult potassium target.
@@ -34,6 +36,7 @@ Current NIH Office of Dietary Supplements guidance lists **3,400 mg/day for adul
 
 **Recommendation:** use current age/sex-specific reference values and preserve individual clinical caveats.
 
+<!-- finding:DASH-NUTS-001 -->
 ### DASH nuts, seeds and legumes — confirmed discrepancy
 
 The reviewed DASH guide says **3 servings per day**.
@@ -42,6 +45,7 @@ For the 2,000-calorie DASH pattern, NHLBI lists **4–5 servings per week**.
 
 **Recommendation:** make DASH serving frequencies calorie-level-aware.
 
+<!-- finding:DASH-PROTEIN-001 -->
 ### DASH lean meat, poultry and fish — confirmed discrepancy
 
 The reviewed guide gives **3–6 oz of lean protein per meal**.
@@ -50,6 +54,7 @@ For the 2,000-calorie DASH pattern, NHLBI lists **6 oz or less per day** for lea
 
 **Recommendation:** express this as a daily DASH total tied to calorie level rather than a per-meal range.
 
+<!-- finding:DASH-OIL-001 -->
 ### DASH vegetable oils — confirmed discrepancy
 
 The reviewed guide places vegetable oil in an avoid category.
@@ -58,6 +63,7 @@ NHLBI DASH guidance explicitly includes vegetable oils and lists **2–3 fats/oi
 
 **Recommendation:** distinguish unsaturated vegetable oils from saturated-fat sources rather than categorically excluding vegetable oil.
 
+<!-- finding:PROC-INGREDIENTS-001 -->
 ### Five-ingredient shopping rule — oversimplified
 
 The reviewed minimally processed foods guide recommends buying foods with five ingredients or fewer.
@@ -66,6 +72,7 @@ Ingredient count alone is not a federal measure of healthfulness or food-process
 
 **Recommendation:** teach participants to interpret ingredient composition together with the Nutrition Facts label rather than applying a hard ingredient-count cutoff.
 
+<!-- finding:FAT-TAXONOMY-001 -->
 ### Saturated vs. polyunsaturated fat — confirmed discrepancy
 
 The reviewed macronutrient guide places saturated fat in a healthy category and polyunsaturated fat in an unhealthy category.
@@ -74,6 +81,7 @@ American Heart Association guidance recommends replacing saturated and trans fat
 
 **Recommendation:** organize the section around unsaturated fats to emphasize, saturated fats to limit, and industrial trans fats to avoid.
 
+<!-- finding:FAT-OMEGA3-001 -->
 ### Omega-3 classification — confirmed discrepancy
 
 The guide separately describes omega-3 as healthy while categorizing polyunsaturated fat as unhealthy.
@@ -82,6 +90,7 @@ Omega-3 fatty acids are themselves **polyunsaturated fats**.
 
 **Recommendation:** nest omega-3 correctly within the polyunsaturated-fat category.
 
+<!-- finding:FAT-OILS-001 -->
 ### Liquid plant oils — confirmed discrepancy
 
 The reviewed guide categorizes corn, soybean, sunflower and safflower oils as unhealthy because of their polyunsaturated-fat content.
