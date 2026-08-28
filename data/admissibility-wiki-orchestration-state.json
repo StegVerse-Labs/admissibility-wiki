@@ -3,10 +3,10 @@
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "task_sequence": 15,
-  "task_sequence_label": "EXACT_CANONICAL_PASS_OBSERVED_FRAMEWORK_EVALUATION_REMAINS",
+  "task_sequence": 16,
+  "task_sequence_label": "SUCCESSOR_RECONCILIATION_EXACT_PASS_FRAMEWORK_EVALUATION_REMAINS",
   "work_state": "REPOSITORY_ACTIVE_FRAMEWORK_EVALUATION_AND_RELEASE_GATES_REMAIN",
-  "system_health": "EXACT_CANONICAL_56_OF_56_BUILD_DEPLOY_PUBLIC_PASS_FRAMEWORK_EVALUATION_7_OF_36",
+  "system_health": "SUCCESSOR_EXACT_56_OF_56_BUILD_DEPLOY_PUBLIC_PASS_FRAMEWORK_EVALUATION_7_OF_36",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
   "repository_heartbeat": 15,
   "time_role": "NO_TIMER_OWNERSHIP",
@@ -136,9 +136,9 @@
       "claim_state": "ACTIVE",
       "heartbeat_lease_ref": null,
       "canonical_heartbeat_lease_established": false,
-      "state": "HOSTED_THREE_STAGE_ROUTE_PROOF_36_OF_36_OBSERVED_FRAMEWORK_EVALUATION_7_OF_36_SUCCESSOR_CANONICAL_PENDING",
+      "state": "EXACT_CANONICAL_BUILD_DEPLOY_PUBLIC_PROOF_COMPLETE_FRAMEWORK_EVALUATION_7_OF_36",
       "current_source_head_at_registration": "e2159843b0dcbf77612159db5d7b3df7423ebe63",
-      "current_source_head_validation": "GOAL5_66_OF_66_PASS_AT_13FFC_CANONICAL_REPOSITORY_54_OF_56_FAIL_CLOSED",
+      "current_source_head_validation": "RUN_33121409495_56_OF_56_BUILD_DEPLOY_PUBLIC_PASS_AT_247C5C04",
       "actual_external_frameworks": 36,
       "internal_registry_records": 2,
       "public_sidebar_source_wiring": "36_OF_36",
@@ -152,30 +152,24 @@
       "ios_workflow_mirror_guard": "STATE_AWARE_AND_FAIL_CLOSED_ON_UNRECORDED_DRIFT",
       "terminal_framework_evaluations_last_directly_observed": "7_OF_36",
       "remaining_framework_evaluations": 29,
-      "required_next_transition": "observe exact successor canonical run after TA-14 G-08 repair; continue worker-owned framework evaluations without duplicate ownership",
+      "required_next_transition": "continue only worker-owned framework evaluations under issue #66; after terminal/evidence-blocked closure, prove exact release candidate",
       "release_condition": "36/36 route proof for the exact release candidate, publication-proof-contract PASS including canonical/iOS mirror equality, all framework evaluations terminal or legitimately evidence-blocked, repository-wide canonical PASS, and required release/propagation/activation evidence",
       "duplicate_work_prohibited": true,
       "session_dependency": false,
       "source_route_contract_observed": {
-        "run_id": 33011831798,
-        "artifact_id": 9622942474,
-        "result": "PASS_36_OF_36",
-        "digest": "sha256:558d1c4a758210c275f0d3049cc5cf30c9b1336893a3389ef138338c125be7c5"
+        "run_id": 33121409495,
+        "result": "PASS_36_OF_36"
       },
       "built_route_verification_observed": {
-        "run_id": 33011831798,
-        "artifact_id": 9622986502,
-        "result": "PASS_36_OF_36_CONTENT_VERIFIED",
-        "digest": "sha256:dca3725bdb1f4700227e7f3aff834aa0eb902df88e9f457771b6f7e49d04c3a7"
+        "run_id": 33121409495,
+        "result": "PASS_36_OF_36_CONTENT_VERIFIED"
       },
       "public_route_verification_observed": {
-        "run_id": 33011831798,
-        "artifact_id": 9623014776,
-        "result": "PASS_36_OF_36_REACHABLE_CONTENT_VERIFIED",
-        "digest": "sha256:720c1bd70b4ae2bd62dac3e52807ba88a643322b67b4ee0592411916cbbb75df"
+        "run_id": 33121409495,
+        "result": "PASS_36_OF_36_REACHABLE_CONTENT_VERIFIED"
       },
-      "pages_build": "PASS_AT_74BF7ED",
-      "pages_deploy": "PASS_AT_74BF7ED"
+      "pages_build": "PASS_AT_247C5C04",
+      "pages_deploy": "PASS_AT_247C5C04"
     }
   ],
   "active_independent_workloads": [
@@ -229,9 +223,9 @@
     }
   ],
   "canonical_validation_state": {
-    "evidence_class": "LATEST_FULLY_OBSERVED_EXACT_MAIN_CANONICAL_SCAN",
-    "run_id": 33118691192,
-    "head_sha": "925b4f7a1346ce3f9516224daabe9d2467be2c6d",
+    "evidence_class": "LATEST_FULLY_OBSERVED_EXACT_RECONCILIATION_HEAD_CANONICAL_SCAN",
+    "run_id": 33121409495,
+    "head_sha": "247c5c04fe3956a2f18a6da3408b1d1fb10ec0fc",
     "event": "push",
     "overall_status": "PASS",
     "passed_checks": 56,
@@ -256,7 +250,7 @@
     "release_authority": false,
     "missing_evidence_implies_success": false,
     "session_dependency": false,
-    "current_main_validation": "EXACT_PASS_OBSERVED_AT_925B4F7A_HANDOFF_RECONCILIATION_MOVED_MAIN_RELEASE_CANDIDATE_REQUIRES_OWN_EXACT_PROOF"
+    "current_main_validation": "EXACT_PASS_OBSERVED_AT_247C5C04; MAIN_LATER_MOVED_FOR_UNRELATED_WORK; RELEASE_CANDIDATE_REQUIRES_OWN_EXACT_PROOF"
   },
   "policy": {
     "handoff_is_source_of_truth": true,
@@ -280,12 +274,12 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "EXACT_REPOSITORY_CANONICAL_PASS_OBSERVED_AND_PA_INT_011_RESTORED_COMPLETE",
+    "event_type": "SUCCESSOR_RECONCILIATION_HEAD_FULL_CANONICAL_PUBLICATION_PROOF_OBSERVED",
     "progress_effect": true,
     "authority_effect": false,
-    "observed_run_id": 33118691192,
-    "observed_run_head": "925b4f7a1346ce3f9516224daabe9d2467be2c6d",
-    "required_next_transition": "continue worker-owned framework evaluations under issue #66; do not release until terminal/evidence-blocked evaluation closure and exact release-candidate proof"
+    "observed_run_id": 33121409495,
+    "observed_run_head": "247c5c04fe3956a2f18a6da3408b1d1fb10ec0fc",
+    "required_next_transition": "consume worker-owned framework evaluation terminal evidence under issue #66; do not claim release until 36/36 terminal/evidence-blocked and exact release-candidate proof exists"
   },
   "idle_terminal_statement": null,
   "archive_state": "SESSION_CONTINUITY_DURABLE_PROJECT_REMAINS_ACTIVE"
