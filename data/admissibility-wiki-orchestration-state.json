@@ -198,15 +198,21 @@
       "workload": "bounded non-PHI external health-guidance quality comparison and public projection",
       "execution_class": "INDEPENDENT_BOUNDED_PUBLICATION_SAFE_WITH_CANONICAL_PREFLIGHT",
       "claim_state": "ACTIVE",
-      "state": "IMPLEMENTED_AWAITING_HOSTED_VALIDATION_AND_PUBLIC_ROUTE_PROOF",
+      "state": "IMPLEMENTED_BLOCKED_ON_STABLE_CURRENT_BASE_VALIDATION",
       "branch": "public/health-guidance-quality",
       "findings": 9,
       "authoritative_sources": 6,
       "canonical_semantic_denominator_changed": false,
       "duplicate_work_prohibited": true,
       "session_dependency": false,
-      "required_next_transition": "hosted canonical preflight and site build PASS on exact PR head, then merge and public route/content proof",
-      "release_condition": "structured record/page consistency PASS, privacy/authority boundary PASS, canonical workflow PASS, Pages build/deploy/public route proof"
+      "required_next_transition": "stable live main -> exact-current-base PR #111 canonical PASS + prebuild/site build PASS -> merge -> post-merge deploy/public route proof",
+      "release_condition": "structured record/page consistency PASS, privacy/authority boundary PASS, canonical workflow PASS, Pages build/deploy/public route proof",
+      "pull_request": 111,
+      "superseded_pull_request": 110,
+      "canonical_workflow_bytes_mutated": false,
+      "health_validator_integration": "PACKAGE_PREBUILD",
+      "merge_authorized": false,
+      "public_route_proof": "PENDING"
     }
   ],
   "machine_owned_dependency_workloads": [
@@ -297,12 +303,12 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "PUBLIC_HEALTH_GUIDANCE_QUALITY_PROJECTION_REGISTERED",
-    "progress_effect": true,
+    "event_type": "PUBLIC_HEALTH_GUIDANCE_CURRENT_BASE_VALIDATION_BLOCKED_BY_CONCURRENT_MAIN_CHURN",
+    "progress_effect": false,
     "authority_effect": false,
     "observed_run_id": null,
     "observed_run_head": null,
-    "required_next_transition": "hosted canonical preflight and site build PASS on exact PR head, then merge and public route/content proof"
+    "required_next_transition": "stable live main -> exact-current-base PR #111 canonical PASS + prebuild/site build PASS -> merge -> post-merge deploy/public route proof"
   },
   "idle_terminal_statement": null,
   "archive_state": "SESSION_CONTINUITY_DURABLE_PROJECT_REMAINS_ACTIVE"
