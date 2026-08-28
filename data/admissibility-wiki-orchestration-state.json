@@ -3,9 +3,9 @@
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "task_sequence": 15,
-  "task_sequence_label": "EXACT_CANONICAL_PASS_OBSERVED_FRAMEWORK_EVALUATION_REMAINS",
-  "work_state": "REPOSITORY_ACTIVE_FRAMEWORK_EVALUATION_AND_RELEASE_GATES_REMAIN",
+  "task_sequence": 16,
+  "task_sequence_label": "PUBLIC_HEALTH_GUIDANCE_QUALITY_PROJECTION_ACTIVE",
+  "work_state": "REPOSITORY_ACTIVE_FRAMEWORK_EVALUATION_AND_PUBLIC_HEALTH_GUIDANCE_VALIDATION",
   "system_health": "EXACT_CANONICAL_56_OF_56_BUILD_DEPLOY_PUBLIC_PASS_FRAMEWORK_EVALUATION_7_OF_36",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
   "repository_heartbeat": 15,
@@ -190,6 +190,23 @@
       "duplicate_work_prohibited": true,
       "session_dependency": false,
       "release_condition": "PR owner resolves mergeability and completion criteria or releases the claim."
+    },
+    {
+      "task_id": "PUBLIC-HEALTH-GUIDANCE-QUALITY-001",
+      "owner": "StegVerse-Labs/admissibility-wiki issue #109",
+      "handoff": "docs/health-guidance/EXTERNAL_HEALTH_GUIDANCE_PUBLIC_MIRROR_HANDOFF.md",
+      "workload": "bounded non-PHI external health-guidance quality comparison and public projection",
+      "execution_class": "INDEPENDENT_BOUNDED_PUBLICATION_SAFE_WITH_CANONICAL_PREFLIGHT",
+      "claim_state": "ACTIVE",
+      "state": "IMPLEMENTED_AWAITING_HOSTED_VALIDATION_AND_PUBLIC_ROUTE_PROOF",
+      "branch": "public/health-guidance-quality",
+      "findings": 9,
+      "authoritative_sources": 6,
+      "canonical_semantic_denominator_changed": false,
+      "duplicate_work_prohibited": true,
+      "session_dependency": false,
+      "required_next_transition": "hosted canonical preflight and site build PASS on exact PR head, then merge and public route/content proof",
+      "release_condition": "structured record/page consistency PASS, privacy/authority boundary PASS, canonical workflow PASS, Pages build/deploy/public route proof"
     }
   ],
   "machine_owned_dependency_workloads": [
@@ -280,12 +297,12 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "EXACT_REPOSITORY_CANONICAL_PASS_OBSERVED_AND_PA_INT_011_RESTORED_COMPLETE",
+    "event_type": "PUBLIC_HEALTH_GUIDANCE_QUALITY_PROJECTION_REGISTERED",
     "progress_effect": true,
     "authority_effect": false,
-    "observed_run_id": 33118691192,
-    "observed_run_head": "925b4f7a1346ce3f9516224daabe9d2467be2c6d",
-    "required_next_transition": "continue worker-owned framework evaluations under issue #66; do not release until terminal/evidence-blocked evaluation closure and exact release-candidate proof"
+    "observed_run_id": null,
+    "observed_run_head": null,
+    "required_next_transition": "hosted canonical preflight and site build PASS on exact PR head, then merge and public route/content proof"
   },
   "idle_terminal_statement": null,
   "archive_state": "SESSION_CONTINUITY_DURABLE_PROJECT_REMAINS_ACTIVE"
