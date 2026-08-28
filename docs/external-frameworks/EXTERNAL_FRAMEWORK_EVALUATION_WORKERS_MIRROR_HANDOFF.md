@@ -377,3 +377,59 @@ no unique implementation/validation/integration/observation responsibility remai
 Framework completion != repository release. Worker-lane completion != 36-framework completion. 36-framework completion != repository-wide validation PASS. Source review != runtime observation. Simulation != execution. Publication != standing. Compatibility != certification. Subtask transfer != session archival readiness.
 
 Do not mark this project archive-ready before 36/36.
+
+
+## 2026-08-27 Policy Cards terminal reconciliation — denominator 8/36
+
+Worker C's Policy Cards subclaim reached its declared bounded source-level completion class on exact hosted run `33121409495` at head `247c5c04fe3956a2f18a6da3408b1d1fb10ec0fc`.
+
+Direct evidence on that run:
+
+```text
+canonical pre-scan: 11/11 PASS
+full canonical validation: 56/56 PASS
+external framework manifests: PASS
+external framework terminology: PASS
+external framework reports: PASS
+page metadata/mapping/status: PASS
+evidence provenance: PASS
+benchmark mappings: PASS
+benchmark fixtures: PASS
+external framework governance compatibility: PASS
+policy-cards_case_families=6
+build/deploy/public-route chain: PASS
+```
+
+The Policy Cards page itself declares the bounded completion rule: canonical validation must observe manifest, terminology, report, page metadata/mapping/status, evidence provenance, benchmark mapping/fixture, and six-family governance compatibility without a Policy-Cards-specific failure. Run `33121409495` satisfies that rule.
+
+Terminal class:
+
+```text
+framework: Policy Cards
+owner: Worker C / issue #64
+terminal_class: LOCAL_WORK_COMPLETE_BOUNDED_SOURCE_LEVEL_POLICY_ARTIFACT_CROSSWALK
+primary_source: arXiv:2510.24383v1
+implementation_attached: false
+native_execution_observed: false
+same_environment_replay: NOT_PERFORMED
+fresh_runner_replay: NOT_PERFORMED
+independent_provider_reproduction: NOT_PERFORMED
+certification: false
+standing: false
+execution_authority: false
+subclaim: RELEASED
+```
+
+This is terminal for the declared bounded source-level evaluation, not for native Policy Cards runtime behavior. A later independently frozen implementation package may create a stronger optional evidence transition, but absence of that stronger evidence does not reopen this completed bounded source-level evaluation.
+
+Coordinator denominator advances:
+
+```text
+terminally reconciled: 8/36
+incomplete: 28/36
+developed-to-terminal-standard: 22.22%
+terminal validation completion: 22.22%
+unowned: 0/36
+```
+
+Worker C now advances to its remaining assigned framework: Runtime Governance for AI Agents. No Worker A/B/D or issue #50 file ownership changes.
