@@ -118,3 +118,34 @@ publication authority effect: false
 ```
 
 The failed run is preserved as useful fail-closed evidence; it must not be promoted to success.
+
+
+## Current validation blocker — concurrent main churn
+
+```text
+current PR: #111
+supersedes shell PR: #110
+branch: public/health-guidance-quality
+branch head before this handoff reconciliation: 15998767e314168522e0b4b17d8b1231b1bf620a
+canonical workflow bytes: RESTORED TO MAIN
+health validation integration: package.json prebuild
+structured findings: 9
+authoritative sources: 6
+privacy/authority validator: IMPLEMENTED
+navigation binding: IMPLEMENTED
+merge: BLOCKED / NOT FORCED
+public route proof: PENDING
+```
+
+The repository is concurrently advancing on unrelated active `main` workloads. During the final observation window, canonical push runs were repeatedly superseding/canceling each other and PR #111 had not received a valid exact-current-base canonical Actions run. The health branch therefore remains intentionally unmerged. A stale predecessor run must not be transferred to the corrected branch.
+
+Required continuation:
+1. wait for the repository canonical lane to stabilize on the current live `main`;
+2. obtain an exact-current-base PR #111 canonical run;
+3. require the unchanged 56-check canonical chain to PASS;
+4. require `npm run build` to execute the health-guidance `prebuild` validator and Docusaurus build successfully;
+5. merge only then;
+6. require post-merge build/deploy/public-route proof for `/health-guidance/external-health-guidance-quality`;
+7. reconcile issue #109, this handoff, orchestration, and root handoff.
+
+This is an execution-order/concurrency blocker, not missing health-guidance source implementation and not authorization to mutate unrelated OPA/Cedar/External Framework lanes.
