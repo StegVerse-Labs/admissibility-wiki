@@ -437,3 +437,18 @@ Discovery Governance activation evidence: ACTIVATION_EVIDENCE_COMPLETE
 This directly closes the previous "successor reconciliation proof pending" boundary for that exact head. Framework-specific evaluation remains separately nonterminal at 7/36 with 29 incomplete; worker ownership in issues #62-#65 and #50 remains unchanged.
 
 Because `main` later moved for unrelated work, release readiness still requires an exact canonical/build/deploy/public proof for the eventual release candidate after the 36-framework evaluation denominator closes or legitimately evidence-blocks.
+
+
+## Policy Cards terminal denominator promotion — 8/36
+
+Coordinator issue #66 now records Policy Cards as terminal at the bounded source-level class after exact canonical run `33121409495`.
+
+```text
+terminal frameworks: 8/36
+incomplete frameworks: 28/36
+unowned: 0/36
+terminal completion: 22.22%
+Worker C remaining assignment: Runtime Governance for AI Agents
+```
+
+The Policy Cards terminal class explicitly preserves `implementation_attached=false` and `native_execution_observed=false`. This is evidence-complete for the declared source-level crosswalk, not native runtime validation. Release remains unauthorized until all 36 frameworks are terminal or legitimately evidence-blocked and the eventual release candidate receives its own exact canonical/build/deploy/public proof.
