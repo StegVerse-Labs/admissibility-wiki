@@ -535,3 +535,33 @@ The canonical run did not independently print the PA-INT-011 task marker, and th
 Repository-wide canonical validation is now directly observed PASS for exact head `925b4f7a...`. Repository release remains separately blocked by External Framework framework-specific evaluation closure: last directly observed `7/36` terminal, `29/36` incomplete. Moving main after handoff-only reconciliation must not be substituted for an exact future release candidate.
 
 No user action is required for this canonical-validation or Generated StegPay lane.
+
+
+## 2026-08-27 successor reconciliation proof — run 33121409495
+
+The orchestration reconciliation commit itself was subsequently observed through the full canonical publication chain.
+
+```text
+run: 33121409495
+head: 247c5c04fe3956a2f18a6da3408b1d1fb10ec0fc
+event: push / main
+canonical pre-scan: 11/11 PASS
+full canonical validation: 56/56 PASS
+failed: 0
+skipped: 0
+build-pages: PASS
+external framework built routes: 36/36 PASS
+deploy-pages: PASS
+verify-public-pages: PASS
+external framework public routes: 36/36 PASS
+Discovery Governance activation closure: PASS
+Discovery Governance activation evidence: ACTIVATION_EVIDENCE_COMPLETE
+```
+
+This is stronger than the earlier archive-reconciliation proof because the exact orchestration reconciliation head itself is now directly observed PASS through validation, build, deployment, and public-route verification.
+
+The run also preserves the existing non-authority boundaries. It does not promote the External Framework evaluation denominator, which remains 7/36 terminal and 29/36 incomplete under issue #66 worker ownership.
+
+At the time this proof was consumed, `main` had already moved to unrelated work at head `0664a4a82877b5905d1c9efe3074e75ed3a2f2f4` ("Publish bounded external health guidance quality review"). The PASS from run 33121409495 must therefore remain bound to `247c5c04...` and must not be transferred automatically to the newer head or to any future release candidate.
+
+No user action is required by this transition.
