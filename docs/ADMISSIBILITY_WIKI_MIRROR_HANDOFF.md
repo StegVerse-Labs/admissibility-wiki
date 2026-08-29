@@ -347,3 +347,55 @@ A successor session may execute every located `READY_INTERNAL` or `ACTIVE_INTERN
 ## Handoff Instruction
 
 Continue from this file, the primary task registry, the TA-14 review task registry, the publication extension, and the session-consolidation record before relying on prior chat context. Active project work remains machine-owned, but this conversation no longer contains unique requirements or execution responsibility. The complete thread is ready for archiving without any additional part of the thread being required to move forward.
+
+## Execution ownership and collision partition
+
+Standard: `StegVerse-Labs/Continuity/docs/REPOSITORY_HANDOFF_STANDARD.md` / `stegverse.handoff-execution-ownership/v1`.
+
+### MANUAL / SESSION-STARTABLE
+
+```yaml
+- task_id: ADMISSIBILITY-ROOT-HANDOFF-ADOPTION-115
+  execution_owner: repo-standards #37 integration lane + admissibility-wiki repository owner
+  claim_state: CLAIMED_FOR_INTEGRATION
+  worker_registry_ref: StegVerse-Labs/repo-standards#37 + StegVerse-Labs/admissibility-wiki#115 + branch docs/handoff-ownership-adoption-115
+  manual_execution_allowed: true
+  manual_allowed_role: integration
+  collision_scope: execution-ownership metadata in docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md only; excludes public-anchor implementation, canonical validation repair/execution, task registries, TA-14/Conectrr/product lanes, workflow/publication observation, downstream mutation, credentials, claims/fences/leases, and authority-bearing work
+  release_condition: this textual migration is merged and issue #115 is reconciled
+  next_executable_action: merge ownership metadata only; do not treat the broad permitted-continuation prose above as manual implementation authority
+```
+
+### WORKER-OWNED / DO NOT COMPETE
+
+```yaml
+- task_id: ADMISSIBILITY-REPOSITORY-ACTIVE-WORK-AGGREGATE
+  execution_owner: current per-task worker or machine lane recorded in the primary/extension task registries, issue #50, issue #47, issue #53, orchestration state, scoped handoffs, and any newer valid claim/fence/lease
+  claim_state: MACHINE_OWNED
+  worker_registry_ref: static/status/wiki-public-anchor-internal-task-registry.json + static/status/wiki-public-anchor-internal-task-registry.ta14-publication-extension.json + static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json + data/admissibility-wiki-orchestration-state.json + issue #50
+  manual_execution_allowed: false
+  manual_allowed_role: observation
+  collision_scope: all READY_INTERNAL/ACTIVE_INTERNAL product tasks, canonical validation, TA-14/Conectrr execution, reconstruction/simulation, publication observation, activation receipt work, and any capability with a current owner in the cited registries or scoped handoffs
+  release_condition: newest valid per-task registry/claim/fence/lease/handoff explicitly releases or supersedes the exact collision scope
+  next_executable_action: allow repository-native workers/executors to continue; a chat/session may only take a separately explicit nonconflicting role
+```
+
+### ESCALATED / AUTHORITY-OWNED
+
+```yaml
+- task_id: ADMISSIBILITY-REPOSITORY-AUTHORITY-BOUNDARY
+  execution_owner: applicable admissibility/publication/certification/component authority -> ecosystem governance -> human authority where explicitly required
+  claim_state: ESCALATED
+  worker_registry_ref: current repository/governance authority records + destination handoffs + TV/TVC where credentials are involved
+  manual_execution_allowed: false
+  manual_allowed_role: reconciliation
+  collision_scope: admissibility determinations, certification, government/reviewer standing, publication/release authority, custody, execution authority, Guardian enforcement, credential authority, deployment authority, payment/entitlement authority, and cross-repository mutation authority
+  release_condition: exact bounded authority is explicitly granted through its canonical mechanism
+  next_executable_action: fail closed; visibility, validation, publication, route reachability, self-review, synthetic PASS, or migration metadata are not authority
+```
+
+### COMPLETED / SUPERSEDED
+
+- Prior session-specific implementation claims recorded as released remain released and do not reopen through this migration.
+- Broad narrative phrases such as `permitted continuation`, `READY_INTERNAL`, `ACTIVE_INTERNAL`, `manual task requirement: none`, or `there are no external tasks` do not make worker-owned product scopes manually startable.
+- Any inference that validation/publication/reconstruction/simulation results create certification, reviewer standing, custody, admissibility, release, or execution authority is superseded/prohibited.
