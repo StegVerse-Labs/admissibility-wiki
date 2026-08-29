@@ -235,3 +235,55 @@ Run `33032869810` showed the ArquivoNulo bounded evaluator failing only because 
 Commit `02ceed78e1438168d5d8613edb93569826893db4` introduces `PUBLICATION_REPORT = "reports/arquivonulo-public-route-observation.json"` and derives the output Path from that constant. Runtime behavior and authority posture are unchanged.
 
 A successor canonical run is required before promotion.
+
+## Execution ownership and collision partition
+
+Standard: `StegVerse-Labs/Continuity/docs/REPOSITORY_HANDOFF_STANDARD.md` / `stegverse.handoff-execution-ownership/v1`.
+
+### MANUAL / SESSION-STARTABLE
+
+```yaml
+- task_id: ADMISSIBILITY-ARQUIVONULO-HANDOFF-ADOPTION-115
+  execution_owner: repo-standards #37 integration lane + admissibility-wiki repository owner
+  claim_state: CLAIMED_FOR_INTEGRATION
+  worker_registry_ref: StegVerse-Labs/repo-standards#37 + StegVerse-Labs/admissibility-wiki#115
+  manual_execution_allowed: true
+  manual_allowed_role: integration
+  collision_scope: execution-ownership metadata in this ArquivoNulo handoff only; excludes route-checker/workflow binding, framework evaluation, fixture execution, interlock design/run, publication evidence mutation, credentials, claims/fences/leases, and authority-bearing work
+  release_condition: this textual migration is merged and issue #115 is reconciled
+  next_executable_action: merge ownership metadata only and preserve unresolved framework/product work under its canonical owners
+```
+
+### WORKER-OWNED / DO NOT COMPETE
+
+```yaml
+- task_id: ARQUIVONULO-CONTINUATION-AGGREGATE
+  execution_owner: current External Framework coordinator/worker lane and repository-native issue #50/#66 ownership as resolved by current registries and scoped handoffs
+  claim_state: MACHINE_OWNED
+  worker_registry_ref: docs/external-frameworks/worker-task-registry.json + StegVerse-Labs/admissibility-wiki#66 + current orchestration state + newest applicable ArquivoNulo/framework task record
+  manual_execution_allowed: false
+  manual_allowed_role: observation
+  collision_scope: route-checker canonical binding, canonical workflow/deployment observation, publication evidence/receipt updates, direct technical evidence reconciliation, fixture execution, and governed interlock experimentation
+  release_condition: newest valid task/registry/claim/handoff explicitly releases or supersedes the exact scope
+  next_executable_action: preserve current framework-worker ownership and observe machine evidence without competing
+```
+
+### ESCALATED / AUTHORITY-OWNED
+
+```yaml
+- task_id: ARQUIVONULO-AUTHORITY-BOUNDARY
+  execution_owner: applicable framework/admissibility/publication authority -> ecosystem governance
+  claim_state: ESCALATED
+  worker_registry_ref: this handoff + External Framework authority records + destination handoffs
+  manual_execution_allowed: false
+  manual_allowed_role: reconciliation
+  collision_scope: certification, endorsement, integration standing, execution authority, custody, production activation, admissibility determination, Guardian enforcement, credentials, release, or cross-repository mutation authority
+  release_condition: explicit canonical authority grant for the exact bounded scope
+  next_executable_action: fail closed; public-source inspection, technical realizability, publication, route observation, and migration metadata are not authority
+```
+
+### COMPLETED / SUPERSEDED
+
+- The 2026-08-23 source/public implementation reconciliation and report-path binding repair remain installed historical evidence and are not reopened by this migration.
+- Any inference that `Manual task requirement: none`, `pending observation`, or a proposed fixture/interlock makes the product work manually startable is superseded by the machine-owned aggregate above.
+- Any inference that public source, proof validity, route publication, or interoperability potential grants certification, production activation, integration standing, custody, or execution authority is superseded/prohibited.
