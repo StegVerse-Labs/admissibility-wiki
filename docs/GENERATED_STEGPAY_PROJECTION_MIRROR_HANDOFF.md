@@ -101,3 +101,55 @@ No user action is required.
 ## Next executable action
 
 No generated-Ste gPay implementation action remains in this repository. PR `#107` is merged and main run `33094673503` is durable. The canonical run did not independently print the PA-INT-011 task marker, and that distinction remains preserved without reopening the already completed bounded reconciliation. Downstream Guardian reconciliation is separately complete in `StegVerse-002/stegguardian-wiki` PR `#19` with merge `d7a4bdd0e92a4c2fa13ddf81ecf9af68974081cb` and main Pages run `33094989577`. Repository-wide exact-head run `33118691192` at `925b4f7a1346ce3f9516224daabe9d2467be2c6d` subsequently proved 11/11 pre-scan PASS, 56/56 canonical PASS, Pages build/deploy PASS, and public verification PASS. Future work must not reopen or duplicate PA-INT-011 unless a newer upstream evidence generation creates a new reconciliation requirement.
+
+## Execution ownership and collision partition
+
+Standard: `StegVerse-Labs/Continuity/docs/REPOSITORY_HANDOFF_STANDARD.md` / `stegverse.handoff-execution-ownership/v1`.
+
+### MANUAL / SESSION-STARTABLE
+
+```yaml
+- task_id: ADMISSIBILITY-GENERATED-STEGPAY-HANDOFF-ADOPTION-115
+  execution_owner: repo-standards #37 integration lane + admissibility-wiki repository owner
+  claim_state: CLAIMED_FOR_INTEGRATION
+  worker_registry_ref: StegVerse-Labs/repo-standards#37 + StegVerse-Labs/admissibility-wiki#115
+  manual_execution_allowed: true
+  manual_allowed_role: integration
+  collision_scope: execution-ownership metadata in this handoff only; excludes PA-INT-011 product logic, validators, task registry, workflows, future evidence ingestion, payments, publication/release/deployment/custody/admissibility, credentials, claims/fences/leases, and runtime authority
+  release_condition: this textual migration is merged and issue #115 is reconciled
+  next_executable_action: merge ownership metadata only; do not reopen the completed current-generation PA-INT-011 reconciliation
+```
+
+### WORKER-OWNED / DO NOT COMPETE
+
+```yaml
+- task_id: GENERATED-STEGPAY-FUTURE-EVIDENCE-AGGREGATE
+  execution_owner: Wiki public-anchor internal task executor and the current repository-native owner recorded for PA-INT-011 or its explicit successor
+  claim_state: MACHINE_OWNED
+  worker_registry_ref: static/status/wiki-public-anchor-internal-task-registry.generated-stegpay-extension.json + current orchestration state + newest applicable handoff/receipt
+  manual_execution_allowed: false
+  manual_allowed_role: observation
+  collision_scope: any newer generated-Ste gPay evidence reconciliation, projection validation, task execution, canonical workflow execution, or downstream semantic propagation
+  release_condition: current registry/handoff explicitly releases or supersedes the exact collision scope
+  next_executable_action: preserve the completed current generation; allow repository-native machinery to handle a newer generation if one appears
+```
+
+### ESCALATED / AUTHORITY-OWNED
+
+```yaml
+- task_id: GENERATED-STEGPAY-ADMISSIBILITY-AUTHORITY-BOUNDARY
+  execution_owner: applicable payment/admissibility/publication authority -> ecosystem governance
+  claim_state: ESCALATED
+  worker_registry_ref: this handoff + repository authority records + applicable TV/TVC credential authority
+  manual_execution_allowed: false
+  manual_allowed_role: reconciliation
+  collision_scope: production payment, entitlement, admissibility determination, certification, publication, release, deployment, custody, execution, Guardian enforcement, credential, or cross-repository mutation authority
+  release_condition: explicit canonical authority grant for the exact bounded scope
+  next_executable_action: fail closed; test-only evidence, validation, workflow PASS, transport, and publication observation are not authority
+```
+
+### COMPLETED / SUPERSEDED
+
+- PA-INT-011 current-generation reconciliation is complete as bounded evidence and must not be reopened by this migration.
+- The older active source/hash bindings listed above are historical provenance and are superseded by the current exact receipt chain.
+- Any inference that this ownership migration grants financial, admissibility, publication, release, custody, deployment, execution, Guardian, or credential authority is superseded/prohibited.
