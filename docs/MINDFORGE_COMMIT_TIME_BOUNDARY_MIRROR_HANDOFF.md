@@ -244,3 +244,55 @@ These markers bind the existing publication machinery to this handoff. They do n
 ## Archive posture
 
 The goal-specific publication claim is released. All unique requirements and evidence are durable. This MindForge publication workstream is complete and archive-safe.
+
+## Execution ownership and collision partition
+
+Standard: `StegVerse-Labs/Continuity/docs/REPOSITORY_HANDOFF_STANDARD.md` / `stegverse.handoff-execution-ownership/v1`.
+
+### MANUAL / SESSION-STARTABLE
+
+```yaml
+- task_id: ADMISSIBILITY-MINDFORGE-HANDOFF-ADOPTION-115
+  execution_owner: repo-standards #37 integration lane + admissibility-wiki repository owner
+  claim_state: CLAIMED_FOR_INTEGRATION
+  worker_registry_ref: StegVerse-Labs/repo-standards#37 + StegVerse-Labs/admissibility-wiki#115
+  manual_execution_allowed: true
+  manual_allowed_role: integration
+  collision_scope: execution-ownership metadata in this completed MindForge publication handoff only; excludes MindForge source/provenance recovery, framework evaluation, issue #50 work, validators, publication machinery, credentials, claims/fences/leases, and authority-bearing work
+  release_condition: this textual migration is merged and issue #115 is reconciled
+  next_executable_action: merge ownership metadata only without reopening the completed publication claim
+```
+
+### WORKER-OWNED / DO NOT COMPETE
+
+```yaml
+- task_id: MINDFORGE-REMAINING-EVIDENCE-AGGREGATE
+  execution_owner: current external-framework evidence/evaluation and MindForge provenance owners recorded by issue #50, scoped registries, and newest applicable handoffs
+  claim_state: MACHINE_OWNED
+  worker_registry_ref: issue #50 + docs/external-frameworks/worker-task-registry.json + docs/external-frameworks/evidence/mindforge-source-location-registry.md + current orchestration state
+  manual_execution_allowed: false
+  manual_allowed_role: observation
+  collision_scope: source-date verification, exact source recovery, reproducibility evidence, framework evaluation, public observation machinery, and any successor MindForge evidence task
+  release_condition: newest valid task/registry/claim/handoff explicitly releases or supersedes the exact scope
+  next_executable_action: preserve current owners and evidence gaps; do not convert publication completion into evidence completion
+```
+
+### ESCALATED / AUTHORITY-OWNED
+
+```yaml
+- task_id: MINDFORGE-AUTHORITY-BOUNDARY
+  execution_owner: applicable publication/certification/admissibility authority -> ecosystem governance
+  claim_state: ESCALATED
+  worker_registry_ref: this handoff + repository authority records
+  manual_execution_allowed: false
+  manual_allowed_role: reconciliation
+  collision_scope: compatibility certification, endorsement, reviewer standing, admissibility determination, publication authority beyond the recorded bounded statement, release, custody, execution, Guardian enforcement, credentials, or cross-repository mutation authority
+  release_condition: explicit canonical authority grant for the exact bounded scope
+  next_executable_action: fail closed; route verification, attribution authorization, source mention, and migration metadata are not authority
+```
+
+### COMPLETED / SUPERSEDED
+
+- `ADMISSIBILITY-MINDFORGE-PUBLICATION-001` remains complete and its implementation/validation claims remain released.
+- Publication completion does not satisfy the separate source-date, reproducibility, or framework-evaluation evidence gaps.
+- Any inference that this migration authorizes private-correspondence publication, compatibility/certification, execution, or broader reviewer attribution is superseded/prohibited.

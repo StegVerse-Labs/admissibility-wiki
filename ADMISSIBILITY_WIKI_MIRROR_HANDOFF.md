@@ -678,3 +678,55 @@ framework_specific_terminal_evaluations: 8/36
 The exact Pages artifact was inspected. The successor route HTML exists and contains all eight expected finding families: sodium wording, calcium grouping, potassium-symbol K/Po, water-soluble-vitamin storage/B12 exception, vitamin A RAE, folate DFE, niacin NE, and vitamin D dual-unit context. It also renders the non-complaint and H2H non-approval boundaries.
 
 This closes only the issue #113 successor publication generation. Predecessor #109 remains historically closed and unchanged. H2H remains independently gated in StegHealth issue #29.
+
+## Execution ownership and collision partition
+
+Standard: `StegVerse-Labs/Continuity/docs/REPOSITORY_HANDOFF_STANDARD.md` / `stegverse.handoff-execution-ownership/v1`.
+
+### MANUAL / SESSION-STARTABLE
+
+```yaml
+- task_id: ADMISSIBILITY-CANONICAL-HANDOFF-ADOPTION-115
+  execution_owner: repo-standards #37 integration lane + admissibility-wiki repository owner
+  claim_state: CLAIMED_FOR_INTEGRATION
+  worker_registry_ref: StegVerse-Labs/repo-standards#37 + StegVerse-Labs/admissibility-wiki#115 + branch docs/handoff-ownership-adoption-115
+  manual_execution_allowed: true
+  manual_allowed_role: integration
+  collision_scope: execution-ownership metadata in ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md and the bounded handoff-adoption branch only; excludes issue #50 product/validation work, External Framework worker lanes, Riverbraid, HIL/provider/runtime work, MindForge provenance, health-guidance product lanes, task registries, credentials, claims/fences/leases, and authority-bearing work
+  release_condition: all current mirror handoffs are textually migrated or explicitly superseded, exact-head repository validation is observed, migration PR is merged, and issue #115 is reconciled
+  next_executable_action: complete only the remaining textual handoff migration and validation; do not perform product/runtime work assigned elsewhere
+```
+
+### WORKER-OWNED / DO NOT COMPETE
+
+```yaml
+- task_id: ADMISSIBILITY-CURRENT-WORK-AGGREGATE
+  execution_owner: current per-task worker/machine owner recorded by data/admissibility-wiki-orchestration-state.json, issue #50, issues #62-#66, scoped handoffs, task registries, claims, fences, leases, and successor-resolution records
+  claim_state: MACHINE_OWNED
+  worker_registry_ref: data/admissibility-wiki-orchestration-state.json + issue #50 + docs/external-frameworks/worker-task-registry.json + docs/external-frameworks/EXTERNAL_FRAMEWORK_EVALUATION_WORKERS_MIRROR_HANDOFF.md + current scoped handoffs/registries
+  manual_execution_allowed: false
+  manual_allowed_role: observation
+  collision_scope: canonical validation repair/execution, External Framework evaluations, Riverbraid, HIL succession/provider/custody work, MindForge provenance, health-guidance successor evidence, generated StegPay successor evidence, publication/deployment observers, and every capability with a current worker/machine claim
+  release_condition: newest valid per-task registry/claim/fence/lease/handoff explicitly releases or supersedes the exact collision scope
+  next_executable_action: preserve current owners and machine evidence; do not infer manual availability from historical BLOCKED/pending/fail-closed prose
+```
+
+### ESCALATED / AUTHORITY-OWNED
+
+```yaml
+- task_id: ADMISSIBILITY-CANONICAL-AUTHORITY-BOUNDARY
+  execution_owner: applicable component/admissibility/publication/certification authority -> ecosystem governance -> human authority where explicitly required
+  claim_state: ESCALATED
+  worker_registry_ref: current repository/governance authority records + destination handoffs + TV/TVC credential authority where applicable
+  manual_execution_allowed: false
+  manual_allowed_role: reconciliation
+  collision_scope: admissibility determinations, certification, reviewer/government standing, publication/release authority, custody, execution authority, Guardian enforcement, credentials, deployment authority, payment/entitlement authority, provider activation, and cross-repository mutation authority
+  release_condition: exact bounded authority is explicitly granted through its canonical mechanism
+  next_executable_action: fail closed; source presence, validation PASS, publication, route reachability, reconstruction, transport, and migration metadata are not authority
+```
+
+### COMPLETED / SUPERSEDED
+
+- Historical completed session claims and bounded completed lanes remain complete only for their recorded denominators; this migration does not reopen them.
+- Any historical implication that `pending`, `blocked`, fail-closed, archived, or machine-owned work is manually startable is superseded by current registry/claim precedence and the worker-owned aggregate above.
+- Any inference that repository-wide validation or publication grants release, certification, admissibility, custody, Guardian, credential, or execution authority is superseded/prohibited.
