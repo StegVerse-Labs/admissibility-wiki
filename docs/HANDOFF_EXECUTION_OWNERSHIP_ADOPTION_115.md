@@ -23,11 +23,21 @@ Code-search inventory at main `2418c866177f7fd84ede26b10e7e61adb3ca1229` returne
 11. `docs/health-guidance/EXTERNAL_HEALTH_GUIDANCE_PUBLIC_MIRROR_HANDOFF.md`
 12. `docs/health-guidance/EXTERNAL_HEALTH_GUIDANCE_MICRONUTRIENTS_SUCCESSOR_MIRROR_HANDOFF.md`
 
-`docs/external-frameworks/EXTERNAL_FRAMEWORKS_MIRROR_HANDOFF.md` already contains the exact required `## Execution ownership and collision partition` heading. The other 11 remain fail-closed for manual implementation until textually migrated or explicitly superseded by a later canonical handoff.
+Migration state on branch `docs/handoff-ownership-adoption-115`:
+
+```text
+exact mirror handoffs inventoried: 12/12
+already compliant before branch: 1/12
+textually migrated on branch: 11/12
+total compliant after branch: 12/12
+known unclassified current mirror handoffs: 0
+```
+
+`docs/external-frameworks/EXTERNAL_FRAMEWORKS_MIRROR_HANDOFF.md` already contained the exact required `## Execution ownership and collision partition` heading. The other eleven current mirrors now contain explicit execution-owner, claim-state, registry, manual-role, collision-scope, release-condition, and next-action partitions.
 
 ## Preserved active ownership
 
-The migration must preserve, without reassigning or executing inside these scopes:
+The migration preserves, without reassigning or executing inside these scopes:
 
 - repository-wide canonical validation and reconciliation under issue `#50` and current orchestration state;
 - External Frameworks coordinator `#66`, worker issues `#62`-`#65`, and `docs/external-frameworks/worker-task-registry.json`;
@@ -36,25 +46,26 @@ The migration must preserve, without reassigning or executing inside these scope
 - HIL succession and any provider/runtime/custody dependencies as machine-owned/dependency-blocked;
 - heartbeat semantics authority upstream and oscillator-only/noncausal interpretation locally;
 - generated StegPay evidence as bounded/test-only unless newer canonical evidence explicitly changes that state;
+- bounded public-health-guidance history and future-source successor semantics;
 - all publication, release, custody, execution, Guardian, certification, credential, payment, deployment, cross-repository mutation, and admissibility authority boundaries.
 
 ## Migration completion rule
 
-This repository target may be reported `MIGRATED` to `StegVerse-Labs/repo-standards` only after every current active mirror handoff either:
+All current mirror handoffs are now textually classified. Remaining migration gates are repository validation for the exact branch head, merge of PR `#116`, issue `#115` reconciliation, and post-merge adoption-status update in `StegVerse-Labs/repo-standards`.
 
-1. contains the exact required execution-ownership section with normative task fields and operator buckets; or
-2. is explicitly superseded by a newer canonical handoff for execution ownership without erasing its historical/product semantics.
-
-Repository validation must be observed for the exact migration head before merge. Migration PASS does not imply repository-wide canonical PASS, activation, release, publication, admissibility, or runtime execution.
+Migration PASS does not imply repository-wide product completion, External Framework 36/36 completion, activation, release, publication authority, admissibility, or runtime execution.
 
 ## Remaining files or modules to install
 
 Destination: `StegVerse-Labs/admissibility-wiki`
 
-- execution-ownership partition in the 11 current mirror handoffs that do not yet contain it;
-- exact-head repository validation for the migration branch;
-- merge and issue `#115` reconciliation after validation;
-- post-merge adoption-status update in `StegVerse-Labs/repo-standards`.
+- no current mirror-handoff ownership partition remains to install;
+- exact-head repository validation for PR `#116` remains required;
+- merge and issue `#115` reconciliation remain required after validation.
+
+Destination: `StegVerse-Labs/repo-standards`
+
+- after validated merge, update `adoption/handoff-execution-ownership-targets.json` to mark `StegVerse-Labs/admissibility-wiki` `MIGRATED` with exact inventory and merge evidence.
 
 Downstream repositories are observation-only for this migration. No propagation mutation is authorized merely by this coordination record.
 
@@ -70,8 +81,8 @@ Downstream repositories are observation-only for this migration. No propagation 
   manual_execution_allowed: true
   manual_allowed_role: integration
   collision_scope: textual execution-ownership metadata in the 12 exact current mirror handoffs and this coordination record only; excludes product implementation, canonical validation repairs, worker task registries, runtime/provider work, publication/release/custody/execution/Guardian/admissibility authority, credentials, claims/fences/leases, and cross-repository mutation
-  release_condition: all current mirror handoffs are migrated or explicitly superseded, exact-head repository validation is observed, migration PR is merged, and issue #115 is reconciled
-  next_executable_action: continue mirror-by-mirror textual migration while preserving each handoff's current worker/authority owner and fail closed on ambiguous scopes
+  release_condition: exact-head repository validation is observed, PR #116 is merged, issue #115 is reconciled, and repo-standards adoption state is updated
+  next_executable_action: observe exact-head PR validation; merge only on successful canonical evidence, then update repo-standards adoption metadata
 ```
 
 ### WORKER-OWNED / DO NOT COMPETE
@@ -105,5 +116,6 @@ Downstream repositories are observation-only for this migration. No propagation 
 ### COMPLETED / SUPERSEDED
 
 - The exact 12-file inventory is complete for the cited main head.
-- `docs/external-frameworks/EXTERNAL_FRAMEWORKS_MIRROR_HANDOFF.md` is already textually migrated for this standard section and must not be duplicated.
+- All 12 current exact mirror handoffs are execution-ownership classified on the migration branch.
+- `docs/external-frameworks/EXTERNAL_FRAMEWORKS_MIRROR_HANDOFF.md` was already compliant and was not duplicated.
 - Any inference that issue `#115` or this branch authorizes active product/runtime work is superseded/prohibited.
