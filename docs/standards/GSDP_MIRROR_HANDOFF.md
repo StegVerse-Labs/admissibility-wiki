@@ -171,3 +171,55 @@ The initial activation goal is complete only when the normative draft, schema, r
 ## Archive posture
 
 This handoff preserves the complete continuation state. The complete thread may be archived without retaining additional chat context.
+
+## Execution ownership and collision partition
+
+Standard: `StegVerse-Labs/Continuity/docs/REPOSITORY_HANDOFF_STANDARD.md` / `stegverse.handoff-execution-ownership/v1`.
+
+### MANUAL / SESSION-STARTABLE
+
+```yaml
+- task_id: ADMISSIBILITY-GSDP-HANDOFF-ADOPTION-115
+  execution_owner: repo-standards #37 integration lane + admissibility-wiki repository owner
+  claim_state: CLAIMED_FOR_INTEGRATION
+  worker_registry_ref: StegVerse-Labs/repo-standards#37 + StegVerse-Labs/admissibility-wiki#115
+  manual_execution_allowed: true
+  manual_allowed_role: integration
+  collision_scope: execution-ownership metadata in this GSDP handoff only; excludes GSDP implementation, validator/status mutation, canonical workflow observation, Site/Publisher/Guardian propagation, credentials, claims/fences/leases, and authority-bearing work
+  release_condition: this textual migration is merged and issue #115 is reconciled
+  next_executable_action: merge ownership metadata only while preserving current GSDP worker/authority boundaries
+```
+
+### WORKER-OWNED / DO NOT COMPETE
+
+```yaml
+- task_id: GSDP-REMAINING-WORK-AGGREGATE
+  execution_owner: current repository-native GSDP/canonical-validation owner recorded by issue #50, orchestration state, scoped task registries, and newest applicable handoff
+  claim_state: MACHINE_OWNED
+  worker_registry_ref: issue #50 + data/admissibility-wiki-orchestration-state.json + scripts/check_admissibility_automation_handoff.py + current scoped GSDP records
+  manual_execution_allowed: false
+  manual_allowed_role: observation
+  collision_scope: canonical workflow observation, GSDP status-receipt mutation, reference-declaration expansion, conformance-class semantic checks, external declaration intake, and repository-native validation execution
+  release_condition: newest valid task/registry/claim/handoff explicitly releases or supersedes the exact scope
+  next_executable_action: preserve machine-owned continuation and observe canonical evidence without competing
+```
+
+### ESCALATED / AUTHORITY-OWNED
+
+```yaml
+- task_id: GSDP-AUTHORITY-BOUNDARY
+  execution_owner: applicable Site/Publisher/certification/registry/admissibility authority -> ecosystem governance
+  claim_state: ESCALATED
+  worker_registry_ref: this handoff + destination handoffs + repository authority records
+  manual_execution_allowed: false
+  manual_allowed_role: reconciliation
+  collision_scope: external conformance, certification, registry authority, public Site route activation, Publisher publication authority, admissibility determination, release, custody, execution, Guardian enforcement, credentials, or cross-repository mutation authority
+  release_condition: explicit canonical authority grant for the exact bounded scope
+  next_executable_action: fail closed; schema validity, self-declaration, canonical binding, publication, or migration metadata are not external authority
+```
+
+### COMPLETED / SUPERSEDED
+
+- The normative draft/schema/reference/validator/binding artifacts already installed remain historical implementation evidence and are not reopened by this migration.
+- Any prior implication that `pending`, `not observed`, or remaining GSDP work is manually startable is superseded by the machine-owned aggregate above.
+- Any inference that GSDP schema validation or publication establishes external conformance, certification, registry, admissibility, or execution authority is superseded/prohibited.
