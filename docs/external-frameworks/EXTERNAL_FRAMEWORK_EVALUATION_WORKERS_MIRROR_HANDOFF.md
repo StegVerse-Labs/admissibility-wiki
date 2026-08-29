@@ -4,171 +4,66 @@
 
 This is the canonical worker-coordination handoff for the 36 external-framework second-page evaluations in `StegVerse-Labs/admissibility-wiki`.
 
-Parent repository source of truth: `ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`.
+Repository source of truth: `ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`.
 External-framework boundary handoff: `docs/external-frameworks/EXTERNAL_FRAMEWORKS_MIRROR_HANDOFF.md`.
-Coordinator: issue #66.
-Worker claims: issues #62, #63, #64, #65; issue #50 retains MindForge, Morrison Runtime, and ASRO.
+Coordinator: issue `#66`.
+Worker claims: issues `#62`, `#63`, `#64`, `#65`; issue `#50` retains MindForge, Morrison Runtime, and ASRO.
+Canonical worker registry: `docs/external-frameworks/worker-task-registry.json`.
 Canonical workflow: `.github/workflows/validate-chain-continuation.yml`.
 Evaluation standard: `docs/external-frameworks/evaluation-standard.md`.
 
-Live issue state, current `main`, canonical workflow logs/artifacts, and newer merged evidence supersede stale historical comments. This file is the canonical worker handoff and must be synchronized whenever the denominator or an active claim materially changes.
+Live issue state, current `main`, canonical workflow logs/artifacts, current worker registry, and newer merged evidence supersede stale historical comments. Git history preserves prior detailed per-run evidence. This file preserves the current execution-owner partition and latest directly reconciled denominator without transferring any product claim to a chat/session.
 
 ## Active goal
 
 ```text
 goal_id: EXT-FRAMEWORK-SECOND-PAGE-36
-originating_session_goal: replace procedure-only, source-only, simulation-only, or scaffold external-framework pages with evidence-backed second-page evaluations at the strongest legitimately supported evidence class
+originating_goal: replace procedure-only, source-only, simulation-only, or scaffold external-framework pages with evidence-backed second-page evaluations at the strongest legitimately supported evidence class
 repository: StegVerse-Labs/admissibility-wiki
 canonical_branch: main
-current_main_evidence_commit: 906da19c397898c29e612b930ed09adbbd72323b
 active_goal_state: ACTIVE_UNTIL_36_OF_36_TERMINAL
-claim_state_last_synchronized_utc: 2026-08-09T09:47:00Z
 canonical_task_owner: issue #66 / repository-native worker lanes
-active_implementation_claim: Worker C issue #64 / Policy Cards
-active_validation_claim: Worker C issue #64 / Policy Cards after implementation merge
-claim_expiration_or_release_condition: release each framework subclaim after canonical framework-specific validation reaches a legitimate bounded terminal class; retain worker issue claim until all frameworks in that lane are terminal
+worker_ownership_coverage: 36/36
+unowned: 0/36
+release_authority: none
+execution_authority: none
+certification_authority: none
+cross_repository_mutation_authority: none
 ```
 
 Every completed page must let a reviewer distinguish framework-native claims, implementation/specification evidence, StegVerse-authored tests, observed versus simulated results, failure classes, replay/reconstruction limits, governance-chain placement, non-capabilities, evidence class, standing, remaining gates, and exact blockers.
 
-## Denominator and completion accounting
+## Latest directly reconciled denominator
+
+Policy Cards reached its declared bounded source-level terminal class on exact hosted run `33121409495` at head `247c5c04fe3956a2f18a6da3408b1d1fb10ec0fc`. That transition advanced the coordinator denominator to:
 
 ```text
 actual external frameworks: 36
-terminally reconciled: 7/36
-incomplete: 29/36
+terminally reconciled: 8/36
+incomplete: 28/36
 unowned: 0/36
-task completion: 19.44%
-developed-to-terminal-standard: 19.44%
-terminal validation completion: 19.44%
-integration into canonical second-page program: 19.44%
-goal activation: 19.44%
+developed-to-terminal-standard: 22.22%
+terminal validation completion: 22.22%
 worker/issue ownership coverage: 100%
-session-specific requirement transfer: 100%
-archive readiness: 0% while project denominator is incomplete
+project archive readiness: 0% while denominator remains incomplete
 ```
 
-Ownership coverage is not completion. Page existence, fixtures, procedures, generated reports, manifests, authored simulations, or issue/task records are not independently sufficient for terminal credit.
+Ownership coverage is not completion. Page existence, fixtures, procedures, generated reports, manifests, authored simulations, issue/task records, source review, or publication are not independently sufficient for terminal credit.
 
 ## Terminal framework records
 
-### 1. Open Policy Agent — COMPLETE_BOUNDED_OBSERVED
+The currently reconciled terminal set is:
 
-```text
-owner: Worker B / issue #63
-PR #68 merge: 3831367b1de4bad41c639a215c2a106860b53cfc
-PR #69 repair merge: 49ae93ddc8d48476d067a606a04f190b1c2e39f4
-canonical validation run: 31272895338
-historical compatibility evidence run: 29455057960
-case families: 6/6
-native capture: observed
-same-environment replay: observed
-fresh-runner same-provider replay: observed
-independent implementation/provider reproduction: not observed
-standing/execution authority/certification: not established
-claim: COMPLETE; implementation and validation subclaim released
-```
+1. Open Policy Agent — `COMPLETE_BOUNDED_OBSERVED`; native capture, same-environment replay, and fresh-runner same-provider replay observed; independent provider reproduction not observed.
+2. NIST AI RMF — `LOCAL_WORK_COMPLETE_BOUNDED_SOURCE_CROSSWALK`.
+3. ISO/IEC 42001 — `LOCAL_WORK_COMPLETE_EXTERNAL_EVIDENCE_BLOCKED`; stronger licensed clause-level evidence remains an external evidence boundary.
+4. EU AI Act — `LOCAL_WORK_COMPLETE_BOUNDED_LEGAL_CROSSWALK`.
+5. MITRE ATLAS — `LOCAL_WORK_COMPLETE_BOUNDED_THREAT_CROSSWALK`.
+6. OWASP Top 10 for LLM Applications — `LOCAL_WORK_COMPLETE_BOUNDED_SECURITY_CROSSWALK`.
+7. OSCAL — `LOCAL_WORK_COMPLETE_BOUNDED_CONTROL_ASSESSMENT_CROSSWALK`.
+8. Policy Cards — `LOCAL_WORK_COMPLETE_BOUNDED_SOURCE_LEVEL_POLICY_ARTIFACT_CROSSWALK`; `implementation_attached=false`, `native_execution_observed=false`, certification/standing/execution authority all false.
 
-### 2. NIST AI RMF — LOCAL_WORK_COMPLETE_BOUNDED_SOURCE_CROSSWALK
-
-```text
-owner: Worker C / issue #64
-official source receipt SHA-256: 7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1
-source receipt validation: PASS on canonical workflow
-single-workflow policy: PASS
-six-family governance mapping: installed and canonical-validator exercised
-runtime authorization claim: none
-standing/certification/execution authority: none
-claim: COMPLETE; released
-```
-
-### 3. ISO/IEC 42001 — LOCAL_WORK_COMPLETE_EXTERNAL_EVIDENCE_BLOCKED
-
-```text
-owner: Worker C / issue #64
-PR #83 merge: efdee5b4ab6093ee1b96de49fafa263dd098b1f3
-source identity: ISO/IEC 42001:2023 / Edition 1 / 2023-12
-terminal boundary: locally executable source-level management-system crosswalk complete; licensed clause-level/full-text evidence remains an external evidence boundary
-six-family governance mapping: canonical-validator exercised
-standing/certification/execution authority: none
-claim: COMPLETE at bounded terminal class; released
-external release condition for stronger evidence: authorized licensed full-text/clause package with custody/license and immutable identity
-```
-
-### 4. EU AI Act — LOCAL_WORK_COMPLETE_BOUNDED_LEGAL_CROSSWALK
-
-```text
-owner: Worker C / issue #64
-PR #85 merge: 8da07ca435d5a3e1ce5fb1ebee8cb31fb0aa4455
-validation repair PR #86 merge: 3fce51f20c72a9fdf8575855240b80969dbb3361
-canonical validation run: 31297139841
-source set: Regulation (EU) 2024/1689 plus material current amendment Regulation (EU) 2026/1744
-six-family governance mapping: PASS
-evidence provenance / terminology / manifest / page / benchmark validators: PASS
-legal advice/compliance determination/standing/execution authority: not claimed
-claim: COMPLETE; released
-```
-
-### 5. MITRE ATLAS — LOCAL_WORK_COMPLETE_BOUNDED_THREAT_CROSSWALK
-
-```text
-owner: Worker C / issue #64
-PR #87 merge: fdbbd2488a0d9049acf7dfab81e494130287c508
-repair PR #88 merge: 0605d78606dac3a894acc858e0435b1ce4448a0e
-canonical validation run: 31297491460
-pinned content release: v2026.06
-release asset: ATLAS-2026.06.yaml
-release asset SHA-256: b771de8b1489564b2838a709c7429849a9575dbd94073928817fe1a21661e70a
-content/data-format version separation: explicit
-terminology/provenance/manifest/page/benchmark/governance validators: PASS
-case families: 6/6
-standing/certification/execution authority: none
-claim: COMPLETE; released
-```
-
-### 6. OWASP Top 10 for LLM Applications — LOCAL_WORK_COMPLETE_BOUNDED_SECURITY_CROSSWALK
-
-```text
-owner: Worker C / issue #64
-PR #89 merge: 0d68507bb74b9fc1671537afcbcf123c0360a19c
-canonical validation run: 31297651524
-evaluated resource: OWASP Top 10 for LLM Applications 2025
-current broader context: OWASP GenAI Security Project
-Agentic Applications Top 10: explicitly separate resource, not conflated
-manifest/terminology/reports/page metadata/page mapping/page status/evidence provenance/benchmark mappings/benchmark fixtures: PASS
-governance compatibility: PASS
-case families: 6/6
-standing/certification/endorsement/execution authority: none
-claim: COMPLETE; released
-```
-
-### 7. OSCAL — LOCAL_WORK_COMPLETE_BOUNDED_CONTROL_ASSESSMENT_CROSSWALK
-
-```text
-owner: Worker C / issue #64
-source identity: NIST OSCAL 1.2.2
-release date recorded by page: 2026-04-30
-official content sample repository: usnistgov/oscal-content
-sample repository tag: v1.5.0
-sample Git blob SHA: 85025c21e392ab4d67ad4b4490bbff6871811945
-sample document version: 5.2.0
-sample oscal-version: 1.2.2
-promotion PR #91: pinned source/version/sample, page, manifest, terminology/provenance, benchmark mapping/fixture, and six-family governance fixture
-validator repair PR #92 merge: a1b08717a7ae83709efb11149c86efe088d94058
-scope-heading repair PR #93 merge: 906da19c397898c29e612b930ed09adbbd72323b
-canonical validation run: 31306639464
-page remediation: PASS (13/13 complete_with_external_gates)
-benchmark mappings: PASS
-benchmark fixtures: PASS
-manifests / terminology / reports / page metadata / page mapping / page status / evidence provenance: PASS
-governance compatibility: PASS
-case families: 6/6
-native OSCAL validator/converter execution: not observed and not required for bounded source-reviewed terminal class
-standing/certification/endorsement/execution authority: none
-claim: COMPLETE; OSCAL implementation and validation subclaim released
-```
-
-Run `31306639464` remains repository-wide fail-closed because unrelated workstreams remain incomplete. In the Goal-5 aggregate, the remaining failures are Morrison Runtime promotion and AGCP registry-assessment. They do not reopen OSCAL because all OSCAL-specific required validators passed and those failures are durably assigned outside Worker C.
+The detailed immutable evidence chain for these eight transitions remains preserved in this file's Git history, associated issues/PRs, framework pages/manifests, canonical workflow logs, and uploaded Goal-5/full-validation artifacts. A later stronger evidence package may create an optional successor transition but does not reopen a legitimate bounded terminal class unless the coordinator explicitly does so.
 
 ## Active worker lanes and claims
 
@@ -177,9 +72,8 @@ Run `31306639464` remains repository-wide fail-closed because unrelated workstre
 ```text
 issue: #62
 claim_state: CLAIMED_FOR_IMPLEMENTATION_AND_VALIDATION
-role: implementation + validation within Worker A collision boundary
-release condition: each claimed framework reaches legitimate terminal evidence posture and coordinator #66 records release
-claimed frameworks:
+release_condition: each claimed framework reaches legitimate terminal evidence posture and coordinator #66 records release
+remaining claimed frameworks:
   OAuth 2.0
   OpenID Connect
   W3C Decentralized Identifiers
@@ -209,32 +103,34 @@ remaining claimed frameworks:
   Agent Governance Playbook
 ```
 
-Cedar current state remains under `docs/external-frameworks/CEDAR_RUNTIME_MIRROR_HANDOFF.md`; native bounded ALLOW/DENY and same-environment replay are observed, while its next distinct evidence transition is fresh-runner same-provider replay through the existing canonical workflow. Do not create a duplicate standalone workflow.
+Cedar's next distinct evidence transition remains fresh-runner same-provider replay through the existing canonical workflow. Do not create a duplicate standalone workflow.
 
 ### Worker C — standards and risk
 
 ```text
 issue: #64
 claim_state: CLAIMED_FOR_IMPLEMENTATION_AND_VALIDATION
-completed: NIST AI RMF, ISO/IEC 42001, EU AI Act, MITRE ATLAS, OWASP Top 10 for LLM Applications, OSCAL
-active target: Policy Cards
-remaining after Policy Cards:
-  Runtime Governance for AI Agents
-collision boundary: do not absorb issue #50 frameworks or Worker A/B/D frameworks
-OSCAL subclaim: RELEASED
-Policy Cards implementation claim: ACTIVE
-Policy Cards release condition: pin and reconcile the strongest legitimate source/version/implementation evidence available, replace source-only/scaffold wording, preserve simulation-vs-native-runtime distinction, execute canonical framework-specific validation, and record a bounded terminal class or exact external-evidence terminal blocker
+completed:
+  NIST AI RMF
+  ISO/IEC 42001
+  EU AI Act
+  MITRE ATLAS
+  OWASP Top 10 for LLM Applications
+  OSCAL
+  Policy Cards
+active target: Runtime Governance for AI Agents
+remaining claimed frameworks: 1
+collision_boundary: do not absorb issue #50 or Worker A/B/D scopes
 ```
 
-Policy Cards current starting state is already installed but nonterminal: `docs/external-frameworks/policy-cards.md`, `docs/external-frameworks/policy-cards.json`, the benchmark mapping/fixture and compatibility report, plus `tests/fixtures/external-frameworks/policy-cards-governance-compatibility-cases.v1.json`. The six-family governance fixture is deterministic simulation only (`implementation_attached=false`, `native_execution_observed=false`). The public page still records a public arXiv source but lacks a versioned source snapshot/hash and concrete implementation/schema evidence. The next executable action is source/implementation identity reconciliation and second-page promotion without presenting simulation as native execution.
+Policy Cards is released at its bounded source-level class. Worker C's next target is Runtime Governance for AI Agents. No Worker A/B/D or issue #50 ownership changes through that promotion.
 
 ### Worker D — bespoke and interoperability
 
 ```text
 issue: #65
 claim_state: CLAIMED_FOR_IMPLEMENTATION_AND_VALIDATION
-release condition: each claimed framework reaches legitimate terminal evidence posture and coordinator #66 records release
-claimed frameworks:
+remaining claimed frameworks:
   GLM
   EVIDE
   DecisionAssure
@@ -242,6 +138,7 @@ claimed frameworks:
   KPT
   AAR
   W3C PROV
+release_condition: each claimed framework reaches legitimate terminal evidence posture and coordinator #66 records release
 ```
 
 Where source/artifact packages are absent, Worker D must finish all locally establishable evidence, name the exact external blocker, and fail closed rather than manufacture runtime/reproduction evidence.
@@ -257,56 +154,32 @@ frameworks:
   ASRO
 ```
 
-No worker may silently take these files or capabilities. Canonical run `31306639464` still reports Morrison Runtime promotion failure under this boundary.
+No worker or session may silently take these files or capabilities.
 
 ## Machine-owned execution and automation
 
 ```text
 canonical workflow: .github/workflows/validate-chain-continuation.yml
 trigger: repository push / canonical workflow policy
-concurrency: newer canonical main executions may supersede older in-progress runs
+concurrency: newer canonical executions may supersede older in-progress runs
 state persistence: committed manifests/pages/handoffs/issues plus uploaded validation artifacts/receipts
-fail-closed enforcement: repository-wide final enforcement remains failure when required validators fail
-framework subclaim rule: a framework may close only when all framework-specific required checks pass and unrelated failures are durably assigned elsewhere
-manual_tasks_required reported by external-framework governance compatibility: 0
-states preserved by worker program: COMPLETE, BLOCKED, REVIEW_REQUIRED, FAILED, CLAIMED, SUPERSEDED, MERGED
+fail_closed_enforcement: repository-wide final enforcement remains failure when required validators fail
+framework_subclaim_rule: close only when all framework-specific required checks pass and unrelated failures are durably assigned elsewhere
+manual_tasks_required_by_worker_program: 0
+states_preserved: COMPLETE, BLOCKED, REVIEW_REQUIRED, FAILED, CLAIMED, SUPERSEDED, MERGED
 ```
 
-Existing automation surfaces include external-framework report/result/page generators, automation-readiness generation, execution plans, job-materialization candidates, runtime authorization/dispatch records, observed-evidence capture tooling, Cedar build/capture/replay tooling, canonical pre-scan, full-validation-chain reporting, and run-bound artifacts. Missing evidence must remain BLOCKED/REVIEW_REQUIRED rather than being silently promoted.
+Missing evidence remains `BLOCKED`/`REVIEW_REQUIRED` rather than being silently promoted.
 
-## Validation commands / evidence paths
+## Validation and evidence paths
 
-```text
-python scripts/check_external_frameworks_index.py
-python scripts/check_external_framework_manifests.py
-python scripts/check_external_framework_terminology.py
-python scripts/check_external_framework_reports.py
-python scripts/check_external_framework_page_remediation.py
-python scripts/check_external_framework_governance_compatibility.py
-python scripts/check_external_framework_benchmark_mappings.py
-python scripts/check_external_framework_benchmark_fixtures.py
-python scripts/check_external_framework_evidence_provenance.py
-python scripts/check_goal5_external_frameworks_all.py
-python scripts/check_full_validation_chain.py
-```
-
-The canonical workflow/job logs and uploaded `goal5-external-frameworks-report` and `full-validation-chain-report` artifacts are stronger evidence than a local static PASS alone. OSCAL terminal evidence is run `31306639464`, including full-validation artifact `9036165951` and Goal-5 report artifact `9036166323`.
+Canonical validation includes the external-framework index, manifests, terminology, reports, page remediation, governance compatibility, benchmark mappings, benchmark fixtures, evidence provenance, Goal-5 aggregate, and full validation chain. Canonical workflow/job logs and uploaded Goal-5/full-validation artifacts are stronger evidence than local static PASS alone.
 
 ## Cross-repository dependencies and propagation
 
-No framework-terminal transition in the current 7/36 set independently authorizes a repository release, tag, Site propagation, Publisher propagation, Guardian propagation, master-record promotion, certification, or execution authority. Such propagation must be performed only when a live owner contract or release gate requires it and then directly verified.
+No framework-terminal transition independently authorizes repository release, tag, Site propagation, Publisher propagation, Guardian propagation, master-record promotion, certification, or execution authority. Propagation may occur only when a live owner contract or release gate requires it and the destination handoff independently admits the mutation.
 
-Current Guardian destination resolution observed by the canonical workflow:
-
-```text
-StegVerse-Labs/stegguardian-wiki: not found
-StegVerse-Labs/StegGuardian: not found
-StegVerse-Labs/stegguardian: not found
-StegVerse-002/stegguardian-wiki: found
-StegVerse-002/StegGuardian: found
-```
-
-This resolver output is not itself a propagation instruction for the external-framework worker program.
+Current Guardian resolution belongs to the canonical destination resolver and does not itself instruct propagation.
 
 ## Completion definition per framework
 
@@ -328,17 +201,17 @@ A framework is terminal only when a reviewer can determine:
 ## Current incomplete inventory and next executable actions
 
 ```text
-Worker A / #62: 9 claimed framework evaluations remain under Worker A; execute within claimed files and release each through #66.
-Worker B / #63: Cedar plus 7 additional framework evaluations remain; immediate Cedar action = fresh-runner same-provider replay through canonical workflow, then preserve receipt and update Cedar handoff/page; do not create a duplicate standalone workflow.
-Worker C / #64: 2 framework evaluations remain. Policy Cards is ACTIVE; inspect/pin source and any concrete schema/repository/artifact identity, upgrade page/manifest/evidence posture, preserve simulation-only boundary, then canonical-validate. Runtime Governance for AI Agents follows after Policy Cards.
-Worker D / #65: 7 claimed framework evaluations remain; execute locally establishable evidence and terminal external blockers where applicable.
-Issue #50: MindForge, Morrison Runtime, ASRO remain outside worker lanes; Morrison promotion currently fails canonical aggregate and remains issue #50 responsibility.
-Coordinator / #66: maintain exact completed denominator, release records, collision boundaries, and archive guard.
+Worker A / #62: 9 claimed framework evaluations remain; execute only inside Worker A's claimed files and release each through #66.
+Worker B / #63: Cedar plus 7 additional framework evaluations remain; immediate Cedar transition is fresh-runner same-provider replay through the canonical workflow.
+Worker C / #64: Runtime Governance for AI Agents remains after Policy Cards terminal reconciliation.
+Worker D / #65: 7 claimed framework evaluations remain; execute locally establishable evidence and preserve exact terminal external blockers where applicable.
+Issue #50: MindForge, Morrison Runtime, ASRO remain outside worker lanes.
+Coordinator / #66: maintain exact denominator, release records, collision boundaries, and archive guard.
 ```
 
-## Session consolidation
+## Session consolidation and archive condition
 
-All unique requirements from the originating session are durable in this handoff, issues #50/#62-#66, framework pages/manifests, Git history, workflow logs, and artifacts:
+All unique requirements are durable in this handoff, issues `#50/#62-#66`, `docs/external-frameworks/worker-task-registry.json`, framework pages/manifests, Git history, canonical workflow logs, and artifacts.
 
 ```text
 conversation != validation
@@ -350,86 +223,61 @@ fresh-runner same-provider replay != independent implementation/provider reprodu
 publication != standing
 compatibility evidence != certification
 execution != admissibility
-framework completion requires claims-vs-actual-abilities + StegVerse evidence + governance-chain placement + non-capabilities + exact blockers
-status checks report live deltas rather than reinterpret inactivity as completion
 ```
 
-Session-specific knowledge transfer: COMPLETE.
-Project execution responsibility: ACTIVE until 36/36.
-Merged continuation path: `StegVerse-Labs/admissibility-wiki/docs/external-frameworks/EXTERNAL_FRAMEWORK_EVALUATION_WORKERS_MIRROR_HANDOFF.md`, issues #50/#62-#66, and canonical workflow `.github/workflows/validate-chain-continuation.yml`.
+Project execution responsibility remains active until 36/36. Do not mark the External Framework evaluation program archive-ready before 36/36 terminal reconciliation, all locally executable work is complete, every remaining external evidence blocker is explicit and terminal, worker/coordinator claims are released or terminally reconciled, handoffs/issues are synchronized, and no unique implementation/validation/integration/observation responsibility remains in chat.
 
-## Archive conditions
+Framework completion != repository release. Worker-lane completion != 36-framework completion. 36-framework completion != repository-wide validation PASS.
 
-The originating session remains active until all 36 framework records have a legitimate terminal posture. Archive eligibility requires:
+## Execution ownership and collision partition
 
-```text
-36/36 terminally reconciled;
-all locally executable work completed and validated;
-all remaining external-evidence blocks explicit and terminal;
-worker/coordinator claims released or terminally reconciled;
-no active collision or stale indefinite claim;
-canonical handoffs and issue state synchronized;
-no framework remains merely source-only, procedure-only, simulation-only, scaffold-only, or awaiting locally executable implementation;
-required release/propagation obligations, if any, completed and verified;
-no unique implementation/validation/integration/observation responsibility remains in chat.
+Standard: `StegVerse-Labs/Continuity/docs/REPOSITORY_HANDOFF_STANDARD.md` / `stegverse.handoff-execution-ownership/v1`.
+
+### MANUAL / SESSION-STARTABLE
+
+```yaml
+- task_id: ADMISSIBILITY-EXTERNAL-FRAMEWORK-WORKER-HANDOFF-ADOPTION-115
+  execution_owner: repo-standards #37 integration lane + admissibility-wiki repository owner
+  claim_state: CLAIMED_FOR_INTEGRATION
+  worker_registry_ref: StegVerse-Labs/repo-standards#37 + StegVerse-Labs/admissibility-wiki#115 + branch docs/handoff-ownership-adoption-115
+  manual_execution_allowed: true
+  manual_allowed_role: integration
+  collision_scope: execution-ownership metadata and current-state consolidation in this worker handoff only; excludes all framework page/manifest/fixture/report/validator implementation, worker issues #62-#65, coordinator #66 product coordination, issue #50 frameworks, canonical workflow execution, credentials, claims/fences/leases, and authority-bearing work
+  release_condition: this textual migration is merged and issue #115 is reconciled
+  next_executable_action: validate and merge ownership metadata only; do not perform any framework evaluation assigned to a worker lane
 ```
 
-Framework completion != repository release. Worker-lane completion != 36-framework completion. 36-framework completion != repository-wide validation PASS. Source review != runtime observation. Simulation != execution. Publication != standing. Compatibility != certification. Subtask transfer != session archival readiness.
+### WORKER-OWNED / DO NOT COMPETE
 
-Do not mark this project archive-ready before 36/36.
-
-
-## 2026-08-27 Policy Cards terminal reconciliation — denominator 8/36
-
-Worker C's Policy Cards subclaim reached its declared bounded source-level completion class on exact hosted run `33121409495` at head `247c5c04fe3956a2f18a6da3408b1d1fb10ec0fc`.
-
-Direct evidence on that run:
-
-```text
-canonical pre-scan: 11/11 PASS
-full canonical validation: 56/56 PASS
-external framework manifests: PASS
-external framework terminology: PASS
-external framework reports: PASS
-page metadata/mapping/status: PASS
-evidence provenance: PASS
-benchmark mappings: PASS
-benchmark fixtures: PASS
-external framework governance compatibility: PASS
-policy-cards_case_families=6
-build/deploy/public-route chain: PASS
+```yaml
+- task_id: EXT-FRAMEWORK-SECOND-PAGE-36-ACTIVE-WORK-AGGREGATE
+  execution_owner: issue #66 coordinator + per-framework owners in issues #62/#63/#64/#65 and issue #50, as refined by docs/external-frameworks/worker-task-registry.json and newer valid claims/fences/leases
+  claim_state: MACHINE_OWNED
+  worker_registry_ref: docs/external-frameworks/worker-task-registry.json + issues #50/#62/#63/#64/#65/#66 + current scoped framework handoffs + data/admissibility-wiki-orchestration-state.json
+  manual_execution_allowed: false
+  manual_allowed_role: observation
+  collision_scope: all 28 incomplete framework evaluations, framework-specific implementation/validation, Cedar replay, Runtime Governance for AI Agents, evidence capture/reconstruction, canonical workflow execution, coordinator denominator/release mutation, and any successor framework task already assigned in the registry
+  release_condition: newest valid per-framework registry/issue/claim/fence/lease/handoff explicitly releases or supersedes the exact collision scope
+  next_executable_action: allow each current worker lane to execute its assigned frameworks and preserve coordinator-controlled release accounting; do not compete manually
 ```
 
-The Policy Cards page itself declares the bounded completion rule: canonical validation must observe manifest, terminology, report, page metadata/mapping/status, evidence provenance, benchmark mapping/fixture, and six-family governance compatibility without a Policy-Cards-specific failure. Run `33121409495` satisfies that rule.
+### ESCALATED / AUTHORITY-OWNED
 
-Terminal class:
-
-```text
-framework: Policy Cards
-owner: Worker C / issue #64
-terminal_class: LOCAL_WORK_COMPLETE_BOUNDED_SOURCE_LEVEL_POLICY_ARTIFACT_CROSSWALK
-primary_source: arXiv:2510.24383v1
-implementation_attached: false
-native_execution_observed: false
-same_environment_replay: NOT_PERFORMED
-fresh_runner_replay: NOT_PERFORMED
-independent_provider_reproduction: NOT_PERFORMED
-certification: false
-standing: false
-execution_authority: false
-subclaim: RELEASED
+```yaml
+- task_id: EXTERNAL-FRAMEWORK-AUTHORITY-BOUNDARY
+  execution_owner: applicable framework/admissibility/certification/release authority -> ecosystem governance
+  claim_state: ESCALATED
+  worker_registry_ref: current repository/governance authority records + destination handoffs + task-specific escalation records
+  manual_execution_allowed: false
+  manual_allowed_role: reconciliation
+  collision_scope: certification, standing, admissibility determination, publication/release authority, custody, execution authority, Guardian enforcement, credentials, deployment authority, master-record promotion, and cross-repository mutation authority
+  release_condition: exact bounded authority is explicitly granted through its canonical mechanism
+  next_executable_action: fail closed; framework terminality, source review, runtime observation, canonical PASS, publication, or migration metadata are not authority
 ```
 
-This is terminal for the declared bounded source-level evaluation, not for native Policy Cards runtime behavior. A later independently frozen implementation package may create a stronger optional evidence transition, but absence of that stronger evidence does not reopen this completed bounded source-level evaluation.
+### COMPLETED / SUPERSEDED
 
-Coordinator denominator advances:
-
-```text
-terminally reconciled: 8/36
-incomplete: 28/36
-developed-to-terminal-standard: 22.22%
-terminal validation completion: 22.22%
-unowned: 0/36
-```
-
-Worker C now advances to its remaining assigned framework: Runtime Governance for AI Agents. No Worker A/B/D or issue #50 file ownership changes.
+- The eight terminal framework subclaims remain terminal only at their recorded bounded evidence classes and are not reopened by this migration.
+- Policy Cards' earlier `ACTIVE` wording is superseded by the directly reconciled `8/36` terminal state; Worker C now owns Runtime Governance for AI Agents as its remaining target.
+- Any inference that `pending`, `blocked`, incomplete, or externally evidence-blocked framework work is manually startable is superseded by current worker/registry ownership.
+- Any inference that 36/36 completion, repository validation, publication, or framework compatibility grants certification, admissibility, custody, Guardian, release, or execution authority is superseded/prohibited.
