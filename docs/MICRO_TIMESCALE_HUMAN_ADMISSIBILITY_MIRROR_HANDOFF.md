@@ -100,3 +100,55 @@ public_route_observation: REQUIRED
 release: NOT_AUTHORIZED
 activation: NOT_COMPLETE
 ```
+
+## Execution ownership and collision partition
+
+Standard: `StegVerse-Labs/Continuity/docs/REPOSITORY_HANDOFF_STANDARD.md` / `stegverse.handoff-execution-ownership/v1`.
+
+### MANUAL / SESSION-STARTABLE
+
+```yaml
+- task_id: ADMISSIBILITY-MICRO-TIMESCALE-HANDOFF-ADOPTION-115
+  execution_owner: repo-standards #37 integration lane + admissibility-wiki repository owner
+  claim_state: CLAIMED_FOR_INTEGRATION
+  worker_registry_ref: StegVerse-Labs/repo-standards#37 + StegVerse-Labs/admissibility-wiki#115
+  manual_execution_allowed: true
+  manual_allowed_role: integration
+  collision_scope: execution-ownership metadata in this handoff only; excludes issue #40 implementation/validation, doctrine/model/protocol repair, workflow/public-route observation, activation receipts, credentials, claims/fences/leases, and authority-bearing work
+  release_condition: this textual migration is merged and issue #115 is reconciled
+  next_executable_action: merge ownership metadata only; do not use the migration lane to complete issue #40 product or activation work
+```
+
+### WORKER-OWNED / DO NOT COMPETE
+
+```yaml
+- task_id: MICRO-TIMESCALE-ACTIVATION-AGGREGATE
+  execution_owner: issue #40 and current repository-native canonical-validation/publication owners recorded by orchestration state and scoped task records
+  claim_state: MACHINE_OWNED
+  worker_registry_ref: StegVerse-Labs/admissibility-wiki#40 + data/admissibility-wiki-orchestration-state.json + current scoped handoff/status/validator records
+  manual_execution_allowed: false
+  manual_allowed_role: observation
+  collision_scope: doctrine/model/protocol repair, canonical validator/workflow execution, Pages build/deployment, public-route observation, activation receipt creation, and any successor source repair
+  release_condition: newest valid issue/registry/claim/handoff explicitly releases or supersedes the exact scope
+  next_executable_action: preserve current issue #40 ownership and observe machine evidence without competing
+```
+
+### ESCALATED / AUTHORITY-OWNED
+
+```yaml
+- task_id: MICRO-TIMESCALE-AUTHORITY-BOUNDARY
+  execution_owner: applicable research/publication/admissibility authority -> ecosystem governance
+  claim_state: ESCALATED
+  worker_registry_ref: this handoff + repository authority records + destination handoffs where applicable
+  manual_execution_allowed: false
+  manual_allowed_role: reconciliation
+  collision_scope: empirical-universality claims, recording/research authority, publication authority, admissibility determination, release, custody, execution, Guardian enforcement, credentials, or cross-repository mutation authority
+  release_condition: explicit canonical authority grant for the exact bounded scope
+  next_executable_action: fail closed; explanatory modeling, source repair, validation, or migration metadata do not create empirical or execution authority
+```
+
+### COMPLETED / SUPERSEDED
+
+- The listed source-representation repairs remain installed evidence and are not reopened by this migration.
+- Any inference that `pending` canonical/public observation makes activation work manually startable is superseded by the machine-owned issue #40 aggregate above.
+- Any inference that explanatory-model validation establishes empirical universality, recording/publication authority, admissibility, release, or execution authority is superseded/prohibited.
