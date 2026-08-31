@@ -1,0 +1,28 @@
+{
+  "schema": "stegverse.admissibility-wiki.cosv-task-vector-index/v1",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "profile": "task.v1",
+  "notation": "L R U I V G O C M T B E A P",
+  "width": 14,
+  "canonical_profile_ref": "StegVerse-Labs/.github/management/COSV_PROFILE_V1.json",
+  "observed_at": "2026-08-31T07:31:00-05:00",
+  "authority_effect": "NONE",
+  "tasks": [
+    {
+      "task_id": "ADMISSIBILITY-HIL-001",
+      "state_ref": "data/admissibility-wiki-orchestration-state.json#machine_owned_dependency_workloads",
+      "vector_ref": "data/cosv/task-vectors/ADMISSIBILITY-HIL-001.json",
+      "vector": "60000000107000",
+      "binding_mode": "EXTERNAL_PROJECTION_READ_ONLY"
+    }
+  ],
+  "coverage": {
+    "machine_owned_dependency_tasks_projected": 1,
+    "machine_owned_dependency_gap": 0,
+    "framework_worker_backlog_projected": false,
+    "mindforge_active_support_projected": false,
+    "riverbraid_active_claim_projected": false,
+    "repository_active_task_surface_audit_complete": false,
+    "repository_vector_present_claimed": false
+  }
+}
