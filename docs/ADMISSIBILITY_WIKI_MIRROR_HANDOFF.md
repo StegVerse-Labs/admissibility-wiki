@@ -408,7 +408,7 @@ task_id: ADMISSIBILITY-STEGCLAW-V1.0.0-RELEASE-AWARENESS-121
 source release: Data-Continuation/StegClaw v1.0.0
 release id: 381434394
 release target: 6b89a4bfb3d4c2fcc61e6cccaa4f292fb4d58cdb
-state: IMPLEMENTED_CANONICAL_VALIDATION_PENDING
+state: COMPLETE_VALIDATED_MERGED
 execution_class: PARALLEL_SAFE_NON_AUTHORIZING_RELEASE_AWARENESS
 handoff: docs/external-frameworks/STEGCLAW_RELEASE_AWARENESS_MIRROR_HANDOFF.md
 validator: scripts/check_stegclaw_release_awareness.py
@@ -417,3 +417,19 @@ authority effect: NONE
 ```
 
 This lane is separate from issue #50, the 36-framework worker lane, Riverbraid, and ADMISSIBILITY-HIL-001.
+
+
+### StegClaw release-awareness completion evidence
+
+```text
+issue: #121 CLOSED_COMPLETED
+pull request: #123
+validated head: dba42fea5012b59c24d8028e7095b3563ec8fe90
+canonical validation: 33659523746 SUCCESS
+merge: 11af7ce310618bc6671d3f88261a1cacd63c5c60
+single canonical workflow preserved: true
+dedicated workflow created: false
+authority effect: NONE
+```
+
+This completion records release awareness only; it does not modify or satisfy ADMISSIBILITY-HIL-001.
