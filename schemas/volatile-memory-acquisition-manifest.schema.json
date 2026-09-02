@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse.org/schemas/volatile-memory-acquisition-manifest.schema.json",
+  "title": "Volatile Memory Acquisition Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version","evidence_id","authorization","target","collector",
+    "acquisition","evidence_object","custody","analysis_lineage","authority"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "evidence_id": {"type":"string","minLength":8},
+    "authorization": {
+      "type":"object","additionalProperties":false,
+      "required":["authorization_ref","scope","granted_by"],
+      "properties":{
+        "authorization_ref":{"type":"string","minLength":1},
+        "scope":{"const":"volatile_memory_acquisition"},
+        "granted_by":{"type":"string","minLength":1}
+      }
+    },
+    "target": {
+      "type":"object","additionalProperties":false,
+      "required":["machine_identity","platform"],
+      "properties":{
+        "machine_identity":{"type":"string","minLength":1},
+        "platform":{"type":"string","minLength":1}
+      }
+    },
+    "collector":{
+      "type":"object","additionalProperties":false,
+      "required":["name","version","executable_sha256","parameters"],
+      "properties":{
+        "name":{"type":"string","minLength":1},
+        "version":{"type":"string","minLength":1},
+        "executable_sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+        "parameters":{"type":"array","items":{"type":"string"}}
+      }
+    },
+    "acquisition":{
+      "type":"object","additionalProperties":false,
+      "required":["started_at","completed_at","source_memory_bytes","output_bytes","impact_disclosure"],
+      "properties":{
+        "started_at":{"type":"string","format":"date-time"},
+        "completed_at":{"type":"string","format":"date-time"},
+        "source_memory_bytes":{"type":"integer","minimum":1},
+        "output_bytes":{"type":"integer","minimum":1},
+        "impact_disclosure":{"type":"string","minLength":1}
+      }
+    },
+    "evidence_object":{
+      "type":"object","additionalProperties":false,
+      "required":["sha256","streamed","chunks"],
+      "properties":{
+        "sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+        "streamed":{"type":"boolean"},
+        "chunks":{
+          "type":"array",
+          "items":{
+            "type":"object","additionalProperties":false,
+            "required":["index","sha256"],
+            "properties":{
+              "index":{"type":"integer","minimum":0},
+              "sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+            }
+          }
+        }
+      }
+    },
+    "custody":{
+      "type":"object","additionalProperties":false,
+      "required":["destination_ref","receipt_ref"],
+      "properties":{
+        "destination_ref":{"type":"string","minLength":1},
+        "receipt_ref":{"type":"string","minLength":1}
+      }
+    },
+    "analysis_lineage":{
+      "type":"array",
+      "items":{
+        "type":"object","additionalProperties":false,
+        "required":["tool","version","tool_sha256","finding_ref","source_evidence_id"],
+        "properties":{
+          "tool":{"type":"string","minLength":1},
+          "version":{"type":"string","minLength":1},
+          "tool_sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+          "finding_ref":{"type":"string","minLength":1},
+          "source_evidence_id":{"type":"string","minLength":8}
+        }
+      }
+    },
+    "authority":{
+      "type":"object","additionalProperties":false,
+      "required":["effect","claims_admissibility","claims_court_acceptance"],
+      "properties":{
+        "effect":{"const":"NONE"},
+        "claims_admissibility":{"const":false},
+        "claims_court_acceptance":{"const":false}
+      }
+    }
+  }
+}
