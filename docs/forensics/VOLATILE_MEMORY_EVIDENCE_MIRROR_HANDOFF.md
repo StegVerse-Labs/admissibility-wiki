@@ -1,6 +1,6 @@
 # Volatile Memory Evidence Mirror Handoff
 
-Status: ACTIVE_IMPLEMENTATION
+Status: MERGED_EXACT_MAIN_VALIDATION_PENDING
 Updated: 2026-09-02
 Repository: `StegVerse-Labs/admissibility-wiki`
 Issue: #119
@@ -48,9 +48,13 @@ No manifest may assert court acceptance, certification, or admissibility as a to
 
 ```text
 goal_id: ADMISSIBILITY-VOLATILE-MEMORY-EVIDENCE-001
-claim_state: CLAIMED_FOR_IMPLEMENTATION
+claim_state: MERGED_VALIDATION_PENDING
 owner: issue #119
-branch: feat/volatile-memory-evidence-119
+branch: main
+pull_request: #120
+pr_head: af6c3b1d5ac46e5a1c0b7e5e8921140ede09da93
+pr_validation_run: 33633213466 SUCCESS
+merge_commit: 25d45a9071d694128a297e30bfdda3bed74701f8
 activation: NOT_COMPLETE
 release: NOT_AUTHORIZED
 authority_effect: NONE
@@ -62,8 +66,8 @@ authority_effect: NONE
 2. Contract and schema are implemented.
 3. Reference manifest validates.
 4. Negative tests prove missing authorization/hash/identity fail closed.
-5. Repository validation/PR evidence is observed.
-6. Canonical handoff/orchestration state is updated only after merge.
+5. PR-head canonical validation is observed: run 33633213466 SUCCESS.
+6. Exact-main successor validation is observed after merge, then canonical handoff/orchestration state is reconciled.
 7. Release/propagation remains separately gated.
 
 ## Remaining installation / propagation targets
@@ -74,3 +78,10 @@ After merge and exact-head validation, evaluate bounded documentation/interpreta
 - `StegVerse-002/stegguardian-wiki`
 
 No propagation is authorized by this handoff alone.
+
+
+## 2026-09-02 merge transition
+
+PR #120 passed the repository's canonical Validate chain continuation workflow at exact PR head `af6c3b1d5ac46e5a1c0b7e5e8921140ede09da93` in run `33633213466` and was squash-merged to `main` as `25d45a9071d694128a297e30bfdda3bed74701f8`.
+
+This establishes merged source state only. The lane remains fail-closed for activation/release until an exact-main successor validation is directly observed. No forensic acquisition, custody event, admissibility determination, or downstream propagation is inferred from merge.
