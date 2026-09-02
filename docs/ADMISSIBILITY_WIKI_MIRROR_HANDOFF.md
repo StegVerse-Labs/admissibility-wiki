@@ -399,3 +399,21 @@ Standard: `StegVerse-Labs/Continuity/docs/REPOSITORY_HANDOFF_STANDARD.md` / `ste
 - Prior session-specific implementation claims recorded as released remain released and do not reopen through this migration.
 - Broad narrative phrases such as `permitted continuation`, `READY_INTERNAL`, `ACTIVE_INTERNAL`, `manual task requirement: none`, or `there are no external tasks` do not make worker-owned product scopes manually startable.
 - Any inference that validation/publication/reconstruction/simulation results create certification, reviewer standing, custody, admissibility, release, or execution authority is superseded/prohibited.
+
+
+## StegClaw v1.0.0 release awareness — issue #121
+
+```text
+task_id: ADMISSIBILITY-STEGCLAW-V1.0.0-RELEASE-AWARENESS-121
+source release: Data-Continuation/StegClaw v1.0.0
+release id: 381434394
+release target: 6b89a4bfb3d4c2fcc61e6cccaa4f292fb4d58cdb
+state: IMPLEMENTED_CANONICAL_VALIDATION_PENDING
+execution_class: PARALLEL_SAFE_NON_AUTHORIZING_RELEASE_AWARENESS
+handoff: docs/external-frameworks/STEGCLAW_RELEASE_AWARENESS_MIRROR_HANDOFF.md
+validator: scripts/check_stegclaw_release_awareness.py
+canonical single-workflow rule: PRESERVED
+authority effect: NONE
+```
+
+This lane is separate from issue #50, the 36-framework worker lane, Riverbraid, and ADMISSIBILITY-HIL-001.

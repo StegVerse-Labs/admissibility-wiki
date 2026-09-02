@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "admissibility_wiki.stegclaw.release_awareness",
+  "repository": "StegVerse-Labs/admissibility-wiki",
+  "source_repository": "Data-Continuation/StegClaw",
+  "source_release": {
+    "state": "RELEASED",
+    "version": "1.0.0",
+    "tag_name": "v1.0.0",
+    "release_id": 381434394,
+    "release_url": "https://github.com/Data-Continuation/StegClaw/releases/tag/v1.0.0",
+    "release_target": "6b89a4bfb3d4c2fcc61e6cccaa4f292fb4d58cdb",
+    "published_at": "2026-09-02T17:04:18Z",
+    "validation_run": 33650991623,
+    "validation_artifact_id": 9854745757,
+    "validation_artifact_digest": "sha256:90d18ccac5f28ca893c5347ebeaeb8828503b166b5ce6a45be794110ebd55fc5"
+  },
+  "local_effect": {
+    "state": "RELEASE_AWARENESS_ONLY",
+    "external_framework_protocol_modified": false,
+    "framework_evaluation_promoted": false,
+    "admissibility_determined": false,
+    "standing_granted": false,
+    "proof_granted": false,
+    "release_authorized": false,
+    "execution_authorized": false,
+    "custody_recorded": false,
+    "runtime_activation_claimed": false
+  },
+  "collision_control": {
+    "issue_50_lane_untouched": true,
+    "external_framework_36_lane_untouched": true,
+    "riverbraid_lane_untouched": true,
+    "hil_dependency_lane_untouched": true
+  },
+  "validation_architecture": {
+    "canonical_single_workflow_preserved": true,
+    "dedicated_workflow_created": false,
+    "validator_registered_via_workflow_sprawl_migrated_checks": true
+  },
+  "authority_effect": "NONE",
+  "manual_user_action_required": false
+}
