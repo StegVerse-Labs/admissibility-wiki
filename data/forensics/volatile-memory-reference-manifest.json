@@ -1,0 +1,12 @@
+{
+  "schema_version":"1.0.0",
+  "evidence_id":"VMEM-REF-0001",
+  "authorization":{"authorization_ref":"AUTH-REF-001","scope":"volatile_memory_acquisition","granted_by":"authorized-owner"},
+  "target":{"machine_identity":"machine:test-node-001","platform":"linux-x86_64"},
+  "collector":{"name":"reference-collector","version":"1.0","executable_sha256":"1111111111111111111111111111111111111111111111111111111111111111","parameters":["--output","evidence.bin"]},
+  "acquisition":{"started_at":"2026-09-02T12:00:00Z","completed_at":"2026-09-02T12:01:00Z","source_memory_bytes":1024,"output_bytes":1024,"impact_disclosure":"Acquisition perturbs live memory and timing; this reference manifest records that limitation."},
+  "evidence_object":{"sha256":"2222222222222222222222222222222222222222222222222222222222222222","streamed":true,"chunks":[{"index":0,"sha256":"3333333333333333333333333333333333333333333333333333333333333333"}]},
+  "custody":{"destination_ref":"custody:test-store","receipt_ref":"receipt:test-001"},
+  "analysis_lineage":[{"tool":"reference-analyzer","version":"1.0","tool_sha256":"4444444444444444444444444444444444444444444444444444444444444444","finding_ref":"finding:test-001","source_evidence_id":"VMEM-REF-0001"}],
+  "authority":{"effect":"NONE","claims_admissibility":false,"claims_court_acceptance":false}
+}
