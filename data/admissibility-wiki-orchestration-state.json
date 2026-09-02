@@ -3,9 +3,9 @@
   "state_type": "admissibility_wiki_orchestration_state",
   "repository": "StegVerse-Labs/admissibility-wiki",
   "handoff": "ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
-  "task_sequence": 20,
-  "task_sequence_label": "HEALTH_GUIDANCE_SUCCESSOR_PUBLICATION_COMPLETE_FRAMEWORK_8_OF_36_REMAINS",
-  "work_state": "REPOSITORY_ACTIVE_FRAMEWORK_EVALUATION_AND_RELEASE_GATES_REMAIN",
+  "task_sequence": 21,
+  "task_sequence_label": "VOLATILE_MEMORY_EVIDENCE_SOURCE_MERGED_EXACT_MAIN_SUCCESSOR_PENDING",
+  "work_state": "REPOSITORY_ACTIVE_FRAMEWORK_EVALUATION_AND_VOLATILE_MEMORY_EXACT_MAIN_VALIDATION_PENDING",
   "system_health": "EXACT_MAIN_56_OF_56_BUILD_DEPLOY_PUBLIC_PASS_HEALTH_GUIDANCE_SUCCESSOR_COMPLETE_FRAMEWORK_EVALUATION_8_OF_36",
   "heartbeat_mode": "EVENT_DRIVEN_CANONICAL_WORKFLOW",
   "repository_heartbeat": 15,
@@ -221,6 +221,26 @@
       },
       "pages_build": "PASS_AT_247C5C04",
       "pages_deploy": "PASS_AT_247C5C04"
+    },
+    {
+      "task_id": "ADMISSIBILITY-VOLATILE-MEMORY-EVIDENCE-001",
+      "owner": "StegVerse-Labs/admissibility-wiki issue #119",
+      "handoff": "docs/forensics/VOLATILE_MEMORY_EVIDENCE_MIRROR_HANDOFF.md",
+      "workload": "Governed volatile-memory acquisition evidence contract, fail-closed validation, and bounded analysis lineage",
+      "execution_class": "PARALLEL_SAFE_NON_AUTHORIZING_EVIDENCE_CONTRACT",
+      "claim_state": "MERGED_VALIDATION_PENDING",
+      "state": "SOURCE_MERGED_PR_HEAD_VALIDATED_EXACT_MAIN_SUCCESSOR_PENDING",
+      "pull_request": 120,
+      "pr_head": "af6c3b1d5ac46e5a1c0b7e5e8921140ede09da93",
+      "pr_validation_run": 33633213466,
+      "pr_validation": "SUCCESS",
+      "merge_commit": "25d45a9071d694128a297e30bfdda3bed74701f8",
+      "handoff_reconciliation_commit": "43621ea14c35deede754ace52060b6f70a326c74",
+      "required_next_transition": "observe exact-main canonical validation; on PASS reconcile terminal state and evaluate bounded downstream documentation projections",
+      "release_condition": "exact-main canonical PASS, durable terminal reconciliation, and any separately authorized downstream propagation/release evidence",
+      "authority_effect": false,
+      "duplicate_work_prohibited": true,
+      "session_dependency": false
     }
   ],
   "active_independent_workloads": [
@@ -324,13 +344,13 @@
     "cross_repository_mutation": false
   },
   "last_transition": {
-    "event_type": "PUBLIC_HEALTH_GUIDANCE_MICRONUTRIENTS_SUCCESSOR_COMPLETE",
+    "event_type": "VOLATILE_MEMORY_EVIDENCE_SOURCE_MERGED",
     "progress_effect": true,
     "authority_effect": false,
-    "observed_run_id": 33138997310,
-    "observed_run_head": "24d43550e36775cabe7b432d42b00166a37c9e07",
-    "framework_denominator": "8_OF_36",
-    "required_next_transition": "issue #66 workers continue framework evaluations from 8/36; future external-guidance corrections or provider responses append successor history without reopening #109 or #113"
+    "observed_run_id": 33633213466,
+    "observed_run_head": "af6c3b1d5ac46e5a1c0b7e5e8921140ede09da93",
+    "merge_commit": "25d45a9071d694128a297e30bfdda3bed74701f8",
+    "required_next_transition": "observe exact-main canonical validation for current merged/reconciled main before terminal completion or downstream propagation"
   },
   "idle_terminal_statement": null,
   "archive_state": "SESSION_CONTINUITY_DURABLE_PROJECT_REMAINS_ACTIVE"
