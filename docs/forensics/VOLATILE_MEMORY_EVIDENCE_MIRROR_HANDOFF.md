@@ -1,6 +1,6 @@
 # Volatile Memory Evidence Mirror Handoff
 
-Status: MERGED_EXACT_MAIN_VALIDATION_PENDING
+Status: COMPLETE_VALIDATED_MERGED_DEPLOYED_OBSERVED_BOUNDED
 Updated: 2026-09-02
 Repository: `StegVerse-Labs/admissibility-wiki`
 Issue: #119
@@ -48,14 +48,14 @@ No manifest may assert court acceptance, certification, or admissibility as a to
 
 ```text
 goal_id: ADMISSIBILITY-VOLATILE-MEMORY-EVIDENCE-001
-claim_state: MERGED_VALIDATION_PENDING
+claim_state: RELEASED_COMPLETE
 owner: issue #119
 branch: main
 pull_request: #120
 pr_head: af6c3b1d5ac46e5a1c0b7e5e8921140ede09da93
 pr_validation_run: 33633213466 SUCCESS
 merge_commit: 25d45a9071d694128a297e30bfdda3bed74701f8
-activation: NOT_COMPLETE
+activation: COMPLETE_BOUNDED_EVIDENCE_CONTRACT
 release: NOT_AUTHORIZED
 authority_effect: NONE
 ```
@@ -67,7 +67,7 @@ authority_effect: NONE
 3. Reference manifest validates.
 4. Negative tests prove missing authorization/hash/identity fail closed.
 5. PR-head canonical validation is observed: run 33633213466 SUCCESS.
-6. Exact-main successor validation is observed after merge, then canonical handoff/orchestration state is reconciled.
+6. Exact-main successor validation observed: run 33633640228 SUCCESS at `f4ac5aa94837c1dbaad5051b803a535c2913eec8` with canonical chain, build, deploy, and public verification PASS; canonical handoff/orchestration reconciled.
 7. Release/propagation remains separately gated.
 
 ## Remaining installation / propagation targets
@@ -85,3 +85,40 @@ No propagation is authorized by this handoff alone.
 PR #120 passed the repository's canonical Validate chain continuation workflow at exact PR head `af6c3b1d5ac46e5a1c0b7e5e8921140ede09da93` in run `33633213466` and was squash-merged to `main` as `25d45a9071d694128a297e30bfdda3bed74701f8`.
 
 This establishes merged source state only. The lane remains fail-closed for activation/release until an exact-main successor validation is directly observed. No forensic acquisition, custody event, admissibility determination, or downstream propagation is inferred from merge.
+
+
+## 2026-09-02 exact-main completion
+
+Exact current-main workflow `33633640228` completed successfully at
+`f4ac5aa94837c1dbaad5051b803a535c2913eec8`.
+
+Observed successful jobs include:
+
+```text
+validate-chain-continuation: SUCCESS
+canonical pre-scan: SUCCESS
+complete validation-chain scan: SUCCESS
+canonical result enforcement: SUCCESS
+capture-opa-evidence: SUCCESS
+replay-opa-fresh-runner: SUCCESS
+build-selected-cedar-binary: SUCCESS
+build-pages: SUCCESS
+deploy-pages: SUCCESS
+verify-public-pages: SUCCESS
+```
+
+The earlier merge-head and intermediate reconciliation runs were cancelled by workflow concurrency and are retained only as historical execution evidence. The latest exact-main run supersedes them for this lane.
+
+Goal state:
+
+```text
+ADMISSIBILITY-VOLATILE-MEMORY-EVIDENCE-001: COMPLETE_VALIDATED_MERGED_DEPLOYED_OBSERVED_BOUNDED
+issue #119: eligible for closure
+release/tag authority: NOT GRANTED
+forensic acquisition performed: false
+custody event performed: false
+admissibility determination performed: false
+downstream propagation authority: separately gated
+```
+
+The implementation goal is complete. Any future adapter for a concrete collector or analyzer is a successor goal and must create or reuse its own scoped handoff and authority record rather than reopening this completed contract lane.
