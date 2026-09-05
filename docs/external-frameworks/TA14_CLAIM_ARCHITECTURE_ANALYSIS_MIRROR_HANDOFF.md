@@ -4,6 +4,10 @@ Repository: `StegVerse-Labs/admissibility-wiki`
 Parent repository authority: `docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md`
 Public analysis page: `docs/external-frameworks/ta-14-claim-architecture-analysis.md`
 Machine-readable analysis record: `static/data/governed-framework-reviews/ta-14.claim-architecture-analysis.v1.json`
+Source/revision ledger: `static/data/governed-framework-reviews/ta-14.claim-architecture-source-ledger.v1.json`
+Validator: `scripts/check_ta14_claim_architecture_analysis.py`
+Canonical validation binding: `npm run validate:ta14-claim-architecture-analysis` and `npm run validate`
+Navigation binding: `sidebars.js`
 
 ## Goal
 
@@ -113,41 +117,73 @@ The public analysis page exposes:
 8. Machine-readable analysis linkage.
 9. Comparative notes only after the TA-14-internal analysis is explicit.
 
-## Completion predicate for v1
-
-`v1` is complete when:
-
-- the initial claim families are represented;
-- each conclusion is source-bounded;
-- the public page and machine-readable record agree;
-- parentage is treated as an affirmative claim requiring evidence rather than assumed either true or false;
-- authority/standing is analyzed as TA-14 models it, with StegVerse ontology differences labeled separately;
-- at least one discriminating test is recorded for every `PUBLICLY_UNRESOLVED` material claim;
-- correction and revision semantics are explicit;
-- a validator checks page/record agreement;
-- source/revision records are bound to the claim matrix.
-
 ## Installed files
 
 ```text
 StegVerse-Labs/admissibility-wiki/docs/external-frameworks/TA14_CLAIM_ARCHITECTURE_ANALYSIS_MIRROR_HANDOFF.md
 StegVerse-Labs/admissibility-wiki/docs/external-frameworks/ta-14-claim-architecture-analysis.md
 StegVerse-Labs/admissibility-wiki/static/data/governed-framework-reviews/ta-14.claim-architecture-analysis.v1.json
+StegVerse-Labs/admissibility-wiki/static/data/governed-framework-reviews/ta-14.claim-architecture-source-ledger.v1.json
+StegVerse-Labs/admissibility-wiki/scripts/check_ta14_claim_architecture_analysis.py
+StegVerse-Labs/admissibility-wiki/sidebars.js
+StegVerse-Labs/admissibility-wiki/package.json
 ```
+
+## Source custody posture
+
+The supplied 2026-09-04 public Google Sites page is recorded in the source ledger as an owner-controlled public source observation. Exact external source bytes were not captured into canonical custody in this lane, so the ledger explicitly records:
+
+```text
+exact_byte_snapshot: NOT_CAPTURED
+content_hash: null
+hash_state: NOT_AVAILABLE_WITHOUT_EXACT_BYTE_SNAPSHOT
+```
+
+This prevents an observation record from being misrepresented as immutable source custody.
+
+## Validation contract
+
+The validator requires:
+
+- all initial machine claim records and allowed status vocabulary;
+- an explicit discriminating test for every `PUBLICLY_UNRESOLVED` claim;
+- parentage to remain a positive-evidence question;
+- StegVerse comparison to remain secondary to TA-14-internal analysis;
+- required public-page sections and machine-record linkage;
+- sidebar discoverability;
+- source-ledger presence and explicit exact-byte/hash posture;
+- this handoff to report validator, ledger, and navigation installation.
+
+The validator is bound into the repository's canonical `npm run validate` chain. A repository write is not itself evidence that the canonical workflow has executed successfully; workflow observation remains separate.
+
+## Completion predicate for v1
+
+Repository-local v1 installation is complete when:
+
+- the initial claim families are represented;
+- conclusions remain source-bounded;
+- public page and machine-readable record share the same analytical posture;
+- parentage is treated as an affirmative claim requiring evidence rather than assumed true or false;
+- authority/standing is analyzed as TA-14 models it, with StegVerse ontology differences labeled separately;
+- discriminating tests exist for materially unresolved claims;
+- correction and revision semantics are explicit;
+- validator is installed and canonical-validation-bound;
+- source/revision ledger is installed;
+- navigation binding is installed.
 
 ## Remaining installation destinations
 
 ```text
 StegVerse-Labs/admissibility-wiki
-- validator for page/record agreement
-- source revision ledger / source snapshots for the 2026-09-04 TA-14 page and future revisions
-- navigation/index binding so the analysis is discoverable from the external-framework review surface
+- observe canonical workflow result for the installed validator/build
+- optionally extend source ledger with exact-byte source snapshots only when a governed capture surface exists
+- update canonical external-framework inventory artifacts if existing inventory validators require explicit support-page enumeration
 
 StegVerse-Labs/Site
 - public discovery/link projection only after Site orchestration admits the work
 
 GCAT-BCAT-Engine/Publisher
-- optional publication projection after canonical analysis record is stable
+- optional publication projection after canonical analysis record is stable and publication lane admits it
 
 StegVerse-002/stegguardian-wiki
 - later guardian-facing projection only if findings materially affect protection doctrine
@@ -156,14 +192,18 @@ StegVerse-002/stegguardian-wiki
 ## Current state
 
 ```text
-lane_state: INITIALIZED_AND_SEEDED
+lane_state: REPOSITORY_LOCAL_V1_INSTALLED_VALIDATION_OBSERVATION_PENDING
 source_substrate: EXISTING
 public_analysis_page: INSTALLED
 machine_record: INSTALLED
-validator: PENDING_INSTALL
-source_revision_ledger: PENDING_INSTALL
-navigation_binding: PENDING_INSTALL
+validator: INSTALLED
+validator_canonical_binding: INSTALLED
+source_revision_ledger: INSTALLED
+navigation_binding: INSTALLED
+canonical_workflow_observation: PENDING
 site_projection: NOT_REQUESTED_FROM_SITE_ORCHESTRATOR
+publisher_projection: NOT_REQUESTED
+stegguardian_projection: NOT_REQUIRED_BY_CURRENT_FINDINGS
 user_action_required: false
 execution_authority_effect: none
 ```
