@@ -10,7 +10,7 @@
     "silent_add_remove_forbidden": true,
     "missing_registry_binding_requires_explicit_state": true
   },
-  "counts": {"sidebar_entries":69,"support_pages":33,"framework_pages":36},
+  "counts": {"sidebar_entries":70,"support_pages":34,"framework_pages":36},
   "entries": [
     {"sidebar_route":"external-frameworks/index","page_path":"docs/external-frameworks/index.md","page_type":"support","association_id":"index"},
     {"sidebar_route":"external-frameworks/spe-equivalence-taxonomy","page_path":"docs/external-frameworks/spe-equivalence-taxonomy.md","page_type":"support","association_id":"spe-equivalence-taxonomy"},
@@ -40,6 +40,7 @@
     {"sidebar_route":"external-frameworks/commit-time-interoperability-contract","page_path":"docs/external-frameworks/commit-time-interoperability-contract.md","page_type":"support","association_id":"commit-time-interoperability-contract"},
     {"sidebar_route":"external-frameworks/judgment-architecture","page_path":"docs/external-frameworks/judgment-architecture.md","page_type":"support","association_id":"judgment-architecture"},
     {"sidebar_route":"external-frameworks/ta-14","page_path":"docs/external-frameworks/ta-14.md","page_type":"support","association_id":"ta-14"},
+    {"sidebar_route":"external-frameworks/ta-14-claim-architecture-analysis","page_path":"docs/external-frameworks/ta-14-claim-architecture-analysis.md","page_type":"support","association_id":"ta-14-claim-architecture-analysis"},
     {"sidebar_route":"external-frameworks/ta-14-public-review-docket","page_path":"docs/external-frameworks/ta-14-public-review-docket.md","page_type":"support","association_id":"ta-14-public-review-docket"},
     {"sidebar_route":"external-frameworks/arquivonulo","page_path":"docs/external-frameworks/arquivonulo.md","page_type":"support","association_id":"arquivonulo"},
     {"sidebar_route":"external-frameworks/ta-14-registry-public-record-assessment","page_path":"docs/external-frameworks/ta-14-registry-public-record-assessment.md","page_type":"support","association_id":"ta-14-registry-public-record-assessment"},
