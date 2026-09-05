@@ -49,13 +49,14 @@ TA-14 INTERNAL INCONSISTENCY: CLAIM-SPECIFIC; NOT PRESUMED GLOBALLY
 | Authority / standing lifecycle | Authority, consent, jurisdiction, evidence, and standing are checked across the lifecycle | Doctrine states they must be proven before execution, preserved through execution, and verified afterward | `PARTIALLY_SUPPORTED` — continuous independent standing reconstruction remains unresolved |
 | Binding / commit | Admissible state becomes bound and committed before execution | Binding and commit are named architectural stages | `ARCHITECTURE_SUPPORT_OBSERVED`; implementation semantics remain only partially exposed |
 | Fail-closed execution boundary | Missing required proof prevents consequence | Fail-closed behavior is doctrinally claimed and selected public Playground behavior has produced HOLD/DENY outcomes | `PARTIALLY_SUPPORTED` |
-| Continuity / custody | Evidence and state require continuity across consequence | Continuity and chain-of-custody are explicit architectural concerns | `ARCHITECTURE_SUPPORT_OBSERVED`; complete route-level custody remains unresolved |
+| Continuity / custody | Evidence and state require continuity across consequence | Continuity and chain-of-custody are explicit architectural concerns | `PARTIALLY_SUPPORTED`; complete route-level custody remains unresolved |
 | Outcome correspondence | Architecture governs and verifies the consequence through Outcome | Outcome is an explicit terminal stage and post-execution verification is claimed | `PUBLICLY_UNRESOLVED` for demonstrated end-to-end correspondence |
 | Replay / reconstruction | Governance records should be attributable and reconstructable | Registry and provenance concepts are publicly described | `PARTIALLY_SUPPORTED`; public deterministic full-route replay bundle not yet found |
 | Cross-domain scope | Architecture applies across AI, buildings, healthcare, finance, institutions, industry, and other consequence-bearing systems | Cross-domain applicability is explicitly claimed | `CLAIM_OBSERVED`; generalized implementation evidence is not established by scope language alone |
 | Complete mediation / non-bypassability | TA-14 governs the complete consequence-bearing sequence | Full-route language exists | `PUBLICLY_UNRESOLVED` until bypass resistance and route completeness are demonstrated |
 | Parent architecture | TA-14 is the parent architecture and other systems occupy subordinate slices | Parentage is explicitly asserted | `PUBLICLY_UNRESOLVED`; assertion does not independently establish containment or descent |
 | Independent / reciprocal evaluation | TA-14 can evaluate external architectures under its governance model | TA-14 offers Exchange-based evaluation paths | `PARTIALLY_SUPPORTED`; requiring TA-14 process participation does not establish architectural parentage or invalidate outside analysis |
+| Registry / provenance / versioned records | TA-14 describes searchable, attributable, versioned governance/public records with claims, limitations, evidence, lineage, and ownership information | Registry and provenance mechanisms are publicly described | `PARTIALLY_SUPPORTED`; complete route binding, correction lineage, and deterministic reconstruction remain open |
 
 ## Strongest publicly supported claims
 
@@ -67,9 +68,10 @@ The strongest TA-14 claims are those that concern the existence and content of i
 - binding, commit, execution, and outcome are treated as distinct stages;
 - authority, consent, jurisdiction, evidence, and standing are explicitly within claimed scope;
 - fail-closed behavior is part of the declared design;
+- registry, provenance, and attributable governance-record concepts are publicly described;
 - the framework intends cross-domain consequence governance.
 
-These findings establish that TA-14 is not merely a slogan or single execution gate. They do not independently prove that every stage is implemented as described or that every consequence must pass through TA-14.
+These findings establish substantial doctrine. They do not independently prove that every stage is implemented as described or that every consequence must pass through TA-14.
 
 ## Material publicly unresolved claims
 
@@ -157,6 +159,17 @@ A framework may model every stage of a consequence without owning every implemen
 5. Require positive evidence for any parent/child conclusion.
 ```
 
+### Registry correction-lineage test
+
+```text
+1. Select a public governance/registry record.
+2. Preserve its current version and attributable source state.
+3. Supersede or correct one material claim without deleting the prior version.
+4. Verify attributable version history and lineage.
+5. Reconstruct which version governed a selected route or determination at time T.
+6. Confirm that correction changes current state without erasing historical state.
+```
+
 ## Method
 
 Every substantive finding in this lane should be classified as one of:
@@ -195,11 +208,14 @@ This is a living analysis. New TA-14 sources, implementation artifacts, demonstr
 
 Superseded findings remain in revision history. Corrections do not erase the historical observation state.
 
-## Machine-readable record
+## Machine-readable records
 
 ```text
 /static/data/governed-framework-reviews/ta-14.claim-architecture-analysis.v1.json
+/static/data/governed-framework-reviews/ta-14.claim-architecture-source-ledger.v1.json
 ```
+
+The source ledger explicitly distinguishes a public source observation from immutable exact-byte custody. Where exact bytes have not been captured, no content hash is claimed.
 
 ## Continuation handoff
 
