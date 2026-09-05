@@ -101,7 +101,7 @@ Existing determinations remain bounded to their recorded scope and observation d
 
 ## Public-page structure
 
-The public analysis page should expose:
+The public analysis page exposes:
 
 1. Current assessment summary.
 2. Claim-to-architecture matrix.
@@ -109,9 +109,9 @@ The public analysis page should expose:
 4. Claims that are doctrinally stated but not publicly implementation-backed.
 5. Public architecture tensions or contradictions.
 6. Open discriminating tests.
-7. Source and revision ledger.
-8. Correction / change history.
-9. Comparative notes only after the TA-14-internal analysis is complete.
+7. Method and correction semantics.
+8. Machine-readable analysis linkage.
+9. Comparative notes only after the TA-14-internal analysis is explicit.
 
 ## Completion predicate for v1
 
@@ -123,16 +123,25 @@ The public analysis page should expose:
 - parentage is treated as an affirmative claim requiring evidence rather than assumed either true or false;
 - authority/standing is analyzed as TA-14 models it, with StegVerse ontology differences labeled separately;
 - at least one discriminating test is recorded for every `PUBLICLY_UNRESOLVED` material claim;
-- correction and revision semantics are explicit.
+- correction and revision semantics are explicit;
+- a validator checks page/record agreement;
+- source/revision records are bound to the claim matrix.
+
+## Installed files
+
+```text
+StegVerse-Labs/admissibility-wiki/docs/external-frameworks/TA14_CLAIM_ARCHITECTURE_ANALYSIS_MIRROR_HANDOFF.md
+StegVerse-Labs/admissibility-wiki/docs/external-frameworks/ta-14-claim-architecture-analysis.md
+StegVerse-Labs/admissibility-wiki/static/data/governed-framework-reviews/ta-14.claim-architecture-analysis.v1.json
+```
 
 ## Remaining installation destinations
 
 ```text
 StegVerse-Labs/admissibility-wiki
-- public analysis page
-- machine-readable claim matrix
 - validator for page/record agreement
-- source revision ledger
+- source revision ledger / source snapshots for the 2026-09-04 TA-14 page and future revisions
+- navigation/index binding so the analysis is discoverable from the external-framework review surface
 
 StegVerse-Labs/Site
 - public discovery/link projection only after Site orchestration admits the work
@@ -141,17 +150,19 @@ GCAT-BCAT-Engine/Publisher
 - optional publication projection after canonical analysis record is stable
 
 StegVerse-002/stegguardian-wiki
-- later guardian-facing projection if findings materially affect protection doctrine
+- later guardian-facing projection only if findings materially affect protection doctrine
 ```
 
 ## Current state
 
 ```text
-lane_state: INITIALIZED
+lane_state: INITIALIZED_AND_SEEDED
 source_substrate: EXISTING
-public_analysis_page: PENDING_INSTALL
-machine_record: PENDING_INSTALL
+public_analysis_page: INSTALLED
+machine_record: INSTALLED
 validator: PENDING_INSTALL
+source_revision_ledger: PENDING_INSTALL
+navigation_binding: PENDING_INSTALL
 site_projection: NOT_REQUESTED_FROM_SITE_ORCHESTRATOR
 user_action_required: false
 execution_authority_effect: none
