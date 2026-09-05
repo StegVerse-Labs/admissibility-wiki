@@ -1,0 +1,79 @@
+{
+  "schema": "stegverse.external-framework-source-revision-ledger.v1",
+  "ledger_id": "ta-14-claim-architecture-source-ledger-v1",
+  "framework_id": "ta-14",
+  "analysis_record": "static/data/governed-framework-reviews/ta-14.claim-architecture-analysis.v1.json",
+  "authority_effect": "NONE",
+  "rules": {
+    "source_observation_is_not_endorsement": true,
+    "source_unavailability_is_not_retraction": true,
+    "later_revision_does_not_rewrite_prior_observation": true,
+    "content_hash_required_when_exact_bytes_are_captured": true,
+    "missing_hash_must_be_explicit": true
+  },
+  "sources": [
+    {
+      "source_id": "TA14-SRC-20260904-001",
+      "title": "When a Fragment Mistakes Itself for the Architecture",
+      "source_type": "owner_controlled_public_page",
+      "url": "https://sites.google.com/view/when-a-fragment-mistakes-itsel/home?authuser=0",
+      "first_observed_at": "2026-09-04",
+      "last_observed_at": "2026-09-04",
+      "revision_label": "public-page-observation-2026-09-04",
+      "exact_byte_snapshot": "NOT_CAPTURED",
+      "content_hash": null,
+      "hash_state": "NOT_AVAILABLE_WITHOUT_EXACT_BYTE_SNAPSHOT",
+      "claim_families_observed": [
+        "parent_architecture",
+        "complete_mediation_non_bypassability",
+        "eight_stage_route",
+        "authority_and_standing_lifecycle",
+        "binding_and_commit",
+        "fail_closed_execution_boundary",
+        "continuity_and_custody",
+        "outcome_correspondence",
+        "replay_and_reconstruction",
+        "independent_reciprocal_evaluation"
+      ],
+      "notes": "This ledger records that the public page was reviewed as a source. It does not assert immutable custody of the external page because exact source bytes were not captured into canonical custody in this revision."
+    },
+    {
+      "source_id": "TA14-SRC-EXISTING-001",
+      "title": "Existing TA-14 public-source reconstruction",
+      "source_type": "stegverse_bounded_reconstruction",
+      "repository_path": "docs/external-frameworks/ta-14.md",
+      "revision_label": "repository-current-at-analysis-v1",
+      "claim_families_observed": [
+        "eight_stage_route",
+        "admissibility_before_consequence",
+        "authority_and_standing_lifecycle",
+        "binding_and_commit",
+        "fail_closed_execution_boundary",
+        "continuity_and_custody",
+        "cross_domain_scope",
+        "parent_architecture"
+      ],
+      "notes": "Secondary bounded reconstruction used to preserve previously reviewed public findings; it is not substituted for TA-14-native source evidence."
+    },
+    {
+      "source_id": "TA14-SRC-EXISTING-002",
+      "title": "TA-14 public review docket",
+      "source_type": "stegverse_governed_review_record",
+      "repository_path": "docs/external-frameworks/ta-14-public-review-docket.md",
+      "revision_label": "repository-current-at-analysis-v1",
+      "claim_families_observed": [
+        "parent_architecture",
+        "independent_reciprocal_evaluation",
+        "replay_and_reconstruction"
+      ],
+      "notes": "Existing review substrate; does not certify TA-14 or StegVerse."
+    }
+  ],
+  "revision_history": [
+    {
+      "revision": "v1",
+      "date": "2026-09-04",
+      "change": "Initialized source ledger for claim-versus-architecture analysis and explicitly recorded the absence of an exact-byte snapshot for the supplied Google Sites page."
+    }
+  ]
+}
