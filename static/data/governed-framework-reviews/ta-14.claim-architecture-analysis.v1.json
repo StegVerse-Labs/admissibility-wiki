@@ -1,0 +1,165 @@
+{
+  "schema": "stegverse.external-framework-claim-architecture-analysis.v1",
+  "analysis_id": "ta-14-claim-architecture-analysis-v1-2026-09-04",
+  "framework_id": "ta-14",
+  "framework_name": "TA-14 Admissible Execution Architecture",
+  "analysis_scope": "public claims versus publicly exposed architecture, artifacts, and observed behavior",
+  "analysis_posture": "PUBLIC_SOURCE_BOUNDED",
+  "authority_effect": "NONE",
+  "method_rules": {
+    "not_yet_found_is_not_nonexistence": true,
+    "public_claim_is_not_implementation_proof": true,
+    "architecture_disagreement_is_not_implementation_failure": true,
+    "parentage_requires_positive_evidence": true,
+    "comparative_stegverse_analysis_is_secondary": true,
+    "corrections_preserve_history": true
+  },
+  "status_vocabulary": [
+    "CLAIM_OBSERVED",
+    "ARCHITECTURE_SUPPORT_OBSERVED",
+    "BEHAVIOR_OBSERVED",
+    "IMPLEMENTATION_EVIDENCE_OBSERVED",
+    "PARTIALLY_SUPPORTED",
+    "PUBLICLY_UNRESOLVED",
+    "CONTRADICTED_BY_PUBLIC_ARCHITECTURE",
+    "NOT_YET_FOUND",
+    "OUT_OF_SCOPE"
+  ],
+  "claims": [
+    {
+      "claim_id": "TA14-CA-001",
+      "claim_family": "eight_stage_route",
+      "claim_summary": "TA-14 models consequence governance as Reality -> Record -> Continuity -> Admissibility -> Binding -> Commit -> Execution -> Outcome.",
+      "claimed_architectural_location": "full route",
+      "status": "ARCHITECTURE_SUPPORT_OBSERVED",
+      "confidence": "HIGH",
+      "reasoning_summary": "The eight-stage route is explicitly represented in reviewed public TA-14 materials.",
+      "open_test": null
+    },
+    {
+      "claim_id": "TA14-CA-002",
+      "claim_family": "admissibility_before_consequence",
+      "claim_summary": "Consequence should not proceed without admissibility.",
+      "claimed_architectural_location": "Admissibility -> Binding -> Commit",
+      "status": "ARCHITECTURE_SUPPORT_OBSERVED",
+      "confidence": "HIGH",
+      "reasoning_summary": "Admissibility-before-consequence is central to the published doctrine.",
+      "open_test": "Bind doctrine to a full observed end-to-end execution trace."
+    },
+    {
+      "claim_id": "TA14-CA-003",
+      "claim_family": "authority_and_standing_lifecycle",
+      "claim_summary": "Authority, consent, jurisdiction, evidence, and standing are established and preserved across the consequence lifecycle.",
+      "claimed_architectural_location": "Admissibility through Outcome",
+      "status": "PARTIALLY_SUPPORTED",
+      "confidence": "MEDIUM",
+      "reasoning_summary": "The lifecycle requirement is publicly stated, but independent reconstruction of current actor standing after commitment remains publicly unresolved.",
+      "open_test": "Revoke only actor standing after commit and observe the next point-of-effect decision."
+    },
+    {
+      "claim_id": "TA14-CA-004",
+      "claim_family": "binding_and_commit",
+      "claim_summary": "An admissible state is bound and committed before execution.",
+      "claimed_architectural_location": "Binding -> Commit",
+      "status": "ARCHITECTURE_SUPPORT_OBSERVED",
+      "confidence": "MEDIUM",
+      "reasoning_summary": "Binding and Commit are explicit stages, while full public implementation semantics remain only partially exposed.",
+      "open_test": "Expose canonical object identity and state transition semantics across binding and commit."
+    },
+    {
+      "claim_id": "TA14-CA-005",
+      "claim_family": "fail_closed_execution_boundary",
+      "claim_summary": "Missing required proof prevents consequence.",
+      "claimed_architectural_location": "Execution boundary",
+      "status": "PARTIALLY_SUPPORTED",
+      "confidence": "MEDIUM",
+      "reasoning_summary": "Fail-closed behavior is doctrinally explicit and selected observed public behavior has produced HOLD/DENY outcomes; generalized mandatory enforcement remains unresolved.",
+      "open_test": "Attempt execution with one mandatory proof predicate removed while preserving all other route state."
+    },
+    {
+      "claim_id": "TA14-CA-006",
+      "claim_family": "continuity_and_custody",
+      "claim_summary": "Evidence and state retain continuity across the consequence-bearing route.",
+      "claimed_architectural_location": "Record -> Continuity and downstream lineage",
+      "status": "PARTIALLY_SUPPORTED",
+      "confidence": "MEDIUM",
+      "reasoning_summary": "Continuity and chain-of-custody are public architectural requirements; full route-level attributable custody is not yet established by reviewed public evidence.",
+      "open_test": "Produce one attributable route-complete custody chain spanning evaluated object through observed outcome."
+    },
+    {
+      "claim_id": "TA14-CA-007",
+      "claim_family": "outcome_correspondence",
+      "claim_summary": "The consequence is governed through Outcome and verified after execution.",
+      "claimed_architectural_location": "Execution -> Outcome",
+      "status": "PUBLICLY_UNRESOLVED",
+      "confidence": "MEDIUM",
+      "reasoning_summary": "Outcome is an explicit stage, but full correspondence between evaluated, bound, committed, executed, and externally observed objects has not been established in reviewed public evidence.",
+      "open_test": "Preserve and compare identity across evaluated, bound, committed, executed, and external outcome objects."
+    },
+    {
+      "claim_id": "TA14-CA-008",
+      "claim_family": "replay_and_reconstruction",
+      "claim_summary": "Governance records are attributable and reconstructable.",
+      "claimed_architectural_location": "cross-route evidence and registry surface",
+      "status": "PARTIALLY_SUPPORTED",
+      "confidence": "MEDIUM",
+      "reasoning_summary": "Registry and provenance concepts are public; a deterministic public full-route replay bundle has not yet been found in reviewed sources.",
+      "open_test": "Publish a deterministic route-complete replay bundle with attributable source artifacts and expected result."
+    },
+    {
+      "claim_id": "TA14-CA-009",
+      "claim_family": "cross_domain_scope",
+      "claim_summary": "TA-14 applies across multiple consequence-bearing domains including AI, buildings, healthcare, finance, institutions, and industry.",
+      "claimed_architectural_location": "framework scope",
+      "status": "CLAIM_OBSERVED",
+      "confidence": "HIGH",
+      "reasoning_summary": "Cross-domain scope is publicly asserted; generalized implementation evidence is separate from the scope claim.",
+      "open_test": "Evaluate representative domain-specific implementations without assuming doctrine alone establishes operational coverage."
+    },
+    {
+      "claim_id": "TA14-CA-010",
+      "claim_family": "complete_mediation_non_bypassability",
+      "claim_summary": "TA-14 governs the complete consequence-bearing sequence.",
+      "claimed_architectural_location": "full route",
+      "status": "PUBLICLY_UNRESOLVED",
+      "confidence": "MEDIUM",
+      "reasoning_summary": "Full-route language exists, but route completeness as a model does not by itself prove mandatory mediation or bypass resistance.",
+      "open_test": "Attempt the same governed external consequence while bypassing one claimed mandatory TA-14 mediation point."
+    },
+    {
+      "claim_id": "TA14-CA-011",
+      "claim_family": "parent_architecture",
+      "claim_summary": "TA-14 is the parent architecture and external systems occupy subordinate architectural slices.",
+      "claimed_architectural_location": "framework relationship claim",
+      "status": "PUBLICLY_UNRESOLVED",
+      "confidence": "HIGH",
+      "reasoning_summary": "The parentage assertion is public and repeated, but semantic overlap and route breadth do not independently establish dependency, derivation, containment, or implementation inheritance.",
+      "open_test": "Reconstruct an independently developed architecture in its native primitives and require positive evidence of dependency, derivation, containment, or inheritance before assigning parentage."
+    },
+    {
+      "claim_id": "TA14-CA-012",
+      "claim_family": "independent_reciprocal_evaluation",
+      "claim_summary": "TA-14 can evaluate external architectures under its governance model.",
+      "claimed_architectural_location": "Exchange / evaluation surface",
+      "status": "PARTIALLY_SUPPORTED",
+      "confidence": "MEDIUM",
+      "reasoning_summary": "TA-14 exposes evaluation paths, but participation in TA-14's own process is not logically required for an external public architectural analysis to be valid.",
+      "open_test": "Compare TA-14's reconstruction of an external architecture against that architecture's native self-declaration without presupposing TA-14 parentage."
+    }
+  ],
+  "comparative_boundary": {
+    "stegverse_comparison_state": "SECONDARY_PENDING_TA14_INTERNAL_ANALYSIS",
+    "authority_ontology_difference": "ARCHITECTURAL_DISAGREEMENT_NOT_FAILURE",
+    "rule": "First evaluate TA-14 claims against TA-14 public architecture; compare StegVerse only after the internal mapping is explicit."
+  },
+  "public_page": "docs/external-frameworks/ta-14-claim-architecture-analysis.md",
+  "handoff": "docs/external-frameworks/TA14_CLAIM_ARCHITECTURE_ANALYSIS_MIRROR_HANDOFF.md",
+  "created_at": "2026-09-04",
+  "change_history": [
+    {
+      "revision": "v1",
+      "date": "2026-09-04",
+      "summary": "Initialized public claim-versus-architecture analysis lane from existing TA-14 review substrate."
+    }
+  ]
+}
