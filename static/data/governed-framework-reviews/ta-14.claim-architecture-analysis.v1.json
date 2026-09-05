@@ -6,6 +6,7 @@
   "analysis_scope": "public claims versus publicly exposed architecture, artifacts, and observed behavior",
   "analysis_posture": "PUBLIC_SOURCE_BOUNDED",
   "authority_effect": "NONE",
+  "source_ledger": "static/data/governed-framework-reviews/ta-14.claim-architecture-source-ledger.v1.json",
   "method_rules": {
     "not_yet_found_is_not_nonexistence": true,
     "public_claim_is_not_implementation_proof": true,
@@ -145,6 +146,16 @@
       "confidence": "MEDIUM",
       "reasoning_summary": "TA-14 exposes evaluation paths, but participation in TA-14's own process is not logically required for an external public architectural analysis to be valid.",
       "open_test": "Compare TA-14's reconstruction of an external architecture against that architecture's native self-declaration without presupposing TA-14 parentage."
+    },
+    {
+      "claim_id": "TA14-CA-013",
+      "claim_family": "registry_provenance_versioned_governance_records",
+      "claim_summary": "TA-14 publicly describes registry and public-record mechanisms for attributable, versioned governance records, claims, limitations, evidence, lineage, and ownership information.",
+      "claimed_architectural_location": "registry / public-record evidence surface",
+      "status": "PARTIALLY_SUPPORTED",
+      "confidence": "MEDIUM",
+      "reasoning_summary": "Public registry and provenance concepts are observed, but the reviewed public evidence does not yet establish that every consequence-bearing route is bound to a complete versioned governance record with deterministic reconstruction semantics.",
+      "open_test": "Select a public registry record, mutate or supersede a governed claim, and verify attributable version history, lineage preservation, correction semantics, and route-level reconstruction without historical erasure."
     }
   ],
   "comparative_boundary": {
@@ -160,6 +171,11 @@
       "revision": "v1",
       "date": "2026-09-04",
       "summary": "Initialized public claim-versus-architecture analysis lane from existing TA-14 review substrate."
+    },
+    {
+      "revision": "v1.1",
+      "date": "2026-09-04",
+      "summary": "Bound the source ledger and completed explicit registry/provenance/versioned-governance-record claim-family coverage."
     }
   ]
 }
