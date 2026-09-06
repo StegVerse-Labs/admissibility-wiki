@@ -9,6 +9,7 @@ PAGE = ROOT / "docs/external-frameworks/ta-14-claim-architecture-analysis.md"
 HANDOFF = ROOT / "docs/external-frameworks/TA14_CLAIM_ARCHITECTURE_ANALYSIS_MIRROR_HANDOFF.md"
 SIDEBAR = ROOT / "sidebars.js"
 ASSOCIATIONS = ROOT / "static/external-frameworks/sidebar-page-associations.v1.json"
+CSS = ROOT / "src/css/custom.css"
 
 ALLOWED = {
     "CLAIM_OBSERVED",
@@ -42,6 +43,10 @@ REQUIRED_FAMILIES = {
 REQUIRED_PAGE_MARKERS = [
     "# TA-14 Claim-versus-Architecture Analysis",
     "## Claim-to-architecture matrix",
+    "Production version verified",
+    "green row",
+    "red row",
+    "PRODUCTION CLAIMS VERIFIED AS PUBLICLY CLAIMED",
     "## Material publicly unresolved claims",
     "## Material contradiction: privacy-preserving independent verification",
     "## Open discriminating tests",
@@ -53,13 +58,19 @@ REQUIRED_PAGE_MARKERS = [
     "Privacy-preserving independent verification",
     "directly opposed",
 ]
+REQUIRED_CSS_MARKERS = [
+    "--ta14-production-verified-bg",
+    "--ta14-production-not-verified-bg",
+    "h2#claim-to-architecture-matrix",
+    "ta14-production-verified",
+]
 
 
 def fail(message: str) -> None:
     raise SystemExit(f"FAIL: {message}")
 
 
-for path in (ANALYSIS, LEDGER, PAGE, HANDOFF, SIDEBAR, ASSOCIATIONS):
+for path in (ANALYSIS, LEDGER, PAGE, HANDOFF, SIDEBAR, ASSOCIATIONS, CSS):
     if not path.exists():
         fail(f"missing required file: {path.relative_to(ROOT)}")
 
@@ -69,6 +80,7 @@ associations = json.loads(ASSOCIATIONS.read_text())
 page = PAGE.read_text()
 handoff = HANDOFF.read_text()
 sidebar = SIDEBAR.read_text()
+css = CSS.read_text()
 
 claims = analysis.get("claims")
 if not isinstance(claims, list):
@@ -81,6 +93,8 @@ families = {claim.get("claim_family") for claim in claims}
 if families != REQUIRED_FAMILIES:
     fail("claim-family coverage is incomplete or contains drift")
 
+red_count = 0
+green_count = 0
 for claim in claims:
     status = claim.get("status")
     if status not in ALLOWED:
@@ -90,6 +104,38 @@ for claim in claims:
     for field in ("claim_family", "claim_summary", "claimed_architectural_location", "confidence", "reasoning_summary"):
         if not claim.get(field):
             fail(f"{claim.get('claim_id')} missing {field}")
+
+    production = claim.get("production_verification")
+    if not isinstance(production, dict):
+        fail(f"{claim.get('claim_id')} missing production_verification object")
+    evaluated = production.get("production_surface_evaluated")
+    exists = production.get("exists_as_publicly_claimed")
+    row_status = production.get("row_status")
+    if evaluated not in (True, False):
+        fail(f"{claim.get('claim_id')} production_surface_evaluated must be boolean")
+    if exists not in (True, False, None):
+        fail(f"{claim.get('claim_id')} exists_as_publicly_claimed must be true, false, or null")
+    if row_status not in ("GREEN", "RED"):
+        fail(f"{claim.get('claim_id')} production row_status must be GREEN or RED")
+    expected = "GREEN" if evaluated is True and exists is True else "RED"
+    if row_status != expected:
+        fail(f"{claim.get('claim_id')} production row color violates green/red predicate")
+    if not production.get("display_status") or not production.get("reason"):
+        fail(f"{claim.get('claim_id')} production verification must preserve display status and reason")
+    if row_status == "GREEN":
+        green_count += 1
+    else:
+        red_count += 1
+
+contract = analysis.get("production_verification_contract", {})
+if not contract.get("green_predicate") or not contract.get("red_predicate"):
+    fail("production verification contract is missing green/red predicates")
+if not analysis.get("method_rules", {}).get("production_verification_is_separate_from_doctrinal_support"):
+    fail("production verification must remain separate from doctrinal support")
+if not analysis.get("method_rules", {}).get("green_requires_production_evaluation_and_observed_claim_correspondence"):
+    fail("green production row predicate rule must be enabled")
+if not analysis.get("method_rules", {}).get("red_does_not_by_itself_mean_nonexistence"):
+    fail("red row nonexistence guard must be enabled")
 
 privacy_claim = next((claim for claim in claims if claim.get("claim_id") == "TA14-CA-014"), None)
 if not privacy_claim:
@@ -118,6 +164,17 @@ if comparative.get("privacy_preserving_verification_difference") != "DIRECT_ARCH
 for marker in REQUIRED_PAGE_MARKERS:
     if marker not in page:
         fail(f"public page missing marker: {marker}")
+for marker in REQUIRED_CSS_MARKERS:
+    if marker not in css:
+        fail(f"production-verification CSS missing marker: {marker}")
+
+page_red = page.count("🔴 **")
+page_green = page.count("🟢 **")
+if page_red != red_count or page_green != green_count:
+    fail(
+        "public production-verification row markers do not match machine record: "
+        f"page red/green={page_red}/{page_green}, machine red/green={red_count}/{green_count}"
+    )
 
 route = "external-frameworks/ta-14-claim-architecture-analysis"
 if route not in sidebar:
@@ -131,8 +188,8 @@ if associations.get("counts", {}).get("sidebar_entries") != len(association_entr
 
 if "source_revision_ledger: INSTALLED" not in handoff:
     fail("handoff does not record installed source revision ledger")
-if "validator: INSTALLED" not in handoff:
-    fail("handoff does not record installed validator")
+if "validator: INSTALLED" not in handoff and "validator: UPDATED" not in handoff:
+    fail("handoff does not record installed/updated validator")
 if "navigation_binding: INSTALLED" not in handoff:
     fail("handoff does not record installed navigation binding")
 
@@ -147,4 +204,7 @@ external = next(source for source in sources if source.get("source_id") == "TA14
 if external.get("exact_byte_snapshot") == "NOT_CAPTURED" and external.get("content_hash") is not None:
     fail("external source cannot claim a content hash without exact-byte snapshot")
 
-print("PASS: TA-14 claim-versus-architecture analysis is internally consistent, source-bound, navigation-bound, and preserves the privacy-verification contradiction finding")
+print(
+    "PASS: TA-14 claim analysis preserves source bounds, privacy-verification finding, "
+    f"and production verification color contract ({green_count} green / {red_count} red)"
+)
