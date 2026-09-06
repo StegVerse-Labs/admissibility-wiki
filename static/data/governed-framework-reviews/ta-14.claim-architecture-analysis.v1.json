@@ -3,7 +3,7 @@
   "analysis_id": "ta-14-claim-architecture-analysis-v1-2026-09-04",
   "framework_id": "ta-14",
   "framework_name": "TA-14 Admissible Execution Architecture",
-  "analysis_scope": "public claims versus publicly exposed architecture, artifacts, and observed behavior",
+  "analysis_scope": "public claims versus publicly exposed architecture, artifacts, observed behavior, and production-verification evidence",
   "analysis_posture": "PUBLIC_SOURCE_BOUNDED",
   "authority_effect": "NONE",
   "source_ledger": "static/data/governed-framework-reviews/ta-14.claim-architecture-source-ledger.v1.json",
@@ -14,6 +14,10 @@
     "parentage_requires_positive_evidence": true,
     "comparative_stegverse_analysis_is_secondary": true,
     "privacy_preserving_independent_verification_is_comparatively_material": true,
+    "production_verification_is_separate_from_doctrinal_support": true,
+    "green_requires_production_evaluation_and_observed_claim_correspondence": true,
+    "red_means_production_verification_predicate_not_satisfied": true,
+    "red_does_not_by_itself_mean_nonexistence": true,
     "corrections_preserve_history": true
   },
   "status_vocabulary": [
@@ -27,6 +31,12 @@
     "NOT_YET_FOUND",
     "OUT_OF_SCOPE"
   ],
+  "production_verification_contract": {
+    "green_predicate": "production_surface_evaluated == true AND exists_as_publicly_claimed == true",
+    "red_predicate": "NOT green_predicate",
+    "unknown_existence_representation": null,
+    "red_semantics": "Production verification is not satisfied. This may mean not evaluated, unresolved, or evaluated and contradicted; it does not automatically mean the implementation does not exist."
+  },
   "claims": [
     {
       "claim_id": "TA14-CA-001",
@@ -36,7 +46,8 @@
       "status": "ARCHITECTURE_SUPPORT_OBSERVED",
       "confidence": "HIGH",
       "reasoning_summary": "The eight-stage route is explicitly represented in reviewed public TA-14 materials.",
-      "open_test": null
+      "open_test": null,
+      "production_verification": {"production_surface_evaluated": false, "exists_as_publicly_claimed": null, "row_status": "RED", "display_status": "NOT VERIFIED", "reason": "No attributable production trace spanning all eight claimed stages has been independently evaluated."}
     },
     {
       "claim_id": "TA14-CA-002",
@@ -46,7 +57,8 @@
       "status": "ARCHITECTURE_SUPPORT_OBSERVED",
       "confidence": "HIGH",
       "reasoning_summary": "Admissibility-before-consequence is central to the published doctrine.",
-      "open_test": "Bind doctrine to a full observed end-to-end execution trace."
+      "open_test": "Bind doctrine to a full observed end-to-end execution trace.",
+      "production_verification": {"production_surface_evaluated": false, "exists_as_publicly_claimed": null, "row_status": "RED", "display_status": "NOT VERIFIED", "reason": "No production consequence trace has been independently evaluated to show admissibility is mandatory before consequence."}
     },
     {
       "claim_id": "TA14-CA-003",
@@ -56,7 +68,8 @@
       "status": "PARTIALLY_SUPPORTED",
       "confidence": "MEDIUM",
       "reasoning_summary": "The lifecycle requirement is publicly stated, but independent reconstruction of current actor standing after commitment remains publicly unresolved.",
-      "open_test": "Revoke only actor standing after commit and observe the next point-of-effect decision."
+      "open_test": "Revoke only actor standing after commit and observe the next point-of-effect decision.",
+      "production_verification": {"production_surface_evaluated": false, "exists_as_publicly_claimed": null, "row_status": "RED", "display_status": "NOT VERIFIED", "reason": "No production standing-revocation or lifecycle reconstruction test has been independently completed."}
     },
     {
       "claim_id": "TA14-CA-004",
@@ -66,7 +79,8 @@
       "status": "ARCHITECTURE_SUPPORT_OBSERVED",
       "confidence": "MEDIUM",
       "reasoning_summary": "Binding and Commit are explicit stages, while full public implementation semantics remain only partially exposed.",
-      "open_test": "Expose canonical object identity and state transition semantics across binding and commit."
+      "open_test": "Expose canonical object identity and state transition semantics across binding and commit.",
+      "production_verification": {"production_surface_evaluated": false, "exists_as_publicly_claimed": null, "row_status": "RED", "display_status": "NOT VERIFIED", "reason": "Production object identity across binding, commit, and execution has not been independently evaluated."}
     },
     {
       "claim_id": "TA14-CA-005",
@@ -76,7 +90,8 @@
       "status": "PARTIALLY_SUPPORTED",
       "confidence": "MEDIUM",
       "reasoning_summary": "Fail-closed behavior is doctrinally explicit and selected observed public behavior has produced HOLD/DENY outcomes; generalized mandatory enforcement remains unresolved.",
-      "open_test": "Attempt execution with one mandatory proof predicate removed while preserving all other route state."
+      "open_test": "Attempt execution with one mandatory proof predicate removed while preserving all other route state.",
+      "production_verification": {"production_surface_evaluated": false, "exists_as_publicly_claimed": null, "row_status": "RED", "display_status": "NOT VERIFIED", "reason": "Public demonstration HOLD/DENY behavior is not independent proof of a mandatory production execution boundary."}
     },
     {
       "claim_id": "TA14-CA-006",
@@ -86,7 +101,8 @@
       "status": "PARTIALLY_SUPPORTED",
       "confidence": "MEDIUM",
       "reasoning_summary": "Continuity and chain-of-custody are public architectural requirements; full route-level attributable custody is not yet established by reviewed public evidence.",
-      "open_test": "Produce one attributable route-complete custody chain spanning evaluated object through observed outcome."
+      "open_test": "Produce one attributable route-complete custody chain spanning evaluated object through observed outcome.",
+      "production_verification": {"production_surface_evaluated": false, "exists_as_publicly_claimed": null, "row_status": "RED", "display_status": "NOT VERIFIED", "reason": "No production route-complete custody chain has been independently reconstructed."}
     },
     {
       "claim_id": "TA14-CA-007",
@@ -96,7 +112,8 @@
       "status": "PUBLICLY_UNRESOLVED",
       "confidence": "MEDIUM",
       "reasoning_summary": "Outcome is an explicit stage, but full correspondence between evaluated, bound, committed, executed, and externally observed objects has not been established in reviewed public evidence.",
-      "open_test": "Preserve and compare identity across evaluated, bound, committed, executed, and external outcome objects."
+      "open_test": "Preserve and compare identity across evaluated, bound, committed, executed, and external outcome objects.",
+      "production_verification": {"production_surface_evaluated": false, "exists_as_publicly_claimed": null, "row_status": "RED", "display_status": "NOT VERIFIED", "reason": "No independently evaluated production lineage binds evaluated, committed, executed, and externally observed outcome objects."}
     },
     {
       "claim_id": "TA14-CA-008",
@@ -106,7 +123,8 @@
       "status": "PARTIALLY_SUPPORTED",
       "confidence": "MEDIUM",
       "reasoning_summary": "Registry and provenance concepts are public; a deterministic public full-route replay bundle has not yet been found in reviewed sources.",
-      "open_test": "Publish a deterministic route-complete replay bundle with attributable source artifacts and expected result."
+      "open_test": "Publish a deterministic route-complete replay bundle with attributable source artifacts and expected result.",
+      "production_verification": {"production_surface_evaluated": false, "exists_as_publicly_claimed": null, "row_status": "RED", "display_status": "NOT VERIFIED", "reason": "No deterministic production replay bundle has been independently executed and reconstructed."}
     },
     {
       "claim_id": "TA14-CA-009",
@@ -116,7 +134,8 @@
       "status": "CLAIM_OBSERVED",
       "confidence": "HIGH",
       "reasoning_summary": "Cross-domain scope is publicly asserted; generalized implementation evidence is separate from the scope claim.",
-      "open_test": "Evaluate representative domain-specific implementations without assuming doctrine alone establishes operational coverage."
+      "open_test": "Evaluate representative domain-specific implementations without assuming doctrine alone establishes operational coverage.",
+      "production_verification": {"production_surface_evaluated": false, "exists_as_publicly_claimed": null, "row_status": "RED", "display_status": "NOT VERIFIED", "reason": "Representative production implementations across the claimed domains have not been independently evaluated."}
     },
     {
       "claim_id": "TA14-CA-010",
@@ -126,7 +145,8 @@
       "status": "PUBLICLY_UNRESOLVED",
       "confidence": "MEDIUM",
       "reasoning_summary": "Full-route language exists, but route completeness as a model does not by itself prove mandatory mediation or bypass resistance.",
-      "open_test": "Attempt the same governed external consequence while bypassing one claimed mandatory TA-14 mediation point."
+      "open_test": "Attempt the same governed external consequence while bypassing one claimed mandatory TA-14 mediation point.",
+      "production_verification": {"production_surface_evaluated": false, "exists_as_publicly_claimed": null, "row_status": "RED", "display_status": "NOT VERIFIED", "reason": "No production bypass-resistance test has independently established complete mediation."}
     },
     {
       "claim_id": "TA14-CA-011",
@@ -136,7 +156,8 @@
       "status": "PUBLICLY_UNRESOLVED",
       "confidence": "HIGH",
       "reasoning_summary": "The parentage assertion is public and repeated, but semantic overlap and route breadth do not independently establish dependency, derivation, containment, or implementation inheritance.",
-      "open_test": "Reconstruct an independently developed architecture in its native primitives and require positive evidence of dependency, derivation, containment, or inheritance before assigning parentage."
+      "open_test": "Reconstruct an independently developed architecture in its native primitives and require positive evidence of dependency, derivation, containment, or inheritance before assigning parentage.",
+      "production_verification": {"production_surface_evaluated": false, "exists_as_publicly_claimed": null, "row_status": "RED", "display_status": "NOT VERIFIED", "reason": "No production dependency, containment, derivation, or inheritance evidence establishes the parentage claim."}
     },
     {
       "claim_id": "TA14-CA-012",
@@ -146,7 +167,8 @@
       "status": "PARTIALLY_SUPPORTED",
       "confidence": "MEDIUM",
       "reasoning_summary": "TA-14 exposes evaluation paths, but the reviewed access model materially constrains independent scrutiny: meaningful testing was account-gated, fuller verification was associated with an owner-controlled commercial path, and the tester could not establish a sufficient privacy, retention, deletion, or non-reuse boundary before supplying account-linked information. Participation in TA-14's own process is therefore not equivalent to independently accessible verification.",
-      "open_test": "Expose a neutral no-account or clearly bounded pseudonymous verification path that permits claim-to-production inspection, replay, and reconstruction without requiring unrelated sensitive identity or account-linked disclosure."
+      "open_test": "Expose a neutral no-account or clearly bounded pseudonymous verification path that permits claim-to-production inspection, replay, and reconstruction without requiring unrelated sensitive identity or account-linked disclosure.",
+      "production_verification": {"production_surface_evaluated": false, "exists_as_publicly_claimed": null, "row_status": "RED", "display_status": "NOT VERIFIED", "reason": "Evaluation paths were observed, but the production-capable reciprocal evaluation claim was not independently verified."}
     },
     {
       "claim_id": "TA14-CA-013",
@@ -156,7 +178,8 @@
       "status": "PARTIALLY_SUPPORTED",
       "confidence": "MEDIUM",
       "reasoning_summary": "Public registry and provenance concepts are observed, but the reviewed public evidence does not yet establish that every consequence-bearing route is bound to a complete versioned governance record with deterministic reconstruction semantics.",
-      "open_test": "Select a public registry record, mutate or supersede a governed claim, and verify attributable version history, lineage preservation, correction semantics, and route-level reconstruction without historical erasure."
+      "open_test": "Select a public registry record, mutate or supersede a governed claim, and verify attributable version history, lineage preservation, correction semantics, and route-level reconstruction without historical erasure.",
+      "production_verification": {"production_surface_evaluated": false, "exists_as_publicly_claimed": null, "row_status": "RED", "display_status": "NOT VERIFIED", "reason": "No production route-bound registry record has been independently replayed through correction and reconstruction."}
     },
     {
       "claim_id": "TA14-CA-014",
@@ -166,7 +189,8 @@
       "status": "CONTRADICTED_BY_PUBLIC_ARCHITECTURE",
       "confidence": "HIGH",
       "reasoning_summary": "The reviewed access architecture placed meaningful testing behind account creation and associated fuller verification with an owner-controlled commercial path. Before account-linked information was supplied, the tester could not establish independently verifiable boundaries for data minimization, retention, deletion, secondary use, owner access, analytics/profiling, or non-reuse. A later account-data-request observation also failed to identify a demonstrably usable controller contact or deletion route. On privacy-preserving independent verification, this creates an architectural contradiction between claims of independent scrutiny/reconstructability and an access model that requires additional information exposure before the claimed production-capable surface can be meaningfully inspected.",
-      "open_test": "Provide a no-account or clearly bounded pseudonymous production-verification path with published retention, deletion, non-reuse, controller-contact, replay, and reconstruction guarantees before any sensitive or account-linked information is requested."
+      "open_test": "Provide a no-account or clearly bounded pseudonymous production-verification path with published retention, deletion, non-reuse, controller-contact, replay, and reconstruction guarantees before any sensitive or account-linked information is requested.",
+      "production_verification": {"production_surface_evaluated": true, "exists_as_publicly_claimed": false, "row_status": "RED", "display_status": "EVALUATED — CONTRADICTED", "reason": "The observed access boundary was evaluated and did not provide privacy-preserving independent verification as claimed/required for independent scrutiny."}
     }
   ],
   "comparative_boundary": {
@@ -179,20 +203,9 @@
   "handoff": "docs/external-frameworks/TA14_CLAIM_ARCHITECTURE_ANALYSIS_MIRROR_HANDOFF.md",
   "created_at": "2026-09-04",
   "change_history": [
-    {
-      "revision": "v1",
-      "date": "2026-09-04",
-      "summary": "Initialized public claim-versus-architecture analysis lane from existing TA-14 review substrate."
-    },
-    {
-      "revision": "v1.1",
-      "date": "2026-09-04",
-      "summary": "Bound the source ledger and completed explicit registry/provenance/versioned-governance-record claim-family coverage."
-    },
-    {
-      "revision": "v1.2",
-      "date": "2026-09-06",
-      "summary": "Added a privacy-preserving independent-verification claim family, strengthened the independent-review finding using preserved account-gating and data-boundary observations, and recorded direct architectural opposition to StegVerse on this specific verification-access dimension."
-    }
+    {"revision": "v1", "date": "2026-09-04", "summary": "Initialized public claim-versus-architecture analysis lane from existing TA-14 review substrate."},
+    {"revision": "v1.1", "date": "2026-09-04", "summary": "Bound the source ledger and completed explicit registry/provenance/versioned-governance-record claim-family coverage."},
+    {"revision": "v1.2", "date": "2026-09-06", "summary": "Added a privacy-preserving independent-verification claim family, strengthened the independent-review finding using preserved account-gating and data-boundary observations, and recorded direct architectural opposition to StegVerse on this specific verification-access dimension."},
+    {"revision": "v1.3", "date": "2026-09-06", "summary": "Separated doctrinal/public support from production verification, added a binary green/red production-verification predicate for every claim, and preserved red as not-verified rather than automatic nonexistence."}
   ]
 }
