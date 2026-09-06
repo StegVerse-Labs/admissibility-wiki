@@ -1,0 +1,32 @@
+{
+  "schema_version": "wiki-public-anchor-internal-task-registry-extension.v1",
+  "extension_id": "tga-admissibility-projection-2026-09-05",
+  "extends": "static/status/wiki-public-anchor-internal-task-registry.json",
+  "external_tasks_exist": false,
+  "tasks": [
+    {
+      "task_id": "PA-TGA-128",
+      "title": "Validate and preserve the TGA admissibility/explanatory projection",
+      "state": "ACTIVE_INTERNAL",
+      "owner_record": "docs/TGA_ADMISSIBILITY_PROJECTION_MIRROR_HANDOFF.md",
+      "work_locations": [
+        "docs/TGA_ADMISSIBILITY_PROJECTION_MIRROR_HANDOFF.md",
+        "docs/governance/temporal-governed-analysis.md",
+        "scripts/check_tga_admissibility_projection.py",
+        "static/status/wiki-public-anchor-internal-task-registry.tga-projection-extension.json"
+      ],
+      "observer": "scripts/check_tga_admissibility_projection.py",
+      "completion_predicate": "observer emits TGA_ADMISSIBILITY_PROJECTION=PASS while authority_effect remains NONE_EXPLANATORY_ONLY",
+      "fallback": "record FAIL_INTERNAL_CONTINUABLE in the internal executor report and continue unrelated READY_INTERNAL work; do not promote the explanatory projection",
+      "dependencies": [],
+      "external_dependencies": []
+    }
+  ],
+  "policy": {
+    "no_external_tasks": true,
+    "failed_task_blocks_unrelated_tasks": false,
+    "every_task_has_locations": true,
+    "every_task_has_observer": true,
+    "every_task_has_completion_predicate": true
+  }
+}
