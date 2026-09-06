@@ -26,7 +26,7 @@ Reality
 -> Outcome
 ```
 
-The public material supports the existence of that declared architecture and its associated doctrines. It does not, by itself, establish every stronger claim made about implementation completeness, full-route ownership, non-bypassability, outcome correspondence, or parent-architecture status.
+The public material supports the existence of that declared architecture and its associated doctrines. It does not, by itself, establish every stronger claim made about implementation completeness, full-route ownership, non-bypassability, outcome correspondence, parent-architecture status, or independently accessible production verification.
 
 The correct present posture is therefore mixed:
 
@@ -37,6 +37,7 @@ SELECTED PUBLIC BEHAVIOR: OBSERVED
 FULL IMPLEMENTATION OF ALL CLAIMED STAGES: PUBLICLY UNRESOLVED
 COMPLETE MEDIATION / NON-BYPASSABILITY: PUBLICLY UNRESOLVED
 PARENT-ARCHITECTURE STATUS: PUBLICLY UNRESOLVED
+PRIVACY-PRESERVING INDEPENDENT VERIFICATION: CONTRADICTED BY OBSERVED ACCESS ARCHITECTURE
 TA-14 INTERNAL INCONSISTENCY: CLAIM-SPECIFIC; NOT PRESUMED GLOBALLY
 ```
 
@@ -55,8 +56,9 @@ TA-14 INTERNAL INCONSISTENCY: CLAIM-SPECIFIC; NOT PRESUMED GLOBALLY
 | Cross-domain scope | Architecture applies across AI, buildings, healthcare, finance, institutions, industry, and other consequence-bearing systems | Cross-domain applicability is explicitly claimed | `CLAIM_OBSERVED`; generalized implementation evidence is not established by scope language alone |
 | Complete mediation / non-bypassability | TA-14 governs the complete consequence-bearing sequence | Full-route language exists | `PUBLICLY_UNRESOLVED` until bypass resistance and route completeness are demonstrated |
 | Parent architecture | TA-14 is the parent architecture and other systems occupy subordinate slices | Parentage is explicitly asserted | `PUBLICLY_UNRESOLVED`; assertion does not independently establish containment or descent |
-| Independent / reciprocal evaluation | TA-14 can evaluate external architectures under its governance model | TA-14 offers Exchange-based evaluation paths | `PARTIALLY_SUPPORTED`; requiring TA-14 process participation does not establish architectural parentage or invalidate outside analysis |
+| Independent / reciprocal evaluation | TA-14 can evaluate external architectures under its governance model | TA-14 offers Exchange-based evaluation paths, but meaningful testing was account-gated and fuller verification was associated with an owner-controlled commercial path | `PARTIALLY_SUPPORTED`; participation is not equivalent to independently accessible production verification |
 | Registry / provenance / versioned records | TA-14 describes searchable, attributable, versioned governance/public records with claims, limitations, evidence, lineage, and ownership information | Registry and provenance mechanisms are publicly described | `PARTIALLY_SUPPORTED`; complete route binding, correction lineage, and deterministic reconstruction remain open |
+| Privacy-preserving independent verification | Strong public governance claims should be independently inspectable without forcing a reviewer to surrender unrelated sensitive or account-linked information merely to determine whether the production-capable surface substantiates them | Meaningful testing required account creation; fuller verification was associated with an owner-controlled commercial path; privacy, retention, deletion, secondary-use, owner-access, analytics/profiling, and non-reuse boundaries were not independently established before account-linked information was supplied; a later account-data-request observation did not establish a demonstrably usable controller/deletion route | `CONTRADICTED_BY_PUBLIC_ARCHITECTURE` on the observed verification-access model |
 
 ## Strongest publicly supported claims
 
@@ -99,9 +101,45 @@ Including `Outcome` in the architecture is not equivalent to publicly demonstrat
 
 A strong proof would bind evaluated object, bound object, committed object, executed object, and observed external outcome into one attributable reconstruction.
 
+## Material contradiction: privacy-preserving independent verification
+
+This finding is stronger than an unresolved implementation question because the reviewed access structure itself creates the conflict.
+
+The preserved TA-14 testing record observed this sequence:
+
+```text
+broad public governance claims
+-> meaningful testing requires account creation
+-> strongest capability correspondence is not required to appear in the public demonstrations
+-> fuller verification remains associated with an owner-controlled commercial path
+-> reviewer must provide additional account-linked information before determining whether the fuller surface substantiates the public claims
+```
+
+Before supplying account-linked information, the tester did not establish an explicit, independently verifiable boundary covering:
+
+```text
+data minimization
+retention duration
+deletion procedure
+secondary use
+owner access
+analytics or profiling
+non-reuse for commercial or model-development purposes
+```
+
+A later account-data-request observation additionally found no demonstrably usable TA-14-controlled privacy/contact/deletion route during the recorded sequence. That record does not establish misuse, unlawful retention, or motive. It establishes that the verification path itself required information exposure while the corresponding control boundary was not independently established.
+
+That matters because TA-14 presents independent review, reconstructability, attributable evidence, and proof as governance virtues. A verification architecture that requires a reviewer to surrender unrelated sensitive or account-linked information merely to inspect the production-capable evidence surface adds dependency on the claimant at the exact point where independent verification should reduce it.
+
+The current finding is therefore:
+
+> **On privacy-preserving independent verification, the observed TA-14 production-access model is directly opposed to the StegVerse design principle.** TA-14's reviewed path requires additional identity/account exposure before meaningful inspection of the stronger production-capable surface; StegVerse's design goal is the inverse: minimize personal disclosure while exposing bounded evidence and verification surfaces that can be inspected without surrendering unrelated sensitive information.
+
+This is a dimension-specific comparative finding. It is not a global claim that TA-14 and StegVerse are opposites in every architectural respect.
+
 ## Architecture tensions to test
 
-These are testable tensions, not present findings of failure.
+These are testable tensions unless a section above already records a bounded finding.
 
 ### Authority as state versus authority as prerequisite
 
@@ -170,6 +208,17 @@ A framework may model every stage of a consequence without owning every implemen
 6. Confirm that correction changes current state without erasing historical state.
 ```
 
+### Privacy-preserving production-verification test
+
+```text
+1. Expose the production-capable verification surface used to substantiate the public governance claims.
+2. Permit no-account or clearly bounded pseudonymous access.
+3. Publish data-minimization, retention, deletion, controller-contact, secondary-use, analytics/profiling, and non-reuse terms before any account-linked data is requested.
+4. Permit claim-to-artifact inspection, replay, and reconstruction without unrelated sensitive identity disclosure.
+5. Verify that evidence access does not depend on purchasing an owner-controlled review process.
+6. Preserve the result and any correction or supersession history publicly.
+```
+
 ## Method
 
 Every substantive finding in this lane should be classified as one of:
@@ -186,21 +235,38 @@ NOT_YET_FOUND
 OUT_OF_SCOPE
 ```
 
-`NOT_YET_FOUND` is not nonexistence. `PUBLICLY_UNRESOLVED` is not failure. Architectural disagreement is not an implementation defect. A public claim, however, remains a claim until evidence supports the stronger property being asserted.
+`NOT_YET_FOUND` is not nonexistence. `PUBLICLY_UNRESOLVED` is not failure. Architectural disagreement is not an implementation defect. A public claim, however, remains a claim until evidence supports the stronger property being asserted. Where the observed access architecture itself conflicts with a claimed verification property, `CONTRADICTED_BY_PUBLIC_ARCHITECTURE` may be used without inferring hidden implementation failure.
 
 ## Relationship to StegVerse
 
-Comparison with StegVerse is secondary to the TA-14-internal analysis.
+Comparison with StegVerse remains secondary to the TA-14-internal analysis, but secondary does not mean artificially lenient once an internally grounded difference is established.
 
-The lane should first ask whether TA-14's claims are supported by TA-14's own publicly exposed architecture and behavior. Only then should a comparative section examine where StegVerse and TA-14:
+The lane first asks whether TA-14's claims are supported by TA-14's own publicly exposed architecture and behavior. Once that mapping is explicit, comparative findings may identify where the systems:
 
 - solve the same problem differently;
 - use different ontology for authority or admissibility;
 - expose different evidence surfaces;
 - make claims of different scope;
-- produce mutually testable architectural predictions.
+- produce mutually testable architectural predictions;
+- impose opposite privacy conditions on independent verification.
 
-This prevents the analysis from becoming circular self-validation by StegVerse.
+On the last point, the present evidence supports a direct comparison rather than a neutral “different approaches” label:
+
+```text
+TA-14 observed verification-access posture:
+account / identity-linked disclosure
+-> access to meaningful or fuller verification surface
+-> reviewer then determines whether the stronger claims are substantiated
+
+StegVerse design posture:
+minimize unrelated personal disclosure
+-> expose bounded, independently inspectable evidence surfaces
+-> verification should not depend on surrendering sensitive identity/account information
+```
+
+On this specific dimension, the architectures are directly opposed.
+
+This does not make StegVerse self-validating. StegVerse remains subject to the same evidence burden for its own implementation and runtime claims.
 
 ## Correction policy
 
