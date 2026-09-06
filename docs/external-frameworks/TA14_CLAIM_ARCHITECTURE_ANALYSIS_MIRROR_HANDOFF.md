@@ -156,6 +156,53 @@ The validator requires:
 
 The validator is bound into the repository's canonical `npm run validate` chain. A repository write is not itself evidence that the canonical workflow has executed successfully; workflow observation remains separate.
 
+## Canonical validation evidence
+
+The following evidence is run-bound to the installed TA-14 analysis lane at commit `da2365baa6b6436f6bfc794968d29da64ea89a0a`. It does not claim that later unrelated `main` changes were validated by this historical run.
+
+```text
+workflow: Validate chain continuation
+run_id: 33943582305
+run_number: 4766
+validated_head_sha: da2365baa6b6436f6bfc794968d29da64ea89a0a
+workflow_conclusion: SUCCESS
+validation_job: 101245638616 SUCCESS
+build_pages_job: 101245922186 SUCCESS
+canonical_pre_scan: 11/11 PASS
+full_validation_chain: 56/56 PASS
+canonical_workflow_observation: PASS_OBSERVED
+source_route_contract: 36/36 PASS
+source_route_contract_artifact_id: 9962648848
+source_route_contract_sha256: b975cef1073c82a1ecb66067e79f30bc639e93aeff43bf08bf4a4cea0212c0c9
+built_route_verification: 36/36 PASS
+built_route_verification_artifact_id: 9962665663
+built_route_verification_sha256: 6d4235e780918973b87d88d9690f3ad55467cc53234deace58ad7b0ffeb200bb
+github_pages_artifact_id: 9962666004
+github_pages_artifact_sha256: 8cb4910218a333e9c5359c9b572e57fd9e7fa32724cc7324a4c186c2eded0ed2
+authority_effect: none
+```
+
+The historical build job also exposed a mirror-handoff guard diagnostic at the validated head. That condition has since been repaired on current `main` by another executor. This lane does not duplicate that repair and does not reinterpret the historical diagnostic as a TA-14 analysis failure.
+
+## README impact determination
+
+The 2026-09-05 handoff reconciliation that records the run-bound evidence above does not alter repository behavior or capability semantics.
+
+```text
+README_update_required: false
+determination: evidence/status reconciliation only
+behavior_change: none
+runtime_semantics_change: none
+interface_change: none
+governance_or_authority_boundary_change: none
+evidence_semantics_change: none
+prerequisite_or_dependency_change: none
+failure_behavior_change: none
+capability_meaning_change: none
+```
+
+No README mutation is therefore required for this reconciliation. Changes that materially alter any of those predicates remain subject to the repository README completeness guard.
+
 ## Completion predicate for v1
 
 Repository-local v1 installation is complete when:
@@ -169,21 +216,23 @@ Repository-local v1 installation is complete when:
 - correction and revision semantics are explicit;
 - validator is installed and canonical-validation-bound;
 - source/revision ledger is installed;
-- navigation binding is installed.
+- navigation binding is installed;
+- a run-bound canonical validation observation exists for the installed lane.
+
+All repository-local v1 predicates above are satisfied for the run-bound installation at commit `da2365baa6b6436f6bfc794968d29da64ea89a0a`.
 
 ## Remaining installation destinations
 
 ```text
 StegVerse-Labs/admissibility-wiki
-- observe canonical workflow result for the installed validator/build
-- optionally extend source ledger with exact-byte source snapshots only when a governed capture surface exists
-- update canonical external-framework inventory artifacts if existing inventory validators require explicit support-page enumeration
+- maintain page / machine-record / source-ledger parity as TA-14 publishes new revisions
+- optionally extend source custody with exact-byte snapshots only when a governed capture surface exists
 
 StegVerse-Labs/Site
 - public discovery/link projection only after Site orchestration admits the work
 
 GCAT-BCAT-Engine/Publisher
-- optional publication projection after canonical analysis record is stable and publication lane admits it
+- optional publication projection only after its publication lane admits the work
 
 StegVerse-002/stegguardian-wiki
 - later guardian-facing projection only if findings materially affect protection doctrine
@@ -192,7 +241,7 @@ StegVerse-002/stegguardian-wiki
 ## Current state
 
 ```text
-lane_state: REPOSITORY_LOCAL_V1_INSTALLED_VALIDATION_OBSERVATION_PENDING
+lane_state: REPOSITORY_LOCAL_V1_VALIDATED_RUN_BOUND
 source_substrate: EXISTING
 public_analysis_page: INSTALLED
 machine_record: INSTALLED
@@ -200,9 +249,12 @@ validator: INSTALLED
 validator_canonical_binding: INSTALLED
 source_revision_ledger: INSTALLED
 navigation_binding: INSTALLED
-canonical_workflow_observation: PENDING
-site_projection: NOT_REQUESTED_FROM_SITE_ORCHESTRATOR
-publisher_projection: NOT_REQUESTED
+canonical_workflow_observation: PASS_OBSERVED_RUN_33943582305
+source_route_contract: PASS_OBSERVED_RUN_33943582305
+built_route_verification: PASS_OBSERVED_RUN_33943582305
+pages_artifact: OBSERVED_RUN_33943582305
+site_projection: NOT_ADMITTED_BY_SITE_ORCHESTRATOR
+publisher_projection: NOT_ADMITTED_BY_CURRENT_PUBLISHER_WORKSTREAM
 stegguardian_projection: NOT_REQUIRED_BY_CURRENT_FINDINGS
 user_action_required: false
 execution_authority_effect: none
