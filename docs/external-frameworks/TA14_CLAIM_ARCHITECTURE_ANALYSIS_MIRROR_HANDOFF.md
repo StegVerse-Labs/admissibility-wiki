@@ -13,7 +13,7 @@ Navigation binding: `sidebars.js`
 
 Create and maintain a public, versioned analysis lane that evaluates TA-14's own published claims against the architecture, mechanisms, artifacts, and observed behavior TA-14 publicly exposes.
 
-This is not a rebuttal lane and does not depend on continued dialogue with TA-14's author. It is an external-framework analysis surface analogous to other StegVerse public analysis lanes: sources are preserved, claims are atomized, architecture evidence is mapped, confidence is bounded, and changes are tracked over time.
+This is not a rebuttal lane and does not depend on continued dialogue with TA-14's author. Sources are preserved, claims are atomized, architecture evidence is mapped, confidence is bounded, and changes are tracked over time.
 
 ## Analytical boundary
 
@@ -33,30 +33,7 @@ OUT_OF_SCOPE
 
 It MUST NOT convert `NOT_YET_FOUND` into nonexistence, private implementation claims into public proof, publication into correctness, or architectural disagreement into implementation failure.
 
-## Unit of analysis
-
-Each claim record should preserve:
-
-```text
-claim_id
-claim_text
-source_url
-source_date_or_observed_at
-source_revision_or_snapshot
-claim_class
-claimed_architectural_location
-public_architecture_evidence
-public_behavior_evidence
-implementation_artifacts
-counterevidence
-status
-confidence
-reasoning_summary
-open_test
-change_history
-```
-
-## Initial claim families
+## Claim families
 
 1. Parent-architecture / full-route ownership claims.
 2. Eight-stage consequence-bearing route claims.
@@ -70,6 +47,9 @@ change_history
 10. Non-bypassability and complete-mediation claims.
 11. Reciprocal evaluation / independent review claims.
 12. Registry, provenance, and versioned-governance-record claims.
+13. Privacy-preserving independent-verification claims.
+
+The machine record currently contains 14 atomized claims across these families.
 
 ## Core question
 
@@ -77,7 +57,7 @@ For each public claim:
 
 > What does TA-14 say the architecture guarantees, where does TA-14 place that guarantee in its own architecture, and what public architecture or observed behavior presently supports, limits, or contradicts that claim?
 
-## Neutrality rules
+## Neutrality and comparison rules
 
 - Analyze TA-14 against TA-14's own stated architecture before comparing it with StegVerse.
 - Preserve TA-14 terminology when characterizing TA-14.
@@ -87,8 +67,11 @@ For each public claim:
 - Do not infer absence from unavailable implementation.
 - Apply the same evidence burden to affirmative StegVerse comparative claims.
 - Preserve corrections and superseded determinations rather than silently rewriting history.
+- Secondary comparison does not require artificial neutrality after the TA-14-internal evidence mapping establishes a material architectural difference.
+- On privacy-preserving independent verification, the current bounded finding is `DIRECT_ARCHITECTURAL_OPPOSITION_ON_OBSERVED_ACCESS_MODEL` between the reviewed TA-14 access model and the StegVerse design principle.
+- That direct opposition is dimension-specific and MUST NOT be generalized into a claim that every aspect of TA-14 and StegVerse is opposite.
 
-## Relationship to existing TA-14 work
+## Relationship to existing TA-14 evidence
 
 This lane extends, but does not replace:
 
@@ -96,6 +79,8 @@ This lane extends, but does not replace:
 docs/external-frameworks/ta-14.md
 docs/external-frameworks/ta-14-public-review-docket.md
 docs/external-frameworks/ta-14-stegverse-public-evidence-gap-review-v2-intake.md
+docs/external-frameworks/ta-14-testing-support-determination-2026-08-01.md
+docs/external-frameworks/ta-14-account-data-request-channel-observation-2026-08-01.md
 static/data/framework-evaluations/ta-14.json
 static/data/governed-framework-reviews/ta-14.reference-docket.v1.json
 static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.adjudication.json
@@ -103,19 +88,29 @@ static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.adjudicatio
 
 Existing determinations remain bounded to their recorded scope and observation dates.
 
-## Public-page structure
+## v1.2 privacy-preserving independent-verification finding
 
-The public analysis page exposes:
+Revision v1.2 adds claim `TA14-CA-014` and strengthens `TA14-CA-012`.
 
-1. Current assessment summary.
-2. Claim-to-architecture matrix.
-3. Strongest publicly supported claims.
-4. Claims that are doctrinally stated but not publicly implementation-backed.
-5. Public architecture tensions or contradictions.
-6. Open discriminating tests.
-7. Method and correction semantics.
-8. Machine-readable analysis linkage.
-9. Comparative notes only after the TA-14-internal analysis is explicit.
+The evidence-bound structure is:
+
+```text
+meaningful testing: account-gated
+fuller verification: associated with owner-controlled commercial path
+pre-disclosure privacy boundary: not sufficiently independently established
+data minimization / retention / deletion / secondary use / owner access / analytics-profiling / non-reuse: unresolved before account-linked submission
+later usable controller-contact / deletion route: not established during preserved observation
+```
+
+The bounded determination is:
+
+```text
+TA14-CA-014 status: CONTRADICTED_BY_PUBLIC_ARCHITECTURE
+comparative dimension: privacy-preserving independent verification
+StegVerse comparison: DIRECT_ARCHITECTURAL_OPPOSITION_ON_OBSERVED_ACCESS_MODEL
+```
+
+This finding does **not** claim unlawful retention, misuse, hidden motive, or universal TA-14 incapability. It concerns the observed verification-access architecture and whether a reviewer must surrender additional sensitive/account-linked information before being able to meaningfully inspect the stronger production-capable evidence surface.
 
 ## Installed files
 
@@ -131,7 +126,7 @@ StegVerse-Labs/admissibility-wiki/package.json
 
 ## Source custody posture
 
-The supplied 2026-09-04 public Google Sites page is recorded in the source ledger as an owner-controlled public source observation. Exact external source bytes were not captured into canonical custody in this lane, so the ledger explicitly records:
+The supplied 2026-09-04 public Google Sites page remains recorded in the source ledger as an owner-controlled public source observation. Exact external source bytes were not captured into canonical custody in this lane, so the ledger explicitly records:
 
 ```text
 exact_byte_snapshot: NOT_CAPTURED
@@ -139,93 +134,80 @@ content_hash: null
 hash_state: NOT_AVAILABLE_WITHOUT_EXACT_BYTE_SNAPSHOT
 ```
 
-This prevents an observation record from being misrepresented as immutable source custody.
+The v1.2 privacy-access finding additionally relies on already-preserved StegVerse observation records from 2026-08-01. Those records remain bounded observations and are not converted into claims about hidden motive or unlawful conduct.
 
 ## Validation contract
 
-The validator requires:
+The validator now requires:
 
-- all initial machine claim records and allowed status vocabulary;
-- an explicit discriminating test for every `PUBLICLY_UNRESOLVED` claim;
-- parentage to remain a positive-evidence question;
-- StegVerse comparison to remain secondary to TA-14-internal analysis;
-- required public-page sections and machine-record linkage;
-- sidebar discoverability;
-- source-ledger presence and explicit exact-byte/hash posture;
-- this handoff to report validator, ledger, and navigation installation.
+- exact claim IDs `TA14-CA-001` through `TA14-CA-014`;
+- privacy-preserving independent-verification family presence;
+- `TA14-CA-014` status to remain `CONTRADICTED_BY_PUBLIC_ARCHITECTURE` unless the analysis is deliberately revised with new evidence;
+- a falsifiable privacy-preserving production-verification test;
+- the comparative finding `DIRECT_ARCHITECTURAL_OPPOSITION_ON_OBSERVED_ACCESS_MODEL`;
+- StegVerse comparison to remain secondary to TA-14-internal mapping but available after that mapping is explicit;
+- all prior source, navigation, parentage, status-vocabulary, and authority-effect guards.
 
-The validator is bound into the repository's canonical `npm run validate` chain. A repository write is not itself evidence that the canonical workflow has executed successfully; workflow observation remains separate.
+The validator remains bound into the repository's canonical `npm run validate` chain. A repository write is not itself evidence that the revised lane has executed successfully under canonical validation.
 
-## Canonical validation evidence
+## Historical canonical validation evidence
 
-The following evidence is run-bound to the installed TA-14 analysis lane at commit `da2365baa6b6436f6bfc794968d29da64ea89a0a`. It does not claim that later unrelated `main` changes were validated by this historical run.
+The prior v1.1 installation was validated at commit `da2365baa6b6436f6bfc794968d29da64ea89a0a` by:
 
 ```text
 workflow: Validate chain continuation
 run_id: 33943582305
 run_number: 4766
-validated_head_sha: da2365baa6b6436f6bfc794968d29da64ea89a0a
 workflow_conclusion: SUCCESS
-validation_job: 101245638616 SUCCESS
-build_pages_job: 101245922186 SUCCESS
 canonical_pre_scan: 11/11 PASS
 full_validation_chain: 56/56 PASS
 canonical_workflow_observation: PASS_OBSERVED
 source_route_contract: 36/36 PASS
-source_route_contract_artifact_id: 9962648848
-source_route_contract_sha256: b975cef1073c82a1ecb66067e79f30bc639e93aeff43bf08bf4a4cea0212c0c9
 built_route_verification: 36/36 PASS
-built_route_verification_artifact_id: 9962665663
-built_route_verification_sha256: 6d4235e780918973b87d88d9690f3ad55467cc53234deace58ad7b0ffeb200bb
-github_pages_artifact_id: 9962666004
-github_pages_artifact_sha256: 8cb4910218a333e9c5359c9b572e57fd9e7fa32724cc7324a4c186c2eded0ed2
 authority_effect: none
 ```
 
-The historical build job also exposed a mirror-handoff guard diagnostic at the validated head. That condition has since been repaired on current `main` by another executor. This lane does not duplicate that repair and does not reinterpret the historical diagnostic as a TA-14 analysis failure.
+That historical evidence remains valid for the v1.1 state only. It MUST NOT be used as validation proof for the v1.2 revision.
 
-## README impact determination
+## README impact determination — v1.2
 
-The 2026-09-05 handoff reconciliation that records the run-bound evidence above does not alter repository behavior or capability semantics.
+The v1.2 revision changes analytical content and adds a new claim family while preserving the existing evidence-status vocabulary and repository behavior.
 
 ```text
 README_update_required: false
-determination: evidence/status reconciliation only
-behavior_change: none
+determination: bounded review-content and machine-record revision
+repository_behavior_change: none
 runtime_semantics_change: none
 interface_change: none
 governance_or_authority_boundary_change: none
-evidence_semantics_change: none
+status_vocabulary_change: none
 prerequisite_or_dependency_change: none
 failure_behavior_change: none
 capability_meaning_change: none
 ```
 
-No README mutation is therefore required for this reconciliation. Changes that materially alter any of those predicates remain subject to the repository README completeness guard.
+The public review's conclusion changed because preserved evidence was reclassified more precisely; the repository's evidence semantics did not change. Therefore no README mutation is required for this revision.
 
-## Completion predicate for v1
+## Completion predicate for v1.2
 
-Repository-local v1 installation is complete when:
+Repository-local v1.2 installation is complete when:
 
-- the initial claim families are represented;
-- conclusions remain source-bounded;
-- public page and machine-readable record share the same analytical posture;
-- parentage is treated as an affirmative claim requiring evidence rather than assumed true or false;
-- authority/standing is analyzed as TA-14 models it, with StegVerse ontology differences labeled separately;
-- discriminating tests exist for materially unresolved claims;
-- correction and revision semantics are explicit;
-- validator is installed and canonical-validation-bound;
-- source/revision ledger is installed;
-- navigation binding is installed;
-- a run-bound canonical validation observation exists for the installed lane.
+- the 14 machine claim records are represented;
+- `TA14-CA-014` is present with the bounded privacy-preserving verification contradiction finding;
+- the public page and machine record express the same comparative posture;
+- the independent/reciprocal review claim no longer treats owner-controlled participation as equivalent to independently accessible production verification;
+- the privacy-preserving production-verification discriminating test is published;
+- validator enforces the new claim family and comparative posture;
+- a canonical workflow observation exists for the v1.2 head.
 
-All repository-local v1 predicates above are satisfied for the run-bound installation at commit `da2365baa6b6436f6bfc794968d29da64ea89a0a`.
+All repository-local source mutations for v1.2 are installed. Canonical workflow observation for the revised head remains pending until GitHub Actions produces it.
 
 ## Remaining installation destinations
 
 ```text
 StegVerse-Labs/admissibility-wiki
-- maintain page / machine-record / source-ledger parity as TA-14 publishes new revisions
+- observe canonical workflow result for v1.2
+- maintain page / machine-record / source-ledger parity as new TA-14 evidence appears
 - optionally extend source custody with exact-byte snapshots only when a governed capture surface exists
 
 StegVerse-Labs/Site
@@ -241,18 +223,18 @@ StegVerse-002/stegguardian-wiki
 ## Current state
 
 ```text
-lane_state: REPOSITORY_LOCAL_V1_VALIDATED_RUN_BOUND
+lane_state: REPOSITORY_LOCAL_V1_2_INSTALLED_VALIDATION_OBSERVATION_PENDING
 source_substrate: EXISTING
-public_analysis_page: INSTALLED
-machine_record: INSTALLED
-validator: INSTALLED
+public_analysis_page: UPDATED_V1_2
+machine_record: UPDATED_V1_2_14_CLAIMS
+validator: UPDATED_V1_2
 validator_canonical_binding: INSTALLED
 source_revision_ledger: INSTALLED
 navigation_binding: INSTALLED
-canonical_workflow_observation: PASS_OBSERVED_RUN_33943582305
-source_route_contract: PASS_OBSERVED_RUN_33943582305
-built_route_verification: PASS_OBSERVED_RUN_33943582305
-pages_artifact: OBSERVED_RUN_33943582305
+historical_canonical_workflow_observation: PASS_OBSERVED_RUN_33943582305_FOR_V1_1
+v1_2_canonical_workflow_observation: PENDING
+privacy_preserving_verification_finding: CONTRADICTED_BY_PUBLIC_ARCHITECTURE
+stegverse_privacy_verification_comparison: DIRECT_ARCHITECTURAL_OPPOSITION_ON_OBSERVED_ACCESS_MODEL
 site_projection: NOT_ADMITTED_BY_SITE_ORCHESTRATOR
 publisher_projection: NOT_ADMITTED_BY_CURRENT_PUBLISHER_WORKSTREAM
 stegguardian_projection: NOT_REQUIRED_BY_CURRENT_FINDINGS
