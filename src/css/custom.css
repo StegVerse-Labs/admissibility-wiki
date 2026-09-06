@@ -14,6 +14,12 @@
   --cooperative-disagreement-accent: #df9a9a;
   --cooperative-caution-bg: #fff9df;
   --cooperative-caution-accent: #d8bd69;
+
+  /* TA-14 production-verification states. */
+  --ta14-production-verified-bg: #edf9f0;
+  --ta14-production-verified-accent: #4f9d62;
+  --ta14-production-not-verified-bg: #fff0f0;
+  --ta14-production-not-verified-accent: #c85656;
 }
 
 [data-theme='dark'] {
@@ -23,6 +29,11 @@
   --cooperative-disagreement-accent: #d98585;
   --cooperative-caution-bg: rgba(174, 139, 46, 0.2);
   --cooperative-caution-accent: #d5b85e;
+
+  --ta14-production-verified-bg: rgba(71, 139, 88, 0.18);
+  --ta14-production-verified-accent: #76b985;
+  --ta14-production-not-verified-bg: rgba(170, 70, 70, 0.2);
+  --ta14-production-not-verified-accent: #d98585;
 }
 
 .hero__title {
@@ -64,4 +75,34 @@ article h2#cooperative-validation-suite + p + table tbody tr:hover {
 
 [data-theme='dark'] article h2#cooperative-validation-suite + p + table tbody tr:hover {
   filter: brightness(1.08);
+}
+
+/*
+ * TA-14 Claim-versus-Architecture Analysis — production verification matrix.
+ *
+ * The production-verification predicate is intentionally binary for display:
+ * green only when the production surface was evaluated and the claimed
+ * property was observed to exist as publicly claimed; red otherwise.
+ * The table text preserves why a red row is red so color never implies
+ * nonexistence by itself.
+ *
+ * Current v1.3 observation state: 0/14 claims satisfy the green predicate.
+ */
+article h2#claim-to-architecture-matrix + p + table tbody tr {
+  background: var(--ta14-production-not-verified-bg);
+  box-shadow: inset 4px 0 0 var(--ta14-production-not-verified-accent);
+}
+
+article h2#claim-to-architecture-matrix + p + table tbody tr:hover {
+  filter: brightness(0.985);
+}
+
+[data-theme='dark'] article h2#claim-to-architecture-matrix + p + table tbody tr:hover {
+  filter: brightness(1.08);
+}
+
+/* Reserved for future verified rows when evidence changes. */
+article h2#claim-to-architecture-matrix + p + table tbody tr.ta14-production-verified {
+  background: var(--ta14-production-verified-bg);
+  box-shadow: inset 4px 0 0 var(--ta14-production-verified-accent);
 }
