@@ -7,7 +7,7 @@ sidebar_label: TA-14 Claim Analysis
 
 ## Purpose
 
-This page evaluates TA-14's own public claims against the architecture, mechanisms, artifacts, and observed behavior TA-14 publicly exposes.
+This page evaluates TA-14's own public claims against the architecture, mechanisms, artifacts, observed behavior, and production-verification evidence TA-14 publicly exposes.
 
 It is not a rebuttal page. It does not presume StegVerse superiority, require participation in the TA-14 Exchange, or treat unavailable public evidence as proof of nonexistence. The analysis is designed to remain useful whether or not TA-14's author participates further.
 
@@ -28,37 +28,42 @@ Reality
 
 The public material supports the existence of that declared architecture and its associated doctrines. It does not, by itself, establish every stronger claim made about implementation completeness, full-route ownership, non-bypassability, outcome correspondence, parent-architecture status, or independently accessible production verification.
 
-The correct present posture is therefore mixed:
+The present posture is therefore:
 
 ```text
 DECLARED ARCHITECTURE: OBSERVED
 SUBSTANTIAL DOCTRINE: OBSERVED
 SELECTED PUBLIC BEHAVIOR: OBSERVED
+PRODUCTION CLAIMS VERIFIED AS PUBLICLY CLAIMED: 0 / 14
 FULL IMPLEMENTATION OF ALL CLAIMED STAGES: PUBLICLY UNRESOLVED
 COMPLETE MEDIATION / NON-BYPASSABILITY: PUBLICLY UNRESOLVED
 PARENT-ARCHITECTURE STATUS: PUBLICLY UNRESOLVED
-PRIVACY-PRESERVING INDEPENDENT VERIFICATION: CONTRADICTED BY OBSERVED ACCESS ARCHITECTURE
+PRIVACY-PRESERVING INDEPENDENT VERIFICATION: EVALUATED — CONTRADICTED BY OBSERVED ACCESS ARCHITECTURE
 TA-14 INTERNAL INCONSISTENCY: CLAIM-SPECIFIC; NOT PRESUMED GLOBALLY
 ```
 
 ## Claim-to-architecture matrix
 
-| Claim family | What TA-14 publicly claims | Public architectural support observed | Current status |
-|---|---|---|---|
-| Eight-stage route | Consequence governance spans Reality through Outcome | Eight stages are explicitly and repeatedly described in public materials | `ARCHITECTURE_SUPPORT_OBSERVED` |
-| Admissibility before consequence | Consequence should not proceed without admissibility | Doctrine is explicit and central to the published route | `ARCHITECTURE_SUPPORT_OBSERVED` |
-| Authority / standing lifecycle | Authority, consent, jurisdiction, evidence, and standing are checked across the lifecycle | Doctrine states they must be proven before execution, preserved through execution, and verified afterward | `PARTIALLY_SUPPORTED` — continuous independent standing reconstruction remains unresolved |
-| Binding / commit | Admissible state becomes bound and committed before execution | Binding and commit are named architectural stages | `ARCHITECTURE_SUPPORT_OBSERVED`; implementation semantics remain only partially exposed |
-| Fail-closed execution boundary | Missing required proof prevents consequence | Fail-closed behavior is doctrinally claimed and selected public Playground behavior has produced HOLD/DENY outcomes | `PARTIALLY_SUPPORTED` |
-| Continuity / custody | Evidence and state require continuity across consequence | Continuity and chain-of-custody are explicit architectural concerns | `PARTIALLY_SUPPORTED`; complete route-level custody remains unresolved |
-| Outcome correspondence | Architecture governs and verifies the consequence through Outcome | Outcome is an explicit terminal stage and post-execution verification is claimed | `PUBLICLY_UNRESOLVED` for demonstrated end-to-end correspondence |
-| Replay / reconstruction | Governance records should be attributable and reconstructable | Registry and provenance concepts are publicly described | `PARTIALLY_SUPPORTED`; public deterministic full-route replay bundle not yet found |
-| Cross-domain scope | Architecture applies across AI, buildings, healthcare, finance, institutions, industry, and other consequence-bearing systems | Cross-domain applicability is explicitly claimed | `CLAIM_OBSERVED`; generalized implementation evidence is not established by scope language alone |
-| Complete mediation / non-bypassability | TA-14 governs the complete consequence-bearing sequence | Full-route language exists | `PUBLICLY_UNRESOLVED` until bypass resistance and route completeness are demonstrated |
-| Parent architecture | TA-14 is the parent architecture and other systems occupy subordinate slices | Parentage is explicitly asserted | `PUBLICLY_UNRESOLVED`; assertion does not independently establish containment or descent |
-| Independent / reciprocal evaluation | TA-14 can evaluate external architectures under its governance model | TA-14 offers Exchange-based evaluation paths, but meaningful testing was account-gated and fuller verification was associated with an owner-controlled commercial path | `PARTIALLY_SUPPORTED`; participation is not equivalent to independently accessible production verification |
-| Registry / provenance / versioned records | TA-14 describes searchable, attributable, versioned governance/public records with claims, limitations, evidence, lineage, and ownership information | Registry and provenance mechanisms are publicly described | `PARTIALLY_SUPPORTED`; complete route binding, correction lineage, and deterministic reconstruction remain open |
-| Privacy-preserving independent verification | Strong public governance claims should be independently inspectable without forcing a reviewer to surrender unrelated sensitive or account-linked information merely to determine whether the production-capable surface substantiates them | Meaningful testing required account creation; fuller verification was associated with an owner-controlled commercial path; privacy, retention, deletion, secondary-use, owner-access, analytics/profiling, and non-reuse boundaries were not independently established before account-linked information was supplied; a later account-data-request observation did not establish a demonstrably usable controller/deletion route | `CONTRADICTED_BY_PUBLIC_ARCHITECTURE` on the observed verification-access model |
+**Production-verification color rule:** a **green row** means the production surface has been evaluated for that claim **and** the claimed property was observed to exist as publicly claimed. A **red row** means that production-verification predicate is not satisfied. Red may mean the production property has not been independently evaluated, remains unresolved, or was evaluated and contradicted; red does **not** by itself mean the implementation does not exist.
+
+| Claim family | What TA-14 publicly claims | Public architectural support observed | Current analytical status | Production version verified |
+|---|---|---|---|---|
+| Eight-stage route | Consequence governance spans Reality through Outcome | Eight stages are explicitly and repeatedly described in public materials | `ARCHITECTURE_SUPPORT_OBSERVED` | 🔴 **NOT VERIFIED** — no independently evaluated production trace spans all eight claimed stages |
+| Admissibility before consequence | Consequence should not proceed without admissibility | Doctrine is explicit and central to the published route | `ARCHITECTURE_SUPPORT_OBSERVED` | 🔴 **NOT VERIFIED** — no production consequence trace independently establishes mandatory admissibility before consequence |
+| Authority / standing lifecycle | Authority, consent, jurisdiction, evidence, and standing are checked across the lifecycle | Doctrine states they must be proven before execution, preserved through execution, and verified afterward | `PARTIALLY_SUPPORTED` — continuous independent standing reconstruction remains unresolved | 🔴 **NOT VERIFIED** — no production standing-revocation or lifecycle reconstruction test has been independently completed |
+| Binding / commit | Admissible state becomes bound and committed before execution | Binding and commit are named architectural stages | `ARCHITECTURE_SUPPORT_OBSERVED`; implementation semantics remain only partially exposed | 🔴 **NOT VERIFIED** — production object identity across binding, commit, and execution has not been independently evaluated |
+| Fail-closed execution boundary | Missing required proof prevents consequence | Fail-closed behavior is doctrinally claimed and selected public Playground behavior has produced HOLD/DENY outcomes | `PARTIALLY_SUPPORTED` | 🔴 **NOT VERIFIED** — public demonstration HOLD/DENY behavior is not proof of a mandatory production execution boundary |
+| Continuity / custody | Evidence and state require continuity across consequence | Continuity and chain-of-custody are explicit architectural concerns | `PARTIALLY_SUPPORTED`; complete route-level custody remains unresolved | 🔴 **NOT VERIFIED** — no production route-complete custody chain has been independently reconstructed |
+| Outcome correspondence | Architecture governs and verifies the consequence through Outcome | Outcome is an explicit terminal stage and post-execution verification is claimed | `PUBLICLY_UNRESOLVED` for demonstrated end-to-end correspondence | 🔴 **NOT VERIFIED** — no independently evaluated production lineage binds evaluated, committed, executed, and externally observed outcome objects |
+| Replay / reconstruction | Governance records should be attributable and reconstructable | Registry and provenance concepts are publicly described | `PARTIALLY_SUPPORTED`; public deterministic full-route replay bundle not yet found | 🔴 **NOT VERIFIED** — no deterministic production replay bundle has been independently executed and reconstructed |
+| Cross-domain scope | Architecture applies across AI, buildings, healthcare, finance, institutions, industry, and other consequence-bearing systems | Cross-domain applicability is explicitly claimed | `CLAIM_OBSERVED`; generalized implementation evidence is not established by scope language alone | 🔴 **NOT VERIFIED** — representative production implementations across the claimed domains have not been independently evaluated |
+| Complete mediation / non-bypassability | TA-14 governs the complete consequence-bearing sequence | Full-route language exists | `PUBLICLY_UNRESOLVED` until bypass resistance and route completeness are demonstrated | 🔴 **NOT VERIFIED** — no production bypass-resistance test independently establishes complete mediation |
+| Parent architecture | TA-14 is the parent architecture and other systems occupy subordinate slices | Parentage is explicitly asserted | `PUBLICLY_UNRESOLVED`; assertion does not independently establish containment or descent | 🔴 **NOT VERIFIED** — no production dependency, containment, derivation, or inheritance evidence establishes parentage |
+| Independent / reciprocal evaluation | TA-14 can evaluate external architectures under its governance model | TA-14 offers Exchange-based evaluation paths, but meaningful testing was account-gated and fuller verification was associated with an owner-controlled commercial path | `PARTIALLY_SUPPORTED`; participation is not equivalent to independently accessible production verification | 🔴 **NOT VERIFIED** — production-capable reciprocal evaluation has not been independently verified |
+| Registry / provenance / versioned records | TA-14 describes searchable, attributable, versioned governance/public records with claims, limitations, evidence, lineage, and ownership information | Registry and provenance mechanisms are publicly described | `PARTIALLY_SUPPORTED`; complete route binding, correction lineage, and deterministic reconstruction remain open | 🔴 **NOT VERIFIED** — no production route-bound registry record has been independently replayed through correction and reconstruction |
+| Privacy-preserving independent verification | Strong public governance claims should be independently inspectable without forcing a reviewer to surrender unrelated sensitive or account-linked information merely to determine whether the production-capable surface substantiates them | Meaningful testing required account creation; fuller verification was associated with an owner-controlled commercial path; privacy, retention, deletion, secondary-use, owner-access, analytics/profiling, and non-reuse boundaries were not independently established before account-linked information was supplied; a later account-data-request observation did not establish a demonstrably usable controller/deletion route | `CONTRADICTED_BY_PUBLIC_ARCHITECTURE` on the observed verification-access model | 🔴 **EVALUATED — CONTRADICTED** — the observed access boundary did not provide privacy-preserving independent verification |
+
+At this observation state there are **no green rows**. That does not mean every underlying production capability is absent. It means none of the fourteen claims presently satisfies both requirements for green: **production surface evaluated** and **property observed to exist as publicly claimed**.
 
 ## Strongest publicly supported claims
 
@@ -73,7 +78,7 @@ The strongest TA-14 claims are those that concern the existence and content of i
 - registry, provenance, and attributable governance-record concepts are publicly described;
 - the framework intends cross-domain consequence governance.
 
-These findings establish substantial doctrine. They do not independently prove that every stage is implemented as described or that every consequence must pass through TA-14.
+These findings establish substantial doctrine. They do not independently prove that the corresponding production properties exist as publicly claimed.
 
 ## Material publicly unresolved claims
 
@@ -235,7 +240,14 @@ NOT_YET_FOUND
 OUT_OF_SCOPE
 ```
 
-`NOT_YET_FOUND` is not nonexistence. `PUBLICLY_UNRESOLVED` is not failure. Architectural disagreement is not an implementation defect. A public claim, however, remains a claim until evidence supports the stronger property being asserted. Where the observed access architecture itself conflicts with a claimed verification property, `CONTRADICTED_BY_PUBLIC_ARCHITECTURE` may be used without inferring hidden implementation failure.
+Production verification is a separate binary display predicate:
+
+```text
+GREEN = production_surface_evaluated AND exists_as_publicly_claimed
+RED   = NOT GREEN
+```
+
+`NOT_YET_FOUND` is not nonexistence. `PUBLICLY_UNRESOLVED` is not failure. A red production row is not automatically nonexistence. It says only that the stronger production-verification predicate is not presently satisfied. Where production access was actually evaluated and contradicted a claim, the row remains red and the table says so explicitly.
 
 ## Relationship to StegVerse
 
@@ -270,9 +282,9 @@ This does not make StegVerse self-validating. StegVerse remains subject to the s
 
 ## Correction policy
 
-This is a living analysis. New TA-14 sources, implementation artifacts, demonstrations, or corrections should update claim states rather than being forced into an earlier conclusion.
+This is a living analysis. New TA-14 sources, implementation artifacts, demonstrations, production observations, or corrections should update both the analytical status and production-verification state rather than being forced into an earlier conclusion.
 
-Superseded findings remain in revision history. Corrections do not erase the historical observation state.
+A row turns green only after production evaluation actually observes the corresponding property as publicly claimed. Superseded findings remain in revision history. Corrections do not erase the historical observation state.
 
 ## Machine-readable records
 
