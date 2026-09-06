@@ -139,6 +139,40 @@ LLM-adapter free_tier_trust metadata
   -> wiki public chain documentation
 ```
 
+## Temporal Governed Analysis
+
+Temporal Governed Analysis (TGA) is the explanatory projection layer for inspecting a recorded event against versioned rule, law, interpretation, or enforcement contexts while keeping observation, representation, evaluation, uncertainty, and authority distinct.
+
+The public doctrine page is:
+
+```text
+docs/governance/temporal-governed-analysis.md
+```
+
+The canonical goal handoff and deterministic observer are:
+
+```text
+docs/TGA_ADMISSIBILITY_PROJECTION_MIRROR_HANDOFF.md
+scripts/check_tga_admissibility_projection.py
+static/status/wiki-public-anchor-internal-task-registry.tga-projection-extension.json
+```
+
+The TGA projection is owned by the repository's existing non-halting internal task executor. Its explanatory boundary is:
+
+```text
+canonical_representation != canonical_reality
+compact_encoding_may_be_wrong_or_ambiguous = true
+exact_source_and_time_reference != proof_of_source_authenticity
+contemporaneous_evaluation != counterfactual_evaluation
+rule_or_law_version != interpretation_profile != enforcement_profile
+unresolved_or_contradictory_evidence != forced_binary_conclusion
+predicate_matching != legal_guilt_or_adjudication
+publication_or_validation != authority
+TGA_admissibility_authority_effect = NONE_EXPLANATORY_ONLY
+```
+
+The wiki projection does not create legal guilt, admissibility standing, custody, execution, publication, certification, or adjudicative authority. It explains and preserves the governed evidence path; it does not become that evidence's truth source.
+
 ## Core Assumptions
 
 The wiki treats governance as a layered constraint system, not a single approval event.
