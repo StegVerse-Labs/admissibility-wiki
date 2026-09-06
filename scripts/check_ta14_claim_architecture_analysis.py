@@ -22,7 +22,7 @@ ALLOWED = {
     "OUT_OF_SCOPE",
 }
 
-REQUIRED_CLAIMS = {f"TA14-CA-{n:03d}" for n in range(1, 14)}
+REQUIRED_CLAIMS = {f"TA14-CA-{n:03d}" for n in range(1, 15)}
 REQUIRED_FAMILIES = {
     "eight_stage_route",
     "admissibility_before_consequence",
@@ -37,16 +37,21 @@ REQUIRED_FAMILIES = {
     "parent_architecture",
     "independent_reciprocal_evaluation",
     "registry_provenance_versioned_governance_records",
+    "privacy_preserving_independent_verification",
 }
 REQUIRED_PAGE_MARKERS = [
     "# TA-14 Claim-versus-Architecture Analysis",
     "## Claim-to-architecture matrix",
     "## Material publicly unresolved claims",
+    "## Material contradiction: privacy-preserving independent verification",
     "## Open discriminating tests",
+    "### Privacy-preserving production-verification test",
     "## Correction policy",
     "ta-14.claim-architecture-analysis.v1.json",
     "ta-14.claim-architecture-source-ledger.v1.json",
     "Registry / provenance / versioned records",
+    "Privacy-preserving independent verification",
+    "directly opposed",
 ]
 
 
@@ -74,7 +79,7 @@ if ids != REQUIRED_CLAIMS:
     fail(f"claim IDs mismatch: expected {sorted(REQUIRED_CLAIMS)}, got {sorted(ids)}")
 families = {claim.get("claim_family") for claim in claims}
 if families != REQUIRED_FAMILIES:
-    fail("initial claim-family coverage is incomplete or contains drift")
+    fail("claim-family coverage is incomplete or contains drift")
 
 for claim in claims:
     status = claim.get("status")
@@ -86,6 +91,14 @@ for claim in claims:
         if not claim.get(field):
             fail(f"{claim.get('claim_id')} missing {field}")
 
+privacy_claim = next((claim for claim in claims if claim.get("claim_id") == "TA14-CA-014"), None)
+if not privacy_claim:
+    fail("privacy-preserving independent-verification claim is missing")
+if privacy_claim.get("status") != "CONTRADICTED_BY_PUBLIC_ARCHITECTURE":
+    fail("TA14-CA-014 must preserve the observed access-model contradiction status")
+if not privacy_claim.get("open_test"):
+    fail("TA14-CA-014 must retain a falsifiable production-verification test")
+
 if analysis.get("framework_id") != "ta-14":
     fail("analysis framework_id must be ta-14")
 if analysis.get("authority_effect") != "NONE":
@@ -94,8 +107,13 @@ if analysis.get("source_ledger") != "static/data/governed-framework-reviews/ta-1
     fail("analysis source ledger binding is missing or incorrect")
 if not analysis.get("method_rules", {}).get("parentage_requires_positive_evidence"):
     fail("parentage positive-evidence rule must be enabled")
-if analysis.get("comparative_boundary", {}).get("stegverse_comparison_state") != "SECONDARY_PENDING_TA14_INTERNAL_ANALYSIS":
-    fail("StegVerse comparison must remain secondary in v1")
+if not analysis.get("method_rules", {}).get("privacy_preserving_independent_verification_is_comparatively_material"):
+    fail("privacy-preserving verification comparison rule must be enabled")
+comparative = analysis.get("comparative_boundary", {})
+if comparative.get("stegverse_comparison_state") != "SECONDARY_AFTER_TA14_INTERNAL_ANALYSIS":
+    fail("StegVerse comparison must remain secondary but available after TA-14 internal mapping")
+if comparative.get("privacy_preserving_verification_difference") != "DIRECT_ARCHITECTURAL_OPPOSITION_ON_OBSERVED_ACCESS_MODEL":
+    fail("privacy-preserving verification comparative finding is missing or softened")
 
 for marker in REQUIRED_PAGE_MARKERS:
     if marker not in page:
@@ -129,4 +147,4 @@ external = next(source for source in sources if source.get("source_id") == "TA14
 if external.get("exact_byte_snapshot") == "NOT_CAPTURED" and external.get("content_hash") is not None:
     fail("external source cannot claim a content hash without exact-byte snapshot")
 
-print("PASS: TA-14 claim-versus-architecture analysis is internally consistent, source-bound, and navigation-bound")
+print("PASS: TA-14 claim-versus-architecture analysis is internally consistent, source-bound, navigation-bound, and preserves the privacy-verification contradiction finding")
