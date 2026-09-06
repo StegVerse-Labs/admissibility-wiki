@@ -1,6 +1,6 @@
 # TGA Admissibility Projection Mirror Handoff
 
-Status: COMPLETE_VALIDATED_MERGED
+Status: COMPLETE_VALIDATED_MERGED_README_RECONCILIATION_IN_PROGRESS
 Updated: 2026-09-05
 Repository: StegVerse-Labs/admissibility-wiki
 Goal ID: TGA-ADMISSIBILITY-128
@@ -26,6 +26,9 @@ Project TGA semantics for human inspection without turning representation, publi
 - main-branch worker-heartbeat job in run `34001596721`: SUCCESS
 - deterministic TGA observer: `scripts/check_tga_admissibility_projection.py`
 - completion marker: `TGA_ADMISSIBILITY_PROJECTION=PASS`
+- post-merge terminalization PR: `#130`
+- terminalization merge: `891a878c69f50e979994c50392901ff720f3d295`
+- terminalization validation run: `34001733972` SUCCESS
 
 The repository-local internal task `PA-TGA-128` is terminalized as `COMPLETE_INTERNAL`. The executor remains independently capable of validating future internal tasks; this projection itself no longer has remaining implementation work.
 
@@ -47,6 +50,23 @@ The repository-local internal task `PA-TGA-128` is terminalized as `COMPLETE_INT
 - `static/status/wiki-public-anchor-internal-task-registry.tga-projection-extension.json`
 - this handoff
 
+## README completeness preflight
+
+The merged TGA admissibility projection materially added a public doctrine/capability surface, a deterministic observer, and an executable internal-task registry extension while `README.md` did not identify TGA or its authority/evidence boundaries. README impact is therefore **required**, not waived.
+
+Collision preflight inspected all current open PRs (#100, #55, #52, #48, #46, #44, #17). None owns repository `README.md` or the TGA page/handoff/registry-extension paths. The bounded repair therefore changes only README documentation plus this goal handoff and does not collide with active work.
+
+README must preserve:
+- canonical representation != canonical reality;
+- compact encoding may be wrong or ambiguous;
+- exact source/time reference != source authenticity proof;
+- contemporaneous != counterfactual evaluation;
+- rule/law version != interpretation profile != enforcement profile;
+- unresolved/contradictory evidence != forced binary conclusion;
+- predicate matching != legal guilt/adjudication;
+- publication/validation != authority;
+- `authority_effect = NONE_EXPLANATORY_ONLY`.
+
 ## Downstream
 
 StegIndex may reconcile `tga_admissibility_wiki_projection_available` from this merged and validated repository evidence.
@@ -54,6 +74,7 @@ StegIndex may reconcile `tga_admissibility_wiki_projection_available` from this 
 ```yaml
 source_state: COMPLETE_VALIDATED_MERGED
 internal_task_state: COMPLETE_INTERNAL
+readme_impact: REQUIRED_RECONCILIATION_IN_PROGRESS
 authority_effect: NONE_EXPLANATORY_ONLY
 external_dependencies: []
 user_action_required: false
