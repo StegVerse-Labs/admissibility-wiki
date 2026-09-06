@@ -7,7 +7,7 @@
     {
       "task_id": "PA-TGA-128",
       "title": "Validate and preserve the TGA admissibility/explanatory projection",
-      "state": "ACTIVE_INTERNAL",
+      "state": "COMPLETE_INTERNAL",
       "owner_record": "docs/TGA_ADMISSIBILITY_PROJECTION_MIRROR_HANDOFF.md",
       "work_locations": [
         "docs/TGA_ADMISSIBILITY_PROJECTION_MIRROR_HANDOFF.md",
@@ -19,7 +19,15 @@
       "completion_predicate": "observer emits TGA_ADMISSIBILITY_PROJECTION=PASS while authority_effect remains NONE_EXPLANATORY_ONLY",
       "fallback": "record FAIL_INTERNAL_CONTINUABLE in the internal executor report and continue unrelated READY_INTERNAL work; do not promote the explanatory projection",
       "dependencies": [],
-      "external_dependencies": []
+      "external_dependencies": [],
+      "completion_evidence": {
+        "pull_request": 129,
+        "merge_commit": "e7c5185273fe4aa22f4233e0532ad3264ad3f705",
+        "canonical_validation_run": 34001352486,
+        "canonical_validation_result": "SUCCESS_56_OF_56",
+        "completion_marker": "TGA_ADMISSIBILITY_PROJECTION=PASS",
+        "main_worker_heartbeat_run": 34001596721
+      }
     }
   ],
   "policy": {
