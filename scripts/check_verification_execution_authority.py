@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the verification-versus-execution-authority doctrine and status artifact."""
+"""Validate the verification/evidence doctrine against Authority × Time governance."""
 
 from __future__ import annotations
 
@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DOC = ROOT / "docs/governance/verification-vs-execution-authority.md"
+COORDINATE_DOC = ROOT / "docs/governance/authority-time-governance-coordinate.md"
 STATUS = ROOT / "static/status/verification-execution-authority-status.json"
 SIDEBAR = ROOT / "sidebars.js"
 HANDOFF = ROOT / "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md"
@@ -22,6 +23,7 @@ def require(condition: bool, message: str) -> None:
 
 def main() -> None:
     require(DOC.is_file(), f"missing doctrine page: {DOC.relative_to(ROOT)}")
+    require(COORDINATE_DOC.is_file(), f"missing coordinate page: {COORDINATE_DOC.relative_to(ROOT)}")
     require(STATUS.is_file(), f"missing status artifact: {STATUS.relative_to(ROOT)}")
     require(DEPLOYMENT_CHECK.is_file(), f"missing deployment checker: {DEPLOYMENT_CHECK.relative_to(ROOT)}")
     require(
@@ -30,18 +32,30 @@ def main() -> None:
     )
 
     doc = DOC.read_text(encoding="utf-8")
+    coordinate_doc = COORDINATE_DOC.read_text(encoding="utf-8")
     sidebar = SIDEBAR.read_text(encoding="utf-8")
     handoff = HANDOFF.read_text(encoding="utf-8")
     deployment_check = DEPLOYMENT_CHECK.read_text(encoding="utf-8")
     receipt_writer = ACTIVATION_RECEIPT_WRITER.read_text(encoding="utf-8")
     status = json.loads(STATUS.read_text(encoding="utf-8"))
 
+    required_coordinate_phrases = (
+        "G = (Authority, Time)",
+        "Authority and Time are the coordinates of governance",
+        "Delta-time -/-> Delta-authority",
+    )
+    for phrase in required_coordinate_phrases:
+        require(phrase in coordinate_doc, f"coordinate page missing canonical text: {phrase}")
+
     required_doc_phrases = (
-        "Verification Is Not Execution Authority",
-        "Who or what was authorized to let this specific consequential decision become real?",
+        "Verification, Evidence, and the Authority × Time Governance Coordinate",
+        "G = (Authority, Time)",
+        "Verification, evidence, state, policy, delegation, scope, identity, recoverability, context, and review posture are evaluated at that coordinate",
+        "What Authority applies at the Time this specific consequential decision would bind?",
         "Show where the workflow can still say \"NO.\"",
-        "independent verification != execution authority",
-        "ALLOW`, `DENY`, or `FAIL_CLOSED",
+        "verification != Authority",
+        "verification != Time",
+        "ALLOW`, `DENY`, or `FAIL-CLOSED",
         "organization-issued public announcement",
     )
     for phrase in required_doc_phrases:
@@ -101,7 +115,7 @@ def main() -> None:
     require(publication.get("receipt_artifact") == "public-activation-receipt", "unexpected publication receipt artifact")
     require(publication.get("manual_tasks_required") == [], "publication verification must not create manual tasks")
 
-    print("VERIFICATION EXECUTION AUTHORITY: PASS")
+    print("VERIFICATION EXECUTION AUTHORITY: PASS authority_time_coordinate=true")
 
 
 if __name__ == "__main__":
