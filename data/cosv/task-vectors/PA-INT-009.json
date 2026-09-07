@@ -1,0 +1,42 @@
+{
+  "identity": "StegVerse-Labs/admissibility-wiki:task:PA-INT-009",
+  "profile": "task.v1",
+  "level": "task",
+  "vector": "50000000100000",
+  "evidence_refs": [
+    "static/status/wiki-public-anchor-internal-task-registry.json",
+    "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
+    "docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md"
+  ],
+  "observed_at": "2026-09-07T09:43:00-05:00",
+  "exact_metrics": {
+    "symbol_order": "LRUIVGOCMTBEAP",
+    "lifecycle": "MACHINE_OWNED",
+    "archive_ready": false,
+    "unassigned_work": 0,
+    "chat_owned_implementation": 0,
+    "chat_owned_validation": 0,
+    "chat_owned_integration": 0,
+    "chat_owned_observation": 0,
+    "chat_owned_credentials": 0,
+    "canonical_owner_installed": true,
+    "thread_required": false,
+    "blocker_count": 0,
+    "evidence_complete": false,
+    "activated": false,
+    "propagated": false
+  },
+  "metric_evidence": {
+    "lifecycle": "PA-INT-009 is ACTIVE_INTERNAL in the canonical wiki public-anchor internal task registry and owned by the repository executor lane.",
+    "archive_ready": "PA-INT-009 remains active until the executor lane reaches its completion predicate.",
+    "unassigned_work": "The canonical registry assigns PA-INT-009 to the installed repository executor lane.",
+    "chat_owned_counts": "The task is machine-owned; the chat session owns no implementation, validation, integration, observation, or credential authority.",
+    "canonical_owner_installed": "static/status/wiki-public-anchor-internal-task-registry.json and scripts/run_wiki_public_anchor_internal_tasks.py are installed.",
+    "thread_required": "Repository-resident registry, handoff, and executor are sufficient for continuation.",
+    "blocker_count": "No hard blocker is declared for PA-INT-009; continuable observer failures do not halt the queue.",
+    "evidence_complete": "The active executor task has not yet reached its completion predicate.",
+    "activated": "Task execution state is not activation authority.",
+    "propagated": "No downstream propagation is established by this internal executor task."
+  },
+  "authority_effect": "NONE"
+}
