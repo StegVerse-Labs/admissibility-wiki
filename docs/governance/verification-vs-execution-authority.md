@@ -1,8 +1,8 @@
 ---
-title: Verification Is Not Execution Authority
+title: Verification, Evidence, and the Authority × Time Governance Coordinate
 ---
 
-# Verification Is Not Execution Authority
+# Verification, Evidence, and the Authority × Time Governance Coordinate
 
 ## Governance signal
 
@@ -18,7 +18,21 @@ Source class: organization-issued public announcement distributed by PR Newswire
 
 This source is evidence of a policy direction and of the announced study mandate. It is not, by itself, the enacted bill text, an operational IVO standard, proof of implementation, or evidence that an IVO holds live authority over individual executions.
 
-## The distinction
+## Canonical governance coordinate
+
+StegVerse governance is located at:
+
+```text
+G = (Authority, Time)
+```
+
+Authority and Time are the coordinates of governance.
+
+Verification, evidence, state, policy, delegation, scope, identity, recoverability, context, and review posture are evaluated at that coordinate. They are not additional governance coordinates and they do not replace either coordinate.
+
+Verification therefore does not sit on a separate authority plane. It supplies evidence about propositions evaluated at `(Authority, Time)`.
+
+## The verification distinction
 
 Independent verification can answer questions such as:
 
@@ -27,19 +41,21 @@ Independent verification can answer questions such as:
 - whether an external expert body found the system consistent with a safety target;
 - whether a product earned a verification status or seal.
 
-Those functions matter. They do not answer the narrower commit-time question:
+Those functions matter. They do not resolve the governance coordinate for a consequential transition.
 
-> Who or what was authorized to let this specific consequential decision become real?
+The narrower commit-time question is:
 
-Verification evaluates a system, artifact, process, or claim. Execution authority determines whether a particular state transition may be committed now, under a named institution's authority, against current policy, delegation, evidence, scope, and recoverability constraints.
+> What Authority applies at the Time this specific consequential decision would bind?
+
+Verification evaluates a system, artifact, process, event, or claim. Its result may become evidence used when evaluating a proposed transition at the applicable Authority × Time coordinate.
 
 ## Required live control point
 
-For a high-risk action, governance remains incomplete unless the workflow preserves a point at which execution can still be denied before consequence attaches.
+For a high-risk action, governance remains incomplete unless the workflow preserves a point at which the applicable Authority can still produce a non-admitting disposition before consequence attaches.
 
 ```text
 verified system
-  != authorized action
+  != resolved Authority at governing Time
 
 review completed
   != current delegation
@@ -51,46 +67,65 @@ explainable result
   != permission to execute
 ```
 
-A governed execution boundary should bind at least:
+A governed execution boundary should bind:
 
-1. the proposed action and target;
-2. the actor or requesting entity;
-3. the institution under whose name the action would execute;
-4. the current policy reference;
-5. the current delegation or authority class;
-6. the evidence and review posture;
-7. the execution context and validity window;
-8. the recoverability or rollback profile;
-9. the authority able to return `ALLOW`, `DENY`, or `FAIL_CLOSED`;
-10. the receipt proving what was admitted or refused.
+```text
+governance_coordinate:
+  authority
+  time
+
+evaluated_context:
+  proposed action and target
+  actor or requesting entity
+  institution or governing relation
+  policy reference
+  delegation / authority basis evidence
+  evidence and review posture
+  execution context
+  scope
+  recoverability / rollback profile
+  resulting disposition
+  receipt / reconstruction evidence
+```
+
+The evaluated-context fields inform or evidence the decision at the coordinate. They are not governance coordinates themselves.
 
 ## Institutional test
 
-The decisive institutional question is not only whether the model or system was reviewed. It is whether the institution retained authority over what could execute under its name.
+The decisive institutional question is not only whether the model or system was reviewed. It is whether the applicable Authority remained resolvable and consequential at the governing Time.
 
-A useful public test is:
+A useful public test remains:
 
 > Show where the workflow can still say "NO."
 
-If no reachable denial point exists before commitment, the institution may possess documentation, assurance, or after-the-fact accountability without retaining live execution authority.
+That refusal point is evidence that an Authority relation remains causally consequential before commitment. It does not mean refusal itself creates Authority.
 
 ## Relationship to the StegVerse triad
 
-| Layer | Question | Virginia/IVO relevance |
+| Layer | Question | Verification relevance |
 |---|---|---|
-| Transition governance | Can this transition be considered? | Verification may establish evidence and review posture. |
-| Admissibility governance | Can this transition be committed now? | Requires current execution authority and a reachable refusal point. |
-| Continuity governance | Can the decision path be reconstructed later? | Requires receipts for assessment, authority resolution, execution, or denial. |
+| Transition governance | What transition is being considered at `(Authority, Time)`? | Verification may supply evidence and review posture. |
+| Admissibility governance | Is that transition admissible at the applicable governance coordinate? | Requires resolution of Authority at Time plus evaluation of applicable context. |
+| Continuity governance | Can the coordinate, inputs, decision path, and consequence be reconstructed later? | Requires receipts/evidence for assessment, authority resolution, execution, or denial. |
 
-The IVO concept can strengthen evidence quality and independent review. It should enter the governed transition path as an evidence and review input, not be silently promoted into execution authority.
+The IVO concept can strengthen evidence quality and independent review. It enters the governed transition path as evidence/review context rather than as a replacement governance coordinate.
 
 ## Boundary statement
 
 ```text
-independent verification != execution authority
-certification != standing to commit a specific transition
+Governance = Authority × Time
+verification != Authority
+verification != Time
+certification != governance coordinate
 system approval != action-level admissibility
 post-event explanation != pre-consequence refusal
+Delta-time -/-> Delta-authority
 ```
 
-The next governance phase is therefore not limited to "show your work." It must also show where the institution can still refuse the work's conversion into consequence.
+The next governance phase is therefore not limited to "show your work." It must preserve the Authority × Time coordinate, the evidence used there, and the ability to reconstruct what was admitted or refused and why.
+
+## Related
+
+- [Authority × Time Governance Coordinate](./authority-time-governance-coordinate.md)
+- [Commit-Time Authority](../glossary/commit-time-authority.md)
+- [Relational Transition Geometry](../formalisms/runtime-transition-governance.md)
