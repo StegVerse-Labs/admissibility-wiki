@@ -40,62 +40,112 @@
     {
       "task_id": "PA-INT-002",
       "title": "Align multi-docket status with current reconstruction state",
-      "state": "READY_INTERNAL",
+      "state": "COMPLETE_INTERNAL",
       "owner_record": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
       "work_locations": ["static/status/wiki-public-anchor-multi-docket-status.json", "scripts/check_wiki_public_anchor_multi_docket_status.py"],
       "observer": "scripts/check_wiki_public_anchor_multi_docket_status.py",
       "completion_predicate": "validator exits 0 with three bounded dockets and no verified-capability or authority inflation",
-      "fallback": "retain prior status as superseded-pending and continue other ready tasks"
+      "fallback": "retain prior status as superseded-pending and continue other ready tasks",
+      "completion_evidence": {
+        "canonical_workflow_run_id": 34016657884,
+        "validated_head_sha": "bf2fafb6b875916d073708294676fc709af7a4d1",
+        "validation_job_id": 101441765787,
+        "observer_result": "WIKI PUBLIC ANCHOR MULTI-DOCKET STATUS: PASS",
+        "authority_effect": "NONE"
+      }
     },
     {
       "task_id": "PA-INT-003",
       "title": "Maintain independent reconstruction invitation and local simulation",
-      "state": "READY_INTERNAL",
+      "state": "COMPLETE_INTERNAL",
       "owner_record": "docs/stegverse/public-anchor-self-review-docket.md",
       "work_locations": ["static/data/governed-framework-reviews/examples/stegverse-public-anchor.reconstruction-submission.example.json", "scripts/check_stegverse_public_anchor_reconstruction_invitation.py", "static/schemas/framework-reconstruction-submission.schema.json"],
       "observer": "scripts/check_stegverse_public_anchor_reconstruction_invitation.py",
       "completion_predicate": "invitation, schema, and example validate while accountable external reconstruction remains explicitly NOT_OBSERVED",
-      "fallback": "run self-adversarial reconstruction as INTERNAL_SIMULATION and prohibit promotion to independent evidence"
+      "fallback": "run self-adversarial reconstruction as INTERNAL_SIMULATION and prohibit promotion to independent evidence",
+      "completion_evidence": {
+        "canonical_workflow_run_id": 34016657884,
+        "validated_head_sha": "bf2fafb6b875916d073708294676fc709af7a4d1",
+        "validation_job_id": 101441765787,
+        "observer_result": "PUBLIC-ANCHOR RECONSTRUCTION INVITATION: PASS",
+        "independent_reconstruction_status": "NOT_RUN",
+        "authority_effect": "NONE"
+      }
     },
     {
       "task_id": "PA-INT-004",
       "title": "Execute deterministic synthetic capability path",
-      "state": "READY_INTERNAL",
+      "state": "COMPLETE_INTERNAL",
       "owner_record": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
       "work_locations": ["static/data/framework-evaluations/examples/conectrr-itc.synthetic-capability-test.v1.json", "scripts/check_conectrr_itc_synthetic_capability.py", "static/status/conectrr-itc-synthetic-capability-status.json", "scripts/check_conectrr_itc_synthetic_local_execution_receipt.py"],
       "observer": "scripts/check_conectrr_itc_synthetic_capability.py",
       "completion_predicate": "synthetic validator and local execution receipt validator exit 0 with deterministic hashes, replay stability, all dispositions, all drift vectors, and zero authority inheritance",
-      "fallback": "preserve first failure output and continue non-dependent repair tracks"
+      "fallback": "preserve first failure output and continue non-dependent repair tracks",
+      "completion_evidence": {
+        "canonical_workflow_run_id": 34016657884,
+        "validated_head_sha": "bf2fafb6b875916d073708294676fc709af7a4d1",
+        "validation_job_id": 101441765787,
+        "observer_result": "conectrr_itc_synthetic_capability=PASS",
+        "local_execution_receipt": "conectrr_itc_synthetic_local_execution=PASS",
+        "external_validation_claimed": false,
+        "authority_effect": "NONE"
+      }
     },
     {
       "task_id": "PA-INT-005",
       "title": "Observe canonical workflow without halting development",
-      "state": "READY_INTERNAL",
+      "state": "COMPLETE_INTERNAL",
       "owner_record": "docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md",
       "work_locations": [".github/workflows/validate-chain-continuation.yml", "scripts/check_conectrr_itc_canonical_workflow_observation.py", "static/status/conectrr-itc-canonical-workflow-observation.json", "static/status/conectrr-itc-canonical-workflow-observation.pending.v1.json", "static/status/conectrr-itc-canonical-workflow-observation-2026-07-27.json"],
       "observer": "scripts/check_conectrr_itc_canonical_workflow_observation.py",
       "completion_predicate": "receipt binds an observed canonical run or explicitly records NOT_OBSERVED without converting absence into failure",
-      "fallback": "keep observation pending and continue every READY_INTERNAL task"
+      "fallback": "keep observation pending and continue every READY_INTERNAL task",
+      "completion_evidence": {
+        "canonical_workflow_run_id": 34016657884,
+        "validated_head_sha": "bf2fafb6b875916d073708294676fc709af7a4d1",
+        "validation_job_id": 101441765787,
+        "observer_result": "conectrr_itc_canonical_workflow_observation_validator=PASS",
+        "observation_state": "NOT_OBSERVED",
+        "external_validation_claimed": false,
+        "authority_effect": "NONE"
+      }
     },
     {
       "task_id": "PA-INT-006",
       "title": "Replace unavailable source package with bounded internal surrogate testing",
-      "state": "READY_INTERNAL",
+      "state": "COMPLETE_INTERNAL",
       "owner_record": "docs/external-frameworks/conectrr-itc-interoperability-intake.md",
       "work_locations": ["static/data/framework-evaluations/examples/conectrr-itc.source-package-receipt.pending.v1.json", "static/data/framework-evaluations/examples/conectrr-itc.interoperability-test-profile.v1.json", "static/data/framework-evaluations/examples/conectrr-itc.interoperability-result.pending.v1.json", "scripts/check_conectrr_itc_interoperability.py"],
       "observer": "scripts/check_conectrr_itc_interoperability.py",
       "completion_predicate": "internal surrogate fixtures validate as synthetic-only while external source receipt remains AWAITING_SOURCE and non-blocking",
-      "fallback": "retain AWAITING_SOURCE evidence gap and continue development using synthetic fixtures"
+      "fallback": "retain AWAITING_SOURCE evidence gap and continue development using synthetic fixtures",
+      "completion_evidence": {
+        "canonical_workflow_run_id": 34016657884,
+        "validated_head_sha": "bf2fafb6b875916d073708294676fc709af7a4d1",
+        "validation_job_id": 101441765787,
+        "observer_result": "conectrr_itc_validator=PASS",
+        "source_package_state": "AWAITING_CANONICAL_SOURCE_ARTIFACTS",
+        "external_validation_claimed": false,
+        "authority_effect": "NONE"
+      }
     },
     {
       "task_id": "PA-INT-007",
       "title": "Repair shared canonical validation drift",
-      "state": "READY_INTERNAL",
+      "state": "COMPLETE_INTERNAL",
       "owner_record": "docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md",
       "work_locations": ["scripts/check_admissibility_automation_handoff.py", "docs/WIKI_PUBLIC_ANCHOR_ACTIVATION_COORDINATION.md"],
       "observer": "scripts/check_admissibility_automation_handoff.py",
       "completion_predicate": "aggregate validator exits 0 or emits exact failing validator names and paths for the next internal iteration",
-      "fallback": "route each failure to its named file and continue all unrelated ready tracks"
+      "fallback": "route each failure to its named file and continue all unrelated ready tracks",
+      "completion_evidence": {
+        "canonical_workflow_run_id": 34016657884,
+        "validated_head_sha": "bf2fafb6b875916d073708294676fc709af7a4d1",
+        "validation_job_id": 101441765787,
+        "observer_result": "ADMISSIBILITY AUTOMATION HANDOFF: PASS",
+        "full_validation_chain": "56/56 PASS",
+        "authority_effect": "NONE"
+      }
     },
     {
       "task_id": "PA-INT-008",
