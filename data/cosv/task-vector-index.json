@@ -5,7 +5,7 @@
   "notation": "L R U I V G O C M T B E A P",
   "width": 14,
   "canonical_profile_ref": "StegVerse-Labs/.github/management/COSV_PROFILE_V1.json",
-  "observed_at": "2026-08-31T07:31:00-05:00",
+  "observed_at": "2026-09-07T09:43:00-05:00",
   "authority_effect": "NONE",
   "tasks": [
     {
@@ -14,11 +14,20 @@
       "vector_ref": "data/cosv/task-vectors/ADMISSIBILITY-HIL-001.json",
       "vector": "60000000107000",
       "binding_mode": "EXTERNAL_PROJECTION_READ_ONLY"
+    },
+    {
+      "task_id": "PA-INT-009",
+      "state_ref": "static/status/wiki-public-anchor-internal-task-registry.json#tasks/PA-INT-009",
+      "vector_ref": "data/cosv/task-vectors/PA-INT-009.json",
+      "vector": "50000000100000",
+      "binding_mode": "CANONICAL_INTERNAL_TASK_POINTER"
     }
   ],
   "coverage": {
     "machine_owned_dependency_tasks_projected": 1,
     "machine_owned_dependency_gap": 0,
+    "public_anchor_internal_executor_tasks_projected": 1,
+    "public_anchor_internal_executor_gap": 0,
     "framework_worker_backlog_projected": false,
     "mindforge_active_support_projected": false,
     "riverbraid_active_claim_projected": false,
