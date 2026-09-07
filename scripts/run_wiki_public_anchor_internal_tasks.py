@@ -5,6 +5,12 @@ Each leaf task observer runs independently. Failed observers are recorded and do
 prevent later independent tasks from running. Located registry extensions are merged
 into the canonical queue so newly discovered internal work cannot remain outside the
 executor merely because the primary registry has not yet been rewritten.
+
+Extension registries are allowed to retain their repository-local task identifiers.
+When two located extensions reuse the same local task_id, the execution projection
+qualifies the later occurrence with its extension id instead of treating an otherwise
+runnable queue as structurally invalid. The original task id and source registry are
+preserved in every generated result for reconstruction.
 """
 from __future__ import annotations
 
@@ -31,6 +37,13 @@ def load_json_object(path: Path) -> dict[str, Any]:
     return value
 
 
+def _extension_execution_id(path: Path, extension: dict[str, Any], task_id: str) -> str:
+    extension_id = extension.get("extension_id")
+    if not isinstance(extension_id, str) or not extension_id:
+        extension_id = path.stem.removeprefix("wiki-public-anchor-internal-task-registry.").removesuffix("-extension")
+    return f"{extension_id}::{task_id}"
+
+
 def load_registry() -> tuple[dict[str, Any], list[str]]:
     registry = load_json_object(REGISTRY)
     tasks = registry.get("tasks", [])
@@ -47,28 +60,60 @@ def load_registry() -> tuple[dict[str, Any], list[str]]:
         extension_tasks = extension.get("tasks", [])
         if not isinstance(extension_tasks, list):
             raise ValueError(f"{path.relative_to(ROOT)} tasks must be an array")
+
+        source_registry = str(path.relative_to(ROOT))
+        local_ids: set[str] = set()
         for task in extension_tasks:
             if not isinstance(task, dict):
                 raise ValueError(f"{path.relative_to(ROOT)} contains a non-object task")
             task_id = task.get("task_id")
-            if task_id in known_ids:
-                raise ValueError(f"duplicate task_id across registries: {task_id}")
-            known_ids.add(task_id)
-            merged.append(task)
-        extension_names.append(str(path.relative_to(ROOT)))
+            if not isinstance(task_id, str) or not task_id:
+                raise ValueError(f"{path.relative_to(ROOT)} contains a task without task_id")
+            if task_id in local_ids:
+                raise ValueError(f"duplicate task_id within extension {source_registry}: {task_id}")
+            local_ids.add(task_id)
+
+            projected = dict(task)
+            projected["source_task_id"] = task_id
+            projected["source_registry"] = source_registry
+            execution_id = task_id
+            if execution_id in known_ids:
+                execution_id = _extension_execution_id(path, extension, task_id)
+                if execution_id in known_ids:
+                    raise ValueError(f"duplicate qualified task_id across registries: {execution_id}")
+                projected["execution_id_qualified"] = True
+            else:
+                projected["execution_id_qualified"] = False
+            projected["task_id"] = execution_id
+            known_ids.add(execution_id)
+            merged.append(projected)
+        extension_names.append(source_registry)
 
     registry["tasks"] = merged
     return registry, extension_names
 
 
+def _result_identity(task: dict[str, Any]) -> dict[str, Any]:
+    result: dict[str, Any] = {"task_id": task["task_id"]}
+    if task.get("source_task_id"):
+        result["source_task_id"] = task["source_task_id"]
+    if task.get("source_registry"):
+        result["source_registry"] = task["source_registry"]
+    if task.get("execution_id_qualified") is not None:
+        result["execution_id_qualified"] = task["execution_id_qualified"]
+    return result
+
+
 def run_observer(task: dict[str, Any]) -> dict[str, Any]:
     task_id = task["task_id"]
+    source_task_id = task.get("source_task_id", task_id)
     observer = task["observer"]
     observer_path = ROOT / observer
+    identity = _result_identity(task)
 
-    if task_id in DEFERRED_AGGREGATE_TASK_IDS or observer_path.resolve() == Path(__file__).resolve():
+    if source_task_id in DEFERRED_AGGREGATE_TASK_IDS or observer_path.resolve() == Path(__file__).resolve():
         return {
-            "task_id": task_id,
+            **identity,
             "state": "DEFERRED_SELF_OBSERVATION",
             "observer": observer,
             "exit_code": None,
@@ -77,7 +122,7 @@ def run_observer(task: dict[str, Any]) -> dict[str, Any]:
 
     if not observer_path.exists():
         return {
-            "task_id": task_id,
+            **identity,
             "state": "BLOCKED_MISSING_OBSERVER",
             "observer": observer,
             "exit_code": None,
@@ -93,7 +138,7 @@ def run_observer(task: dict[str, Any]) -> dict[str, Any]:
         check=False,
     )
     return {
-        "task_id": task_id,
+        **identity,
         "state": "PASS_INTERNAL" if result.returncode == 0 else "FAIL_INTERNAL_CONTINUABLE",
         "observer": observer,
         "exit_code": result.returncode,
@@ -122,7 +167,7 @@ def main() -> int:
             continue
         if state == "COMPLETE_INTERNAL":
             results.append({
-                "task_id": task_id,
+                **_result_identity(task),
                 "state": "ALREADY_COMPLETE_INTERNAL",
                 "observer": task.get("observer"),
                 "exit_code": 0,
@@ -131,7 +176,7 @@ def main() -> int:
             continue
         if state not in RUNNABLE_STATES:
             results.append({
-                "task_id": task_id,
+                **_result_identity(task),
                 "state": "NOT_RUN_STATE_NOT_RUNNABLE",
                 "observer": task.get("observer"),
                 "exit_code": None,
@@ -142,7 +187,7 @@ def main() -> int:
 
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     payload = {
-        "schema_version": "wiki-public-anchor-internal-task-execution.v2",
+        "schema_version": "wiki-public-anchor-internal-task-execution.v3",
         "registry_id": registry.get("registry_id"),
         "loaded_extensions": loaded_extensions,
         "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
@@ -153,6 +198,7 @@ def main() -> int:
             "deferred_aggregate_tasks": sorted(DEFERRED_AGGREGATE_TASK_IDS),
             "recursion_prevention_active": True,
             "located_registry_extensions_are_executed": True,
+            "extension_local_task_id_collisions_are_qualified": True,
         },
         "results": results,
         "summary": {
@@ -161,6 +207,7 @@ def main() -> int:
             "fail_continuable": sum(item["state"] == "FAIL_INTERNAL_CONTINUABLE" for item in results),
             "blocked_missing_observer": sum(item["state"] == "BLOCKED_MISSING_OBSERVER" for item in results),
             "deferred_self": sum(item["state"] == "DEFERRED_SELF_OBSERVATION" for item in results),
+            "qualified_extension_task_ids": sum(bool(item.get("execution_id_qualified")) for item in results),
         },
         "authority_boundary": {
             "task_execution_grants_certification": False,
@@ -178,7 +225,9 @@ def main() -> int:
         return 1
 
     for item in results:
-        print(f"{item['task_id']}: {item['state']} ({item.get('observer')})")
+        source = item.get("source_task_id")
+        suffix = f" source={source}" if source and source != item["task_id"] else ""
+        print(f"{item['task_id']}: {item['state']} ({item.get('observer')}){suffix}")
     print(f"WIKI PUBLIC-ANCHOR INTERNAL EXECUTOR: PASS - report written to {REPORT.relative_to(ROOT)}")
     return 0
 
