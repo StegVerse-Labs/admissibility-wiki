@@ -186,24 +186,38 @@ The validator requires:
 
 The validator remains bound into canonical `npm run validate`.
 
-## Historical canonical validation evidence
+## Canonical validation and publication evidence — v1.3
 
-The prior v1.1 installation was validated at commit `da2365baa6b6436f6bfc794968d29da64ea89a0a` by:
+The v1.3 production-verification matrix is bound to canonical workflow run `34016657884` / run number `4793` at exact head `bf2fafb6b875916d073708294676fc709af7a4d1`.
 
 ```text
 workflow: Validate chain continuation
-run_id: 33943582305
-run_number: 4766
+run_id: 34016657884
+run_number: 4793
+validated_head_sha: bf2fafb6b875916d073708294676fc709af7a4d1
 workflow_conclusion: SUCCESS
-canonical_pre_scan: 11/11 PASS
-full_validation_chain: 56/56 PASS
-canonical_workflow_observation: PASS_OBSERVED
-source_route_contract: 36/36 PASS
-built_route_verification: 36/36 PASS
+validation_job: 101441765787 SUCCESS
+build_pages_job: 101442042450 SUCCESS
+deploy_pages_job: 101442259850 SUCCESS
+verify_public_pages_job: 101442282907 SUCCESS
+external_framework_source_route_contract_artifact: 9984161452
+external_framework_source_route_contract_sha256: 90fb91bd3f31a6c27311a7ecbea2d88ad35e6566e45aa1e31ac8c81dbb06ea86
+external_framework_built_route_verification_artifact: 9984184590
+external_framework_built_route_verification_sha256: bf7caf1b4d7d75dbe1af9222c117d4944477585ca66e00fd779c2da2b74631c5
+github_pages_artifact: 9984184994
+github_pages_artifact_sha256: 0ac163150b5deed89ed9052f1585a19edf86092108bbb6e9522c05ab7cab8e45
+external_framework_public_route_verification_artifact: 9984195977
+external_framework_public_route_verification_sha256: f27990a0a55102fe3b3047d1c826df1a900d08b3ea8d305229fef3f557e9b60d
+public_activation_receipt_artifact: 9984195720
+public_activation_receipt_sha256: 0de86fc33b67223e87ce454fe6d8bb0f6a3f0c814e2f6ab5d1ca742a8994da17
 authority_effect: none
 ```
 
-That historical evidence MUST NOT be projected onto v1.2 or v1.3.
+The workflow evidence establishes source validation, build, GitHub Pages deployment, and public external-framework route verification for the exact v1.3 head. It does not convert any red production-verification claim into green; claim-level production correspondence remains governed solely by the machine predicates and evidence for each claim.
+
+## Historical canonical validation evidence
+
+The prior v1.1 installation was validated at commit `da2365baa6b6436f6bfc794968d29da64ea89a0a` by run `33943582305` / `4766`. That historical evidence remains historical and MUST NOT be substituted for v1.3 evidence.
 
 ## README impact determination — v1.3
 
@@ -223,11 +237,11 @@ failure_behavior_change: none
 capability_meaning_change: none
 ```
 
-Updating README would not improve completeness for this localized review surface, so no README mutation is required.
+The present reconciliation adds only observed run/deployment evidence to this handoff and likewise does not require a README mutation.
 
 ## Completion predicate for v1.3
 
-Repository-local v1.3 installation is complete when:
+Repository-local v1.3 is complete because:
 
 - all 14 claims carry production-verification state;
 - page and machine record have matching green/red counts;
@@ -236,15 +250,13 @@ Repository-local v1.3 installation is complete when:
 - red/nonexistence distinction is explicit;
 - privacy-verification contradiction remains bounded and explicit;
 - validator enforces all of the above;
-- canonical workflow observation exists for the v1.3 head.
-
-All source mutations are installed. Canonical workflow observation for the v1.3 head remains pending until GitHub Actions produces it.
+- canonical workflow run `34016657884` succeeded for the exact v1.3 head;
+- Pages build/deploy and public external-framework route verification succeeded.
 
 ## Remaining destinations
 
 ```text
 StegVerse-Labs/admissibility-wiki
-- observe canonical workflow result for v1.3
 - turn rows green only when production evidence satisfies both predicate terms
 - maintain source/page/machine-record parity as evidence changes
 
@@ -258,20 +270,43 @@ StegVerse-002/stegguardian-wiki
 - only if findings materially affect protection doctrine
 ```
 
+## Coordination state
+
+Canonical repository task registries remain:
+
+```text
+static/status/wiki-public-anchor-internal-task-registry.json
+  registry_id: wiki-public-anchor-internal-continuation-2026-08-01
+
+static/status/wiki-public-anchor-internal-task-registry.ta14-publication-extension.json
+  extension_id: ta14-determination-publication-2026-08-01
+  active task: PA-INT-010
+
+static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-registry.json
+  registry_id: ta14-stegverse-gap-review-v2-tasks-2026-08-01
+  canonical aggregate binding task: TA14-V2-005
+```
+
+The repository-wide external-framework evaluation workload `EXT-FRAMEWORK-SECOND-PAGE-36` remains separately active under issue #66 / issue #50 collision control. This v1.3 reconciliation does not claim or duplicate its remaining 28 framework evaluations.
+
+Master Records canonical handoff `master-records/core-lite/MASTER_RECORDS_MIRROR_HANDOFF.md` records existing propagation to admissibility-wiki as complete and preserved; no TA-14-specific Master Records custody mutation is required or admitted by this lane.
+
 ## Current state
 
 ```text
-lane_state: REPOSITORY_LOCAL_V1_3_INSTALLED_VALIDATION_OBSERVATION_PENDING
+lane_state: REPOSITORY_LOCAL_V1_3_VALIDATED_DEPLOYED_PUBLICLY_VERIFIED
 source_substrate: EXISTING
-public_analysis_page: UPDATED_V1_3_PRODUCTION_MATRIX
-machine_record: UPDATED_V1_3_14_CLAIMS_WITH_PRODUCTION_STATUS
-validator: UPDATED_V1_3_PRODUCTION_COLOR_CONTRACT
-presentation_css: UPDATED_V1_3
-validator_canonical_binding: INSTALLED
+public_analysis_page: DEPLOYED_V1_3_PRODUCTION_MATRIX
+machine_record: VALIDATED_V1_3_14_CLAIMS_WITH_PRODUCTION_STATUS
+validator: VALIDATED_V1_3_PRODUCTION_COLOR_CONTRACT
+presentation_css: DEPLOYED_V1_3
+validator_canonical_binding: PASS_OBSERVED_RUN_34016657884
 source_revision_ledger: INSTALLED
-navigation_binding: INSTALLED
-historical_canonical_workflow_observation: PASS_OBSERVED_RUN_33943582305_FOR_V1_1
-v1_3_canonical_workflow_observation: PENDING
+navigation_binding: PASS_OBSERVED_RUN_34016657884
+v1_3_canonical_workflow_observation: PASS_OBSERVED_RUN_34016657884
+v1_3_pages_build: PASS_OBSERVED_RUN_34016657884
+v1_3_pages_deploy: PASS_OBSERVED_RUN_34016657884
+v1_3_public_route_verification: PASS_OBSERVED_RUN_34016657884
 production_verified_green_rows: 0
 production_not_verified_red_rows: 14
 privacy_preserving_verification_finding: CONTRADICTED_BY_PUBLIC_ARCHITECTURE
@@ -279,6 +314,7 @@ stegverse_privacy_verification_comparison: DIRECT_ARCHITECTURAL_OPPOSITION_ON_OB
 site_projection: NOT_ADMITTED_BY_SITE_ORCHESTRATOR
 publisher_projection: NOT_ADMITTED_BY_CURRENT_PUBLISHER_WORKSTREAM
 stegguardian_projection: NOT_REQUIRED_BY_CURRENT_FINDINGS
+master_records_mutation_required: false
 user_action_required: false
 execution_authority_effect: none
 ```
