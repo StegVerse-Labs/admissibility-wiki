@@ -21,12 +21,21 @@
     {
       "task_id": "PA-INT-001",
       "title": "Repair frozen reconstruction manifest binding",
-      "state": "READY_INTERNAL",
+      "state": "COMPLETE_INTERNAL",
       "owner_record": "docs/ADMISSIBILITY_WIKI_MIRROR_HANDOFF.md",
       "work_locations": ["static/data/governed-framework-reviews/public-anchor-reconstruction-manifest.v1.json", "scripts/check_public_anchor_reconstruction_manifest.py"],
       "observer": "scripts/check_public_anchor_reconstruction_manifest.py",
       "completion_predicate": "validator exits 0 and manifest preserves frozen commit, three dockets, unresolved independence, and no authority inheritance",
-      "fallback": "emit a bounded failure receipt and continue PA-INT-002 through PA-INT-009"
+      "fallback": "emit a bounded failure receipt and continue PA-INT-002 through PA-INT-009",
+      "completion_evidence": {
+        "canonical_workflow_run_id": 34016657884,
+        "canonical_workflow_run_number": 4793,
+        "validated_head_sha": "bf2fafb6b875916d073708294676fc709af7a4d1",
+        "validation_job_id": 101441765787,
+        "observer_result": "PUBLIC-ANCHOR RECONSTRUCTION MANIFEST: PASS",
+        "full_validation_chain": "56/56 PASS",
+        "authority_effect": "NONE"
+      }
     },
     {
       "task_id": "PA-INT-002",
