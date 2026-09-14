@@ -6,11 +6,11 @@ Parent Goal Task ID: `MIR-CONNECTION-ROUNDTRIP-TECHNICAL-GUIDE-001`
 Parent COSV: `50000000100000`
 Reusable Task ID: `RT-EXTERNAL-FRAMEWORK-ROUNDTRIP-ROLLOUT-001`
 Parent binding-registry handoff: `docs/external-frameworks/EXTERNAL_FRAMEWORK_ROUNDTRIP_BINDING_REGISTRY_MIRROR_HANDOFF.md`
-Status: `ACTIVE / ENDPOINT EVIDENCE QUALIFICATION SOURCE IN PROGRESS`
+Status: `SOURCE STAGED / EXACT-HEAD VALIDATION PENDING / REAL ENDPOINT OVERLAY REMAINS EMPTY`
 
 ## Purpose
 
-Strengthen the canonical external-framework round-trip binding registry so a non-null `runtime_endpoint_ref` cannot be introduced as a bare URL or documentation-derived guess. An endpoint binding must carry explicit provenance sufficient to show where the current endpoint observation came from and when it was observed.
+Strengthen the canonical external-framework round-trip binding registry so a non-null `runtime_endpoint_ref` cannot be introduced as a bare URL or documentation-derived guess. A bound endpoint must carry explicit provenance sufficient to show where the current endpoint observation came from and when it was observed.
 
 This handoff governs source-level binding qualification only. It creates no network traffic, runtime execution, credential authority, transition authority, user-verification authority, or foreign-framework authority.
 
@@ -24,7 +24,23 @@ A bound endpoint overlay entry must include:
 - `endpoint_evidence_class`: a bounded provenance class identifying how the endpoint was established;
 - optional `counterpart_provenance` and `operation_class` inputs retained by the existing binding registry.
 
-A bare string endpoint or an endpoint entry missing any required evidence field must fail closed.
+A bare string endpoint, an endpoint entry missing any required evidence field, or endpoint evidence metadata without an endpoint must fail closed.
+
+## Staged source
+
+`build_external_framework_roundtrip_bindings.py` now:
+
+- rejects bare string endpoint overlays;
+- requires all three endpoint evidence fields whenever `runtime_endpoint_ref` is non-null;
+- rejects orphan endpoint-evidence metadata when no endpoint is present;
+- retains unbound rows with all endpoint evidence fields null;
+- emits `EVIDENCE_QUALIFIED_ENDPOINT_BOUND` only for evidence-qualified endpoint rows;
+- records explicit semantics that documentation/source URLs may not be inferred as runtime endpoints;
+- preserves `NONE_COORDINATION_ONLY` authority effect and `NONE_PLAN_ONLY` transition effect.
+
+`check_external_framework_roundtrip_bindings.py` now includes positive evidence-qualified binding coverage and negative controls for bare endpoint strings, missing evidence metadata, orphan evidence metadata, unknown framework ids, and duplicate registry identities.
+
+The live `data/external-framework-roundtrip-endpoints.json` overlay remains empty. No real framework endpoint has been asserted by this source work.
 
 ## Authority boundary
 
@@ -34,11 +50,11 @@ Documentation URLs, standards URLs, source references, implementation-selection 
 
 ## Completion boundary
 
-Source completion requires the binding builder and checker to reject unqualified endpoints, retain all unbound registry entries unchanged, preserve zero authority/plan-only effects, pass the canonical Goal 5 validation chain, and merge.
+Source completion requires the staged builder/checker behavior to pass the canonical validation chain and merge. Runtime endpoint establishment remains a separate evidence-producing activity, and each real endpoint remains independently fail-closed until that evidence exists.
 
 ## Next action
 
-Implement evidence-qualified endpoint binding in the existing builder/checker and validate exact-head behavior. Do not populate any real framework endpoint unless current endpoint evidence is independently available.
+Run exact-head validation. If green, merge this evidence-qualification contract. Then admit real endpoint bindings one at a time only from current observed endpoint evidence and feed them through the reusable registry-wide planner.
 
 ## Manual work
 
