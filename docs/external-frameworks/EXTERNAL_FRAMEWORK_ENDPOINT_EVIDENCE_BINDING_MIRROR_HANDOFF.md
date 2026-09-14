@@ -1,12 +1,12 @@
 # External Framework Endpoint Evidence Binding Mirror Handoff
 
-Updated: 2026-09-13
+Updated: 2026-09-14
 
 Parent Goal Task ID: `MIR-CONNECTION-ROUNDTRIP-TECHNICAL-GUIDE-001`
 Parent COSV: `50000000100000`
 Reusable Task ID: `RT-EXTERNAL-FRAMEWORK-ROUNDTRIP-ROLLOUT-001`
 Parent binding-registry handoff: `docs/external-frameworks/EXTERNAL_FRAMEWORK_ROUNDTRIP_BINDING_REGISTRY_MIRROR_HANDOFF.md`
-Status: `SOURCE STAGED / EXACT-HEAD VALIDATION PENDING / REAL ENDPOINT OVERLAY REMAINS EMPTY`
+Status: `SOURCE COMPLETE / EXACT-HEAD VALIDATION GREEN / MERGED / REAL ENDPOINT OVERLAY REMAINS EMPTY`
 
 ## Purpose
 
@@ -26,9 +26,9 @@ A bound endpoint overlay entry must include:
 
 A bare string endpoint, an endpoint entry missing any required evidence field, or endpoint evidence metadata without an endpoint must fail closed.
 
-## Staged source
+## Merged source
 
-`build_external_framework_roundtrip_bindings.py` now:
+`build_external_framework_roundtrip_bindings.py`:
 
 - rejects bare string endpoint overlays;
 - requires all three endpoint evidence fields whenever `runtime_endpoint_ref` is non-null;
@@ -38,9 +38,20 @@ A bare string endpoint, an endpoint entry missing any required evidence field, o
 - records explicit semantics that documentation/source URLs may not be inferred as runtime endpoints;
 - preserves `NONE_COORDINATION_ONLY` authority effect and `NONE_PLAN_ONLY` transition effect.
 
-`check_external_framework_roundtrip_bindings.py` now includes positive evidence-qualified binding coverage and negative controls for bare endpoint strings, missing evidence metadata, orphan evidence metadata, unknown framework ids, and duplicate registry identities.
+`check_external_framework_roundtrip_bindings.py` includes positive evidence-qualified binding coverage and negative controls for bare endpoint strings, missing evidence metadata, orphan evidence metadata, unknown framework ids, and duplicate registry identities.
 
 The live `data/external-framework-roundtrip-endpoints.json` overlay remains empty. No real framework endpoint has been asserted by this source work.
+
+## Validation and merge evidence
+
+```text
+PR: StegVerse-Labs/admissibility-wiki#140
+exact head: abae06cada9252324d303fb6f46fc8f0414ae80c
+Validate chain continuation: 34798422252 SUCCESS (run 4862)
+merge: 5d3baaeb3175a06ff046826df9e10a2958fb1fe2
+```
+
+This closes only the source-level endpoint-evidence qualification requirement. It does not establish any runtime endpoint, endpoint authenticity, endpoint availability, foreign-framework execution, return transition, or final standing.
 
 ## Authority boundary
 
@@ -50,11 +61,11 @@ Documentation URLs, standards URLs, source references, implementation-selection 
 
 ## Completion boundary
 
-Source completion requires the staged builder/checker behavior to pass the canonical validation chain and merge. Runtime endpoint establishment remains a separate evidence-producing activity, and each real endpoint remains independently fail-closed until that evidence exists.
+Source completion is satisfied for this contract by the exact-head validation and merge above. Runtime endpoint establishment remains a separate evidence-producing activity, and each real endpoint remains independently fail-closed until that evidence exists.
 
 ## Next action
 
-Run exact-head validation. If green, merge this evidence-qualification contract. Then admit real endpoint bindings one at a time only from current observed endpoint evidence and feed them through the reusable registry-wide planner.
+Keep the live endpoint overlay empty unless a current independently observed runtime endpoint maps to an exact canonical framework identity. Feed only evidence-qualified bindings through the existing registry-wide reusable rollout planner. Frameworks without a qualified endpoint remain explicitly non-runtime-eligible rather than receiving inferred endpoints.
 
 ## Manual work
 
