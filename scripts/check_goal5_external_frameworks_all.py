@@ -46,6 +46,7 @@ CHECKS = [
     "scripts/check_cedar_binary_provenance_reconciliation.py",
     "scripts/check_external_framework_automation_readiness.py",
     "scripts/check_external_framework_execution_plans.py",
+    "scripts/check_external_framework_roundtrip_bindings.py",
     "scripts/check_external_framework_job_materialization_candidates.py",
     "scripts/check_external_framework_job_materialization_receipt.py",
     "scripts/check_external_framework_runtime_authorization_receipt.py",
