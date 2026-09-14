@@ -13,6 +13,11 @@ DEFAULT_OUTPUT = ROOT / "reports" / "external-frameworks" / "roundtrip-bindings.
 PARENT_GOAL = "MIR-CONNECTION-ROUNDTRIP-TECHNICAL-GUIDE-001"
 PARENT_COSV = "50000000100000"
 REUSABLE_TASK = "RT-EXTERNAL-FRAMEWORK-ROUNDTRIP-ROLLOUT-001"
+REQUIRED_ENDPOINT_EVIDENCE_FIELDS = (
+    "endpoint_evidence_ref",
+    "endpoint_observed_at",
+    "endpoint_evidence_class",
+)
 
 
 def load_json(path: Path) -> Any:
@@ -34,12 +39,42 @@ def normalize_overlay(value: Any) -> dict[str, dict[str, Any]]:
         if binding is None:
             result[framework_id] = {}
         elif isinstance(binding, str):
-            result[framework_id] = {"runtime_endpoint_ref": binding}
+            raise ValueError(
+                f"bare endpoint string is not evidence-qualified: {framework_id}; "
+                "use an object with runtime_endpoint_ref and endpoint evidence fields"
+            )
         elif isinstance(binding, dict):
             result[framework_id] = dict(binding)
         else:
             raise ValueError(f"invalid binding for {framework_id}")
     return result
+
+
+def _clean_optional_string(value: Any, *, field: str, framework_id: str) -> str | None:
+    if value is None:
+        return None
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{field} must be a non-empty string or null: {framework_id}")
+    return value.strip()
+
+
+def _validate_endpoint_evidence(supplied: dict[str, Any], framework_id: str, endpoint: str | None) -> dict[str, str | None]:
+    evidence = {
+        field: _clean_optional_string(supplied.get(field), field=field, framework_id=framework_id)
+        for field in REQUIRED_ENDPOINT_EVIDENCE_FIELDS
+    }
+    present = [field for field, value in evidence.items() if value]
+    if endpoint:
+        missing = [field for field, value in evidence.items() if not value]
+        if missing:
+            raise ValueError(
+                f"runtime endpoint is not evidence-qualified for {framework_id}; missing=" + ",".join(missing)
+            )
+    elif present:
+        raise ValueError(
+            f"endpoint evidence supplied without runtime_endpoint_ref for {framework_id}; fields=" + ",".join(present)
+        )
+    return evidence
 
 
 def build_bindings(registry: dict[str, Any], overlay: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -70,10 +105,12 @@ def build_bindings(registry: dict[str, Any], overlay: dict[str, Any] | None = No
     for framework_id in ordered_ids:
         entry = by_id[framework_id]
         supplied = endpoint_overlay.get(framework_id, {})
-        endpoint = supplied.get("runtime_endpoint_ref")
-        if endpoint is not None and (not isinstance(endpoint, str) or not endpoint.strip()):
-            raise ValueError(f"runtime_endpoint_ref must be a non-empty string or null: {framework_id}")
-        endpoint = endpoint.strip() if isinstance(endpoint, str) else None
+        endpoint = _clean_optional_string(
+            supplied.get("runtime_endpoint_ref"),
+            field="runtime_endpoint_ref",
+            framework_id=framework_id,
+        )
+        evidence = _validate_endpoint_evidence(supplied, framework_id, endpoint)
         if endpoint:
             bound_count += 1
         bindings.append({
@@ -83,7 +120,10 @@ def build_bindings(registry: dict[str, Any], overlay: dict[str, Any] | None = No
             "manifest_path": entry.get("manifest_path"),
             "source_reference": entry.get("source"),
             "runtime_endpoint_ref": endpoint,
-            "binding_state": "EXPLICIT_ENDPOINT_BOUND" if endpoint else "UNBOUND_NO_RUNTIME_ENDPOINT_REF",
+            "endpoint_evidence_ref": evidence["endpoint_evidence_ref"],
+            "endpoint_observed_at": evidence["endpoint_observed_at"],
+            "endpoint_evidence_class": evidence["endpoint_evidence_class"],
+            "binding_state": "EVIDENCE_QUALIFIED_ENDPOINT_BOUND" if endpoint else "UNBOUND_NO_RUNTIME_ENDPOINT_REF",
             "counterpart_provenance": supplied.get("counterpart_provenance", "UNOBSERVED_CANDIDATE"),
             "operation_class": supplied.get("operation_class", "RUNTIME_ROUNDTRIP"),
             "authority_effect": "NONE_COORDINATION_ONLY",
@@ -104,6 +144,8 @@ def build_bindings(registry: dict[str, Any], overlay: dict[str, Any] | None = No
         "binding_semantics": {
             "one_row_per_registry_framework": True,
             "missing_endpoint_is_explicit_unbound_state": True,
+            "bound_endpoint_requires_independent_evidence_metadata": True,
+            "documentation_or_source_url_may_not_be_inferred_as_endpoint": True,
             "endpoint_binding_proves_authenticity": False,
             "endpoint_binding_proves_availability": False,
             "endpoint_binding_grants_execution_authority": False,
@@ -128,7 +170,7 @@ def main() -> int:
     print(
         "EXTERNAL FRAMEWORK ROUNDTRIP BINDINGS: "
         f"{result['framework_count']} frameworks; "
-        f"{result['explicit_endpoint_bound_count']} endpoint-bound; "
+        f"{result['explicit_endpoint_bound_count']} evidence-qualified endpoint-bound; "
         f"{result['unbound_count']} unbound; authority=NONE"
     )
     return 0
