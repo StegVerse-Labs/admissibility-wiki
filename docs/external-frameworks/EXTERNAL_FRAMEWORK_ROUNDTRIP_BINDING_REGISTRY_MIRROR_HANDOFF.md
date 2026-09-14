@@ -7,7 +7,7 @@ Parent COSV: `50000000100000`
 Reusable Task ID: `RT-EXTERNAL-FRAMEWORK-ROUNDTRIP-ROLLOUT-001`
 Canonical reusable handoff: `StegVerse-Labs/.github/docs/EXTERNAL_FRAMEWORK_ROUNDTRIP_ROLLOUT_MIRROR_HANDOFF.md`
 Canonical framework registry: `docs/external-frameworks/index.json`
-Status: `HANDOFF ESTABLISHED / BINDING REGISTRY SOURCE PENDING`
+Status: `BINDING REGISTRY SOURCE STAGED / GOAL 5 AGGREGATE CHECK WIRED / EXACT-HEAD VALIDATION PENDING`
 
 ## Purpose
 
@@ -17,9 +17,11 @@ The binding registry is coordination data only. It does not make a framework run
 
 ## Design
 
-The canonical compatibility registry remains `docs/external-frameworks/index.json`. This continuation adds a derived binding surface with one row for every framework identity in that registry. Each row may carry an explicit `runtime_endpoint_ref` only when independently supplied and may otherwise remain unbound.
+The canonical compatibility registry remains `docs/external-frameworks/index.json`. The staged binding builder projects one row for every framework identity in that registry. Each row may carry an explicit `runtime_endpoint_ref` only when independently supplied and otherwise remains `UNBOUND_NO_RUNTIME_ENDPOINT_REF`.
 
-The binding surface is intended to feed the merged `.github` registry-wide planner `scripts/plan_external_framework_registry_rollout.py`. It must not duplicate the planner's eligibility logic. Admissibility-wiki owns framework identity/source metadata and explicit endpoint-binding inputs; the reusable rollout resolver owns round-trip eligibility classification.
+The binding surface feeds the merged `.github` registry-wide planner `scripts/plan_external_framework_registry_rollout.py`. It deliberately does not duplicate that planner's source/manifest/runtime eligibility logic. Admissibility-wiki owns framework identity/source metadata and explicit endpoint-binding inputs; the reusable rollout resolver owns round-trip eligibility classification.
+
+The existing admissibility-wiki implementation readiness/execution-plan machinery remains intact. Those plans cover implementation-selection/job-materialization readiness for their bounded candidate set. This binding registry is broader and orthogonal: it covers every canonical external-framework identity and only records explicit reusable-round-trip endpoint binding state. It does not replace or promote the existing execution plans.
 
 ## Required invariants
 
@@ -32,22 +34,27 @@ The binding surface is intended to feed the merged `.github` registry-wide plann
 - no per-framework Goal Task is created when the reusable invocation is sufficient;
 - GitHub/source/CI authority effect remains `NONE`.
 
-## Planned source surfaces
+## Staged source surfaces
 
 - `scripts/build_external_framework_roundtrip_bindings.py`
-- `tests/test_external_framework_roundtrip_bindings.py`
-- `data/external-framework-roundtrip-bindings.example.json`
+- `scripts/check_external_framework_roundtrip_bindings.py`
+- `data/external-framework-roundtrip-endpoints.json`
+- `scripts/check_goal5_external_frameworks_all.py` integration
 - this handoff
+
+The endpoint overlay is intentionally empty at source establishment. Empty means no framework endpoint has been asserted merely from documentation or source URLs. The builder still projects all canonical framework identities into explicit unbound rows, giving one managed connection slot per framework without inventing endpoint authority.
+
+The checker validates the live canonical registry projection plus negative controls for unknown overlay framework ids and duplicate registry identities. It also verifies exact identity/order coverage, bound/unbound count reconciliation, plan-only transition effect, and zero authority effect.
 
 ## Completion boundary
 
-This continuation is source-complete only when the builder deterministically projects all canonical framework identities, validates optional endpoint overlays, preserves unbound rows fail-closed, emits no execution authority, passes repository validation, and merges.
+This continuation is source-complete only when the builder deterministically projects all canonical framework identities, validates optional endpoint overlays, preserves unbound rows fail-closed, emits no execution authority, passes repository validation including the Goal 5 aggregate path, and merges.
 
 Runtime transition completion remains outside this artifact. Actual framework execution occurs only through the reusable rollout and its existing Interlock/InTr-governed component composition.
 
 ## Next action
 
-Implement the deterministic builder and tests, then validate the exact branch head. Do not create per-framework tasks or transports while doing so.
+Run exact-head repository validation. If green, merge this binding-registry source. After merge, populate endpoint bindings only from separately established current endpoint evidence and feed the resulting binding surface to `RT-EXTERNAL-FRAMEWORK-ROUNDTRIP-ROLLOUT-001`; do not create per-framework tasks or transports.
 
 ## Manual work
 
