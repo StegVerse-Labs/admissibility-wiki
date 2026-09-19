@@ -1,0 +1,72 @@
+{
+  "schema": "stegverse.evidence_based_reputation/v0.1",
+  "model_version": "0.1",
+  "record_id": "LINKEDIN-INTERACTION-2026-09-19-001",
+  "source_context": {
+    "platform": "LinkedIn",
+    "date": "2026-09-19",
+    "subject_label": "Muhammad Sagheer LinkedIn interaction",
+    "publication_state": "PRIVATE_EVIDENCE_PENDING",
+    "source_note": "This record is a bounded coordination intake derived from user-supplied screenshots and the contemporaneous StegVerse chat discussion. It is not a complete transcript and is not authorized here as a public accusation or legal classification."
+  },
+  "evidence_items": [
+    {
+      "evidence_id": "E1",
+      "evidence_class": "OBSERVED_FACT",
+      "summary": "A user-supplied LinkedIn profile screenshot presents the subject as an Independent AI Researcher and names multiple self-described frameworks and research directions.",
+      "preservation_state": "SOURCE_SCREENSHOT_HELD_IN_CHAT_NOT_REPOSITORY_COMMITTED"
+    },
+    {
+      "evidence_id": "E2",
+      "evidence_class": "OBSERVED_FACT",
+      "summary": "The supplied profile screenshot contains self-reported claims of engagement or correspondence with scholars at named universities.",
+      "preservation_state": "SOURCE_SCREENSHOT_HELD_IN_CHAT_NOT_REPOSITORY_COMMITTED"
+    },
+    {
+      "evidence_id": "E3",
+      "evidence_class": "OBSERVED_FACT",
+      "summary": "A user-supplied conversation screenshot shows the user challenging an asymmetric compensation framing and the counterparty replying 'fair enough', thanking the user for the exchange, and ending the discussion.",
+      "preservation_state": "SOURCE_SCREENSHOT_HELD_IN_CHAT_NOT_REPOSITORY_COMMITTED"
+    },
+    {
+      "evidence_id": "E4",
+      "evidence_class": "PARTICIPANT_REPORT",
+      "summary": "The user reports that the interaction involved an apparently collaborative intellectual exchange followed later by compensation framing.",
+      "preservation_state": "CURRENT_CHAT_REPORT_REQUIRES_COMPLETE_SOURCE_CHRONOLOGY_FOR_FULL_CORROBORATION"
+    },
+    {
+      "evidence_id": "E5",
+      "evidence_class": "PARTICIPANT_REPORT",
+      "summary": "The user reports observing materially similar interaction sequences involving several different people on LinkedIn.",
+      "preservation_state": "CROSS_CASE_EVIDENCE_NOT_YET INGESTED"
+    }
+  ],
+  "state_evaluations": [
+    {"state": "CONTACT", "status": "PARTIAL", "evidence_refs": ["E3"]},
+    {"state": "CREDIBILITY_ESTABLISHMENT", "status": "SUPPORTED", "evidence_refs": ["E1", "E2"]},
+    {"state": "COLLABORATIVE_EXCHANGE", "status": "PARTIAL", "evidence_refs": ["E3", "E4"]},
+    {"state": "CONTRIBUTION_ACCUMULATION", "status": "PARTIAL", "evidence_refs": ["E4"]},
+    {"state": "ASYMMETRY_INTRODUCED", "status": "PARTIAL", "evidence_refs": ["E3", "E4"]},
+    {"state": "VALUE_OR_OWNERSHIP_REFRAMING", "status": "PARTIAL", "evidence_refs": ["E4"]},
+    {"state": "COMPENSATION_REQUEST", "status": "PARTIAL", "evidence_refs": ["E3", "E4"]},
+    {"state": "POST_REJECTION_RESPONSE", "status": "SUPPORTED", "evidence_refs": ["E3"]}
+  ],
+  "cross_case_observation": {
+    "status": "PARTICIPANT_REPORT_ONLY",
+    "evidence_refs": ["E5"],
+    "aggregation_authorized": false
+  },
+  "public_projection": {
+    "authorized": false,
+    "bounded_summary": "The current intake supports a bounded description of profile-based credibility presentation and a documented terminal response after the user challenged compensation asymmetry. The complete chronology required to classify the full interaction sequence has not yet been preserved in this repository.",
+    "prohibited_inferences": [
+      "criminal intent",
+      "extortion",
+      "fraud",
+      "predatory intent",
+      "institutional endorsement",
+      "common coordination among unrelated people",
+      "designed extraction apparatus"
+    ]
+  }
+}
