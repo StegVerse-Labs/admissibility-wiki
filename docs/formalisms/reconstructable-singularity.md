@@ -315,3 +315,19 @@ The following terms are introduced provisionally:
 > The reconstructable-singularity threshold is the minimum connected set of observational frameworks whose combined affirmative and exclusionary constraints reduce the admissibility-consistent continuity histories to one.
 
 This is a research formalism. It defines a testable mathematical structure; it does not by itself claim empirical proof, execution authority, publication authority, or release readiness.
+
+
+## 15. Machine-readable contract
+
+The bounded formalism is accompanied by a machine-readable schema, example, and deterministic validator:
+
+```text
+static/formalisms/reconstructable-singularity.v0.1.schema.json
+static/formalisms/reconstructable-singularity.v0.1.example.json
+scripts/check_reconstructable_singularity.py
+```
+
+The validator establishes contract/example consistency and the declared singleton/minimality behavior within the fixture. It does not establish empirical proof, universal completeness, physical-history collapse, or execution authority.
+
+
+Canonical machine-checkable singleton expression: `|\mathcal C_A(I)|=1`.

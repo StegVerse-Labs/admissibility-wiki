@@ -1,6 +1,6 @@
 # Reconstructable Singularity Mirror Handoff
 
-Status: IMPLEMENTED_AWAITING_CANONICAL_INTEGRATION_OBSERVATION  
+Status: SOURCE_INTEGRATED_PENDING_CANONICAL_WORKFLOW_OBSERVATION  
 Repository: `StegVerse-Labs/admissibility-wiki`  
 Branch: `main`  
 Task ID: `ADMISSIBILITY-RECONSTRUCTABLE-SINGULARITY-001`  
@@ -129,3 +129,16 @@ session goals durably transferred: 8/8
 ## Archive condition
 
 The originating session may be archived because all unique information and executable continuation state are durable here. Repository work remains active under this handoff and the repository's canonical orchestration state; archival does not imply repository completion, workflow success, deployment, publication, proof, or release.
+
+
+## 2026-09-18 canonical publication integration
+
+Integrated on branch `reconstructable-singularity-publication` from main `85eb6038e98427105a4b6b77ea6b9d21b3f1613d`:
+
+- added `formalisms/reconstructable-singularity` to the existing Formalisms sidebar without replacing the distinct `reconstruction-singularity` formalism;
+- added the formalism record, schema/example references, maturity wording, and non-claim to `docs/formalisms/index.md`;
+- bound document, handoff, schema, example, and `scripts/check_reconstructable_singularity.py` into the existing canonical `scripts/check_governed_llm_pages.py` validation path;
+- updated `README.md` with the public research-formalism boundary;
+- Site publication direction was subsequently revised by the user: the older `The Reconstructive Singularity` Site paper is to be superseded as a separate current publication, with provenance retained and legacy route continuity redirected to the newer Reconstructable Singularity paper.
+
+Validation remains source/CI evidence only. Public route observation and Site mirror verification remain separate evidence gates.
