@@ -3,7 +3,7 @@
   "receipt_id": "public-activation.example.pending",
   "created_at": "2026-07-02T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "activation_target": "https://stegverse-labs.github.io/admissibility-wiki/",
+  "activation_target": "https://admissibility.stegverse.org/",
   "activation_state": "pending_workflow_observation",
   "checks": {
     "public_site_loads": {"status": "pending", "evidence": null},
