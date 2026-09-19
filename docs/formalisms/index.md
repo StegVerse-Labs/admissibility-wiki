@@ -158,6 +158,19 @@ For non-obvious StegVerse ecosystem entries, `in progress` may be used as a temp
 **Current wiki state:** mirrored  
 **Non-claim:** A visual table is not itself proof of admissibility.
 
+### Reconstructable Singularity
+
+**Definition:** A continuity-reconstruction formalism defining the minimum connected set of observational frameworks whose combined affirmative and exclusionary evidence reduces the admissibility-consistent candidate-history space to exactly one surviving history.
+
+**Source reference:** Admissibility Wiki public research formalism v0.1  
+**Source visibility:** public  
+**Formalism page:** [Reconstructable Singularity](./reconstructable-singularity.md)  
+**Schema:** `static/formalisms/reconstructable-singularity.v0.1.schema.json`  
+**Example:** `static/formalisms/reconstructable-singularity.v0.1.example.json`  
+**Validator:** `scripts/check_reconstructable_singularity.py`  
+**Current wiki state:** source-integrated research formalism pending canonical workflow and public-route observation  
+**Non-claim:** Singleton reconstruction inside the declared observational framework does not establish empirical proof, physical-history collapse, execution authority, publication authority, or universal completeness.
+
 ### Disciplinary Translation Groundwork
 
 **Definition:** A public-safe translation groundwork for expressing discipline-specific consequential changes as state transitions without claiming that the source disciplines are equivalent.
