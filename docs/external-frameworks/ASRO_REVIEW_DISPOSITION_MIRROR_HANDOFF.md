@@ -252,3 +252,42 @@ activation: NOT_COMPLETE
 ```
 
 This session remains open. Durable transfer preserves responsibility but does not satisfy hosted validation, release, propagation, deployment, runtime proof, governed activation, or evidence requirements.
+
+## 2026-09-19 evidence-based reputation extension
+
+A September 19, 2026 StegVerse discussion identified a broader evidence problem adjacent to the ASRO correspondence/review lane: how to preserve repeated LinkedIn interaction patterns without turning observation into accusation.
+
+The bounded model is now staged on branch `evidence-based-reputation-model` with these surfaces:
+
+```text
+docs/governance/evidence-based-reputation.md
+static/schemas/evidence-based-reputation.v0.1.schema.json
+data/evidence-based-reputation/linkedin-interaction-2026-09-19.json
+```
+
+The model separates:
+
+```text
+raw evidence
+-> governed classification
+-> public reputation signal
+```
+
+and requires every retained assertion to remain typed as `OBSERVED_FACT`, `PARTICIPANT_REPORT`, `GOVERNED_INFERENCE`, `DISPUTED`, or `UNRESOLVED`.
+
+The initial state model is:
+
+```text
+CONTACT
+-> CREDIBILITY_ESTABLISHMENT
+-> COLLABORATIVE_EXCHANGE
+-> CONTRIBUTION_ACCUMULATION
+-> ASYMMETRY_INTRODUCED
+-> VALUE_OR_OWNERSHIP_REFRAMING
+-> COMPENSATION_REQUEST
+-> POST_REJECTION_RESPONSE
+```
+
+The current bounded LinkedIn intake is deliberately incomplete. It records the supplied screenshots as chat-held evidence, treats the broader repeated-pattern observation as participant-reported until additional independent cases are ingested, and leaves public projection unauthorized. It does not classify the conduct as extortion, fraud, predation, or any other criminal or motive-based category.
+
+This section is the durable bridge for the parallel conversation working the same issue. Future continuation should consume these exact files rather than rebuilding the model from chat history.
