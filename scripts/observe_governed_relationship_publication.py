@@ -10,9 +10,9 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 ROUTES = {
-    "doctrine": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-relationship-transitions",
-    "schema": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-relationship-transition.schema.v0.1.json",
-    "example": "https://stegverse-labs.github.io/admissibility-wiki/governance/governed-relationship-transition.example.v0.1.json",
+    "doctrine": "https://admissibility.stegverse.org/governance/governed-relationship-transitions",
+    "schema": "https://admissibility.stegverse.org/governance/governed-relationship-transition.schema.v0.1.json",
+    "example": "https://admissibility.stegverse.org/governance/governed-relationship-transition.example.v0.1.json",
 }
 RECEIPT = Path("reports/governed-relationship-transition-publication-observation.json")
 
