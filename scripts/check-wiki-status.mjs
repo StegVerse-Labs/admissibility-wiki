@@ -102,8 +102,8 @@ if (status.repository !== 'StegVerse-Labs/admissibility-wiki') {
   fail('repository must be StegVerse-Labs/admissibility-wiki');
 }
 
-if (status.site !== 'https://stegverse-labs.github.io/admissibility-wiki/') {
-  fail('site must be the GitHub.io project URL');
+if (status.site !== 'https://admissibility.stegverse.org/') {
+  fail('site must be the branded Admissibility Wiki URL');
 }
 
 requireObject(status.activation_artifacts, 'activation_artifacts');
@@ -117,12 +117,12 @@ requireObject(status.known_handoff_files, 'known_handoff_files');
 requireArray(status.installed_governance_records, 'installed_governance_records');
 requireArray(status.next_safe_build_targets, 'next_safe_build_targets');
 
-if (status.github_io_configuration.custom_domain !== 'not_configured') {
-  fail('custom domain must remain not_configured');
+if (status.github_io_configuration.custom_domain !== 'admissibility.stegverse.org') {
+  fail('custom domain must be admissibility.stegverse.org');
 }
 
-if (status.github_io_configuration.baseUrl !== '/admissibility-wiki/') {
-  fail('baseUrl must remain /admissibility-wiki/');
+if (status.github_io_configuration.baseUrl !== '/') {
+  fail('baseUrl must be / for the branded custom domain');
 }
 
 for (const field of requiredBridge) {
