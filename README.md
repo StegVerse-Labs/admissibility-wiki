@@ -139,6 +139,20 @@ LLM-adapter free_tier_trust metadata
   -> wiki public chain documentation
 ```
 
+## ASRO comparison state
+
+The ASRO comparison lane preserves external-framework evidence without turning evidentiary participation into execution authority. As of the 2026-09-19 correspondence reconciliation, the four StegVerse-side preconditions are externally acknowledged closed. ASRO's role is recorded as evidentiary, and any future bounded ASRO-side exercise remains ASRO-side deferred pending ASRO's own definition and authorization rather than a StegVerse implementation prerequisite.
+
+The Contributor Protocol remains proposed and not bilaterally authorized pending identification of an actual legal counterparty and sufficient authority scope. Independent reviewer/issuer status remains unresolved, reciprocal execution is not authorized, and no bilateral Seam Comparison Record has been issued.
+
+Canonical continuation records:
+
+```text
+docs/external-frameworks/ASRO_REVIEW_DISPOSITION_MIRROR_HANDOFF.md
+docs/external-frameworks/asro-response-disposition-2026-09-19.md
+static/data/framework-evaluations/asro/contribution-ledger.jsonl
+```
+
 ## Reconstructable Singularity
 
 The Reconstructable Singularity research formalism defines a bounded continuity-reconstruction threshold: a selected set of observational frameworks is sufficient when its combined affirmative and exclusionary evidence leaves exactly one admissibility-consistent history.
