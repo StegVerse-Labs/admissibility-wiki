@@ -139,6 +139,21 @@ LLM-adapter free_tier_trust metadata
   -> wiki public chain documentation
 ```
 
+## Reconstructable Singularity
+
+The Reconstructable Singularity research formalism defines a bounded continuity-reconstruction threshold: a selected set of observational frameworks is sufficient when its combined affirmative and exclusionary evidence leaves exactly one admissibility-consistent history.
+
+Canonical public source and machine-checkable assets:
+
+```text
+docs/formalisms/reconstructable-singularity.md
+static/formalisms/reconstructable-singularity.v0.1.schema.json
+static/formalisms/reconstructable-singularity.v0.1.example.json
+scripts/check_reconstructable_singularity.py
+```
+
+This is a research formalism, not a claim of empirical proof, physical-history collapse, execution authority, or universal completeness. Its deterministic validator establishes contract/example consistency and minimum-set behavior only within the declared fixture.
+
 ## Temporal Governed Analysis
 
 Temporal Governed Analysis (TGA) is the explanatory projection layer for inspecting a recorded event against versioned rule, law, interpretation, or enforcement contexts while keeping observation, representation, evaluation, uncertainty, and authority distinct.
