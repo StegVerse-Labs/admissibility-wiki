@@ -41,6 +41,11 @@ REQUIRED_FILES = (
     "static/formalisms/reconstruction-singularity.v0.1.json",
     "static/formalisms/fixtures/reconstruction-singularity-cases.v0.1.json",
     "scripts/check_reconstruction_singularity.py",
+    "docs/formalisms/reconstructable-singularity.md",
+    "docs/formalisms/RECONSTRUCTABLE_SINGULARITY_MIRROR_HANDOFF.md",
+    "static/formalisms/reconstructable-singularity.v0.1.schema.json",
+    "static/formalisms/reconstructable-singularity.v0.1.example.json",
+    "scripts/check_reconstructable_singularity.py",
 )
 REQUIRED_REFERENCES = {
     "sidebars.js": (
@@ -51,6 +56,7 @@ REQUIRED_REFERENCES = {
         "governance/governed-llm-archive-handoff",
         "governance/governed-relationship-transitions",
         "formalisms/reconstruction-singularity",
+        "formalisms/reconstructable-singularity",
     ),
     "docusaurus.config.js": (
         "/governance/governed-llm-activation-map",
@@ -79,6 +85,11 @@ REQUIRED_REFERENCES = {
         "procedural memory != governable learning",
         "static/formalisms/reconstruction-singularity.v0.1.json",
         "scripts/check_reconstruction_singularity.py",
+    ),
+    "docs/formalisms/reconstructable-singularity.md": (
+        "minimum continuity-resolving perspective set",
+        "static/formalisms/reconstructable-singularity.v0.1.schema.json",
+        "scripts/check_reconstructable_singularity.py",
     ),
 }
 
@@ -126,6 +137,7 @@ def main() -> int:
         ("scripts/check_system_boundary_declaration.py", "system-boundary contract validation failed"),
         ("scripts/check_governed_relationship_transitions.py", "relationship-transition validation failed"),
         ("scripts/check_reconstruction_singularity.py", "reconstruction-singularity validation failed"),
+        ("scripts/check_reconstructable_singularity.py", "reconstructable-singularity validation failed"),
         (
             "scripts/check_governed_relationship_publication_candidate.py",
             "relationship-transition publication candidate validation failed",
@@ -153,7 +165,7 @@ def main() -> int:
             return return_code
 
     print(
-        "GOVERNED LLM PAGES: PASS - docs, contracts, fixtures, reconstruction singularity, "
+        "GOVERNED LLM PAGES: PASS - docs, contracts, fixtures, reconstruction and reconstructable singularity formalisms, "
         "publication candidates, observation schemas, observation surfaces, custody bindings, "
         "bounded Admissible Resolution ingestion, upstream continuity, and references present"
     )
