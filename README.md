@@ -10,6 +10,20 @@ This wiki exists to make the StegVerse governance vocabulary visible, stable, li
 
 It is not a substitute for Wikipedia and does not claim independent notability by itself. It is a public reference layer that can help researchers, developers, reviewers, journalists, and contributors understand the concepts accurately.
 
+## Evidence-Based Reputation
+
+The wiki now includes a bounded model for evidence-linked reputation signals that keeps raw evidence, governed classification, and public projection separate.
+
+Canonical model and initial bounded intake:
+
+```text
+docs/governance/evidence-based-reputation.md
+static/schemas/evidence-based-reputation.v0.1.schema.json
+data/evidence-based-reputation/linkedin-interaction-2026-09-19.json
+```
+
+The initial interaction record remains `PRIVATE_EVIDENCE_PENDING`. It records only the currently preserved screenshots and participant-reported context, leaves unsupported stages unresolved, and explicitly prohibits conversion of a recurring interaction pattern into claims of criminal intent, extortion, fraud, predatory intent, institutional endorsement, or common coordination without independent evidence.
+
 ## Governed Ecosystem Transition Framing
 
 The current public framing is shifting from external-framework comparison toward a governed ecosystem for inputs, proposed actions, desired outputs, and receipt-bound outputs.
