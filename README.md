@@ -145,6 +145,9 @@ The ASRO comparison lane preserves external-framework evidence without turning e
 
 The Contributor Protocol remains proposed and not bilaterally authorized pending identification of an actual legal counterparty and sufficient authority scope. Independent reviewer/issuer status remains unresolved, reciprocal execution is not authorized, and no bilateral Seam Comparison Record has been issued.
 
+
+Canonical retirement evidence for the bounded ASRO disposition goal is now recorded in StegVerse-Labs/.github Task Registry generation 116 via PR #2267 / merge `ea62499be02ed84ddeee3b2957129e3b19ecec19`. Goal `ADMISSIBILITY-ASRO-REVIEW-DISPOSITION-001` is terminal `CLOSED` with COSV `71000000100100`. This retires only the bounded ASRO goal; the shared issue #50 worker remains active for the issue's other coordinated tracks.
+
 Canonical continuation records:
 
 ```text

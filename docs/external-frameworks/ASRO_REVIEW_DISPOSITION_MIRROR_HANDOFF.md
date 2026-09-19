@@ -12,8 +12,8 @@ repository: StegVerse-Labs/admissibility-wiki
 branch: main
 coordinator: issue #50
 worker_owner: external-framework-worker-issue50
-state: ACTIVE_HOSTED_CANONICAL_VALIDATION_PENDING
-session_dependency: true
+state: RETIRED_BOUNDED_GOAL_CANONICAL_REGISTRY_CLOSED
+session_dependency: false
 collision_boundary: do not duplicate issue #50 ASRO ownership
 ```
 
@@ -281,20 +281,20 @@ release ready != released
 ## Archive posture
 
 ```text
-archive_state: NOT_READY
-archive_blocker: HOSTED_CANONICAL_VALIDATION_UNOBSERVED
+archive_state: RETIRED_BOUNDED_GOAL
+archive_blocker: NONE_FOR_BOUNDED_ASRO_GOAL
 four_requested_artifacts: 4_OF_4_INSTALLED
 immutable_input_binding: INSTALLED
 static_input_integrity: PASS_8_OF_8
 validation_evidence_bundle: INSTALLED_CANONICAL_CHAIN_BOUND
-hosted_exact_head_validation: UNOBSERVED
+hosted_exact_head_validation: PASS_RUN_35431151992_MAIN_080c575f6970ca129f961105f6618784b447e164
 release: NOT_AUTHORIZED
 deployment: NOT_PROVEN
 runtime: NOT_PROVEN
 activation: NOT_COMPLETE
 ```
 
-This session remains open. Durable transfer preserves responsibility but does not satisfy hosted validation, release, propagation, deployment, runtime proof, governed activation, or evidence requirements.
+This bounded ASRO goal is retired after hosted validation and canonical Task Registry closure. Repository-wide release, propagation, deployment, runtime proof, and governed activation remain separate issue #50 responsibilities and are not implied by this retirement.
 
 ## 2026-09-19 merge and coordination closeout
 
@@ -310,3 +310,31 @@ issue_50_track_2: CLOSED
 The September 19 ASRO disposition reconciliation is merged. Issue #50 Track 2 has been rewritten from stale historical repair tasks to evidence-backed closed state. The preserved unresolved ASRO boundaries are not implementation defects: the exact historical source path remains unresolved from the historical record; the Contributor Protocol remains proposed/not bilaterally authorized pending an identified legal counterparty and authority scope; independent reviewer/issuer remains unresolved; reciprocal execution remains not authorized; and no bilateral Seam Comparison Record has been issued or authorized.
 
 No additional StegVerse-side ASRO implementation work is required by the current external disposition. Any future bounded ASRO-side exercise must originate from ASRO definition and authorization rather than being inferred or manufactured by StegVerse.
+
+## 2026-09-19 canonical Task Registry retirement
+
+```text
+canonical_task_registry_repository: StegVerse-Labs/.github
+canonical_task_registry_generation: 116
+canonical_task_registry_pr: 2267
+canonical_task_registry_merge: ea62499be02ed84ddeee3b2957129e3b19ecec19
+canonical_coordination_state: CLOSED
+completion_claimed: true
+completion_validated: true
+cosv: 71000000100100
+cosv_lifecycle: COMPLETE
+archive_ready: true
+evidence_complete: true
+activated: false
+propagated: false
+execution_substrate_resolution: ALL_NOT_APPLICABLE
+issue_50_shared_worker_released: false
+issue_50_track_2: CLOSED
+bounded_goal_state: RETIRED
+```
+
+The canonical `.github` Task Registry now contains the exact goal identity as terminal `CLOSED`, with no blockers and no allowed next transitions. The associated COSV pointer is indexed and source-complete. The registration is non-authorizing and does not create runtime, deployment, publication, reciprocal-execution, custody, certification, reviewer, or bilateral authority.
+
+The shared `external-framework-worker-issue50` remains attached to open issue #50 for other coordinated tracks. Retiring this bounded ASRO goal does not release, retire, or transfer that shared worker.
+
+The surviving external ASRO boundaries remain unchanged: the exact historical source path is unresolved; the Contributor Protocol is proposed and not bilaterally authorized pending a legal counterparty and sufficient authority scope; independent reviewer/issuer is unresolved; reciprocal execution is not authorized; and no bilateral Seam Comparison Record has been issued or authorized.
