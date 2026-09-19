@@ -16,9 +16,9 @@ WORKFLOW = ROOT / ".github" / "workflows" / "validate-chain-continuation.yml"
 
 EXPECTED_STATE = "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLIC_ROUTE_VERIFICATION"
 EXPECTED_ROUTES = {
-    "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit",
-    "https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit.v0.1.json",
-    "https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json",
+    "https://admissibility.stegverse.org/formalisms/optimization-target-binding-at-commit",
+    "https://admissibility.stegverse.org/formalisms/optimization-target-binding-at-commit.v0.1.json",
+    "https://admissibility.stegverse.org/status/optimization-target-binding-publication-verification.json",
 }
 REQUIRED_EVIDENCE = {
     "canonical_workflow_pass",
