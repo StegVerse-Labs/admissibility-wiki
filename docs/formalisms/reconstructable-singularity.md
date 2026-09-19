@@ -328,3 +328,6 @@ scripts/check_reconstructable_singularity.py
 ```
 
 The validator establishes contract/example consistency and the declared singleton/minimality behavior within the fixture. It does not establish empirical proof, universal completeness, physical-history collapse, or execution authority.
+
+
+Canonical machine-checkable singleton expression: `|\mathcal C_A(I)|=1`.
