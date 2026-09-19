@@ -139,6 +139,6 @@ Integrated on branch `reconstructable-singularity-publication` from main `85eb60
 - added the formalism record, schema/example references, maturity wording, and non-claim to `docs/formalisms/index.md`;
 - bound document, handoff, schema, example, and `scripts/check_reconstructable_singularity.py` into the existing canonical `scripts/check_governed_llm_pages.py` validation path;
 - updated `README.md` with the public research-formalism boundary;
-- preserved the separate existing Site paper `The Reconstructive Singularity`; the Reconstructable Singularity is a distinct continuity-resolving formalism and must not silently overwrite or alias that earlier scholarly review.
+- Site publication direction was subsequently revised by the user: the older `The Reconstructive Singularity` Site paper is to be superseded as a separate current publication, with provenance retained and legacy route continuity redirected to the newer Reconstructable Singularity paper.
 
 Validation remains source/CI evidence only. Public route observation and Site mirror verification remain separate evidence gates.
