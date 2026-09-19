@@ -1,6 +1,6 @@
 # Reconstructable Singularity Mirror Handoff
 
-Status: SOURCE_VALIDATED_AND_MERGED_SITE_INDEX_MERGED_PUBLIC_OBSERVATION_PENDING  
+Status: COMPLETE_SOURCE_VALIDATED_PUBLICLY_OBSERVED_SITE_INDEX_RELEASED_CENTRAL_REGISTRY_REGISTERED  
 Repository: `StegVerse-Labs/admissibility-wiki`  
 Branch: `main`  
 Task ID: `ADMISSIBILITY-RECONSTRUCTABLE-SINGULARITY-001`  
@@ -172,3 +172,38 @@ Site `Papers.html` now uses a lightweight Formalisms directory after the existin
 Public HTTP observation immediately after the Site merge still returned the pre-merge Site deployment, so **public-route deployment verification remains pending**. No empirical proof, runtime evidence, custody state, admissibility decision, release authority, or COSV is inferred from source/CI success.
 
 Central coordination note: as of canonical Task Registry generation 84, `ADMISSIBILITY-RECONSTRUCTABLE-SINGULARITY-001` is still not present in the central Task Registry. That is a separate coordination-registration defect; no substitute task ID or COSV is invented here.
+
+
+## 2026-09-19 public completion and canonical registration
+
+The final observation and coordination gates are now satisfied.
+
+Public observations:
+
+- Site/Papers publicly exposes the Formalisms directory after the existing papers and includes Reconstructable Singularity as a direct Admissibility Wiki link.
+- The former Site Reconstructive Singularity route publicly resolves to a compatibility notice linking to the canonical wiki formalism.
+- The canonical wiki route is publicly observable as **Reconstructable Singularity and the Minimum Continuity-Resolving Perspective Set**, status `research formalism v0.1`.
+
+Canonical coordination:
+
+```text
+Task ID: ADMISSIBILITY-RECONSTRUCTABLE-SINGULARITY-001
+Task Registry generation: 98
+registration PR: StegVerse-Labs/.github#2232
+registration merge: c94c0e08d428244407b36a4380afe2a52018352b
+COSV: NOT ESTABLISHED / NOT INVENTED
+runtime requirements: NONE
+```
+
+The previous generation-84 missing-registration note and public-observation-pending note are superseded.
+
+Final publication model:
+
+```text
+Admissibility Wiki = sole canonical current formalism publication
+Site/Papers = lightweight formalism directory/link projection
+legacy Reconstructive URL = compatibility-only route
+duplicate Site paper = none
+```
+
+This completion records publication/source coordination only. It does not establish empirical proof, universal completeness, physical-history collapse/access, execution authority, custody, admissibility authority, certification, or release authority over any runtime transition.
