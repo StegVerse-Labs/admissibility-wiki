@@ -9,8 +9,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BUNDLE = ROOT / "static" / "data" / "framework-evaluations" / "asro" / "exact-head-validation-inputs-2026-08-26.json"
-PREDECESSOR_BUNDLE = ROOT / "static" / "data" / "framework-evaluations" / "asro" / "exact-head-validation-inputs-2026-08-22.json"
+BUNDLE = ROOT / "static" / "data" / "framework-evaluations" / "asro" / "exact-head-validation-inputs-2026-09-19.json"
+PREDECESSOR_BUNDLE = ROOT / "static" / "data" / "framework-evaluations" / "asro" / "exact-head-validation-inputs-2026-08-26.json"
 TRIGGER = ROOT / "receipts" / "asro-exact-head-validation-trigger-2026-08-22.json"
 
 
@@ -32,21 +32,21 @@ def main() -> int:
         print(f"ASRO EXACT-HEAD INPUT BUNDLE: FAIL - invalid JSON: {exc}")
         return 1
 
-    if bundle.get("schema_version") != "1.1.0":
+    if bundle.get("schema_version") != "1.2.0":
         errors.append("schema_version")
     if bundle.get("artifact_type") != "asro_exact_head_validation_inputs":
         errors.append("artifact_type")
     if bundle.get("goal_id") != "ADMISSIBILITY-ASRO-REVIEW-DISPOSITION-001":
         errors.append("goal_id")
-    if bundle.get("source_head") != "a4af9bc3705ca337a0066fa777537576c192358c":
+    if bundle.get("source_head") != "bafb17ede079030260f6920f57a0bbfde2573160":
         errors.append("source_head")
-    predecessor_rel = "static/data/framework-evaluations/asro/exact-head-validation-inputs-2026-08-22.json"
+    predecessor_rel = "static/data/framework-evaluations/asro/exact-head-validation-inputs-2026-08-26.json"
     if bundle.get("supersedes") != predecessor_rel:
         errors.append("supersedes")
     if not PREDECESSOR_BUNDLE.exists():
         errors.append("predecessor_bundle_missing")
     reason = bundle.get("supersession_reason")
-    if not isinstance(reason, str) or "predecessor bundle remains immutable historical evidence" not in reason.lower():
+    if not isinstance(reason, str) or "predecessor bundles remain immutable historical evidence" not in reason.lower():
         errors.append("supersession_reason")
 
     inputs = bundle.get("inputs") or {}
@@ -88,7 +88,9 @@ def main() -> int:
         "exact_historical_source_path": "UNRESOLVED",
         "independent_reviewer_issuer": "UNRESOLVED",
         "external_asro_native_execution": "NOT_TESTED",
-        "reciprocal_execution": "DEFERRED",
+        "future_bounded_asro_exercise": "ASRO_SIDE_DEFERRED_PENDING_ASRO_DEFINITION_AND_AUTHORIZATION",
+        "contributor_protocol_counterparty": "UNRESOLVED_PENDING_LEGAL_COUNTERPARTY_AND_AUTHORITY_SCOPE",
+        "reciprocal_execution": "NOT_AUTHORIZED",
         "bilateral_seam_comparison_record": "NOT_ISSUED_OR_AUTHORIZED",
         "repository_release": "NOT_AUTHORIZED",
         "runtime": "NOT_PROVEN",
@@ -127,7 +129,7 @@ def main() -> int:
         return 1
 
     print("ASRO EXACT-HEAD INPUT BUNDLE: PASS")
-    print("Pinned successor artifact bytes, predecessor preservation, governance-validator identity, trigger binding, unresolved evidence states, and non-authority boundaries are preserved without moving-main substitution.")
+    print("Pinned September 19 successor artifact bytes, predecessor preservation, governance-validator identity, trigger binding, unresolved evidence states, and non-authority boundaries are preserved without moving-main substitution.")
     return 0
 
 
