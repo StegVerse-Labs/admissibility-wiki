@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stegverse.org/schemas/evidence-based-reputation.v0.1.schema.json",
+  "title": "StegVerse Evidence-Based Reputation Record",
+  "type": "object",
+  "required": [
+    "schema",
+    "model_version",
+    "record_id",
+    "source_context",
+    "evidence_items",
+    "state_evaluations",
+    "public_projection"
+  ],
+  "properties": {
+    "schema": {"const": "stegverse.evidence_based_reputation/v0.1"},
+    "model_version": {"const": "0.1"},
+    "record_id": {"type": "string", "minLength": 1},
+    "source_context": {
+      "type": "object",
+      "required": ["platform", "date", "subject_label", "publication_state"],
+      "properties": {
+        "platform": {"type": "string"},
+        "date": {"type": "string"},
+        "subject_label": {"type": "string"},
+        "publication_state": {
+          "enum": ["PRIVATE_EVIDENCE_PENDING", "REDACTED_PUBLIC", "PUBLIC_AUTHORIZED"]
+        }
+      },
+      "additionalProperties": true
+    },
+    "evidence_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evidence_id", "evidence_class", "summary", "preservation_state"],
+        "properties": {
+          "evidence_id": {"type": "string"},
+          "evidence_class": {
+            "enum": ["OBSERVED_FACT", "PARTICIPANT_REPORT", "GOVERNED_INFERENCE", "DISPUTED", "UNRESOLVED"]
+          },
+          "summary": {"type": "string"},
+          "preservation_state": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "state_evaluations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["state", "status", "evidence_refs"],
+        "properties": {
+          "state": {
+            "enum": [
+              "CONTACT",
+              "CREDIBILITY_ESTABLISHMENT",
+              "COLLABORATIVE_EXCHANGE",
+              "CONTRIBUTION_ACCUMULATION",
+              "ASYMMETRY_INTRODUCED",
+              "VALUE_OR_OWNERSHIP_REFRAMING",
+              "COMPENSATION_REQUEST",
+              "POST_REJECTION_RESPONSE"
+            ]
+          },
+          "status": {"enum": ["SUPPORTED", "PARTIAL", "NOT_ESTABLISHED", "DISPUTED"]},
+          "evidence_refs": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": true
+      }
+    },
+    "public_projection": {
+      "type": "object",
+      "required": ["authorized", "bounded_summary", "prohibited_inferences"],
+      "properties": {
+        "authorized": {"type": "boolean"},
+        "bounded_summary": {"type": "string"},
+        "prohibited_inferences": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
