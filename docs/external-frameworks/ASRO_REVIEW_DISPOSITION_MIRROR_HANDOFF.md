@@ -87,11 +87,16 @@ immutable_input_bundle_predecessor:
   source_head: 99fde15049f4c86d7056d9501d6c52733b5e5d0e
   state: PRESERVED_IMMUTABLE_HISTORICAL_EVIDENCE
 
-immutable_input_bundle_current:
+immutable_input_bundle_predecessor_2026_08_26:
   path: static/data/framework-evaluations/asro/exact-head-validation-inputs-2026-08-26.json
   source_head: a4af9bc3705ca337a0066fa777537576c192358c
+  state: PRESERVED_IMMUTABLE_HISTORICAL_EVIDENCE
+
+immutable_input_bundle_current:
+  path: static/data/framework-evaluations/asro/exact-head-validation-inputs-2026-09-19.json
+  source_head: bafb17ede079030260f6920f57a0bbfde2573160
   state: INSTALLED_EXPLICIT_SUCCESSOR
-  supersession_reason: deliberate Companion historical-pin clarification; exact historical source path remains unresolved
+  supersession_reason: append-only September 19 correspondence reconciliation changed the contribution-ledger blob; prior bundles remain immutable
   backward_substitution: PROHIBITED
 
 immutable_input_validator:
@@ -206,6 +211,20 @@ The predecessor bundle was **not rewritten**. Instead:
 ```
 
 This is an explicit correction/supersession transition, not moving-main substitution. `PASS_STATIC_BLOB_CONSISTENCY` for the historical predecessor remains historical evidence; the successor must obtain its own hosted canonical PASS before ASRO validation is promoted.
+
+## 2026-09-19 immutable-bundle successor repair
+
+Canonical PR validation run `35426233893` correctly failed closed after the September 19 append-only contribution-ledger update because the 2026-08-26 immutable input bundle still pinned the prior ledger blob `880bbc7c...` while the updated ledger blob is `4431f359...`.
+
+The predecessor bundle was not rewritten. A new explicit successor was added at:
+
+```text
+static/data/framework-evaluations/asro/exact-head-validation-inputs-2026-09-19.json
+source_head: bafb17ede079030260f6920f57a0bbfde2573160
+contribution_ledger_blob: 4431f3597d8bf62f612ba2d655bc175c31a3d34a
+```
+
+The exact-input validator now targets that successor and preserves both earlier bundles as historical evidence. This repair changes no ASRO execution, legal-entity, bilateral, custody, certification, or release authority.
 
 ## Remaining boundaries
 
