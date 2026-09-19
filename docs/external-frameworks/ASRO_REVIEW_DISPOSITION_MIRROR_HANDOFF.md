@@ -32,6 +32,26 @@ reciprocal_execution: DEFERRED
 future_bilateral_seam_comparison_record: NOT_ISSUED_OR_AUTHORIZED
 ```
 
+## 2026-09-19 external clarification
+
+Direct correspondence from James Aull / ASRO, preserved additively at `docs/external-frameworks/asro-response-disposition-2026-09-19.md`, changes the interpretation of the remaining ASRO lane without rewriting the earlier immutable comparison state.
+
+```text
+stegverse_side_preconditions: CLOSED_BY_EXTERNAL_ACKNOWLEDGMENT
+asro_role: EVIDENTIARY_NOT_TRANSITION_EXECUTION_AUTHORITY
+future_bounded_asro_exercise: ASRO_SIDE_DEFERRED_PENDING_ASRO_DEFINITION_AND_AUTHORIZATION
+asro_native_object_manifest_transport_scope_return_controls: NOT_PROVIDED
+contributor_protocol: PROPOSED_NOT_BILATERALLY_AUTHORIZED
+contributor_protocol_counterparty: UNRESOLVED_PENDING_LEGAL_COUNTERPARTY_AND_AUTHORITY_SCOPE
+independent_reviewer_issuer: UNRESOLVED
+reciprocal_execution: NOT_AUTHORIZED
+future_bilateral_seam_comparison_record: NOT_ISSUED_OR_AUTHORIZED
+```
+
+The four StegVerse-side preconditions are therefore no longer an open implementation target. A future bounded ASRO-side exercise, if any, is not a StegVerse prerequisite: ASRO must first define the operation, select an appropriate released surface, determine what information may leave the ASRO side, and provide the authorized object and controls together. The repository must not manufacture or infer those parameters.
+
+The Contributor Protocol remains proposed and not bilaterally authorized because the current accountable-party declaration identifies StegVerse Labs as a project and technical lab and does not assert separate legal-entity status. Technical attribution/provenance remains distinct from ownership, reuse, contribution, licensing, or related contractual rights. Bilateral authorization must wait for an identified legal counterparty and sufficient authority scope.
+
 ## Four requested artifacts
 
 ```text
@@ -46,7 +66,7 @@ future_bilateral_seam_comparison_record: NOT_ISSUED_OR_AUTHORIZED
    backward_substitution: PROHIBITED
 
 3. static/data/framework-evaluations/asro/contribution-ledger.jsonl
-   state: INSTALLED_APPEND_ONLY_THROUGH_2026_08_18
+   state: INSTALLED_APPEND_ONLY_THROUGH_2026_09_19
    origin_date: 2026-05-06
 
 4. static/data/framework-evaluations/asro/stegverse-accountable-party-declaration.json
@@ -193,8 +213,10 @@ This is an explicit correction/supersession transition, not moving-main substitu
 historical_2026_07_23_repository_commit: PINNED
 historical_2026_07_23_exact_source_path: UNRESOLVED_UNTIL_DIRECT_HISTORICAL_EVIDENCE
 independent_reviewer_issuer: UNRESOLVED_UNTIL_ACCOUNTABLE_DESIGNATION
-external_asro_native_execution: NOT_TESTED
-reciprocal_execution: DEFERRED
+external_asro_native_execution: NOT_TESTED; NOT_A_STEGVERSE_IMPLEMENTATION_PREREQUISITE
+future_bounded_asro_exercise: ASRO_SIDE_DEFERRED_PENDING_ASRO_DEFINITION_AND_AUTHORIZATION
+contributor_protocol_counterparty: UNRESOLVED_PENDING_LEGAL_COUNTERPARTY_AND_AUTHORITY_SCOPE
+reciprocal_execution: NOT_AUTHORIZED
 bilateral_seam_comparison_record: NOT_ISSUED_OR_AUTHORIZED
 repository_release: NOT_AUTHORIZED
 repository_deployment: NOT_PROVEN
@@ -213,8 +235,8 @@ repository_activation: NOT_COMPLETE
 6. require repository-wide canonical PASS before any tag/release claim;
 7. only after an authorized exact release set, inspect destination handoffs before propagation to StegVerse-Labs/Site, GCAT-BCAT-Engine/Publisher, and StegVerse-002/stegguardian-wiki;
 8. require deployment/runtime/activation evidence where the release contract requires it;
-9. keep reciprocal ASRO-native execution deferred until a genuine native object and mutually approved controls exist;
-10. keep a bilateral Seam Comparison Record unissued until exact-language bilateral authorization exists.
+9. do not treat ASRO-native execution as a StegVerse implementation prerequisite; preserve any future bounded ASRO exercise as ASRO-side deferred until ASRO defines and authorizes the exact operation, released surface, object, information boundary, and controls;
+10. keep the Contributor Protocol proposed and not bilaterally authorized until an actual legal counterparty and sufficient authority scope are identified; keep a bilateral Seam Comparison Record unissued until exact-language bilateral authorization exists.
 ```
 
 ## Non-equivalence rules
@@ -230,6 +252,8 @@ handoff != completion
 assigned != completed
 historical repository pin != exact historical source path
 synthetic fixture != external ASRO-native execution
+comparison vocabulary != ASRO transition-execution authority
+technical attribution/provenance != contractual rights or legal-counterparty authority
 external correspondence != bilateral publication authority
 moving main != exact aggregate release set
 release ready != released
