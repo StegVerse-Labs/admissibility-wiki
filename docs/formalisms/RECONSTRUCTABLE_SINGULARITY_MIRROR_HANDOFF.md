@@ -1,6 +1,6 @@
 # Reconstructable Singularity Mirror Handoff
 
-Status: SOURCE_INTEGRATED_PENDING_CANONICAL_WORKFLOW_OBSERVATION  
+Status: SOURCE_VALIDATED_AND_MERGED_SITE_INDEX_MERGED_PUBLIC_OBSERVATION_PENDING  
 Repository: `StegVerse-Labs/admissibility-wiki`  
 Branch: `main`  
 Task ID: `ADMISSIBILITY-RECONSTRUCTABLE-SINGULARITY-001`  
@@ -142,3 +142,33 @@ Integrated on branch `reconstructable-singularity-publication` from main `85eb60
 - Site publication direction was subsequently revised by the user: the older `The Reconstructive Singularity` Site paper is to be superseded as a separate current publication, with provenance retained and legacy route continuity redirected to the newer Reconstructable Singularity paper.
 
 Validation remains source/CI evidence only. Public route observation and Site mirror verification remain separate evidence gates.
+
+
+## 2026-09-19 final source/Site reconciliation
+
+The earlier "Exact remaining tasks" and cross-repository Site-blocking language above are superseded by this section.
+
+Canonical source integration completed through PR #143:
+
+```text
+validated exact head: e76a7dd9b846b451a34b6632c9dfa65a87f5fc1a
+canonical workflow run: 35417681155 / run #4900 = SUCCESS
+merge commit: fcd376ee1d591c65e0f28b15784aab8f49dfb3a4
+```
+
+The Admissibility Wiki is the sole current canonical publication surface for Reconstructable Singularity. Site does not maintain a duplicate paper.
+
+Site propagation completed through the existing Site PR #1410:
+
+```text
+validated exact head: ed35f9092c0ab79071708f7a83d80203987e00b9
+Site Bootstrap: 35430643033 = SUCCESS
+Site Handoff Orchestrator: 35430643054 = SUCCESS
+Site merge commit: b19b41bf1b1860b7f5f5c02aceb65760c36eae6f
+```
+
+Site `Papers.html` now uses a lightweight Formalisms directory after the existing papers, with each formalism represented by a one-sentence description and a direct Admissibility Wiki link. Reconstructable Singularity is represented there only as a canonical wiki link. The former Reconstructive Singularity Site URL is compatibility-only and redirects to the canonical wiki page.
+
+Public HTTP observation immediately after the Site merge still returned the pre-merge Site deployment, so **public-route deployment verification remains pending**. No empirical proof, runtime evidence, custody state, admissibility decision, release authority, or COSV is inferred from source/CI success.
+
+Central coordination note: as of canonical Task Registry generation 84, `ADMISSIBILITY-RECONSTRUCTABLE-SINGULARITY-001` is still not present in the central Task Registry. That is a separate coordination-registration defect; no substitute task ID or COSV is invented here.
