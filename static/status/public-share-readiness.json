@@ -2,7 +2,7 @@
   "schema": "admissibility_wiki_public_share_readiness.v1",
   "generated_at": "2026-06-19T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "target_url": "https://stegverse-labs.github.io/admissibility-wiki/",
+  "target_url": "https://admissibility.stegverse.org/",
   "share_status": "conditionally_ready",
   "recommended_share_mode": "invite_feedback_on_wiki_structure_and_terms",
   "not_recommended_as": "fully_active_submission_system",

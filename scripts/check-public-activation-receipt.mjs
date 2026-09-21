@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 
 const RECEIPT_PATH = 'static/status/public-activation-receipt.example.json';
-const EXPECTED_TARGET = 'https://stegverse-labs.github.io/admissibility-wiki/';
+const EXPECTED_TARGET = 'https://admissibility.stegverse.org/';
 
 const requiredTopLevel = [
   'schema',

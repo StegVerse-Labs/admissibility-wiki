@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
-BASE = "https://stegverse-labs.github.io/admissibility-wiki"
+BASE = "https://admissibility.stegverse.org"
 ROUTES = {
     "ta14_doctrine": f"{BASE}/external-frameworks/ta-14",
     "ta14_registry_assessment": f"{BASE}/external-frameworks/ta-14-registry-public-record-assessment",

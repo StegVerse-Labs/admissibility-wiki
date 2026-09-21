@@ -34,8 +34,8 @@
     "receipt_artifact": "public-activation-receipt",
     "closure_key": "activation_closures.verification_execution_authority",
     "routes": [
-      "https://stegverse-labs.github.io/admissibility-wiki/governance/verification-vs-execution-authority",
-      "https://stegverse-labs.github.io/admissibility-wiki/status/verification-execution-authority-status.json"
+      "https://admissibility.stegverse.org/governance/verification-vs-execution-authority",
+      "https://admissibility.stegverse.org/status/verification-execution-authority-status.json"
     ],
     "failure_posture": "FAIL_CLOSED",
     "manual_tasks_required": [],

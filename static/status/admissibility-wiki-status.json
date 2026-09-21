@@ -2,10 +2,10 @@
   "schema": "admissibility_wiki_status.v1",
   "generated_at": "2026-07-03T00:00:00Z",
   "repository": "StegVerse-Labs/admissibility-wiki",
-  "site": "https://stegverse-labs.github.io/admissibility-wiki/",
+  "site": "https://admissibility.stegverse.org/",
   "status": "build_in_progress",
   "assessment_goal": "Continue build work until completion or ecosystem-managed continuation is supported by handoff, governance, validation, and next-task structure.",
-  "activation_target": "Publish and validate https://stegverse-labs.github.io/admissibility-wiki/ as the GitHub Pages public vocabulary, terminology convergence, proposal-review, proof-path, and governed LLM public documentation site.",
+  "activation_target": "Publish and validate https://admissibility.stegverse.org/ as the branded public vocabulary, terminology convergence, proposal-review, proof-path, and governed LLM documentation site.",
   "activation_artifacts": {
     "activation_checklist": "static/status/admissibility-wiki-activation.json",
     "activation_runbook": "docs/activation/github-pages-cloudflare.md",
@@ -13,8 +13,8 @@
   },
   "activation_checks": {
     "github_pages_actions_source": "pending_external_verification",
-    "custom_domain": "not_configured",
-    "cname_file": "removed_for_github_io_project_url",
+    "custom_domain": "configured_in_source_pending_account_binding",
+    "cname_file": "not_authoritative_for_actions_pages",
     "https_enforced": "pending_external_verification",
     "public_site_loads": "pending_external_verification",
     "ontology_json_reachable": "pending_external_verification",
@@ -23,11 +23,11 @@
     "governed_llm_full_route_set_reachable": "pending_external_verification"
   },
   "github_io_configuration": {
-    "url": "https://stegverse-labs.github.io",
-    "baseUrl": "/admissibility-wiki/",
+    "url": "https://admissibility.stegverse.org",
+    "baseUrl": "/",
     "pages_source_required": "GitHub Actions",
-    "custom_domain": "not_configured",
-    "cname_file": "removed"
+    "custom_domain": "admissibility.stegverse.org",
+    "cname_file": "not_authoritative_for_actions_pages"
   },
   "proposal_intake": {
     "governance_page": "docs/governance/proposal-intake-interface.md",

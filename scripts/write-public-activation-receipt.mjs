@@ -39,7 +39,7 @@ try {
     receipt_id: `public-activation.workflow.${process.env.GITHUB_RUN_ID || 'unknown'}.${process.env.GITHUB_RUN_ATTEMPT || '0'}`,
     created_at: new Date().toISOString(),
     repository: 'StegVerse-Labs/admissibility-wiki',
-    activation_target: 'https://stegverse-labs.github.io/admissibility-wiki/',
+    activation_target: 'https://admissibility.stegverse.org/',
     activation_state: 'SOURCE_BLOCKED_FAIL_CLOSED',
     commit: process.env.GITHUB_SHA || null,
     run_id: process.env.GITHUB_RUN_ID || null,
@@ -78,9 +78,9 @@ if (fs.existsSync(quantumReceiptPath)) {
   quantumReceipt.receipt_preserved_despite_source_block = quantumReceipt.all_required_public_routes_verified !== true;
 } else if (skipNetwork) {
   const urls = {
-    quantum_security_governance_page: 'https://stegverse-labs.github.io/admissibility-wiki/governance/quantum-resilient-execution-security',
-    quantum_security_research_paper: 'https://stegverse-labs.github.io/admissibility-wiki/research/stegverse-complete-security-paper',
-    quantum_security_carousel_source: 'https://stegverse-labs.github.io/admissibility-wiki/social/stegverse-quantum-security-carousel'
+    quantum_security_governance_page: 'https://admissibility.stegverse.org/governance/quantum-resilient-execution-security',
+    quantum_security_research_paper: 'https://admissibility.stegverse.org/research/stegverse-complete-security-paper',
+    quantum_security_carousel_source: 'https://admissibility.stegverse.org/social/stegverse-quantum-security-carousel'
   };
   quantumReceipt = {
     schema: 'quantum_security_public_route_observation.v1', goal_id: 'stegverse-quantum-resilient-complete-security', state: 'SIMULATED_VALIDATOR_PASS', observed_at: new Date().toISOString(), repository: 'StegVerse-Labs/admissibility-wiki', commit: process.env.GITHUB_SHA || null, run_id: process.env.GITHUB_RUN_ID || null, run_attempt: process.env.GITHUB_RUN_ATTEMPT || null,

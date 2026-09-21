@@ -7,7 +7,7 @@ title: GitHub Pages Activation
 This runbook describes automated activation of the Admissibility Wiki at the GitHub.io project URL.
 
 ```text
-https://stegverse-labs.github.io/admissibility-wiki/
+https://admissibility.stegverse.org/
 ```
 
 ## Authority and ownership boundary
@@ -31,7 +31,7 @@ Activation is complete only when observed workflow evidence establishes that:
 - the canonical validation job passed;
 - the Pages build completed from the validated commit;
 - the Pages deployment completed successfully;
-- the public root loads at `https://stegverse-labs.github.io/admissibility-wiki/`;
+- the public root loads at `https://admissibility.stegverse.org/`;
 - the Docusaurus landing page loads without a 404;
 - internal wiki routes load under `/admissibility-wiki/`;
 - the ontology JSON is reachable under the GitHub.io project URL;
@@ -108,12 +108,12 @@ Paths beginning with a leading dot are shown normally here because this page is 
 After a successful canonical deployment and public verification, these paths are expected to be reachable:
 
 ```text
-https://stegverse-labs.github.io/admissibility-wiki/
-https://stegverse-labs.github.io/admissibility-wiki/glossary/admissibility
-https://stegverse-labs.github.io/admissibility-wiki/governance/proposal-lifecycle
-https://stegverse-labs.github.io/admissibility-wiki/proof-path/minimal-public-proof-path
-https://stegverse-labs.github.io/admissibility-wiki/ontology/admissibility-vocabulary.v0.1.json
-https://stegverse-labs.github.io/admissibility-wiki/status/admissibility-wiki-status.json
+https://admissibility.stegverse.org/
+https://admissibility.stegverse.org/glossary/admissibility
+https://admissibility.stegverse.org/governance/proposal-lifecycle
+https://admissibility.stegverse.org/proof-path/minimal-public-proof-path
+https://admissibility.stegverse.org/ontology/admissibility-vocabulary.v0.1.json
+https://admissibility.stegverse.org/status/admissibility-wiki-status.json
 ```
 
 Route reachability proves only that a bounded public surface responded. It does not establish source authority, proof authority, current admissibility, custody, or execution authority.

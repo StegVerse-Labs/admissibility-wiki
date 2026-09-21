@@ -4,7 +4,7 @@
   "status": "ASRO_PUBLIC_VERIFICATION_WIRED",
   "framework_id": "asro",
   "page": "docs/external-frameworks/asro.md",
-  "public_url": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/asro",
+  "public_url": "https://admissibility.stegverse.org/external-frameworks/asro",
   "manifest": "docs/external-frameworks/asro.json",
   "commitment_candidate_fixture": "docs/external-frameworks/asro-commitment-candidate.json",
   "validator": "scripts/check_asro_commitment_candidate.py",

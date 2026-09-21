@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 
 const CHECKLIST_PATH = 'static/status/admissibility-wiki-activation.json';
-const EXPECTED_URL = 'https://stegverse-labs.github.io/admissibility-wiki/';
+const EXPECTED_URL = 'https://admissibility.stegverse.org/';
 const CANONICAL_WORKFLOW = '.github/workflows/validate-chain-continuation.yml';
 
 const requiredTopLevel = [

@@ -3,7 +3,7 @@
   "status_type": "cross_wiki_metadata_graph_status",
   "repo": "StegVerse-Labs/admissibility-wiki",
   "role": "admissibility_and_standing_source",
-  "public_url": "https://stegverse-labs.github.io/admissibility-wiki/",
+  "public_url": "https://admissibility.stegverse.org/",
   "source_seed": {
     "repo": "StegVerse-002/stegguardian-wiki",
     "path": "data/cross-wiki-metadata-graph.json",
@@ -19,7 +19,7 @@
     {
       "id": "admissibility-wiki",
       "repo": "StegVerse-Labs/admissibility-wiki",
-      "public_url": "https://stegverse-labs.github.io/admissibility-wiki/",
+      "public_url": "https://admissibility.stegverse.org/",
       "role": "admissibility_and_standing_source"
     },
     {

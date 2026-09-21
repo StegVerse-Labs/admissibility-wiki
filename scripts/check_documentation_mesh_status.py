@@ -13,7 +13,7 @@ WRITER = ROOT / "scripts" / "write-public-activation-receipt.mjs"
 WRITER_CHECK = ROOT / "scripts" / "check-public-activation-receipt-writer.mjs"
 EXPECTED_ENDPOINTS = {
     "stegverse-site": ("StegVerse-Labs/Site", "https://stegverse-labs.github.io/Site/"),
-    "admissibility-wiki": ("StegVerse-Labs/admissibility-wiki", "https://stegverse-labs.github.io/admissibility-wiki/"),
+    "admissibility-wiki": ("StegVerse-Labs/admissibility-wiki", "https://admissibility.stegverse.org/"),
     "stegguardian-wiki": ("StegVerse-002/stegguardian-wiki", "https://stegverse-002.github.io/stegguardian-wiki/"),
     "stegtalk-wiki": ("StegVerse-Labs/stegtalk-wiki", "https://stegverse-labs.github.io/stegtalk-wiki/"),
 }
@@ -58,7 +58,7 @@ def main() -> int:
         failures.append("health record type mismatch")
     if health.get("repo") != "StegVerse-Labs/admissibility-wiki":
         failures.append("health repo mismatch")
-    if health.get("origin_public_url") != "https://stegverse-labs.github.io/admissibility-wiki/":
+    if health.get("origin_public_url") != "https://admissibility.stegverse.org/":
         failures.append("health origin url mismatch")
     if health.get("peer_registry") != "status/ecosystem-documentation-endpoints.json":
         failures.append("health peer registry mismatch")

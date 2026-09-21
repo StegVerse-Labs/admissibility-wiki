@@ -132,9 +132,9 @@ def main() -> None:
     require(len(routes) == 3, "publication template must contain three public routes")
     urls = {item.get("url") for item in routes}
     required_urls = {
-        "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/arquivonulo",
-        "https://stegverse-labs.github.io/admissibility-wiki/data/framework-evaluations/arquivonulo.json",
-        "https://stegverse-labs.github.io/admissibility-wiki/status/arquivonulo-execution-boundary-status.json",
+        "https://admissibility.stegverse.org/external-frameworks/arquivonulo",
+        "https://admissibility.stegverse.org/data/framework-evaluations/arquivonulo.json",
+        "https://admissibility.stegverse.org/status/arquivonulo-execution-boundary-status.json",
     }
     require(required_urls == urls, "publication template routes are incomplete or unexpected")
     closure = publication.get("closure", {})

@@ -16,7 +16,7 @@
     {
       "kind": "doctrine_page",
       "route_key": "conceptual_inheritance_doctrine",
-      "url": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/conceptual-inheritance-provenance",
+      "url": "https://admissibility.stegverse.org/formalisms/conceptual-inheritance-provenance",
       "state": "PENDING",
       "http_status": null,
       "content_marker_verified": false,
@@ -25,7 +25,7 @@
     {
       "kind": "status_artifact",
       "route_key": "conceptual_inheritance_status",
-      "url": "https://stegverse-labs.github.io/admissibility-wiki/status/conceptual-inheritance-provenance-status.json",
+      "url": "https://admissibility.stegverse.org/status/conceptual-inheritance-provenance-status.json",
       "state": "PENDING",
       "http_status": null,
       "content_marker_verified": false,
@@ -34,7 +34,7 @@
     {
       "kind": "publication_status_artifact",
       "route_key": "conceptual_inheritance_publication_status",
-      "url": "https://stegverse-labs.github.io/admissibility-wiki/status/conceptual-inheritance-publication-verification.json",
+      "url": "https://admissibility.stegverse.org/status/conceptual-inheritance-publication-verification.json",
       "state": "PENDING",
       "http_status": null,
       "content_marker_verified": false,

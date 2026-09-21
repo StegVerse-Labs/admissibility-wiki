@@ -17,7 +17,7 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-BASE_URL = "https://stegverse-labs.github.io/admissibility-wiki"
+BASE_URL = "https://admissibility.stegverse.org"
 ROUTES = {
     "governance_page": f"{BASE_URL}/governance/quantum-resilient-execution-security",
     "research_paper": f"{BASE_URL}/research/stegverse-complete-security-paper",
