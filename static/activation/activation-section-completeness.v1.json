@@ -6,15 +6,15 @@
   "canonical_workflow": ".github/workflows/validate-chain-continuation.yml",
   "configuration": "docusaurus.config.js",
   "validator": "scripts/check_activation_section.py",
-  "public_root": "https://stegverse-labs.github.io/admissibility-wiki/",
+  "public_root": "https://admissibility.stegverse.org/",
   "counts": {
     "activation_guides": 1,
     "canonical_active_workflows": 1,
-    "custom_domains": 0,
+    "custom_domains": 1,
     "manual_user_tasks": 0
   },
   "closed_dimensions": [
-    "GitHub.io project URL and Docusaurus base path are explicit",
+    "branded custom domain and Docusaurus root base path are explicit",
     "the single canonical workflow owns validation build deployment and public verification",
     "the guide no longer references a separate deploy workflow",
     "the guide no longer assigns manual deployment or rerun tasks to the user",
@@ -25,8 +25,10 @@
   ],
   "external_gates": [
     "observed canonical validation pass for the current commit",
+    "observed GitHub Pages custom-domain binding for admissibility.stegverse.org",
+    "observed DNS CNAME admissibility -> stegverse-labs.github.io",
     "observed Pages build and deploy success",
-    "observed public route verification",
+    "observed HTTPS public route verification",
     "observed public activation receipt",
     "authorized release or tag decision"
   ],
@@ -38,5 +40,5 @@
     "publication_receipt_is_execution_authority": false
   },
   "workflow_observation": "PENDING_POST_REPAIR_OBSERVATION",
-  "next_action": "Observe the canonical workflow after the current validator repairs, then reconcile Pages deployment and public-route receipts without creating manual user tasks."
+  "next_action": "Observe canonical validation, GitHub Pages custom-domain binding, DNS/HTTPS, deployment, and public-route receipts for admissibility.stegverse.org without creating a duplicate publication surface."
 }
