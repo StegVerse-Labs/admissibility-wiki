@@ -4,7 +4,7 @@
   "repo": "StegVerse-Labs/admissibility-wiki",
   "observed_at": "2026-07-14",
   "status": "pending_live_peer_checks",
-  "origin_public_url": "https://stegverse-labs.github.io/admissibility-wiki/",
+  "origin_public_url": "https://admissibility.stegverse.org/",
   "peer_registry": "status/ecosystem-documentation-endpoints.json",
   "checks": {
     "peer_urls_declared": true,
