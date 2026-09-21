@@ -12,7 +12,7 @@ STATUS = ROOT / "static" / "activation" / "activation-section-completeness.v1.js
 CNAME = ROOT / "static" / "CNAME"
 
 REQUIRED_GUIDE_MARKERS = [
-    "https://stegverse-labs.github.io/admissibility-wiki/",
+    "https://admissibility.stegverse.org/",
     ".github/workflows/validate-chain-continuation.yml",
     "Validation job: validate-chain-continuation",
     "Build job: build-pages",
@@ -20,7 +20,7 @@ REQUIRED_GUIDE_MARKERS = [
     "Public verification job: verify-public-pages",
     "Manual task requirement: none",
     "User manual action required: false",
-    "custom_domain: not_configured",
+    "custom_domain: admissibility.stegverse.org",
     "static/CNAME: absent",
     "workflow configuration != workflow pass",
     "publication receipt != execution authority",
@@ -40,8 +40,8 @@ REQUIRED_WORKFLOW_MARKERS = [
     "name: full-validation-chain-report",
 ]
 REQUIRED_CONFIG_MARKERS = [
-    "url: 'https://stegverse-labs.github.io'",
-    "baseUrl: '/admissibility-wiki/'",
+    "url: 'https://admissibility.stegverse.org'",
+    "baseUrl: '/'",
     "organizationName: 'StegVerse-Labs'",
     "projectName: 'admissibility-wiki'",
     "onBrokenLinks: 'throw'",
@@ -54,7 +54,7 @@ def main() -> int:
         if not path.exists():
             failures.append(f"missing path: {path.relative_to(ROOT)}")
     if CNAME.exists():
-        failures.append("static/CNAME must remain absent for github.io project hosting")
+        failures.append("static/CNAME must remain absent because Actions Pages custom-domain binding is configured in repository settings")
     if failures:
         print("ACTIVATION SECTION: FAIL")
         for failure in failures:
@@ -90,8 +90,8 @@ def main() -> int:
         failures.append("activation guide count is stale")
     if counts.get("canonical_active_workflows") != 1:
         failures.append("canonical active workflow count is stale")
-    if counts.get("custom_domains") != 0:
-        failures.append("custom domain count must remain zero")
+    if counts.get("custom_domains") != 1:
+        failures.append("custom domain count must be one")
     if counts.get("manual_user_tasks") != 0:
         failures.append("manual user task count must remain zero")
     for key, value in status.get("boundaries", {}).items():
@@ -101,7 +101,7 @@ def main() -> int:
     print("ACTIVATION SECTION:", "FAIL" if failures else "PASS")
     print("canonical_active_workflows=1")
     print("manual_user_tasks=0")
-    print("custom_domains=0")
+    print("custom_domains=1")
     for failure in failures:
         print(f"- {failure}")
     return 1 if failures else 0
