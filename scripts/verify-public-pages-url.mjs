@@ -4,8 +4,8 @@ import https from 'node:https';
 
 const STATUS_PATH = 'static/publication/publication-verification-status.v0.1.json';
 const URLS = [
-  'https://stegverse-labs.github.io/admissibility-wiki/',
-  'https://stegverse-labs.github.io/admissibility-wiki/formalisms/governance-centered-boundary-centered-admissibility-testing'
+  'https://admissibility.stegverse.org/',
+  'https://admissibility.stegverse.org/formalisms/governance-centered-boundary-centered-admissibility-testing'
 ];
 
 function checkUrl(url) {
