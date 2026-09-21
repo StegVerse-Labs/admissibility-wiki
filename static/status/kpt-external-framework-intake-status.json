@@ -35,9 +35,9 @@
     "source_upgrade": "queue-driven fail-closed source intake after an official owner-published source becomes available"
   },
   "automated_public_endpoints": {
-    "page": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/kpt",
-    "status": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-external-framework-intake-status.json",
-    "source_queue": "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-source-intake-queue.json",
+    "page": "https://admissibility.stegverse.org/external-frameworks/kpt",
+    "status": "https://admissibility.stegverse.org/status/kpt-external-framework-intake-status.json",
+    "source_queue": "https://admissibility.stegverse.org/status/kpt-source-intake-queue.json",
     "observation_result": "written into the run-bound deployment verification receipt",
     "failure_posture": "FAIL_CLOSED_WITHOUT_USER_TASK"
   },

@@ -16,11 +16,11 @@
   "validator_path": "scripts/check_micro_timescale_human_admissibility.py",
   "canonical_validation_binding": "scripts/check_admissibility_automation_handoff.py",
   "required_public_routes": {
-    "doctrine": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/micro-timescale-human-admissibility",
-    "research_protocol": "https://stegverse-labs.github.io/admissibility-wiki/research/micro-timescale-human-admissibility-observation-protocol",
-    "status": "https://stegverse-labs.github.io/admissibility-wiki/status/micro-timescale-human-admissibility-status.json"
+    "doctrine": "https://admissibility.stegverse.org/formalisms/micro-timescale-human-admissibility",
+    "research_protocol": "https://admissibility.stegverse.org/research/micro-timescale-human-admissibility-observation-protocol",
+    "status": "https://admissibility.stegverse.org/status/micro-timescale-human-admissibility-status.json"
   },
-  "public_route": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/micro-timescale-human-admissibility",
+  "public_route": "https://admissibility.stegverse.org/formalisms/micro-timescale-human-admissibility",
   "state": "IMPLEMENTED_PENDING_CANONICAL_WORKFLOW_AND_PUBLIC_ROUTE_OBSERVATION",
   "conceptual_status": "DEVELOPED",
   "mathematical_status": "DEVELOPED_FIRST_FORMULATION",
