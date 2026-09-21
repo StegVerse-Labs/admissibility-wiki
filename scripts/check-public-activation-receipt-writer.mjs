@@ -67,7 +67,7 @@ fs.writeFileSync(OPTIMIZATION_RECEIPT, JSON.stringify({
   verification_result: 'PASS',
   routes: Object.fromEntries(UPSTREAM_ROUTE_NAMES.map((name) => [name, {
     reachable: true,
-    url: `https://stegverse-labs.github.io/admissibility-wiki/mock/${name}`,
+    url: `https://admissibility.stegverse.org/mock/${name}`,
     verifier: 'deterministic local receipt-writer validation mode'
   }]))
 }, null, 2) + '\n');
@@ -81,7 +81,7 @@ fs.writeFileSync(DISCOVERY_RECEIPT, JSON.stringify({
   run_id: 'validator-local-run',
   run_attempt: '1',
   routes: Object.fromEntries(DISCOVERY_ROUTES.map((name) => [name, {
-    url: `https://stegverse-labs.github.io/admissibility-wiki/mock/${name}`,
+    url: `https://admissibility.stegverse.org/mock/${name}`,
     reachable: true,
     http_status: 200
   }])),
@@ -109,7 +109,7 @@ const result = spawnSync(process.execPath, [WRITER], {
   encoding: 'utf8',
   env: {
     ...process.env,
-    PAGE_URL: 'https://stegverse-labs.github.io/admissibility-wiki/',
+    PAGE_URL: 'https://admissibility.stegverse.org/',
     GITHUB_SHA: 'validator-local-sha',
     GITHUB_RUN_ID: 'validator-local-run',
     GITHUB_RUN_ATTEMPT: '1',
@@ -128,7 +128,7 @@ const receipt = JSON.parse(fs.readFileSync(OUT, 'utf8'));
 if (receipt.schema !== 'admissibility_wiki_public_activation_receipt.v7') fail('schema mismatch');
 if (receipt.repository !== 'StegVerse-Labs/admissibility-wiki') fail('repository mismatch');
 if (receipt.activation_state !== 'workflow_observed_guarded_public_routes') fail('activation_state mismatch');
-if (receipt.activation_target !== 'https://stegverse-labs.github.io/admissibility-wiki/') fail('activation_target mismatch');
+if (receipt.activation_target !== 'https://admissibility.stegverse.org/') fail('activation_target mismatch');
 if (receipt.commit !== 'validator-local-sha') fail('commit binding mismatch');
 if (receipt.run_id !== 'validator-local-run') fail('run_id binding mismatch');
 if (receipt.publication_complete !== true) fail('publication_complete mismatch');
@@ -230,7 +230,7 @@ if (JSON.stringify(relationship) !== JSON.stringify(relationshipStandalone)) fai
 if (receipt.linked_receipts?.governed_relationship_transition_publication_observation !== RELATIONSHIP_RECEIPT) fail('relationship-transition receipt binding mismatch');
 
 const reconstructionUrl = receipt.linked_receipts?.external_translation_reconstruction;
-if (reconstructionUrl !== 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json') fail('external translation reconstruction receipt binding mismatch');
+if (reconstructionUrl !== 'https://admissibility.stegverse.org/status/external-translation-reconstruction-receipt.json') fail('external translation reconstruction receipt binding mismatch');
 if (receipt.linked_receipts?.ai_led_radiology_execution !== 'reports/ai-led-radiology-execution-receipt.json') fail('AI-led radiology execution receipt binding mismatch');
 if (receipt.linked_receipts?.quantum_security_public_route_observation !== 'reports/quantum-security-public-route-observation.json') fail('quantum-security receipt binding mismatch');
 
