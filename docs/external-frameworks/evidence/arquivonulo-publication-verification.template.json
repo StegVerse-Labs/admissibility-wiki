@@ -17,7 +17,7 @@
   },
   "routes": [
     {
-      "url": "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/arquivonulo",
+      "url": "https://admissibility.stegverse.org/external-frameworks/arquivonulo",
       "expected_content_type": "text/html",
       "observed_status_code": null,
       "observed_content_type": null,
@@ -30,7 +30,7 @@
       "observed_at": null
     },
     {
-      "url": "https://stegverse-labs.github.io/admissibility-wiki/data/framework-evaluations/arquivonulo.json",
+      "url": "https://admissibility.stegverse.org/data/framework-evaluations/arquivonulo.json",
       "expected_content_type": "application/json",
       "observed_status_code": null,
       "observed_content_type": null,
@@ -43,7 +43,7 @@
       "observed_at": null
     },
     {
-      "url": "https://stegverse-labs.github.io/admissibility-wiki/status/arquivonulo-execution-boundary-status.json",
+      "url": "https://admissibility.stegverse.org/status/arquivonulo-execution-boundary-status.json",
       "expected_content_type": "application/json",
       "observed_status_code": null,
       "observed_content_type": null,
