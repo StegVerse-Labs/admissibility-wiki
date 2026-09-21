@@ -73,7 +73,7 @@ if status is not None:
     for key, value in expected.items():
         if status.get(key) != value:
             errors.append(f"status {key} must equal {value}")
-    if not status.get("public_route", "").startswith("https://stegverse-labs.github.io/admissibility-wiki/"):
+    if not status.get("public_route", "").startswith("https://admissibility.stegverse.org/"):
         errors.append("status public_route is missing or outside the public wiki origin")
 
 if not PROTOCOL.exists():

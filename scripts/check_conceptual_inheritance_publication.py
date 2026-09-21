@@ -89,7 +89,7 @@ def main() -> int:
         else:
             seen_route_keys.add(route_key)
         url = target.get("url")
-        if not isinstance(url, str) or not url.startswith("https://stegverse-labs.github.io/admissibility-wiki/"):
+        if not isinstance(url, str) or not url.startswith("https://admissibility.stegverse.org/"):
             failures.append(f"public target {index} has invalid URL")
         if "/docs/formalisms/" in str(url):
             failures.append(f"public target {index} uses repository path instead of Docusaurus route")
