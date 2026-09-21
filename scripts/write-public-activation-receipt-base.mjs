@@ -4,7 +4,7 @@ import fs from 'node:fs';
 const outDir = 'reports';
 const outPath = `${outDir}/public-activation-receipt.json`;
 const optimizationReceiptPath = `${outDir}/optimization-target-publication-verification-receipt.json`;
-const baseUrl = process.env.PAGE_URL || 'https://stegverse-labs.github.io/admissibility-wiki/';
+const baseUrl = process.env.PAGE_URL || 'https://admissibility.stegverse.org/';
 const commit = process.env.GITHUB_SHA || null;
 const runId = process.env.GITHUB_RUN_ID || null;
 const runAttempt = process.env.GITHUB_RUN_ATTEMPT || null;
@@ -12,26 +12,26 @@ const skipNetwork = process.env.PUBLIC_ACTIVATION_SKIP_NETWORK === '1';
 
 const urls = {
   public_site_loads: baseUrl,
-  status_json_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/status/admissibility-wiki-status.json',
-  ios_workflow_mirror_status_json_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/status/ios-workflow-mirror-status.json',
-  governed_llm_reconstructive_search_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-reconstructive-search',
-  governed_llm_activation_map_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-activation-map',
-  governed_llm_demo_overview_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-demo-overview',
-  governed_llm_demo_verification_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-demo-verification',
-  governed_llm_site_verification_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-site-verification',
-  governed_llm_deployment_status_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-deployment-status',
-  governed_llm_archive_handoff_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/governance/governed-llm-archive-handoff',
-  verification_execution_authority_doctrine_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/governance/verification-vs-execution-authority',
-  verification_execution_authority_status_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/status/verification-execution-authority-status.json',
-  optimization_target_doctrine_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit',
-  optimization_target_formalism_json_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/formalisms/optimization-target-binding-at-commit.v0.1.json',
-  optimization_target_publication_status_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/status/optimization-target-binding-publication-verification.json',
-  external_translation_reconstruction_receipt_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json',
-  generated_evaluation_results_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/evaluation-results',
-  asro_external_framework_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/asro',
-  ai_led_radiology_formalism_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/formalisms/ai-led-radiology-execution-boundary',
-  ai_led_radiology_schema_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/schemas/ai-led-radiology-execution-case.schema.json',
-  ai_led_radiology_status_reachable: 'https://stegverse-labs.github.io/admissibility-wiki/status/ai-led-radiology-execution-status.json'
+  status_json_reachable: 'https://admissibility.stegverse.org/status/admissibility-wiki-status.json',
+  ios_workflow_mirror_status_json_reachable: 'https://admissibility.stegverse.org/status/ios-workflow-mirror-status.json',
+  governed_llm_reconstructive_search_reachable: 'https://admissibility.stegverse.org/governance/governed-llm-reconstructive-search',
+  governed_llm_activation_map_reachable: 'https://admissibility.stegverse.org/governance/governed-llm-activation-map',
+  governed_llm_demo_overview_reachable: 'https://admissibility.stegverse.org/governance/governed-llm-demo-overview',
+  governed_llm_demo_verification_reachable: 'https://admissibility.stegverse.org/governance/governed-llm-demo-verification',
+  governed_llm_site_verification_reachable: 'https://admissibility.stegverse.org/governance/governed-llm-site-verification',
+  governed_llm_deployment_status_reachable: 'https://admissibility.stegverse.org/governance/governed-llm-deployment-status',
+  governed_llm_archive_handoff_reachable: 'https://admissibility.stegverse.org/governance/governed-llm-archive-handoff',
+  verification_execution_authority_doctrine_reachable: 'https://admissibility.stegverse.org/governance/verification-vs-execution-authority',
+  verification_execution_authority_status_reachable: 'https://admissibility.stegverse.org/status/verification-execution-authority-status.json',
+  optimization_target_doctrine_reachable: 'https://admissibility.stegverse.org/formalisms/optimization-target-binding-at-commit',
+  optimization_target_formalism_json_reachable: 'https://admissibility.stegverse.org/formalisms/optimization-target-binding-at-commit.v0.1.json',
+  optimization_target_publication_status_reachable: 'https://admissibility.stegverse.org/status/optimization-target-binding-publication-verification.json',
+  external_translation_reconstruction_receipt_reachable: 'https://admissibility.stegverse.org/status/external-translation-reconstruction-receipt.json',
+  generated_evaluation_results_reachable: 'https://admissibility.stegverse.org/external-frameworks/evaluation-results',
+  asro_external_framework_reachable: 'https://admissibility.stegverse.org/external-frameworks/asro',
+  ai_led_radiology_formalism_reachable: 'https://admissibility.stegverse.org/formalisms/ai-led-radiology-execution-boundary',
+  ai_led_radiology_schema_reachable: 'https://admissibility.stegverse.org/schemas/ai-led-radiology-execution-case.schema.json',
+  ai_led_radiology_status_reachable: 'https://admissibility.stegverse.org/status/ai-led-radiology-execution-status.json'
 };
 
 const radiologyChecks = new Set([
@@ -54,7 +54,7 @@ const conceptualInheritanceChecks = new Set([
 ]);
 const meshPeers = [
   { id: 'stegverse-site', root: 'https://stegverse-labs.github.io/Site/' },
-  { id: 'admissibility-wiki', root: 'https://stegverse-labs.github.io/admissibility-wiki/' },
+  { id: 'admissibility-wiki', root: 'https://admissibility.stegverse.org/' },
   { id: 'stegguardian-wiki', root: 'https://stegverse-002.github.io/stegguardian-wiki/' },
   { id: 'stegtalk-wiki', root: 'https://stegverse-labs.github.io/stegtalk-wiki/' }
 ];
@@ -169,10 +169,10 @@ const receipt = {
   schema: 'admissibility_wiki_public_activation_receipt.v7',
   receipt_id: `public-activation.workflow.${runId || 'unknown'}.${runAttempt || '0'}`,
   created_at: new Date().toISOString(), repository: 'StegVerse-Labs/admissibility-wiki',
-  activation_target: 'https://stegverse-labs.github.io/admissibility-wiki/', activation_state: 'workflow_observed_guarded_public_routes',
+  activation_target: 'https://admissibility.stegverse.org/', activation_state: 'workflow_observed_guarded_public_routes',
   commit, run_id: runId, run_attempt: runAttempt, checks,
   activation_closures: { ai_led_radiology: radiologyActivationClosure, verification_execution_authority: verificationAuthorityActivationClosure, conceptual_inheritance: conceptualInheritanceActivationClosure, documentation_mesh: documentationMeshClosure },
-  linked_receipts: { optimization_target_publication_verification: optimizationTargetReceipt ? optimizationReceiptPath : null, external_translation_reconstruction: 'https://stegverse-labs.github.io/admissibility-wiki/status/external-translation-reconstruction-receipt.json', ai_led_radiology_execution: 'reports/ai-led-radiology-execution-receipt.json' },
+  linked_receipts: { optimization_target_publication_verification: optimizationTargetReceipt ? optimizationReceiptPath : null, external_translation_reconstruction: 'https://admissibility.stegverse.org/status/external-translation-reconstruction-receipt.json', ai_led_radiology_execution: 'reports/ai-led-radiology-execution-receipt.json' },
   authority_granted: false, release_authority_granted: false, downstream_mutation_authority_granted: false,
   publication_complete: basePublicationComplete,
   manual_tasks_required: [], user_manual_action_required: false,
