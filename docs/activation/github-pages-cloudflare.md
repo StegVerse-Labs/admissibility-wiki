@@ -4,7 +4,7 @@ title: GitHub Pages Activation
 
 # GitHub Pages Activation
 
-This runbook describes automated activation of the Admissibility Wiki at the branded public hostname.
+This runbook describes automated activation of the Admissibility Wiki at the GitHub.io project URL.
 
 ```text
 https://admissibility.stegverse.org/
@@ -42,15 +42,15 @@ A configured workflow, successful local build, or reachable root alone is not su
 
 ## Current domain policy
 
-The branded custom domain is configured for this wiki through GitHub Pages repository settings and DNS.
+Custom domains are not configured for this wiki.
 
 ```text
-custom_domain: admissibility.stegverse.org
+custom_domain: not_configured
 static/CNAME: absent
-cloudflare_dependency: DNS CNAME admissibility -> stegverse-labs.github.io
+cloudflare_dependency: none
 ```
 
-Do not add a source-tree CNAME file for this Actions Pages deployment; the custom-domain binding remains in repository Pages settings and DNS.
+Do not add a CNAME file or Cloudflare DNS requirement unless a later governed activation decision changes the public target.
 
 ## GitHub Pages configuration
 
@@ -58,8 +58,8 @@ The repository is configured for GitHub Pages project hosting through the canoni
 
 ```text
 Pages source: GitHub Actions
-Custom domain: admissibility.stegverse.org
-HTTPS: GitHub Pages managed after custom-domain validation
+Custom domain: blank
+HTTPS: github.io managed
 ```
 
 Repository settings are an external GitHub control surface. A prose assertion that the setting is correct is not deployment evidence; the workflow and public verification receipts remain the observable evidence path.
@@ -69,8 +69,8 @@ Repository settings are an external GitHub control surface. A prose assertion th
 The checked-in Docusaurus configuration uses:
 
 ```text
-url: https://admissibility.stegverse.org
-baseUrl: /
+url: https://stegverse-labs.github.io
+baseUrl: /admissibility-wiki/
 organizationName: StegVerse-Labs
 projectName: admissibility-wiki
 onBrokenLinks: throw
@@ -136,10 +136,10 @@ public-route failure -> no completed activation claim
 ## Current activation posture
 
 ```text
-repository_config: branded_custom_domain_on_github_actions_pages
+repository_config: github_io_project_url
 canonical_workflow: .github/workflows/validate-chain-continuation.yml
 custom_domain: not_configured
-cname_file: absent_source_tree_actions_pages
+cname_file: absent
 manual_task_required: false
 activation_claim: requires observed workflow, deployment, route, and receipt evidence
 ```
