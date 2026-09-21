@@ -73,3 +73,21 @@ Do not point the CNAME at `stegverse-labs.github.io/admissibility-wiki`; DNS CNA
 ## Authority boundary
 
 Hostname configuration changes publication addressing only. It does not grant execution authority, admissibility authority, custody, certification, runtime activation, or empirical proof.
+
+
+## Account-level binding confirmation
+
+User-confirmed configuration is complete for the branded hostname:
+
+- GitHub Pages custom domain: `admissibility.stegverse.org`
+- Cloudflare DNS: `admissibility.stegverse.org` CNAME -> `stegverse-labs.github.io`
+- Cloudflare proxy posture: `DNS only`
+- TTL: `Auto`
+
+These account-level prerequisites are satisfied and are no longer blockers for this task.
+
+## Current repository gate
+
+PR #146 remains intentionally unmerged because exact-head canonical validation is not green. The domain-specific failures exposed by earlier runs have been repaired. The remaining failing validators are unrelated pre-existing repository lanes and must not be silently absorbed into this hostname task.
+
+Merge remains gated on a passing exact-head repository validation or an existing canonical mechanism that proves the unrelated failures do not block this bounded publication change. Public HTTPS and route verification remain post-merge gates.
