@@ -54,7 +54,7 @@ def main() -> int:
         if not path.exists():
             failures.append(f"missing path: {path.relative_to(ROOT)}")
     if CNAME.exists():
-        failures.append("static/CNAME must remain absent because Actions Pages custom-domain binding is configured in repository settings")
+        failures.append("static/CNAME must remain absent for github.io project hosting")
     if failures:
         print("ACTIVATION SECTION: FAIL")
         for failure in failures:
