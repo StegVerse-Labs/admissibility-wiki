@@ -15,9 +15,9 @@
   "public_activation_receipt_schema": "admissibility_wiki_public_activation_receipt.v4",
   "activation_closure_schema": "ai_led_radiology_activation_closure.v1",
   "activation_closure_path": "reports/public-activation-receipt.json#/activation_closures/ai_led_radiology",
-  "public_status_url": "https://stegverse-labs.github.io/admissibility-wiki/status/ai-led-radiology-execution-status.json",
-  "public_formalism_url": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/ai-led-radiology-execution-boundary",
-  "public_schema_url": "https://stegverse-labs.github.io/admissibility-wiki/schemas/ai-led-radiology-execution-case.schema.json",
+  "public_status_url": "https://admissibility.stegverse.org/status/ai-led-radiology-execution-status.json",
+  "public_formalism_url": "https://admissibility.stegverse.org/formalisms/ai-led-radiology-execution-boundary",
+  "public_schema_url": "https://admissibility.stegverse.org/schemas/ai-led-radiology-execution-case.schema.json",
   "fixture_case_count": 8,
   "decision_classes": [
     "ADMIT_ASSISTIVE_USE",

@@ -43,12 +43,12 @@
     "scope_exceeded"
   ],
   "public_routes": {
-    "formalism": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/inference-window-irreversibility-governance",
-    "lifecycle": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/governed-action-lifecycle",
-    "iict": "https://stegverse-labs.github.io/admissibility-wiki/formalisms/irreversibility-inference-convergence-theorem",
-    "schema": "https://stegverse-labs.github.io/admissibility-wiki/schemas/inference-window-governance.schema.json",
-    "worked_cases": "https://stegverse-labs.github.io/admissibility-wiki/examples/inference-window-governance.worked-cases.json",
-    "status": "https://stegverse-labs.github.io/admissibility-wiki/status/inference-window-governance-status.json"
+    "formalism": "https://admissibility.stegverse.org/formalisms/inference-window-irreversibility-governance",
+    "lifecycle": "https://admissibility.stegverse.org/formalisms/governed-action-lifecycle",
+    "iict": "https://admissibility.stegverse.org/formalisms/irreversibility-inference-convergence-theorem",
+    "schema": "https://admissibility.stegverse.org/schemas/inference-window-governance.schema.json",
+    "worked_cases": "https://admissibility.stegverse.org/examples/inference-window-governance.worked-cases.json",
+    "status": "https://admissibility.stegverse.org/status/inference-window-governance-status.json"
   },
   "claims_boundary": {
     "guarantees_correctness": false,
