@@ -154,3 +154,13 @@ route verification != source authority
 publication receipt != execution authority
 queued propagation != completed propagation
 ```
+
+
+## Branded custom-domain state
+
+```text
+custom_domain: admissibility.stegverse.org
+publishing_source: GitHub Actions
+dns_cname: admissibility.stegverse.org -> stegverse-labs.github.io
+source_tree_cname_file: not authoritative for Actions Pages
+```
