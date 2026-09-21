@@ -94,7 +94,7 @@ def main() -> int:
         failures.append("source queue must not require manual source search")
 
     public_endpoints = status.get("automated_public_endpoints", {})
-    expected_queue_url = "https://stegverse-labs.github.io/admissibility-wiki/status/kpt-source-intake-queue.json"
+    expected_queue_url = "https://admissibility.stegverse.org/status/kpt-source-intake-queue.json"
     if public_endpoints.get("source_queue") != expected_queue_url:
         failures.append("status source queue public endpoint mismatch")
     if expected_queue_url not in deployment_verifier:

@@ -15,7 +15,7 @@ CANONICAL_WORKFLOW = ROOT / ".github/workflows/validate-chain-continuation.yml"
 REPORT = ROOT / "reports/ta14-determination-publication-observation.json"
 PUBLIC_URL = os.environ.get(
     "TA14_DETERMINATION_PUBLIC_URL",
-    "https://stegverse-labs.github.io/admissibility-wiki/external-frameworks/ta-14-testing-support-determination-2026-08-01",
+    "https://admissibility.stegverse.org/external-frameworks/ta-14-testing-support-determination-2026-08-01",
 )
 
 

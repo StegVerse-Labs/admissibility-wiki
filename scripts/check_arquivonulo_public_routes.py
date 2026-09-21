@@ -16,7 +16,7 @@ PUBLICATION_REPORT = "reports/arquivonulo-public-route-observation.json"
 REPORT = ROOT / PUBLICATION_REPORT
 BASE_URL = os.environ.get(
     "ADMISSIBILITY_WIKI_PUBLIC_BASE_URL",
-    "https://stegverse-labs.github.io/admissibility-wiki",
+    "https://admissibility.stegverse.org",
 ).rstrip("/")
 TIMEOUT = float(os.environ.get("PUBLIC_ROUTE_TIMEOUT_SECONDS", "20"))
 
