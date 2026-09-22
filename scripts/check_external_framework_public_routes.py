@@ -18,7 +18,7 @@ SOURCE_REPORT = ROOT / "reports" / "external-frameworks" / "source-route-contrac
 BUILD_REPORT = ROOT / "reports" / "external-frameworks" / "built-route-verification.json"
 DEFAULT_BASE = "https://stegverse-labs.github.io/admissibility-wiki/"
 DEFAULT_BUILD_DIR = ROOT / "build"
-EXPECTED_FRAMEWORK_COUNT = 36
+EXPECTED_FRAMEWORK_COUNT = 37
 
 
 def normalize(text: str) -> str:
@@ -71,12 +71,12 @@ def parse_args() -> argparse.Namespace:
     modes.add_argument(
         "--source-only",
         action="store_true",
-        help="Validate all 36 source routes, unique bindings, source pages, and extractable headings without build or network access.",
+        help="Validate all 37 source routes, unique bindings, source pages, and extractable headings without build or network access.",
     )
     modes.add_argument(
         "--built-site",
         action="store_true",
-        help="Validate all 36 generated Docusaurus route files and rendered heading fidelity from the local build directory.",
+        help="Validate all 37 generated Docusaurus route files and rendered heading fidelity from the local build directory.",
     )
     parser.add_argument(
         "--build-dir",
