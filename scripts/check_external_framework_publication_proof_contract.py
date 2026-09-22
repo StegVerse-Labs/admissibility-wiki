@@ -12,7 +12,7 @@ IOS_STATUS = ROOT / "static" / "status" / "ios-workflow-mirror-status.json"
 ROUTE_VALIDATOR = ROOT / "scripts" / "check_external_framework_public_routes.py"
 ASSOCIATIONS = ROOT / "static" / "external-frameworks" / "sidebar-page-associations.v1.json"
 HANDOFF = ROOT / "docs" / "external-frameworks" / "EXTERNAL_FRAMEWORKS_MIRROR_HANDOFF.md"
-EXPECTED_FRAMEWORK_COUNT = 36
+EXPECTED_FRAMEWORK_COUNT = 37
 
 
 def require_marker(text: str, marker: str, failures: list[str], label: str) -> None:
@@ -75,7 +75,7 @@ def main() -> int:
         "SOURCE_ONLY",
         "BUILT_SITE",
         "DEPLOYED_PUBLIC_ROUTE",
-        "EXPECTED_FRAMEWORK_COUNT = 36",
+        "EXPECTED_FRAMEWORK_COUNT = 37",
     ]
     for marker in route_markers:
         require_marker(route_validator, marker, failures, "route-validator contract marker")
@@ -144,10 +144,10 @@ def main() -> int:
     )
 
     handoff_markers = [
-        "36/36 source wiring",
+        "37/37 source wiring",
         "source-route contract",
-        "36/36 generated-route verification",
-        "36/36 public route/content verification",
+        "37/37 generated-route verification",
+        "37/37 public route/content verification",
         "framework-specific evidence completion",
         "source-route contract PASS != successful Docusaurus build",
         "route verification != release",

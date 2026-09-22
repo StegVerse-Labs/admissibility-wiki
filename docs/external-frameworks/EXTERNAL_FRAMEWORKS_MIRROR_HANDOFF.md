@@ -9,9 +9,9 @@ This file is the continuation source of truth for the External Frameworks sectio
 ```text
 goal_id: EXT-FRAMEWORK-SECOND-PAGE-36
 goal: make every actual external-framework record function as a first-class, evidence-bounded Wiki surface with public navigation, machine-readable companions, deterministic source validation, built-route proof, deployment evidence, content-aware public-route verification, and framework-specific evaluation completion
-actual external-framework denominator: 36
+actual external-framework denominator: 37
 internal ecosystem records in the same canonical registry: 2
-public sidebar source wiring: 36/36
+public sidebar source wiring: 37/37
 internal records intentionally excluded from external-framework sidebar: 2/2
 framework-evaluation terminal denominator: preserve coordinator issue #66 until newer direct evidence changes it
 release authority: none
@@ -452,3 +452,25 @@ Worker C remaining assignment: Runtime Governance for AI Agents
 ```
 
 The Policy Cards terminal class explicitly preserves `implementation_attached=false` and `native_execution_observed=false`. This is evidence-complete for the declared source-level crosswalk, not native runtime validation. Release remains unauthorized until all 36 frameworks are terminal or legitimately evidence-blocked and the eventual release candidate receives its own exact canonical/build/deploy/public proof.
+
+
+## Elyria Admission Runtime registry addition — 2026-09-21
+
+Canonical external-framework identity `elyria-admission-runtime` is now included from the verified public release `v0.8.2-public`. The identity is source-reviewed and public-sidebar bound, but its reusable runtime endpoint remains explicitly unbound. This addition changes the public external-framework denominator from 36 to 37 and grants no certification, endorsement, compatibility, execution, transition, credential, or endpoint authority.
+
+
+## 2026-09-21 current 37-framework source/publication contract
+
+The canonical external-framework identity set now contains 37 public external frameworks after adding `elyria-admission-runtime`. Current source/publication expectations are:
+
+```text
+37/37 source wiring
+source-route contract
+37/37 generated-route verification
+37/37 public route/content verification
+framework-specific evidence completion remains separate
+a source-route contract PASS != successful Docusaurus build
+route verification != release
+```
+
+Historical 36-framework run evidence above remains immutable provenance for those exact prior commits and must not be rewritten as 37-framework evidence.

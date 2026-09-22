@@ -73,3 +73,8 @@ Establish evidence-qualified endpoint bindings from current observed endpoint ev
 ## Manual work
 
 None.
+
+
+## Elyria managed binding slot — 2026-09-21
+
+The canonical registry now includes `framework_id=elyria-admission-runtime`, so the existing binding builder projects a managed unbound row for Elyria. Its planner operation class is `RUNTIME_ROUNDTRIP`; endpoint-specific adapter operation is `movement_assessment`. The endpoint overlay remains empty, so Elyria must classify `RUNTIME_ENDPOINT_UNAVAILABLE` until independently observed evidence supplies all required endpoint fields. No endpoint was inferred from source, release, localhost, container, or documentation URLs.

@@ -1,0 +1,71 @@
+{
+  "schema": "external_framework_governance_compatibility_cases.v1",
+  "framework_id": "elyria-admission-runtime",
+  "source_page": "docs/external-frameworks/elyria-admission-runtime.md",
+  "execution_mode": "DETERMINISTIC_SIMULATION_ONLY",
+  "native_execution_observed": false,
+  "cases": [
+    {
+      "case_id": "elyria-positive-source-crosswalk",
+      "family": "positive_alignment",
+      "foreign_verdict": "ADMIT",
+      "authority_current": true,
+      "evidence_current": true,
+      "endpoint_evidence_qualified": true,
+      "expected_stegverse_result": "ALLOW"
+    },
+    {
+      "case_id": "elyria-foreign-refusal",
+      "family": "framework_denial_or_negative_result",
+      "foreign_verdict": "REFUSE",
+      "authority_current": true,
+      "evidence_current": true,
+      "endpoint_evidence_qualified": true,
+      "expected_stegverse_result": "DENY"
+    },
+    {
+      "case_id": "elyria-authority-failure",
+      "family": "authority_or_delegation_failure",
+      "foreign_verdict": "ADMIT",
+      "authority_current": false,
+      "evidence_current": true,
+      "endpoint_evidence_qualified": true,
+      "expected_stegverse_result": "DENY"
+    },
+    {
+      "case_id": "elyria-stale-evidence",
+      "family": "stale_or_missing_evidence",
+      "foreign_verdict": "ADMIT",
+      "authority_current": true,
+      "evidence_current": false,
+      "endpoint_evidence_qualified": true,
+      "expected_stegverse_result": "FAIL_CLOSED"
+    },
+    {
+      "case_id": "elyria-unqualified-endpoint",
+      "family": "malformed_undefined_or_runtime_error",
+      "foreign_verdict": "ADMIT",
+      "authority_current": true,
+      "evidence_current": true,
+      "endpoint_evidence_qualified": false,
+      "expected_stegverse_result": "FAIL_CLOSED"
+    },
+    {
+      "case_id": "elyria-authority-promotion-guard",
+      "family": "semantic_divergence_guard",
+      "foreign_verdict": "ADMIT",
+      "authority_current": true,
+      "evidence_current": true,
+      "endpoint_evidence_qualified": true,
+      "foreign_verdict_claimed_as_stegverse_authority": true,
+      "expected_stegverse_result": "FAIL_CLOSED"
+    }
+  ],
+  "boundaries": {
+    "foreign_verdict_means_stegverse_authority": false,
+    "simulation_means_native_execution": false,
+    "source_release_means_runtime_endpoint": false
+  },
+  "manual_tasks_required": [],
+  "user_action_required": false
+}
