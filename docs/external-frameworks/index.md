@@ -8,7 +8,7 @@ title: External Frameworks
 
 This section is the Wiki's public observatory for non-StegVerse frameworks, standards, protocols, runtimes, evidence systems, policy systems, identity systems, supply-chain systems, and guardrail systems that can be compared with governed transition boundaries.
 
-Every actual external-framework record in the canonical registry is publicly navigable here. The current denominator is **36 external frameworks**. Two additional canonical-registry records are internal StegVerse ecosystem companions and are listed separately below; they are not counted as external frameworks.
+Every actual external-framework record in the canonical registry is publicly navigable here. The current denominator is **37 external frameworks**. Two additional canonical-registry records are internal StegVerse ecosystem companions and are listed separately below; they are not counted as external frameworks.
 
 External framework inclusion preserves the framework's own terms and evidence while separately recording StegVerse analysis. Inclusion does **not** make an external framework a canonical Admissible-Existence formalism source and does not create compatibility, certification, standing, admissibility, endorsement, or execution authority.
 
@@ -61,7 +61,7 @@ Commitment Candidate != execution authority
 ALLOW != execution
 ```
 
-## All 36 external frameworks
+## All 37 external frameworks
 
 The table below is the public navigation catalog for the complete current external-framework denominator. Evidence status may differ by framework; a visible page is not a claim that every external evidence gate is closed.
 
@@ -103,6 +103,7 @@ The table below is the public navigation catalog for the complete current extern
 | [EU AI Act](./eu-ai-act.md) | Legal/regulatory obligations, risk classes, and oversight duties. |
 | [Policy Cards](./policy-cards.md) | Machine-readable runtime policy, obligations, and evidentiary requirements. |
 | [Runtime Governance for AI Agents](./runtime-governance-policies-on-paths.md) | Path-dependent runtime checks and proposed-next-action review. |
+| [Elyria Admission Runtime](./elyria-admission-runtime.md) | Consequence-admission runtime and external movement-assessment round-trip target. |
 
 ## Internal companion records — not external frameworks
 
@@ -150,7 +151,7 @@ Pages marked `official source required` remain intake records until an official 
 
 ## Runtime publication proof
 
-The canonical Wiki workflow separately verifies source structure, site build, Pages deployment, and public rendering. After deployment, the all-framework route verifier requires every one of the 36 external-framework routes to return a real rendered page whose heading matches its source page.
+The canonical Wiki workflow separately verifies source structure, site build, Pages deployment, and public rendering. After deployment, the all-framework route verifier requires every one of the 37 external-framework routes to return a real rendered page whose heading matches its source page.
 
 That runtime check proves reachability and rendering fidelity only. It does not promote the framework's evidence class or grant authority.
 
