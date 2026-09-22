@@ -457,3 +457,20 @@ The Policy Cards terminal class explicitly preserves `implementation_attached=fa
 ## Elyria Admission Runtime registry addition — 2026-09-21
 
 Canonical external-framework identity `elyria-admission-runtime` is now included from the verified public release `v0.8.2-public`. The identity is source-reviewed and public-sidebar bound, but its reusable runtime endpoint remains explicitly unbound. This addition changes the public external-framework denominator from 36 to 37 and grants no certification, endorsement, compatibility, execution, transition, credential, or endpoint authority.
+
+
+## 2026-09-21 current 37-framework source/publication contract
+
+The canonical external-framework identity set now contains 37 public external frameworks after adding `elyria-admission-runtime`. Current source/publication expectations are:
+
+```text
+37/37 source wiring
+source-route contract
+37/37 generated-route verification
+37/37 public route/content verification
+framework-specific evidence completion remains separate
+a source-route contract PASS != successful Docusaurus build
+route verification != release
+```
+
+Historical 36-framework run evidence above remains immutable provenance for those exact prior commits and must not be rewritten as 37-framework evidence.
