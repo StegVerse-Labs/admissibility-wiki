@@ -48,6 +48,7 @@ CONTRACTS = {
     "eu-ai-act": ("eu-ai-act", "eu-ai-act.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "policy-cards": ("policy-cards", "policy-cards.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "runtime-governance-for-ai-agents": ("runtime-governance-for-ai-agents", "runtime-governance-policies-on-paths.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
+    "elyria-admission-runtime": ("elyria-admission-runtime", "elyria-admission-runtime.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "admissible-existence-seed-cycle": ("admissible-existence-seed-cycle", "admissible-existence-seed-cycle.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
     "decision-authority": ("decision-authority", "decision-authority.md", "CONTRACT_AUTHORED_RUNTIME_PENDING"),
 }
@@ -71,7 +72,7 @@ def main() -> None:
     if not required_layers.issubset(set(standard.get("required_layers", []))):
         fail("standard required layers incomplete")
     canonical_ids = {entry.get("record_id") for entry in union.get("entries", []) if entry.get("record_id")}
-    if len(canonical_ids) != 38 or union.get("counts", {}).get("records") != 38:
+    if len(canonical_ids) != 39 or union.get("counts", {}).get("records") != 39:
         fail("canonical inventory count mismatch")
     defaults = status.get("record_defaults", {})
     records = {}
@@ -130,7 +131,7 @@ def main() -> None:
             fail(f"non-authority boundary stale: {key}")
     if status.get("manual_tasks_required") != [] or status.get("user_action_required") is not False:
         fail("compatibility continuation must remain automation-owned with no manual task")
-    expected_counts = {"canonical_records": 38, "contract_authored": 38, "governance_compatibility_observed": 1, "fresh_runner_reproduced": 1, "independent_implementation_reproduced": 0, "not_started": 0}
+    expected_counts = {"canonical_records": 39, "contract_authored": 39, "governance_compatibility_observed": 1, "fresh_runner_reproduced": 1, "independent_implementation_reproduced": 0, "not_started": 0}
     for key, expected in expected_counts.items():
         if status.get("counts", {}).get(key) != expected:
             fail(f"status count stale: {key}")
@@ -139,8 +140,8 @@ def main() -> None:
     if status.get("next_framework_order") != []:
         fail("next framework order must be empty after complete contract coverage")
     print("EXTERNAL FRAMEWORK GOVERNANCE COMPATIBILITY: PASS")
-    print("canonical_records=38")
-    print("contracts_authored=38")
+    print("canonical_records=39")
+    print("contracts_authored=39")
     print("compatibility_observed=1")
     print("opa_bounded_compatibility=observed_run_29455057960")
     print("manual_tasks_required=0")
