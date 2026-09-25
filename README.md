@@ -313,3 +313,6 @@ The CAT stack is currently interpreted as:
 | GCAT | Governance Constraint Analysis | Models governance standing, admissibility, policy, delegation, authority, and fail-closed execution decisions. |
 
 ECAT and ICAT should not be reduced to evidence and identity labels. Those interpretations may appear in narrower proof-path contexts, but the broader origin of ECAT/ICAT is the human-governance problem: how emotion, intuition, coherence, and relationship dynamics shape the constraints that later become boundary and governance determinations.
+
+
+External-framework findings source contract: [Exact manifested transition findings](docs/external-frameworks/TRANSITION_DISPOSITION_FINDINGS_CONTRACT.md) binds each finding to the actual attempted boundary, declared manifest route/capability and verifiable disposition/repair. This source-only template does not promote unrun tests or local diagnostics to runtime evidence or change the 36-framework denominator.

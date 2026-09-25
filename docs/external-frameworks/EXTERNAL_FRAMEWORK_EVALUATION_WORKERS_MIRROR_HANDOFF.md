@@ -281,3 +281,8 @@ Standard: `StegVerse-Labs/Continuity/docs/REPOSITORY_HANDOFF_STANDARD.md` / `ste
 - Policy Cards' earlier `ACTIVE` wording is superseded by the directly reconciled `8/36` terminal state; Worker C now owns Runtime Governance for AI Agents as its remaining target.
 - Any inference that `pending`, `blocked`, incomplete, or externally evidence-blocked framework work is manually startable is superseded by current worker/registry ownership.
 - Any inference that 36/36 completion, repository validation, publication, or framework compatibility grants certification, admissibility, custody, Guardian, release, or execution authority is superseded/prohibited.
+
+
+## 2026-09-25 exact manifested transition findings (source template)
+
+Coordinator issue #66 provides one shared non-rating reporting contract for all existing external-framework worker lanes #62–#65 and #50: `docs/external-frameworks/TRANSITION_DISPOSITION_FINDINGS_CONTRACT.md`. Every finding should display exact source/version, manifest capability+route, proposed state transition, actual attempted boundary, precise ALLOW or actionable non-ALLOW disposition, evidence class, existing owner/retry and immediate-predecessor/Master Records receipt reconstruction where authentic execution occurred. Unexecuted downstream tests have no fabricated disposition; diagnose the actually attempted attachment or acquisition seam. This is source-only template work and does not update 36-framework completion counts, release/publication standing or runtime evidence. Apply under worker ownership only after canonical coordination admits migration; keep existing machine identifiers during semantic authority-language corrections.
