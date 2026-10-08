@@ -133,7 +133,7 @@ The portable node is the user's reconstruction authority. Chat threads provide s
 
 ## Master-Records boundary
 
-Master-Records should preserve final continuity records, hashes, custody metadata, and reconstruction prerequisites without becoming the user's global identity authority.
+Master-Records should keep final continuity records, hashes, and organization-record metadata as organization records, with the references reconstruction needs, without becoming the user's global identity authority.
 
 The portable node should retain:
 

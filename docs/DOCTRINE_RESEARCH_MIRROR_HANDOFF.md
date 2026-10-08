@@ -155,7 +155,7 @@ next executable task: observe the workflow run triggered by the latest commits; 
 StegVerse-Labs/Site: public projection only after approved revision package
 GCAT-BCAT-Engine/Publisher: publication projection only after approved revision package
 StegVerse-002/stegguardian-wiki: guardian projection only after approved revision package
-master-records/orchestration: future custody of immutable research/revision receipts if required by live contracts
+master-records/orchestration: future organization records of immutable research/revision receipts if required by live contracts
 ```
 
 ## Authority boundary

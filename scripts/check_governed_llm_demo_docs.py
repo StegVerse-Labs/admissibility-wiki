@@ -32,7 +32,7 @@ REQUIRED_REFERENCES = {
     "docs/governance/governed-llm-demo-overview.md": (
         "governed-llm-activation-map.md",
         "fixture success != live provider governance",
-        "receipt handoff != Master-Records custody",
+        "receipt handoff != Master-Records organization record",
     ),
     "docs/governance/governed-llm-archive-handoff.md": (
         "docs/governance/governed-llm-demo-overview.md",

@@ -43,7 +43,7 @@ Formalism and admissibility authority
   ├─ RTG candidate formalism
   └─ STCM conservation formalism
 
-Custody and reconstruction
+Organization records and reconstruction
   └─ Master-Records / orchestration
 
 Public doctrine and verification
@@ -77,7 +77,7 @@ External activation
 | Transition Table | formalism-test authority plus public mirrors | Standing, decision classes, consequence tiers, and proof posture | `PUBLIC` mirror; authority remains external |
 | RTG | formalism candidate | Relative-transition geometry | Draft/candidate; not proof authority |
 | STCM | formalism candidate | State-transition conservation | Research/candidate; not proof authority |
-| Custody | `master-records/orchestration` | Authenticated receipt custody and reconstructability evidence | `EXTERNAL`, required before `RECORDED` |
+| Organization records | `master-records/orchestration` | Authenticated organization-record receipt and reconstructability evidence | `EXTERNAL`, required before `RECORDED` |
 | Same-origin gateway | authorized deployment topology | Authenticated transport between Site and runtime destination | `BLOCKED` until deployment evidence |
 | Provider credentials | provider-owned configuration | Live provider access | Optional and `EXTERNAL` |
 | Executor | separately authorized executor | Consequence binding | Disabled or absent unless explicit authority exists |
@@ -220,7 +220,7 @@ retrieval and usage receipts
 no browser secret surface
 Site current-main validation
 formalism or policy standing where required
-Master-Records custody
+Master-Records organization record
 reconstructability PASS
 explicit execution authority for any consequence-binding action
 ```

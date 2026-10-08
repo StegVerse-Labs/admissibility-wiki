@@ -138,7 +138,7 @@ A failed, limited, unresolved, expired, suspended, or revoked result remains val
 
 ## SDK evidence adapter
 
-The StegVerse SDK is the preferred evaluator-facing surface when the tested proposition is representable through published SDK capabilities. Submitted manifest hashes, governance decisions, route receipts, Master Records custody, replay, reconstruction, and result-binding hashes may become certification evidence.
+The StegVerse SDK is the preferred evaluator-facing surface when the tested proposition is representable through published SDK capabilities. Submitted manifest hashes, governance decisions, route receipts, Master Records organization records, replay, reconstruction, and result-binding hashes may become certification evidence.
 
 An SDK `ALLOW` is not itself a certification. The selected profile, negative controls, evidence sufficiency, lifecycle requirements, and certificate validator must also pass.
 

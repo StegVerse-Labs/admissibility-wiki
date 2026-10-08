@@ -6,7 +6,7 @@
 page_posture: PUBLIC_DOCTRINE_WITH_FIXTURE_IMPLEMENTATION_REFERENCES
 live_continuity_search_service: NOT_VERIFIED
 live_provider_governance: NOT_CLAIMED
-master_records_custody: EXTERNAL_NOT_ESTABLISHED_BY_THIS_PAGE
+master_records_organization_record: EXTERNAL_NOT_ESTABLISHED_BY_THIS_PAGE
 execution_authority: NOT_GRANTED
 ```
 
@@ -35,7 +35,7 @@ and emit a receipt that supports later reconstruction without converting history
 | `StegVerse-org/StegVerse-SDK` | Packet validation, intake, manifest binding and receipt handoff | `IMPLEMENTED_CONTRACT_LAYER` |
 | Runtime producers | Core-node or micro-node governed request production | `DEMO_OR_FIXTURE_COORDINATES` |
 | `Data-Continuation/formalism-tests` | Executable fixtures, expected outcomes and proof receipts | `EXTERNAL_PROOF_AUTHORITY` |
-| `master-records/orchestration` | Authenticated custody and reconstruction evidence | `EXTERNAL_GATE` |
+| `master-records/orchestration` | Authenticated organization records and reconstruction evidence | `EXTERNAL_ORGANIZATION_RECORDS` |
 | Same-origin gateway, provider, search service and executor | Live network and consequence-bearing coordinates | `EXTERNAL_OR_BLOCKED_UNTIL_AUTHORIZED` |
 | Admissibility Wiki and Site | Public explanation, topology and bounded display | `PUBLIC_DOCUMENTATION` |
 
@@ -77,7 +77,7 @@ What has changed, expired, conflicted, been revoked, or been superseded?
 Can the prior result be reconstructed without treating it as current authority?
 ```
 
-This supports questions about prior conversations or decisions without requiring every component to retain duplicate full transcripts. It does not eliminate the need for authorized payload custody where policy, consent, quarantine, litigation hold, explicit distribution, or Master-Records rules require it.
+This supports questions about prior conversations or decisions without requiring every component to retain duplicate full transcripts. It does not eliminate the need for authorized payload custody where policy, consent, quarantine, litigation hold, explicit distribution, or Master-Records organization-record rules require it.
 
 ## Storage-minimizing reconstruction record
 
@@ -193,7 +193,7 @@ A receipt does not prove the truth of model output.
 A query or source hash does not prove payload availability.
 Historical reconstruction does not create current standing.
 Adapter governance does not execute side effects.
-SDK validation and manifest binding do not create authority or Master-Records custody.
+SDK validation and manifest binding do not create authority or a Master-Records organization record.
 A public page or reachable route does not prove live provider, search, gateway or executor activation.
 ```
 

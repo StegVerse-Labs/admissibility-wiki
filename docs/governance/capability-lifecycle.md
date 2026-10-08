@@ -73,7 +73,7 @@ wiki documentation: DEPLOYED or PUBLICLY_VERIFIED
 adapter source: IMPLEMENTED or INTERNALLY_VALIDATED
 Site client: PREPARED_NOT_DEPLOYED
 provider gateway: NOT_DEPLOYED
-Master-Records custody: NOT_ESTABLISHED
+Master-Records organization record: NOT_ESTABLISHED
 external executor: DISABLED_OR_EXTERNAL
 ```
 

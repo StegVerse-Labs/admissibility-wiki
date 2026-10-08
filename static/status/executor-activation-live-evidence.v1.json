@@ -30,7 +30,7 @@
     "executor_activation_is_transition_authority": false,
     "documentation_record_grants_execution_authority": false,
     "documentation_record_is_final_receipt": false,
-    "documentation_record_is_master_records_custody": false
+    "documentation_record_is_master_records_organization_record": false
   },
   "observatory_posture": "RUN_SPECIFIC_LIVE_EVIDENCE_RECORDED"
 }

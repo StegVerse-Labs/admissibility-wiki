@@ -67,7 +67,7 @@ This handoff-only reconciliation changes no repository behavior, public interfac
 - Site final TGA handoff reconciliation: `StegVerse-Labs/Site#1040`, merge `dd9a8fabaa93b72a91d769197623df02be0e64e4`.
 - Publisher final TGA handoff reconciliation: `GCAT-BCAT-Engine/Publisher#58`, merge `9a5c61962049f3753010bac006af82c20c4e3e5d`.
 - StegGuardian final TGA handoff reconciliation: `StegVerse-002/stegguardian-wiki#41`, merge `32554def402a5d3d1ebe077766ec1407e3a268c6`.
-- Master Records reconstruction ledger: `master-records/orchestration#76`, merge `4aa14c0ff4373eb4787080e58fb028b54cb9416a`, pending final chain refresh.
+- Master Records reconstruction record: `master-records/orchestration#76`, merge `4aa14c0ff4373eb4787080e58fb028b54cb9416a`, pending final chain refresh.
 
 ```yaml
 source_state: COMPLETE_VALIDATED_MERGED

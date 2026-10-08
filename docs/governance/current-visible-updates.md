@@ -89,7 +89,7 @@ repository source present != workflow pass
 workflow pass != Pages deployment pass
 Pages deployment pass != public route verification
 public route verification != proof authority
-validation artifact != Master-Records custody
+validation artifact != Master-Records organization record
 public visibility != admissibility or execution authority
 ```
 

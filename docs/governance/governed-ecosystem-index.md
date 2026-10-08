@@ -74,12 +74,12 @@ The wiki explains and crosswalks these sources. It does not inherit their proof 
 
 ```text
 master-records/orchestration
-  -> authenticated custody
+  -> authenticated organization records
   -> retained master records and pointers
   -> reconstructability evidence
 ```
 
-Receipt emission or manifest binding is not Master-Records installation. `RECORDED` requires authenticated custody evidence and reconstructability proof.
+Receipt emission or manifest binding is not Master-Records installation. `RECORDED` requires an authenticated Master-Records organization record and reconstructability proof.
 
 ## Deployment and external coordinates
 

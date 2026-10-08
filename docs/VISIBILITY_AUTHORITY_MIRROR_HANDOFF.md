@@ -68,7 +68,7 @@ StegVerse-Labs/Site
   independent human-readable and machine-readable projection
 
 master-records/orchestration
-  deterministic custody and reconstruction
+  deterministic organization records and reconstruction
 
 StegVerse-Labs/admissibility-wiki
   admissibility doctrine and canonical validation

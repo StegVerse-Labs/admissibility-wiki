@@ -2,7 +2,7 @@
 """Import Publisher's Ecosystem Chat activation projection for wiki display.
 
 Projection-only consumer. A verified wiki projection requires Publisher's
-hash-bound activation status and independently reconstructed terminal custody.
+hash-bound activation status and an independently reconstructed terminal organization record.
 """
 from __future__ import annotations
 

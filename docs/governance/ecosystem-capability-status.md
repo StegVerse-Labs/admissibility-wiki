@@ -29,7 +29,7 @@ The example is a schema demonstration only. It is not evidence that every ecosys
 | Same-origin gateway | Site plus authorized destination | No authorized deployment evidence recorded here. | `NOT_DEPLOYED`. |
 | Live provider path | Provider plus adapter deployment | Credentials and authorized deployed provider conformance not established. | `EXTERNAL_NOT_ESTABLISHED`. |
 | Formalism proof | `Data-Continuation/formalism-tests` | Executable fixtures and receipts remain authority-repository owned. | State must be read from that repository; wiki does not promote it. |
-| Master-Records custody | `master-records/orchestration` | Authenticated custody and reconstructability evidence required. | `NOT_ESTABLISHED`. |
+| Master-Records organization records | `master-records/orchestration` | Authenticated organization-record and reconstructability evidence required. | `NOT_ESTABLISHED`. |
 | External executor | Explicit executor authority | Adapter emits disabled handoff by default. | `DISABLED_OR_EXTERNAL`. |
 
 ## Aggregate status rule
@@ -45,7 +45,7 @@ Site client: prepared_not_deployed
 live transport: false
 same_origin_gateway: not_deployed
 provider conformance: not_established
-Master-Records custody: not_established
+Master-Records organization record: not_established
 external execution: disabled_or_external
 aggregate_operational: false
 release_authorized: false
@@ -94,7 +94,7 @@ example fixture != observed ecosystem state
 repository validation != release authorization
 wiki deployment != Site deployment
 Site deployment != provider conformance
-provider conformance != Master-Records custody
+provider conformance != Master-Records organization record
 custody != execution authority
 ```
 

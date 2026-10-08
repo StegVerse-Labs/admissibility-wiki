@@ -15,7 +15,7 @@ wiki_public_route_verification: PENDING_OBSERVATION
 site_contract_status: PREPARED_NOT_DEPLOYED
 site_live_transport_enabled: false
 adapter_authorized_same_origin_deployment: NOT_OBSERVED
-master_records_custody: NOT_OBSERVED
+master_records_organization_record: NOT_OBSERVED
 reconstructability_pass: NOT_OBSERVED
 external_execution_authority: NOT_GRANTED
 release_or_tag_authority: NOT_GRANTED
@@ -29,8 +29,8 @@ release_or_tag_authority: NOT_GRANTED
 | Wiki Pages verification | Expected wiki routes respond after deployment. | Site application deployment, provider calls, custody, or execution authority. |
 | Site current-main validation | Site contract and public display pass repository-owned checks. | Authorized same-origin deployment. |
 | Adapter current-main validation | Destination source implementation and contracts pass destination-owned tests. | A deployed endpoint or live provider governance. |
-| Same-origin conformance | An authorized deployed route returns a conformant response and retrieval receipt. | Master-Records custody or current execution authority. |
-| Custody and reconstruction | Authenticated custody and reconstructability PASS are evidenced. | Permission to execute a new consequence-bearing action. |
+| Same-origin conformance | An authorized deployed route returns a conformant response and retrieval receipt. | A Master-Records organization record or current execution authority. |
+| Organization records and reconstruction | An authenticated Master-Records organization record and reconstructability PASS are evidenced. | Permission to execute a new consequence-bearing action. |
 
 ## Canonical workflow ownership
 
@@ -73,7 +73,7 @@ sample response conformance
 retrieval receipt validation
 no browser secret surface
 Site current-main validation
-Master-Records custody
+Master-Records organization record
 reconstructability PASS
 explicit action-level execution authority when consequence is requested
 ```
@@ -85,8 +85,8 @@ Local validation != public deployment.
 Wiki public reachability != Site application deployment.
 Site display != provider call.
 Prepared client != deployed endpoint.
-Retrieval receipt != Master-Records custody.
-Custody evidence != execution authority.
+Retrieval receipt != Master-Records organization record.
+Organization-record evidence != execution authority.
 Replayability != current admissibility.
 Historical reconstruction != current authority.
 Pages deployment != release readiness.
