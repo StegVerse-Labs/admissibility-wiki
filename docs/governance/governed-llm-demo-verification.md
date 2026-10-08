@@ -15,7 +15,7 @@ This page defines what can be verified across the governed LLM demonstration top
 | SDK contract verification | Does the SDK validate, route, bind, and return a receipt handoff without granting authority? | Demo packet, validator output, test results. | `REPOSITORY_OWNED` |
 | Public route verification | Are the published wiki routes reachable after deployment? | Workflow-owned route observations and public receipt. | `PENDING_OBSERVATION` |
 | Live provider conformance | Does an authorized deployed provider path return conforming governed responses? | Authorized endpoint, pinned configuration, raw response, receipt and conformance report. | `NOT_ESTABLISHED` |
-| Master-Records custody | Was the result accepted into authenticated custody and reconstructability verified? | Authenticated custody receipt and reconstructability `PASS`. | `NOT_ESTABLISHED` |
+| Master-Records organization record | Was the result recorded as an authenticated organization record and reconstructability verified? | Authenticated organization-record receipt and reconstructability `PASS`. | `NOT_ESTABLISHED` |
 | External execution | Was a consequence-bearing action explicitly authorized and executed? | Commit-time authority decision, executor receipt, result receipt. | `DISABLED_OR_EXTERNAL` |
 
 ## Adapter fixture commands
@@ -67,7 +67,7 @@ Ecosystem Chat
 Usage and comparison surfaces
 runtime producers
 formalism-test fixtures
-Master-Records custody
+Master-Records organization records
 ```
 
 Browser-local simulations and displayed examples must be classified as `PUBLIC_SIMULATION` or `PUBLIC_ADAPTER_CONCEPT` unless executable fixtures, expected outcomes, raw outputs, and replay instructions are available from the authority repository.
@@ -105,6 +105,6 @@ replay pass != current authority
 reconstruction pass != current authority
 SDK validation != execution authority
 public reachability != operational standing
-receipt handoff != Master-Records custody
+receipt handoff != Master-Records organization record
 custody receipt != execution authority
 ```

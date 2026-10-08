@@ -37,7 +37,7 @@ input-class instance
 | Commitment | Commitment Candidate, policy and delegation references, authority decision | Current standing and validity window required | Historical approval is not current authority. |
 | Execution | Disabled handoff by default; explicitly authorized executor externally | Separate executor evidence required | Decision is not execution. |
 | Continuity | Receipts, STRP, replay and reconstruction reports | Chain and evidence references | Receipt existence is not custody. |
-| Custody | Master-Records/orchestration | Authenticated installation and reconstructability evidence | Receipt handoff is not recorded custody. |
+| Organization records | Master-Records/orchestration | Authenticated installation and reconstructability evidence | Receipt handoff is not a recorded organization record. |
 | Public explanation | admissibility-wiki and Site | Public doctrine, status and bounded display | Visibility is not proof or authority. |
 
 ## Input-to-output possibilities

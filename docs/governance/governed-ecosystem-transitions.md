@@ -42,7 +42,7 @@ input or request
 | Contract intake | StegVerse-SDK, manifests, intake and receipt schemas | Validates and routes artifacts without granting authority |
 | Formal evaluation | CGE, GCAT, BCAT, Transition Table, formalism-tests | Determines or proves bounded standing where executable evidence exists |
 | Commitment and execution | Commitment request, authority decision, executor handoff | Requires current standing and separately authorized consequence binding |
-| Continuity and custody | Receipts, STRP, replay, reconstruction, Master-Records | Preserves transition history; custody remains a separate authenticated event |
+| Continuity and organization records | Receipts, STRP, replay, reconstruction, Master-Records organization records | Preserves transition history; a Master-Records organization record remains a separate authenticated event |
 | Public explanation | admissibility-wiki and Site | Explains status and topology without inheriting implementation or proof authority |
 
 ## Governed input classes
@@ -98,7 +98,7 @@ See [Governed Output Classes](./governed-output-classes.md) for the required bou
 | `ALLOW_COMMITMENT` | A proposed consequence may cross to an authorized executor | That execution occurred |
 | `DENY` | The transition is not allowed under the evaluated standing | Historical deletion or impossibility of later reconsideration |
 | `FAIL_CLOSED` | Required conditions are absent or invalid | Framework invalidity or permanent denial |
-| Executed | A separately authorized consequence occurred | Master-Records custody or current future authority |
+| Executed | A separately authorized consequence occurred | A Master-Records organization record or current future authority |
 | Recorded | Authenticated custody and reconstruction conditions passed | Current admissibility for reuse |
 
 ## Relationship to external frameworks
@@ -166,7 +166,7 @@ fixture-first adapter and SDK paths: IMPLEMENTED IN SOURCE REPOSITORIES
 Math Solver and demo surfaces: PUBLIC CONCEPT / FIXTURE / BROWSER POSTURES
 Site live same-origin usage path: PREPARED_NOT_DEPLOYED
 live continuity-search service: EXTERNAL
-Master-Records custody: EXTERNAL
+Master-Records organization record: EXTERNAL
 external executor authority: EXTERNAL
 canonical workflow and Pages evidence: REPOSITORY-OWNED OBSERVATION GATES
 ```

@@ -45,6 +45,20 @@ def _read(path: Path) -> str:
     return path.read_text(encoding="utf-8") if path.exists() else ""
 
 
+ORGANIZATION_RECORD_BOUNDARY = "artifact_reference_is_master_records_organization_record"
+# Legacy field name kept readable for already-published status files; Master Records
+# boundary remediation (MASTER-RECORDS-BULK-SEMANTIC-REMEDIATION-002) renamed
+# the Master Records field to its organization-record name. Writers emit the new name.
+LEGACY_ORGANIZATION_RECORD_BOUNDARY = "artifact_reference_is_master_records_custody"
+
+
+def normalize_organization_record_boundary(boundaries: dict) -> dict:
+    """Read the organization-record boundary under its new name, or the legacy name."""
+    if ORGANIZATION_RECORD_BOUNDARY not in boundaries and LEGACY_ORGANIZATION_RECORD_BOUNDARY in boundaries:
+        return {**boundaries, ORGANIZATION_RECORD_BOUNDARY: boundaries[LEGACY_ORGANIZATION_RECORD_BOUNDARY]}
+    return boundaries
+
+
 def main() -> int:
     errors: list[str] = []
     page_text = _read(PAGE)
@@ -91,12 +105,12 @@ def main() -> int:
         for entry in entries:
             if entry.get("authority_effect") != "NONE":
                 errors.append("artifact_reference_authority_effect_must_be_NONE:" + str(entry.get("artifact")))
-        boundaries = data.get("boundaries", {})
+        boundaries = normalize_organization_record_boundary(data.get("boundaries", {}))
         for key in [
             "artifact_reference_is_live_deployment",
             "artifact_reference_is_current_main_validation",
             "artifact_reference_is_execution_authority",
-            "artifact_reference_is_master_records_custody",
+            ORGANIZATION_RECORD_BOUNDARY,
         ]:
             if boundaries.get(key) is not False:
                 errors.append("artifact_reference_boundary_must_be_false:" + key)

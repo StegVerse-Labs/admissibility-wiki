@@ -42,7 +42,7 @@
     "repository_build_verified": false,
     "public_route_verified": false,
     "live_run_receipt_ingested": false,
-    "master_records_admission_verified": false
+    "master_records_organization_record_verified": false
   },
   "authority_boundary": {
     "catalog_grants_execution_authority": false,

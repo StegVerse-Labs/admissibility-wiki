@@ -76,7 +76,7 @@ local validator pass != canonical workflow pass
 canonical workflow pass != deployment pass
 deployment pass != public endpoint verification
 public verification != proof authority
-build receipt != Master-Records custody
+build receipt != Master-Records organization record
 ```
 
 ## Current Evidence Posture

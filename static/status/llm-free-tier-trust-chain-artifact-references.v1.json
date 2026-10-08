@@ -32,7 +32,7 @@
     "artifact_reference_is_live_deployment": false,
     "artifact_reference_is_current_main_validation": false,
     "artifact_reference_is_execution_authority": false,
-    "artifact_reference_is_master_records_custody": false
+    "artifact_reference_is_master_records_organization_record": false
   },
   "next_action": "Observe repository-owned current-main validation and deployment receipts before promoting any free-tier trust-chain coordinate beyond PREPARED_NOT_DEPLOYED."
 }

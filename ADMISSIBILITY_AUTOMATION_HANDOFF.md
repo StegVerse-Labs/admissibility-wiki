@@ -195,7 +195,7 @@ StegVerse-002/StegGuardian
 
 ## Boundary
 
-Validation success does not create execution, deployment, release, certification, cross-repository, proof, or Master-Records admission authority. Public visibility does not prove admissibility. Run-specific evidence, commit-time validity, proof receipts, custody records, and reconstruction evidence remain required.
+Validation success does not create execution, deployment, release, certification, cross-repository, proof, or transition-admission authority (Interlock/InTr admits transitions). Public visibility does not prove admissibility. Run-specific evidence, commit-time validity, proof receipts, Master-Records organization records, and reconstruction evidence remain required.
 
 ## Archive instruction
 

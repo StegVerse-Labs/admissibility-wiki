@@ -128,7 +128,7 @@ custody = manifest["custody"]
 if custody.get("publisher_receipt") != "NOT_AUTHORIZED":
     fail("Publisher custody must remain NOT_AUTHORIZED")
 if custody.get("master_records_hash_receipt") != "NOT_AUTHORIZED":
-    fail("Master Records custody must remain NOT_AUTHORIZED")
+    fail("Master Records organization-record hash receipt must remain NOT_AUTHORIZED")
 if custody.get("signature_status") != "NOT_BOUND":
     fail("signature status must remain NOT_BOUND")
 

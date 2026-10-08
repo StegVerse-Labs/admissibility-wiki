@@ -48,7 +48,7 @@ SDK evaluation declaration -> certification candidate test intent metadata
 submitted manifest hash -> candidate/input binding
 StegGate disposition -> GOV observation
 manifested route receipts -> transition evidence
-Master Records exact-run custody -> CUSTODY_DURABLE evidence
+Organization exact-run custody -> CUSTODY_DURABLE evidence
 replay result -> REPLAY_STABLE evidence
 reconstruction result -> RECONSTRUCTABLE evidence
 result binding hash -> candidate-to-result binding

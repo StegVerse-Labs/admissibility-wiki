@@ -122,7 +122,7 @@ Route reachability, when observed, establishes bounded publication evidence only
 
 Do not modify, recreate, merge, or claim the Riverbraid intake owned by PR #17 and branch `agent/add-riverbraid-intake`.
 
-Do not begin the dependency-blocked HIL interpretation until verified Site activation, provider persistence, Master-Records custody, reconstruction, and Publisher propagation evidence exists.
+Do not begin the dependency-blocked HIL interpretation until verified Site activation, provider persistence, Master-Records organization records, reconstruction, and Publisher propagation evidence exists.
 
 ## Remaining files or modules and destinations
 

@@ -141,7 +141,7 @@ No second active workflow may be created. Validation and public-route observatio
 3. Ingest the queued Site projection only when destination scope permits it.
 4. Check Publisher handoff before GCAT-BCAT-Engine/Publisher mutation.
 5. Check StegGuardian destination handoffs before guardian projection.
-6. Integrate custody and independent reconstruction with master-records/orchestration only when authorized.
+6. Integrate organization records and independent reconstruction with master-records/orchestration only when authorized.
 ```
 
 ## Authority boundaries
@@ -174,7 +174,7 @@ StegVerse-Labs/admissibility-wiki — canonical workflow and public-route observ
 StegVerse-Labs/Site — queued synchronized projection after destination handoff authorization
 GCAT-BCAT-Engine/Publisher — publication projection after destination handoff review
 StegVerse-002/stegguardian-wiki — guardian interpretation after destination handoff review
-master-records/orchestration — custody and independent reconstruction integration when authorized
+master-records/orchestration — organization records and independent reconstruction integration when authorized
 ```
 
 ## 2026-08-26 reciprocal contract reconciliation

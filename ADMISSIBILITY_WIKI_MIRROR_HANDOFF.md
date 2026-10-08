@@ -205,7 +205,7 @@ Machine-observable release chain:
 ```text
 authorized provider execution
 -> durable provider-usage persistence
--> authenticated Master-Records custody
+-> authenticated Master-Records organization record
 -> reconstruction PASS
 -> immutable zero-blocker receipt
 -> Site ACTIVATION_COMPLETE

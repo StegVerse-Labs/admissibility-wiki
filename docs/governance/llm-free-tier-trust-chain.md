@@ -24,7 +24,7 @@ live_transport_enabled: false
 usage_api_base: null
 bounded_live_use_observed: false
 same_origin_authenticated_deployment_observed: false
-master_records_custody_observed: false
+master_records_organization_record_observed: false
 reconstructability_pass_observed: false
 ```
 
@@ -89,7 +89,7 @@ reconstruction_grants_commit_time_standing == false
 upgrade_changes_admissibility_requirements == false
 configured_limits_prove_live_service == false
 site_display_proves_provider_call == false
-retrieval_receipt_proves_master_records_custody == false
+retrieval_receipt_proves_master_records_organization_record == false
 ```
 
 ## Activation evidence required
@@ -103,7 +103,7 @@ sample response conformance
 retrieval receipt validation
 no browser secret surface
 Site current-main validation
-Master-Records custody
+Master-Records organization record
 reconstructability PASS
 ```
 

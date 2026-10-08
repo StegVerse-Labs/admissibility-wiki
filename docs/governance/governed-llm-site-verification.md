@@ -71,7 +71,7 @@ Documentation verification must remain distinct from the downstream Site impleme
 | `governed-transitions.html` | `StegVerse-Labs/Site` | Public projection; not execution authority |
 | Same-origin usage API | Site plus authorized destination | `NOT_DEPLOYED` |
 | LLM adapter gateway | `StegVerse-org/LLM-adapter` | Source installed; deployment evidence pending |
-| Master-Records custody | `master-records/orchestration` | External authenticated evidence required |
+| Master-Records organization records | `master-records/orchestration` | External authenticated evidence required |
 
 The current Site boundary remains:
 
@@ -91,7 +91,7 @@ sample response conformance
 retrieval receipt validation
 no browser secret surface
 Site current-main validation
-Master-Records authenticated custody
+Master-Records authenticated organization record
 reconstructability PASS
 ```
 
@@ -107,7 +107,7 @@ wiki deployment != Site application deployment
 Site display != execution
 prepared client != deployed endpoint
 response conformance != authority
-retrieval receipt != Master-Records custody
+retrieval receipt != Master-Records organization record
 workflow receipt != operational standing
 public reachability != external indexing
 ```

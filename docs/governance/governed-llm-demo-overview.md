@@ -47,7 +47,7 @@ These surfaces demonstrate different portions of the governed ecosystem and must
 | `StegVerse-org/StegVerse-SDK` | Validates demo packets, routes intake, binds manifests, and emits receipt handoffs. |
 | `StegVerse-Labs/Site` | Hosts public demo, Math Solver, Applicability, Ecosystem Chat, usage, and comparison surfaces. |
 | `Data-Continuation/formalism-tests` | Owns executable fixtures, expected outcomes, and proof receipts where installed. |
-| `master-records/orchestration` | Future authenticated custody and reconstruction coordinate. |
+| `master-records/orchestration` | Future authenticated organization-records and reconstruction coordinate. |
 | `StegVerse-Labs/admissibility-wiki` | Publishes doctrine, topology, evidence posture, and verification boundaries. |
 
 ## What can be evaluated
@@ -63,7 +63,7 @@ fixture success != live provider governance
 browser simulation != proof authority
 public display != deployed service
 SDK validation != execution authority
-receipt handoff != Master-Records custody
+receipt handoff != Master-Records organization record
 replay != current standing
 reconstruction != current standing
 ```
@@ -82,7 +82,7 @@ reconstruction != current standing
 public_demo_page_claims_live_provider_governance == false
 public_demo_page_claims_execution_authority == false
 public_demo_page_claims_external_indexing == false
-public_demo_page_claims_master_records_custody == false
+public_demo_page_claims_master_records_organization_record == false
 fixture_demo_is_reproducible_only_from_available_artifacts == true
 adapter_and_sdk_remain_source_of_implementation_truth == true
 formalism_tests_remains_source_of_executable_proof_truth == true

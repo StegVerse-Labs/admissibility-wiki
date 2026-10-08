@@ -38,7 +38,7 @@ admitted input or request
 | STRP handoff | Transition identity, result, hashes, authority and continuity fields required | Next governed entity or system | `CONTRACT_OR_FIXTURE_SUPPORTED` |
 | Receipt-chain continuation | Prior chain validity plus current standing required | Continuity or Master-Records path | `REGISTERED_CURRENT_VALIDATION_REQUIRED` |
 | State-transition summary | Must remain a bounded explanation rather than proof authority | Public or reviewer-facing surface | `SUPPORTED_PUBLIC_EXPLANATION` |
-| Custody record | Authenticated installation and reconstructability evidence required | Master-Records/orchestration | `EXTERNAL_NOT_CREATED_BY_WIKI` |
+| Organization record | Authenticated installation and reconstructability evidence required | Master-Records/orchestration | `EXTERNAL_NOT_CREATED_BY_WIKI` |
 
 ## Required result distinctions
 

@@ -90,7 +90,7 @@ compatibility result != endorsement
 compatibility result != execution authority
 compatibility result != commit-time admissibility
 compatibility result != semantic equivalence
-compatibility receipt != Master-Records custody
+compatibility receipt != Master-Records organization record
 publication != standing
 ```
 

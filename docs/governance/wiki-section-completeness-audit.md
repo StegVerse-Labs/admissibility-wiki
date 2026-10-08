@@ -129,7 +129,7 @@ Site client: PREPARED_NOT_DEPLOYED
 live transport: false
 same-origin gateway: not deployed
 provider conformance: not established
-Master-Records custody: not established
+Master-Records organization record: not established
 external execution: disabled or external
 aggregate operational: false
 release authorization: not granted

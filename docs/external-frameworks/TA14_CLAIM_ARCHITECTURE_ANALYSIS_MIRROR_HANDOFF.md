@@ -289,7 +289,7 @@ static/data/governed-framework-reviews/ta-14.stegverse-gap-review-v2.task-regist
 
 The repository-wide external-framework evaluation workload `EXT-FRAMEWORK-SECOND-PAGE-36` remains separately active under issue #66 / issue #50 collision control. This v1.3 reconciliation does not claim or duplicate its remaining 28 framework evaluations.
 
-Master Records canonical handoff `master-records/core-lite/MASTER_RECORDS_MIRROR_HANDOFF.md` records existing propagation to admissibility-wiki as complete and preserved; no TA-14-specific Master Records custody mutation is required or admitted by this lane.
+Master Records canonical handoff `master-records/core-lite/MASTER_RECORDS_MIRROR_HANDOFF.md` records existing propagation to admissibility-wiki as complete and preserved; no TA-14-specific Master Records organization-record mutation is required by this lane. Transition admission belongs to Interlock/InTr.
 
 ## Current state
 

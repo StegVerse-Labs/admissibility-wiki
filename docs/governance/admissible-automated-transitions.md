@@ -184,9 +184,9 @@ A final run receipt binds:
 - action and verification results;
 - input and output state hashes;
 - prior receipt and resulting handoff references;
-- Master-Records submission and reconstruction status.
+- Master-Records organization-record and reconstruction status.
 
-The final run receipt is the continuity artifact intended for Master-Records custody. Master-Records may record its hash, continuity links, custody metadata, and reconstruction references. The observatory then renders a governed projection of those records.
+The final run receipt is the continuity artifact intended to become a Master-Records organization record. Master-Records may record its hash, continuity links, organization-record metadata, and reconstruction references. The observatory then renders a governed projection of those records.
 
 ```text
 runtime evidence

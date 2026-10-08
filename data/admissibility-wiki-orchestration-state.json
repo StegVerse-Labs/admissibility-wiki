@@ -288,7 +288,7 @@
       "required_upstream_evidence": [
         "authorized real-provider response",
         "durable provider-usage persistence",
-        "authenticated Master-Records custody receipt",
+        "authenticated Master-Records organization-record receipt",
         "reconstructability_pass=true",
         "immutable zero-blocker VERIFIED activation receipt",
         "Site ACTIVATION_COMPLETE",

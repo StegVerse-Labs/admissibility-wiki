@@ -53,6 +53,6 @@ The executable chain is distributed across:
 - `StegVerse-org/StegVerse-SDK` — declaration, acknowledgement receipts, and authority transitions;
 - `GCAT-BCAT-Engine/Publisher` — consequential publication enforcement;
 - `StegVerse-Labs/Site` — independent human and machine projection;
-- `master-records/orchestration` — custody and replay reconstruction without authority creation.
+- `master-records/orchestration` — organization records and reconstruction without authority creation.
 
 This wiki records the admissibility doctrine. It does not acquire execution, publication, release, custody, Guardian, or downstream mutation authority by documenting the chain.
