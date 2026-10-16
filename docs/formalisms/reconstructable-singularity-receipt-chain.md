@@ -6,7 +6,7 @@ title: Receipt-Chain Reconstruction — Derivations (DRAFT, candidate)
 
 Status: **DRAFT / candidate derivations.** Prepared 2026-10-16 by Grok Bot for owner and practitioner review.
 
-> **Disclaimer.** This is a working draft. It is not a statement of truth, not a legal or patentability determination, and grants no execution, release, publication or standing authority. Every item is a candidate for owner/practitioner review. Nothing here has been added to any repository.
+> **Disclaimer.** This is a working draft. It is not a statement of truth, not a legal or patentability determination, and grants no execution, release, publication or standing authority. Every item is a candidate for owner/practitioner review. Status: draft text proposed in review-only pull requests; nothing here is merged as accepted mathematics. The mathematics below is a supporting derivation in standard notation; it is not tied to, and does not claim or define, StegVerse terminology.
 
 Each step is tagged:
 - **[STD]**: follows from a standard published result (cited);
@@ -46,6 +46,8 @@ Two special forms are useful:
 (ii) model plus residual, \(P(S,\delta)=\Pi_M(S)\star r\) with pinned predictor \(\Pi_M\) and an invertible correction \(\star\), meaning that for fixed \(S\) the map \(r\mapsto\Pi_M(S)\star r\) is injective.
 
 **[ASSUME] A3 (unambiguous encoding).** \(\langle\cdot\rangle\) is an injective, length-prefixed encoding of tuples.
+
+**Payload vs. receipt (owner semantics) [ASSUME] A7.** The *payload* is the state \(S_j\) (equivalently, under A2, the transition data \(\delta_j\) from which \(P\) yields \(S_j\)). A *receipt* \(R_j\) does **not** encode a state: it attests that \(S_{j-1}\) and \(S_j\) are related by a valid transition and binds the predecessor receipt; continuity between the two payload states is implied by the receipt. The *genesis receipt* \(R_0\) is a path/state-transition artifact and is distinct from the *genesis state* \(S_0\) (a payload).
 
 **Receipts.** For a hash \(H:\{0,1\}^*\to\{0,1\}^\lambda\) and domain tags \(\tau_0\ne\tau\):
 \[R_0=H\langle\tau_0,\,0,\,S_0\rangle,\qquad R_{j+1}=H\langle\tau,\,j{+}1,\,R_j,\,\delta_j,\,S_{j+1}\rangle.\]
@@ -121,17 +123,20 @@ Let \(V_j\) be the set of admissible values of \(\delta_j\) given \(\Gamma_A\). 
 3. For verified-resolving: any substituted \((S'_0,\delta')\) that differs and still matches the trusted \(R_m\) yields a collision (G3).
 ∎
 
-**Claim 5.2 (redundancy of intermediate receipts).** For every \(j<m\), \(g_{R_j}=\phi_j\circ G_{I_0}\) for a deterministic function \(\phi_j\) (G2). Hence \(G_{I\cup\{g_{R_j}\}}\) is injective iff \(G_I\) is, whenever \(I\supseteq I_0\). Equivalently, in hitting-set form (RS §8), any pair \(\gamma\ne\gamma'\) whose distinguishing set contains \(g_{R_j}\) also has a distinguishing set meeting \(I_0\). Intermediate receipts are regenerable and add no resolving power. Their value lies in localization (G7) and in checkpointing, not in identifiability.
-*Proof.* If \(G_{I_0}(\gamma)=G_{I_0}(\gamma')\), then \(\gamma=\gamma'\) by 5.1, so \(g_{R_j}\) agrees. Contrapositive: \(g_{R_j}(\gamma)\ne g_{R_j}(\gamma')\Rightarrow G_{I_0}(\gamma)\ne G_{I_0}(\gamma')\). ∎
+**Claim 5.2 (intermediate receipts add no resolving power given \(I\supseteq I_0\)).** By G2, \(R_j=\phi_j(S_0,\delta_0,\ldots,\delta_{j-1})\) for a deterministic \(\phi_j\), so \(g_{R_j}=\phi_j\circ G_{I_0}\). Hence, for every \(I\supseteq I_0\), \(G_{I\cup\{g_{R_j}\}}\) is injective on \(\Gamma_A\) iff \(G_I\) is: given \(I\supseteq I_0\), intermediate receipts add no resolving power. Their role is continuity verification (G7) and checkpointing, not identifiability.
+*Proof.* If \(G_I(\gamma)=G_I(\gamma')\) with \(I\supseteq I_0\), then \(G_{I_0}(\gamma)=G_{I_0}(\gamma')\), so \(\gamma=\gamma'\) by 5.1 and \(g_{R_j}(\gamma)=g_{R_j}(\gamma')\). The converse direction is immediate because adding a coordinate cannot merge distinct images. ∎
 
-**Claim 5.3 (necessity, information-theoretic).** Let \(j\) be non-trivial. Then \(I_0\setminus\{g_{\delta_j}\}\) together with any set of receipt perspectives is not resolving in the *information-theoretic* sense when \(|V_j|>2^{\lambda q}\) (G4 applied to the single unknown \(\delta_j\)). If instead \(|V_j|\le\) a feasible search budget, receipts can stand in for \(g_{\delta_j}\) computationally (G4 exception).
-*Proof.* Fix all other perspectives. The candidates differ only in \(\delta_j\in V_j\) and its downstream consequences. Apply the pigeonhole argument of G4 to the \(q\) receipt values. ∎
-Also, without any receipt, two histories that differ only in \(\delta_j\) agree on every other payload and on the genesis, so \(D_{\gamma,\gamma'}=\{g_{\delta_j}\}\cup\{\text{receipts at or after } j\}\). The hitting-set condition therefore forces \(g_{\delta_j}\) or a downstream receipt, and only the former is content-bearing.
+**Claim 5.3 (receipts cannot substitute for states) [NEW, structural; rests on A7].** Under A7 a receipt is a relational attestation over a pair of payload states: given candidate \((S_{j-1},S_j)\) it confirms or refutes that they are related by a valid transition in the chain. It carries no state content. A replay procedure must *output* \(S_j\); an attestation can only accept or reject a supplied candidate, so it cannot be the source of \(S_j\). Therefore every non-trivial state \(S_j\) (or its transition data \(\delta_j\)) must be supplied as a payload perspective, and any fragment consisting only of receipts (including the genesis receipt \(R_0\)) is not a replay source. This is a structural argument from the role of a receipt, not a computational ("search range") or counting argument.
+For two histories \(\gamma\ne\gamma'\) that first differ at state \(S_j\), the distinguishing set (RS §8) is, under A4,
+\[D_{\gamma,\gamma'}=\{g_{S_k}:k\ge j,\ S_k\ne S'_k\}\cup\{g_{R_k}:k\ge j\}.\]
+The receipts in \(D_{\gamma,\gamma'}\) *detect* the difference; only the state perspectives *supply* it.
+*Collision note.* The equality above is conditioned on A4. Mathematically, digests are many-to-one (pigeonhole, G4), so collisions exist; A4 only makes them infeasible to find. Governance of the chain excludes duplicate *transitions*, not duplicate *digests*.
 
-**Claim 5.4 (threshold).** Under the per-step perspective granularity and A2–A4, with every non-trivial \(|V_j|\) beyond search range:
-\[k^*_\Gamma=1+\#\{j:|V_j|>1\},\qquad k^*_{\text{verified}}=k^*_\Gamma+1\ (\text{trusted }R_m).\]
-The pinned model \(g_M\) is a precondition, not a counted perspective; if it is counted, add 1. Fragments without content payloads (receipts only, or genesis plus receipts) are not resolving by 5.3.
-*Status:* candidate. The counting depends on the granularity chosen for perspectives. With one aggregated "payload stream" perspective, \(k^*=2\) or \(3\). The value is structural (RS §6), not absolute.
+**Claim 5.4 (minimum for replay and for verified replay).** Call step \(j\) trivial if \(S_j\) is fixed by \(S_{j-1}\) and \(\Gamma_A\) (e.g. a frozen region). Assume the genesis state is non-trivial. Then:
+- **Replay minimum:** the genesis state \(S_0\) plus each non-trivial state \(S_j\) (or its transition data \(\delta_j\)): \(k^*_{\text{replay}}=1+\#\{j\ge1: S_j \text{ non-trivial}\}\) at per-step granularity.
+- **Verification:** receipts verify continuity between consecutive payload states (G7); they are not counted as content.
+- **Verified replay:** add the trusted head \((m,R_m)\). It rejects tampering (G3) and truncation (G7, limit 4): \(k^*_{\text{verified}}=k^*_{\text{replay}}+1\).
+The pinned processor \(P\) is a precondition, not a counted perspective (count it and add 1). The count depends on the granularity chosen for perspectives; with one aggregated payload stream it is 2, or 3 with the trusted head. *Status:* candidate.
 
 **Claim 5.5 (frozen regions and subtree reuse) [STD + NEW].** Split \(S_j\) into \(N\) tiles under a Merkle tree [M79]. Let \(c_j\) be the number of changed tiles. Then \(\delta_j\) needs only the \(c_j\) changed tiles plus their indices (or an \(N\)-bit change map). The new root is computed with \(O(c_j\log N)\) hash evaluations, reusing unchanged subtree hashes. Unchanged tiles contribute trivial sub-perspectives (\(|V|=1\) once declared frozen), so by 5.4 they drop out of \(k^*\). This matches STCM-PC-003 (non-matching nodes are not activated, STCM-N §Hash-scoped activation) and the governance cost partition of STCM-PC-005 [INTERP].
 
@@ -143,7 +148,7 @@ The pinned model \(g_M\) is a precondition, not a counted perspective; if it is 
 
 ## 6. G5: payload size lower bound [STD]
 
-**Statement.** Let the residual sequence \(r=(r_0,\ldots,r_{m-1})\) be a random variable given the receiver's side information \(Z=(S_0,M)\). Any uniquely decodable binary code for \(r\) that may depend on \(Z\) has expected length \(\ge H(r\mid Z)\) bits ([S48]; Kraft–McMillan, [CT]). Codes within one bit per block of this bound exist, e.g. arithmetic or Huffman coding under the true conditional law.
+**Statement.** Let the residual sequence \(r=(r_0,\ldots,r_{m-1})\) be a random variable given the receiver's side information \(Z=(S_0,M)\). Any uniquely decodable binary code for \(r\) that may depend on \(Z\) has expected length \(\ge H(r\mid Z)\) bits ([S48]; Kraft–McMillan, [CT]). Standard achievability (source-coding results, e.g. [CT]): a Huffman code achieves expected length \(< H+1\) bits per symbol block, and arithmetic coding \(< H+2\) bits per message, under the true conditional law.
 
 **Total transfer cost [NEW accounting].** The total is about \(|S_0|+H(r\mid Z)+\lambda\) bits. The \(\lambda\) is the trusted terminal receipt, plus any chosen checkpoints. Receipts add \(O(\lambda)\) per checkpoint, not per pixel.
 
@@ -162,7 +167,7 @@ The pinned model \(g_M\) is a precondition, not a counted perspective; if it is 
 **Statement (under A4).**
 1. *Missing link.* If, walking back from \(R_m\) by predecessor references, some referenced \(R_{j-1}\) is absent from \(\mathcal Q\) (and from regenerable data), the gap at index \(j-1\) is detected and localized.
 2. *Fork.* If two distinct records claim the same predecessor and the same index, at most one lies on the path to the trusted \(R_m\) unless a collision exists. The fork is detected and the off-path branch is identified.
-3. *Stale or out-of-sequence binding.* A record claiming index \(j\) whose predecessor's index is not \(j-1\), or whose predecessor is not the current head when appended, violates the index field bound in the hash. It is detected (cf. STCM-L verdicts: missing prior, hash mismatch, stale, superseded, competing chains).
+3. *Stale or out-of-sequence binding.* A record claiming index \(j\) whose predecessor's index is not \(j-1\), or violates the index field bound in the hash, and any record not on the backward walk is detected as off-path relative to the trusted head \((m,R_m)\). It is detected (cf. STCM-L verdicts: missing prior, hash mismatch, stale, superseded, competing chains).
 4. *Limit.* Without a trusted head index \(m\), truncation of the tail (dropping \(R_{m'}\ldots R_m\)) is undetectable. Trusted anchoring of the head is necessary.
 
 **Proof sketch.**
@@ -206,7 +211,7 @@ Audio and video records are already discrete (frames and quantized samples), so 
 | G2 bit-exact replay | NEW, complete elementary induction | A1–A3 (A2 determinism is the practical risk) |
 | G3 terminal match ⇒ equality | STD reduction, written out | A3, A4, trusted \(R_m\) |
 | G4 hashes don't carry content | STD counting | none beyond the sizes |
-| G8 minimum resolving set (5.1–5.5) | NEW candidate; proofs written out | G2–G4, A4; result depends on perspective granularity; injectivity ≠ efficient decoding |
+| G8 minimum resolving set (5.1–5.5) | NEW candidate; proofs written out | G2–G4, A4, A7 (receipts relational); result depends on perspective granularity |
 | G5 size bound | STD (Shannon) + NEW accounting; chaotic part is interpretation only | probabilistic model of residuals |
 | G7 continuity | NEW discrete lemma; proof sketch | A3, A4, trusted head |
 | G9 mode generality | STD + explicit assumptions A5, A6 | capture boundary |
