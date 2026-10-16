@@ -331,3 +331,7 @@ The validator establishes contract/example consistency and the declared singleto
 
 
 Canonical machine-checkable singleton expression: `|\mathcal C_A(I)|=1`.
+
+## Related
+
+[Receipt-Chain Reconstruction — Derivations (DRAFT, candidate)](./reconstructable-singularity-receipt-chain.md)
